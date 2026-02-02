@@ -31332,9 +31332,19 @@ type PubsubOverview struct {
 	Metrics *PubsubMetricsSummary `json:"metrics,omitempty"`
 }
 
+// PullConflictResponse defines model for PullConflictResponse.
+type PullConflictResponse struct {
+	Detail string `json:"detail"`
+}
+
 // PullMarketplaceScriptResourceRequest defines model for PullMarketplaceScriptResourceRequest.
 type PullMarketplaceScriptResourceRequest struct {
 	ResourceUuid openapi_types.UUID `json:"resource_uuid"`
+}
+
+// PullResponse defines model for PullResponse.
+type PullResponse struct {
+	Detail string `json:"detail"`
 }
 
 // QosStrategyEnum defines model for QosStrategyEnum.
@@ -34379,6 +34389,16 @@ type RoundReviewer struct {
 // RoundStatus defines model for RoundStatus.
 type RoundStatus string
 
+// RouterSetErredResponse defines model for RouterSetErredResponse.
+type RouterSetErredResponse struct {
+	Detail string `json:"detail"`
+}
+
+// RouterSetOkResponse defines model for RouterSetOkResponse.
+type RouterSetOkResponse struct {
+	Detail string `json:"detail"`
+}
+
 // Rule defines model for Rule.
 type Rule struct {
 	CategoryTitle                     *string                 `json:"category_title,omitempty"`
@@ -34766,6 +34786,17 @@ type ServiceSettings struct {
 // ServiceSettingsStateEnum defines model for ServiceSettingsStateEnum.
 type ServiceSettingsStateEnum string
 
+// SetErredRequest defines model for SetErredRequest.
+type SetErredRequest struct {
+	ErrorMessage   *string `json:"error_message,omitempty"`
+	ErrorTraceback *string `json:"error_traceback,omitempty"`
+}
+
+// SetErredResponse defines model for SetErredResponse.
+type SetErredResponse struct {
+	Detail string `json:"detail"`
+}
+
 // SetMtu defines model for SetMtu.
 type SetMtu struct {
 	Mtu int `json:"mtu"`
@@ -34783,6 +34814,11 @@ type SetOfferingsUsernameRequest struct {
 
 	// Username Username for offering access
 	Username string `json:"username"`
+}
+
+// SetOkResponse defines model for SetOkResponse.
+type SetOkResponse struct {
+	Detail string `json:"detail"`
 }
 
 // SetTokenQuotaRequest defines model for SetTokenQuotaRequest.
@@ -58208,6 +58244,9 @@ type AwsInstancesUpdateJSONRequestBody = AwsInstanceRequest
 // AwsInstancesResizeJSONRequestBody defines body for AwsInstancesResize for application/json ContentType.
 type AwsInstancesResizeJSONRequestBody = AwsInstanceResizeRequest
 
+// AwsInstancesSetErredJSONRequestBody defines body for AwsInstancesSetErred for application/json ContentType.
+type AwsInstancesSetErredJSONRequestBody = SetErredRequest
+
 // AwsVolumesCreateJSONRequestBody defines body for AwsVolumesCreate for application/json ContentType.
 type AwsVolumesCreateJSONRequestBody = AwsVolumeRequest
 
@@ -58216,6 +58255,9 @@ type AwsVolumesUpdateJSONRequestBody = AwsVolumeRequest
 
 // AwsVolumesAttachJSONRequestBody defines body for AwsVolumesAttach for application/json ContentType.
 type AwsVolumesAttachJSONRequestBody = AwsVolumeAttachRequest
+
+// AwsVolumesSetErredJSONRequestBody defines body for AwsVolumesSetErred for application/json ContentType.
+type AwsVolumesSetErredJSONRequestBody = SetErredRequest
 
 // AzurePublicIpsCreateJSONRequestBody defines body for AzurePublicIpsCreate for application/json ContentType.
 type AzurePublicIpsCreateJSONRequestBody = AzurePublicIPRequest
@@ -58226,6 +58268,9 @@ type AzurePublicIpsPartialUpdateJSONRequestBody = PatchedAzurePublicIPRequest
 // AzurePublicIpsUpdateJSONRequestBody defines body for AzurePublicIpsUpdate for application/json ContentType.
 type AzurePublicIpsUpdateJSONRequestBody = AzurePublicIPRequest
 
+// AzurePublicIpsSetErredJSONRequestBody defines body for AzurePublicIpsSetErred for application/json ContentType.
+type AzurePublicIpsSetErredJSONRequestBody = SetErredRequest
+
 // AzureSqlDatabasesCreateJSONRequestBody defines body for AzureSqlDatabasesCreate for application/json ContentType.
 type AzureSqlDatabasesCreateJSONRequestBody = AzureSqlDatabaseRequest
 
@@ -58234,6 +58279,9 @@ type AzureSqlDatabasesPartialUpdateJSONRequestBody = PatchedAzureSqlDatabaseRequ
 
 // AzureSqlDatabasesUpdateJSONRequestBody defines body for AzureSqlDatabasesUpdate for application/json ContentType.
 type AzureSqlDatabasesUpdateJSONRequestBody = AzureSqlDatabaseRequest
+
+// AzureSqlDatabasesSetErredJSONRequestBody defines body for AzureSqlDatabasesSetErred for application/json ContentType.
+type AzureSqlDatabasesSetErredJSONRequestBody = SetErredRequest
 
 // AzureSqlServersCreateJSONRequestBody defines body for AzureSqlServersCreate for application/json ContentType.
 type AzureSqlServersCreateJSONRequestBody = AzureSqlServerRequest
@@ -58247,6 +58295,9 @@ type AzureSqlServersUpdateJSONRequestBody = AzureSqlServerRequest
 // AzureSqlServersCreateDatabaseJSONRequestBody defines body for AzureSqlServersCreateDatabase for application/json ContentType.
 type AzureSqlServersCreateDatabaseJSONRequestBody = AzureSqlDatabaseCreateRequest
 
+// AzureSqlServersSetErredJSONRequestBody defines body for AzureSqlServersSetErred for application/json ContentType.
+type AzureSqlServersSetErredJSONRequestBody = SetErredRequest
+
 // AzureVirtualmachinesCreateJSONRequestBody defines body for AzureVirtualmachinesCreate for application/json ContentType.
 type AzureVirtualmachinesCreateJSONRequestBody = AzureVirtualMachineRequest
 
@@ -58255,6 +58306,9 @@ type AzureVirtualmachinesPartialUpdateJSONRequestBody = PatchedAzureVirtualMachi
 
 // AzureVirtualmachinesUpdateJSONRequestBody defines body for AzureVirtualmachinesUpdate for application/json ContentType.
 type AzureVirtualmachinesUpdateJSONRequestBody = AzureVirtualMachineRequest
+
+// AzureVirtualmachinesSetErredJSONRequestBody defines body for AzureVirtualmachinesSetErred for application/json ContentType.
+type AzureVirtualmachinesSetErredJSONRequestBody = SetErredRequest
 
 // BackendResourceRequestsCreateJSONRequestBody defines body for BackendResourceRequestsCreate for application/json ContentType.
 type BackendResourceRequestsCreateJSONRequestBody = BackendResourceReqRequest
@@ -58495,6 +58549,9 @@ type DigitaloceanDropletsUpdateJSONRequestBody = DigitalOceanDropletRequest
 
 // DigitaloceanDropletsResizeJSONRequestBody defines body for DigitaloceanDropletsResize for application/json ContentType.
 type DigitaloceanDropletsResizeJSONRequestBody = DigitalOceanDropletResizeRequest
+
+// DigitaloceanDropletsSetErredJSONRequestBody defines body for DigitaloceanDropletsSetErred for application/json ContentType.
+type DigitaloceanDropletsSetErredJSONRequestBody = SetErredRequest
 
 // EventSubscriptionsCreateJSONRequestBody defines body for EventSubscriptionsCreate for application/json ContentType.
 type EventSubscriptionsCreateJSONRequestBody = EventSubscriptionRequest
@@ -59444,6 +59501,9 @@ type OpenportalAllocationsPartialUpdateJSONRequestBody = PatchedAllocationReques
 // OpenportalAllocationsUpdateJSONRequestBody defines body for OpenportalAllocationsUpdate for application/json ContentType.
 type OpenportalAllocationsUpdateJSONRequestBody = AllocationRequest
 
+// OpenportalAllocationsSetErredJSONRequestBody defines body for OpenportalAllocationsSetErred for application/json ContentType.
+type OpenportalAllocationsSetErredJSONRequestBody = SetErredRequest
+
 // OpenportalAllocationsSetLimitsJSONRequestBody defines body for OpenportalAllocationsSetLimits for application/json ContentType.
 type OpenportalAllocationsSetLimitsJSONRequestBody = AllocationSetLimitsRequest
 
@@ -59488,6 +59548,9 @@ type OpenportalRemoteAllocationsPartialUpdateJSONRequestBody = PatchedRemoteAllo
 
 // OpenportalRemoteAllocationsUpdateJSONRequestBody defines body for OpenportalRemoteAllocationsUpdate for application/json ContentType.
 type OpenportalRemoteAllocationsUpdateJSONRequestBody = RemoteAllocationRequest
+
+// OpenportalRemoteAllocationsSetErredJSONRequestBody defines body for OpenportalRemoteAllocationsSetErred for application/json ContentType.
+type OpenportalRemoteAllocationsSetErredJSONRequestBody = SetErredRequest
 
 // OpenportalRemoteAllocationsSetLimitsJSONRequestBody defines body for OpenportalRemoteAllocationsSetLimits for application/json ContentType.
 type OpenportalRemoteAllocationsSetLimitsJSONRequestBody = RemoteAllocationSetLimitsRequest
@@ -59558,8 +59621,14 @@ type OpenstackBackupsUpdateJSONRequestBody = OpenStackBackupRequest
 // OpenstackBackupsRestoreJSONRequestBody defines body for OpenstackBackupsRestore for application/json ContentType.
 type OpenstackBackupsRestoreJSONRequestBody = OpenStackBackupRestorationCreateRequest
 
+// OpenstackBackupsSetErredJSONRequestBody defines body for OpenstackBackupsSetErred for application/json ContentType.
+type OpenstackBackupsSetErredJSONRequestBody = SetErredRequest
+
 // OpenstackFloatingIpsAttachToPortJSONRequestBody defines body for OpenstackFloatingIpsAttachToPort for application/json ContentType.
 type OpenstackFloatingIpsAttachToPortJSONRequestBody = OpenStackFloatingIPAttachRequest
+
+// OpenstackFloatingIpsSetErredJSONRequestBody defines body for OpenstackFloatingIpsSetErred for application/json ContentType.
+type OpenstackFloatingIpsSetErredJSONRequestBody = SetErredRequest
 
 // OpenstackFloatingIpsUpdateDescriptionJSONRequestBody defines body for OpenstackFloatingIpsUpdateDescription for application/json ContentType.
 type OpenstackFloatingIpsUpdateDescriptionJSONRequestBody = OpenStackFloatingIPDescriptionUpdateRequest
@@ -59575,6 +59644,9 @@ type OpenstackInstancesBackupJSONRequestBody = OpenStackBackupRequest
 
 // OpenstackInstancesChangeFlavorJSONRequestBody defines body for OpenstackInstancesChangeFlavor for application/json ContentType.
 type OpenstackInstancesChangeFlavorJSONRequestBody = InstanceFlavorChangeRequest
+
+// OpenstackInstancesSetErredJSONRequestBody defines body for OpenstackInstancesSetErred for application/json ContentType.
+type OpenstackInstancesSetErredJSONRequestBody = SetErredRequest
 
 // OpenstackInstancesUpdateAllowedAddressPairsJSONRequestBody defines body for OpenstackInstancesUpdateAllowedAddressPairs for application/json ContentType.
 type OpenstackInstancesUpdateAllowedAddressPairsJSONRequestBody = OpenStackInstanceAllowedAddressPairsUpdateRequest
@@ -59624,6 +59696,9 @@ type OpenstackNetworksCreateSubnetJSONRequestBody = OpenStackSubNetRequest
 // OpenstackNetworksRbacPolicyCreateJSONRequestBody defines body for OpenstackNetworksRbacPolicyCreate for application/json ContentType.
 type OpenstackNetworksRbacPolicyCreateJSONRequestBody = DeprecatedNetworkRBACPolicyRequest
 
+// OpenstackNetworksSetErredJSONRequestBody defines body for OpenstackNetworksSetErred for application/json ContentType.
+type OpenstackNetworksSetErredJSONRequestBody = SetErredRequest
+
 // OpenstackNetworksSetMtuJSONRequestBody defines body for OpenstackNetworksSetMtu for application/json ContentType.
 type OpenstackNetworksSetMtuJSONRequestBody = SetMtuRequest
 
@@ -59635,6 +59710,9 @@ type OpenstackPortsPartialUpdateJSONRequestBody = PatchedOpenStackPortRequest
 
 // OpenstackPortsUpdateJSONRequestBody defines body for OpenstackPortsUpdate for application/json ContentType.
 type OpenstackPortsUpdateJSONRequestBody = OpenStackPortRequest
+
+// OpenstackPortsSetErredJSONRequestBody defines body for OpenstackPortsSetErred for application/json ContentType.
+type OpenstackPortsSetErredJSONRequestBody = SetErredRequest
 
 // OpenstackPortsUpdatePortIpJSONRequestBody defines body for OpenstackPortsUpdatePortIp for application/json ContentType.
 type OpenstackPortsUpdatePortIpJSONRequestBody = OpenStackPortIPUpdateRequest
@@ -59651,6 +59729,9 @@ type OpenstackRoutersAddRouterInterfaceJSONRequestBody = OpenStackRouterInterfac
 // OpenstackRoutersRemoveRouterInterfaceJSONRequestBody defines body for OpenstackRoutersRemoveRouterInterface for application/json ContentType.
 type OpenstackRoutersRemoveRouterInterfaceJSONRequestBody = OpenStackRouterInterfaceRequest
 
+// OpenstackRoutersSetErredJSONRequestBody defines body for OpenstackRoutersSetErred for application/json ContentType.
+type OpenstackRoutersSetErredJSONRequestBody = SetErredRequest
+
 // OpenstackRoutersSetRoutesJSONRequestBody defines body for OpenstackRoutersSetRoutes for application/json ContentType.
 type OpenstackRoutersSetRoutesJSONRequestBody = OpenStackRouterSetRoutesRequest
 
@@ -59659,6 +59740,9 @@ type OpenstackSecurityGroupsPartialUpdateJSONRequestBody = PatchedOpenStackSecur
 
 // OpenstackSecurityGroupsUpdateJSONRequestBody defines body for OpenstackSecurityGroupsUpdate for application/json ContentType.
 type OpenstackSecurityGroupsUpdateJSONRequestBody = OpenStackSecurityGroupUpdateRequest
+
+// OpenstackSecurityGroupsSetErredJSONRequestBody defines body for OpenstackSecurityGroupsSetErred for application/json ContentType.
+type OpenstackSecurityGroupsSetErredJSONRequestBody = SetErredRequest
 
 // OpenstackSecurityGroupsSetRulesJSONRequestBody defines body for OpenstackSecurityGroupsSetRules for application/json ContentType.
 type OpenstackSecurityGroupsSetRulesJSONRequestBody = OpenstackSecurityGroupsSetRulesJSONBody
@@ -59672,6 +59756,9 @@ type OpenstackServerGroupsPartialUpdateJSONRequestBody = PatchedOpenStackServerG
 // OpenstackServerGroupsUpdateJSONRequestBody defines body for OpenstackServerGroupsUpdate for application/json ContentType.
 type OpenstackServerGroupsUpdateJSONRequestBody = OpenStackServerGroupRequest
 
+// OpenstackServerGroupsSetErredJSONRequestBody defines body for OpenstackServerGroupsSetErred for application/json ContentType.
+type OpenstackServerGroupsSetErredJSONRequestBody = SetErredRequest
+
 // OpenstackSnapshotsPartialUpdateJSONRequestBody defines body for OpenstackSnapshotsPartialUpdate for application/json ContentType.
 type OpenstackSnapshotsPartialUpdateJSONRequestBody = PatchedOpenStackSnapshotRequest
 
@@ -59681,11 +59768,17 @@ type OpenstackSnapshotsUpdateJSONRequestBody = OpenStackSnapshotRequest
 // OpenstackSnapshotsRestoreJSONRequestBody defines body for OpenstackSnapshotsRestore for application/json ContentType.
 type OpenstackSnapshotsRestoreJSONRequestBody = OpenStackSnapshotRestorationRequest
 
+// OpenstackSnapshotsSetErredJSONRequestBody defines body for OpenstackSnapshotsSetErred for application/json ContentType.
+type OpenstackSnapshotsSetErredJSONRequestBody = SetErredRequest
+
 // OpenstackSubnetsPartialUpdateJSONRequestBody defines body for OpenstackSubnetsPartialUpdate for application/json ContentType.
 type OpenstackSubnetsPartialUpdateJSONRequestBody = PatchedOpenStackSubNetRequest
 
 // OpenstackSubnetsUpdateJSONRequestBody defines body for OpenstackSubnetsUpdate for application/json ContentType.
 type OpenstackSubnetsUpdateJSONRequestBody = OpenStackSubNetRequest
+
+// OpenstackSubnetsSetErredJSONRequestBody defines body for OpenstackSubnetsSetErred for application/json ContentType.
+type OpenstackSubnetsSetErredJSONRequestBody = SetErredRequest
 
 // OpenstackTenantsPartialUpdateJSONRequestBody defines body for OpenstackTenantsPartialUpdate for application/json ContentType.
 type OpenstackTenantsPartialUpdateJSONRequestBody = PatchedOpenStackTenantRequest
@@ -59711,6 +59804,9 @@ type OpenstackTenantsCreateServerGroupJSONRequestBody = OpenStackServerGroupRequ
 // OpenstackTenantsPushSecurityGroupsJSONRequestBody defines body for OpenstackTenantsPushSecurityGroups for application/json ContentType.
 type OpenstackTenantsPushSecurityGroupsJSONRequestBody = OpenstackTenantsPushSecurityGroupsJSONBody
 
+// OpenstackTenantsSetErredJSONRequestBody defines body for OpenstackTenantsSetErred for application/json ContentType.
+type OpenstackTenantsSetErredJSONRequestBody = SetErredRequest
+
 // OpenstackTenantsSetQuotasJSONRequestBody defines body for OpenstackTenantsSetQuotas for application/json ContentType.
 type OpenstackTenantsSetQuotasJSONRequestBody = OpenStackTenantQuotaRequest
 
@@ -59728,6 +59824,9 @@ type OpenstackVolumesExtendJSONRequestBody = OpenStackVolumeExtendRequest
 
 // OpenstackVolumesRetypeJSONRequestBody defines body for OpenstackVolumesRetype for application/json ContentType.
 type OpenstackVolumesRetypeJSONRequestBody = OpenStackVolumeRetypeRequest
+
+// OpenstackVolumesSetErredJSONRequestBody defines body for OpenstackVolumesSetErred for application/json ContentType.
+type OpenstackVolumesSetErredJSONRequestBody = SetErredRequest
 
 // OpenstackVolumesSnapshotJSONRequestBody defines body for OpenstackVolumesSnapshot for application/json ContentType.
 type OpenstackVolumesSnapshotJSONRequestBody = OpenStackSnapshotRequest
@@ -60014,6 +60113,9 @@ type RancherAppsPartialUpdateJSONRequestBody = PatchedRancherApplicationRequest
 // RancherAppsUpdateJSONRequestBody defines body for RancherAppsUpdate for application/json ContentType.
 type RancherAppsUpdateJSONRequestBody = RancherApplicationRequest
 
+// RancherAppsSetErredJSONRequestBody defines body for RancherAppsSetErred for application/json ContentType.
+type RancherAppsSetErredJSONRequestBody = SetErredRequest
+
 // RancherCatalogsCreateJSONRequestBody defines body for RancherCatalogsCreate for application/json ContentType.
 type RancherCatalogsCreateJSONRequestBody = RancherCatalogCreateRequest
 
@@ -60044,6 +60146,9 @@ type RancherClustersCreateManagementSecurityGroupJSONRequestBody = RancherCluste
 // RancherClustersImportYamlJSONRequestBody defines body for RancherClustersImportYaml for application/json ContentType.
 type RancherClustersImportYamlJSONRequestBody = RancherImportYamlRequest
 
+// RancherClustersSetErredJSONRequestBody defines body for RancherClustersSetErred for application/json ContentType.
+type RancherClustersSetErredJSONRequestBody = SetErredRequest
+
 // RancherHpasCreateJSONRequestBody defines body for RancherHpasCreate for application/json ContentType.
 type RancherHpasCreateJSONRequestBody = RancherHPARequest
 
@@ -60052,6 +60157,9 @@ type RancherHpasPartialUpdateJSONRequestBody = PatchedRancherHPARequest
 
 // RancherHpasUpdateJSONRequestBody defines body for RancherHpasUpdate for application/json ContentType.
 type RancherHpasUpdateJSONRequestBody = RancherHPARequest
+
+// RancherHpasSetErredJSONRequestBody defines body for RancherHpasSetErred for application/json ContentType.
+type RancherHpasSetErredJSONRequestBody = SetErredRequest
 
 // RancherHpasYamlUpdateJSONRequestBody defines body for RancherHpasYamlUpdate for application/json ContentType.
 type RancherHpasYamlUpdateJSONRequestBody = RancherHPARequest
@@ -60065,6 +60173,9 @@ type RancherIngressesPartialUpdateJSONRequestBody = PatchedRancherIngressRequest
 // RancherIngressesUpdateJSONRequestBody defines body for RancherIngressesUpdate for application/json ContentType.
 type RancherIngressesUpdateJSONRequestBody = RancherIngressRequest
 
+// RancherIngressesSetErredJSONRequestBody defines body for RancherIngressesSetErred for application/json ContentType.
+type RancherIngressesSetErredJSONRequestBody = SetErredRequest
+
 // RancherIngressesYamlUpdateJSONRequestBody defines body for RancherIngressesYamlUpdate for application/json ContentType.
 type RancherIngressesYamlUpdateJSONRequestBody = RancherIngressRequest
 
@@ -60074,6 +60185,9 @@ type RancherNodesCreateJSONRequestBody = RancherCreateNodeRequest
 // RancherNodesLinkOpenstackJSONRequestBody defines body for RancherNodesLinkOpenstack for application/json ContentType.
 type RancherNodesLinkOpenstackJSONRequestBody = LinkOpenstackRequest
 
+// RancherNodesSetErredJSONRequestBody defines body for RancherNodesSetErred for application/json ContentType.
+type RancherNodesSetErredJSONRequestBody = SetErredRequest
+
 // RancherServicesCreateJSONRequestBody defines body for RancherServicesCreate for application/json ContentType.
 type RancherServicesCreateJSONRequestBody = RancherServiceCreateRequest
 
@@ -60082,6 +60196,9 @@ type RancherServicesPartialUpdateJSONRequestBody = PatchedRancherServiceRequest
 
 // RancherServicesUpdateJSONRequestBody defines body for RancherServicesUpdate for application/json ContentType.
 type RancherServicesUpdateJSONRequestBody = RancherServiceRequest
+
+// RancherServicesSetErredJSONRequestBody defines body for RancherServicesSetErred for application/json ContentType.
+type RancherServicesSetErredJSONRequestBody = SetErredRequest
 
 // RancherServicesYamlUpdateJSONRequestBody defines body for RancherServicesYamlUpdate for application/json ContentType.
 type RancherServicesYamlUpdateJSONRequestBody = RancherServiceRequest
@@ -60230,6 +60347,9 @@ type SlurmAllocationsPartialUpdateJSONRequestBody = PatchedSlurmAllocationReques
 // SlurmAllocationsUpdateJSONRequestBody defines body for SlurmAllocationsUpdate for application/json ContentType.
 type SlurmAllocationsUpdateJSONRequestBody = SlurmAllocationRequest
 
+// SlurmAllocationsSetErredJSONRequestBody defines body for SlurmAllocationsSetErred for application/json ContentType.
+type SlurmAllocationsSetErredJSONRequestBody = SetErredRequest
+
 // SlurmAllocationsSetLimitsJSONRequestBody defines body for SlurmAllocationsSetLimits for application/json ContentType.
 type SlurmAllocationsSetLimitsJSONRequestBody = SlurmAllocationSetLimitsRequest
 
@@ -60253,6 +60373,9 @@ type SlurmJobsUpdateFormdataRequestBody = FirecrestJobRequestForm
 
 // SlurmJobsUpdateMultipartRequestBody defines body for SlurmJobsUpdate for multipart/form-data ContentType.
 type SlurmJobsUpdateMultipartRequestBody = FirecrestJobRequestMultipart
+
+// SlurmJobsSetErredJSONRequestBody defines body for SlurmJobsSetErred for application/json ContentType.
+type SlurmJobsSetErredJSONRequestBody = SetErredRequest
 
 // StatsQueryJSONRequestBody defines body for StatsQuery for application/json ContentType.
 type StatsQueryJSONRequestBody = QueryRequest
@@ -60443,6 +60566,12 @@ type UsersChangePasswordJSONRequestBody = PasswordChangeRequest
 // VmwareDisksExtendJSONRequestBody defines body for VmwareDisksExtend for application/json ContentType.
 type VmwareDisksExtendJSONRequestBody = VmwareDiskExtendRequest
 
+// VmwareDisksSetErredJSONRequestBody defines body for VmwareDisksSetErred for application/json ContentType.
+type VmwareDisksSetErredJSONRequestBody = SetErredRequest
+
+// VmwarePortsSetErredJSONRequestBody defines body for VmwarePortsSetErred for application/json ContentType.
+type VmwarePortsSetErredJSONRequestBody = SetErredRequest
+
 // VmwareVirtualMachineCreateJSONRequestBody defines body for VmwareVirtualMachineCreate for application/json ContentType.
 type VmwareVirtualMachineCreateJSONRequestBody = VmwareVirtualMachineRequest
 
@@ -60457,6 +60586,9 @@ type VmwareVirtualMachineCreateDiskJSONRequestBody = VmwareDiskRequest
 
 // VmwareVirtualMachineCreatePortJSONRequestBody defines body for VmwareVirtualMachineCreatePort for application/json ContentType.
 type VmwareVirtualMachineCreatePortJSONRequestBody = VmwarePortRequest
+
+// VmwareVirtualMachineSetErredJSONRequestBody defines body for VmwareVirtualMachineSetErred for application/json ContentType.
+type VmwareVirtualMachineSetErredJSONRequestBody = SetErredRequest
 
 // Getter for additional properties for GenericOrderAttributes. Returns the specified
 // element and whether it was found
@@ -67927,6 +68059,14 @@ type ClientInterface interface {
 	// AwsInstancesRestart request
 	AwsInstancesRestart(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// AwsInstancesSetErredWithBody request with any body
+	AwsInstancesSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AwsInstancesSetErred(ctx context.Context, uuid openapi_types.UUID, body AwsInstancesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AwsInstancesSetOk request
+	AwsInstancesSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// AwsInstancesStart request
 	AwsInstancesStart(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -67990,6 +68130,14 @@ type ClientInterface interface {
 	// AwsVolumesPull request
 	AwsVolumesPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// AwsVolumesSetErredWithBody request with any body
+	AwsVolumesSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AwsVolumesSetErred(ctx context.Context, uuid openapi_types.UUID, body AwsVolumesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AwsVolumesSetOk request
+	AwsVolumesSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// AwsVolumesUnlink request
 	AwsVolumesUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -68040,6 +68188,14 @@ type ClientInterface interface {
 
 	// AzurePublicIpsPull request
 	AzurePublicIpsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AzurePublicIpsSetErredWithBody request with any body
+	AzurePublicIpsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AzurePublicIpsSetErred(ctx context.Context, uuid openapi_types.UUID, body AzurePublicIpsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AzurePublicIpsSetOk request
+	AzurePublicIpsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// AzurePublicIpsUnlink request
 	AzurePublicIpsUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -68092,6 +68248,14 @@ type ClientInterface interface {
 	// AzureSqlDatabasesPull request
 	AzureSqlDatabasesPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// AzureSqlDatabasesSetErredWithBody request with any body
+	AzureSqlDatabasesSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AzureSqlDatabasesSetErred(ctx context.Context, uuid openapi_types.UUID, body AzureSqlDatabasesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AzureSqlDatabasesSetOk request
+	AzureSqlDatabasesSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// AzureSqlDatabasesUnlink request
 	AzureSqlDatabasesUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -68130,6 +68294,14 @@ type ClientInterface interface {
 	// AzureSqlServersPull request
 	AzureSqlServersPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// AzureSqlServersSetErredWithBody request with any body
+	AzureSqlServersSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AzureSqlServersSetErred(ctx context.Context, uuid openapi_types.UUID, body AzureSqlServersSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AzureSqlServersSetOk request
+	AzureSqlServersSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// AzureSqlServersUnlink request
 	AzureSqlServersUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -68165,6 +68337,14 @@ type ClientInterface interface {
 
 	// AzureVirtualmachinesRestart request
 	AzureVirtualmachinesRestart(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AzureVirtualmachinesSetErredWithBody request with any body
+	AzureVirtualmachinesSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AzureVirtualmachinesSetErred(ctx context.Context, uuid openapi_types.UUID, body AzureVirtualmachinesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AzureVirtualmachinesSetOk request
+	AzureVirtualmachinesSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// AzureVirtualmachinesStart request
 	AzureVirtualmachinesStart(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -68931,6 +69111,14 @@ type ClientInterface interface {
 
 	// DigitaloceanDropletsRestart request
 	DigitaloceanDropletsRestart(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DigitaloceanDropletsSetErredWithBody request with any body
+	DigitaloceanDropletsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	DigitaloceanDropletsSetErred(ctx context.Context, uuid openapi_types.UUID, body DigitaloceanDropletsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DigitaloceanDropletsSetOk request
+	DigitaloceanDropletsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DigitaloceanDropletsStart request
 	DigitaloceanDropletsStart(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -72136,10 +72324,18 @@ type ClientInterface interface {
 	// OpenportalAllocationsPull request
 	OpenportalAllocationsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenportalAllocationsSetErredWithBody request with any body
+	OpenportalAllocationsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenportalAllocationsSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenportalAllocationsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenportalAllocationsSetLimitsWithBody request with any body
 	OpenportalAllocationsSetLimitsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	OpenportalAllocationsSetLimits(ctx context.Context, uuid openapi_types.UUID, body OpenportalAllocationsSetLimitsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenportalAllocationsSetOk request
+	OpenportalAllocationsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalAllocationsUnlink request
 	OpenportalAllocationsUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -72283,10 +72479,18 @@ type ClientInterface interface {
 	// OpenportalRemoteAllocationsPull request
 	OpenportalRemoteAllocationsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenportalRemoteAllocationsSetErredWithBody request with any body
+	OpenportalRemoteAllocationsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenportalRemoteAllocationsSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenportalRemoteAllocationsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenportalRemoteAllocationsSetLimitsWithBody request with any body
 	OpenportalRemoteAllocationsSetLimitsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	OpenportalRemoteAllocationsSetLimits(ctx context.Context, uuid openapi_types.UUID, body OpenportalRemoteAllocationsSetLimitsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenportalRemoteAllocationsSetOk request
+	OpenportalRemoteAllocationsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalRemoteAllocationsUnlink request
 	OpenportalRemoteAllocationsUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -72449,6 +72653,14 @@ type ClientInterface interface {
 
 	OpenstackBackupsRestore(ctx context.Context, uuid openapi_types.UUID, body OpenstackBackupsRestoreJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenstackBackupsSetErredWithBody request with any body
+	OpenstackBackupsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackBackupsSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenstackBackupsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackBackupsSetOk request
+	OpenstackBackupsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenstackBackupsUnlink request
 	OpenstackBackupsUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -72489,6 +72701,14 @@ type ClientInterface interface {
 
 	// OpenstackFloatingIpsPull request
 	OpenstackFloatingIpsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackFloatingIpsSetErredWithBody request with any body
+	OpenstackFloatingIpsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackFloatingIpsSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenstackFloatingIpsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackFloatingIpsSetOk request
+	OpenstackFloatingIpsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackFloatingIpsUnlink request
 	OpenstackFloatingIpsUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -72568,6 +72788,14 @@ type ClientInterface interface {
 
 	// OpenstackInstancesRestart request
 	OpenstackInstancesRestart(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackInstancesSetErredWithBody request with any body
+	OpenstackInstancesSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackInstancesSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenstackInstancesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackInstancesSetOk request
+	OpenstackInstancesSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackInstancesStart request
 	OpenstackInstancesStart(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -72709,10 +72937,18 @@ type ClientInterface interface {
 	// OpenstackNetworksRbacPolicyDeleteDestroy request
 	OpenstackNetworksRbacPolicyDeleteDestroy(ctx context.Context, uuid openapi_types.UUID, rbacPolicyUuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenstackNetworksSetErredWithBody request with any body
+	OpenstackNetworksSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackNetworksSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworksSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenstackNetworksSetMtuWithBody request with any body
 	OpenstackNetworksSetMtuWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	OpenstackNetworksSetMtu(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworksSetMtuJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackNetworksSetOk request
+	OpenstackNetworksSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackNetworksUnlink request
 	OpenstackNetworksUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -72759,6 +72995,14 @@ type ClientInterface interface {
 	// OpenstackPortsPull request
 	OpenstackPortsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenstackPortsSetErredWithBody request with any body
+	OpenstackPortsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackPortsSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackPortsSetOk request
+	OpenstackPortsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenstackPortsUnlink request
 	OpenstackPortsUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -72799,6 +73043,14 @@ type ClientInterface interface {
 
 	OpenstackRoutersRemoveRouterInterface(ctx context.Context, uuid openapi_types.UUID, body OpenstackRoutersRemoveRouterInterfaceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenstackRoutersSetErredWithBody request with any body
+	OpenstackRoutersSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackRoutersSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenstackRoutersSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackRoutersSetOk request
+	OpenstackRoutersSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenstackRoutersSetRoutesWithBody request with any body
 	OpenstackRoutersSetRoutesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -72828,6 +73080,14 @@ type ClientInterface interface {
 
 	// OpenstackSecurityGroupsPull request
 	OpenstackSecurityGroupsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackSecurityGroupsSetErredWithBody request with any body
+	OpenstackSecurityGroupsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackSecurityGroupsSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenstackSecurityGroupsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackSecurityGroupsSetOk request
+	OpenstackSecurityGroupsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackSecurityGroupsSetRulesWithBody request with any body
 	OpenstackSecurityGroupsSetRulesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -72867,6 +73127,14 @@ type ClientInterface interface {
 	// OpenstackServerGroupsPull request
 	OpenstackServerGroupsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenstackServerGroupsSetErredWithBody request with any body
+	OpenstackServerGroupsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackServerGroupsSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenstackServerGroupsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackServerGroupsSetOk request
+	OpenstackServerGroupsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenstackServerGroupsUnlink request
 	OpenstackServerGroupsUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -72903,6 +73171,14 @@ type ClientInterface interface {
 
 	OpenstackSnapshotsRestore(ctx context.Context, uuid openapi_types.UUID, body OpenstackSnapshotsRestoreJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenstackSnapshotsSetErredWithBody request with any body
+	OpenstackSnapshotsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackSnapshotsSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenstackSnapshotsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackSnapshotsSetOk request
+	OpenstackSnapshotsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenstackSnapshotsUnlink request
 	OpenstackSnapshotsUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -72936,6 +73212,14 @@ type ClientInterface interface {
 
 	// OpenstackSubnetsPull request
 	OpenstackSubnetsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackSubnetsSetErredWithBody request with any body
+	OpenstackSubnetsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackSubnetsSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenstackSubnetsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackSubnetsSetOk request
+	OpenstackSubnetsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackSubnetsUnlink request
 	OpenstackSubnetsUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -73010,6 +73294,14 @@ type ClientInterface interface {
 
 	OpenstackTenantsPushSecurityGroups(ctx context.Context, uuid openapi_types.UUID, body OpenstackTenantsPushSecurityGroupsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenstackTenantsSetErredWithBody request with any body
+	OpenstackTenantsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackTenantsSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenstackTenantsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackTenantsSetOk request
+	OpenstackTenantsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenstackTenantsSetQuotasWithBody request with any body
 	OpenstackTenantsSetQuotasWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -73081,6 +73373,14 @@ type ClientInterface interface {
 	OpenstackVolumesRetypeWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	OpenstackVolumesRetype(ctx context.Context, uuid openapi_types.UUID, body OpenstackVolumesRetypeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackVolumesSetErredWithBody request with any body
+	OpenstackVolumesSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackVolumesSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenstackVolumesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackVolumesSetOk request
+	OpenstackVolumesSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackVolumesSnapshotWithBody request with any body
 	OpenstackVolumesSnapshotWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -73874,6 +74174,14 @@ type ClientInterface interface {
 	// RancherAppsPull request
 	RancherAppsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// RancherAppsSetErredWithBody request with any body
+	RancherAppsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	RancherAppsSetErred(ctx context.Context, uuid openapi_types.UUID, body RancherAppsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// RancherAppsSetOk request
+	RancherAppsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// RancherAppsUnlink request
 	RancherAppsUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -73969,6 +74277,14 @@ type ClientInterface interface {
 	// RancherClustersPull request
 	RancherClustersPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// RancherClustersSetErredWithBody request with any body
+	RancherClustersSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	RancherClustersSetErred(ctx context.Context, uuid openapi_types.UUID, body RancherClustersSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// RancherClustersSetOk request
+	RancherClustersSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// RancherClustersUnlink request
 	RancherClustersUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -74001,6 +74317,14 @@ type ClientInterface interface {
 
 	// RancherHpasPull request
 	RancherHpasPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// RancherHpasSetErredWithBody request with any body
+	RancherHpasSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	RancherHpasSetErred(ctx context.Context, uuid openapi_types.UUID, body RancherHpasSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// RancherHpasSetOk request
+	RancherHpasSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RancherHpasUnlink request
 	RancherHpasUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -74042,6 +74366,14 @@ type ClientInterface interface {
 
 	// RancherIngressesPull request
 	RancherIngressesPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// RancherIngressesSetErredWithBody request with any body
+	RancherIngressesSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	RancherIngressesSetErred(ctx context.Context, uuid openapi_types.UUID, body RancherIngressesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// RancherIngressesSetOk request
+	RancherIngressesSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RancherIngressesUnlink request
 	RancherIngressesUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -74093,6 +74425,14 @@ type ClientInterface interface {
 
 	// RancherNodesPull request
 	RancherNodesPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// RancherNodesSetErredWithBody request with any body
+	RancherNodesSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	RancherNodesSetErred(ctx context.Context, uuid openapi_types.UUID, body RancherNodesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// RancherNodesSetOk request
+	RancherNodesSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RancherNodesUnlink request
 	RancherNodesUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -74150,6 +74490,14 @@ type ClientInterface interface {
 
 	// RancherServicesPull request
 	RancherServicesPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// RancherServicesSetErredWithBody request with any body
+	RancherServicesSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	RancherServicesSetErred(ctx context.Context, uuid openapi_types.UUID, body RancherServicesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// RancherServicesSetOk request
+	RancherServicesSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RancherServicesUnlink request
 	RancherServicesUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -74630,10 +74978,18 @@ type ClientInterface interface {
 	// SlurmAllocationsPull request
 	SlurmAllocationsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// SlurmAllocationsSetErredWithBody request with any body
+	SlurmAllocationsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	SlurmAllocationsSetErred(ctx context.Context, uuid openapi_types.UUID, body SlurmAllocationsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// SlurmAllocationsSetLimitsWithBody request with any body
 	SlurmAllocationsSetLimitsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	SlurmAllocationsSetLimits(ctx context.Context, uuid openapi_types.UUID, body SlurmAllocationsSetLimitsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SlurmAllocationsSetOk request
+	SlurmAllocationsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// SlurmAllocationsUnlink request
 	SlurmAllocationsUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -74680,6 +75036,14 @@ type ClientInterface interface {
 
 	// SlurmJobsPull request
 	SlurmJobsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SlurmJobsSetErredWithBody request with any body
+	SlurmJobsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	SlurmJobsSetErred(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SlurmJobsSetOk request
+	SlurmJobsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// SlurmJobsUnlink request
 	SlurmJobsUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -75348,6 +75712,14 @@ type ClientInterface interface {
 	// VmwareDisksPull request
 	VmwareDisksPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// VmwareDisksSetErredWithBody request with any body
+	VmwareDisksSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	VmwareDisksSetErred(ctx context.Context, uuid openapi_types.UUID, body VmwareDisksSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// VmwareDisksSetOk request
+	VmwareDisksSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// VmwareDisksUnlink request
 	VmwareDisksUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -75386,6 +75758,14 @@ type ClientInterface interface {
 
 	// VmwarePortsPull request
 	VmwarePortsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// VmwarePortsSetErredWithBody request with any body
+	VmwarePortsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	VmwarePortsSetErred(ctx context.Context, uuid openapi_types.UUID, body VmwarePortsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// VmwarePortsSetOk request
+	VmwarePortsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// VmwarePortsUnlink request
 	VmwarePortsUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -75447,6 +75827,14 @@ type ClientInterface interface {
 
 	// VmwareVirtualMachineReset request
 	VmwareVirtualMachineReset(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// VmwareVirtualMachineSetErredWithBody request with any body
+	VmwareVirtualMachineSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	VmwareVirtualMachineSetErred(ctx context.Context, uuid openapi_types.UUID, body VmwareVirtualMachineSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// VmwareVirtualMachineSetOk request
+	VmwareVirtualMachineSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// VmwareVirtualMachineShutdownGuest request
 	VmwareVirtualMachineShutdownGuest(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -77795,6 +78183,42 @@ func (c *Client) AwsInstancesRestart(ctx context.Context, uuid openapi_types.UUI
 	return c.Client.Do(req)
 }
 
+func (c *Client) AwsInstancesSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAwsInstancesSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AwsInstancesSetErred(ctx context.Context, uuid openapi_types.UUID, body AwsInstancesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAwsInstancesSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AwsInstancesSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAwsInstancesSetOkRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) AwsInstancesStart(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewAwsInstancesStartRequest(c.Server, uuid)
 	if err != nil {
@@ -78059,6 +78483,42 @@ func (c *Client) AwsVolumesPull(ctx context.Context, uuid openapi_types.UUID, re
 	return c.Client.Do(req)
 }
 
+func (c *Client) AwsVolumesSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAwsVolumesSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AwsVolumesSetErred(ctx context.Context, uuid openapi_types.UUID, body AwsVolumesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAwsVolumesSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AwsVolumesSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAwsVolumesSetOkRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) AwsVolumesUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewAwsVolumesUnlinkRequest(c.Server, uuid)
 	if err != nil {
@@ -78265,6 +78725,42 @@ func (c *Client) AzurePublicIpsUpdate(ctx context.Context, uuid openapi_types.UU
 
 func (c *Client) AzurePublicIpsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewAzurePublicIpsPullRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AzurePublicIpsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAzurePublicIpsSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AzurePublicIpsSetErred(ctx context.Context, uuid openapi_types.UUID, body AzurePublicIpsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAzurePublicIpsSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AzurePublicIpsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAzurePublicIpsSetOkRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -78491,6 +78987,42 @@ func (c *Client) AzureSqlDatabasesPull(ctx context.Context, uuid openapi_types.U
 	return c.Client.Do(req)
 }
 
+func (c *Client) AzureSqlDatabasesSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAzureSqlDatabasesSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AzureSqlDatabasesSetErred(ctx context.Context, uuid openapi_types.UUID, body AzureSqlDatabasesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAzureSqlDatabasesSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AzureSqlDatabasesSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAzureSqlDatabasesSetOkRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) AzureSqlDatabasesUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewAzureSqlDatabasesUnlinkRequest(c.Server, uuid)
 	if err != nil {
@@ -78659,6 +79191,42 @@ func (c *Client) AzureSqlServersPull(ctx context.Context, uuid openapi_types.UUI
 	return c.Client.Do(req)
 }
 
+func (c *Client) AzureSqlServersSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAzureSqlServersSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AzureSqlServersSetErred(ctx context.Context, uuid openapi_types.UUID, body AzureSqlServersSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAzureSqlServersSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AzureSqlServersSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAzureSqlServersSetOkRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) AzureSqlServersUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewAzureSqlServersUnlinkRequest(c.Server, uuid)
 	if err != nil {
@@ -78805,6 +79373,42 @@ func (c *Client) AzureVirtualmachinesPull(ctx context.Context, uuid openapi_type
 
 func (c *Client) AzureVirtualmachinesRestart(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewAzureVirtualmachinesRestartRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AzureVirtualmachinesSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAzureVirtualmachinesSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AzureVirtualmachinesSetErred(ctx context.Context, uuid openapi_types.UUID, body AzureVirtualmachinesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAzureVirtualmachinesSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AzureVirtualmachinesSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAzureVirtualmachinesSetOkRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -82165,6 +82769,42 @@ func (c *Client) DigitaloceanDropletsResize(ctx context.Context, uuid openapi_ty
 
 func (c *Client) DigitaloceanDropletsRestart(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDigitaloceanDropletsRestartRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DigitaloceanDropletsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDigitaloceanDropletsSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DigitaloceanDropletsSetErred(ctx context.Context, uuid openapi_types.UUID, body DigitaloceanDropletsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDigitaloceanDropletsSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DigitaloceanDropletsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDigitaloceanDropletsSetOkRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -96167,6 +96807,30 @@ func (c *Client) OpenportalAllocationsPull(ctx context.Context, uuid openapi_typ
 	return c.Client.Do(req)
 }
 
+func (c *Client) OpenportalAllocationsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalAllocationsSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenportalAllocationsSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenportalAllocationsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalAllocationsSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OpenportalAllocationsSetLimitsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalAllocationsSetLimitsRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -96181,6 +96845,18 @@ func (c *Client) OpenportalAllocationsSetLimitsWithBody(ctx context.Context, uui
 
 func (c *Client) OpenportalAllocationsSetLimits(ctx context.Context, uuid openapi_types.UUID, body OpenportalAllocationsSetLimitsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalAllocationsSetLimitsRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenportalAllocationsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalAllocationsSetOkRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -96815,6 +97491,30 @@ func (c *Client) OpenportalRemoteAllocationsPull(ctx context.Context, uuid opena
 	return c.Client.Do(req)
 }
 
+func (c *Client) OpenportalRemoteAllocationsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalRemoteAllocationsSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenportalRemoteAllocationsSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenportalRemoteAllocationsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalRemoteAllocationsSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OpenportalRemoteAllocationsSetLimitsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalRemoteAllocationsSetLimitsRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -96829,6 +97529,18 @@ func (c *Client) OpenportalRemoteAllocationsSetLimitsWithBody(ctx context.Contex
 
 func (c *Client) OpenportalRemoteAllocationsSetLimits(ctx context.Context, uuid openapi_types.UUID, body OpenportalRemoteAllocationsSetLimitsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalRemoteAllocationsSetLimitsRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenportalRemoteAllocationsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalRemoteAllocationsSetOkRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -97559,6 +98271,42 @@ func (c *Client) OpenstackBackupsRestore(ctx context.Context, uuid openapi_types
 	return c.Client.Do(req)
 }
 
+func (c *Client) OpenstackBackupsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackBackupsSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackBackupsSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenstackBackupsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackBackupsSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackBackupsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackBackupsSetOkRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OpenstackBackupsUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackBackupsUnlinkRequest(c.Server, uuid)
 	if err != nil {
@@ -97717,6 +98465,42 @@ func (c *Client) OpenstackFloatingIpsDetachFromPort(ctx context.Context, uuid op
 
 func (c *Client) OpenstackFloatingIpsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackFloatingIpsPullRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackFloatingIpsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackFloatingIpsSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackFloatingIpsSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenstackFloatingIpsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackFloatingIpsSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackFloatingIpsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackFloatingIpsSetOkRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -98053,6 +98837,42 @@ func (c *Client) OpenstackInstancesPull(ctx context.Context, uuid openapi_types.
 
 func (c *Client) OpenstackInstancesRestart(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackInstancesRestartRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackInstancesSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackInstancesSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackInstancesSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenstackInstancesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackInstancesSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackInstancesSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackInstancesSetOkRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -98687,6 +99507,30 @@ func (c *Client) OpenstackNetworksRbacPolicyDeleteDestroy(ctx context.Context, u
 	return c.Client.Do(req)
 }
 
+func (c *Client) OpenstackNetworksSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackNetworksSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackNetworksSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworksSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackNetworksSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OpenstackNetworksSetMtuWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackNetworksSetMtuRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -98701,6 +99545,18 @@ func (c *Client) OpenstackNetworksSetMtuWithBody(ctx context.Context, uuid opena
 
 func (c *Client) OpenstackNetworksSetMtu(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworksSetMtuJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackNetworksSetMtuRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackNetworksSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackNetworksSetOkRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -98903,6 +99759,42 @@ func (c *Client) OpenstackPortsPull(ctx context.Context, uuid openapi_types.UUID
 	return c.Client.Do(req)
 }
 
+func (c *Client) OpenstackPortsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPortsSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPortsSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPortsSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPortsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPortsSetOkRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OpenstackPortsUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackPortsUnlinkRequest(c.Server, uuid)
 	if err != nil {
@@ -99083,6 +99975,42 @@ func (c *Client) OpenstackRoutersRemoveRouterInterface(ctx context.Context, uuid
 	return c.Client.Do(req)
 }
 
+func (c *Client) OpenstackRoutersSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackRoutersSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackRoutersSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenstackRoutersSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackRoutersSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackRoutersSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackRoutersSetOkRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OpenstackRoutersSetRoutesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackRoutersSetRoutesRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -99205,6 +100133,42 @@ func (c *Client) OpenstackSecurityGroupsUpdate(ctx context.Context, uuid openapi
 
 func (c *Client) OpenstackSecurityGroupsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackSecurityGroupsPullRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackSecurityGroupsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackSecurityGroupsSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackSecurityGroupsSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenstackSecurityGroupsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackSecurityGroupsSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackSecurityGroupsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackSecurityGroupsSetOkRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -99383,6 +100347,42 @@ func (c *Client) OpenstackServerGroupsPull(ctx context.Context, uuid openapi_typ
 	return c.Client.Do(req)
 }
 
+func (c *Client) OpenstackServerGroupsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackServerGroupsSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackServerGroupsSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenstackServerGroupsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackServerGroupsSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackServerGroupsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackServerGroupsSetOkRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OpenstackServerGroupsUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackServerGroupsUnlinkRequest(c.Server, uuid)
 	if err != nil {
@@ -99539,6 +100539,42 @@ func (c *Client) OpenstackSnapshotsRestore(ctx context.Context, uuid openapi_typ
 	return c.Client.Do(req)
 }
 
+func (c *Client) OpenstackSnapshotsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackSnapshotsSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackSnapshotsSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenstackSnapshotsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackSnapshotsSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackSnapshotsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackSnapshotsSetOkRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OpenstackSnapshotsUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackSnapshotsUnlinkRequest(c.Server, uuid)
 	if err != nil {
@@ -99673,6 +100709,42 @@ func (c *Client) OpenstackSubnetsDisconnect(ctx context.Context, uuid openapi_ty
 
 func (c *Client) OpenstackSubnetsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackSubnetsPullRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackSubnetsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackSubnetsSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackSubnetsSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenstackSubnetsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackSubnetsSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackSubnetsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackSubnetsSetOkRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -100007,6 +101079,42 @@ func (c *Client) OpenstackTenantsPushSecurityGroups(ctx context.Context, uuid op
 	return c.Client.Do(req)
 }
 
+func (c *Client) OpenstackTenantsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackTenantsSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackTenantsSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenstackTenantsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackTenantsSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackTenantsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackTenantsSetOkRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OpenstackTenantsSetQuotasWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackTenantsSetQuotasRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -100309,6 +101417,42 @@ func (c *Client) OpenstackVolumesRetypeWithBody(ctx context.Context, uuid openap
 
 func (c *Client) OpenstackVolumesRetype(ctx context.Context, uuid openapi_types.UUID, body OpenstackVolumesRetypeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackVolumesRetypeRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackVolumesSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackVolumesSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackVolumesSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenstackVolumesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackVolumesSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackVolumesSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackVolumesSetOkRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -103835,6 +104979,42 @@ func (c *Client) RancherAppsPull(ctx context.Context, uuid openapi_types.UUID, r
 	return c.Client.Do(req)
 }
 
+func (c *Client) RancherAppsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRancherAppsSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RancherAppsSetErred(ctx context.Context, uuid openapi_types.UUID, body RancherAppsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRancherAppsSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RancherAppsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRancherAppsSetOkRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) RancherAppsUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewRancherAppsUnlinkRequest(c.Server, uuid)
 	if err != nil {
@@ -104255,6 +105435,42 @@ func (c *Client) RancherClustersPull(ctx context.Context, uuid openapi_types.UUI
 	return c.Client.Do(req)
 }
 
+func (c *Client) RancherClustersSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRancherClustersSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RancherClustersSetErred(ctx context.Context, uuid openapi_types.UUID, body RancherClustersSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRancherClustersSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RancherClustersSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRancherClustersSetOkRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) RancherClustersUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewRancherClustersUnlinkRequest(c.Server, uuid)
 	if err != nil {
@@ -104389,6 +105605,42 @@ func (c *Client) RancherHpasUpdate(ctx context.Context, uuid openapi_types.UUID,
 
 func (c *Client) RancherHpasPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewRancherHpasPullRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RancherHpasSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRancherHpasSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RancherHpasSetErred(ctx context.Context, uuid openapi_types.UUID, body RancherHpasSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRancherHpasSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RancherHpasSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRancherHpasSetOkRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -104569,6 +105821,42 @@ func (c *Client) RancherIngressesUpdate(ctx context.Context, uuid openapi_types.
 
 func (c *Client) RancherIngressesPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewRancherIngressesPullRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RancherIngressesSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRancherIngressesSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RancherIngressesSetErred(ctx context.Context, uuid openapi_types.UUID, body RancherIngressesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRancherIngressesSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RancherIngressesSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRancherIngressesSetOkRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -104785,6 +106073,42 @@ func (c *Client) RancherNodesLinkOpenstack(ctx context.Context, uuid openapi_typ
 
 func (c *Client) RancherNodesPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewRancherNodesPullRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RancherNodesSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRancherNodesSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RancherNodesSetErred(ctx context.Context, uuid openapi_types.UUID, body RancherNodesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRancherNodesSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RancherNodesSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRancherNodesSetOkRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -105025,6 +106349,42 @@ func (c *Client) RancherServicesUpdate(ctx context.Context, uuid openapi_types.U
 
 func (c *Client) RancherServicesPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewRancherServicesPullRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RancherServicesSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRancherServicesSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RancherServicesSetErred(ctx context.Context, uuid openapi_types.UUID, body RancherServicesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRancherServicesSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RancherServicesSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRancherServicesSetOkRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -107147,6 +108507,30 @@ func (c *Client) SlurmAllocationsPull(ctx context.Context, uuid openapi_types.UU
 	return c.Client.Do(req)
 }
 
+func (c *Client) SlurmAllocationsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSlurmAllocationsSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SlurmAllocationsSetErred(ctx context.Context, uuid openapi_types.UUID, body SlurmAllocationsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSlurmAllocationsSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) SlurmAllocationsSetLimitsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewSlurmAllocationsSetLimitsRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -107161,6 +108545,18 @@ func (c *Client) SlurmAllocationsSetLimitsWithBody(ctx context.Context, uuid ope
 
 func (c *Client) SlurmAllocationsSetLimits(ctx context.Context, uuid openapi_types.UUID, body SlurmAllocationsSetLimitsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewSlurmAllocationsSetLimitsRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SlurmAllocationsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSlurmAllocationsSetOkRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -107365,6 +108761,42 @@ func (c *Client) SlurmJobsUpdateWithFormdataBody(ctx context.Context, uuid opena
 
 func (c *Client) SlurmJobsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewSlurmJobsPullRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SlurmJobsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSlurmJobsSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SlurmJobsSetErred(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSlurmJobsSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SlurmJobsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSlurmJobsSetOkRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -110279,6 +111711,42 @@ func (c *Client) VmwareDisksPull(ctx context.Context, uuid openapi_types.UUID, r
 	return c.Client.Do(req)
 }
 
+func (c *Client) VmwareDisksSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewVmwareDisksSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) VmwareDisksSetErred(ctx context.Context, uuid openapi_types.UUID, body VmwareDisksSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewVmwareDisksSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) VmwareDisksSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewVmwareDisksSetOkRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) VmwareDisksUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewVmwareDisksUnlinkRequest(c.Server, uuid)
 	if err != nil {
@@ -110425,6 +111893,42 @@ func (c *Client) VmwarePortsRetrieve(ctx context.Context, uuid openapi_types.UUI
 
 func (c *Client) VmwarePortsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewVmwarePortsPullRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) VmwarePortsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewVmwarePortsSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) VmwarePortsSetErred(ctx context.Context, uuid openapi_types.UUID, body VmwarePortsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewVmwarePortsSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) VmwarePortsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewVmwarePortsSetOkRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -110689,6 +112193,42 @@ func (c *Client) VmwareVirtualMachineRebootGuest(ctx context.Context, uuid opena
 
 func (c *Client) VmwareVirtualMachineReset(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewVmwareVirtualMachineResetRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) VmwareVirtualMachineSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewVmwareVirtualMachineSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) VmwareVirtualMachineSetErred(ctx context.Context, uuid openapi_types.UUID, body VmwareVirtualMachineSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewVmwareVirtualMachineSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) VmwareVirtualMachineSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewVmwareVirtualMachineSetOkRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -120334,6 +121874,87 @@ func NewAwsInstancesRestartRequest(server string, uuid openapi_types.UUID) (*htt
 	return req, nil
 }
 
+// NewAwsInstancesSetErredRequest calls the generic AwsInstancesSetErred builder with application/json body
+func NewAwsInstancesSetErredRequest(server string, uuid openapi_types.UUID, body AwsInstancesSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAwsInstancesSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewAwsInstancesSetErredRequestWithBody generates requests for AwsInstancesSetErred with any type of body
+func NewAwsInstancesSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/aws-instances/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAwsInstancesSetOkRequest generates requests for AwsInstancesSetOk
+func NewAwsInstancesSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/aws-instances/%s/set_ok/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewAwsInstancesStartRequest generates requests for AwsInstancesStart
 func NewAwsInstancesStartRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -121379,6 +123000,87 @@ func NewAwsVolumesPullRequest(server string, uuid openapi_types.UUID) (*http.Req
 	}
 
 	operationPath := fmt.Sprintf("/api/aws-volumes/%s/pull/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAwsVolumesSetErredRequest calls the generic AwsVolumesSetErred builder with application/json body
+func NewAwsVolumesSetErredRequest(server string, uuid openapi_types.UUID, body AwsVolumesSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAwsVolumesSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewAwsVolumesSetErredRequestWithBody generates requests for AwsVolumesSetErred with any type of body
+func NewAwsVolumesSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/aws-volumes/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAwsVolumesSetOkRequest generates requests for AwsVolumesSetOk
+func NewAwsVolumesSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/aws-volumes/%s/set_ok/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -123154,6 +124856,87 @@ func NewAzurePublicIpsPullRequest(server string, uuid openapi_types.UUID) (*http
 	return req, nil
 }
 
+// NewAzurePublicIpsSetErredRequest calls the generic AzurePublicIpsSetErred builder with application/json body
+func NewAzurePublicIpsSetErredRequest(server string, uuid openapi_types.UUID, body AzurePublicIpsSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAzurePublicIpsSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewAzurePublicIpsSetErredRequestWithBody generates requests for AzurePublicIpsSetErred with any type of body
+func NewAzurePublicIpsSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/azure-public-ips/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAzurePublicIpsSetOkRequest generates requests for AzurePublicIpsSetOk
+func NewAzurePublicIpsSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/azure-public-ips/%s/set_ok/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewAzurePublicIpsUnlinkRequest generates requests for AzurePublicIpsUnlink
 func NewAzurePublicIpsUnlinkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -124886,6 +126669,87 @@ func NewAzureSqlDatabasesPullRequest(server string, uuid openapi_types.UUID) (*h
 	return req, nil
 }
 
+// NewAzureSqlDatabasesSetErredRequest calls the generic AzureSqlDatabasesSetErred builder with application/json body
+func NewAzureSqlDatabasesSetErredRequest(server string, uuid openapi_types.UUID, body AzureSqlDatabasesSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAzureSqlDatabasesSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewAzureSqlDatabasesSetErredRequestWithBody generates requests for AzureSqlDatabasesSetErred with any type of body
+func NewAzureSqlDatabasesSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/azure-sql-databases/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAzureSqlDatabasesSetOkRequest generates requests for AzureSqlDatabasesSetOk
+func NewAzureSqlDatabasesSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/azure-sql-databases/%s/set_ok/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewAzureSqlDatabasesUnlinkRequest generates requests for AzureSqlDatabasesUnlink
 func NewAzureSqlDatabasesUnlinkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -126011,6 +127875,87 @@ func NewAzureSqlServersPullRequest(server string, uuid openapi_types.UUID) (*htt
 	return req, nil
 }
 
+// NewAzureSqlServersSetErredRequest calls the generic AzureSqlServersSetErred builder with application/json body
+func NewAzureSqlServersSetErredRequest(server string, uuid openapi_types.UUID, body AzureSqlServersSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAzureSqlServersSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewAzureSqlServersSetErredRequestWithBody generates requests for AzureSqlServersSetErred with any type of body
+func NewAzureSqlServersSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/azure-sql-servers/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAzureSqlServersSetOkRequest generates requests for AzureSqlServersSetOk
+func NewAzureSqlServersSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/azure-sql-servers/%s/set_ok/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewAzureSqlServersUnlinkRequest generates requests for AzureSqlServersUnlink
 func NewAzureSqlServersUnlinkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -127106,6 +129051,87 @@ func NewAzureVirtualmachinesRestartRequest(server string, uuid openapi_types.UUI
 	}
 
 	operationPath := fmt.Sprintf("/api/azure-virtualmachines/%s/restart/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAzureVirtualmachinesSetErredRequest calls the generic AzureVirtualmachinesSetErred builder with application/json body
+func NewAzureVirtualmachinesSetErredRequest(server string, uuid openapi_types.UUID, body AzureVirtualmachinesSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAzureVirtualmachinesSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewAzureVirtualmachinesSetErredRequestWithBody generates requests for AzureVirtualmachinesSetErred with any type of body
+func NewAzureVirtualmachinesSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/azure-virtualmachines/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAzureVirtualmachinesSetOkRequest generates requests for AzureVirtualmachinesSetOk
+func NewAzureVirtualmachinesSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/azure-virtualmachines/%s/set_ok/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -143515,6 +145541,87 @@ func NewDigitaloceanDropletsRestartRequest(server string, uuid openapi_types.UUI
 	}
 
 	operationPath := fmt.Sprintf("/api/digitalocean-droplets/%s/restart/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDigitaloceanDropletsSetErredRequest calls the generic DigitaloceanDropletsSetErred builder with application/json body
+func NewDigitaloceanDropletsSetErredRequest(server string, uuid openapi_types.UUID, body DigitaloceanDropletsSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewDigitaloceanDropletsSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewDigitaloceanDropletsSetErredRequestWithBody generates requests for DigitaloceanDropletsSetErred with any type of body
+func NewDigitaloceanDropletsSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/digitalocean-droplets/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewDigitaloceanDropletsSetOkRequest generates requests for DigitaloceanDropletsSetOk
+func NewDigitaloceanDropletsSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/digitalocean-droplets/%s/set_ok/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -217454,6 +219561,53 @@ func NewOpenportalAllocationsPullRequest(server string, uuid openapi_types.UUID)
 	return req, nil
 }
 
+// NewOpenportalAllocationsSetErredRequest calls the generic OpenportalAllocationsSetErred builder with application/json body
+func NewOpenportalAllocationsSetErredRequest(server string, uuid openapi_types.UUID, body OpenportalAllocationsSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenportalAllocationsSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenportalAllocationsSetErredRequestWithBody generates requests for OpenportalAllocationsSetErred with any type of body
+func NewOpenportalAllocationsSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openportal-allocations/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewOpenportalAllocationsSetLimitsRequest calls the generic OpenportalAllocationsSetLimits builder with application/json body
 func NewOpenportalAllocationsSetLimitsRequest(server string, uuid openapi_types.UUID, body OpenportalAllocationsSetLimitsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -217497,6 +219651,40 @@ func NewOpenportalAllocationsSetLimitsRequestWithBody(server string, uuid openap
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenportalAllocationsSetOkRequest generates requests for OpenportalAllocationsSetOk
+func NewOpenportalAllocationsSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openportal-allocations/%s/set_ok/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -220407,6 +222595,53 @@ func NewOpenportalRemoteAllocationsPullRequest(server string, uuid openapi_types
 	return req, nil
 }
 
+// NewOpenportalRemoteAllocationsSetErredRequest calls the generic OpenportalRemoteAllocationsSetErred builder with application/json body
+func NewOpenportalRemoteAllocationsSetErredRequest(server string, uuid openapi_types.UUID, body OpenportalRemoteAllocationsSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenportalRemoteAllocationsSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenportalRemoteAllocationsSetErredRequestWithBody generates requests for OpenportalRemoteAllocationsSetErred with any type of body
+func NewOpenportalRemoteAllocationsSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openportal-remote-allocations/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewOpenportalRemoteAllocationsSetLimitsRequest calls the generic OpenportalRemoteAllocationsSetLimits builder with application/json body
 func NewOpenportalRemoteAllocationsSetLimitsRequest(server string, uuid openapi_types.UUID, body OpenportalRemoteAllocationsSetLimitsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -220450,6 +222685,40 @@ func NewOpenportalRemoteAllocationsSetLimitsRequestWithBody(server string, uuid 
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenportalRemoteAllocationsSetOkRequest generates requests for OpenportalRemoteAllocationsSetOk
+func NewOpenportalRemoteAllocationsSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openportal-remote-allocations/%s/set_ok/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -224057,6 +226326,87 @@ func NewOpenstackBackupsRestoreRequestWithBody(server string, uuid openapi_types
 	return req, nil
 }
 
+// NewOpenstackBackupsSetErredRequest calls the generic OpenstackBackupsSetErred builder with application/json body
+func NewOpenstackBackupsSetErredRequest(server string, uuid openapi_types.UUID, body OpenstackBackupsSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackBackupsSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackBackupsSetErredRequestWithBody generates requests for OpenstackBackupsSetErred with any type of body
+func NewOpenstackBackupsSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-backups/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackBackupsSetOkRequest generates requests for OpenstackBackupsSetOk
+func NewOpenstackBackupsSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-backups/%s/set_ok/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOpenstackBackupsUnlinkRequest generates requests for OpenstackBackupsUnlink
 func NewOpenstackBackupsUnlinkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -226015,6 +228365,87 @@ func NewOpenstackFloatingIpsPullRequest(server string, uuid openapi_types.UUID) 
 	}
 
 	operationPath := fmt.Sprintf("/api/openstack-floating-ips/%s/pull/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackFloatingIpsSetErredRequest calls the generic OpenstackFloatingIpsSetErred builder with application/json body
+func NewOpenstackFloatingIpsSetErredRequest(server string, uuid openapi_types.UUID, body OpenstackFloatingIpsSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackFloatingIpsSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackFloatingIpsSetErredRequestWithBody generates requests for OpenstackFloatingIpsSetErred with any type of body
+func NewOpenstackFloatingIpsSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-floating-ips/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackFloatingIpsSetOkRequest generates requests for OpenstackFloatingIpsSetOk
+func NewOpenstackFloatingIpsSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-floating-ips/%s/set_ok/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -228386,6 +230817,87 @@ func NewOpenstackInstancesRestartRequest(server string, uuid openapi_types.UUID)
 	}
 
 	operationPath := fmt.Sprintf("/api/openstack-instances/%s/restart/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackInstancesSetErredRequest calls the generic OpenstackInstancesSetErred builder with application/json body
+func NewOpenstackInstancesSetErredRequest(server string, uuid openapi_types.UUID, body OpenstackInstancesSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackInstancesSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackInstancesSetErredRequestWithBody generates requests for OpenstackInstancesSetErred with any type of body
+func NewOpenstackInstancesSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-instances/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackInstancesSetOkRequest generates requests for OpenstackInstancesSetOk
+func NewOpenstackInstancesSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-instances/%s/set_ok/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -231753,6 +234265,53 @@ func NewOpenstackNetworksRbacPolicyDeleteDestroyRequest(server string, uuid open
 	return req, nil
 }
 
+// NewOpenstackNetworksSetErredRequest calls the generic OpenstackNetworksSetErred builder with application/json body
+func NewOpenstackNetworksSetErredRequest(server string, uuid openapi_types.UUID, body OpenstackNetworksSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackNetworksSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackNetworksSetErredRequestWithBody generates requests for OpenstackNetworksSetErred with any type of body
+func NewOpenstackNetworksSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-networks/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewOpenstackNetworksSetMtuRequest calls the generic OpenstackNetworksSetMtu builder with application/json body
 func NewOpenstackNetworksSetMtuRequest(server string, uuid openapi_types.UUID, body OpenstackNetworksSetMtuJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -231796,6 +234355,40 @@ func NewOpenstackNetworksSetMtuRequestWithBody(server string, uuid openapi_types
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackNetworksSetOkRequest generates requests for OpenstackNetworksSetOk
+func NewOpenstackNetworksSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-networks/%s/set_ok/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -232918,6 +235511,87 @@ func NewOpenstackPortsPullRequest(server string, uuid openapi_types.UUID) (*http
 	return req, nil
 }
 
+// NewOpenstackPortsSetErredRequest calls the generic OpenstackPortsSetErred builder with application/json body
+func NewOpenstackPortsSetErredRequest(server string, uuid openapi_types.UUID, body OpenstackPortsSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackPortsSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackPortsSetErredRequestWithBody generates requests for OpenstackPortsSetErred with any type of body
+func NewOpenstackPortsSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-ports/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackPortsSetOkRequest generates requests for OpenstackPortsSetOk
+func NewOpenstackPortsSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-ports/%s/set_ok/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOpenstackPortsUnlinkRequest generates requests for OpenstackPortsUnlink
 func NewOpenstackPortsUnlinkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -233572,6 +236246,87 @@ func NewOpenstackRoutersRemoveRouterInterfaceRequestWithBody(server string, uuid
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackRoutersSetErredRequest calls the generic OpenstackRoutersSetErred builder with application/json body
+func NewOpenstackRoutersSetErredRequest(server string, uuid openapi_types.UUID, body OpenstackRoutersSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackRoutersSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackRoutersSetErredRequestWithBody generates requests for OpenstackRoutersSetErred with any type of body
+func NewOpenstackRoutersSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-routers/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackRoutersSetOkRequest generates requests for OpenstackRoutersSetOk
+func NewOpenstackRoutersSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-routers/%s/set_ok/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -234642,6 +237397,87 @@ func NewOpenstackSecurityGroupsPullRequest(server string, uuid openapi_types.UUI
 	}
 
 	operationPath := fmt.Sprintf("/api/openstack-security-groups/%s/pull/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackSecurityGroupsSetErredRequest calls the generic OpenstackSecurityGroupsSetErred builder with application/json body
+func NewOpenstackSecurityGroupsSetErredRequest(server string, uuid openapi_types.UUID, body OpenstackSecurityGroupsSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackSecurityGroupsSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackSecurityGroupsSetErredRequestWithBody generates requests for OpenstackSecurityGroupsSetErred with any type of body
+func NewOpenstackSecurityGroupsSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-security-groups/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackSecurityGroupsSetOkRequest generates requests for OpenstackSecurityGroupsSetOk
+func NewOpenstackSecurityGroupsSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-security-groups/%s/set_ok/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -235767,6 +238603,87 @@ func NewOpenstackServerGroupsPullRequest(server string, uuid openapi_types.UUID)
 	}
 
 	operationPath := fmt.Sprintf("/api/openstack-server-groups/%s/pull/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackServerGroupsSetErredRequest calls the generic OpenstackServerGroupsSetErred builder with application/json body
+func NewOpenstackServerGroupsSetErredRequest(server string, uuid openapi_types.UUID, body OpenstackServerGroupsSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackServerGroupsSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackServerGroupsSetErredRequestWithBody generates requests for OpenstackServerGroupsSetErred with any type of body
+func NewOpenstackServerGroupsSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-server-groups/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackServerGroupsSetOkRequest generates requests for OpenstackServerGroupsSetOk
+func NewOpenstackServerGroupsSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-server-groups/%s/set_ok/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -237101,6 +240018,87 @@ func NewOpenstackSnapshotsRestoreRequestWithBody(server string, uuid openapi_typ
 	return req, nil
 }
 
+// NewOpenstackSnapshotsSetErredRequest calls the generic OpenstackSnapshotsSetErred builder with application/json body
+func NewOpenstackSnapshotsSetErredRequest(server string, uuid openapi_types.UUID, body OpenstackSnapshotsSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackSnapshotsSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackSnapshotsSetErredRequestWithBody generates requests for OpenstackSnapshotsSetErred with any type of body
+func NewOpenstackSnapshotsSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-snapshots/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackSnapshotsSetOkRequest generates requests for OpenstackSnapshotsSetOk
+func NewOpenstackSnapshotsSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-snapshots/%s/set_ok/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOpenstackSnapshotsUnlinkRequest generates requests for OpenstackSnapshotsUnlink
 func NewOpenstackSnapshotsUnlinkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -238382,6 +241380,87 @@ func NewOpenstackSubnetsPullRequest(server string, uuid openapi_types.UUID) (*ht
 	}
 
 	operationPath := fmt.Sprintf("/api/openstack-subnets/%s/pull/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackSubnetsSetErredRequest calls the generic OpenstackSubnetsSetErred builder with application/json body
+func NewOpenstackSubnetsSetErredRequest(server string, uuid openapi_types.UUID, body OpenstackSubnetsSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackSubnetsSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackSubnetsSetErredRequestWithBody generates requests for OpenstackSubnetsSetErred with any type of body
+func NewOpenstackSubnetsSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-subnets/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackSubnetsSetOkRequest generates requests for OpenstackSubnetsSetOk
+func NewOpenstackSubnetsSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-subnets/%s/set_ok/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -240473,6 +243552,87 @@ func NewOpenstackTenantsPushSecurityGroupsRequestWithBody(server string, uuid op
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackTenantsSetErredRequest calls the generic OpenstackTenantsSetErred builder with application/json body
+func NewOpenstackTenantsSetErredRequest(server string, uuid openapi_types.UUID, body OpenstackTenantsSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackTenantsSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackTenantsSetErredRequestWithBody generates requests for OpenstackTenantsSetErred with any type of body
+func NewOpenstackTenantsSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-tenants/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackTenantsSetOkRequest generates requests for OpenstackTenantsSetOk
+func NewOpenstackTenantsSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-tenants/%s/set_ok/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -242721,6 +245881,87 @@ func NewOpenstackVolumesRetypeRequestWithBody(server string, uuid openapi_types.
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackVolumesSetErredRequest calls the generic OpenstackVolumesSetErred builder with application/json body
+func NewOpenstackVolumesSetErredRequest(server string, uuid openapi_types.UUID, body OpenstackVolumesSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackVolumesSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackVolumesSetErredRequestWithBody generates requests for OpenstackVolumesSetErred with any type of body
+func NewOpenstackVolumesSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-volumes/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackVolumesSetOkRequest generates requests for OpenstackVolumesSetOk
+func NewOpenstackVolumesSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-volumes/%s/set_ok/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -259248,6 +262489,87 @@ func NewRancherAppsPullRequest(server string, uuid openapi_types.UUID) (*http.Re
 	return req, nil
 }
 
+// NewRancherAppsSetErredRequest calls the generic RancherAppsSetErred builder with application/json body
+func NewRancherAppsSetErredRequest(server string, uuid openapi_types.UUID, body RancherAppsSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewRancherAppsSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewRancherAppsSetErredRequestWithBody generates requests for RancherAppsSetErred with any type of body
+func NewRancherAppsSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/rancher-apps/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewRancherAppsSetOkRequest generates requests for RancherAppsSetOk
+func NewRancherAppsSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/rancher-apps/%s/set_ok/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewRancherAppsUnlinkRequest generates requests for RancherAppsUnlink
 func NewRancherAppsUnlinkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -261179,6 +264501,87 @@ func NewRancherClustersPullRequest(server string, uuid openapi_types.UUID) (*htt
 	return req, nil
 }
 
+// NewRancherClustersSetErredRequest calls the generic RancherClustersSetErred builder with application/json body
+func NewRancherClustersSetErredRequest(server string, uuid openapi_types.UUID, body RancherClustersSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewRancherClustersSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewRancherClustersSetErredRequestWithBody generates requests for RancherClustersSetErred with any type of body
+func NewRancherClustersSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/rancher-clusters/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewRancherClustersSetOkRequest generates requests for RancherClustersSetOk
+func NewRancherClustersSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/rancher-clusters/%s/set_ok/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewRancherClustersUnlinkRequest generates requests for RancherClustersUnlink
 func NewRancherClustersUnlinkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -261818,6 +265221,87 @@ func NewRancherHpasPullRequest(server string, uuid openapi_types.UUID) (*http.Re
 	}
 
 	operationPath := fmt.Sprintf("/api/rancher-hpas/%s/pull/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewRancherHpasSetErredRequest calls the generic RancherHpasSetErred builder with application/json body
+func NewRancherHpasSetErredRequest(server string, uuid openapi_types.UUID, body RancherHpasSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewRancherHpasSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewRancherHpasSetErredRequestWithBody generates requests for RancherHpasSetErred with any type of body
+func NewRancherHpasSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/rancher-hpas/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewRancherHpasSetOkRequest generates requests for RancherHpasSetOk
+func NewRancherHpasSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/rancher-hpas/%s/set_ok/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -263026,6 +266510,87 @@ func NewRancherIngressesPullRequest(server string, uuid openapi_types.UUID) (*ht
 	return req, nil
 }
 
+// NewRancherIngressesSetErredRequest calls the generic RancherIngressesSetErred builder with application/json body
+func NewRancherIngressesSetErredRequest(server string, uuid openapi_types.UUID, body RancherIngressesSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewRancherIngressesSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewRancherIngressesSetErredRequestWithBody generates requests for RancherIngressesSetErred with any type of body
+func NewRancherIngressesSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/rancher-ingresses/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewRancherIngressesSetOkRequest generates requests for RancherIngressesSetOk
+func NewRancherIngressesSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/rancher-ingresses/%s/set_ok/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewRancherIngressesUnlinkRequest generates requests for RancherIngressesUnlink
 func NewRancherIngressesUnlinkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -263975,6 +267540,87 @@ func NewRancherNodesPullRequest(server string, uuid openapi_types.UUID) (*http.R
 	}
 
 	operationPath := fmt.Sprintf("/api/rancher-nodes/%s/pull/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewRancherNodesSetErredRequest calls the generic RancherNodesSetErred builder with application/json body
+func NewRancherNodesSetErredRequest(server string, uuid openapi_types.UUID, body RancherNodesSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewRancherNodesSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewRancherNodesSetErredRequestWithBody generates requests for RancherNodesSetErred with any type of body
+func NewRancherNodesSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/rancher-nodes/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewRancherNodesSetOkRequest generates requests for RancherNodesSetOk
+func NewRancherNodesSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/rancher-nodes/%s/set_ok/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -265769,6 +269415,87 @@ func NewRancherServicesPullRequest(server string, uuid openapi_types.UUID) (*htt
 	}
 
 	operationPath := fmt.Sprintf("/api/rancher-services/%s/pull/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewRancherServicesSetErredRequest calls the generic RancherServicesSetErred builder with application/json body
+func NewRancherServicesSetErredRequest(server string, uuid openapi_types.UUID, body RancherServicesSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewRancherServicesSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewRancherServicesSetErredRequestWithBody generates requests for RancherServicesSetErred with any type of body
+func NewRancherServicesSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/rancher-services/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewRancherServicesSetOkRequest generates requests for RancherServicesSetOk
+func NewRancherServicesSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/rancher-services/%s/set_ok/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -274544,6 +278271,53 @@ func NewSlurmAllocationsPullRequest(server string, uuid openapi_types.UUID) (*ht
 	return req, nil
 }
 
+// NewSlurmAllocationsSetErredRequest calls the generic SlurmAllocationsSetErred builder with application/json body
+func NewSlurmAllocationsSetErredRequest(server string, uuid openapi_types.UUID, body SlurmAllocationsSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewSlurmAllocationsSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewSlurmAllocationsSetErredRequestWithBody generates requests for SlurmAllocationsSetErred with any type of body
+func NewSlurmAllocationsSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/slurm-allocations/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewSlurmAllocationsSetLimitsRequest calls the generic SlurmAllocationsSetLimits builder with application/json body
 func NewSlurmAllocationsSetLimitsRequest(server string, uuid openapi_types.UUID, body SlurmAllocationsSetLimitsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -274587,6 +278361,40 @@ func NewSlurmAllocationsSetLimitsRequestWithBody(server string, uuid openapi_typ
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewSlurmAllocationsSetOkRequest generates requests for SlurmAllocationsSetOk
+func NewSlurmAllocationsSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/slurm-allocations/%s/set_ok/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -275262,6 +279070,87 @@ func NewSlurmJobsPullRequest(server string, uuid openapi_types.UUID) (*http.Requ
 	}
 
 	operationPath := fmt.Sprintf("/api/slurm-jobs/%s/pull/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewSlurmJobsSetErredRequest calls the generic SlurmJobsSetErred builder with application/json body
+func NewSlurmJobsSetErredRequest(server string, uuid openapi_types.UUID, body SlurmJobsSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewSlurmJobsSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewSlurmJobsSetErredRequestWithBody generates requests for SlurmJobsSetErred with any type of body
+func NewSlurmJobsSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/slurm-jobs/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewSlurmJobsSetOkRequest generates requests for SlurmJobsSetOk
+func NewSlurmJobsSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/slurm-jobs/%s/set_ok/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -291930,6 +295819,87 @@ func NewVmwareDisksPullRequest(server string, uuid openapi_types.UUID) (*http.Re
 	return req, nil
 }
 
+// NewVmwareDisksSetErredRequest calls the generic VmwareDisksSetErred builder with application/json body
+func NewVmwareDisksSetErredRequest(server string, uuid openapi_types.UUID, body VmwareDisksSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewVmwareDisksSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewVmwareDisksSetErredRequestWithBody generates requests for VmwareDisksSetErred with any type of body
+func NewVmwareDisksSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/vmware-disks/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewVmwareDisksSetOkRequest generates requests for VmwareDisksSetOk
+func NewVmwareDisksSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/vmware-disks/%s/set_ok/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewVmwareDisksUnlinkRequest generates requests for VmwareDisksUnlink
 func NewVmwareDisksUnlinkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -293652,6 +297622,87 @@ func NewVmwarePortsPullRequest(server string, uuid openapi_types.UUID) (*http.Re
 	return req, nil
 }
 
+// NewVmwarePortsSetErredRequest calls the generic VmwarePortsSetErred builder with application/json body
+func NewVmwarePortsSetErredRequest(server string, uuid openapi_types.UUID, body VmwarePortsSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewVmwarePortsSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewVmwarePortsSetErredRequestWithBody generates requests for VmwarePortsSetErred with any type of body
+func NewVmwarePortsSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/vmware-ports/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewVmwarePortsSetOkRequest generates requests for VmwarePortsSetOk
+func NewVmwarePortsSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/vmware-ports/%s/set_ok/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewVmwarePortsUnlinkRequest generates requests for VmwarePortsUnlink
 func NewVmwarePortsUnlinkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -295186,6 +299237,87 @@ func NewVmwareVirtualMachineResetRequest(server string, uuid openapi_types.UUID)
 	return req, nil
 }
 
+// NewVmwareVirtualMachineSetErredRequest calls the generic VmwareVirtualMachineSetErred builder with application/json body
+func NewVmwareVirtualMachineSetErredRequest(server string, uuid openapi_types.UUID, body VmwareVirtualMachineSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewVmwareVirtualMachineSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewVmwareVirtualMachineSetErredRequestWithBody generates requests for VmwareVirtualMachineSetErred with any type of body
+func NewVmwareVirtualMachineSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/vmware-virtual-machine/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewVmwareVirtualMachineSetOkRequest generates requests for VmwareVirtualMachineSetOk
+func NewVmwareVirtualMachineSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/vmware-virtual-machine/%s/set_ok/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewVmwareVirtualMachineShutdownGuestRequest generates requests for VmwareVirtualMachineShutdownGuest
 func NewVmwareVirtualMachineShutdownGuestRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -295958,6 +300090,14 @@ type ClientWithResponsesInterface interface {
 	// AwsInstancesRestartWithResponse request
 	AwsInstancesRestartWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AwsInstancesRestartResponse, error)
 
+	// AwsInstancesSetErredWithBodyWithResponse request with any body
+	AwsInstancesSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AwsInstancesSetErredResponse, error)
+
+	AwsInstancesSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body AwsInstancesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*AwsInstancesSetErredResponse, error)
+
+	// AwsInstancesSetOkWithResponse request
+	AwsInstancesSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AwsInstancesSetOkResponse, error)
+
 	// AwsInstancesStartWithResponse request
 	AwsInstancesStartWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AwsInstancesStartResponse, error)
 
@@ -296021,6 +300161,14 @@ type ClientWithResponsesInterface interface {
 	// AwsVolumesPullWithResponse request
 	AwsVolumesPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AwsVolumesPullResponse, error)
 
+	// AwsVolumesSetErredWithBodyWithResponse request with any body
+	AwsVolumesSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AwsVolumesSetErredResponse, error)
+
+	AwsVolumesSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body AwsVolumesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*AwsVolumesSetErredResponse, error)
+
+	// AwsVolumesSetOkWithResponse request
+	AwsVolumesSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AwsVolumesSetOkResponse, error)
+
 	// AwsVolumesUnlinkWithResponse request
 	AwsVolumesUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AwsVolumesUnlinkResponse, error)
 
@@ -296071,6 +300219,14 @@ type ClientWithResponsesInterface interface {
 
 	// AzurePublicIpsPullWithResponse request
 	AzurePublicIpsPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AzurePublicIpsPullResponse, error)
+
+	// AzurePublicIpsSetErredWithBodyWithResponse request with any body
+	AzurePublicIpsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AzurePublicIpsSetErredResponse, error)
+
+	AzurePublicIpsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body AzurePublicIpsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*AzurePublicIpsSetErredResponse, error)
+
+	// AzurePublicIpsSetOkWithResponse request
+	AzurePublicIpsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AzurePublicIpsSetOkResponse, error)
 
 	// AzurePublicIpsUnlinkWithResponse request
 	AzurePublicIpsUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AzurePublicIpsUnlinkResponse, error)
@@ -296123,6 +300279,14 @@ type ClientWithResponsesInterface interface {
 	// AzureSqlDatabasesPullWithResponse request
 	AzureSqlDatabasesPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AzureSqlDatabasesPullResponse, error)
 
+	// AzureSqlDatabasesSetErredWithBodyWithResponse request with any body
+	AzureSqlDatabasesSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AzureSqlDatabasesSetErredResponse, error)
+
+	AzureSqlDatabasesSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body AzureSqlDatabasesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*AzureSqlDatabasesSetErredResponse, error)
+
+	// AzureSqlDatabasesSetOkWithResponse request
+	AzureSqlDatabasesSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AzureSqlDatabasesSetOkResponse, error)
+
 	// AzureSqlDatabasesUnlinkWithResponse request
 	AzureSqlDatabasesUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AzureSqlDatabasesUnlinkResponse, error)
 
@@ -296161,6 +300325,14 @@ type ClientWithResponsesInterface interface {
 	// AzureSqlServersPullWithResponse request
 	AzureSqlServersPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AzureSqlServersPullResponse, error)
 
+	// AzureSqlServersSetErredWithBodyWithResponse request with any body
+	AzureSqlServersSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AzureSqlServersSetErredResponse, error)
+
+	AzureSqlServersSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body AzureSqlServersSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*AzureSqlServersSetErredResponse, error)
+
+	// AzureSqlServersSetOkWithResponse request
+	AzureSqlServersSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AzureSqlServersSetOkResponse, error)
+
 	// AzureSqlServersUnlinkWithResponse request
 	AzureSqlServersUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AzureSqlServersUnlinkResponse, error)
 
@@ -296196,6 +300368,14 @@ type ClientWithResponsesInterface interface {
 
 	// AzureVirtualmachinesRestartWithResponse request
 	AzureVirtualmachinesRestartWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AzureVirtualmachinesRestartResponse, error)
+
+	// AzureVirtualmachinesSetErredWithBodyWithResponse request with any body
+	AzureVirtualmachinesSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AzureVirtualmachinesSetErredResponse, error)
+
+	AzureVirtualmachinesSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body AzureVirtualmachinesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*AzureVirtualmachinesSetErredResponse, error)
+
+	// AzureVirtualmachinesSetOkWithResponse request
+	AzureVirtualmachinesSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AzureVirtualmachinesSetOkResponse, error)
 
 	// AzureVirtualmachinesStartWithResponse request
 	AzureVirtualmachinesStartWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AzureVirtualmachinesStartResponse, error)
@@ -296962,6 +301142,14 @@ type ClientWithResponsesInterface interface {
 
 	// DigitaloceanDropletsRestartWithResponse request
 	DigitaloceanDropletsRestartWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*DigitaloceanDropletsRestartResponse, error)
+
+	// DigitaloceanDropletsSetErredWithBodyWithResponse request with any body
+	DigitaloceanDropletsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DigitaloceanDropletsSetErredResponse, error)
+
+	DigitaloceanDropletsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body DigitaloceanDropletsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*DigitaloceanDropletsSetErredResponse, error)
+
+	// DigitaloceanDropletsSetOkWithResponse request
+	DigitaloceanDropletsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*DigitaloceanDropletsSetOkResponse, error)
 
 	// DigitaloceanDropletsStartWithResponse request
 	DigitaloceanDropletsStartWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*DigitaloceanDropletsStartResponse, error)
@@ -300167,10 +304355,18 @@ type ClientWithResponsesInterface interface {
 	// OpenportalAllocationsPullWithResponse request
 	OpenportalAllocationsPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalAllocationsPullResponse, error)
 
+	// OpenportalAllocationsSetErredWithBodyWithResponse request with any body
+	OpenportalAllocationsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalAllocationsSetErredResponse, error)
+
+	OpenportalAllocationsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenportalAllocationsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalAllocationsSetErredResponse, error)
+
 	// OpenportalAllocationsSetLimitsWithBodyWithResponse request with any body
 	OpenportalAllocationsSetLimitsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalAllocationsSetLimitsResponse, error)
 
 	OpenportalAllocationsSetLimitsWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenportalAllocationsSetLimitsJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalAllocationsSetLimitsResponse, error)
+
+	// OpenportalAllocationsSetOkWithResponse request
+	OpenportalAllocationsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalAllocationsSetOkResponse, error)
 
 	// OpenportalAllocationsUnlinkWithResponse request
 	OpenportalAllocationsUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalAllocationsUnlinkResponse, error)
@@ -300314,10 +304510,18 @@ type ClientWithResponsesInterface interface {
 	// OpenportalRemoteAllocationsPullWithResponse request
 	OpenportalRemoteAllocationsPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalRemoteAllocationsPullResponse, error)
 
+	// OpenportalRemoteAllocationsSetErredWithBodyWithResponse request with any body
+	OpenportalRemoteAllocationsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalRemoteAllocationsSetErredResponse, error)
+
+	OpenportalRemoteAllocationsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenportalRemoteAllocationsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalRemoteAllocationsSetErredResponse, error)
+
 	// OpenportalRemoteAllocationsSetLimitsWithBodyWithResponse request with any body
 	OpenportalRemoteAllocationsSetLimitsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalRemoteAllocationsSetLimitsResponse, error)
 
 	OpenportalRemoteAllocationsSetLimitsWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenportalRemoteAllocationsSetLimitsJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalRemoteAllocationsSetLimitsResponse, error)
+
+	// OpenportalRemoteAllocationsSetOkWithResponse request
+	OpenportalRemoteAllocationsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalRemoteAllocationsSetOkResponse, error)
 
 	// OpenportalRemoteAllocationsUnlinkWithResponse request
 	OpenportalRemoteAllocationsUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalRemoteAllocationsUnlinkResponse, error)
@@ -300480,6 +304684,14 @@ type ClientWithResponsesInterface interface {
 
 	OpenstackBackupsRestoreWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackBackupsRestoreJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackBackupsRestoreResponse, error)
 
+	// OpenstackBackupsSetErredWithBodyWithResponse request with any body
+	OpenstackBackupsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackBackupsSetErredResponse, error)
+
+	OpenstackBackupsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackBackupsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackBackupsSetErredResponse, error)
+
+	// OpenstackBackupsSetOkWithResponse request
+	OpenstackBackupsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackBackupsSetOkResponse, error)
+
 	// OpenstackBackupsUnlinkWithResponse request
 	OpenstackBackupsUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackBackupsUnlinkResponse, error)
 
@@ -300520,6 +304732,14 @@ type ClientWithResponsesInterface interface {
 
 	// OpenstackFloatingIpsPullWithResponse request
 	OpenstackFloatingIpsPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackFloatingIpsPullResponse, error)
+
+	// OpenstackFloatingIpsSetErredWithBodyWithResponse request with any body
+	OpenstackFloatingIpsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackFloatingIpsSetErredResponse, error)
+
+	OpenstackFloatingIpsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackFloatingIpsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackFloatingIpsSetErredResponse, error)
+
+	// OpenstackFloatingIpsSetOkWithResponse request
+	OpenstackFloatingIpsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackFloatingIpsSetOkResponse, error)
 
 	// OpenstackFloatingIpsUnlinkWithResponse request
 	OpenstackFloatingIpsUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackFloatingIpsUnlinkResponse, error)
@@ -300599,6 +304819,14 @@ type ClientWithResponsesInterface interface {
 
 	// OpenstackInstancesRestartWithResponse request
 	OpenstackInstancesRestartWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackInstancesRestartResponse, error)
+
+	// OpenstackInstancesSetErredWithBodyWithResponse request with any body
+	OpenstackInstancesSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackInstancesSetErredResponse, error)
+
+	OpenstackInstancesSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackInstancesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackInstancesSetErredResponse, error)
+
+	// OpenstackInstancesSetOkWithResponse request
+	OpenstackInstancesSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackInstancesSetOkResponse, error)
 
 	// OpenstackInstancesStartWithResponse request
 	OpenstackInstancesStartWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackInstancesStartResponse, error)
@@ -300740,10 +304968,18 @@ type ClientWithResponsesInterface interface {
 	// OpenstackNetworksRbacPolicyDeleteDestroyWithResponse request
 	OpenstackNetworksRbacPolicyDeleteDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, rbacPolicyUuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackNetworksRbacPolicyDeleteDestroyResponse, error)
 
+	// OpenstackNetworksSetErredWithBodyWithResponse request with any body
+	OpenstackNetworksSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackNetworksSetErredResponse, error)
+
+	OpenstackNetworksSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworksSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackNetworksSetErredResponse, error)
+
 	// OpenstackNetworksSetMtuWithBodyWithResponse request with any body
 	OpenstackNetworksSetMtuWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackNetworksSetMtuResponse, error)
 
 	OpenstackNetworksSetMtuWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworksSetMtuJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackNetworksSetMtuResponse, error)
+
+	// OpenstackNetworksSetOkWithResponse request
+	OpenstackNetworksSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackNetworksSetOkResponse, error)
 
 	// OpenstackNetworksUnlinkWithResponse request
 	OpenstackNetworksUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackNetworksUnlinkResponse, error)
@@ -300790,6 +305026,14 @@ type ClientWithResponsesInterface interface {
 	// OpenstackPortsPullWithResponse request
 	OpenstackPortsPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPortsPullResponse, error)
 
+	// OpenstackPortsSetErredWithBodyWithResponse request with any body
+	OpenstackPortsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsSetErredResponse, error)
+
+	OpenstackPortsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsSetErredResponse, error)
+
+	// OpenstackPortsSetOkWithResponse request
+	OpenstackPortsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPortsSetOkResponse, error)
+
 	// OpenstackPortsUnlinkWithResponse request
 	OpenstackPortsUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPortsUnlinkResponse, error)
 
@@ -300830,6 +305074,14 @@ type ClientWithResponsesInterface interface {
 
 	OpenstackRoutersRemoveRouterInterfaceWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackRoutersRemoveRouterInterfaceJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackRoutersRemoveRouterInterfaceResponse, error)
 
+	// OpenstackRoutersSetErredWithBodyWithResponse request with any body
+	OpenstackRoutersSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackRoutersSetErredResponse, error)
+
+	OpenstackRoutersSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackRoutersSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackRoutersSetErredResponse, error)
+
+	// OpenstackRoutersSetOkWithResponse request
+	OpenstackRoutersSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackRoutersSetOkResponse, error)
+
 	// OpenstackRoutersSetRoutesWithBodyWithResponse request with any body
 	OpenstackRoutersSetRoutesWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackRoutersSetRoutesResponse, error)
 
@@ -300859,6 +305111,14 @@ type ClientWithResponsesInterface interface {
 
 	// OpenstackSecurityGroupsPullWithResponse request
 	OpenstackSecurityGroupsPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackSecurityGroupsPullResponse, error)
+
+	// OpenstackSecurityGroupsSetErredWithBodyWithResponse request with any body
+	OpenstackSecurityGroupsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackSecurityGroupsSetErredResponse, error)
+
+	OpenstackSecurityGroupsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackSecurityGroupsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackSecurityGroupsSetErredResponse, error)
+
+	// OpenstackSecurityGroupsSetOkWithResponse request
+	OpenstackSecurityGroupsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackSecurityGroupsSetOkResponse, error)
 
 	// OpenstackSecurityGroupsSetRulesWithBodyWithResponse request with any body
 	OpenstackSecurityGroupsSetRulesWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackSecurityGroupsSetRulesResponse, error)
@@ -300898,6 +305158,14 @@ type ClientWithResponsesInterface interface {
 	// OpenstackServerGroupsPullWithResponse request
 	OpenstackServerGroupsPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackServerGroupsPullResponse, error)
 
+	// OpenstackServerGroupsSetErredWithBodyWithResponse request with any body
+	OpenstackServerGroupsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackServerGroupsSetErredResponse, error)
+
+	OpenstackServerGroupsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackServerGroupsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackServerGroupsSetErredResponse, error)
+
+	// OpenstackServerGroupsSetOkWithResponse request
+	OpenstackServerGroupsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackServerGroupsSetOkResponse, error)
+
 	// OpenstackServerGroupsUnlinkWithResponse request
 	OpenstackServerGroupsUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackServerGroupsUnlinkResponse, error)
 
@@ -300934,6 +305202,14 @@ type ClientWithResponsesInterface interface {
 
 	OpenstackSnapshotsRestoreWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackSnapshotsRestoreJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackSnapshotsRestoreResponse, error)
 
+	// OpenstackSnapshotsSetErredWithBodyWithResponse request with any body
+	OpenstackSnapshotsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackSnapshotsSetErredResponse, error)
+
+	OpenstackSnapshotsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackSnapshotsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackSnapshotsSetErredResponse, error)
+
+	// OpenstackSnapshotsSetOkWithResponse request
+	OpenstackSnapshotsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackSnapshotsSetOkResponse, error)
+
 	// OpenstackSnapshotsUnlinkWithResponse request
 	OpenstackSnapshotsUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackSnapshotsUnlinkResponse, error)
 
@@ -300967,6 +305243,14 @@ type ClientWithResponsesInterface interface {
 
 	// OpenstackSubnetsPullWithResponse request
 	OpenstackSubnetsPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackSubnetsPullResponse, error)
+
+	// OpenstackSubnetsSetErredWithBodyWithResponse request with any body
+	OpenstackSubnetsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackSubnetsSetErredResponse, error)
+
+	OpenstackSubnetsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackSubnetsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackSubnetsSetErredResponse, error)
+
+	// OpenstackSubnetsSetOkWithResponse request
+	OpenstackSubnetsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackSubnetsSetOkResponse, error)
 
 	// OpenstackSubnetsUnlinkWithResponse request
 	OpenstackSubnetsUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackSubnetsUnlinkResponse, error)
@@ -301041,6 +305325,14 @@ type ClientWithResponsesInterface interface {
 
 	OpenstackTenantsPushSecurityGroupsWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackTenantsPushSecurityGroupsJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackTenantsPushSecurityGroupsResponse, error)
 
+	// OpenstackTenantsSetErredWithBodyWithResponse request with any body
+	OpenstackTenantsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackTenantsSetErredResponse, error)
+
+	OpenstackTenantsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackTenantsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackTenantsSetErredResponse, error)
+
+	// OpenstackTenantsSetOkWithResponse request
+	OpenstackTenantsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackTenantsSetOkResponse, error)
+
 	// OpenstackTenantsSetQuotasWithBodyWithResponse request with any body
 	OpenstackTenantsSetQuotasWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackTenantsSetQuotasResponse, error)
 
@@ -301112,6 +305404,14 @@ type ClientWithResponsesInterface interface {
 	OpenstackVolumesRetypeWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackVolumesRetypeResponse, error)
 
 	OpenstackVolumesRetypeWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackVolumesRetypeJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackVolumesRetypeResponse, error)
+
+	// OpenstackVolumesSetErredWithBodyWithResponse request with any body
+	OpenstackVolumesSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackVolumesSetErredResponse, error)
+
+	OpenstackVolumesSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackVolumesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackVolumesSetErredResponse, error)
+
+	// OpenstackVolumesSetOkWithResponse request
+	OpenstackVolumesSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackVolumesSetOkResponse, error)
 
 	// OpenstackVolumesSnapshotWithBodyWithResponse request with any body
 	OpenstackVolumesSnapshotWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackVolumesSnapshotResponse, error)
@@ -301905,6 +306205,14 @@ type ClientWithResponsesInterface interface {
 	// RancherAppsPullWithResponse request
 	RancherAppsPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherAppsPullResponse, error)
 
+	// RancherAppsSetErredWithBodyWithResponse request with any body
+	RancherAppsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RancherAppsSetErredResponse, error)
+
+	RancherAppsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body RancherAppsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*RancherAppsSetErredResponse, error)
+
+	// RancherAppsSetOkWithResponse request
+	RancherAppsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherAppsSetOkResponse, error)
+
 	// RancherAppsUnlinkWithResponse request
 	RancherAppsUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherAppsUnlinkResponse, error)
 
@@ -302000,6 +306308,14 @@ type ClientWithResponsesInterface interface {
 	// RancherClustersPullWithResponse request
 	RancherClustersPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherClustersPullResponse, error)
 
+	// RancherClustersSetErredWithBodyWithResponse request with any body
+	RancherClustersSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RancherClustersSetErredResponse, error)
+
+	RancherClustersSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body RancherClustersSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*RancherClustersSetErredResponse, error)
+
+	// RancherClustersSetOkWithResponse request
+	RancherClustersSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherClustersSetOkResponse, error)
+
 	// RancherClustersUnlinkWithResponse request
 	RancherClustersUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherClustersUnlinkResponse, error)
 
@@ -302032,6 +306348,14 @@ type ClientWithResponsesInterface interface {
 
 	// RancherHpasPullWithResponse request
 	RancherHpasPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherHpasPullResponse, error)
+
+	// RancherHpasSetErredWithBodyWithResponse request with any body
+	RancherHpasSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RancherHpasSetErredResponse, error)
+
+	RancherHpasSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body RancherHpasSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*RancherHpasSetErredResponse, error)
+
+	// RancherHpasSetOkWithResponse request
+	RancherHpasSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherHpasSetOkResponse, error)
 
 	// RancherHpasUnlinkWithResponse request
 	RancherHpasUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherHpasUnlinkResponse, error)
@@ -302073,6 +306397,14 @@ type ClientWithResponsesInterface interface {
 
 	// RancherIngressesPullWithResponse request
 	RancherIngressesPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherIngressesPullResponse, error)
+
+	// RancherIngressesSetErredWithBodyWithResponse request with any body
+	RancherIngressesSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RancherIngressesSetErredResponse, error)
+
+	RancherIngressesSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body RancherIngressesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*RancherIngressesSetErredResponse, error)
+
+	// RancherIngressesSetOkWithResponse request
+	RancherIngressesSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherIngressesSetOkResponse, error)
 
 	// RancherIngressesUnlinkWithResponse request
 	RancherIngressesUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherIngressesUnlinkResponse, error)
@@ -302124,6 +306456,14 @@ type ClientWithResponsesInterface interface {
 
 	// RancherNodesPullWithResponse request
 	RancherNodesPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherNodesPullResponse, error)
+
+	// RancherNodesSetErredWithBodyWithResponse request with any body
+	RancherNodesSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RancherNodesSetErredResponse, error)
+
+	RancherNodesSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body RancherNodesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*RancherNodesSetErredResponse, error)
+
+	// RancherNodesSetOkWithResponse request
+	RancherNodesSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherNodesSetOkResponse, error)
 
 	// RancherNodesUnlinkWithResponse request
 	RancherNodesUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherNodesUnlinkResponse, error)
@@ -302181,6 +306521,14 @@ type ClientWithResponsesInterface interface {
 
 	// RancherServicesPullWithResponse request
 	RancherServicesPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherServicesPullResponse, error)
+
+	// RancherServicesSetErredWithBodyWithResponse request with any body
+	RancherServicesSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RancherServicesSetErredResponse, error)
+
+	RancherServicesSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body RancherServicesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*RancherServicesSetErredResponse, error)
+
+	// RancherServicesSetOkWithResponse request
+	RancherServicesSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherServicesSetOkResponse, error)
 
 	// RancherServicesUnlinkWithResponse request
 	RancherServicesUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherServicesUnlinkResponse, error)
@@ -302661,10 +307009,18 @@ type ClientWithResponsesInterface interface {
 	// SlurmAllocationsPullWithResponse request
 	SlurmAllocationsPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SlurmAllocationsPullResponse, error)
 
+	// SlurmAllocationsSetErredWithBodyWithResponse request with any body
+	SlurmAllocationsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SlurmAllocationsSetErredResponse, error)
+
+	SlurmAllocationsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body SlurmAllocationsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*SlurmAllocationsSetErredResponse, error)
+
 	// SlurmAllocationsSetLimitsWithBodyWithResponse request with any body
 	SlurmAllocationsSetLimitsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SlurmAllocationsSetLimitsResponse, error)
 
 	SlurmAllocationsSetLimitsWithResponse(ctx context.Context, uuid openapi_types.UUID, body SlurmAllocationsSetLimitsJSONRequestBody, reqEditors ...RequestEditorFn) (*SlurmAllocationsSetLimitsResponse, error)
+
+	// SlurmAllocationsSetOkWithResponse request
+	SlurmAllocationsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SlurmAllocationsSetOkResponse, error)
 
 	// SlurmAllocationsUnlinkWithResponse request
 	SlurmAllocationsUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SlurmAllocationsUnlinkResponse, error)
@@ -302711,6 +307067,14 @@ type ClientWithResponsesInterface interface {
 
 	// SlurmJobsPullWithResponse request
 	SlurmJobsPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SlurmJobsPullResponse, error)
+
+	// SlurmJobsSetErredWithBodyWithResponse request with any body
+	SlurmJobsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SlurmJobsSetErredResponse, error)
+
+	SlurmJobsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*SlurmJobsSetErredResponse, error)
+
+	// SlurmJobsSetOkWithResponse request
+	SlurmJobsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SlurmJobsSetOkResponse, error)
 
 	// SlurmJobsUnlinkWithResponse request
 	SlurmJobsUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SlurmJobsUnlinkResponse, error)
@@ -303379,6 +307743,14 @@ type ClientWithResponsesInterface interface {
 	// VmwareDisksPullWithResponse request
 	VmwareDisksPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*VmwareDisksPullResponse, error)
 
+	// VmwareDisksSetErredWithBodyWithResponse request with any body
+	VmwareDisksSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*VmwareDisksSetErredResponse, error)
+
+	VmwareDisksSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body VmwareDisksSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*VmwareDisksSetErredResponse, error)
+
+	// VmwareDisksSetOkWithResponse request
+	VmwareDisksSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*VmwareDisksSetOkResponse, error)
+
 	// VmwareDisksUnlinkWithResponse request
 	VmwareDisksUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*VmwareDisksUnlinkResponse, error)
 
@@ -303417,6 +307789,14 @@ type ClientWithResponsesInterface interface {
 
 	// VmwarePortsPullWithResponse request
 	VmwarePortsPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*VmwarePortsPullResponse, error)
+
+	// VmwarePortsSetErredWithBodyWithResponse request with any body
+	VmwarePortsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*VmwarePortsSetErredResponse, error)
+
+	VmwarePortsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body VmwarePortsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*VmwarePortsSetErredResponse, error)
+
+	// VmwarePortsSetOkWithResponse request
+	VmwarePortsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*VmwarePortsSetOkResponse, error)
 
 	// VmwarePortsUnlinkWithResponse request
 	VmwarePortsUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*VmwarePortsUnlinkResponse, error)
@@ -303478,6 +307858,14 @@ type ClientWithResponsesInterface interface {
 
 	// VmwareVirtualMachineResetWithResponse request
 	VmwareVirtualMachineResetWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*VmwareVirtualMachineResetResponse, error)
+
+	// VmwareVirtualMachineSetErredWithBodyWithResponse request with any body
+	VmwareVirtualMachineSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*VmwareVirtualMachineSetErredResponse, error)
+
+	VmwareVirtualMachineSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body VmwareVirtualMachineSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*VmwareVirtualMachineSetErredResponse, error)
+
+	// VmwareVirtualMachineSetOkWithResponse request
+	VmwareVirtualMachineSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*VmwareVirtualMachineSetOkResponse, error)
 
 	// VmwareVirtualMachineShutdownGuestWithResponse request
 	VmwareVirtualMachineShutdownGuestWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*VmwareVirtualMachineShutdownGuestResponse, error)
@@ -306408,6 +310796,8 @@ func (r AwsInstancesUpdateResponse) StatusCode() int {
 type AwsInstancesPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -306463,6 +310853,50 @@ func (r AwsInstancesRestartResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r AwsInstancesRestartResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AwsInstancesSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AwsInstancesSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AwsInstancesSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AwsInstancesSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AwsInstancesSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AwsInstancesSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -306860,6 +311294,8 @@ func (r AwsVolumesDetachResponse) StatusCode() int {
 type AwsVolumesPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -306872,6 +311308,50 @@ func (r AwsVolumesPullResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r AwsVolumesPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AwsVolumesSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AwsVolumesSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AwsVolumesSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AwsVolumesSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AwsVolumesSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AwsVolumesSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -307184,6 +311664,8 @@ func (r AzurePublicIpsUpdateResponse) StatusCode() int {
 type AzurePublicIpsPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -307196,6 +311678,50 @@ func (r AzurePublicIpsPullResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r AzurePublicIpsPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AzurePublicIpsSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AzurePublicIpsSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AzurePublicIpsSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AzurePublicIpsSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AzurePublicIpsSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AzurePublicIpsSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -307508,6 +312034,8 @@ func (r AzureSqlDatabasesUpdateResponse) StatusCode() int {
 type AzureSqlDatabasesPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -307520,6 +312048,50 @@ func (r AzureSqlDatabasesPullResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r AzureSqlDatabasesPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AzureSqlDatabasesSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AzureSqlDatabasesSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AzureSqlDatabasesSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AzureSqlDatabasesSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AzureSqlDatabasesSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AzureSqlDatabasesSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -307724,6 +312296,8 @@ func (r AzureSqlServersCreateDatabaseResponse) StatusCode() int {
 type AzureSqlServersPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -307736,6 +312310,50 @@ func (r AzureSqlServersPullResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r AzureSqlServersPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AzureSqlServersSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AzureSqlServersSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AzureSqlServersSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AzureSqlServersSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AzureSqlServersSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AzureSqlServersSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -307918,6 +312536,8 @@ func (r AzureVirtualmachinesUpdateResponse) StatusCode() int {
 type AzureVirtualmachinesPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -307951,6 +312571,50 @@ func (r AzureVirtualmachinesRestartResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r AzureVirtualmachinesRestartResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AzureVirtualmachinesSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AzureVirtualmachinesSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AzureVirtualmachinesSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AzureVirtualmachinesSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AzureVirtualmachinesSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AzureVirtualmachinesSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -312378,6 +317042,8 @@ func (r DigitaloceanDropletsUpdateResponse) StatusCode() int {
 type DigitaloceanDropletsPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -312433,6 +317099,50 @@ func (r DigitaloceanDropletsRestartResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r DigitaloceanDropletsRestartResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DigitaloceanDropletsSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r DigitaloceanDropletsSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DigitaloceanDropletsSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DigitaloceanDropletsSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r DigitaloceanDropletsSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DigitaloceanDropletsSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -331381,6 +336091,8 @@ func (r OpenportalAllocationsUpdateResponse) StatusCode() int {
 type OpenportalAllocationsPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -331393,6 +336105,28 @@ func (r OpenportalAllocationsPullResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenportalAllocationsPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenportalAllocationsSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenportalAllocationsSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenportalAllocationsSetErredResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -331415,6 +336149,28 @@ func (r OpenportalAllocationsSetLimitsResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenportalAllocationsSetLimitsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenportalAllocationsSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenportalAllocationsSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenportalAllocationsSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -332222,6 +336978,8 @@ func (r OpenportalRemoteAllocationsUpdateResponse) StatusCode() int {
 type OpenportalRemoteAllocationsPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -332234,6 +336992,28 @@ func (r OpenportalRemoteAllocationsPullResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenportalRemoteAllocationsPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenportalRemoteAllocationsSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenportalRemoteAllocationsSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenportalRemoteAllocationsSetErredResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -332256,6 +337036,28 @@ func (r OpenportalRemoteAllocationsSetLimitsResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenportalRemoteAllocationsSetLimitsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenportalRemoteAllocationsSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenportalRemoteAllocationsSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenportalRemoteAllocationsSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -333120,6 +337922,8 @@ func (r OpenstackBackupsUpdateResponse) StatusCode() int {
 type OpenstackBackupsPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -333154,6 +337958,50 @@ func (r OpenstackBackupsRestoreResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackBackupsRestoreResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackBackupsSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackBackupsSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackBackupsSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackBackupsSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackBackupsSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackBackupsSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -333420,6 +338268,8 @@ func (r OpenstackFloatingIpsDetachFromPortResponse) StatusCode() int {
 type OpenstackFloatingIpsPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -333432,6 +338282,50 @@ func (r OpenstackFloatingIpsPullResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackFloatingIpsPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackFloatingIpsSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackFloatingIpsSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackFloatingIpsSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackFloatingIpsSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackFloatingIpsSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackFloatingIpsSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -333896,6 +338790,8 @@ func (r OpenstackInstancesPortsListResponse) StatusCode() int {
 type OpenstackInstancesPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -333929,6 +338825,50 @@ func (r OpenstackInstancesRestartResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackInstancesRestartResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackInstancesSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackInstancesSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackInstancesSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackInstancesSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackInstancesSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackInstancesSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -334650,6 +339590,8 @@ func (r OpenstackNetworksCreateSubnetResponse) StatusCode() int {
 type OpenstackNetworksPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -334711,6 +339653,28 @@ func (r OpenstackNetworksRbacPolicyDeleteDestroyResponse) StatusCode() int {
 	return 0
 }
 
+type OpenstackNetworksSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackNetworksSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackNetworksSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type OpenstackNetworksSetMtuResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -334727,6 +339691,28 @@ func (r OpenstackNetworksSetMtuResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackNetworksSetMtuResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackNetworksSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackNetworksSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackNetworksSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -334993,6 +339979,8 @@ func (r OpenstackPortsEnablePortSecurityResponse) StatusCode() int {
 type OpenstackPortsPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -335005,6 +339993,50 @@ func (r OpenstackPortsPullResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackPortsPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackPortsSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPortsSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPortsSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackPortsSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPortsSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPortsSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -335224,6 +340256,50 @@ func (r OpenstackRoutersRemoveRouterInterfaceResponse) StatusCode() int {
 	return 0
 }
 
+type OpenstackRoutersSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RouterSetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackRoutersSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackRoutersSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackRoutersSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RouterSetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackRoutersSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackRoutersSetOkResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type OpenstackRoutersSetRoutesResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -335379,6 +340455,8 @@ func (r OpenstackSecurityGroupsUpdateResponse) StatusCode() int {
 type OpenstackSecurityGroupsPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -335391,6 +340469,50 @@ func (r OpenstackSecurityGroupsPullResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackSecurityGroupsPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackSecurityGroupsSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackSecurityGroupsSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackSecurityGroupsSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackSecurityGroupsSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackSecurityGroupsSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackSecurityGroupsSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -335594,6 +340716,8 @@ func (r OpenstackServerGroupsUpdateResponse) StatusCode() int {
 type OpenstackServerGroupsPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -335606,6 +340730,50 @@ func (r OpenstackServerGroupsPullResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackServerGroupsPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackServerGroupsSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackServerGroupsSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackServerGroupsSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackServerGroupsSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackServerGroupsSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackServerGroupsSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -335766,6 +340934,8 @@ func (r OpenstackSnapshotsUpdateResponse) StatusCode() int {
 type OpenstackSnapshotsPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -335822,6 +340992,50 @@ func (r OpenstackSnapshotsRestoreResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackSnapshotsRestoreResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackSnapshotsSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackSnapshotsSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackSnapshotsSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackSnapshotsSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackSnapshotsSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackSnapshotsSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -336024,6 +341238,8 @@ func (r OpenstackSubnetsDisconnectResponse) StatusCode() int {
 type OpenstackSubnetsPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -336036,6 +341252,50 @@ func (r OpenstackSubnetsPullResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackSubnetsPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackSubnetsSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackSubnetsSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackSubnetsSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackSubnetsSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackSubnetsSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackSubnetsSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -336328,6 +341588,8 @@ func (r OpenstackTenantsCreateServerGroupResponse) StatusCode() int {
 type OpenstackTenantsPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -336447,6 +341709,50 @@ func (r OpenstackTenantsPushSecurityGroupsResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackTenantsPushSecurityGroupsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackTenantsSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackTenantsSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackTenantsSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackTenantsSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackTenantsSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackTenantsSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -336844,6 +342150,8 @@ func (r OpenstackVolumesExtendResponse) StatusCode() int {
 type OpenstackVolumesPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -336877,6 +342185,50 @@ func (r OpenstackVolumesRetypeResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackVolumesRetypeResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackVolumesSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackVolumesSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackVolumesSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackVolumesSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackVolumesSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackVolumesSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -341362,6 +346714,8 @@ func (r RancherAppsUpdateResponse) StatusCode() int {
 type RancherAppsPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -341374,6 +346728,50 @@ func (r RancherAppsPullResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r RancherAppsPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type RancherAppsSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r RancherAppsSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r RancherAppsSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type RancherAppsSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r RancherAppsSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r RancherAppsSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -341905,6 +347303,8 @@ func (r RancherClustersImportYamlResponse) StatusCode() int {
 type RancherClustersPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -341917,6 +347317,50 @@ func (r RancherClustersPullResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r RancherClustersPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type RancherClustersSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r RancherClustersSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r RancherClustersSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type RancherClustersSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r RancherClustersSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r RancherClustersSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -342099,6 +347543,8 @@ func (r RancherHpasUpdateResponse) StatusCode() int {
 type RancherHpasPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -342111,6 +347557,50 @@ func (r RancherHpasPullResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r RancherHpasPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type RancherHpasSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r RancherHpasSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r RancherHpasSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type RancherHpasSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r RancherHpasSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r RancherHpasSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -342337,6 +347827,8 @@ func (r RancherIngressesUpdateResponse) StatusCode() int {
 type RancherIngressesPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -342349,6 +347841,50 @@ func (r RancherIngressesPullResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r RancherIngressesPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type RancherIngressesSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r RancherIngressesSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r RancherIngressesSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type RancherIngressesSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r RancherIngressesSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r RancherIngressesSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -342661,6 +348197,8 @@ func (r RancherNodesLinkOpenstackResponse) StatusCode() int {
 type RancherNodesPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -342673,6 +348211,50 @@ func (r RancherNodesPullResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r RancherNodesPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type RancherNodesSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r RancherNodesSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r RancherNodesSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type RancherNodesSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r RancherNodesSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r RancherNodesSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -343028,6 +348610,8 @@ func (r RancherServicesUpdateResponse) StatusCode() int {
 type RancherServicesPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -343040,6 +348624,50 @@ func (r RancherServicesPullResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r RancherServicesPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type RancherServicesSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r RancherServicesSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r RancherServicesSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type RancherServicesSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r RancherServicesSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r RancherServicesSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -345798,6 +351426,8 @@ func (r SlurmAllocationsUpdateResponse) StatusCode() int {
 type SlurmAllocationsPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -345810,6 +351440,28 @@ func (r SlurmAllocationsPullResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r SlurmAllocationsPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SlurmAllocationsSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r SlurmAllocationsSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SlurmAllocationsSetErredResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -345832,6 +351484,28 @@ func (r SlurmAllocationsSetLimitsResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r SlurmAllocationsSetLimitsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SlurmAllocationsSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r SlurmAllocationsSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SlurmAllocationsSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -346079,6 +351753,8 @@ func (r SlurmJobsUpdateResponse) StatusCode() int {
 type SlurmJobsPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -346091,6 +351767,50 @@ func (r SlurmJobsPullResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r SlurmJobsPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SlurmJobsSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r SlurmJobsSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SlurmJobsSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SlurmJobsSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r SlurmJobsSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SlurmJobsSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -350038,6 +355758,8 @@ func (r VmwareDisksExtendResponse) StatusCode() int {
 type VmwareDisksPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -350050,6 +355772,50 @@ func (r VmwareDisksPullResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r VmwareDisksPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type VmwareDisksSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r VmwareDisksSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r VmwareDisksSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type VmwareDisksSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r VmwareDisksSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r VmwareDisksSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -350318,6 +356084,8 @@ func (r VmwarePortsRetrieveResponse) StatusCode() int {
 type VmwarePortsPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -350330,6 +356098,50 @@ func (r VmwarePortsPullResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r VmwarePortsPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type VmwarePortsSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r VmwarePortsSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r VmwarePortsSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type VmwarePortsSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r VmwarePortsSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r VmwarePortsSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -350643,6 +356455,8 @@ func (r VmwareVirtualMachineCreatePortResponse) StatusCode() int {
 type VmwareVirtualMachinePullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *PullResponse
+	JSON409      *PullConflictResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -350697,6 +356511,50 @@ func (r VmwareVirtualMachineResetResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r VmwareVirtualMachineResetResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type VmwareVirtualMachineSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetErredResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r VmwareVirtualMachineSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r VmwareVirtualMachineSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type VmwareVirtualMachineSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SetOkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r VmwareVirtualMachineSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r VmwareVirtualMachineSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -352519,6 +358377,32 @@ func (c *ClientWithResponses) AwsInstancesRestartWithResponse(ctx context.Contex
 	return ParseAwsInstancesRestartResponse(rsp)
 }
 
+// AwsInstancesSetErredWithBodyWithResponse request with arbitrary body returning *AwsInstancesSetErredResponse
+func (c *ClientWithResponses) AwsInstancesSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AwsInstancesSetErredResponse, error) {
+	rsp, err := c.AwsInstancesSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAwsInstancesSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) AwsInstancesSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body AwsInstancesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*AwsInstancesSetErredResponse, error) {
+	rsp, err := c.AwsInstancesSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAwsInstancesSetErredResponse(rsp)
+}
+
+// AwsInstancesSetOkWithResponse request returning *AwsInstancesSetOkResponse
+func (c *ClientWithResponses) AwsInstancesSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AwsInstancesSetOkResponse, error) {
+	rsp, err := c.AwsInstancesSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAwsInstancesSetOkResponse(rsp)
+}
+
 // AwsInstancesStartWithResponse request returning *AwsInstancesStartResponse
 func (c *ClientWithResponses) AwsInstancesStartWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AwsInstancesStartResponse, error) {
 	rsp, err := c.AwsInstancesStart(ctx, uuid, reqEditors...)
@@ -352714,6 +358598,32 @@ func (c *ClientWithResponses) AwsVolumesPullWithResponse(ctx context.Context, uu
 	return ParseAwsVolumesPullResponse(rsp)
 }
 
+// AwsVolumesSetErredWithBodyWithResponse request with arbitrary body returning *AwsVolumesSetErredResponse
+func (c *ClientWithResponses) AwsVolumesSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AwsVolumesSetErredResponse, error) {
+	rsp, err := c.AwsVolumesSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAwsVolumesSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) AwsVolumesSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body AwsVolumesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*AwsVolumesSetErredResponse, error) {
+	rsp, err := c.AwsVolumesSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAwsVolumesSetErredResponse(rsp)
+}
+
+// AwsVolumesSetOkWithResponse request returning *AwsVolumesSetOkResponse
+func (c *ClientWithResponses) AwsVolumesSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AwsVolumesSetOkResponse, error) {
+	rsp, err := c.AwsVolumesSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAwsVolumesSetOkResponse(rsp)
+}
+
 // AwsVolumesUnlinkWithResponse request returning *AwsVolumesUnlinkResponse
 func (c *ClientWithResponses) AwsVolumesUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AwsVolumesUnlinkResponse, error) {
 	rsp, err := c.AwsVolumesUnlink(ctx, uuid, reqEditors...)
@@ -352871,6 +358781,32 @@ func (c *ClientWithResponses) AzurePublicIpsPullWithResponse(ctx context.Context
 		return nil, err
 	}
 	return ParseAzurePublicIpsPullResponse(rsp)
+}
+
+// AzurePublicIpsSetErredWithBodyWithResponse request with arbitrary body returning *AzurePublicIpsSetErredResponse
+func (c *ClientWithResponses) AzurePublicIpsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AzurePublicIpsSetErredResponse, error) {
+	rsp, err := c.AzurePublicIpsSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAzurePublicIpsSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) AzurePublicIpsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body AzurePublicIpsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*AzurePublicIpsSetErredResponse, error) {
+	rsp, err := c.AzurePublicIpsSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAzurePublicIpsSetErredResponse(rsp)
+}
+
+// AzurePublicIpsSetOkWithResponse request returning *AzurePublicIpsSetOkResponse
+func (c *ClientWithResponses) AzurePublicIpsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AzurePublicIpsSetOkResponse, error) {
+	rsp, err := c.AzurePublicIpsSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAzurePublicIpsSetOkResponse(rsp)
 }
 
 // AzurePublicIpsUnlinkWithResponse request returning *AzurePublicIpsUnlinkResponse
@@ -353032,6 +358968,32 @@ func (c *ClientWithResponses) AzureSqlDatabasesPullWithResponse(ctx context.Cont
 	return ParseAzureSqlDatabasesPullResponse(rsp)
 }
 
+// AzureSqlDatabasesSetErredWithBodyWithResponse request with arbitrary body returning *AzureSqlDatabasesSetErredResponse
+func (c *ClientWithResponses) AzureSqlDatabasesSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AzureSqlDatabasesSetErredResponse, error) {
+	rsp, err := c.AzureSqlDatabasesSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAzureSqlDatabasesSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) AzureSqlDatabasesSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body AzureSqlDatabasesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*AzureSqlDatabasesSetErredResponse, error) {
+	rsp, err := c.AzureSqlDatabasesSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAzureSqlDatabasesSetErredResponse(rsp)
+}
+
+// AzureSqlDatabasesSetOkWithResponse request returning *AzureSqlDatabasesSetOkResponse
+func (c *ClientWithResponses) AzureSqlDatabasesSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AzureSqlDatabasesSetOkResponse, error) {
+	rsp, err := c.AzureSqlDatabasesSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAzureSqlDatabasesSetOkResponse(rsp)
+}
+
 // AzureSqlDatabasesUnlinkWithResponse request returning *AzureSqlDatabasesUnlinkResponse
 func (c *ClientWithResponses) AzureSqlDatabasesUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AzureSqlDatabasesUnlinkResponse, error) {
 	rsp, err := c.AzureSqlDatabasesUnlink(ctx, uuid, reqEditors...)
@@ -353154,6 +359116,32 @@ func (c *ClientWithResponses) AzureSqlServersPullWithResponse(ctx context.Contex
 	return ParseAzureSqlServersPullResponse(rsp)
 }
 
+// AzureSqlServersSetErredWithBodyWithResponse request with arbitrary body returning *AzureSqlServersSetErredResponse
+func (c *ClientWithResponses) AzureSqlServersSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AzureSqlServersSetErredResponse, error) {
+	rsp, err := c.AzureSqlServersSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAzureSqlServersSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) AzureSqlServersSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body AzureSqlServersSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*AzureSqlServersSetErredResponse, error) {
+	rsp, err := c.AzureSqlServersSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAzureSqlServersSetErredResponse(rsp)
+}
+
+// AzureSqlServersSetOkWithResponse request returning *AzureSqlServersSetOkResponse
+func (c *ClientWithResponses) AzureSqlServersSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AzureSqlServersSetOkResponse, error) {
+	rsp, err := c.AzureSqlServersSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAzureSqlServersSetOkResponse(rsp)
+}
+
 // AzureSqlServersUnlinkWithResponse request returning *AzureSqlServersUnlinkResponse
 func (c *ClientWithResponses) AzureSqlServersUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AzureSqlServersUnlinkResponse, error) {
 	rsp, err := c.AzureSqlServersUnlink(ctx, uuid, reqEditors...)
@@ -353266,6 +359254,32 @@ func (c *ClientWithResponses) AzureVirtualmachinesRestartWithResponse(ctx contex
 		return nil, err
 	}
 	return ParseAzureVirtualmachinesRestartResponse(rsp)
+}
+
+// AzureVirtualmachinesSetErredWithBodyWithResponse request with arbitrary body returning *AzureVirtualmachinesSetErredResponse
+func (c *ClientWithResponses) AzureVirtualmachinesSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AzureVirtualmachinesSetErredResponse, error) {
+	rsp, err := c.AzureVirtualmachinesSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAzureVirtualmachinesSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) AzureVirtualmachinesSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body AzureVirtualmachinesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*AzureVirtualmachinesSetErredResponse, error) {
+	rsp, err := c.AzureVirtualmachinesSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAzureVirtualmachinesSetErredResponse(rsp)
+}
+
+// AzureVirtualmachinesSetOkWithResponse request returning *AzureVirtualmachinesSetOkResponse
+func (c *ClientWithResponses) AzureVirtualmachinesSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AzureVirtualmachinesSetOkResponse, error) {
+	rsp, err := c.AzureVirtualmachinesSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAzureVirtualmachinesSetOkResponse(rsp)
 }
 
 // AzureVirtualmachinesStartWithResponse request returning *AzureVirtualmachinesStartResponse
@@ -355712,6 +361726,32 @@ func (c *ClientWithResponses) DigitaloceanDropletsRestartWithResponse(ctx contex
 		return nil, err
 	}
 	return ParseDigitaloceanDropletsRestartResponse(rsp)
+}
+
+// DigitaloceanDropletsSetErredWithBodyWithResponse request with arbitrary body returning *DigitaloceanDropletsSetErredResponse
+func (c *ClientWithResponses) DigitaloceanDropletsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*DigitaloceanDropletsSetErredResponse, error) {
+	rsp, err := c.DigitaloceanDropletsSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDigitaloceanDropletsSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) DigitaloceanDropletsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body DigitaloceanDropletsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*DigitaloceanDropletsSetErredResponse, error) {
+	rsp, err := c.DigitaloceanDropletsSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDigitaloceanDropletsSetErredResponse(rsp)
+}
+
+// DigitaloceanDropletsSetOkWithResponse request returning *DigitaloceanDropletsSetOkResponse
+func (c *ClientWithResponses) DigitaloceanDropletsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*DigitaloceanDropletsSetOkResponse, error) {
+	rsp, err := c.DigitaloceanDropletsSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDigitaloceanDropletsSetOkResponse(rsp)
 }
 
 // DigitaloceanDropletsStartWithResponse request returning *DigitaloceanDropletsStartResponse
@@ -365914,6 +371954,23 @@ func (c *ClientWithResponses) OpenportalAllocationsPullWithResponse(ctx context.
 	return ParseOpenportalAllocationsPullResponse(rsp)
 }
 
+// OpenportalAllocationsSetErredWithBodyWithResponse request with arbitrary body returning *OpenportalAllocationsSetErredResponse
+func (c *ClientWithResponses) OpenportalAllocationsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalAllocationsSetErredResponse, error) {
+	rsp, err := c.OpenportalAllocationsSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenportalAllocationsSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenportalAllocationsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenportalAllocationsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalAllocationsSetErredResponse, error) {
+	rsp, err := c.OpenportalAllocationsSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenportalAllocationsSetErredResponse(rsp)
+}
+
 // OpenportalAllocationsSetLimitsWithBodyWithResponse request with arbitrary body returning *OpenportalAllocationsSetLimitsResponse
 func (c *ClientWithResponses) OpenportalAllocationsSetLimitsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalAllocationsSetLimitsResponse, error) {
 	rsp, err := c.OpenportalAllocationsSetLimitsWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -365929,6 +371986,15 @@ func (c *ClientWithResponses) OpenportalAllocationsSetLimitsWithResponse(ctx con
 		return nil, err
 	}
 	return ParseOpenportalAllocationsSetLimitsResponse(rsp)
+}
+
+// OpenportalAllocationsSetOkWithResponse request returning *OpenportalAllocationsSetOkResponse
+func (c *ClientWithResponses) OpenportalAllocationsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalAllocationsSetOkResponse, error) {
+	rsp, err := c.OpenportalAllocationsSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenportalAllocationsSetOkResponse(rsp)
 }
 
 // OpenportalAllocationsUnlinkWithResponse request returning *OpenportalAllocationsUnlinkResponse
@@ -366385,6 +372451,23 @@ func (c *ClientWithResponses) OpenportalRemoteAllocationsPullWithResponse(ctx co
 	return ParseOpenportalRemoteAllocationsPullResponse(rsp)
 }
 
+// OpenportalRemoteAllocationsSetErredWithBodyWithResponse request with arbitrary body returning *OpenportalRemoteAllocationsSetErredResponse
+func (c *ClientWithResponses) OpenportalRemoteAllocationsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalRemoteAllocationsSetErredResponse, error) {
+	rsp, err := c.OpenportalRemoteAllocationsSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenportalRemoteAllocationsSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenportalRemoteAllocationsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenportalRemoteAllocationsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalRemoteAllocationsSetErredResponse, error) {
+	rsp, err := c.OpenportalRemoteAllocationsSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenportalRemoteAllocationsSetErredResponse(rsp)
+}
+
 // OpenportalRemoteAllocationsSetLimitsWithBodyWithResponse request with arbitrary body returning *OpenportalRemoteAllocationsSetLimitsResponse
 func (c *ClientWithResponses) OpenportalRemoteAllocationsSetLimitsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalRemoteAllocationsSetLimitsResponse, error) {
 	rsp, err := c.OpenportalRemoteAllocationsSetLimitsWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -366400,6 +372483,15 @@ func (c *ClientWithResponses) OpenportalRemoteAllocationsSetLimitsWithResponse(c
 		return nil, err
 	}
 	return ParseOpenportalRemoteAllocationsSetLimitsResponse(rsp)
+}
+
+// OpenportalRemoteAllocationsSetOkWithResponse request returning *OpenportalRemoteAllocationsSetOkResponse
+func (c *ClientWithResponses) OpenportalRemoteAllocationsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalRemoteAllocationsSetOkResponse, error) {
+	rsp, err := c.OpenportalRemoteAllocationsSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenportalRemoteAllocationsSetOkResponse(rsp)
 }
 
 // OpenportalRemoteAllocationsUnlinkWithResponse request returning *OpenportalRemoteAllocationsUnlinkResponse
@@ -366923,6 +373015,32 @@ func (c *ClientWithResponses) OpenstackBackupsRestoreWithResponse(ctx context.Co
 	return ParseOpenstackBackupsRestoreResponse(rsp)
 }
 
+// OpenstackBackupsSetErredWithBodyWithResponse request with arbitrary body returning *OpenstackBackupsSetErredResponse
+func (c *ClientWithResponses) OpenstackBackupsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackBackupsSetErredResponse, error) {
+	rsp, err := c.OpenstackBackupsSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackBackupsSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackBackupsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackBackupsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackBackupsSetErredResponse, error) {
+	rsp, err := c.OpenstackBackupsSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackBackupsSetErredResponse(rsp)
+}
+
+// OpenstackBackupsSetOkWithResponse request returning *OpenstackBackupsSetOkResponse
+func (c *ClientWithResponses) OpenstackBackupsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackBackupsSetOkResponse, error) {
+	rsp, err := c.OpenstackBackupsSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackBackupsSetOkResponse(rsp)
+}
+
 // OpenstackBackupsUnlinkWithResponse request returning *OpenstackBackupsUnlinkResponse
 func (c *ClientWithResponses) OpenstackBackupsUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackBackupsUnlinkResponse, error) {
 	rsp, err := c.OpenstackBackupsUnlink(ctx, uuid, reqEditors...)
@@ -367046,6 +373164,32 @@ func (c *ClientWithResponses) OpenstackFloatingIpsPullWithResponse(ctx context.C
 		return nil, err
 	}
 	return ParseOpenstackFloatingIpsPullResponse(rsp)
+}
+
+// OpenstackFloatingIpsSetErredWithBodyWithResponse request with arbitrary body returning *OpenstackFloatingIpsSetErredResponse
+func (c *ClientWithResponses) OpenstackFloatingIpsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackFloatingIpsSetErredResponse, error) {
+	rsp, err := c.OpenstackFloatingIpsSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackFloatingIpsSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackFloatingIpsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackFloatingIpsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackFloatingIpsSetErredResponse, error) {
+	rsp, err := c.OpenstackFloatingIpsSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackFloatingIpsSetErredResponse(rsp)
+}
+
+// OpenstackFloatingIpsSetOkWithResponse request returning *OpenstackFloatingIpsSetOkResponse
+func (c *ClientWithResponses) OpenstackFloatingIpsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackFloatingIpsSetOkResponse, error) {
+	rsp, err := c.OpenstackFloatingIpsSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackFloatingIpsSetOkResponse(rsp)
 }
 
 // OpenstackFloatingIpsUnlinkWithResponse request returning *OpenstackFloatingIpsUnlinkResponse
@@ -367293,6 +373437,32 @@ func (c *ClientWithResponses) OpenstackInstancesRestartWithResponse(ctx context.
 		return nil, err
 	}
 	return ParseOpenstackInstancesRestartResponse(rsp)
+}
+
+// OpenstackInstancesSetErredWithBodyWithResponse request with arbitrary body returning *OpenstackInstancesSetErredResponse
+func (c *ClientWithResponses) OpenstackInstancesSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackInstancesSetErredResponse, error) {
+	rsp, err := c.OpenstackInstancesSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackInstancesSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackInstancesSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackInstancesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackInstancesSetErredResponse, error) {
+	rsp, err := c.OpenstackInstancesSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackInstancesSetErredResponse(rsp)
+}
+
+// OpenstackInstancesSetOkWithResponse request returning *OpenstackInstancesSetOkResponse
+func (c *ClientWithResponses) OpenstackInstancesSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackInstancesSetOkResponse, error) {
+	rsp, err := c.OpenstackInstancesSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackInstancesSetOkResponse(rsp)
 }
 
 // OpenstackInstancesStartWithResponse request returning *OpenstackInstancesStartResponse
@@ -367747,6 +373917,23 @@ func (c *ClientWithResponses) OpenstackNetworksRbacPolicyDeleteDestroyWithRespon
 	return ParseOpenstackNetworksRbacPolicyDeleteDestroyResponse(rsp)
 }
 
+// OpenstackNetworksSetErredWithBodyWithResponse request with arbitrary body returning *OpenstackNetworksSetErredResponse
+func (c *ClientWithResponses) OpenstackNetworksSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackNetworksSetErredResponse, error) {
+	rsp, err := c.OpenstackNetworksSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackNetworksSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackNetworksSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworksSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackNetworksSetErredResponse, error) {
+	rsp, err := c.OpenstackNetworksSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackNetworksSetErredResponse(rsp)
+}
+
 // OpenstackNetworksSetMtuWithBodyWithResponse request with arbitrary body returning *OpenstackNetworksSetMtuResponse
 func (c *ClientWithResponses) OpenstackNetworksSetMtuWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackNetworksSetMtuResponse, error) {
 	rsp, err := c.OpenstackNetworksSetMtuWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -367762,6 +373949,15 @@ func (c *ClientWithResponses) OpenstackNetworksSetMtuWithResponse(ctx context.Co
 		return nil, err
 	}
 	return ParseOpenstackNetworksSetMtuResponse(rsp)
+}
+
+// OpenstackNetworksSetOkWithResponse request returning *OpenstackNetworksSetOkResponse
+func (c *ClientWithResponses) OpenstackNetworksSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackNetworksSetOkResponse, error) {
+	rsp, err := c.OpenstackNetworksSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackNetworksSetOkResponse(rsp)
 }
 
 // OpenstackNetworksUnlinkWithResponse request returning *OpenstackNetworksUnlinkResponse
@@ -367905,6 +374101,32 @@ func (c *ClientWithResponses) OpenstackPortsPullWithResponse(ctx context.Context
 	return ParseOpenstackPortsPullResponse(rsp)
 }
 
+// OpenstackPortsSetErredWithBodyWithResponse request with arbitrary body returning *OpenstackPortsSetErredResponse
+func (c *ClientWithResponses) OpenstackPortsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsSetErredResponse, error) {
+	rsp, err := c.OpenstackPortsSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPortsSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackPortsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsSetErredResponse, error) {
+	rsp, err := c.OpenstackPortsSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPortsSetErredResponse(rsp)
+}
+
+// OpenstackPortsSetOkWithResponse request returning *OpenstackPortsSetOkResponse
+func (c *ClientWithResponses) OpenstackPortsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPortsSetOkResponse, error) {
+	rsp, err := c.OpenstackPortsSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPortsSetOkResponse(rsp)
+}
+
 // OpenstackPortsUnlinkWithResponse request returning *OpenstackPortsUnlinkResponse
 func (c *ClientWithResponses) OpenstackPortsUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPortsUnlinkResponse, error) {
 	rsp, err := c.OpenstackPortsUnlink(ctx, uuid, reqEditors...)
@@ -368035,6 +374257,32 @@ func (c *ClientWithResponses) OpenstackRoutersRemoveRouterInterfaceWithResponse(
 	return ParseOpenstackRoutersRemoveRouterInterfaceResponse(rsp)
 }
 
+// OpenstackRoutersSetErredWithBodyWithResponse request with arbitrary body returning *OpenstackRoutersSetErredResponse
+func (c *ClientWithResponses) OpenstackRoutersSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackRoutersSetErredResponse, error) {
+	rsp, err := c.OpenstackRoutersSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackRoutersSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackRoutersSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackRoutersSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackRoutersSetErredResponse, error) {
+	rsp, err := c.OpenstackRoutersSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackRoutersSetErredResponse(rsp)
+}
+
+// OpenstackRoutersSetOkWithResponse request returning *OpenstackRoutersSetOkResponse
+func (c *ClientWithResponses) OpenstackRoutersSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackRoutersSetOkResponse, error) {
+	rsp, err := c.OpenstackRoutersSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackRoutersSetOkResponse(rsp)
+}
+
 // OpenstackRoutersSetRoutesWithBodyWithResponse request with arbitrary body returning *OpenstackRoutersSetRoutesResponse
 func (c *ClientWithResponses) OpenstackRoutersSetRoutesWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackRoutersSetRoutesResponse, error) {
 	rsp, err := c.OpenstackRoutersSetRoutesWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -368129,6 +374377,32 @@ func (c *ClientWithResponses) OpenstackSecurityGroupsPullWithResponse(ctx contex
 		return nil, err
 	}
 	return ParseOpenstackSecurityGroupsPullResponse(rsp)
+}
+
+// OpenstackSecurityGroupsSetErredWithBodyWithResponse request with arbitrary body returning *OpenstackSecurityGroupsSetErredResponse
+func (c *ClientWithResponses) OpenstackSecurityGroupsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackSecurityGroupsSetErredResponse, error) {
+	rsp, err := c.OpenstackSecurityGroupsSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackSecurityGroupsSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackSecurityGroupsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackSecurityGroupsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackSecurityGroupsSetErredResponse, error) {
+	rsp, err := c.OpenstackSecurityGroupsSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackSecurityGroupsSetErredResponse(rsp)
+}
+
+// OpenstackSecurityGroupsSetOkWithResponse request returning *OpenstackSecurityGroupsSetOkResponse
+func (c *ClientWithResponses) OpenstackSecurityGroupsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackSecurityGroupsSetOkResponse, error) {
+	rsp, err := c.OpenstackSecurityGroupsSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackSecurityGroupsSetOkResponse(rsp)
 }
 
 // OpenstackSecurityGroupsSetRulesWithBodyWithResponse request with arbitrary body returning *OpenstackSecurityGroupsSetRulesResponse
@@ -368253,6 +374527,32 @@ func (c *ClientWithResponses) OpenstackServerGroupsPullWithResponse(ctx context.
 	return ParseOpenstackServerGroupsPullResponse(rsp)
 }
 
+// OpenstackServerGroupsSetErredWithBodyWithResponse request with arbitrary body returning *OpenstackServerGroupsSetErredResponse
+func (c *ClientWithResponses) OpenstackServerGroupsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackServerGroupsSetErredResponse, error) {
+	rsp, err := c.OpenstackServerGroupsSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackServerGroupsSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackServerGroupsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackServerGroupsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackServerGroupsSetErredResponse, error) {
+	rsp, err := c.OpenstackServerGroupsSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackServerGroupsSetErredResponse(rsp)
+}
+
+// OpenstackServerGroupsSetOkWithResponse request returning *OpenstackServerGroupsSetOkResponse
+func (c *ClientWithResponses) OpenstackServerGroupsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackServerGroupsSetOkResponse, error) {
+	rsp, err := c.OpenstackServerGroupsSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackServerGroupsSetOkResponse(rsp)
+}
+
 // OpenstackServerGroupsUnlinkWithResponse request returning *OpenstackServerGroupsUnlinkResponse
 func (c *ClientWithResponses) OpenstackServerGroupsUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackServerGroupsUnlinkResponse, error) {
 	rsp, err := c.OpenstackServerGroupsUnlink(ctx, uuid, reqEditors...)
@@ -368367,6 +374667,32 @@ func (c *ClientWithResponses) OpenstackSnapshotsRestoreWithResponse(ctx context.
 	return ParseOpenstackSnapshotsRestoreResponse(rsp)
 }
 
+// OpenstackSnapshotsSetErredWithBodyWithResponse request with arbitrary body returning *OpenstackSnapshotsSetErredResponse
+func (c *ClientWithResponses) OpenstackSnapshotsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackSnapshotsSetErredResponse, error) {
+	rsp, err := c.OpenstackSnapshotsSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackSnapshotsSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackSnapshotsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackSnapshotsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackSnapshotsSetErredResponse, error) {
+	rsp, err := c.OpenstackSnapshotsSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackSnapshotsSetErredResponse(rsp)
+}
+
+// OpenstackSnapshotsSetOkWithResponse request returning *OpenstackSnapshotsSetOkResponse
+func (c *ClientWithResponses) OpenstackSnapshotsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackSnapshotsSetOkResponse, error) {
+	rsp, err := c.OpenstackSnapshotsSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackSnapshotsSetOkResponse(rsp)
+}
+
 // OpenstackSnapshotsUnlinkWithResponse request returning *OpenstackSnapshotsUnlinkResponse
 func (c *ClientWithResponses) OpenstackSnapshotsUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackSnapshotsUnlinkResponse, error) {
 	rsp, err := c.OpenstackSnapshotsUnlink(ctx, uuid, reqEditors...)
@@ -368471,6 +374797,32 @@ func (c *ClientWithResponses) OpenstackSubnetsPullWithResponse(ctx context.Conte
 		return nil, err
 	}
 	return ParseOpenstackSubnetsPullResponse(rsp)
+}
+
+// OpenstackSubnetsSetErredWithBodyWithResponse request with arbitrary body returning *OpenstackSubnetsSetErredResponse
+func (c *ClientWithResponses) OpenstackSubnetsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackSubnetsSetErredResponse, error) {
+	rsp, err := c.OpenstackSubnetsSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackSubnetsSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackSubnetsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackSubnetsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackSubnetsSetErredResponse, error) {
+	rsp, err := c.OpenstackSubnetsSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackSubnetsSetErredResponse(rsp)
+}
+
+// OpenstackSubnetsSetOkWithResponse request returning *OpenstackSubnetsSetOkResponse
+func (c *ClientWithResponses) OpenstackSubnetsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackSubnetsSetOkResponse, error) {
+	rsp, err := c.OpenstackSubnetsSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackSubnetsSetOkResponse(rsp)
 }
 
 // OpenstackSubnetsUnlinkWithResponse request returning *OpenstackSubnetsUnlinkResponse
@@ -368708,6 +375060,32 @@ func (c *ClientWithResponses) OpenstackTenantsPushSecurityGroupsWithResponse(ctx
 	return ParseOpenstackTenantsPushSecurityGroupsResponse(rsp)
 }
 
+// OpenstackTenantsSetErredWithBodyWithResponse request with arbitrary body returning *OpenstackTenantsSetErredResponse
+func (c *ClientWithResponses) OpenstackTenantsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackTenantsSetErredResponse, error) {
+	rsp, err := c.OpenstackTenantsSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackTenantsSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackTenantsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackTenantsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackTenantsSetErredResponse, error) {
+	rsp, err := c.OpenstackTenantsSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackTenantsSetErredResponse(rsp)
+}
+
+// OpenstackTenantsSetOkWithResponse request returning *OpenstackTenantsSetOkResponse
+func (c *ClientWithResponses) OpenstackTenantsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackTenantsSetOkResponse, error) {
+	rsp, err := c.OpenstackTenantsSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackTenantsSetOkResponse(rsp)
+}
+
 // OpenstackTenantsSetQuotasWithBodyWithResponse request with arbitrary body returning *OpenstackTenantsSetQuotasResponse
 func (c *ClientWithResponses) OpenstackTenantsSetQuotasWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackTenantsSetQuotasResponse, error) {
 	rsp, err := c.OpenstackTenantsSetQuotasWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -368934,6 +375312,32 @@ func (c *ClientWithResponses) OpenstackVolumesRetypeWithResponse(ctx context.Con
 		return nil, err
 	}
 	return ParseOpenstackVolumesRetypeResponse(rsp)
+}
+
+// OpenstackVolumesSetErredWithBodyWithResponse request with arbitrary body returning *OpenstackVolumesSetErredResponse
+func (c *ClientWithResponses) OpenstackVolumesSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackVolumesSetErredResponse, error) {
+	rsp, err := c.OpenstackVolumesSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackVolumesSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackVolumesSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackVolumesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackVolumesSetErredResponse, error) {
+	rsp, err := c.OpenstackVolumesSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackVolumesSetErredResponse(rsp)
+}
+
+// OpenstackVolumesSetOkWithResponse request returning *OpenstackVolumesSetOkResponse
+func (c *ClientWithResponses) OpenstackVolumesSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackVolumesSetOkResponse, error) {
+	rsp, err := c.OpenstackVolumesSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackVolumesSetOkResponse(rsp)
 }
 
 // OpenstackVolumesSnapshotWithBodyWithResponse request with arbitrary body returning *OpenstackVolumesSnapshotResponse
@@ -371486,6 +377890,32 @@ func (c *ClientWithResponses) RancherAppsPullWithResponse(ctx context.Context, u
 	return ParseRancherAppsPullResponse(rsp)
 }
 
+// RancherAppsSetErredWithBodyWithResponse request with arbitrary body returning *RancherAppsSetErredResponse
+func (c *ClientWithResponses) RancherAppsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RancherAppsSetErredResponse, error) {
+	rsp, err := c.RancherAppsSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRancherAppsSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) RancherAppsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body RancherAppsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*RancherAppsSetErredResponse, error) {
+	rsp, err := c.RancherAppsSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRancherAppsSetErredResponse(rsp)
+}
+
+// RancherAppsSetOkWithResponse request returning *RancherAppsSetOkResponse
+func (c *ClientWithResponses) RancherAppsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherAppsSetOkResponse, error) {
+	rsp, err := c.RancherAppsSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRancherAppsSetOkResponse(rsp)
+}
+
 // RancherAppsUnlinkWithResponse request returning *RancherAppsUnlinkResponse
 func (c *ClientWithResponses) RancherAppsUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherAppsUnlinkResponse, error) {
 	rsp, err := c.RancherAppsUnlink(ctx, uuid, reqEditors...)
@@ -371791,6 +378221,32 @@ func (c *ClientWithResponses) RancherClustersPullWithResponse(ctx context.Contex
 	return ParseRancherClustersPullResponse(rsp)
 }
 
+// RancherClustersSetErredWithBodyWithResponse request with arbitrary body returning *RancherClustersSetErredResponse
+func (c *ClientWithResponses) RancherClustersSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RancherClustersSetErredResponse, error) {
+	rsp, err := c.RancherClustersSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRancherClustersSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) RancherClustersSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body RancherClustersSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*RancherClustersSetErredResponse, error) {
+	rsp, err := c.RancherClustersSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRancherClustersSetErredResponse(rsp)
+}
+
+// RancherClustersSetOkWithResponse request returning *RancherClustersSetOkResponse
+func (c *ClientWithResponses) RancherClustersSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherClustersSetOkResponse, error) {
+	rsp, err := c.RancherClustersSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRancherClustersSetOkResponse(rsp)
+}
+
 // RancherClustersUnlinkWithResponse request returning *RancherClustersUnlinkResponse
 func (c *ClientWithResponses) RancherClustersUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherClustersUnlinkResponse, error) {
 	rsp, err := c.RancherClustersUnlink(ctx, uuid, reqEditors...)
@@ -371894,6 +378350,32 @@ func (c *ClientWithResponses) RancherHpasPullWithResponse(ctx context.Context, u
 		return nil, err
 	}
 	return ParseRancherHpasPullResponse(rsp)
+}
+
+// RancherHpasSetErredWithBodyWithResponse request with arbitrary body returning *RancherHpasSetErredResponse
+func (c *ClientWithResponses) RancherHpasSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RancherHpasSetErredResponse, error) {
+	rsp, err := c.RancherHpasSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRancherHpasSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) RancherHpasSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body RancherHpasSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*RancherHpasSetErredResponse, error) {
+	rsp, err := c.RancherHpasSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRancherHpasSetErredResponse(rsp)
+}
+
+// RancherHpasSetOkWithResponse request returning *RancherHpasSetOkResponse
+func (c *ClientWithResponses) RancherHpasSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherHpasSetOkResponse, error) {
+	rsp, err := c.RancherHpasSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRancherHpasSetOkResponse(rsp)
 }
 
 // RancherHpasUnlinkWithResponse request returning *RancherHpasUnlinkResponse
@@ -372025,6 +378507,32 @@ func (c *ClientWithResponses) RancherIngressesPullWithResponse(ctx context.Conte
 		return nil, err
 	}
 	return ParseRancherIngressesPullResponse(rsp)
+}
+
+// RancherIngressesSetErredWithBodyWithResponse request with arbitrary body returning *RancherIngressesSetErredResponse
+func (c *ClientWithResponses) RancherIngressesSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RancherIngressesSetErredResponse, error) {
+	rsp, err := c.RancherIngressesSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRancherIngressesSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) RancherIngressesSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body RancherIngressesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*RancherIngressesSetErredResponse, error) {
+	rsp, err := c.RancherIngressesSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRancherIngressesSetErredResponse(rsp)
+}
+
+// RancherIngressesSetOkWithResponse request returning *RancherIngressesSetOkResponse
+func (c *ClientWithResponses) RancherIngressesSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherIngressesSetOkResponse, error) {
+	rsp, err := c.RancherIngressesSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRancherIngressesSetOkResponse(rsp)
 }
 
 // RancherIngressesUnlinkWithResponse request returning *RancherIngressesUnlinkResponse
@@ -372184,6 +378692,32 @@ func (c *ClientWithResponses) RancherNodesPullWithResponse(ctx context.Context, 
 		return nil, err
 	}
 	return ParseRancherNodesPullResponse(rsp)
+}
+
+// RancherNodesSetErredWithBodyWithResponse request with arbitrary body returning *RancherNodesSetErredResponse
+func (c *ClientWithResponses) RancherNodesSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RancherNodesSetErredResponse, error) {
+	rsp, err := c.RancherNodesSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRancherNodesSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) RancherNodesSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body RancherNodesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*RancherNodesSetErredResponse, error) {
+	rsp, err := c.RancherNodesSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRancherNodesSetErredResponse(rsp)
+}
+
+// RancherNodesSetOkWithResponse request returning *RancherNodesSetOkResponse
+func (c *ClientWithResponses) RancherNodesSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherNodesSetOkResponse, error) {
+	rsp, err := c.RancherNodesSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRancherNodesSetOkResponse(rsp)
 }
 
 // RancherNodesUnlinkWithResponse request returning *RancherNodesUnlinkResponse
@@ -372361,6 +378895,32 @@ func (c *ClientWithResponses) RancherServicesPullWithResponse(ctx context.Contex
 		return nil, err
 	}
 	return ParseRancherServicesPullResponse(rsp)
+}
+
+// RancherServicesSetErredWithBodyWithResponse request with arbitrary body returning *RancherServicesSetErredResponse
+func (c *ClientWithResponses) RancherServicesSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RancherServicesSetErredResponse, error) {
+	rsp, err := c.RancherServicesSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRancherServicesSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) RancherServicesSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body RancherServicesSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*RancherServicesSetErredResponse, error) {
+	rsp, err := c.RancherServicesSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRancherServicesSetErredResponse(rsp)
+}
+
+// RancherServicesSetOkWithResponse request returning *RancherServicesSetOkResponse
+func (c *ClientWithResponses) RancherServicesSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherServicesSetOkResponse, error) {
+	rsp, err := c.RancherServicesSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRancherServicesSetOkResponse(rsp)
 }
 
 // RancherServicesUnlinkWithResponse request returning *RancherServicesUnlinkResponse
@@ -373898,6 +380458,23 @@ func (c *ClientWithResponses) SlurmAllocationsPullWithResponse(ctx context.Conte
 	return ParseSlurmAllocationsPullResponse(rsp)
 }
 
+// SlurmAllocationsSetErredWithBodyWithResponse request with arbitrary body returning *SlurmAllocationsSetErredResponse
+func (c *ClientWithResponses) SlurmAllocationsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SlurmAllocationsSetErredResponse, error) {
+	rsp, err := c.SlurmAllocationsSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSlurmAllocationsSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) SlurmAllocationsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body SlurmAllocationsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*SlurmAllocationsSetErredResponse, error) {
+	rsp, err := c.SlurmAllocationsSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSlurmAllocationsSetErredResponse(rsp)
+}
+
 // SlurmAllocationsSetLimitsWithBodyWithResponse request with arbitrary body returning *SlurmAllocationsSetLimitsResponse
 func (c *ClientWithResponses) SlurmAllocationsSetLimitsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SlurmAllocationsSetLimitsResponse, error) {
 	rsp, err := c.SlurmAllocationsSetLimitsWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -373913,6 +380490,15 @@ func (c *ClientWithResponses) SlurmAllocationsSetLimitsWithResponse(ctx context.
 		return nil, err
 	}
 	return ParseSlurmAllocationsSetLimitsResponse(rsp)
+}
+
+// SlurmAllocationsSetOkWithResponse request returning *SlurmAllocationsSetOkResponse
+func (c *ClientWithResponses) SlurmAllocationsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SlurmAllocationsSetOkResponse, error) {
+	rsp, err := c.SlurmAllocationsSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSlurmAllocationsSetOkResponse(rsp)
 }
 
 // SlurmAllocationsUnlinkWithResponse request returning *SlurmAllocationsUnlinkResponse
@@ -374061,6 +380647,32 @@ func (c *ClientWithResponses) SlurmJobsPullWithResponse(ctx context.Context, uui
 		return nil, err
 	}
 	return ParseSlurmJobsPullResponse(rsp)
+}
+
+// SlurmJobsSetErredWithBodyWithResponse request with arbitrary body returning *SlurmJobsSetErredResponse
+func (c *ClientWithResponses) SlurmJobsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SlurmJobsSetErredResponse, error) {
+	rsp, err := c.SlurmJobsSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSlurmJobsSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) SlurmJobsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*SlurmJobsSetErredResponse, error) {
+	rsp, err := c.SlurmJobsSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSlurmJobsSetErredResponse(rsp)
+}
+
+// SlurmJobsSetOkWithResponse request returning *SlurmJobsSetOkResponse
+func (c *ClientWithResponses) SlurmJobsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SlurmJobsSetOkResponse, error) {
+	rsp, err := c.SlurmJobsSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSlurmJobsSetOkResponse(rsp)
 }
 
 // SlurmJobsUnlinkWithResponse request returning *SlurmJobsUnlinkResponse
@@ -376182,6 +382794,32 @@ func (c *ClientWithResponses) VmwareDisksPullWithResponse(ctx context.Context, u
 	return ParseVmwareDisksPullResponse(rsp)
 }
 
+// VmwareDisksSetErredWithBodyWithResponse request with arbitrary body returning *VmwareDisksSetErredResponse
+func (c *ClientWithResponses) VmwareDisksSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*VmwareDisksSetErredResponse, error) {
+	rsp, err := c.VmwareDisksSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseVmwareDisksSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) VmwareDisksSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body VmwareDisksSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*VmwareDisksSetErredResponse, error) {
+	rsp, err := c.VmwareDisksSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseVmwareDisksSetErredResponse(rsp)
+}
+
+// VmwareDisksSetOkWithResponse request returning *VmwareDisksSetOkResponse
+func (c *ClientWithResponses) VmwareDisksSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*VmwareDisksSetOkResponse, error) {
+	rsp, err := c.VmwareDisksSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseVmwareDisksSetOkResponse(rsp)
+}
+
 // VmwareDisksUnlinkWithResponse request returning *VmwareDisksUnlinkResponse
 func (c *ClientWithResponses) VmwareDisksUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*VmwareDisksUnlinkResponse, error) {
 	rsp, err := c.VmwareDisksUnlink(ctx, uuid, reqEditors...)
@@ -376297,6 +382935,32 @@ func (c *ClientWithResponses) VmwarePortsPullWithResponse(ctx context.Context, u
 		return nil, err
 	}
 	return ParseVmwarePortsPullResponse(rsp)
+}
+
+// VmwarePortsSetErredWithBodyWithResponse request with arbitrary body returning *VmwarePortsSetErredResponse
+func (c *ClientWithResponses) VmwarePortsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*VmwarePortsSetErredResponse, error) {
+	rsp, err := c.VmwarePortsSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseVmwarePortsSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) VmwarePortsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body VmwarePortsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*VmwarePortsSetErredResponse, error) {
+	rsp, err := c.VmwarePortsSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseVmwarePortsSetErredResponse(rsp)
+}
+
+// VmwarePortsSetOkWithResponse request returning *VmwarePortsSetOkResponse
+func (c *ClientWithResponses) VmwarePortsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*VmwarePortsSetOkResponse, error) {
+	rsp, err := c.VmwarePortsSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseVmwarePortsSetOkResponse(rsp)
 }
 
 // VmwarePortsUnlinkWithResponse request returning *VmwarePortsUnlinkResponse
@@ -376490,6 +383154,32 @@ func (c *ClientWithResponses) VmwareVirtualMachineResetWithResponse(ctx context.
 		return nil, err
 	}
 	return ParseVmwareVirtualMachineResetResponse(rsp)
+}
+
+// VmwareVirtualMachineSetErredWithBodyWithResponse request with arbitrary body returning *VmwareVirtualMachineSetErredResponse
+func (c *ClientWithResponses) VmwareVirtualMachineSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*VmwareVirtualMachineSetErredResponse, error) {
+	rsp, err := c.VmwareVirtualMachineSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseVmwareVirtualMachineSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) VmwareVirtualMachineSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body VmwareVirtualMachineSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*VmwareVirtualMachineSetErredResponse, error) {
+	rsp, err := c.VmwareVirtualMachineSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseVmwareVirtualMachineSetErredResponse(rsp)
+}
+
+// VmwareVirtualMachineSetOkWithResponse request returning *VmwareVirtualMachineSetOkResponse
+func (c *ClientWithResponses) VmwareVirtualMachineSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*VmwareVirtualMachineSetOkResponse, error) {
+	rsp, err := c.VmwareVirtualMachineSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseVmwareVirtualMachineSetOkResponse(rsp)
 }
 
 // VmwareVirtualMachineShutdownGuestWithResponse request returning *VmwareVirtualMachineShutdownGuestResponse
@@ -379633,6 +386323,23 @@ func ParseAwsInstancesPullResponse(rsp *http.Response) (*AwsInstancesPullRespons
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -379673,6 +386380,58 @@ func ParseAwsInstancesRestartResponse(rsp *http.Response) (*AwsInstancesRestartR
 	response := &AwsInstancesRestartResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseAwsInstancesSetErredResponse parses an HTTP response from a AwsInstancesSetErredWithResponse call
+func ParseAwsInstancesSetErredResponse(rsp *http.Response) (*AwsInstancesSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AwsInstancesSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAwsInstancesSetOkResponse parses an HTTP response from a AwsInstancesSetOkWithResponse call
+func ParseAwsInstancesSetOkResponse(rsp *http.Response) (*AwsInstancesSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AwsInstancesSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -380079,6 +386838,75 @@ func ParseAwsVolumesPullResponse(rsp *http.Response) (*AwsVolumesPullResponse, e
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAwsVolumesSetErredResponse parses an HTTP response from a AwsVolumesSetErredWithResponse call
+func ParseAwsVolumesSetErredResponse(rsp *http.Response) (*AwsVolumesSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AwsVolumesSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAwsVolumesSetOkResponse parses an HTTP response from a AwsVolumesSetOkWithResponse call
+func ParseAwsVolumesSetOkResponse(rsp *http.Response) (*AwsVolumesSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AwsVolumesSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -380407,6 +387235,75 @@ func ParseAzurePublicIpsPullResponse(rsp *http.Response) (*AzurePublicIpsPullRes
 	response := &AzurePublicIpsPullResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAzurePublicIpsSetErredResponse parses an HTTP response from a AzurePublicIpsSetErredWithResponse call
+func ParseAzurePublicIpsSetErredResponse(rsp *http.Response) (*AzurePublicIpsSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AzurePublicIpsSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAzurePublicIpsSetOkResponse parses an HTTP response from a AzurePublicIpsSetOkWithResponse call
+func ParseAzurePublicIpsSetOkResponse(rsp *http.Response) (*AzurePublicIpsSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AzurePublicIpsSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -380739,6 +387636,75 @@ func ParseAzureSqlDatabasesPullResponse(rsp *http.Response) (*AzureSqlDatabasesP
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAzureSqlDatabasesSetErredResponse parses an HTTP response from a AzureSqlDatabasesSetErredWithResponse call
+func ParseAzureSqlDatabasesSetErredResponse(rsp *http.Response) (*AzureSqlDatabasesSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AzureSqlDatabasesSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAzureSqlDatabasesSetOkResponse parses an HTTP response from a AzureSqlDatabasesSetOkWithResponse call
+func ParseAzureSqlDatabasesSetOkResponse(rsp *http.Response) (*AzureSqlDatabasesSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AzureSqlDatabasesSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -380959,6 +387925,75 @@ func ParseAzureSqlServersPullResponse(rsp *http.Response) (*AzureSqlServersPullR
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAzureSqlServersSetErredResponse parses an HTTP response from a AzureSqlServersSetErredWithResponse call
+func ParseAzureSqlServersSetErredResponse(rsp *http.Response) (*AzureSqlServersSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AzureSqlServersSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAzureSqlServersSetOkResponse parses an HTTP response from a AzureSqlServersSetOkWithResponse call
+func ParseAzureSqlServersSetOkResponse(rsp *http.Response) (*AzureSqlServersSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AzureSqlServersSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -381153,6 +388188,23 @@ func ParseAzureVirtualmachinesPullResponse(rsp *http.Response) (*AzureVirtualmac
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -381167,6 +388219,58 @@ func ParseAzureVirtualmachinesRestartResponse(rsp *http.Response) (*AzureVirtual
 	response := &AzureVirtualmachinesRestartResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseAzureVirtualmachinesSetErredResponse parses an HTTP response from a AzureVirtualmachinesSetErredWithResponse call
+func ParseAzureVirtualmachinesSetErredResponse(rsp *http.Response) (*AzureVirtualmachinesSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AzureVirtualmachinesSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAzureVirtualmachinesSetOkResponse parses an HTTP response from a AzureVirtualmachinesSetOkWithResponse call
+func ParseAzureVirtualmachinesSetOkResponse(rsp *http.Response) (*AzureVirtualmachinesSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AzureVirtualmachinesSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -385914,6 +393018,23 @@ func ParseDigitaloceanDropletsPullResponse(rsp *http.Response) (*DigitaloceanDro
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -385954,6 +393075,58 @@ func ParseDigitaloceanDropletsRestartResponse(rsp *http.Response) (*Digitalocean
 	response := &DigitaloceanDropletsRestartResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseDigitaloceanDropletsSetErredResponse parses an HTTP response from a DigitaloceanDropletsSetErredWithResponse call
+func ParseDigitaloceanDropletsSetErredResponse(rsp *http.Response) (*DigitaloceanDropletsSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DigitaloceanDropletsSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDigitaloceanDropletsSetOkResponse parses an HTTP response from a DigitaloceanDropletsSetOkWithResponse call
+func ParseDigitaloceanDropletsSetOkResponse(rsp *http.Response) (*DigitaloceanDropletsSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DigitaloceanDropletsSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -405977,6 +413150,49 @@ func ParseOpenportalAllocationsPullResponse(rsp *http.Response) (*OpenportalAllo
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenportalAllocationsSetErredResponse parses an HTTP response from a OpenportalAllocationsSetErredWithResponse call
+func ParseOpenportalAllocationsSetErredResponse(rsp *http.Response) (*OpenportalAllocationsSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenportalAllocationsSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -405996,6 +413212,32 @@ func ParseOpenportalAllocationsSetLimitsResponse(rsp *http.Response) (*Openporta
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest AllocationSetLimits
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenportalAllocationsSetOkResponse parses an HTTP response from a OpenportalAllocationsSetOkWithResponse call
+func ParseOpenportalAllocationsSetOkResponse(rsp *http.Response) (*OpenportalAllocationsSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenportalAllocationsSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -406821,6 +414063,49 @@ func ParseOpenportalRemoteAllocationsPullResponse(rsp *http.Response) (*Openport
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenportalRemoteAllocationsSetErredResponse parses an HTTP response from a OpenportalRemoteAllocationsSetErredWithResponse call
+func ParseOpenportalRemoteAllocationsSetErredResponse(rsp *http.Response) (*OpenportalRemoteAllocationsSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenportalRemoteAllocationsSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -406840,6 +414125,32 @@ func ParseOpenportalRemoteAllocationsSetLimitsResponse(rsp *http.Response) (*Ope
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest RemoteAllocationSetLimits
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenportalRemoteAllocationsSetOkResponse parses an HTTP response from a OpenportalRemoteAllocationsSetOkWithResponse call
+func ParseOpenportalRemoteAllocationsSetOkResponse(rsp *http.Response) (*OpenportalRemoteAllocationsSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenportalRemoteAllocationsSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -407823,6 +415134,23 @@ func ParseOpenstackBackupsPullResponse(rsp *http.Response) (*OpenstackBackupsPul
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -407842,6 +415170,58 @@ func ParseOpenstackBackupsRestoreResponse(rsp *http.Response) (*OpenstackBackups
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest OpenStackInstance
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackBackupsSetErredResponse parses an HTTP response from a OpenstackBackupsSetErredWithResponse call
+func ParseOpenstackBackupsSetErredResponse(rsp *http.Response) (*OpenstackBackupsSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackBackupsSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackBackupsSetOkResponse parses an HTTP response from a OpenstackBackupsSetOkWithResponse call
+func ParseOpenstackBackupsSetOkResponse(rsp *http.Response) (*OpenstackBackupsSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackBackupsSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -408105,6 +415485,75 @@ func ParseOpenstackFloatingIpsPullResponse(rsp *http.Response) (*OpenstackFloati
 	response := &OpenstackFloatingIpsPullResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackFloatingIpsSetErredResponse parses an HTTP response from a OpenstackFloatingIpsSetErredWithResponse call
+func ParseOpenstackFloatingIpsSetErredResponse(rsp *http.Response) (*OpenstackFloatingIpsSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackFloatingIpsSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackFloatingIpsSetOkResponse parses an HTTP response from a OpenstackFloatingIpsSetOkWithResponse call
+func ParseOpenstackFloatingIpsSetOkResponse(rsp *http.Response) (*OpenstackFloatingIpsSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackFloatingIpsSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -408599,6 +416048,23 @@ func ParseOpenstackInstancesPullResponse(rsp *http.Response) (*OpenstackInstance
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -408613,6 +416079,58 @@ func ParseOpenstackInstancesRestartResponse(rsp *http.Response) (*OpenstackInsta
 	response := &OpenstackInstancesRestartResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackInstancesSetErredResponse parses an HTTP response from a OpenstackInstancesSetErredWithResponse call
+func ParseOpenstackInstancesSetErredResponse(rsp *http.Response) (*OpenstackInstancesSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackInstancesSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackInstancesSetOkResponse parses an HTTP response from a OpenstackInstancesSetOkWithResponse call
+func ParseOpenstackInstancesSetOkResponse(rsp *http.Response) (*OpenstackInstancesSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackInstancesSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -409349,6 +416867,23 @@ func ParseOpenstackNetworksPullResponse(rsp *http.Response) (*OpenstackNetworksP
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -409394,6 +416929,32 @@ func ParseOpenstackNetworksRbacPolicyDeleteDestroyResponse(rsp *http.Response) (
 	return response, nil
 }
 
+// ParseOpenstackNetworksSetErredResponse parses an HTTP response from a OpenstackNetworksSetErredWithResponse call
+func ParseOpenstackNetworksSetErredResponse(rsp *http.Response) (*OpenstackNetworksSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackNetworksSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseOpenstackNetworksSetMtuResponse parses an HTTP response from a OpenstackNetworksSetMtuWithResponse call
 func ParseOpenstackNetworksSetMtuResponse(rsp *http.Response) (*OpenstackNetworksSetMtuResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -409410,6 +416971,32 @@ func ParseOpenstackNetworksSetMtuResponse(rsp *http.Response) (*OpenstackNetwork
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest SetMtu
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackNetworksSetOkResponse parses an HTTP response from a OpenstackNetworksSetOkWithResponse call
+func ParseOpenstackNetworksSetOkResponse(rsp *http.Response) (*OpenstackNetworksSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackNetworksSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -409675,6 +417262,75 @@ func ParseOpenstackPortsPullResponse(rsp *http.Response) (*OpenstackPortsPullRes
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackPortsSetErredResponse parses an HTTP response from a OpenstackPortsSetErredWithResponse call
+func ParseOpenstackPortsSetErredResponse(rsp *http.Response) (*OpenstackPortsSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPortsSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackPortsSetOkResponse parses an HTTP response from a OpenstackPortsSetOkWithResponse call
+func ParseOpenstackPortsSetOkResponse(rsp *http.Response) (*OpenstackPortsSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPortsSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -409868,6 +417524,58 @@ func ParseOpenstackRoutersRemoveRouterInterfaceResponse(rsp *http.Response) (*Op
 	return response, nil
 }
 
+// ParseOpenstackRoutersSetErredResponse parses an HTTP response from a OpenstackRoutersSetErredWithResponse call
+func ParseOpenstackRoutersSetErredResponse(rsp *http.Response) (*OpenstackRoutersSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackRoutersSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RouterSetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackRoutersSetOkResponse parses an HTTP response from a OpenstackRoutersSetOkWithResponse call
+func ParseOpenstackRoutersSetOkResponse(rsp *http.Response) (*OpenstackRoutersSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackRoutersSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RouterSetOkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseOpenstackRoutersSetRoutesResponse parses an HTTP response from a OpenstackRoutersSetRoutesWithResponse call
 func ParseOpenstackRoutersSetRoutesResponse(rsp *http.Response) (*OpenstackRoutersSetRoutesResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -410041,6 +417749,75 @@ func ParseOpenstackSecurityGroupsPullResponse(rsp *http.Response) (*OpenstackSec
 	response := &OpenstackSecurityGroupsPullResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackSecurityGroupsSetErredResponse parses an HTTP response from a OpenstackSecurityGroupsSetErredWithResponse call
+func ParseOpenstackSecurityGroupsSetErredResponse(rsp *http.Response) (*OpenstackSecurityGroupsSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackSecurityGroupsSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackSecurityGroupsSetOkResponse parses an HTTP response from a OpenstackSecurityGroupsSetOkWithResponse call
+func ParseOpenstackSecurityGroupsSetOkResponse(rsp *http.Response) (*OpenstackSecurityGroupsSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackSecurityGroupsSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -410253,6 +418030,75 @@ func ParseOpenstackServerGroupsPullResponse(rsp *http.Response) (*OpenstackServe
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackServerGroupsSetErredResponse parses an HTTP response from a OpenstackServerGroupsSetErredWithResponse call
+func ParseOpenstackServerGroupsSetErredResponse(rsp *http.Response) (*OpenstackServerGroupsSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackServerGroupsSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackServerGroupsSetOkResponse parses an HTTP response from a OpenstackServerGroupsSetOkWithResponse call
+func ParseOpenstackServerGroupsSetOkResponse(rsp *http.Response) (*OpenstackServerGroupsSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackServerGroupsSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -410421,6 +418267,23 @@ func ParseOpenstackSnapshotsPullResponse(rsp *http.Response) (*OpenstackSnapshot
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -410466,6 +418329,58 @@ func ParseOpenstackSnapshotsRestoreResponse(rsp *http.Response) (*OpenstackSnaps
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest OpenStackVolume
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackSnapshotsSetErredResponse parses an HTTP response from a OpenstackSnapshotsSetErredWithResponse call
+func ParseOpenstackSnapshotsSetErredResponse(rsp *http.Response) (*OpenstackSnapshotsSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackSnapshotsSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackSnapshotsSetOkResponse parses an HTTP response from a OpenstackSnapshotsSetOkWithResponse call
+func ParseOpenstackSnapshotsSetOkResponse(rsp *http.Response) (*OpenstackSnapshotsSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackSnapshotsSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -410671,6 +418586,75 @@ func ParseOpenstackSubnetsPullResponse(rsp *http.Response) (*OpenstackSubnetsPul
 	response := &OpenstackSubnetsPullResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackSubnetsSetErredResponse parses an HTTP response from a OpenstackSubnetsSetErredWithResponse call
+func ParseOpenstackSubnetsSetErredResponse(rsp *http.Response) (*OpenstackSubnetsSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackSubnetsSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackSubnetsSetOkResponse parses an HTTP response from a OpenstackSubnetsSetOkWithResponse call
+func ParseOpenstackSubnetsSetOkResponse(rsp *http.Response) (*OpenstackSubnetsSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackSubnetsSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -410997,6 +418981,23 @@ func ParseOpenstackTenantsPullResponse(rsp *http.Response) (*OpenstackTenantsPul
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -411095,6 +419096,58 @@ func ParseOpenstackTenantsPushSecurityGroupsResponse(rsp *http.Response) (*Opens
 	response := &OpenstackTenantsPushSecurityGroupsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackTenantsSetErredResponse parses an HTTP response from a OpenstackTenantsSetErredWithResponse call
+func ParseOpenstackTenantsSetErredResponse(rsp *http.Response) (*OpenstackTenantsSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackTenantsSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackTenantsSetOkResponse parses an HTTP response from a OpenstackTenantsSetOkWithResponse call
+func ParseOpenstackTenantsSetOkResponse(rsp *http.Response) (*OpenstackTenantsSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackTenantsSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -411501,6 +419554,23 @@ func ParseOpenstackVolumesPullResponse(rsp *http.Response) (*OpenstackVolumesPul
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -411515,6 +419585,58 @@ func ParseOpenstackVolumesRetypeResponse(rsp *http.Response) (*OpenstackVolumesR
 	response := &OpenstackVolumesRetypeResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackVolumesSetErredResponse parses an HTTP response from a OpenstackVolumesSetErredWithResponse call
+func ParseOpenstackVolumesSetErredResponse(rsp *http.Response) (*OpenstackVolumesSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackVolumesSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackVolumesSetOkResponse parses an HTTP response from a OpenstackVolumesSetOkWithResponse call
+func ParseOpenstackVolumesSetOkResponse(rsp *http.Response) (*OpenstackVolumesSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackVolumesSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -416448,6 +424570,75 @@ func ParseRancherAppsPullResponse(rsp *http.Response) (*RancherAppsPullResponse,
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseRancherAppsSetErredResponse parses an HTTP response from a RancherAppsSetErredWithResponse call
+func ParseRancherAppsSetErredResponse(rsp *http.Response) (*RancherAppsSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &RancherAppsSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseRancherAppsSetOkResponse parses an HTTP response from a RancherAppsSetOkWithResponse call
+func ParseRancherAppsSetOkResponse(rsp *http.Response) (*RancherAppsSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &RancherAppsSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -417028,6 +425219,75 @@ func ParseRancherClustersPullResponse(rsp *http.Response) (*RancherClustersPullR
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseRancherClustersSetErredResponse parses an HTTP response from a RancherClustersSetErredWithResponse call
+func ParseRancherClustersSetErredResponse(rsp *http.Response) (*RancherClustersSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &RancherClustersSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseRancherClustersSetOkResponse parses an HTTP response from a RancherClustersSetOkWithResponse call
+func ParseRancherClustersSetOkResponse(rsp *http.Response) (*RancherClustersSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &RancherClustersSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -417220,6 +425480,75 @@ func ParseRancherHpasPullResponse(rsp *http.Response) (*RancherHpasPullResponse,
 	response := &RancherHpasPullResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseRancherHpasSetErredResponse parses an HTTP response from a RancherHpasSetErredWithResponse call
+func ParseRancherHpasSetErredResponse(rsp *http.Response) (*RancherHpasSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &RancherHpasSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseRancherHpasSetOkResponse parses an HTTP response from a RancherHpasSetOkWithResponse call
+func ParseRancherHpasSetOkResponse(rsp *http.Response) (*RancherHpasSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &RancherHpasSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -417466,6 +425795,75 @@ func ParseRancherIngressesPullResponse(rsp *http.Response) (*RancherIngressesPul
 	response := &RancherIngressesPullResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseRancherIngressesSetErredResponse parses an HTTP response from a RancherIngressesSetErredWithResponse call
+func ParseRancherIngressesSetErredResponse(rsp *http.Response) (*RancherIngressesSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &RancherIngressesSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseRancherIngressesSetOkResponse parses an HTTP response from a RancherIngressesSetOkWithResponse call
+func ParseRancherIngressesSetOkResponse(rsp *http.Response) (*RancherIngressesSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &RancherIngressesSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -417796,6 +426194,75 @@ func ParseRancherNodesPullResponse(rsp *http.Response) (*RancherNodesPullRespons
 	response := &RancherNodesPullResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseRancherNodesSetErredResponse parses an HTTP response from a RancherNodesSetErredWithResponse call
+func ParseRancherNodesSetErredResponse(rsp *http.Response) (*RancherNodesSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &RancherNodesSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseRancherNodesSetOkResponse parses an HTTP response from a RancherNodesSetOkWithResponse call
+func ParseRancherNodesSetOkResponse(rsp *http.Response) (*RancherNodesSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &RancherNodesSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -418168,6 +426635,75 @@ func ParseRancherServicesPullResponse(rsp *http.Response) (*RancherServicesPullR
 	response := &RancherServicesPullResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseRancherServicesSetErredResponse parses an HTTP response from a RancherServicesSetErredWithResponse call
+func ParseRancherServicesSetErredResponse(rsp *http.Response) (*RancherServicesSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &RancherServicesSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseRancherServicesSetOkResponse parses an HTTP response from a RancherServicesSetOkWithResponse call
+func ParseRancherServicesSetOkResponse(rsp *http.Response) (*RancherServicesSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &RancherServicesSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -421109,6 +429645,49 @@ func ParseSlurmAllocationsPullResponse(rsp *http.Response) (*SlurmAllocationsPul
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseSlurmAllocationsSetErredResponse parses an HTTP response from a SlurmAllocationsSetErredWithResponse call
+func ParseSlurmAllocationsSetErredResponse(rsp *http.Response) (*SlurmAllocationsSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SlurmAllocationsSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -421128,6 +429707,32 @@ func ParseSlurmAllocationsSetLimitsResponse(rsp *http.Response) (*SlurmAllocatio
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest SlurmAllocationSetLimits
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseSlurmAllocationsSetOkResponse parses an HTTP response from a SlurmAllocationsSetOkWithResponse call
+func ParseSlurmAllocationsSetOkResponse(rsp *http.Response) (*SlurmAllocationsSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SlurmAllocationsSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -421395,6 +430000,75 @@ func ParseSlurmJobsPullResponse(rsp *http.Response) (*SlurmJobsPullResponse, err
 	response := &SlurmJobsPullResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseSlurmJobsSetErredResponse parses an HTTP response from a SlurmJobsSetErredWithResponse call
+func ParseSlurmJobsSetErredResponse(rsp *http.Response) (*SlurmJobsSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SlurmJobsSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseSlurmJobsSetOkResponse parses an HTTP response from a SlurmJobsSetOkWithResponse call
+func ParseSlurmJobsSetOkResponse(rsp *http.Response) (*SlurmJobsSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SlurmJobsSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -425473,6 +434147,75 @@ func ParseVmwareDisksPullResponse(rsp *http.Response) (*VmwareDisksPullResponse,
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseVmwareDisksSetErredResponse parses an HTTP response from a VmwareDisksSetErredWithResponse call
+func ParseVmwareDisksSetErredResponse(rsp *http.Response) (*VmwareDisksSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &VmwareDisksSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseVmwareDisksSetOkResponse parses an HTTP response from a VmwareDisksSetOkWithResponse call
+func ParseVmwareDisksSetOkResponse(rsp *http.Response) (*VmwareDisksSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &VmwareDisksSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -425749,6 +434492,75 @@ func ParseVmwarePortsPullResponse(rsp *http.Response) (*VmwarePortsPullResponse,
 	response := &VmwarePortsPullResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseVmwarePortsSetErredResponse parses an HTTP response from a VmwarePortsSetErredWithResponse call
+func ParseVmwarePortsSetErredResponse(rsp *http.Response) (*VmwarePortsSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &VmwarePortsSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseVmwarePortsSetOkResponse parses an HTTP response from a VmwarePortsSetOkWithResponse call
+func ParseVmwarePortsSetOkResponse(rsp *http.Response) (*VmwarePortsSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &VmwarePortsSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -426091,6 +434903,23 @@ func ParseVmwareVirtualMachinePullResponse(rsp *http.Response) (*VmwareVirtualMa
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest PullResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest PullConflictResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -426121,6 +434950,58 @@ func ParseVmwareVirtualMachineResetResponse(rsp *http.Response) (*VmwareVirtualM
 	response := &VmwareVirtualMachineResetResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseVmwareVirtualMachineSetErredResponse parses an HTTP response from a VmwareVirtualMachineSetErredWithResponse call
+func ParseVmwareVirtualMachineSetErredResponse(rsp *http.Response) (*VmwareVirtualMachineSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &VmwareVirtualMachineSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetErredResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseVmwareVirtualMachineSetOkResponse parses an HTTP response from a VmwareVirtualMachineSetOkWithResponse call
+func ParseVmwareVirtualMachineSetOkResponse(rsp *http.Response) (*VmwareVirtualMachineSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &VmwareVirtualMachineSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SetOkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
