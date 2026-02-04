@@ -8967,6 +8967,34 @@ const (
 	OpenstackBackupsRetrieveParamsFieldUuid                             OpenstackBackupsRetrieveParamsField = "uuid"
 )
 
+// Defines values for OpenstackExternalNetworksListParamsField.
+const (
+	OpenstackExternalNetworksListParamsFieldBackendId   OpenstackExternalNetworksListParamsField = "backend_id"
+	OpenstackExternalNetworksListParamsFieldDescription OpenstackExternalNetworksListParamsField = "description"
+	OpenstackExternalNetworksListParamsFieldIsDefault   OpenstackExternalNetworksListParamsField = "is_default"
+	OpenstackExternalNetworksListParamsFieldIsShared    OpenstackExternalNetworksListParamsField = "is_shared"
+	OpenstackExternalNetworksListParamsFieldName        OpenstackExternalNetworksListParamsField = "name"
+	OpenstackExternalNetworksListParamsFieldSettings    OpenstackExternalNetworksListParamsField = "settings"
+	OpenstackExternalNetworksListParamsFieldStatus      OpenstackExternalNetworksListParamsField = "status"
+	OpenstackExternalNetworksListParamsFieldSubnets     OpenstackExternalNetworksListParamsField = "subnets"
+	OpenstackExternalNetworksListParamsFieldUrl         OpenstackExternalNetworksListParamsField = "url"
+	OpenstackExternalNetworksListParamsFieldUuid        OpenstackExternalNetworksListParamsField = "uuid"
+)
+
+// Defines values for OpenstackExternalNetworksRetrieveParamsField.
+const (
+	OpenstackExternalNetworksRetrieveParamsFieldBackendId   OpenstackExternalNetworksRetrieveParamsField = "backend_id"
+	OpenstackExternalNetworksRetrieveParamsFieldDescription OpenstackExternalNetworksRetrieveParamsField = "description"
+	OpenstackExternalNetworksRetrieveParamsFieldIsDefault   OpenstackExternalNetworksRetrieveParamsField = "is_default"
+	OpenstackExternalNetworksRetrieveParamsFieldIsShared    OpenstackExternalNetworksRetrieveParamsField = "is_shared"
+	OpenstackExternalNetworksRetrieveParamsFieldName        OpenstackExternalNetworksRetrieveParamsField = "name"
+	OpenstackExternalNetworksRetrieveParamsFieldSettings    OpenstackExternalNetworksRetrieveParamsField = "settings"
+	OpenstackExternalNetworksRetrieveParamsFieldStatus      OpenstackExternalNetworksRetrieveParamsField = "status"
+	OpenstackExternalNetworksRetrieveParamsFieldSubnets     OpenstackExternalNetworksRetrieveParamsField = "subnets"
+	OpenstackExternalNetworksRetrieveParamsFieldUrl         OpenstackExternalNetworksRetrieveParamsField = "url"
+	OpenstackExternalNetworksRetrieveParamsFieldUuid        OpenstackExternalNetworksRetrieveParamsField = "uuid"
+)
+
 // Defines values for OpenstackFlavorsListParamsField.
 const (
 	OpenstackFlavorsListParamsFieldBackendId   OpenstackFlavorsListParamsField = "backend_id"
@@ -10239,6 +10267,8 @@ const (
 	OpenstackTenantsListParamsFieldErrorMessage                     OpenstackTenantsListParamsField = "error_message"
 	OpenstackTenantsListParamsFieldErrorTraceback                   OpenstackTenantsListParamsField = "error_traceback"
 	OpenstackTenantsListParamsFieldExternalNetworkId                OpenstackTenantsListParamsField = "external_network_id"
+	OpenstackTenantsListParamsFieldExternalNetworkRefName           OpenstackTenantsListParamsField = "external_network_ref_name"
+	OpenstackTenantsListParamsFieldExternalNetworkRefUuid           OpenstackTenantsListParamsField = "external_network_ref_uuid"
 	OpenstackTenantsListParamsFieldInternalNetworkId                OpenstackTenantsListParamsField = "internal_network_id"
 	OpenstackTenantsListParamsFieldIsLimitBased                     OpenstackTenantsListParamsField = "is_limit_based"
 	OpenstackTenantsListParamsFieldIsUsageBased                     OpenstackTenantsListParamsField = "is_usage_based"
@@ -10310,6 +10340,8 @@ const (
 	OpenstackTenantsRetrieveParamsFieldErrorMessage                     OpenstackTenantsRetrieveParamsField = "error_message"
 	OpenstackTenantsRetrieveParamsFieldErrorTraceback                   OpenstackTenantsRetrieveParamsField = "error_traceback"
 	OpenstackTenantsRetrieveParamsFieldExternalNetworkId                OpenstackTenantsRetrieveParamsField = "external_network_id"
+	OpenstackTenantsRetrieveParamsFieldExternalNetworkRefName           OpenstackTenantsRetrieveParamsField = "external_network_ref_name"
+	OpenstackTenantsRetrieveParamsFieldExternalNetworkRefUuid           OpenstackTenantsRetrieveParamsField = "external_network_ref_uuid"
 	OpenstackTenantsRetrieveParamsFieldInternalNetworkId                OpenstackTenantsRetrieveParamsField = "internal_network_id"
 	OpenstackTenantsRetrieveParamsFieldIsLimitBased                     OpenstackTenantsRetrieveParamsField = "is_limit_based"
 	OpenstackTenantsRetrieveParamsFieldIsUsageBased                     OpenstackTenantsRetrieveParamsField = "is_usage_based"
@@ -15057,6 +15089,12 @@ type AuthToken struct {
 	UserUsername *string `json:"user_username,omitempty"`
 }
 
+// AvailabilityZoneResponse defines model for AvailabilityZoneResponse.
+type AvailabilityZoneResponse struct {
+	Name  string `json:"name"`
+	State string `json:"state"`
+}
+
 // AvailableArrowCustomersResponse defines model for AvailableArrowCustomersResponse.
 type AvailableArrowCustomersResponse struct {
 	ArrowCustomers  []ArrowCustomerDiscovery    `json:"arrow_customers"`
@@ -18659,6 +18697,14 @@ type CreateRouterRequest struct {
 	Tenant string `json:"tenant"`
 }
 
+// CredentialsValidationResponse defines model for CredentialsValidationResponse.
+type CredentialsValidationResponse struct {
+	Error      *string     `json:"error,omitempty"`
+	Message    *string     `json:"message,omitempty"`
+	ServerInfo *ServerInfo `json:"server_info"`
+	Valid      bool        `json:"valid"`
+}
+
 // CurrentQosStatusEnum defines model for CurrentQosStatusEnum.
 type CurrentQosStatusEnum string
 
@@ -19670,6 +19716,69 @@ type DiscoverCustomersResponse struct {
 	WaldurCustomers []WaldurCustomerBrief       `json:"waldur_customers"`
 }
 
+// DiscoverExternalNetworksRequestRequest defines model for DiscoverExternalNetworksRequestRequest.
+type DiscoverExternalNetworksRequestRequest struct {
+	// AuthUrl Keystone auth URL (e.g., https://cloud.example.com:5000/v3)
+	AuthUrl string `json:"auth_url"`
+
+	// Certificate PEM-encoded CA certificate for SSL verification
+	Certificate *string `json:"certificate,omitempty"`
+	Password    *string `json:"password,omitempty"`
+
+	// ProjectDomainName Keystone project domain name
+	ProjectDomainName *string `json:"project_domain_name,omitempty"`
+
+	// ProjectName Keystone project (tenant) name
+	ProjectName *string `json:"project_name,omitempty"`
+
+	// UserDomainName Keystone user domain name
+	UserDomainName *string `json:"user_domain_name,omitempty"`
+	Username       string  `json:"username"`
+	VerifySsl      *bool   `json:"verify_ssl,omitempty"`
+}
+
+// DiscoverFlavorsRequestRequest defines model for DiscoverFlavorsRequestRequest.
+type DiscoverFlavorsRequestRequest struct {
+	// AuthUrl Keystone auth URL (e.g., https://cloud.example.com:5000/v3)
+	AuthUrl string `json:"auth_url"`
+
+	// Certificate PEM-encoded CA certificate for SSL verification
+	Certificate *string `json:"certificate,omitempty"`
+	Password    *string `json:"password,omitempty"`
+
+	// ProjectDomainName Keystone project domain name
+	ProjectDomainName *string `json:"project_domain_name,omitempty"`
+
+	// ProjectName Keystone project (tenant) name
+	ProjectName *string `json:"project_name,omitempty"`
+
+	// UserDomainName Keystone user domain name
+	UserDomainName *string `json:"user_domain_name,omitempty"`
+	Username       string  `json:"username"`
+	VerifySsl      *bool   `json:"verify_ssl,omitempty"`
+}
+
+// DiscoverInstanceAvailabilityZonesRequestRequest defines model for DiscoverInstanceAvailabilityZonesRequestRequest.
+type DiscoverInstanceAvailabilityZonesRequestRequest struct {
+	// AuthUrl Keystone auth URL (e.g., https://cloud.example.com:5000/v3)
+	AuthUrl string `json:"auth_url"`
+
+	// Certificate PEM-encoded CA certificate for SSL verification
+	Certificate *string `json:"certificate,omitempty"`
+	Password    *string `json:"password,omitempty"`
+
+	// ProjectDomainName Keystone project domain name
+	ProjectDomainName *string `json:"project_domain_name,omitempty"`
+
+	// ProjectName Keystone project (tenant) name
+	ProjectName *string `json:"project_name,omitempty"`
+
+	// UserDomainName Keystone user domain name
+	UserDomainName *string `json:"user_domain_name,omitempty"`
+	Username       string  `json:"username"`
+	VerifySsl      *bool   `json:"verify_ssl,omitempty"`
+}
+
 // DiscoverLicensesResponse defines model for DiscoverLicensesResponse.
 type DiscoverLicensesResponse struct {
 	// ArrowLicenses Arrow licenses from billing export for this customer.
@@ -19759,6 +19868,48 @@ type DiscoverRequestTypesRequestRequest struct {
 	Token     *string `json:"token,omitempty"`
 	Username  *string `json:"username,omitempty"`
 	VerifySsl *bool   `json:"verify_ssl,omitempty"`
+}
+
+// DiscoverVolumeAvailabilityZonesRequestRequest defines model for DiscoverVolumeAvailabilityZonesRequestRequest.
+type DiscoverVolumeAvailabilityZonesRequestRequest struct {
+	// AuthUrl Keystone auth URL (e.g., https://cloud.example.com:5000/v3)
+	AuthUrl string `json:"auth_url"`
+
+	// Certificate PEM-encoded CA certificate for SSL verification
+	Certificate *string `json:"certificate,omitempty"`
+	Password    *string `json:"password,omitempty"`
+
+	// ProjectDomainName Keystone project domain name
+	ProjectDomainName *string `json:"project_domain_name,omitempty"`
+
+	// ProjectName Keystone project (tenant) name
+	ProjectName *string `json:"project_name,omitempty"`
+
+	// UserDomainName Keystone user domain name
+	UserDomainName *string `json:"user_domain_name,omitempty"`
+	Username       string  `json:"username"`
+	VerifySsl      *bool   `json:"verify_ssl,omitempty"`
+}
+
+// DiscoverVolumeTypesRequestRequest defines model for DiscoverVolumeTypesRequestRequest.
+type DiscoverVolumeTypesRequestRequest struct {
+	// AuthUrl Keystone auth URL (e.g., https://cloud.example.com:5000/v3)
+	AuthUrl string `json:"auth_url"`
+
+	// Certificate PEM-encoded CA certificate for SSL verification
+	Certificate *string `json:"certificate,omitempty"`
+	Password    *string `json:"password,omitempty"`
+
+	// ProjectDomainName Keystone project domain name
+	ProjectDomainName *string `json:"project_domain_name,omitempty"`
+
+	// ProjectName Keystone project (tenant) name
+	ProjectName *string `json:"project_name,omitempty"`
+
+	// UserDomainName Keystone user domain name
+	UserDomainName *string `json:"user_domain_name,omitempty"`
+	Username       string  `json:"username"`
+	VerifySsl      *bool   `json:"verify_ssl,omitempty"`
 }
 
 // DiskFormatEnum defines model for DiskFormatEnum.
@@ -20251,6 +20402,67 @@ type ExternalLinkRequestMultipart struct {
 	Name        string              `json:"name"`
 }
 
+// ExternalNetwork defines model for ExternalNetwork.
+type ExternalNetwork struct {
+	BackendId   *string             `json:"backend_id,omitempty"`
+	Description *string             `json:"description,omitempty"`
+	IsDefault   *bool               `json:"is_default,omitempty"`
+	IsShared    *bool               `json:"is_shared,omitempty"`
+	Name        *string             `json:"name,omitempty"`
+	Settings    *string             `json:"settings,omitempty"`
+	Status      *string             `json:"status,omitempty"`
+	Subnets     *[]ExternalSubnet   `json:"subnets,omitempty"`
+	Url         *string             `json:"url,omitempty"`
+	Uuid        *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ExternalNetworkResponse defines model for ExternalNetworkResponse.
+type ExternalNetworkResponse struct {
+	Id       string                          `json:"id"`
+	IsShared bool                            `json:"is_shared"`
+	Name     string                          `json:"name"`
+	Subnets  []ExternalNetworkSubnetResponse `json:"subnets"`
+}
+
+// ExternalNetworkSubnetResponse defines model for ExternalNetworkSubnetResponse.
+type ExternalNetworkSubnetResponse struct {
+	Cidr      string `json:"cidr"`
+	GatewayIp string `json:"gateway_ip"`
+	Id        string `json:"id"`
+	IpVersion int    `json:"ip_version"`
+	Name      string `json:"name"`
+}
+
+// ExternalSubnet defines model for ExternalSubnet.
+type ExternalSubnet struct {
+	AllocationPools interface{} `json:"allocation_pools,omitempty"`
+	BackendId       *string     `json:"backend_id,omitempty"`
+	Cidr            *string     `json:"cidr,omitempty"`
+	Description     *string     `json:"description,omitempty"`
+	DnsNameservers  interface{} `json:"dns_nameservers,omitempty"`
+	EnableDhcp      *bool       `json:"enable_dhcp,omitempty"`
+
+	// GatewayIp An IPv4 or IPv6 address.
+	GatewayIp *ExternalSubnet_GatewayIp `json:"gateway_ip"`
+	IpVersion *int                      `json:"ip_version,omitempty"`
+	Name      *string                   `json:"name,omitempty"`
+
+	// PublicIpRange Public CIDR mapped to this subnet (for carrier-grade NAT overlay)
+	PublicIpRange *string             `json:"public_ip_range,omitempty"`
+	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ExternalSubnetGatewayIp0 defines model for .
+type ExternalSubnetGatewayIp0 = string
+
+// ExternalSubnetGatewayIp1 defines model for .
+type ExternalSubnetGatewayIp1 = string
+
+// ExternalSubnet_GatewayIp An IPv4 or IPv6 address.
+type ExternalSubnet_GatewayIp struct {
+	union json.RawMessage
+}
+
 // FeatureMetadataResponse defines model for FeatureMetadataResponse.
 type FeatureMetadataResponse struct {
 	// FeatureEnums Nested feature enum values by section
@@ -20446,6 +20658,18 @@ type FirecrestJobRequestMultipart struct {
 	Project         string             `json:"project"`
 	RuntimeState    *string            `json:"runtime_state,omitempty"`
 	ServiceSettings string             `json:"service_settings"`
+}
+
+// FlavorResponse defines model for FlavorResponse.
+type FlavorResponse struct {
+	// Disk Disk in GB
+	Disk int    `json:"disk"`
+	Id   string `json:"id"`
+	Name string `json:"name"`
+
+	// Ram RAM in MB
+	Ram   int `json:"ram"`
+	Vcpus int `json:"vcpus"`
 }
 
 // FreeipaProfile defines model for FreeipaProfile.
@@ -25200,6 +25424,27 @@ type OpenStackCreatePortRequest struct {
 	Tenant *string `json:"tenant,omitempty"`
 }
 
+// OpenStackCredentialsRequest defines model for OpenStackCredentialsRequest.
+type OpenStackCredentialsRequest struct {
+	// AuthUrl Keystone auth URL (e.g., https://cloud.example.com:5000/v3)
+	AuthUrl string `json:"auth_url"`
+
+	// Certificate PEM-encoded CA certificate for SSL verification
+	Certificate *string `json:"certificate,omitempty"`
+	Password    *string `json:"password,omitempty"`
+
+	// ProjectDomainName Keystone project domain name
+	ProjectDomainName *string `json:"project_domain_name,omitempty"`
+
+	// ProjectName Keystone project (tenant) name
+	ProjectName *string `json:"project_name,omitempty"`
+
+	// UserDomainName Keystone user domain name
+	UserDomainName *string `json:"user_domain_name,omitempty"`
+	Username       string  `json:"username"`
+	VerifySsl      *bool   `json:"verify_ssl,omitempty"`
+}
+
 // OpenStackDataVolumeRequest defines model for OpenStackDataVolumeRequest.
 type OpenStackDataVolumeRequest struct {
 	Size       int     `json:"size"`
@@ -26577,7 +26822,9 @@ type OpenStackTenant struct {
 	ErrorTraceback        *string `json:"error_traceback,omitempty"`
 
 	// ExternalNetworkId ID of external network connected to OpenStack tenant
-	ExternalNetworkId *string `json:"external_network_id,omitempty"`
+	ExternalNetworkId      *string             `json:"external_network_id,omitempty"`
+	ExternalNetworkRefName *string             `json:"external_network_ref_name,omitempty"`
+	ExternalNetworkRefUuid *openapi_types.UUID `json:"external_network_ref_uuid,omitempty"`
 
 	// InternalNetworkId ID of internal network in OpenStack tenant
 	InternalNetworkId                *string                 `json:"internal_network_id,omitempty"`
@@ -29729,6 +29976,36 @@ type PolicyPeriodEnum int
 
 // PolicyTypeEnum defines model for PolicyTypeEnum.
 type PolicyTypeEnum string
+
+// PreviewServiceAttributesRequestRequest defines model for PreviewServiceAttributesRequestRequest.
+type PreviewServiceAttributesRequestRequest struct {
+	// AuthUrl Keystone auth URL (e.g., https://cloud.example.com:5000/v3)
+	AuthUrl string `json:"auth_url"`
+
+	// Certificate PEM-encoded CA certificate for SSL verification
+	Certificate *string `json:"certificate,omitempty"`
+
+	// ExternalNetworkId Selected external network ID
+	ExternalNetworkId *string `json:"external_network_id,omitempty"`
+
+	// InstanceAvailabilityZone Selected instance availability zone name
+	InstanceAvailabilityZone *string `json:"instance_availability_zone,omitempty"`
+	Password                 *string `json:"password,omitempty"`
+
+	// ProjectDomainName Keystone project domain name
+	ProjectDomainName *string `json:"project_domain_name,omitempty"`
+
+	// ProjectName Keystone project (tenant) name
+	ProjectName *string `json:"project_name,omitempty"`
+
+	// UserDomainName Keystone user domain name
+	UserDomainName *string `json:"user_domain_name,omitempty"`
+	Username       string  `json:"username"`
+	VerifySsl      *bool   `json:"verify_ssl,omitempty"`
+
+	// VolumeAvailabilityZone Selected volume availability zone name
+	VolumeAvailabilityZone *string `json:"volume_availability_zone,omitempty"`
+}
 
 // PreviewSettingsRequestRequest defines model for PreviewSettingsRequestRequest.
 type PreviewSettingsRequestRequest struct {
@@ -34606,8 +34883,23 @@ type SendInvitationsResponse struct {
 	InvitationsSent int `json:"invitations_sent"`
 }
 
+// ServerInfo defines model for ServerInfo.
+type ServerInfo struct {
+	AuthUrl            string `json:"auth_url"`
+	IdentityApiVersion string `json:"identity_api_version"`
+	ProjectId          string `json:"project_id"`
+	ProjectName        string `json:"project_name"`
+	UserDomainName     string `json:"user_domain_name"`
+}
+
 // ServiceAccountState defines model for ServiceAccountState.
 type ServiceAccountState = interface{}
+
+// ServiceAttributesPreview defines model for ServiceAttributesPreview.
+type ServiceAttributesPreview struct {
+	PluginOptions     map[string]interface{} `json:"plugin_options"`
+	ServiceAttributes map[string]interface{} `json:"service_attributes"`
+}
 
 // ServiceProvider defines model for ServiceProvider.
 type ServiceProvider struct {
@@ -37117,6 +37409,13 @@ type VolumeTypeMapping struct {
 type VolumeTypeMappingRequest struct {
 	DstTypeUuid openapi_types.UUID `json:"dst_type_uuid"`
 	SrcTypeUuid openapi_types.UUID `json:"src_type_uuid"`
+}
+
+// VolumeTypeResponse defines model for VolumeTypeResponse.
+type VolumeTypeResponse struct {
+	Description *string `json:"description,omitempty"`
+	Id          string  `json:"id"`
+	Name        string  `json:"name"`
 }
 
 // WaldurCustomerBrief defines model for WaldurCustomerBrief.
@@ -50035,6 +50334,61 @@ type OpenstackBackupsRetrieveParams struct {
 // OpenstackBackupsRetrieveParamsField defines parameters for OpenstackBackupsRetrieve.
 type OpenstackBackupsRetrieveParamsField string
 
+// OpenstackExternalNetworksListParams defines parameters for OpenstackExternalNetworksList.
+type OpenstackExternalNetworksListParams struct {
+	Field *[]OpenstackExternalNetworksListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
+	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
+}
+
+// OpenstackExternalNetworksListParamsField defines parameters for OpenstackExternalNetworksList.
+type OpenstackExternalNetworksListParamsField string
+
+// OpenstackExternalNetworksCountParams defines parameters for OpenstackExternalNetworksCount.
+type OpenstackExternalNetworksCountParams struct {
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
+	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
+}
+
+// OpenstackExternalNetworksRetrieveParams defines parameters for OpenstackExternalNetworksRetrieve.
+type OpenstackExternalNetworksRetrieveParams struct {
+	Field *[]OpenstackExternalNetworksRetrieveParamsField `form:"field,omitempty" json:"field,omitempty"`
+}
+
+// OpenstackExternalNetworksRetrieveParamsField defines parameters for OpenstackExternalNetworksRetrieve.
+type OpenstackExternalNetworksRetrieveParamsField string
+
 // OpenstackFlavorsListParams defines parameters for OpenstackFlavorsList.
 type OpenstackFlavorsListParams struct {
 	Cores    *int                               `form:"cores,omitempty" json:"cores,omitempty"`
@@ -52532,6 +52886,60 @@ type OpenstackVolumesRetrieveParams struct {
 
 // OpenstackVolumesRetrieveParamsField defines parameters for OpenstackVolumesRetrieve.
 type OpenstackVolumesRetrieveParamsField string
+
+// OpenstackDiscoveryListParams defines parameters for OpenstackDiscoveryList.
+type OpenstackDiscoveryListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// OpenstackDiscoveryDiscoverExternalNetworksParams defines parameters for OpenstackDiscoveryDiscoverExternalNetworks.
+type OpenstackDiscoveryDiscoverExternalNetworksParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// OpenstackDiscoveryDiscoverFlavorsParams defines parameters for OpenstackDiscoveryDiscoverFlavors.
+type OpenstackDiscoveryDiscoverFlavorsParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// OpenstackDiscoveryDiscoverInstanceAvailabilityZonesParams defines parameters for OpenstackDiscoveryDiscoverInstanceAvailabilityZones.
+type OpenstackDiscoveryDiscoverInstanceAvailabilityZonesParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// OpenstackDiscoveryDiscoverVolumeAvailabilityZonesParams defines parameters for OpenstackDiscoveryDiscoverVolumeAvailabilityZones.
+type OpenstackDiscoveryDiscoverVolumeAvailabilityZonesParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// OpenstackDiscoveryDiscoverVolumeTypesParams defines parameters for OpenstackDiscoveryDiscoverVolumeTypes.
+type OpenstackDiscoveryDiscoverVolumeTypesParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
 
 // OrganizationGroupsListParams defines parameters for OrganizationGroupsList.
 type OrganizationGroupsListParams struct {
@@ -59831,6 +60239,27 @@ type OpenstackVolumesSetErredJSONRequestBody = SetErredRequest
 // OpenstackVolumesSnapshotJSONRequestBody defines body for OpenstackVolumesSnapshot for application/json ContentType.
 type OpenstackVolumesSnapshotJSONRequestBody = OpenStackSnapshotRequest
 
+// OpenstackDiscoveryDiscoverExternalNetworksJSONRequestBody defines body for OpenstackDiscoveryDiscoverExternalNetworks for application/json ContentType.
+type OpenstackDiscoveryDiscoverExternalNetworksJSONRequestBody = DiscoverExternalNetworksRequestRequest
+
+// OpenstackDiscoveryDiscoverFlavorsJSONRequestBody defines body for OpenstackDiscoveryDiscoverFlavors for application/json ContentType.
+type OpenstackDiscoveryDiscoverFlavorsJSONRequestBody = DiscoverFlavorsRequestRequest
+
+// OpenstackDiscoveryDiscoverInstanceAvailabilityZonesJSONRequestBody defines body for OpenstackDiscoveryDiscoverInstanceAvailabilityZones for application/json ContentType.
+type OpenstackDiscoveryDiscoverInstanceAvailabilityZonesJSONRequestBody = DiscoverInstanceAvailabilityZonesRequestRequest
+
+// OpenstackDiscoveryDiscoverVolumeAvailabilityZonesJSONRequestBody defines body for OpenstackDiscoveryDiscoverVolumeAvailabilityZones for application/json ContentType.
+type OpenstackDiscoveryDiscoverVolumeAvailabilityZonesJSONRequestBody = DiscoverVolumeAvailabilityZonesRequestRequest
+
+// OpenstackDiscoveryDiscoverVolumeTypesJSONRequestBody defines body for OpenstackDiscoveryDiscoverVolumeTypes for application/json ContentType.
+type OpenstackDiscoveryDiscoverVolumeTypesJSONRequestBody = DiscoverVolumeTypesRequestRequest
+
+// OpenstackDiscoveryPreviewServiceAttributesJSONRequestBody defines body for OpenstackDiscoveryPreviewServiceAttributes for application/json ContentType.
+type OpenstackDiscoveryPreviewServiceAttributesJSONRequestBody = PreviewServiceAttributesRequestRequest
+
+// OpenstackDiscoveryValidateCredentialsJSONRequestBody defines body for OpenstackDiscoveryValidateCredentials for application/json ContentType.
+type OpenstackDiscoveryValidateCredentialsJSONRequestBody = OpenStackCredentialsRequest
+
 // OrganizationGroupsCreateJSONRequestBody defines body for OrganizationGroupsCreate for application/json ContentType.
 type OrganizationGroupsCreateJSONRequestBody = OrganizationGroupRequest
 
@@ -61155,6 +61584,68 @@ func (t EventSubscription_SourceIp) MarshalJSON() ([]byte, error) {
 }
 
 func (t *EventSubscription_SourceIp) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsExternalSubnetGatewayIp0 returns the union data inside the ExternalSubnet_GatewayIp as a ExternalSubnetGatewayIp0
+func (t ExternalSubnet_GatewayIp) AsExternalSubnetGatewayIp0() (ExternalSubnetGatewayIp0, error) {
+	var body ExternalSubnetGatewayIp0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromExternalSubnetGatewayIp0 overwrites any union data inside the ExternalSubnet_GatewayIp as the provided ExternalSubnetGatewayIp0
+func (t *ExternalSubnet_GatewayIp) FromExternalSubnetGatewayIp0(v ExternalSubnetGatewayIp0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeExternalSubnetGatewayIp0 performs a merge with any union data inside the ExternalSubnet_GatewayIp, using the provided ExternalSubnetGatewayIp0
+func (t *ExternalSubnet_GatewayIp) MergeExternalSubnetGatewayIp0(v ExternalSubnetGatewayIp0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsExternalSubnetGatewayIp1 returns the union data inside the ExternalSubnet_GatewayIp as a ExternalSubnetGatewayIp1
+func (t ExternalSubnet_GatewayIp) AsExternalSubnetGatewayIp1() (ExternalSubnetGatewayIp1, error) {
+	var body ExternalSubnetGatewayIp1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromExternalSubnetGatewayIp1 overwrites any union data inside the ExternalSubnet_GatewayIp as the provided ExternalSubnetGatewayIp1
+func (t *ExternalSubnet_GatewayIp) FromExternalSubnetGatewayIp1(v ExternalSubnetGatewayIp1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeExternalSubnetGatewayIp1 performs a merge with any union data inside the ExternalSubnet_GatewayIp, using the provided ExternalSubnetGatewayIp1
+func (t *ExternalSubnet_GatewayIp) MergeExternalSubnetGatewayIp1(v ExternalSubnetGatewayIp1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ExternalSubnet_GatewayIp) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ExternalSubnet_GatewayIp) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -72664,6 +73155,15 @@ type ClientInterface interface {
 	// OpenstackBackupsUnlink request
 	OpenstackBackupsUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenstackExternalNetworksList request
+	OpenstackExternalNetworksList(ctx context.Context, params *OpenstackExternalNetworksListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackExternalNetworksCount request
+	OpenstackExternalNetworksCount(ctx context.Context, params *OpenstackExternalNetworksCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackExternalNetworksRetrieve request
+	OpenstackExternalNetworksRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenstackExternalNetworksRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenstackFlavorsList request
 	OpenstackFlavorsList(ctx context.Context, params *OpenstackFlavorsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -73389,6 +73889,59 @@ type ClientInterface interface {
 
 	// OpenstackVolumesUnlink request
 	OpenstackVolumesUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackDiscoveryList request
+	OpenstackDiscoveryList(ctx context.Context, params *OpenstackDiscoveryListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackDiscoveryCreate request
+	OpenstackDiscoveryCreate(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackDiscoveryDiscoverExternalNetworksWithBody request with any body
+	OpenstackDiscoveryDiscoverExternalNetworksWithBody(ctx context.Context, params *OpenstackDiscoveryDiscoverExternalNetworksParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackDiscoveryDiscoverExternalNetworks(ctx context.Context, params *OpenstackDiscoveryDiscoverExternalNetworksParams, body OpenstackDiscoveryDiscoverExternalNetworksJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackDiscoveryDiscoverFlavorsWithBody request with any body
+	OpenstackDiscoveryDiscoverFlavorsWithBody(ctx context.Context, params *OpenstackDiscoveryDiscoverFlavorsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackDiscoveryDiscoverFlavors(ctx context.Context, params *OpenstackDiscoveryDiscoverFlavorsParams, body OpenstackDiscoveryDiscoverFlavorsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackDiscoveryDiscoverInstanceAvailabilityZonesWithBody request with any body
+	OpenstackDiscoveryDiscoverInstanceAvailabilityZonesWithBody(ctx context.Context, params *OpenstackDiscoveryDiscoverInstanceAvailabilityZonesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackDiscoveryDiscoverInstanceAvailabilityZones(ctx context.Context, params *OpenstackDiscoveryDiscoverInstanceAvailabilityZonesParams, body OpenstackDiscoveryDiscoverInstanceAvailabilityZonesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackDiscoveryDiscoverVolumeAvailabilityZonesWithBody request with any body
+	OpenstackDiscoveryDiscoverVolumeAvailabilityZonesWithBody(ctx context.Context, params *OpenstackDiscoveryDiscoverVolumeAvailabilityZonesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackDiscoveryDiscoverVolumeAvailabilityZones(ctx context.Context, params *OpenstackDiscoveryDiscoverVolumeAvailabilityZonesParams, body OpenstackDiscoveryDiscoverVolumeAvailabilityZonesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackDiscoveryDiscoverVolumeTypesWithBody request with any body
+	OpenstackDiscoveryDiscoverVolumeTypesWithBody(ctx context.Context, params *OpenstackDiscoveryDiscoverVolumeTypesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackDiscoveryDiscoverVolumeTypes(ctx context.Context, params *OpenstackDiscoveryDiscoverVolumeTypesParams, body OpenstackDiscoveryDiscoverVolumeTypesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackDiscoveryPreviewServiceAttributesWithBody request with any body
+	OpenstackDiscoveryPreviewServiceAttributesWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackDiscoveryPreviewServiceAttributes(ctx context.Context, body OpenstackDiscoveryPreviewServiceAttributesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackDiscoveryValidateCredentialsWithBody request with any body
+	OpenstackDiscoveryValidateCredentialsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackDiscoveryValidateCredentials(ctx context.Context, body OpenstackDiscoveryValidateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackDiscoveryDestroy request
+	OpenstackDiscoveryDestroy(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackDiscoveryRetrieve request
+	OpenstackDiscoveryRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackDiscoveryPartialUpdate request
+	OpenstackDiscoveryPartialUpdate(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackDiscoveryUpdate request
+	OpenstackDiscoveryUpdate(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OrganizationGroupsList request
 	OrganizationGroupsList(ctx context.Context, params *OrganizationGroupsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -98319,6 +98872,42 @@ func (c *Client) OpenstackBackupsUnlink(ctx context.Context, uuid openapi_types.
 	return c.Client.Do(req)
 }
 
+func (c *Client) OpenstackExternalNetworksList(ctx context.Context, params *OpenstackExternalNetworksListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackExternalNetworksListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackExternalNetworksCount(ctx context.Context, params *OpenstackExternalNetworksCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackExternalNetworksCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackExternalNetworksRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenstackExternalNetworksRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackExternalNetworksRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OpenstackFlavorsList(ctx context.Context, params *OpenstackFlavorsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackFlavorsListRequest(c.Server, params)
 	if err != nil {
@@ -101489,6 +102078,246 @@ func (c *Client) OpenstackVolumesSnapshot(ctx context.Context, uuid openapi_type
 
 func (c *Client) OpenstackVolumesUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackVolumesUnlinkRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackDiscoveryList(ctx context.Context, params *OpenstackDiscoveryListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackDiscoveryListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackDiscoveryCreate(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackDiscoveryCreateRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackDiscoveryDiscoverExternalNetworksWithBody(ctx context.Context, params *OpenstackDiscoveryDiscoverExternalNetworksParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackDiscoveryDiscoverExternalNetworksRequestWithBody(c.Server, params, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackDiscoveryDiscoverExternalNetworks(ctx context.Context, params *OpenstackDiscoveryDiscoverExternalNetworksParams, body OpenstackDiscoveryDiscoverExternalNetworksJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackDiscoveryDiscoverExternalNetworksRequest(c.Server, params, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackDiscoveryDiscoverFlavorsWithBody(ctx context.Context, params *OpenstackDiscoveryDiscoverFlavorsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackDiscoveryDiscoverFlavorsRequestWithBody(c.Server, params, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackDiscoveryDiscoverFlavors(ctx context.Context, params *OpenstackDiscoveryDiscoverFlavorsParams, body OpenstackDiscoveryDiscoverFlavorsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackDiscoveryDiscoverFlavorsRequest(c.Server, params, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackDiscoveryDiscoverInstanceAvailabilityZonesWithBody(ctx context.Context, params *OpenstackDiscoveryDiscoverInstanceAvailabilityZonesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackDiscoveryDiscoverInstanceAvailabilityZonesRequestWithBody(c.Server, params, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackDiscoveryDiscoverInstanceAvailabilityZones(ctx context.Context, params *OpenstackDiscoveryDiscoverInstanceAvailabilityZonesParams, body OpenstackDiscoveryDiscoverInstanceAvailabilityZonesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackDiscoveryDiscoverInstanceAvailabilityZonesRequest(c.Server, params, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackDiscoveryDiscoverVolumeAvailabilityZonesWithBody(ctx context.Context, params *OpenstackDiscoveryDiscoverVolumeAvailabilityZonesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackDiscoveryDiscoverVolumeAvailabilityZonesRequestWithBody(c.Server, params, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackDiscoveryDiscoverVolumeAvailabilityZones(ctx context.Context, params *OpenstackDiscoveryDiscoverVolumeAvailabilityZonesParams, body OpenstackDiscoveryDiscoverVolumeAvailabilityZonesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackDiscoveryDiscoverVolumeAvailabilityZonesRequest(c.Server, params, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackDiscoveryDiscoverVolumeTypesWithBody(ctx context.Context, params *OpenstackDiscoveryDiscoverVolumeTypesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackDiscoveryDiscoverVolumeTypesRequestWithBody(c.Server, params, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackDiscoveryDiscoverVolumeTypes(ctx context.Context, params *OpenstackDiscoveryDiscoverVolumeTypesParams, body OpenstackDiscoveryDiscoverVolumeTypesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackDiscoveryDiscoverVolumeTypesRequest(c.Server, params, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackDiscoveryPreviewServiceAttributesWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackDiscoveryPreviewServiceAttributesRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackDiscoveryPreviewServiceAttributes(ctx context.Context, body OpenstackDiscoveryPreviewServiceAttributesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackDiscoveryPreviewServiceAttributesRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackDiscoveryValidateCredentialsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackDiscoveryValidateCredentialsRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackDiscoveryValidateCredentials(ctx context.Context, body OpenstackDiscoveryValidateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackDiscoveryValidateCredentialsRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackDiscoveryDestroy(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackDiscoveryDestroyRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackDiscoveryRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackDiscoveryRetrieveRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackDiscoveryPartialUpdate(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackDiscoveryPartialUpdateRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackDiscoveryUpdate(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackDiscoveryUpdateRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -226441,6 +227270,336 @@ func NewOpenstackBackupsUnlinkRequest(server string, uuid openapi_types.UUID) (*
 	return req, nil
 }
 
+// NewOpenstackExternalNetworksListRequest generates requests for OpenstackExternalNetworksList
+func NewOpenstackExternalNetworksListRequest(server string, params *OpenstackExternalNetworksListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-external-networks/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name_exact", runtime.ParamLocationQuery, *params.NameExact); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Settings != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "settings", runtime.ParamLocationQuery, *params.Settings); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.SettingsUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "settings_uuid", runtime.ParamLocationQuery, *params.SettingsUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackExternalNetworksCountRequest generates requests for OpenstackExternalNetworksCount
+func NewOpenstackExternalNetworksCountRequest(server string, params *OpenstackExternalNetworksCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-external-networks/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name_exact", runtime.ParamLocationQuery, *params.NameExact); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Settings != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "settings", runtime.ParamLocationQuery, *params.Settings); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.SettingsUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "settings_uuid", runtime.ParamLocationQuery, *params.SettingsUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackExternalNetworksRetrieveRequest generates requests for OpenstackExternalNetworksRetrieve
+func NewOpenstackExternalNetworksRetrieveRequest(server string, uuid openapi_types.UUID, params *OpenstackExternalNetworksRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-external-networks/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOpenstackFlavorsListRequest generates requests for OpenstackFlavorsList
 func NewOpenstackFlavorsListRequest(server string, params *OpenstackFlavorsListParams) (*http.Request, error) {
 	var err error
@@ -246040,6 +247199,704 @@ func NewOpenstackVolumesUnlinkRequest(server string, uuid openapi_types.UUID) (*
 	}
 
 	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackDiscoveryListRequest generates requests for OpenstackDiscoveryList
+func NewOpenstackDiscoveryListRequest(server string, params *OpenstackDiscoveryListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack/discovery/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackDiscoveryCreateRequest generates requests for OpenstackDiscoveryCreate
+func NewOpenstackDiscoveryCreateRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack/discovery/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackDiscoveryDiscoverExternalNetworksRequest calls the generic OpenstackDiscoveryDiscoverExternalNetworks builder with application/json body
+func NewOpenstackDiscoveryDiscoverExternalNetworksRequest(server string, params *OpenstackDiscoveryDiscoverExternalNetworksParams, body OpenstackDiscoveryDiscoverExternalNetworksJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackDiscoveryDiscoverExternalNetworksRequestWithBody(server, params, "application/json", bodyReader)
+}
+
+// NewOpenstackDiscoveryDiscoverExternalNetworksRequestWithBody generates requests for OpenstackDiscoveryDiscoverExternalNetworks with any type of body
+func NewOpenstackDiscoveryDiscoverExternalNetworksRequestWithBody(server string, params *OpenstackDiscoveryDiscoverExternalNetworksParams, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack/discovery/discover_external_networks/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackDiscoveryDiscoverFlavorsRequest calls the generic OpenstackDiscoveryDiscoverFlavors builder with application/json body
+func NewOpenstackDiscoveryDiscoverFlavorsRequest(server string, params *OpenstackDiscoveryDiscoverFlavorsParams, body OpenstackDiscoveryDiscoverFlavorsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackDiscoveryDiscoverFlavorsRequestWithBody(server, params, "application/json", bodyReader)
+}
+
+// NewOpenstackDiscoveryDiscoverFlavorsRequestWithBody generates requests for OpenstackDiscoveryDiscoverFlavors with any type of body
+func NewOpenstackDiscoveryDiscoverFlavorsRequestWithBody(server string, params *OpenstackDiscoveryDiscoverFlavorsParams, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack/discovery/discover_flavors/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackDiscoveryDiscoverInstanceAvailabilityZonesRequest calls the generic OpenstackDiscoveryDiscoverInstanceAvailabilityZones builder with application/json body
+func NewOpenstackDiscoveryDiscoverInstanceAvailabilityZonesRequest(server string, params *OpenstackDiscoveryDiscoverInstanceAvailabilityZonesParams, body OpenstackDiscoveryDiscoverInstanceAvailabilityZonesJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackDiscoveryDiscoverInstanceAvailabilityZonesRequestWithBody(server, params, "application/json", bodyReader)
+}
+
+// NewOpenstackDiscoveryDiscoverInstanceAvailabilityZonesRequestWithBody generates requests for OpenstackDiscoveryDiscoverInstanceAvailabilityZones with any type of body
+func NewOpenstackDiscoveryDiscoverInstanceAvailabilityZonesRequestWithBody(server string, params *OpenstackDiscoveryDiscoverInstanceAvailabilityZonesParams, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack/discovery/discover_instance_availability_zones/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackDiscoveryDiscoverVolumeAvailabilityZonesRequest calls the generic OpenstackDiscoveryDiscoverVolumeAvailabilityZones builder with application/json body
+func NewOpenstackDiscoveryDiscoverVolumeAvailabilityZonesRequest(server string, params *OpenstackDiscoveryDiscoverVolumeAvailabilityZonesParams, body OpenstackDiscoveryDiscoverVolumeAvailabilityZonesJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackDiscoveryDiscoverVolumeAvailabilityZonesRequestWithBody(server, params, "application/json", bodyReader)
+}
+
+// NewOpenstackDiscoveryDiscoverVolumeAvailabilityZonesRequestWithBody generates requests for OpenstackDiscoveryDiscoverVolumeAvailabilityZones with any type of body
+func NewOpenstackDiscoveryDiscoverVolumeAvailabilityZonesRequestWithBody(server string, params *OpenstackDiscoveryDiscoverVolumeAvailabilityZonesParams, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack/discovery/discover_volume_availability_zones/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackDiscoveryDiscoverVolumeTypesRequest calls the generic OpenstackDiscoveryDiscoverVolumeTypes builder with application/json body
+func NewOpenstackDiscoveryDiscoverVolumeTypesRequest(server string, params *OpenstackDiscoveryDiscoverVolumeTypesParams, body OpenstackDiscoveryDiscoverVolumeTypesJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackDiscoveryDiscoverVolumeTypesRequestWithBody(server, params, "application/json", bodyReader)
+}
+
+// NewOpenstackDiscoveryDiscoverVolumeTypesRequestWithBody generates requests for OpenstackDiscoveryDiscoverVolumeTypes with any type of body
+func NewOpenstackDiscoveryDiscoverVolumeTypesRequestWithBody(server string, params *OpenstackDiscoveryDiscoverVolumeTypesParams, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack/discovery/discover_volume_types/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackDiscoveryPreviewServiceAttributesRequest calls the generic OpenstackDiscoveryPreviewServiceAttributes builder with application/json body
+func NewOpenstackDiscoveryPreviewServiceAttributesRequest(server string, body OpenstackDiscoveryPreviewServiceAttributesJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackDiscoveryPreviewServiceAttributesRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewOpenstackDiscoveryPreviewServiceAttributesRequestWithBody generates requests for OpenstackDiscoveryPreviewServiceAttributes with any type of body
+func NewOpenstackDiscoveryPreviewServiceAttributesRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack/discovery/preview_service_attributes/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackDiscoveryValidateCredentialsRequest calls the generic OpenstackDiscoveryValidateCredentials builder with application/json body
+func NewOpenstackDiscoveryValidateCredentialsRequest(server string, body OpenstackDiscoveryValidateCredentialsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackDiscoveryValidateCredentialsRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewOpenstackDiscoveryValidateCredentialsRequestWithBody generates requests for OpenstackDiscoveryValidateCredentials with any type of body
+func NewOpenstackDiscoveryValidateCredentialsRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack/discovery/validate_credentials/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackDiscoveryDestroyRequest generates requests for OpenstackDiscoveryDestroy
+func NewOpenstackDiscoveryDestroyRequest(server string, id int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack/discovery/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackDiscoveryRetrieveRequest generates requests for OpenstackDiscoveryRetrieve
+func NewOpenstackDiscoveryRetrieveRequest(server string, id int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack/discovery/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackDiscoveryPartialUpdateRequest generates requests for OpenstackDiscoveryPartialUpdate
+func NewOpenstackDiscoveryPartialUpdateRequest(server string, id int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack/discovery/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackDiscoveryUpdateRequest generates requests for OpenstackDiscoveryUpdate
+func NewOpenstackDiscoveryUpdateRequest(server string, id int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack/discovery/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -304695,6 +306552,15 @@ type ClientWithResponsesInterface interface {
 	// OpenstackBackupsUnlinkWithResponse request
 	OpenstackBackupsUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackBackupsUnlinkResponse, error)
 
+	// OpenstackExternalNetworksListWithResponse request
+	OpenstackExternalNetworksListWithResponse(ctx context.Context, params *OpenstackExternalNetworksListParams, reqEditors ...RequestEditorFn) (*OpenstackExternalNetworksListResponse, error)
+
+	// OpenstackExternalNetworksCountWithResponse request
+	OpenstackExternalNetworksCountWithResponse(ctx context.Context, params *OpenstackExternalNetworksCountParams, reqEditors ...RequestEditorFn) (*OpenstackExternalNetworksCountResponse, error)
+
+	// OpenstackExternalNetworksRetrieveWithResponse request
+	OpenstackExternalNetworksRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackExternalNetworksRetrieveParams, reqEditors ...RequestEditorFn) (*OpenstackExternalNetworksRetrieveResponse, error)
+
 	// OpenstackFlavorsListWithResponse request
 	OpenstackFlavorsListWithResponse(ctx context.Context, params *OpenstackFlavorsListParams, reqEditors ...RequestEditorFn) (*OpenstackFlavorsListResponse, error)
 
@@ -305420,6 +307286,59 @@ type ClientWithResponsesInterface interface {
 
 	// OpenstackVolumesUnlinkWithResponse request
 	OpenstackVolumesUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackVolumesUnlinkResponse, error)
+
+	// OpenstackDiscoveryListWithResponse request
+	OpenstackDiscoveryListWithResponse(ctx context.Context, params *OpenstackDiscoveryListParams, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryListResponse, error)
+
+	// OpenstackDiscoveryCreateWithResponse request
+	OpenstackDiscoveryCreateWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryCreateResponse, error)
+
+	// OpenstackDiscoveryDiscoverExternalNetworksWithBodyWithResponse request with any body
+	OpenstackDiscoveryDiscoverExternalNetworksWithBodyWithResponse(ctx context.Context, params *OpenstackDiscoveryDiscoverExternalNetworksParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryDiscoverExternalNetworksResponse, error)
+
+	OpenstackDiscoveryDiscoverExternalNetworksWithResponse(ctx context.Context, params *OpenstackDiscoveryDiscoverExternalNetworksParams, body OpenstackDiscoveryDiscoverExternalNetworksJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryDiscoverExternalNetworksResponse, error)
+
+	// OpenstackDiscoveryDiscoverFlavorsWithBodyWithResponse request with any body
+	OpenstackDiscoveryDiscoverFlavorsWithBodyWithResponse(ctx context.Context, params *OpenstackDiscoveryDiscoverFlavorsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryDiscoverFlavorsResponse, error)
+
+	OpenstackDiscoveryDiscoverFlavorsWithResponse(ctx context.Context, params *OpenstackDiscoveryDiscoverFlavorsParams, body OpenstackDiscoveryDiscoverFlavorsJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryDiscoverFlavorsResponse, error)
+
+	// OpenstackDiscoveryDiscoverInstanceAvailabilityZonesWithBodyWithResponse request with any body
+	OpenstackDiscoveryDiscoverInstanceAvailabilityZonesWithBodyWithResponse(ctx context.Context, params *OpenstackDiscoveryDiscoverInstanceAvailabilityZonesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryDiscoverInstanceAvailabilityZonesResponse, error)
+
+	OpenstackDiscoveryDiscoverInstanceAvailabilityZonesWithResponse(ctx context.Context, params *OpenstackDiscoveryDiscoverInstanceAvailabilityZonesParams, body OpenstackDiscoveryDiscoverInstanceAvailabilityZonesJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryDiscoverInstanceAvailabilityZonesResponse, error)
+
+	// OpenstackDiscoveryDiscoverVolumeAvailabilityZonesWithBodyWithResponse request with any body
+	OpenstackDiscoveryDiscoverVolumeAvailabilityZonesWithBodyWithResponse(ctx context.Context, params *OpenstackDiscoveryDiscoverVolumeAvailabilityZonesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryDiscoverVolumeAvailabilityZonesResponse, error)
+
+	OpenstackDiscoveryDiscoverVolumeAvailabilityZonesWithResponse(ctx context.Context, params *OpenstackDiscoveryDiscoverVolumeAvailabilityZonesParams, body OpenstackDiscoveryDiscoverVolumeAvailabilityZonesJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryDiscoverVolumeAvailabilityZonesResponse, error)
+
+	// OpenstackDiscoveryDiscoverVolumeTypesWithBodyWithResponse request with any body
+	OpenstackDiscoveryDiscoverVolumeTypesWithBodyWithResponse(ctx context.Context, params *OpenstackDiscoveryDiscoverVolumeTypesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryDiscoverVolumeTypesResponse, error)
+
+	OpenstackDiscoveryDiscoverVolumeTypesWithResponse(ctx context.Context, params *OpenstackDiscoveryDiscoverVolumeTypesParams, body OpenstackDiscoveryDiscoverVolumeTypesJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryDiscoverVolumeTypesResponse, error)
+
+	// OpenstackDiscoveryPreviewServiceAttributesWithBodyWithResponse request with any body
+	OpenstackDiscoveryPreviewServiceAttributesWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryPreviewServiceAttributesResponse, error)
+
+	OpenstackDiscoveryPreviewServiceAttributesWithResponse(ctx context.Context, body OpenstackDiscoveryPreviewServiceAttributesJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryPreviewServiceAttributesResponse, error)
+
+	// OpenstackDiscoveryValidateCredentialsWithBodyWithResponse request with any body
+	OpenstackDiscoveryValidateCredentialsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryValidateCredentialsResponse, error)
+
+	OpenstackDiscoveryValidateCredentialsWithResponse(ctx context.Context, body OpenstackDiscoveryValidateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryValidateCredentialsResponse, error)
+
+	// OpenstackDiscoveryDestroyWithResponse request
+	OpenstackDiscoveryDestroyWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryDestroyResponse, error)
+
+	// OpenstackDiscoveryRetrieveWithResponse request
+	OpenstackDiscoveryRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryRetrieveResponse, error)
+
+	// OpenstackDiscoveryPartialUpdateWithResponse request
+	OpenstackDiscoveryPartialUpdateWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryPartialUpdateResponse, error)
+
+	// OpenstackDiscoveryUpdateWithResponse request
+	OpenstackDiscoveryUpdateWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryUpdateResponse, error)
 
 	// OrganizationGroupsListWithResponse request
 	OrganizationGroupsListWithResponse(ctx context.Context, params *OrganizationGroupsListParams, reqEditors ...RequestEditorFn) (*OrganizationGroupsListResponse, error)
@@ -338029,6 +339948,71 @@ func (r OpenstackBackupsUnlinkResponse) StatusCode() int {
 	return 0
 }
 
+type OpenstackExternalNetworksListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ExternalNetwork
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackExternalNetworksListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackExternalNetworksListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackExternalNetworksCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackExternalNetworksCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackExternalNetworksCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackExternalNetworksRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ExternalNetwork
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackExternalNetworksRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackExternalNetworksRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type OpenstackFlavorsListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -342272,6 +344256,286 @@ func (r OpenstackVolumesUnlinkResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackVolumesUnlinkResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackDiscoveryListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackDiscoveryListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackDiscoveryListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackDiscoveryCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackDiscoveryCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackDiscoveryCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackDiscoveryDiscoverExternalNetworksResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ExternalNetworkResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackDiscoveryDiscoverExternalNetworksResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackDiscoveryDiscoverExternalNetworksResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackDiscoveryDiscoverFlavorsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]FlavorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackDiscoveryDiscoverFlavorsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackDiscoveryDiscoverFlavorsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackDiscoveryDiscoverInstanceAvailabilityZonesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]AvailabilityZoneResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackDiscoveryDiscoverInstanceAvailabilityZonesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackDiscoveryDiscoverInstanceAvailabilityZonesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackDiscoveryDiscoverVolumeAvailabilityZonesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]AvailabilityZoneResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackDiscoveryDiscoverVolumeAvailabilityZonesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackDiscoveryDiscoverVolumeAvailabilityZonesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackDiscoveryDiscoverVolumeTypesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]VolumeTypeResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackDiscoveryDiscoverVolumeTypesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackDiscoveryDiscoverVolumeTypesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackDiscoveryPreviewServiceAttributesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ServiceAttributesPreview
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackDiscoveryPreviewServiceAttributesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackDiscoveryPreviewServiceAttributesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackDiscoveryValidateCredentialsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CredentialsValidationResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackDiscoveryValidateCredentialsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackDiscoveryValidateCredentialsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackDiscoveryDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackDiscoveryDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackDiscoveryDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackDiscoveryRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackDiscoveryRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackDiscoveryRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackDiscoveryPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackDiscoveryPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackDiscoveryPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackDiscoveryUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackDiscoveryUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackDiscoveryUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -373050,6 +375314,33 @@ func (c *ClientWithResponses) OpenstackBackupsUnlinkWithResponse(ctx context.Con
 	return ParseOpenstackBackupsUnlinkResponse(rsp)
 }
 
+// OpenstackExternalNetworksListWithResponse request returning *OpenstackExternalNetworksListResponse
+func (c *ClientWithResponses) OpenstackExternalNetworksListWithResponse(ctx context.Context, params *OpenstackExternalNetworksListParams, reqEditors ...RequestEditorFn) (*OpenstackExternalNetworksListResponse, error) {
+	rsp, err := c.OpenstackExternalNetworksList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackExternalNetworksListResponse(rsp)
+}
+
+// OpenstackExternalNetworksCountWithResponse request returning *OpenstackExternalNetworksCountResponse
+func (c *ClientWithResponses) OpenstackExternalNetworksCountWithResponse(ctx context.Context, params *OpenstackExternalNetworksCountParams, reqEditors ...RequestEditorFn) (*OpenstackExternalNetworksCountResponse, error) {
+	rsp, err := c.OpenstackExternalNetworksCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackExternalNetworksCountResponse(rsp)
+}
+
+// OpenstackExternalNetworksRetrieveWithResponse request returning *OpenstackExternalNetworksRetrieveResponse
+func (c *ClientWithResponses) OpenstackExternalNetworksRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackExternalNetworksRetrieveParams, reqEditors ...RequestEditorFn) (*OpenstackExternalNetworksRetrieveResponse, error) {
+	rsp, err := c.OpenstackExternalNetworksRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackExternalNetworksRetrieveResponse(rsp)
+}
+
 // OpenstackFlavorsListWithResponse request returning *OpenstackFlavorsListResponse
 func (c *ClientWithResponses) OpenstackFlavorsListWithResponse(ctx context.Context, params *OpenstackFlavorsListParams, reqEditors ...RequestEditorFn) (*OpenstackFlavorsListResponse, error) {
 	rsp, err := c.OpenstackFlavorsList(ctx, params, reqEditors...)
@@ -375364,6 +377655,179 @@ func (c *ClientWithResponses) OpenstackVolumesUnlinkWithResponse(ctx context.Con
 		return nil, err
 	}
 	return ParseOpenstackVolumesUnlinkResponse(rsp)
+}
+
+// OpenstackDiscoveryListWithResponse request returning *OpenstackDiscoveryListResponse
+func (c *ClientWithResponses) OpenstackDiscoveryListWithResponse(ctx context.Context, params *OpenstackDiscoveryListParams, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryListResponse, error) {
+	rsp, err := c.OpenstackDiscoveryList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackDiscoveryListResponse(rsp)
+}
+
+// OpenstackDiscoveryCreateWithResponse request returning *OpenstackDiscoveryCreateResponse
+func (c *ClientWithResponses) OpenstackDiscoveryCreateWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryCreateResponse, error) {
+	rsp, err := c.OpenstackDiscoveryCreate(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackDiscoveryCreateResponse(rsp)
+}
+
+// OpenstackDiscoveryDiscoverExternalNetworksWithBodyWithResponse request with arbitrary body returning *OpenstackDiscoveryDiscoverExternalNetworksResponse
+func (c *ClientWithResponses) OpenstackDiscoveryDiscoverExternalNetworksWithBodyWithResponse(ctx context.Context, params *OpenstackDiscoveryDiscoverExternalNetworksParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryDiscoverExternalNetworksResponse, error) {
+	rsp, err := c.OpenstackDiscoveryDiscoverExternalNetworksWithBody(ctx, params, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackDiscoveryDiscoverExternalNetworksResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackDiscoveryDiscoverExternalNetworksWithResponse(ctx context.Context, params *OpenstackDiscoveryDiscoverExternalNetworksParams, body OpenstackDiscoveryDiscoverExternalNetworksJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryDiscoverExternalNetworksResponse, error) {
+	rsp, err := c.OpenstackDiscoveryDiscoverExternalNetworks(ctx, params, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackDiscoveryDiscoverExternalNetworksResponse(rsp)
+}
+
+// OpenstackDiscoveryDiscoverFlavorsWithBodyWithResponse request with arbitrary body returning *OpenstackDiscoveryDiscoverFlavorsResponse
+func (c *ClientWithResponses) OpenstackDiscoveryDiscoverFlavorsWithBodyWithResponse(ctx context.Context, params *OpenstackDiscoveryDiscoverFlavorsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryDiscoverFlavorsResponse, error) {
+	rsp, err := c.OpenstackDiscoveryDiscoverFlavorsWithBody(ctx, params, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackDiscoveryDiscoverFlavorsResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackDiscoveryDiscoverFlavorsWithResponse(ctx context.Context, params *OpenstackDiscoveryDiscoverFlavorsParams, body OpenstackDiscoveryDiscoverFlavorsJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryDiscoverFlavorsResponse, error) {
+	rsp, err := c.OpenstackDiscoveryDiscoverFlavors(ctx, params, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackDiscoveryDiscoverFlavorsResponse(rsp)
+}
+
+// OpenstackDiscoveryDiscoverInstanceAvailabilityZonesWithBodyWithResponse request with arbitrary body returning *OpenstackDiscoveryDiscoverInstanceAvailabilityZonesResponse
+func (c *ClientWithResponses) OpenstackDiscoveryDiscoverInstanceAvailabilityZonesWithBodyWithResponse(ctx context.Context, params *OpenstackDiscoveryDiscoverInstanceAvailabilityZonesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryDiscoverInstanceAvailabilityZonesResponse, error) {
+	rsp, err := c.OpenstackDiscoveryDiscoverInstanceAvailabilityZonesWithBody(ctx, params, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackDiscoveryDiscoverInstanceAvailabilityZonesResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackDiscoveryDiscoverInstanceAvailabilityZonesWithResponse(ctx context.Context, params *OpenstackDiscoveryDiscoverInstanceAvailabilityZonesParams, body OpenstackDiscoveryDiscoverInstanceAvailabilityZonesJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryDiscoverInstanceAvailabilityZonesResponse, error) {
+	rsp, err := c.OpenstackDiscoveryDiscoverInstanceAvailabilityZones(ctx, params, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackDiscoveryDiscoverInstanceAvailabilityZonesResponse(rsp)
+}
+
+// OpenstackDiscoveryDiscoverVolumeAvailabilityZonesWithBodyWithResponse request with arbitrary body returning *OpenstackDiscoveryDiscoverVolumeAvailabilityZonesResponse
+func (c *ClientWithResponses) OpenstackDiscoveryDiscoverVolumeAvailabilityZonesWithBodyWithResponse(ctx context.Context, params *OpenstackDiscoveryDiscoverVolumeAvailabilityZonesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryDiscoverVolumeAvailabilityZonesResponse, error) {
+	rsp, err := c.OpenstackDiscoveryDiscoverVolumeAvailabilityZonesWithBody(ctx, params, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackDiscoveryDiscoverVolumeAvailabilityZonesResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackDiscoveryDiscoverVolumeAvailabilityZonesWithResponse(ctx context.Context, params *OpenstackDiscoveryDiscoverVolumeAvailabilityZonesParams, body OpenstackDiscoveryDiscoverVolumeAvailabilityZonesJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryDiscoverVolumeAvailabilityZonesResponse, error) {
+	rsp, err := c.OpenstackDiscoveryDiscoverVolumeAvailabilityZones(ctx, params, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackDiscoveryDiscoverVolumeAvailabilityZonesResponse(rsp)
+}
+
+// OpenstackDiscoveryDiscoverVolumeTypesWithBodyWithResponse request with arbitrary body returning *OpenstackDiscoveryDiscoverVolumeTypesResponse
+func (c *ClientWithResponses) OpenstackDiscoveryDiscoverVolumeTypesWithBodyWithResponse(ctx context.Context, params *OpenstackDiscoveryDiscoverVolumeTypesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryDiscoverVolumeTypesResponse, error) {
+	rsp, err := c.OpenstackDiscoveryDiscoverVolumeTypesWithBody(ctx, params, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackDiscoveryDiscoverVolumeTypesResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackDiscoveryDiscoverVolumeTypesWithResponse(ctx context.Context, params *OpenstackDiscoveryDiscoverVolumeTypesParams, body OpenstackDiscoveryDiscoverVolumeTypesJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryDiscoverVolumeTypesResponse, error) {
+	rsp, err := c.OpenstackDiscoveryDiscoverVolumeTypes(ctx, params, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackDiscoveryDiscoverVolumeTypesResponse(rsp)
+}
+
+// OpenstackDiscoveryPreviewServiceAttributesWithBodyWithResponse request with arbitrary body returning *OpenstackDiscoveryPreviewServiceAttributesResponse
+func (c *ClientWithResponses) OpenstackDiscoveryPreviewServiceAttributesWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryPreviewServiceAttributesResponse, error) {
+	rsp, err := c.OpenstackDiscoveryPreviewServiceAttributesWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackDiscoveryPreviewServiceAttributesResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackDiscoveryPreviewServiceAttributesWithResponse(ctx context.Context, body OpenstackDiscoveryPreviewServiceAttributesJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryPreviewServiceAttributesResponse, error) {
+	rsp, err := c.OpenstackDiscoveryPreviewServiceAttributes(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackDiscoveryPreviewServiceAttributesResponse(rsp)
+}
+
+// OpenstackDiscoveryValidateCredentialsWithBodyWithResponse request with arbitrary body returning *OpenstackDiscoveryValidateCredentialsResponse
+func (c *ClientWithResponses) OpenstackDiscoveryValidateCredentialsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryValidateCredentialsResponse, error) {
+	rsp, err := c.OpenstackDiscoveryValidateCredentialsWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackDiscoveryValidateCredentialsResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackDiscoveryValidateCredentialsWithResponse(ctx context.Context, body OpenstackDiscoveryValidateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryValidateCredentialsResponse, error) {
+	rsp, err := c.OpenstackDiscoveryValidateCredentials(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackDiscoveryValidateCredentialsResponse(rsp)
+}
+
+// OpenstackDiscoveryDestroyWithResponse request returning *OpenstackDiscoveryDestroyResponse
+func (c *ClientWithResponses) OpenstackDiscoveryDestroyWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryDestroyResponse, error) {
+	rsp, err := c.OpenstackDiscoveryDestroy(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackDiscoveryDestroyResponse(rsp)
+}
+
+// OpenstackDiscoveryRetrieveWithResponse request returning *OpenstackDiscoveryRetrieveResponse
+func (c *ClientWithResponses) OpenstackDiscoveryRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryRetrieveResponse, error) {
+	rsp, err := c.OpenstackDiscoveryRetrieve(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackDiscoveryRetrieveResponse(rsp)
+}
+
+// OpenstackDiscoveryPartialUpdateWithResponse request returning *OpenstackDiscoveryPartialUpdateResponse
+func (c *ClientWithResponses) OpenstackDiscoveryPartialUpdateWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryPartialUpdateResponse, error) {
+	rsp, err := c.OpenstackDiscoveryPartialUpdate(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackDiscoveryPartialUpdateResponse(rsp)
+}
+
+// OpenstackDiscoveryUpdateWithResponse request returning *OpenstackDiscoveryUpdateResponse
+func (c *ClientWithResponses) OpenstackDiscoveryUpdateWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryUpdateResponse, error) {
+	rsp, err := c.OpenstackDiscoveryUpdate(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackDiscoveryUpdateResponse(rsp)
 }
 
 // OrganizationGroupsListWithResponse request returning *OrganizationGroupsListResponse
@@ -415248,6 +417712,74 @@ func ParseOpenstackBackupsUnlinkResponse(rsp *http.Response) (*OpenstackBackupsU
 	return response, nil
 }
 
+// ParseOpenstackExternalNetworksListResponse parses an HTTP response from a OpenstackExternalNetworksListWithResponse call
+func ParseOpenstackExternalNetworksListResponse(rsp *http.Response) (*OpenstackExternalNetworksListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackExternalNetworksListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ExternalNetwork
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackExternalNetworksCountResponse parses an HTTP response from a OpenstackExternalNetworksCountWithResponse call
+func ParseOpenstackExternalNetworksCountResponse(rsp *http.Response) (*OpenstackExternalNetworksCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackExternalNetworksCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackExternalNetworksRetrieveResponse parses an HTTP response from a OpenstackExternalNetworksRetrieveWithResponse call
+func ParseOpenstackExternalNetworksRetrieveResponse(rsp *http.Response) (*OpenstackExternalNetworksRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackExternalNetworksRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ExternalNetwork
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseOpenstackFlavorsListResponse parses an HTTP response from a OpenstackFlavorsListWithResponse call
 func ParseOpenstackFlavorsListResponse(rsp *http.Response) (*OpenstackFlavorsListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -419677,6 +422209,284 @@ func ParseOpenstackVolumesUnlinkResponse(rsp *http.Response) (*OpenstackVolumesU
 	}
 
 	response := &OpenstackVolumesUnlinkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackDiscoveryListResponse parses an HTTP response from a OpenstackDiscoveryListWithResponse call
+func ParseOpenstackDiscoveryListResponse(rsp *http.Response) (*OpenstackDiscoveryListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackDiscoveryListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackDiscoveryCreateResponse parses an HTTP response from a OpenstackDiscoveryCreateWithResponse call
+func ParseOpenstackDiscoveryCreateResponse(rsp *http.Response) (*OpenstackDiscoveryCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackDiscoveryCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackDiscoveryDiscoverExternalNetworksResponse parses an HTTP response from a OpenstackDiscoveryDiscoverExternalNetworksWithResponse call
+func ParseOpenstackDiscoveryDiscoverExternalNetworksResponse(rsp *http.Response) (*OpenstackDiscoveryDiscoverExternalNetworksResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackDiscoveryDiscoverExternalNetworksResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ExternalNetworkResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackDiscoveryDiscoverFlavorsResponse parses an HTTP response from a OpenstackDiscoveryDiscoverFlavorsWithResponse call
+func ParseOpenstackDiscoveryDiscoverFlavorsResponse(rsp *http.Response) (*OpenstackDiscoveryDiscoverFlavorsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackDiscoveryDiscoverFlavorsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []FlavorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackDiscoveryDiscoverInstanceAvailabilityZonesResponse parses an HTTP response from a OpenstackDiscoveryDiscoverInstanceAvailabilityZonesWithResponse call
+func ParseOpenstackDiscoveryDiscoverInstanceAvailabilityZonesResponse(rsp *http.Response) (*OpenstackDiscoveryDiscoverInstanceAvailabilityZonesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackDiscoveryDiscoverInstanceAvailabilityZonesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AvailabilityZoneResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackDiscoveryDiscoverVolumeAvailabilityZonesResponse parses an HTTP response from a OpenstackDiscoveryDiscoverVolumeAvailabilityZonesWithResponse call
+func ParseOpenstackDiscoveryDiscoverVolumeAvailabilityZonesResponse(rsp *http.Response) (*OpenstackDiscoveryDiscoverVolumeAvailabilityZonesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackDiscoveryDiscoverVolumeAvailabilityZonesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AvailabilityZoneResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackDiscoveryDiscoverVolumeTypesResponse parses an HTTP response from a OpenstackDiscoveryDiscoverVolumeTypesWithResponse call
+func ParseOpenstackDiscoveryDiscoverVolumeTypesResponse(rsp *http.Response) (*OpenstackDiscoveryDiscoverVolumeTypesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackDiscoveryDiscoverVolumeTypesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []VolumeTypeResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackDiscoveryPreviewServiceAttributesResponse parses an HTTP response from a OpenstackDiscoveryPreviewServiceAttributesWithResponse call
+func ParseOpenstackDiscoveryPreviewServiceAttributesResponse(rsp *http.Response) (*OpenstackDiscoveryPreviewServiceAttributesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackDiscoveryPreviewServiceAttributesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ServiceAttributesPreview
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackDiscoveryValidateCredentialsResponse parses an HTTP response from a OpenstackDiscoveryValidateCredentialsWithResponse call
+func ParseOpenstackDiscoveryValidateCredentialsResponse(rsp *http.Response) (*OpenstackDiscoveryValidateCredentialsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackDiscoveryValidateCredentialsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CredentialsValidationResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackDiscoveryDestroyResponse parses an HTTP response from a OpenstackDiscoveryDestroyWithResponse call
+func ParseOpenstackDiscoveryDestroyResponse(rsp *http.Response) (*OpenstackDiscoveryDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackDiscoveryDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackDiscoveryRetrieveResponse parses an HTTP response from a OpenstackDiscoveryRetrieveWithResponse call
+func ParseOpenstackDiscoveryRetrieveResponse(rsp *http.Response) (*OpenstackDiscoveryRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackDiscoveryRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackDiscoveryPartialUpdateResponse parses an HTTP response from a OpenstackDiscoveryPartialUpdateWithResponse call
+func ParseOpenstackDiscoveryPartialUpdateResponse(rsp *http.Response) (*OpenstackDiscoveryPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackDiscoveryPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackDiscoveryUpdateResponse parses an HTTP response from a OpenstackDiscoveryUpdateWithResponse call
+func ParseOpenstackDiscoveryUpdateResponse(rsp *http.Response) (*OpenstackDiscoveryUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackDiscoveryUpdateResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
