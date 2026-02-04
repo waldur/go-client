@@ -1607,6 +1607,12 @@ const (
 	ModeEnumProduction ModeEnum = "production"
 )
 
+// Defines values for NameEnum.
+const (
+	EESSI NameEnum = "EESSI"
+	Spack NameEnum = "Spack"
+)
+
 // Defines values for NestedAttributeTypeEnum.
 const (
 	NestedAttributeTypeEnumBoolean NestedAttributeTypeEnum = "boolean"
@@ -8322,6 +8328,30 @@ const (
 	MarketplaceSoftwareCatalogsCountParamsOModified      MarketplaceSoftwareCatalogsCountParamsO = "modified"
 	MarketplaceSoftwareCatalogsCountParamsOName          MarketplaceSoftwareCatalogsCountParamsO = "name"
 	MarketplaceSoftwareCatalogsCountParamsOVersion       MarketplaceSoftwareCatalogsCountParamsO = "version"
+)
+
+// Defines values for MarketplaceSoftwareCatalogsDiscoverListParamsO.
+const (
+	MarketplaceSoftwareCatalogsDiscoverListParamsOCreated       MarketplaceSoftwareCatalogsDiscoverListParamsO = "created"
+	MarketplaceSoftwareCatalogsDiscoverListParamsOMinusCreated  MarketplaceSoftwareCatalogsDiscoverListParamsO = "-created"
+	MarketplaceSoftwareCatalogsDiscoverListParamsOMinusModified MarketplaceSoftwareCatalogsDiscoverListParamsO = "-modified"
+	MarketplaceSoftwareCatalogsDiscoverListParamsOMinusName     MarketplaceSoftwareCatalogsDiscoverListParamsO = "-name"
+	MarketplaceSoftwareCatalogsDiscoverListParamsOMinusVersion  MarketplaceSoftwareCatalogsDiscoverListParamsO = "-version"
+	MarketplaceSoftwareCatalogsDiscoverListParamsOModified      MarketplaceSoftwareCatalogsDiscoverListParamsO = "modified"
+	MarketplaceSoftwareCatalogsDiscoverListParamsOName          MarketplaceSoftwareCatalogsDiscoverListParamsO = "name"
+	MarketplaceSoftwareCatalogsDiscoverListParamsOVersion       MarketplaceSoftwareCatalogsDiscoverListParamsO = "version"
+)
+
+// Defines values for MarketplaceSoftwareCatalogsDiscoverCountParamsO.
+const (
+	MarketplaceSoftwareCatalogsDiscoverCountParamsOCreated       MarketplaceSoftwareCatalogsDiscoverCountParamsO = "created"
+	MarketplaceSoftwareCatalogsDiscoverCountParamsOMinusCreated  MarketplaceSoftwareCatalogsDiscoverCountParamsO = "-created"
+	MarketplaceSoftwareCatalogsDiscoverCountParamsOMinusModified MarketplaceSoftwareCatalogsDiscoverCountParamsO = "-modified"
+	MarketplaceSoftwareCatalogsDiscoverCountParamsOMinusName     MarketplaceSoftwareCatalogsDiscoverCountParamsO = "-name"
+	MarketplaceSoftwareCatalogsDiscoverCountParamsOMinusVersion  MarketplaceSoftwareCatalogsDiscoverCountParamsO = "-version"
+	MarketplaceSoftwareCatalogsDiscoverCountParamsOModified      MarketplaceSoftwareCatalogsDiscoverCountParamsO = "modified"
+	MarketplaceSoftwareCatalogsDiscoverCountParamsOName          MarketplaceSoftwareCatalogsDiscoverCountParamsO = "name"
+	MarketplaceSoftwareCatalogsDiscoverCountParamsOVersion       MarketplaceSoftwareCatalogsDiscoverCountParamsO = "version"
 )
 
 // Defines values for MarketplaceSoftwarePackagesListParamsO.
@@ -23232,6 +23262,9 @@ type MyAssignmentItem struct {
 	Uuid            openapi_types.UUID `json:"uuid"`
 }
 
+// NameEnum defines model for NameEnum.
+type NameEnum string
+
 // NameUUID defines model for NameUUID.
 type NameUUID struct {
 	// Name Name of the entity
@@ -35599,12 +35632,29 @@ type SoftwareCatalog struct {
 
 	// SourceUrl Catalog source URL
 	SourceUrl    *string             `json:"source_url,omitempty"`
+	TargetCount  *int                `json:"target_count,omitempty"`
 	UpdateErrors *string             `json:"update_errors,omitempty"`
 	Url          *string             `json:"url,omitempty"`
 	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
 
 	// Version Catalog version (e.g., 2023.06, 0.21.0)
-	Version string `json:"version"`
+	Version      string `json:"version"`
+	VersionCount *int   `json:"version_count,omitempty"`
+}
+
+// SoftwareCatalogDiscover defines model for SoftwareCatalogDiscover.
+type SoftwareCatalogDiscover struct {
+	CatalogType     string  `json:"catalog_type"`
+	Existing        bool    `json:"existing"`
+	ExistingVersion *string `json:"existing_version"`
+	LatestVersion   string  `json:"latest_version"`
+	Name            string  `json:"name"`
+	UpdateAvailable bool    `json:"update_available"`
+}
+
+// SoftwareCatalogImportRequest defines model for SoftwareCatalogImportRequest.
+type SoftwareCatalogImportRequest struct {
+	Name NameEnum `json:"name"`
 }
 
 // SoftwareCatalogRequest defines model for SoftwareCatalogRequest.
@@ -40388,8 +40438,11 @@ type CustomersListParams struct {
 	BackendId       *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// ContactDetails Contact details
-	ContactDetails *string                     `form:"contact_details,omitempty" json:"contact_details,omitempty"`
-	Field          *[]CustomersListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	ContactDetails *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
+
+	// CurrentUserHasProjectCreatePermission Return a list of customers where current user has project create permission.
+	CurrentUserHasProjectCreatePermission *bool                       `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
+	Field                                 *[]CustomersListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// Name Name
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
@@ -40437,6 +40490,9 @@ type CustomersCountParams struct {
 	// ContactDetails Contact details
 	ContactDetails *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
 
+	// CurrentUserHasProjectCreatePermission Return a list of customers where current user has project create permission.
+	CurrentUserHasProjectCreatePermission *bool `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
+
 	// Name Name
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
 
@@ -40480,6 +40536,9 @@ type CustomersCountriesListParams struct {
 	// ContactDetails Contact details
 	ContactDetails *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
 
+	// CurrentUserHasProjectCreatePermission Return a list of customers where current user has project create permission.
+	CurrentUserHasProjectCreatePermission *bool `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
+
 	// Name Name
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
 
@@ -40522,6 +40581,9 @@ type CustomersCountriesCountParams struct {
 
 	// ContactDetails Contact details
 	ContactDetails *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
+
+	// CurrentUserHasProjectCreatePermission Return a list of customers where current user has project create permission.
+	CurrentUserHasProjectCreatePermission *bool `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
 
 	// Name Name
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
@@ -40699,6 +40761,9 @@ type CustomersHistoryListParams struct {
 
 	// CreatedBefore Filter versions created before this timestamp (ISO 8601)
 	CreatedBefore *string `form:"created_before,omitempty" json:"created_before,omitempty"`
+
+	// CurrentUserHasProjectCreatePermission Return a list of customers where current user has project create permission.
+	CurrentUserHasProjectCreatePermission *bool `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
 
 	// Name Name
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
@@ -41436,6 +41501,9 @@ type FinancialReportsListParams struct {
 	// ContactDetails Contact details
 	ContactDetails *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
 
+	// CurrentUserHasProjectCreatePermission Return a list of customers where current user has project create permission.
+	CurrentUserHasProjectCreatePermission *bool `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
+
 	// Name Name
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
 
@@ -41478,6 +41546,9 @@ type FinancialReportsCountParams struct {
 
 	// ContactDetails Contact details
 	ContactDetails *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
+
+	// CurrentUserHasProjectCreatePermission Return a list of customers where current user has project create permission.
+	CurrentUserHasProjectCreatePermission *bool `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
 
 	// Name Name
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
@@ -47508,8 +47579,11 @@ type MarketplaceServiceProvidersCustomersListParams struct {
 	BackendId       *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// ContactDetails Contact details
-	ContactDetails *string                                                `form:"contact_details,omitempty" json:"contact_details,omitempty"`
-	Field          *[]MarketplaceServiceProvidersCustomersListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	ContactDetails *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
+
+	// CurrentUserHasProjectCreatePermission Return a list of customers where current user has project create permission.
+	CurrentUserHasProjectCreatePermission *bool                                                  `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
+	Field                                 *[]MarketplaceServiceProvidersCustomersListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// Name Name
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
@@ -47868,8 +47942,11 @@ type MarketplaceServiceProvidersUserCustomersListParams struct {
 	BackendId       *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// ContactDetails Contact details
-	ContactDetails *string                                                    `form:"contact_details,omitempty" json:"contact_details,omitempty"`
-	Field          *[]MarketplaceServiceProvidersUserCustomersListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	ContactDetails *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
+
+	// CurrentUserHasProjectCreatePermission Return a list of customers where current user has project create permission.
+	CurrentUserHasProjectCreatePermission *bool                                                      `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
+	Field                                 *[]MarketplaceServiceProvidersUserCustomersListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// Name Name
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
@@ -48284,6 +48361,44 @@ type MarketplaceSoftwareCatalogsCountParams struct {
 
 // MarketplaceSoftwareCatalogsCountParamsO defines parameters for MarketplaceSoftwareCatalogsCount.
 type MarketplaceSoftwareCatalogsCountParamsO string
+
+// MarketplaceSoftwareCatalogsDiscoverListParams defines parameters for MarketplaceSoftwareCatalogsDiscoverList.
+type MarketplaceSoftwareCatalogsDiscoverListParams struct {
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// O Ordering
+	//
+	O *[]MarketplaceSoftwareCatalogsDiscoverListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Version  *string   `form:"version,omitempty" json:"version,omitempty"`
+}
+
+// MarketplaceSoftwareCatalogsDiscoverListParamsO defines parameters for MarketplaceSoftwareCatalogsDiscoverList.
+type MarketplaceSoftwareCatalogsDiscoverListParamsO string
+
+// MarketplaceSoftwareCatalogsDiscoverCountParams defines parameters for MarketplaceSoftwareCatalogsDiscoverCount.
+type MarketplaceSoftwareCatalogsDiscoverCountParams struct {
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// O Ordering
+	//
+	O *[]MarketplaceSoftwareCatalogsDiscoverCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Version  *string   `form:"version,omitempty" json:"version,omitempty"`
+}
+
+// MarketplaceSoftwareCatalogsDiscoverCountParamsO defines parameters for MarketplaceSoftwareCatalogsDiscoverCount.
+type MarketplaceSoftwareCatalogsDiscoverCountParamsO string
 
 // MarketplaceSoftwarePackagesListParams defines parameters for MarketplaceSoftwarePackagesList.
 type MarketplaceSoftwarePackagesListParams struct {
@@ -59792,11 +59907,17 @@ type MarketplaceSlurmPeriodicUsagePoliciesReportCommandResultJSONRequestBody = S
 // MarketplaceSoftwareCatalogsCreateJSONRequestBody defines body for MarketplaceSoftwareCatalogsCreate for application/json ContentType.
 type MarketplaceSoftwareCatalogsCreateJSONRequestBody = SoftwareCatalogRequest
 
+// MarketplaceSoftwareCatalogsImportCatalogJSONRequestBody defines body for MarketplaceSoftwareCatalogsImportCatalog for application/json ContentType.
+type MarketplaceSoftwareCatalogsImportCatalogJSONRequestBody = SoftwareCatalogImportRequest
+
 // MarketplaceSoftwareCatalogsPartialUpdateJSONRequestBody defines body for MarketplaceSoftwareCatalogsPartialUpdate for application/json ContentType.
 type MarketplaceSoftwareCatalogsPartialUpdateJSONRequestBody = PatchedSoftwareCatalogRequest
 
 // MarketplaceSoftwareCatalogsUpdateJSONRequestBody defines body for MarketplaceSoftwareCatalogsUpdate for application/json ContentType.
 type MarketplaceSoftwareCatalogsUpdateJSONRequestBody = SoftwareCatalogRequest
+
+// MarketplaceSoftwareCatalogsUpdateCatalogJSONRequestBody defines body for MarketplaceSoftwareCatalogsUpdateCatalog for application/json ContentType.
+type MarketplaceSoftwareCatalogsUpdateCatalogJSONRequestBody = SoftwareCatalogRequest
 
 // MarketplaceSoftwarePackagesCreateJSONRequestBody defines body for MarketplaceSoftwarePackagesCreate for application/json ContentType.
 type MarketplaceSoftwarePackagesCreateJSONRequestBody = SoftwarePackageRequest
@@ -72148,6 +72269,17 @@ type ClientInterface interface {
 
 	MarketplaceSoftwareCatalogsCreate(ctx context.Context, body MarketplaceSoftwareCatalogsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceSoftwareCatalogsDiscoverList request
+	MarketplaceSoftwareCatalogsDiscoverList(ctx context.Context, params *MarketplaceSoftwareCatalogsDiscoverListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwareCatalogsDiscoverCount request
+	MarketplaceSoftwareCatalogsDiscoverCount(ctx context.Context, params *MarketplaceSoftwareCatalogsDiscoverCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwareCatalogsImportCatalogWithBody request with any body
+	MarketplaceSoftwareCatalogsImportCatalogWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceSoftwareCatalogsImportCatalog(ctx context.Context, body MarketplaceSoftwareCatalogsImportCatalogJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceSoftwareCatalogsDestroy request
 	MarketplaceSoftwareCatalogsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -72163,6 +72295,11 @@ type ClientInterface interface {
 	MarketplaceSoftwareCatalogsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceSoftwareCatalogsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwareCatalogsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwareCatalogsUpdateCatalogWithBody request with any body
+	MarketplaceSoftwareCatalogsUpdateCatalogWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceSoftwareCatalogsUpdateCatalog(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwareCatalogsUpdateCatalogJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceSoftwarePackagesList request
 	MarketplaceSoftwarePackagesList(ctx context.Context, params *MarketplaceSoftwarePackagesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -94540,6 +94677,54 @@ func (c *Client) MarketplaceSoftwareCatalogsCreate(ctx context.Context, body Mar
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceSoftwareCatalogsDiscoverList(ctx context.Context, params *MarketplaceSoftwareCatalogsDiscoverListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareCatalogsDiscoverListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareCatalogsDiscoverCount(ctx context.Context, params *MarketplaceSoftwareCatalogsDiscoverCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareCatalogsDiscoverCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareCatalogsImportCatalogWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareCatalogsImportCatalogRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareCatalogsImportCatalog(ctx context.Context, body MarketplaceSoftwareCatalogsImportCatalogJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareCatalogsImportCatalogRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceSoftwareCatalogsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceSoftwareCatalogsDestroyRequest(c.Server, uuid)
 	if err != nil {
@@ -94602,6 +94787,30 @@ func (c *Client) MarketplaceSoftwareCatalogsUpdateWithBody(ctx context.Context, 
 
 func (c *Client) MarketplaceSoftwareCatalogsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwareCatalogsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceSoftwareCatalogsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareCatalogsUpdateCatalogWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareCatalogsUpdateCatalogRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareCatalogsUpdateCatalog(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwareCatalogsUpdateCatalogJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareCatalogsUpdateCatalogRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -141508,6 +141717,22 @@ func NewCustomersListRequest(server string, params *CustomersListParams) (*http.
 
 		}
 
+		if params.CurrentUserHasProjectCreatePermission != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "current_user_has_project_create_permission", runtime.ParamLocationQuery, *params.CurrentUserHasProjectCreatePermission); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Field != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
@@ -141800,6 +142025,22 @@ func NewCustomersCountRequest(server string, params *CustomersCountParams) (*htt
 		if params.ContactDetails != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "contact_details", runtime.ParamLocationQuery, *params.ContactDetails); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CurrentUserHasProjectCreatePermission != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "current_user_has_project_create_permission", runtime.ParamLocationQuery, *params.CurrentUserHasProjectCreatePermission); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -142153,6 +142394,22 @@ func NewCustomersCountriesListRequest(server string, params *CustomersCountriesL
 
 		}
 
+		if params.CurrentUserHasProjectCreatePermission != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "current_user_has_project_create_permission", runtime.ParamLocationQuery, *params.CurrentUserHasProjectCreatePermission); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Name != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
@@ -142429,6 +142686,22 @@ func NewCustomersCountriesCountRequest(server string, params *CustomersCountries
 		if params.ContactDetails != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "contact_details", runtime.ParamLocationQuery, *params.ContactDetails); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CurrentUserHasProjectCreatePermission != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "current_user_has_project_create_permission", runtime.ParamLocationQuery, *params.CurrentUserHasProjectCreatePermission); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -143721,6 +143994,22 @@ func NewCustomersHistoryListRequest(server string, uuid openapi_types.UUID, para
 		if params.CreatedBefore != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created_before", runtime.ParamLocationQuery, *params.CreatedBefore); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CurrentUserHasProjectCreatePermission != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "current_user_has_project_create_permission", runtime.ParamLocationQuery, *params.CurrentUserHasProjectCreatePermission); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -150156,6 +150445,22 @@ func NewFinancialReportsListRequest(server string, params *FinancialReportsListP
 
 		}
 
+		if params.CurrentUserHasProjectCreatePermission != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "current_user_has_project_create_permission", runtime.ParamLocationQuery, *params.CurrentUserHasProjectCreatePermission); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Name != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
@@ -150432,6 +150737,22 @@ func NewFinancialReportsCountRequest(server string, params *FinancialReportsCoun
 		if params.ContactDetails != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "contact_details", runtime.ParamLocationQuery, *params.ContactDetails); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CurrentUserHasProjectCreatePermission != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "current_user_has_project_create_permission", runtime.ParamLocationQuery, *params.CurrentUserHasProjectCreatePermission); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -201178,6 +201499,22 @@ func NewMarketplaceServiceProvidersCustomersListRequest(server string, servicePr
 
 		}
 
+		if params.CurrentUserHasProjectCreatePermission != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "current_user_has_project_create_permission", runtime.ParamLocationQuery, *params.CurrentUserHasProjectCreatePermission); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Field != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
@@ -203229,6 +203566,22 @@ func NewMarketplaceServiceProvidersUserCustomersListRequest(server string, servi
 		if params.ContactDetails != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "contact_details", runtime.ParamLocationQuery, *params.ContactDetails); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CurrentUserHasProjectCreatePermission != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "current_user_has_project_create_permission", runtime.ParamLocationQuery, *params.CurrentUserHasProjectCreatePermission); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -207615,6 +207968,272 @@ func NewMarketplaceSoftwareCatalogsCreateRequestWithBody(server string, contentT
 	return req, nil
 }
 
+// NewMarketplaceSoftwareCatalogsDiscoverListRequest generates requests for MarketplaceSoftwareCatalogsDiscoverList
+func NewMarketplaceSoftwareCatalogsDiscoverListRequest(server string, params *MarketplaceSoftwareCatalogsDiscoverListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-catalogs/discover/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Version != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "version", runtime.ParamLocationQuery, *params.Version); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwareCatalogsDiscoverCountRequest generates requests for MarketplaceSoftwareCatalogsDiscoverCount
+func NewMarketplaceSoftwareCatalogsDiscoverCountRequest(server string, params *MarketplaceSoftwareCatalogsDiscoverCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-catalogs/discover/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Version != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "version", runtime.ParamLocationQuery, *params.Version); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwareCatalogsImportCatalogRequest calls the generic MarketplaceSoftwareCatalogsImportCatalog builder with application/json body
+func NewMarketplaceSoftwareCatalogsImportCatalogRequest(server string, body MarketplaceSoftwareCatalogsImportCatalogJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceSoftwareCatalogsImportCatalogRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceSoftwareCatalogsImportCatalogRequestWithBody generates requests for MarketplaceSoftwareCatalogsImportCatalog with any type of body
+func NewMarketplaceSoftwareCatalogsImportCatalogRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-catalogs/import_catalog/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceSoftwareCatalogsDestroyRequest generates requests for MarketplaceSoftwareCatalogsDestroy
 func NewMarketplaceSoftwareCatalogsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -207768,6 +208387,53 @@ func NewMarketplaceSoftwareCatalogsUpdateRequestWithBody(server string, uuid ope
 	}
 
 	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwareCatalogsUpdateCatalogRequest calls the generic MarketplaceSoftwareCatalogsUpdateCatalog builder with application/json body
+func NewMarketplaceSoftwareCatalogsUpdateCatalogRequest(server string, uuid openapi_types.UUID, body MarketplaceSoftwareCatalogsUpdateCatalogJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceSoftwareCatalogsUpdateCatalogRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceSoftwareCatalogsUpdateCatalogRequestWithBody generates requests for MarketplaceSoftwareCatalogsUpdateCatalog with any type of body
+func NewMarketplaceSoftwareCatalogsUpdateCatalogRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-catalogs/%s/update_catalog/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
@@ -305545,6 +306211,17 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceSoftwareCatalogsCreateWithResponse(ctx context.Context, body MarketplaceSoftwareCatalogsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsCreateResponse, error)
 
+	// MarketplaceSoftwareCatalogsDiscoverListWithResponse request
+	MarketplaceSoftwareCatalogsDiscoverListWithResponse(ctx context.Context, params *MarketplaceSoftwareCatalogsDiscoverListParams, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsDiscoverListResponse, error)
+
+	// MarketplaceSoftwareCatalogsDiscoverCountWithResponse request
+	MarketplaceSoftwareCatalogsDiscoverCountWithResponse(ctx context.Context, params *MarketplaceSoftwareCatalogsDiscoverCountParams, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsDiscoverCountResponse, error)
+
+	// MarketplaceSoftwareCatalogsImportCatalogWithBodyWithResponse request with any body
+	MarketplaceSoftwareCatalogsImportCatalogWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsImportCatalogResponse, error)
+
+	MarketplaceSoftwareCatalogsImportCatalogWithResponse(ctx context.Context, body MarketplaceSoftwareCatalogsImportCatalogJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsImportCatalogResponse, error)
+
 	// MarketplaceSoftwareCatalogsDestroyWithResponse request
 	MarketplaceSoftwareCatalogsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsDestroyResponse, error)
 
@@ -305560,6 +306237,11 @@ type ClientWithResponsesInterface interface {
 	MarketplaceSoftwareCatalogsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsUpdateResponse, error)
 
 	MarketplaceSoftwareCatalogsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwareCatalogsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsUpdateResponse, error)
+
+	// MarketplaceSoftwareCatalogsUpdateCatalogWithBodyWithResponse request with any body
+	MarketplaceSoftwareCatalogsUpdateCatalogWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsUpdateCatalogResponse, error)
+
+	MarketplaceSoftwareCatalogsUpdateCatalogWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwareCatalogsUpdateCatalogJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsUpdateCatalogResponse, error)
 
 	// MarketplaceSoftwarePackagesListWithResponse request
 	MarketplaceSoftwarePackagesListWithResponse(ctx context.Context, params *MarketplaceSoftwarePackagesListParams, reqEditors ...RequestEditorFn) (*MarketplaceSoftwarePackagesListResponse, error)
@@ -333765,6 +334447,70 @@ func (r MarketplaceSoftwareCatalogsCreateResponse) StatusCode() int {
 	return 0
 }
 
+type MarketplaceSoftwareCatalogsDiscoverListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]SoftwareCatalogDiscover
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwareCatalogsDiscoverListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwareCatalogsDiscoverListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwareCatalogsDiscoverCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwareCatalogsDiscoverCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwareCatalogsDiscoverCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwareCatalogsImportCatalogResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwareCatalogsImportCatalogResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwareCatalogsImportCatalogResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceSoftwareCatalogsDestroyResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -333846,6 +334592,27 @@ func (r MarketplaceSoftwareCatalogsUpdateResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceSoftwareCatalogsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwareCatalogsUpdateCatalogResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwareCatalogsUpdateCatalogResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwareCatalogsUpdateCatalogResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -372141,6 +372908,41 @@ func (c *ClientWithResponses) MarketplaceSoftwareCatalogsCreateWithResponse(ctx 
 	return ParseMarketplaceSoftwareCatalogsCreateResponse(rsp)
 }
 
+// MarketplaceSoftwareCatalogsDiscoverListWithResponse request returning *MarketplaceSoftwareCatalogsDiscoverListResponse
+func (c *ClientWithResponses) MarketplaceSoftwareCatalogsDiscoverListWithResponse(ctx context.Context, params *MarketplaceSoftwareCatalogsDiscoverListParams, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsDiscoverListResponse, error) {
+	rsp, err := c.MarketplaceSoftwareCatalogsDiscoverList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareCatalogsDiscoverListResponse(rsp)
+}
+
+// MarketplaceSoftwareCatalogsDiscoverCountWithResponse request returning *MarketplaceSoftwareCatalogsDiscoverCountResponse
+func (c *ClientWithResponses) MarketplaceSoftwareCatalogsDiscoverCountWithResponse(ctx context.Context, params *MarketplaceSoftwareCatalogsDiscoverCountParams, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsDiscoverCountResponse, error) {
+	rsp, err := c.MarketplaceSoftwareCatalogsDiscoverCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareCatalogsDiscoverCountResponse(rsp)
+}
+
+// MarketplaceSoftwareCatalogsImportCatalogWithBodyWithResponse request with arbitrary body returning *MarketplaceSoftwareCatalogsImportCatalogResponse
+func (c *ClientWithResponses) MarketplaceSoftwareCatalogsImportCatalogWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsImportCatalogResponse, error) {
+	rsp, err := c.MarketplaceSoftwareCatalogsImportCatalogWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareCatalogsImportCatalogResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceSoftwareCatalogsImportCatalogWithResponse(ctx context.Context, body MarketplaceSoftwareCatalogsImportCatalogJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsImportCatalogResponse, error) {
+	rsp, err := c.MarketplaceSoftwareCatalogsImportCatalog(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareCatalogsImportCatalogResponse(rsp)
+}
+
 // MarketplaceSoftwareCatalogsDestroyWithResponse request returning *MarketplaceSoftwareCatalogsDestroyResponse
 func (c *ClientWithResponses) MarketplaceSoftwareCatalogsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsDestroyResponse, error) {
 	rsp, err := c.MarketplaceSoftwareCatalogsDestroy(ctx, uuid, reqEditors...)
@@ -372191,6 +372993,23 @@ func (c *ClientWithResponses) MarketplaceSoftwareCatalogsUpdateWithResponse(ctx 
 		return nil, err
 	}
 	return ParseMarketplaceSoftwareCatalogsUpdateResponse(rsp)
+}
+
+// MarketplaceSoftwareCatalogsUpdateCatalogWithBodyWithResponse request with arbitrary body returning *MarketplaceSoftwareCatalogsUpdateCatalogResponse
+func (c *ClientWithResponses) MarketplaceSoftwareCatalogsUpdateCatalogWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsUpdateCatalogResponse, error) {
+	rsp, err := c.MarketplaceSoftwareCatalogsUpdateCatalogWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareCatalogsUpdateCatalogResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceSoftwareCatalogsUpdateCatalogWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwareCatalogsUpdateCatalogJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsUpdateCatalogResponse, error) {
+	rsp, err := c.MarketplaceSoftwareCatalogsUpdateCatalog(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareCatalogsUpdateCatalogResponse(rsp)
 }
 
 // MarketplaceSoftwarePackagesListWithResponse request returning *MarketplaceSoftwarePackagesListResponse
@@ -411211,6 +412030,64 @@ func ParseMarketplaceSoftwareCatalogsCreateResponse(rsp *http.Response) (*Market
 	return response, nil
 }
 
+// ParseMarketplaceSoftwareCatalogsDiscoverListResponse parses an HTTP response from a MarketplaceSoftwareCatalogsDiscoverListWithResponse call
+func ParseMarketplaceSoftwareCatalogsDiscoverListResponse(rsp *http.Response) (*MarketplaceSoftwareCatalogsDiscoverListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwareCatalogsDiscoverListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []SoftwareCatalogDiscover
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwareCatalogsDiscoverCountResponse parses an HTTP response from a MarketplaceSoftwareCatalogsDiscoverCountWithResponse call
+func ParseMarketplaceSoftwareCatalogsDiscoverCountResponse(rsp *http.Response) (*MarketplaceSoftwareCatalogsDiscoverCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwareCatalogsDiscoverCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwareCatalogsImportCatalogResponse parses an HTTP response from a MarketplaceSoftwareCatalogsImportCatalogWithResponse call
+func ParseMarketplaceSoftwareCatalogsImportCatalogResponse(rsp *http.Response) (*MarketplaceSoftwareCatalogsImportCatalogResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwareCatalogsImportCatalogResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceSoftwareCatalogsDestroyResponse parses an HTTP response from a MarketplaceSoftwareCatalogsDestroyWithResponse call
 func ParseMarketplaceSoftwareCatalogsDestroyResponse(rsp *http.Response) (*MarketplaceSoftwareCatalogsDestroyResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -411300,6 +412177,22 @@ func ParseMarketplaceSoftwareCatalogsUpdateResponse(rsp *http.Response) (*Market
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwareCatalogsUpdateCatalogResponse parses an HTTP response from a MarketplaceSoftwareCatalogsUpdateCatalogWithResponse call
+func ParseMarketplaceSoftwareCatalogsUpdateCatalogResponse(rsp *http.Response) (*MarketplaceSoftwareCatalogsUpdateCatalogResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwareCatalogsUpdateCatalogResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
