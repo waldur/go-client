@@ -1526,10 +1526,11 @@ const (
 
 // Defines values for InvoiceStateEnum.
 const (
-	InvoiceStateEnumCanceled InvoiceStateEnum = "canceled"
-	InvoiceStateEnumCreated  InvoiceStateEnum = "created"
-	InvoiceStateEnumPaid     InvoiceStateEnum = "paid"
-	InvoiceStateEnumPending  InvoiceStateEnum = "pending"
+	InvoiceStateEnumCanceled            InvoiceStateEnum = "canceled"
+	InvoiceStateEnumCreated             InvoiceStateEnum = "created"
+	InvoiceStateEnumPaid                InvoiceStateEnum = "paid"
+	InvoiceStateEnumPending             InvoiceStateEnum = "pending"
+	InvoiceStateEnumPendingFinalization InvoiceStateEnum = "pending_finalization"
 )
 
 // Defines values for IssueStatusType.
@@ -5081,10 +5082,11 @@ const (
 
 // Defines values for InvoicesListParamsState.
 const (
-	InvoicesListParamsStateCanceled InvoicesListParamsState = "canceled"
-	InvoicesListParamsStateCreated  InvoicesListParamsState = "created"
-	InvoicesListParamsStatePaid     InvoicesListParamsState = "paid"
-	InvoicesListParamsStatePending  InvoicesListParamsState = "pending"
+	InvoicesListParamsStateCanceled            InvoicesListParamsState = "canceled"
+	InvoicesListParamsStateCreated             InvoicesListParamsState = "created"
+	InvoicesListParamsStatePaid                InvoicesListParamsState = "paid"
+	InvoicesListParamsStatePending             InvoicesListParamsState = "pending"
+	InvoicesListParamsStatePendingFinalization InvoicesListParamsState = "pending_finalization"
 )
 
 // Defines values for InvoicesCountParamsO.
@@ -5099,10 +5101,11 @@ const (
 
 // Defines values for InvoicesCountParamsState.
 const (
-	InvoicesCountParamsStateCanceled InvoicesCountParamsState = "canceled"
-	InvoicesCountParamsStateCreated  InvoicesCountParamsState = "created"
-	InvoicesCountParamsStatePaid     InvoicesCountParamsState = "paid"
-	InvoicesCountParamsStatePending  InvoicesCountParamsState = "pending"
+	InvoicesCountParamsStateCanceled            InvoicesCountParamsState = "canceled"
+	InvoicesCountParamsStateCreated             InvoicesCountParamsState = "created"
+	InvoicesCountParamsStatePaid                InvoicesCountParamsState = "paid"
+	InvoicesCountParamsStatePending             InvoicesCountParamsState = "pending"
+	InvoicesCountParamsStatePendingFinalization InvoicesCountParamsState = "pending_finalization"
 )
 
 // Defines values for InvoicesRetrieveParamsField.
@@ -5141,10 +5144,11 @@ const (
 
 // Defines values for InvoicesHistoryListParamsState.
 const (
-	InvoicesHistoryListParamsStateCanceled InvoicesHistoryListParamsState = "canceled"
-	InvoicesHistoryListParamsStateCreated  InvoicesHistoryListParamsState = "created"
-	InvoicesHistoryListParamsStatePaid     InvoicesHistoryListParamsState = "paid"
-	InvoicesHistoryListParamsStatePending  InvoicesHistoryListParamsState = "pending"
+	InvoicesHistoryListParamsStateCanceled            InvoicesHistoryListParamsState = "canceled"
+	InvoicesHistoryListParamsStateCreated             InvoicesHistoryListParamsState = "created"
+	InvoicesHistoryListParamsStatePaid                InvoicesHistoryListParamsState = "paid"
+	InvoicesHistoryListParamsStatePending             InvoicesHistoryListParamsState = "pending"
+	InvoicesHistoryListParamsStatePendingFinalization InvoicesHistoryListParamsState = "pending_finalization"
 )
 
 // Defines values for InvoicesItemsRetrieveParamsO.
@@ -5171,10 +5175,11 @@ const (
 
 // Defines values for InvoicesStatsListParamsState.
 const (
-	InvoicesStatsListParamsStateCanceled InvoicesStatsListParamsState = "canceled"
-	InvoicesStatsListParamsStateCreated  InvoicesStatsListParamsState = "created"
-	InvoicesStatsListParamsStatePaid     InvoicesStatsListParamsState = "paid"
-	InvoicesStatsListParamsStatePending  InvoicesStatsListParamsState = "pending"
+	InvoicesStatsListParamsStateCanceled            InvoicesStatsListParamsState = "canceled"
+	InvoicesStatsListParamsStateCreated             InvoicesStatsListParamsState = "created"
+	InvoicesStatsListParamsStatePaid                InvoicesStatsListParamsState = "paid"
+	InvoicesStatsListParamsStatePending             InvoicesStatsListParamsState = "pending"
+	InvoicesStatsListParamsStatePendingFinalization InvoicesStatsListParamsState = "pending_finalization"
 )
 
 // Defines values for KeycloakUserGroupMembershipsListParamsState.
