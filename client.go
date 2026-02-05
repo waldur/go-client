@@ -696,10 +696,12 @@ const (
 	EventGroupsEnumAccessSubnets      EventGroupsEnum = "access_subnets"
 	EventGroupsEnumAuth               EventGroupsEnum = "auth"
 	EventGroupsEnumCall               EventGroupsEnum = "call"
+	EventGroupsEnumChat               EventGroupsEnum = "chat"
 	EventGroupsEnumCredits            EventGroupsEnum = "credits"
 	EventGroupsEnumCustomers          EventGroupsEnum = "customers"
 	EventGroupsEnumInvoices           EventGroupsEnum = "invoices"
 	EventGroupsEnumOfferingAccounting EventGroupsEnum = "offering_accounting"
+	EventGroupsEnumOnboarding         EventGroupsEnum = "onboarding"
 	EventGroupsEnumPermissions        EventGroupsEnum = "permissions"
 	EventGroupsEnumProjects           EventGroupsEnum = "projects"
 	EventGroupsEnumProposal           EventGroupsEnum = "proposal"
@@ -732,6 +734,8 @@ const (
 	EventMetadataResponseEventGroupsBlockModificationOfExistingResources             EventMetadataResponseEventGroups = "block_modification_of_existing_resources"
 	EventMetadataResponseEventGroupsCallDocumentAdded                                EventMetadataResponseEventGroups = "call_document_added"
 	EventMetadataResponseEventGroupsCallDocumentRemoved                              EventMetadataResponseEventGroups = "call_document_removed"
+	EventMetadataResponseEventGroupsChatSessionAccessed                              EventMetadataResponseEventGroups = "chat_session_accessed"
+	EventMetadataResponseEventGroupsChatThreadAccessed                               EventMetadataResponseEventGroups = "chat_thread_accessed"
 	EventMetadataResponseEventGroupsCreateOfCreditByStaff                            EventMetadataResponseEventGroups = "create_of_credit_by_staff"
 	EventMetadataResponseEventGroupsCustomNotification                               EventMetadataResponseEventGroups = "custom_notification"
 	EventMetadataResponseEventGroupsCustomerCreationSucceeded                        EventMetadataResponseEventGroups = "customer_creation_succeeded"
@@ -804,6 +808,8 @@ const (
 	EventMetadataResponseEventGroupsNotifyExternalUser                               EventMetadataResponseEventGroups = "notify_external_user"
 	EventMetadataResponseEventGroupsNotifyOrganizationOwners                         EventMetadataResponseEventGroups = "notify_organization_owners"
 	EventMetadataResponseEventGroupsNotifyProjectTeam                                EventMetadataResponseEventGroups = "notify_project_team"
+	EventMetadataResponseEventGroupsOnboardingVerificationDeleted                    EventMetadataResponseEventGroups = "onboarding_verification_deleted"
+	EventMetadataResponseEventGroupsOnboardingVerificationDeletedByTask              EventMetadataResponseEventGroups = "onboarding_verification_deleted_by_task"
 	EventMetadataResponseEventGroupsOpenstackFloatingIpAttached                      EventMetadataResponseEventGroups = "openstack_floating_ip_attached"
 	EventMetadataResponseEventGroupsOpenstackFloatingIpConnected                     EventMetadataResponseEventGroups = "openstack_floating_ip_connected"
 	EventMetadataResponseEventGroupsOpenstackFloatingIpDescriptionUpdated            EventMetadataResponseEventGroups = "openstack_floating_ip_description_updated"
@@ -998,6 +1004,8 @@ const (
 	EventTypesEnumBlockModificationOfExistingResources             EventTypesEnum = "block_modification_of_existing_resources"
 	EventTypesEnumCallDocumentAdded                                EventTypesEnum = "call_document_added"
 	EventTypesEnumCallDocumentRemoved                              EventTypesEnum = "call_document_removed"
+	EventTypesEnumChatSessionAccessed                              EventTypesEnum = "chat_session_accessed"
+	EventTypesEnumChatThreadAccessed                               EventTypesEnum = "chat_thread_accessed"
 	EventTypesEnumCreateOfCreditByStaff                            EventTypesEnum = "create_of_credit_by_staff"
 	EventTypesEnumCustomNotification                               EventTypesEnum = "custom_notification"
 	EventTypesEnumCustomerCreationSucceeded                        EventTypesEnum = "customer_creation_succeeded"
@@ -1070,6 +1078,8 @@ const (
 	EventTypesEnumNotifyExternalUser                               EventTypesEnum = "notify_external_user"
 	EventTypesEnumNotifyOrganizationOwners                         EventTypesEnum = "notify_organization_owners"
 	EventTypesEnumNotifyProjectTeam                                EventTypesEnum = "notify_project_team"
+	EventTypesEnumOnboardingVerificationDeleted                    EventTypesEnum = "onboarding_verification_deleted"
+	EventTypesEnumOnboardingVerificationDeletedByTask              EventTypesEnum = "onboarding_verification_deleted_by_task"
 	EventTypesEnumOpenstackFloatingIpAttached                      EventTypesEnum = "openstack_floating_ip_attached"
 	EventTypesEnumOpenstackFloatingIpConnected                     EventTypesEnum = "openstack_floating_ip_connected"
 	EventTypesEnumOpenstackFloatingIpDescriptionUpdated            EventTypesEnum = "openstack_floating_ip_description_updated"
@@ -1593,6 +1603,12 @@ const (
 	Fairflow  MatchingAlgorithm = "fairflow"
 	Hungarian MatchingAlgorithm = "hungarian"
 	Minmax    MatchingAlgorithm = "minmax"
+)
+
+// Defines values for MessageRoleEnum.
+const (
+	MessageRoleEnumAssistant MessageRoleEnum = "assistant"
+	MessageRoleEnumUser      MessageRoleEnum = "user"
 )
 
 // Defines values for MinimalConsumptionLogicEnum.
@@ -4093,6 +4109,48 @@ const (
 	CallReviewerPoolsCountParamsOMinusCurrentAssignments  CallReviewerPoolsCountParamsO = "-current_assignments"
 	CallReviewerPoolsCountParamsOMinusExpertiseMatchScore CallReviewerPoolsCountParamsO = "-expertise_match_score"
 	CallReviewerPoolsCountParamsOMinusInvitedAt           CallReviewerPoolsCountParamsO = "-invited_at"
+)
+
+// Defines values for ChatSessionsListParamsField.
+const (
+	ChatSessionsListParamsFieldCreated      ChatSessionsListParamsField = "created"
+	ChatSessionsListParamsFieldModified     ChatSessionsListParamsField = "modified"
+	ChatSessionsListParamsFieldUser         ChatSessionsListParamsField = "user"
+	ChatSessionsListParamsFieldUserFullName ChatSessionsListParamsField = "user_full_name"
+	ChatSessionsListParamsFieldUserUsername ChatSessionsListParamsField = "user_username"
+	ChatSessionsListParamsFieldUuid         ChatSessionsListParamsField = "uuid"
+)
+
+// Defines values for ChatSessionsRetrieveParamsField.
+const (
+	ChatSessionsRetrieveParamsFieldCreated      ChatSessionsRetrieveParamsField = "created"
+	ChatSessionsRetrieveParamsFieldModified     ChatSessionsRetrieveParamsField = "modified"
+	ChatSessionsRetrieveParamsFieldUser         ChatSessionsRetrieveParamsField = "user"
+	ChatSessionsRetrieveParamsFieldUserFullName ChatSessionsRetrieveParamsField = "user_full_name"
+	ChatSessionsRetrieveParamsFieldUserUsername ChatSessionsRetrieveParamsField = "user_username"
+	ChatSessionsRetrieveParamsFieldUuid         ChatSessionsRetrieveParamsField = "uuid"
+)
+
+// Defines values for ChatThreadsListParamsField.
+const (
+	ChatThreadsListParamsFieldChatSession  ChatThreadsListParamsField = "chat_session"
+	ChatThreadsListParamsFieldCreated      ChatThreadsListParamsField = "created"
+	ChatThreadsListParamsFieldFlags        ChatThreadsListParamsField = "flags"
+	ChatThreadsListParamsFieldIsArchived   ChatThreadsListParamsField = "is_archived"
+	ChatThreadsListParamsFieldMessageCount ChatThreadsListParamsField = "message_count"
+	ChatThreadsListParamsFieldName         ChatThreadsListParamsField = "name"
+	ChatThreadsListParamsFieldUuid         ChatThreadsListParamsField = "uuid"
+)
+
+// Defines values for ChatThreadsRetrieveParamsField.
+const (
+	ChatThreadsRetrieveParamsFieldChatSession  ChatThreadsRetrieveParamsField = "chat_session"
+	ChatThreadsRetrieveParamsFieldCreated      ChatThreadsRetrieveParamsField = "created"
+	ChatThreadsRetrieveParamsFieldFlags        ChatThreadsRetrieveParamsField = "flags"
+	ChatThreadsRetrieveParamsFieldIsArchived   ChatThreadsRetrieveParamsField = "is_archived"
+	ChatThreadsRetrieveParamsFieldMessageCount ChatThreadsRetrieveParamsField = "message_count"
+	ChatThreadsRetrieveParamsFieldName         ChatThreadsRetrieveParamsField = "name"
+	ChatThreadsRetrieveParamsFieldUuid         ChatThreadsRetrieveParamsField = "uuid"
 )
 
 // Defines values for ChecklistsAdminQuestionsListParamsChecklistType.
@@ -16603,6 +16661,18 @@ type CascadeStepRequest struct {
 // CascadeStepTypeEnum defines model for CascadeStepTypeEnum.
 type CascadeStepTypeEnum string
 
+// CatalogSummary defines model for CatalogSummary.
+type CatalogSummary struct {
+	Description *string `json:"description,omitempty"`
+
+	// Name Catalog name (e.g., EESSI, Spack)
+	Name *string             `json:"name,omitempty"`
+	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
+
+	// Version Catalog version (e.g., 2023.06, 0.21.0)
+	Version *string `json:"version,omitempty"`
+}
+
 // CatalogTypeEnum defines model for CatalogTypeEnum.
 type CatalogTypeEnum string
 
@@ -16930,6 +17000,12 @@ type CeleryWorkerStats struct {
 type ChatRequestRequest struct {
 	// Input User input text for the chat model.
 	Input string `json:"input"`
+
+	// ThreadUuid Existing thread UUID. If omitted, a new thread is created when storage is enabled.
+	ThreadUuid *openapi_types.UUID `json:"thread_uuid"`
+
+	// UpdateThreadName Thread UUID whose name should be set to the assistant's response. Skips message persistence for this call.
+	UpdateThreadName *openapi_types.UUID `json:"update_thread_name"`
 }
 
 // ChatResponse defines model for ChatResponse.
@@ -16957,6 +17033,16 @@ type ChatResponse struct {
 
 	// T Tag or language for dynamic blocks.
 	T *string `json:"t,omitempty"`
+}
+
+// ChatSession defines model for ChatSession.
+type ChatSession struct {
+	Created      *time.Time          `json:"created,omitempty"`
+	Modified     *time.Time          `json:"modified,omitempty"`
+	User         *openapi_types.UUID `json:"user,omitempty"`
+	UserFullName *string             `json:"user_full_name,omitempty"`
+	UserUsername *string             `json:"user_username,omitempty"`
+	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // CheckUniqueBackendIDRequest defines model for CheckUniqueBackendIDRequest.
@@ -17634,6 +17720,8 @@ type ConstanceSettings struct {
 	KEYCLOAKICON                                   *string              `json:"KEYCLOAK_ICON"`
 	LANGUAGECHOICES                                *string              `json:"LANGUAGE_CHOICES,omitempty"`
 	LLMCHATENABLED                                 *bool                `json:"LLM_CHAT_ENABLED,omitempty"`
+	LLMCHATSESSIONRETENTIONDAYS                    *int                 `json:"LLM_CHAT_SESSION_RETENTION_DAYS,omitempty"`
+	LLMCHATSTORAGEENABLED                          *bool                `json:"LLM_CHAT_STORAGE_ENABLED,omitempty"`
 	LLMINFERENCESAPITOKEN                          *string              `json:"LLM_INFERENCES_API_TOKEN,omitempty"`
 	LLMINFERENCESAPIURL                            *string              `json:"LLM_INFERENCES_API_URL,omitempty"`
 	LLMINFERENCESBACKENDTYPE                       *string              `json:"LLM_INFERENCES_BACKEND_TYPE,omitempty"`
@@ -17860,6 +17948,8 @@ type ConstanceSettingsRequest struct {
 	KEYCLOAKICON                                   *openapi_types.File             `json:"KEYCLOAK_ICON"`
 	LANGUAGECHOICES                                *string                         `json:"LANGUAGE_CHOICES,omitempty"`
 	LLMCHATENABLED                                 *bool                           `json:"LLM_CHAT_ENABLED,omitempty"`
+	LLMCHATSESSIONRETENTIONDAYS                    *int                            `json:"LLM_CHAT_SESSION_RETENTION_DAYS,omitempty"`
+	LLMCHATSTORAGEENABLED                          *bool                           `json:"LLM_CHAT_STORAGE_ENABLED,omitempty"`
 	LLMINFERENCESAPITOKEN                          *string                         `json:"LLM_INFERENCES_API_TOKEN,omitempty"`
 	LLMINFERENCESAPIURL                            *string                         `json:"LLM_INFERENCES_API_URL,omitempty"`
 	LLMINFERENCESBACKENDTYPE                       *string                         `json:"LLM_INFERENCES_BACKEND_TYPE,omitempty"`
@@ -18086,6 +18176,8 @@ type ConstanceSettingsRequestForm struct {
 	KEYCLOAKICON                                   *openapi_types.File             `json:"KEYCLOAK_ICON"`
 	LANGUAGECHOICES                                *string                         `json:"LANGUAGE_CHOICES,omitempty"`
 	LLMCHATENABLED                                 *bool                           `json:"LLM_CHAT_ENABLED,omitempty"`
+	LLMCHATSESSIONRETENTIONDAYS                    *int                            `json:"LLM_CHAT_SESSION_RETENTION_DAYS,omitempty"`
+	LLMCHATSTORAGEENABLED                          *bool                           `json:"LLM_CHAT_STORAGE_ENABLED,omitempty"`
 	LLMINFERENCESAPITOKEN                          *string                         `json:"LLM_INFERENCES_API_TOKEN,omitempty"`
 	LLMINFERENCESAPIURL                            *string                         `json:"LLM_INFERENCES_API_URL,omitempty"`
 	LLMINFERENCESBACKENDTYPE                       *string                         `json:"LLM_INFERENCES_BACKEND_TYPE,omitempty"`
@@ -18312,6 +18404,8 @@ type ConstanceSettingsRequestMultipart struct {
 	KEYCLOAKICON                                   *openapi_types.File             `json:"KEYCLOAK_ICON"`
 	LANGUAGECHOICES                                *string                         `json:"LANGUAGE_CHOICES,omitempty"`
 	LLMCHATENABLED                                 *bool                           `json:"LLM_CHAT_ENABLED,omitempty"`
+	LLMCHATSESSIONRETENTIONDAYS                    *int                            `json:"LLM_CHAT_SESSION_RETENTION_DAYS,omitempty"`
+	LLMCHATSTORAGEENABLED                          *bool                           `json:"LLM_CHAT_STORAGE_ENABLED,omitempty"`
 	LLMINFERENCESAPITOKEN                          *string                         `json:"LLM_INFERENCES_API_TOKEN,omitempty"`
 	LLMINFERENCESAPIURL                            *string                         `json:"LLM_INFERENCES_API_URL,omitempty"`
 	LLMINFERENCESBACKENDTYPE                       *string                         `json:"LLM_INFERENCES_BACKEND_TYPE,omitempty"`
@@ -22553,8 +22647,8 @@ type MergedPluginOptions struct {
 	// IsResourceTerminationDateRequired If set to True, resource termination date is required
 	IsResourceTerminationDateRequired *bool `json:"is_resource_termination_date_required,omitempty"`
 
-	// LatestDateForResourceTermination If set, it will be used as a latest date for resource termination
-	LatestDateForResourceTermination *openapi_types.Date `json:"latest_date_for_resource_termination,omitempty"`
+	// LatestDateForResourceTermination If set, it will be used as a latest date for resource termination. Format: YYYY-MM-DD
+	LatestDateForResourceTermination *string `json:"latest_date_for_resource_termination,omitempty"`
 
 	// ManagedRancherLoadBalancerDataVolumeSizeGb Data volume size in GB for managed Rancher load balancer
 	ManagedRancherLoadBalancerDataVolumeSizeGb *int `json:"managed_rancher_load_balancer_data_volume_size_gb,omitempty"`
@@ -22753,8 +22847,8 @@ type MergedPluginOptionsRequest struct {
 	// IsResourceTerminationDateRequired If set to True, resource termination date is required
 	IsResourceTerminationDateRequired *bool `json:"is_resource_termination_date_required,omitempty"`
 
-	// LatestDateForResourceTermination If set, it will be used as a latest date for resource termination
-	LatestDateForResourceTermination *openapi_types.Date `json:"latest_date_for_resource_termination,omitempty"`
+	// LatestDateForResourceTermination If set, it will be used as a latest date for resource termination. Format: YYYY-MM-DD
+	LatestDateForResourceTermination *string `json:"latest_date_for_resource_termination,omitempty"`
 
 	// ManagedRancherLoadBalancerDataVolumeSizeGb Data volume size in GB for managed Rancher load balancer
 	ManagedRancherLoadBalancerDataVolumeSizeGb *int `json:"managed_rancher_load_balancer_data_volume_size_gb,omitempty"`
@@ -23104,10 +23198,32 @@ type MergedSecretOptionsRequest struct {
 	VaultToken *string `json:"vault_token,omitempty"`
 }
 
+// Message defines model for Message.
+type Message struct {
+	Content       string              `json:"content"`
+	Created       *time.Time          `json:"created,omitempty"`
+	Replaces      *openapi_types.UUID `json:"replaces"`
+	Role          MessageRoleEnum     `json:"role"`
+	SequenceIndex *int                `json:"sequence_index,omitempty"`
+	Thread        openapi_types.UUID  `json:"thread"`
+	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// MessageRequest defines model for MessageRequest.
+type MessageRequest struct {
+	Content  string              `json:"content"`
+	Replaces *openapi_types.UUID `json:"replaces"`
+	Role     MessageRoleEnum     `json:"role"`
+	Thread   openapi_types.UUID  `json:"thread"`
+}
+
 // MessageResponse defines model for MessageResponse.
 type MessageResponse struct {
 	Message string `json:"message"`
 }
+
+// MessageRoleEnum defines model for MessageRoleEnum.
+type MessageRoleEnum string
 
 // MessageStateCache defines model for MessageStateCache.
 type MessageStateCache struct {
@@ -23669,26 +23785,16 @@ type NestedSecurityGroupRule_Protocol struct {
 
 // NestedSoftwareCatalog defines model for NestedSoftwareCatalog.
 type NestedSoftwareCatalog struct {
-	Catalog *struct {
-		Description *string `json:"description,omitempty"`
-		Name        *string `json:"name,omitempty"`
-		Uuid        *string `json:"uuid,omitempty"`
-		Version     *string `json:"version,omitempty"`
-	} `json:"catalog,omitempty"`
+	Catalog *CatalogSummary `json:"catalog,omitempty"`
 
 	// EnabledCpuFamily List of enabled CPU families: ['x86_64', 'aarch64']
 	EnabledCpuFamily interface{} `json:"enabled_cpu_family,omitempty"`
 
 	// EnabledCpuMicroarchitectures List of enabled CPU microarchitectures: ['generic', 'zen3']
-	EnabledCpuMicroarchitectures interface{} `json:"enabled_cpu_microarchitectures,omitempty"`
-	PackageCount                 *int        `json:"package_count,omitempty"`
-	Partition                    *struct {
-		PartitionName *string `json:"partition_name,omitempty"`
-		PriorityTier  *int    `json:"priority_tier,omitempty"`
-		Qos           *string `json:"qos,omitempty"`
-		Uuid          *string `json:"uuid,omitempty"`
-	} `json:"partition,omitempty"`
-	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
+	EnabledCpuMicroarchitectures interface{}         `json:"enabled_cpu_microarchitectures,omitempty"`
+	PackageCount                 *int                `json:"package_count,omitempty"`
+	Partition                    *PartitionSummary   `json:"partition"`
+	Uuid                         *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // NestedSoftwareTarget defines model for NestedSoftwareTarget.
@@ -27458,6 +27564,19 @@ type PaidRequestMultipart struct {
 	Proof *openapi_types.File `json:"proof,omitempty"`
 }
 
+// PartitionSummary defines model for PartitionSummary.
+type PartitionSummary struct {
+	// PartitionName Name of the SLURM partition
+	PartitionName *string `json:"partition_name,omitempty"`
+
+	// PriorityTier Priority tier for scheduling and preemption
+	PriorityTier *int `json:"priority_tier"`
+
+	// Qos Quality of Service (QOS) name
+	Qos  *string             `json:"qos,omitempty"`
+	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
 // PasswordChangeRequest defines model for PasswordChangeRequest.
 type PasswordChangeRequest struct {
 	NewPassword *string `json:"new_password,omitempty"`
@@ -29521,6 +29640,12 @@ type PatchedTemplateRequest struct {
 	Description *string        `json:"description,omitempty"`
 	IssueType   *IssueTypeEnum `json:"issue_type,omitempty"`
 	Name        *string        `json:"name,omitempty"`
+}
+
+// PatchedThreadSessionRequest defines model for PatchedThreadSessionRequest.
+type PatchedThreadSessionRequest struct {
+	IsArchived *bool   `json:"is_archived,omitempty"`
+	Name       *string `json:"name,omitempty"`
 }
 
 // PatchedUserAgreementRequest defines model for PatchedUserAgreementRequest.
@@ -36186,6 +36311,23 @@ type TenantSecurityGroupUpdateRequest struct {
 	Uuid        *openapi_types.UUID                              `json:"uuid,omitempty"`
 }
 
+// ThreadSession defines model for ThreadSession.
+type ThreadSession struct {
+	ChatSession  *openapi_types.UUID `json:"chat_session,omitempty"`
+	Created      *time.Time          `json:"created,omitempty"`
+	Flags        interface{}         `json:"flags,omitempty"`
+	IsArchived   *bool               `json:"is_archived,omitempty"`
+	MessageCount *int                `json:"message_count,omitempty"`
+	Name         *string             `json:"name,omitempty"`
+	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ThreadSessionRequest defines model for ThreadSessionRequest.
+type ThreadSessionRequest struct {
+	IsArchived *bool   `json:"is_archived,omitempty"`
+	Name       *string `json:"name,omitempty"`
+}
+
 // TimeSeriesToSData defines model for TimeSeriesToSData.
 type TimeSeriesToSData struct {
 	// Count Count for the date
@@ -39926,11 +40068,113 @@ type CallRoundsReviewersListParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
+// ChatMessagesListParams defines parameters for ChatMessagesList.
+type ChatMessagesListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Thread   *openapi_types.UUID `form:"thread,omitempty" json:"thread,omitempty"`
+}
+
+// ChatMessagesCountParams defines parameters for ChatMessagesCount.
+type ChatMessagesCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Thread   *openapi_types.UUID `form:"thread,omitempty" json:"thread,omitempty"`
+}
+
+// ChatMessagesEditJSONBody defines parameters for ChatMessagesEdit.
+type ChatMessagesEditJSONBody struct {
+	Content *string `json:"content,omitempty"`
+}
+
+// ChatMessagesHistoryListParams defines parameters for ChatMessagesHistoryList.
+type ChatMessagesHistoryListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Thread   *openapi_types.UUID `form:"thread,omitempty" json:"thread,omitempty"`
+}
+
 // ChatQuotaUsageRetrieveParams defines parameters for ChatQuotaUsageRetrieve.
 type ChatQuotaUsageRetrieveParams struct {
 	// UserUuid UUID of user to view quota for (staff/support only). Omit to view your own quota.
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
+
+// ChatSessionsListParams defines parameters for ChatSessionsList.
+type ChatSessionsListParams struct {
+	Field *[]ChatSessionsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// ChatSessionsListParamsField defines parameters for ChatSessionsList.
+type ChatSessionsListParamsField string
+
+// ChatSessionsCountParams defines parameters for ChatSessionsCount.
+type ChatSessionsCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// ChatSessionsRetrieveParams defines parameters for ChatSessionsRetrieve.
+type ChatSessionsRetrieveParams struct {
+	Field *[]ChatSessionsRetrieveParamsField `form:"field,omitempty" json:"field,omitempty"`
+}
+
+// ChatSessionsRetrieveParamsField defines parameters for ChatSessionsRetrieve.
+type ChatSessionsRetrieveParamsField string
+
+// ChatThreadsListParams defines parameters for ChatThreadsList.
+type ChatThreadsListParams struct {
+	Field      *[]ChatThreadsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	IsArchived *bool                         `form:"is_archived,omitempty" json:"is_archived,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	User     *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
+}
+
+// ChatThreadsListParamsField defines parameters for ChatThreadsList.
+type ChatThreadsListParamsField string
+
+// ChatThreadsCountParams defines parameters for ChatThreadsCount.
+type ChatThreadsCountParams struct {
+	IsArchived *bool `form:"is_archived,omitempty" json:"is_archived,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	User     *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
+}
+
+// ChatThreadsRetrieveParams defines parameters for ChatThreadsRetrieve.
+type ChatThreadsRetrieveParams struct {
+	Field *[]ChatThreadsRetrieveParamsField `form:"field,omitempty" json:"field,omitempty"`
+}
+
+// ChatThreadsRetrieveParamsField defines parameters for ChatThreadsRetrieve.
+type ChatThreadsRetrieveParamsField string
 
 // ChecklistsAdminQuestionDependenciesListParams defines parameters for ChecklistsAdminQuestionDependenciesList.
 type ChecklistsAdminQuestionDependenciesListParams struct {
@@ -58935,8 +59179,29 @@ type CallReviewerPoolsAcceptJSONRequestBody = CallReviewerPoolsAcceptJSONBody
 // CallReviewerPoolsDeclineJSONRequestBody defines body for CallReviewerPoolsDecline for application/json ContentType.
 type CallReviewerPoolsDeclineJSONRequestBody = InvitationDeclineRequest
 
+// ChatMessagesCreateJSONRequestBody defines body for ChatMessagesCreate for application/json ContentType.
+type ChatMessagesCreateJSONRequestBody = MessageRequest
+
+// ChatMessagesEditJSONRequestBody defines body for ChatMessagesEdit for application/json ContentType.
+type ChatMessagesEditJSONRequestBody ChatMessagesEditJSONBody
+
 // ChatQuotaSetQuotaJSONRequestBody defines body for ChatQuotaSetQuota for application/json ContentType.
 type ChatQuotaSetQuotaJSONRequestBody = SetTokenQuotaRequest
+
+// ChatThreadsCreateJSONRequestBody defines body for ChatThreadsCreate for application/json ContentType.
+type ChatThreadsCreateJSONRequestBody = ThreadSessionRequest
+
+// ChatThreadsPartialUpdateJSONRequestBody defines body for ChatThreadsPartialUpdate for application/json ContentType.
+type ChatThreadsPartialUpdateJSONRequestBody = PatchedThreadSessionRequest
+
+// ChatThreadsUpdateJSONRequestBody defines body for ChatThreadsUpdate for application/json ContentType.
+type ChatThreadsUpdateJSONRequestBody = ThreadSessionRequest
+
+// ChatThreadsArchiveJSONRequestBody defines body for ChatThreadsArchive for application/json ContentType.
+type ChatThreadsArchiveJSONRequestBody = ThreadSessionRequest
+
+// ChatThreadsUnarchiveJSONRequestBody defines body for ChatThreadsUnarchive for application/json ContentType.
+type ChatThreadsUnarchiveJSONRequestBody = ThreadSessionRequest
 
 // ChatToolsExecuteJSONRequestBody defines body for ChatToolsExecute for application/json ContentType.
 type ChatToolsExecuteJSONRequestBody = ToolExecuteRequest
@@ -69272,6 +69537,28 @@ type ClientInterface interface {
 	// CeleryStatsRetrieve request
 	CeleryStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ChatMessagesList request
+	ChatMessagesList(ctx context.Context, params *ChatMessagesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatMessagesCount request
+	ChatMessagesCount(ctx context.Context, params *ChatMessagesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatMessagesCreateWithBody request with any body
+	ChatMessagesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChatMessagesCreate(ctx context.Context, body ChatMessagesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatMessagesRetrieve request
+	ChatMessagesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatMessagesEditWithBody request with any body
+	ChatMessagesEditWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChatMessagesEdit(ctx context.Context, uuid openapi_types.UUID, body ChatMessagesEditJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatMessagesHistoryList request
+	ChatMessagesHistoryList(ctx context.Context, uuid openapi_types.UUID, params *ChatMessagesHistoryListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ChatQuotaSetQuotaWithBody request with any body
 	ChatQuotaSetQuotaWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -69279,6 +69566,55 @@ type ClientInterface interface {
 
 	// ChatQuotaUsageRetrieve request
 	ChatQuotaUsageRetrieve(ctx context.Context, params *ChatQuotaUsageRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatSessionsList request
+	ChatSessionsList(ctx context.Context, params *ChatSessionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatSessionsCount request
+	ChatSessionsCount(ctx context.Context, params *ChatSessionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatSessionsCurrentRetrieve request
+	ChatSessionsCurrentRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatSessionsCurrentCount request
+	ChatSessionsCurrentCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatSessionsRetrieve request
+	ChatSessionsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ChatSessionsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatThreadsList request
+	ChatThreadsList(ctx context.Context, params *ChatThreadsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatThreadsCount request
+	ChatThreadsCount(ctx context.Context, params *ChatThreadsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatThreadsCreateWithBody request with any body
+	ChatThreadsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChatThreadsCreate(ctx context.Context, body ChatThreadsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatThreadsRetrieve request
+	ChatThreadsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ChatThreadsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatThreadsPartialUpdateWithBody request with any body
+	ChatThreadsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChatThreadsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatThreadsUpdateWithBody request with any body
+	ChatThreadsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChatThreadsUpdate(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatThreadsArchiveWithBody request with any body
+	ChatThreadsArchiveWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChatThreadsArchive(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsArchiveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatThreadsUnarchiveWithBody request with any body
+	ChatThreadsUnarchiveWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChatThreadsUnarchive(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsUnarchiveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ChatToolsExecuteWithBody request with any body
 	ChatToolsExecuteWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -81450,6 +81786,102 @@ func (c *Client) CeleryStatsRetrieve(ctx context.Context, reqEditors ...RequestE
 	return c.Client.Do(req)
 }
 
+func (c *Client) ChatMessagesList(ctx context.Context, params *ChatMessagesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatMessagesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatMessagesCount(ctx context.Context, params *ChatMessagesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatMessagesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatMessagesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatMessagesCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatMessagesCreate(ctx context.Context, body ChatMessagesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatMessagesCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatMessagesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatMessagesRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatMessagesEditWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatMessagesEditRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatMessagesEdit(ctx context.Context, uuid openapi_types.UUID, body ChatMessagesEditJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatMessagesEditRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatMessagesHistoryList(ctx context.Context, uuid openapi_types.UUID, params *ChatMessagesHistoryListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatMessagesHistoryListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ChatQuotaSetQuotaWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewChatQuotaSetQuotaRequestWithBody(c.Server, contentType, body)
 	if err != nil {
@@ -81476,6 +81908,222 @@ func (c *Client) ChatQuotaSetQuota(ctx context.Context, body ChatQuotaSetQuotaJS
 
 func (c *Client) ChatQuotaUsageRetrieve(ctx context.Context, params *ChatQuotaUsageRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewChatQuotaUsageRetrieveRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatSessionsList(ctx context.Context, params *ChatSessionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatSessionsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatSessionsCount(ctx context.Context, params *ChatSessionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatSessionsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatSessionsCurrentRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatSessionsCurrentRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatSessionsCurrentCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatSessionsCurrentCountRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatSessionsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ChatSessionsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatSessionsRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatThreadsList(ctx context.Context, params *ChatThreadsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatThreadsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatThreadsCount(ctx context.Context, params *ChatThreadsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatThreadsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatThreadsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatThreadsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatThreadsCreate(ctx context.Context, body ChatThreadsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatThreadsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatThreadsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ChatThreadsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatThreadsRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatThreadsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatThreadsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatThreadsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatThreadsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatThreadsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatThreadsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatThreadsUpdate(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatThreadsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatThreadsArchiveWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatThreadsArchiveRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatThreadsArchive(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsArchiveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatThreadsArchiveRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatThreadsUnarchiveWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatThreadsUnarchiveRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatThreadsUnarchive(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsUnarchiveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatThreadsUnarchiveRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -136647,6 +137295,377 @@ func NewCeleryStatsRetrieveRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
+// NewChatMessagesListRequest generates requests for ChatMessagesList
+func NewChatMessagesListRequest(server string, params *ChatMessagesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-messages/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Thread != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "thread", runtime.ParamLocationQuery, *params.Thread); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChatMessagesCountRequest generates requests for ChatMessagesCount
+func NewChatMessagesCountRequest(server string, params *ChatMessagesCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-messages/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Thread != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "thread", runtime.ParamLocationQuery, *params.Thread); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChatMessagesCreateRequest calls the generic ChatMessagesCreate builder with application/json body
+func NewChatMessagesCreateRequest(server string, body ChatMessagesCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChatMessagesCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewChatMessagesCreateRequestWithBody generates requests for ChatMessagesCreate with any type of body
+func NewChatMessagesCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-messages/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChatMessagesRetrieveRequest generates requests for ChatMessagesRetrieve
+func NewChatMessagesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-messages/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChatMessagesEditRequest calls the generic ChatMessagesEdit builder with application/json body
+func NewChatMessagesEditRequest(server string, uuid openapi_types.UUID, body ChatMessagesEditJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChatMessagesEditRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewChatMessagesEditRequestWithBody generates requests for ChatMessagesEdit with any type of body
+func NewChatMessagesEditRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-messages/%s/edit/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChatMessagesHistoryListRequest generates requests for ChatMessagesHistoryList
+func NewChatMessagesHistoryListRequest(server string, uuid openapi_types.UUID, params *ChatMessagesHistoryListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-messages/%s/history/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Thread != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "thread", runtime.ParamLocationQuery, *params.Thread); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewChatQuotaSetQuotaRequest calls the generic ChatQuotaSetQuota builder with application/json body
 func NewChatQuotaSetQuotaRequest(server string, body ChatQuotaSetQuotaJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -136732,6 +137751,756 @@ func NewChatQuotaUsageRetrieveRequest(server string, params *ChatQuotaUsageRetri
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewChatSessionsListRequest generates requests for ChatSessionsList
+func NewChatSessionsListRequest(server string, params *ChatSessionsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-sessions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChatSessionsCountRequest generates requests for ChatSessionsCount
+func NewChatSessionsCountRequest(server string, params *ChatSessionsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-sessions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChatSessionsCurrentRetrieveRequest generates requests for ChatSessionsCurrentRetrieve
+func NewChatSessionsCurrentRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-sessions/current/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChatSessionsCurrentCountRequest generates requests for ChatSessionsCurrentCount
+func NewChatSessionsCurrentCountRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-sessions/current/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChatSessionsRetrieveRequest generates requests for ChatSessionsRetrieve
+func NewChatSessionsRetrieveRequest(server string, uuid openapi_types.UUID, params *ChatSessionsRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-sessions/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChatThreadsListRequest generates requests for ChatThreadsList
+func NewChatThreadsListRequest(server string, params *ChatThreadsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-threads/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsArchived != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_archived", runtime.ParamLocationQuery, *params.IsArchived); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.User != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user", runtime.ParamLocationQuery, *params.User); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChatThreadsCountRequest generates requests for ChatThreadsCount
+func NewChatThreadsCountRequest(server string, params *ChatThreadsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-threads/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.IsArchived != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_archived", runtime.ParamLocationQuery, *params.IsArchived); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.User != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user", runtime.ParamLocationQuery, *params.User); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChatThreadsCreateRequest calls the generic ChatThreadsCreate builder with application/json body
+func NewChatThreadsCreateRequest(server string, body ChatThreadsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChatThreadsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewChatThreadsCreateRequestWithBody generates requests for ChatThreadsCreate with any type of body
+func NewChatThreadsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-threads/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChatThreadsRetrieveRequest generates requests for ChatThreadsRetrieve
+func NewChatThreadsRetrieveRequest(server string, uuid openapi_types.UUID, params *ChatThreadsRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-threads/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChatThreadsPartialUpdateRequest calls the generic ChatThreadsPartialUpdate builder with application/json body
+func NewChatThreadsPartialUpdateRequest(server string, uuid openapi_types.UUID, body ChatThreadsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChatThreadsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewChatThreadsPartialUpdateRequestWithBody generates requests for ChatThreadsPartialUpdate with any type of body
+func NewChatThreadsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-threads/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChatThreadsUpdateRequest calls the generic ChatThreadsUpdate builder with application/json body
+func NewChatThreadsUpdateRequest(server string, uuid openapi_types.UUID, body ChatThreadsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChatThreadsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewChatThreadsUpdateRequestWithBody generates requests for ChatThreadsUpdate with any type of body
+func NewChatThreadsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-threads/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChatThreadsArchiveRequest calls the generic ChatThreadsArchive builder with application/json body
+func NewChatThreadsArchiveRequest(server string, uuid openapi_types.UUID, body ChatThreadsArchiveJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChatThreadsArchiveRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewChatThreadsArchiveRequestWithBody generates requests for ChatThreadsArchive with any type of body
+func NewChatThreadsArchiveRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-threads/%s/archive/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChatThreadsUnarchiveRequest calls the generic ChatThreadsUnarchive builder with application/json body
+func NewChatThreadsUnarchiveRequest(server string, uuid openapi_types.UUID, body ChatThreadsUnarchiveJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChatThreadsUnarchiveRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewChatThreadsUnarchiveRequestWithBody generates requests for ChatThreadsUnarchive with any type of body
+func NewChatThreadsUnarchiveRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-threads/%s/unarchive/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -303214,6 +304983,28 @@ type ClientWithResponsesInterface interface {
 	// CeleryStatsRetrieveWithResponse request
 	CeleryStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*CeleryStatsRetrieveResponse, error)
 
+	// ChatMessagesListWithResponse request
+	ChatMessagesListWithResponse(ctx context.Context, params *ChatMessagesListParams, reqEditors ...RequestEditorFn) (*ChatMessagesListResponse, error)
+
+	// ChatMessagesCountWithResponse request
+	ChatMessagesCountWithResponse(ctx context.Context, params *ChatMessagesCountParams, reqEditors ...RequestEditorFn) (*ChatMessagesCountResponse, error)
+
+	// ChatMessagesCreateWithBodyWithResponse request with any body
+	ChatMessagesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatMessagesCreateResponse, error)
+
+	ChatMessagesCreateWithResponse(ctx context.Context, body ChatMessagesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatMessagesCreateResponse, error)
+
+	// ChatMessagesRetrieveWithResponse request
+	ChatMessagesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChatMessagesRetrieveResponse, error)
+
+	// ChatMessagesEditWithBodyWithResponse request with any body
+	ChatMessagesEditWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatMessagesEditResponse, error)
+
+	ChatMessagesEditWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatMessagesEditJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatMessagesEditResponse, error)
+
+	// ChatMessagesHistoryListWithResponse request
+	ChatMessagesHistoryListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ChatMessagesHistoryListParams, reqEditors ...RequestEditorFn) (*ChatMessagesHistoryListResponse, error)
+
 	// ChatQuotaSetQuotaWithBodyWithResponse request with any body
 	ChatQuotaSetQuotaWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatQuotaSetQuotaResponse, error)
 
@@ -303221,6 +305012,55 @@ type ClientWithResponsesInterface interface {
 
 	// ChatQuotaUsageRetrieveWithResponse request
 	ChatQuotaUsageRetrieveWithResponse(ctx context.Context, params *ChatQuotaUsageRetrieveParams, reqEditors ...RequestEditorFn) (*ChatQuotaUsageRetrieveResponse, error)
+
+	// ChatSessionsListWithResponse request
+	ChatSessionsListWithResponse(ctx context.Context, params *ChatSessionsListParams, reqEditors ...RequestEditorFn) (*ChatSessionsListResponse, error)
+
+	// ChatSessionsCountWithResponse request
+	ChatSessionsCountWithResponse(ctx context.Context, params *ChatSessionsCountParams, reqEditors ...RequestEditorFn) (*ChatSessionsCountResponse, error)
+
+	// ChatSessionsCurrentRetrieveWithResponse request
+	ChatSessionsCurrentRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ChatSessionsCurrentRetrieveResponse, error)
+
+	// ChatSessionsCurrentCountWithResponse request
+	ChatSessionsCurrentCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ChatSessionsCurrentCountResponse, error)
+
+	// ChatSessionsRetrieveWithResponse request
+	ChatSessionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ChatSessionsRetrieveParams, reqEditors ...RequestEditorFn) (*ChatSessionsRetrieveResponse, error)
+
+	// ChatThreadsListWithResponse request
+	ChatThreadsListWithResponse(ctx context.Context, params *ChatThreadsListParams, reqEditors ...RequestEditorFn) (*ChatThreadsListResponse, error)
+
+	// ChatThreadsCountWithResponse request
+	ChatThreadsCountWithResponse(ctx context.Context, params *ChatThreadsCountParams, reqEditors ...RequestEditorFn) (*ChatThreadsCountResponse, error)
+
+	// ChatThreadsCreateWithBodyWithResponse request with any body
+	ChatThreadsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatThreadsCreateResponse, error)
+
+	ChatThreadsCreateWithResponse(ctx context.Context, body ChatThreadsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatThreadsCreateResponse, error)
+
+	// ChatThreadsRetrieveWithResponse request
+	ChatThreadsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ChatThreadsRetrieveParams, reqEditors ...RequestEditorFn) (*ChatThreadsRetrieveResponse, error)
+
+	// ChatThreadsPartialUpdateWithBodyWithResponse request with any body
+	ChatThreadsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatThreadsPartialUpdateResponse, error)
+
+	ChatThreadsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatThreadsPartialUpdateResponse, error)
+
+	// ChatThreadsUpdateWithBodyWithResponse request with any body
+	ChatThreadsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatThreadsUpdateResponse, error)
+
+	ChatThreadsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatThreadsUpdateResponse, error)
+
+	// ChatThreadsArchiveWithBodyWithResponse request with any body
+	ChatThreadsArchiveWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatThreadsArchiveResponse, error)
+
+	ChatThreadsArchiveWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsArchiveJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatThreadsArchiveResponse, error)
+
+	// ChatThreadsUnarchiveWithBodyWithResponse request with any body
+	ChatThreadsUnarchiveWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatThreadsUnarchiveResponse, error)
+
+	ChatThreadsUnarchiveWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsUnarchiveJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatThreadsUnarchiveResponse, error)
 
 	// ChatToolsExecuteWithBodyWithResponse request with any body
 	ChatToolsExecuteWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatToolsExecuteResponse, error)
@@ -317035,6 +318875,137 @@ func (r CeleryStatsRetrieveResponse) StatusCode() int {
 	return 0
 }
 
+type ChatMessagesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]Message
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatMessagesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatMessagesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatMessagesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatMessagesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatMessagesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatMessagesCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *Message
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatMessagesCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatMessagesCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatMessagesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Message
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatMessagesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatMessagesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatMessagesEditResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Message
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatMessagesEditResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatMessagesEditResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatMessagesHistoryListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]Message
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatMessagesHistoryListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatMessagesHistoryListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ChatQuotaSetQuotaResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -317072,6 +319043,287 @@ func (r ChatQuotaUsageRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ChatQuotaUsageRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatSessionsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ChatSession
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatSessionsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatSessionsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatSessionsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatSessionsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatSessionsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatSessionsCurrentRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ChatSession
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatSessionsCurrentRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatSessionsCurrentRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatSessionsCurrentCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatSessionsCurrentCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatSessionsCurrentCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatSessionsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ChatSession
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatSessionsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatSessionsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatThreadsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ThreadSession
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatThreadsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatThreadsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatThreadsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatThreadsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatThreadsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatThreadsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *ThreadSession
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatThreadsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatThreadsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatThreadsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ThreadSession
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatThreadsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatThreadsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatThreadsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ThreadSession
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatThreadsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatThreadsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatThreadsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ThreadSession
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatThreadsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatThreadsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatThreadsArchiveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatThreadsArchiveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatThreadsArchiveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatThreadsUnarchiveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatThreadsUnarchiveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatThreadsUnarchiveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -363293,6 +365545,76 @@ func (c *ClientWithResponses) CeleryStatsRetrieveWithResponse(ctx context.Contex
 	return ParseCeleryStatsRetrieveResponse(rsp)
 }
 
+// ChatMessagesListWithResponse request returning *ChatMessagesListResponse
+func (c *ClientWithResponses) ChatMessagesListWithResponse(ctx context.Context, params *ChatMessagesListParams, reqEditors ...RequestEditorFn) (*ChatMessagesListResponse, error) {
+	rsp, err := c.ChatMessagesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatMessagesListResponse(rsp)
+}
+
+// ChatMessagesCountWithResponse request returning *ChatMessagesCountResponse
+func (c *ClientWithResponses) ChatMessagesCountWithResponse(ctx context.Context, params *ChatMessagesCountParams, reqEditors ...RequestEditorFn) (*ChatMessagesCountResponse, error) {
+	rsp, err := c.ChatMessagesCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatMessagesCountResponse(rsp)
+}
+
+// ChatMessagesCreateWithBodyWithResponse request with arbitrary body returning *ChatMessagesCreateResponse
+func (c *ClientWithResponses) ChatMessagesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatMessagesCreateResponse, error) {
+	rsp, err := c.ChatMessagesCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatMessagesCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChatMessagesCreateWithResponse(ctx context.Context, body ChatMessagesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatMessagesCreateResponse, error) {
+	rsp, err := c.ChatMessagesCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatMessagesCreateResponse(rsp)
+}
+
+// ChatMessagesRetrieveWithResponse request returning *ChatMessagesRetrieveResponse
+func (c *ClientWithResponses) ChatMessagesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChatMessagesRetrieveResponse, error) {
+	rsp, err := c.ChatMessagesRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatMessagesRetrieveResponse(rsp)
+}
+
+// ChatMessagesEditWithBodyWithResponse request with arbitrary body returning *ChatMessagesEditResponse
+func (c *ClientWithResponses) ChatMessagesEditWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatMessagesEditResponse, error) {
+	rsp, err := c.ChatMessagesEditWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatMessagesEditResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChatMessagesEditWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatMessagesEditJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatMessagesEditResponse, error) {
+	rsp, err := c.ChatMessagesEdit(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatMessagesEditResponse(rsp)
+}
+
+// ChatMessagesHistoryListWithResponse request returning *ChatMessagesHistoryListResponse
+func (c *ClientWithResponses) ChatMessagesHistoryListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ChatMessagesHistoryListParams, reqEditors ...RequestEditorFn) (*ChatMessagesHistoryListResponse, error) {
+	rsp, err := c.ChatMessagesHistoryList(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatMessagesHistoryListResponse(rsp)
+}
+
 // ChatQuotaSetQuotaWithBodyWithResponse request with arbitrary body returning *ChatQuotaSetQuotaResponse
 func (c *ClientWithResponses) ChatQuotaSetQuotaWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatQuotaSetQuotaResponse, error) {
 	rsp, err := c.ChatQuotaSetQuotaWithBody(ctx, contentType, body, reqEditors...)
@@ -363317,6 +365639,163 @@ func (c *ClientWithResponses) ChatQuotaUsageRetrieveWithResponse(ctx context.Con
 		return nil, err
 	}
 	return ParseChatQuotaUsageRetrieveResponse(rsp)
+}
+
+// ChatSessionsListWithResponse request returning *ChatSessionsListResponse
+func (c *ClientWithResponses) ChatSessionsListWithResponse(ctx context.Context, params *ChatSessionsListParams, reqEditors ...RequestEditorFn) (*ChatSessionsListResponse, error) {
+	rsp, err := c.ChatSessionsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatSessionsListResponse(rsp)
+}
+
+// ChatSessionsCountWithResponse request returning *ChatSessionsCountResponse
+func (c *ClientWithResponses) ChatSessionsCountWithResponse(ctx context.Context, params *ChatSessionsCountParams, reqEditors ...RequestEditorFn) (*ChatSessionsCountResponse, error) {
+	rsp, err := c.ChatSessionsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatSessionsCountResponse(rsp)
+}
+
+// ChatSessionsCurrentRetrieveWithResponse request returning *ChatSessionsCurrentRetrieveResponse
+func (c *ClientWithResponses) ChatSessionsCurrentRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ChatSessionsCurrentRetrieveResponse, error) {
+	rsp, err := c.ChatSessionsCurrentRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatSessionsCurrentRetrieveResponse(rsp)
+}
+
+// ChatSessionsCurrentCountWithResponse request returning *ChatSessionsCurrentCountResponse
+func (c *ClientWithResponses) ChatSessionsCurrentCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ChatSessionsCurrentCountResponse, error) {
+	rsp, err := c.ChatSessionsCurrentCount(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatSessionsCurrentCountResponse(rsp)
+}
+
+// ChatSessionsRetrieveWithResponse request returning *ChatSessionsRetrieveResponse
+func (c *ClientWithResponses) ChatSessionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ChatSessionsRetrieveParams, reqEditors ...RequestEditorFn) (*ChatSessionsRetrieveResponse, error) {
+	rsp, err := c.ChatSessionsRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatSessionsRetrieveResponse(rsp)
+}
+
+// ChatThreadsListWithResponse request returning *ChatThreadsListResponse
+func (c *ClientWithResponses) ChatThreadsListWithResponse(ctx context.Context, params *ChatThreadsListParams, reqEditors ...RequestEditorFn) (*ChatThreadsListResponse, error) {
+	rsp, err := c.ChatThreadsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatThreadsListResponse(rsp)
+}
+
+// ChatThreadsCountWithResponse request returning *ChatThreadsCountResponse
+func (c *ClientWithResponses) ChatThreadsCountWithResponse(ctx context.Context, params *ChatThreadsCountParams, reqEditors ...RequestEditorFn) (*ChatThreadsCountResponse, error) {
+	rsp, err := c.ChatThreadsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatThreadsCountResponse(rsp)
+}
+
+// ChatThreadsCreateWithBodyWithResponse request with arbitrary body returning *ChatThreadsCreateResponse
+func (c *ClientWithResponses) ChatThreadsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatThreadsCreateResponse, error) {
+	rsp, err := c.ChatThreadsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatThreadsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChatThreadsCreateWithResponse(ctx context.Context, body ChatThreadsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatThreadsCreateResponse, error) {
+	rsp, err := c.ChatThreadsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatThreadsCreateResponse(rsp)
+}
+
+// ChatThreadsRetrieveWithResponse request returning *ChatThreadsRetrieveResponse
+func (c *ClientWithResponses) ChatThreadsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ChatThreadsRetrieveParams, reqEditors ...RequestEditorFn) (*ChatThreadsRetrieveResponse, error) {
+	rsp, err := c.ChatThreadsRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatThreadsRetrieveResponse(rsp)
+}
+
+// ChatThreadsPartialUpdateWithBodyWithResponse request with arbitrary body returning *ChatThreadsPartialUpdateResponse
+func (c *ClientWithResponses) ChatThreadsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatThreadsPartialUpdateResponse, error) {
+	rsp, err := c.ChatThreadsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatThreadsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChatThreadsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatThreadsPartialUpdateResponse, error) {
+	rsp, err := c.ChatThreadsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatThreadsPartialUpdateResponse(rsp)
+}
+
+// ChatThreadsUpdateWithBodyWithResponse request with arbitrary body returning *ChatThreadsUpdateResponse
+func (c *ClientWithResponses) ChatThreadsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatThreadsUpdateResponse, error) {
+	rsp, err := c.ChatThreadsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatThreadsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChatThreadsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatThreadsUpdateResponse, error) {
+	rsp, err := c.ChatThreadsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatThreadsUpdateResponse(rsp)
+}
+
+// ChatThreadsArchiveWithBodyWithResponse request with arbitrary body returning *ChatThreadsArchiveResponse
+func (c *ClientWithResponses) ChatThreadsArchiveWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatThreadsArchiveResponse, error) {
+	rsp, err := c.ChatThreadsArchiveWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatThreadsArchiveResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChatThreadsArchiveWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsArchiveJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatThreadsArchiveResponse, error) {
+	rsp, err := c.ChatThreadsArchive(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatThreadsArchiveResponse(rsp)
+}
+
+// ChatThreadsUnarchiveWithBodyWithResponse request with arbitrary body returning *ChatThreadsUnarchiveResponse
+func (c *ClientWithResponses) ChatThreadsUnarchiveWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatThreadsUnarchiveResponse, error) {
+	rsp, err := c.ChatThreadsUnarchiveWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatThreadsUnarchiveResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChatThreadsUnarchiveWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsUnarchiveJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatThreadsUnarchiveResponse, error) {
+	rsp, err := c.ChatThreadsUnarchive(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatThreadsUnarchiveResponse(rsp)
 }
 
 // ChatToolsExecuteWithBodyWithResponse request with arbitrary body returning *ChatToolsExecuteResponse
@@ -393449,6 +395928,152 @@ func ParseCeleryStatsRetrieveResponse(rsp *http.Response) (*CeleryStatsRetrieveR
 	return response, nil
 }
 
+// ParseChatMessagesListResponse parses an HTTP response from a ChatMessagesListWithResponse call
+func ParseChatMessagesListResponse(rsp *http.Response) (*ChatMessagesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatMessagesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Message
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChatMessagesCountResponse parses an HTTP response from a ChatMessagesCountWithResponse call
+func ParseChatMessagesCountResponse(rsp *http.Response) (*ChatMessagesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatMessagesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseChatMessagesCreateResponse parses an HTTP response from a ChatMessagesCreateWithResponse call
+func ParseChatMessagesCreateResponse(rsp *http.Response) (*ChatMessagesCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatMessagesCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest Message
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChatMessagesRetrieveResponse parses an HTTP response from a ChatMessagesRetrieveWithResponse call
+func ParseChatMessagesRetrieveResponse(rsp *http.Response) (*ChatMessagesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatMessagesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Message
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChatMessagesEditResponse parses an HTTP response from a ChatMessagesEditWithResponse call
+func ParseChatMessagesEditResponse(rsp *http.Response) (*ChatMessagesEditResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatMessagesEditResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Message
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChatMessagesHistoryListResponse parses an HTTP response from a ChatMessagesHistoryListWithResponse call
+func ParseChatMessagesHistoryListResponse(rsp *http.Response) (*ChatMessagesHistoryListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatMessagesHistoryListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Message
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseChatQuotaSetQuotaResponse parses an HTTP response from a ChatQuotaSetQuotaWithResponse call
 func ParseChatQuotaSetQuotaResponse(rsp *http.Response) (*ChatQuotaSetQuotaResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -393486,6 +396111,294 @@ func ParseChatQuotaUsageRetrieveResponse(rsp *http.Response) (*ChatQuotaUsageRet
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseChatSessionsListResponse parses an HTTP response from a ChatSessionsListWithResponse call
+func ParseChatSessionsListResponse(rsp *http.Response) (*ChatSessionsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatSessionsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ChatSession
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChatSessionsCountResponse parses an HTTP response from a ChatSessionsCountWithResponse call
+func ParseChatSessionsCountResponse(rsp *http.Response) (*ChatSessionsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatSessionsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseChatSessionsCurrentRetrieveResponse parses an HTTP response from a ChatSessionsCurrentRetrieveWithResponse call
+func ParseChatSessionsCurrentRetrieveResponse(rsp *http.Response) (*ChatSessionsCurrentRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatSessionsCurrentRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ChatSession
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChatSessionsCurrentCountResponse parses an HTTP response from a ChatSessionsCurrentCountWithResponse call
+func ParseChatSessionsCurrentCountResponse(rsp *http.Response) (*ChatSessionsCurrentCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatSessionsCurrentCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseChatSessionsRetrieveResponse parses an HTTP response from a ChatSessionsRetrieveWithResponse call
+func ParseChatSessionsRetrieveResponse(rsp *http.Response) (*ChatSessionsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatSessionsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ChatSession
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChatThreadsListResponse parses an HTTP response from a ChatThreadsListWithResponse call
+func ParseChatThreadsListResponse(rsp *http.Response) (*ChatThreadsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatThreadsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ThreadSession
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChatThreadsCountResponse parses an HTTP response from a ChatThreadsCountWithResponse call
+func ParseChatThreadsCountResponse(rsp *http.Response) (*ChatThreadsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatThreadsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseChatThreadsCreateResponse parses an HTTP response from a ChatThreadsCreateWithResponse call
+func ParseChatThreadsCreateResponse(rsp *http.Response) (*ChatThreadsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatThreadsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest ThreadSession
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChatThreadsRetrieveResponse parses an HTTP response from a ChatThreadsRetrieveWithResponse call
+func ParseChatThreadsRetrieveResponse(rsp *http.Response) (*ChatThreadsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatThreadsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ThreadSession
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChatThreadsPartialUpdateResponse parses an HTTP response from a ChatThreadsPartialUpdateWithResponse call
+func ParseChatThreadsPartialUpdateResponse(rsp *http.Response) (*ChatThreadsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatThreadsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ThreadSession
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChatThreadsUpdateResponse parses an HTTP response from a ChatThreadsUpdateWithResponse call
+func ParseChatThreadsUpdateResponse(rsp *http.Response) (*ChatThreadsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatThreadsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ThreadSession
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChatThreadsArchiveResponse parses an HTTP response from a ChatThreadsArchiveWithResponse call
+func ParseChatThreadsArchiveResponse(rsp *http.Response) (*ChatThreadsArchiveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatThreadsArchiveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseChatThreadsUnarchiveResponse parses an HTTP response from a ChatThreadsUnarchiveWithResponse call
+func ParseChatThreadsUnarchiveResponse(rsp *http.Response) (*ChatThreadsUnarchiveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatThreadsUnarchiveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
