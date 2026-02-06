@@ -21454,6 +21454,34 @@ type InvitationDeclineResponse struct {
 	Detail string `json:"detail"`
 }
 
+// InvitationDuplicate defines model for InvitationDuplicate.
+type InvitationDuplicate struct {
+	Email                  openapi_types.Email `json:"email"`
+	ExistingInvitationUuid *openapi_types.UUID `json:"existing_invitation_uuid"`
+	Role                   openapi_types.UUID  `json:"role"`
+}
+
+// InvitationDuplicateCheckItemRequest defines model for InvitationDuplicateCheckItemRequest.
+type InvitationDuplicateCheckItemRequest struct {
+	Email openapi_types.Email `json:"email"`
+
+	// Role UUID of the role to grant to the invited user
+	Role openapi_types.UUID `json:"role"`
+}
+
+// InvitationDuplicateCheckRequest defines model for InvitationDuplicateCheckRequest.
+type InvitationDuplicateCheckRequest struct {
+	Invitations []InvitationDuplicateCheckItemRequest `json:"invitations"`
+
+	// Scope URL of the scope (Customer or Project) for this invitation list
+	Scope string `json:"scope"`
+}
+
+// InvitationDuplicateCheckResponse defines model for InvitationDuplicateCheckResponse.
+type InvitationDuplicateCheckResponse struct {
+	Duplicates []InvitationDuplicate `json:"duplicates"`
+}
+
 // InvitationProposalDisclosureEnum defines model for InvitationProposalDisclosureEnum.
 type InvitationProposalDisclosureEnum string
 
@@ -33372,6 +33400,36 @@ type RemoveSoftwareCatalogRequest struct {
 	OfferingCatalogUuid openapi_types.UUID `json:"offering_catalog_uuid"`
 }
 
+// RenewalEstimateComponent defines model for RenewalEstimateComponent.
+type RenewalEstimateComponent struct {
+	BillingPeriod     *string `json:"billing_period"`
+	BillingType       string  `json:"billing_type"`
+	ComponentName     string  `json:"component_name"`
+	ComponentType     string  `json:"component_type"`
+	CurrentLimit      int     `json:"current_limit"`
+	MeasuredUnit      string  `json:"measured_unit"`
+	NewLimit          int     `json:"new_limit"`
+	PeriodDescription string  `json:"period_description"`
+	Total             string  `json:"total"`
+	UnitPrice         string  `json:"unit_price"`
+}
+
+// RenewalEstimateRequestRequest defines model for RenewalEstimateRequestRequest.
+type RenewalEstimateRequestRequest struct {
+	ExtensionMonths int             `json:"extension_months"`
+	Limits          *map[string]int `json:"limits,omitempty"`
+}
+
+// RenewalEstimateResponse defines model for RenewalEstimateResponse.
+type RenewalEstimateResponse struct {
+	Components        []RenewalEstimateComponent `json:"components"`
+	LimitChangeTotal  string                     `json:"limit_change_total"`
+	NewEndDate        openapi_types.Date         `json:"new_end_date"`
+	RemainingDays     int                        `json:"remaining_days"`
+	SubscriptionTotal string                     `json:"subscription_total"`
+	Total             string                     `json:"total"`
+}
+
 // ReplicationStats defines model for ReplicationStats.
 type ReplicationStats struct {
 	// IsReplica Whether this database is a replica
@@ -35078,6 +35136,12 @@ type SendAssignmentBatchResponse struct {
 // SendInvitationsResponse defines model for SendInvitationsResponse.
 type SendInvitationsResponse struct {
 	InvitationsSent int `json:"invitations_sent"`
+}
+
+// SendNotificationResponse defines model for SendNotificationResponse.
+type SendNotificationResponse struct {
+	Message string `json:"message"`
+	Status  string `json:"status"`
 }
 
 // ServerInfo defines model for ServerInfo.
@@ -57057,6 +57121,9 @@ type UserActionsListParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize                     `form:"page_size,omitempty" json:"page_size,omitempty"`
 	Urgency  *UserActionsListParamsUrgency `form:"urgency,omitempty" json:"urgency,omitempty"`
+
+	// UserUuid Filter by user UUID (staff only).
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
 // UserActionsListParamsUrgency defines parameters for UserActionsList.
@@ -57081,6 +57148,9 @@ type UserActionsCountParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize                      `form:"page_size,omitempty" json:"page_size,omitempty"`
 	Urgency  *UserActionsCountParamsUrgency `form:"urgency,omitempty" json:"urgency,omitempty"`
+
+	// UserUuid Filter by user UUID (staff only).
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
 // UserActionsCountParamsUrgency defines parameters for UserActionsCount.
@@ -60031,6 +60101,9 @@ type MarketplaceResourcesPartialUpdateJSONRequestBody = PatchedResourceUpdateReq
 // MarketplaceResourcesUpdateJSONRequestBody defines body for MarketplaceResourcesUpdate for application/json ContentType.
 type MarketplaceResourcesUpdateJSONRequestBody = ResourceUpdateRequest
 
+// MarketplaceResourcesEstimateRenewalJSONRequestBody defines body for MarketplaceResourcesEstimateRenewal for application/json ContentType.
+type MarketplaceResourcesEstimateRenewalJSONRequestBody = RenewalEstimateRequestRequest
+
 // MarketplaceResourcesMoveResourceJSONRequestBody defines body for MarketplaceResourcesMoveResource for application/json ContentType.
 type MarketplaceResourcesMoveResourceJSONRequestBody = MoveResourceRequest
 
@@ -61372,6 +61445,9 @@ type UserInvitationsCreateJSONRequestBody = InvitationRequest
 // UserInvitationsApproveJSONRequestBody defines body for UserInvitationsApprove for application/json ContentType.
 type UserInvitationsApproveJSONRequestBody = TokenRequest
 
+// UserInvitationsCheckDuplicatesJSONRequestBody defines body for UserInvitationsCheckDuplicates for application/json ContentType.
+type UserInvitationsCheckDuplicatesJSONRequestBody = InvitationDuplicateCheckRequest
+
 // UserInvitationsRejectJSONRequestBody defines body for UserInvitationsReject for application/json ContentType.
 type UserInvitationsRejectJSONRequestBody = TokenRequest
 
@@ -61422,6 +61498,9 @@ type UsersChangeEmailJSONRequestBody = UserEmailChangeRequest
 
 // UsersChangePasswordJSONRequestBody defines body for UsersChangePassword for application/json ContentType.
 type UsersChangePasswordJSONRequestBody = PasswordChangeRequest
+
+// UsersUpdateActionsJSONRequestBody defines body for UsersUpdateActions for application/json ContentType.
+type UsersUpdateActionsJSONRequestBody = UpdateActionsRequest
 
 // VmwareDisksExtendJSONRequestBody defines body for VmwareDisksExtend for application/json ContentType.
 type VmwareDisksExtendJSONRequestBody = VmwareDiskExtendRequest
@@ -72159,6 +72238,11 @@ type ClientInterface interface {
 	// MarketplaceResourcesDetailsRetrieve request
 	MarketplaceResourcesDetailsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceResourcesEstimateRenewalWithBody request with any body
+	MarketplaceResourcesEstimateRenewalWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceResourcesEstimateRenewal(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesEstimateRenewalJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceResourcesGlauthUsersConfigRetrieve request
 	MarketplaceResourcesGlauthUsersConfigRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -76572,6 +76656,11 @@ type ClientInterface interface {
 
 	UserInvitationsApprove(ctx context.Context, body UserInvitationsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// UserInvitationsCheckDuplicatesWithBody request with any body
+	UserInvitationsCheckDuplicatesWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	UserInvitationsCheckDuplicates(ctx context.Context, body UserInvitationsCheckDuplicatesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// UserInvitationsRejectWithBody request with any body
 	UserInvitationsRejectWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -76744,8 +76833,16 @@ type ClientInterface interface {
 	// UsersRefreshToken request
 	UsersRefreshToken(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// UsersSendNotification request
+	UsersSendNotification(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// UsersTokenRetrieve request
 	UsersTokenRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UsersUpdateActionsWithBody request with any body
+	UsersUpdateActionsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	UsersUpdateActions(ctx context.Context, uuid openapi_types.UUID, body UsersUpdateActionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// VersionRetrieve request
 	VersionRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -93181,6 +93278,30 @@ func (c *Client) MarketplaceResourcesUpdate(ctx context.Context, uuid openapi_ty
 
 func (c *Client) MarketplaceResourcesDetailsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceResourcesDetailsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourcesEstimateRenewalWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesEstimateRenewalRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourcesEstimateRenewal(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesEstimateRenewalJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesEstimateRenewalRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -112547,6 +112668,30 @@ func (c *Client) UserInvitationsApprove(ctx context.Context, body UserInvitation
 	return c.Client.Do(req)
 }
 
+func (c *Client) UserInvitationsCheckDuplicatesWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserInvitationsCheckDuplicatesRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserInvitationsCheckDuplicates(ctx context.Context, body UserInvitationsCheckDuplicatesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserInvitationsCheckDuplicatesRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) UserInvitationsRejectWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUserInvitationsRejectRequestWithBody(c.Server, contentType, body)
 	if err != nil {
@@ -113291,8 +113436,44 @@ func (c *Client) UsersRefreshToken(ctx context.Context, uuid openapi_types.UUID,
 	return c.Client.Do(req)
 }
 
+func (c *Client) UsersSendNotification(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersSendNotificationRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) UsersTokenRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUsersTokenRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UsersUpdateActionsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersUpdateActionsRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UsersUpdateActions(ctx context.Context, uuid openapi_types.UUID, body UsersUpdateActionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersUpdateActionsRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -198425,6 +198606,53 @@ func NewMarketplaceResourcesDetailsRetrieveRequest(server string, uuid openapi_t
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewMarketplaceResourcesEstimateRenewalRequest calls the generic MarketplaceResourcesEstimateRenewal builder with application/json body
+func NewMarketplaceResourcesEstimateRenewalRequest(server string, uuid openapi_types.UUID, body MarketplaceResourcesEstimateRenewalJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceResourcesEstimateRenewalRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceResourcesEstimateRenewalRequestWithBody generates requests for MarketplaceResourcesEstimateRenewal with any type of body
+func NewMarketplaceResourcesEstimateRenewalRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resources/%s/estimate_renewal/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -289652,6 +289880,22 @@ func NewUserActionsListRequest(server string, params *UserActionsListParams) (*h
 
 		}
 
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -289848,6 +290092,22 @@ func NewUserActionsCountRequest(server string, params *UserActionsCountParams) (
 		if params.Urgency != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "urgency", runtime.ParamLocationQuery, *params.Urgency); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -291709,6 +291969,46 @@ func NewUserInvitationsApproveRequestWithBody(server string, contentType string,
 	}
 
 	operationPath := fmt.Sprintf("/api/user-invitations/approve/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewUserInvitationsCheckDuplicatesRequest calls the generic UserInvitationsCheckDuplicates builder with application/json body
+func NewUserInvitationsCheckDuplicatesRequest(server string, body UserInvitationsCheckDuplicatesJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewUserInvitationsCheckDuplicatesRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewUserInvitationsCheckDuplicatesRequestWithBody generates requests for UserInvitationsCheckDuplicates with any type of body
+func NewUserInvitationsCheckDuplicatesRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-invitations/check-duplicates/")
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -298566,6 +298866,40 @@ func NewUsersRefreshTokenRequest(server string, uuid openapi_types.UUID) (*http.
 	return req, nil
 }
 
+// NewUsersSendNotificationRequest generates requests for UsersSendNotification
+func NewUsersSendNotificationRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/users/%s/send_notification/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewUsersTokenRetrieveRequest generates requests for UsersTokenRetrieve
 func NewUsersTokenRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -298596,6 +298930,53 @@ func NewUsersTokenRetrieveRequest(server string, uuid openapi_types.UUID) (*http
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewUsersUpdateActionsRequest calls the generic UsersUpdateActions builder with application/json body
+func NewUsersUpdateActionsRequest(server string, uuid openapi_types.UUID, body UsersUpdateActionsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewUsersUpdateActionsRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewUsersUpdateActionsRequestWithBody generates requests for UsersUpdateActions with any type of body
+func NewUsersUpdateActionsRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/users/%s/update_actions/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -307681,6 +308062,11 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceResourcesDetailsRetrieveWithResponse request
 	MarketplaceResourcesDetailsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesDetailsRetrieveResponse, error)
 
+	// MarketplaceResourcesEstimateRenewalWithBodyWithResponse request with any body
+	MarketplaceResourcesEstimateRenewalWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesEstimateRenewalResponse, error)
+
+	MarketplaceResourcesEstimateRenewalWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesEstimateRenewalJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesEstimateRenewalResponse, error)
+
 	// MarketplaceResourcesGlauthUsersConfigRetrieveWithResponse request
 	MarketplaceResourcesGlauthUsersConfigRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesGlauthUsersConfigRetrieveResponse, error)
 
@@ -312094,6 +312480,11 @@ type ClientWithResponsesInterface interface {
 
 	UserInvitationsApproveWithResponse(ctx context.Context, body UserInvitationsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*UserInvitationsApproveResponse, error)
 
+	// UserInvitationsCheckDuplicatesWithBodyWithResponse request with any body
+	UserInvitationsCheckDuplicatesWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserInvitationsCheckDuplicatesResponse, error)
+
+	UserInvitationsCheckDuplicatesWithResponse(ctx context.Context, body UserInvitationsCheckDuplicatesJSONRequestBody, reqEditors ...RequestEditorFn) (*UserInvitationsCheckDuplicatesResponse, error)
+
 	// UserInvitationsRejectWithBodyWithResponse request with any body
 	UserInvitationsRejectWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserInvitationsRejectResponse, error)
 
@@ -312266,8 +312657,16 @@ type ClientWithResponsesInterface interface {
 	// UsersRefreshTokenWithResponse request
 	UsersRefreshTokenWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UsersRefreshTokenResponse, error)
 
+	// UsersSendNotificationWithResponse request
+	UsersSendNotificationWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UsersSendNotificationResponse, error)
+
 	// UsersTokenRetrieveWithResponse request
 	UsersTokenRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UsersTokenRetrieveResponse, error)
+
+	// UsersUpdateActionsWithBodyWithResponse request with any body
+	UsersUpdateActionsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UsersUpdateActionsResponse, error)
+
+	UsersUpdateActionsWithResponse(ctx context.Context, uuid openapi_types.UUID, body UsersUpdateActionsJSONRequestBody, reqEditors ...RequestEditorFn) (*UsersUpdateActionsResponse, error)
 
 	// VersionRetrieveWithResponse request
 	VersionRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*VersionRetrieveResponse, error)
@@ -334029,6 +334428,28 @@ func (r MarketplaceResourcesDetailsRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceResourcesDetailsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceResourcesEstimateRenewalResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RenewalEstimateResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourcesEstimateRenewalResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourcesEstimateRenewalResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -359867,6 +360288,28 @@ func (r UserInvitationsApproveResponse) StatusCode() int {
 	return 0
 }
 
+type UserInvitationsCheckDuplicatesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *InvitationDuplicateCheckResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r UserInvitationsCheckDuplicatesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserInvitationsCheckDuplicatesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type UserInvitationsRejectResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -360904,6 +361347,28 @@ func (r UsersRefreshTokenResponse) StatusCode() int {
 	return 0
 }
 
+type UsersSendNotificationResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON202      *SendNotificationResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r UsersSendNotificationResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UsersSendNotificationResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type UsersTokenRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -360920,6 +361385,28 @@ func (r UsersTokenRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r UsersTokenRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UsersUpdateActionsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON202      *UpdateActionsResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r UsersUpdateActionsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UsersUpdateActionsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -373950,6 +374437,23 @@ func (c *ClientWithResponses) MarketplaceResourcesDetailsRetrieveWithResponse(ct
 		return nil, err
 	}
 	return ParseMarketplaceResourcesDetailsRetrieveResponse(rsp)
+}
+
+// MarketplaceResourcesEstimateRenewalWithBodyWithResponse request with arbitrary body returning *MarketplaceResourcesEstimateRenewalResponse
+func (c *ClientWithResponses) MarketplaceResourcesEstimateRenewalWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesEstimateRenewalResponse, error) {
+	rsp, err := c.MarketplaceResourcesEstimateRenewalWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesEstimateRenewalResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceResourcesEstimateRenewalWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesEstimateRenewalJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesEstimateRenewalResponse, error) {
+	rsp, err := c.MarketplaceResourcesEstimateRenewal(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesEstimateRenewalResponse(rsp)
 }
 
 // MarketplaceResourcesGlauthUsersConfigRetrieveWithResponse request returning *MarketplaceResourcesGlauthUsersConfigRetrieveResponse
@@ -388043,6 +388547,23 @@ func (c *ClientWithResponses) UserInvitationsApproveWithResponse(ctx context.Con
 	return ParseUserInvitationsApproveResponse(rsp)
 }
 
+// UserInvitationsCheckDuplicatesWithBodyWithResponse request with arbitrary body returning *UserInvitationsCheckDuplicatesResponse
+func (c *ClientWithResponses) UserInvitationsCheckDuplicatesWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserInvitationsCheckDuplicatesResponse, error) {
+	rsp, err := c.UserInvitationsCheckDuplicatesWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserInvitationsCheckDuplicatesResponse(rsp)
+}
+
+func (c *ClientWithResponses) UserInvitationsCheckDuplicatesWithResponse(ctx context.Context, body UserInvitationsCheckDuplicatesJSONRequestBody, reqEditors ...RequestEditorFn) (*UserInvitationsCheckDuplicatesResponse, error) {
+	rsp, err := c.UserInvitationsCheckDuplicates(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserInvitationsCheckDuplicatesResponse(rsp)
+}
+
 // UserInvitationsRejectWithBodyWithResponse request with arbitrary body returning *UserInvitationsRejectResponse
 func (c *ClientWithResponses) UserInvitationsRejectWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserInvitationsRejectResponse, error) {
 	rsp, err := c.UserInvitationsRejectWithBody(ctx, contentType, body, reqEditors...)
@@ -388587,6 +389108,15 @@ func (c *ClientWithResponses) UsersRefreshTokenWithResponse(ctx context.Context,
 	return ParseUsersRefreshTokenResponse(rsp)
 }
 
+// UsersSendNotificationWithResponse request returning *UsersSendNotificationResponse
+func (c *ClientWithResponses) UsersSendNotificationWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UsersSendNotificationResponse, error) {
+	rsp, err := c.UsersSendNotification(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUsersSendNotificationResponse(rsp)
+}
+
 // UsersTokenRetrieveWithResponse request returning *UsersTokenRetrieveResponse
 func (c *ClientWithResponses) UsersTokenRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UsersTokenRetrieveResponse, error) {
 	rsp, err := c.UsersTokenRetrieve(ctx, uuid, reqEditors...)
@@ -388594,6 +389124,23 @@ func (c *ClientWithResponses) UsersTokenRetrieveWithResponse(ctx context.Context
 		return nil, err
 	}
 	return ParseUsersTokenRetrieveResponse(rsp)
+}
+
+// UsersUpdateActionsWithBodyWithResponse request with arbitrary body returning *UsersUpdateActionsResponse
+func (c *ClientWithResponses) UsersUpdateActionsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UsersUpdateActionsResponse, error) {
+	rsp, err := c.UsersUpdateActionsWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUsersUpdateActionsResponse(rsp)
+}
+
+func (c *ClientWithResponses) UsersUpdateActionsWithResponse(ctx context.Context, uuid openapi_types.UUID, body UsersUpdateActionsJSONRequestBody, reqEditors ...RequestEditorFn) (*UsersUpdateActionsResponse, error) {
+	rsp, err := c.UsersUpdateActions(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUsersUpdateActionsResponse(rsp)
 }
 
 // VersionRetrieveWithResponse request returning *VersionRetrieveResponse
@@ -411962,6 +412509,32 @@ func ParseMarketplaceResourcesDetailsRetrieveResponse(rsp *http.Response) (*Mark
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest map[string]interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourcesEstimateRenewalResponse parses an HTTP response from a MarketplaceResourcesEstimateRenewalWithResponse call
+func ParseMarketplaceResourcesEstimateRenewalResponse(rsp *http.Response) (*MarketplaceResourcesEstimateRenewalResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourcesEstimateRenewalResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RenewalEstimateResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -439591,6 +440164,32 @@ func ParseUserInvitationsApproveResponse(rsp *http.Response) (*UserInvitationsAp
 	return response, nil
 }
 
+// ParseUserInvitationsCheckDuplicatesResponse parses an HTTP response from a UserInvitationsCheckDuplicatesWithResponse call
+func ParseUserInvitationsCheckDuplicatesResponse(rsp *http.Response) (*UserInvitationsCheckDuplicatesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserInvitationsCheckDuplicatesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest InvitationDuplicateCheckResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseUserInvitationsRejectResponse parses an HTTP response from a UserInvitationsRejectWithResponse call
 func ParseUserInvitationsRejectResponse(rsp *http.Response) (*UserInvitationsRejectResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -440643,6 +441242,32 @@ func ParseUsersRefreshTokenResponse(rsp *http.Response) (*UsersRefreshTokenRespo
 	return response, nil
 }
 
+// ParseUsersSendNotificationResponse parses an HTTP response from a UsersSendNotificationWithResponse call
+func ParseUsersSendNotificationResponse(rsp *http.Response) (*UsersSendNotificationResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UsersSendNotificationResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest SendNotificationResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseUsersTokenRetrieveResponse parses an HTTP response from a UsersTokenRetrieveWithResponse call
 func ParseUsersTokenRetrieveResponse(rsp *http.Response) (*UsersTokenRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -440663,6 +441288,32 @@ func ParseUsersTokenRetrieveResponse(rsp *http.Response) (*UsersTokenRetrieveRes
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUsersUpdateActionsResponse parses an HTTP response from a UsersUpdateActionsWithResponse call
+func ParseUsersUpdateActionsResponse(rsp *http.Response) (*UsersUpdateActionsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UsersUpdateActionsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest UpdateActionsResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
 
 	}
 
