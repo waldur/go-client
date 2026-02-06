@@ -1801,6 +1801,7 @@ const (
 	PermissionMetadataResponsePermissionMapCALLLIST                                PermissionMetadataResponsePermissionMap = "CALL.LIST"
 	PermissionMetadataResponsePermissionMapCALLUPDATE                              PermissionMetadataResponsePermissionMap = "CALL.UPDATE"
 	PermissionMetadataResponsePermissionMapCALLUPDATEPERMISSION                    PermissionMetadataResponsePermissionMap = "CALL.UPDATE_PERMISSION"
+	PermissionMetadataResponsePermissionMapCUSTOMERCONTACTUPDATE                   PermissionMetadataResponsePermissionMap = "CUSTOMER.CONTACT_UPDATE"
 	PermissionMetadataResponsePermissionMapCUSTOMERCREATEPERMISSION                PermissionMetadataResponsePermissionMap = "CUSTOMER.CREATE_PERMISSION"
 	PermissionMetadataResponsePermissionMapCUSTOMERDELETEPERMISSION                PermissionMetadataResponsePermissionMap = "CUSTOMER.DELETE_PERMISSION"
 	PermissionMetadataResponsePermissionMapCUSTOMERLISTPERMISSIONREVIEWS           PermissionMetadataResponsePermissionMap = "CUSTOMER.LIST_PERMISSION_REVIEWS"
@@ -1923,6 +1924,7 @@ const (
 	PermissionMetadataResponsePermissionsCALLLIST                                PermissionMetadataResponsePermissions = "CALL.LIST"
 	PermissionMetadataResponsePermissionsCALLUPDATE                              PermissionMetadataResponsePermissions = "CALL.UPDATE"
 	PermissionMetadataResponsePermissionsCALLUPDATEPERMISSION                    PermissionMetadataResponsePermissions = "CALL.UPDATE_PERMISSION"
+	PermissionMetadataResponsePermissionsCUSTOMERCONTACTUPDATE                   PermissionMetadataResponsePermissions = "CUSTOMER.CONTACT_UPDATE"
 	PermissionMetadataResponsePermissionsCUSTOMERCREATEPERMISSION                PermissionMetadataResponsePermissions = "CUSTOMER.CREATE_PERMISSION"
 	PermissionMetadataResponsePermissionsCUSTOMERDELETEPERMISSION                PermissionMetadataResponsePermissions = "CUSTOMER.DELETE_PERMISSION"
 	PermissionMetadataResponsePermissionsCUSTOMERLISTPERMISSIONREVIEWS           PermissionMetadataResponsePermissions = "CUSTOMER.LIST_PERMISSION_REVIEWS"
@@ -18998,6 +19000,32 @@ type CustomerComponentUsagePolicyRequest struct {
 	// Options Fields for saving actions extra data. Keys are name of actions.
 	Options interface{} `json:"options,omitempty"`
 	Scope   string      `json:"scope"`
+}
+
+// CustomerContactUpdate defines model for CustomerContactUpdate.
+type CustomerContactUpdate struct {
+	Address        *string              `json:"address,omitempty"`
+	ContactDetails *string              `json:"contact_details,omitempty"`
+	Country        *string              `json:"country,omitempty"`
+	Email          *openapi_types.Email `json:"email,omitempty"`
+
+	// NotificationEmails Comma-separated list of notification email addresses
+	NotificationEmails *string `json:"notification_emails,omitempty"`
+	PhoneNumber        *string `json:"phone_number,omitempty"`
+	Postal             *string `json:"postal,omitempty"`
+}
+
+// CustomerContactUpdateRequest defines model for CustomerContactUpdateRequest.
+type CustomerContactUpdateRequest struct {
+	Address        *string              `json:"address,omitempty"`
+	ContactDetails *string              `json:"contact_details,omitempty"`
+	Country        *string              `json:"country,omitempty"`
+	Email          *openapi_types.Email `json:"email,omitempty"`
+
+	// NotificationEmails Comma-separated list of notification email addresses
+	NotificationEmails *string `json:"notification_emails,omitempty"`
+	PhoneNumber        *string `json:"phone_number,omitempty"`
+	Postal             *string `json:"postal,omitempty"`
 }
 
 // CustomerCredit defines model for CustomerCredit.
@@ -59322,6 +59350,9 @@ type CustomersUpdateMultipartRequestBody = CustomerRequestMultipart
 // CustomersAddUserJSONRequestBody defines body for CustomersAddUser for application/json ContentType.
 type CustomersAddUserJSONRequestBody = UserRoleCreateRequest
 
+// CustomersContactJSONRequestBody defines body for CustomersContact for application/json ContentType.
+type CustomersContactJSONRequestBody = CustomerContactUpdateRequest
+
 // CustomersDeleteUserJSONRequestBody defines body for CustomersDeleteUser for application/json ContentType.
 type CustomersDeleteUserJSONRequestBody = UserRoleDeleteRequest
 
@@ -69945,6 +69976,11 @@ type ClientInterface interface {
 	CustomersAddUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	CustomersAddUser(ctx context.Context, uuid openapi_types.UUID, body CustomersAddUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CustomersContactWithBody request with any body
+	CustomersContactWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	CustomersContact(ctx context.Context, uuid openapi_types.UUID, body CustomersContactJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CustomersDeleteUserWithBody request with any body
 	CustomersDeleteUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -83569,6 +83605,30 @@ func (c *Client) CustomersAddUserWithBody(ctx context.Context, uuid openapi_type
 
 func (c *Client) CustomersAddUser(ctx context.Context, uuid openapi_types.UUID, body CustomersAddUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCustomersAddUserRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomersContactWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomersContactRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomersContact(ctx context.Context, uuid openapi_types.UUID, body CustomersContactJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomersContactRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -145583,6 +145643,53 @@ func NewCustomersAddUserRequestWithBody(server string, uuid openapi_types.UUID, 
 	}
 
 	operationPath := fmt.Sprintf("/api/customers/%s/add_user/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewCustomersContactRequest calls the generic CustomersContact builder with application/json body
+func NewCustomersContactRequest(server string, uuid openapi_types.UUID, body CustomersContactJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCustomersContactRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewCustomersContactRequestWithBody generates requests for CustomersContact with any type of body
+func NewCustomersContactRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/customers/%s/contact/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -305392,6 +305499,11 @@ type ClientWithResponsesInterface interface {
 
 	CustomersAddUserWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomersAddUserJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomersAddUserResponse, error)
 
+	// CustomersContactWithBodyWithResponse request with any body
+	CustomersContactWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomersContactResponse, error)
+
+	CustomersContactWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomersContactJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomersContactResponse, error)
+
 	// CustomersDeleteUserWithBodyWithResponse request with any body
 	CustomersDeleteUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomersDeleteUserResponse, error)
 
@@ -321177,6 +321289,28 @@ func (r CustomersAddUserResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r CustomersAddUserResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CustomersContactResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CustomerContactUpdate
+}
+
+// Status returns HTTPResponse.Status
+func (r CustomersContactResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CustomersContactResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -366848,6 +366982,23 @@ func (c *ClientWithResponses) CustomersAddUserWithResponse(ctx context.Context, 
 	return ParseCustomersAddUserResponse(rsp)
 }
 
+// CustomersContactWithBodyWithResponse request with arbitrary body returning *CustomersContactResponse
+func (c *ClientWithResponses) CustomersContactWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomersContactResponse, error) {
+	rsp, err := c.CustomersContactWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomersContactResponse(rsp)
+}
+
+func (c *ClientWithResponses) CustomersContactWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomersContactJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomersContactResponse, error) {
+	rsp, err := c.CustomersContact(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomersContactResponse(rsp)
+}
+
 // CustomersDeleteUserWithBodyWithResponse request with arbitrary body returning *CustomersDeleteUserResponse
 func (c *ClientWithResponses) CustomersDeleteUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomersDeleteUserResponse, error) {
 	rsp, err := c.CustomersDeleteUserWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -398393,6 +398544,32 @@ func ParseCustomersAddUserResponse(rsp *http.Response) (*CustomersAddUserRespons
 			return nil, err
 		}
 		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCustomersContactResponse parses an HTTP response from a CustomersContactWithResponse call
+func ParseCustomersContactResponse(rsp *http.Response) (*CustomersContactResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CustomersContactResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CustomerContactUpdate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
 
 	}
 
