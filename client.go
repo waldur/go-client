@@ -976,6 +976,7 @@ const (
 	EventMetadataResponseEventGroupsUserDeactivatedNoRoles                           EventMetadataResponseEventGroups = "user_deactivated_no_roles"
 	EventMetadataResponseEventGroupsUserDeletionSucceeded                            EventMetadataResponseEventGroups = "user_deletion_succeeded"
 	EventMetadataResponseEventGroupsUserDetailsUpdateSucceeded                       EventMetadataResponseEventGroups = "user_details_update_succeeded"
+	EventMetadataResponseEventGroupsUserGroupInvitationUpdated                       EventMetadataResponseEventGroups = "user_group_invitation_updated"
 	EventMetadataResponseEventGroupsUserHasBeenCreatedByStaff                        EventMetadataResponseEventGroups = "user_has_been_created_by_staff"
 	EventMetadataResponseEventGroupsUserInvitationDeleted                            EventMetadataResponseEventGroups = "user_invitation_deleted"
 	EventMetadataResponseEventGroupsUserInvitationUpdated                            EventMetadataResponseEventGroups = "user_invitation_updated"
@@ -1246,6 +1247,7 @@ const (
 	EventTypesEnumUserDeactivatedNoRoles                           EventTypesEnum = "user_deactivated_no_roles"
 	EventTypesEnumUserDeletionSucceeded                            EventTypesEnum = "user_deletion_succeeded"
 	EventTypesEnumUserDetailsUpdateSucceeded                       EventTypesEnum = "user_details_update_succeeded"
+	EventTypesEnumUserGroupInvitationUpdated                       EventTypesEnum = "user_group_invitation_updated"
 	EventTypesEnumUserHasBeenCreatedByStaff                        EventTypesEnum = "user_has_been_created_by_staff"
 	EventTypesEnumUserInvitationDeleted                            EventTypesEnum = "user_invitation_deleted"
 	EventTypesEnumUserInvitationUpdated                            EventTypesEnum = "user_invitation_updated"
@@ -6888,6 +6890,7 @@ const (
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldNotificationsEnabled          MarketplaceProviderOfferingsListCustomerUsersListParamsField = "notifications_enabled"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldOrganization                  MarketplaceProviderOfferingsListCustomerUsersListParamsField = "organization"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldOrganizationCountry           MarketplaceProviderOfferingsListCustomerUsersListParamsField = "organization_country"
+	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldOrganizationRegistryCode      MarketplaceProviderOfferingsListCustomerUsersListParamsField = "organization_registry_code"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldOrganizationType              MarketplaceProviderOfferingsListCustomerUsersListParamsField = "organization_type"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldPermissions                   MarketplaceProviderOfferingsListCustomerUsersListParamsField = "permissions"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldPersonalTitle                 MarketplaceProviderOfferingsListCustomerUsersListParamsField = "personal_title"
@@ -13024,6 +13027,7 @@ const (
 	UsersListParamsFieldNotificationsEnabled          UsersListParamsField = "notifications_enabled"
 	UsersListParamsFieldOrganization                  UsersListParamsField = "organization"
 	UsersListParamsFieldOrganizationCountry           UsersListParamsField = "organization_country"
+	UsersListParamsFieldOrganizationRegistryCode      UsersListParamsField = "organization_registry_code"
 	UsersListParamsFieldOrganizationType              UsersListParamsField = "organization_type"
 	UsersListParamsFieldPermissions                   UsersListParamsField = "permissions"
 	UsersListParamsFieldPersonalTitle                 UsersListParamsField = "personal_title"
@@ -13131,6 +13135,7 @@ const (
 	UsersMeRetrieveParamsFieldNotificationsEnabled          UsersMeRetrieveParamsField = "notifications_enabled"
 	UsersMeRetrieveParamsFieldOrganization                  UsersMeRetrieveParamsField = "organization"
 	UsersMeRetrieveParamsFieldOrganizationCountry           UsersMeRetrieveParamsField = "organization_country"
+	UsersMeRetrieveParamsFieldOrganizationRegistryCode      UsersMeRetrieveParamsField = "organization_registry_code"
 	UsersMeRetrieveParamsFieldOrganizationType              UsersMeRetrieveParamsField = "organization_type"
 	UsersMeRetrieveParamsFieldPermissions                   UsersMeRetrieveParamsField = "permissions"
 	UsersMeRetrieveParamsFieldPersonalTitle                 UsersMeRetrieveParamsField = "personal_title"
@@ -13350,6 +13355,7 @@ const (
 	UsersRetrieveParamsFieldNotificationsEnabled          UsersRetrieveParamsField = "notifications_enabled"
 	UsersRetrieveParamsFieldOrganization                  UsersRetrieveParamsField = "organization"
 	UsersRetrieveParamsFieldOrganizationCountry           UsersRetrieveParamsField = "organization_country"
+	UsersRetrieveParamsFieldOrganizationRegistryCode      UsersRetrieveParamsField = "organization_registry_code"
 	UsersRetrieveParamsFieldOrganizationType              UsersRetrieveParamsField = "organization_type"
 	UsersRetrieveParamsFieldPermissions                   UsersRetrieveParamsField = "permissions"
 	UsersRetrieveParamsFieldPersonalTitle                 UsersRetrieveParamsField = "personal_title"
@@ -20996,6 +21002,9 @@ type GroupInvitation struct {
 	// CreatedByUsername Username of the user who created this invitation
 	CreatedByUsername *string `json:"created_by_username,omitempty"`
 
+	// CustomText Custom description text displayed to users viewing this invitation.
+	CustomText *string `json:"custom_text,omitempty"`
+
 	// CustomerName Name of the customer organization
 	CustomerName *string `json:"customer_name,omitempty"`
 
@@ -21052,6 +21061,9 @@ type GroupInvitationRequest struct {
 	// AutoCreateProject Create project and grant project permissions instead of customer permissions
 	AutoCreateProject *bool `json:"auto_create_project,omitempty"`
 
+	// CustomText Custom description text displayed to users viewing this invitation.
+	CustomText *string `json:"custom_text,omitempty"`
+
 	// IsPublic Allow non-authenticated users to see and accept this invitation. Only staff can create public invitations.
 	IsPublic *bool `json:"is_public,omitempty"`
 
@@ -21063,6 +21075,70 @@ type GroupInvitationRequest struct {
 
 	// Role UUID of the role to grant to the invited user
 	Role openapi_types.UUID `json:"role"`
+
+	// Scope URL of the scope (Customer or Project) for this invitation
+	Scope             *string     `json:"scope,omitempty"`
+	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+
+	// UserIdentitySources List of allowed identity sources (identity providers).
+	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
+}
+
+// GroupInvitationUpdate defines model for GroupInvitationUpdate.
+type GroupInvitationUpdate struct {
+	// AutoApprove Automatically approve permission requests from users matching email patterns or affiliations
+	AutoApprove *bool `json:"auto_approve,omitempty"`
+
+	// AutoCreateProject Create project and grant project permissions instead of customer permissions
+	AutoCreateProject *bool `json:"auto_create_project,omitempty"`
+
+	// CustomText Custom description text displayed to users viewing this invitation.
+	CustomText *string `json:"custom_text,omitempty"`
+
+	// IsPublic Allow non-authenticated users to see and accept this invitation. Only staff can create public invitations.
+	IsPublic *bool `json:"is_public,omitempty"`
+
+	// ProjectNameTemplate Template for project name. Supports {username}, {email}, {full_name} variables
+	ProjectNameTemplate *string `json:"project_name_template"`
+
+	// ProjectRole UUID of the project role to grant if auto_create_project is enabled
+	ProjectRole *openapi_types.UUID `json:"project_role"`
+
+	// Role UUID of the role to grant.
+	Role *openapi_types.UUID `json:"role,omitempty"`
+
+	// Scope URL of the scope (Customer or Project) for this invitation
+	Scope             *string     `json:"scope,omitempty"`
+	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+
+	// UserIdentitySources List of allowed identity sources (identity providers).
+	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
+}
+
+// GroupInvitationUpdateRequest defines model for GroupInvitationUpdateRequest.
+type GroupInvitationUpdateRequest struct {
+	// AutoApprove Automatically approve permission requests from users matching email patterns or affiliations
+	AutoApprove *bool `json:"auto_approve,omitempty"`
+
+	// AutoCreateProject Create project and grant project permissions instead of customer permissions
+	AutoCreateProject *bool `json:"auto_create_project,omitempty"`
+
+	// CustomText Custom description text displayed to users viewing this invitation.
+	CustomText *string `json:"custom_text,omitempty"`
+
+	// IsPublic Allow non-authenticated users to see and accept this invitation. Only staff can create public invitations.
+	IsPublic *bool `json:"is_public,omitempty"`
+
+	// ProjectNameTemplate Template for project name. Supports {username}, {email}, {full_name} variables
+	ProjectNameTemplate *string `json:"project_name_template"`
+
+	// ProjectRole UUID of the project role to grant if auto_create_project is enabled
+	ProjectRole *openapi_types.UUID `json:"project_role"`
+
+	// Role UUID of the role to grant.
+	Role *openapi_types.UUID `json:"role,omitempty"`
 
 	// Scope URL of the scope (Customer or Project) for this invitation
 	Scope             *string     `json:"scope,omitempty"`
@@ -28276,6 +28352,38 @@ type PatchedFirecrestJobRequest struct {
 	RuntimeState *string `json:"runtime_state,omitempty"`
 }
 
+// PatchedGroupInvitationUpdateRequest defines model for PatchedGroupInvitationUpdateRequest.
+type PatchedGroupInvitationUpdateRequest struct {
+	// AutoApprove Automatically approve permission requests from users matching email patterns or affiliations
+	AutoApprove *bool `json:"auto_approve,omitempty"`
+
+	// AutoCreateProject Create project and grant project permissions instead of customer permissions
+	AutoCreateProject *bool `json:"auto_create_project,omitempty"`
+
+	// CustomText Custom description text displayed to users viewing this invitation.
+	CustomText *string `json:"custom_text,omitempty"`
+
+	// IsPublic Allow non-authenticated users to see and accept this invitation. Only staff can create public invitations.
+	IsPublic *bool `json:"is_public,omitempty"`
+
+	// ProjectNameTemplate Template for project name. Supports {username}, {email}, {full_name} variables
+	ProjectNameTemplate *string `json:"project_name_template"`
+
+	// ProjectRole UUID of the project role to grant if auto_create_project is enabled
+	ProjectRole *openapi_types.UUID `json:"project_role"`
+
+	// Role UUID of the role to grant.
+	Role *openapi_types.UUID `json:"role,omitempty"`
+
+	// Scope URL of the scope (Customer or Project) for this invitation
+	Scope             *string     `json:"scope,omitempty"`
+	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+
+	// UserIdentitySources List of allowed identity sources (identity providers).
+	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
+}
+
 // PatchedIdentityProviderRequest defines model for PatchedIdentityProviderRequest.
 type PatchedIdentityProviderRequest struct {
 	// AllowedRedirects List of allowed redirect URLs for OAuth authentication. URLs must be exact matches (origin only: scheme + domain + port). HTTPS required except for localhost. No wildcards, paths, query params, or fragments. Example: ["https://portal1.example.com", "https://portal2.example.com:8443"]. If empty, falls back to HOMEPORT_URL setting.
@@ -29778,6 +29886,9 @@ type PatchedUserRequest struct {
 	Organization         *string `json:"organization,omitempty"`
 	OrganizationCountry  *string `json:"organization_country,omitempty"`
 
+	// OrganizationRegistryCode Company registration code of the user's organization, if known
+	OrganizationRegistryCode *string `json:"organization_registry_code,omitempty"`
+
 	// OrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
 	OrganizationType *string `json:"organization_type,omitempty"`
 
@@ -29841,6 +29952,9 @@ type PatchedUserRequestForm struct {
 	Organization         *string `json:"organization,omitempty"`
 	OrganizationCountry  *string `json:"organization_country,omitempty"`
 
+	// OrganizationRegistryCode Company registration code of the user's organization, if known
+	OrganizationRegistryCode *string `json:"organization_registry_code,omitempty"`
+
 	// OrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
 	OrganizationType *string `json:"organization_type,omitempty"`
 
@@ -29903,6 +30017,9 @@ type PatchedUserRequestMultipart struct {
 	NotificationsEnabled *bool   `json:"notifications_enabled,omitempty"`
 	Organization         *string `json:"organization,omitempty"`
 	OrganizationCountry  *string `json:"organization_country,omitempty"`
+
+	// OrganizationRegistryCode Company registration code of the user's organization, if known
+	OrganizationRegistryCode *string `json:"organization_registry_code,omitempty"`
 
 	// OrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
 	OrganizationType *string `json:"organization_type,omitempty"`
@@ -36698,6 +36815,9 @@ type User struct {
 	Organization         *string `json:"organization,omitempty"`
 	OrganizationCountry  *string `json:"organization_country,omitempty"`
 
+	// OrganizationRegistryCode Company registration code of the user's organization, if known
+	OrganizationRegistryCode *string `json:"organization_registry_code,omitempty"`
+
 	// OrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
 	OrganizationType *string       `json:"organization_type,omitempty"`
 	Permissions      *[]Permission `json:"permissions,omitempty"`
@@ -37078,6 +37198,9 @@ type UserRequest struct {
 	Organization         *string `json:"organization,omitempty"`
 	OrganizationCountry  *string `json:"organization_country,omitempty"`
 
+	// OrganizationRegistryCode Company registration code of the user's organization, if known
+	OrganizationRegistryCode *string `json:"organization_registry_code,omitempty"`
+
 	// OrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
 	OrganizationType *string `json:"organization_type,omitempty"`
 
@@ -37142,6 +37265,9 @@ type UserRequestForm struct {
 	Organization         *string `json:"organization,omitempty"`
 	OrganizationCountry  *string `json:"organization_country,omitempty"`
 
+	// OrganizationRegistryCode Company registration code of the user's organization, if known
+	OrganizationRegistryCode *string `json:"organization_registry_code,omitempty"`
+
 	// OrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
 	OrganizationType *string `json:"organization_type,omitempty"`
 
@@ -37205,6 +37331,9 @@ type UserRequestMultipart struct {
 	NotificationsEnabled *bool   `json:"notifications_enabled,omitempty"`
 	Organization         *string `json:"organization,omitempty"`
 	OrganizationCountry  *string `json:"organization_country,omitempty"`
+
+	// OrganizationRegistryCode Company registration code of the user's organization, if known
+	OrganizationRegistryCode *string `json:"organization_registry_code,omitempty"`
 
 	// OrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
 	OrganizationType *string `json:"organization_type,omitempty"`
@@ -61451,6 +61580,12 @@ type UserAgreementsUpdateJSONRequestBody = UserAgreementRequest
 // UserGroupInvitationsCreateJSONRequestBody defines body for UserGroupInvitationsCreate for application/json ContentType.
 type UserGroupInvitationsCreateJSONRequestBody = GroupInvitationRequest
 
+// UserGroupInvitationsPartialUpdateJSONRequestBody defines body for UserGroupInvitationsPartialUpdate for application/json ContentType.
+type UserGroupInvitationsPartialUpdateJSONRequestBody = PatchedGroupInvitationUpdateRequest
+
+// UserGroupInvitationsUpdateJSONRequestBody defines body for UserGroupInvitationsUpdate for application/json ContentType.
+type UserGroupInvitationsUpdateJSONRequestBody = GroupInvitationUpdateRequest
+
 // UserInvitationsCreateJSONRequestBody defines body for UserInvitationsCreate for application/json ContentType.
 type UserInvitationsCreateJSONRequestBody = InvitationRequest
 
@@ -76644,6 +76779,16 @@ type ClientInterface interface {
 
 	// UserGroupInvitationsRetrieve request
 	UserGroupInvitationsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UserGroupInvitationsPartialUpdateWithBody request with any body
+	UserGroupInvitationsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	UserGroupInvitationsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body UserGroupInvitationsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UserGroupInvitationsUpdateWithBody request with any body
+	UserGroupInvitationsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	UserGroupInvitationsUpdate(ctx context.Context, uuid openapi_types.UUID, body UserGroupInvitationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UserGroupInvitationsCancel request
 	UserGroupInvitationsCancel(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -112576,6 +112721,54 @@ func (c *Client) UserGroupInvitationsDestroy(ctx context.Context, uuid openapi_t
 
 func (c *Client) UserGroupInvitationsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUserGroupInvitationsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserGroupInvitationsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserGroupInvitationsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserGroupInvitationsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body UserGroupInvitationsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserGroupInvitationsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserGroupInvitationsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserGroupInvitationsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserGroupInvitationsUpdate(ctx context.Context, uuid openapi_types.UUID, body UserGroupInvitationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserGroupInvitationsUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -291325,6 +291518,100 @@ func NewUserGroupInvitationsRetrieveRequest(server string, uuid openapi_types.UU
 	return req, nil
 }
 
+// NewUserGroupInvitationsPartialUpdateRequest calls the generic UserGroupInvitationsPartialUpdate builder with application/json body
+func NewUserGroupInvitationsPartialUpdateRequest(server string, uuid openapi_types.UUID, body UserGroupInvitationsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewUserGroupInvitationsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewUserGroupInvitationsPartialUpdateRequestWithBody generates requests for UserGroupInvitationsPartialUpdate with any type of body
+func NewUserGroupInvitationsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-group-invitations/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewUserGroupInvitationsUpdateRequest calls the generic UserGroupInvitationsUpdate builder with application/json body
+func NewUserGroupInvitationsUpdateRequest(server string, uuid openapi_types.UUID, body UserGroupInvitationsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewUserGroupInvitationsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewUserGroupInvitationsUpdateRequestWithBody generates requests for UserGroupInvitationsUpdate with any type of body
+func NewUserGroupInvitationsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-group-invitations/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewUserGroupInvitationsCancelRequest generates requests for UserGroupInvitationsCancel
 func NewUserGroupInvitationsCancelRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -312495,6 +312782,16 @@ type ClientWithResponsesInterface interface {
 
 	// UserGroupInvitationsRetrieveWithResponse request
 	UserGroupInvitationsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UserGroupInvitationsRetrieveResponse, error)
+
+	// UserGroupInvitationsPartialUpdateWithBodyWithResponse request with any body
+	UserGroupInvitationsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserGroupInvitationsPartialUpdateResponse, error)
+
+	UserGroupInvitationsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body UserGroupInvitationsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*UserGroupInvitationsPartialUpdateResponse, error)
+
+	// UserGroupInvitationsUpdateWithBodyWithResponse request with any body
+	UserGroupInvitationsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserGroupInvitationsUpdateResponse, error)
+
+	UserGroupInvitationsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body UserGroupInvitationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*UserGroupInvitationsUpdateResponse, error)
 
 	// UserGroupInvitationsCancelWithResponse request
 	UserGroupInvitationsCancelWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UserGroupInvitationsCancelResponse, error)
@@ -360178,6 +360475,50 @@ func (r UserGroupInvitationsRetrieveResponse) StatusCode() int {
 	return 0
 }
 
+type UserGroupInvitationsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *GroupInvitationUpdate
+}
+
+// Status returns HTTPResponse.Status
+func (r UserGroupInvitationsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserGroupInvitationsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UserGroupInvitationsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *GroupInvitationUpdate
+}
+
+// Status returns HTTPResponse.Status
+func (r UserGroupInvitationsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserGroupInvitationsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type UserGroupInvitationsCancelResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -388515,6 +388856,40 @@ func (c *ClientWithResponses) UserGroupInvitationsRetrieveWithResponse(ctx conte
 		return nil, err
 	}
 	return ParseUserGroupInvitationsRetrieveResponse(rsp)
+}
+
+// UserGroupInvitationsPartialUpdateWithBodyWithResponse request with arbitrary body returning *UserGroupInvitationsPartialUpdateResponse
+func (c *ClientWithResponses) UserGroupInvitationsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserGroupInvitationsPartialUpdateResponse, error) {
+	rsp, err := c.UserGroupInvitationsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserGroupInvitationsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) UserGroupInvitationsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body UserGroupInvitationsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*UserGroupInvitationsPartialUpdateResponse, error) {
+	rsp, err := c.UserGroupInvitationsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserGroupInvitationsPartialUpdateResponse(rsp)
+}
+
+// UserGroupInvitationsUpdateWithBodyWithResponse request with arbitrary body returning *UserGroupInvitationsUpdateResponse
+func (c *ClientWithResponses) UserGroupInvitationsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserGroupInvitationsUpdateResponse, error) {
+	rsp, err := c.UserGroupInvitationsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserGroupInvitationsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) UserGroupInvitationsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body UserGroupInvitationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*UserGroupInvitationsUpdateResponse, error) {
+	rsp, err := c.UserGroupInvitationsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserGroupInvitationsUpdateResponse(rsp)
 }
 
 // UserGroupInvitationsCancelWithResponse request returning *UserGroupInvitationsCancelResponse
@@ -440051,6 +440426,58 @@ func ParseUserGroupInvitationsRetrieveResponse(rsp *http.Response) (*UserGroupIn
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest GroupInvitation
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUserGroupInvitationsPartialUpdateResponse parses an HTTP response from a UserGroupInvitationsPartialUpdateWithResponse call
+func ParseUserGroupInvitationsPartialUpdateResponse(rsp *http.Response) (*UserGroupInvitationsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserGroupInvitationsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest GroupInvitationUpdate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUserGroupInvitationsUpdateResponse parses an HTTP response from a UserGroupInvitationsUpdateWithResponse call
+func ParseUserGroupInvitationsUpdateResponse(rsp *http.Response) (*UserGroupInvitationsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserGroupInvitationsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest GroupInvitationUpdate
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
