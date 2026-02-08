@@ -6016,6 +6016,7 @@ const (
 	MarketplaceOfferingUsersListParamsFieldState                     MarketplaceOfferingUsersListParamsField = "state"
 	MarketplaceOfferingUsersListParamsFieldUrl                       MarketplaceOfferingUsersListParamsField = "url"
 	MarketplaceOfferingUsersListParamsFieldUser                      MarketplaceOfferingUsersListParamsField = "user"
+	MarketplaceOfferingUsersListParamsFieldUserActiveIsds            MarketplaceOfferingUsersListParamsField = "user_active_isds"
 	MarketplaceOfferingUsersListParamsFieldUserAffiliations          MarketplaceOfferingUsersListParamsField = "user_affiliations"
 	MarketplaceOfferingUsersListParamsFieldUserBirthDate             MarketplaceOfferingUsersListParamsField = "user_birth_date"
 	MarketplaceOfferingUsersListParamsFieldUserCivilNumber           MarketplaceOfferingUsersListParamsField = "user_civil_number"
@@ -6107,6 +6108,7 @@ const (
 	MarketplaceOfferingUsersRetrieveParamsFieldState                     MarketplaceOfferingUsersRetrieveParamsField = "state"
 	MarketplaceOfferingUsersRetrieveParamsFieldUrl                       MarketplaceOfferingUsersRetrieveParamsField = "url"
 	MarketplaceOfferingUsersRetrieveParamsFieldUser                      MarketplaceOfferingUsersRetrieveParamsField = "user"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserActiveIsds            MarketplaceOfferingUsersRetrieveParamsField = "user_active_isds"
 	MarketplaceOfferingUsersRetrieveParamsFieldUserAffiliations          MarketplaceOfferingUsersRetrieveParamsField = "user_affiliations"
 	MarketplaceOfferingUsersRetrieveParamsFieldUserBirthDate             MarketplaceOfferingUsersRetrieveParamsField = "user_birth_date"
 	MarketplaceOfferingUsersRetrieveParamsFieldUserCivilNumber           MarketplaceOfferingUsersRetrieveParamsField = "user_civil_number"
@@ -6858,9 +6860,11 @@ const (
 
 // Defines values for MarketplaceProviderOfferingsListCustomerUsersListParamsField.
 const (
+	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldActiveIsds                    MarketplaceProviderOfferingsListCustomerUsersListParamsField = "active_isds"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldAffiliations                  MarketplaceProviderOfferingsListCustomerUsersListParamsField = "affiliations"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldAgreeWithPolicy               MarketplaceProviderOfferingsListCustomerUsersListParamsField = "agree_with_policy"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldAgreementDate                 MarketplaceProviderOfferingsListCustomerUsersListParamsField = "agreement_date"
+	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldAttributeSources              MarketplaceProviderOfferingsListCustomerUsersListParamsField = "attribute_sources"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldBirthDate                     MarketplaceProviderOfferingsListCustomerUsersListParamsField = "birth_date"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldCivilNumber                   MarketplaceProviderOfferingsListCustomerUsersListParamsField = "civil_number"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldCountryOfResidence            MarketplaceProviderOfferingsListCustomerUsersListParamsField = "country_of_residence"
@@ -6880,10 +6884,12 @@ const (
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldImage                         MarketplaceProviderOfferingsListCustomerUsersListParamsField = "image"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldIpAddress                     MarketplaceProviderOfferingsListCustomerUsersListParamsField = "ip_address"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldIsActive                      MarketplaceProviderOfferingsListCustomerUsersListParamsField = "is_active"
+	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldIsIdentityManager             MarketplaceProviderOfferingsListCustomerUsersListParamsField = "is_identity_manager"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldIsStaff                       MarketplaceProviderOfferingsListCustomerUsersListParamsField = "is_staff"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldIsSupport                     MarketplaceProviderOfferingsListCustomerUsersListParamsField = "is_support"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldJobTitle                      MarketplaceProviderOfferingsListCustomerUsersListParamsField = "job_title"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldLastName                      MarketplaceProviderOfferingsListCustomerUsersListParamsField = "last_name"
+	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldManagedIsds                   MarketplaceProviderOfferingsListCustomerUsersListParamsField = "managed_isds"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldNationalities                 MarketplaceProviderOfferingsListCustomerUsersListParamsField = "nationalities"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldNationality                   MarketplaceProviderOfferingsListCustomerUsersListParamsField = "nationality"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldNativeName                    MarketplaceProviderOfferingsListCustomerUsersListParamsField = "native_name"
@@ -12995,9 +13001,11 @@ const (
 
 // Defines values for UsersListParamsField.
 const (
+	UsersListParamsFieldActiveIsds                    UsersListParamsField = "active_isds"
 	UsersListParamsFieldAffiliations                  UsersListParamsField = "affiliations"
 	UsersListParamsFieldAgreeWithPolicy               UsersListParamsField = "agree_with_policy"
 	UsersListParamsFieldAgreementDate                 UsersListParamsField = "agreement_date"
+	UsersListParamsFieldAttributeSources              UsersListParamsField = "attribute_sources"
 	UsersListParamsFieldBirthDate                     UsersListParamsField = "birth_date"
 	UsersListParamsFieldCivilNumber                   UsersListParamsField = "civil_number"
 	UsersListParamsFieldCountryOfResidence            UsersListParamsField = "country_of_residence"
@@ -13017,10 +13025,12 @@ const (
 	UsersListParamsFieldImage                         UsersListParamsField = "image"
 	UsersListParamsFieldIpAddress                     UsersListParamsField = "ip_address"
 	UsersListParamsFieldIsActive                      UsersListParamsField = "is_active"
+	UsersListParamsFieldIsIdentityManager             UsersListParamsField = "is_identity_manager"
 	UsersListParamsFieldIsStaff                       UsersListParamsField = "is_staff"
 	UsersListParamsFieldIsSupport                     UsersListParamsField = "is_support"
 	UsersListParamsFieldJobTitle                      UsersListParamsField = "job_title"
 	UsersListParamsFieldLastName                      UsersListParamsField = "last_name"
+	UsersListParamsFieldManagedIsds                   UsersListParamsField = "managed_isds"
 	UsersListParamsFieldNationalities                 UsersListParamsField = "nationalities"
 	UsersListParamsFieldNationality                   UsersListParamsField = "nationality"
 	UsersListParamsFieldNativeName                    UsersListParamsField = "native_name"
@@ -13103,9 +13113,11 @@ const (
 
 // Defines values for UsersMeRetrieveParamsField.
 const (
+	UsersMeRetrieveParamsFieldActiveIsds                    UsersMeRetrieveParamsField = "active_isds"
 	UsersMeRetrieveParamsFieldAffiliations                  UsersMeRetrieveParamsField = "affiliations"
 	UsersMeRetrieveParamsFieldAgreeWithPolicy               UsersMeRetrieveParamsField = "agree_with_policy"
 	UsersMeRetrieveParamsFieldAgreementDate                 UsersMeRetrieveParamsField = "agreement_date"
+	UsersMeRetrieveParamsFieldAttributeSources              UsersMeRetrieveParamsField = "attribute_sources"
 	UsersMeRetrieveParamsFieldBirthDate                     UsersMeRetrieveParamsField = "birth_date"
 	UsersMeRetrieveParamsFieldCivilNumber                   UsersMeRetrieveParamsField = "civil_number"
 	UsersMeRetrieveParamsFieldCountryOfResidence            UsersMeRetrieveParamsField = "country_of_residence"
@@ -13125,10 +13137,12 @@ const (
 	UsersMeRetrieveParamsFieldImage                         UsersMeRetrieveParamsField = "image"
 	UsersMeRetrieveParamsFieldIpAddress                     UsersMeRetrieveParamsField = "ip_address"
 	UsersMeRetrieveParamsFieldIsActive                      UsersMeRetrieveParamsField = "is_active"
+	UsersMeRetrieveParamsFieldIsIdentityManager             UsersMeRetrieveParamsField = "is_identity_manager"
 	UsersMeRetrieveParamsFieldIsStaff                       UsersMeRetrieveParamsField = "is_staff"
 	UsersMeRetrieveParamsFieldIsSupport                     UsersMeRetrieveParamsField = "is_support"
 	UsersMeRetrieveParamsFieldJobTitle                      UsersMeRetrieveParamsField = "job_title"
 	UsersMeRetrieveParamsFieldLastName                      UsersMeRetrieveParamsField = "last_name"
+	UsersMeRetrieveParamsFieldManagedIsds                   UsersMeRetrieveParamsField = "managed_isds"
 	UsersMeRetrieveParamsFieldNationalities                 UsersMeRetrieveParamsField = "nationalities"
 	UsersMeRetrieveParamsFieldNationality                   UsersMeRetrieveParamsField = "nationality"
 	UsersMeRetrieveParamsFieldNativeName                    UsersMeRetrieveParamsField = "native_name"
@@ -13323,9 +13337,11 @@ const (
 
 // Defines values for UsersRetrieveParamsField.
 const (
+	UsersRetrieveParamsFieldActiveIsds                    UsersRetrieveParamsField = "active_isds"
 	UsersRetrieveParamsFieldAffiliations                  UsersRetrieveParamsField = "affiliations"
 	UsersRetrieveParamsFieldAgreeWithPolicy               UsersRetrieveParamsField = "agree_with_policy"
 	UsersRetrieveParamsFieldAgreementDate                 UsersRetrieveParamsField = "agreement_date"
+	UsersRetrieveParamsFieldAttributeSources              UsersRetrieveParamsField = "attribute_sources"
 	UsersRetrieveParamsFieldBirthDate                     UsersRetrieveParamsField = "birth_date"
 	UsersRetrieveParamsFieldCivilNumber                   UsersRetrieveParamsField = "civil_number"
 	UsersRetrieveParamsFieldCountryOfResidence            UsersRetrieveParamsField = "country_of_residence"
@@ -13345,10 +13361,12 @@ const (
 	UsersRetrieveParamsFieldImage                         UsersRetrieveParamsField = "image"
 	UsersRetrieveParamsFieldIpAddress                     UsersRetrieveParamsField = "ip_address"
 	UsersRetrieveParamsFieldIsActive                      UsersRetrieveParamsField = "is_active"
+	UsersRetrieveParamsFieldIsIdentityManager             UsersRetrieveParamsField = "is_identity_manager"
 	UsersRetrieveParamsFieldIsStaff                       UsersRetrieveParamsField = "is_staff"
 	UsersRetrieveParamsFieldIsSupport                     UsersRetrieveParamsField = "is_support"
 	UsersRetrieveParamsFieldJobTitle                      UsersRetrieveParamsField = "job_title"
 	UsersRetrieveParamsFieldLastName                      UsersRetrieveParamsField = "last_name"
+	UsersRetrieveParamsFieldManagedIsds                   UsersRetrieveParamsField = "managed_isds"
 	UsersRetrieveParamsFieldNationalities                 UsersRetrieveParamsField = "nationalities"
 	UsersRetrieveParamsFieldNationality                   UsersRetrieveParamsField = "nationality"
 	UsersRetrieveParamsFieldNativeName                    UsersRetrieveParamsField = "native_name"
@@ -15139,6 +15157,14 @@ type AttachmentRequestForm struct {
 type AttachmentRequestMultipart struct {
 	File  openapi_types.File `json:"file"`
 	Issue string             `json:"issue"`
+}
+
+// AttributeSourceDetail defines model for AttributeSourceDetail.
+type AttributeSourceDetail struct {
+	AgeDays   float64 `json:"age_days"`
+	IsStale   bool    `json:"is_stale"`
+	Source    string  `json:"source"`
+	Timestamp string  `json:"timestamp"`
 }
 
 // AuthMethodEnum defines model for AuthMethodEnum.
@@ -17711,6 +17737,9 @@ type ConstanceSettings struct {
 	ENFORCEMANDATORYUSERATTRIBUTES                 *bool                `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
 	ENFORCEUSERCONSENTFOROFFERINGS                 *bool                `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
 	FAVICON                                        *string              `json:"FAVICON"`
+	FEDERATEDIDENTITYDEACTIVATIONPOLICY            *string              `json:"FEDERATED_IDENTITY_DEACTIVATION_POLICY,omitempty"`
+	FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES         *[]string            `json:"FEDERATED_IDENTITY_SYNC_ALLOWED_ATTRIBUTES,omitempty"`
+	FEDERATEDIDENTITYSYNCENABLED                   *bool                `json:"FEDERATED_IDENTITY_SYNC_ENABLED,omitempty"`
 	FREEIPABLACKLISTEDUSERNAMES                    *[]string            `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
 	FREEIPAENABLED                                 *bool                `json:"FREEIPA_ENABLED,omitempty"`
 	FREEIPAGROUPNAMEPREFIX                         *string              `json:"FREEIPA_GROUPNAME_PREFIX,omitempty"`
@@ -17940,6 +17969,9 @@ type ConstanceSettingsRequest struct {
 	ENFORCEMANDATORYUSERATTRIBUTES                 *bool                           `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
 	ENFORCEUSERCONSENTFOROFFERINGS                 *bool                           `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
 	FAVICON                                        *openapi_types.File             `json:"FAVICON"`
+	FEDERATEDIDENTITYDEACTIVATIONPOLICY            *string                         `json:"FEDERATED_IDENTITY_DEACTIVATION_POLICY,omitempty"`
+	FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES         *[]string                       `json:"FEDERATED_IDENTITY_SYNC_ALLOWED_ATTRIBUTES,omitempty"`
+	FEDERATEDIDENTITYSYNCENABLED                   *bool                           `json:"FEDERATED_IDENTITY_SYNC_ENABLED,omitempty"`
 	FREEIPABLACKLISTEDUSERNAMES                    *[]string                       `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
 	FREEIPAENABLED                                 *bool                           `json:"FREEIPA_ENABLED,omitempty"`
 	FREEIPAGROUPNAMEPREFIX                         *string                         `json:"FREEIPA_GROUPNAME_PREFIX,omitempty"`
@@ -18169,6 +18201,9 @@ type ConstanceSettingsRequestForm struct {
 	ENFORCEMANDATORYUSERATTRIBUTES                 *bool                           `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
 	ENFORCEUSERCONSENTFOROFFERINGS                 *bool                           `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
 	FAVICON                                        *openapi_types.File             `json:"FAVICON"`
+	FEDERATEDIDENTITYDEACTIVATIONPOLICY            *string                         `json:"FEDERATED_IDENTITY_DEACTIVATION_POLICY,omitempty"`
+	FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES         *[]string                       `json:"FEDERATED_IDENTITY_SYNC_ALLOWED_ATTRIBUTES,omitempty"`
+	FEDERATEDIDENTITYSYNCENABLED                   *bool                           `json:"FEDERATED_IDENTITY_SYNC_ENABLED,omitempty"`
 	FREEIPABLACKLISTEDUSERNAMES                    *[]string                       `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
 	FREEIPAENABLED                                 *bool                           `json:"FREEIPA_ENABLED,omitempty"`
 	FREEIPAGROUPNAMEPREFIX                         *string                         `json:"FREEIPA_GROUPNAME_PREFIX,omitempty"`
@@ -18398,6 +18433,9 @@ type ConstanceSettingsRequestMultipart struct {
 	ENFORCEMANDATORYUSERATTRIBUTES                 *bool                           `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
 	ENFORCEUSERCONSENTFOROFFERINGS                 *bool                           `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
 	FAVICON                                        *openapi_types.File             `json:"FAVICON"`
+	FEDERATEDIDENTITYDEACTIVATIONPOLICY            *string                         `json:"FEDERATED_IDENTITY_DEACTIVATION_POLICY,omitempty"`
+	FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES         *[]string                       `json:"FEDERATED_IDENTITY_SYNC_ALLOWED_ATTRIBUTES,omitempty"`
+	FEDERATEDIDENTITYSYNCENABLED                   *bool                           `json:"FEDERATED_IDENTITY_SYNC_ENABLED,omitempty"`
 	FREEIPABLACKLISTEDUSERNAMES                    *[]string                       `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
 	FREEIPAENABLED                                 *bool                           `json:"FREEIPA_ENABLED,omitempty"`
 	FREEIPAGROUPNAMEPREFIX                         *string                         `json:"FREEIPA_GROUPNAME_PREFIX,omitempty"`
@@ -21174,6 +21212,93 @@ type IPMappingRequest struct {
 
 	// FloatingIp Floating IP
 	FloatingIp string `json:"floating_ip"`
+}
+
+// ISDUserCount defines model for ISDUserCount.
+type ISDUserCount struct {
+	Isd            string  `json:"isd"`
+	OldestSync     *string `json:"oldest_sync"`
+	StaleUserCount int     `json:"stale_user_count"`
+	UserCount      int     `json:"user_count"`
+}
+
+// IdentityBridgeRemoveRequest defines model for IdentityBridgeRemoveRequest.
+type IdentityBridgeRemoveRequest struct {
+	// Source ISD source identifier, e.g. 'isd:puhuri'. Must match ^[a-z]+:[a-zA-Z0-9._-]+$.
+	Source string `json:"source"`
+
+	// Username CUID / username of the user to remove from the ISD.
+	Username string `json:"username"`
+}
+
+// IdentityBridgeRemoveResponse defines model for IdentityBridgeRemoveResponse.
+type IdentityBridgeRemoveResponse struct {
+	Deactivated bool               `json:"deactivated"`
+	Uuid        openapi_types.UUID `json:"uuid"`
+}
+
+// IdentityBridgeRequestRequest defines model for IdentityBridgeRequestRequest.
+type IdentityBridgeRequestRequest struct {
+	Affiliations        *[]string            `json:"affiliations,omitempty"`
+	BirthDate           *openapi_types.Date  `json:"birth_date"`
+	CivilNumber         *string              `json:"civil_number,omitempty"`
+	CountryOfResidence  *string              `json:"country_of_residence,omitempty"`
+	EdupersonAssurance  *[]string            `json:"eduperson_assurance,omitempty"`
+	Email               *openapi_types.Email `json:"email,omitempty"`
+	FirstName           *string              `json:"first_name,omitempty"`
+	Gender              *int                 `json:"gender"`
+	IdentitySource      *string              `json:"identity_source,omitempty"`
+	LastName            *string              `json:"last_name,omitempty"`
+	Nationalities       *[]string            `json:"nationalities,omitempty"`
+	Nationality         *string              `json:"nationality,omitempty"`
+	Organization        *string              `json:"organization,omitempty"`
+	OrganizationCountry *string              `json:"organization_country,omitempty"`
+	OrganizationType    *string              `json:"organization_type,omitempty"`
+	PersonalTitle       *string              `json:"personal_title,omitempty"`
+	PhoneNumber         *string              `json:"phone_number,omitempty"`
+	PlaceOfBirth        *string              `json:"place_of_birth,omitempty"`
+
+	// Source ISD source identifier, e.g. 'isd:puhuri'. Must match ^[a-z]+:[a-zA-Z0-9._-]+$.
+	Source string `json:"source"`
+
+	// Username CUID / username of the user to create or update.
+	Username string `json:"username"`
+}
+
+// IdentityBridgeResponse defines model for IdentityBridgeResponse.
+type IdentityBridgeResponse struct {
+	Created       bool               `json:"created"`
+	UpdatedFields []string           `json:"updated_fields"`
+	Uuid          openapi_types.UUID `json:"uuid"`
+}
+
+// IdentityBridgeStats defines model for IdentityBridgeStats.
+type IdentityBridgeStats struct {
+	AllowedAttributes         []string          `json:"allowed_attributes"`
+	DeactivationPolicy        string            `json:"deactivation_policy"`
+	Enabled                   bool              `json:"enabled"`
+	IdentityManagers          []IdentityManager `json:"identity_managers"`
+	StaleThresholdDays        int               `json:"stale_threshold_days"`
+	TotalActiveFederatedUsers int               `json:"total_active_federated_users"`
+	TotalFederatedUsers       int               `json:"total_federated_users"`
+	UsersPerIsd               []ISDUserCount    `json:"users_per_isd"`
+}
+
+// IdentityBridgeUserStatus defines model for IdentityBridgeUserStatus.
+type IdentityBridgeUserStatus struct {
+	ActiveIsds            []string                         `json:"active_isds"`
+	AttributeSources      map[string]AttributeSourceDetail `json:"attribute_sources"`
+	EffectiveBridgeFields []string                         `json:"effective_bridge_fields"`
+	IsFederated           bool                             `json:"is_federated"`
+	ManagedIsds           []string                         `json:"managed_isds"`
+	StaleAttributes       []string                         `json:"stale_attributes"`
+}
+
+// IdentityManager defines model for IdentityManager.
+type IdentityManager struct {
+	FullName    string             `json:"full_name"`
+	ManagedIsds []string           `json:"managed_isds"`
+	Uuid        openapi_types.UUID `json:"uuid"`
 }
 
 // IdentityProvider defines model for IdentityProvider.
@@ -25147,6 +25272,9 @@ type OfferingUser struct {
 	State                     *OfferingUserState `json:"state,omitempty"`
 	Url                       *string            `json:"url,omitempty"`
 	User                      *string            `json:"user,omitempty"`
+
+	// UserActiveIsds List of ISDs that have asserted this user exists. User is deactivated when this becomes empty.
+	UserActiveIsds interface{} `json:"user_active_isds,omitempty"`
 
 	// UserAffiliations Person's affiliation within organization such as student, faculty, staff.
 	UserAffiliations       interface{}         `json:"user_affiliations,omitempty"`
@@ -29866,6 +29994,9 @@ type PatchedUserRequest struct {
 	// IsActive Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
 	IsActive *bool `json:"is_active,omitempty"`
 
+	// IsIdentityManager Designates whether the user is allowed to manage remote user identities.
+	IsIdentityManager *bool `json:"is_identity_manager,omitempty"`
+
 	// IsStaff Designates whether the user can log into this admin site.
 	IsStaff *bool `json:"is_staff,omitempty"`
 
@@ -29873,6 +30004,9 @@ type PatchedUserRequest struct {
 	IsSupport *bool   `json:"is_support,omitempty"`
 	JobTitle  *string `json:"job_title,omitempty"`
 	LastName  *string `json:"last_name,omitempty"`
+
+	// ManagedIsds List of ISD source identifiers this user can manage via Identity Bridge. E.g., ['isd:puhuri', 'isd:fenix']. Non-empty list implies identity manager role.
+	ManagedIsds interface{} `json:"managed_isds,omitempty"`
 
 	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
 	Nationalities interface{} `json:"nationalities,omitempty"`
@@ -29932,6 +30066,9 @@ type PatchedUserRequestForm struct {
 	// IsActive Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
 	IsActive *bool `json:"is_active,omitempty"`
 
+	// IsIdentityManager Designates whether the user is allowed to manage remote user identities.
+	IsIdentityManager *bool `json:"is_identity_manager,omitempty"`
+
 	// IsStaff Designates whether the user can log into this admin site.
 	IsStaff *bool `json:"is_staff,omitempty"`
 
@@ -29939,6 +30076,9 @@ type PatchedUserRequestForm struct {
 	IsSupport *bool   `json:"is_support,omitempty"`
 	JobTitle  *string `json:"job_title,omitempty"`
 	LastName  *string `json:"last_name,omitempty"`
+
+	// ManagedIsds List of ISD source identifiers this user can manage via Identity Bridge. E.g., ['isd:puhuri', 'isd:fenix']. Non-empty list implies identity manager role.
+	ManagedIsds interface{} `json:"managed_isds,omitempty"`
 
 	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
 	Nationalities interface{} `json:"nationalities,omitempty"`
@@ -29998,6 +30138,9 @@ type PatchedUserRequestMultipart struct {
 	// IsActive Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
 	IsActive *bool `json:"is_active,omitempty"`
 
+	// IsIdentityManager Designates whether the user is allowed to manage remote user identities.
+	IsIdentityManager *bool `json:"is_identity_manager,omitempty"`
+
 	// IsStaff Designates whether the user can log into this admin site.
 	IsStaff *bool `json:"is_staff,omitempty"`
 
@@ -30005,6 +30148,9 @@ type PatchedUserRequestMultipart struct {
 	IsSupport *bool   `json:"is_support,omitempty"`
 	JobTitle  *string `json:"job_title,omitempty"`
 	LastName  *string `json:"last_name,omitempty"`
+
+	// ManagedIsds List of ISD source identifiers this user can manage via Identity Bridge. E.g., ['isd:puhuri', 'isd:fenix']. Non-empty list implies identity manager role.
+	ManagedIsds interface{} `json:"managed_isds,omitempty"`
 
 	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
 	Nationalities interface{} `json:"nationalities,omitempty"`
@@ -36762,11 +36908,17 @@ type UrgencyEnum string
 
 // User defines model for User.
 type User struct {
+	// ActiveIsds List of ISDs that have asserted this user exists. User is deactivated when this becomes empty.
+	ActiveIsds interface{} `json:"active_isds,omitempty"`
+
 	// Affiliations Person's affiliation within organization such as student, faculty, staff.
 	Affiliations interface{} `json:"affiliations,omitempty"`
 
 	// AgreementDate Indicates when the user has agreed with the policy.
-	AgreementDate      *time.Time          `json:"agreement_date"`
+	AgreementDate *time.Time `json:"agreement_date"`
+
+	// AttributeSources Per-attribute source and freshness tracking. Format: {'field_name': {'source': 'isd:<name>', 'timestamp': 'ISO8601'}}.
+	AttributeSources   interface{}         `json:"attribute_sources,omitempty"`
 	BirthDate          *openapi_types.Date `json:"birth_date"`
 	CivilNumber        *string             `json:"civil_number"`
 	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
@@ -36795,6 +36947,9 @@ type User struct {
 	// IsActive Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
 	IsActive *bool `json:"is_active,omitempty"`
 
+	// IsIdentityManager Designates whether the user is allowed to manage remote user identities.
+	IsIdentityManager *bool `json:"is_identity_manager,omitempty"`
+
 	// IsStaff Designates whether the user can log into this admin site.
 	IsStaff *bool `json:"is_staff,omitempty"`
 
@@ -36802,6 +36957,9 @@ type User struct {
 	IsSupport *bool   `json:"is_support,omitempty"`
 	JobTitle  *string `json:"job_title,omitempty"`
 	LastName  *string `json:"last_name,omitempty"`
+
+	// ManagedIsds List of ISD source identifiers this user can manage via Identity Bridge. E.g., ['isd:puhuri', 'isd:fenix']. Non-empty list implies identity manager role.
+	ManagedIsds interface{} `json:"managed_isds,omitempty"`
 
 	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
 	Nationalities interface{} `json:"nationalities,omitempty"`
@@ -37178,6 +37336,9 @@ type UserRequest struct {
 	// IsActive Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
 	IsActive *bool `json:"is_active,omitempty"`
 
+	// IsIdentityManager Designates whether the user is allowed to manage remote user identities.
+	IsIdentityManager *bool `json:"is_identity_manager,omitempty"`
+
 	// IsStaff Designates whether the user can log into this admin site.
 	IsStaff *bool `json:"is_staff,omitempty"`
 
@@ -37185,6 +37346,9 @@ type UserRequest struct {
 	IsSupport *bool   `json:"is_support,omitempty"`
 	JobTitle  *string `json:"job_title,omitempty"`
 	LastName  *string `json:"last_name,omitempty"`
+
+	// ManagedIsds List of ISD source identifiers this user can manage via Identity Bridge. E.g., ['isd:puhuri', 'isd:fenix']. Non-empty list implies identity manager role.
+	ManagedIsds interface{} `json:"managed_isds,omitempty"`
 
 	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
 	Nationalities interface{} `json:"nationalities,omitempty"`
@@ -37245,6 +37409,9 @@ type UserRequestForm struct {
 	// IsActive Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
 	IsActive *bool `json:"is_active,omitempty"`
 
+	// IsIdentityManager Designates whether the user is allowed to manage remote user identities.
+	IsIdentityManager *bool `json:"is_identity_manager,omitempty"`
+
 	// IsStaff Designates whether the user can log into this admin site.
 	IsStaff *bool `json:"is_staff,omitempty"`
 
@@ -37252,6 +37419,9 @@ type UserRequestForm struct {
 	IsSupport *bool   `json:"is_support,omitempty"`
 	JobTitle  *string `json:"job_title,omitempty"`
 	LastName  *string `json:"last_name,omitempty"`
+
+	// ManagedIsds List of ISD source identifiers this user can manage via Identity Bridge. E.g., ['isd:puhuri', 'isd:fenix']. Non-empty list implies identity manager role.
+	ManagedIsds interface{} `json:"managed_isds,omitempty"`
 
 	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
 	Nationalities interface{} `json:"nationalities,omitempty"`
@@ -37312,6 +37482,9 @@ type UserRequestMultipart struct {
 	// IsActive Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
 	IsActive *bool `json:"is_active,omitempty"`
 
+	// IsIdentityManager Designates whether the user is allowed to manage remote user identities.
+	IsIdentityManager *bool `json:"is_identity_manager,omitempty"`
+
 	// IsStaff Designates whether the user can log into this admin site.
 	IsStaff *bool `json:"is_staff,omitempty"`
 
@@ -37319,6 +37492,9 @@ type UserRequestMultipart struct {
 	IsSupport *bool   `json:"is_support,omitempty"`
 	JobTitle  *string `json:"job_title,omitempty"`
 	LastName  *string `json:"last_name,omitempty"`
+
+	// ManagedIsds List of ISD source identifiers this user can manage via Identity Bridge. E.g., ['isd:puhuri', 'isd:fenix']. Non-empty list implies identity manager role.
+	ManagedIsds interface{} `json:"managed_isds,omitempty"`
 
 	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
 	Nationalities interface{} `json:"nationalities,omitempty"`
@@ -59654,6 +59830,12 @@ type HooksWebPartialUpdateJSONRequestBody = PatchedWebHookRequest
 // HooksWebUpdateJSONRequestBody defines body for HooksWebUpdate for application/json ContentType.
 type HooksWebUpdateJSONRequestBody = WebHookRequest
 
+// IdentityBridgeJSONRequestBody defines body for IdentityBridge for application/json ContentType.
+type IdentityBridgeJSONRequestBody = IdentityBridgeRequestRequest
+
+// IdentityBridgeRemoveJSONRequestBody defines body for IdentityBridgeRemove for application/json ContentType.
+type IdentityBridgeRemoveJSONRequestBody = IdentityBridgeRemoveRequest
+
 // IdentityProvidersCreateJSONRequestBody defines body for IdentityProvidersCreate for application/json ContentType.
 type IdentityProvidersCreateJSONRequestBody = IdentityProviderRequest
 
@@ -70615,6 +70797,19 @@ type ClientInterface interface {
 	// HooksCount request
 	HooksCount(ctx context.Context, params *HooksCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// IdentityBridgeWithBody request with any body
+	IdentityBridgeWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	IdentityBridge(ctx context.Context, body IdentityBridgeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// IdentityBridgeRemoveWithBody request with any body
+	IdentityBridgeRemoveWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	IdentityBridgeRemove(ctx context.Context, body IdentityBridgeRemoveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// IdentityBridgeStatsRetrieve request
+	IdentityBridgeStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// IdentityProvidersList request
 	IdentityProvidersList(ctx context.Context, params *IdentityProvidersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -76985,6 +77180,9 @@ type ClientInterface interface {
 
 	// UsersHistoryAtRetrieve request
 	UsersHistoryAtRetrieve(ctx context.Context, uuid openapi_types.UUID, params *UsersHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UsersIdentityBridgeStatusRetrieve request
+	UsersIdentityBridgeStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UsersPullRemoteUser request
 	UsersPullRemoteUser(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -85625,6 +85823,66 @@ func (c *Client) HooksList(ctx context.Context, params *HooksListParams, reqEdit
 
 func (c *Client) HooksCount(ctx context.Context, params *HooksCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewHooksCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) IdentityBridgeWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewIdentityBridgeRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) IdentityBridge(ctx context.Context, body IdentityBridgeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewIdentityBridgeRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) IdentityBridgeRemoveWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewIdentityBridgeRemoveRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) IdentityBridgeRemove(ctx context.Context, body IdentityBridgeRemoveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewIdentityBridgeRemoveRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) IdentityBridgeStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewIdentityBridgeStatsRetrieveRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -113621,6 +113879,18 @@ func (c *Client) UsersHistoryList(ctx context.Context, uuid openapi_types.UUID, 
 
 func (c *Client) UsersHistoryAtRetrieve(ctx context.Context, uuid openapi_types.UUID, params *UsersHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUsersHistoryAtRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UsersIdentityBridgeStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersIdentityBridgeStatusRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -155395,6 +155665,113 @@ func NewHooksCountRequest(server string, params *HooksCountParams) (*http.Reques
 	}
 
 	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewIdentityBridgeRequest calls the generic IdentityBridge builder with application/json body
+func NewIdentityBridgeRequest(server string, body IdentityBridgeJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewIdentityBridgeRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewIdentityBridgeRequestWithBody generates requests for IdentityBridge with any type of body
+func NewIdentityBridgeRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/identity-bridge/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewIdentityBridgeRemoveRequest calls the generic IdentityBridgeRemove builder with application/json body
+func NewIdentityBridgeRemoveRequest(server string, body IdentityBridgeRemoveJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewIdentityBridgeRemoveRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewIdentityBridgeRemoveRequestWithBody generates requests for IdentityBridgeRemove with any type of body
+func NewIdentityBridgeRemoveRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/identity-bridge/remove/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewIdentityBridgeStatsRetrieveRequest generates requests for IdentityBridgeStatsRetrieve
+func NewIdentityBridgeStatsRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/identity-bridge/stats/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -299124,6 +299501,40 @@ func NewUsersHistoryAtRetrieveRequest(server string, uuid openapi_types.UUID, pa
 	return req, nil
 }
 
+// NewUsersIdentityBridgeStatusRetrieveRequest generates requests for UsersIdentityBridgeStatusRetrieve
+func NewUsersIdentityBridgeStatusRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/users/%s/identity_bridge_status/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewUsersPullRemoteUserRequest generates requests for UsersPullRemoteUser
 func NewUsersPullRemoteUserRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -306618,6 +307029,19 @@ type ClientWithResponsesInterface interface {
 	// HooksCountWithResponse request
 	HooksCountWithResponse(ctx context.Context, params *HooksCountParams, reqEditors ...RequestEditorFn) (*HooksCountResponse, error)
 
+	// IdentityBridgeWithBodyWithResponse request with any body
+	IdentityBridgeWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*IdentityBridgeResponse, error)
+
+	IdentityBridgeWithResponse(ctx context.Context, body IdentityBridgeJSONRequestBody, reqEditors ...RequestEditorFn) (*IdentityBridgeResponse, error)
+
+	// IdentityBridgeRemoveWithBodyWithResponse request with any body
+	IdentityBridgeRemoveWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*IdentityBridgeRemoveResponse, error)
+
+	IdentityBridgeRemoveWithResponse(ctx context.Context, body IdentityBridgeRemoveJSONRequestBody, reqEditors ...RequestEditorFn) (*IdentityBridgeRemoveResponse, error)
+
+	// IdentityBridgeStatsRetrieveWithResponse request
+	IdentityBridgeStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*IdentityBridgeStatsRetrieveResponse, error)
+
 	// IdentityProvidersListWithResponse request
 	IdentityProvidersListWithResponse(ctx context.Context, params *IdentityProvidersListParams, reqEditors ...RequestEditorFn) (*IdentityProvidersListResponse, error)
 
@@ -312988,6 +313412,9 @@ type ClientWithResponsesInterface interface {
 
 	// UsersHistoryAtRetrieveWithResponse request
 	UsersHistoryAtRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *UsersHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*UsersHistoryAtRetrieveResponse, error)
+
+	// UsersIdentityBridgeStatusRetrieveWithResponse request
+	UsersIdentityBridgeStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UsersIdentityBridgeStatusRetrieveResponse, error)
 
 	// UsersPullRemoteUserWithResponse request
 	UsersPullRemoteUserWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UsersPullRemoteUserResponse, error)
@@ -324589,6 +325016,72 @@ func (r HooksCountResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r HooksCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type IdentityBridgeResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *IdentityBridgeResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r IdentityBridgeResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r IdentityBridgeResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type IdentityBridgeRemoveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *IdentityBridgeRemoveResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r IdentityBridgeRemoveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r IdentityBridgeRemoveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type IdentityBridgeStatsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *IdentityBridgeStats
+}
+
+// Status returns HTTPResponse.Status
+func (r IdentityBridgeStatsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r IdentityBridgeStatsRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -361686,6 +362179,28 @@ func (r UsersHistoryAtRetrieveResponse) StatusCode() int {
 	return 0
 }
 
+type UsersIdentityBridgeStatusRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *IdentityBridgeUserStatus
+}
+
+// Status returns HTTPResponse.Status
+func (r UsersIdentityBridgeStatusRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UsersIdentityBridgeStatusRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type UsersPullRemoteUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -369143,6 +369658,49 @@ func (c *ClientWithResponses) HooksCountWithResponse(ctx context.Context, params
 		return nil, err
 	}
 	return ParseHooksCountResponse(rsp)
+}
+
+// IdentityBridgeWithBodyWithResponse request with arbitrary body returning *IdentityBridgeResponse
+func (c *ClientWithResponses) IdentityBridgeWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*IdentityBridgeResponse, error) {
+	rsp, err := c.IdentityBridgeWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseIdentityBridgeResponse(rsp)
+}
+
+func (c *ClientWithResponses) IdentityBridgeWithResponse(ctx context.Context, body IdentityBridgeJSONRequestBody, reqEditors ...RequestEditorFn) (*IdentityBridgeResponse, error) {
+	rsp, err := c.IdentityBridge(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseIdentityBridgeResponse(rsp)
+}
+
+// IdentityBridgeRemoveWithBodyWithResponse request with arbitrary body returning *IdentityBridgeRemoveResponse
+func (c *ClientWithResponses) IdentityBridgeRemoveWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*IdentityBridgeRemoveResponse, error) {
+	rsp, err := c.IdentityBridgeRemoveWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseIdentityBridgeRemoveResponse(rsp)
+}
+
+func (c *ClientWithResponses) IdentityBridgeRemoveWithResponse(ctx context.Context, body IdentityBridgeRemoveJSONRequestBody, reqEditors ...RequestEditorFn) (*IdentityBridgeRemoveResponse, error) {
+	rsp, err := c.IdentityBridgeRemove(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseIdentityBridgeRemoveResponse(rsp)
+}
+
+// IdentityBridgeStatsRetrieveWithResponse request returning *IdentityBridgeStatsRetrieveResponse
+func (c *ClientWithResponses) IdentityBridgeStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*IdentityBridgeStatsRetrieveResponse, error) {
+	rsp, err := c.IdentityBridgeStatsRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseIdentityBridgeStatsRetrieveResponse(rsp)
 }
 
 // IdentityProvidersListWithResponse request returning *IdentityProvidersListResponse
@@ -389514,6 +390072,15 @@ func (c *ClientWithResponses) UsersHistoryAtRetrieveWithResponse(ctx context.Con
 	return ParseUsersHistoryAtRetrieveResponse(rsp)
 }
 
+// UsersIdentityBridgeStatusRetrieveWithResponse request returning *UsersIdentityBridgeStatusRetrieveResponse
+func (c *ClientWithResponses) UsersIdentityBridgeStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UsersIdentityBridgeStatusRetrieveResponse, error) {
+	rsp, err := c.UsersIdentityBridgeStatusRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUsersIdentityBridgeStatusRetrieveResponse(rsp)
+}
+
 // UsersPullRemoteUserWithResponse request returning *UsersPullRemoteUserResponse
 func (c *ClientWithResponses) UsersPullRemoteUserWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UsersPullRemoteUserResponse, error) {
 	rsp, err := c.UsersPullRemoteUser(ctx, uuid, reqEditors...)
@@ -402236,6 +402803,84 @@ func ParseHooksCountResponse(rsp *http.Response) (*HooksCountResponse, error) {
 	response := &HooksCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseIdentityBridgeResponse parses an HTTP response from a IdentityBridgeWithResponse call
+func ParseIdentityBridgeResponse(rsp *http.Response) (*IdentityBridgeResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &IdentityBridgeResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest IdentityBridgeResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseIdentityBridgeRemoveResponse parses an HTTP response from a IdentityBridgeRemoveWithResponse call
+func ParseIdentityBridgeRemoveResponse(rsp *http.Response) (*IdentityBridgeRemoveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &IdentityBridgeRemoveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest IdentityBridgeRemoveResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseIdentityBridgeStatsRetrieveResponse parses an HTTP response from a IdentityBridgeStatsRetrieveWithResponse call
+func ParseIdentityBridgeStatsRetrieveResponse(rsp *http.Response) (*IdentityBridgeStatsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &IdentityBridgeStatsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest IdentityBridgeStats
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -441670,6 +442315,32 @@ func ParseUsersHistoryAtRetrieveResponse(rsp *http.Response) (*UsersHistoryAtRet
 			return nil, err
 		}
 		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUsersIdentityBridgeStatusRetrieveResponse parses an HTTP response from a UsersIdentityBridgeStatusRetrieveWithResponse call
+func ParseUsersIdentityBridgeStatusRetrieveResponse(rsp *http.Response) (*UsersIdentityBridgeStatusRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UsersIdentityBridgeStatusRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest IdentityBridgeUserStatus
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
 
 	}
 
