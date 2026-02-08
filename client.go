@@ -17782,6 +17782,7 @@ type ConstanceSettings struct {
 	PROJECTENDDATEMANDATORY                        *bool                `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
 	PROPOSALREVIEWDURATION                         *int                 `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
 	RANCHERUSERNAMEINPUTLABEL                      *string              `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
+	REMOTEEDUTEAMSREFRESHTOKEN                     *string              `json:"REMOTE_EDUTEAMS_REFRESH_TOKEN,omitempty"`
 	RESTRICTEDOFFERINGVISIBILITYMODE               *string              `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
 	REVIEWERPROFILESENABLED                        *bool                `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
 	SCIMAPIKEY                                     *string              `json:"SCIM_API_KEY,omitempty"`
@@ -18010,6 +18011,7 @@ type ConstanceSettingsRequest struct {
 	PROJECTENDDATEMANDATORY                        *bool                           `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
 	PROPOSALREVIEWDURATION                         *int                            `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
 	RANCHERUSERNAMEINPUTLABEL                      *string                         `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
+	REMOTEEDUTEAMSREFRESHTOKEN                     *string                         `json:"REMOTE_EDUTEAMS_REFRESH_TOKEN,omitempty"`
 	RESTRICTEDOFFERINGVISIBILITYMODE               *string                         `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
 	REVIEWERPROFILESENABLED                        *bool                           `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
 	SCIMAPIKEY                                     *string                         `json:"SCIM_API_KEY,omitempty"`
@@ -18238,6 +18240,7 @@ type ConstanceSettingsRequestForm struct {
 	PROJECTENDDATEMANDATORY                        *bool                           `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
 	PROPOSALREVIEWDURATION                         *int                            `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
 	RANCHERUSERNAMEINPUTLABEL                      *string                         `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
+	REMOTEEDUTEAMSREFRESHTOKEN                     *string                         `json:"REMOTE_EDUTEAMS_REFRESH_TOKEN,omitempty"`
 	RESTRICTEDOFFERINGVISIBILITYMODE               *string                         `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
 	REVIEWERPROFILESENABLED                        *bool                           `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
 	SCIMAPIKEY                                     *string                         `json:"SCIM_API_KEY,omitempty"`
@@ -18466,6 +18469,7 @@ type ConstanceSettingsRequestMultipart struct {
 	PROJECTENDDATEMANDATORY                        *bool                           `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
 	PROPOSALREVIEWDURATION                         *int                            `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
 	RANCHERUSERNAMEINPUTLABEL                      *string                         `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
+	REMOTEEDUTEAMSREFRESHTOKEN                     *string                         `json:"REMOTE_EDUTEAMS_REFRESH_TOKEN,omitempty"`
 	RESTRICTEDOFFERINGVISIBILITYMODE               *string                         `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
 	REVIEWERPROFILESENABLED                        *bool                           `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
 	SCIMAPIKEY                                     *string                         `json:"SCIM_API_KEY,omitempty"`
