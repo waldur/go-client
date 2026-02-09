@@ -17732,6 +17732,7 @@ type ConstanceSettings struct {
 	ENABLEMOCKCOURSEACCOUNTBACKEND                 *bool                `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEMOCKSERVICEACCOUNTBACKEND                *bool                `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEORDERSTARTDATE                           *bool                `json:"ENABLE_ORDER_START_DATE,omitempty"`
+	ENABLEPROJECTDIGEST                            *bool                `json:"ENABLE_PROJECT_DIGEST,omitempty"`
 	ENABLESTALERESOURCENOTIFICATIONS               *bool                `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
 	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
 	ENFORCEMANDATORYUSERATTRIBUTES                 *bool                `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
@@ -17964,6 +17965,7 @@ type ConstanceSettingsRequest struct {
 	ENABLEMOCKCOURSEACCOUNTBACKEND                 *bool                           `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEMOCKSERVICEACCOUNTBACKEND                *bool                           `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEORDERSTARTDATE                           *bool                           `json:"ENABLE_ORDER_START_DATE,omitempty"`
+	ENABLEPROJECTDIGEST                            *bool                           `json:"ENABLE_PROJECT_DIGEST,omitempty"`
 	ENABLESTALERESOURCENOTIFICATIONS               *bool                           `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
 	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                           `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
 	ENFORCEMANDATORYUSERATTRIBUTES                 *bool                           `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
@@ -18196,6 +18198,7 @@ type ConstanceSettingsRequestForm struct {
 	ENABLEMOCKCOURSEACCOUNTBACKEND                 *bool                           `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEMOCKSERVICEACCOUNTBACKEND                *bool                           `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEORDERSTARTDATE                           *bool                           `json:"ENABLE_ORDER_START_DATE,omitempty"`
+	ENABLEPROJECTDIGEST                            *bool                           `json:"ENABLE_PROJECT_DIGEST,omitempty"`
 	ENABLESTALERESOURCENOTIFICATIONS               *bool                           `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
 	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                           `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
 	ENFORCEMANDATORYUSERATTRIBUTES                 *bool                           `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
@@ -18428,6 +18431,7 @@ type ConstanceSettingsRequestMultipart struct {
 	ENABLEMOCKCOURSEACCOUNTBACKEND                 *bool                           `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEMOCKSERVICEACCOUNTBACKEND                *bool                           `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEORDERSTARTDATE                           *bool                           `json:"ENABLE_ORDER_START_DATE,omitempty"`
+	ENABLEPROJECTDIGEST                            *bool                           `json:"ENABLE_PROJECT_DIGEST,omitempty"`
 	ENABLESTALERESOURCENOTIFICATIONS               *bool                           `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
 	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                           `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
 	ENFORCEMANDATORYUSERATTRIBUTES                 *bool                           `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
