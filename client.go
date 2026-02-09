@@ -19056,28 +19056,24 @@ type CustomerComponentUsagePolicyRequest struct {
 
 // CustomerContactUpdate defines model for CustomerContactUpdate.
 type CustomerContactUpdate struct {
-	Address        *string              `json:"address,omitempty"`
 	ContactDetails *string              `json:"contact_details,omitempty"`
-	Country        *string              `json:"country,omitempty"`
 	Email          *openapi_types.Email `json:"email,omitempty"`
+	Homepage       *string              `json:"homepage,omitempty"`
 
 	// NotificationEmails Comma-separated list of notification email addresses
 	NotificationEmails *string `json:"notification_emails,omitempty"`
 	PhoneNumber        *string `json:"phone_number,omitempty"`
-	Postal             *string `json:"postal,omitempty"`
 }
 
 // CustomerContactUpdateRequest defines model for CustomerContactUpdateRequest.
 type CustomerContactUpdateRequest struct {
-	Address        *string              `json:"address,omitempty"`
 	ContactDetails *string              `json:"contact_details,omitempty"`
-	Country        *string              `json:"country,omitempty"`
 	Email          *openapi_types.Email `json:"email,omitempty"`
+	Homepage       *string              `json:"homepage,omitempty"`
 
 	// NotificationEmails Comma-separated list of notification email addresses
 	NotificationEmails *string `json:"notification_emails,omitempty"`
 	PhoneNumber        *string `json:"phone_number,omitempty"`
-	Postal             *string `json:"postal,omitempty"`
 }
 
 // CustomerCredit defines model for CustomerCredit.
