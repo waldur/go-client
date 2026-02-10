@@ -6146,6 +6146,8 @@ const (
 	MarketplaceOrdersListParamsFieldCategoryTitle              MarketplaceOrdersListParamsField = "category_title"
 	MarketplaceOrdersListParamsFieldCategoryUuid               MarketplaceOrdersListParamsField = "category_uuid"
 	MarketplaceOrdersListParamsFieldCompletedAt                MarketplaceOrdersListParamsField = "completed_at"
+	MarketplaceOrdersListParamsFieldConsumerMessage            MarketplaceOrdersListParamsField = "consumer_message"
+	MarketplaceOrdersListParamsFieldConsumerMessageAttachment  MarketplaceOrdersListParamsField = "consumer_message_attachment"
 	MarketplaceOrdersListParamsFieldConsumerReviewedAt         MarketplaceOrdersListParamsField = "consumer_reviewed_at"
 	MarketplaceOrdersListParamsFieldConsumerReviewedBy         MarketplaceOrdersListParamsField = "consumer_reviewed_by"
 	MarketplaceOrdersListParamsFieldConsumerReviewedByFullName MarketplaceOrdersListParamsField = "consumer_reviewed_by_full_name"
@@ -6192,6 +6194,9 @@ const (
 	MarketplaceOrdersListParamsFieldProjectName                MarketplaceOrdersListParamsField = "project_name"
 	MarketplaceOrdersListParamsFieldProjectSlug                MarketplaceOrdersListParamsField = "project_slug"
 	MarketplaceOrdersListParamsFieldProjectUuid                MarketplaceOrdersListParamsField = "project_uuid"
+	MarketplaceOrdersListParamsFieldProviderMessage            MarketplaceOrdersListParamsField = "provider_message"
+	MarketplaceOrdersListParamsFieldProviderMessageAttachment  MarketplaceOrdersListParamsField = "provider_message_attachment"
+	MarketplaceOrdersListParamsFieldProviderMessageUrl         MarketplaceOrdersListParamsField = "provider_message_url"
 	MarketplaceOrdersListParamsFieldProviderName               MarketplaceOrdersListParamsField = "provider_name"
 	MarketplaceOrdersListParamsFieldProviderReviewedAt         MarketplaceOrdersListParamsField = "provider_reviewed_at"
 	MarketplaceOrdersListParamsFieldProviderReviewedBy         MarketplaceOrdersListParamsField = "provider_reviewed_by"
@@ -6291,6 +6296,8 @@ const (
 	MarketplaceOrdersRetrieveParamsFieldCategoryTitle              MarketplaceOrdersRetrieveParamsField = "category_title"
 	MarketplaceOrdersRetrieveParamsFieldCategoryUuid               MarketplaceOrdersRetrieveParamsField = "category_uuid"
 	MarketplaceOrdersRetrieveParamsFieldCompletedAt                MarketplaceOrdersRetrieveParamsField = "completed_at"
+	MarketplaceOrdersRetrieveParamsFieldConsumerMessage            MarketplaceOrdersRetrieveParamsField = "consumer_message"
+	MarketplaceOrdersRetrieveParamsFieldConsumerMessageAttachment  MarketplaceOrdersRetrieveParamsField = "consumer_message_attachment"
 	MarketplaceOrdersRetrieveParamsFieldConsumerReviewedAt         MarketplaceOrdersRetrieveParamsField = "consumer_reviewed_at"
 	MarketplaceOrdersRetrieveParamsFieldConsumerReviewedBy         MarketplaceOrdersRetrieveParamsField = "consumer_reviewed_by"
 	MarketplaceOrdersRetrieveParamsFieldConsumerReviewedByFullName MarketplaceOrdersRetrieveParamsField = "consumer_reviewed_by_full_name"
@@ -6337,6 +6344,9 @@ const (
 	MarketplaceOrdersRetrieveParamsFieldProjectName                MarketplaceOrdersRetrieveParamsField = "project_name"
 	MarketplaceOrdersRetrieveParamsFieldProjectSlug                MarketplaceOrdersRetrieveParamsField = "project_slug"
 	MarketplaceOrdersRetrieveParamsFieldProjectUuid                MarketplaceOrdersRetrieveParamsField = "project_uuid"
+	MarketplaceOrdersRetrieveParamsFieldProviderMessage            MarketplaceOrdersRetrieveParamsField = "provider_message"
+	MarketplaceOrdersRetrieveParamsFieldProviderMessageAttachment  MarketplaceOrdersRetrieveParamsField = "provider_message_attachment"
+	MarketplaceOrdersRetrieveParamsFieldProviderMessageUrl         MarketplaceOrdersRetrieveParamsField = "provider_message_url"
 	MarketplaceOrdersRetrieveParamsFieldProviderName               MarketplaceOrdersRetrieveParamsField = "provider_name"
 	MarketplaceOrdersRetrieveParamsFieldProviderReviewedAt         MarketplaceOrdersRetrieveParamsField = "provider_reviewed_at"
 	MarketplaceOrdersRetrieveParamsFieldProviderReviewedBy         MarketplaceOrdersRetrieveParamsField = "provider_reviewed_by"
@@ -6981,6 +6991,8 @@ const (
 	MarketplaceProviderOfferingsOrdersListParamsFieldCategoryTitle              MarketplaceProviderOfferingsOrdersListParamsField = "category_title"
 	MarketplaceProviderOfferingsOrdersListParamsFieldCategoryUuid               MarketplaceProviderOfferingsOrdersListParamsField = "category_uuid"
 	MarketplaceProviderOfferingsOrdersListParamsFieldCompletedAt                MarketplaceProviderOfferingsOrdersListParamsField = "completed_at"
+	MarketplaceProviderOfferingsOrdersListParamsFieldConsumerMessage            MarketplaceProviderOfferingsOrdersListParamsField = "consumer_message"
+	MarketplaceProviderOfferingsOrdersListParamsFieldConsumerMessageAttachment  MarketplaceProviderOfferingsOrdersListParamsField = "consumer_message_attachment"
 	MarketplaceProviderOfferingsOrdersListParamsFieldConsumerReviewedAt         MarketplaceProviderOfferingsOrdersListParamsField = "consumer_reviewed_at"
 	MarketplaceProviderOfferingsOrdersListParamsFieldConsumerReviewedBy         MarketplaceProviderOfferingsOrdersListParamsField = "consumer_reviewed_by"
 	MarketplaceProviderOfferingsOrdersListParamsFieldConsumerReviewedByFullName MarketplaceProviderOfferingsOrdersListParamsField = "consumer_reviewed_by_full_name"
@@ -7027,6 +7039,9 @@ const (
 	MarketplaceProviderOfferingsOrdersListParamsFieldProjectName                MarketplaceProviderOfferingsOrdersListParamsField = "project_name"
 	MarketplaceProviderOfferingsOrdersListParamsFieldProjectSlug                MarketplaceProviderOfferingsOrdersListParamsField = "project_slug"
 	MarketplaceProviderOfferingsOrdersListParamsFieldProjectUuid                MarketplaceProviderOfferingsOrdersListParamsField = "project_uuid"
+	MarketplaceProviderOfferingsOrdersListParamsFieldProviderMessage            MarketplaceProviderOfferingsOrdersListParamsField = "provider_message"
+	MarketplaceProviderOfferingsOrdersListParamsFieldProviderMessageAttachment  MarketplaceProviderOfferingsOrdersListParamsField = "provider_message_attachment"
+	MarketplaceProviderOfferingsOrdersListParamsFieldProviderMessageUrl         MarketplaceProviderOfferingsOrdersListParamsField = "provider_message_url"
 	MarketplaceProviderOfferingsOrdersListParamsFieldProviderName               MarketplaceProviderOfferingsOrdersListParamsField = "provider_name"
 	MarketplaceProviderOfferingsOrdersListParamsFieldProviderReviewedAt         MarketplaceProviderOfferingsOrdersListParamsField = "provider_reviewed_at"
 	MarketplaceProviderOfferingsOrdersListParamsFieldProviderReviewedBy         MarketplaceProviderOfferingsOrdersListParamsField = "provider_reviewed_by"
@@ -8526,6 +8541,98 @@ const (
 	MarketplaceUserOfferingConsentsCountParamsOMinusRevocationDate MarketplaceUserOfferingConsentsCountParamsO = "-revocation_date"
 	MarketplaceUserOfferingConsentsCountParamsOModified            MarketplaceUserOfferingConsentsCountParamsO = "modified"
 	MarketplaceUserOfferingConsentsCountParamsORevocationDate      MarketplaceUserOfferingConsentsCountParamsO = "revocation_date"
+)
+
+// Defines values for OnboardingJustificationsListParamsO.
+const (
+	OnboardingJustificationsListParamsOCreated          OnboardingJustificationsListParamsO = "created"
+	OnboardingJustificationsListParamsOMinusCreated     OnboardingJustificationsListParamsO = "-created"
+	OnboardingJustificationsListParamsOMinusModified    OnboardingJustificationsListParamsO = "-modified"
+	OnboardingJustificationsListParamsOMinusValidatedAt OnboardingJustificationsListParamsO = "-validated_at"
+	OnboardingJustificationsListParamsOModified         OnboardingJustificationsListParamsO = "modified"
+	OnboardingJustificationsListParamsOValidatedAt      OnboardingJustificationsListParamsO = "validated_at"
+)
+
+// Defines values for OnboardingJustificationsListParamsValidationDecision.
+const (
+	OnboardingJustificationsListParamsValidationDecisionApproved      OnboardingJustificationsListParamsValidationDecision = "Approved"
+	OnboardingJustificationsListParamsValidationDecisionPendingReview OnboardingJustificationsListParamsValidationDecision = "Pending Review"
+	OnboardingJustificationsListParamsValidationDecisionRejected      OnboardingJustificationsListParamsValidationDecision = "Rejected"
+)
+
+// Defines values for OnboardingJustificationsCountParamsO.
+const (
+	OnboardingJustificationsCountParamsOCreated          OnboardingJustificationsCountParamsO = "created"
+	OnboardingJustificationsCountParamsOMinusCreated     OnboardingJustificationsCountParamsO = "-created"
+	OnboardingJustificationsCountParamsOMinusModified    OnboardingJustificationsCountParamsO = "-modified"
+	OnboardingJustificationsCountParamsOMinusValidatedAt OnboardingJustificationsCountParamsO = "-validated_at"
+	OnboardingJustificationsCountParamsOModified         OnboardingJustificationsCountParamsO = "modified"
+	OnboardingJustificationsCountParamsOValidatedAt      OnboardingJustificationsCountParamsO = "validated_at"
+)
+
+// Defines values for OnboardingJustificationsCountParamsValidationDecision.
+const (
+	OnboardingJustificationsCountParamsValidationDecisionApproved      OnboardingJustificationsCountParamsValidationDecision = "Approved"
+	OnboardingJustificationsCountParamsValidationDecisionPendingReview OnboardingJustificationsCountParamsValidationDecision = "Pending Review"
+	OnboardingJustificationsCountParamsValidationDecisionRejected      OnboardingJustificationsCountParamsValidationDecision = "Rejected"
+)
+
+// Defines values for OnboardingVerificationsListParamsO.
+const (
+	OnboardingVerificationsListParamsOCreated          OnboardingVerificationsListParamsO = "created"
+	OnboardingVerificationsListParamsOExpiresAt        OnboardingVerificationsListParamsO = "expires_at"
+	OnboardingVerificationsListParamsOMinusCreated     OnboardingVerificationsListParamsO = "-created"
+	OnboardingVerificationsListParamsOMinusExpiresAt   OnboardingVerificationsListParamsO = "-expires_at"
+	OnboardingVerificationsListParamsOMinusModified    OnboardingVerificationsListParamsO = "-modified"
+	OnboardingVerificationsListParamsOMinusValidatedAt OnboardingVerificationsListParamsO = "-validated_at"
+	OnboardingVerificationsListParamsOModified         OnboardingVerificationsListParamsO = "modified"
+	OnboardingVerificationsListParamsOValidatedAt      OnboardingVerificationsListParamsO = "validated_at"
+)
+
+// Defines values for OnboardingVerificationsListParamsStatus.
+const (
+	OnboardingVerificationsListParamsStatusEscalatedForManualValidation OnboardingVerificationsListParamsStatus = "Escalated for manual validation"
+	OnboardingVerificationsListParamsStatusExpired                      OnboardingVerificationsListParamsStatus = "Expired"
+	OnboardingVerificationsListParamsStatusFailed                       OnboardingVerificationsListParamsStatus = "Failed"
+	OnboardingVerificationsListParamsStatusPending                      OnboardingVerificationsListParamsStatus = "Pending"
+	OnboardingVerificationsListParamsStatusVerified                     OnboardingVerificationsListParamsStatus = "Verified"
+)
+
+// Defines values for OnboardingVerificationsListParamsValidationMethod.
+const (
+	OnboardingVerificationsListParamsValidationMethodAustrianBusinessRegisterWirtschaftsCompass OnboardingVerificationsListParamsValidationMethod = "Austrian Business Register (WirtschaftsCompass)"
+	OnboardingVerificationsListParamsValidationMethodEstonianBusinessRegisterAriregister        OnboardingVerificationsListParamsValidationMethod = "Estonian Business Register (ariregister)"
+	OnboardingVerificationsListParamsValidationMethodNorwegianBusinessRegisterBrreg             OnboardingVerificationsListParamsValidationMethod = "Norwegian Business Register (Brreg)"
+	OnboardingVerificationsListParamsValidationMethodSwedishBusinessRegisterBolagsverket        OnboardingVerificationsListParamsValidationMethod = "Swedish Business Register (Bolagsverket)"
+)
+
+// Defines values for OnboardingVerificationsCountParamsO.
+const (
+	OnboardingVerificationsCountParamsOCreated          OnboardingVerificationsCountParamsO = "created"
+	OnboardingVerificationsCountParamsOExpiresAt        OnboardingVerificationsCountParamsO = "expires_at"
+	OnboardingVerificationsCountParamsOMinusCreated     OnboardingVerificationsCountParamsO = "-created"
+	OnboardingVerificationsCountParamsOMinusExpiresAt   OnboardingVerificationsCountParamsO = "-expires_at"
+	OnboardingVerificationsCountParamsOMinusModified    OnboardingVerificationsCountParamsO = "-modified"
+	OnboardingVerificationsCountParamsOMinusValidatedAt OnboardingVerificationsCountParamsO = "-validated_at"
+	OnboardingVerificationsCountParamsOModified         OnboardingVerificationsCountParamsO = "modified"
+	OnboardingVerificationsCountParamsOValidatedAt      OnboardingVerificationsCountParamsO = "validated_at"
+)
+
+// Defines values for OnboardingVerificationsCountParamsStatus.
+const (
+	OnboardingVerificationsCountParamsStatusEscalatedForManualValidation OnboardingVerificationsCountParamsStatus = "Escalated for manual validation"
+	OnboardingVerificationsCountParamsStatusExpired                      OnboardingVerificationsCountParamsStatus = "Expired"
+	OnboardingVerificationsCountParamsStatusFailed                       OnboardingVerificationsCountParamsStatus = "Failed"
+	OnboardingVerificationsCountParamsStatusPending                      OnboardingVerificationsCountParamsStatus = "Pending"
+	OnboardingVerificationsCountParamsStatusVerified                     OnboardingVerificationsCountParamsStatus = "Verified"
+)
+
+// Defines values for OnboardingVerificationsCountParamsValidationMethod.
+const (
+	OnboardingVerificationsCountParamsValidationMethodAustrianBusinessRegisterWirtschaftsCompass OnboardingVerificationsCountParamsValidationMethod = "Austrian Business Register (WirtschaftsCompass)"
+	OnboardingVerificationsCountParamsValidationMethodEstonianBusinessRegisterAriregister        OnboardingVerificationsCountParamsValidationMethod = "Estonian Business Register (ariregister)"
+	OnboardingVerificationsCountParamsValidationMethodNorwegianBusinessRegisterBrreg             OnboardingVerificationsCountParamsValidationMethod = "Norwegian Business Register (Brreg)"
+	OnboardingVerificationsCountParamsValidationMethodSwedishBusinessRegisterBolagsverket        OnboardingVerificationsCountParamsValidationMethod = "Swedish Business Register (Bolagsverket)"
 )
 
 // Defines values for OnboardingVerificationsAvailableChecklistsRetrieveParamsChecklistType.
@@ -10918,6 +11025,8 @@ const (
 	PromotionsCampaignsOrdersListParamsFieldCategoryTitle              PromotionsCampaignsOrdersListParamsField = "category_title"
 	PromotionsCampaignsOrdersListParamsFieldCategoryUuid               PromotionsCampaignsOrdersListParamsField = "category_uuid"
 	PromotionsCampaignsOrdersListParamsFieldCompletedAt                PromotionsCampaignsOrdersListParamsField = "completed_at"
+	PromotionsCampaignsOrdersListParamsFieldConsumerMessage            PromotionsCampaignsOrdersListParamsField = "consumer_message"
+	PromotionsCampaignsOrdersListParamsFieldConsumerMessageAttachment  PromotionsCampaignsOrdersListParamsField = "consumer_message_attachment"
 	PromotionsCampaignsOrdersListParamsFieldConsumerReviewedAt         PromotionsCampaignsOrdersListParamsField = "consumer_reviewed_at"
 	PromotionsCampaignsOrdersListParamsFieldConsumerReviewedBy         PromotionsCampaignsOrdersListParamsField = "consumer_reviewed_by"
 	PromotionsCampaignsOrdersListParamsFieldConsumerReviewedByFullName PromotionsCampaignsOrdersListParamsField = "consumer_reviewed_by_full_name"
@@ -10964,6 +11073,9 @@ const (
 	PromotionsCampaignsOrdersListParamsFieldProjectName                PromotionsCampaignsOrdersListParamsField = "project_name"
 	PromotionsCampaignsOrdersListParamsFieldProjectSlug                PromotionsCampaignsOrdersListParamsField = "project_slug"
 	PromotionsCampaignsOrdersListParamsFieldProjectUuid                PromotionsCampaignsOrdersListParamsField = "project_uuid"
+	PromotionsCampaignsOrdersListParamsFieldProviderMessage            PromotionsCampaignsOrdersListParamsField = "provider_message"
+	PromotionsCampaignsOrdersListParamsFieldProviderMessageAttachment  PromotionsCampaignsOrdersListParamsField = "provider_message_attachment"
+	PromotionsCampaignsOrdersListParamsFieldProviderMessageUrl         PromotionsCampaignsOrdersListParamsField = "provider_message_url"
 	PromotionsCampaignsOrdersListParamsFieldProviderName               PromotionsCampaignsOrdersListParamsField = "provider_name"
 	PromotionsCampaignsOrdersListParamsFieldProviderReviewedAt         PromotionsCampaignsOrdersListParamsField = "provider_reviewed_at"
 	PromotionsCampaignsOrdersListParamsFieldProviderReviewedBy         PromotionsCampaignsOrdersListParamsField = "provider_reviewed_by"
@@ -17721,6 +17833,8 @@ type ConstanceSettings struct {
 	DISABLEDOFFERINGTYPES                          *[]string            `json:"DISABLED_OFFERING_TYPES,omitempty"`
 	DISABLEDARKTHEME                               *bool                `json:"DISABLE_DARK_THEME,omitempty"`
 	DISABLESENDINGNOTIFICATIONSABOUTRESOURCEUPDATE *bool                `json:"DISABLE_SENDING_NOTIFICATIONS_ABOUT_RESOURCE_UPDATE,omitempty"`
+	DISCLAIMERAREALOGO                             *string              `json:"DISCLAIMER_AREA_LOGO"`
+	DISCLAIMERAREATEXT                             *string              `json:"DISCLAIMER_AREA_TEXT,omitempty"`
 	DOCKERCLIENT                                   *string              `json:"DOCKER_CLIENT,omitempty"`
 	DOCKERIMAGES                                   *string              `json:"DOCKER_IMAGES,omitempty"`
 	DOCKERREMOVECONTAINER                          *bool                `json:"DOCKER_REMOVE_CONTAINER,omitempty"`
@@ -17954,6 +18068,8 @@ type ConstanceSettingsRequest struct {
 	DISABLEDOFFERINGTYPES                          *[]string                       `json:"DISABLED_OFFERING_TYPES,omitempty"`
 	DISABLEDARKTHEME                               *bool                           `json:"DISABLE_DARK_THEME,omitempty"`
 	DISABLESENDINGNOTIFICATIONSABOUTRESOURCEUPDATE *bool                           `json:"DISABLE_SENDING_NOTIFICATIONS_ABOUT_RESOURCE_UPDATE,omitempty"`
+	DISCLAIMERAREALOGO                             *openapi_types.File             `json:"DISCLAIMER_AREA_LOGO"`
+	DISCLAIMERAREATEXT                             *string                         `json:"DISCLAIMER_AREA_TEXT,omitempty"`
 	DOCKERCLIENT                                   *string                         `json:"DOCKER_CLIENT,omitempty"`
 	DOCKERIMAGES                                   *string                         `json:"DOCKER_IMAGES,omitempty"`
 	DOCKERREMOVECONTAINER                          *bool                           `json:"DOCKER_REMOVE_CONTAINER,omitempty"`
@@ -18187,6 +18303,8 @@ type ConstanceSettingsRequestForm struct {
 	DISABLEDOFFERINGTYPES                          *[]string                       `json:"DISABLED_OFFERING_TYPES,omitempty"`
 	DISABLEDARKTHEME                               *bool                           `json:"DISABLE_DARK_THEME,omitempty"`
 	DISABLESENDINGNOTIFICATIONSABOUTRESOURCEUPDATE *bool                           `json:"DISABLE_SENDING_NOTIFICATIONS_ABOUT_RESOURCE_UPDATE,omitempty"`
+	DISCLAIMERAREALOGO                             *openapi_types.File             `json:"DISCLAIMER_AREA_LOGO"`
+	DISCLAIMERAREATEXT                             *string                         `json:"DISCLAIMER_AREA_TEXT,omitempty"`
 	DOCKERCLIENT                                   *string                         `json:"DOCKER_CLIENT,omitempty"`
 	DOCKERIMAGES                                   *string                         `json:"DOCKER_IMAGES,omitempty"`
 	DOCKERREMOVECONTAINER                          *bool                           `json:"DOCKER_REMOVE_CONTAINER,omitempty"`
@@ -18420,6 +18538,8 @@ type ConstanceSettingsRequestMultipart struct {
 	DISABLEDOFFERINGTYPES                          *[]string                       `json:"DISABLED_OFFERING_TYPES,omitempty"`
 	DISABLEDARKTHEME                               *bool                           `json:"DISABLE_DARK_THEME,omitempty"`
 	DISABLESENDINGNOTIFICATIONSABOUTRESOURCEUPDATE *bool                           `json:"DISABLE_SENDING_NOTIFICATIONS_ABOUT_RESOURCE_UPDATE,omitempty"`
+	DISCLAIMERAREALOGO                             *openapi_types.File             `json:"DISCLAIMER_AREA_LOGO"`
+	DISCLAIMERAREATEXT                             *string                         `json:"DISCLAIMER_AREA_TEXT,omitempty"`
 	DOCKERCLIENT                                   *string                         `json:"DOCKER_CLIENT,omitempty"`
 	DOCKERIMAGES                                   *string                         `json:"DOCKER_IMAGES,omitempty"`
 	DOCKERREMOVECONTAINER                          *bool                           `json:"DOCKER_REMOVE_CONTAINER,omitempty"`
@@ -22877,6 +22997,9 @@ type MergedPluginOptions struct {
 	// EnableIssuesForMembershipChanges Enable issues for membership changes
 	EnableIssuesForMembershipChanges *bool `json:"enable_issues_for_membership_changes,omitempty"`
 
+	// EnableProviderConsumerMessaging If set to True, service providers can send messages with attachments to consumers on pending orders, and consumers can respond.
+	EnableProviderConsumerMessaging *bool `json:"enable_provider_consumer_messaging,omitempty"`
+
 	// EnablePurchaseOrderUpload If set to True, users will be able to upload purchase orders.
 	EnablePurchaseOrderUpload *bool `json:"enable_purchase_order_upload,omitempty"`
 
@@ -22978,6 +23101,9 @@ type MergedPluginOptions struct {
 
 	// MinimalTeamCountForProvisioning Minimal team count required for provisioning of resources
 	MinimalTeamCountForProvisioning *int `json:"minimal_team_count_for_provisioning,omitempty"`
+
+	// NotifyAboutProviderConsumerMessages If set to True, send email notifications when providers or consumers exchange messages on pending orders.
+	NotifyAboutProviderConsumerMessages *bool `json:"notify_about_provider_consumer_messages,omitempty"`
 
 	// OpenstackOfferingUuidList List of UUID of OpenStack offerings where tenant can be created
 	OpenstackOfferingUuidList *[]string `json:"openstack_offering_uuid_list,omitempty"`
@@ -23077,6 +23203,9 @@ type MergedPluginOptionsRequest struct {
 	// EnableIssuesForMembershipChanges Enable issues for membership changes
 	EnableIssuesForMembershipChanges *bool `json:"enable_issues_for_membership_changes,omitempty"`
 
+	// EnableProviderConsumerMessaging If set to True, service providers can send messages with attachments to consumers on pending orders, and consumers can respond.
+	EnableProviderConsumerMessaging *bool `json:"enable_provider_consumer_messaging,omitempty"`
+
 	// EnablePurchaseOrderUpload If set to True, users will be able to upload purchase orders.
 	EnablePurchaseOrderUpload *bool `json:"enable_purchase_order_upload,omitempty"`
 
@@ -23178,6 +23307,9 @@ type MergedPluginOptionsRequest struct {
 
 	// MinimalTeamCountForProvisioning Minimal team count required for provisioning of resources
 	MinimalTeamCountForProvisioning *int `json:"minimal_team_count_for_provisioning,omitempty"`
+
+	// NotifyAboutProviderConsumerMessages If set to True, send email notifications when providers or consumers exchange messages on pending orders.
+	NotifyAboutProviderConsumerMessages *bool `json:"notify_about_provider_consumer_messages,omitempty"`
 
 	// OpenstackOfferingUuidList List of UUID of OpenStack offerings where tenant can be created
 	OpenstackOfferingUuidList *[]string `json:"openstack_offering_uuid_list,omitempty"`
@@ -27577,6 +27709,24 @@ type OrderBackendIDRequest struct {
 	BackendId *string `json:"backend_id,omitempty"`
 }
 
+// OrderConsumerInfoRequest defines model for OrderConsumerInfoRequest.
+type OrderConsumerInfoRequest struct {
+	ConsumerMessage           *string             `json:"consumer_message,omitempty"`
+	ConsumerMessageAttachment *openapi_types.File `json:"consumer_message_attachment,omitempty"`
+}
+
+// OrderConsumerInfoRequestForm defines model for OrderConsumerInfoRequestForm.
+type OrderConsumerInfoRequestForm struct {
+	ConsumerMessage           *string             `json:"consumer_message,omitempty"`
+	ConsumerMessageAttachment *openapi_types.File `json:"consumer_message_attachment,omitempty"`
+}
+
+// OrderConsumerInfoRequestMultipart defines model for OrderConsumerInfoRequestMultipart.
+type OrderConsumerInfoRequestMultipart struct {
+	ConsumerMessage           *string             `json:"consumer_message,omitempty"`
+	ConsumerMessageAttachment *openapi_types.File `json:"consumer_message_attachment,omitempty"`
+}
+
 // OrderCreateRequest defines model for OrderCreateRequest.
 type OrderCreateRequest struct {
 	AcceptingTermsOfService *bool `json:"accepting_terms_of_service,omitempty"`
@@ -27605,17 +27755,19 @@ type OrderCreateRequest_Attributes struct {
 
 // OrderDetails defines model for OrderDetails.
 type OrderDetails struct {
-	ActivationPrice    *float64            `json:"activation_price,omitempty"`
-	Attachment         *string             `json:"attachment"`
-	Attributes         interface{}         `json:"attributes,omitempty"`
-	BackendId          *string             `json:"backend_id,omitempty"`
-	CallbackUrl        *string             `json:"callback_url"`
-	CanTerminate       *bool               `json:"can_terminate,omitempty"`
-	CategoryIcon       *string             `json:"category_icon,omitempty"`
-	CategoryTitle      *string             `json:"category_title,omitempty"`
-	CategoryUuid       *openapi_types.UUID `json:"category_uuid,omitempty"`
-	CompletedAt        *time.Time          `json:"completed_at"`
-	ConsumerReviewedAt *time.Time          `json:"consumer_reviewed_at"`
+	ActivationPrice           *float64            `json:"activation_price,omitempty"`
+	Attachment                *string             `json:"attachment"`
+	Attributes                interface{}         `json:"attributes,omitempty"`
+	BackendId                 *string             `json:"backend_id,omitempty"`
+	CallbackUrl               *string             `json:"callback_url"`
+	CanTerminate              *bool               `json:"can_terminate,omitempty"`
+	CategoryIcon              *string             `json:"category_icon,omitempty"`
+	CategoryTitle             *string             `json:"category_title,omitempty"`
+	CategoryUuid              *openapi_types.UUID `json:"category_uuid,omitempty"`
+	CompletedAt               *time.Time          `json:"completed_at"`
+	ConsumerMessage           *string             `json:"consumer_message,omitempty"`
+	ConsumerMessageAttachment *string             `json:"consumer_message_attachment"`
+	ConsumerReviewedAt        *time.Time          `json:"consumer_reviewed_at"`
 
 	// ConsumerReviewedBy Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	ConsumerReviewedBy         *string `json:"consumer_reviewed_by"`
@@ -27655,26 +27807,29 @@ type OrderDetails struct {
 	OfferingPluginOptions interface{} `json:"offering_plugin_options,omitempty"`
 
 	// OfferingShared Accessible to all customers.
-	OfferingShared     *bool               `json:"offering_shared,omitempty"`
-	OfferingThumbnail  *string             `json:"offering_thumbnail,omitempty"`
-	OfferingType       *string             `json:"offering_type,omitempty"`
-	OfferingUuid       *openapi_types.UUID `json:"offering_uuid,omitempty"`
-	OldCostEstimate    *float64            `json:"old_cost_estimate,omitempty"`
-	OldPlanName        *string             `json:"old_plan_name"`
-	OldPlanUuid        *openapi_types.UUID `json:"old_plan_uuid"`
-	OrderSubtype       *string             `json:"order_subtype"`
-	Output             *string             `json:"output,omitempty"`
-	Plan               *string             `json:"plan,omitempty"`
-	PlanDescription    *string             `json:"plan_description"`
-	PlanName           *string             `json:"plan_name"`
-	PlanUnit           *BillingUnit        `json:"plan_unit"`
-	PlanUuid           *openapi_types.UUID `json:"plan_uuid"`
-	ProjectDescription *string             `json:"project_description,omitempty"`
-	ProjectName        *string             `json:"project_name,omitempty"`
-	ProjectSlug        *string             `json:"project_slug,omitempty"`
-	ProjectUuid        *openapi_types.UUID `json:"project_uuid,omitempty"`
-	ProviderName       *string             `json:"provider_name,omitempty"`
-	ProviderReviewedAt *time.Time          `json:"provider_reviewed_at"`
+	OfferingShared            *bool               `json:"offering_shared,omitempty"`
+	OfferingThumbnail         *string             `json:"offering_thumbnail,omitempty"`
+	OfferingType              *string             `json:"offering_type,omitempty"`
+	OfferingUuid              *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	OldCostEstimate           *float64            `json:"old_cost_estimate,omitempty"`
+	OldPlanName               *string             `json:"old_plan_name"`
+	OldPlanUuid               *openapi_types.UUID `json:"old_plan_uuid"`
+	OrderSubtype              *string             `json:"order_subtype"`
+	Output                    *string             `json:"output,omitempty"`
+	Plan                      *string             `json:"plan,omitempty"`
+	PlanDescription           *string             `json:"plan_description"`
+	PlanName                  *string             `json:"plan_name"`
+	PlanUnit                  *BillingUnit        `json:"plan_unit"`
+	PlanUuid                  *openapi_types.UUID `json:"plan_uuid"`
+	ProjectDescription        *string             `json:"project_description,omitempty"`
+	ProjectName               *string             `json:"project_name,omitempty"`
+	ProjectSlug               *string             `json:"project_slug,omitempty"`
+	ProjectUuid               *openapi_types.UUID `json:"project_uuid,omitempty"`
+	ProviderMessage           *string             `json:"provider_message,omitempty"`
+	ProviderMessageAttachment *string             `json:"provider_message_attachment"`
+	ProviderMessageUrl        *string             `json:"provider_message_url,omitempty"`
+	ProviderName              *string             `json:"provider_name,omitempty"`
+	ProviderReviewedAt        *time.Time          `json:"provider_reviewed_at"`
 
 	// ProviderReviewedBy Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	ProviderReviewedBy         *string `json:"provider_reviewed_by"`
@@ -27703,6 +27858,32 @@ type OrderDetails struct {
 type OrderErrorDetailsRequest struct {
 	ErrorMessage   *string `json:"error_message,omitempty"`
 	ErrorTraceback *string `json:"error_traceback,omitempty"`
+}
+
+// OrderInfoResponse defines model for OrderInfoResponse.
+type OrderInfoResponse struct {
+	Detail *string `json:"detail,omitempty"`
+}
+
+// OrderProviderInfoRequest defines model for OrderProviderInfoRequest.
+type OrderProviderInfoRequest struct {
+	ProviderMessage           *string             `json:"provider_message,omitempty"`
+	ProviderMessageAttachment *openapi_types.File `json:"provider_message_attachment,omitempty"`
+	ProviderMessageUrl        *string             `json:"provider_message_url,omitempty"`
+}
+
+// OrderProviderInfoRequestForm defines model for OrderProviderInfoRequestForm.
+type OrderProviderInfoRequestForm struct {
+	ProviderMessage           *string             `json:"provider_message,omitempty"`
+	ProviderMessageAttachment *openapi_types.File `json:"provider_message_attachment,omitempty"`
+	ProviderMessageUrl        *string             `json:"provider_message_url,omitempty"`
+}
+
+// OrderProviderInfoRequestMultipart defines model for OrderProviderInfoRequestMultipart.
+type OrderProviderInfoRequestMultipart struct {
+	ProviderMessage           *string             `json:"provider_message,omitempty"`
+	ProviderMessageAttachment *openapi_types.File `json:"provider_message_attachment,omitempty"`
+	ProviderMessageUrl        *string             `json:"provider_message_url,omitempty"`
 }
 
 // OrderState defines model for OrderState.
@@ -50084,33 +50265,67 @@ type NotificationMessagesCountParams struct {
 
 // OnboardingJustificationsListParams defines parameters for OnboardingJustificationsList.
 type OnboardingJustificationsListParams struct {
+	// O Ordering
+	//
+	O *[]OnboardingJustificationsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
+	// Query Filter by legal name, legal person identifier
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
 	// UserUuid User UUID
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+
+	// ValidationDecision Review decision
+	//
+	ValidationDecision *[]OnboardingJustificationsListParamsValidationDecision `form:"validation_decision,omitempty" json:"validation_decision,omitempty"`
 
 	// VerificationUuid Verification UUID
 	VerificationUuid *openapi_types.UUID `form:"verification_uuid,omitempty" json:"verification_uuid,omitempty"`
 }
+
+// OnboardingJustificationsListParamsO defines parameters for OnboardingJustificationsList.
+type OnboardingJustificationsListParamsO string
+
+// OnboardingJustificationsListParamsValidationDecision defines parameters for OnboardingJustificationsList.
+type OnboardingJustificationsListParamsValidationDecision string
 
 // OnboardingJustificationsCountParams defines parameters for OnboardingJustificationsCount.
 type OnboardingJustificationsCountParams struct {
+	// O Ordering
+	//
+	O *[]OnboardingJustificationsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
+	// Query Filter by legal name, legal person identifier
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
 	// UserUuid User UUID
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+
+	// ValidationDecision Review decision
+	//
+	ValidationDecision *[]OnboardingJustificationsCountParamsValidationDecision `form:"validation_decision,omitempty" json:"validation_decision,omitempty"`
 
 	// VerificationUuid Verification UUID
 	VerificationUuid *openapi_types.UUID `form:"verification_uuid,omitempty" json:"verification_uuid,omitempty"`
 }
+
+// OnboardingJustificationsCountParamsO defines parameters for OnboardingJustificationsCount.
+type OnboardingJustificationsCountParamsO string
+
+// OnboardingJustificationsCountParamsValidationDecision defines parameters for OnboardingJustificationsCount.
+type OnboardingJustificationsCountParamsValidationDecision string
 
 // OnboardingQuestionMetadataListParams defines parameters for OnboardingQuestionMetadataList.
 type OnboardingQuestionMetadataListParams struct {
@@ -50150,16 +50365,39 @@ type OnboardingVerificationsListParams struct {
 	LegalName             *string `form:"legal_name,omitempty" json:"legal_name,omitempty"`
 	LegalPersonIdentifier *string `form:"legal_person_identifier,omitempty" json:"legal_person_identifier,omitempty"`
 
+	// O Ordering
+	//
+	O *[]OnboardingVerificationsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Status   *string   `form:"status,omitempty" json:"status,omitempty"`
+
+	// Query Filter by legal name, legal person identifier
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// Status Verification status
+	//
+	Status *[]OnboardingVerificationsListParamsStatus `form:"status,omitempty" json:"status,omitempty"`
 
 	// UserUuid User UUID
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+
+	// ValidationMethod Validation method
+	//
+	ValidationMethod *[]OnboardingVerificationsListParamsValidationMethod `form:"validation_method,omitempty" json:"validation_method,omitempty"`
 }
+
+// OnboardingVerificationsListParamsO defines parameters for OnboardingVerificationsList.
+type OnboardingVerificationsListParamsO string
+
+// OnboardingVerificationsListParamsStatus defines parameters for OnboardingVerificationsList.
+type OnboardingVerificationsListParamsStatus string
+
+// OnboardingVerificationsListParamsValidationMethod defines parameters for OnboardingVerificationsList.
+type OnboardingVerificationsListParamsValidationMethod string
 
 // OnboardingVerificationsCountParams defines parameters for OnboardingVerificationsCount.
 type OnboardingVerificationsCountParams struct {
@@ -50167,16 +50405,39 @@ type OnboardingVerificationsCountParams struct {
 	LegalName             *string `form:"legal_name,omitempty" json:"legal_name,omitempty"`
 	LegalPersonIdentifier *string `form:"legal_person_identifier,omitempty" json:"legal_person_identifier,omitempty"`
 
+	// O Ordering
+	//
+	O *[]OnboardingVerificationsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Status   *string   `form:"status,omitempty" json:"status,omitempty"`
+
+	// Query Filter by legal name, legal person identifier
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// Status Verification status
+	//
+	Status *[]OnboardingVerificationsCountParamsStatus `form:"status,omitempty" json:"status,omitempty"`
 
 	// UserUuid User UUID
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+
+	// ValidationMethod Validation method
+	//
+	ValidationMethod *[]OnboardingVerificationsCountParamsValidationMethod `form:"validation_method,omitempty" json:"validation_method,omitempty"`
 }
+
+// OnboardingVerificationsCountParamsO defines parameters for OnboardingVerificationsCount.
+type OnboardingVerificationsCountParamsO string
+
+// OnboardingVerificationsCountParamsStatus defines parameters for OnboardingVerificationsCount.
+type OnboardingVerificationsCountParamsStatus string
+
+// OnboardingVerificationsCountParamsValidationMethod defines parameters for OnboardingVerificationsCount.
+type OnboardingVerificationsCountParamsValidationMethod string
 
 // OnboardingVerificationsAvailableChecklistsRetrieveParams defines parameters for OnboardingVerificationsAvailableChecklistsRetrieve.
 type OnboardingVerificationsAvailableChecklistsRetrieveParams struct {
@@ -60156,6 +60417,24 @@ type MarketplaceOrdersRejectByConsumerJSONRequestBody = OrderErrorDetailsRequest
 
 // MarketplaceOrdersSetBackendIdJSONRequestBody defines body for MarketplaceOrdersSetBackendId for application/json ContentType.
 type MarketplaceOrdersSetBackendIdJSONRequestBody = OrderBackendIDRequest
+
+// MarketplaceOrdersSetConsumerInfoJSONRequestBody defines body for MarketplaceOrdersSetConsumerInfo for application/json ContentType.
+type MarketplaceOrdersSetConsumerInfoJSONRequestBody = OrderConsumerInfoRequest
+
+// MarketplaceOrdersSetConsumerInfoFormdataRequestBody defines body for MarketplaceOrdersSetConsumerInfo for application/x-www-form-urlencoded ContentType.
+type MarketplaceOrdersSetConsumerInfoFormdataRequestBody = OrderConsumerInfoRequestForm
+
+// MarketplaceOrdersSetConsumerInfoMultipartRequestBody defines body for MarketplaceOrdersSetConsumerInfo for multipart/form-data ContentType.
+type MarketplaceOrdersSetConsumerInfoMultipartRequestBody = OrderConsumerInfoRequestMultipart
+
+// MarketplaceOrdersSetProviderInfoJSONRequestBody defines body for MarketplaceOrdersSetProviderInfo for application/json ContentType.
+type MarketplaceOrdersSetProviderInfoJSONRequestBody = OrderProviderInfoRequest
+
+// MarketplaceOrdersSetProviderInfoFormdataRequestBody defines body for MarketplaceOrdersSetProviderInfo for application/x-www-form-urlencoded ContentType.
+type MarketplaceOrdersSetProviderInfoFormdataRequestBody = OrderProviderInfoRequestForm
+
+// MarketplaceOrdersSetProviderInfoMultipartRequestBody defines body for MarketplaceOrdersSetProviderInfo for multipart/form-data ContentType.
+type MarketplaceOrdersSetProviderInfoMultipartRequestBody = OrderProviderInfoRequestMultipart
 
 // MarketplaceOrdersSetStateErredJSONRequestBody defines body for MarketplaceOrdersSetStateErred for application/json ContentType.
 type MarketplaceOrdersSetStateErredJSONRequestBody = OrderErrorDetailsRequest
@@ -71856,6 +72135,20 @@ type ClientInterface interface {
 	MarketplaceOrdersSetBackendIdWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceOrdersSetBackendId(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersSetBackendIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOrdersSetConsumerInfoWithBody request with any body
+	MarketplaceOrdersSetConsumerInfoWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceOrdersSetConsumerInfo(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersSetConsumerInfoJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceOrdersSetConsumerInfoWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersSetConsumerInfoFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOrdersSetProviderInfoWithBody request with any body
+	MarketplaceOrdersSetProviderInfoWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceOrdersSetProviderInfo(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersSetProviderInfoJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceOrdersSetProviderInfoWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersSetProviderInfoFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOrdersSetStateDone request
 	MarketplaceOrdersSetStateDone(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -90467,6 +90760,78 @@ func (c *Client) MarketplaceOrdersSetBackendIdWithBody(ctx context.Context, uuid
 
 func (c *Client) MarketplaceOrdersSetBackendId(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersSetBackendIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceOrdersSetBackendIdRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOrdersSetConsumerInfoWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOrdersSetConsumerInfoRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOrdersSetConsumerInfo(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersSetConsumerInfoJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOrdersSetConsumerInfoRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOrdersSetConsumerInfoWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersSetConsumerInfoFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOrdersSetConsumerInfoRequestWithFormdataBody(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOrdersSetProviderInfoWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOrdersSetProviderInfoRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOrdersSetProviderInfo(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersSetProviderInfoJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOrdersSetProviderInfoRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOrdersSetProviderInfoWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersSetProviderInfoFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOrdersSetProviderInfoRequestWithFormdataBody(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -177999,6 +178364,122 @@ func NewMarketplaceOrdersSetBackendIdRequestWithBody(server string, uuid openapi
 	return req, nil
 }
 
+// NewMarketplaceOrdersSetConsumerInfoRequest calls the generic MarketplaceOrdersSetConsumerInfo builder with application/json body
+func NewMarketplaceOrdersSetConsumerInfoRequest(server string, uuid openapi_types.UUID, body MarketplaceOrdersSetConsumerInfoJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceOrdersSetConsumerInfoRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceOrdersSetConsumerInfoRequestWithFormdataBody calls the generic MarketplaceOrdersSetConsumerInfo builder with application/x-www-form-urlencoded body
+func NewMarketplaceOrdersSetConsumerInfoRequestWithFormdataBody(server string, uuid openapi_types.UUID, body MarketplaceOrdersSetConsumerInfoFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewMarketplaceOrdersSetConsumerInfoRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewMarketplaceOrdersSetConsumerInfoRequestWithBody generates requests for MarketplaceOrdersSetConsumerInfo with any type of body
+func NewMarketplaceOrdersSetConsumerInfoRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-orders/%s/set_consumer_info/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceOrdersSetProviderInfoRequest calls the generic MarketplaceOrdersSetProviderInfo builder with application/json body
+func NewMarketplaceOrdersSetProviderInfoRequest(server string, uuid openapi_types.UUID, body MarketplaceOrdersSetProviderInfoJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceOrdersSetProviderInfoRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceOrdersSetProviderInfoRequestWithFormdataBody calls the generic MarketplaceOrdersSetProviderInfo builder with application/x-www-form-urlencoded body
+func NewMarketplaceOrdersSetProviderInfoRequestWithFormdataBody(server string, uuid openapi_types.UUID, body MarketplaceOrdersSetProviderInfoFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewMarketplaceOrdersSetProviderInfoRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewMarketplaceOrdersSetProviderInfoRequestWithBody generates requests for MarketplaceOrdersSetProviderInfo with any type of body
+func NewMarketplaceOrdersSetProviderInfoRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-orders/%s/set_provider_info/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceOrdersSetStateDoneRequest generates requests for MarketplaceOrdersSetStateDone
 func NewMarketplaceOrdersSetStateDoneRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -220309,6 +220790,22 @@ func NewOnboardingJustificationsListRequest(server string, params *OnboardingJus
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -220341,9 +220838,41 @@ func NewOnboardingJustificationsListRequest(server string, params *OnboardingJus
 
 		}
 
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.UserUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ValidationDecision != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "validation_decision", runtime.ParamLocationQuery, *params.ValidationDecision); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -220406,6 +220935,22 @@ func NewOnboardingJustificationsCountRequest(server string, params *OnboardingJu
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -220438,9 +220983,41 @@ func NewOnboardingJustificationsCountRequest(server string, params *OnboardingJu
 
 		}
 
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.UserUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ValidationDecision != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "validation_decision", runtime.ParamLocationQuery, *params.ValidationDecision); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -221437,6 +222014,22 @@ func NewOnboardingVerificationsListRequest(server string, params *OnboardingVeri
 
 		}
 
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -221469,6 +222062,22 @@ func NewOnboardingVerificationsListRequest(server string, params *OnboardingVeri
 
 		}
 
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Status != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "status", runtime.ParamLocationQuery, *params.Status); err != nil {
@@ -221488,6 +222097,22 @@ func NewOnboardingVerificationsListRequest(server string, params *OnboardingVeri
 		if params.UserUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ValidationMethod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "validation_method", runtime.ParamLocationQuery, *params.ValidationMethod); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -221582,6 +222207,22 @@ func NewOnboardingVerificationsCountRequest(server string, params *OnboardingVer
 
 		}
 
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -221614,6 +222255,22 @@ func NewOnboardingVerificationsCountRequest(server string, params *OnboardingVer
 
 		}
 
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Status != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "status", runtime.ParamLocationQuery, *params.Status); err != nil {
@@ -221633,6 +222290,22 @@ func NewOnboardingVerificationsCountRequest(server string, params *OnboardingVer
 		if params.UserUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ValidationMethod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "validation_method", runtime.ParamLocationQuery, *params.ValidationMethod); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -308089,6 +308762,20 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceOrdersSetBackendIdWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersSetBackendIdJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersSetBackendIdResponse, error)
 
+	// MarketplaceOrdersSetConsumerInfoWithBodyWithResponse request with any body
+	MarketplaceOrdersSetConsumerInfoWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOrdersSetConsumerInfoResponse, error)
+
+	MarketplaceOrdersSetConsumerInfoWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersSetConsumerInfoJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersSetConsumerInfoResponse, error)
+
+	MarketplaceOrdersSetConsumerInfoWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersSetConsumerInfoFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersSetConsumerInfoResponse, error)
+
+	// MarketplaceOrdersSetProviderInfoWithBodyWithResponse request with any body
+	MarketplaceOrdersSetProviderInfoWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOrdersSetProviderInfoResponse, error)
+
+	MarketplaceOrdersSetProviderInfoWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersSetProviderInfoJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersSetProviderInfoResponse, error)
+
+	MarketplaceOrdersSetProviderInfoWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersSetProviderInfoFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersSetProviderInfoResponse, error)
+
 	// MarketplaceOrdersSetStateDoneWithResponse request
 	MarketplaceOrdersSetStateDoneWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersSetStateDoneResponse, error)
 
@@ -331070,7 +331757,7 @@ func (r MarketplaceOrdersUpdateResponse) StatusCode() int {
 type MarketplaceOrdersApproveByConsumerResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *string
+	JSON200      *OrderInfoResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -331092,7 +331779,7 @@ func (r MarketplaceOrdersApproveByConsumerResponse) StatusCode() int {
 type MarketplaceOrdersApproveByProviderResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *string
+	JSON200      *OrderInfoResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -331235,6 +331922,50 @@ func (r MarketplaceOrdersSetBackendIdResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceOrdersSetBackendIdResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOrdersSetConsumerInfoResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OrderInfoResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOrdersSetConsumerInfoResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOrdersSetConsumerInfoResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOrdersSetProviderInfoResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OrderInfoResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOrdersSetProviderInfoResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOrdersSetProviderInfoResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -373042,6 +373773,56 @@ func (c *ClientWithResponses) MarketplaceOrdersSetBackendIdWithResponse(ctx cont
 	return ParseMarketplaceOrdersSetBackendIdResponse(rsp)
 }
 
+// MarketplaceOrdersSetConsumerInfoWithBodyWithResponse request with arbitrary body returning *MarketplaceOrdersSetConsumerInfoResponse
+func (c *ClientWithResponses) MarketplaceOrdersSetConsumerInfoWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOrdersSetConsumerInfoResponse, error) {
+	rsp, err := c.MarketplaceOrdersSetConsumerInfoWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOrdersSetConsumerInfoResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceOrdersSetConsumerInfoWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersSetConsumerInfoJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersSetConsumerInfoResponse, error) {
+	rsp, err := c.MarketplaceOrdersSetConsumerInfo(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOrdersSetConsumerInfoResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceOrdersSetConsumerInfoWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersSetConsumerInfoFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersSetConsumerInfoResponse, error) {
+	rsp, err := c.MarketplaceOrdersSetConsumerInfoWithFormdataBody(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOrdersSetConsumerInfoResponse(rsp)
+}
+
+// MarketplaceOrdersSetProviderInfoWithBodyWithResponse request with arbitrary body returning *MarketplaceOrdersSetProviderInfoResponse
+func (c *ClientWithResponses) MarketplaceOrdersSetProviderInfoWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOrdersSetProviderInfoResponse, error) {
+	rsp, err := c.MarketplaceOrdersSetProviderInfoWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOrdersSetProviderInfoResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceOrdersSetProviderInfoWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersSetProviderInfoJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersSetProviderInfoResponse, error) {
+	rsp, err := c.MarketplaceOrdersSetProviderInfo(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOrdersSetProviderInfoResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceOrdersSetProviderInfoWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersSetProviderInfoFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersSetProviderInfoResponse, error) {
+	rsp, err := c.MarketplaceOrdersSetProviderInfoWithFormdataBody(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOrdersSetProviderInfoResponse(rsp)
+}
+
 // MarketplaceOrdersSetStateDoneWithResponse request returning *MarketplaceOrdersSetStateDoneResponse
 func (c *ClientWithResponses) MarketplaceOrdersSetStateDoneWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersSetStateDoneResponse, error) {
 	rsp, err := c.MarketplaceOrdersSetStateDone(ctx, uuid, reqEditors...)
@@ -409239,7 +410020,7 @@ func ParseMarketplaceOrdersApproveByConsumerResponse(rsp *http.Response) (*Marke
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest string
+		var dest OrderInfoResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -409265,7 +410046,7 @@ func ParseMarketplaceOrdersApproveByProviderResponse(rsp *http.Response) (*Marke
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest string
+		var dest OrderInfoResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -409384,6 +410165,58 @@ func ParseMarketplaceOrdersSetBackendIdResponse(rsp *http.Response) (*Marketplac
 		var dest struct {
 			Status *string `json:"status,omitempty"`
 		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOrdersSetConsumerInfoResponse parses an HTTP response from a MarketplaceOrdersSetConsumerInfoWithResponse call
+func ParseMarketplaceOrdersSetConsumerInfoResponse(rsp *http.Response) (*MarketplaceOrdersSetConsumerInfoResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOrdersSetConsumerInfoResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OrderInfoResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOrdersSetProviderInfoResponse parses an HTTP response from a MarketplaceOrdersSetProviderInfoWithResponse call
+func ParseMarketplaceOrdersSetProviderInfoResponse(rsp *http.Response) (*MarketplaceOrdersSetProviderInfoResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOrdersSetProviderInfoResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OrderInfoResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
