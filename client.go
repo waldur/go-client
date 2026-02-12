@@ -6023,10 +6023,12 @@ const (
 	MarketplaceOfferingUsersListParamsFieldUserCountryOfResidence    MarketplaceOfferingUsersListParamsField = "user_country_of_residence"
 	MarketplaceOfferingUsersListParamsFieldUserEdupersonAssurance    MarketplaceOfferingUsersListParamsField = "user_eduperson_assurance"
 	MarketplaceOfferingUsersListParamsFieldUserEmail                 MarketplaceOfferingUsersListParamsField = "user_email"
+	MarketplaceOfferingUsersListParamsFieldUserFirstName             MarketplaceOfferingUsersListParamsField = "user_first_name"
 	MarketplaceOfferingUsersListParamsFieldUserFullName              MarketplaceOfferingUsersListParamsField = "user_full_name"
 	MarketplaceOfferingUsersListParamsFieldUserGender                MarketplaceOfferingUsersListParamsField = "user_gender"
 	MarketplaceOfferingUsersListParamsFieldUserIdentitySource        MarketplaceOfferingUsersListParamsField = "user_identity_source"
 	MarketplaceOfferingUsersListParamsFieldUserJobTitle              MarketplaceOfferingUsersListParamsField = "user_job_title"
+	MarketplaceOfferingUsersListParamsFieldUserLastName              MarketplaceOfferingUsersListParamsField = "user_last_name"
 	MarketplaceOfferingUsersListParamsFieldUserNationalities         MarketplaceOfferingUsersListParamsField = "user_nationalities"
 	MarketplaceOfferingUsersListParamsFieldUserNationality           MarketplaceOfferingUsersListParamsField = "user_nationality"
 	MarketplaceOfferingUsersListParamsFieldUserOrganization          MarketplaceOfferingUsersListParamsField = "user_organization"
@@ -6115,10 +6117,12 @@ const (
 	MarketplaceOfferingUsersRetrieveParamsFieldUserCountryOfResidence    MarketplaceOfferingUsersRetrieveParamsField = "user_country_of_residence"
 	MarketplaceOfferingUsersRetrieveParamsFieldUserEdupersonAssurance    MarketplaceOfferingUsersRetrieveParamsField = "user_eduperson_assurance"
 	MarketplaceOfferingUsersRetrieveParamsFieldUserEmail                 MarketplaceOfferingUsersRetrieveParamsField = "user_email"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserFirstName             MarketplaceOfferingUsersRetrieveParamsField = "user_first_name"
 	MarketplaceOfferingUsersRetrieveParamsFieldUserFullName              MarketplaceOfferingUsersRetrieveParamsField = "user_full_name"
 	MarketplaceOfferingUsersRetrieveParamsFieldUserGender                MarketplaceOfferingUsersRetrieveParamsField = "user_gender"
 	MarketplaceOfferingUsersRetrieveParamsFieldUserIdentitySource        MarketplaceOfferingUsersRetrieveParamsField = "user_identity_source"
 	MarketplaceOfferingUsersRetrieveParamsFieldUserJobTitle              MarketplaceOfferingUsersRetrieveParamsField = "user_job_title"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserLastName              MarketplaceOfferingUsersRetrieveParamsField = "user_last_name"
 	MarketplaceOfferingUsersRetrieveParamsFieldUserNationalities         MarketplaceOfferingUsersRetrieveParamsField = "user_nationalities"
 	MarketplaceOfferingUsersRetrieveParamsFieldUserNationality           MarketplaceOfferingUsersRetrieveParamsField = "user_nationality"
 	MarketplaceOfferingUsersRetrieveParamsFieldUserOrganization          MarketplaceOfferingUsersRetrieveParamsField = "user_organization"
@@ -6410,6 +6414,7 @@ const (
 	MarketplaceProviderOfferingsListParamsFieldAccessUrl                 MarketplaceProviderOfferingsListParamsField = "access_url"
 	MarketplaceProviderOfferingsListParamsFieldAttributes                MarketplaceProviderOfferingsListParamsField = "attributes"
 	MarketplaceProviderOfferingsListParamsFieldBackendId                 MarketplaceProviderOfferingsListParamsField = "backend_id"
+	MarketplaceProviderOfferingsListParamsFieldBackendIdRules            MarketplaceProviderOfferingsListParamsField = "backend_id_rules"
 	MarketplaceProviderOfferingsListParamsFieldBackendMetadata           MarketplaceProviderOfferingsListParamsField = "backend_metadata"
 	MarketplaceProviderOfferingsListParamsFieldBillable                  MarketplaceProviderOfferingsListParamsField = "billable"
 	MarketplaceProviderOfferingsListParamsFieldBillingTypeClassification MarketplaceProviderOfferingsListParamsField = "billing_type_classification"
@@ -6592,6 +6597,7 @@ const (
 	MarketplaceProviderOfferingsRetrieveParamsFieldAccessUrl                 MarketplaceProviderOfferingsRetrieveParamsField = "access_url"
 	MarketplaceProviderOfferingsRetrieveParamsFieldAttributes                MarketplaceProviderOfferingsRetrieveParamsField = "attributes"
 	MarketplaceProviderOfferingsRetrieveParamsFieldBackendId                 MarketplaceProviderOfferingsRetrieveParamsField = "backend_id"
+	MarketplaceProviderOfferingsRetrieveParamsFieldBackendIdRules            MarketplaceProviderOfferingsRetrieveParamsField = "backend_id_rules"
 	MarketplaceProviderOfferingsRetrieveParamsFieldBackendMetadata           MarketplaceProviderOfferingsRetrieveParamsField = "backend_metadata"
 	MarketplaceProviderOfferingsRetrieveParamsFieldBillable                  MarketplaceProviderOfferingsRetrieveParamsField = "billable"
 	MarketplaceProviderOfferingsRetrieveParamsFieldBillingTypeClassification MarketplaceProviderOfferingsRetrieveParamsField = "billing_type_classification"
@@ -7076,6 +7082,7 @@ const (
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldAccessUrl                 MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "access_url"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldAttributes                MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "attributes"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldBackendId                 MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "backend_id"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldBackendIdRules            MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "backend_id_rules"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldBackendMetadata           MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "backend_metadata"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldBillable                  MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "billable"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldBillingTypeClassification MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "billing_type_classification"
@@ -17215,12 +17222,21 @@ type CheckUniqueBackendIDRequest struct {
 
 	// CheckAllOfferings Check across all offerings
 	CheckAllOfferings *bool `json:"check_all_offerings,omitempty"`
+
+	// UseOfferingRules Apply the offering's backend_id_rules for format and uniqueness validation
+	UseOfferingRules *bool `json:"use_offering_rules,omitempty"`
 }
 
 // CheckUniqueBackendIDResponse defines model for CheckUniqueBackendIDResponse.
 type CheckUniqueBackendIDResponse struct {
+	// Errors List of validation error messages
+	Errors *[]string `json:"errors,omitempty"`
+
 	// IsUnique Whether the backend ID is unique
 	IsUnique bool `json:"is_unique"`
+
+	// IsValidFormat Whether the backend ID matches the offering's format regex (null if no rules configured)
+	IsValidFormat *bool `json:"is_valid_format"`
 }
 
 // Checklist defines model for Checklist.
@@ -24434,6 +24450,12 @@ type Offering_ScopeState struct {
 	union json.RawMessage
 }
 
+// OfferingBackendIdRulesUpdateRequest defines model for OfferingBackendIdRulesUpdateRequest.
+type OfferingBackendIdRulesUpdateRequest struct {
+	// BackendIdRules Validation rules for resource backend_id: format regex and uniqueness scope.
+	BackendIdRules interface{} `json:"backend_id_rules,omitempty"`
+}
+
 // OfferingBackendMetadataRequest defines model for OfferingBackendMetadataRequest.
 type OfferingBackendMetadataRequest struct {
 	BackendMetadata interface{} `json:"backend_metadata,omitempty"`
@@ -24577,9 +24599,12 @@ type OfferingCountryStats struct {
 // OfferingCreateRequest defines model for OfferingCreateRequest.
 type OfferingCreateRequest struct {
 	// AccessUrl Publicly accessible offering access URL
-	AccessUrl       *string     `json:"access_url,omitempty"`
-	Attributes      interface{} `json:"attributes,omitempty"`
-	BackendId       *string     `json:"backend_id,omitempty"`
+	AccessUrl  *string     `json:"access_url,omitempty"`
+	Attributes interface{} `json:"attributes,omitempty"`
+	BackendId  *string     `json:"backend_id,omitempty"`
+
+	// BackendIdRules Validation rules for resource backend_id: format regex and uniqueness scope.
+	BackendIdRules  interface{} `json:"backend_id_rules,omitempty"`
 	BackendMetadata interface{} `json:"backend_metadata,omitempty"`
 
 	// Billable Purchase and usage is invoiced.
@@ -24625,9 +24650,12 @@ type OfferingCreateRequest_Country struct {
 // OfferingCreateRequestForm defines model for OfferingCreateRequestForm.
 type OfferingCreateRequestForm struct {
 	// AccessUrl Publicly accessible offering access URL
-	AccessUrl       *string     `json:"access_url,omitempty"`
-	Attributes      interface{} `json:"attributes,omitempty"`
-	BackendId       *string     `json:"backend_id,omitempty"`
+	AccessUrl  *string     `json:"access_url,omitempty"`
+	Attributes interface{} `json:"attributes,omitempty"`
+	BackendId  *string     `json:"backend_id,omitempty"`
+
+	// BackendIdRules Validation rules for resource backend_id: format regex and uniqueness scope.
+	BackendIdRules  interface{} `json:"backend_id_rules,omitempty"`
 	BackendMetadata interface{} `json:"backend_metadata,omitempty"`
 
 	// Billable Purchase and usage is invoiced.
@@ -24673,9 +24701,12 @@ type OfferingCreateRequestForm_Country struct {
 // OfferingCreateRequestMultipart defines model for OfferingCreateRequestMultipart.
 type OfferingCreateRequestMultipart struct {
 	// AccessUrl Publicly accessible offering access URL
-	AccessUrl       *string     `json:"access_url,omitempty"`
-	Attributes      interface{} `json:"attributes,omitempty"`
-	BackendId       *string     `json:"backend_id,omitempty"`
+	AccessUrl  *string     `json:"access_url,omitempty"`
+	Attributes interface{} `json:"attributes,omitempty"`
+	BackendId  *string     `json:"backend_id,omitempty"`
+
+	// BackendIdRules Validation rules for resource backend_id: format regex and uniqueness scope.
+	BackendIdRules  interface{} `json:"backend_id_rules,omitempty"`
 	BackendMetadata interface{} `json:"backend_metadata,omitempty"`
 
 	// Billable Purchase and usage is invoiced.
@@ -25429,6 +25460,7 @@ type OfferingUser struct {
 	// UserEdupersonAssurance REFEDS assurance profile URIs from identity provider
 	UserEdupersonAssurance interface{}          `json:"user_eduperson_assurance,omitempty"`
 	UserEmail              *openapi_types.Email `json:"user_email,omitempty"`
+	UserFirstName          *string              `json:"user_first_name,omitempty"`
 	UserFullName           *string              `json:"user_full_name,omitempty"`
 
 	// UserGender ISO 5218 gender code
@@ -25437,6 +25469,7 @@ type OfferingUser struct {
 	// UserIdentitySource Indicates what identity provider was used.
 	UserIdentitySource *string `json:"user_identity_source,omitempty"`
 	UserJobTitle       *string `json:"user_job_title,omitempty"`
+	UserLastName       *string `json:"user_last_name,omitempty"`
 
 	// UserNationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
 	UserNationalities interface{} `json:"user_nationalities,omitempty"`
@@ -29197,20 +29230,6 @@ type PatchedOpenStackSecurityGroupUpdateRequest struct {
 	Name        *string `json:"name,omitempty"`
 }
 
-// PatchedOpenStackServerGroupRequest defines model for PatchedOpenStackServerGroupRequest.
-type PatchedOpenStackServerGroupRequest struct {
-	Description *string `json:"description,omitempty"`
-	Name        *string `json:"name,omitempty"`
-
-	// Policy Server group policy determining the rules for scheduling servers in this group
-	Policy *PatchedOpenStackServerGroupRequest_Policy `json:"policy,omitempty"`
-}
-
-// PatchedOpenStackServerGroupRequest_Policy Server group policy determining the rules for scheduling servers in this group
-type PatchedOpenStackServerGroupRequest_Policy struct {
-	union json.RawMessage
-}
-
 // PatchedOpenStackSnapshotRequest defines model for PatchedOpenStackSnapshotRequest.
 type PatchedOpenStackSnapshotRequest struct {
 	Description *string `json:"description,omitempty"`
@@ -31806,10 +31825,13 @@ type ProviderOfferingCustomer struct {
 // ProviderOfferingDetails defines model for ProviderOfferingDetails.
 type ProviderOfferingDetails struct {
 	// AccessUrl Publicly accessible offering access URL
-	AccessUrl       *string                 `json:"access_url,omitempty"`
-	Attributes      *map[string]interface{} `json:"attributes,omitempty"`
-	BackendId       *string                 `json:"backend_id,omitempty"`
-	BackendMetadata interface{}             `json:"backend_metadata,omitempty"`
+	AccessUrl  *string                 `json:"access_url,omitempty"`
+	Attributes *map[string]interface{} `json:"attributes,omitempty"`
+	BackendId  *string                 `json:"backend_id,omitempty"`
+
+	// BackendIdRules Validation rules for resource backend_id: format regex and uniqueness scope.
+	BackendIdRules  interface{} `json:"backend_id_rules,omitempty"`
+	BackendMetadata interface{} `json:"backend_metadata,omitempty"`
 
 	// Billable Purchase and usage is invoiced.
 	Billable *bool `json:"billable,omitempty"`
@@ -60582,6 +60604,9 @@ type MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateJSONRequestBody 
 // MarketplaceProviderOfferingsUpdateAttributesJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateAttributes for application/json ContentType.
 type MarketplaceProviderOfferingsUpdateAttributesJSONRequestBody MarketplaceProviderOfferingsUpdateAttributesJSONBody
 
+// MarketplaceProviderOfferingsUpdateBackendIdRulesJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateBackendIdRules for application/json ContentType.
+type MarketplaceProviderOfferingsUpdateBackendIdRulesJSONRequestBody = OfferingBackendIdRulesUpdateRequest
+
 // MarketplaceProviderOfferingsUpdateComplianceChecklistJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateComplianceChecklist for application/json ContentType.
 type MarketplaceProviderOfferingsUpdateComplianceChecklistJSONRequestBody = OfferingComplianceChecklistUpdateRequest
 
@@ -61280,12 +61305,6 @@ type OpenstackSecurityGroupsSetRulesJSONRequestBody = OpenstackSecurityGroupsSet
 
 // OpenstackServerGroupsCreateJSONRequestBody defines body for OpenstackServerGroupsCreate for application/json ContentType.
 type OpenstackServerGroupsCreateJSONRequestBody = OpenStackServerGroupRequest
-
-// OpenstackServerGroupsPartialUpdateJSONRequestBody defines body for OpenstackServerGroupsPartialUpdate for application/json ContentType.
-type OpenstackServerGroupsPartialUpdateJSONRequestBody = PatchedOpenStackServerGroupRequest
-
-// OpenstackServerGroupsUpdateJSONRequestBody defines body for OpenstackServerGroupsUpdate for application/json ContentType.
-type OpenstackServerGroupsUpdateJSONRequestBody = OpenStackServerGroupRequest
 
 // OpenstackServerGroupsSetErredJSONRequestBody defines body for OpenstackServerGroupsSetErred for application/json ContentType.
 type OpenstackServerGroupsSetErredJSONRequestBody = SetErredRequest
@@ -65759,68 +65778,6 @@ func (t PatchedCustomerRequestMultipart_Country) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PatchedCustomerRequestMultipart_Country) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsPolicyEnum returns the union data inside the PatchedOpenStackServerGroupRequest_Policy as a PolicyEnum
-func (t PatchedOpenStackServerGroupRequest_Policy) AsPolicyEnum() (PolicyEnum, error) {
-	var body PolicyEnum
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromPolicyEnum overwrites any union data inside the PatchedOpenStackServerGroupRequest_Policy as the provided PolicyEnum
-func (t *PatchedOpenStackServerGroupRequest_Policy) FromPolicyEnum(v PolicyEnum) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergePolicyEnum performs a merge with any union data inside the PatchedOpenStackServerGroupRequest_Policy, using the provided PolicyEnum
-func (t *PatchedOpenStackServerGroupRequest_Policy) MergePolicyEnum(v PolicyEnum) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsBlankEnum returns the union data inside the PatchedOpenStackServerGroupRequest_Policy as a BlankEnum
-func (t PatchedOpenStackServerGroupRequest_Policy) AsBlankEnum() (BlankEnum, error) {
-	var body BlankEnum
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromBlankEnum overwrites any union data inside the PatchedOpenStackServerGroupRequest_Policy as the provided BlankEnum
-func (t *PatchedOpenStackServerGroupRequest_Policy) FromBlankEnum(v BlankEnum) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeBlankEnum performs a merge with any union data inside the PatchedOpenStackServerGroupRequest_Policy, using the provided BlankEnum
-func (t *PatchedOpenStackServerGroupRequest_Policy) MergeBlankEnum(v BlankEnum) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t PatchedOpenStackServerGroupRequest_Policy) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *PatchedOpenStackServerGroupRequest_Policy) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -72567,6 +72524,11 @@ type ClientInterface interface {
 
 	MarketplaceProviderOfferingsUpdateAttributes(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateAttributesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderOfferingsUpdateBackendIdRulesWithBody request with any body
+	MarketplaceProviderOfferingsUpdateBackendIdRulesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderOfferingsUpdateBackendIdRules(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateBackendIdRulesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderOfferingsUpdateComplianceChecklistWithBody request with any body
 	MarketplaceProviderOfferingsUpdateComplianceChecklistWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -72760,6 +72722,9 @@ type ClientInterface interface {
 	MarketplaceProviderResourcesSetSlugWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceProviderResourcesSetSlug(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetSlugJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderResourcesSetStateOk request
+	MarketplaceProviderResourcesSetStateOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderResourcesSubmitReportWithBody request with any body
 	MarketplaceProviderResourcesSubmitReportWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -74874,16 +74839,6 @@ type ClientInterface interface {
 
 	// OpenstackServerGroupsRetrieve request
 	OpenstackServerGroupsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenstackServerGroupsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OpenstackServerGroupsPartialUpdateWithBody request with any body
-	OpenstackServerGroupsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	OpenstackServerGroupsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackServerGroupsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OpenstackServerGroupsUpdateWithBody request with any body
-	OpenstackServerGroupsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	OpenstackServerGroupsUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackServerGroupsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackServerGroupsPull request
 	OpenstackServerGroupsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -92623,6 +92578,30 @@ func (c *Client) MarketplaceProviderOfferingsUpdateAttributes(ctx context.Contex
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceProviderOfferingsUpdateBackendIdRulesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsUpdateBackendIdRulesRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsUpdateBackendIdRules(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateBackendIdRulesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsUpdateBackendIdRulesRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceProviderOfferingsUpdateComplianceChecklistWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsUpdateComplianceChecklistRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -93513,6 +93492,18 @@ func (c *Client) MarketplaceProviderResourcesSetSlugWithBody(ctx context.Context
 
 func (c *Client) MarketplaceProviderResourcesSetSlug(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetSlugJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderResourcesSetSlugRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderResourcesSetStateOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesSetStateOkRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -102729,54 +102720,6 @@ func (c *Client) OpenstackServerGroupsDestroy(ctx context.Context, uuid openapi_
 
 func (c *Client) OpenstackServerGroupsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenstackServerGroupsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackServerGroupsRetrieveRequest(c.Server, uuid, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) OpenstackServerGroupsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackServerGroupsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) OpenstackServerGroupsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackServerGroupsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackServerGroupsPartialUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) OpenstackServerGroupsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackServerGroupsUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) OpenstackServerGroupsUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackServerGroupsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackServerGroupsUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -191373,6 +191316,53 @@ func NewMarketplaceProviderOfferingsUpdateAttributesRequestWithBody(server strin
 	return req, nil
 }
 
+// NewMarketplaceProviderOfferingsUpdateBackendIdRulesRequest calls the generic MarketplaceProviderOfferingsUpdateBackendIdRules builder with application/json body
+func NewMarketplaceProviderOfferingsUpdateBackendIdRulesRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateBackendIdRulesJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderOfferingsUpdateBackendIdRulesRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsUpdateBackendIdRulesRequestWithBody generates requests for MarketplaceProviderOfferingsUpdateBackendIdRules with any type of body
+func NewMarketplaceProviderOfferingsUpdateBackendIdRulesRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/update_backend_id_rules/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceProviderOfferingsUpdateComplianceChecklistRequest calls the generic MarketplaceProviderOfferingsUpdateComplianceChecklist builder with application/json body
 func NewMarketplaceProviderOfferingsUpdateComplianceChecklistRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateComplianceChecklistJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -195358,6 +195348,40 @@ func NewMarketplaceProviderResourcesSetSlugRequestWithBody(server string, uuid o
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProviderResourcesSetStateOkRequest generates requests for MarketplaceProviderResourcesSetStateOk
+func NewMarketplaceProviderResourcesSetStateOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-resources/%s/set_state_ok/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -243730,100 +243754,6 @@ func NewOpenstackServerGroupsRetrieveRequest(server string, uuid openapi_types.U
 	if err != nil {
 		return nil, err
 	}
-
-	return req, nil
-}
-
-// NewOpenstackServerGroupsPartialUpdateRequest calls the generic OpenstackServerGroupsPartialUpdate builder with application/json body
-func NewOpenstackServerGroupsPartialUpdateRequest(server string, uuid openapi_types.UUID, body OpenstackServerGroupsPartialUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewOpenstackServerGroupsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewOpenstackServerGroupsPartialUpdateRequestWithBody generates requests for OpenstackServerGroupsPartialUpdate with any type of body
-func NewOpenstackServerGroupsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/openstack-server-groups/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("PATCH", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewOpenstackServerGroupsUpdateRequest calls the generic OpenstackServerGroupsUpdate builder with application/json body
-func NewOpenstackServerGroupsUpdateRequest(server string, uuid openapi_types.UUID, body OpenstackServerGroupsUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewOpenstackServerGroupsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewOpenstackServerGroupsUpdateRequestWithBody generates requests for OpenstackServerGroupsUpdate with any type of body
-func NewOpenstackServerGroupsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/openstack-server-groups/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("PUT", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -309193,6 +309123,11 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceProviderOfferingsUpdateAttributesWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateAttributesJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateAttributesResponse, error)
 
+	// MarketplaceProviderOfferingsUpdateBackendIdRulesWithBodyWithResponse request with any body
+	MarketplaceProviderOfferingsUpdateBackendIdRulesWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateBackendIdRulesResponse, error)
+
+	MarketplaceProviderOfferingsUpdateBackendIdRulesWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateBackendIdRulesJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateBackendIdRulesResponse, error)
+
 	// MarketplaceProviderOfferingsUpdateComplianceChecklistWithBodyWithResponse request with any body
 	MarketplaceProviderOfferingsUpdateComplianceChecklistWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateComplianceChecklistResponse, error)
 
@@ -309386,6 +309321,9 @@ type ClientWithResponsesInterface interface {
 	MarketplaceProviderResourcesSetSlugWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetSlugResponse, error)
 
 	MarketplaceProviderResourcesSetSlugWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetSlugJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetSlugResponse, error)
+
+	// MarketplaceProviderResourcesSetStateOkWithResponse request
+	MarketplaceProviderResourcesSetStateOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetStateOkResponse, error)
 
 	// MarketplaceProviderResourcesSubmitReportWithBodyWithResponse request with any body
 	MarketplaceProviderResourcesSubmitReportWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSubmitReportResponse, error)
@@ -311500,16 +311438,6 @@ type ClientWithResponsesInterface interface {
 
 	// OpenstackServerGroupsRetrieveWithResponse request
 	OpenstackServerGroupsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackServerGroupsRetrieveParams, reqEditors ...RequestEditorFn) (*OpenstackServerGroupsRetrieveResponse, error)
-
-	// OpenstackServerGroupsPartialUpdateWithBodyWithResponse request with any body
-	OpenstackServerGroupsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackServerGroupsPartialUpdateResponse, error)
-
-	OpenstackServerGroupsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackServerGroupsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackServerGroupsPartialUpdateResponse, error)
-
-	// OpenstackServerGroupsUpdateWithBodyWithResponse request with any body
-	OpenstackServerGroupsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackServerGroupsUpdateResponse, error)
-
-	OpenstackServerGroupsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackServerGroupsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackServerGroupsUpdateResponse, error)
 
 	// OpenstackServerGroupsPullWithResponse request
 	OpenstackServerGroupsPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackServerGroupsPullResponse, error)
@@ -334288,6 +334216,27 @@ func (r MarketplaceProviderOfferingsUpdateAttributesResponse) StatusCode() int {
 	return 0
 }
 
+type MarketplaceProviderOfferingsUpdateBackendIdRulesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsUpdateBackendIdRulesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsUpdateBackendIdRulesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceProviderOfferingsUpdateComplianceChecklistResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -335243,6 +335192,28 @@ func (r MarketplaceProviderResourcesSetSlugResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceProviderResourcesSetSlugResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProviderResourcesSetStateOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ResourceResponseStatus
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderResourcesSetStateOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderResourcesSetStateOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -347814,50 +347785,6 @@ func (r OpenstackServerGroupsRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackServerGroupsRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type OpenstackServerGroupsPartialUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *OpenStackServerGroup
-}
-
-// Status returns HTTPResponse.Status
-func (r OpenstackServerGroupsPartialUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OpenstackServerGroupsPartialUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type OpenstackServerGroupsUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *OpenStackServerGroup
-}
-
-// Status returns HTTPResponse.Status
-func (r OpenstackServerGroupsUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OpenstackServerGroupsUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -375122,6 +375049,23 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateAttributesWithRe
 	return ParseMarketplaceProviderOfferingsUpdateAttributesResponse(rsp)
 }
 
+// MarketplaceProviderOfferingsUpdateBackendIdRulesWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsUpdateBackendIdRulesResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateBackendIdRulesWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateBackendIdRulesResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsUpdateBackendIdRulesWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsUpdateBackendIdRulesResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateBackendIdRulesWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateBackendIdRulesJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateBackendIdRulesResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsUpdateBackendIdRules(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsUpdateBackendIdRulesResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsUpdateComplianceChecklistWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsUpdateComplianceChecklistResponse
 func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateComplianceChecklistWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateComplianceChecklistResponse, error) {
 	rsp, err := c.MarketplaceProviderOfferingsUpdateComplianceChecklistWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -375764,6 +375708,15 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesSetSlugWithResponse(ct
 		return nil, err
 	}
 	return ParseMarketplaceProviderResourcesSetSlugResponse(rsp)
+}
+
+// MarketplaceProviderResourcesSetStateOkWithResponse request returning *MarketplaceProviderResourcesSetStateOkResponse
+func (c *ClientWithResponses) MarketplaceProviderResourcesSetStateOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetStateOkResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesSetStateOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesSetStateOkResponse(rsp)
 }
 
 // MarketplaceProviderResourcesSubmitReportWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourcesSubmitReportResponse
@@ -382486,40 +382439,6 @@ func (c *ClientWithResponses) OpenstackServerGroupsRetrieveWithResponse(ctx cont
 		return nil, err
 	}
 	return ParseOpenstackServerGroupsRetrieveResponse(rsp)
-}
-
-// OpenstackServerGroupsPartialUpdateWithBodyWithResponse request with arbitrary body returning *OpenstackServerGroupsPartialUpdateResponse
-func (c *ClientWithResponses) OpenstackServerGroupsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackServerGroupsPartialUpdateResponse, error) {
-	rsp, err := c.OpenstackServerGroupsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackServerGroupsPartialUpdateResponse(rsp)
-}
-
-func (c *ClientWithResponses) OpenstackServerGroupsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackServerGroupsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackServerGroupsPartialUpdateResponse, error) {
-	rsp, err := c.OpenstackServerGroupsPartialUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackServerGroupsPartialUpdateResponse(rsp)
-}
-
-// OpenstackServerGroupsUpdateWithBodyWithResponse request with arbitrary body returning *OpenstackServerGroupsUpdateResponse
-func (c *ClientWithResponses) OpenstackServerGroupsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackServerGroupsUpdateResponse, error) {
-	rsp, err := c.OpenstackServerGroupsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackServerGroupsUpdateResponse(rsp)
-}
-
-func (c *ClientWithResponses) OpenstackServerGroupsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackServerGroupsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackServerGroupsUpdateResponse, error) {
-	rsp, err := c.OpenstackServerGroupsUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackServerGroupsUpdateResponse(rsp)
 }
 
 // OpenstackServerGroupsPullWithResponse request returning *OpenstackServerGroupsPullResponse
@@ -412631,6 +412550,22 @@ func ParseMarketplaceProviderOfferingsUpdateAttributesResponse(rsp *http.Respons
 	return response, nil
 }
 
+// ParseMarketplaceProviderOfferingsUpdateBackendIdRulesResponse parses an HTTP response from a MarketplaceProviderOfferingsUpdateBackendIdRulesWithResponse call
+func ParseMarketplaceProviderOfferingsUpdateBackendIdRulesResponse(rsp *http.Response) (*MarketplaceProviderOfferingsUpdateBackendIdRulesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsUpdateBackendIdRulesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceProviderOfferingsUpdateComplianceChecklistResponse parses an HTTP response from a MarketplaceProviderOfferingsUpdateComplianceChecklistWithResponse call
 func ParseMarketplaceProviderOfferingsUpdateComplianceChecklistResponse(rsp *http.Response) (*MarketplaceProviderOfferingsUpdateComplianceChecklistResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -413599,6 +413534,32 @@ func ParseMarketplaceProviderResourcesSetSlugResponse(rsp *http.Response) (*Mark
 		var dest struct {
 			Status *string `json:"status,omitempty"`
 		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderResourcesSetStateOkResponse parses an HTTP response from a MarketplaceProviderResourcesSetStateOkWithResponse call
+func ParseMarketplaceProviderResourcesSetStateOkResponse(rsp *http.Response) (*MarketplaceProviderResourcesSetStateOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderResourcesSetStateOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ResourceResponseStatus
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -426969,58 +426930,6 @@ func ParseOpenstackServerGroupsRetrieveResponse(rsp *http.Response) (*OpenstackS
 	}
 
 	response := &OpenstackServerGroupsRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OpenStackServerGroup
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseOpenstackServerGroupsPartialUpdateResponse parses an HTTP response from a OpenstackServerGroupsPartialUpdateWithResponse call
-func ParseOpenstackServerGroupsPartialUpdateResponse(rsp *http.Response) (*OpenstackServerGroupsPartialUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OpenstackServerGroupsPartialUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OpenStackServerGroup
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseOpenstackServerGroupsUpdateResponse parses an HTTP response from a OpenstackServerGroupsUpdateWithResponse call
-func ParseOpenstackServerGroupsUpdateResponse(rsp *http.Response) (*OpenstackServerGroupsUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OpenstackServerGroupsUpdateResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
