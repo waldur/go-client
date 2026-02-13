@@ -17802,6 +17802,7 @@ type ConsoleUrl struct {
 
 // ConstanceSettings defines model for ConstanceSettings.
 type ConstanceSettings struct {
+	ALLOWSERVICEPROVIDEROFFERINGACTIVATION         *bool                `json:"ALLOW_SERVICE_PROVIDER_OFFERING_ACTIVATION,omitempty"`
 	ANONYMOUSUSERCANVIEWOFFERINGS                  *bool                `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
 	ANONYMOUSUSERCANVIEWPLANS                      *bool                `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
 	ARROWAUTORECONCILIATION                        *bool                `json:"ARROW_AUTO_RECONCILIATION,omitempty"`
@@ -18037,6 +18038,7 @@ type ConstanceSettings struct {
 
 // ConstanceSettingsRequest defines model for ConstanceSettingsRequest.
 type ConstanceSettingsRequest struct {
+	ALLOWSERVICEPROVIDEROFFERINGACTIVATION         *bool                           `json:"ALLOW_SERVICE_PROVIDER_OFFERING_ACTIVATION,omitempty"`
 	ANONYMOUSUSERCANVIEWOFFERINGS                  *bool                           `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
 	ANONYMOUSUSERCANVIEWPLANS                      *bool                           `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
 	ARROWAUTORECONCILIATION                        *bool                           `json:"ARROW_AUTO_RECONCILIATION,omitempty"`
@@ -18272,6 +18274,7 @@ type ConstanceSettingsRequest struct {
 
 // ConstanceSettingsRequestForm defines model for ConstanceSettingsRequestForm.
 type ConstanceSettingsRequestForm struct {
+	ALLOWSERVICEPROVIDEROFFERINGACTIVATION         *bool                           `json:"ALLOW_SERVICE_PROVIDER_OFFERING_ACTIVATION,omitempty"`
 	ANONYMOUSUSERCANVIEWOFFERINGS                  *bool                           `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
 	ANONYMOUSUSERCANVIEWPLANS                      *bool                           `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
 	ARROWAUTORECONCILIATION                        *bool                           `json:"ARROW_AUTO_RECONCILIATION,omitempty"`
@@ -18507,6 +18510,7 @@ type ConstanceSettingsRequestForm struct {
 
 // ConstanceSettingsRequestMultipart defines model for ConstanceSettingsRequestMultipart.
 type ConstanceSettingsRequestMultipart struct {
+	ALLOWSERVICEPROVIDEROFFERINGACTIVATION         *bool                           `json:"ALLOW_SERVICE_PROVIDER_OFFERING_ACTIVATION,omitempty"`
 	ANONYMOUSUSERCANVIEWOFFERINGS                  *bool                           `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
 	ANONYMOUSUSERCANVIEWPLANS                      *bool                           `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
 	ARROWAUTORECONCILIATION                        *bool                           `json:"ARROW_AUTO_RECONCILIATION,omitempty"`
