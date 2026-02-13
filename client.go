@@ -257,6 +257,11 @@ const (
 	CategoryEnumView      CategoryEnum = "view"
 )
 
+// Defines values for ChatRequestModeEnum.
+const (
+	Reload ChatRequestModeEnum = "reload"
+)
+
 // Defines values for ChecklistOperators.
 const (
 	Contains  ChecklistOperators = "contains"
@@ -1620,12 +1625,6 @@ const (
 	MinimalConsumptionLogicEnumLinear MinimalConsumptionLogicEnum = "linear"
 )
 
-// Defines values for ModeEnum.
-const (
-	ModeEnumEmulator   ModeEnum = "emulator"
-	ModeEnumProduction ModeEnum = "production"
-)
-
 // Defines values for NameEnum.
 const (
 	EESSI NameEnum = "EESSI"
@@ -2286,6 +2285,12 @@ const (
 	ServiceSettingsStateEnumOK                ServiceSettingsStateEnum = "OK"
 	ServiceSettingsStateEnumUPDATESCHEDULED   ServiceSettingsStateEnum = "UPDATE_SCHEDULED"
 	ServiceSettingsStateEnumUPDATING          ServiceSettingsStateEnum = "UPDATING"
+)
+
+// Defines values for SlurmCommandResultModeEnum.
+const (
+	SlurmCommandResultModeEnumEmulator   SlurmCommandResultModeEnum = "emulator"
+	SlurmCommandResultModeEnumProduction SlurmCommandResultModeEnum = "production"
 )
 
 // Defines values for SlurmPolicyDateProjectionStatusEnum.
@@ -4143,8 +4148,19 @@ const (
 	ChatThreadsListParamsFieldFlags        ChatThreadsListParamsField = "flags"
 	ChatThreadsListParamsFieldIsArchived   ChatThreadsListParamsField = "is_archived"
 	ChatThreadsListParamsFieldMessageCount ChatThreadsListParamsField = "message_count"
+	ChatThreadsListParamsFieldModified     ChatThreadsListParamsField = "modified"
 	ChatThreadsListParamsFieldName         ChatThreadsListParamsField = "name"
+	ChatThreadsListParamsFieldUserFullName ChatThreadsListParamsField = "user_full_name"
+	ChatThreadsListParamsFieldUserUsername ChatThreadsListParamsField = "user_username"
 	ChatThreadsListParamsFieldUuid         ChatThreadsListParamsField = "uuid"
+)
+
+// Defines values for ChatThreadsListParamsO.
+const (
+	ChatThreadsListParamsOCreated       ChatThreadsListParamsO = "created"
+	ChatThreadsListParamsOMinusCreated  ChatThreadsListParamsO = "-created"
+	ChatThreadsListParamsOMinusModified ChatThreadsListParamsO = "-modified"
+	ChatThreadsListParamsOModified      ChatThreadsListParamsO = "modified"
 )
 
 // Defines values for ChatThreadsRetrieveParamsField.
@@ -4154,7 +4170,10 @@ const (
 	ChatThreadsRetrieveParamsFieldFlags        ChatThreadsRetrieveParamsField = "flags"
 	ChatThreadsRetrieveParamsFieldIsArchived   ChatThreadsRetrieveParamsField = "is_archived"
 	ChatThreadsRetrieveParamsFieldMessageCount ChatThreadsRetrieveParamsField = "message_count"
+	ChatThreadsRetrieveParamsFieldModified     ChatThreadsRetrieveParamsField = "modified"
 	ChatThreadsRetrieveParamsFieldName         ChatThreadsRetrieveParamsField = "name"
+	ChatThreadsRetrieveParamsFieldUserFullName ChatThreadsRetrieveParamsField = "user_full_name"
+	ChatThreadsRetrieveParamsFieldUserUsername ChatThreadsRetrieveParamsField = "user_username"
 	ChatThreadsRetrieveParamsFieldUuid         ChatThreadsRetrieveParamsField = "uuid"
 )
 
@@ -6152,6 +6171,7 @@ const (
 	MarketplaceOrdersListParamsFieldCompletedAt                       MarketplaceOrdersListParamsField = "completed_at"
 	MarketplaceOrdersListParamsFieldConsumerMessage                   MarketplaceOrdersListParamsField = "consumer_message"
 	MarketplaceOrdersListParamsFieldConsumerMessageAttachment         MarketplaceOrdersListParamsField = "consumer_message_attachment"
+	MarketplaceOrdersListParamsFieldConsumerRejectionComment          MarketplaceOrdersListParamsField = "consumer_rejection_comment"
 	MarketplaceOrdersListParamsFieldConsumerReviewedAt                MarketplaceOrdersListParamsField = "consumer_reviewed_at"
 	MarketplaceOrdersListParamsFieldConsumerReviewedBy                MarketplaceOrdersListParamsField = "consumer_reviewed_by"
 	MarketplaceOrdersListParamsFieldConsumerReviewedByFullName        MarketplaceOrdersListParamsField = "consumer_reviewed_by_full_name"
@@ -6205,6 +6225,7 @@ const (
 	MarketplaceOrdersListParamsFieldProviderMessageAttachment         MarketplaceOrdersListParamsField = "provider_message_attachment"
 	MarketplaceOrdersListParamsFieldProviderMessageUrl                MarketplaceOrdersListParamsField = "provider_message_url"
 	MarketplaceOrdersListParamsFieldProviderName                      MarketplaceOrdersListParamsField = "provider_name"
+	MarketplaceOrdersListParamsFieldProviderRejectionComment          MarketplaceOrdersListParamsField = "provider_rejection_comment"
 	MarketplaceOrdersListParamsFieldProviderReviewedAt                MarketplaceOrdersListParamsField = "provider_reviewed_at"
 	MarketplaceOrdersListParamsFieldProviderReviewedBy                MarketplaceOrdersListParamsField = "provider_reviewed_by"
 	MarketplaceOrdersListParamsFieldProviderReviewedByFullName        MarketplaceOrdersListParamsField = "provider_reviewed_by_full_name"
@@ -6305,6 +6326,7 @@ const (
 	MarketplaceOrdersRetrieveParamsFieldCompletedAt                       MarketplaceOrdersRetrieveParamsField = "completed_at"
 	MarketplaceOrdersRetrieveParamsFieldConsumerMessage                   MarketplaceOrdersRetrieveParamsField = "consumer_message"
 	MarketplaceOrdersRetrieveParamsFieldConsumerMessageAttachment         MarketplaceOrdersRetrieveParamsField = "consumer_message_attachment"
+	MarketplaceOrdersRetrieveParamsFieldConsumerRejectionComment          MarketplaceOrdersRetrieveParamsField = "consumer_rejection_comment"
 	MarketplaceOrdersRetrieveParamsFieldConsumerReviewedAt                MarketplaceOrdersRetrieveParamsField = "consumer_reviewed_at"
 	MarketplaceOrdersRetrieveParamsFieldConsumerReviewedBy                MarketplaceOrdersRetrieveParamsField = "consumer_reviewed_by"
 	MarketplaceOrdersRetrieveParamsFieldConsumerReviewedByFullName        MarketplaceOrdersRetrieveParamsField = "consumer_reviewed_by_full_name"
@@ -6358,6 +6380,7 @@ const (
 	MarketplaceOrdersRetrieveParamsFieldProviderMessageAttachment         MarketplaceOrdersRetrieveParamsField = "provider_message_attachment"
 	MarketplaceOrdersRetrieveParamsFieldProviderMessageUrl                MarketplaceOrdersRetrieveParamsField = "provider_message_url"
 	MarketplaceOrdersRetrieveParamsFieldProviderName                      MarketplaceOrdersRetrieveParamsField = "provider_name"
+	MarketplaceOrdersRetrieveParamsFieldProviderRejectionComment          MarketplaceOrdersRetrieveParamsField = "provider_rejection_comment"
 	MarketplaceOrdersRetrieveParamsFieldProviderReviewedAt                MarketplaceOrdersRetrieveParamsField = "provider_reviewed_at"
 	MarketplaceOrdersRetrieveParamsFieldProviderReviewedBy                MarketplaceOrdersRetrieveParamsField = "provider_reviewed_by"
 	MarketplaceOrdersRetrieveParamsFieldProviderReviewedByFullName        MarketplaceOrdersRetrieveParamsField = "provider_reviewed_by_full_name"
@@ -7005,6 +7028,7 @@ const (
 	MarketplaceProviderOfferingsOrdersListParamsFieldCompletedAt                       MarketplaceProviderOfferingsOrdersListParamsField = "completed_at"
 	MarketplaceProviderOfferingsOrdersListParamsFieldConsumerMessage                   MarketplaceProviderOfferingsOrdersListParamsField = "consumer_message"
 	MarketplaceProviderOfferingsOrdersListParamsFieldConsumerMessageAttachment         MarketplaceProviderOfferingsOrdersListParamsField = "consumer_message_attachment"
+	MarketplaceProviderOfferingsOrdersListParamsFieldConsumerRejectionComment          MarketplaceProviderOfferingsOrdersListParamsField = "consumer_rejection_comment"
 	MarketplaceProviderOfferingsOrdersListParamsFieldConsumerReviewedAt                MarketplaceProviderOfferingsOrdersListParamsField = "consumer_reviewed_at"
 	MarketplaceProviderOfferingsOrdersListParamsFieldConsumerReviewedBy                MarketplaceProviderOfferingsOrdersListParamsField = "consumer_reviewed_by"
 	MarketplaceProviderOfferingsOrdersListParamsFieldConsumerReviewedByFullName        MarketplaceProviderOfferingsOrdersListParamsField = "consumer_reviewed_by_full_name"
@@ -7058,6 +7082,7 @@ const (
 	MarketplaceProviderOfferingsOrdersListParamsFieldProviderMessageAttachment         MarketplaceProviderOfferingsOrdersListParamsField = "provider_message_attachment"
 	MarketplaceProviderOfferingsOrdersListParamsFieldProviderMessageUrl                MarketplaceProviderOfferingsOrdersListParamsField = "provider_message_url"
 	MarketplaceProviderOfferingsOrdersListParamsFieldProviderName                      MarketplaceProviderOfferingsOrdersListParamsField = "provider_name"
+	MarketplaceProviderOfferingsOrdersListParamsFieldProviderRejectionComment          MarketplaceProviderOfferingsOrdersListParamsField = "provider_rejection_comment"
 	MarketplaceProviderOfferingsOrdersListParamsFieldProviderReviewedAt                MarketplaceProviderOfferingsOrdersListParamsField = "provider_reviewed_at"
 	MarketplaceProviderOfferingsOrdersListParamsFieldProviderReviewedBy                MarketplaceProviderOfferingsOrdersListParamsField = "provider_reviewed_by"
 	MarketplaceProviderOfferingsOrdersListParamsFieldProviderReviewedByFullName        MarketplaceProviderOfferingsOrdersListParamsField = "provider_reviewed_by_full_name"
@@ -11043,6 +11068,7 @@ const (
 	PromotionsCampaignsOrdersListParamsFieldCompletedAt                       PromotionsCampaignsOrdersListParamsField = "completed_at"
 	PromotionsCampaignsOrdersListParamsFieldConsumerMessage                   PromotionsCampaignsOrdersListParamsField = "consumer_message"
 	PromotionsCampaignsOrdersListParamsFieldConsumerMessageAttachment         PromotionsCampaignsOrdersListParamsField = "consumer_message_attachment"
+	PromotionsCampaignsOrdersListParamsFieldConsumerRejectionComment          PromotionsCampaignsOrdersListParamsField = "consumer_rejection_comment"
 	PromotionsCampaignsOrdersListParamsFieldConsumerReviewedAt                PromotionsCampaignsOrdersListParamsField = "consumer_reviewed_at"
 	PromotionsCampaignsOrdersListParamsFieldConsumerReviewedBy                PromotionsCampaignsOrdersListParamsField = "consumer_reviewed_by"
 	PromotionsCampaignsOrdersListParamsFieldConsumerReviewedByFullName        PromotionsCampaignsOrdersListParamsField = "consumer_reviewed_by_full_name"
@@ -11096,6 +11122,7 @@ const (
 	PromotionsCampaignsOrdersListParamsFieldProviderMessageAttachment         PromotionsCampaignsOrdersListParamsField = "provider_message_attachment"
 	PromotionsCampaignsOrdersListParamsFieldProviderMessageUrl                PromotionsCampaignsOrdersListParamsField = "provider_message_url"
 	PromotionsCampaignsOrdersListParamsFieldProviderName                      PromotionsCampaignsOrdersListParamsField = "provider_name"
+	PromotionsCampaignsOrdersListParamsFieldProviderRejectionComment          PromotionsCampaignsOrdersListParamsField = "provider_rejection_comment"
 	PromotionsCampaignsOrdersListParamsFieldProviderReviewedAt                PromotionsCampaignsOrdersListParamsField = "provider_reviewed_at"
 	PromotionsCampaignsOrdersListParamsFieldProviderReviewedBy                PromotionsCampaignsOrdersListParamsField = "provider_reviewed_by"
 	PromotionsCampaignsOrdersListParamsFieldProviderReviewedByFullName        PromotionsCampaignsOrdersListParamsField = "provider_reviewed_by_full_name"
@@ -17166,16 +17193,27 @@ type CeleryWorkerStats struct {
 	Uptime *float64 `json:"uptime,omitempty"`
 }
 
+// ChatRequestModeEnum defines model for ChatRequestModeEnum.
+type ChatRequestModeEnum string
+
 // ChatRequestRequest defines model for ChatRequestRequest.
 type ChatRequestRequest struct {
 	// Input User input text for the chat model.
 	Input string `json:"input"`
+
+	// Mode 'reload': replace the last assistant response. Omit for normal new-message behavior.
+	Mode *ChatRequestRequest_Mode `json:"mode"`
 
 	// ThreadUuid Existing thread UUID. If omitted, a new thread is created when storage is enabled.
 	ThreadUuid *openapi_types.UUID `json:"thread_uuid"`
 
 	// UpdateThreadName Thread UUID whose name should be set to the assistant's response. Skips message persistence for this call.
 	UpdateThreadName *openapi_types.UUID `json:"update_thread_name"`
+}
+
+// ChatRequestRequest_Mode 'reload': replace the last assistant response. Omit for normal new-message behavior.
+type ChatRequestRequest_Mode struct {
+	union json.RawMessage
 }
 
 // ChatResponse defines model for ChatResponse.
@@ -17937,6 +17975,7 @@ type ConstanceSettings struct {
 	OIDCCLIENTID                                   *string              `json:"OIDC_CLIENT_ID,omitempty"`
 	OIDCCLIENTSECRET                               *string              `json:"OIDC_CLIENT_SECRET,omitempty"`
 	OIDCINTROSPECTIONURL                           *string              `json:"OIDC_INTROSPECTION_URL,omitempty"`
+	OIDCMATCHMAKINGBYEMAIL                         *bool                `json:"OIDC_MATCHMAKING_BY_EMAIL,omitempty"`
 	OIDCUSERFIELD                                  *string              `json:"OIDC_USER_FIELD,omitempty"`
 	ONBOARDINGARIREGISTERBASEURL                   *string              `json:"ONBOARDING_ARIREGISTER_BASE_URL,omitempty"`
 	ONBOARDINGARIREGISTERPASSWORD                  *string              `json:"ONBOARDING_ARIREGISTER_PASSWORD,omitempty"`
@@ -18173,6 +18212,7 @@ type ConstanceSettingsRequest struct {
 	OIDCCLIENTID                                   *string                         `json:"OIDC_CLIENT_ID,omitempty"`
 	OIDCCLIENTSECRET                               *string                         `json:"OIDC_CLIENT_SECRET,omitempty"`
 	OIDCINTROSPECTIONURL                           *string                         `json:"OIDC_INTROSPECTION_URL,omitempty"`
+	OIDCMATCHMAKINGBYEMAIL                         *bool                           `json:"OIDC_MATCHMAKING_BY_EMAIL,omitempty"`
 	OIDCUSERFIELD                                  *string                         `json:"OIDC_USER_FIELD,omitempty"`
 	ONBOARDINGARIREGISTERBASEURL                   *string                         `json:"ONBOARDING_ARIREGISTER_BASE_URL,omitempty"`
 	ONBOARDINGARIREGISTERPASSWORD                  *string                         `json:"ONBOARDING_ARIREGISTER_PASSWORD,omitempty"`
@@ -18409,6 +18449,7 @@ type ConstanceSettingsRequestForm struct {
 	OIDCCLIENTID                                   *string                         `json:"OIDC_CLIENT_ID,omitempty"`
 	OIDCCLIENTSECRET                               *string                         `json:"OIDC_CLIENT_SECRET,omitempty"`
 	OIDCINTROSPECTIONURL                           *string                         `json:"OIDC_INTROSPECTION_URL,omitempty"`
+	OIDCMATCHMAKINGBYEMAIL                         *bool                           `json:"OIDC_MATCHMAKING_BY_EMAIL,omitempty"`
 	OIDCUSERFIELD                                  *string                         `json:"OIDC_USER_FIELD,omitempty"`
 	ONBOARDINGARIREGISTERBASEURL                   *string                         `json:"ONBOARDING_ARIREGISTER_BASE_URL,omitempty"`
 	ONBOARDINGARIREGISTERPASSWORD                  *string                         `json:"ONBOARDING_ARIREGISTER_PASSWORD,omitempty"`
@@ -18645,6 +18686,7 @@ type ConstanceSettingsRequestMultipart struct {
 	OIDCCLIENTID                                   *string                         `json:"OIDC_CLIENT_ID,omitempty"`
 	OIDCCLIENTSECRET                               *string                         `json:"OIDC_CLIENT_SECRET,omitempty"`
 	OIDCINTROSPECTIONURL                           *string                         `json:"OIDC_INTROSPECTION_URL,omitempty"`
+	OIDCMATCHMAKINGBYEMAIL                         *bool                           `json:"OIDC_MATCHMAKING_BY_EMAIL,omitempty"`
 	OIDCUSERFIELD                                  *string                         `json:"OIDC_USER_FIELD,omitempty"`
 	ONBOARDINGARIREGISTERBASEURL                   *string                         `json:"ONBOARDING_ARIREGISTER_BASE_URL,omitempty"`
 	ONBOARDINGARIREGISTERPASSWORD                  *string                         `json:"ONBOARDING_ARIREGISTER_PASSWORD,omitempty"`
@@ -23632,19 +23674,11 @@ type MergedSecretOptionsRequest struct {
 type Message struct {
 	Content       string              `json:"content"`
 	Created       *time.Time          `json:"created,omitempty"`
-	Replaces      *openapi_types.UUID `json:"replaces"`
-	Role          MessageRoleEnum     `json:"role"`
+	Replaces      *openapi_types.UUID `json:"replaces,omitempty"`
+	Role          *MessageRoleEnum    `json:"role,omitempty"`
 	SequenceIndex *int                `json:"sequence_index,omitempty"`
-	Thread        openapi_types.UUID  `json:"thread"`
+	Thread        *openapi_types.UUID `json:"thread,omitempty"`
 	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
-}
-
-// MessageRequest defines model for MessageRequest.
-type MessageRequest struct {
-	Content  string              `json:"content"`
-	Replaces *openapi_types.UUID `json:"replaces"`
-	Role     MessageRoleEnum     `json:"role"`
-	Thread   openapi_types.UUID  `json:"thread"`
 }
 
 // MessageResponse defines model for MessageResponse.
@@ -23745,9 +23779,6 @@ type MigrationDetailsRequest struct {
 
 // MinimalConsumptionLogicEnum defines model for MinimalConsumptionLogicEnum.
 type MinimalConsumptionLogicEnum string
-
-// ModeEnum defines model for ModeEnum.
-type ModeEnum string
 
 // MoveOfferingRequest defines model for MoveOfferingRequest.
 type MoveOfferingRequest struct {
@@ -27816,6 +27847,7 @@ type OrderDetails struct {
 	CompletedAt               *time.Time          `json:"completed_at"`
 	ConsumerMessage           *string             `json:"consumer_message,omitempty"`
 	ConsumerMessageAttachment *string             `json:"consumer_message_attachment"`
+	ConsumerRejectionComment  *string             `json:"consumer_rejection_comment,omitempty"`
 	ConsumerReviewedAt        *time.Time          `json:"consumer_reviewed_at"`
 
 	// ConsumerReviewedBy Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
@@ -27883,6 +27915,7 @@ type OrderDetails struct {
 	ProviderMessageAttachment *string             `json:"provider_message_attachment"`
 	ProviderMessageUrl        *string             `json:"provider_message_url,omitempty"`
 	ProviderName              *string             `json:"provider_name,omitempty"`
+	ProviderRejectionComment  *string             `json:"provider_rejection_comment,omitempty"`
 	ProviderReviewedAt        *time.Time          `json:"provider_reviewed_at"`
 
 	// ProviderReviewedBy Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
@@ -27910,8 +27943,9 @@ type OrderDetails struct {
 
 // OrderErrorDetailsRequest defines model for OrderErrorDetailsRequest.
 type OrderErrorDetailsRequest struct {
-	ErrorMessage   *string `json:"error_message,omitempty"`
-	ErrorTraceback *string `json:"error_traceback,omitempty"`
+	ConsumerRejectionComment *string `json:"consumer_rejection_comment,omitempty"`
+	ErrorMessage             *string `json:"error_message,omitempty"`
+	ErrorTraceback           *string `json:"error_traceback,omitempty"`
 }
 
 // OrderInfoResponse defines model for OrderInfoResponse.
@@ -27938,6 +27972,11 @@ type OrderProviderInfoRequestMultipart struct {
 	ProviderMessage           *string             `json:"provider_message,omitempty"`
 	ProviderMessageAttachment *openapi_types.File `json:"provider_message_attachment,omitempty"`
 	ProviderMessageUrl        *string             `json:"provider_message_url,omitempty"`
+}
+
+// OrderProviderRejectionRequest defines model for OrderProviderRejectionRequest.
+type OrderProviderRejectionRequest struct {
+	ProviderRejectionComment *string `json:"provider_rejection_comment,omitempty"`
 }
 
 // OrderState defines model for OrderState.
@@ -30167,12 +30206,6 @@ type PatchedTemplateRequest struct {
 	Description *string        `json:"description,omitempty"`
 	IssueType   *IssueTypeEnum `json:"issue_type,omitempty"`
 	Name        *string        `json:"name,omitempty"`
-}
-
-// PatchedThreadSessionRequest defines model for PatchedThreadSessionRequest.
-type PatchedThreadSessionRequest struct {
-	IsArchived *bool   `json:"is_archived,omitempty"`
-	Name       *string `json:"name,omitempty"`
 }
 
 // PatchedUserAgreementRequest defines model for PatchedUserAgreementRequest.
@@ -36049,6 +36082,9 @@ type SlurmCommandHistory struct {
 	Uuid    *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// SlurmCommandResultModeEnum defines model for SlurmCommandResultModeEnum.
+type SlurmCommandResultModeEnum string
+
 // SlurmCommandResultRequest defines model for SlurmCommandResultRequest.
 type SlurmCommandResultRequest struct {
 	// CommandsExecuted List of shell commands actually executed by the site agent
@@ -36058,7 +36094,7 @@ type SlurmCommandResultRequest struct {
 	ErrorMessage *string `json:"error_message,omitempty"`
 
 	// Mode Execution mode of the command
-	Mode *ModeEnum `json:"mode,omitempty"`
+	Mode *SlurmCommandResultModeEnum `json:"mode,omitempty"`
 
 	// ResourceUuid UUID of the resource the command was applied to
 	ResourceUuid openapi_types.UUID `json:"resource_uuid"`
@@ -36911,7 +36947,10 @@ type ThreadSession struct {
 	Flags        interface{}         `json:"flags,omitempty"`
 	IsArchived   *bool               `json:"is_archived,omitempty"`
 	MessageCount *int                `json:"message_count,omitempty"`
+	Modified     *time.Time          `json:"modified,omitempty"`
 	Name         *string             `json:"name,omitempty"`
+	UserFullName *string             `json:"user_full_name,omitempty"`
+	UserUsername *string             `json:"user_username,omitempty"`
 	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
@@ -40705,16 +40744,8 @@ type CallRoundsReviewersListParams struct {
 
 // ChatMessagesListParams defines parameters for ChatMessagesList.
 type ChatMessagesListParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+	IncludeHistory *bool `form:"include_history,omitempty" json:"include_history,omitempty"`
 
-	// PageSize Number of results to return per page.
-	PageSize *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Thread   *openapi_types.UUID `form:"thread,omitempty" json:"thread,omitempty"`
-}
-
-// ChatMessagesCountParams defines parameters for ChatMessagesCount.
-type ChatMessagesCountParams struct {
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -40726,16 +40757,6 @@ type ChatMessagesCountParams struct {
 // ChatMessagesEditJSONBody defines parameters for ChatMessagesEdit.
 type ChatMessagesEditJSONBody struct {
 	Content *string `json:"content,omitempty"`
-}
-
-// ChatMessagesHistoryListParams defines parameters for ChatMessagesHistoryList.
-type ChatMessagesHistoryListParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Thread   *openapi_types.UUID `form:"thread,omitempty" json:"thread,omitempty"`
 }
 
 // ChatQuotaUsageRetrieveParams defines parameters for ChatQuotaUsageRetrieve.
@@ -40758,15 +40779,6 @@ type ChatSessionsListParams struct {
 // ChatSessionsListParamsField defines parameters for ChatSessionsList.
 type ChatSessionsListParamsField string
 
-// ChatSessionsCountParams defines parameters for ChatSessionsCount.
-type ChatSessionsCountParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
 // ChatSessionsRetrieveParams defines parameters for ChatSessionsRetrieve.
 type ChatSessionsRetrieveParams struct {
 	Field *[]ChatSessionsRetrieveParamsField `form:"field,omitempty" json:"field,omitempty"`
@@ -40777,31 +40789,29 @@ type ChatSessionsRetrieveParamsField string
 
 // ChatThreadsListParams defines parameters for ChatThreadsList.
 type ChatThreadsListParams struct {
+	Created    *openapi_types.Date           `form:"created,omitempty" json:"created,omitempty"`
 	Field      *[]ChatThreadsListParamsField `form:"field,omitempty" json:"field,omitempty"`
 	IsArchived *bool                         `form:"is_archived,omitempty" json:"is_archived,omitempty"`
+	Modified   *openapi_types.Date           `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// O Ordering
+	//
+	O *[]ChatThreadsListParamsO `form:"o,omitempty" json:"o,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Query    *string             `form:"query,omitempty" json:"query,omitempty"`
 	User     *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
 }
 
 // ChatThreadsListParamsField defines parameters for ChatThreadsList.
 type ChatThreadsListParamsField string
 
-// ChatThreadsCountParams defines parameters for ChatThreadsCount.
-type ChatThreadsCountParams struct {
-	IsArchived *bool `form:"is_archived,omitempty" json:"is_archived,omitempty"`
-
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	User     *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
-}
+// ChatThreadsListParamsO defines parameters for ChatThreadsList.
+type ChatThreadsListParamsO string
 
 // ChatThreadsRetrieveParams defines parameters for ChatThreadsRetrieve.
 type ChatThreadsRetrieveParams struct {
@@ -59900,23 +59910,11 @@ type CallReviewerPoolsAcceptJSONRequestBody = CallReviewerPoolsAcceptJSONBody
 // CallReviewerPoolsDeclineJSONRequestBody defines body for CallReviewerPoolsDecline for application/json ContentType.
 type CallReviewerPoolsDeclineJSONRequestBody = InvitationDeclineRequest
 
-// ChatMessagesCreateJSONRequestBody defines body for ChatMessagesCreate for application/json ContentType.
-type ChatMessagesCreateJSONRequestBody = MessageRequest
-
 // ChatMessagesEditJSONRequestBody defines body for ChatMessagesEdit for application/json ContentType.
 type ChatMessagesEditJSONRequestBody ChatMessagesEditJSONBody
 
 // ChatQuotaSetQuotaJSONRequestBody defines body for ChatQuotaSetQuota for application/json ContentType.
 type ChatQuotaSetQuotaJSONRequestBody = SetTokenQuotaRequest
-
-// ChatThreadsCreateJSONRequestBody defines body for ChatThreadsCreate for application/json ContentType.
-type ChatThreadsCreateJSONRequestBody = ThreadSessionRequest
-
-// ChatThreadsPartialUpdateJSONRequestBody defines body for ChatThreadsPartialUpdate for application/json ContentType.
-type ChatThreadsPartialUpdateJSONRequestBody = PatchedThreadSessionRequest
-
-// ChatThreadsUpdateJSONRequestBody defines body for ChatThreadsUpdate for application/json ContentType.
-type ChatThreadsUpdateJSONRequestBody = ThreadSessionRequest
 
 // ChatThreadsArchiveJSONRequestBody defines body for ChatThreadsArchive for application/json ContentType.
 type ChatThreadsArchiveJSONRequestBody = ThreadSessionRequest
@@ -60457,6 +60455,9 @@ type MarketplaceOrdersApproveByProviderJSONRequestBody = OrderApproveByProviderR
 
 // MarketplaceOrdersRejectByConsumerJSONRequestBody defines body for MarketplaceOrdersRejectByConsumer for application/json ContentType.
 type MarketplaceOrdersRejectByConsumerJSONRequestBody = OrderErrorDetailsRequest
+
+// MarketplaceOrdersRejectByProviderJSONRequestBody defines body for MarketplaceOrdersRejectByProvider for application/json ContentType.
+type MarketplaceOrdersRejectByProviderJSONRequestBody = OrderProviderRejectionRequest
 
 // MarketplaceOrdersSetBackendIdJSONRequestBody defines body for MarketplaceOrdersSetBackendId for application/json ContentType.
 type MarketplaceOrdersSetBackendIdJSONRequestBody = OrderBackendIDRequest
@@ -62432,6 +62433,68 @@ func (t CategoryColumnRequest_Widget) MarshalJSON() ([]byte, error) {
 }
 
 func (t *CategoryColumnRequest_Widget) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsChatRequestModeEnum returns the union data inside the ChatRequestRequest_Mode as a ChatRequestModeEnum
+func (t ChatRequestRequest_Mode) AsChatRequestModeEnum() (ChatRequestModeEnum, error) {
+	var body ChatRequestModeEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromChatRequestModeEnum overwrites any union data inside the ChatRequestRequest_Mode as the provided ChatRequestModeEnum
+func (t *ChatRequestRequest_Mode) FromChatRequestModeEnum(v ChatRequestModeEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeChatRequestModeEnum performs a merge with any union data inside the ChatRequestRequest_Mode, using the provided ChatRequestModeEnum
+func (t *ChatRequestRequest_Mode) MergeChatRequestModeEnum(v ChatRequestModeEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the ChatRequestRequest_Mode as a NullEnum
+func (t ChatRequestRequest_Mode) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the ChatRequestRequest_Mode as the provided NullEnum
+func (t *ChatRequestRequest_Mode) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the ChatRequestRequest_Mode, using the provided NullEnum
+func (t *ChatRequestRequest_Mode) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ChatRequestRequest_Mode) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ChatRequestRequest_Mode) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -70241,24 +70304,10 @@ type ClientInterface interface {
 	// ChatMessagesList request
 	ChatMessagesList(ctx context.Context, params *ChatMessagesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ChatMessagesCount request
-	ChatMessagesCount(ctx context.Context, params *ChatMessagesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ChatMessagesCreateWithBody request with any body
-	ChatMessagesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	ChatMessagesCreate(ctx context.Context, body ChatMessagesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ChatMessagesRetrieve request
-	ChatMessagesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// ChatMessagesEditWithBody request with any body
 	ChatMessagesEditWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	ChatMessagesEdit(ctx context.Context, uuid openapi_types.UUID, body ChatMessagesEditJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ChatMessagesHistoryList request
-	ChatMessagesHistoryList(ctx context.Context, uuid openapi_types.UUID, params *ChatMessagesHistoryListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ChatQuotaSetQuotaWithBody request with any body
 	ChatQuotaSetQuotaWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -70271,14 +70320,8 @@ type ClientInterface interface {
 	// ChatSessionsList request
 	ChatSessionsList(ctx context.Context, params *ChatSessionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ChatSessionsCount request
-	ChatSessionsCount(ctx context.Context, params *ChatSessionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// ChatSessionsCurrentRetrieve request
 	ChatSessionsCurrentRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ChatSessionsCurrentCount request
-	ChatSessionsCurrentCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ChatSessionsRetrieve request
 	ChatSessionsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ChatSessionsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -70286,26 +70329,8 @@ type ClientInterface interface {
 	// ChatThreadsList request
 	ChatThreadsList(ctx context.Context, params *ChatThreadsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ChatThreadsCount request
-	ChatThreadsCount(ctx context.Context, params *ChatThreadsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ChatThreadsCreateWithBody request with any body
-	ChatThreadsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	ChatThreadsCreate(ctx context.Context, body ChatThreadsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// ChatThreadsRetrieve request
 	ChatThreadsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ChatThreadsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ChatThreadsPartialUpdateWithBody request with any body
-	ChatThreadsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	ChatThreadsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ChatThreadsUpdateWithBody request with any body
-	ChatThreadsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	ChatThreadsUpdate(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ChatThreadsArchiveWithBody request with any body
 	ChatThreadsArchiveWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -72106,8 +72131,10 @@ type ClientInterface interface {
 
 	MarketplaceOrdersRejectByConsumer(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersRejectByConsumerJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceOrdersRejectByProvider request
-	MarketplaceOrdersRejectByProvider(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// MarketplaceOrdersRejectByProviderWithBody request with any body
+	MarketplaceOrdersRejectByProviderWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceOrdersRejectByProvider(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersRejectByProviderJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOrdersSetBackendIdWithBody request with any body
 	MarketplaceOrdersSetBackendIdWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -82562,54 +82589,6 @@ func (c *Client) ChatMessagesList(ctx context.Context, params *ChatMessagesListP
 	return c.Client.Do(req)
 }
 
-func (c *Client) ChatMessagesCount(ctx context.Context, params *ChatMessagesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewChatMessagesCountRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ChatMessagesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewChatMessagesCreateRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ChatMessagesCreate(ctx context.Context, body ChatMessagesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewChatMessagesCreateRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ChatMessagesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewChatMessagesRetrieveRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) ChatMessagesEditWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewChatMessagesEditRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -82624,18 +82603,6 @@ func (c *Client) ChatMessagesEditWithBody(ctx context.Context, uuid openapi_type
 
 func (c *Client) ChatMessagesEdit(ctx context.Context, uuid openapi_types.UUID, body ChatMessagesEditJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewChatMessagesEditRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ChatMessagesHistoryList(ctx context.Context, uuid openapi_types.UUID, params *ChatMessagesHistoryListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewChatMessagesHistoryListRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -82694,32 +82661,8 @@ func (c *Client) ChatSessionsList(ctx context.Context, params *ChatSessionsListP
 	return c.Client.Do(req)
 }
 
-func (c *Client) ChatSessionsCount(ctx context.Context, params *ChatSessionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewChatSessionsCountRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) ChatSessionsCurrentRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewChatSessionsCurrentRetrieveRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ChatSessionsCurrentCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewChatSessionsCurrentCountRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -82754,92 +82697,8 @@ func (c *Client) ChatThreadsList(ctx context.Context, params *ChatThreadsListPar
 	return c.Client.Do(req)
 }
 
-func (c *Client) ChatThreadsCount(ctx context.Context, params *ChatThreadsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewChatThreadsCountRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ChatThreadsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewChatThreadsCreateRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ChatThreadsCreate(ctx context.Context, body ChatThreadsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewChatThreadsCreateRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) ChatThreadsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ChatThreadsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewChatThreadsRetrieveRequest(c.Server, uuid, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ChatThreadsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewChatThreadsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ChatThreadsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewChatThreadsPartialUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ChatThreadsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewChatThreadsUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ChatThreadsUpdate(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewChatThreadsUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -90710,8 +90569,20 @@ func (c *Client) MarketplaceOrdersRejectByConsumer(ctx context.Context, uuid ope
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceOrdersRejectByProvider(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceOrdersRejectByProviderRequest(c.Server, uuid)
+func (c *Client) MarketplaceOrdersRejectByProviderWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOrdersRejectByProviderRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOrdersRejectByProvider(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersRejectByProviderJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOrdersRejectByProviderRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -138381,9 +138252,9 @@ func NewChatMessagesListRequest(server string, params *ChatMessagesListParams) (
 	if params != nil {
 		queryValues := queryURL.Query()
 
-		if params.Page != nil {
+		if params.IncludeHistory != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "include_history", runtime.ParamLocationQuery, *params.IncludeHistory); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -138396,71 +138267,6 @@ func NewChatMessagesListRequest(server string, params *ChatMessagesListParams) (
 			}
 
 		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Thread != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "thread", runtime.ParamLocationQuery, *params.Thread); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewChatMessagesCountRequest generates requests for ChatMessagesCount
-func NewChatMessagesCountRequest(server string, params *ChatMessagesCountParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/chat-messages/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
 
 		if params.Page != nil {
 
@@ -138511,80 +138317,6 @@ func NewChatMessagesCountRequest(server string, params *ChatMessagesCountParams)
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewChatMessagesCreateRequest calls the generic ChatMessagesCreate builder with application/json body
-func NewChatMessagesCreateRequest(server string, body ChatMessagesCreateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewChatMessagesCreateRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewChatMessagesCreateRequestWithBody generates requests for ChatMessagesCreate with any type of body
-func NewChatMessagesCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/chat-messages/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewChatMessagesRetrieveRequest generates requests for ChatMessagesRetrieve
-func NewChatMessagesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/chat-messages/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -138638,94 +138370,6 @@ func NewChatMessagesEditRequestWithBody(server string, uuid openapi_types.UUID, 
 	}
 
 	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewChatMessagesHistoryListRequest generates requests for ChatMessagesHistoryList
-func NewChatMessagesHistoryListRequest(server string, uuid openapi_types.UUID, params *ChatMessagesHistoryListParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/chat-messages/%s/history/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Thread != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "thread", runtime.ParamLocationQuery, *params.Thread); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
 
 	return req, nil
 }
@@ -138900,71 +138544,6 @@ func NewChatSessionsListRequest(server string, params *ChatSessionsListParams) (
 	return req, nil
 }
 
-// NewChatSessionsCountRequest generates requests for ChatSessionsCount
-func NewChatSessionsCountRequest(server string, params *ChatSessionsCountParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/chat-sessions/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewChatSessionsCurrentRetrieveRequest generates requests for ChatSessionsCurrentRetrieve
 func NewChatSessionsCurrentRetrieveRequest(server string) (*http.Request, error) {
 	var err error
@@ -138985,33 +138564,6 @@ func NewChatSessionsCurrentRetrieveRequest(server string) (*http.Request, error)
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewChatSessionsCurrentCountRequest generates requests for ChatSessionsCurrentCount
-func NewChatSessionsCurrentCountRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/chat-sessions/current/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -139097,6 +138649,22 @@ func NewChatThreadsListRequest(server string, params *ChatThreadsListParams) (*h
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Field != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
@@ -139129,6 +138697,38 @@ func NewChatThreadsListRequest(server string, params *ChatThreadsListParams) (*h
 
 		}
 
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -139148,6 +138748,22 @@ func NewChatThreadsListRequest(server string, params *ChatThreadsListParams) (*h
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -139184,143 +138800,6 @@ func NewChatThreadsListRequest(server string, params *ChatThreadsListParams) (*h
 	if err != nil {
 		return nil, err
 	}
-
-	return req, nil
-}
-
-// NewChatThreadsCountRequest generates requests for ChatThreadsCount
-func NewChatThreadsCountRequest(server string, params *ChatThreadsCountParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/chat-threads/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.IsArchived != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_archived", runtime.ParamLocationQuery, *params.IsArchived); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.User != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user", runtime.ParamLocationQuery, *params.User); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewChatThreadsCreateRequest calls the generic ChatThreadsCreate builder with application/json body
-func NewChatThreadsCreateRequest(server string, body ChatThreadsCreateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewChatThreadsCreateRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewChatThreadsCreateRequestWithBody generates requests for ChatThreadsCreate with any type of body
-func NewChatThreadsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/chat-threads/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -139377,100 +138856,6 @@ func NewChatThreadsRetrieveRequest(server string, uuid openapi_types.UUID, param
 	if err != nil {
 		return nil, err
 	}
-
-	return req, nil
-}
-
-// NewChatThreadsPartialUpdateRequest calls the generic ChatThreadsPartialUpdate builder with application/json body
-func NewChatThreadsPartialUpdateRequest(server string, uuid openapi_types.UUID, body ChatThreadsPartialUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewChatThreadsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewChatThreadsPartialUpdateRequestWithBody generates requests for ChatThreadsPartialUpdate with any type of body
-func NewChatThreadsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/chat-threads/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("PATCH", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewChatThreadsUpdateRequest calls the generic ChatThreadsUpdate builder with application/json body
-func NewChatThreadsUpdateRequest(server string, uuid openapi_types.UUID, body ChatThreadsUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewChatThreadsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewChatThreadsUpdateRequestWithBody generates requests for ChatThreadsUpdate with any type of body
-func NewChatThreadsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/chat-threads/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("PUT", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -178247,8 +177632,19 @@ func NewMarketplaceOrdersRejectByConsumerRequestWithBody(server string, uuid ope
 	return req, nil
 }
 
-// NewMarketplaceOrdersRejectByProviderRequest generates requests for MarketplaceOrdersRejectByProvider
-func NewMarketplaceOrdersRejectByProviderRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+// NewMarketplaceOrdersRejectByProviderRequest calls the generic MarketplaceOrdersRejectByProvider builder with application/json body
+func NewMarketplaceOrdersRejectByProviderRequest(server string, uuid openapi_types.UUID, body MarketplaceOrdersRejectByProviderJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceOrdersRejectByProviderRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceOrdersRejectByProviderRequestWithBody generates requests for MarketplaceOrdersRejectByProvider with any type of body
+func NewMarketplaceOrdersRejectByProviderRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -178273,10 +177669,12 @@ func NewMarketplaceOrdersRejectByProviderRequest(server string, uuid openapi_typ
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	req, err := http.NewRequest("POST", queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -306840,24 +306238,10 @@ type ClientWithResponsesInterface interface {
 	// ChatMessagesListWithResponse request
 	ChatMessagesListWithResponse(ctx context.Context, params *ChatMessagesListParams, reqEditors ...RequestEditorFn) (*ChatMessagesListResponse, error)
 
-	// ChatMessagesCountWithResponse request
-	ChatMessagesCountWithResponse(ctx context.Context, params *ChatMessagesCountParams, reqEditors ...RequestEditorFn) (*ChatMessagesCountResponse, error)
-
-	// ChatMessagesCreateWithBodyWithResponse request with any body
-	ChatMessagesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatMessagesCreateResponse, error)
-
-	ChatMessagesCreateWithResponse(ctx context.Context, body ChatMessagesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatMessagesCreateResponse, error)
-
-	// ChatMessagesRetrieveWithResponse request
-	ChatMessagesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChatMessagesRetrieveResponse, error)
-
 	// ChatMessagesEditWithBodyWithResponse request with any body
 	ChatMessagesEditWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatMessagesEditResponse, error)
 
 	ChatMessagesEditWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatMessagesEditJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatMessagesEditResponse, error)
-
-	// ChatMessagesHistoryListWithResponse request
-	ChatMessagesHistoryListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ChatMessagesHistoryListParams, reqEditors ...RequestEditorFn) (*ChatMessagesHistoryListResponse, error)
 
 	// ChatQuotaSetQuotaWithBodyWithResponse request with any body
 	ChatQuotaSetQuotaWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatQuotaSetQuotaResponse, error)
@@ -306870,14 +306254,8 @@ type ClientWithResponsesInterface interface {
 	// ChatSessionsListWithResponse request
 	ChatSessionsListWithResponse(ctx context.Context, params *ChatSessionsListParams, reqEditors ...RequestEditorFn) (*ChatSessionsListResponse, error)
 
-	// ChatSessionsCountWithResponse request
-	ChatSessionsCountWithResponse(ctx context.Context, params *ChatSessionsCountParams, reqEditors ...RequestEditorFn) (*ChatSessionsCountResponse, error)
-
 	// ChatSessionsCurrentRetrieveWithResponse request
 	ChatSessionsCurrentRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ChatSessionsCurrentRetrieveResponse, error)
-
-	// ChatSessionsCurrentCountWithResponse request
-	ChatSessionsCurrentCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ChatSessionsCurrentCountResponse, error)
 
 	// ChatSessionsRetrieveWithResponse request
 	ChatSessionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ChatSessionsRetrieveParams, reqEditors ...RequestEditorFn) (*ChatSessionsRetrieveResponse, error)
@@ -306885,26 +306263,8 @@ type ClientWithResponsesInterface interface {
 	// ChatThreadsListWithResponse request
 	ChatThreadsListWithResponse(ctx context.Context, params *ChatThreadsListParams, reqEditors ...RequestEditorFn) (*ChatThreadsListResponse, error)
 
-	// ChatThreadsCountWithResponse request
-	ChatThreadsCountWithResponse(ctx context.Context, params *ChatThreadsCountParams, reqEditors ...RequestEditorFn) (*ChatThreadsCountResponse, error)
-
-	// ChatThreadsCreateWithBodyWithResponse request with any body
-	ChatThreadsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatThreadsCreateResponse, error)
-
-	ChatThreadsCreateWithResponse(ctx context.Context, body ChatThreadsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatThreadsCreateResponse, error)
-
 	// ChatThreadsRetrieveWithResponse request
 	ChatThreadsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ChatThreadsRetrieveParams, reqEditors ...RequestEditorFn) (*ChatThreadsRetrieveResponse, error)
-
-	// ChatThreadsPartialUpdateWithBodyWithResponse request with any body
-	ChatThreadsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatThreadsPartialUpdateResponse, error)
-
-	ChatThreadsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatThreadsPartialUpdateResponse, error)
-
-	// ChatThreadsUpdateWithBodyWithResponse request with any body
-	ChatThreadsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatThreadsUpdateResponse, error)
-
-	ChatThreadsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatThreadsUpdateResponse, error)
 
 	// ChatThreadsArchiveWithBodyWithResponse request with any body
 	ChatThreadsArchiveWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatThreadsArchiveResponse, error)
@@ -308705,8 +308065,10 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceOrdersRejectByConsumerWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersRejectByConsumerJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersRejectByConsumerResponse, error)
 
-	// MarketplaceOrdersRejectByProviderWithResponse request
-	MarketplaceOrdersRejectByProviderWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersRejectByProviderResponse, error)
+	// MarketplaceOrdersRejectByProviderWithBodyWithResponse request with any body
+	MarketplaceOrdersRejectByProviderWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOrdersRejectByProviderResponse, error)
+
+	MarketplaceOrdersRejectByProviderWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersRejectByProviderJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersRejectByProviderResponse, error)
 
 	// MarketplaceOrdersSetBackendIdWithBodyWithResponse request with any body
 	MarketplaceOrdersSetBackendIdWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOrdersSetBackendIdResponse, error)
@@ -320814,71 +320176,6 @@ func (r ChatMessagesListResponse) StatusCode() int {
 	return 0
 }
 
-type ChatMessagesCountResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// Status returns HTTPResponse.Status
-func (r ChatMessagesCountResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ChatMessagesCountResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type ChatMessagesCreateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON201      *Message
-}
-
-// Status returns HTTPResponse.Status
-func (r ChatMessagesCreateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ChatMessagesCreateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type ChatMessagesRetrieveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Message
-}
-
-// Status returns HTTPResponse.Status
-func (r ChatMessagesRetrieveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ChatMessagesRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type ChatMessagesEditResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -320895,28 +320192,6 @@ func (r ChatMessagesEditResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ChatMessagesEditResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type ChatMessagesHistoryListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]Message
-}
-
-// Status returns HTTPResponse.Status
-func (r ChatMessagesHistoryListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ChatMessagesHistoryListResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -320988,27 +320263,6 @@ func (r ChatSessionsListResponse) StatusCode() int {
 	return 0
 }
 
-type ChatSessionsCountResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// Status returns HTTPResponse.Status
-func (r ChatSessionsCountResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ChatSessionsCountResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type ChatSessionsCurrentRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -321025,27 +320279,6 @@ func (r ChatSessionsCurrentRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ChatSessionsCurrentRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type ChatSessionsCurrentCountResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// Status returns HTTPResponse.Status
-func (r ChatSessionsCurrentCountResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ChatSessionsCurrentCountResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -321096,49 +320329,6 @@ func (r ChatThreadsListResponse) StatusCode() int {
 	return 0
 }
 
-type ChatThreadsCountResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// Status returns HTTPResponse.Status
-func (r ChatThreadsCountResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ChatThreadsCountResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type ChatThreadsCreateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON201      *ThreadSession
-}
-
-// Status returns HTTPResponse.Status
-func (r ChatThreadsCreateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ChatThreadsCreateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type ChatThreadsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -321155,50 +320345,6 @@ func (r ChatThreadsRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ChatThreadsRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type ChatThreadsPartialUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *ThreadSession
-}
-
-// Status returns HTTPResponse.Status
-func (r ChatThreadsPartialUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ChatThreadsPartialUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type ChatThreadsUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *ThreadSession
-}
-
-// Status returns HTTPResponse.Status
-func (r ChatThreadsUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ChatThreadsUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -367756,41 +366902,6 @@ func (c *ClientWithResponses) ChatMessagesListWithResponse(ctx context.Context, 
 	return ParseChatMessagesListResponse(rsp)
 }
 
-// ChatMessagesCountWithResponse request returning *ChatMessagesCountResponse
-func (c *ClientWithResponses) ChatMessagesCountWithResponse(ctx context.Context, params *ChatMessagesCountParams, reqEditors ...RequestEditorFn) (*ChatMessagesCountResponse, error) {
-	rsp, err := c.ChatMessagesCount(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseChatMessagesCountResponse(rsp)
-}
-
-// ChatMessagesCreateWithBodyWithResponse request with arbitrary body returning *ChatMessagesCreateResponse
-func (c *ClientWithResponses) ChatMessagesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatMessagesCreateResponse, error) {
-	rsp, err := c.ChatMessagesCreateWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseChatMessagesCreateResponse(rsp)
-}
-
-func (c *ClientWithResponses) ChatMessagesCreateWithResponse(ctx context.Context, body ChatMessagesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatMessagesCreateResponse, error) {
-	rsp, err := c.ChatMessagesCreate(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseChatMessagesCreateResponse(rsp)
-}
-
-// ChatMessagesRetrieveWithResponse request returning *ChatMessagesRetrieveResponse
-func (c *ClientWithResponses) ChatMessagesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChatMessagesRetrieveResponse, error) {
-	rsp, err := c.ChatMessagesRetrieve(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseChatMessagesRetrieveResponse(rsp)
-}
-
 // ChatMessagesEditWithBodyWithResponse request with arbitrary body returning *ChatMessagesEditResponse
 func (c *ClientWithResponses) ChatMessagesEditWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatMessagesEditResponse, error) {
 	rsp, err := c.ChatMessagesEditWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -367806,15 +366917,6 @@ func (c *ClientWithResponses) ChatMessagesEditWithResponse(ctx context.Context, 
 		return nil, err
 	}
 	return ParseChatMessagesEditResponse(rsp)
-}
-
-// ChatMessagesHistoryListWithResponse request returning *ChatMessagesHistoryListResponse
-func (c *ClientWithResponses) ChatMessagesHistoryListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ChatMessagesHistoryListParams, reqEditors ...RequestEditorFn) (*ChatMessagesHistoryListResponse, error) {
-	rsp, err := c.ChatMessagesHistoryList(ctx, uuid, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseChatMessagesHistoryListResponse(rsp)
 }
 
 // ChatQuotaSetQuotaWithBodyWithResponse request with arbitrary body returning *ChatQuotaSetQuotaResponse
@@ -367852,15 +366954,6 @@ func (c *ClientWithResponses) ChatSessionsListWithResponse(ctx context.Context, 
 	return ParseChatSessionsListResponse(rsp)
 }
 
-// ChatSessionsCountWithResponse request returning *ChatSessionsCountResponse
-func (c *ClientWithResponses) ChatSessionsCountWithResponse(ctx context.Context, params *ChatSessionsCountParams, reqEditors ...RequestEditorFn) (*ChatSessionsCountResponse, error) {
-	rsp, err := c.ChatSessionsCount(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseChatSessionsCountResponse(rsp)
-}
-
 // ChatSessionsCurrentRetrieveWithResponse request returning *ChatSessionsCurrentRetrieveResponse
 func (c *ClientWithResponses) ChatSessionsCurrentRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ChatSessionsCurrentRetrieveResponse, error) {
 	rsp, err := c.ChatSessionsCurrentRetrieve(ctx, reqEditors...)
@@ -367868,15 +366961,6 @@ func (c *ClientWithResponses) ChatSessionsCurrentRetrieveWithResponse(ctx contex
 		return nil, err
 	}
 	return ParseChatSessionsCurrentRetrieveResponse(rsp)
-}
-
-// ChatSessionsCurrentCountWithResponse request returning *ChatSessionsCurrentCountResponse
-func (c *ClientWithResponses) ChatSessionsCurrentCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ChatSessionsCurrentCountResponse, error) {
-	rsp, err := c.ChatSessionsCurrentCount(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseChatSessionsCurrentCountResponse(rsp)
 }
 
 // ChatSessionsRetrieveWithResponse request returning *ChatSessionsRetrieveResponse
@@ -367897,32 +366981,6 @@ func (c *ClientWithResponses) ChatThreadsListWithResponse(ctx context.Context, p
 	return ParseChatThreadsListResponse(rsp)
 }
 
-// ChatThreadsCountWithResponse request returning *ChatThreadsCountResponse
-func (c *ClientWithResponses) ChatThreadsCountWithResponse(ctx context.Context, params *ChatThreadsCountParams, reqEditors ...RequestEditorFn) (*ChatThreadsCountResponse, error) {
-	rsp, err := c.ChatThreadsCount(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseChatThreadsCountResponse(rsp)
-}
-
-// ChatThreadsCreateWithBodyWithResponse request with arbitrary body returning *ChatThreadsCreateResponse
-func (c *ClientWithResponses) ChatThreadsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatThreadsCreateResponse, error) {
-	rsp, err := c.ChatThreadsCreateWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseChatThreadsCreateResponse(rsp)
-}
-
-func (c *ClientWithResponses) ChatThreadsCreateWithResponse(ctx context.Context, body ChatThreadsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatThreadsCreateResponse, error) {
-	rsp, err := c.ChatThreadsCreate(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseChatThreadsCreateResponse(rsp)
-}
-
 // ChatThreadsRetrieveWithResponse request returning *ChatThreadsRetrieveResponse
 func (c *ClientWithResponses) ChatThreadsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ChatThreadsRetrieveParams, reqEditors ...RequestEditorFn) (*ChatThreadsRetrieveResponse, error) {
 	rsp, err := c.ChatThreadsRetrieve(ctx, uuid, params, reqEditors...)
@@ -367930,40 +366988,6 @@ func (c *ClientWithResponses) ChatThreadsRetrieveWithResponse(ctx context.Contex
 		return nil, err
 	}
 	return ParseChatThreadsRetrieveResponse(rsp)
-}
-
-// ChatThreadsPartialUpdateWithBodyWithResponse request with arbitrary body returning *ChatThreadsPartialUpdateResponse
-func (c *ClientWithResponses) ChatThreadsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatThreadsPartialUpdateResponse, error) {
-	rsp, err := c.ChatThreadsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseChatThreadsPartialUpdateResponse(rsp)
-}
-
-func (c *ClientWithResponses) ChatThreadsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatThreadsPartialUpdateResponse, error) {
-	rsp, err := c.ChatThreadsPartialUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseChatThreadsPartialUpdateResponse(rsp)
-}
-
-// ChatThreadsUpdateWithBodyWithResponse request with arbitrary body returning *ChatThreadsUpdateResponse
-func (c *ClientWithResponses) ChatThreadsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatThreadsUpdateResponse, error) {
-	rsp, err := c.ChatThreadsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseChatThreadsUpdateResponse(rsp)
-}
-
-func (c *ClientWithResponses) ChatThreadsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatThreadsUpdateResponse, error) {
-	rsp, err := c.ChatThreadsUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseChatThreadsUpdateResponse(rsp)
 }
 
 // ChatThreadsArchiveWithBodyWithResponse request with arbitrary body returning *ChatThreadsArchiveResponse
@@ -373695,9 +372719,17 @@ func (c *ClientWithResponses) MarketplaceOrdersRejectByConsumerWithResponse(ctx 
 	return ParseMarketplaceOrdersRejectByConsumerResponse(rsp)
 }
 
-// MarketplaceOrdersRejectByProviderWithResponse request returning *MarketplaceOrdersRejectByProviderResponse
-func (c *ClientWithResponses) MarketplaceOrdersRejectByProviderWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersRejectByProviderResponse, error) {
-	rsp, err := c.MarketplaceOrdersRejectByProvider(ctx, uuid, reqEditors...)
+// MarketplaceOrdersRejectByProviderWithBodyWithResponse request with arbitrary body returning *MarketplaceOrdersRejectByProviderResponse
+func (c *ClientWithResponses) MarketplaceOrdersRejectByProviderWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOrdersRejectByProviderResponse, error) {
+	rsp, err := c.MarketplaceOrdersRejectByProviderWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOrdersRejectByProviderResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceOrdersRejectByProviderWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersRejectByProviderJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersRejectByProviderResponse, error) {
+	rsp, err := c.MarketplaceOrdersRejectByProvider(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -398369,74 +397401,6 @@ func ParseChatMessagesListResponse(rsp *http.Response) (*ChatMessagesListRespons
 	return response, nil
 }
 
-// ParseChatMessagesCountResponse parses an HTTP response from a ChatMessagesCountWithResponse call
-func ParseChatMessagesCountResponse(rsp *http.Response) (*ChatMessagesCountResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ChatMessagesCountResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseChatMessagesCreateResponse parses an HTTP response from a ChatMessagesCreateWithResponse call
-func ParseChatMessagesCreateResponse(rsp *http.Response) (*ChatMessagesCreateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ChatMessagesCreateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest Message
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON201 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseChatMessagesRetrieveResponse parses an HTTP response from a ChatMessagesRetrieveWithResponse call
-func ParseChatMessagesRetrieveResponse(rsp *http.Response) (*ChatMessagesRetrieveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ChatMessagesRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Message
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseChatMessagesEditResponse parses an HTTP response from a ChatMessagesEditWithResponse call
 func ParseChatMessagesEditResponse(rsp *http.Response) (*ChatMessagesEditResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -398453,32 +397417,6 @@ func ParseChatMessagesEditResponse(rsp *http.Response) (*ChatMessagesEditRespons
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest Message
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseChatMessagesHistoryListResponse parses an HTTP response from a ChatMessagesHistoryListWithResponse call
-func ParseChatMessagesHistoryListResponse(rsp *http.Response) (*ChatMessagesHistoryListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ChatMessagesHistoryListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []Message
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -398557,22 +397495,6 @@ func ParseChatSessionsListResponse(rsp *http.Response) (*ChatSessionsListRespons
 	return response, nil
 }
 
-// ParseChatSessionsCountResponse parses an HTTP response from a ChatSessionsCountWithResponse call
-func ParseChatSessionsCountResponse(rsp *http.Response) (*ChatSessionsCountResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ChatSessionsCountResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
 // ParseChatSessionsCurrentRetrieveResponse parses an HTTP response from a ChatSessionsCurrentRetrieveWithResponse call
 func ParseChatSessionsCurrentRetrieveResponse(rsp *http.Response) (*ChatSessionsCurrentRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -398594,22 +397516,6 @@ func ParseChatSessionsCurrentRetrieveResponse(rsp *http.Response) (*ChatSessions
 		}
 		response.JSON200 = &dest
 
-	}
-
-	return response, nil
-}
-
-// ParseChatSessionsCurrentCountResponse parses an HTTP response from a ChatSessionsCurrentCountWithResponse call
-func ParseChatSessionsCurrentCountResponse(rsp *http.Response) (*ChatSessionsCurrentCountResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ChatSessionsCurrentCountResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
 	}
 
 	return response, nil
@@ -398667,48 +397573,6 @@ func ParseChatThreadsListResponse(rsp *http.Response) (*ChatThreadsListResponse,
 	return response, nil
 }
 
-// ParseChatThreadsCountResponse parses an HTTP response from a ChatThreadsCountWithResponse call
-func ParseChatThreadsCountResponse(rsp *http.Response) (*ChatThreadsCountResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ChatThreadsCountResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseChatThreadsCreateResponse parses an HTTP response from a ChatThreadsCreateWithResponse call
-func ParseChatThreadsCreateResponse(rsp *http.Response) (*ChatThreadsCreateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ChatThreadsCreateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest ThreadSession
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON201 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseChatThreadsRetrieveResponse parses an HTTP response from a ChatThreadsRetrieveWithResponse call
 func ParseChatThreadsRetrieveResponse(rsp *http.Response) (*ChatThreadsRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -398718,58 +397582,6 @@ func ParseChatThreadsRetrieveResponse(rsp *http.Response) (*ChatThreadsRetrieveR
 	}
 
 	response := &ChatThreadsRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ThreadSession
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseChatThreadsPartialUpdateResponse parses an HTTP response from a ChatThreadsPartialUpdateWithResponse call
-func ParseChatThreadsPartialUpdateResponse(rsp *http.Response) (*ChatThreadsPartialUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ChatThreadsPartialUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ThreadSession
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseChatThreadsUpdateResponse parses an HTTP response from a ChatThreadsUpdateWithResponse call
-func ParseChatThreadsUpdateResponse(rsp *http.Response) (*ChatThreadsUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ChatThreadsUpdateResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
