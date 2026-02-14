@@ -23194,6 +23194,9 @@ type MergedPluginOptions struct {
 	// ResourceExpirationThreshold Resource expiration threshold in days.
 	ResourceExpirationThreshold *int `json:"resource_expiration_threshold,omitempty"`
 
+	// RestrictDeletionWithActiveResources If set to True, offering cannot be deleted while it has non-terminated resources.
+	RestrictDeletionWithActiveResources *bool `json:"restrict_deletion_with_active_resources,omitempty"`
+
 	// ScratchProjectDirectory HEAppE scratch project directory
 	ScratchProjectDirectory *string `json:"scratch_project_directory,omitempty"`
 
@@ -23399,6 +23402,9 @@ type MergedPluginOptionsRequest struct {
 
 	// ResourceExpirationThreshold Resource expiration threshold in days.
 	ResourceExpirationThreshold *int `json:"resource_expiration_threshold,omitempty"`
+
+	// RestrictDeletionWithActiveResources If set to True, offering cannot be deleted while it has non-terminated resources.
+	RestrictDeletionWithActiveResources *bool `json:"restrict_deletion_with_active_resources,omitempty"`
 
 	// ScratchProjectDirectory HEAppE scratch project directory
 	ScratchProjectDirectory *string `json:"scratch_project_directory,omitempty"`
