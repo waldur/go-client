@@ -14817,6 +14817,9 @@ type ArrowSettings struct {
 	// ExportTypeReference Billing export template reference
 	ExportTypeReference *string `json:"export_type_reference,omitempty"`
 
+	// InvoiceItemPrefix Prefix for invoice item names (e.g. 'Arrow consumption')
+	InvoiceItemPrefix *string `json:"invoice_item_prefix,omitempty"`
+
 	// InvoicePriceSource Which price to use for invoice items: sell or buy
 	InvoicePriceSource *InvoicePriceSourceEnum `json:"invoice_price_source,omitempty"`
 
@@ -14847,6 +14850,9 @@ type ArrowSettingsCreate struct {
 
 	// ExportTypeReference Billing export template reference
 	ExportTypeReference *string `json:"export_type_reference,omitempty"`
+
+	// InvoiceItemPrefix Prefix for invoice item names (e.g. 'Arrow consumption')
+	InvoiceItemPrefix *string `json:"invoice_item_prefix,omitempty"`
 
 	// InvoicePriceSource Which price to use for invoice items: sell or buy
 	InvoicePriceSource *InvoicePriceSourceEnum `json:"invoice_price_source,omitempty"`
@@ -14881,6 +14887,9 @@ type ArrowSettingsCreateRequest struct {
 	// ExportTypeReference Billing export template reference
 	ExportTypeReference *string `json:"export_type_reference,omitempty"`
 
+	// InvoiceItemPrefix Prefix for invoice item names (e.g. 'Arrow consumption')
+	InvoiceItemPrefix *string `json:"invoice_item_prefix,omitempty"`
+
 	// InvoicePriceSource Which price to use for invoice items: sell or buy
 	InvoicePriceSource *InvoicePriceSourceEnum `json:"invoice_price_source,omitempty"`
 
@@ -14905,6 +14914,9 @@ type ArrowSettingsRequest struct {
 	// ExportTypeReference Billing export template reference
 	ExportTypeReference *string `json:"export_type_reference,omitempty"`
 
+	// InvoiceItemPrefix Prefix for invoice item names (e.g. 'Arrow consumption')
+	InvoiceItemPrefix *string `json:"invoice_item_prefix,omitempty"`
+
 	// InvoicePriceSource Which price to use for invoice items: sell or buy
 	InvoicePriceSource *InvoicePriceSourceEnum `json:"invoice_price_source,omitempty"`
 
@@ -14922,14 +14934,15 @@ type ArrowVendorOfferingMapping struct {
 	Created         *time.Time `json:"created,omitempty"`
 
 	// IsActive Whether this mapping is active
-	IsActive *bool      `json:"is_active,omitempty"`
-	Modified *time.Time `json:"modified,omitempty"`
-
-	// Offering Waldur marketplace offering for this vendor
-	Offering     string              `json:"offering"`
+	IsActive     *bool               `json:"is_active,omitempty"`
+	Modified     *time.Time          `json:"modified,omitempty"`
+	Offering     openapi_types.UUID  `json:"offering"`
 	OfferingName *string             `json:"offering_name,omitempty"`
 	OfferingType *string             `json:"offering_type,omitempty"`
 	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	Plan         *openapi_types.UUID `json:"plan"`
+	PlanName     *string             `json:"plan_name,omitempty"`
+	PlanUuid     *openapi_types.UUID `json:"plan_uuid,omitempty"`
 	Settings     string              `json:"settings"`
 	SettingsUuid *openapi_types.UUID `json:"settings_uuid,omitempty"`
 	Url          *string             `json:"url,omitempty"`
@@ -14949,6 +14962,9 @@ type ArrowVendorOfferingMappingCreate struct {
 	OfferingName *string             `json:"offering_name,omitempty"`
 	OfferingType *string             `json:"offering_type,omitempty"`
 	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	Plan         *openapi_types.UUID `json:"plan"`
+	PlanName     *string             `json:"plan_name,omitempty"`
+	PlanUuid     *openapi_types.UUID `json:"plan_uuid,omitempty"`
 	Settings     openapi_types.UUID  `json:"settings"`
 	SettingsUuid *openapi_types.UUID `json:"settings_uuid,omitempty"`
 	Url          *string             `json:"url,omitempty"`
@@ -14961,9 +14977,10 @@ type ArrowVendorOfferingMappingCreateRequest struct {
 	ArrowVendorName string `json:"arrow_vendor_name"`
 
 	// IsActive Whether this mapping is active
-	IsActive *bool              `json:"is_active,omitempty"`
-	Offering openapi_types.UUID `json:"offering"`
-	Settings openapi_types.UUID `json:"settings"`
+	IsActive *bool               `json:"is_active,omitempty"`
+	Offering openapi_types.UUID  `json:"offering"`
+	Plan     *openapi_types.UUID `json:"plan"`
+	Settings openapi_types.UUID  `json:"settings"`
 }
 
 // ArrowVendorOfferingMappingRequest defines model for ArrowVendorOfferingMappingRequest.
@@ -14972,11 +14989,10 @@ type ArrowVendorOfferingMappingRequest struct {
 	ArrowVendorName string `json:"arrow_vendor_name"`
 
 	// IsActive Whether this mapping is active
-	IsActive *bool `json:"is_active,omitempty"`
-
-	// Offering Waldur marketplace offering for this vendor
-	Offering string `json:"offering"`
-	Settings string `json:"settings"`
+	IsActive *bool               `json:"is_active,omitempty"`
+	Offering openapi_types.UUID  `json:"offering"`
+	Plan     *openapi_types.UUID `json:"plan"`
+	Settings string              `json:"settings"`
 }
 
 // AssignmentBatch defines model for AssignmentBatch.
@@ -20111,6 +20127,7 @@ type DiscoverCustomersRequestRequest struct {
 // DiscoverCustomersResponse defines model for DiscoverCustomersResponse.
 type DiscoverCustomersResponse struct {
 	ArrowCustomers  []ArrowCustomerDiscovery    `json:"arrow_customers"`
+	ExportTypes     []ExportTypeCompatibility   `json:"export_types"`
 	Suggestions     []CustomerMappingSuggestion `json:"suggestions"`
 	WaldurCustomers []WaldurCustomerBrief       `json:"waldur_customers"`
 }
@@ -20748,6 +20765,20 @@ type ExportTermsOfServiceDataRequest struct {
 	TermsOfService     string `json:"terms_of_service"`
 	TermsOfServiceLink string `json:"terms_of_service_link"`
 	Version            string `json:"version"`
+}
+
+// ExportTypeCompatibility defines model for ExportTypeCompatibility.
+type ExportTypeCompatibility struct {
+	Compatible             bool     `json:"compatible"`
+	ImportantFieldsFound   int      `json:"important_fields_found"`
+	ImportantFieldsTotal   int      `json:"important_fields_total"`
+	MissingImportantFields []string `json:"missing_important_fields"`
+	MissingRequiredFields  []string `json:"missing_required_fields"`
+	Name                   string   `json:"name"`
+	Recommended            bool     `json:"recommended"`
+	Reference              string   `json:"reference"`
+	RequiredFieldsFound    int      `json:"required_fields_found"`
+	RequiredFieldsTotal    int      `json:"required_fields_total"`
 }
 
 // ExtendDeadlineRequestRequest defines model for ExtendDeadlineRequestRequest.
@@ -28186,6 +28217,9 @@ type PatchedArrowSettingsRequest struct {
 	// ExportTypeReference Billing export template reference
 	ExportTypeReference *string `json:"export_type_reference,omitempty"`
 
+	// InvoiceItemPrefix Prefix for invoice item names (e.g. 'Arrow consumption')
+	InvoiceItemPrefix *string `json:"invoice_item_prefix,omitempty"`
+
 	// InvoicePriceSource Which price to use for invoice items: sell or buy
 	InvoicePriceSource *InvoicePriceSourceEnum `json:"invoice_price_source,omitempty"`
 
@@ -28202,11 +28236,10 @@ type PatchedArrowVendorOfferingMappingRequest struct {
 	ArrowVendorName *string `json:"arrow_vendor_name,omitempty"`
 
 	// IsActive Whether this mapping is active
-	IsActive *bool `json:"is_active,omitempty"`
-
-	// Offering Waldur marketplace offering for this vendor
-	Offering *string `json:"offering,omitempty"`
-	Settings *string `json:"settings,omitempty"`
+	IsActive *bool               `json:"is_active,omitempty"`
+	Offering *openapi_types.UUID `json:"offering,omitempty"`
+	Plan     *openapi_types.UUID `json:"plan"`
+	Settings *string             `json:"settings,omitempty"`
 }
 
 // PatchedAssignmentBatchRequest defines model for PatchedAssignmentBatchRequest.
@@ -36719,6 +36752,12 @@ type SyncPauseResponse struct {
 
 // SyncResourceHistoricalConsumptionRequestRequest defines model for SyncResourceHistoricalConsumptionRequestRequest.
 type SyncResourceHistoricalConsumptionRequestRequest struct {
+	// DryRun If True, preview consumption data without saving.
+	DryRun *bool `json:"dry_run,omitempty"`
+
+	// Force If True, sync even for finalized periods.
+	Force *bool `json:"force,omitempty"`
+
 	// PeriodFrom Start period in YYYY-MM format. Defaults to 12 months ago.
 	PeriodFrom *string `json:"period_from,omitempty"`
 
@@ -36731,11 +36770,14 @@ type SyncResourceHistoricalConsumptionRequestRequest struct {
 
 // SyncResourceHistoricalConsumptionResponse defines model for SyncResourceHistoricalConsumptionResponse.
 type SyncResourceHistoricalConsumptionResponse struct {
-	Errors         []map[string]interface{} `json:"errors"`
-	PeriodsSkipped int                      `json:"periods_skipped"`
-	PeriodsSynced  int                      `json:"periods_synced"`
-	ResourceName   string                   `json:"resource_name"`
-	ResourceUuid   openapi_types.UUID       `json:"resource_uuid"`
+	DryRun         *bool                     `json:"dry_run,omitempty"`
+	Errors         []map[string]interface{}  `json:"errors"`
+	PeriodsNoData  *int                      `json:"periods_no_data,omitempty"`
+	PeriodsSkipped int                       `json:"periods_skipped"`
+	PeriodsSynced  int                       `json:"periods_synced"`
+	PreviewPeriods *[]map[string]interface{} `json:"preview_periods,omitempty"`
+	ResourceName   string                    `json:"resource_name"`
+	ResourceUuid   openapi_types.UUID        `json:"resource_uuid"`
 }
 
 // SyncResourcesRequestRequest defines model for SyncResourcesRequestRequest.
@@ -37113,7 +37155,10 @@ type TriggerConsumptionSyncRequestRequest struct {
 
 // TriggerSyncRequestRequest defines model for TriggerSyncRequestRequest.
 type TriggerSyncRequestRequest struct {
-	Month        int                 `json:"month"`
+	Month int `json:"month"`
+
+	// ResourceUuid If set, only sync billing lines for this resource.
+	ResourceUuid *openapi_types.UUID `json:"resource_uuid,omitempty"`
 	SettingsUuid *openapi_types.UUID `json:"settings_uuid,omitempty"`
 	Year         int                 `json:"year"`
 }
