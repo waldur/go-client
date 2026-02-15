@@ -2321,6 +2321,13 @@ const (
 	SyncFailed SyncStatusEnum = "sync_failed"
 )
 
+// Defines values for SystemLogSourceEnum.
+const (
+	SystemLogSourceEnumApi    SystemLogSourceEnum = "api"
+	SystemLogSourceEnumBeat   SystemLogSourceEnum = "beat"
+	SystemLogSourceEnumWorker SystemLogSourceEnum = "worker"
+)
+
 // Defines values for TriggerCOIDetectionJobTypeEnum.
 const (
 	TriggerCOIDetectionJobTypeEnumFullCall    TriggerCOIDetectionJobTypeEnum = "full_call"
@@ -13003,6 +13010,106 @@ const (
 	SupportIssuesCountParamsOType                 SupportIssuesCountParamsO = "type"
 )
 
+// Defines values for SystemLogsListParamsLevel.
+const (
+	SystemLogsListParamsLevelCRITICAL SystemLogsListParamsLevel = "CRITICAL"
+	SystemLogsListParamsLevelERROR    SystemLogsListParamsLevel = "ERROR"
+	SystemLogsListParamsLevelINFO     SystemLogsListParamsLevel = "INFO"
+	SystemLogsListParamsLevelWARNING  SystemLogsListParamsLevel = "WARNING"
+)
+
+// Defines values for SystemLogsListParamsO.
+const (
+	SystemLogsListParamsOCreated          SystemLogsListParamsO = "created"
+	SystemLogsListParamsOInstance         SystemLogsListParamsO = "instance"
+	SystemLogsListParamsOLevelNumber      SystemLogsListParamsO = "level_number"
+	SystemLogsListParamsOMinusCreated     SystemLogsListParamsO = "-created"
+	SystemLogsListParamsOMinusInstance    SystemLogsListParamsO = "-instance"
+	SystemLogsListParamsOMinusLevelNumber SystemLogsListParamsO = "-level_number"
+)
+
+// Defines values for SystemLogsListParamsSource.
+const (
+	SystemLogsListParamsSourceApi    SystemLogsListParamsSource = "api"
+	SystemLogsListParamsSourceBeat   SystemLogsListParamsSource = "beat"
+	SystemLogsListParamsSourceWorker SystemLogsListParamsSource = "worker"
+)
+
+// Defines values for SystemLogsCountParamsLevel.
+const (
+	SystemLogsCountParamsLevelCRITICAL SystemLogsCountParamsLevel = "CRITICAL"
+	SystemLogsCountParamsLevelERROR    SystemLogsCountParamsLevel = "ERROR"
+	SystemLogsCountParamsLevelINFO     SystemLogsCountParamsLevel = "INFO"
+	SystemLogsCountParamsLevelWARNING  SystemLogsCountParamsLevel = "WARNING"
+)
+
+// Defines values for SystemLogsCountParamsO.
+const (
+	SystemLogsCountParamsOCreated          SystemLogsCountParamsO = "created"
+	SystemLogsCountParamsOInstance         SystemLogsCountParamsO = "instance"
+	SystemLogsCountParamsOLevelNumber      SystemLogsCountParamsO = "level_number"
+	SystemLogsCountParamsOMinusCreated     SystemLogsCountParamsO = "-created"
+	SystemLogsCountParamsOMinusInstance    SystemLogsCountParamsO = "-instance"
+	SystemLogsCountParamsOMinusLevelNumber SystemLogsCountParamsO = "-level_number"
+)
+
+// Defines values for SystemLogsCountParamsSource.
+const (
+	SystemLogsCountParamsSourceApi    SystemLogsCountParamsSource = "api"
+	SystemLogsCountParamsSourceBeat   SystemLogsCountParamsSource = "beat"
+	SystemLogsCountParamsSourceWorker SystemLogsCountParamsSource = "worker"
+)
+
+// Defines values for SystemLogsInstancesListParamsLevel.
+const (
+	SystemLogsInstancesListParamsLevelCRITICAL SystemLogsInstancesListParamsLevel = "CRITICAL"
+	SystemLogsInstancesListParamsLevelERROR    SystemLogsInstancesListParamsLevel = "ERROR"
+	SystemLogsInstancesListParamsLevelINFO     SystemLogsInstancesListParamsLevel = "INFO"
+	SystemLogsInstancesListParamsLevelWARNING  SystemLogsInstancesListParamsLevel = "WARNING"
+)
+
+// Defines values for SystemLogsInstancesListParamsO.
+const (
+	SystemLogsInstancesListParamsOCreated          SystemLogsInstancesListParamsO = "created"
+	SystemLogsInstancesListParamsOInstance         SystemLogsInstancesListParamsO = "instance"
+	SystemLogsInstancesListParamsOLevelNumber      SystemLogsInstancesListParamsO = "level_number"
+	SystemLogsInstancesListParamsOMinusCreated     SystemLogsInstancesListParamsO = "-created"
+	SystemLogsInstancesListParamsOMinusInstance    SystemLogsInstancesListParamsO = "-instance"
+	SystemLogsInstancesListParamsOMinusLevelNumber SystemLogsInstancesListParamsO = "-level_number"
+)
+
+// Defines values for SystemLogsInstancesListParamsSource.
+const (
+	SystemLogsInstancesListParamsSourceApi    SystemLogsInstancesListParamsSource = "api"
+	SystemLogsInstancesListParamsSourceBeat   SystemLogsInstancesListParamsSource = "beat"
+	SystemLogsInstancesListParamsSourceWorker SystemLogsInstancesListParamsSource = "worker"
+)
+
+// Defines values for SystemLogsInstancesCountParamsLevel.
+const (
+	SystemLogsInstancesCountParamsLevelCRITICAL SystemLogsInstancesCountParamsLevel = "CRITICAL"
+	SystemLogsInstancesCountParamsLevelERROR    SystemLogsInstancesCountParamsLevel = "ERROR"
+	SystemLogsInstancesCountParamsLevelINFO     SystemLogsInstancesCountParamsLevel = "INFO"
+	SystemLogsInstancesCountParamsLevelWARNING  SystemLogsInstancesCountParamsLevel = "WARNING"
+)
+
+// Defines values for SystemLogsInstancesCountParamsO.
+const (
+	SystemLogsInstancesCountParamsOCreated          SystemLogsInstancesCountParamsO = "created"
+	SystemLogsInstancesCountParamsOInstance         SystemLogsInstancesCountParamsO = "instance"
+	SystemLogsInstancesCountParamsOLevelNumber      SystemLogsInstancesCountParamsO = "level_number"
+	SystemLogsInstancesCountParamsOMinusCreated     SystemLogsInstancesCountParamsO = "-created"
+	SystemLogsInstancesCountParamsOMinusInstance    SystemLogsInstancesCountParamsO = "-instance"
+	SystemLogsInstancesCountParamsOMinusLevelNumber SystemLogsInstancesCountParamsO = "-level_number"
+)
+
+// Defines values for SystemLogsInstancesCountParamsSource.
+const (
+	Api    SystemLogsInstancesCountParamsSource = "api"
+	Beat   SystemLogsInstancesCountParamsSource = "beat"
+	Worker SystemLogsInstancesCountParamsSource = "worker"
+)
+
 // Defines values for UserActionsListParamsUrgency.
 const (
 	UserActionsListParamsUrgencyHigh   UserActionsListParamsUrgency = "high"
@@ -18060,6 +18167,8 @@ type ConstanceSettings struct {
 	SOFTWARECATALOGSPACKVERSION                    *string              `json:"SOFTWARE_CATALOG_SPACK_VERSION,omitempty"`
 	SOFTWARECATALOGUPDATEEXISTINGPACKAGES          *bool                `json:"SOFTWARE_CATALOG_UPDATE_EXISTING_PACKAGES,omitempty"`
 	SUPPORTPORTALURL                               *string              `json:"SUPPORT_PORTAL_URL,omitempty"`
+	SYSTEMLOGENABLED                               *bool                `json:"SYSTEM_LOG_ENABLED,omitempty"`
+	SYSTEMLOGMAXROWSPERSOURCE                      *int                 `json:"SYSTEM_LOG_MAX_ROWS_PER_SOURCE,omitempty"`
 	TABLEGROWTHMINSIZEBYTES                        *int                 `json:"TABLE_GROWTH_MIN_SIZE_BYTES,omitempty"`
 	TABLEGROWTHMONITORINGENABLED                   *bool                `json:"TABLE_GROWTH_MONITORING_ENABLED,omitempty"`
 	TABLEGROWTHMONTHLYTHRESHOLDPERCENT             *int                 `json:"TABLE_GROWTH_MONTHLY_THRESHOLD_PERCENT,omitempty"`
@@ -18297,6 +18406,8 @@ type ConstanceSettingsRequest struct {
 	SOFTWARECATALOGSPACKVERSION                    *string                         `json:"SOFTWARE_CATALOG_SPACK_VERSION,omitempty"`
 	SOFTWARECATALOGUPDATEEXISTINGPACKAGES          *bool                           `json:"SOFTWARE_CATALOG_UPDATE_EXISTING_PACKAGES,omitempty"`
 	SUPPORTPORTALURL                               *string                         `json:"SUPPORT_PORTAL_URL,omitempty"`
+	SYSTEMLOGENABLED                               *bool                           `json:"SYSTEM_LOG_ENABLED,omitempty"`
+	SYSTEMLOGMAXROWSPERSOURCE                      *int                            `json:"SYSTEM_LOG_MAX_ROWS_PER_SOURCE,omitempty"`
 	TABLEGROWTHMINSIZEBYTES                        *int                            `json:"TABLE_GROWTH_MIN_SIZE_BYTES,omitempty"`
 	TABLEGROWTHMONITORINGENABLED                   *bool                           `json:"TABLE_GROWTH_MONITORING_ENABLED,omitempty"`
 	TABLEGROWTHMONTHLYTHRESHOLDPERCENT             *int                            `json:"TABLE_GROWTH_MONTHLY_THRESHOLD_PERCENT,omitempty"`
@@ -18534,6 +18645,8 @@ type ConstanceSettingsRequestForm struct {
 	SOFTWARECATALOGSPACKVERSION                    *string                         `json:"SOFTWARE_CATALOG_SPACK_VERSION,omitempty"`
 	SOFTWARECATALOGUPDATEEXISTINGPACKAGES          *bool                           `json:"SOFTWARE_CATALOG_UPDATE_EXISTING_PACKAGES,omitempty"`
 	SUPPORTPORTALURL                               *string                         `json:"SUPPORT_PORTAL_URL,omitempty"`
+	SYSTEMLOGENABLED                               *bool                           `json:"SYSTEM_LOG_ENABLED,omitempty"`
+	SYSTEMLOGMAXROWSPERSOURCE                      *int                            `json:"SYSTEM_LOG_MAX_ROWS_PER_SOURCE,omitempty"`
 	TABLEGROWTHMINSIZEBYTES                        *int                            `json:"TABLE_GROWTH_MIN_SIZE_BYTES,omitempty"`
 	TABLEGROWTHMONITORINGENABLED                   *bool                           `json:"TABLE_GROWTH_MONITORING_ENABLED,omitempty"`
 	TABLEGROWTHMONTHLYTHRESHOLDPERCENT             *int                            `json:"TABLE_GROWTH_MONTHLY_THRESHOLD_PERCENT,omitempty"`
@@ -18771,6 +18884,8 @@ type ConstanceSettingsRequestMultipart struct {
 	SOFTWARECATALOGSPACKVERSION                    *string                         `json:"SOFTWARE_CATALOG_SPACK_VERSION,omitempty"`
 	SOFTWARECATALOGUPDATEEXISTINGPACKAGES          *bool                           `json:"SOFTWARE_CATALOG_UPDATE_EXISTING_PACKAGES,omitempty"`
 	SUPPORTPORTALURL                               *string                         `json:"SUPPORT_PORTAL_URL,omitempty"`
+	SYSTEMLOGENABLED                               *bool                           `json:"SYSTEM_LOG_ENABLED,omitempty"`
+	SYSTEMLOGMAXROWSPERSOURCE                      *int                            `json:"SYSTEM_LOG_MAX_ROWS_PER_SOURCE,omitempty"`
 	TABLEGROWTHMINSIZEBYTES                        *int                            `json:"TABLE_GROWTH_MIN_SIZE_BYTES,omitempty"`
 	TABLEGROWTHMONITORINGENABLED                   *bool                           `json:"TABLE_GROWTH_MONITORING_ENABLED,omitempty"`
 	TABLEGROWTHMONTHLYTHRESHOLDPERCENT             *int                            `json:"TABLE_GROWTH_MONTHLY_THRESHOLD_PERCENT,omitempty"`
@@ -36815,6 +36930,46 @@ type SyncResourcesResponse struct {
 
 // SyncStatusEnum defines model for SyncStatusEnum.
 type SyncStatusEnum string
+
+// SystemLog defines model for SystemLog.
+type SystemLog struct {
+	Context interface{} `json:"context,omitempty"`
+	Created *time.Time  `json:"created,omitempty"`
+	Id      *int        `json:"id,omitempty"`
+
+	// Instance Pod name (K8s) or container name (Docker)
+	Instance    *string              `json:"instance,omitempty"`
+	Level       *string              `json:"level,omitempty"`
+	LevelNumber *int                 `json:"level_number,omitempty"`
+	LoggerName  *string              `json:"logger_name,omitempty"`
+	Message     *string              `json:"message,omitempty"`
+	Source      *SystemLogSourceEnum `json:"source,omitempty"`
+}
+
+// SystemLogInstance defines model for SystemLogInstance.
+type SystemLogInstance struct {
+	Count    *int       `json:"count,omitempty"`
+	Instance *string    `json:"instance,omitempty"`
+	LastSeen *time.Time `json:"last_seen,omitempty"`
+	Source   *string    `json:"source,omitempty"`
+}
+
+// SystemLogSourceEnum defines model for SystemLogSourceEnum.
+type SystemLogSourceEnum string
+
+// SystemLogStatsInstance defines model for SystemLogStatsInstance.
+type SystemLogStatsInstance struct {
+	Count    *int    `json:"count,omitempty"`
+	Instance *string `json:"instance,omitempty"`
+	Source   *string `json:"source,omitempty"`
+}
+
+// SystemLogStatsResponse defines model for SystemLogStatsResponse.
+type SystemLogStatsResponse struct {
+	Instances      *[]SystemLogStatsInstance `json:"instances,omitempty"`
+	TotalSizeBytes *int                      `json:"total_size_bytes,omitempty"`
+	TotalSizeMb    *float64                  `json:"total_size_mb,omitempty"`
+}
 
 // TableGrowthAlert defines model for TableGrowthAlert.
 type TableGrowthAlert struct {
@@ -57739,6 +57894,138 @@ type SupportSettingsAtlassianDiscoverRequestTypesParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
+// SystemLogsListParams defines parameters for SystemLogsList.
+type SystemLogsListParams struct {
+	CreatedFrom *float32                   `form:"created_from,omitempty" json:"created_from,omitempty"`
+	CreatedTo   *float32                   `form:"created_to,omitempty" json:"created_to,omitempty"`
+	Instance    *string                    `form:"instance,omitempty" json:"instance,omitempty"`
+	Level       *SystemLogsListParamsLevel `form:"level,omitempty" json:"level,omitempty"`
+
+	// LevelGte Min level: 20=INFO, 30=WARNING, 40=ERROR, 50=CRITICAL
+	LevelGte   *int    `form:"level_gte,omitempty" json:"level_gte,omitempty"`
+	LoggerName *string `form:"logger_name,omitempty" json:"logger_name,omitempty"`
+	Message    *string `form:"message,omitempty" json:"message,omitempty"`
+
+	// O Ordering
+	//
+	O *[]SystemLogsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize                   `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Source   *SystemLogsListParamsSource `form:"source,omitempty" json:"source,omitempty"`
+}
+
+// SystemLogsListParamsLevel defines parameters for SystemLogsList.
+type SystemLogsListParamsLevel string
+
+// SystemLogsListParamsO defines parameters for SystemLogsList.
+type SystemLogsListParamsO string
+
+// SystemLogsListParamsSource defines parameters for SystemLogsList.
+type SystemLogsListParamsSource string
+
+// SystemLogsCountParams defines parameters for SystemLogsCount.
+type SystemLogsCountParams struct {
+	CreatedFrom *float32                    `form:"created_from,omitempty" json:"created_from,omitempty"`
+	CreatedTo   *float32                    `form:"created_to,omitempty" json:"created_to,omitempty"`
+	Instance    *string                     `form:"instance,omitempty" json:"instance,omitempty"`
+	Level       *SystemLogsCountParamsLevel `form:"level,omitempty" json:"level,omitempty"`
+
+	// LevelGte Min level: 20=INFO, 30=WARNING, 40=ERROR, 50=CRITICAL
+	LevelGte   *int    `form:"level_gte,omitempty" json:"level_gte,omitempty"`
+	LoggerName *string `form:"logger_name,omitempty" json:"logger_name,omitempty"`
+	Message    *string `form:"message,omitempty" json:"message,omitempty"`
+
+	// O Ordering
+	//
+	O *[]SystemLogsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize                    `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Source   *SystemLogsCountParamsSource `form:"source,omitempty" json:"source,omitempty"`
+}
+
+// SystemLogsCountParamsLevel defines parameters for SystemLogsCount.
+type SystemLogsCountParamsLevel string
+
+// SystemLogsCountParamsO defines parameters for SystemLogsCount.
+type SystemLogsCountParamsO string
+
+// SystemLogsCountParamsSource defines parameters for SystemLogsCount.
+type SystemLogsCountParamsSource string
+
+// SystemLogsInstancesListParams defines parameters for SystemLogsInstancesList.
+type SystemLogsInstancesListParams struct {
+	CreatedFrom *float32                            `form:"created_from,omitempty" json:"created_from,omitempty"`
+	CreatedTo   *float32                            `form:"created_to,omitempty" json:"created_to,omitempty"`
+	Instance    *string                             `form:"instance,omitempty" json:"instance,omitempty"`
+	Level       *SystemLogsInstancesListParamsLevel `form:"level,omitempty" json:"level,omitempty"`
+
+	// LevelGte Min level: 20=INFO, 30=WARNING, 40=ERROR, 50=CRITICAL
+	LevelGte   *int    `form:"level_gte,omitempty" json:"level_gte,omitempty"`
+	LoggerName *string `form:"logger_name,omitempty" json:"logger_name,omitempty"`
+	Message    *string `form:"message,omitempty" json:"message,omitempty"`
+
+	// O Ordering
+	//
+	O *[]SystemLogsInstancesListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize                            `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Source   *SystemLogsInstancesListParamsSource `form:"source,omitempty" json:"source,omitempty"`
+}
+
+// SystemLogsInstancesListParamsLevel defines parameters for SystemLogsInstancesList.
+type SystemLogsInstancesListParamsLevel string
+
+// SystemLogsInstancesListParamsO defines parameters for SystemLogsInstancesList.
+type SystemLogsInstancesListParamsO string
+
+// SystemLogsInstancesListParamsSource defines parameters for SystemLogsInstancesList.
+type SystemLogsInstancesListParamsSource string
+
+// SystemLogsInstancesCountParams defines parameters for SystemLogsInstancesCount.
+type SystemLogsInstancesCountParams struct {
+	CreatedFrom *float32                             `form:"created_from,omitempty" json:"created_from,omitempty"`
+	CreatedTo   *float32                             `form:"created_to,omitempty" json:"created_to,omitempty"`
+	Instance    *string                              `form:"instance,omitempty" json:"instance,omitempty"`
+	Level       *SystemLogsInstancesCountParamsLevel `form:"level,omitempty" json:"level,omitempty"`
+
+	// LevelGte Min level: 20=INFO, 30=WARNING, 40=ERROR, 50=CRITICAL
+	LevelGte   *int    `form:"level_gte,omitempty" json:"level_gte,omitempty"`
+	LoggerName *string `form:"logger_name,omitempty" json:"logger_name,omitempty"`
+	Message    *string `form:"message,omitempty" json:"message,omitempty"`
+
+	// O Ordering
+	//
+	O *[]SystemLogsInstancesCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize                             `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Source   *SystemLogsInstancesCountParamsSource `form:"source,omitempty" json:"source,omitempty"`
+}
+
+// SystemLogsInstancesCountParamsLevel defines parameters for SystemLogsInstancesCount.
+type SystemLogsInstancesCountParamsLevel string
+
+// SystemLogsInstancesCountParamsO defines parameters for SystemLogsInstancesCount.
+type SystemLogsInstancesCountParamsO string
+
+// SystemLogsInstancesCountParamsSource defines parameters for SystemLogsInstancesCount.
+type SystemLogsInstancesCountParamsSource string
+
 // UserActionExecutionsListParams defines parameters for UserActionExecutionsList.
 type UserActionExecutionsListParams struct {
 	// O Which field to use when ordering the results.
@@ -77221,6 +77508,27 @@ type ClientInterface interface {
 
 	// SyncIssues request
 	SyncIssues(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SystemLogsList request
+	SystemLogsList(ctx context.Context, params *SystemLogsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SystemLogsCount request
+	SystemLogsCount(ctx context.Context, params *SystemLogsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SystemLogsInstancesList request
+	SystemLogsInstancesList(ctx context.Context, params *SystemLogsInstancesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SystemLogsInstancesCount request
+	SystemLogsInstancesCount(ctx context.Context, params *SystemLogsInstancesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SystemLogsStatsRetrieve request
+	SystemLogsStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SystemLogsStatsCount request
+	SystemLogsStatsCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SystemLogsRetrieve request
+	SystemLogsRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UserActionExecutionsList request
 	UserActionExecutionsList(ctx context.Context, params *UserActionExecutionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -112798,6 +113106,90 @@ func (c *Client) SyncIssuesRetrieve(ctx context.Context, reqEditors ...RequestEd
 
 func (c *Client) SyncIssues(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewSyncIssuesRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SystemLogsList(ctx context.Context, params *SystemLogsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSystemLogsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SystemLogsCount(ctx context.Context, params *SystemLogsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSystemLogsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SystemLogsInstancesList(ctx context.Context, params *SystemLogsInstancesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSystemLogsInstancesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SystemLogsInstancesCount(ctx context.Context, params *SystemLogsInstancesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSystemLogsInstancesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SystemLogsStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSystemLogsStatsRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SystemLogsStatsCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSystemLogsStatsCountRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SystemLogsRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSystemLogsRetrieveRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -290004,6 +290396,930 @@ func NewSyncIssuesRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
+// NewSystemLogsListRequest generates requests for SystemLogsList
+func NewSystemLogsListRequest(server string, params *SystemLogsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/system-logs/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.CreatedFrom != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created_from", runtime.ParamLocationQuery, *params.CreatedFrom); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CreatedTo != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created_to", runtime.ParamLocationQuery, *params.CreatedTo); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Instance != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "instance", runtime.ParamLocationQuery, *params.Instance); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Level != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "level", runtime.ParamLocationQuery, *params.Level); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LevelGte != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "level_gte", runtime.ParamLocationQuery, *params.LevelGte); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LoggerName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "logger_name", runtime.ParamLocationQuery, *params.LoggerName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Message != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "message", runtime.ParamLocationQuery, *params.Message); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Source != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "source", runtime.ParamLocationQuery, *params.Source); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewSystemLogsCountRequest generates requests for SystemLogsCount
+func NewSystemLogsCountRequest(server string, params *SystemLogsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/system-logs/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.CreatedFrom != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created_from", runtime.ParamLocationQuery, *params.CreatedFrom); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CreatedTo != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created_to", runtime.ParamLocationQuery, *params.CreatedTo); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Instance != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "instance", runtime.ParamLocationQuery, *params.Instance); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Level != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "level", runtime.ParamLocationQuery, *params.Level); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LevelGte != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "level_gte", runtime.ParamLocationQuery, *params.LevelGte); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LoggerName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "logger_name", runtime.ParamLocationQuery, *params.LoggerName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Message != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "message", runtime.ParamLocationQuery, *params.Message); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Source != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "source", runtime.ParamLocationQuery, *params.Source); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewSystemLogsInstancesListRequest generates requests for SystemLogsInstancesList
+func NewSystemLogsInstancesListRequest(server string, params *SystemLogsInstancesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/system-logs/instances/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.CreatedFrom != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created_from", runtime.ParamLocationQuery, *params.CreatedFrom); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CreatedTo != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created_to", runtime.ParamLocationQuery, *params.CreatedTo); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Instance != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "instance", runtime.ParamLocationQuery, *params.Instance); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Level != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "level", runtime.ParamLocationQuery, *params.Level); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LevelGte != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "level_gte", runtime.ParamLocationQuery, *params.LevelGte); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LoggerName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "logger_name", runtime.ParamLocationQuery, *params.LoggerName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Message != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "message", runtime.ParamLocationQuery, *params.Message); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Source != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "source", runtime.ParamLocationQuery, *params.Source); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewSystemLogsInstancesCountRequest generates requests for SystemLogsInstancesCount
+func NewSystemLogsInstancesCountRequest(server string, params *SystemLogsInstancesCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/system-logs/instances/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.CreatedFrom != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created_from", runtime.ParamLocationQuery, *params.CreatedFrom); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CreatedTo != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created_to", runtime.ParamLocationQuery, *params.CreatedTo); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Instance != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "instance", runtime.ParamLocationQuery, *params.Instance); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Level != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "level", runtime.ParamLocationQuery, *params.Level); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LevelGte != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "level_gte", runtime.ParamLocationQuery, *params.LevelGte); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LoggerName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "logger_name", runtime.ParamLocationQuery, *params.LoggerName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Message != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "message", runtime.ParamLocationQuery, *params.Message); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Source != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "source", runtime.ParamLocationQuery, *params.Source); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewSystemLogsStatsRetrieveRequest generates requests for SystemLogsStatsRetrieve
+func NewSystemLogsStatsRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/system-logs/stats/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewSystemLogsStatsCountRequest generates requests for SystemLogsStatsCount
+func NewSystemLogsStatsCountRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/system-logs/stats/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewSystemLogsRetrieveRequest generates requests for SystemLogsRetrieve
+func NewSystemLogsRetrieveRequest(server string, id int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/system-logs/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewUserActionExecutionsListRequest generates requests for UserActionExecutionsList
 func NewUserActionExecutionsListRequest(server string, params *UserActionExecutionsListParams) (*http.Request, error) {
 	var err error
@@ -313155,6 +314471,27 @@ type ClientWithResponsesInterface interface {
 
 	// SyncIssuesWithResponse request
 	SyncIssuesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*SyncIssuesResponse, error)
+
+	// SystemLogsListWithResponse request
+	SystemLogsListWithResponse(ctx context.Context, params *SystemLogsListParams, reqEditors ...RequestEditorFn) (*SystemLogsListResponse, error)
+
+	// SystemLogsCountWithResponse request
+	SystemLogsCountWithResponse(ctx context.Context, params *SystemLogsCountParams, reqEditors ...RequestEditorFn) (*SystemLogsCountResponse, error)
+
+	// SystemLogsInstancesListWithResponse request
+	SystemLogsInstancesListWithResponse(ctx context.Context, params *SystemLogsInstancesListParams, reqEditors ...RequestEditorFn) (*SystemLogsInstancesListResponse, error)
+
+	// SystemLogsInstancesCountWithResponse request
+	SystemLogsInstancesCountWithResponse(ctx context.Context, params *SystemLogsInstancesCountParams, reqEditors ...RequestEditorFn) (*SystemLogsInstancesCountResponse, error)
+
+	// SystemLogsStatsRetrieveWithResponse request
+	SystemLogsStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*SystemLogsStatsRetrieveResponse, error)
+
+	// SystemLogsStatsCountWithResponse request
+	SystemLogsStatsCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*SystemLogsStatsCountResponse, error)
+
+	// SystemLogsRetrieveWithResponse request
+	SystemLogsRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*SystemLogsRetrieveResponse, error)
 
 	// UserActionExecutionsListWithResponse request
 	UserActionExecutionsListWithResponse(ctx context.Context, params *UserActionExecutionsListParams, reqEditors ...RequestEditorFn) (*UserActionExecutionsListResponse, error)
@@ -360234,6 +361571,157 @@ func (r SyncIssuesResponse) StatusCode() int {
 	return 0
 }
 
+type SystemLogsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]SystemLog
+}
+
+// Status returns HTTPResponse.Status
+func (r SystemLogsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SystemLogsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SystemLogsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r SystemLogsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SystemLogsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SystemLogsInstancesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]SystemLogInstance
+}
+
+// Status returns HTTPResponse.Status
+func (r SystemLogsInstancesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SystemLogsInstancesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SystemLogsInstancesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r SystemLogsInstancesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SystemLogsInstancesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SystemLogsStatsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SystemLogStatsResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r SystemLogsStatsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SystemLogsStatsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SystemLogsStatsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r SystemLogsStatsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SystemLogsStatsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SystemLogsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SystemLog
+}
+
+// Status returns HTTPResponse.Status
+func (r SystemLogsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SystemLogsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type UserActionExecutionsListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -388902,6 +390390,69 @@ func (c *ClientWithResponses) SyncIssuesWithResponse(ctx context.Context, reqEdi
 		return nil, err
 	}
 	return ParseSyncIssuesResponse(rsp)
+}
+
+// SystemLogsListWithResponse request returning *SystemLogsListResponse
+func (c *ClientWithResponses) SystemLogsListWithResponse(ctx context.Context, params *SystemLogsListParams, reqEditors ...RequestEditorFn) (*SystemLogsListResponse, error) {
+	rsp, err := c.SystemLogsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSystemLogsListResponse(rsp)
+}
+
+// SystemLogsCountWithResponse request returning *SystemLogsCountResponse
+func (c *ClientWithResponses) SystemLogsCountWithResponse(ctx context.Context, params *SystemLogsCountParams, reqEditors ...RequestEditorFn) (*SystemLogsCountResponse, error) {
+	rsp, err := c.SystemLogsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSystemLogsCountResponse(rsp)
+}
+
+// SystemLogsInstancesListWithResponse request returning *SystemLogsInstancesListResponse
+func (c *ClientWithResponses) SystemLogsInstancesListWithResponse(ctx context.Context, params *SystemLogsInstancesListParams, reqEditors ...RequestEditorFn) (*SystemLogsInstancesListResponse, error) {
+	rsp, err := c.SystemLogsInstancesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSystemLogsInstancesListResponse(rsp)
+}
+
+// SystemLogsInstancesCountWithResponse request returning *SystemLogsInstancesCountResponse
+func (c *ClientWithResponses) SystemLogsInstancesCountWithResponse(ctx context.Context, params *SystemLogsInstancesCountParams, reqEditors ...RequestEditorFn) (*SystemLogsInstancesCountResponse, error) {
+	rsp, err := c.SystemLogsInstancesCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSystemLogsInstancesCountResponse(rsp)
+}
+
+// SystemLogsStatsRetrieveWithResponse request returning *SystemLogsStatsRetrieveResponse
+func (c *ClientWithResponses) SystemLogsStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*SystemLogsStatsRetrieveResponse, error) {
+	rsp, err := c.SystemLogsStatsRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSystemLogsStatsRetrieveResponse(rsp)
+}
+
+// SystemLogsStatsCountWithResponse request returning *SystemLogsStatsCountResponse
+func (c *ClientWithResponses) SystemLogsStatsCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*SystemLogsStatsCountResponse, error) {
+	rsp, err := c.SystemLogsStatsCount(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSystemLogsStatsCountResponse(rsp)
+}
+
+// SystemLogsRetrieveWithResponse request returning *SystemLogsRetrieveResponse
+func (c *ClientWithResponses) SystemLogsRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*SystemLogsRetrieveResponse, error) {
+	rsp, err := c.SystemLogsRetrieve(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSystemLogsRetrieveResponse(rsp)
 }
 
 // UserActionExecutionsListWithResponse request returning *UserActionExecutionsListResponse
@@ -440040,6 +441591,158 @@ func ParseSyncIssuesResponse(rsp *http.Response) (*SyncIssuesResponse, error) {
 	response := &SyncIssuesResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseSystemLogsListResponse parses an HTTP response from a SystemLogsListWithResponse call
+func ParseSystemLogsListResponse(rsp *http.Response) (*SystemLogsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SystemLogsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []SystemLog
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseSystemLogsCountResponse parses an HTTP response from a SystemLogsCountWithResponse call
+func ParseSystemLogsCountResponse(rsp *http.Response) (*SystemLogsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SystemLogsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseSystemLogsInstancesListResponse parses an HTTP response from a SystemLogsInstancesListWithResponse call
+func ParseSystemLogsInstancesListResponse(rsp *http.Response) (*SystemLogsInstancesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SystemLogsInstancesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []SystemLogInstance
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseSystemLogsInstancesCountResponse parses an HTTP response from a SystemLogsInstancesCountWithResponse call
+func ParseSystemLogsInstancesCountResponse(rsp *http.Response) (*SystemLogsInstancesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SystemLogsInstancesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseSystemLogsStatsRetrieveResponse parses an HTTP response from a SystemLogsStatsRetrieveWithResponse call
+func ParseSystemLogsStatsRetrieveResponse(rsp *http.Response) (*SystemLogsStatsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SystemLogsStatsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SystemLogStatsResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseSystemLogsStatsCountResponse parses an HTTP response from a SystemLogsStatsCountWithResponse call
+func ParseSystemLogsStatsCountResponse(rsp *http.Response) (*SystemLogsStatsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SystemLogsStatsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseSystemLogsRetrieveResponse parses an HTTP response from a SystemLogsRetrieveWithResponse call
+func ParseSystemLogsRetrieveResponse(rsp *http.Response) (*SystemLogsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SystemLogsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SystemLog
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
