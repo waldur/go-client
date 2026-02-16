@@ -6031,7 +6031,9 @@ const (
 	MarketplaceOfferingUsersListParamsFieldCustomerUuid              MarketplaceOfferingUsersListParamsField = "customer_uuid"
 	MarketplaceOfferingUsersListParamsFieldHasComplianceChecklist    MarketplaceOfferingUsersListParamsField = "has_compliance_checklist"
 	MarketplaceOfferingUsersListParamsFieldHasConsent                MarketplaceOfferingUsersListParamsField = "has_consent"
+	MarketplaceOfferingUsersListParamsFieldIsProfileComplete         MarketplaceOfferingUsersListParamsField = "is_profile_complete"
 	MarketplaceOfferingUsersListParamsFieldIsRestricted              MarketplaceOfferingUsersListParamsField = "is_restricted"
+	MarketplaceOfferingUsersListParamsFieldMissingProfileAttributes  MarketplaceOfferingUsersListParamsField = "missing_profile_attributes"
 	MarketplaceOfferingUsersListParamsFieldModified                  MarketplaceOfferingUsersListParamsField = "modified"
 	MarketplaceOfferingUsersListParamsFieldOffering                  MarketplaceOfferingUsersListParamsField = "offering"
 	MarketplaceOfferingUsersListParamsFieldOfferingName              MarketplaceOfferingUsersListParamsField = "offering_name"
@@ -6125,7 +6127,9 @@ const (
 	MarketplaceOfferingUsersRetrieveParamsFieldCustomerUuid              MarketplaceOfferingUsersRetrieveParamsField = "customer_uuid"
 	MarketplaceOfferingUsersRetrieveParamsFieldHasComplianceChecklist    MarketplaceOfferingUsersRetrieveParamsField = "has_compliance_checklist"
 	MarketplaceOfferingUsersRetrieveParamsFieldHasConsent                MarketplaceOfferingUsersRetrieveParamsField = "has_consent"
+	MarketplaceOfferingUsersRetrieveParamsFieldIsProfileComplete         MarketplaceOfferingUsersRetrieveParamsField = "is_profile_complete"
 	MarketplaceOfferingUsersRetrieveParamsFieldIsRestricted              MarketplaceOfferingUsersRetrieveParamsField = "is_restricted"
+	MarketplaceOfferingUsersRetrieveParamsFieldMissingProfileAttributes  MarketplaceOfferingUsersRetrieveParamsField = "missing_profile_attributes"
 	MarketplaceOfferingUsersRetrieveParamsFieldModified                  MarketplaceOfferingUsersRetrieveParamsField = "modified"
 	MarketplaceOfferingUsersRetrieveParamsFieldOffering                  MarketplaceOfferingUsersRetrieveParamsField = "offering"
 	MarketplaceOfferingUsersRetrieveParamsFieldOfferingName              MarketplaceOfferingUsersRetrieveParamsField = "offering_name"
@@ -18040,6 +18044,7 @@ type ConstanceSettings struct {
 	ENABLESTALERESOURCENOTIFICATIONS               *bool                `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
 	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
 	ENFORCEMANDATORYUSERATTRIBUTES                 *bool                `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
+	ENFORCEOFFERINGUSERPROFILECOMPLETENESS         *bool                `json:"ENFORCE_OFFERING_USER_PROFILE_COMPLETENESS,omitempty"`
 	ENFORCEUSERCONSENTFOROFFERINGS                 *bool                `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
 	FAVICON                                        *string              `json:"FAVICON"`
 	FEDERATEDIDENTITYDEACTIVATIONPOLICY            *string              `json:"FEDERATED_IDENTITY_DEACTIVATION_POLICY,omitempty"`
@@ -18279,6 +18284,7 @@ type ConstanceSettingsRequest struct {
 	ENABLESTALERESOURCENOTIFICATIONS               *bool                           `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
 	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                           `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
 	ENFORCEMANDATORYUSERATTRIBUTES                 *bool                           `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
+	ENFORCEOFFERINGUSERPROFILECOMPLETENESS         *bool                           `json:"ENFORCE_OFFERING_USER_PROFILE_COMPLETENESS,omitempty"`
 	ENFORCEUSERCONSENTFOROFFERINGS                 *bool                           `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
 	FAVICON                                        *openapi_types.File             `json:"FAVICON"`
 	FEDERATEDIDENTITYDEACTIVATIONPOLICY            *string                         `json:"FEDERATED_IDENTITY_DEACTIVATION_POLICY,omitempty"`
@@ -18518,6 +18524,7 @@ type ConstanceSettingsRequestForm struct {
 	ENABLESTALERESOURCENOTIFICATIONS               *bool                           `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
 	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                           `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
 	ENFORCEMANDATORYUSERATTRIBUTES                 *bool                           `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
+	ENFORCEOFFERINGUSERPROFILECOMPLETENESS         *bool                           `json:"ENFORCE_OFFERING_USER_PROFILE_COMPLETENESS,omitempty"`
 	ENFORCEUSERCONSENTFOROFFERINGS                 *bool                           `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
 	FAVICON                                        *openapi_types.File             `json:"FAVICON"`
 	FEDERATEDIDENTITYDEACTIVATIONPOLICY            *string                         `json:"FEDERATED_IDENTITY_DEACTIVATION_POLICY,omitempty"`
@@ -18757,6 +18764,7 @@ type ConstanceSettingsRequestMultipart struct {
 	ENABLESTALERESOURCENOTIFICATIONS               *bool                           `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
 	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                           `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
 	ENFORCEMANDATORYUSERATTRIBUTES                 *bool                           `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
+	ENFORCEOFFERINGUSERPROFILECOMPLETENESS         *bool                           `json:"ENFORCE_OFFERING_USER_PROFILE_COMPLETENESS,omitempty"`
 	ENFORCEUSERCONSENTFOROFFERINGS                 *bool                           `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
 	FAVICON                                        *openapi_types.File             `json:"FAVICON"`
 	FEDERATEDIDENTITYDEACTIVATIONPOLICY            *string                         `json:"FEDERATED_IDENTITY_DEACTIVATION_POLICY,omitempty"`
@@ -25614,14 +25622,16 @@ type OfferingUser struct {
 	HasComplianceChecklist *bool `json:"has_compliance_checklist,omitempty"`
 
 	// HasConsent Check if the user has active consent for this offering.
-	HasConsent *bool `json:"has_consent,omitempty"`
+	HasConsent        *bool `json:"has_consent,omitempty"`
+	IsProfileComplete *bool `json:"is_profile_complete,omitempty"`
 
 	// IsRestricted Signal to service if the user account is restricted or not
-	IsRestricted *bool               `json:"is_restricted,omitempty"`
-	Modified     *time.Time          `json:"modified,omitempty"`
-	Offering     *string             `json:"offering,omitempty"`
-	OfferingName *string             `json:"offering_name,omitempty"`
-	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	IsRestricted             *bool               `json:"is_restricted,omitempty"`
+	MissingProfileAttributes *[]string           `json:"missing_profile_attributes,omitempty"`
+	Modified                 *time.Time          `json:"modified,omitempty"`
+	Offering                 *string             `json:"offering,omitempty"`
+	OfferingName             *string             `json:"offering_name,omitempty"`
+	OfferingUuid             *openapi_types.UUID `json:"offering_uuid,omitempty"`
 
 	// RequiresReconsent Check if the user needs to re-consent due to ToS changes.
 	RequiresReconsent *bool `json:"requires_reconsent,omitempty"`
@@ -44996,6 +45006,9 @@ type MarketplaceOfferingUsersListParams struct {
 	Created *time.Time                                 `form:"created,omitempty" json:"created,omitempty"`
 	Field   *[]MarketplaceOfferingUsersListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
+	// HasCompleteProfile User has complete profile for the offering
+	HasCompleteProfile *bool `form:"has_complete_profile,omitempty" json:"has_complete_profile,omitempty"`
+
 	// HasConsent User Has Consent
 	HasConsent *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
 
@@ -45053,6 +45066,9 @@ type MarketplaceOfferingUsersListParamsState string
 type MarketplaceOfferingUsersCountParams struct {
 	// Created Created after
 	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// HasCompleteProfile User has complete profile for the offering
+	HasCompleteProfile *bool `form:"has_complete_profile,omitempty" json:"has_complete_profile,omitempty"`
 
 	// HasConsent User Has Consent
 	HasConsent *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
@@ -175290,6 +175306,22 @@ func NewMarketplaceOfferingUsersListRequest(server string, params *MarketplaceOf
 
 		}
 
+		if params.HasCompleteProfile != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_complete_profile", runtime.ParamLocationQuery, *params.HasCompleteProfile); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.HasConsent != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_consent", runtime.ParamLocationQuery, *params.HasConsent); err != nil {
@@ -175566,6 +175598,22 @@ func NewMarketplaceOfferingUsersCountRequest(server string, params *MarketplaceO
 		if params.Created != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasCompleteProfile != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_complete_profile", runtime.ParamLocationQuery, *params.HasCompleteProfile); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
