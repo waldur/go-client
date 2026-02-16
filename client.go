@@ -49533,6 +49533,9 @@ type MarketplaceSoftwarePackagesListParams struct {
 	// HasVersion Filter packages that have a specific version
 	HasVersion *string `form:"has_version,omitempty" json:"has_version,omitempty"`
 
+	// IsExtension Filter packages that are extensions of other packages
+	IsExtension *bool `form:"is_extension,omitempty" json:"is_extension,omitempty"`
+
 	// Name Filter packages by name (case-insensitive partial match)
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
 
@@ -49584,6 +49587,9 @@ type MarketplaceSoftwarePackagesCountParams struct {
 
 	// HasVersion Filter packages that have a specific version
 	HasVersion *string `form:"has_version,omitempty" json:"has_version,omitempty"`
+
+	// IsExtension Filter packages that are extensions of other packages
+	IsExtension *bool `form:"is_extension,omitempty" json:"is_extension,omitempty"`
 
 	// Name Filter packages by name (case-insensitive partial match)
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
@@ -211703,6 +211709,22 @@ func NewMarketplaceSoftwarePackagesListRequest(server string, params *Marketplac
 
 		}
 
+		if params.IsExtension != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_extension", runtime.ParamLocationQuery, *params.IsExtension); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Name != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
@@ -211963,6 +211985,22 @@ func NewMarketplaceSoftwarePackagesCountRequest(server string, params *Marketpla
 		if params.HasVersion != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_version", runtime.ParamLocationQuery, *params.HasVersion); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsExtension != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_extension", runtime.ParamLocationQuery, *params.IsExtension); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
