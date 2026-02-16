@@ -1306,154 +1306,154 @@ const (
 
 // Defines values for GuestOsEnum.
 const (
-	GuestOsEnumASIANUX3           GuestOsEnum = "ASIANUX_3"
-	GuestOsEnumASIANUX364         GuestOsEnum = "ASIANUX_3_64"
-	GuestOsEnumASIANUX4           GuestOsEnum = "ASIANUX_4"
-	GuestOsEnumASIANUX464         GuestOsEnum = "ASIANUX_4_64"
-	GuestOsEnumASIANUX564         GuestOsEnum = "ASIANUX_5_64"
-	GuestOsEnumASIANUX764         GuestOsEnum = "ASIANUX_7_64"
-	GuestOsEnumCENTOS             GuestOsEnum = "CENTOS"
-	GuestOsEnumCENTOS6            GuestOsEnum = "CENTOS_6"
-	GuestOsEnumCENTOS64           GuestOsEnum = "CENTOS_64"
-	GuestOsEnumCENTOS664          GuestOsEnum = "CENTOS_6_64"
-	GuestOsEnumCENTOS7            GuestOsEnum = "CENTOS_7"
-	GuestOsEnumCENTOS764          GuestOsEnum = "CENTOS_7_64"
-	GuestOsEnumCOREOS64           GuestOsEnum = "COREOS_64"
-	GuestOsEnumDARWIN             GuestOsEnum = "DARWIN"
-	GuestOsEnumDARWIN10           GuestOsEnum = "DARWIN_10"
-	GuestOsEnumDARWIN1064         GuestOsEnum = "DARWIN_10_64"
-	GuestOsEnumDARWIN11           GuestOsEnum = "DARWIN_11"
-	GuestOsEnumDARWIN1164         GuestOsEnum = "DARWIN_11_64"
-	GuestOsEnumDARWIN1264         GuestOsEnum = "DARWIN_12_64"
-	GuestOsEnumDARWIN1364         GuestOsEnum = "DARWIN_13_64"
-	GuestOsEnumDARWIN1464         GuestOsEnum = "DARWIN_14_64"
-	GuestOsEnumDARWIN1564         GuestOsEnum = "DARWIN_15_64"
-	GuestOsEnumDARWIN1664         GuestOsEnum = "DARWIN_16_64"
-	GuestOsEnumDARWIN64           GuestOsEnum = "DARWIN_64"
-	GuestOsEnumDEBIAN10           GuestOsEnum = "DEBIAN_10"
-	GuestOsEnumDEBIAN1064         GuestOsEnum = "DEBIAN_10_64"
-	GuestOsEnumDEBIAN4            GuestOsEnum = "DEBIAN_4"
-	GuestOsEnumDEBIAN464          GuestOsEnum = "DEBIAN_4_64"
-	GuestOsEnumDEBIAN5            GuestOsEnum = "DEBIAN_5"
-	GuestOsEnumDEBIAN564          GuestOsEnum = "DEBIAN_5_64"
-	GuestOsEnumDEBIAN6            GuestOsEnum = "DEBIAN_6"
-	GuestOsEnumDEBIAN664          GuestOsEnum = "DEBIAN_6_64"
-	GuestOsEnumDEBIAN7            GuestOsEnum = "DEBIAN_7"
-	GuestOsEnumDEBIAN764          GuestOsEnum = "DEBIAN_7_64"
-	GuestOsEnumDEBIAN8            GuestOsEnum = "DEBIAN_8"
-	GuestOsEnumDEBIAN864          GuestOsEnum = "DEBIAN_8_64"
-	GuestOsEnumDEBIAN9            GuestOsEnum = "DEBIAN_9"
-	GuestOsEnumDEBIAN964          GuestOsEnum = "DEBIAN_9_64"
-	GuestOsEnumDOS                GuestOsEnum = "DOS"
-	GuestOsEnumECOMSTATION        GuestOsEnum = "ECOMSTATION"
-	GuestOsEnumECOMSTATION2       GuestOsEnum = "ECOMSTATION_2"
-	GuestOsEnumFEDORA             GuestOsEnum = "FEDORA"
-	GuestOsEnumFEDORA64           GuestOsEnum = "FEDORA_64"
-	GuestOsEnumFREEBSD            GuestOsEnum = "FREEBSD"
-	GuestOsEnumFREEBSD64          GuestOsEnum = "FREEBSD_64"
-	GuestOsEnumGENERICLINUX       GuestOsEnum = "GENERIC_LINUX"
-	GuestOsEnumMANDRAKE           GuestOsEnum = "MANDRAKE"
-	GuestOsEnumMANDRIVA           GuestOsEnum = "MANDRIVA"
-	GuestOsEnumMANDRIVA64         GuestOsEnum = "MANDRIVA_64"
-	GuestOsEnumNETWARE4           GuestOsEnum = "NETWARE_4"
-	GuestOsEnumNETWARE5           GuestOsEnum = "NETWARE_5"
-	GuestOsEnumNETWARE6           GuestOsEnum = "NETWARE_6"
-	GuestOsEnumNLD9               GuestOsEnum = "NLD_9"
-	GuestOsEnumOES                GuestOsEnum = "OES"
-	GuestOsEnumOPENSERVER5        GuestOsEnum = "OPENSERVER_5"
-	GuestOsEnumOPENSERVER6        GuestOsEnum = "OPENSERVER_6"
-	GuestOsEnumOPENSUSE           GuestOsEnum = "OPENSUSE"
-	GuestOsEnumOPENSUSE64         GuestOsEnum = "OPENSUSE_64"
-	GuestOsEnumORACLELINUX        GuestOsEnum = "ORACLE_LINUX"
-	GuestOsEnumORACLELINUX6       GuestOsEnum = "ORACLE_LINUX_6"
-	GuestOsEnumORACLELINUX64      GuestOsEnum = "ORACLE_LINUX_64"
-	GuestOsEnumORACLELINUX664     GuestOsEnum = "ORACLE_LINUX_6_64"
-	GuestOsEnumORACLELINUX7       GuestOsEnum = "ORACLE_LINUX_7"
-	GuestOsEnumORACLELINUX764     GuestOsEnum = "ORACLE_LINUX_7_64"
-	GuestOsEnumOS2                GuestOsEnum = "OS2"
-	GuestOsEnumOTHER              GuestOsEnum = "OTHER"
-	GuestOsEnumOTHER24XLINUX      GuestOsEnum = "OTHER_24X_LINUX"
-	GuestOsEnumOTHER24XLINUX64    GuestOsEnum = "OTHER_24X_LINUX_64"
-	GuestOsEnumOTHER26XLINUX      GuestOsEnum = "OTHER_26X_LINUX"
-	GuestOsEnumOTHER26XLINUX64    GuestOsEnum = "OTHER_26X_LINUX_64"
-	GuestOsEnumOTHER3XLINUX       GuestOsEnum = "OTHER_3X_LINUX"
-	GuestOsEnumOTHER3XLINUX64     GuestOsEnum = "OTHER_3X_LINUX_64"
-	GuestOsEnumOTHER64            GuestOsEnum = "OTHER_64"
-	GuestOsEnumOTHERLINUX         GuestOsEnum = "OTHER_LINUX"
-	GuestOsEnumOTHERLINUX64       GuestOsEnum = "OTHER_LINUX_64"
-	GuestOsEnumREDHAT             GuestOsEnum = "REDHAT"
-	GuestOsEnumRHEL2              GuestOsEnum = "RHEL_2"
-	GuestOsEnumRHEL3              GuestOsEnum = "RHEL_3"
-	GuestOsEnumRHEL364            GuestOsEnum = "RHEL_3_64"
-	GuestOsEnumRHEL4              GuestOsEnum = "RHEL_4"
-	GuestOsEnumRHEL464            GuestOsEnum = "RHEL_4_64"
-	GuestOsEnumRHEL5              GuestOsEnum = "RHEL_5"
-	GuestOsEnumRHEL564            GuestOsEnum = "RHEL_5_64"
-	GuestOsEnumRHEL6              GuestOsEnum = "RHEL_6"
-	GuestOsEnumRHEL664            GuestOsEnum = "RHEL_6_64"
-	GuestOsEnumRHEL7              GuestOsEnum = "RHEL_7"
-	GuestOsEnumRHEL764            GuestOsEnum = "RHEL_7_64"
-	GuestOsEnumSJDS               GuestOsEnum = "SJDS"
-	GuestOsEnumSLES               GuestOsEnum = "SLES"
-	GuestOsEnumSLES10             GuestOsEnum = "SLES_10"
-	GuestOsEnumSLES1064           GuestOsEnum = "SLES_10_64"
-	GuestOsEnumSLES11             GuestOsEnum = "SLES_11"
-	GuestOsEnumSLES1164           GuestOsEnum = "SLES_11_64"
-	GuestOsEnumSLES12             GuestOsEnum = "SLES_12"
-	GuestOsEnumSLES1264           GuestOsEnum = "SLES_12_64"
-	GuestOsEnumSLES64             GuestOsEnum = "SLES_64"
-	GuestOsEnumSOLARIS10          GuestOsEnum = "SOLARIS_10"
-	GuestOsEnumSOLARIS1064        GuestOsEnum = "SOLARIS_10_64"
-	GuestOsEnumSOLARIS1164        GuestOsEnum = "SOLARIS_11_64"
-	GuestOsEnumSOLARIS6           GuestOsEnum = "SOLARIS_6"
-	GuestOsEnumSOLARIS7           GuestOsEnum = "SOLARIS_7"
-	GuestOsEnumSOLARIS8           GuestOsEnum = "SOLARIS_8"
-	GuestOsEnumSOLARIS9           GuestOsEnum = "SOLARIS_9"
-	GuestOsEnumSUSE               GuestOsEnum = "SUSE"
-	GuestOsEnumSUSE64             GuestOsEnum = "SUSE_64"
-	GuestOsEnumTURBOLINUX         GuestOsEnum = "TURBO_LINUX"
-	GuestOsEnumTURBOLINUX64       GuestOsEnum = "TURBO_LINUX_64"
-	GuestOsEnumUBUNTU             GuestOsEnum = "UBUNTU"
-	GuestOsEnumUBUNTU64           GuestOsEnum = "UBUNTU_64"
-	GuestOsEnumUNIXWARE7          GuestOsEnum = "UNIXWARE_7"
-	GuestOsEnumVMKERNEL           GuestOsEnum = "VMKERNEL"
-	GuestOsEnumVMKERNEL5          GuestOsEnum = "VMKERNEL_5"
-	GuestOsEnumVMKERNEL6          GuestOsEnum = "VMKERNEL_6"
-	GuestOsEnumVMKERNEL65         GuestOsEnum = "VMKERNEL_65"
-	GuestOsEnumVMWAREPHOTON64     GuestOsEnum = "VMWARE_PHOTON_64"
-	GuestOsEnumWIN2000ADVSERV     GuestOsEnum = "WIN_2000_ADV_SERV"
-	GuestOsEnumWIN2000PRO         GuestOsEnum = "WIN_2000_PRO"
-	GuestOsEnumWIN2000SERV        GuestOsEnum = "WIN_2000_SERV"
-	GuestOsEnumWIN31              GuestOsEnum = "WIN_31"
-	GuestOsEnumWIN95              GuestOsEnum = "WIN_95"
-	GuestOsEnumWIN98              GuestOsEnum = "WIN_98"
-	GuestOsEnumWINDOWS7           GuestOsEnum = "WINDOWS_7"
-	GuestOsEnumWINDOWS764         GuestOsEnum = "WINDOWS_7_64"
-	GuestOsEnumWINDOWS7SERVER64   GuestOsEnum = "WINDOWS_7_SERVER_64"
-	GuestOsEnumWINDOWS8           GuestOsEnum = "WINDOWS_8"
-	GuestOsEnumWINDOWS864         GuestOsEnum = "WINDOWS_8_64"
-	GuestOsEnumWINDOWS8SERVER64   GuestOsEnum = "WINDOWS_8_SERVER_64"
-	GuestOsEnumWINDOWS9           GuestOsEnum = "WINDOWS_9"
-	GuestOsEnumWINDOWS964         GuestOsEnum = "WINDOWS_9_64"
-	GuestOsEnumWINDOWS9SERVER64   GuestOsEnum = "WINDOWS_9_SERVER_64"
-	GuestOsEnumWINDOWSHYPERV      GuestOsEnum = "WINDOWS_HYPERV"
-	GuestOsEnumWINLONGHORN        GuestOsEnum = "WIN_LONGHORN"
-	GuestOsEnumWINLONGHORN64      GuestOsEnum = "WIN_LONGHORN_64"
-	GuestOsEnumWINME              GuestOsEnum = "WIN_ME"
-	GuestOsEnumWINNETBUSINESS     GuestOsEnum = "WIN_NET_BUSINESS"
-	GuestOsEnumWINNETDATACENTER   GuestOsEnum = "WIN_NET_DATACENTER"
-	GuestOsEnumWINNETDATACENTER64 GuestOsEnum = "WIN_NET_DATACENTER_64"
-	GuestOsEnumWINNETENTERPRISE   GuestOsEnum = "WIN_NET_ENTERPRISE"
-	GuestOsEnumWINNETENTERPRISE64 GuestOsEnum = "WIN_NET_ENTERPRISE_64"
-	GuestOsEnumWINNETSTANDARD     GuestOsEnum = "WIN_NET_STANDARD"
-	GuestOsEnumWINNETSTANDARD64   GuestOsEnum = "WIN_NET_STANDARD_64"
-	GuestOsEnumWINNETWEB          GuestOsEnum = "WIN_NET_WEB"
-	GuestOsEnumWINNT              GuestOsEnum = "WIN_NT"
-	GuestOsEnumWINVISTA           GuestOsEnum = "WIN_VISTA"
-	GuestOsEnumWINVISTA64         GuestOsEnum = "WIN_VISTA_64"
-	GuestOsEnumWINXPHOME          GuestOsEnum = "WIN_XP_HOME"
-	GuestOsEnumWINXPPRO           GuestOsEnum = "WIN_XP_PRO"
-	GuestOsEnumWINXPPRO64         GuestOsEnum = "WIN_XP_PRO_64"
+	ASIANUX3           GuestOsEnum = "ASIANUX_3"
+	ASIANUX364         GuestOsEnum = "ASIANUX_3_64"
+	ASIANUX4           GuestOsEnum = "ASIANUX_4"
+	ASIANUX464         GuestOsEnum = "ASIANUX_4_64"
+	ASIANUX564         GuestOsEnum = "ASIANUX_5_64"
+	ASIANUX764         GuestOsEnum = "ASIANUX_7_64"
+	CENTOS             GuestOsEnum = "CENTOS"
+	CENTOS6            GuestOsEnum = "CENTOS_6"
+	CENTOS64           GuestOsEnum = "CENTOS_64"
+	CENTOS664          GuestOsEnum = "CENTOS_6_64"
+	CENTOS7            GuestOsEnum = "CENTOS_7"
+	CENTOS764          GuestOsEnum = "CENTOS_7_64"
+	COREOS64           GuestOsEnum = "COREOS_64"
+	DARWIN             GuestOsEnum = "DARWIN"
+	DARWIN10           GuestOsEnum = "DARWIN_10"
+	DARWIN1064         GuestOsEnum = "DARWIN_10_64"
+	DARWIN11           GuestOsEnum = "DARWIN_11"
+	DARWIN1164         GuestOsEnum = "DARWIN_11_64"
+	DARWIN1264         GuestOsEnum = "DARWIN_12_64"
+	DARWIN1364         GuestOsEnum = "DARWIN_13_64"
+	DARWIN1464         GuestOsEnum = "DARWIN_14_64"
+	DARWIN1564         GuestOsEnum = "DARWIN_15_64"
+	DARWIN1664         GuestOsEnum = "DARWIN_16_64"
+	DARWIN64           GuestOsEnum = "DARWIN_64"
+	DEBIAN10           GuestOsEnum = "DEBIAN_10"
+	DEBIAN1064         GuestOsEnum = "DEBIAN_10_64"
+	DEBIAN4            GuestOsEnum = "DEBIAN_4"
+	DEBIAN464          GuestOsEnum = "DEBIAN_4_64"
+	DEBIAN5            GuestOsEnum = "DEBIAN_5"
+	DEBIAN564          GuestOsEnum = "DEBIAN_5_64"
+	DEBIAN6            GuestOsEnum = "DEBIAN_6"
+	DEBIAN664          GuestOsEnum = "DEBIAN_6_64"
+	DEBIAN7            GuestOsEnum = "DEBIAN_7"
+	DEBIAN764          GuestOsEnum = "DEBIAN_7_64"
+	DEBIAN8            GuestOsEnum = "DEBIAN_8"
+	DEBIAN864          GuestOsEnum = "DEBIAN_8_64"
+	DEBIAN9            GuestOsEnum = "DEBIAN_9"
+	DEBIAN964          GuestOsEnum = "DEBIAN_9_64"
+	DOS                GuestOsEnum = "DOS"
+	ECOMSTATION        GuestOsEnum = "ECOMSTATION"
+	ECOMSTATION2       GuestOsEnum = "ECOMSTATION_2"
+	FEDORA             GuestOsEnum = "FEDORA"
+	FEDORA64           GuestOsEnum = "FEDORA_64"
+	FREEBSD            GuestOsEnum = "FREEBSD"
+	FREEBSD64          GuestOsEnum = "FREEBSD_64"
+	GENERICLINUX       GuestOsEnum = "GENERIC_LINUX"
+	MANDRAKE           GuestOsEnum = "MANDRAKE"
+	MANDRIVA           GuestOsEnum = "MANDRIVA"
+	MANDRIVA64         GuestOsEnum = "MANDRIVA_64"
+	NETWARE4           GuestOsEnum = "NETWARE_4"
+	NETWARE5           GuestOsEnum = "NETWARE_5"
+	NETWARE6           GuestOsEnum = "NETWARE_6"
+	NLD9               GuestOsEnum = "NLD_9"
+	OES                GuestOsEnum = "OES"
+	OPENSERVER5        GuestOsEnum = "OPENSERVER_5"
+	OPENSERVER6        GuestOsEnum = "OPENSERVER_6"
+	OPENSUSE           GuestOsEnum = "OPENSUSE"
+	OPENSUSE64         GuestOsEnum = "OPENSUSE_64"
+	ORACLELINUX        GuestOsEnum = "ORACLE_LINUX"
+	ORACLELINUX6       GuestOsEnum = "ORACLE_LINUX_6"
+	ORACLELINUX64      GuestOsEnum = "ORACLE_LINUX_64"
+	ORACLELINUX664     GuestOsEnum = "ORACLE_LINUX_6_64"
+	ORACLELINUX7       GuestOsEnum = "ORACLE_LINUX_7"
+	ORACLELINUX764     GuestOsEnum = "ORACLE_LINUX_7_64"
+	OS2                GuestOsEnum = "OS2"
+	OTHER              GuestOsEnum = "OTHER"
+	OTHER24XLINUX      GuestOsEnum = "OTHER_24X_LINUX"
+	OTHER24XLINUX64    GuestOsEnum = "OTHER_24X_LINUX_64"
+	OTHER26XLINUX      GuestOsEnum = "OTHER_26X_LINUX"
+	OTHER26XLINUX64    GuestOsEnum = "OTHER_26X_LINUX_64"
+	OTHER3XLINUX       GuestOsEnum = "OTHER_3X_LINUX"
+	OTHER3XLINUX64     GuestOsEnum = "OTHER_3X_LINUX_64"
+	OTHER64            GuestOsEnum = "OTHER_64"
+	OTHERLINUX         GuestOsEnum = "OTHER_LINUX"
+	OTHERLINUX64       GuestOsEnum = "OTHER_LINUX_64"
+	REDHAT             GuestOsEnum = "REDHAT"
+	RHEL2              GuestOsEnum = "RHEL_2"
+	RHEL3              GuestOsEnum = "RHEL_3"
+	RHEL364            GuestOsEnum = "RHEL_3_64"
+	RHEL4              GuestOsEnum = "RHEL_4"
+	RHEL464            GuestOsEnum = "RHEL_4_64"
+	RHEL5              GuestOsEnum = "RHEL_5"
+	RHEL564            GuestOsEnum = "RHEL_5_64"
+	RHEL6              GuestOsEnum = "RHEL_6"
+	RHEL664            GuestOsEnum = "RHEL_6_64"
+	RHEL7              GuestOsEnum = "RHEL_7"
+	RHEL764            GuestOsEnum = "RHEL_7_64"
+	SJDS               GuestOsEnum = "SJDS"
+	SLES               GuestOsEnum = "SLES"
+	SLES10             GuestOsEnum = "SLES_10"
+	SLES1064           GuestOsEnum = "SLES_10_64"
+	SLES11             GuestOsEnum = "SLES_11"
+	SLES1164           GuestOsEnum = "SLES_11_64"
+	SLES12             GuestOsEnum = "SLES_12"
+	SLES1264           GuestOsEnum = "SLES_12_64"
+	SLES64             GuestOsEnum = "SLES_64"
+	SOLARIS10          GuestOsEnum = "SOLARIS_10"
+	SOLARIS1064        GuestOsEnum = "SOLARIS_10_64"
+	SOLARIS1164        GuestOsEnum = "SOLARIS_11_64"
+	SOLARIS6           GuestOsEnum = "SOLARIS_6"
+	SOLARIS7           GuestOsEnum = "SOLARIS_7"
+	SOLARIS8           GuestOsEnum = "SOLARIS_8"
+	SOLARIS9           GuestOsEnum = "SOLARIS_9"
+	SUSE               GuestOsEnum = "SUSE"
+	SUSE64             GuestOsEnum = "SUSE_64"
+	TURBOLINUX         GuestOsEnum = "TURBO_LINUX"
+	TURBOLINUX64       GuestOsEnum = "TURBO_LINUX_64"
+	UBUNTU             GuestOsEnum = "UBUNTU"
+	UBUNTU64           GuestOsEnum = "UBUNTU_64"
+	UNIXWARE7          GuestOsEnum = "UNIXWARE_7"
+	VMKERNEL           GuestOsEnum = "VMKERNEL"
+	VMKERNEL5          GuestOsEnum = "VMKERNEL_5"
+	VMKERNEL6          GuestOsEnum = "VMKERNEL_6"
+	VMKERNEL65         GuestOsEnum = "VMKERNEL_65"
+	VMWAREPHOTON64     GuestOsEnum = "VMWARE_PHOTON_64"
+	WIN2000ADVSERV     GuestOsEnum = "WIN_2000_ADV_SERV"
+	WIN2000PRO         GuestOsEnum = "WIN_2000_PRO"
+	WIN2000SERV        GuestOsEnum = "WIN_2000_SERV"
+	WIN31              GuestOsEnum = "WIN_31"
+	WIN95              GuestOsEnum = "WIN_95"
+	WIN98              GuestOsEnum = "WIN_98"
+	WINDOWS7           GuestOsEnum = "WINDOWS_7"
+	WINDOWS764         GuestOsEnum = "WINDOWS_7_64"
+	WINDOWS7SERVER64   GuestOsEnum = "WINDOWS_7_SERVER_64"
+	WINDOWS8           GuestOsEnum = "WINDOWS_8"
+	WINDOWS864         GuestOsEnum = "WINDOWS_8_64"
+	WINDOWS8SERVER64   GuestOsEnum = "WINDOWS_8_SERVER_64"
+	WINDOWS9           GuestOsEnum = "WINDOWS_9"
+	WINDOWS964         GuestOsEnum = "WINDOWS_9_64"
+	WINDOWS9SERVER64   GuestOsEnum = "WINDOWS_9_SERVER_64"
+	WINDOWSHYPERV      GuestOsEnum = "WINDOWS_HYPERV"
+	WINLONGHORN        GuestOsEnum = "WIN_LONGHORN"
+	WINLONGHORN64      GuestOsEnum = "WIN_LONGHORN_64"
+	WINME              GuestOsEnum = "WIN_ME"
+	WINNETBUSINESS     GuestOsEnum = "WIN_NET_BUSINESS"
+	WINNETDATACENTER   GuestOsEnum = "WIN_NET_DATACENTER"
+	WINNETDATACENTER64 GuestOsEnum = "WIN_NET_DATACENTER_64"
+	WINNETENTERPRISE   GuestOsEnum = "WIN_NET_ENTERPRISE"
+	WINNETENTERPRISE64 GuestOsEnum = "WIN_NET_ENTERPRISE_64"
+	WINNETSTANDARD     GuestOsEnum = "WIN_NET_STANDARD"
+	WINNETSTANDARD64   GuestOsEnum = "WIN_NET_STANDARD_64"
+	WINNETWEB          GuestOsEnum = "WIN_NET_WEB"
+	WINNT              GuestOsEnum = "WIN_NT"
+	WINVISTA           GuestOsEnum = "WIN_VISTA"
+	WINVISTA64         GuestOsEnum = "WIN_VISTA_64"
+	WINXPHOME          GuestOsEnum = "WIN_XP_HOME"
+	WINXPPRO           GuestOsEnum = "WIN_XP_PRO"
+	WINXPPRO64         GuestOsEnum = "WIN_XP_PRO_64"
 )
 
 // Defines values for GuestPowerStateEnum.
@@ -2349,159 +2349,6 @@ const (
 	UsernameGenerationPolicyEnumIdentityClaim   UsernameGenerationPolicyEnum = "identity_claim"
 	UsernameGenerationPolicyEnumServiceProvider UsernameGenerationPolicyEnum = "service_provider"
 	UsernameGenerationPolicyEnumWaldurUsername  UsernameGenerationPolicyEnum = "waldur_username"
-)
-
-// Defines values for VMwareVirtualMachineCreateOrderAttributesGuestOs.
-const (
-	VMwareVirtualMachineCreateOrderAttributesGuestOsASIANUX3           VMwareVirtualMachineCreateOrderAttributesGuestOs = "ASIANUX_3"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsASIANUX364         VMwareVirtualMachineCreateOrderAttributesGuestOs = "ASIANUX_3_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsASIANUX4           VMwareVirtualMachineCreateOrderAttributesGuestOs = "ASIANUX_4"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsASIANUX464         VMwareVirtualMachineCreateOrderAttributesGuestOs = "ASIANUX_4_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsASIANUX564         VMwareVirtualMachineCreateOrderAttributesGuestOs = "ASIANUX_5_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsASIANUX764         VMwareVirtualMachineCreateOrderAttributesGuestOs = "ASIANUX_7_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsCENTOS             VMwareVirtualMachineCreateOrderAttributesGuestOs = "CENTOS"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsCENTOS6            VMwareVirtualMachineCreateOrderAttributesGuestOs = "CENTOS_6"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsCENTOS64           VMwareVirtualMachineCreateOrderAttributesGuestOs = "CENTOS_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsCENTOS664          VMwareVirtualMachineCreateOrderAttributesGuestOs = "CENTOS_6_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsCENTOS7            VMwareVirtualMachineCreateOrderAttributesGuestOs = "CENTOS_7"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsCENTOS764          VMwareVirtualMachineCreateOrderAttributesGuestOs = "CENTOS_7_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsCOREOS64           VMwareVirtualMachineCreateOrderAttributesGuestOs = "COREOS_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN             VMwareVirtualMachineCreateOrderAttributesGuestOs = "DARWIN"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN10           VMwareVirtualMachineCreateOrderAttributesGuestOs = "DARWIN_10"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN1064         VMwareVirtualMachineCreateOrderAttributesGuestOs = "DARWIN_10_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN11           VMwareVirtualMachineCreateOrderAttributesGuestOs = "DARWIN_11"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN1164         VMwareVirtualMachineCreateOrderAttributesGuestOs = "DARWIN_11_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN1264         VMwareVirtualMachineCreateOrderAttributesGuestOs = "DARWIN_12_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN1364         VMwareVirtualMachineCreateOrderAttributesGuestOs = "DARWIN_13_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN1464         VMwareVirtualMachineCreateOrderAttributesGuestOs = "DARWIN_14_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN1564         VMwareVirtualMachineCreateOrderAttributesGuestOs = "DARWIN_15_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN1664         VMwareVirtualMachineCreateOrderAttributesGuestOs = "DARWIN_16_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN64           VMwareVirtualMachineCreateOrderAttributesGuestOs = "DARWIN_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN10           VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_10"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN1064         VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_10_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN4            VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_4"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN464          VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_4_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN5            VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_5"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN564          VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_5_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN6            VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_6"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN664          VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_6_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN7            VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_7"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN764          VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_7_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN8            VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_8"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN864          VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_8_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN9            VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_9"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN964          VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_9_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsDOS                VMwareVirtualMachineCreateOrderAttributesGuestOs = "DOS"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsECOMSTATION        VMwareVirtualMachineCreateOrderAttributesGuestOs = "ECOMSTATION"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsECOMSTATION2       VMwareVirtualMachineCreateOrderAttributesGuestOs = "ECOMSTATION_2"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsFEDORA             VMwareVirtualMachineCreateOrderAttributesGuestOs = "FEDORA"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsFEDORA64           VMwareVirtualMachineCreateOrderAttributesGuestOs = "FEDORA_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsFREEBSD            VMwareVirtualMachineCreateOrderAttributesGuestOs = "FREEBSD"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsFREEBSD64          VMwareVirtualMachineCreateOrderAttributesGuestOs = "FREEBSD_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsGENERICLINUX       VMwareVirtualMachineCreateOrderAttributesGuestOs = "GENERIC_LINUX"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsLessThannil        VMwareVirtualMachineCreateOrderAttributesGuestOs = "<nil>"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsMANDRAKE           VMwareVirtualMachineCreateOrderAttributesGuestOs = "MANDRAKE"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsMANDRIVA           VMwareVirtualMachineCreateOrderAttributesGuestOs = "MANDRIVA"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsMANDRIVA64         VMwareVirtualMachineCreateOrderAttributesGuestOs = "MANDRIVA_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsNETWARE4           VMwareVirtualMachineCreateOrderAttributesGuestOs = "NETWARE_4"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsNETWARE5           VMwareVirtualMachineCreateOrderAttributesGuestOs = "NETWARE_5"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsNETWARE6           VMwareVirtualMachineCreateOrderAttributesGuestOs = "NETWARE_6"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsNLD9               VMwareVirtualMachineCreateOrderAttributesGuestOs = "NLD_9"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsOES                VMwareVirtualMachineCreateOrderAttributesGuestOs = "OES"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsOPENSERVER5        VMwareVirtualMachineCreateOrderAttributesGuestOs = "OPENSERVER_5"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsOPENSERVER6        VMwareVirtualMachineCreateOrderAttributesGuestOs = "OPENSERVER_6"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsOPENSUSE           VMwareVirtualMachineCreateOrderAttributesGuestOs = "OPENSUSE"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsOPENSUSE64         VMwareVirtualMachineCreateOrderAttributesGuestOs = "OPENSUSE_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsORACLELINUX        VMwareVirtualMachineCreateOrderAttributesGuestOs = "ORACLE_LINUX"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsORACLELINUX6       VMwareVirtualMachineCreateOrderAttributesGuestOs = "ORACLE_LINUX_6"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsORACLELINUX64      VMwareVirtualMachineCreateOrderAttributesGuestOs = "ORACLE_LINUX_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsORACLELINUX664     VMwareVirtualMachineCreateOrderAttributesGuestOs = "ORACLE_LINUX_6_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsORACLELINUX7       VMwareVirtualMachineCreateOrderAttributesGuestOs = "ORACLE_LINUX_7"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsORACLELINUX764     VMwareVirtualMachineCreateOrderAttributesGuestOs = "ORACLE_LINUX_7_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsOS2                VMwareVirtualMachineCreateOrderAttributesGuestOs = "OS2"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsOTHER              VMwareVirtualMachineCreateOrderAttributesGuestOs = "OTHER"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsOTHER24XLINUX      VMwareVirtualMachineCreateOrderAttributesGuestOs = "OTHER_24X_LINUX"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsOTHER24XLINUX64    VMwareVirtualMachineCreateOrderAttributesGuestOs = "OTHER_24X_LINUX_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsOTHER26XLINUX      VMwareVirtualMachineCreateOrderAttributesGuestOs = "OTHER_26X_LINUX"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsOTHER26XLINUX64    VMwareVirtualMachineCreateOrderAttributesGuestOs = "OTHER_26X_LINUX_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsOTHER3XLINUX       VMwareVirtualMachineCreateOrderAttributesGuestOs = "OTHER_3X_LINUX"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsOTHER3XLINUX64     VMwareVirtualMachineCreateOrderAttributesGuestOs = "OTHER_3X_LINUX_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsOTHER64            VMwareVirtualMachineCreateOrderAttributesGuestOs = "OTHER_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsOTHERLINUX         VMwareVirtualMachineCreateOrderAttributesGuestOs = "OTHER_LINUX"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsOTHERLINUX64       VMwareVirtualMachineCreateOrderAttributesGuestOs = "OTHER_LINUX_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsREDHAT             VMwareVirtualMachineCreateOrderAttributesGuestOs = "REDHAT"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL2              VMwareVirtualMachineCreateOrderAttributesGuestOs = "RHEL_2"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL3              VMwareVirtualMachineCreateOrderAttributesGuestOs = "RHEL_3"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL364            VMwareVirtualMachineCreateOrderAttributesGuestOs = "RHEL_3_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL4              VMwareVirtualMachineCreateOrderAttributesGuestOs = "RHEL_4"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL464            VMwareVirtualMachineCreateOrderAttributesGuestOs = "RHEL_4_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL5              VMwareVirtualMachineCreateOrderAttributesGuestOs = "RHEL_5"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL564            VMwareVirtualMachineCreateOrderAttributesGuestOs = "RHEL_5_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL6              VMwareVirtualMachineCreateOrderAttributesGuestOs = "RHEL_6"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL664            VMwareVirtualMachineCreateOrderAttributesGuestOs = "RHEL_6_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL7              VMwareVirtualMachineCreateOrderAttributesGuestOs = "RHEL_7"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL764            VMwareVirtualMachineCreateOrderAttributesGuestOs = "RHEL_7_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsSJDS               VMwareVirtualMachineCreateOrderAttributesGuestOs = "SJDS"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsSLES               VMwareVirtualMachineCreateOrderAttributesGuestOs = "SLES"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsSLES10             VMwareVirtualMachineCreateOrderAttributesGuestOs = "SLES_10"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsSLES1064           VMwareVirtualMachineCreateOrderAttributesGuestOs = "SLES_10_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsSLES11             VMwareVirtualMachineCreateOrderAttributesGuestOs = "SLES_11"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsSLES1164           VMwareVirtualMachineCreateOrderAttributesGuestOs = "SLES_11_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsSLES12             VMwareVirtualMachineCreateOrderAttributesGuestOs = "SLES_12"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsSLES1264           VMwareVirtualMachineCreateOrderAttributesGuestOs = "SLES_12_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsSLES64             VMwareVirtualMachineCreateOrderAttributesGuestOs = "SLES_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsSOLARIS10          VMwareVirtualMachineCreateOrderAttributesGuestOs = "SOLARIS_10"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsSOLARIS1064        VMwareVirtualMachineCreateOrderAttributesGuestOs = "SOLARIS_10_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsSOLARIS1164        VMwareVirtualMachineCreateOrderAttributesGuestOs = "SOLARIS_11_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsSOLARIS6           VMwareVirtualMachineCreateOrderAttributesGuestOs = "SOLARIS_6"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsSOLARIS7           VMwareVirtualMachineCreateOrderAttributesGuestOs = "SOLARIS_7"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsSOLARIS8           VMwareVirtualMachineCreateOrderAttributesGuestOs = "SOLARIS_8"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsSOLARIS9           VMwareVirtualMachineCreateOrderAttributesGuestOs = "SOLARIS_9"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsSUSE               VMwareVirtualMachineCreateOrderAttributesGuestOs = "SUSE"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsSUSE64             VMwareVirtualMachineCreateOrderAttributesGuestOs = "SUSE_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsTURBOLINUX         VMwareVirtualMachineCreateOrderAttributesGuestOs = "TURBO_LINUX"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsTURBOLINUX64       VMwareVirtualMachineCreateOrderAttributesGuestOs = "TURBO_LINUX_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsUBUNTU             VMwareVirtualMachineCreateOrderAttributesGuestOs = "UBUNTU"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsUBUNTU64           VMwareVirtualMachineCreateOrderAttributesGuestOs = "UBUNTU_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsUNIXWARE7          VMwareVirtualMachineCreateOrderAttributesGuestOs = "UNIXWARE_7"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsVMKERNEL           VMwareVirtualMachineCreateOrderAttributesGuestOs = "VMKERNEL"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsVMKERNEL5          VMwareVirtualMachineCreateOrderAttributesGuestOs = "VMKERNEL_5"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsVMKERNEL6          VMwareVirtualMachineCreateOrderAttributesGuestOs = "VMKERNEL_6"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsVMKERNEL65         VMwareVirtualMachineCreateOrderAttributesGuestOs = "VMKERNEL_65"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsVMWAREPHOTON64     VMwareVirtualMachineCreateOrderAttributesGuestOs = "VMWARE_PHOTON_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWIN2000ADVSERV     VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_2000_ADV_SERV"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWIN2000PRO         VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_2000_PRO"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWIN2000SERV        VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_2000_SERV"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWIN31              VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_31"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWIN95              VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_95"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWIN98              VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_98"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS7           VMwareVirtualMachineCreateOrderAttributesGuestOs = "WINDOWS_7"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS764         VMwareVirtualMachineCreateOrderAttributesGuestOs = "WINDOWS_7_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS7SERVER64   VMwareVirtualMachineCreateOrderAttributesGuestOs = "WINDOWS_7_SERVER_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS8           VMwareVirtualMachineCreateOrderAttributesGuestOs = "WINDOWS_8"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS864         VMwareVirtualMachineCreateOrderAttributesGuestOs = "WINDOWS_8_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS8SERVER64   VMwareVirtualMachineCreateOrderAttributesGuestOs = "WINDOWS_8_SERVER_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS9           VMwareVirtualMachineCreateOrderAttributesGuestOs = "WINDOWS_9"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS964         VMwareVirtualMachineCreateOrderAttributesGuestOs = "WINDOWS_9_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS9SERVER64   VMwareVirtualMachineCreateOrderAttributesGuestOs = "WINDOWS_9_SERVER_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWSHYPERV      VMwareVirtualMachineCreateOrderAttributesGuestOs = "WINDOWS_HYPERV"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINLONGHORN        VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_LONGHORN"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINLONGHORN64      VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_LONGHORN_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINME              VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_ME"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINNETBUSINESS     VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_NET_BUSINESS"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINNETDATACENTER   VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_NET_DATACENTER"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINNETDATACENTER64 VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_NET_DATACENTER_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINNETENTERPRISE   VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_NET_ENTERPRISE"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINNETENTERPRISE64 VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_NET_ENTERPRISE_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINNETSTANDARD     VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_NET_STANDARD"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINNETSTANDARD64   VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_NET_STANDARD_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINNETWEB          VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_NET_WEB"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINNT              VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_NT"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINVISTA           VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_VISTA"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINVISTA64         VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_VISTA_64"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINXPHOME          VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_XP_HOME"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINXPPRO           VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_XP_PRO"
-	VMwareVirtualMachineCreateOrderAttributesGuestOsWINXPPRO64         VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_XP_PRO_64"
 )
 
 // Defines values for ValidationDecisionEnum.
@@ -15837,13 +15684,6 @@ type AzureResourceGroup struct {
 	Uuid                             *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
-// AzureSQLServerCreateOrderAttributes defines model for AzureSQLServerCreateOrderAttributes.
-type AzureSQLServerCreateOrderAttributes struct {
-	Description *string `json:"description,omitempty"`
-	Location    *string `json:"location,omitempty"`
-	Name        string  `json:"name"`
-}
-
 // AzureSize defines model for AzureSize.
 type AzureSize struct {
 	MaxDataDiskCount     int                 `json:"max_data_disk_count"`
@@ -16054,15 +15894,6 @@ type AzureVirtualMachine struct {
 	UserData *string             `json:"user_data,omitempty"`
 	Username *string             `json:"username,omitempty"`
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
-}
-
-// AzureVirtualMachineCreateOrderAttributes defines model for AzureVirtualMachineCreateOrderAttributes.
-type AzureVirtualMachineCreateOrderAttributes struct {
-	Description *string `json:"description,omitempty"`
-	Image       string  `json:"image"`
-	Location    *string `json:"location,omitempty"`
-	Name        string  `json:"name"`
-	Size        string  `json:"size"`
 }
 
 // AzureVirtualMachineRequest defines model for AzureVirtualMachineRequest.
@@ -23089,18 +22920,6 @@ type MarketplaceCustomerStats struct {
 	Uuid *string `json:"uuid,omitempty"`
 }
 
-// MarketplaceOpenPortalCreateOrderAttributes defines model for MarketplaceOpenPortalCreateOrderAttributes.
-type MarketplaceOpenPortalCreateOrderAttributes struct {
-	Description *string `json:"description,omitempty"`
-	Name        string  `json:"name"`
-}
-
-// MarketplaceOpenPortalRemoteCreateOrderAttributes defines model for MarketplaceOpenPortalRemoteCreateOrderAttributes.
-type MarketplaceOpenPortalRemoteCreateOrderAttributes struct {
-	Description *string `json:"description,omitempty"`
-	Name        string  `json:"name"`
-}
-
 // MarketplaceProviderCustomer defines model for MarketplaceProviderCustomer.
 type MarketplaceProviderCustomer struct {
 	Abbreviation         *string              `json:"abbreviation,omitempty"`
@@ -26191,15 +26010,6 @@ type OpenStackCreateFloatingIPRequest_IpAddress struct {
 	union json.RawMessage
 }
 
-// OpenStackCreateInstancePortRequest defines model for OpenStackCreateInstancePortRequest.
-type OpenStackCreateInstancePortRequest struct {
-	FixedIps *[]OpenStackFixedIpRequest `json:"fixed_ips,omitempty"`
-	Port     *string                    `json:"port,omitempty"`
-
-	// Subnet Subnet to which this port belongs
-	Subnet *string `json:"subnet"`
-}
-
 // OpenStackCreatePortRequest defines model for OpenStackCreatePortRequest.
 type OpenStackCreatePortRequest struct {
 	FixedIps *[]OpenStackFixedIpRequest `json:"fixed_ips,omitempty"`
@@ -26231,12 +26041,6 @@ type OpenStackCredentialsRequest struct {
 	UserDomainName *string `json:"user_domain_name,omitempty"`
 	Username       string  `json:"username"`
 	VerifySsl      *bool   `json:"verify_ssl,omitempty"`
-}
-
-// OpenStackDataVolumeRequest defines model for OpenStackDataVolumeRequest.
-type OpenStackDataVolumeRequest struct {
-	Size       int     `json:"size"`
-	VolumeType *string `json:"volume_type"`
 }
 
 // OpenStackFixedIp defines model for OpenStackFixedIp.
@@ -26536,54 +26340,6 @@ type OpenStackInstanceAvailabilityZone struct {
 	Settings  *string             `json:"settings"`
 	Url       *string             `json:"url,omitempty"`
 	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
-}
-
-// OpenStackInstanceCreateOrderAttributes defines model for OpenStackInstanceCreateOrderAttributes.
-type OpenStackInstanceCreateOrderAttributes struct {
-	// AvailabilityZone Availability zone where this instance is located
-	AvailabilityZone *string `json:"availability_zone"`
-
-	// ConnectDirectlyToExternalNetwork If True, instance will be connected directly to external network
-	ConnectDirectlyToExternalNetwork *bool `json:"connect_directly_to_external_network,omitempty"`
-
-	// DataVolumeSize Size of the data volume in MiB. Minimum size is 1024 MiB (1 GiB)
-	DataVolumeSize *int `json:"data_volume_size,omitempty"`
-
-	// DataVolumeType Volume type for the data volume
-	DataVolumeType *string `json:"data_volume_type"`
-
-	// DataVolumes Additional data volumes to attach to the instance
-	DataVolumes *[]OpenStackDataVolumeRequest `json:"data_volumes,omitempty"`
-	Description *string                       `json:"description,omitempty"`
-
-	// Flavor The flavor to use for the instance
-	Flavor *string `json:"flavor,omitempty"`
-
-	// FloatingIps Floating IPs to assign to the instance
-	FloatingIps *[]OpenStackCreateFloatingIPRequest `json:"floating_ips,omitempty"`
-
-	// Image The OS image to use for the instance
-	Image *string `json:"image,omitempty"`
-	Name  string  `json:"name"`
-
-	// Ports Network ports to attach to the instance
-	Ports *[]OpenStackCreateInstancePortRequest `json:"ports,omitempty"`
-
-	// SecurityGroups List of security groups to apply to the instance
-	SecurityGroups *[]OpenStackSecurityGroupHyperlinkRequest `json:"security_groups,omitempty"`
-
-	// ServerGroup Server group for instance scheduling policy
-	ServerGroup  *OpenStackServerGroupHyperlinkRequest `json:"server_group,omitempty"`
-	SshPublicKey *string                               `json:"ssh_public_key,omitempty"`
-
-	// SystemVolumeSize Size of the system volume in MiB. Minimum size is 1024 MiB (1 GiB)
-	SystemVolumeSize *int `json:"system_volume_size,omitempty"`
-
-	// SystemVolumeType Volume type for the system volume
-	SystemVolumeType *string `json:"system_volume_type"`
-
-	// UserData Additional data that will be added to instance on provisioning
-	UserData *string `json:"user_data,omitempty"`
 }
 
 // OpenStackInstanceFloatingIPsUpdateRequest defines model for OpenStackInstanceFloatingIPsUpdateRequest.
@@ -27247,11 +27003,6 @@ type OpenStackServerGroup_Policy struct {
 	union json.RawMessage
 }
 
-// OpenStackServerGroupHyperlinkRequest defines model for OpenStackServerGroupHyperlinkRequest.
-type OpenStackServerGroupHyperlinkRequest struct {
-	Url string `json:"url"`
-}
-
 // OpenStackServerGroupRequest defines model for OpenStackServerGroupRequest.
 type OpenStackServerGroupRequest struct {
 	Description *string `json:"description,omitempty"`
@@ -27656,19 +27407,6 @@ type OpenStackTenantChangePasswordRequest struct {
 	UserPassword string `json:"user_password"`
 }
 
-// OpenStackTenantCreateOrderAttributes defines model for OpenStackTenantCreateOrderAttributes.
-type OpenStackTenantCreateOrderAttributes struct {
-	// AvailabilityZone Optional availability group. Will be used for all instances provisioned in this tenant
-	AvailabilityZone            *string                                `json:"availability_zone,omitempty"`
-	Description                 *string                                `json:"description,omitempty"`
-	Name                        string                                 `json:"name"`
-	SecurityGroups              *[]OpenStackTenantSecurityGroupRequest `json:"security_groups,omitempty"`
-	SkipConnectionExtnet        *bool                                  `json:"skip_connection_extnet,omitempty"`
-	SkipCreationOfDefaultRouter *bool                                  `json:"skip_creation_of_default_router,omitempty"`
-	SkipCreationOfDefaultSubnet *bool                                  `json:"skip_creation_of_default_subnet,omitempty"`
-	SubnetCidr                  *string                                `json:"subnet_cidr,omitempty"`
-}
-
 // OpenStackTenantQuota defines model for OpenStackTenantQuota.
 type OpenStackTenantQuota struct {
 	Instances              *int `json:"instances,omitempty"`
@@ -27803,23 +27541,6 @@ type OpenStackVolumeAvailabilityZone struct {
 	Settings  *string             `json:"settings"`
 	Url       *string             `json:"url,omitempty"`
 	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
-}
-
-// OpenStackVolumeCreateOrderAttributes defines model for OpenStackVolumeCreateOrderAttributes.
-type OpenStackVolumeCreateOrderAttributes struct {
-	// AvailabilityZone Availability zone where this volume is located
-	AvailabilityZone *string `json:"availability_zone"`
-	Description      *string `json:"description,omitempty"`
-
-	// Image Image that this volume was created from, if any
-	Image *string `json:"image"`
-	Name  string  `json:"name"`
-
-	// Size Size in MiB
-	Size *int `json:"size"`
-
-	// Type Type of the volume (e.g. SSD, HDD)
-	Type *string `json:"type"`
 }
 
 // OpenStackVolumeExtendRequest defines model for OpenStackVolumeExtendRequest.
@@ -36267,12 +35988,6 @@ type SlurmCommandResultRequest struct {
 	Success bool `json:"success"`
 }
 
-// SlurmInvoicesSlurmPackageCreateOrderAttributes defines model for SlurmInvoicesSlurmPackageCreateOrderAttributes.
-type SlurmInvoicesSlurmPackageCreateOrderAttributes struct {
-	Description *string `json:"description,omitempty"`
-	Name        string  `json:"name"`
-}
-
 // SlurmPeriodicUsagePolicy defines model for SlurmPeriodicUsagePolicy.
 type SlurmPeriodicUsagePolicy struct {
 	Actions string `json:"actions"`
@@ -38060,22 +37775,6 @@ type UserRoleUpdateRequest struct {
 
 // UsernameGenerationPolicyEnum defines model for UsernameGenerationPolicyEnum.
 type UsernameGenerationPolicyEnum string
-
-// VMwareVirtualMachineCreateOrderAttributes defines model for VMwareVirtualMachineCreateOrderAttributes.
-type VMwareVirtualMachineCreateOrderAttributes struct {
-	Cluster *string `json:"cluster"`
-
-	// CoresPerSocket Number of cores per socket in a VM
-	CoresPerSocket *int                                              `json:"cores_per_socket,omitempty"`
-	Datastore      *string                                           `json:"datastore"`
-	Description    *string                                           `json:"description,omitempty"`
-	GuestOs        *VMwareVirtualMachineCreateOrderAttributesGuestOs `json:"guest_os"`
-	Name           string                                            `json:"name"`
-	Template       *string                                           `json:"template"`
-}
-
-// VMwareVirtualMachineCreateOrderAttributesGuestOs defines model for VMwareVirtualMachineCreateOrderAttributes.GuestOs.
-type VMwareVirtualMachineCreateOrderAttributesGuestOs string
 
 // ValidationDecisionEnum defines model for ValidationDecisionEnum.
 type ValidationDecisionEnum string
@@ -40978,7 +40677,7 @@ type ChatMessagesEditJSONBody struct {
 // ChatQuotaUsageRetrieveParams defines parameters for ChatQuotaUsageRetrieve.
 type ChatQuotaUsageRetrieveParams struct {
 	// UserUuid UUID of user to view quota for (staff/support only). Omit to view your own quota.
-	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+	UserUuid openapi_types.UUID `form:"user_uuid" json:"user_uuid"`
 }
 
 // ChatSessionsListParams defines parameters for ChatSessionsList.
@@ -45401,7 +45100,7 @@ type MarketplacePlansCountParams struct {
 
 // MarketplacePlansUsageStatsListParams defines parameters for MarketplacePlansUsageStatsList.
 type MarketplacePlansUsageStatsListParams struct {
-	// CustomerProviderUuid Filter by service provider's customer UUID.
+	// CustomerProviderUuid Filter by offering customer provider UUID.
 	CustomerProviderUuid *openapi_types.UUID `form:"customer_provider_uuid,omitempty" json:"customer_provider_uuid,omitempty"`
 
 	// O Ordering field. Available options: `usage`, `limit`, `remaining`, and their descending counterparts (e.g., `-usage`).
@@ -45424,7 +45123,7 @@ type MarketplacePlansUsageStatsListParams struct {
 
 // MarketplacePlansUsageStatsCountParams defines parameters for MarketplacePlansUsageStatsCount.
 type MarketplacePlansUsageStatsCountParams struct {
-	// CustomerProviderUuid Filter by service provider's customer UUID.
+	// CustomerProviderUuid Filter by offering customer provider UUID.
 	CustomerProviderUuid *openapi_types.UUID `form:"customer_provider_uuid,omitempty" json:"customer_provider_uuid,omitempty"`
 
 	// O Ordering field. Available options: `usage`, `limit`, `remaining`, and their descending counterparts (e.g., `-usage`).
@@ -45655,7 +45354,7 @@ type MarketplaceProviderOfferingsListParams struct {
 	O *[]MarketplaceProviderOfferingsListParamsO `form:"o,omitempty" json:"o,omitempty"`
 
 	// OrganizationGroupUuid Organization group UUID
-	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -45781,7 +45480,7 @@ type MarketplaceProviderOfferingsCountParams struct {
 	O *[]MarketplaceProviderOfferingsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
 
 	// OrganizationGroupUuid Organization group UUID
-	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -45904,7 +45603,7 @@ type MarketplaceProviderOfferingsGroupsListParams struct {
 	O *[]MarketplaceProviderOfferingsGroupsListParamsO `form:"o,omitempty" json:"o,omitempty"`
 
 	// OrganizationGroupUuid Organization group UUID
-	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -46027,7 +45726,7 @@ type MarketplaceProviderOfferingsGroupsCountParams struct {
 	O *[]MarketplaceProviderOfferingsGroupsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
 
 	// OrganizationGroupUuid Organization group UUID
-	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -46161,7 +45860,7 @@ type MarketplaceProviderOfferingsComponentStatsListParams struct {
 	O *[]MarketplaceProviderOfferingsComponentStatsListParamsO `form:"o,omitempty" json:"o,omitempty"`
 
 	// OrganizationGroupUuid Organization group UUID
-	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -46291,7 +45990,7 @@ type MarketplaceProviderOfferingsCostsListParams struct {
 	O *[]MarketplaceProviderOfferingsCostsListParamsO `form:"o,omitempty" json:"o,omitempty"`
 
 	// OrganizationGroupUuid Organization group UUID
-	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -46418,7 +46117,7 @@ type MarketplaceProviderOfferingsCustomersListParams struct {
 	O *[]MarketplaceProviderOfferingsCustomersListParamsO `form:"o,omitempty" json:"o,omitempty"`
 
 	// OrganizationGroupUuid Organization group UUID
-	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -46550,7 +46249,7 @@ type MarketplaceProviderOfferingsHistoryListParams struct {
 	O *[]MarketplaceProviderOfferingsHistoryListParamsO `form:"o,omitempty" json:"o,omitempty"`
 
 	// OrganizationGroupUuid Organization group UUID
-	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -46688,7 +46387,7 @@ type MarketplaceProviderOfferingsListCourseAccountsListParams struct {
 	O *[]MarketplaceProviderOfferingsListCourseAccountsListParamsO `form:"o,omitempty" json:"o,omitempty"`
 
 	// OrganizationGroupUuid Organization group UUID
-	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -46825,7 +46524,7 @@ type MarketplaceProviderOfferingsListCustomerServiceAccountsListParams struct {
 	O *[]MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsO `form:"o,omitempty" json:"o,omitempty"`
 
 	// OrganizationGroupUuid Organization group UUID
-	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -46962,7 +46661,7 @@ type MarketplaceProviderOfferingsListProjectServiceAccountsListParams struct {
 	O *[]MarketplaceProviderOfferingsListProjectServiceAccountsListParamsO `form:"o,omitempty" json:"o,omitempty"`
 
 	// OrganizationGroupUuid Organization group UUID
-	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -47585,7 +47284,7 @@ type MarketplacePublicOfferingsListParams struct {
 	O *[]MarketplacePublicOfferingsListParamsO `form:"o,omitempty" json:"o,omitempty"`
 
 	// OrganizationGroupUuid Organization group UUID
-	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -47711,7 +47410,7 @@ type MarketplacePublicOfferingsCountParams struct {
 	O *[]MarketplacePublicOfferingsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
 
 	// OrganizationGroupUuid Organization group UUID
-	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -48836,7 +48535,7 @@ type MarketplaceServiceProvidersOfferingsListParams struct {
 	O *[]MarketplaceServiceProvidersOfferingsListParamsO `form:"o,omitempty" json:"o,omitempty"`
 
 	// OrganizationGroupUuid Organization group UUID
-	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -65665,240 +65364,6 @@ func (t *OpenStackSubNetRequest_GatewayIp) UnmarshalJSON(b []byte) error {
 	return err
 }
 
-// AsAzureVirtualMachineCreateOrderAttributes returns the union data inside the OrderCreateRequest_Attributes as a AzureVirtualMachineCreateOrderAttributes
-func (t OrderCreateRequest_Attributes) AsAzureVirtualMachineCreateOrderAttributes() (AzureVirtualMachineCreateOrderAttributes, error) {
-	var body AzureVirtualMachineCreateOrderAttributes
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromAzureVirtualMachineCreateOrderAttributes overwrites any union data inside the OrderCreateRequest_Attributes as the provided AzureVirtualMachineCreateOrderAttributes
-func (t *OrderCreateRequest_Attributes) FromAzureVirtualMachineCreateOrderAttributes(v AzureVirtualMachineCreateOrderAttributes) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeAzureVirtualMachineCreateOrderAttributes performs a merge with any union data inside the OrderCreateRequest_Attributes, using the provided AzureVirtualMachineCreateOrderAttributes
-func (t *OrderCreateRequest_Attributes) MergeAzureVirtualMachineCreateOrderAttributes(v AzureVirtualMachineCreateOrderAttributes) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsAzureSQLServerCreateOrderAttributes returns the union data inside the OrderCreateRequest_Attributes as a AzureSQLServerCreateOrderAttributes
-func (t OrderCreateRequest_Attributes) AsAzureSQLServerCreateOrderAttributes() (AzureSQLServerCreateOrderAttributes, error) {
-	var body AzureSQLServerCreateOrderAttributes
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromAzureSQLServerCreateOrderAttributes overwrites any union data inside the OrderCreateRequest_Attributes as the provided AzureSQLServerCreateOrderAttributes
-func (t *OrderCreateRequest_Attributes) FromAzureSQLServerCreateOrderAttributes(v AzureSQLServerCreateOrderAttributes) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeAzureSQLServerCreateOrderAttributes performs a merge with any union data inside the OrderCreateRequest_Attributes, using the provided AzureSQLServerCreateOrderAttributes
-func (t *OrderCreateRequest_Attributes) MergeAzureSQLServerCreateOrderAttributes(v AzureSQLServerCreateOrderAttributes) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsMarketplaceOpenPortalCreateOrderAttributes returns the union data inside the OrderCreateRequest_Attributes as a MarketplaceOpenPortalCreateOrderAttributes
-func (t OrderCreateRequest_Attributes) AsMarketplaceOpenPortalCreateOrderAttributes() (MarketplaceOpenPortalCreateOrderAttributes, error) {
-	var body MarketplaceOpenPortalCreateOrderAttributes
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromMarketplaceOpenPortalCreateOrderAttributes overwrites any union data inside the OrderCreateRequest_Attributes as the provided MarketplaceOpenPortalCreateOrderAttributes
-func (t *OrderCreateRequest_Attributes) FromMarketplaceOpenPortalCreateOrderAttributes(v MarketplaceOpenPortalCreateOrderAttributes) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeMarketplaceOpenPortalCreateOrderAttributes performs a merge with any union data inside the OrderCreateRequest_Attributes, using the provided MarketplaceOpenPortalCreateOrderAttributes
-func (t *OrderCreateRequest_Attributes) MergeMarketplaceOpenPortalCreateOrderAttributes(v MarketplaceOpenPortalCreateOrderAttributes) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsMarketplaceOpenPortalRemoteCreateOrderAttributes returns the union data inside the OrderCreateRequest_Attributes as a MarketplaceOpenPortalRemoteCreateOrderAttributes
-func (t OrderCreateRequest_Attributes) AsMarketplaceOpenPortalRemoteCreateOrderAttributes() (MarketplaceOpenPortalRemoteCreateOrderAttributes, error) {
-	var body MarketplaceOpenPortalRemoteCreateOrderAttributes
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromMarketplaceOpenPortalRemoteCreateOrderAttributes overwrites any union data inside the OrderCreateRequest_Attributes as the provided MarketplaceOpenPortalRemoteCreateOrderAttributes
-func (t *OrderCreateRequest_Attributes) FromMarketplaceOpenPortalRemoteCreateOrderAttributes(v MarketplaceOpenPortalRemoteCreateOrderAttributes) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeMarketplaceOpenPortalRemoteCreateOrderAttributes performs a merge with any union data inside the OrderCreateRequest_Attributes, using the provided MarketplaceOpenPortalRemoteCreateOrderAttributes
-func (t *OrderCreateRequest_Attributes) MergeMarketplaceOpenPortalRemoteCreateOrderAttributes(v MarketplaceOpenPortalRemoteCreateOrderAttributes) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsOpenStackTenantCreateOrderAttributes returns the union data inside the OrderCreateRequest_Attributes as a OpenStackTenantCreateOrderAttributes
-func (t OrderCreateRequest_Attributes) AsOpenStackTenantCreateOrderAttributes() (OpenStackTenantCreateOrderAttributes, error) {
-	var body OpenStackTenantCreateOrderAttributes
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromOpenStackTenantCreateOrderAttributes overwrites any union data inside the OrderCreateRequest_Attributes as the provided OpenStackTenantCreateOrderAttributes
-func (t *OrderCreateRequest_Attributes) FromOpenStackTenantCreateOrderAttributes(v OpenStackTenantCreateOrderAttributes) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeOpenStackTenantCreateOrderAttributes performs a merge with any union data inside the OrderCreateRequest_Attributes, using the provided OpenStackTenantCreateOrderAttributes
-func (t *OrderCreateRequest_Attributes) MergeOpenStackTenantCreateOrderAttributes(v OpenStackTenantCreateOrderAttributes) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsOpenStackInstanceCreateOrderAttributes returns the union data inside the OrderCreateRequest_Attributes as a OpenStackInstanceCreateOrderAttributes
-func (t OrderCreateRequest_Attributes) AsOpenStackInstanceCreateOrderAttributes() (OpenStackInstanceCreateOrderAttributes, error) {
-	var body OpenStackInstanceCreateOrderAttributes
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromOpenStackInstanceCreateOrderAttributes overwrites any union data inside the OrderCreateRequest_Attributes as the provided OpenStackInstanceCreateOrderAttributes
-func (t *OrderCreateRequest_Attributes) FromOpenStackInstanceCreateOrderAttributes(v OpenStackInstanceCreateOrderAttributes) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeOpenStackInstanceCreateOrderAttributes performs a merge with any union data inside the OrderCreateRequest_Attributes, using the provided OpenStackInstanceCreateOrderAttributes
-func (t *OrderCreateRequest_Attributes) MergeOpenStackInstanceCreateOrderAttributes(v OpenStackInstanceCreateOrderAttributes) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsOpenStackVolumeCreateOrderAttributes returns the union data inside the OrderCreateRequest_Attributes as a OpenStackVolumeCreateOrderAttributes
-func (t OrderCreateRequest_Attributes) AsOpenStackVolumeCreateOrderAttributes() (OpenStackVolumeCreateOrderAttributes, error) {
-	var body OpenStackVolumeCreateOrderAttributes
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromOpenStackVolumeCreateOrderAttributes overwrites any union data inside the OrderCreateRequest_Attributes as the provided OpenStackVolumeCreateOrderAttributes
-func (t *OrderCreateRequest_Attributes) FromOpenStackVolumeCreateOrderAttributes(v OpenStackVolumeCreateOrderAttributes) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeOpenStackVolumeCreateOrderAttributes performs a merge with any union data inside the OrderCreateRequest_Attributes, using the provided OpenStackVolumeCreateOrderAttributes
-func (t *OrderCreateRequest_Attributes) MergeOpenStackVolumeCreateOrderAttributes(v OpenStackVolumeCreateOrderAttributes) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsSlurmInvoicesSlurmPackageCreateOrderAttributes returns the union data inside the OrderCreateRequest_Attributes as a SlurmInvoicesSlurmPackageCreateOrderAttributes
-func (t OrderCreateRequest_Attributes) AsSlurmInvoicesSlurmPackageCreateOrderAttributes() (SlurmInvoicesSlurmPackageCreateOrderAttributes, error) {
-	var body SlurmInvoicesSlurmPackageCreateOrderAttributes
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromSlurmInvoicesSlurmPackageCreateOrderAttributes overwrites any union data inside the OrderCreateRequest_Attributes as the provided SlurmInvoicesSlurmPackageCreateOrderAttributes
-func (t *OrderCreateRequest_Attributes) FromSlurmInvoicesSlurmPackageCreateOrderAttributes(v SlurmInvoicesSlurmPackageCreateOrderAttributes) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeSlurmInvoicesSlurmPackageCreateOrderAttributes performs a merge with any union data inside the OrderCreateRequest_Attributes, using the provided SlurmInvoicesSlurmPackageCreateOrderAttributes
-func (t *OrderCreateRequest_Attributes) MergeSlurmInvoicesSlurmPackageCreateOrderAttributes(v SlurmInvoicesSlurmPackageCreateOrderAttributes) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsVMwareVirtualMachineCreateOrderAttributes returns the union data inside the OrderCreateRequest_Attributes as a VMwareVirtualMachineCreateOrderAttributes
-func (t OrderCreateRequest_Attributes) AsVMwareVirtualMachineCreateOrderAttributes() (VMwareVirtualMachineCreateOrderAttributes, error) {
-	var body VMwareVirtualMachineCreateOrderAttributes
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromVMwareVirtualMachineCreateOrderAttributes overwrites any union data inside the OrderCreateRequest_Attributes as the provided VMwareVirtualMachineCreateOrderAttributes
-func (t *OrderCreateRequest_Attributes) FromVMwareVirtualMachineCreateOrderAttributes(v VMwareVirtualMachineCreateOrderAttributes) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeVMwareVirtualMachineCreateOrderAttributes performs a merge with any union data inside the OrderCreateRequest_Attributes, using the provided VMwareVirtualMachineCreateOrderAttributes
-func (t *OrderCreateRequest_Attributes) MergeVMwareVirtualMachineCreateOrderAttributes(v VMwareVirtualMachineCreateOrderAttributes) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
 // AsGenericOrderAttributes returns the union data inside the OrderCreateRequest_Attributes as a GenericOrderAttributes
 func (t OrderCreateRequest_Attributes) AsGenericOrderAttributes() (GenericOrderAttributes, error) {
 	var body GenericOrderAttributes
@@ -72364,6 +71829,12 @@ type ClientInterface interface {
 
 	// MarketplaceOfferingUsersChecklistTemplateCount request
 	MarketplaceOfferingUsersChecklistTemplateCount(ctx context.Context, params *MarketplaceOfferingUsersChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingUsersProfileFieldWarningsRetrieve request
+	MarketplaceOfferingUsersProfileFieldWarningsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingUsersProfileFieldWarningsCount request
+	MarketplaceOfferingUsersProfileFieldWarningsCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOfferingUsersDestroy request
 	MarketplaceOfferingUsersDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -90388,6 +89859,30 @@ func (c *Client) MarketplaceOfferingUsersChecklistTemplateRetrieve(ctx context.C
 
 func (c *Client) MarketplaceOfferingUsersChecklistTemplateCount(ctx context.Context, params *MarketplaceOfferingUsersChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceOfferingUsersChecklistTemplateCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingUsersProfileFieldWarningsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersProfileFieldWarningsRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingUsersProfileFieldWarningsCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersProfileFieldWarningsCountRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -138901,20 +138396,16 @@ func NewChatQuotaUsageRetrieveRequest(server string, params *ChatQuotaUsageRetri
 	if params != nil {
 		queryValues := queryURL.Query()
 
-		if params.UserUuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, params.UserUuid); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
 				}
 			}
-
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
@@ -175998,6 +175489,60 @@ func NewMarketplaceOfferingUsersChecklistTemplateCountRequest(server string, par
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingUsersProfileFieldWarningsRetrieveRequest generates requests for MarketplaceOfferingUsersProfileFieldWarningsRetrieve
+func NewMarketplaceOfferingUsersProfileFieldWarningsRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-users/profile_field_warnings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingUsersProfileFieldWarningsCountRequest generates requests for MarketplaceOfferingUsersProfileFieldWarningsCount
+func NewMarketplaceOfferingUsersProfileFieldWarningsCountRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-users/profile_field_warnings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
 	}
 
 	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
@@ -309392,6 +308937,12 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceOfferingUsersChecklistTemplateCountWithResponse request
 	MarketplaceOfferingUsersChecklistTemplateCountWithResponse(ctx context.Context, params *MarketplaceOfferingUsersChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersChecklistTemplateCountResponse, error)
 
+	// MarketplaceOfferingUsersProfileFieldWarningsRetrieveWithResponse request
+	MarketplaceOfferingUsersProfileFieldWarningsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersProfileFieldWarningsRetrieveResponse, error)
+
+	// MarketplaceOfferingUsersProfileFieldWarningsCountWithResponse request
+	MarketplaceOfferingUsersProfileFieldWarningsCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersProfileFieldWarningsCountResponse, error)
+
 	// MarketplaceOfferingUsersDestroyWithResponse request
 	MarketplaceOfferingUsersDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersDestroyResponse, error)
 
@@ -331705,6 +331256,48 @@ func (r MarketplaceOfferingUsersChecklistTemplateCountResponse) Status() string 
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceOfferingUsersChecklistTemplateCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOfferingUsersProfileFieldWarningsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUsersProfileFieldWarningsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUsersProfileFieldWarningsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOfferingUsersProfileFieldWarningsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUsersProfileFieldWarningsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUsersProfileFieldWarningsCountResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -373942,6 +373535,24 @@ func (c *ClientWithResponses) MarketplaceOfferingUsersChecklistTemplateCountWith
 	return ParseMarketplaceOfferingUsersChecklistTemplateCountResponse(rsp)
 }
 
+// MarketplaceOfferingUsersProfileFieldWarningsRetrieveWithResponse request returning *MarketplaceOfferingUsersProfileFieldWarningsRetrieveResponse
+func (c *ClientWithResponses) MarketplaceOfferingUsersProfileFieldWarningsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersProfileFieldWarningsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersProfileFieldWarningsRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersProfileFieldWarningsRetrieveResponse(rsp)
+}
+
+// MarketplaceOfferingUsersProfileFieldWarningsCountWithResponse request returning *MarketplaceOfferingUsersProfileFieldWarningsCountResponse
+func (c *ClientWithResponses) MarketplaceOfferingUsersProfileFieldWarningsCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersProfileFieldWarningsCountResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersProfileFieldWarningsCount(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersProfileFieldWarningsCountResponse(rsp)
+}
+
 // MarketplaceOfferingUsersDestroyWithResponse request returning *MarketplaceOfferingUsersDestroyResponse
 func (c *ClientWithResponses) MarketplaceOfferingUsersDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersDestroyResponse, error) {
 	rsp, err := c.MarketplaceOfferingUsersDestroy(ctx, uuid, reqEditors...)
@@ -409780,6 +409391,38 @@ func ParseMarketplaceOfferingUsersChecklistTemplateCountResponse(rsp *http.Respo
 	}
 
 	response := &MarketplaceOfferingUsersChecklistTemplateCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingUsersProfileFieldWarningsRetrieveResponse parses an HTTP response from a MarketplaceOfferingUsersProfileFieldWarningsRetrieveWithResponse call
+func ParseMarketplaceOfferingUsersProfileFieldWarningsRetrieveResponse(rsp *http.Response) (*MarketplaceOfferingUsersProfileFieldWarningsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUsersProfileFieldWarningsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingUsersProfileFieldWarningsCountResponse parses an HTTP response from a MarketplaceOfferingUsersProfileFieldWarningsCountWithResponse call
+func ParseMarketplaceOfferingUsersProfileFieldWarningsCountResponse(rsp *http.Response) (*MarketplaceOfferingUsersProfileFieldWarningsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUsersProfileFieldWarningsCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
