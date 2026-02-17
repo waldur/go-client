@@ -9364,6 +9364,12 @@ const (
 	OpenstackInstancesListParamsFieldVolumes                          OpenstackInstancesListParamsField = "volumes"
 )
 
+// Defines values for OpenstackInstancesListParamsO.
+const (
+	OpenstackInstancesListParamsOMinusStartTime OpenstackInstancesListParamsO = "-start_time"
+	OpenstackInstancesListParamsOStartTime      OpenstackInstancesListParamsO = "start_time"
+)
+
 // Defines values for OpenstackInstancesListParamsState.
 const (
 	OpenstackInstancesListParamsStateCREATING          OpenstackInstancesListParamsState = "CREATING"
@@ -9374,6 +9380,12 @@ const (
 	OpenstackInstancesListParamsStateOK                OpenstackInstancesListParamsState = "OK"
 	OpenstackInstancesListParamsStateUPDATESCHEDULED   OpenstackInstancesListParamsState = "UPDATE_SCHEDULED"
 	OpenstackInstancesListParamsStateUPDATING          OpenstackInstancesListParamsState = "UPDATING"
+)
+
+// Defines values for OpenstackInstancesCountParamsO.
+const (
+	OpenstackInstancesCountParamsOMinusStartTime OpenstackInstancesCountParamsO = "-start_time"
+	OpenstackInstancesCountParamsOStartTime      OpenstackInstancesCountParamsO = "start_time"
 )
 
 // Defines values for OpenstackInstancesCountParamsState.
@@ -41245,10 +41257,13 @@ type CustomerQuotasCountParams struct {
 // CustomersListParams defines parameters for CustomersList.
 type CustomersListParams struct {
 	// Abbreviation Abbreviation
-	Abbreviation    *string `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
-	AgreementNumber *string `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
-	Archived        *bool   `form:"archived,omitempty" json:"archived,omitempty"`
-	BackendId       *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	Abbreviation *string `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
+
+	// AccountingIsRunning Filter by whether accounting is running.
+	AccountingIsRunning *bool   `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
+	AgreementNumber     *string `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
+	Archived            *bool   `form:"archived,omitempty" json:"archived,omitempty"`
+	BackendId           *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// ContactDetails Contact details
 	ContactDetails *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
@@ -41257,6 +41272,15 @@ type CustomersListParams struct {
 	CurrentUserHasProjectCreatePermission *bool                       `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
 	Field                                 *[]CustomersListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
+	// HasResources Filter by customers with resources.
+	HasResources *string `form:"has_resources,omitempty" json:"has_resources,omitempty"`
+
+	// IsCallManagingOrganization Filter by customers that are call managing organizations.
+	IsCallManagingOrganization *bool `form:"is_call_managing_organization,omitempty" json:"is_call_managing_organization,omitempty"`
+
+	// IsServiceProvider Filter by customers that are service providers.
+	IsServiceProvider *bool `form:"is_service_provider,omitempty" json:"is_service_provider,omitempty"`
+
 	// Name Name
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
 
@@ -41287,6 +41311,12 @@ type CustomersListParams struct {
 	// Query Filter by name, native name, abbreviation, domain, UUID, registration code or agreement number
 	Query            *string `form:"query,omitempty" json:"query,omitempty"`
 	RegistrationCode *string `form:"registration_code,omitempty" json:"registration_code,omitempty"`
+
+	// ServiceProviderUuid Filter by service provider UUID.
+	ServiceProviderUuid *openapi_types.UUID `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
+
+	// UserUuid Filter by user UUID.
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
 // CustomersListParamsField defines parameters for CustomersList.
@@ -41295,16 +41325,28 @@ type CustomersListParamsField string
 // CustomersCountParams defines parameters for CustomersCount.
 type CustomersCountParams struct {
 	// Abbreviation Abbreviation
-	Abbreviation    *string `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
-	AgreementNumber *string `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
-	Archived        *bool   `form:"archived,omitempty" json:"archived,omitempty"`
-	BackendId       *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	Abbreviation *string `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
+
+	// AccountingIsRunning Filter by whether accounting is running.
+	AccountingIsRunning *bool   `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
+	AgreementNumber     *string `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
+	Archived            *bool   `form:"archived,omitempty" json:"archived,omitempty"`
+	BackendId           *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// ContactDetails Contact details
 	ContactDetails *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
 
 	// CurrentUserHasProjectCreatePermission Return a list of customers where current user has project create permission.
 	CurrentUserHasProjectCreatePermission *bool `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
+
+	// HasResources Filter by customers with resources.
+	HasResources *string `form:"has_resources,omitempty" json:"has_resources,omitempty"`
+
+	// IsCallManagingOrganization Filter by customers that are call managing organizations.
+	IsCallManagingOrganization *bool `form:"is_call_managing_organization,omitempty" json:"is_call_managing_organization,omitempty"`
+
+	// IsServiceProvider Filter by customers that are service providers.
+	IsServiceProvider *bool `form:"is_service_provider,omitempty" json:"is_service_provider,omitempty"`
 
 	// Name Name
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
@@ -41336,21 +41378,39 @@ type CustomersCountParams struct {
 	// Query Filter by name, native name, abbreviation, domain, UUID, registration code or agreement number
 	Query            *string `form:"query,omitempty" json:"query,omitempty"`
 	RegistrationCode *string `form:"registration_code,omitempty" json:"registration_code,omitempty"`
+
+	// ServiceProviderUuid Filter by service provider UUID.
+	ServiceProviderUuid *openapi_types.UUID `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
+
+	// UserUuid Filter by user UUID.
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
 // CustomersCountriesListParams defines parameters for CustomersCountriesList.
 type CustomersCountriesListParams struct {
 	// Abbreviation Abbreviation
-	Abbreviation    *string `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
-	AgreementNumber *string `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
-	Archived        *bool   `form:"archived,omitempty" json:"archived,omitempty"`
-	BackendId       *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	Abbreviation *string `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
+
+	// AccountingIsRunning Filter by whether accounting is running.
+	AccountingIsRunning *bool   `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
+	AgreementNumber     *string `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
+	Archived            *bool   `form:"archived,omitempty" json:"archived,omitempty"`
+	BackendId           *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// ContactDetails Contact details
 	ContactDetails *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
 
 	// CurrentUserHasProjectCreatePermission Return a list of customers where current user has project create permission.
 	CurrentUserHasProjectCreatePermission *bool `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
+
+	// HasResources Filter by customers with resources.
+	HasResources *string `form:"has_resources,omitempty" json:"has_resources,omitempty"`
+
+	// IsCallManagingOrganization Filter by customers that are call managing organizations.
+	IsCallManagingOrganization *bool `form:"is_call_managing_organization,omitempty" json:"is_call_managing_organization,omitempty"`
+
+	// IsServiceProvider Filter by customers that are service providers.
+	IsServiceProvider *bool `form:"is_service_provider,omitempty" json:"is_service_provider,omitempty"`
 
 	// Name Name
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
@@ -41382,21 +41442,39 @@ type CustomersCountriesListParams struct {
 	// Query Filter by name, native name, abbreviation, domain, UUID, registration code or agreement number
 	Query            *string `form:"query,omitempty" json:"query,omitempty"`
 	RegistrationCode *string `form:"registration_code,omitempty" json:"registration_code,omitempty"`
+
+	// ServiceProviderUuid Filter by service provider UUID.
+	ServiceProviderUuid *openapi_types.UUID `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
+
+	// UserUuid Filter by user UUID.
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
 // CustomersCountriesCountParams defines parameters for CustomersCountriesCount.
 type CustomersCountriesCountParams struct {
 	// Abbreviation Abbreviation
-	Abbreviation    *string `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
-	AgreementNumber *string `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
-	Archived        *bool   `form:"archived,omitempty" json:"archived,omitempty"`
-	BackendId       *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	Abbreviation *string `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
+
+	// AccountingIsRunning Filter by whether accounting is running.
+	AccountingIsRunning *bool   `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
+	AgreementNumber     *string `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
+	Archived            *bool   `form:"archived,omitempty" json:"archived,omitempty"`
+	BackendId           *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// ContactDetails Contact details
 	ContactDetails *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
 
 	// CurrentUserHasProjectCreatePermission Return a list of customers where current user has project create permission.
 	CurrentUserHasProjectCreatePermission *bool `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
+
+	// HasResources Filter by customers with resources.
+	HasResources *string `form:"has_resources,omitempty" json:"has_resources,omitempty"`
+
+	// IsCallManagingOrganization Filter by customers that are call managing organizations.
+	IsCallManagingOrganization *bool `form:"is_call_managing_organization,omitempty" json:"is_call_managing_organization,omitempty"`
+
+	// IsServiceProvider Filter by customers that are service providers.
+	IsServiceProvider *bool `form:"is_service_provider,omitempty" json:"is_service_provider,omitempty"`
 
 	// Name Name
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
@@ -41428,6 +41506,12 @@ type CustomersCountriesCountParams struct {
 	// Query Filter by name, native name, abbreviation, domain, UUID, registration code or agreement number
 	Query            *string `form:"query,omitempty" json:"query,omitempty"`
 	RegistrationCode *string `form:"registration_code,omitempty" json:"registration_code,omitempty"`
+
+	// ServiceProviderUuid Filter by service provider UUID.
+	ServiceProviderUuid *openapi_types.UUID `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
+
+	// UserUuid Filter by user UUID.
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
 // CustomersProjectMetadataComplianceDetailsListParams defines parameters for CustomersProjectMetadataComplianceDetailsList.
@@ -41561,10 +41645,13 @@ type CustomersRetrieveParamsField string
 // CustomersHistoryListParams defines parameters for CustomersHistoryList.
 type CustomersHistoryListParams struct {
 	// Abbreviation Abbreviation
-	Abbreviation    *string `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
-	AgreementNumber *string `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
-	Archived        *bool   `form:"archived,omitempty" json:"archived,omitempty"`
-	BackendId       *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	Abbreviation *string `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
+
+	// AccountingIsRunning Filter by whether accounting is running.
+	AccountingIsRunning *bool   `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
+	AgreementNumber     *string `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
+	Archived            *bool   `form:"archived,omitempty" json:"archived,omitempty"`
+	BackendId           *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// ContactDetails Contact details
 	ContactDetails *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
@@ -41577,6 +41664,15 @@ type CustomersHistoryListParams struct {
 
 	// CurrentUserHasProjectCreatePermission Return a list of customers where current user has project create permission.
 	CurrentUserHasProjectCreatePermission *bool `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
+
+	// HasResources Filter by customers with resources.
+	HasResources *string `form:"has_resources,omitempty" json:"has_resources,omitempty"`
+
+	// IsCallManagingOrganization Filter by customers that are call managing organizations.
+	IsCallManagingOrganization *bool `form:"is_call_managing_organization,omitempty" json:"is_call_managing_organization,omitempty"`
+
+	// IsServiceProvider Filter by customers that are service providers.
+	IsServiceProvider *bool `form:"is_service_provider,omitempty" json:"is_service_provider,omitempty"`
 
 	// Name Name
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
@@ -41608,6 +41704,12 @@ type CustomersHistoryListParams struct {
 	// Query Filter by name, native name, abbreviation, domain, UUID, registration code or agreement number
 	Query            *string `form:"query,omitempty" json:"query,omitempty"`
 	RegistrationCode *string `form:"registration_code,omitempty" json:"registration_code,omitempty"`
+
+	// ServiceProviderUuid Filter by service provider UUID.
+	ServiceProviderUuid *openapi_types.UUID `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
+
+	// UserUuid Filter by user UUID.
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
 // CustomersHistoryAtRetrieveParams defines parameters for CustomersHistoryAtRetrieve.
@@ -42118,20 +42220,38 @@ type EventSubscriptionsCountParamsO string
 
 // EventsStatsListParams defines parameters for EventsStatsList.
 type EventsStatsListParams struct {
+	// EventType Filter by event type. Can be specified multiple times.
+	EventType *[]string `form:"event_type,omitempty" json:"event_type,omitempty"`
+
+	// Feature Filter by feature (event group). Can be specified multiple times.
+	Feature *[]string `form:"feature,omitempty" json:"feature,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Scope Filter by scope URL.
+	Scope *string `form:"scope,omitempty" json:"scope,omitempty"`
 }
 
 // EventsStatsCountParams defines parameters for EventsStatsCount.
 type EventsStatsCountParams struct {
+	// EventType Filter by event type. Can be specified multiple times.
+	EventType *[]string `form:"event_type,omitempty" json:"event_type,omitempty"`
+
+	// Feature Filter by feature (event group). Can be specified multiple times.
+	Feature *[]string `form:"feature,omitempty" json:"feature,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Scope Filter by scope URL.
+	Scope *string `form:"scope,omitempty" json:"scope,omitempty"`
 }
 
 // EventsListParams defines parameters for EventsList.
@@ -42140,9 +42260,15 @@ type EventsListParams struct {
 	CreatedTo   *float32 `form:"created_to,omitempty" json:"created_to,omitempty"`
 
 	// CustomerUuid Customer UUID
-	CustomerUuid *openapi_types.UUID      `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Field        *[]EventsListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Message      *string                  `form:"message,omitempty" json:"message,omitempty"`
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// EventType Filter by event type. Can be specified multiple times.
+	EventType *[]string `form:"event_type,omitempty" json:"event_type,omitempty"`
+
+	// Feature Filter by feature (event group). Can be specified multiple times.
+	Feature *[]string                `form:"feature,omitempty" json:"feature,omitempty"`
+	Field   *[]EventsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	Message *string                  `form:"message,omitempty" json:"message,omitempty"`
 
 	// O Ordering
 	//
@@ -42156,6 +42282,9 @@ type EventsListParams struct {
 
 	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Scope Filter by scope URL.
+	Scope *string `form:"scope,omitempty" json:"scope,omitempty"`
 
 	// UserUuid User UUID
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
@@ -42174,7 +42303,13 @@ type EventsCountParams struct {
 
 	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Message      *string             `form:"message,omitempty" json:"message,omitempty"`
+
+	// EventType Filter by event type. Can be specified multiple times.
+	EventType *[]string `form:"event_type,omitempty" json:"event_type,omitempty"`
+
+	// Feature Filter by feature (event group). Can be specified multiple times.
+	Feature *[]string `form:"feature,omitempty" json:"feature,omitempty"`
+	Message *string   `form:"message,omitempty" json:"message,omitempty"`
 
 	// O Ordering
 	//
@@ -42188,6 +42323,9 @@ type EventsCountParams struct {
 
 	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Scope Filter by scope URL.
+	Scope *string `form:"scope,omitempty" json:"scope,omitempty"`
 
 	// UserUuid User UUID
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
@@ -42306,16 +42444,22 @@ type FeatureValuesJSONBody map[string]interface{}
 // FinancialReportsListParams defines parameters for FinancialReportsList.
 type FinancialReportsListParams struct {
 	// Abbreviation Abbreviation
-	Abbreviation    *string `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
-	AgreementNumber *string `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
-	Archived        *bool   `form:"archived,omitempty" json:"archived,omitempty"`
-	BackendId       *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	Abbreviation *string `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
+
+	// AccountingIsRunning Filter by whether accounting is running.
+	AccountingIsRunning *bool   `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
+	AgreementNumber     *string `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
+	Archived            *bool   `form:"archived,omitempty" json:"archived,omitempty"`
+	BackendId           *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// ContactDetails Contact details
 	ContactDetails *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
 
 	// CurrentUserHasProjectCreatePermission Return a list of customers where current user has project create permission.
 	CurrentUserHasProjectCreatePermission *bool `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
+
+	// Month Filter by month.
+	Month *int `form:"month,omitempty" json:"month,omitempty"`
 
 	// Name Name
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
@@ -42347,21 +42491,30 @@ type FinancialReportsListParams struct {
 	// Query Filter by name, native name, abbreviation, domain, UUID, registration code or agreement number
 	Query            *string `form:"query,omitempty" json:"query,omitempty"`
 	RegistrationCode *string `form:"registration_code,omitempty" json:"registration_code,omitempty"`
+
+	// Year Filter by year.
+	Year *int `form:"year,omitempty" json:"year,omitempty"`
 }
 
 // FinancialReportsCountParams defines parameters for FinancialReportsCount.
 type FinancialReportsCountParams struct {
 	// Abbreviation Abbreviation
-	Abbreviation    *string `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
-	AgreementNumber *string `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
-	Archived        *bool   `form:"archived,omitempty" json:"archived,omitempty"`
-	BackendId       *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	Abbreviation *string `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
+
+	// AccountingIsRunning Filter by whether accounting is running.
+	AccountingIsRunning *bool   `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
+	AgreementNumber     *string `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
+	Archived            *bool   `form:"archived,omitempty" json:"archived,omitempty"`
+	BackendId           *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// ContactDetails Contact details
 	ContactDetails *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
 
 	// CurrentUserHasProjectCreatePermission Return a list of customers where current user has project create permission.
 	CurrentUserHasProjectCreatePermission *bool `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
+
+	// Month Filter by month.
+	Month *int `form:"month,omitempty" json:"month,omitempty"`
 
 	// Name Name
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
@@ -42393,6 +42546,9 @@ type FinancialReportsCountParams struct {
 	// Query Filter by name, native name, abbreviation, domain, UUID, registration code or agreement number
 	Query            *string `form:"query,omitempty" json:"query,omitempty"`
 	RegistrationCode *string `form:"registration_code,omitempty" json:"registration_code,omitempty"`
+
+	// Year Filter by year.
+	Year *int `form:"year,omitempty" json:"year,omitempty"`
 }
 
 // FreeipaProfilesListParams defines parameters for FreeipaProfilesList.
@@ -42582,6 +42738,12 @@ type HooksWebCountParamsContentType int
 
 // HooksListParams defines parameters for HooksList.
 type HooksListParams struct {
+	// AuthorUuid Filter by author UUID.
+	AuthorUuid *openapi_types.UUID `form:"author_uuid,omitempty" json:"author_uuid,omitempty"`
+
+	// IsActive Filter by active status.
+	IsActive *bool `form:"is_active,omitempty" json:"is_active,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -42591,6 +42753,12 @@ type HooksListParams struct {
 
 // HooksCountParams defines parameters for HooksCount.
 type HooksCountParams struct {
+	// AuthorUuid Filter by author UUID.
+	AuthorUuid *openapi_types.UUID `form:"author_uuid,omitempty" json:"author_uuid,omitempty"`
+
+	// IsActive Filter by active status.
+	IsActive *bool `form:"is_active,omitempty" json:"is_active,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -42758,12 +42926,14 @@ type InvoiceItemsTotalPriceCountParams struct {
 
 // InvoicesListParams defines parameters for InvoicesList.
 type InvoicesListParams struct {
-	Created      *openapi_types.Date        `form:"created,omitempty" json:"created,omitempty"`
-	Customer     *string                    `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerUuid *openapi_types.UUID        `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	EndDate      *openapi_types.Date        `form:"end_date,omitempty" json:"end_date,omitempty"`
-	Field        *[]InvoicesListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Month        *int                       `form:"month,omitempty" json:"month,omitempty"`
+	// AccountingIsRunning Filter by whether accounting is running.
+	AccountingIsRunning *bool                      `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
+	Created             *openapi_types.Date        `form:"created,omitempty" json:"created,omitempty"`
+	Customer            *string                    `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerUuid        *openapi_types.UUID        `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	EndDate             *openapi_types.Date        `form:"end_date,omitempty" json:"end_date,omitempty"`
+	Field               *[]InvoicesListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	Month               *int                       `form:"month,omitempty" json:"month,omitempty"`
 
 	// O Ordering
 	//
@@ -42790,11 +42960,13 @@ type InvoicesListParamsState string
 
 // InvoicesCountParams defines parameters for InvoicesCount.
 type InvoicesCountParams struct {
-	Created      *openapi_types.Date `form:"created,omitempty" json:"created,omitempty"`
-	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	EndDate      *openapi_types.Date `form:"end_date,omitempty" json:"end_date,omitempty"`
-	Month        *int                `form:"month,omitempty" json:"month,omitempty"`
+	// AccountingIsRunning Filter by whether accounting is running.
+	AccountingIsRunning *bool               `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
+	Created             *openapi_types.Date `form:"created,omitempty" json:"created,omitempty"`
+	Customer            *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerUuid        *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	EndDate             *openapi_types.Date `form:"end_date,omitempty" json:"end_date,omitempty"`
+	Month               *int                `form:"month,omitempty" json:"month,omitempty"`
 
 	// O Ordering
 	//
@@ -42840,7 +43012,9 @@ type InvoicesRetrieveParamsField string
 
 // InvoicesHistoryListParams defines parameters for InvoicesHistoryList.
 type InvoicesHistoryListParams struct {
-	Created *openapi_types.Date `form:"created,omitempty" json:"created,omitempty"`
+	// AccountingIsRunning Filter by whether accounting is running.
+	AccountingIsRunning *bool               `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
+	Created             *openapi_types.Date `form:"created,omitempty" json:"created,omitempty"`
 
 	// CreatedAfter Filter versions created after this timestamp (ISO 8601)
 	CreatedAfter *string `form:"created_after,omitempty" json:"created_after,omitempty"`
@@ -42885,9 +43059,9 @@ type InvoicesItemsRetrieveParams struct {
 
 	// O Order results by field
 	O            *InvoicesItemsRetrieveParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OfferingUuid *string                       `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
-	ProjectUuid  *string                       `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ProviderUuid *string                       `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+	OfferingUuid *openapi_types.UUID           `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	ProjectUuid  *openapi_types.UUID           `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	ProviderUuid *openapi_types.UUID           `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 	Query        *string                       `form:"query,omitempty" json:"query,omitempty"`
 }
 
@@ -42896,11 +43070,13 @@ type InvoicesItemsRetrieveParamsO string
 
 // InvoicesStatsListParams defines parameters for InvoicesStatsList.
 type InvoicesStatsListParams struct {
-	Created      *openapi_types.Date `form:"created,omitempty" json:"created,omitempty"`
-	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	EndDate      *openapi_types.Date `form:"end_date,omitempty" json:"end_date,omitempty"`
-	Month        *int                `form:"month,omitempty" json:"month,omitempty"`
+	// AccountingIsRunning Filter by whether accounting is running.
+	AccountingIsRunning *bool               `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
+	Created             *openapi_types.Date `form:"created,omitempty" json:"created,omitempty"`
+	Customer            *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerUuid        *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	EndDate             *openapi_types.Date `form:"end_date,omitempty" json:"end_date,omitempty"`
+	Month               *int                `form:"month,omitempty" json:"month,omitempty"`
 
 	// O Ordering
 	//
@@ -42911,7 +43087,7 @@ type InvoicesStatsListParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize     *PageSize                       `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ProviderUuid *string                         `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+	ProviderUuid *openapi_types.UUID             `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 	StartDate    *openapi_types.Date             `form:"start_date,omitempty" json:"start_date,omitempty"`
 	State        *[]InvoicesStatsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 	Year         *int                            `form:"year,omitempty" json:"year,omitempty"`
@@ -43548,6 +43724,9 @@ type MarketplaceCategoryComponentUsagesListParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Scope Filter by scope URL.
+	Scope *string `form:"scope,omitempty" json:"scope,omitempty"`
 }
 
 // MarketplaceCategoryComponentUsagesListParamsField defines parameters for MarketplaceCategoryComponentUsagesList.
@@ -43566,6 +43745,9 @@ type MarketplaceCategoryComponentUsagesCountParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Scope Filter by scope URL.
+	Scope *string `form:"scope,omitempty" json:"scope,omitempty"`
 }
 
 // MarketplaceCategoryComponentUsagesRetrieveParams defines parameters for MarketplaceCategoryComponentUsagesRetrieve.
@@ -44500,6 +44682,9 @@ type MarketplaceOfferingReferralsListParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Scope Filter by scope URL.
+	Scope *string `form:"scope,omitempty" json:"scope,omitempty"`
 }
 
 // MarketplaceOfferingReferralsListParamsO defines parameters for MarketplaceOfferingReferralsList.
@@ -44516,6 +44701,9 @@ type MarketplaceOfferingReferralsCountParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Scope Filter by scope URL.
+	Scope *string `form:"scope,omitempty" json:"scope,omitempty"`
 }
 
 // MarketplaceOfferingReferralsCountParamsO defines parameters for MarketplaceOfferingReferralsCount.
@@ -45337,6 +45525,9 @@ type MarketplaceProviderOfferingsListParams struct {
 	// HasTermsOfService Has Terms of Service
 	HasTermsOfService *bool `form:"has_terms_of_service,omitempty" json:"has_terms_of_service,omitempty"`
 
+	// Importable Filter by importable offerings.
+	Importable *string `form:"importable,omitempty" json:"importable,omitempty"`
+
 	// Keyword Keyword
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
 
@@ -45462,6 +45653,9 @@ type MarketplaceProviderOfferingsCountParams struct {
 
 	// HasTermsOfService Has Terms of Service
 	HasTermsOfService *bool `form:"has_terms_of_service,omitempty" json:"has_terms_of_service,omitempty"`
+
+	// Importable Filter by importable offerings.
+	Importable *string `form:"importable,omitempty" json:"importable,omitempty"`
 
 	// Keyword Keyword
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
@@ -45843,6 +46037,9 @@ type MarketplaceProviderOfferingsComponentStatsListParams struct {
 	// HasTermsOfService Has Terms of Service
 	HasTermsOfService *bool `form:"has_terms_of_service,omitempty" json:"has_terms_of_service,omitempty"`
 
+	// Importable Filter by importable offerings.
+	Importable *string `form:"importable,omitempty" json:"importable,omitempty"`
+
 	// Keyword Keyword
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
 
@@ -45973,6 +46170,9 @@ type MarketplaceProviderOfferingsCostsListParams struct {
 	// HasTermsOfService Has Terms of Service
 	HasTermsOfService *bool `form:"has_terms_of_service,omitempty" json:"has_terms_of_service,omitempty"`
 
+	// Importable Filter by importable offerings.
+	Importable *string `form:"importable,omitempty" json:"importable,omitempty"`
+
 	// Keyword Keyword
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
 
@@ -46099,6 +46299,9 @@ type MarketplaceProviderOfferingsCustomersListParams struct {
 
 	// HasTermsOfService Has Terms of Service
 	HasTermsOfService *bool `form:"has_terms_of_service,omitempty" json:"has_terms_of_service,omitempty"`
+
+	// Importable Filter by importable offerings.
+	Importable *string `form:"importable,omitempty" json:"importable,omitempty"`
 
 	// Keyword Keyword
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
@@ -46231,6 +46434,9 @@ type MarketplaceProviderOfferingsHistoryListParams struct {
 
 	// HasTermsOfService Has Terms of Service
 	HasTermsOfService *bool `form:"has_terms_of_service,omitempty" json:"has_terms_of_service,omitempty"`
+
+	// Importable Filter by importable offerings.
+	Importable *string `form:"importable,omitempty" json:"importable,omitempty"`
 
 	// Keyword Keyword
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
@@ -46370,6 +46576,9 @@ type MarketplaceProviderOfferingsListCourseAccountsListParams struct {
 	// HasTermsOfService Has Terms of Service
 	HasTermsOfService *bool `form:"has_terms_of_service,omitempty" json:"has_terms_of_service,omitempty"`
 
+	// Importable Filter by importable offerings.
+	Importable *string `form:"importable,omitempty" json:"importable,omitempty"`
+
 	// Keyword Keyword
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
 
@@ -46507,6 +46716,9 @@ type MarketplaceProviderOfferingsListCustomerServiceAccountsListParams struct {
 	// HasTermsOfService Has Terms of Service
 	HasTermsOfService *bool `form:"has_terms_of_service,omitempty" json:"has_terms_of_service,omitempty"`
 
+	// Importable Filter by importable offerings.
+	Importable *string `form:"importable,omitempty" json:"importable,omitempty"`
+
 	// Keyword Keyword
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
 
@@ -46643,6 +46855,9 @@ type MarketplaceProviderOfferingsListProjectServiceAccountsListParams struct {
 
 	// HasTermsOfService Has Terms of Service
 	HasTermsOfService *bool `form:"has_terms_of_service,omitempty" json:"has_terms_of_service,omitempty"`
+
+	// Importable Filter by importable offerings.
+	Importable *string `form:"importable,omitempty" json:"importable,omitempty"`
 
 	// Keyword Keyword
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
@@ -46910,6 +47125,9 @@ type MarketplaceProviderResourcesListParams struct {
 	// RuntimeState Runtime state
 	RuntimeState *string `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
 
+	// Scope Filter by scope URL.
+	Scope *string `form:"scope,omitempty" json:"scope,omitempty"`
+
 	// ServiceManagerUuid Service manager UUID
 	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
 
@@ -47046,6 +47264,9 @@ type MarketplaceProviderResourcesCountParams struct {
 
 	// RuntimeState Runtime state
 	RuntimeState *string `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+
+	// Scope Filter by scope URL.
+	Scope *string `form:"scope,omitempty" json:"scope,omitempty"`
 
 	// ServiceManagerUuid Service manager UUID
 	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
@@ -47194,6 +47415,9 @@ type MarketplaceProviderResourcesHistoryListParams struct {
 
 	// RuntimeState Runtime state
 	RuntimeState *string `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+
+	// Scope Filter by scope URL.
+	Scope *string `form:"scope,omitempty" json:"scope,omitempty"`
 
 	// ServiceManagerUuid Service manager UUID
 	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
@@ -47690,6 +47914,9 @@ type MarketplaceResourcesListParams struct {
 	// RuntimeState Runtime state
 	RuntimeState *string `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
 
+	// Scope Filter by scope URL.
+	Scope *string `form:"scope,omitempty" json:"scope,omitempty"`
+
 	// ServiceManagerUuid Service manager UUID
 	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
 
@@ -47826,6 +48053,9 @@ type MarketplaceResourcesCountParams struct {
 
 	// RuntimeState Runtime state
 	RuntimeState *string `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+
+	// Scope Filter by scope URL.
+	Scope *string `form:"scope,omitempty" json:"scope,omitempty"`
 
 	// ServiceManagerUuid Service manager UUID
 	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
@@ -47974,6 +48204,9 @@ type MarketplaceResourcesHistoryListParams struct {
 
 	// RuntimeState Runtime state
 	RuntimeState *string `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+
+	// Scope Filter by scope URL.
+	Scope *string `form:"scope,omitempty" json:"scope,omitempty"`
 
 	// ServiceManagerUuid Service manager UUID
 	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
@@ -50948,7 +51181,9 @@ type OpenportalRemoteAssociationsCountParams struct {
 
 // OpenportalUnmanagedProjectsListParams defines parameters for OpenportalUnmanagedProjectsList.
 type OpenportalUnmanagedProjectsListParams struct {
-	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	// AccountingIsRunning Filter by whether accounting is running.
+	AccountingIsRunning *bool   `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
+	BackendId           *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanAdmin Return a list of projects where current user is admin.
 	CanAdmin *bool `form:"can_admin,omitempty" json:"can_admin,omitempty"`
@@ -51008,6 +51243,9 @@ type OpenportalUnmanagedProjectsListParams struct {
 
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// UserUuid Filter by user UUID.
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
 // OpenportalUnmanagedProjectsListParamsField defines parameters for OpenportalUnmanagedProjectsList.
@@ -51018,7 +51256,9 @@ type OpenportalUnmanagedProjectsListParamsO string
 
 // OpenportalUnmanagedProjectsCountParams defines parameters for OpenportalUnmanagedProjectsCount.
 type OpenportalUnmanagedProjectsCountParams struct {
-	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	// AccountingIsRunning Filter by whether accounting is running.
+	AccountingIsRunning *bool   `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
+	BackendId           *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanAdmin Return a list of projects where current user is admin.
 	CanAdmin *bool `form:"can_admin,omitempty" json:"can_admin,omitempty"`
@@ -51077,6 +51317,9 @@ type OpenportalUnmanagedProjectsCountParams struct {
 
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// UserUuid Filter by user UUID.
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
 // OpenportalUnmanagedProjectsCountParamsO defines parameters for OpenportalUnmanagedProjectsCount.
@@ -51861,6 +52104,9 @@ type OpenstackInstancesListParams struct {
 	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
+	// O Ordering. Sort by start time.
+	O *OpenstackInstancesListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -51902,6 +52148,9 @@ type OpenstackInstancesListParams struct {
 
 // OpenstackInstancesListParamsField defines parameters for OpenstackInstancesList.
 type OpenstackInstancesListParamsField string
+
+// OpenstackInstancesListParamsO defines parameters for OpenstackInstancesList.
+type OpenstackInstancesListParamsO string
 
 // OpenstackInstancesListParamsState defines parameters for OpenstackInstancesList.
 type OpenstackInstancesListParamsState string
@@ -51947,6 +52196,9 @@ type OpenstackInstancesCountParams struct {
 	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
+	// O Ordering. Sort by start time.
+	O *OpenstackInstancesCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -51985,6 +52237,9 @@ type OpenstackInstancesCountParams struct {
 	// Uuid UUID
 	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
+
+// OpenstackInstancesCountParamsO defines parameters for OpenstackInstancesCount.
+type OpenstackInstancesCountParamsO string
 
 // OpenstackInstancesCountParamsState defines parameters for OpenstackInstancesCount.
 type OpenstackInstancesCountParamsState string
@@ -54227,7 +54482,9 @@ type ProjectTypesCountParams struct {
 
 // ProjectsListParams defines parameters for ProjectsList.
 type ProjectsListParams struct {
-	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	// AccountingIsRunning Filter by whether accounting is running.
+	AccountingIsRunning *bool   `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
+	BackendId           *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanAdmin Return a list of projects where current user is admin.
 	CanAdmin *bool `form:"can_admin,omitempty" json:"can_admin,omitempty"`
@@ -54287,6 +54544,9 @@ type ProjectsListParams struct {
 
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// UserUuid Filter by user UUID.
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
 // ProjectsListParamsField defines parameters for ProjectsList.
@@ -54297,7 +54557,9 @@ type ProjectsListParamsO string
 
 // ProjectsCountParams defines parameters for ProjectsCount.
 type ProjectsCountParams struct {
-	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	// AccountingIsRunning Filter by whether accounting is running.
+	AccountingIsRunning *bool   `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
+	BackendId           *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanAdmin Return a list of projects where current user is admin.
 	CanAdmin *bool `form:"can_admin,omitempty" json:"can_admin,omitempty"`
@@ -54356,6 +54618,9 @@ type ProjectsCountParams struct {
 
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// UserUuid Filter by user UUID.
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
 // ProjectsCountParamsO defines parameters for ProjectsCount.
@@ -56913,6 +57178,9 @@ type ServiceSettingsListParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
+	// Scope Filter by scope URL.
+	Scope *string `form:"scope,omitempty" json:"scope,omitempty"`
+
 	// ScopeUuid Scope UUID
 	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 	Shared    *bool   `form:"shared,omitempty" json:"shared,omitempty"`
@@ -56953,6 +57221,9 @@ type ServiceSettingsCountParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Scope Filter by scope URL.
+	Scope *string `form:"scope,omitempty" json:"scope,omitempty"`
 
 	// ScopeUuid Scope UUID
 	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
@@ -57269,6 +57540,9 @@ type SupportCommentsListParams struct {
 
 	// RemoteIdIsSet Remote ID is set.
 	RemoteIdIsSet *bool `form:"remote_id_is_set,omitempty" json:"remote_id_is_set,omitempty"`
+
+	// Resource Filter by resource URL.
+	Resource *string `form:"resource,omitempty" json:"resource,omitempty"`
 }
 
 // SupportCommentsListParamsO defines parameters for SupportCommentsList.
@@ -57295,6 +57569,9 @@ type SupportCommentsCountParams struct {
 
 	// RemoteIdIsSet Remote ID is set.
 	RemoteIdIsSet *bool `form:"remote_id_is_set,omitempty" json:"remote_id_is_set,omitempty"`
+
+	// Resource Filter by resource URL.
+	Resource *string `form:"resource,omitempty" json:"resource,omitempty"`
 }
 
 // SupportCommentsCountParamsO defines parameters for SupportCommentsCount.
@@ -57391,6 +57668,9 @@ type SupportIssuesListParams struct {
 	ReporterName        *string `form:"reporter_name,omitempty" json:"reporter_name,omitempty"`
 	ResolutionYearMonth *string `form:"resolution_year_month,omitempty" json:"resolution_year_month,omitempty"`
 
+	// Resource Filter by resource URL.
+	Resource *string `form:"resource,omitempty" json:"resource,omitempty"`
+
 	// ResourceExternalIp Resource external IP
 	ResourceExternalIp *string `form:"resource_external_ip,omitempty" json:"resource_external_ip,omitempty"`
 
@@ -57437,6 +57717,9 @@ type SupportIssuesCountParams struct {
 	Reporter            *string `form:"reporter,omitempty" json:"reporter,omitempty"`
 	ReporterName        *string `form:"reporter_name,omitempty" json:"reporter_name,omitempty"`
 	ResolutionYearMonth *string `form:"resolution_year_month,omitempty" json:"resolution_year_month,omitempty"`
+
+	// Resource Filter by resource URL.
+	Resource *string `form:"resource,omitempty" json:"resource,omitempty"`
 
 	// ResourceExternalIp Resource external IP
 	ResourceExternalIp *string `form:"resource_external_ip,omitempty" json:"resource_external_ip,omitempty"`
@@ -57891,10 +58174,13 @@ type UserGroupInvitationsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize  *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	RoleName  *string             `form:"role_name,omitempty" json:"role_name,omitempty"`
-	RoleUuid  *openapi_types.UUID `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
-	ScopeType *string             `form:"scope_type,omitempty" json:"scope_type,omitempty"`
+	PageSize *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	RoleName *string             `form:"role_name,omitempty" json:"role_name,omitempty"`
+	RoleUuid *openapi_types.UUID `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
+
+	// Scope Filter by scope URL.
+	Scope     *string `form:"scope,omitempty" json:"scope,omitempty"`
+	ScopeType *string `form:"scope_type,omitempty" json:"scope_type,omitempty"`
 }
 
 // UserGroupInvitationsListParamsO defines parameters for UserGroupInvitationsList.
@@ -57914,10 +58200,13 @@ type UserGroupInvitationsCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize  *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	RoleName  *string             `form:"role_name,omitempty" json:"role_name,omitempty"`
-	RoleUuid  *openapi_types.UUID `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
-	ScopeType *string             `form:"scope_type,omitempty" json:"scope_type,omitempty"`
+	PageSize *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	RoleName *string             `form:"role_name,omitempty" json:"role_name,omitempty"`
+	RoleUuid *openapi_types.UUID `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
+
+	// Scope Filter by scope URL.
+	Scope     *string `form:"scope,omitempty" json:"scope,omitempty"`
+	ScopeType *string `form:"scope_type,omitempty" json:"scope_type,omitempty"`
 }
 
 // UserGroupInvitationsCountParamsO defines parameters for UserGroupInvitationsCount.
@@ -57947,9 +58236,12 @@ type UserInvitationsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize         *PageSize                         `form:"page_size,omitempty" json:"page_size,omitempty"`
-	RoleName         *string                           `form:"role_name,omitempty" json:"role_name,omitempty"`
-	RoleUuid         *openapi_types.UUID               `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
+	PageSize *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	RoleName *string             `form:"role_name,omitempty" json:"role_name,omitempty"`
+	RoleUuid *openapi_types.UUID `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
+
+	// Scope Filter by scope URL.
+	Scope            *string                           `form:"scope,omitempty" json:"scope,omitempty"`
 	ScopeDescription *string                           `form:"scope_description,omitempty" json:"scope_description,omitempty"`
 	ScopeName        *string                           `form:"scope_name,omitempty" json:"scope_name,omitempty"`
 	ScopeType        *string                           `form:"scope_type,omitempty" json:"scope_type,omitempty"`
@@ -57977,9 +58269,12 @@ type UserInvitationsCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize         *PageSize                          `form:"page_size,omitempty" json:"page_size,omitempty"`
-	RoleName         *string                            `form:"role_name,omitempty" json:"role_name,omitempty"`
-	RoleUuid         *openapi_types.UUID                `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
+	PageSize *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	RoleName *string             `form:"role_name,omitempty" json:"role_name,omitempty"`
+	RoleUuid *openapi_types.UUID `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
+
+	// Scope Filter by scope URL.
+	Scope            *string                            `form:"scope,omitempty" json:"scope,omitempty"`
 	ScopeDescription *string                            `form:"scope_description,omitempty" json:"scope_description,omitempty"`
 	ScopeName        *string                            `form:"scope_name,omitempty" json:"scope_name,omitempty"`
 	ScopeType        *string                            `form:"scope_type,omitempty" json:"scope_type,omitempty"`
@@ -58006,8 +58301,11 @@ type UserPermissionRequestsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize                                `form:"page_size,omitempty" json:"page_size,omitempty"`
-	State    *[]UserPermissionRequestsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Scope Filter by scope URL.
+	Scope *string                                  `form:"scope,omitempty" json:"scope,omitempty"`
+	State *[]UserPermissionRequestsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 }
 
 // UserPermissionRequestsListParamsO defines parameters for UserPermissionRequestsList.
@@ -58030,8 +58328,11 @@ type UserPermissionRequestsCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize                                 `form:"page_size,omitempty" json:"page_size,omitempty"`
-	State    *[]UserPermissionRequestsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Scope Filter by scope URL.
+	Scope *string                                   `form:"scope,omitempty" json:"scope,omitempty"`
+	State *[]UserPermissionRequestsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
 }
 
 // UserPermissionRequestsCountParamsO defines parameters for UserPermissionRequestsCount.
@@ -143836,6 +144137,22 @@ func NewCustomersListRequest(server string, params *CustomersListParams) (*http.
 
 		}
 
+		if params.AccountingIsRunning != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "accounting_is_running", runtime.ParamLocationQuery, *params.AccountingIsRunning); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.AgreementNumber != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "agreement_number", runtime.ParamLocationQuery, *params.AgreementNumber); err != nil {
@@ -143932,6 +144249,54 @@ func NewCustomersListRequest(server string, params *CustomersListParams) (*http.
 
 		}
 
+		if params.HasResources != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_resources", runtime.ParamLocationQuery, *params.HasResources); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsCallManagingOrganization != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_call_managing_organization", runtime.ParamLocationQuery, *params.IsCallManagingOrganization); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsServiceProvider != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_service_provider", runtime.ParamLocationQuery, *params.IsServiceProvider); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Name != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
@@ -144108,6 +144473,38 @@ func NewCustomersListRequest(server string, params *CustomersListParams) (*http.
 
 		}
 
+		if params.ServiceProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "service_provider_uuid", runtime.ParamLocationQuery, *params.ServiceProviderUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -144144,6 +144541,22 @@ func NewCustomersCountRequest(server string, params *CustomersCountParams) (*htt
 		if params.Abbreviation != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "abbreviation", runtime.ParamLocationQuery, *params.Abbreviation); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.AccountingIsRunning != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "accounting_is_running", runtime.ParamLocationQuery, *params.AccountingIsRunning); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -144237,6 +144650,54 @@ func NewCustomersCountRequest(server string, params *CustomersCountParams) (*htt
 
 		}
 
+		if params.HasResources != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_resources", runtime.ParamLocationQuery, *params.HasResources); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsCallManagingOrganization != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_call_managing_organization", runtime.ParamLocationQuery, *params.IsCallManagingOrganization); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsServiceProvider != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_service_provider", runtime.ParamLocationQuery, *params.IsServiceProvider); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Name != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
@@ -144400,6 +144861,38 @@ func NewCustomersCountRequest(server string, params *CustomersCountParams) (*htt
 		if params.RegistrationCode != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "registration_code", runtime.ParamLocationQuery, *params.RegistrationCode); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ServiceProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "service_provider_uuid", runtime.ParamLocationQuery, *params.ServiceProviderUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -144513,6 +145006,22 @@ func NewCustomersCountriesListRequest(server string, params *CustomersCountriesL
 
 		}
 
+		if params.AccountingIsRunning != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "accounting_is_running", runtime.ParamLocationQuery, *params.AccountingIsRunning); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.AgreementNumber != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "agreement_number", runtime.ParamLocationQuery, *params.AgreementNumber); err != nil {
@@ -144580,6 +145089,54 @@ func NewCustomersCountriesListRequest(server string, params *CustomersCountriesL
 		if params.CurrentUserHasProjectCreatePermission != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "current_user_has_project_create_permission", runtime.ParamLocationQuery, *params.CurrentUserHasProjectCreatePermission); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasResources != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_resources", runtime.ParamLocationQuery, *params.HasResources); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsCallManagingOrganization != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_call_managing_organization", runtime.ParamLocationQuery, *params.IsCallManagingOrganization); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsServiceProvider != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_service_provider", runtime.ParamLocationQuery, *params.IsServiceProvider); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -144756,6 +145313,38 @@ func NewCustomersCountriesListRequest(server string, params *CustomersCountriesL
 		if params.RegistrationCode != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "registration_code", runtime.ParamLocationQuery, *params.RegistrationCode); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ServiceProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "service_provider_uuid", runtime.ParamLocationQuery, *params.ServiceProviderUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -144818,6 +145407,22 @@ func NewCustomersCountriesCountRequest(server string, params *CustomersCountries
 
 		}
 
+		if params.AccountingIsRunning != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "accounting_is_running", runtime.ParamLocationQuery, *params.AccountingIsRunning); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.AgreementNumber != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "agreement_number", runtime.ParamLocationQuery, *params.AgreementNumber); err != nil {
@@ -144885,6 +145490,54 @@ func NewCustomersCountriesCountRequest(server string, params *CustomersCountries
 		if params.CurrentUserHasProjectCreatePermission != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "current_user_has_project_create_permission", runtime.ParamLocationQuery, *params.CurrentUserHasProjectCreatePermission); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasResources != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_resources", runtime.ParamLocationQuery, *params.HasResources); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsCallManagingOrganization != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_call_managing_organization", runtime.ParamLocationQuery, *params.IsCallManagingOrganization); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsServiceProvider != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_service_provider", runtime.ParamLocationQuery, *params.IsServiceProvider); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -145061,6 +145714,38 @@ func NewCustomersCountriesCountRequest(server string, params *CustomersCountries
 		if params.RegistrationCode != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "registration_code", runtime.ParamLocationQuery, *params.RegistrationCode); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ServiceProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "service_provider_uuid", runtime.ParamLocationQuery, *params.ServiceProviderUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -146141,6 +146826,22 @@ func NewCustomersHistoryListRequest(server string, uuid openapi_types.UUID, para
 
 		}
 
+		if params.AccountingIsRunning != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "accounting_is_running", runtime.ParamLocationQuery, *params.AccountingIsRunning); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.AgreementNumber != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "agreement_number", runtime.ParamLocationQuery, *params.AgreementNumber); err != nil {
@@ -146240,6 +146941,54 @@ func NewCustomersHistoryListRequest(server string, uuid openapi_types.UUID, para
 		if params.CurrentUserHasProjectCreatePermission != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "current_user_has_project_create_permission", runtime.ParamLocationQuery, *params.CurrentUserHasProjectCreatePermission); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasResources != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_resources", runtime.ParamLocationQuery, *params.HasResources); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsCallManagingOrganization != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_call_managing_organization", runtime.ParamLocationQuery, *params.IsCallManagingOrganization); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsServiceProvider != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_service_provider", runtime.ParamLocationQuery, *params.IsServiceProvider); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -146416,6 +147165,38 @@ func NewCustomersHistoryListRequest(server string, uuid openapi_types.UUID, para
 		if params.RegistrationCode != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "registration_code", runtime.ParamLocationQuery, *params.RegistrationCode); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ServiceProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "service_provider_uuid", runtime.ParamLocationQuery, *params.ServiceProviderUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -151018,6 +151799,38 @@ func NewEventsStatsListRequest(server string, params *EventsStatsListParams) (*h
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.EventType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "event_type", runtime.ParamLocationQuery, *params.EventType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Feature != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "feature", runtime.ParamLocationQuery, *params.Feature); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -151037,6 +151850,22 @@ func NewEventsStatsListRequest(server string, params *EventsStatsListParams) (*h
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope", runtime.ParamLocationQuery, *params.Scope); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -151083,6 +151912,38 @@ func NewEventsStatsCountRequest(server string, params *EventsStatsCountParams) (
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.EventType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "event_type", runtime.ParamLocationQuery, *params.EventType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Feature != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "feature", runtime.ParamLocationQuery, *params.Feature); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -151102,6 +151963,22 @@ func NewEventsStatsCountRequest(server string, params *EventsStatsCountParams) (
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope", runtime.ParamLocationQuery, *params.Scope); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -151183,6 +152060,38 @@ func NewEventsListRequest(server string, params *EventsListParams) (*http.Reques
 		if params.CustomerUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.EventType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "event_type", runtime.ParamLocationQuery, *params.EventType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Feature != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "feature", runtime.ParamLocationQuery, *params.Feature); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -151279,6 +152188,22 @@ func NewEventsListRequest(server string, params *EventsListParams) (*http.Reques
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope", runtime.ParamLocationQuery, *params.Scope); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -151389,6 +152314,38 @@ func NewEventsCountRequest(server string, params *EventsCountParams) (*http.Requ
 
 		}
 
+		if params.EventType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "event_type", runtime.ParamLocationQuery, *params.EventType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Feature != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "feature", runtime.ParamLocationQuery, *params.Feature); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Message != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "message", runtime.ParamLocationQuery, *params.Message); err != nil {
@@ -151456,6 +152413,22 @@ func NewEventsCountRequest(server string, params *EventsCountParams) (*http.Requ
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope", runtime.ParamLocationQuery, *params.Scope); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -152611,6 +153584,22 @@ func NewFinancialReportsListRequest(server string, params *FinancialReportsListP
 
 		}
 
+		if params.AccountingIsRunning != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "accounting_is_running", runtime.ParamLocationQuery, *params.AccountingIsRunning); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.AgreementNumber != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "agreement_number", runtime.ParamLocationQuery, *params.AgreementNumber); err != nil {
@@ -152678,6 +153667,22 @@ func NewFinancialReportsListRequest(server string, params *FinancialReportsListP
 		if params.CurrentUserHasProjectCreatePermission != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "current_user_has_project_create_permission", runtime.ParamLocationQuery, *params.CurrentUserHasProjectCreatePermission); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Month != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "month", runtime.ParamLocationQuery, *params.Month); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -152854,6 +153859,22 @@ func NewFinancialReportsListRequest(server string, params *FinancialReportsListP
 		if params.RegistrationCode != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "registration_code", runtime.ParamLocationQuery, *params.RegistrationCode); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Year != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "year", runtime.ParamLocationQuery, *params.Year); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -152916,6 +153937,22 @@ func NewFinancialReportsCountRequest(server string, params *FinancialReportsCoun
 
 		}
 
+		if params.AccountingIsRunning != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "accounting_is_running", runtime.ParamLocationQuery, *params.AccountingIsRunning); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.AgreementNumber != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "agreement_number", runtime.ParamLocationQuery, *params.AgreementNumber); err != nil {
@@ -152983,6 +154020,22 @@ func NewFinancialReportsCountRequest(server string, params *FinancialReportsCoun
 		if params.CurrentUserHasProjectCreatePermission != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "current_user_has_project_create_permission", runtime.ParamLocationQuery, *params.CurrentUserHasProjectCreatePermission); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Month != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "month", runtime.ParamLocationQuery, *params.Month); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -153159,6 +154212,22 @@ func NewFinancialReportsCountRequest(server string, params *FinancialReportsCoun
 		if params.RegistrationCode != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "registration_code", runtime.ParamLocationQuery, *params.RegistrationCode); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Year != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "year", runtime.ParamLocationQuery, *params.Year); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -155234,6 +156303,38 @@ func NewHooksListRequest(server string, params *HooksListParams) (*http.Request,
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.AuthorUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "author_uuid", runtime.ParamLocationQuery, *params.AuthorUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -155298,6 +156399,38 @@ func NewHooksCountRequest(server string, params *HooksCountParams) (*http.Reques
 
 	if params != nil {
 		queryValues := queryURL.Query()
+
+		if params.AuthorUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "author_uuid", runtime.ParamLocationQuery, *params.AuthorUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
 
 		if params.Page != nil {
 
@@ -157407,6 +158540,22 @@ func NewInvoicesListRequest(server string, params *InvoicesListParams) (*http.Re
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.AccountingIsRunning != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "accounting_is_running", runtime.ParamLocationQuery, *params.AccountingIsRunning); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Created != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
@@ -157631,6 +158780,22 @@ func NewInvoicesCountRequest(server string, params *InvoicesCountParams) (*http.
 
 	if params != nil {
 		queryValues := queryURL.Query()
+
+		if params.AccountingIsRunning != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "accounting_is_running", runtime.ParamLocationQuery, *params.AccountingIsRunning); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
 
 		if params.Created != nil {
 
@@ -158105,6 +159270,22 @@ func NewInvoicesHistoryListRequest(server string, uuid openapi_types.UUID, param
 
 	if params != nil {
 		queryValues := queryURL.Query()
+
+		if params.AccountingIsRunning != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "accounting_is_running", runtime.ParamLocationQuery, *params.AccountingIsRunning); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
 
 		if params.Created != nil {
 
@@ -158774,6 +159955,22 @@ func NewInvoicesStatsListRequest(server string, uuid openapi_types.UUID, params 
 
 	if params != nil {
 		queryValues := queryURL.Query()
+
+		if params.AccountingIsRunning != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "accounting_is_running", runtime.ParamLocationQuery, *params.AccountingIsRunning); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
 
 		if params.Created != nil {
 
@@ -164922,6 +166119,22 @@ func NewMarketplaceCategoryComponentUsagesListRequest(server string, params *Mar
 
 		}
 
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope", runtime.ParamLocationQuery, *params.Scope); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -165006,6 +166219,22 @@ func NewMarketplaceCategoryComponentUsagesCountRequest(server string, params *Ma
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope", runtime.ParamLocationQuery, *params.Scope); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -172827,6 +174056,22 @@ func NewMarketplaceOfferingReferralsListRequest(server string, params *Marketpla
 
 		}
 
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope", runtime.ParamLocationQuery, *params.Scope); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -172895,6 +174140,22 @@ func NewMarketplaceOfferingReferralsCountRequest(server string, params *Marketpl
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope", runtime.ParamLocationQuery, *params.Scope); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -181436,6 +182697,22 @@ func NewMarketplaceProviderOfferingsListRequest(server string, params *Marketpla
 
 		}
 
+		if params.Importable != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "importable", runtime.ParamLocationQuery, *params.Importable); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Keyword != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
@@ -182064,6 +183341,22 @@ func NewMarketplaceProviderOfferingsCountRequest(server string, params *Marketpl
 		if params.HasTermsOfService != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_terms_of_service", runtime.ParamLocationQuery, *params.HasTermsOfService); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Importable != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "importable", runtime.ParamLocationQuery, *params.Importable); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -184507,6 +185800,22 @@ func NewMarketplaceProviderOfferingsComponentStatsListRequest(server string, uui
 
 		}
 
+		if params.Importable != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "importable", runtime.ParamLocationQuery, *params.Importable); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Keyword != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
@@ -185190,6 +186499,22 @@ func NewMarketplaceProviderOfferingsCostsListRequest(server string, uuid openapi
 		if params.HasTermsOfService != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_terms_of_service", runtime.ParamLocationQuery, *params.HasTermsOfService); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Importable != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "importable", runtime.ParamLocationQuery, *params.Importable); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -185917,6 +187242,22 @@ func NewMarketplaceProviderOfferingsCustomersListRequest(server string, uuid ope
 		if params.HasTermsOfService != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_terms_of_service", runtime.ParamLocationQuery, *params.HasTermsOfService); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Importable != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "importable", runtime.ParamLocationQuery, *params.Importable); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -186989,6 +188330,22 @@ func NewMarketplaceProviderOfferingsHistoryListRequest(server string, uuid opena
 
 		}
 
+		if params.Importable != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "importable", runtime.ParamLocationQuery, *params.Importable); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Keyword != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
@@ -187808,6 +189165,22 @@ func NewMarketplaceProviderOfferingsListCourseAccountsListRequest(server string,
 
 		}
 
+		if params.Importable != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "importable", runtime.ParamLocationQuery, *params.Importable); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Keyword != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
@@ -188544,6 +189917,22 @@ func NewMarketplaceProviderOfferingsListCustomerServiceAccountsListRequest(serve
 
 		}
 
+		if params.Importable != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "importable", runtime.ParamLocationQuery, *params.Importable); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Keyword != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
@@ -189267,6 +190656,22 @@ func NewMarketplaceProviderOfferingsListProjectServiceAccountsListRequest(server
 		if params.HasTermsOfService != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_terms_of_service", runtime.ParamLocationQuery, *params.HasTermsOfService); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Importable != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "importable", runtime.ParamLocationQuery, *params.Importable); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -192250,6 +193655,22 @@ func NewMarketplaceProviderResourcesListRequest(server string, params *Marketpla
 
 		}
 
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope", runtime.ParamLocationQuery, *params.Scope); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.ServiceManagerUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "service_manager_uuid", runtime.ParamLocationQuery, *params.ServiceManagerUuid); err != nil {
@@ -192926,6 +194347,22 @@ func NewMarketplaceProviderResourcesCountRequest(server string, params *Marketpl
 		if params.RuntimeState != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "runtime_state", runtime.ParamLocationQuery, *params.RuntimeState); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope", runtime.ParamLocationQuery, *params.Scope); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -193872,6 +195309,22 @@ func NewMarketplaceProviderResourcesHistoryListRequest(server string, uuid opena
 		if params.RuntimeState != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "runtime_state", runtime.ParamLocationQuery, *params.RuntimeState); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope", runtime.ParamLocationQuery, *params.Scope); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -198181,6 +199634,22 @@ func NewMarketplaceResourcesListRequest(server string, params *MarketplaceResour
 
 		}
 
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope", runtime.ParamLocationQuery, *params.Scope); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.ServiceManagerUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "service_manager_uuid", runtime.ParamLocationQuery, *params.ServiceManagerUuid); err != nil {
@@ -198857,6 +200326,22 @@ func NewMarketplaceResourcesCountRequest(server string, params *MarketplaceResou
 		if params.RuntimeState != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "runtime_state", runtime.ParamLocationQuery, *params.RuntimeState); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope", runtime.ParamLocationQuery, *params.Scope); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -199890,6 +201375,22 @@ func NewMarketplaceResourcesHistoryListRequest(server string, uuid openapi_types
 		if params.RuntimeState != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "runtime_state", runtime.ParamLocationQuery, *params.RuntimeState); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope", runtime.ParamLocationQuery, *params.Scope); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -227419,6 +228920,22 @@ func NewOpenportalUnmanagedProjectsListRequest(server string, params *Openportal
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.AccountingIsRunning != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "accounting_is_running", runtime.ParamLocationQuery, *params.AccountingIsRunning); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.BackendId != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "backend_id", runtime.ParamLocationQuery, *params.BackendId); err != nil {
@@ -227755,6 +229272,22 @@ func NewOpenportalUnmanagedProjectsListRequest(server string, params *Openportal
 
 		}
 
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -227787,6 +229320,22 @@ func NewOpenportalUnmanagedProjectsCountRequest(server string, params *Openporta
 
 	if params != nil {
 		queryValues := queryURL.Query()
+
+		if params.AccountingIsRunning != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "accounting_is_running", runtime.ParamLocationQuery, *params.AccountingIsRunning); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
 
 		if params.BackendId != nil {
 
@@ -228095,6 +229644,22 @@ func NewOpenportalUnmanagedProjectsCountRequest(server string, params *Openporta
 		if params.Slug != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "slug", runtime.ParamLocationQuery, *params.Slug); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -234362,6 +235927,22 @@ func NewOpenstackInstancesListRequest(server string, params *OpenstackInstancesL
 
 		}
 
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -234798,6 +236379,22 @@ func NewOpenstackInstancesCountRequest(server string, params *OpenstackInstances
 		if params.NameExact != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name_exact", runtime.ParamLocationQuery, *params.NameExact); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "o", runtime.ParamLocationQuery, *params.O); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -254293,6 +255890,22 @@ func NewProjectsListRequest(server string, params *ProjectsListParams) (*http.Re
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.AccountingIsRunning != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "accounting_is_running", runtime.ParamLocationQuery, *params.AccountingIsRunning); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.BackendId != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "backend_id", runtime.ParamLocationQuery, *params.BackendId); err != nil {
@@ -254629,6 +256242,22 @@ func NewProjectsListRequest(server string, params *ProjectsListParams) (*http.Re
 
 		}
 
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -254661,6 +256290,22 @@ func NewProjectsCountRequest(server string, params *ProjectsCountParams) (*http.
 
 	if params != nil {
 		queryValues := queryURL.Query()
+
+		if params.AccountingIsRunning != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "accounting_is_running", runtime.ParamLocationQuery, *params.AccountingIsRunning); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
 
 		if params.BackendId != nil {
 
@@ -254969,6 +256614,22 @@ func NewProjectsCountRequest(server string, params *ProjectsCountParams) (*http.
 		if params.Slug != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "slug", runtime.ParamLocationQuery, *params.Slug); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -281909,6 +283570,22 @@ func NewServiceSettingsListRequest(server string, params *ServiceSettingsListPar
 
 		}
 
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope", runtime.ParamLocationQuery, *params.Scope); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.ScopeUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_uuid", runtime.ParamLocationQuery, *params.ScopeUuid); err != nil {
@@ -282105,6 +283782,22 @@ func NewServiceSettingsCountRequest(server string, params *ServiceSettingsCountP
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope", runtime.ParamLocationQuery, *params.Scope); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -285202,6 +286895,22 @@ func NewSupportCommentsListRequest(server string, params *SupportCommentsListPar
 
 		}
 
+		if params.Resource != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource", runtime.ParamLocationQuery, *params.Resource); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -285382,6 +287091,22 @@ func NewSupportCommentsCountRequest(server string, params *SupportCommentsCountP
 		if params.RemoteIdIsSet != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "remote_id_is_set", runtime.ParamLocationQuery, *params.RemoteIdIsSet); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Resource != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource", runtime.ParamLocationQuery, *params.Resource); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -286740,6 +288465,22 @@ func NewSupportIssuesListRequest(server string, params *SupportIssuesListParams)
 
 		}
 
+		if params.Resource != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource", runtime.ParamLocationQuery, *params.Resource); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.ResourceExternalIp != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_external_ip", runtime.ParamLocationQuery, *params.ResourceExternalIp); err != nil {
@@ -287128,6 +288869,22 @@ func NewSupportIssuesCountRequest(server string, params *SupportIssuesCountParam
 		if params.ResolutionYearMonth != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resolution_year_month", runtime.ParamLocationQuery, *params.ResolutionYearMonth); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Resource != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource", runtime.ParamLocationQuery, *params.Resource); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -292603,6 +294360,22 @@ func NewUserGroupInvitationsListRequest(server string, params *UserGroupInvitati
 
 		}
 
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope", runtime.ParamLocationQuery, *params.Scope); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.ScopeType != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_type", runtime.ParamLocationQuery, *params.ScopeType); err != nil {
@@ -292767,6 +294540,22 @@ func NewUserGroupInvitationsCountRequest(server string, params *UserGroupInvitat
 		if params.RoleUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "role_uuid", runtime.ParamLocationQuery, *params.RoleUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope", runtime.ParamLocationQuery, *params.Scope); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -293315,6 +295104,22 @@ func NewUserInvitationsListRequest(server string, params *UserInvitationsListPar
 
 		}
 
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope", runtime.ParamLocationQuery, *params.Scope); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.ScopeDescription != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_description", runtime.ParamLocationQuery, *params.ScopeDescription); err != nil {
@@ -293543,6 +295348,22 @@ func NewUserInvitationsCountRequest(server string, params *UserInvitationsCountP
 		if params.RoleUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "role_uuid", runtime.ParamLocationQuery, *params.RoleUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope", runtime.ParamLocationQuery, *params.Scope); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -294275,6 +296096,22 @@ func NewUserPermissionRequestsListRequest(server string, params *UserPermissionR
 
 		}
 
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope", runtime.ParamLocationQuery, *params.Scope); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
@@ -294407,6 +296244,22 @@ func NewUserPermissionRequestsCountRequest(server string, params *UserPermission
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope", runtime.ParamLocationQuery, *params.Scope); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
