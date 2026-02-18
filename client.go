@@ -42458,6 +42458,9 @@ type FinancialReportsListParams struct {
 	// CurrentUserHasProjectCreatePermission Return a list of customers where current user has project create permission.
 	CurrentUserHasProjectCreatePermission *bool `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
 
+	// CustomerUuid Filter by customer UUID.
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
 	// Month Filter by month.
 	Month *int `form:"month,omitempty" json:"month,omitempty"`
 
@@ -42512,6 +42515,9 @@ type FinancialReportsCountParams struct {
 
 	// CurrentUserHasProjectCreatePermission Return a list of customers where current user has project create permission.
 	CurrentUserHasProjectCreatePermission *bool `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
+
+	// CustomerUuid Filter by customer UUID.
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 
 	// Month Filter by month.
 	Month *int `form:"month,omitempty" json:"month,omitempty"`
@@ -153680,6 +153686,22 @@ func NewFinancialReportsListRequest(server string, params *FinancialReportsListP
 
 		}
 
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Month != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "month", runtime.ParamLocationQuery, *params.Month); err != nil {
@@ -154020,6 +154042,22 @@ func NewFinancialReportsCountRequest(server string, params *FinancialReportsCoun
 		if params.CurrentUserHasProjectCreatePermission != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "current_user_has_project_create_permission", runtime.ParamLocationQuery, *params.CurrentUserHasProjectCreatePermission); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
