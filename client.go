@@ -8442,6 +8442,18 @@ const (
 	MarketplaceUserOfferingConsentsCountParamsORevocationDate      MarketplaceUserOfferingConsentsCountParamsO = "revocation_date"
 )
 
+// Defines values for OfferingKeycloakMembershipsListParamsState.
+const (
+	OfferingKeycloakMembershipsListParamsStateActive  OfferingKeycloakMembershipsListParamsState = "active"
+	OfferingKeycloakMembershipsListParamsStatePending OfferingKeycloakMembershipsListParamsState = "pending"
+)
+
+// Defines values for OfferingKeycloakMembershipsCountParamsState.
+const (
+	OfferingKeycloakMembershipsCountParamsStateActive  OfferingKeycloakMembershipsCountParamsState = "active"
+	OfferingKeycloakMembershipsCountParamsStatePending OfferingKeycloakMembershipsCountParamsState = "pending"
+)
+
 // Defines values for OnboardingJustificationsListParamsO.
 const (
 	OnboardingJustificationsListParamsOCreated          OnboardingJustificationsListParamsO = "created"
@@ -14179,7 +14191,7 @@ type AgentIdentity struct {
 	Modified       *time.Time  `json:"modified,omitempty"`
 	Name           string      `json:"name"`
 
-	// Offering UUID of an offering with type 'Marketplace.Slurm'. Only site-agent offerings are accepted.
+	// Offering UUID of an offering with a site-agent compatible type.
 	Offering openapi_types.UUID    `json:"offering"`
 	Services *[]NestedAgentService `json:"services,omitempty"`
 	Url      *string               `json:"url,omitempty"`
@@ -14197,7 +14209,7 @@ type AgentIdentityRequest struct {
 	LastRestarted  *time.Time  `json:"last_restarted,omitempty"`
 	Name           string      `json:"name"`
 
-	// Offering UUID of an offering with type 'Marketplace.Slurm'. Only site-agent offerings are accepted.
+	// Offering UUID of an offering with a site-agent compatible type.
 	Offering openapi_types.UUID `json:"offering"`
 	Version  *string            `json:"version"`
 }
@@ -17988,7 +18000,6 @@ type ConstanceSettings struct {
 	SITEADDRESS                                    *string              `json:"SITE_ADDRESS,omitempty"`
 	SITEDESCRIPTION                                *string              `json:"SITE_DESCRIPTION,omitempty"`
 	SITEEMAIL                                      *string              `json:"SITE_EMAIL,omitempty"`
-	SITELOGO                                       *string              `json:"SITE_LOGO"`
 	SITENAME                                       *string              `json:"SITE_NAME,omitempty"`
 	SITEPHONE                                      *string              `json:"SITE_PHONE,omitempty"`
 	SLURMPOLICYEVALUATIONLOGRETENTIONDAYS          *int                 `json:"SLURM_POLICY_EVALUATION_LOG_RETENTION_DAYS,omitempty"`
@@ -18228,7 +18239,6 @@ type ConstanceSettingsRequest struct {
 	SITEADDRESS                                    *string                         `json:"SITE_ADDRESS,omitempty"`
 	SITEDESCRIPTION                                *string                         `json:"SITE_DESCRIPTION,omitempty"`
 	SITEEMAIL                                      *string                         `json:"SITE_EMAIL,omitempty"`
-	SITELOGO                                       *openapi_types.File             `json:"SITE_LOGO"`
 	SITENAME                                       *string                         `json:"SITE_NAME,omitempty"`
 	SITEPHONE                                      *string                         `json:"SITE_PHONE,omitempty"`
 	SLURMPOLICYEVALUATIONLOGRETENTIONDAYS          *int                            `json:"SLURM_POLICY_EVALUATION_LOG_RETENTION_DAYS,omitempty"`
@@ -18468,7 +18478,6 @@ type ConstanceSettingsRequestForm struct {
 	SITEADDRESS                                    *string                         `json:"SITE_ADDRESS,omitempty"`
 	SITEDESCRIPTION                                *string                         `json:"SITE_DESCRIPTION,omitempty"`
 	SITEEMAIL                                      *string                         `json:"SITE_EMAIL,omitempty"`
-	SITELOGO                                       *openapi_types.File             `json:"SITE_LOGO"`
 	SITENAME                                       *string                         `json:"SITE_NAME,omitempty"`
 	SITEPHONE                                      *string                         `json:"SITE_PHONE,omitempty"`
 	SLURMPOLICYEVALUATIONLOGRETENTIONDAYS          *int                            `json:"SLURM_POLICY_EVALUATION_LOG_RETENTION_DAYS,omitempty"`
@@ -18708,7 +18717,6 @@ type ConstanceSettingsRequestMultipart struct {
 	SITEADDRESS                                    *string                         `json:"SITE_ADDRESS,omitempty"`
 	SITEDESCRIPTION                                *string                         `json:"SITE_DESCRIPTION,omitempty"`
 	SITEEMAIL                                      *string                         `json:"SITE_EMAIL,omitempty"`
-	SITELOGO                                       *openapi_types.File             `json:"SITE_LOGO"`
 	SITENAME                                       *string                         `json:"SITE_NAME,omitempty"`
 	SITEPHONE                                      *string                         `json:"SITE_PHONE,omitempty"`
 	SLURMPOLICYEVALUATIONLOGRETENTIONDAYS          *int                            `json:"SLURM_POLICY_EVALUATION_LOG_RETENTION_DAYS,omitempty"`
@@ -21655,6 +21663,15 @@ type ImportPublicationsRequest struct {
 // ImportPublicationsSourceEnum defines model for ImportPublicationsSourceEnum.
 type ImportPublicationsSourceEnum string
 
+// ImportRemoteGroupRequest defines model for ImportRemoteGroupRequest.
+type ImportRemoteGroupRequest struct {
+	OfferingUuid  openapi_types.UUID  `json:"offering_uuid"`
+	RemoteGroupId string              `json:"remote_group_id"`
+	ResourceUuid  *openapi_types.UUID `json:"resource_uuid"`
+	RoleUuid      openapi_types.UUID  `json:"role_uuid"`
+	ScopeId       *string             `json:"scope_id,omitempty"`
+}
+
 // ImportResourceRequest defines model for ImportResourceRequest.
 type ImportResourceRequest struct {
 	AdditionalDetails interface{} `json:"additional_details"`
@@ -22410,6 +22427,18 @@ type KeycloakGroup struct {
 	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// KeycloakScopeOptionRequest defines model for KeycloakScopeOptionRequest.
+type KeycloakScopeOptionRequest struct {
+	// Label Human-readable label shown to end users.
+	Label string `json:"label"`
+
+	// ScopeId Identifier of the scope (UUID or external ID).
+	ScopeId string `json:"scope_id"`
+
+	// ScopeType Scope type, e.g. 'project', 'cluster'.
+	ScopeType string `json:"scope_type"`
+}
+
 // KeycloakUserGroupMembership defines model for KeycloakUserGroupMembership.
 type KeycloakUserGroupMembership struct {
 	Created *time.Time `json:"created,omitempty"`
@@ -23095,6 +23124,21 @@ type MergedPluginOptions struct {
 	// IsResourceTerminationDateRequired If set to True, resource termination date is required
 	IsResourceTerminationDateRequired *bool `json:"is_resource_termination_date_required,omitempty"`
 
+	// KeycloakBaseGroup Root parent group in Keycloak under which offering groups are created. Groups are organized as: {base_group}/{offering_slug}/{role_group}. If empty, offering groups are created at the realm root.
+	KeycloakBaseGroup *string `json:"keycloak_base_group,omitempty"`
+
+	// KeycloakEnabled If set to True, Keycloak group management is enabled for this offering.
+	KeycloakEnabled *bool `json:"keycloak_enabled,omitempty"`
+
+	// KeycloakGroupNameTemplate Template for generating Keycloak group names. Uses $variable syntax (e.g. $offering_uuid_$role_name). Allowed variables: offering_uuid, offering_name, offering_slug, resource_uuid, resource_name, resource_slug, project_uuid, project_name, project_slug, organization_uuid, organization_name, organization_slug, role_name, scope_id.
+	KeycloakGroupNameTemplate *string `json:"keycloak_group_name_template,omitempty"`
+
+	// KeycloakSyncFrequency Frequency in minutes for syncing Keycloak group memberships.
+	KeycloakSyncFrequency *int `json:"keycloak_sync_frequency,omitempty"`
+
+	// KeycloakUsernameLabel Custom label for the username field when inviting external users (e.g. 'Civil code', 'CUID'). If empty, defaults to 'Username'.
+	KeycloakUsernameLabel *string `json:"keycloak_username_label,omitempty"`
+
 	// LatestDateForResourceTermination If set, it will be used as a latest date for resource termination. Format: YYYY-MM-DD
 	LatestDateForResourceTermination *string `json:"latest_date_for_resource_termination,omitempty"`
 
@@ -23303,6 +23347,21 @@ type MergedPluginOptionsRequest struct {
 
 	// IsResourceTerminationDateRequired If set to True, resource termination date is required
 	IsResourceTerminationDateRequired *bool `json:"is_resource_termination_date_required,omitempty"`
+
+	// KeycloakBaseGroup Root parent group in Keycloak under which offering groups are created. Groups are organized as: {base_group}/{offering_slug}/{role_group}. If empty, offering groups are created at the realm root.
+	KeycloakBaseGroup *string `json:"keycloak_base_group,omitempty"`
+
+	// KeycloakEnabled If set to True, Keycloak group management is enabled for this offering.
+	KeycloakEnabled *bool `json:"keycloak_enabled,omitempty"`
+
+	// KeycloakGroupNameTemplate Template for generating Keycloak group names. Uses $variable syntax (e.g. $offering_uuid_$role_name). Allowed variables: offering_uuid, offering_name, offering_slug, resource_uuid, resource_name, resource_slug, project_uuid, project_name, project_slug, organization_uuid, organization_name, organization_slug, role_name, scope_id.
+	KeycloakGroupNameTemplate *string `json:"keycloak_group_name_template,omitempty"`
+
+	// KeycloakSyncFrequency Frequency in minutes for syncing Keycloak group memberships.
+	KeycloakSyncFrequency *int `json:"keycloak_sync_frequency,omitempty"`
+
+	// KeycloakUsernameLabel Custom label for the username field when inviting external users (e.g. 'Civil code', 'CUID'). If empty, defaults to 'Username'.
+	KeycloakUsernameLabel *string `json:"keycloak_username_label,omitempty"`
 
 	// LatestDateForResourceTermination If set, it will be used as a latest date for resource termination. Format: YYYY-MM-DD
 	LatestDateForResourceTermination *string `json:"latest_date_for_resource_termination,omitempty"`
@@ -25031,6 +25090,81 @@ type OfferingIntegrationUpdateRequest struct {
 	ServiceAttributes interface{}                 `json:"service_attributes,omitempty"`
 }
 
+// OfferingKeycloakGroup defines model for OfferingKeycloakGroup.
+type OfferingKeycloakGroup struct {
+	BackendId    *string             `json:"backend_id,omitempty"`
+	Created      *time.Time          `json:"created,omitempty"`
+	Modified     *time.Time          `json:"modified,omitempty"`
+	Name         *string             `json:"name,omitempty"`
+	Offering     string              `json:"offering"`
+	OfferingName *string             `json:"offering_name,omitempty"`
+	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	Resource     *string             `json:"resource"`
+	ResourceName *string             `json:"resource_name"`
+	ResourceUuid *openapi_types.UUID `json:"resource_uuid,omitempty"`
+	Role         string              `json:"role"`
+	RoleName     *string             `json:"role_name,omitempty"`
+
+	// RoleScopeType Level this role applies at, e.g. 'cluster', 'project'. Empty means offering-wide.
+	RoleScopeType *string `json:"role_scope_type,omitempty"`
+
+	// ScopeId Sub-entity identifier within a resource, e.g. Rancher project ID within a cluster.
+	ScopeId *string             `json:"scope_id,omitempty"`
+	Url     *string             `json:"url,omitempty"`
+	Uuid    *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// OfferingKeycloakMembership defines model for OfferingKeycloakMembership.
+type OfferingKeycloakMembership struct {
+	Created *time.Time `json:"created,omitempty"`
+
+	// Email User's email for notifications
+	Email             openapi_types.Email `json:"email"`
+	ErrorMessage      *string             `json:"error_message,omitempty"`
+	ErrorTraceback    *string             `json:"error_traceback,omitempty"`
+	FirstName         *string             `json:"first_name,omitempty"`
+	Group             *string             `json:"group,omitempty"`
+	GroupName         *string             `json:"group_name,omitempty"`
+	GroupOfferingName *string             `json:"group_offering_name,omitempty"`
+	GroupOfferingUuid *openapi_types.UUID `json:"group_offering_uuid,omitempty"`
+	GroupResourceName *string             `json:"group_resource_name,omitempty"`
+	GroupResourceUuid *openapi_types.UUID `json:"group_resource_uuid,omitempty"`
+	GroupRoleName     *string             `json:"group_role_name,omitempty"`
+
+	// GroupRoleScopeType Level this role applies at, e.g. 'cluster', 'project'. Empty means offering-wide.
+	GroupRoleScopeType *string `json:"group_role_scope_type,omitempty"`
+
+	// GroupRoleScopeTypeLabel Human-readable label for scope_type shown to end users, e.g. 'Rancher Project', 'Cluster Namespace'. Falls back to capitalized scope_type if empty.
+	GroupRoleScopeTypeLabel *string `json:"group_role_scope_type_label,omitempty"`
+
+	// GroupScopeId Sub-entity identifier within a resource, e.g. Rancher project ID within a cluster.
+	GroupScopeId *string                           `json:"group_scope_id,omitempty"`
+	LastChecked  *time.Time                        `json:"last_checked,omitempty"`
+	LastName     *string                           `json:"last_name,omitempty"`
+	Modified     *time.Time                        `json:"modified,omitempty"`
+	State        *KeycloakUserGroupMembershipState `json:"state,omitempty"`
+	Url          *string                           `json:"url,omitempty"`
+	User         *string                           `json:"user"`
+
+	// Username Keycloak user username
+	Username string              `json:"username"`
+	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// OfferingKeycloakMembershipRequest defines model for OfferingKeycloakMembershipRequest.
+type OfferingKeycloakMembershipRequest struct {
+	// Email User's email for notifications
+	Email    openapi_types.Email `json:"email"`
+	Offering *string             `json:"offering,omitempty"`
+	Resource *string             `json:"resource"`
+	Role     *string             `json:"role,omitempty"`
+	ScopeId  *string             `json:"scope_id,omitempty"`
+	User     *string             `json:"user"`
+
+	// Username Keycloak user username
+	Username string `json:"username"`
+}
+
 // OfferingLocationUpdateRequest defines model for OfferingLocationUpdateRequest.
 type OfferingLocationUpdateRequest struct {
 	Latitude  float64 `json:"latitude"`
@@ -25401,6 +25535,11 @@ type OfferingThumbnailRequestMultipart struct {
 	Thumbnail openapi_types.File `json:"thumbnail"`
 }
 
+// OfferingUUIDRequest defines model for OfferingUUIDRequest.
+type OfferingUUIDRequest struct {
+	OfferingUuid openapi_types.UUID `json:"offering_uuid"`
+}
+
 // OfferingUsagePolicy defines model for OfferingUsagePolicy.
 type OfferingUsagePolicy struct {
 	Actions string `json:"actions"`
@@ -25600,13 +25739,25 @@ type OfferingUserRole struct {
 	Offering     string              `json:"offering"`
 	OfferingName *string             `json:"offering_name,omitempty"`
 	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
-	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+
+	// ScopeType Level this role applies at, e.g. 'cluster', 'project'. Empty means offering-wide.
+	ScopeType *string `json:"scope_type,omitempty"`
+
+	// ScopeTypeLabel Human-readable label for scope_type shown to end users, e.g. 'Rancher Project', 'Cluster Namespace'. Falls back to capitalized scope_type if empty.
+	ScopeTypeLabel *string             `json:"scope_type_label,omitempty"`
+	Uuid           *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // OfferingUserRoleRequest defines model for OfferingUserRoleRequest.
 type OfferingUserRoleRequest struct {
 	Name     string `json:"name"`
 	Offering string `json:"offering"`
+
+	// ScopeType Level this role applies at, e.g. 'cluster', 'project'. Empty means offering-wide.
+	ScopeType *string `json:"scope_type,omitempty"`
+
+	// ScopeTypeLabel Human-readable label for scope_type shown to end users, e.g. 'Rancher Project', 'Cluster Namespace'. Falls back to capitalized scope_type if empty.
+	ScopeTypeLabel *string `json:"scope_type_label,omitempty"`
 }
 
 // OfferingUserServiceProviderComment defines model for OfferingUserServiceProviderComment.
@@ -29091,6 +29242,12 @@ type PatchedOfferingUserRequest struct {
 type PatchedOfferingUserRoleRequest struct {
 	Name     *string `json:"name,omitempty"`
 	Offering *string `json:"offering,omitempty"`
+
+	// ScopeType Level this role applies at, e.g. 'cluster', 'project'. Empty means offering-wide.
+	ScopeType *string `json:"scope_type,omitempty"`
+
+	// ScopeTypeLabel Human-readable label for scope_type shown to end users, e.g. 'Rancher Project', 'Cluster Namespace'. Falls back to capitalized scope_type if empty.
+	ScopeTypeLabel *string `json:"scope_type_label,omitempty"`
 }
 
 // PatchedOfferingUserServiceProviderCommentRequest defines model for PatchedOfferingUserServiceProviderCommentRequest.
@@ -32270,6 +32427,13 @@ type PullMarketplaceScriptResourceRequest struct {
 	ResourceUuid openapi_types.UUID `json:"resource_uuid"`
 }
 
+// PullMembersResponse defines model for PullMembersResponse.
+type PullMembersResponse struct {
+	Created     int `json:"created"`
+	TotalRemote int `json:"total_remote"`
+	Updated     int `json:"updated"`
+}
+
 // PullResponse defines model for PullResponse.
 type PullResponse struct {
 	Detail string `json:"detail"`
@@ -33666,6 +33830,23 @@ type RemoteEduteamsUUID struct {
 	Uuid openapi_types.UUID `json:"uuid"`
 }
 
+// RemoteGroup defines model for RemoteGroup.
+type RemoteGroup struct {
+	Id            string `json:"id"`
+	Name          string `json:"name"`
+	Path          string `json:"path"`
+	SubGroupCount int    `json:"sub_group_count"`
+}
+
+// RemoteGroupMember defines model for RemoteGroupMember.
+type RemoteGroupMember struct {
+	Email     string `json:"email"`
+	FirstName string `json:"first_name"`
+	Id        string `json:"id"`
+	LastName  string `json:"last_name"`
+	Username  string `json:"username"`
+}
+
 // RemoteOffering defines model for RemoteOffering.
 type RemoteOffering struct {
 	CategoryTitle *string             `json:"category_title,omitempty"`
@@ -34108,6 +34289,12 @@ type ResourceDownscaledRequest struct {
 type ResourceEndDateByProviderRequest struct {
 	// EndDate The date is inclusive. Once reached, a resource will be scheduled for termination.
 	EndDate *openapi_types.Date `json:"end_date"`
+}
+
+// ResourceKeycloakScopesRequest defines model for ResourceKeycloakScopesRequest.
+type ResourceKeycloakScopesRequest struct {
+	// KeycloakAvailableScopes Pre-configured scope options for this resource.
+	KeycloakAvailableScopes []KeycloakScopeOptionRequest `json:"keycloak_available_scopes"`
 }
 
 // ResourceLimitPeriod defines model for ResourceLimitPeriod.
@@ -35765,6 +35952,13 @@ type ServiceSettings struct {
 // ServiceSettingsStateEnum defines model for ServiceSettingsStateEnum.
 type ServiceSettingsStateEnum string
 
+// SetBackendIdRequest defines model for SetBackendIdRequest.
+type SetBackendIdRequest struct {
+	BackendId    *string             `json:"backend_id"`
+	ResourceUuid *openapi_types.UUID `json:"resource_uuid"`
+	ScopeId      *string             `json:"scope_id,omitempty"`
+}
+
 // SetErredRequest defines model for SetErredRequest.
 type SetErredRequest struct {
 	ErrorMessage   *string `json:"error_message,omitempty"`
@@ -36668,6 +36862,20 @@ type SyncResourcesResponse struct {
 // SyncStatusEnum defines model for SyncStatusEnum.
 type SyncStatusEnum string
 
+// SyncStatusResponse defines model for SyncStatusResponse.
+type SyncStatusResponse struct {
+	LocalOnly  []string      `json:"local_only"`
+	RemoteOnly []string      `json:"remote_only"`
+	Synced     []SyncedGroup `json:"synced"`
+}
+
+// SyncedGroup defines model for SyncedGroup.
+type SyncedGroup struct {
+	BackendId  string `json:"backend_id"`
+	LocalName  string `json:"local_name"`
+	RemoteName string `json:"remote_name"`
+}
+
 // SystemLog defines model for SystemLog.
 type SystemLog struct {
 	Context interface{} `json:"context,omitempty"`
@@ -36878,6 +37086,13 @@ type TenantSecurityGroupUpdateRequest struct {
 	Name        string                                           `json:"name"`
 	Rules       *[]OpenStackSecurityGroupRuleUpdateByNameRequest `json:"rules,omitempty"`
 	Uuid        *openapi_types.UUID                              `json:"uuid,omitempty"`
+}
+
+// TestConnectionResponse defines model for TestConnectionResponse.
+type TestConnectionResponse struct {
+	Groups      []string `json:"groups"`
+	GroupsCount int      `json:"groups_count"`
+	Status      string   `json:"status"`
 }
 
 // ThreadSession defines model for ThreadSession.
@@ -50482,6 +50697,184 @@ type NotificationMessagesCountParams struct {
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
 }
 
+// OfferingKeycloakGroupsListParams defines parameters for OfferingKeycloakGroupsList.
+type OfferingKeycloakGroupsListParams struct {
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+	RoleUuid     *openapi_types.UUID `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
+}
+
+// OfferingKeycloakGroupsCountParams defines parameters for OfferingKeycloakGroupsCount.
+type OfferingKeycloakGroupsCountParams struct {
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+	RoleUuid     *openapi_types.UUID `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
+}
+
+// OfferingKeycloakGroupsRemoteGroupMembersListParams defines parameters for OfferingKeycloakGroupsRemoteGroupMembersList.
+type OfferingKeycloakGroupsRemoteGroupMembersListParams struct {
+	// GroupId Keycloak group ID
+	GroupId string `form:"group_id" json:"group_id"`
+
+	// OfferingUuid UUID of the offering
+	OfferingUuid string `form:"offering_uuid" json:"offering_uuid"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+	RoleUuid     *openapi_types.UUID `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
+}
+
+// OfferingKeycloakGroupsRemoteGroupMembersCountParams defines parameters for OfferingKeycloakGroupsRemoteGroupMembersCount.
+type OfferingKeycloakGroupsRemoteGroupMembersCountParams struct {
+	// GroupId Keycloak group ID
+	GroupId string `form:"group_id" json:"group_id"`
+
+	// OfferingUuid UUID of the offering
+	OfferingUuid string `form:"offering_uuid" json:"offering_uuid"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+	RoleUuid     *openapi_types.UUID `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
+}
+
+// OfferingKeycloakGroupsRemoteGroupsListParams defines parameters for OfferingKeycloakGroupsRemoteGroupsList.
+type OfferingKeycloakGroupsRemoteGroupsListParams struct {
+	// OfferingUuid UUID of the offering
+	OfferingUuid string `form:"offering_uuid" json:"offering_uuid"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+	RoleUuid     *openapi_types.UUID `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
+}
+
+// OfferingKeycloakGroupsRemoteGroupsCountParams defines parameters for OfferingKeycloakGroupsRemoteGroupsCount.
+type OfferingKeycloakGroupsRemoteGroupsCountParams struct {
+	// OfferingUuid UUID of the offering
+	OfferingUuid string `form:"offering_uuid" json:"offering_uuid"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+	RoleUuid     *openapi_types.UUID `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
+}
+
+// OfferingKeycloakGroupsSearchRemoteUsersListParams defines parameters for OfferingKeycloakGroupsSearchRemoteUsersList.
+type OfferingKeycloakGroupsSearchRemoteUsersListParams struct {
+	// OfferingUuid UUID of the offering
+	OfferingUuid string `form:"offering_uuid" json:"offering_uuid"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Q Search query for username, email, or name
+	Q            string              `form:"q" json:"q"`
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+	RoleUuid     *openapi_types.UUID `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
+}
+
+// OfferingKeycloakGroupsSearchRemoteUsersCountParams defines parameters for OfferingKeycloakGroupsSearchRemoteUsersCount.
+type OfferingKeycloakGroupsSearchRemoteUsersCountParams struct {
+	// OfferingUuid UUID of the offering
+	OfferingUuid string `form:"offering_uuid" json:"offering_uuid"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Q Search query for username, email, or name
+	Q            string              `form:"q" json:"q"`
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+	RoleUuid     *openapi_types.UUID `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
+}
+
+// OfferingKeycloakGroupsSyncStatusRetrieveParams defines parameters for OfferingKeycloakGroupsSyncStatusRetrieve.
+type OfferingKeycloakGroupsSyncStatusRetrieveParams struct {
+	// OfferingUuid UUID of the offering
+	OfferingUuid string `form:"offering_uuid" json:"offering_uuid"`
+}
+
+// OfferingKeycloakGroupsSyncStatusCountParams defines parameters for OfferingKeycloakGroupsSyncStatusCount.
+type OfferingKeycloakGroupsSyncStatusCountParams struct {
+	// OfferingUuid UUID of the offering
+	OfferingUuid string `form:"offering_uuid" json:"offering_uuid"`
+}
+
+// OfferingKeycloakMembershipsListParams defines parameters for OfferingKeycloakMembershipsList.
+type OfferingKeycloakMembershipsListParams struct {
+	Email        *string             `form:"email,omitempty" json:"email,omitempty"`
+	FirstName    *string             `form:"first_name,omitempty" json:"first_name,omitempty"`
+	GroupUuid    *openapi_types.UUID `form:"group_uuid,omitempty" json:"group_uuid,omitempty"`
+	LastName     *string             `form:"last_name,omitempty" json:"last_name,omitempty"`
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize     *PageSize                                     `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ResourceUuid *openapi_types.UUID                           `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+	RoleUuid     *openapi_types.UUID                           `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
+	State        *[]OfferingKeycloakMembershipsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	Username     *string                                       `form:"username,omitempty" json:"username,omitempty"`
+}
+
+// OfferingKeycloakMembershipsListParamsState defines parameters for OfferingKeycloakMembershipsList.
+type OfferingKeycloakMembershipsListParamsState string
+
+// OfferingKeycloakMembershipsCountParams defines parameters for OfferingKeycloakMembershipsCount.
+type OfferingKeycloakMembershipsCountParams struct {
+	Email        *string             `form:"email,omitempty" json:"email,omitempty"`
+	FirstName    *string             `form:"first_name,omitempty" json:"first_name,omitempty"`
+	GroupUuid    *openapi_types.UUID `form:"group_uuid,omitempty" json:"group_uuid,omitempty"`
+	LastName     *string             `form:"last_name,omitempty" json:"last_name,omitempty"`
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize     *PageSize                                      `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ResourceUuid *openapi_types.UUID                            `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+	RoleUuid     *openapi_types.UUID                            `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
+	State        *[]OfferingKeycloakMembershipsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+	Username     *string                                        `form:"username,omitempty" json:"username,omitempty"`
+}
+
+// OfferingKeycloakMembershipsCountParamsState defines parameters for OfferingKeycloakMembershipsCount.
+type OfferingKeycloakMembershipsCountParamsState string
+
 // OnboardingJustificationsListParams defines parameters for OnboardingJustificationsList.
 type OnboardingJustificationsListParams struct {
 	// O Ordering
@@ -61065,6 +61458,9 @@ type MarketplaceProviderResourcesSetEndDateByProviderJSONRequestBody = ResourceE
 // MarketplaceProviderResourcesSetEndDateByStaffJSONRequestBody defines body for MarketplaceProviderResourcesSetEndDateByStaff for application/json ContentType.
 type MarketplaceProviderResourcesSetEndDateByStaffJSONRequestBody = ResourceEndDateByProviderRequest
 
+// MarketplaceProviderResourcesSetKeycloakScopesJSONRequestBody defines body for MarketplaceProviderResourcesSetKeycloakScopes for application/json ContentType.
+type MarketplaceProviderResourcesSetKeycloakScopesJSONRequestBody = ResourceKeycloakScopesRequest
+
 // MarketplaceProviderResourcesSetLimitsJSONRequestBody defines body for MarketplaceProviderResourcesSetLimits for application/json ContentType.
 type MarketplaceProviderResourcesSetLimitsJSONRequestBody = ResourceSetLimitsRequest
 
@@ -61364,6 +61760,18 @@ type NotificationMessagesPartialUpdateJSONRequestBody = PatchedNotificationReque
 
 // NotificationMessagesUpdateJSONRequestBody defines body for NotificationMessagesUpdate for application/json ContentType.
 type NotificationMessagesUpdateJSONRequestBody = NotificationRequest
+
+// OfferingKeycloakGroupsImportRemoteJSONRequestBody defines body for OfferingKeycloakGroupsImportRemote for application/json ContentType.
+type OfferingKeycloakGroupsImportRemoteJSONRequestBody = ImportRemoteGroupRequest
+
+// OfferingKeycloakGroupsTestConnectionJSONRequestBody defines body for OfferingKeycloakGroupsTestConnection for application/json ContentType.
+type OfferingKeycloakGroupsTestConnectionJSONRequestBody = OfferingUUIDRequest
+
+// OfferingKeycloakGroupsSetBackendIdJSONRequestBody defines body for OfferingKeycloakGroupsSetBackendId for application/json ContentType.
+type OfferingKeycloakGroupsSetBackendIdJSONRequestBody = SetBackendIdRequest
+
+// OfferingKeycloakMembershipsCreateJSONRequestBody defines body for OfferingKeycloakMembershipsCreate for application/json ContentType.
+type OfferingKeycloakMembershipsCreateJSONRequestBody = OfferingKeycloakMembershipRequest
 
 // OnboardingJustificationsCreateJSONRequestBody defines body for OnboardingJustificationsCreate for application/json ContentType.
 type OnboardingJustificationsCreateJSONRequestBody = OnboardingJustificationRequest
@@ -72872,6 +73280,11 @@ type ClientInterface interface {
 
 	MarketplaceProviderResourcesSetEndDateByStaff(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetEndDateByStaffJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderResourcesSetKeycloakScopesWithBody request with any body
+	MarketplaceProviderResourcesSetKeycloakScopesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderResourcesSetKeycloakScopes(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetKeycloakScopesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderResourcesSetLimitsWithBody request with any body
 	MarketplaceProviderResourcesSetLimitsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -74025,6 +74438,77 @@ type ClientInterface interface {
 
 	// NotificationMessagesEnable request
 	NotificationMessagesEnable(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OfferingKeycloakGroupsList request
+	OfferingKeycloakGroupsList(ctx context.Context, params *OfferingKeycloakGroupsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OfferingKeycloakGroupsCount request
+	OfferingKeycloakGroupsCount(ctx context.Context, params *OfferingKeycloakGroupsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OfferingKeycloakGroupsImportRemoteWithBody request with any body
+	OfferingKeycloakGroupsImportRemoteWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OfferingKeycloakGroupsImportRemote(ctx context.Context, body OfferingKeycloakGroupsImportRemoteJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OfferingKeycloakGroupsRemoteGroupMembersList request
+	OfferingKeycloakGroupsRemoteGroupMembersList(ctx context.Context, params *OfferingKeycloakGroupsRemoteGroupMembersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OfferingKeycloakGroupsRemoteGroupMembersCount request
+	OfferingKeycloakGroupsRemoteGroupMembersCount(ctx context.Context, params *OfferingKeycloakGroupsRemoteGroupMembersCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OfferingKeycloakGroupsRemoteGroupsList request
+	OfferingKeycloakGroupsRemoteGroupsList(ctx context.Context, params *OfferingKeycloakGroupsRemoteGroupsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OfferingKeycloakGroupsRemoteGroupsCount request
+	OfferingKeycloakGroupsRemoteGroupsCount(ctx context.Context, params *OfferingKeycloakGroupsRemoteGroupsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OfferingKeycloakGroupsSearchRemoteUsersList request
+	OfferingKeycloakGroupsSearchRemoteUsersList(ctx context.Context, params *OfferingKeycloakGroupsSearchRemoteUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OfferingKeycloakGroupsSearchRemoteUsersCount request
+	OfferingKeycloakGroupsSearchRemoteUsersCount(ctx context.Context, params *OfferingKeycloakGroupsSearchRemoteUsersCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OfferingKeycloakGroupsSyncStatusRetrieve request
+	OfferingKeycloakGroupsSyncStatusRetrieve(ctx context.Context, params *OfferingKeycloakGroupsSyncStatusRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OfferingKeycloakGroupsSyncStatusCount request
+	OfferingKeycloakGroupsSyncStatusCount(ctx context.Context, params *OfferingKeycloakGroupsSyncStatusCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OfferingKeycloakGroupsTestConnectionWithBody request with any body
+	OfferingKeycloakGroupsTestConnectionWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OfferingKeycloakGroupsTestConnection(ctx context.Context, body OfferingKeycloakGroupsTestConnectionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OfferingKeycloakGroupsDestroy request
+	OfferingKeycloakGroupsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OfferingKeycloakGroupsRetrieve request
+	OfferingKeycloakGroupsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OfferingKeycloakGroupsPullMembers request
+	OfferingKeycloakGroupsPullMembers(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OfferingKeycloakGroupsSetBackendIdWithBody request with any body
+	OfferingKeycloakGroupsSetBackendIdWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OfferingKeycloakGroupsSetBackendId(ctx context.Context, uuid openapi_types.UUID, body OfferingKeycloakGroupsSetBackendIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OfferingKeycloakMembershipsList request
+	OfferingKeycloakMembershipsList(ctx context.Context, params *OfferingKeycloakMembershipsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OfferingKeycloakMembershipsCount request
+	OfferingKeycloakMembershipsCount(ctx context.Context, params *OfferingKeycloakMembershipsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OfferingKeycloakMembershipsCreateWithBody request with any body
+	OfferingKeycloakMembershipsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OfferingKeycloakMembershipsCreate(ctx context.Context, body OfferingKeycloakMembershipsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OfferingKeycloakMembershipsDestroy request
+	OfferingKeycloakMembershipsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OfferingKeycloakMembershipsRetrieve request
+	OfferingKeycloakMembershipsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OnboardingJustificationsList request
 	OnboardingJustificationsList(ctx context.Context, params *OnboardingJustificationsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -93464,6 +93948,30 @@ func (c *Client) MarketplaceProviderResourcesSetEndDateByStaff(ctx context.Conte
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceProviderResourcesSetKeycloakScopesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesSetKeycloakScopesRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderResourcesSetKeycloakScopes(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetKeycloakScopesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesSetKeycloakScopesRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceProviderResourcesSetLimitsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderResourcesSetLimitsRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -98446,6 +98954,306 @@ func (c *Client) NotificationMessagesDisable(ctx context.Context, uuid openapi_t
 
 func (c *Client) NotificationMessagesEnable(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewNotificationMessagesEnableRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OfferingKeycloakGroupsList(ctx context.Context, params *OfferingKeycloakGroupsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOfferingKeycloakGroupsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OfferingKeycloakGroupsCount(ctx context.Context, params *OfferingKeycloakGroupsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOfferingKeycloakGroupsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OfferingKeycloakGroupsImportRemoteWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOfferingKeycloakGroupsImportRemoteRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OfferingKeycloakGroupsImportRemote(ctx context.Context, body OfferingKeycloakGroupsImportRemoteJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOfferingKeycloakGroupsImportRemoteRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OfferingKeycloakGroupsRemoteGroupMembersList(ctx context.Context, params *OfferingKeycloakGroupsRemoteGroupMembersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOfferingKeycloakGroupsRemoteGroupMembersListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OfferingKeycloakGroupsRemoteGroupMembersCount(ctx context.Context, params *OfferingKeycloakGroupsRemoteGroupMembersCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOfferingKeycloakGroupsRemoteGroupMembersCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OfferingKeycloakGroupsRemoteGroupsList(ctx context.Context, params *OfferingKeycloakGroupsRemoteGroupsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOfferingKeycloakGroupsRemoteGroupsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OfferingKeycloakGroupsRemoteGroupsCount(ctx context.Context, params *OfferingKeycloakGroupsRemoteGroupsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOfferingKeycloakGroupsRemoteGroupsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OfferingKeycloakGroupsSearchRemoteUsersList(ctx context.Context, params *OfferingKeycloakGroupsSearchRemoteUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOfferingKeycloakGroupsSearchRemoteUsersListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OfferingKeycloakGroupsSearchRemoteUsersCount(ctx context.Context, params *OfferingKeycloakGroupsSearchRemoteUsersCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOfferingKeycloakGroupsSearchRemoteUsersCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OfferingKeycloakGroupsSyncStatusRetrieve(ctx context.Context, params *OfferingKeycloakGroupsSyncStatusRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOfferingKeycloakGroupsSyncStatusRetrieveRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OfferingKeycloakGroupsSyncStatusCount(ctx context.Context, params *OfferingKeycloakGroupsSyncStatusCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOfferingKeycloakGroupsSyncStatusCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OfferingKeycloakGroupsTestConnectionWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOfferingKeycloakGroupsTestConnectionRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OfferingKeycloakGroupsTestConnection(ctx context.Context, body OfferingKeycloakGroupsTestConnectionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOfferingKeycloakGroupsTestConnectionRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OfferingKeycloakGroupsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOfferingKeycloakGroupsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OfferingKeycloakGroupsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOfferingKeycloakGroupsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OfferingKeycloakGroupsPullMembers(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOfferingKeycloakGroupsPullMembersRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OfferingKeycloakGroupsSetBackendIdWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOfferingKeycloakGroupsSetBackendIdRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OfferingKeycloakGroupsSetBackendId(ctx context.Context, uuid openapi_types.UUID, body OfferingKeycloakGroupsSetBackendIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOfferingKeycloakGroupsSetBackendIdRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OfferingKeycloakMembershipsList(ctx context.Context, params *OfferingKeycloakMembershipsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOfferingKeycloakMembershipsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OfferingKeycloakMembershipsCount(ctx context.Context, params *OfferingKeycloakMembershipsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOfferingKeycloakMembershipsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OfferingKeycloakMembershipsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOfferingKeycloakMembershipsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OfferingKeycloakMembershipsCreate(ctx context.Context, body OfferingKeycloakMembershipsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOfferingKeycloakMembershipsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OfferingKeycloakMembershipsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOfferingKeycloakMembershipsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OfferingKeycloakMembershipsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOfferingKeycloakMembershipsRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -196099,6 +196907,53 @@ func NewMarketplaceProviderResourcesSetEndDateByStaffRequestWithBody(server stri
 	return req, nil
 }
 
+// NewMarketplaceProviderResourcesSetKeycloakScopesRequest calls the generic MarketplaceProviderResourcesSetKeycloakScopes builder with application/json body
+func NewMarketplaceProviderResourcesSetKeycloakScopesRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetKeycloakScopesJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderResourcesSetKeycloakScopesRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderResourcesSetKeycloakScopesRequestWithBody generates requests for MarketplaceProviderResourcesSetKeycloakScopes with any type of body
+func NewMarketplaceProviderResourcesSetKeycloakScopesRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-resources/%s/set_keycloak_scopes/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceProviderResourcesSetLimitsRequest calls the generic MarketplaceProviderResourcesSetLimits builder with application/json body
 func NewMarketplaceProviderResourcesSetLimitsRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetLimitsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -221817,6 +222672,1779 @@ func NewNotificationMessagesEnableRequest(server string, uuid openapi_types.UUID
 	}
 
 	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOfferingKeycloakGroupsListRequest generates requests for OfferingKeycloakGroupsList
+func NewOfferingKeycloakGroupsListRequest(server string, params *OfferingKeycloakGroupsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/offering-keycloak-groups/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_uuid", runtime.ParamLocationQuery, *params.ResourceUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RoleUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "role_uuid", runtime.ParamLocationQuery, *params.RoleUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOfferingKeycloakGroupsCountRequest generates requests for OfferingKeycloakGroupsCount
+func NewOfferingKeycloakGroupsCountRequest(server string, params *OfferingKeycloakGroupsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/offering-keycloak-groups/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_uuid", runtime.ParamLocationQuery, *params.ResourceUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RoleUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "role_uuid", runtime.ParamLocationQuery, *params.RoleUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOfferingKeycloakGroupsImportRemoteRequest calls the generic OfferingKeycloakGroupsImportRemote builder with application/json body
+func NewOfferingKeycloakGroupsImportRemoteRequest(server string, body OfferingKeycloakGroupsImportRemoteJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOfferingKeycloakGroupsImportRemoteRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewOfferingKeycloakGroupsImportRemoteRequestWithBody generates requests for OfferingKeycloakGroupsImportRemote with any type of body
+func NewOfferingKeycloakGroupsImportRemoteRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/offering-keycloak-groups/import_remote/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOfferingKeycloakGroupsRemoteGroupMembersListRequest generates requests for OfferingKeycloakGroupsRemoteGroupMembersList
+func NewOfferingKeycloakGroupsRemoteGroupMembersListRequest(server string, params *OfferingKeycloakGroupsRemoteGroupMembersListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/offering-keycloak-groups/remote_group_members/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "group_id", runtime.ParamLocationQuery, params.GroupId); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, params.OfferingUuid); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_uuid", runtime.ParamLocationQuery, *params.ResourceUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RoleUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "role_uuid", runtime.ParamLocationQuery, *params.RoleUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOfferingKeycloakGroupsRemoteGroupMembersCountRequest generates requests for OfferingKeycloakGroupsRemoteGroupMembersCount
+func NewOfferingKeycloakGroupsRemoteGroupMembersCountRequest(server string, params *OfferingKeycloakGroupsRemoteGroupMembersCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/offering-keycloak-groups/remote_group_members/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "group_id", runtime.ParamLocationQuery, params.GroupId); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, params.OfferingUuid); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_uuid", runtime.ParamLocationQuery, *params.ResourceUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RoleUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "role_uuid", runtime.ParamLocationQuery, *params.RoleUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOfferingKeycloakGroupsRemoteGroupsListRequest generates requests for OfferingKeycloakGroupsRemoteGroupsList
+func NewOfferingKeycloakGroupsRemoteGroupsListRequest(server string, params *OfferingKeycloakGroupsRemoteGroupsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/offering-keycloak-groups/remote_groups/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, params.OfferingUuid); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_uuid", runtime.ParamLocationQuery, *params.ResourceUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RoleUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "role_uuid", runtime.ParamLocationQuery, *params.RoleUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOfferingKeycloakGroupsRemoteGroupsCountRequest generates requests for OfferingKeycloakGroupsRemoteGroupsCount
+func NewOfferingKeycloakGroupsRemoteGroupsCountRequest(server string, params *OfferingKeycloakGroupsRemoteGroupsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/offering-keycloak-groups/remote_groups/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, params.OfferingUuid); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_uuid", runtime.ParamLocationQuery, *params.ResourceUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RoleUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "role_uuid", runtime.ParamLocationQuery, *params.RoleUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOfferingKeycloakGroupsSearchRemoteUsersListRequest generates requests for OfferingKeycloakGroupsSearchRemoteUsersList
+func NewOfferingKeycloakGroupsSearchRemoteUsersListRequest(server string, params *OfferingKeycloakGroupsSearchRemoteUsersListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/offering-keycloak-groups/search_remote_users/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, params.OfferingUuid); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "q", runtime.ParamLocationQuery, params.Q); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_uuid", runtime.ParamLocationQuery, *params.ResourceUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RoleUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "role_uuid", runtime.ParamLocationQuery, *params.RoleUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOfferingKeycloakGroupsSearchRemoteUsersCountRequest generates requests for OfferingKeycloakGroupsSearchRemoteUsersCount
+func NewOfferingKeycloakGroupsSearchRemoteUsersCountRequest(server string, params *OfferingKeycloakGroupsSearchRemoteUsersCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/offering-keycloak-groups/search_remote_users/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, params.OfferingUuid); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "q", runtime.ParamLocationQuery, params.Q); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_uuid", runtime.ParamLocationQuery, *params.ResourceUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RoleUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "role_uuid", runtime.ParamLocationQuery, *params.RoleUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOfferingKeycloakGroupsSyncStatusRetrieveRequest generates requests for OfferingKeycloakGroupsSyncStatusRetrieve
+func NewOfferingKeycloakGroupsSyncStatusRetrieveRequest(server string, params *OfferingKeycloakGroupsSyncStatusRetrieveParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/offering-keycloak-groups/sync_status/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, params.OfferingUuid); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOfferingKeycloakGroupsSyncStatusCountRequest generates requests for OfferingKeycloakGroupsSyncStatusCount
+func NewOfferingKeycloakGroupsSyncStatusCountRequest(server string, params *OfferingKeycloakGroupsSyncStatusCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/offering-keycloak-groups/sync_status/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, params.OfferingUuid); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOfferingKeycloakGroupsTestConnectionRequest calls the generic OfferingKeycloakGroupsTestConnection builder with application/json body
+func NewOfferingKeycloakGroupsTestConnectionRequest(server string, body OfferingKeycloakGroupsTestConnectionJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOfferingKeycloakGroupsTestConnectionRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewOfferingKeycloakGroupsTestConnectionRequestWithBody generates requests for OfferingKeycloakGroupsTestConnection with any type of body
+func NewOfferingKeycloakGroupsTestConnectionRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/offering-keycloak-groups/test_connection/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOfferingKeycloakGroupsDestroyRequest generates requests for OfferingKeycloakGroupsDestroy
+func NewOfferingKeycloakGroupsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/offering-keycloak-groups/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOfferingKeycloakGroupsRetrieveRequest generates requests for OfferingKeycloakGroupsRetrieve
+func NewOfferingKeycloakGroupsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/offering-keycloak-groups/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOfferingKeycloakGroupsPullMembersRequest generates requests for OfferingKeycloakGroupsPullMembers
+func NewOfferingKeycloakGroupsPullMembersRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/offering-keycloak-groups/%s/pull_members/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOfferingKeycloakGroupsSetBackendIdRequest calls the generic OfferingKeycloakGroupsSetBackendId builder with application/json body
+func NewOfferingKeycloakGroupsSetBackendIdRequest(server string, uuid openapi_types.UUID, body OfferingKeycloakGroupsSetBackendIdJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOfferingKeycloakGroupsSetBackendIdRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOfferingKeycloakGroupsSetBackendIdRequestWithBody generates requests for OfferingKeycloakGroupsSetBackendId with any type of body
+func NewOfferingKeycloakGroupsSetBackendIdRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/offering-keycloak-groups/%s/set_backend_id/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOfferingKeycloakMembershipsListRequest generates requests for OfferingKeycloakMembershipsList
+func NewOfferingKeycloakMembershipsListRequest(server string, params *OfferingKeycloakMembershipsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/offering-keycloak-memberships/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Email != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "email", runtime.ParamLocationQuery, *params.Email); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.FirstName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "first_name", runtime.ParamLocationQuery, *params.FirstName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.GroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "group_uuid", runtime.ParamLocationQuery, *params.GroupUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LastName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "last_name", runtime.ParamLocationQuery, *params.LastName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_uuid", runtime.ParamLocationQuery, *params.ResourceUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RoleUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "role_uuid", runtime.ParamLocationQuery, *params.RoleUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Username != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username", runtime.ParamLocationQuery, *params.Username); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOfferingKeycloakMembershipsCountRequest generates requests for OfferingKeycloakMembershipsCount
+func NewOfferingKeycloakMembershipsCountRequest(server string, params *OfferingKeycloakMembershipsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/offering-keycloak-memberships/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Email != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "email", runtime.ParamLocationQuery, *params.Email); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.FirstName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "first_name", runtime.ParamLocationQuery, *params.FirstName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.GroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "group_uuid", runtime.ParamLocationQuery, *params.GroupUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LastName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "last_name", runtime.ParamLocationQuery, *params.LastName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_uuid", runtime.ParamLocationQuery, *params.ResourceUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RoleUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "role_uuid", runtime.ParamLocationQuery, *params.RoleUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Username != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username", runtime.ParamLocationQuery, *params.Username); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOfferingKeycloakMembershipsCreateRequest calls the generic OfferingKeycloakMembershipsCreate builder with application/json body
+func NewOfferingKeycloakMembershipsCreateRequest(server string, body OfferingKeycloakMembershipsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOfferingKeycloakMembershipsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewOfferingKeycloakMembershipsCreateRequestWithBody generates requests for OfferingKeycloakMembershipsCreate with any type of body
+func NewOfferingKeycloakMembershipsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/offering-keycloak-memberships/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOfferingKeycloakMembershipsDestroyRequest generates requests for OfferingKeycloakMembershipsDestroy
+func NewOfferingKeycloakMembershipsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/offering-keycloak-memberships/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOfferingKeycloakMembershipsRetrieveRequest generates requests for OfferingKeycloakMembershipsRetrieve
+func NewOfferingKeycloakMembershipsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/offering-keycloak-memberships/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -311563,6 +314191,11 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceProviderResourcesSetEndDateByStaffWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetEndDateByStaffJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetEndDateByStaffResponse, error)
 
+	// MarketplaceProviderResourcesSetKeycloakScopesWithBodyWithResponse request with any body
+	MarketplaceProviderResourcesSetKeycloakScopesWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetKeycloakScopesResponse, error)
+
+	MarketplaceProviderResourcesSetKeycloakScopesWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetKeycloakScopesJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetKeycloakScopesResponse, error)
+
 	// MarketplaceProviderResourcesSetLimitsWithBodyWithResponse request with any body
 	MarketplaceProviderResourcesSetLimitsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetLimitsResponse, error)
 
@@ -312716,6 +315349,77 @@ type ClientWithResponsesInterface interface {
 
 	// NotificationMessagesEnableWithResponse request
 	NotificationMessagesEnableWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*NotificationMessagesEnableResponse, error)
+
+	// OfferingKeycloakGroupsListWithResponse request
+	OfferingKeycloakGroupsListWithResponse(ctx context.Context, params *OfferingKeycloakGroupsListParams, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsListResponse, error)
+
+	// OfferingKeycloakGroupsCountWithResponse request
+	OfferingKeycloakGroupsCountWithResponse(ctx context.Context, params *OfferingKeycloakGroupsCountParams, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsCountResponse, error)
+
+	// OfferingKeycloakGroupsImportRemoteWithBodyWithResponse request with any body
+	OfferingKeycloakGroupsImportRemoteWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsImportRemoteResponse, error)
+
+	OfferingKeycloakGroupsImportRemoteWithResponse(ctx context.Context, body OfferingKeycloakGroupsImportRemoteJSONRequestBody, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsImportRemoteResponse, error)
+
+	// OfferingKeycloakGroupsRemoteGroupMembersListWithResponse request
+	OfferingKeycloakGroupsRemoteGroupMembersListWithResponse(ctx context.Context, params *OfferingKeycloakGroupsRemoteGroupMembersListParams, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsRemoteGroupMembersListResponse, error)
+
+	// OfferingKeycloakGroupsRemoteGroupMembersCountWithResponse request
+	OfferingKeycloakGroupsRemoteGroupMembersCountWithResponse(ctx context.Context, params *OfferingKeycloakGroupsRemoteGroupMembersCountParams, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsRemoteGroupMembersCountResponse, error)
+
+	// OfferingKeycloakGroupsRemoteGroupsListWithResponse request
+	OfferingKeycloakGroupsRemoteGroupsListWithResponse(ctx context.Context, params *OfferingKeycloakGroupsRemoteGroupsListParams, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsRemoteGroupsListResponse, error)
+
+	// OfferingKeycloakGroupsRemoteGroupsCountWithResponse request
+	OfferingKeycloakGroupsRemoteGroupsCountWithResponse(ctx context.Context, params *OfferingKeycloakGroupsRemoteGroupsCountParams, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsRemoteGroupsCountResponse, error)
+
+	// OfferingKeycloakGroupsSearchRemoteUsersListWithResponse request
+	OfferingKeycloakGroupsSearchRemoteUsersListWithResponse(ctx context.Context, params *OfferingKeycloakGroupsSearchRemoteUsersListParams, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsSearchRemoteUsersListResponse, error)
+
+	// OfferingKeycloakGroupsSearchRemoteUsersCountWithResponse request
+	OfferingKeycloakGroupsSearchRemoteUsersCountWithResponse(ctx context.Context, params *OfferingKeycloakGroupsSearchRemoteUsersCountParams, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsSearchRemoteUsersCountResponse, error)
+
+	// OfferingKeycloakGroupsSyncStatusRetrieveWithResponse request
+	OfferingKeycloakGroupsSyncStatusRetrieveWithResponse(ctx context.Context, params *OfferingKeycloakGroupsSyncStatusRetrieveParams, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsSyncStatusRetrieveResponse, error)
+
+	// OfferingKeycloakGroupsSyncStatusCountWithResponse request
+	OfferingKeycloakGroupsSyncStatusCountWithResponse(ctx context.Context, params *OfferingKeycloakGroupsSyncStatusCountParams, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsSyncStatusCountResponse, error)
+
+	// OfferingKeycloakGroupsTestConnectionWithBodyWithResponse request with any body
+	OfferingKeycloakGroupsTestConnectionWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsTestConnectionResponse, error)
+
+	OfferingKeycloakGroupsTestConnectionWithResponse(ctx context.Context, body OfferingKeycloakGroupsTestConnectionJSONRequestBody, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsTestConnectionResponse, error)
+
+	// OfferingKeycloakGroupsDestroyWithResponse request
+	OfferingKeycloakGroupsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsDestroyResponse, error)
+
+	// OfferingKeycloakGroupsRetrieveWithResponse request
+	OfferingKeycloakGroupsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsRetrieveResponse, error)
+
+	// OfferingKeycloakGroupsPullMembersWithResponse request
+	OfferingKeycloakGroupsPullMembersWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsPullMembersResponse, error)
+
+	// OfferingKeycloakGroupsSetBackendIdWithBodyWithResponse request with any body
+	OfferingKeycloakGroupsSetBackendIdWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsSetBackendIdResponse, error)
+
+	OfferingKeycloakGroupsSetBackendIdWithResponse(ctx context.Context, uuid openapi_types.UUID, body OfferingKeycloakGroupsSetBackendIdJSONRequestBody, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsSetBackendIdResponse, error)
+
+	// OfferingKeycloakMembershipsListWithResponse request
+	OfferingKeycloakMembershipsListWithResponse(ctx context.Context, params *OfferingKeycloakMembershipsListParams, reqEditors ...RequestEditorFn) (*OfferingKeycloakMembershipsListResponse, error)
+
+	// OfferingKeycloakMembershipsCountWithResponse request
+	OfferingKeycloakMembershipsCountWithResponse(ctx context.Context, params *OfferingKeycloakMembershipsCountParams, reqEditors ...RequestEditorFn) (*OfferingKeycloakMembershipsCountResponse, error)
+
+	// OfferingKeycloakMembershipsCreateWithBodyWithResponse request with any body
+	OfferingKeycloakMembershipsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OfferingKeycloakMembershipsCreateResponse, error)
+
+	OfferingKeycloakMembershipsCreateWithResponse(ctx context.Context, body OfferingKeycloakMembershipsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OfferingKeycloakMembershipsCreateResponse, error)
+
+	// OfferingKeycloakMembershipsDestroyWithResponse request
+	OfferingKeycloakMembershipsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OfferingKeycloakMembershipsDestroyResponse, error)
+
+	// OfferingKeycloakMembershipsRetrieveWithResponse request
+	OfferingKeycloakMembershipsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OfferingKeycloakMembershipsRetrieveResponse, error)
 
 	// OnboardingJustificationsListWithResponse request
 	OnboardingJustificationsListWithResponse(ctx context.Context, params *OnboardingJustificationsListParams, reqEditors ...RequestEditorFn) (*OnboardingJustificationsListResponse, error)
@@ -337212,6 +339916,28 @@ func (r MarketplaceProviderResourcesSetEndDateByStaffResponse) StatusCode() int 
 	return 0
 }
 
+type MarketplaceProviderResourcesSetKeycloakScopesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ResourceResponseStatus
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderResourcesSetKeycloakScopesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderResourcesSetKeycloakScopesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceProviderResourcesSetLimitsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -344222,6 +346948,460 @@ func (r NotificationMessagesEnableResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r NotificationMessagesEnableResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OfferingKeycloakGroupsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OfferingKeycloakGroup
+}
+
+// Status returns HTTPResponse.Status
+func (r OfferingKeycloakGroupsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OfferingKeycloakGroupsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OfferingKeycloakGroupsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OfferingKeycloakGroupsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OfferingKeycloakGroupsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OfferingKeycloakGroupsImportRemoteResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *OfferingKeycloakGroup
+}
+
+// Status returns HTTPResponse.Status
+func (r OfferingKeycloakGroupsImportRemoteResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OfferingKeycloakGroupsImportRemoteResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OfferingKeycloakGroupsRemoteGroupMembersListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]RemoteGroupMember
+}
+
+// Status returns HTTPResponse.Status
+func (r OfferingKeycloakGroupsRemoteGroupMembersListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OfferingKeycloakGroupsRemoteGroupMembersListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OfferingKeycloakGroupsRemoteGroupMembersCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OfferingKeycloakGroupsRemoteGroupMembersCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OfferingKeycloakGroupsRemoteGroupMembersCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OfferingKeycloakGroupsRemoteGroupsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]RemoteGroup
+}
+
+// Status returns HTTPResponse.Status
+func (r OfferingKeycloakGroupsRemoteGroupsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OfferingKeycloakGroupsRemoteGroupsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OfferingKeycloakGroupsRemoteGroupsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OfferingKeycloakGroupsRemoteGroupsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OfferingKeycloakGroupsRemoteGroupsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OfferingKeycloakGroupsSearchRemoteUsersListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]RemoteGroupMember
+}
+
+// Status returns HTTPResponse.Status
+func (r OfferingKeycloakGroupsSearchRemoteUsersListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OfferingKeycloakGroupsSearchRemoteUsersListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OfferingKeycloakGroupsSearchRemoteUsersCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OfferingKeycloakGroupsSearchRemoteUsersCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OfferingKeycloakGroupsSearchRemoteUsersCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OfferingKeycloakGroupsSyncStatusRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SyncStatusResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OfferingKeycloakGroupsSyncStatusRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OfferingKeycloakGroupsSyncStatusRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OfferingKeycloakGroupsSyncStatusCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OfferingKeycloakGroupsSyncStatusCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OfferingKeycloakGroupsSyncStatusCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OfferingKeycloakGroupsTestConnectionResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *TestConnectionResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OfferingKeycloakGroupsTestConnectionResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OfferingKeycloakGroupsTestConnectionResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OfferingKeycloakGroupsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OfferingKeycloakGroupsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OfferingKeycloakGroupsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OfferingKeycloakGroupsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OfferingKeycloakGroup
+}
+
+// Status returns HTTPResponse.Status
+func (r OfferingKeycloakGroupsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OfferingKeycloakGroupsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OfferingKeycloakGroupsPullMembersResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *PullMembersResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OfferingKeycloakGroupsPullMembersResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OfferingKeycloakGroupsPullMembersResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OfferingKeycloakGroupsSetBackendIdResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OfferingKeycloakGroup
+}
+
+// Status returns HTTPResponse.Status
+func (r OfferingKeycloakGroupsSetBackendIdResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OfferingKeycloakGroupsSetBackendIdResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OfferingKeycloakMembershipsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OfferingKeycloakMembership
+}
+
+// Status returns HTTPResponse.Status
+func (r OfferingKeycloakMembershipsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OfferingKeycloakMembershipsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OfferingKeycloakMembershipsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OfferingKeycloakMembershipsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OfferingKeycloakMembershipsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OfferingKeycloakMembershipsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *OfferingKeycloakMembership
+}
+
+// Status returns HTTPResponse.Status
+func (r OfferingKeycloakMembershipsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OfferingKeycloakMembershipsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OfferingKeycloakMembershipsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OfferingKeycloakMembershipsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OfferingKeycloakMembershipsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OfferingKeycloakMembershipsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OfferingKeycloakMembership
+}
+
+// Status returns HTTPResponse.Status
+func (r OfferingKeycloakMembershipsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OfferingKeycloakMembershipsRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -377805,6 +380985,23 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesSetEndDateByStaffWithR
 	return ParseMarketplaceProviderResourcesSetEndDateByStaffResponse(rsp)
 }
 
+// MarketplaceProviderResourcesSetKeycloakScopesWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourcesSetKeycloakScopesResponse
+func (c *ClientWithResponses) MarketplaceProviderResourcesSetKeycloakScopesWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetKeycloakScopesResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesSetKeycloakScopesWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesSetKeycloakScopesResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderResourcesSetKeycloakScopesWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetKeycloakScopesJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetKeycloakScopesResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesSetKeycloakScopes(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesSetKeycloakScopesResponse(rsp)
+}
+
 // MarketplaceProviderResourcesSetLimitsWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourcesSetLimitsResponse
 func (c *ClientWithResponses) MarketplaceProviderResourcesSetLimitsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetLimitsResponse, error) {
 	rsp, err := c.MarketplaceProviderResourcesSetLimitsWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -381453,6 +384650,227 @@ func (c *ClientWithResponses) NotificationMessagesEnableWithResponse(ctx context
 		return nil, err
 	}
 	return ParseNotificationMessagesEnableResponse(rsp)
+}
+
+// OfferingKeycloakGroupsListWithResponse request returning *OfferingKeycloakGroupsListResponse
+func (c *ClientWithResponses) OfferingKeycloakGroupsListWithResponse(ctx context.Context, params *OfferingKeycloakGroupsListParams, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsListResponse, error) {
+	rsp, err := c.OfferingKeycloakGroupsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOfferingKeycloakGroupsListResponse(rsp)
+}
+
+// OfferingKeycloakGroupsCountWithResponse request returning *OfferingKeycloakGroupsCountResponse
+func (c *ClientWithResponses) OfferingKeycloakGroupsCountWithResponse(ctx context.Context, params *OfferingKeycloakGroupsCountParams, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsCountResponse, error) {
+	rsp, err := c.OfferingKeycloakGroupsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOfferingKeycloakGroupsCountResponse(rsp)
+}
+
+// OfferingKeycloakGroupsImportRemoteWithBodyWithResponse request with arbitrary body returning *OfferingKeycloakGroupsImportRemoteResponse
+func (c *ClientWithResponses) OfferingKeycloakGroupsImportRemoteWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsImportRemoteResponse, error) {
+	rsp, err := c.OfferingKeycloakGroupsImportRemoteWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOfferingKeycloakGroupsImportRemoteResponse(rsp)
+}
+
+func (c *ClientWithResponses) OfferingKeycloakGroupsImportRemoteWithResponse(ctx context.Context, body OfferingKeycloakGroupsImportRemoteJSONRequestBody, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsImportRemoteResponse, error) {
+	rsp, err := c.OfferingKeycloakGroupsImportRemote(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOfferingKeycloakGroupsImportRemoteResponse(rsp)
+}
+
+// OfferingKeycloakGroupsRemoteGroupMembersListWithResponse request returning *OfferingKeycloakGroupsRemoteGroupMembersListResponse
+func (c *ClientWithResponses) OfferingKeycloakGroupsRemoteGroupMembersListWithResponse(ctx context.Context, params *OfferingKeycloakGroupsRemoteGroupMembersListParams, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsRemoteGroupMembersListResponse, error) {
+	rsp, err := c.OfferingKeycloakGroupsRemoteGroupMembersList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOfferingKeycloakGroupsRemoteGroupMembersListResponse(rsp)
+}
+
+// OfferingKeycloakGroupsRemoteGroupMembersCountWithResponse request returning *OfferingKeycloakGroupsRemoteGroupMembersCountResponse
+func (c *ClientWithResponses) OfferingKeycloakGroupsRemoteGroupMembersCountWithResponse(ctx context.Context, params *OfferingKeycloakGroupsRemoteGroupMembersCountParams, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsRemoteGroupMembersCountResponse, error) {
+	rsp, err := c.OfferingKeycloakGroupsRemoteGroupMembersCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOfferingKeycloakGroupsRemoteGroupMembersCountResponse(rsp)
+}
+
+// OfferingKeycloakGroupsRemoteGroupsListWithResponse request returning *OfferingKeycloakGroupsRemoteGroupsListResponse
+func (c *ClientWithResponses) OfferingKeycloakGroupsRemoteGroupsListWithResponse(ctx context.Context, params *OfferingKeycloakGroupsRemoteGroupsListParams, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsRemoteGroupsListResponse, error) {
+	rsp, err := c.OfferingKeycloakGroupsRemoteGroupsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOfferingKeycloakGroupsRemoteGroupsListResponse(rsp)
+}
+
+// OfferingKeycloakGroupsRemoteGroupsCountWithResponse request returning *OfferingKeycloakGroupsRemoteGroupsCountResponse
+func (c *ClientWithResponses) OfferingKeycloakGroupsRemoteGroupsCountWithResponse(ctx context.Context, params *OfferingKeycloakGroupsRemoteGroupsCountParams, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsRemoteGroupsCountResponse, error) {
+	rsp, err := c.OfferingKeycloakGroupsRemoteGroupsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOfferingKeycloakGroupsRemoteGroupsCountResponse(rsp)
+}
+
+// OfferingKeycloakGroupsSearchRemoteUsersListWithResponse request returning *OfferingKeycloakGroupsSearchRemoteUsersListResponse
+func (c *ClientWithResponses) OfferingKeycloakGroupsSearchRemoteUsersListWithResponse(ctx context.Context, params *OfferingKeycloakGroupsSearchRemoteUsersListParams, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsSearchRemoteUsersListResponse, error) {
+	rsp, err := c.OfferingKeycloakGroupsSearchRemoteUsersList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOfferingKeycloakGroupsSearchRemoteUsersListResponse(rsp)
+}
+
+// OfferingKeycloakGroupsSearchRemoteUsersCountWithResponse request returning *OfferingKeycloakGroupsSearchRemoteUsersCountResponse
+func (c *ClientWithResponses) OfferingKeycloakGroupsSearchRemoteUsersCountWithResponse(ctx context.Context, params *OfferingKeycloakGroupsSearchRemoteUsersCountParams, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsSearchRemoteUsersCountResponse, error) {
+	rsp, err := c.OfferingKeycloakGroupsSearchRemoteUsersCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOfferingKeycloakGroupsSearchRemoteUsersCountResponse(rsp)
+}
+
+// OfferingKeycloakGroupsSyncStatusRetrieveWithResponse request returning *OfferingKeycloakGroupsSyncStatusRetrieveResponse
+func (c *ClientWithResponses) OfferingKeycloakGroupsSyncStatusRetrieveWithResponse(ctx context.Context, params *OfferingKeycloakGroupsSyncStatusRetrieveParams, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsSyncStatusRetrieveResponse, error) {
+	rsp, err := c.OfferingKeycloakGroupsSyncStatusRetrieve(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOfferingKeycloakGroupsSyncStatusRetrieveResponse(rsp)
+}
+
+// OfferingKeycloakGroupsSyncStatusCountWithResponse request returning *OfferingKeycloakGroupsSyncStatusCountResponse
+func (c *ClientWithResponses) OfferingKeycloakGroupsSyncStatusCountWithResponse(ctx context.Context, params *OfferingKeycloakGroupsSyncStatusCountParams, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsSyncStatusCountResponse, error) {
+	rsp, err := c.OfferingKeycloakGroupsSyncStatusCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOfferingKeycloakGroupsSyncStatusCountResponse(rsp)
+}
+
+// OfferingKeycloakGroupsTestConnectionWithBodyWithResponse request with arbitrary body returning *OfferingKeycloakGroupsTestConnectionResponse
+func (c *ClientWithResponses) OfferingKeycloakGroupsTestConnectionWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsTestConnectionResponse, error) {
+	rsp, err := c.OfferingKeycloakGroupsTestConnectionWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOfferingKeycloakGroupsTestConnectionResponse(rsp)
+}
+
+func (c *ClientWithResponses) OfferingKeycloakGroupsTestConnectionWithResponse(ctx context.Context, body OfferingKeycloakGroupsTestConnectionJSONRequestBody, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsTestConnectionResponse, error) {
+	rsp, err := c.OfferingKeycloakGroupsTestConnection(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOfferingKeycloakGroupsTestConnectionResponse(rsp)
+}
+
+// OfferingKeycloakGroupsDestroyWithResponse request returning *OfferingKeycloakGroupsDestroyResponse
+func (c *ClientWithResponses) OfferingKeycloakGroupsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsDestroyResponse, error) {
+	rsp, err := c.OfferingKeycloakGroupsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOfferingKeycloakGroupsDestroyResponse(rsp)
+}
+
+// OfferingKeycloakGroupsRetrieveWithResponse request returning *OfferingKeycloakGroupsRetrieveResponse
+func (c *ClientWithResponses) OfferingKeycloakGroupsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsRetrieveResponse, error) {
+	rsp, err := c.OfferingKeycloakGroupsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOfferingKeycloakGroupsRetrieveResponse(rsp)
+}
+
+// OfferingKeycloakGroupsPullMembersWithResponse request returning *OfferingKeycloakGroupsPullMembersResponse
+func (c *ClientWithResponses) OfferingKeycloakGroupsPullMembersWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsPullMembersResponse, error) {
+	rsp, err := c.OfferingKeycloakGroupsPullMembers(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOfferingKeycloakGroupsPullMembersResponse(rsp)
+}
+
+// OfferingKeycloakGroupsSetBackendIdWithBodyWithResponse request with arbitrary body returning *OfferingKeycloakGroupsSetBackendIdResponse
+func (c *ClientWithResponses) OfferingKeycloakGroupsSetBackendIdWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsSetBackendIdResponse, error) {
+	rsp, err := c.OfferingKeycloakGroupsSetBackendIdWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOfferingKeycloakGroupsSetBackendIdResponse(rsp)
+}
+
+func (c *ClientWithResponses) OfferingKeycloakGroupsSetBackendIdWithResponse(ctx context.Context, uuid openapi_types.UUID, body OfferingKeycloakGroupsSetBackendIdJSONRequestBody, reqEditors ...RequestEditorFn) (*OfferingKeycloakGroupsSetBackendIdResponse, error) {
+	rsp, err := c.OfferingKeycloakGroupsSetBackendId(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOfferingKeycloakGroupsSetBackendIdResponse(rsp)
+}
+
+// OfferingKeycloakMembershipsListWithResponse request returning *OfferingKeycloakMembershipsListResponse
+func (c *ClientWithResponses) OfferingKeycloakMembershipsListWithResponse(ctx context.Context, params *OfferingKeycloakMembershipsListParams, reqEditors ...RequestEditorFn) (*OfferingKeycloakMembershipsListResponse, error) {
+	rsp, err := c.OfferingKeycloakMembershipsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOfferingKeycloakMembershipsListResponse(rsp)
+}
+
+// OfferingKeycloakMembershipsCountWithResponse request returning *OfferingKeycloakMembershipsCountResponse
+func (c *ClientWithResponses) OfferingKeycloakMembershipsCountWithResponse(ctx context.Context, params *OfferingKeycloakMembershipsCountParams, reqEditors ...RequestEditorFn) (*OfferingKeycloakMembershipsCountResponse, error) {
+	rsp, err := c.OfferingKeycloakMembershipsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOfferingKeycloakMembershipsCountResponse(rsp)
+}
+
+// OfferingKeycloakMembershipsCreateWithBodyWithResponse request with arbitrary body returning *OfferingKeycloakMembershipsCreateResponse
+func (c *ClientWithResponses) OfferingKeycloakMembershipsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OfferingKeycloakMembershipsCreateResponse, error) {
+	rsp, err := c.OfferingKeycloakMembershipsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOfferingKeycloakMembershipsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OfferingKeycloakMembershipsCreateWithResponse(ctx context.Context, body OfferingKeycloakMembershipsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OfferingKeycloakMembershipsCreateResponse, error) {
+	rsp, err := c.OfferingKeycloakMembershipsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOfferingKeycloakMembershipsCreateResponse(rsp)
+}
+
+// OfferingKeycloakMembershipsDestroyWithResponse request returning *OfferingKeycloakMembershipsDestroyResponse
+func (c *ClientWithResponses) OfferingKeycloakMembershipsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OfferingKeycloakMembershipsDestroyResponse, error) {
+	rsp, err := c.OfferingKeycloakMembershipsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOfferingKeycloakMembershipsDestroyResponse(rsp)
+}
+
+// OfferingKeycloakMembershipsRetrieveWithResponse request returning *OfferingKeycloakMembershipsRetrieveResponse
+func (c *ClientWithResponses) OfferingKeycloakMembershipsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OfferingKeycloakMembershipsRetrieveResponse, error) {
+	rsp, err := c.OfferingKeycloakMembershipsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOfferingKeycloakMembershipsRetrieveResponse(rsp)
 }
 
 // OnboardingJustificationsListWithResponse request returning *OnboardingJustificationsListResponse
@@ -415472,6 +418890,32 @@ func ParseMarketplaceProviderResourcesSetEndDateByStaffResponse(rsp *http.Respon
 	return response, nil
 }
 
+// ParseMarketplaceProviderResourcesSetKeycloakScopesResponse parses an HTTP response from a MarketplaceProviderResourcesSetKeycloakScopesWithResponse call
+func ParseMarketplaceProviderResourcesSetKeycloakScopesResponse(rsp *http.Response) (*MarketplaceProviderResourcesSetKeycloakScopesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderResourcesSetKeycloakScopesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ResourceResponseStatus
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceProviderResourcesSetLimitsResponse parses an HTTP response from a MarketplaceProviderResourcesSetLimitsWithResponse call
 func ParseMarketplaceProviderResourcesSetLimitsResponse(rsp *http.Response) (*MarketplaceProviderResourcesSetLimitsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -422958,6 +426402,472 @@ func ParseNotificationMessagesEnableResponse(rsp *http.Response) (*NotificationM
 	response := &NotificationMessagesEnableResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOfferingKeycloakGroupsListResponse parses an HTTP response from a OfferingKeycloakGroupsListWithResponse call
+func ParseOfferingKeycloakGroupsListResponse(rsp *http.Response) (*OfferingKeycloakGroupsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OfferingKeycloakGroupsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OfferingKeycloakGroup
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOfferingKeycloakGroupsCountResponse parses an HTTP response from a OfferingKeycloakGroupsCountWithResponse call
+func ParseOfferingKeycloakGroupsCountResponse(rsp *http.Response) (*OfferingKeycloakGroupsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OfferingKeycloakGroupsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOfferingKeycloakGroupsImportRemoteResponse parses an HTTP response from a OfferingKeycloakGroupsImportRemoteWithResponse call
+func ParseOfferingKeycloakGroupsImportRemoteResponse(rsp *http.Response) (*OfferingKeycloakGroupsImportRemoteResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OfferingKeycloakGroupsImportRemoteResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest OfferingKeycloakGroup
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOfferingKeycloakGroupsRemoteGroupMembersListResponse parses an HTTP response from a OfferingKeycloakGroupsRemoteGroupMembersListWithResponse call
+func ParseOfferingKeycloakGroupsRemoteGroupMembersListResponse(rsp *http.Response) (*OfferingKeycloakGroupsRemoteGroupMembersListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OfferingKeycloakGroupsRemoteGroupMembersListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []RemoteGroupMember
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOfferingKeycloakGroupsRemoteGroupMembersCountResponse parses an HTTP response from a OfferingKeycloakGroupsRemoteGroupMembersCountWithResponse call
+func ParseOfferingKeycloakGroupsRemoteGroupMembersCountResponse(rsp *http.Response) (*OfferingKeycloakGroupsRemoteGroupMembersCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OfferingKeycloakGroupsRemoteGroupMembersCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOfferingKeycloakGroupsRemoteGroupsListResponse parses an HTTP response from a OfferingKeycloakGroupsRemoteGroupsListWithResponse call
+func ParseOfferingKeycloakGroupsRemoteGroupsListResponse(rsp *http.Response) (*OfferingKeycloakGroupsRemoteGroupsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OfferingKeycloakGroupsRemoteGroupsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []RemoteGroup
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOfferingKeycloakGroupsRemoteGroupsCountResponse parses an HTTP response from a OfferingKeycloakGroupsRemoteGroupsCountWithResponse call
+func ParseOfferingKeycloakGroupsRemoteGroupsCountResponse(rsp *http.Response) (*OfferingKeycloakGroupsRemoteGroupsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OfferingKeycloakGroupsRemoteGroupsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOfferingKeycloakGroupsSearchRemoteUsersListResponse parses an HTTP response from a OfferingKeycloakGroupsSearchRemoteUsersListWithResponse call
+func ParseOfferingKeycloakGroupsSearchRemoteUsersListResponse(rsp *http.Response) (*OfferingKeycloakGroupsSearchRemoteUsersListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OfferingKeycloakGroupsSearchRemoteUsersListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []RemoteGroupMember
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOfferingKeycloakGroupsSearchRemoteUsersCountResponse parses an HTTP response from a OfferingKeycloakGroupsSearchRemoteUsersCountWithResponse call
+func ParseOfferingKeycloakGroupsSearchRemoteUsersCountResponse(rsp *http.Response) (*OfferingKeycloakGroupsSearchRemoteUsersCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OfferingKeycloakGroupsSearchRemoteUsersCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOfferingKeycloakGroupsSyncStatusRetrieveResponse parses an HTTP response from a OfferingKeycloakGroupsSyncStatusRetrieveWithResponse call
+func ParseOfferingKeycloakGroupsSyncStatusRetrieveResponse(rsp *http.Response) (*OfferingKeycloakGroupsSyncStatusRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OfferingKeycloakGroupsSyncStatusRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SyncStatusResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOfferingKeycloakGroupsSyncStatusCountResponse parses an HTTP response from a OfferingKeycloakGroupsSyncStatusCountWithResponse call
+func ParseOfferingKeycloakGroupsSyncStatusCountResponse(rsp *http.Response) (*OfferingKeycloakGroupsSyncStatusCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OfferingKeycloakGroupsSyncStatusCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOfferingKeycloakGroupsTestConnectionResponse parses an HTTP response from a OfferingKeycloakGroupsTestConnectionWithResponse call
+func ParseOfferingKeycloakGroupsTestConnectionResponse(rsp *http.Response) (*OfferingKeycloakGroupsTestConnectionResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OfferingKeycloakGroupsTestConnectionResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest TestConnectionResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOfferingKeycloakGroupsDestroyResponse parses an HTTP response from a OfferingKeycloakGroupsDestroyWithResponse call
+func ParseOfferingKeycloakGroupsDestroyResponse(rsp *http.Response) (*OfferingKeycloakGroupsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OfferingKeycloakGroupsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOfferingKeycloakGroupsRetrieveResponse parses an HTTP response from a OfferingKeycloakGroupsRetrieveWithResponse call
+func ParseOfferingKeycloakGroupsRetrieveResponse(rsp *http.Response) (*OfferingKeycloakGroupsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OfferingKeycloakGroupsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingKeycloakGroup
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOfferingKeycloakGroupsPullMembersResponse parses an HTTP response from a OfferingKeycloakGroupsPullMembersWithResponse call
+func ParseOfferingKeycloakGroupsPullMembersResponse(rsp *http.Response) (*OfferingKeycloakGroupsPullMembersResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OfferingKeycloakGroupsPullMembersResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PullMembersResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOfferingKeycloakGroupsSetBackendIdResponse parses an HTTP response from a OfferingKeycloakGroupsSetBackendIdWithResponse call
+func ParseOfferingKeycloakGroupsSetBackendIdResponse(rsp *http.Response) (*OfferingKeycloakGroupsSetBackendIdResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OfferingKeycloakGroupsSetBackendIdResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingKeycloakGroup
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOfferingKeycloakMembershipsListResponse parses an HTTP response from a OfferingKeycloakMembershipsListWithResponse call
+func ParseOfferingKeycloakMembershipsListResponse(rsp *http.Response) (*OfferingKeycloakMembershipsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OfferingKeycloakMembershipsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OfferingKeycloakMembership
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOfferingKeycloakMembershipsCountResponse parses an HTTP response from a OfferingKeycloakMembershipsCountWithResponse call
+func ParseOfferingKeycloakMembershipsCountResponse(rsp *http.Response) (*OfferingKeycloakMembershipsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OfferingKeycloakMembershipsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOfferingKeycloakMembershipsCreateResponse parses an HTTP response from a OfferingKeycloakMembershipsCreateWithResponse call
+func ParseOfferingKeycloakMembershipsCreateResponse(rsp *http.Response) (*OfferingKeycloakMembershipsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OfferingKeycloakMembershipsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest OfferingKeycloakMembership
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOfferingKeycloakMembershipsDestroyResponse parses an HTTP response from a OfferingKeycloakMembershipsDestroyWithResponse call
+func ParseOfferingKeycloakMembershipsDestroyResponse(rsp *http.Response) (*OfferingKeycloakMembershipsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OfferingKeycloakMembershipsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOfferingKeycloakMembershipsRetrieveResponse parses an HTTP response from a OfferingKeycloakMembershipsRetrieveWithResponse call
+func ParseOfferingKeycloakMembershipsRetrieveResponse(rsp *http.Response) (*OfferingKeycloakMembershipsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OfferingKeycloakMembershipsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingKeycloakMembership
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
