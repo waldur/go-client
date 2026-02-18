@@ -2052,7 +2052,10 @@ const (
 
 // Defines values for PolicyEnum.
 const (
-	Affinity PolicyEnum = "affinity"
+	Affinity         PolicyEnum = "affinity"
+	AntiAffinity     PolicyEnum = "anti-affinity"
+	SoftAffinity     PolicyEnum = "soft-affinity"
+	SoftAntiAffinity PolicyEnum = "soft-anti-affinity"
 )
 
 // Defines values for PolicyPeriodEnum.
@@ -27142,7 +27145,7 @@ type OpenStackServerGroup struct {
 	Modified                         *time.Time                 `json:"modified,omitempty"`
 	Name                             *string                    `json:"name,omitempty"`
 
-	// Policy Server group policy determining the rules for scheduling servers in this group
+	// Policy affinity — all instances are placed on the same hypervisor. anti-affinity — all instances are placed on different hypervisors. soft-affinity — instances are placed on the same hypervisor if possible, but not enforced. soft-anti-affinity — instances are placed on different hypervisors if possible, but not enforced.
 	Policy                      *OpenStackServerGroup_Policy `json:"policy,omitempty"`
 	Project                     *string                      `json:"project,omitempty"`
 	ProjectName                 *string                      `json:"project_name,omitempty"`
@@ -27161,7 +27164,7 @@ type OpenStackServerGroup struct {
 	Uuid                        *openapi_types.UUID          `json:"uuid,omitempty"`
 }
 
-// OpenStackServerGroup_Policy Server group policy determining the rules for scheduling servers in this group
+// OpenStackServerGroup_Policy affinity — all instances are placed on the same hypervisor. anti-affinity — all instances are placed on different hypervisors. soft-affinity — instances are placed on the same hypervisor if possible, but not enforced. soft-anti-affinity — instances are placed on different hypervisors if possible, but not enforced.
 type OpenStackServerGroup_Policy struct {
 	union json.RawMessage
 }
@@ -27171,11 +27174,11 @@ type OpenStackServerGroupRequest struct {
 	Description *string `json:"description,omitempty"`
 	Name        string  `json:"name"`
 
-	// Policy Server group policy determining the rules for scheduling servers in this group
+	// Policy affinity — all instances are placed on the same hypervisor. anti-affinity — all instances are placed on different hypervisors. soft-affinity — instances are placed on the same hypervisor if possible, but not enforced. soft-anti-affinity — instances are placed on different hypervisors if possible, but not enforced.
 	Policy *OpenStackServerGroupRequest_Policy `json:"policy,omitempty"`
 }
 
-// OpenStackServerGroupRequest_Policy Server group policy determining the rules for scheduling servers in this group
+// OpenStackServerGroupRequest_Policy affinity — all instances are placed on the same hypervisor. anti-affinity — all instances are placed on different hypervisors. soft-affinity — instances are placed on the same hypervisor if possible, but not enforced. soft-anti-affinity — instances are placed on different hypervisors if possible, but not enforced.
 type OpenStackServerGroupRequest_Policy struct {
 	union json.RawMessage
 }
