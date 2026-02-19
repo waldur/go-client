@@ -17925,6 +17925,7 @@ type ConstanceSettings struct {
 	FEDERATEDIDENTITYDEACTIVATIONPOLICY            *string              `json:"FEDERATED_IDENTITY_DEACTIVATION_POLICY,omitempty"`
 	FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES         *[]string            `json:"FEDERATED_IDENTITY_SYNC_ALLOWED_ATTRIBUTES,omitempty"`
 	FEDERATEDIDENTITYSYNCENABLED                   *bool                `json:"FEDERATED_IDENTITY_SYNC_ENABLED,omitempty"`
+	FONTFAMILY                                     *string              `json:"FONT_FAMILY,omitempty"`
 	FREEIPABLACKLISTEDUSERNAMES                    *[]string            `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
 	FREEIPAENABLED                                 *bool                `json:"FREEIPA_ENABLED,omitempty"`
 	FREEIPAGROUPNAMEPREFIX                         *string              `json:"FREEIPA_GROUPNAME_PREFIX,omitempty"`
@@ -17947,6 +17948,7 @@ type ConstanceSettings struct {
 	KEYCLOAKICON                                   *string              `json:"KEYCLOAK_ICON"`
 	LANGUAGECHOICES                                *string              `json:"LANGUAGE_CHOICES,omitempty"`
 	LLMCHATENABLED                                 *bool                `json:"LLM_CHAT_ENABLED,omitempty"`
+	LLMCHATHISTORYLIMIT                            *int                 `json:"LLM_CHAT_HISTORY_LIMIT,omitempty"`
 	LLMCHATSESSIONRETENTIONDAYS                    *int                 `json:"LLM_CHAT_SESSION_RETENTION_DAYS,omitempty"`
 	LLMCHATSTORAGEENABLED                          *bool                `json:"LLM_CHAT_STORAGE_ENABLED,omitempty"`
 	LLMINFERENCESAPITOKEN                          *string              `json:"LLM_INFERENCES_API_TOKEN,omitempty"`
@@ -18164,6 +18166,7 @@ type ConstanceSettingsRequest struct {
 	FEDERATEDIDENTITYDEACTIVATIONPOLICY            *string                         `json:"FEDERATED_IDENTITY_DEACTIVATION_POLICY,omitempty"`
 	FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES         *[]string                       `json:"FEDERATED_IDENTITY_SYNC_ALLOWED_ATTRIBUTES,omitempty"`
 	FEDERATEDIDENTITYSYNCENABLED                   *bool                           `json:"FEDERATED_IDENTITY_SYNC_ENABLED,omitempty"`
+	FONTFAMILY                                     *string                         `json:"FONT_FAMILY,omitempty"`
 	FREEIPABLACKLISTEDUSERNAMES                    *[]string                       `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
 	FREEIPAENABLED                                 *bool                           `json:"FREEIPA_ENABLED,omitempty"`
 	FREEIPAGROUPNAMEPREFIX                         *string                         `json:"FREEIPA_GROUPNAME_PREFIX,omitempty"`
@@ -18186,6 +18189,7 @@ type ConstanceSettingsRequest struct {
 	KEYCLOAKICON                                   *openapi_types.File             `json:"KEYCLOAK_ICON"`
 	LANGUAGECHOICES                                *string                         `json:"LANGUAGE_CHOICES,omitempty"`
 	LLMCHATENABLED                                 *bool                           `json:"LLM_CHAT_ENABLED,omitempty"`
+	LLMCHATHISTORYLIMIT                            *int                            `json:"LLM_CHAT_HISTORY_LIMIT,omitempty"`
 	LLMCHATSESSIONRETENTIONDAYS                    *int                            `json:"LLM_CHAT_SESSION_RETENTION_DAYS,omitempty"`
 	LLMCHATSTORAGEENABLED                          *bool                           `json:"LLM_CHAT_STORAGE_ENABLED,omitempty"`
 	LLMINFERENCESAPITOKEN                          *string                         `json:"LLM_INFERENCES_API_TOKEN,omitempty"`
@@ -18403,6 +18407,7 @@ type ConstanceSettingsRequestForm struct {
 	FEDERATEDIDENTITYDEACTIVATIONPOLICY            *string                         `json:"FEDERATED_IDENTITY_DEACTIVATION_POLICY,omitempty"`
 	FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES         *[]string                       `json:"FEDERATED_IDENTITY_SYNC_ALLOWED_ATTRIBUTES,omitempty"`
 	FEDERATEDIDENTITYSYNCENABLED                   *bool                           `json:"FEDERATED_IDENTITY_SYNC_ENABLED,omitempty"`
+	FONTFAMILY                                     *string                         `json:"FONT_FAMILY,omitempty"`
 	FREEIPABLACKLISTEDUSERNAMES                    *[]string                       `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
 	FREEIPAENABLED                                 *bool                           `json:"FREEIPA_ENABLED,omitempty"`
 	FREEIPAGROUPNAMEPREFIX                         *string                         `json:"FREEIPA_GROUPNAME_PREFIX,omitempty"`
@@ -18425,6 +18430,7 @@ type ConstanceSettingsRequestForm struct {
 	KEYCLOAKICON                                   *openapi_types.File             `json:"KEYCLOAK_ICON"`
 	LANGUAGECHOICES                                *string                         `json:"LANGUAGE_CHOICES,omitempty"`
 	LLMCHATENABLED                                 *bool                           `json:"LLM_CHAT_ENABLED,omitempty"`
+	LLMCHATHISTORYLIMIT                            *int                            `json:"LLM_CHAT_HISTORY_LIMIT,omitempty"`
 	LLMCHATSESSIONRETENTIONDAYS                    *int                            `json:"LLM_CHAT_SESSION_RETENTION_DAYS,omitempty"`
 	LLMCHATSTORAGEENABLED                          *bool                           `json:"LLM_CHAT_STORAGE_ENABLED,omitempty"`
 	LLMINFERENCESAPITOKEN                          *string                         `json:"LLM_INFERENCES_API_TOKEN,omitempty"`
@@ -18642,6 +18648,7 @@ type ConstanceSettingsRequestMultipart struct {
 	FEDERATEDIDENTITYDEACTIVATIONPOLICY            *string                         `json:"FEDERATED_IDENTITY_DEACTIVATION_POLICY,omitempty"`
 	FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES         *[]string                       `json:"FEDERATED_IDENTITY_SYNC_ALLOWED_ATTRIBUTES,omitempty"`
 	FEDERATEDIDENTITYSYNCENABLED                   *bool                           `json:"FEDERATED_IDENTITY_SYNC_ENABLED,omitempty"`
+	FONTFAMILY                                     *string                         `json:"FONT_FAMILY,omitempty"`
 	FREEIPABLACKLISTEDUSERNAMES                    *[]string                       `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
 	FREEIPAENABLED                                 *bool                           `json:"FREEIPA_ENABLED,omitempty"`
 	FREEIPAGROUPNAMEPREFIX                         *string                         `json:"FREEIPA_GROUPNAME_PREFIX,omitempty"`
@@ -18664,6 +18671,7 @@ type ConstanceSettingsRequestMultipart struct {
 	KEYCLOAKICON                                   *openapi_types.File             `json:"KEYCLOAK_ICON"`
 	LANGUAGECHOICES                                *string                         `json:"LANGUAGE_CHOICES,omitempty"`
 	LLMCHATENABLED                                 *bool                           `json:"LLM_CHAT_ENABLED,omitempty"`
+	LLMCHATHISTORYLIMIT                            *int                            `json:"LLM_CHAT_HISTORY_LIMIT,omitempty"`
 	LLMCHATSESSIONRETENTIONDAYS                    *int                            `json:"LLM_CHAT_SESSION_RETENTION_DAYS,omitempty"`
 	LLMCHATSTORAGEENABLED                          *bool                           `json:"LLM_CHAT_STORAGE_ENABLED,omitempty"`
 	LLMINFERENCESAPITOKEN                          *string                         `json:"LLM_INFERENCES_API_TOKEN,omitempty"`
@@ -49775,6 +49783,9 @@ type MarketplaceSoftwarePackagesListParams struct {
 	// Name Filter packages by name (case-insensitive partial match)
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
 
+	// NameExact Filter packages by exact name (case-insensitive)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
 	// O Ordering
 	//
 	O *[]MarketplaceSoftwarePackagesListParamsO `form:"o,omitempty" json:"o,omitempty"`
@@ -49829,6 +49840,9 @@ type MarketplaceSoftwarePackagesCountParams struct {
 
 	// Name Filter packages by name (case-insensitive partial match)
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Filter packages by exact name (case-insensitive)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -213857,6 +213871,22 @@ func NewMarketplaceSoftwarePackagesListRequest(server string, params *Marketplac
 
 		}
 
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name_exact", runtime.ParamLocationQuery, *params.NameExact); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.O != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
@@ -214133,6 +214163,22 @@ func NewMarketplaceSoftwarePackagesCountRequest(server string, params *Marketpla
 		if params.Name != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name_exact", runtime.ParamLocationQuery, *params.NameExact); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
