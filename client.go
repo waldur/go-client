@@ -5875,50 +5875,51 @@ const (
 
 // Defines values for MarketplaceOfferingUsersListParamsField.
 const (
-	MarketplaceOfferingUsersListParamsFieldConsentData               MarketplaceOfferingUsersListParamsField = "consent_data"
-	MarketplaceOfferingUsersListParamsFieldCreated                   MarketplaceOfferingUsersListParamsField = "created"
-	MarketplaceOfferingUsersListParamsFieldCustomerName              MarketplaceOfferingUsersListParamsField = "customer_name"
-	MarketplaceOfferingUsersListParamsFieldCustomerUuid              MarketplaceOfferingUsersListParamsField = "customer_uuid"
-	MarketplaceOfferingUsersListParamsFieldHasComplianceChecklist    MarketplaceOfferingUsersListParamsField = "has_compliance_checklist"
-	MarketplaceOfferingUsersListParamsFieldHasConsent                MarketplaceOfferingUsersListParamsField = "has_consent"
-	MarketplaceOfferingUsersListParamsFieldIsProfileComplete         MarketplaceOfferingUsersListParamsField = "is_profile_complete"
-	MarketplaceOfferingUsersListParamsFieldIsRestricted              MarketplaceOfferingUsersListParamsField = "is_restricted"
-	MarketplaceOfferingUsersListParamsFieldMissingProfileAttributes  MarketplaceOfferingUsersListParamsField = "missing_profile_attributes"
-	MarketplaceOfferingUsersListParamsFieldModified                  MarketplaceOfferingUsersListParamsField = "modified"
-	MarketplaceOfferingUsersListParamsFieldOffering                  MarketplaceOfferingUsersListParamsField = "offering"
-	MarketplaceOfferingUsersListParamsFieldOfferingName              MarketplaceOfferingUsersListParamsField = "offering_name"
-	MarketplaceOfferingUsersListParamsFieldOfferingUuid              MarketplaceOfferingUsersListParamsField = "offering_uuid"
-	MarketplaceOfferingUsersListParamsFieldRequiresReconsent         MarketplaceOfferingUsersListParamsField = "requires_reconsent"
-	MarketplaceOfferingUsersListParamsFieldServiceProviderComment    MarketplaceOfferingUsersListParamsField = "service_provider_comment"
-	MarketplaceOfferingUsersListParamsFieldServiceProviderCommentUrl MarketplaceOfferingUsersListParamsField = "service_provider_comment_url"
-	MarketplaceOfferingUsersListParamsFieldState                     MarketplaceOfferingUsersListParamsField = "state"
-	MarketplaceOfferingUsersListParamsFieldUrl                       MarketplaceOfferingUsersListParamsField = "url"
-	MarketplaceOfferingUsersListParamsFieldUser                      MarketplaceOfferingUsersListParamsField = "user"
-	MarketplaceOfferingUsersListParamsFieldUserActiveIsds            MarketplaceOfferingUsersListParamsField = "user_active_isds"
-	MarketplaceOfferingUsersListParamsFieldUserAffiliations          MarketplaceOfferingUsersListParamsField = "user_affiliations"
-	MarketplaceOfferingUsersListParamsFieldUserBirthDate             MarketplaceOfferingUsersListParamsField = "user_birth_date"
-	MarketplaceOfferingUsersListParamsFieldUserCivilNumber           MarketplaceOfferingUsersListParamsField = "user_civil_number"
-	MarketplaceOfferingUsersListParamsFieldUserCountryOfResidence    MarketplaceOfferingUsersListParamsField = "user_country_of_residence"
-	MarketplaceOfferingUsersListParamsFieldUserEdupersonAssurance    MarketplaceOfferingUsersListParamsField = "user_eduperson_assurance"
-	MarketplaceOfferingUsersListParamsFieldUserEmail                 MarketplaceOfferingUsersListParamsField = "user_email"
-	MarketplaceOfferingUsersListParamsFieldUserFirstName             MarketplaceOfferingUsersListParamsField = "user_first_name"
-	MarketplaceOfferingUsersListParamsFieldUserFullName              MarketplaceOfferingUsersListParamsField = "user_full_name"
-	MarketplaceOfferingUsersListParamsFieldUserGender                MarketplaceOfferingUsersListParamsField = "user_gender"
-	MarketplaceOfferingUsersListParamsFieldUserIdentitySource        MarketplaceOfferingUsersListParamsField = "user_identity_source"
-	MarketplaceOfferingUsersListParamsFieldUserJobTitle              MarketplaceOfferingUsersListParamsField = "user_job_title"
-	MarketplaceOfferingUsersListParamsFieldUserLastName              MarketplaceOfferingUsersListParamsField = "user_last_name"
-	MarketplaceOfferingUsersListParamsFieldUserNationalities         MarketplaceOfferingUsersListParamsField = "user_nationalities"
-	MarketplaceOfferingUsersListParamsFieldUserNationality           MarketplaceOfferingUsersListParamsField = "user_nationality"
-	MarketplaceOfferingUsersListParamsFieldUserOrganization          MarketplaceOfferingUsersListParamsField = "user_organization"
-	MarketplaceOfferingUsersListParamsFieldUserOrganizationCountry   MarketplaceOfferingUsersListParamsField = "user_organization_country"
-	MarketplaceOfferingUsersListParamsFieldUserOrganizationType      MarketplaceOfferingUsersListParamsField = "user_organization_type"
-	MarketplaceOfferingUsersListParamsFieldUserPersonalTitle         MarketplaceOfferingUsersListParamsField = "user_personal_title"
-	MarketplaceOfferingUsersListParamsFieldUserPhoneNumber           MarketplaceOfferingUsersListParamsField = "user_phone_number"
-	MarketplaceOfferingUsersListParamsFieldUserPlaceOfBirth          MarketplaceOfferingUsersListParamsField = "user_place_of_birth"
-	MarketplaceOfferingUsersListParamsFieldUserUsername              MarketplaceOfferingUsersListParamsField = "user_username"
-	MarketplaceOfferingUsersListParamsFieldUserUuid                  MarketplaceOfferingUsersListParamsField = "user_uuid"
-	MarketplaceOfferingUsersListParamsFieldUsername                  MarketplaceOfferingUsersListParamsField = "username"
-	MarketplaceOfferingUsersListParamsFieldUuid                      MarketplaceOfferingUsersListParamsField = "uuid"
+	MarketplaceOfferingUsersListParamsFieldConsentData                  MarketplaceOfferingUsersListParamsField = "consent_data"
+	MarketplaceOfferingUsersListParamsFieldCreated                      MarketplaceOfferingUsersListParamsField = "created"
+	MarketplaceOfferingUsersListParamsFieldCustomerName                 MarketplaceOfferingUsersListParamsField = "customer_name"
+	MarketplaceOfferingUsersListParamsFieldCustomerUuid                 MarketplaceOfferingUsersListParamsField = "customer_uuid"
+	MarketplaceOfferingUsersListParamsFieldHasComplianceChecklist       MarketplaceOfferingUsersListParamsField = "has_compliance_checklist"
+	MarketplaceOfferingUsersListParamsFieldHasConsent                   MarketplaceOfferingUsersListParamsField = "has_consent"
+	MarketplaceOfferingUsersListParamsFieldIsProfileComplete            MarketplaceOfferingUsersListParamsField = "is_profile_complete"
+	MarketplaceOfferingUsersListParamsFieldIsRestricted                 MarketplaceOfferingUsersListParamsField = "is_restricted"
+	MarketplaceOfferingUsersListParamsFieldMissingProfileAttributes     MarketplaceOfferingUsersListParamsField = "missing_profile_attributes"
+	MarketplaceOfferingUsersListParamsFieldModified                     MarketplaceOfferingUsersListParamsField = "modified"
+	MarketplaceOfferingUsersListParamsFieldOffering                     MarketplaceOfferingUsersListParamsField = "offering"
+	MarketplaceOfferingUsersListParamsFieldOfferingName                 MarketplaceOfferingUsersListParamsField = "offering_name"
+	MarketplaceOfferingUsersListParamsFieldOfferingUuid                 MarketplaceOfferingUsersListParamsField = "offering_uuid"
+	MarketplaceOfferingUsersListParamsFieldRequiresReconsent            MarketplaceOfferingUsersListParamsField = "requires_reconsent"
+	MarketplaceOfferingUsersListParamsFieldServiceProviderComment       MarketplaceOfferingUsersListParamsField = "service_provider_comment"
+	MarketplaceOfferingUsersListParamsFieldServiceProviderCommentUrl    MarketplaceOfferingUsersListParamsField = "service_provider_comment_url"
+	MarketplaceOfferingUsersListParamsFieldState                        MarketplaceOfferingUsersListParamsField = "state"
+	MarketplaceOfferingUsersListParamsFieldUrl                          MarketplaceOfferingUsersListParamsField = "url"
+	MarketplaceOfferingUsersListParamsFieldUser                         MarketplaceOfferingUsersListParamsField = "user"
+	MarketplaceOfferingUsersListParamsFieldUserActiveIsds               MarketplaceOfferingUsersListParamsField = "user_active_isds"
+	MarketplaceOfferingUsersListParamsFieldUserAffiliations             MarketplaceOfferingUsersListParamsField = "user_affiliations"
+	MarketplaceOfferingUsersListParamsFieldUserBirthDate                MarketplaceOfferingUsersListParamsField = "user_birth_date"
+	MarketplaceOfferingUsersListParamsFieldUserCivilNumber              MarketplaceOfferingUsersListParamsField = "user_civil_number"
+	MarketplaceOfferingUsersListParamsFieldUserCountryOfResidence       MarketplaceOfferingUsersListParamsField = "user_country_of_residence"
+	MarketplaceOfferingUsersListParamsFieldUserEdupersonAssurance       MarketplaceOfferingUsersListParamsField = "user_eduperson_assurance"
+	MarketplaceOfferingUsersListParamsFieldUserEmail                    MarketplaceOfferingUsersListParamsField = "user_email"
+	MarketplaceOfferingUsersListParamsFieldUserFirstName                MarketplaceOfferingUsersListParamsField = "user_first_name"
+	MarketplaceOfferingUsersListParamsFieldUserFullName                 MarketplaceOfferingUsersListParamsField = "user_full_name"
+	MarketplaceOfferingUsersListParamsFieldUserGender                   MarketplaceOfferingUsersListParamsField = "user_gender"
+	MarketplaceOfferingUsersListParamsFieldUserIdentitySource           MarketplaceOfferingUsersListParamsField = "user_identity_source"
+	MarketplaceOfferingUsersListParamsFieldUserJobTitle                 MarketplaceOfferingUsersListParamsField = "user_job_title"
+	MarketplaceOfferingUsersListParamsFieldUserLastName                 MarketplaceOfferingUsersListParamsField = "user_last_name"
+	MarketplaceOfferingUsersListParamsFieldUserNationalities            MarketplaceOfferingUsersListParamsField = "user_nationalities"
+	MarketplaceOfferingUsersListParamsFieldUserNationality              MarketplaceOfferingUsersListParamsField = "user_nationality"
+	MarketplaceOfferingUsersListParamsFieldUserOrganization             MarketplaceOfferingUsersListParamsField = "user_organization"
+	MarketplaceOfferingUsersListParamsFieldUserOrganizationCountry      MarketplaceOfferingUsersListParamsField = "user_organization_country"
+	MarketplaceOfferingUsersListParamsFieldUserOrganizationRegistryCode MarketplaceOfferingUsersListParamsField = "user_organization_registry_code"
+	MarketplaceOfferingUsersListParamsFieldUserOrganizationType         MarketplaceOfferingUsersListParamsField = "user_organization_type"
+	MarketplaceOfferingUsersListParamsFieldUserPersonalTitle            MarketplaceOfferingUsersListParamsField = "user_personal_title"
+	MarketplaceOfferingUsersListParamsFieldUserPhoneNumber              MarketplaceOfferingUsersListParamsField = "user_phone_number"
+	MarketplaceOfferingUsersListParamsFieldUserPlaceOfBirth             MarketplaceOfferingUsersListParamsField = "user_place_of_birth"
+	MarketplaceOfferingUsersListParamsFieldUserUsername                 MarketplaceOfferingUsersListParamsField = "user_username"
+	MarketplaceOfferingUsersListParamsFieldUserUuid                     MarketplaceOfferingUsersListParamsField = "user_uuid"
+	MarketplaceOfferingUsersListParamsFieldUsername                     MarketplaceOfferingUsersListParamsField = "username"
+	MarketplaceOfferingUsersListParamsFieldUuid                         MarketplaceOfferingUsersListParamsField = "uuid"
 )
 
 // Defines values for MarketplaceOfferingUsersListParamsO.
@@ -5971,50 +5972,51 @@ const (
 
 // Defines values for MarketplaceOfferingUsersRetrieveParamsField.
 const (
-	MarketplaceOfferingUsersRetrieveParamsFieldConsentData               MarketplaceOfferingUsersRetrieveParamsField = "consent_data"
-	MarketplaceOfferingUsersRetrieveParamsFieldCreated                   MarketplaceOfferingUsersRetrieveParamsField = "created"
-	MarketplaceOfferingUsersRetrieveParamsFieldCustomerName              MarketplaceOfferingUsersRetrieveParamsField = "customer_name"
-	MarketplaceOfferingUsersRetrieveParamsFieldCustomerUuid              MarketplaceOfferingUsersRetrieveParamsField = "customer_uuid"
-	MarketplaceOfferingUsersRetrieveParamsFieldHasComplianceChecklist    MarketplaceOfferingUsersRetrieveParamsField = "has_compliance_checklist"
-	MarketplaceOfferingUsersRetrieveParamsFieldHasConsent                MarketplaceOfferingUsersRetrieveParamsField = "has_consent"
-	MarketplaceOfferingUsersRetrieveParamsFieldIsProfileComplete         MarketplaceOfferingUsersRetrieveParamsField = "is_profile_complete"
-	MarketplaceOfferingUsersRetrieveParamsFieldIsRestricted              MarketplaceOfferingUsersRetrieveParamsField = "is_restricted"
-	MarketplaceOfferingUsersRetrieveParamsFieldMissingProfileAttributes  MarketplaceOfferingUsersRetrieveParamsField = "missing_profile_attributes"
-	MarketplaceOfferingUsersRetrieveParamsFieldModified                  MarketplaceOfferingUsersRetrieveParamsField = "modified"
-	MarketplaceOfferingUsersRetrieveParamsFieldOffering                  MarketplaceOfferingUsersRetrieveParamsField = "offering"
-	MarketplaceOfferingUsersRetrieveParamsFieldOfferingName              MarketplaceOfferingUsersRetrieveParamsField = "offering_name"
-	MarketplaceOfferingUsersRetrieveParamsFieldOfferingUuid              MarketplaceOfferingUsersRetrieveParamsField = "offering_uuid"
-	MarketplaceOfferingUsersRetrieveParamsFieldRequiresReconsent         MarketplaceOfferingUsersRetrieveParamsField = "requires_reconsent"
-	MarketplaceOfferingUsersRetrieveParamsFieldServiceProviderComment    MarketplaceOfferingUsersRetrieveParamsField = "service_provider_comment"
-	MarketplaceOfferingUsersRetrieveParamsFieldServiceProviderCommentUrl MarketplaceOfferingUsersRetrieveParamsField = "service_provider_comment_url"
-	MarketplaceOfferingUsersRetrieveParamsFieldState                     MarketplaceOfferingUsersRetrieveParamsField = "state"
-	MarketplaceOfferingUsersRetrieveParamsFieldUrl                       MarketplaceOfferingUsersRetrieveParamsField = "url"
-	MarketplaceOfferingUsersRetrieveParamsFieldUser                      MarketplaceOfferingUsersRetrieveParamsField = "user"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserActiveIsds            MarketplaceOfferingUsersRetrieveParamsField = "user_active_isds"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserAffiliations          MarketplaceOfferingUsersRetrieveParamsField = "user_affiliations"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserBirthDate             MarketplaceOfferingUsersRetrieveParamsField = "user_birth_date"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserCivilNumber           MarketplaceOfferingUsersRetrieveParamsField = "user_civil_number"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserCountryOfResidence    MarketplaceOfferingUsersRetrieveParamsField = "user_country_of_residence"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserEdupersonAssurance    MarketplaceOfferingUsersRetrieveParamsField = "user_eduperson_assurance"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserEmail                 MarketplaceOfferingUsersRetrieveParamsField = "user_email"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserFirstName             MarketplaceOfferingUsersRetrieveParamsField = "user_first_name"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserFullName              MarketplaceOfferingUsersRetrieveParamsField = "user_full_name"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserGender                MarketplaceOfferingUsersRetrieveParamsField = "user_gender"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserIdentitySource        MarketplaceOfferingUsersRetrieveParamsField = "user_identity_source"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserJobTitle              MarketplaceOfferingUsersRetrieveParamsField = "user_job_title"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserLastName              MarketplaceOfferingUsersRetrieveParamsField = "user_last_name"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserNationalities         MarketplaceOfferingUsersRetrieveParamsField = "user_nationalities"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserNationality           MarketplaceOfferingUsersRetrieveParamsField = "user_nationality"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserOrganization          MarketplaceOfferingUsersRetrieveParamsField = "user_organization"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserOrganizationCountry   MarketplaceOfferingUsersRetrieveParamsField = "user_organization_country"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserOrganizationType      MarketplaceOfferingUsersRetrieveParamsField = "user_organization_type"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserPersonalTitle         MarketplaceOfferingUsersRetrieveParamsField = "user_personal_title"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserPhoneNumber           MarketplaceOfferingUsersRetrieveParamsField = "user_phone_number"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserPlaceOfBirth          MarketplaceOfferingUsersRetrieveParamsField = "user_place_of_birth"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserUsername              MarketplaceOfferingUsersRetrieveParamsField = "user_username"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserUuid                  MarketplaceOfferingUsersRetrieveParamsField = "user_uuid"
-	MarketplaceOfferingUsersRetrieveParamsFieldUsername                  MarketplaceOfferingUsersRetrieveParamsField = "username"
-	MarketplaceOfferingUsersRetrieveParamsFieldUuid                      MarketplaceOfferingUsersRetrieveParamsField = "uuid"
+	MarketplaceOfferingUsersRetrieveParamsFieldConsentData                  MarketplaceOfferingUsersRetrieveParamsField = "consent_data"
+	MarketplaceOfferingUsersRetrieveParamsFieldCreated                      MarketplaceOfferingUsersRetrieveParamsField = "created"
+	MarketplaceOfferingUsersRetrieveParamsFieldCustomerName                 MarketplaceOfferingUsersRetrieveParamsField = "customer_name"
+	MarketplaceOfferingUsersRetrieveParamsFieldCustomerUuid                 MarketplaceOfferingUsersRetrieveParamsField = "customer_uuid"
+	MarketplaceOfferingUsersRetrieveParamsFieldHasComplianceChecklist       MarketplaceOfferingUsersRetrieveParamsField = "has_compliance_checklist"
+	MarketplaceOfferingUsersRetrieveParamsFieldHasConsent                   MarketplaceOfferingUsersRetrieveParamsField = "has_consent"
+	MarketplaceOfferingUsersRetrieveParamsFieldIsProfileComplete            MarketplaceOfferingUsersRetrieveParamsField = "is_profile_complete"
+	MarketplaceOfferingUsersRetrieveParamsFieldIsRestricted                 MarketplaceOfferingUsersRetrieveParamsField = "is_restricted"
+	MarketplaceOfferingUsersRetrieveParamsFieldMissingProfileAttributes     MarketplaceOfferingUsersRetrieveParamsField = "missing_profile_attributes"
+	MarketplaceOfferingUsersRetrieveParamsFieldModified                     MarketplaceOfferingUsersRetrieveParamsField = "modified"
+	MarketplaceOfferingUsersRetrieveParamsFieldOffering                     MarketplaceOfferingUsersRetrieveParamsField = "offering"
+	MarketplaceOfferingUsersRetrieveParamsFieldOfferingName                 MarketplaceOfferingUsersRetrieveParamsField = "offering_name"
+	MarketplaceOfferingUsersRetrieveParamsFieldOfferingUuid                 MarketplaceOfferingUsersRetrieveParamsField = "offering_uuid"
+	MarketplaceOfferingUsersRetrieveParamsFieldRequiresReconsent            MarketplaceOfferingUsersRetrieveParamsField = "requires_reconsent"
+	MarketplaceOfferingUsersRetrieveParamsFieldServiceProviderComment       MarketplaceOfferingUsersRetrieveParamsField = "service_provider_comment"
+	MarketplaceOfferingUsersRetrieveParamsFieldServiceProviderCommentUrl    MarketplaceOfferingUsersRetrieveParamsField = "service_provider_comment_url"
+	MarketplaceOfferingUsersRetrieveParamsFieldState                        MarketplaceOfferingUsersRetrieveParamsField = "state"
+	MarketplaceOfferingUsersRetrieveParamsFieldUrl                          MarketplaceOfferingUsersRetrieveParamsField = "url"
+	MarketplaceOfferingUsersRetrieveParamsFieldUser                         MarketplaceOfferingUsersRetrieveParamsField = "user"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserActiveIsds               MarketplaceOfferingUsersRetrieveParamsField = "user_active_isds"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserAffiliations             MarketplaceOfferingUsersRetrieveParamsField = "user_affiliations"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserBirthDate                MarketplaceOfferingUsersRetrieveParamsField = "user_birth_date"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserCivilNumber              MarketplaceOfferingUsersRetrieveParamsField = "user_civil_number"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserCountryOfResidence       MarketplaceOfferingUsersRetrieveParamsField = "user_country_of_residence"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserEdupersonAssurance       MarketplaceOfferingUsersRetrieveParamsField = "user_eduperson_assurance"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserEmail                    MarketplaceOfferingUsersRetrieveParamsField = "user_email"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserFirstName                MarketplaceOfferingUsersRetrieveParamsField = "user_first_name"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserFullName                 MarketplaceOfferingUsersRetrieveParamsField = "user_full_name"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserGender                   MarketplaceOfferingUsersRetrieveParamsField = "user_gender"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserIdentitySource           MarketplaceOfferingUsersRetrieveParamsField = "user_identity_source"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserJobTitle                 MarketplaceOfferingUsersRetrieveParamsField = "user_job_title"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserLastName                 MarketplaceOfferingUsersRetrieveParamsField = "user_last_name"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserNationalities            MarketplaceOfferingUsersRetrieveParamsField = "user_nationalities"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserNationality              MarketplaceOfferingUsersRetrieveParamsField = "user_nationality"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserOrganization             MarketplaceOfferingUsersRetrieveParamsField = "user_organization"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserOrganizationCountry      MarketplaceOfferingUsersRetrieveParamsField = "user_organization_country"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserOrganizationRegistryCode MarketplaceOfferingUsersRetrieveParamsField = "user_organization_registry_code"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserOrganizationType         MarketplaceOfferingUsersRetrieveParamsField = "user_organization_type"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserPersonalTitle            MarketplaceOfferingUsersRetrieveParamsField = "user_personal_title"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserPhoneNumber              MarketplaceOfferingUsersRetrieveParamsField = "user_phone_number"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserPlaceOfBirth             MarketplaceOfferingUsersRetrieveParamsField = "user_place_of_birth"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserUsername                 MarketplaceOfferingUsersRetrieveParamsField = "user_username"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserUuid                     MarketplaceOfferingUsersRetrieveParamsField = "user_uuid"
+	MarketplaceOfferingUsersRetrieveParamsFieldUsername                     MarketplaceOfferingUsersRetrieveParamsField = "username"
+	MarketplaceOfferingUsersRetrieveParamsFieldUuid                         MarketplaceOfferingUsersRetrieveParamsField = "uuid"
 )
 
 // Defines values for MarketplaceOrdersListParamsField.
@@ -8194,18 +8196,33 @@ const (
 
 // Defines values for MarketplaceServiceProvidersUsersListParamsField.
 const (
-	MarketplaceServiceProvidersUsersListParamsFieldAffiliations       MarketplaceServiceProvidersUsersListParamsField = "affiliations"
-	MarketplaceServiceProvidersUsersListParamsFieldEmail              MarketplaceServiceProvidersUsersListParamsField = "email"
-	MarketplaceServiceProvidersUsersListParamsFieldFirstName          MarketplaceServiceProvidersUsersListParamsField = "first_name"
-	MarketplaceServiceProvidersUsersListParamsFieldFullName           MarketplaceServiceProvidersUsersListParamsField = "full_name"
-	MarketplaceServiceProvidersUsersListParamsFieldIsActive           MarketplaceServiceProvidersUsersListParamsField = "is_active"
-	MarketplaceServiceProvidersUsersListParamsFieldLastName           MarketplaceServiceProvidersUsersListParamsField = "last_name"
-	MarketplaceServiceProvidersUsersListParamsFieldOrganization       MarketplaceServiceProvidersUsersListParamsField = "organization"
-	MarketplaceServiceProvidersUsersListParamsFieldPhoneNumber        MarketplaceServiceProvidersUsersListParamsField = "phone_number"
-	MarketplaceServiceProvidersUsersListParamsFieldProjectsCount      MarketplaceServiceProvidersUsersListParamsField = "projects_count"
-	MarketplaceServiceProvidersUsersListParamsFieldRegistrationMethod MarketplaceServiceProvidersUsersListParamsField = "registration_method"
-	MarketplaceServiceProvidersUsersListParamsFieldUsername           MarketplaceServiceProvidersUsersListParamsField = "username"
-	MarketplaceServiceProvidersUsersListParamsFieldUuid               MarketplaceServiceProvidersUsersListParamsField = "uuid"
+	MarketplaceServiceProvidersUsersListParamsFieldActiveIsds               MarketplaceServiceProvidersUsersListParamsField = "active_isds"
+	MarketplaceServiceProvidersUsersListParamsFieldAffiliations             MarketplaceServiceProvidersUsersListParamsField = "affiliations"
+	MarketplaceServiceProvidersUsersListParamsFieldBirthDate                MarketplaceServiceProvidersUsersListParamsField = "birth_date"
+	MarketplaceServiceProvidersUsersListParamsFieldCivilNumber              MarketplaceServiceProvidersUsersListParamsField = "civil_number"
+	MarketplaceServiceProvidersUsersListParamsFieldCountryOfResidence       MarketplaceServiceProvidersUsersListParamsField = "country_of_residence"
+	MarketplaceServiceProvidersUsersListParamsFieldEdupersonAssurance       MarketplaceServiceProvidersUsersListParamsField = "eduperson_assurance"
+	MarketplaceServiceProvidersUsersListParamsFieldEmail                    MarketplaceServiceProvidersUsersListParamsField = "email"
+	MarketplaceServiceProvidersUsersListParamsFieldFirstName                MarketplaceServiceProvidersUsersListParamsField = "first_name"
+	MarketplaceServiceProvidersUsersListParamsFieldFullName                 MarketplaceServiceProvidersUsersListParamsField = "full_name"
+	MarketplaceServiceProvidersUsersListParamsFieldGender                   MarketplaceServiceProvidersUsersListParamsField = "gender"
+	MarketplaceServiceProvidersUsersListParamsFieldIdentitySource           MarketplaceServiceProvidersUsersListParamsField = "identity_source"
+	MarketplaceServiceProvidersUsersListParamsFieldIsActive                 MarketplaceServiceProvidersUsersListParamsField = "is_active"
+	MarketplaceServiceProvidersUsersListParamsFieldJobTitle                 MarketplaceServiceProvidersUsersListParamsField = "job_title"
+	MarketplaceServiceProvidersUsersListParamsFieldLastName                 MarketplaceServiceProvidersUsersListParamsField = "last_name"
+	MarketplaceServiceProvidersUsersListParamsFieldNationalities            MarketplaceServiceProvidersUsersListParamsField = "nationalities"
+	MarketplaceServiceProvidersUsersListParamsFieldNationality              MarketplaceServiceProvidersUsersListParamsField = "nationality"
+	MarketplaceServiceProvidersUsersListParamsFieldOrganization             MarketplaceServiceProvidersUsersListParamsField = "organization"
+	MarketplaceServiceProvidersUsersListParamsFieldOrganizationCountry      MarketplaceServiceProvidersUsersListParamsField = "organization_country"
+	MarketplaceServiceProvidersUsersListParamsFieldOrganizationRegistryCode MarketplaceServiceProvidersUsersListParamsField = "organization_registry_code"
+	MarketplaceServiceProvidersUsersListParamsFieldOrganizationType         MarketplaceServiceProvidersUsersListParamsField = "organization_type"
+	MarketplaceServiceProvidersUsersListParamsFieldPersonalTitle            MarketplaceServiceProvidersUsersListParamsField = "personal_title"
+	MarketplaceServiceProvidersUsersListParamsFieldPhoneNumber              MarketplaceServiceProvidersUsersListParamsField = "phone_number"
+	MarketplaceServiceProvidersUsersListParamsFieldPlaceOfBirth             MarketplaceServiceProvidersUsersListParamsField = "place_of_birth"
+	MarketplaceServiceProvidersUsersListParamsFieldProjectsCount            MarketplaceServiceProvidersUsersListParamsField = "projects_count"
+	MarketplaceServiceProvidersUsersListParamsFieldRegistrationMethod       MarketplaceServiceProvidersUsersListParamsField = "registration_method"
+	MarketplaceServiceProvidersUsersListParamsFieldUsername                 MarketplaceServiceProvidersUsersListParamsField = "username"
+	MarketplaceServiceProvidersUsersListParamsFieldUuid                     MarketplaceServiceProvidersUsersListParamsField = "uuid"
 )
 
 // Defines values for MarketplaceServiceProvidersUsersListParamsO.
@@ -22995,17 +23012,50 @@ type MarketplaceProviderCustomerProject struct {
 
 // MarketplaceServiceProviderUser defines model for MarketplaceServiceProviderUser.
 type MarketplaceServiceProviderUser struct {
+	// ActiveIsds List of ISDs that have asserted this user exists. User is deactivated when this becomes empty.
+	ActiveIsds interface{} `json:"active_isds,omitempty"`
+
 	// Affiliations Person's affiliation within organization such as student, faculty, staff.
-	Affiliations interface{}          `json:"affiliations,omitempty"`
-	Email        *openapi_types.Email `json:"email,omitempty"`
-	FirstName    *string              `json:"first_name,omitempty"`
-	FullName     *string              `json:"full_name,omitempty"`
+	Affiliations       interface{}         `json:"affiliations,omitempty"`
+	BirthDate          *openapi_types.Date `json:"birth_date"`
+	CivilNumber        *string             `json:"civil_number"`
+	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
+
+	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
+	EdupersonAssurance interface{}          `json:"eduperson_assurance,omitempty"`
+	Email              *openapi_types.Email `json:"email,omitempty"`
+	FirstName          *string              `json:"first_name,omitempty"`
+	FullName           *string              `json:"full_name,omitempty"`
+
+	// Gender ISO 5218 gender code
+	Gender *MarketplaceServiceProviderUser_Gender `json:"gender"`
+
+	// IdentitySource Indicates what identity provider was used.
+	IdentitySource *string `json:"identity_source,omitempty"`
 
 	// IsActive Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
-	IsActive      *bool   `json:"is_active,omitempty"`
-	LastName      *string `json:"last_name,omitempty"`
-	Organization  *string `json:"organization,omitempty"`
+	IsActive *bool   `json:"is_active,omitempty"`
+	JobTitle *string `json:"job_title,omitempty"`
+	LastName *string `json:"last_name,omitempty"`
+
+	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
+	Nationalities interface{} `json:"nationalities,omitempty"`
+
+	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
+	Nationality         *string `json:"nationality,omitempty"`
+	Organization        *string `json:"organization,omitempty"`
+	OrganizationCountry *string `json:"organization_country,omitempty"`
+
+	// OrganizationRegistryCode Company registration code of the user's organization, if known
+	OrganizationRegistryCode *string `json:"organization_registry_code,omitempty"`
+
+	// OrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
+	OrganizationType *string `json:"organization_type,omitempty"`
+
+	// PersonalTitle Honorific title (Mr, Ms, Dr, Prof, etc.)
+	PersonalTitle *string `json:"personal_title,omitempty"`
 	PhoneNumber   *string `json:"phone_number,omitempty"`
+	PlaceOfBirth  *string `json:"place_of_birth,omitempty"`
 	ProjectsCount *int    `json:"projects_count,omitempty"`
 
 	// RegistrationMethod Indicates what registration method was used.
@@ -23014,6 +23064,11 @@ type MarketplaceServiceProviderUser struct {
 	// Username Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	Username *string             `json:"username,omitempty"`
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// MarketplaceServiceProviderUser_Gender ISO 5218 gender code
+type MarketplaceServiceProviderUser_Gender struct {
+	union json.RawMessage
 }
 
 // MatchingAlgorithm defines model for MatchingAlgorithm.
@@ -25649,6 +25704,9 @@ type OfferingUser struct {
 	UserOrganization        *string `json:"user_organization,omitempty"`
 	UserOrganizationCountry *string `json:"user_organization_country,omitempty"`
 
+	// UserOrganizationRegistryCode Company registration code of the user's organization, if known
+	UserOrganizationRegistryCode *string `json:"user_organization_registry_code,omitempty"`
+
 	// UserOrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
 	UserOrganizationType *string `json:"user_organization_type,omitempty"`
 
@@ -25671,26 +25729,28 @@ type OfferingUser_UserGender struct {
 
 // OfferingUserAttributeConfig defines model for OfferingUserAttributeConfig.
 type OfferingUserAttributeConfig struct {
-	Created                   *time.Time `json:"created,omitempty"`
-	ExposeAffiliations        *bool      `json:"expose_affiliations,omitempty"`
-	ExposeBirthDate           *bool      `json:"expose_birth_date,omitempty"`
-	ExposeCivilNumber         *bool      `json:"expose_civil_number,omitempty"`
-	ExposeCountryOfResidence  *bool      `json:"expose_country_of_residence,omitempty"`
-	ExposeEdupersonAssurance  *bool      `json:"expose_eduperson_assurance,omitempty"`
-	ExposeEmail               *bool      `json:"expose_email,omitempty"`
-	ExposeFullName            *bool      `json:"expose_full_name,omitempty"`
-	ExposeGender              *bool      `json:"expose_gender,omitempty"`
-	ExposeIdentitySource      *bool      `json:"expose_identity_source,omitempty"`
-	ExposeJobTitle            *bool      `json:"expose_job_title,omitempty"`
-	ExposeNationalities       *bool      `json:"expose_nationalities,omitempty"`
-	ExposeNationality         *bool      `json:"expose_nationality,omitempty"`
-	ExposeOrganization        *bool      `json:"expose_organization,omitempty"`
-	ExposeOrganizationCountry *bool      `json:"expose_organization_country,omitempty"`
-	ExposeOrganizationType    *bool      `json:"expose_organization_type,omitempty"`
-	ExposePersonalTitle       *bool      `json:"expose_personal_title,omitempty"`
-	ExposePhoneNumber         *bool      `json:"expose_phone_number,omitempty"`
-	ExposePlaceOfBirth        *bool      `json:"expose_place_of_birth,omitempty"`
-	ExposeUsername            *bool      `json:"expose_username,omitempty"`
+	Created                        *time.Time `json:"created,omitempty"`
+	ExposeActiveIsds               *bool      `json:"expose_active_isds,omitempty"`
+	ExposeAffiliations             *bool      `json:"expose_affiliations,omitempty"`
+	ExposeBirthDate                *bool      `json:"expose_birth_date,omitempty"`
+	ExposeCivilNumber              *bool      `json:"expose_civil_number,omitempty"`
+	ExposeCountryOfResidence       *bool      `json:"expose_country_of_residence,omitempty"`
+	ExposeEdupersonAssurance       *bool      `json:"expose_eduperson_assurance,omitempty"`
+	ExposeEmail                    *bool      `json:"expose_email,omitempty"`
+	ExposeFullName                 *bool      `json:"expose_full_name,omitempty"`
+	ExposeGender                   *bool      `json:"expose_gender,omitempty"`
+	ExposeIdentitySource           *bool      `json:"expose_identity_source,omitempty"`
+	ExposeJobTitle                 *bool      `json:"expose_job_title,omitempty"`
+	ExposeNationalities            *bool      `json:"expose_nationalities,omitempty"`
+	ExposeNationality              *bool      `json:"expose_nationality,omitempty"`
+	ExposeOrganization             *bool      `json:"expose_organization,omitempty"`
+	ExposeOrganizationCountry      *bool      `json:"expose_organization_country,omitempty"`
+	ExposeOrganizationRegistryCode *bool      `json:"expose_organization_registry_code,omitempty"`
+	ExposeOrganizationType         *bool      `json:"expose_organization_type,omitempty"`
+	ExposePersonalTitle            *bool      `json:"expose_personal_title,omitempty"`
+	ExposePhoneNumber              *bool      `json:"expose_phone_number,omitempty"`
+	ExposePlaceOfBirth             *bool      `json:"expose_place_of_birth,omitempty"`
+	ExposeUsername                 *bool      `json:"expose_username,omitempty"`
 
 	// ExposedFields Return list of field names currently configured for exposure.
 	ExposedFields *[]string `json:"exposed_fields,omitempty"`
@@ -25705,26 +25765,28 @@ type OfferingUserAttributeConfig struct {
 
 // OfferingUserAttributeConfigRequest defines model for OfferingUserAttributeConfigRequest.
 type OfferingUserAttributeConfigRequest struct {
-	ExposeAffiliations        *bool               `json:"expose_affiliations,omitempty"`
-	ExposeBirthDate           *bool               `json:"expose_birth_date,omitempty"`
-	ExposeCivilNumber         *bool               `json:"expose_civil_number,omitempty"`
-	ExposeCountryOfResidence  *bool               `json:"expose_country_of_residence,omitempty"`
-	ExposeEdupersonAssurance  *bool               `json:"expose_eduperson_assurance,omitempty"`
-	ExposeEmail               *bool               `json:"expose_email,omitempty"`
-	ExposeFullName            *bool               `json:"expose_full_name,omitempty"`
-	ExposeGender              *bool               `json:"expose_gender,omitempty"`
-	ExposeIdentitySource      *bool               `json:"expose_identity_source,omitempty"`
-	ExposeJobTitle            *bool               `json:"expose_job_title,omitempty"`
-	ExposeNationalities       *bool               `json:"expose_nationalities,omitempty"`
-	ExposeNationality         *bool               `json:"expose_nationality,omitempty"`
-	ExposeOrganization        *bool               `json:"expose_organization,omitempty"`
-	ExposeOrganizationCountry *bool               `json:"expose_organization_country,omitempty"`
-	ExposeOrganizationType    *bool               `json:"expose_organization_type,omitempty"`
-	ExposePersonalTitle       *bool               `json:"expose_personal_title,omitempty"`
-	ExposePhoneNumber         *bool               `json:"expose_phone_number,omitempty"`
-	ExposePlaceOfBirth        *bool               `json:"expose_place_of_birth,omitempty"`
-	ExposeUsername            *bool               `json:"expose_username,omitempty"`
-	Offering                  *openapi_types.UUID `json:"offering,omitempty"`
+	ExposeActiveIsds               *bool               `json:"expose_active_isds,omitempty"`
+	ExposeAffiliations             *bool               `json:"expose_affiliations,omitempty"`
+	ExposeBirthDate                *bool               `json:"expose_birth_date,omitempty"`
+	ExposeCivilNumber              *bool               `json:"expose_civil_number,omitempty"`
+	ExposeCountryOfResidence       *bool               `json:"expose_country_of_residence,omitempty"`
+	ExposeEdupersonAssurance       *bool               `json:"expose_eduperson_assurance,omitempty"`
+	ExposeEmail                    *bool               `json:"expose_email,omitempty"`
+	ExposeFullName                 *bool               `json:"expose_full_name,omitempty"`
+	ExposeGender                   *bool               `json:"expose_gender,omitempty"`
+	ExposeIdentitySource           *bool               `json:"expose_identity_source,omitempty"`
+	ExposeJobTitle                 *bool               `json:"expose_job_title,omitempty"`
+	ExposeNationalities            *bool               `json:"expose_nationalities,omitempty"`
+	ExposeNationality              *bool               `json:"expose_nationality,omitempty"`
+	ExposeOrganization             *bool               `json:"expose_organization,omitempty"`
+	ExposeOrganizationCountry      *bool               `json:"expose_organization_country,omitempty"`
+	ExposeOrganizationRegistryCode *bool               `json:"expose_organization_registry_code,omitempty"`
+	ExposeOrganizationType         *bool               `json:"expose_organization_type,omitempty"`
+	ExposePersonalTitle            *bool               `json:"expose_personal_title,omitempty"`
+	ExposePhoneNumber              *bool               `json:"expose_phone_number,omitempty"`
+	ExposePlaceOfBirth             *bool               `json:"expose_place_of_birth,omitempty"`
+	ExposeUsername                 *bool               `json:"expose_username,omitempty"`
+	Offering                       *openapi_types.UUID `json:"offering,omitempty"`
 }
 
 // OfferingUserRequest defines model for OfferingUserRequest.
@@ -29210,26 +29272,28 @@ type PatchedOfferingUsagePolicyRequest struct {
 
 // PatchedOfferingUserAttributeConfigRequest defines model for PatchedOfferingUserAttributeConfigRequest.
 type PatchedOfferingUserAttributeConfigRequest struct {
-	ExposeAffiliations        *bool               `json:"expose_affiliations,omitempty"`
-	ExposeBirthDate           *bool               `json:"expose_birth_date,omitempty"`
-	ExposeCivilNumber         *bool               `json:"expose_civil_number,omitempty"`
-	ExposeCountryOfResidence  *bool               `json:"expose_country_of_residence,omitempty"`
-	ExposeEdupersonAssurance  *bool               `json:"expose_eduperson_assurance,omitempty"`
-	ExposeEmail               *bool               `json:"expose_email,omitempty"`
-	ExposeFullName            *bool               `json:"expose_full_name,omitempty"`
-	ExposeGender              *bool               `json:"expose_gender,omitempty"`
-	ExposeIdentitySource      *bool               `json:"expose_identity_source,omitempty"`
-	ExposeJobTitle            *bool               `json:"expose_job_title,omitempty"`
-	ExposeNationalities       *bool               `json:"expose_nationalities,omitempty"`
-	ExposeNationality         *bool               `json:"expose_nationality,omitempty"`
-	ExposeOrganization        *bool               `json:"expose_organization,omitempty"`
-	ExposeOrganizationCountry *bool               `json:"expose_organization_country,omitempty"`
-	ExposeOrganizationType    *bool               `json:"expose_organization_type,omitempty"`
-	ExposePersonalTitle       *bool               `json:"expose_personal_title,omitempty"`
-	ExposePhoneNumber         *bool               `json:"expose_phone_number,omitempty"`
-	ExposePlaceOfBirth        *bool               `json:"expose_place_of_birth,omitempty"`
-	ExposeUsername            *bool               `json:"expose_username,omitempty"`
-	Offering                  *openapi_types.UUID `json:"offering,omitempty"`
+	ExposeActiveIsds               *bool               `json:"expose_active_isds,omitempty"`
+	ExposeAffiliations             *bool               `json:"expose_affiliations,omitempty"`
+	ExposeBirthDate                *bool               `json:"expose_birth_date,omitempty"`
+	ExposeCivilNumber              *bool               `json:"expose_civil_number,omitempty"`
+	ExposeCountryOfResidence       *bool               `json:"expose_country_of_residence,omitempty"`
+	ExposeEdupersonAssurance       *bool               `json:"expose_eduperson_assurance,omitempty"`
+	ExposeEmail                    *bool               `json:"expose_email,omitempty"`
+	ExposeFullName                 *bool               `json:"expose_full_name,omitempty"`
+	ExposeGender                   *bool               `json:"expose_gender,omitempty"`
+	ExposeIdentitySource           *bool               `json:"expose_identity_source,omitempty"`
+	ExposeJobTitle                 *bool               `json:"expose_job_title,omitempty"`
+	ExposeNationalities            *bool               `json:"expose_nationalities,omitempty"`
+	ExposeNationality              *bool               `json:"expose_nationality,omitempty"`
+	ExposeOrganization             *bool               `json:"expose_organization,omitempty"`
+	ExposeOrganizationCountry      *bool               `json:"expose_organization_country,omitempty"`
+	ExposeOrganizationRegistryCode *bool               `json:"expose_organization_registry_code,omitempty"`
+	ExposeOrganizationType         *bool               `json:"expose_organization_type,omitempty"`
+	ExposePersonalTitle            *bool               `json:"expose_personal_title,omitempty"`
+	ExposePhoneNumber              *bool               `json:"expose_phone_number,omitempty"`
+	ExposePlaceOfBirth             *bool               `json:"expose_place_of_birth,omitempty"`
+	ExposeUsername                 *bool               `json:"expose_username,omitempty"`
+	Offering                       *openapi_types.UUID `json:"offering,omitempty"`
 }
 
 // PatchedOfferingUserRequest defines model for PatchedOfferingUserRequest.
@@ -63706,6 +63770,68 @@ func (t GlobalUserDataAccessLog_IpAddress) MarshalJSON() ([]byte, error) {
 }
 
 func (t *GlobalUserDataAccessLog_IpAddress) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsGenderEnum returns the union data inside the MarketplaceServiceProviderUser_Gender as a GenderEnum
+func (t MarketplaceServiceProviderUser_Gender) AsGenderEnum() (GenderEnum, error) {
+	var body GenderEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromGenderEnum overwrites any union data inside the MarketplaceServiceProviderUser_Gender as the provided GenderEnum
+func (t *MarketplaceServiceProviderUser_Gender) FromGenderEnum(v GenderEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeGenderEnum performs a merge with any union data inside the MarketplaceServiceProviderUser_Gender, using the provided GenderEnum
+func (t *MarketplaceServiceProviderUser_Gender) MergeGenderEnum(v GenderEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the MarketplaceServiceProviderUser_Gender as a NullEnum
+func (t MarketplaceServiceProviderUser_Gender) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the MarketplaceServiceProviderUser_Gender as the provided NullEnum
+func (t *MarketplaceServiceProviderUser_Gender) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the MarketplaceServiceProviderUser_Gender, using the provided NullEnum
+func (t *MarketplaceServiceProviderUser_Gender) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t MarketplaceServiceProviderUser_Gender) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *MarketplaceServiceProviderUser_Gender) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
