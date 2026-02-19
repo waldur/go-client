@@ -21450,8 +21450,8 @@ type IdentityBridgeRemoveRequest struct {
 	Username string `json:"username"`
 }
 
-// IdentityBridgeRemoveResponse defines model for IdentityBridgeRemoveResponse.
-type IdentityBridgeRemoveResponse struct {
+// IdentityBridgeRemoveResult defines model for IdentityBridgeRemoveResult.
+type IdentityBridgeRemoveResult struct {
 	Deactivated bool               `json:"deactivated"`
 	Uuid        openapi_types.UUID `json:"uuid"`
 }
@@ -21484,8 +21484,8 @@ type IdentityBridgeRequestRequest struct {
 	Username string `json:"username"`
 }
 
-// IdentityBridgeResponse defines model for IdentityBridgeResponse.
-type IdentityBridgeResponse struct {
+// IdentityBridgeResult defines model for IdentityBridgeResult.
+type IdentityBridgeResult struct {
 	Created       bool               `json:"created"`
 	UpdatedFields []string           `json:"updated_fields"`
 	Uuid          openapi_types.UUID `json:"uuid"`
@@ -330556,7 +330556,7 @@ func (r HooksCountResponse) StatusCode() int {
 type IdentityBridgeResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *IdentityBridgeResponse
+	JSON200      *IdentityBridgeResult
 }
 
 // Status returns HTTPResponse.Status
@@ -330578,7 +330578,7 @@ func (r IdentityBridgeResponse) StatusCode() int {
 type IdentityBridgeRemoveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *IdentityBridgeRemoveResponse
+	JSON200      *IdentityBridgeRemoveResult
 }
 
 // Status returns HTTPResponse.Status
@@ -409093,7 +409093,7 @@ func ParseIdentityBridgeResponse(rsp *http.Response) (*IdentityBridgeResponse, e
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest IdentityBridgeResponse
+		var dest IdentityBridgeResult
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -409119,7 +409119,7 @@ func ParseIdentityBridgeRemoveResponse(rsp *http.Response) (*IdentityBridgeRemov
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest IdentityBridgeRemoveResponse
+		var dest IdentityBridgeRemoveResult
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
