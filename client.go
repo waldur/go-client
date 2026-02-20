@@ -22021,9 +22021,20 @@ type Invoice struct {
 
 // InvoiceCost defines model for InvoiceCost.
 type InvoiceCost struct {
-	Month *int     `json:"month,omitempty"`
-	Price *float64 `json:"price,omitempty"`
-	Year  *int     `json:"year,omitempty"`
+	Items *[]InvoiceCostItem `json:"items,omitempty"`
+	Month *int               `json:"month,omitempty"`
+	Price *float64           `json:"price,omitempty"`
+	Year  *int               `json:"year,omitempty"`
+}
+
+// InvoiceCostItem defines model for InvoiceCostItem.
+type InvoiceCostItem struct {
+	MeasuredUnit *string  `json:"measured_unit,omitempty"`
+	Name         *string  `json:"name,omitempty"`
+	Price        *float64 `json:"price,omitempty"`
+	Quantity     *string  `json:"quantity,omitempty"`
+	Unit         *string  `json:"unit,omitempty"`
+	UnitPrice    *string  `json:"unit_price,omitempty"`
 }
 
 // InvoiceGrowth defines model for InvoiceGrowth.
