@@ -16190,15 +16190,17 @@ type BookingResource struct {
 	CreatedByFullName          *string    `json:"created_by_full_name,omitempty"`
 
 	// CreatedByUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
-	CreatedByUsername *string             `json:"created_by_username,omitempty"`
-	CreationOrder     *OrderDetails       `json:"creation_order"`
-	CurrentUsages     *map[string]int     `json:"current_usages,omitempty"`
-	CustomerName      *string             `json:"customer_name,omitempty"`
-	CustomerSlug      *string             `json:"customer_slug,omitempty"`
-	CustomerUuid      *openapi_types.UUID `json:"customer_uuid,omitempty"`
-	Description       *string             `json:"description,omitempty"`
-	Downscaled        *bool               `json:"downscaled,omitempty"`
-	EffectiveId       *string             `json:"effective_id,omitempty"`
+	CreatedByUsername *string       `json:"created_by_username,omitempty"`
+	CreationOrder     *OrderDetails `json:"creation_order"`
+
+	// CurrentUsages Dictionary mapping component types to their latest reported usage amounts.
+	CurrentUsages *map[string]float64 `json:"current_usages,omitempty"`
+	CustomerName  *string             `json:"customer_name,omitempty"`
+	CustomerSlug  *string             `json:"customer_slug,omitempty"`
+	CustomerUuid  *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Description   *string             `json:"description,omitempty"`
+	Downscaled    *bool               `json:"downscaled,omitempty"`
+	EffectiveId   *string             `json:"effective_id,omitempty"`
 
 	// EndDate The date is inclusive. Once reached, a resource will be scheduled for termination.
 	EndDate            *openapi_types.Date `json:"end_date"`
@@ -16206,15 +16208,21 @@ type BookingResource struct {
 	Endpoints          *[]NestedEndpoint   `json:"endpoints,omitempty"`
 	ErrorMessage       *string             `json:"error_message,omitempty"`
 	ErrorTraceback     *string             `json:"error_traceback,omitempty"`
-	IsLimitBased       *bool               `json:"is_limit_based,omitempty"`
-	IsUsageBased       *bool               `json:"is_usage_based,omitempty"`
-	LastSync           *time.Time          `json:"last_sync,omitempty"`
-	LimitUsage         *map[string]float64 `json:"limit_usage,omitempty"`
-	Limits             *map[string]int     `json:"limits,omitempty"`
-	Modified           *time.Time          `json:"modified,omitempty"`
-	Name               *string             `json:"name,omitempty"`
-	Offering           *string             `json:"offering,omitempty"`
-	OfferingBackendId  *string             `json:"offering_backend_id,omitempty"`
+
+	// IsLimitBased Returns True if the resource has limit-based components with user-adjustable quotas.
+	IsLimitBased *bool `json:"is_limit_based,omitempty"`
+
+	// IsUsageBased Returns True if the resource has usage-based components that track variable consumption.
+	IsUsageBased *bool      `json:"is_usage_based,omitempty"`
+	LastSync     *time.Time `json:"last_sync,omitempty"`
+
+	// LimitUsage Dictionary mapping limit-based component types to their consumed usage. For monthly periods, maps from current_usages; for longer periods, aggregates historical usage.
+	LimitUsage        *map[string]float64 `json:"limit_usage,omitempty"`
+	Limits            *map[string]int     `json:"limits,omitempty"`
+	Modified          *time.Time          `json:"modified,omitempty"`
+	Name              *string             `json:"name,omitempty"`
+	Offering          *string             `json:"offering,omitempty"`
+	OfferingBackendId *string             `json:"offering_backend_id,omitempty"`
 
 	// OfferingBillable Purchase and usage is invoiced.
 	OfferingBillable    *bool                `json:"offering_billable,omitempty"`
@@ -34260,13 +34268,15 @@ type Resource struct {
 	CategoryUuid     *openapi_types.UUID     `json:"category_uuid,omitempty"`
 	Created          *time.Time              `json:"created,omitempty"`
 	CreationOrder    *OrderDetails           `json:"creation_order"`
-	CurrentUsages    *map[string]int         `json:"current_usages,omitempty"`
-	CustomerName     *string                 `json:"customer_name,omitempty"`
-	CustomerSlug     *string                 `json:"customer_slug,omitempty"`
-	CustomerUuid     *openapi_types.UUID     `json:"customer_uuid,omitempty"`
-	Description      *string                 `json:"description,omitempty"`
-	Downscaled       *bool                   `json:"downscaled,omitempty"`
-	EffectiveId      *string                 `json:"effective_id,omitempty"`
+
+	// CurrentUsages Dictionary mapping component types to their latest reported usage amounts.
+	CurrentUsages *map[string]float64 `json:"current_usages,omitempty"`
+	CustomerName  *string             `json:"customer_name,omitempty"`
+	CustomerSlug  *string             `json:"customer_slug,omitempty"`
+	CustomerUuid  *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Description   *string             `json:"description,omitempty"`
+	Downscaled    *bool               `json:"downscaled,omitempty"`
+	EffectiveId   *string             `json:"effective_id,omitempty"`
 
 	// EndDate The date is inclusive. Once reached, a resource will be scheduled for termination.
 	EndDate            *openapi_types.Date `json:"end_date"`
@@ -34274,15 +34284,21 @@ type Resource struct {
 	Endpoints          *[]NestedEndpoint   `json:"endpoints,omitempty"`
 	ErrorMessage       *string             `json:"error_message,omitempty"`
 	ErrorTraceback     *string             `json:"error_traceback,omitempty"`
-	IsLimitBased       *bool               `json:"is_limit_based,omitempty"`
-	IsUsageBased       *bool               `json:"is_usage_based,omitempty"`
-	LastSync           *time.Time          `json:"last_sync,omitempty"`
-	LimitUsage         *map[string]float64 `json:"limit_usage,omitempty"`
-	Limits             *map[string]int     `json:"limits,omitempty"`
-	Modified           *time.Time          `json:"modified,omitempty"`
-	Name               *string             `json:"name,omitempty"`
-	Offering           *string             `json:"offering,omitempty"`
-	OfferingBackendId  *string             `json:"offering_backend_id,omitempty"`
+
+	// IsLimitBased Returns True if the resource has limit-based components with user-adjustable quotas.
+	IsLimitBased *bool `json:"is_limit_based,omitempty"`
+
+	// IsUsageBased Returns True if the resource has usage-based components that track variable consumption.
+	IsUsageBased *bool      `json:"is_usage_based,omitempty"`
+	LastSync     *time.Time `json:"last_sync,omitempty"`
+
+	// LimitUsage Dictionary mapping limit-based component types to their consumed usage. For monthly periods, maps from current_usages; for longer periods, aggregates historical usage.
+	LimitUsage        *map[string]float64 `json:"limit_usage,omitempty"`
+	Limits            *map[string]int     `json:"limits,omitempty"`
+	Modified          *time.Time          `json:"modified,omitempty"`
+	Name              *string             `json:"name,omitempty"`
+	Offering          *string             `json:"offering,omitempty"`
+	OfferingBackendId *string             `json:"offering_backend_id,omitempty"`
 
 	// OfferingBillable Purchase and usage is invoiced.
 	OfferingBillable    *bool                `json:"offering_billable,omitempty"`
