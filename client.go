@@ -17214,7 +17214,7 @@ type ChatRequestRequest struct {
 	// Mode 'reload': replace the last assistant response. Omit for normal new-message behavior.
 	Mode *ChatRequestRequest_Mode `json:"mode"`
 
-	// ThreadUuid Existing thread UUID. If omitted, a new thread is created when storage is enabled.
+	// ThreadUuid Existing thread UUID. If omitted, a new thread is created.
 	ThreadUuid *openapi_types.UUID `json:"thread_uuid"`
 
 	// UpdateThreadName Thread UUID whose name should be set to the assistant's response. Skips message persistence for this call.
@@ -17714,6 +17714,11 @@ type ComponentUserUsage struct {
 	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// ComponentUserUsageBulkCreateRequest defines model for ComponentUserUsageBulkCreateRequest.
+type ComponentUserUsageBulkCreateRequest struct {
+	Usages []ComponentUserUsageCreateRequest `json:"usages"`
+}
+
 // ComponentUserUsageCreateRequest defines model for ComponentUserUsageCreateRequest.
 type ComponentUserUsageCreateRequest struct {
 	// Date Date for usage reporting (staff and service providers for limit-based components). If not provided, current date is used.
@@ -17958,7 +17963,6 @@ type ConstanceSettings struct {
 	LLMCHATENABLED                                 *bool                `json:"LLM_CHAT_ENABLED,omitempty"`
 	LLMCHATHISTORYLIMIT                            *int                 `json:"LLM_CHAT_HISTORY_LIMIT,omitempty"`
 	LLMCHATSESSIONRETENTIONDAYS                    *int                 `json:"LLM_CHAT_SESSION_RETENTION_DAYS,omitempty"`
-	LLMCHATSTORAGEENABLED                          *bool                `json:"LLM_CHAT_STORAGE_ENABLED,omitempty"`
 	LLMINFERENCESAPITOKEN                          *string              `json:"LLM_INFERENCES_API_TOKEN,omitempty"`
 	LLMINFERENCESAPIURL                            *string              `json:"LLM_INFERENCES_API_URL,omitempty"`
 	LLMINFERENCESBACKENDTYPE                       *string              `json:"LLM_INFERENCES_BACKEND_TYPE,omitempty"`
@@ -18199,7 +18203,6 @@ type ConstanceSettingsRequest struct {
 	LLMCHATENABLED                                 *bool                           `json:"LLM_CHAT_ENABLED,omitempty"`
 	LLMCHATHISTORYLIMIT                            *int                            `json:"LLM_CHAT_HISTORY_LIMIT,omitempty"`
 	LLMCHATSESSIONRETENTIONDAYS                    *int                            `json:"LLM_CHAT_SESSION_RETENTION_DAYS,omitempty"`
-	LLMCHATSTORAGEENABLED                          *bool                           `json:"LLM_CHAT_STORAGE_ENABLED,omitempty"`
 	LLMINFERENCESAPITOKEN                          *string                         `json:"LLM_INFERENCES_API_TOKEN,omitempty"`
 	LLMINFERENCESAPIURL                            *string                         `json:"LLM_INFERENCES_API_URL,omitempty"`
 	LLMINFERENCESBACKENDTYPE                       *string                         `json:"LLM_INFERENCES_BACKEND_TYPE,omitempty"`
@@ -18440,7 +18443,6 @@ type ConstanceSettingsRequestForm struct {
 	LLMCHATENABLED                                 *bool                           `json:"LLM_CHAT_ENABLED,omitempty"`
 	LLMCHATHISTORYLIMIT                            *int                            `json:"LLM_CHAT_HISTORY_LIMIT,omitempty"`
 	LLMCHATSESSIONRETENTIONDAYS                    *int                            `json:"LLM_CHAT_SESSION_RETENTION_DAYS,omitempty"`
-	LLMCHATSTORAGEENABLED                          *bool                           `json:"LLM_CHAT_STORAGE_ENABLED,omitempty"`
 	LLMINFERENCESAPITOKEN                          *string                         `json:"LLM_INFERENCES_API_TOKEN,omitempty"`
 	LLMINFERENCESAPIURL                            *string                         `json:"LLM_INFERENCES_API_URL,omitempty"`
 	LLMINFERENCESBACKENDTYPE                       *string                         `json:"LLM_INFERENCES_BACKEND_TYPE,omitempty"`
@@ -18681,7 +18683,6 @@ type ConstanceSettingsRequestMultipart struct {
 	LLMCHATENABLED                                 *bool                           `json:"LLM_CHAT_ENABLED,omitempty"`
 	LLMCHATHISTORYLIMIT                            *int                            `json:"LLM_CHAT_HISTORY_LIMIT,omitempty"`
 	LLMCHATSESSIONRETENTIONDAYS                    *int                            `json:"LLM_CHAT_SESSION_RETENTION_DAYS,omitempty"`
-	LLMCHATSTORAGEENABLED                          *bool                           `json:"LLM_CHAT_STORAGE_ENABLED,omitempty"`
 	LLMINFERENCESAPITOKEN                          *string                         `json:"LLM_INFERENCES_API_TOKEN,omitempty"`
 	LLMINFERENCESAPIURL                            *string                         `json:"LLM_INFERENCES_API_URL,omitempty"`
 	LLMINFERENCESBACKENDTYPE                       *string                         `json:"LLM_INFERENCES_BACKEND_TYPE,omitempty"`
@@ -61203,6 +61204,9 @@ type MarketplaceComponentUsagesSetUsageJSONRequestBody = ComponentUsageCreateReq
 // MarketplaceComponentUsagesSetUserUsageJSONRequestBody defines body for MarketplaceComponentUsagesSetUserUsage for application/json ContentType.
 type MarketplaceComponentUsagesSetUserUsageJSONRequestBody = ComponentUserUsageCreateRequest
 
+// MarketplaceComponentUsagesSetUserUsagesJSONRequestBody defines body for MarketplaceComponentUsagesSetUserUsages for application/json ContentType.
+type MarketplaceComponentUsagesSetUserUsagesJSONRequestBody = ComponentUserUsageBulkCreateRequest
+
 // MarketplaceCourseAccountsCreateJSONRequestBody defines body for MarketplaceCourseAccountsCreate for application/json ContentType.
 type MarketplaceCourseAccountsCreateJSONRequestBody = CourseAccountRequest
 
@@ -72366,6 +72370,11 @@ type ClientInterface interface {
 	MarketplaceComponentUsagesSetUserUsageWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceComponentUsagesSetUserUsage(ctx context.Context, uuid openapi_types.UUID, body MarketplaceComponentUsagesSetUserUsageJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceComponentUsagesSetUserUsagesWithBody request with any body
+	MarketplaceComponentUsagesSetUserUsagesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceComponentUsagesSetUserUsages(ctx context.Context, uuid openapi_types.UUID, body MarketplaceComponentUsagesSetUserUsagesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceComponentUserUsagesList request
 	MarketplaceComponentUserUsagesList(ctx context.Context, params *MarketplaceComponentUserUsagesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -89320,6 +89329,30 @@ func (c *Client) MarketplaceComponentUsagesSetUserUsageWithBody(ctx context.Cont
 
 func (c *Client) MarketplaceComponentUsagesSetUserUsage(ctx context.Context, uuid openapi_types.UUID, body MarketplaceComponentUsagesSetUserUsageJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceComponentUsagesSetUserUsageRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceComponentUsagesSetUserUsagesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceComponentUsagesSetUserUsagesRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceComponentUsagesSetUserUsages(ctx context.Context, uuid openapi_types.UUID, body MarketplaceComponentUsagesSetUserUsagesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceComponentUsagesSetUserUsagesRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -169084,6 +169117,53 @@ func NewMarketplaceComponentUsagesSetUserUsageRequestWithBody(server string, uui
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-component-usages/%s/set_user_usage/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceComponentUsagesSetUserUsagesRequest calls the generic MarketplaceComponentUsagesSetUserUsages builder with application/json body
+func NewMarketplaceComponentUsagesSetUserUsagesRequest(server string, uuid openapi_types.UUID, body MarketplaceComponentUsagesSetUserUsagesJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceComponentUsagesSetUserUsagesRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceComponentUsagesSetUserUsagesRequestWithBody generates requests for MarketplaceComponentUsagesSetUserUsages with any type of body
+func NewMarketplaceComponentUsagesSetUserUsagesRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-component-usages/%s/set_user_usages/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -313310,6 +313390,11 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceComponentUsagesSetUserUsageWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceComponentUsagesSetUserUsageJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceComponentUsagesSetUserUsageResponse, error)
 
+	// MarketplaceComponentUsagesSetUserUsagesWithBodyWithResponse request with any body
+	MarketplaceComponentUsagesSetUserUsagesWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceComponentUsagesSetUserUsagesResponse, error)
+
+	MarketplaceComponentUsagesSetUserUsagesWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceComponentUsagesSetUserUsagesJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceComponentUsagesSetUserUsagesResponse, error)
+
 	// MarketplaceComponentUserUsagesListWithResponse request
 	MarketplaceComponentUserUsagesListWithResponse(ctx context.Context, params *MarketplaceComponentUserUsagesListParams, reqEditors ...RequestEditorFn) (*MarketplaceComponentUserUsagesListResponse, error)
 
@@ -333927,6 +334012,27 @@ func (r MarketplaceComponentUsagesSetUserUsageResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceComponentUsagesSetUserUsageResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceComponentUsagesSetUserUsagesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceComponentUsagesSetUserUsagesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceComponentUsagesSetUserUsagesResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -377710,6 +377816,23 @@ func (c *ClientWithResponses) MarketplaceComponentUsagesSetUserUsageWithResponse
 	return ParseMarketplaceComponentUsagesSetUserUsageResponse(rsp)
 }
 
+// MarketplaceComponentUsagesSetUserUsagesWithBodyWithResponse request with arbitrary body returning *MarketplaceComponentUsagesSetUserUsagesResponse
+func (c *ClientWithResponses) MarketplaceComponentUsagesSetUserUsagesWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceComponentUsagesSetUserUsagesResponse, error) {
+	rsp, err := c.MarketplaceComponentUsagesSetUserUsagesWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceComponentUsagesSetUserUsagesResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceComponentUsagesSetUserUsagesWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceComponentUsagesSetUserUsagesJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceComponentUsagesSetUserUsagesResponse, error) {
+	rsp, err := c.MarketplaceComponentUsagesSetUserUsages(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceComponentUsagesSetUserUsagesResponse(rsp)
+}
+
 // MarketplaceComponentUserUsagesListWithResponse request returning *MarketplaceComponentUserUsagesListResponse
 func (c *ClientWithResponses) MarketplaceComponentUserUsagesListWithResponse(ctx context.Context, params *MarketplaceComponentUserUsagesListParams, reqEditors ...RequestEditorFn) (*MarketplaceComponentUserUsagesListResponse, error) {
 	rsp, err := c.MarketplaceComponentUserUsagesList(ctx, params, reqEditors...)
@@ -412660,6 +412783,22 @@ func ParseMarketplaceComponentUsagesSetUserUsageResponse(rsp *http.Response) (*M
 	}
 
 	response := &MarketplaceComponentUsagesSetUserUsageResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceComponentUsagesSetUserUsagesResponse parses an HTTP response from a MarketplaceComponentUsagesSetUserUsagesWithResponse call
+func ParseMarketplaceComponentUsagesSetUserUsagesResponse(rsp *http.Response) (*MarketplaceComponentUsagesSetUserUsagesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceComponentUsagesSetUserUsagesResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
