@@ -2564,6 +2564,15 @@ const (
 	Orcid ImportPublicationsSourceEnum = "orcid"
 )
 
+// Defines values for InjectionSeverityEnum.
+const (
+	InjectionSeverityEnumCritical InjectionSeverityEnum = "critical"
+	InjectionSeverityEnumHigh     InjectionSeverityEnum = "high"
+	InjectionSeverityEnumLow      InjectionSeverityEnum = "low"
+	InjectionSeverityEnumMedium   InjectionSeverityEnum = "medium"
+	InjectionSeverityEnumNone     InjectionSeverityEnum = "none"
+)
+
 // Defines values for IntegrationStatusDetailsOEnum.
 const (
 	LastRequestTimestamp      IntegrationStatusDetailsOEnum = "last_request_timestamp"
@@ -5730,15 +5739,6 @@ const (
 	ThreadSessionFieldEnumUserFullName ThreadSessionFieldEnum = "user_full_name"
 	ThreadSessionFieldEnumUserUsername ThreadSessionFieldEnum = "user_username"
 	ThreadSessionFieldEnumUuid         ThreadSessionFieldEnum = "uuid"
-)
-
-// Defines values for ThreadSessionMaxSeverityEnum.
-const (
-	ThreadSessionMaxSeverityEnumCritical ThreadSessionMaxSeverityEnum = "critical"
-	ThreadSessionMaxSeverityEnumHigh     ThreadSessionMaxSeverityEnum = "high"
-	ThreadSessionMaxSeverityEnumLow      ThreadSessionMaxSeverityEnum = "low"
-	ThreadSessionMaxSeverityEnumMedium   ThreadSessionMaxSeverityEnum = "medium"
-	ThreadSessionMaxSeverityEnumNone     ThreadSessionMaxSeverityEnum = "none"
 )
 
 // Defines values for ThreadSessionOEnum.
@@ -14042,6 +14042,9 @@ type ImportableResource struct {
 	Type string `json:"type"`
 }
 
+// InjectionSeverityEnum defines model for InjectionSeverityEnum.
+type InjectionSeverityEnum string
+
 // InstanceFlavorChangeRequest defines model for InstanceFlavorChangeRequest.
 type InstanceFlavorChangeRequest struct {
 	// Flavor The new flavor to use for the instance. Flavor change can only be done when instance is stopped.
@@ -16136,17 +16139,17 @@ type MergedSecretOptionsRequest struct {
 
 // Message defines model for Message.
 type Message struct {
-	Content             string              `json:"content"`
-	Created             *time.Time          `json:"created,omitempty"`
-	InjectionCategories interface{}         `json:"injection_categories,omitempty"`
-	InjectionScore      *float64            `json:"injection_score,omitempty"`
-	InjectionSeverity   *string             `json:"injection_severity,omitempty"`
-	IsFlagged           *bool               `json:"is_flagged,omitempty"`
-	Replaces            *openapi_types.UUID `json:"replaces,omitempty"`
-	Role                *MessageRoleEnum    `json:"role,omitempty"`
-	SequenceIndex       *int                `json:"sequence_index,omitempty"`
-	Thread              *openapi_types.UUID `json:"thread,omitempty"`
-	Uuid                *openapi_types.UUID `json:"uuid,omitempty"`
+	Content             string                 `json:"content"`
+	Created             *time.Time             `json:"created,omitempty"`
+	InjectionCategories interface{}            `json:"injection_categories,omitempty"`
+	InjectionScore      *float64               `json:"injection_score,omitempty"`
+	InjectionSeverity   *InjectionSeverityEnum `json:"injection_severity,omitempty"`
+	IsFlagged           *bool                  `json:"is_flagged,omitempty"`
+	Replaces            *openapi_types.UUID    `json:"replaces,omitempty"`
+	Role                *MessageRoleEnum       `json:"role,omitempty"`
+	SequenceIndex       *int                   `json:"sequence_index,omitempty"`
+	Thread              *openapi_types.UUID    `json:"thread,omitempty"`
+	Uuid                *openapi_types.UUID    `json:"uuid,omitempty"`
 }
 
 // MessageResponse defines model for MessageResponse.
@@ -29754,25 +29757,22 @@ type TestConnectionResponse struct {
 
 // ThreadSession defines model for ThreadSession.
 type ThreadSession struct {
-	ChatSession  *openapi_types.UUID `json:"chat_session,omitempty"`
-	Created      *time.Time          `json:"created,omitempty"`
-	Flags        interface{}         `json:"flags,omitempty"`
-	IsArchived   *bool               `json:"is_archived,omitempty"`
-	IsFlagged    *bool               `json:"is_flagged,omitempty"`
-	MaxSeverity  *string             `json:"max_severity,omitempty"`
-	MessageCount *int                `json:"message_count,omitempty"`
-	Modified     *time.Time          `json:"modified,omitempty"`
-	Name         *string             `json:"name,omitempty"`
-	UserFullName *string             `json:"user_full_name,omitempty"`
-	UserUsername *string             `json:"user_username,omitempty"`
-	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+	ChatSession  *openapi_types.UUID    `json:"chat_session,omitempty"`
+	Created      *time.Time             `json:"created,omitempty"`
+	Flags        interface{}            `json:"flags,omitempty"`
+	IsArchived   *bool                  `json:"is_archived,omitempty"`
+	IsFlagged    *bool                  `json:"is_flagged,omitempty"`
+	MaxSeverity  *InjectionSeverityEnum `json:"max_severity,omitempty"`
+	MessageCount *int                   `json:"message_count,omitempty"`
+	Modified     *time.Time             `json:"modified,omitempty"`
+	Name         *string                `json:"name,omitempty"`
+	UserFullName *string                `json:"user_full_name,omitempty"`
+	UserUsername *string                `json:"user_username,omitempty"`
+	Uuid         *openapi_types.UUID    `json:"uuid,omitempty"`
 }
 
 // ThreadSessionFieldEnum defines model for ThreadSessionFieldEnum.
 type ThreadSessionFieldEnum string
-
-// ThreadSessionMaxSeverityEnum defines model for ThreadSessionMaxSeverityEnum.
-type ThreadSessionMaxSeverityEnum string
 
 // ThreadSessionOEnum defines model for ThreadSessionOEnum.
 type ThreadSessionOEnum string
@@ -33397,12 +33397,12 @@ type ChatSessionsRetrieveParams struct {
 
 // ChatThreadsListParams defines parameters for ChatThreadsList.
 type ChatThreadsListParams struct {
-	Created     *openapi_types.Date           `form:"created,omitempty" json:"created,omitempty"`
-	Field       *[]ThreadSessionFieldEnum     `form:"field,omitempty" json:"field,omitempty"`
-	IsArchived  *bool                         `form:"is_archived,omitempty" json:"is_archived,omitempty"`
-	IsFlagged   *bool                         `form:"is_flagged,omitempty" json:"is_flagged,omitempty"`
-	MaxSeverity *ThreadSessionMaxSeverityEnum `form:"max_severity,omitempty" json:"max_severity,omitempty"`
-	Modified    *openapi_types.Date           `form:"modified,omitempty" json:"modified,omitempty"`
+	Created     *openapi_types.Date       `form:"created,omitempty" json:"created,omitempty"`
+	Field       *[]ThreadSessionFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+	IsArchived  *bool                     `form:"is_archived,omitempty" json:"is_archived,omitempty"`
+	IsFlagged   *bool                     `form:"is_flagged,omitempty" json:"is_flagged,omitempty"`
+	MaxSeverity *InjectionSeverityEnum    `form:"max_severity,omitempty" json:"max_severity,omitempty"`
+	Modified    *openapi_types.Date       `form:"modified,omitempty" json:"modified,omitempty"`
 
 	// O Ordering
 	//
