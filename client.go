@@ -5711,14 +5711,16 @@ const (
 
 // Defines values for SoftwareCatalogOEnum.
 const (
-	SoftwareCatalogOEnumCreated       SoftwareCatalogOEnum = "created"
-	SoftwareCatalogOEnumMinusCreated  SoftwareCatalogOEnum = "-created"
-	SoftwareCatalogOEnumMinusModified SoftwareCatalogOEnum = "-modified"
-	SoftwareCatalogOEnumMinusName     SoftwareCatalogOEnum = "-name"
-	SoftwareCatalogOEnumMinusVersion  SoftwareCatalogOEnum = "-version"
-	SoftwareCatalogOEnumModified      SoftwareCatalogOEnum = "modified"
-	SoftwareCatalogOEnumName          SoftwareCatalogOEnum = "name"
-	SoftwareCatalogOEnumVersion       SoftwareCatalogOEnum = "version"
+	SoftwareCatalogOEnumCatalogType      SoftwareCatalogOEnum = "catalog_type"
+	SoftwareCatalogOEnumCreated          SoftwareCatalogOEnum = "created"
+	SoftwareCatalogOEnumMinusCatalogType SoftwareCatalogOEnum = "-catalog_type"
+	SoftwareCatalogOEnumMinusCreated     SoftwareCatalogOEnum = "-created"
+	SoftwareCatalogOEnumMinusModified    SoftwareCatalogOEnum = "-modified"
+	SoftwareCatalogOEnumMinusName        SoftwareCatalogOEnum = "-name"
+	SoftwareCatalogOEnumMinusVersion     SoftwareCatalogOEnum = "-version"
+	SoftwareCatalogOEnumModified         SoftwareCatalogOEnum = "modified"
+	SoftwareCatalogOEnumName             SoftwareCatalogOEnum = "name"
+	SoftwareCatalogOEnumVersion          SoftwareCatalogOEnum = "version"
 )
 
 // Defines values for SoftwarePackageOEnum.
@@ -5744,7 +5746,11 @@ const (
 	SoftwareTargetOEnumMinusCpuMicroarchitecture SoftwareTargetOEnum = "-cpu_microarchitecture"
 	SoftwareTargetOEnumMinusCreated              SoftwareTargetOEnum = "-created"
 	SoftwareTargetOEnumMinusPackageName          SoftwareTargetOEnum = "-package_name"
+	SoftwareTargetOEnumMinusTargetName           SoftwareTargetOEnum = "-target_name"
+	SoftwareTargetOEnumMinusTargetType           SoftwareTargetOEnum = "-target_type"
 	SoftwareTargetOEnumPackageName               SoftwareTargetOEnum = "package_name"
+	SoftwareTargetOEnumTargetName                SoftwareTargetOEnum = "target_name"
+	SoftwareTargetOEnumTargetType                SoftwareTargetOEnum = "target_type"
 )
 
 // Defines values for SoftwareVersionOEnum.
@@ -41694,7 +41700,16 @@ type MarketplaceSlurmPeriodicUsagePoliciesEvaluationLogsListParams struct {
 
 // MarketplaceSoftwareCatalogsListParams defines parameters for MarketplaceSoftwareCatalogsList.
 type MarketplaceSoftwareCatalogsListParams struct {
-	Name *string `form:"name,omitempty" json:"name,omitempty"`
+	// AutoUpdateEnabled Filter catalogs by auto-update status
+	AutoUpdateEnabled *bool `form:"auto_update_enabled,omitempty" json:"auto_update_enabled,omitempty"`
+
+	// CatalogType Filter by catalog type (binary_runtime, source_package, package_manager)
+	//
+	CatalogType *CatalogTypeEnum `form:"catalog_type,omitempty" json:"catalog_type,omitempty"`
+
+	// Description Filter catalogs by description (case-insensitive partial match)
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+	Name        *string `form:"name,omitempty" json:"name,omitempty"`
 
 	// O Ordering
 	//
@@ -41710,7 +41725,16 @@ type MarketplaceSoftwareCatalogsListParams struct {
 
 // MarketplaceSoftwareCatalogsCountParams defines parameters for MarketplaceSoftwareCatalogsCount.
 type MarketplaceSoftwareCatalogsCountParams struct {
-	Name *string `form:"name,omitempty" json:"name,omitempty"`
+	// AutoUpdateEnabled Filter catalogs by auto-update status
+	AutoUpdateEnabled *bool `form:"auto_update_enabled,omitempty" json:"auto_update_enabled,omitempty"`
+
+	// CatalogType Filter by catalog type (binary_runtime, source_package, package_manager)
+	//
+	CatalogType *CatalogTypeEnum `form:"catalog_type,omitempty" json:"catalog_type,omitempty"`
+
+	// Description Filter catalogs by description (case-insensitive partial match)
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+	Name        *string `form:"name,omitempty" json:"name,omitempty"`
 
 	// O Ordering
 	//
@@ -41726,7 +41750,16 @@ type MarketplaceSoftwareCatalogsCountParams struct {
 
 // MarketplaceSoftwareCatalogsDiscoverListParams defines parameters for MarketplaceSoftwareCatalogsDiscoverList.
 type MarketplaceSoftwareCatalogsDiscoverListParams struct {
-	Name *string `form:"name,omitempty" json:"name,omitempty"`
+	// AutoUpdateEnabled Filter catalogs by auto-update status
+	AutoUpdateEnabled *bool `form:"auto_update_enabled,omitempty" json:"auto_update_enabled,omitempty"`
+
+	// CatalogType Filter by catalog type (binary_runtime, source_package, package_manager)
+	//
+	CatalogType *CatalogTypeEnum `form:"catalog_type,omitempty" json:"catalog_type,omitempty"`
+
+	// Description Filter catalogs by description (case-insensitive partial match)
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+	Name        *string `form:"name,omitempty" json:"name,omitempty"`
 
 	// O Ordering
 	//
@@ -41742,7 +41775,16 @@ type MarketplaceSoftwareCatalogsDiscoverListParams struct {
 
 // MarketplaceSoftwareCatalogsDiscoverCountParams defines parameters for MarketplaceSoftwareCatalogsDiscoverCount.
 type MarketplaceSoftwareCatalogsDiscoverCountParams struct {
-	Name *string `form:"name,omitempty" json:"name,omitempty"`
+	// AutoUpdateEnabled Filter catalogs by auto-update status
+	AutoUpdateEnabled *bool `form:"auto_update_enabled,omitempty" json:"auto_update_enabled,omitempty"`
+
+	// CatalogType Filter by catalog type (binary_runtime, source_package, package_manager)
+	//
+	CatalogType *CatalogTypeEnum `form:"catalog_type,omitempty" json:"catalog_type,omitempty"`
+
+	// Description Filter catalogs by description (case-insensitive partial match)
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+	Name        *string `form:"name,omitempty" json:"name,omitempty"`
 
 	// O Ordering
 	//
@@ -41761,11 +41803,18 @@ type MarketplaceSoftwarePackagesListParams struct {
 	// CatalogName Filter packages by catalog name (case-insensitive partial match)
 	CatalogName *string `form:"catalog_name,omitempty" json:"catalog_name,omitempty"`
 
+	// CatalogType Filter packages by catalog type (binary_runtime, source_package, package_manager)
+	//
+	CatalogType *CatalogTypeEnum `form:"catalog_type,omitempty" json:"catalog_type,omitempty"`
+
 	// CatalogUuid Filter packages from a specific software catalog
 	CatalogUuid *openapi_types.UUID `form:"catalog_uuid,omitempty" json:"catalog_uuid,omitempty"`
 
 	// CatalogVersion Filter packages by catalog version (case-insensitive partial match)
 	CatalogVersion *string `form:"catalog_version,omitempty" json:"catalog_version,omitempty"`
+
+	// Category Filter packages by category (e.g., bio, hpc, chemistry)
+	Category *string `form:"category,omitempty" json:"category,omitempty"`
 
 	// CpuFamily Filter packages available for specific CPU family (e.g., x86_64, aarch64)
 	CpuFamily *string `form:"cpu_family,omitempty" json:"cpu_family,omitempty"`
@@ -41788,6 +41837,9 @@ type MarketplaceSoftwarePackagesListParams struct {
 	// IsExtension Filter packages that are extensions of other packages
 	IsExtension *bool `form:"is_extension,omitempty" json:"is_extension,omitempty"`
 
+	// License Filter packages by license (e.g., GPL-3.0, MIT)
+	License *string `form:"license,omitempty" json:"license,omitempty"`
+
 	// Name Filter packages by name (case-insensitive partial match)
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
 
@@ -41807,8 +41859,17 @@ type MarketplaceSoftwarePackagesListParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
+	// ParentSoftwareUuid Filter extension packages belonging to a specific parent package
+	ParentSoftwareUuid *openapi_types.UUID `form:"parent_software_uuid,omitempty" json:"parent_software_uuid,omitempty"`
+
 	// Query Query packages by name, description, or version (case-insensitive partial match)
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ToolchainFamiliesCompatibility Filter packages compatible with a specific toolchain family (e.g., foss_2022b)
+	ToolchainFamiliesCompatibility *string `form:"toolchain_families_compatibility,omitempty" json:"toolchain_families_compatibility,omitempty"`
+
+	// ToolchainName Filter packages by toolchain name (e.g., foss, gfbf)
+	ToolchainName *string `form:"toolchain_name,omitempty" json:"toolchain_name,omitempty"`
 }
 
 // MarketplaceSoftwarePackagesCountParams defines parameters for MarketplaceSoftwarePackagesCount.
@@ -41816,11 +41877,18 @@ type MarketplaceSoftwarePackagesCountParams struct {
 	// CatalogName Filter packages by catalog name (case-insensitive partial match)
 	CatalogName *string `form:"catalog_name,omitempty" json:"catalog_name,omitempty"`
 
+	// CatalogType Filter packages by catalog type (binary_runtime, source_package, package_manager)
+	//
+	CatalogType *CatalogTypeEnum `form:"catalog_type,omitempty" json:"catalog_type,omitempty"`
+
 	// CatalogUuid Filter packages from a specific software catalog
 	CatalogUuid *openapi_types.UUID `form:"catalog_uuid,omitempty" json:"catalog_uuid,omitempty"`
 
 	// CatalogVersion Filter packages by catalog version (case-insensitive partial match)
 	CatalogVersion *string `form:"catalog_version,omitempty" json:"catalog_version,omitempty"`
+
+	// Category Filter packages by category (e.g., bio, hpc, chemistry)
+	Category *string `form:"category,omitempty" json:"category,omitempty"`
 
 	// CpuFamily Filter packages available for specific CPU family (e.g., x86_64, aarch64)
 	CpuFamily *string `form:"cpu_family,omitempty" json:"cpu_family,omitempty"`
@@ -41843,6 +41911,9 @@ type MarketplaceSoftwarePackagesCountParams struct {
 	// IsExtension Filter packages that are extensions of other packages
 	IsExtension *bool `form:"is_extension,omitempty" json:"is_extension,omitempty"`
 
+	// License Filter packages by license (e.g., GPL-3.0, MIT)
+	License *string `form:"license,omitempty" json:"license,omitempty"`
+
 	// Name Filter packages by name (case-insensitive partial match)
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
 
@@ -41862,8 +41933,17 @@ type MarketplaceSoftwarePackagesCountParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
+	// ParentSoftwareUuid Filter extension packages belonging to a specific parent package
+	ParentSoftwareUuid *openapi_types.UUID `form:"parent_software_uuid,omitempty" json:"parent_software_uuid,omitempty"`
+
 	// Query Query packages by name, description, or version (case-insensitive partial match)
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ToolchainFamiliesCompatibility Filter packages compatible with a specific toolchain family (e.g., foss_2022b)
+	ToolchainFamiliesCompatibility *string `form:"toolchain_families_compatibility,omitempty" json:"toolchain_families_compatibility,omitempty"`
+
+	// ToolchainName Filter packages by toolchain name (e.g., foss, gfbf)
+	ToolchainName *string `form:"toolchain_name,omitempty" json:"toolchain_name,omitempty"`
 }
 
 // MarketplaceSoftwareTargetsListParams defines parameters for MarketplaceSoftwareTargetsList.
@@ -41882,8 +41962,17 @@ type MarketplaceSoftwareTargetsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Path        *string             `form:"path,omitempty" json:"path,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Path     *string   `form:"path,omitempty" json:"path,omitempty"`
+
+	// TargetName Filter targets by name (e.g., x86_64, aarch64)
+	TargetName *string `form:"target_name,omitempty" json:"target_name,omitempty"`
+
+	// TargetSubtype Filter targets by subtype (e.g., microarchitecture, distribution)
+	TargetSubtype *string `form:"target_subtype,omitempty" json:"target_subtype,omitempty"`
+
+	// TargetType Filter targets by type (e.g., architecture, platform, variant)
+	TargetType  *string             `form:"target_type,omitempty" json:"target_type,omitempty"`
 	VersionUuid *openapi_types.UUID `form:"version_uuid,omitempty" json:"version_uuid,omitempty"`
 }
 
@@ -41903,13 +41992,25 @@ type MarketplaceSoftwareTargetsCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Path        *string             `form:"path,omitempty" json:"path,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Path     *string   `form:"path,omitempty" json:"path,omitempty"`
+
+	// TargetName Filter targets by name (e.g., x86_64, aarch64)
+	TargetName *string `form:"target_name,omitempty" json:"target_name,omitempty"`
+
+	// TargetSubtype Filter targets by subtype (e.g., microarchitecture, distribution)
+	TargetSubtype *string `form:"target_subtype,omitempty" json:"target_subtype,omitempty"`
+
+	// TargetType Filter targets by type (e.g., architecture, platform, variant)
+	TargetType  *string             `form:"target_type,omitempty" json:"target_type,omitempty"`
 	VersionUuid *openapi_types.UUID `form:"version_uuid,omitempty" json:"version_uuid,omitempty"`
 }
 
 // MarketplaceSoftwareVersionsListParams defines parameters for MarketplaceSoftwareVersionsList.
 type MarketplaceSoftwareVersionsListParams struct {
+	// CatalogType Filter versions by catalog type (binary_runtime, source_package, package_manager)
+	//
+	CatalogType          *CatalogTypeEnum    `form:"catalog_type,omitempty" json:"catalog_type,omitempty"`
 	CatalogUuid          *openapi_types.UUID `form:"catalog_uuid,omitempty" json:"catalog_uuid,omitempty"`
 	CpuFamily            *string             `form:"cpu_family,omitempty" json:"cpu_family,omitempty"`
 	CpuMicroarchitecture *string             `form:"cpu_microarchitecture,omitempty" json:"cpu_microarchitecture,omitempty"`
@@ -41926,11 +42027,32 @@ type MarketplaceSoftwareVersionsListParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Version  *string   `form:"version,omitempty" json:"version,omitempty"`
+
+	// ReleaseDateAfter Filter versions by release date range (release_date_after, release_date_before)
+	ReleaseDateAfter *openapi_types.Date `form:"release_date_after,omitempty" json:"release_date_after,omitempty"`
+
+	// ReleaseDateBefore Filter versions by release date range (release_date_after, release_date_before)
+	ReleaseDateBefore *openapi_types.Date `form:"release_date_before,omitempty" json:"release_date_before,omitempty"`
+
+	// ToolchainFamiliesCompatibility Filter versions compatible with a specific toolchain family (e.g., foss_2022b)
+	ToolchainFamiliesCompatibility *string `form:"toolchain_families_compatibility,omitempty" json:"toolchain_families_compatibility,omitempty"`
+
+	// ToolchainName Filter versions by toolchain name (e.g., foss, gfbf)
+	ToolchainName *string `form:"toolchain_name,omitempty" json:"toolchain_name,omitempty"`
+
+	// ToolchainVersion Filter versions by toolchain version (e.g., 2023b)
+	ToolchainVersion *string `form:"toolchain_version,omitempty" json:"toolchain_version,omitempty"`
+	Version          *string `form:"version,omitempty" json:"version,omitempty"`
+
+	// VersionExact Filter versions by exact version string
+	VersionExact *string `form:"version_exact,omitempty" json:"version_exact,omitempty"`
 }
 
 // MarketplaceSoftwareVersionsCountParams defines parameters for MarketplaceSoftwareVersionsCount.
 type MarketplaceSoftwareVersionsCountParams struct {
+	// CatalogType Filter versions by catalog type (binary_runtime, source_package, package_manager)
+	//
+	CatalogType          *CatalogTypeEnum    `form:"catalog_type,omitempty" json:"catalog_type,omitempty"`
 	CatalogUuid          *openapi_types.UUID `form:"catalog_uuid,omitempty" json:"catalog_uuid,omitempty"`
 	CpuFamily            *string             `form:"cpu_family,omitempty" json:"cpu_family,omitempty"`
 	CpuMicroarchitecture *string             `form:"cpu_microarchitecture,omitempty" json:"cpu_microarchitecture,omitempty"`
@@ -41947,7 +42069,25 @@ type MarketplaceSoftwareVersionsCountParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Version  *string   `form:"version,omitempty" json:"version,omitempty"`
+
+	// ReleaseDateAfter Filter versions by release date range (release_date_after, release_date_before)
+	ReleaseDateAfter *openapi_types.Date `form:"release_date_after,omitempty" json:"release_date_after,omitempty"`
+
+	// ReleaseDateBefore Filter versions by release date range (release_date_after, release_date_before)
+	ReleaseDateBefore *openapi_types.Date `form:"release_date_before,omitempty" json:"release_date_before,omitempty"`
+
+	// ToolchainFamiliesCompatibility Filter versions compatible with a specific toolchain family (e.g., foss_2022b)
+	ToolchainFamiliesCompatibility *string `form:"toolchain_families_compatibility,omitempty" json:"toolchain_families_compatibility,omitempty"`
+
+	// ToolchainName Filter versions by toolchain name (e.g., foss, gfbf)
+	ToolchainName *string `form:"toolchain_name,omitempty" json:"toolchain_name,omitempty"`
+
+	// ToolchainVersion Filter versions by toolchain version (e.g., 2023b)
+	ToolchainVersion *string `form:"toolchain_version,omitempty" json:"toolchain_version,omitempty"`
+	Version          *string `form:"version,omitempty" json:"version,omitempty"`
+
+	// VersionExact Filter versions by exact version string
+	VersionExact *string `form:"version_exact,omitempty" json:"version_exact,omitempty"`
 }
 
 // MarketplaceStatsAggregatedUsageTrendsListParams defines parameters for MarketplaceStatsAggregatedUsageTrendsList.
@@ -71520,6 +71660,9 @@ type ClientInterface interface {
 
 	// UserPermissionRequestsCount request
 	UserPermissionRequestsCount(ctx context.Context, params *UserPermissionRequestsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UserPermissionRequestsDestroy request
+	UserPermissionRequestsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UserPermissionRequestsRetrieve request
 	UserPermissionRequestsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -108148,6 +108291,18 @@ func (c *Client) UserPermissionRequestsList(ctx context.Context, params *UserPer
 
 func (c *Client) UserPermissionRequestsCount(ctx context.Context, params *UserPermissionRequestsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUserPermissionRequestsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserPermissionRequestsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserPermissionRequestsDestroyRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -206349,6 +206504,54 @@ func NewMarketplaceSoftwareCatalogsListRequest(server string, params *Marketplac
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.AutoUpdateEnabled != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "auto_update_enabled", runtime.ParamLocationQuery, *params.AutoUpdateEnabled); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CatalogType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "catalog_type", runtime.ParamLocationQuery, *params.CatalogType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Name != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
@@ -206461,6 +206664,54 @@ func NewMarketplaceSoftwareCatalogsCountRequest(server string, params *Marketpla
 
 	if params != nil {
 		queryValues := queryURL.Query()
+
+		if params.AutoUpdateEnabled != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "auto_update_enabled", runtime.ParamLocationQuery, *params.AutoUpdateEnabled); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CatalogType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "catalog_type", runtime.ParamLocationQuery, *params.CatalogType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
 
 		if params.Name != nil {
 
@@ -206615,6 +206866,54 @@ func NewMarketplaceSoftwareCatalogsDiscoverListRequest(server string, params *Ma
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.AutoUpdateEnabled != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "auto_update_enabled", runtime.ParamLocationQuery, *params.AutoUpdateEnabled); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CatalogType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "catalog_type", runtime.ParamLocationQuery, *params.CatalogType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Name != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
@@ -206727,6 +207026,54 @@ func NewMarketplaceSoftwareCatalogsDiscoverCountRequest(server string, params *M
 
 	if params != nil {
 		queryValues := queryURL.Query()
+
+		if params.AutoUpdateEnabled != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "auto_update_enabled", runtime.ParamLocationQuery, *params.AutoUpdateEnabled); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CatalogType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "catalog_type", runtime.ParamLocationQuery, *params.CatalogType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
 
 		if params.Name != nil {
 
@@ -207106,6 +207453,22 @@ func NewMarketplaceSoftwarePackagesListRequest(server string, params *Marketplac
 
 		}
 
+		if params.CatalogType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "catalog_type", runtime.ParamLocationQuery, *params.CatalogType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.CatalogUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "catalog_uuid", runtime.ParamLocationQuery, *params.CatalogUuid); err != nil {
@@ -207125,6 +207488,22 @@ func NewMarketplaceSoftwarePackagesListRequest(server string, params *Marketplac
 		if params.CatalogVersion != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "catalog_version", runtime.ParamLocationQuery, *params.CatalogVersion); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Category != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "category", runtime.ParamLocationQuery, *params.Category); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -207250,6 +207629,22 @@ func NewMarketplaceSoftwarePackagesListRequest(server string, params *Marketplac
 
 		}
 
+		if params.License != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "license", runtime.ParamLocationQuery, *params.License); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Name != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
@@ -207346,9 +207741,57 @@ func NewMarketplaceSoftwarePackagesListRequest(server string, params *Marketplac
 
 		}
 
+		if params.ParentSoftwareUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "parent_software_uuid", runtime.ParamLocationQuery, *params.ParentSoftwareUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Query != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ToolchainFamiliesCompatibility != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "toolchain_families_compatibility", runtime.ParamLocationQuery, *params.ToolchainFamiliesCompatibility); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ToolchainName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "toolchain_name", runtime.ParamLocationQuery, *params.ToolchainName); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -207411,6 +207854,22 @@ func NewMarketplaceSoftwarePackagesCountRequest(server string, params *Marketpla
 
 		}
 
+		if params.CatalogType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "catalog_type", runtime.ParamLocationQuery, *params.CatalogType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.CatalogUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "catalog_uuid", runtime.ParamLocationQuery, *params.CatalogUuid); err != nil {
@@ -207430,6 +207889,22 @@ func NewMarketplaceSoftwarePackagesCountRequest(server string, params *Marketpla
 		if params.CatalogVersion != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "catalog_version", runtime.ParamLocationQuery, *params.CatalogVersion); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Category != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "category", runtime.ParamLocationQuery, *params.Category); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -207555,6 +208030,22 @@ func NewMarketplaceSoftwarePackagesCountRequest(server string, params *Marketpla
 
 		}
 
+		if params.License != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "license", runtime.ParamLocationQuery, *params.License); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Name != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
@@ -207651,9 +208142,57 @@ func NewMarketplaceSoftwarePackagesCountRequest(server string, params *Marketpla
 
 		}
 
+		if params.ParentSoftwareUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "parent_software_uuid", runtime.ParamLocationQuery, *params.ParentSoftwareUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Query != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ToolchainFamiliesCompatibility != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "toolchain_families_compatibility", runtime.ParamLocationQuery, *params.ToolchainFamiliesCompatibility); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ToolchainName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "toolchain_name", runtime.ParamLocationQuery, *params.ToolchainName); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -208046,6 +208585,54 @@ func NewMarketplaceSoftwareTargetsListRequest(server string, params *Marketplace
 
 		}
 
+		if params.TargetName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "target_name", runtime.ParamLocationQuery, *params.TargetName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TargetSubtype != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "target_subtype", runtime.ParamLocationQuery, *params.TargetSubtype); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TargetType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "target_type", runtime.ParamLocationQuery, *params.TargetType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.VersionUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "version_uuid", runtime.ParamLocationQuery, *params.VersionUuid); err != nil {
@@ -208226,6 +208813,54 @@ func NewMarketplaceSoftwareTargetsCountRequest(server string, params *Marketplac
 		if params.Path != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "path", runtime.ParamLocationQuery, *params.Path); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TargetName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "target_name", runtime.ParamLocationQuery, *params.TargetName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TargetSubtype != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "target_subtype", runtime.ParamLocationQuery, *params.TargetSubtype); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TargetType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "target_type", runtime.ParamLocationQuery, *params.TargetType); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -208451,6 +209086,22 @@ func NewMarketplaceSoftwareVersionsListRequest(server string, params *Marketplac
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.CatalogType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "catalog_type", runtime.ParamLocationQuery, *params.CatalogType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.CatalogUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "catalog_uuid", runtime.ParamLocationQuery, *params.CatalogUuid); err != nil {
@@ -208595,9 +209246,105 @@ func NewMarketplaceSoftwareVersionsListRequest(server string, params *Marketplac
 
 		}
 
+		if params.ReleaseDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "release_date_after", runtime.ParamLocationQuery, *params.ReleaseDateAfter); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ReleaseDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "release_date_before", runtime.ParamLocationQuery, *params.ReleaseDateBefore); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ToolchainFamiliesCompatibility != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "toolchain_families_compatibility", runtime.ParamLocationQuery, *params.ToolchainFamiliesCompatibility); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ToolchainName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "toolchain_name", runtime.ParamLocationQuery, *params.ToolchainName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ToolchainVersion != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "toolchain_version", runtime.ParamLocationQuery, *params.ToolchainVersion); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Version != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "version", runtime.ParamLocationQuery, *params.Version); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.VersionExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "version_exact", runtime.ParamLocationQuery, *params.VersionExact); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -208644,6 +209391,22 @@ func NewMarketplaceSoftwareVersionsCountRequest(server string, params *Marketpla
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.CatalogType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "catalog_type", runtime.ParamLocationQuery, *params.CatalogType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.CatalogUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "catalog_uuid", runtime.ParamLocationQuery, *params.CatalogUuid); err != nil {
@@ -208788,9 +209551,105 @@ func NewMarketplaceSoftwareVersionsCountRequest(server string, params *Marketpla
 
 		}
 
+		if params.ReleaseDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "release_date_after", runtime.ParamLocationQuery, *params.ReleaseDateAfter); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ReleaseDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "release_date_before", runtime.ParamLocationQuery, *params.ReleaseDateBefore); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ToolchainFamiliesCompatibility != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "toolchain_families_compatibility", runtime.ParamLocationQuery, *params.ToolchainFamiliesCompatibility); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ToolchainName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "toolchain_name", runtime.ParamLocationQuery, *params.ToolchainName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ToolchainVersion != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "toolchain_version", runtime.ParamLocationQuery, *params.ToolchainVersion); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Version != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "version", runtime.ParamLocationQuery, *params.Version); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.VersionExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "version_exact", runtime.ParamLocationQuery, *params.VersionExact); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -292536,6 +293395,40 @@ func NewUserPermissionRequestsCountRequest(server string, params *UserPermission
 	return req, nil
 }
 
+// NewUserPermissionRequestsDestroyRequest generates requests for UserPermissionRequestsDestroy
+func NewUserPermissionRequestsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-permission-requests/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewUserPermissionRequestsRetrieveRequest generates requests for UserPermissionRequestsRetrieve
 func NewUserPermissionRequestsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -312479,6 +313372,9 @@ type ClientWithResponsesInterface interface {
 
 	// UserPermissionRequestsCountWithResponse request
 	UserPermissionRequestsCountWithResponse(ctx context.Context, params *UserPermissionRequestsCountParams, reqEditors ...RequestEditorFn) (*UserPermissionRequestsCountResponse, error)
+
+	// UserPermissionRequestsDestroyWithResponse request
+	UserPermissionRequestsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UserPermissionRequestsDestroyResponse, error)
 
 	// UserPermissionRequestsRetrieveWithResponse request
 	UserPermissionRequestsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UserPermissionRequestsRetrieveResponse, error)
@@ -361148,6 +362044,27 @@ func (r UserPermissionRequestsCountResponse) StatusCode() int {
 	return 0
 }
 
+type UserPermissionRequestsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r UserPermissionRequestsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserPermissionRequestsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type UserPermissionRequestsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -389615,6 +390532,15 @@ func (c *ClientWithResponses) UserPermissionRequestsCountWithResponse(ctx contex
 		return nil, err
 	}
 	return ParseUserPermissionRequestsCountResponse(rsp)
+}
+
+// UserPermissionRequestsDestroyWithResponse request returning *UserPermissionRequestsDestroyResponse
+func (c *ClientWithResponses) UserPermissionRequestsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UserPermissionRequestsDestroyResponse, error) {
+	rsp, err := c.UserPermissionRequestsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserPermissionRequestsDestroyResponse(rsp)
 }
 
 // UserPermissionRequestsRetrieveWithResponse request returning *UserPermissionRequestsRetrieveResponse
@@ -442000,6 +442926,22 @@ func ParseUserPermissionRequestsCountResponse(rsp *http.Response) (*UserPermissi
 	}
 
 	response := &UserPermissionRequestsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseUserPermissionRequestsDestroyResponse parses an HTTP response from a UserPermissionRequestsDestroyWithResponse call
+func ParseUserPermissionRequestsDestroyResponse(rsp *http.Response) (*UserPermissionRequestsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserPermissionRequestsDestroyResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
