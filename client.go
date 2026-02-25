@@ -1480,6 +1480,20 @@ const (
 	CustomerPermissionReviewOEnumMinusCreated CustomerPermissionReviewOEnum = "-created"
 )
 
+// Defines values for CustomerQuotasQuotaNameEnum.
+const (
+	EstimatedPrice     CustomerQuotasQuotaNameEnum = "estimated_price"
+	NcResourceCount    CustomerQuotasQuotaNameEnum = "nc_resource_count"
+	OsCpuCount         CustomerQuotasQuotaNameEnum = "os_cpu_count"
+	OsRamSize          CustomerQuotasQuotaNameEnum = "os_ram_size"
+	OsStorageSize      CustomerQuotasQuotaNameEnum = "os_storage_size"
+	VpcCpuCount        CustomerQuotasQuotaNameEnum = "vpc_cpu_count"
+	VpcFloatingIpCount CustomerQuotasQuotaNameEnum = "vpc_floating_ip_count"
+	VpcInstanceCount   CustomerQuotasQuotaNameEnum = "vpc_instance_count"
+	VpcRamSize         CustomerQuotasQuotaNameEnum = "vpc_ram_size"
+	VpcStorageSize     CustomerQuotasQuotaNameEnum = "vpc_storage_size"
+)
+
 // Defines values for CustomerUserFieldEnum.
 const (
 	CustomerUserFieldEnumEmail          CustomerUserFieldEnum = "email"
@@ -12064,6 +12078,9 @@ type CustomerQuotas struct {
 	CustomerName         *string `json:"customer_name,omitempty"`
 	Value                *int    `json:"value,omitempty"`
 }
+
+// CustomerQuotasQuotaNameEnum defines model for CustomerQuotasQuotaNameEnum.
+type CustomerQuotasQuotaNameEnum string
 
 // CustomerRequest defines model for CustomerRequest.
 type CustomerRequest struct {
@@ -34204,6 +34221,9 @@ type CustomerQuotasListParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// QuotaName Name of the quota
+	QuotaName CustomerQuotasQuotaNameEnum `form:"quota_name" json:"quota_name"`
 }
 
 // CustomerQuotasCountParams defines parameters for CustomerQuotasCount.
@@ -34213,6 +34233,9 @@ type CustomerQuotasCountParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// QuotaName Name of the quota
+	QuotaName CustomerQuotasQuotaNameEnum `form:"quota_name" json:"quota_name"`
 }
 
 // CustomersListParams defines parameters for CustomersList.
@@ -46731,6 +46754,9 @@ type ProjectQuotasListParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// QuotaName Name of the quota
+	QuotaName CustomerQuotasQuotaNameEnum `form:"quota_name" json:"quota_name"`
 }
 
 // ProjectQuotasCountParams defines parameters for ProjectQuotasCount.
@@ -46740,6 +46766,9 @@ type ProjectQuotasCountParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// QuotaName Name of the quota
+	QuotaName CustomerQuotasQuotaNameEnum `form:"quota_name" json:"quota_name"`
 }
 
 // ProjectTypesListParams defines parameters for ProjectTypesList.
@@ -138483,6 +138512,18 @@ func NewCustomerQuotasListRequest(server string, params *CustomerQuotasListParam
 
 		}
 
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "quota_name", runtime.ParamLocationQuery, params.QuotaName); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -138546,6 +138587,18 @@ func NewCustomerQuotasCountRequest(server string, params *CustomerQuotasCountPar
 				}
 			}
 
+		}
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "quota_name", runtime.ParamLocationQuery, params.QuotaName); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
@@ -252659,6 +252712,18 @@ func NewProjectQuotasListRequest(server string, params *ProjectQuotasListParams)
 
 		}
 
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "quota_name", runtime.ParamLocationQuery, params.QuotaName); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -252722,6 +252787,18 @@ func NewProjectQuotasCountRequest(server string, params *ProjectQuotasCountParam
 				}
 			}
 
+		}
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "quota_name", runtime.ParamLocationQuery, params.QuotaName); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
