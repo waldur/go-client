@@ -1987,6 +1987,7 @@ const (
 	EventMetadataResponseEventGroupsUserHasBeenCreatedByStaff                        EventMetadataResponseEventGroups = "user_has_been_created_by_staff"
 	EventMetadataResponseEventGroupsUserInvitationDeleted                            EventMetadataResponseEventGroups = "user_invitation_deleted"
 	EventMetadataResponseEventGroupsUserInvitationUpdated                            EventMetadataResponseEventGroups = "user_invitation_updated"
+	EventMetadataResponseEventGroupsUserPasswordRemovedByStaff                       EventMetadataResponseEventGroups = "user_password_removed_by_staff"
 	EventMetadataResponseEventGroupsUserPasswordUpdated                              EventMetadataResponseEventGroups = "user_password_updated"
 	EventMetadataResponseEventGroupsUserPasswordUpdatedByStaff                       EventMetadataResponseEventGroups = "user_password_updated_by_staff"
 	EventMetadataResponseEventGroupsUserUpdateSucceeded                              EventMetadataResponseEventGroups = "user_update_succeeded"
@@ -2259,6 +2260,7 @@ const (
 	EventTypesEnumUserHasBeenCreatedByStaff                        EventTypesEnum = "user_has_been_created_by_staff"
 	EventTypesEnumUserInvitationDeleted                            EventTypesEnum = "user_invitation_deleted"
 	EventTypesEnumUserInvitationUpdated                            EventTypesEnum = "user_invitation_updated"
+	EventTypesEnumUserPasswordRemovedByStaff                       EventTypesEnum = "user_password_removed_by_staff"
 	EventTypesEnumUserPasswordUpdated                              EventTypesEnum = "user_password_updated"
 	EventTypesEnumUserPasswordUpdatedByStaff                       EventTypesEnum = "user_password_updated_by_staff"
 	EventTypesEnumUserUpdateSucceeded                              EventTypesEnum = "user_update_succeeded"
@@ -5932,6 +5934,7 @@ const (
 	UserFieldEnumFullName                      UserFieldEnum = "full_name"
 	UserFieldEnumGender                        UserFieldEnum = "gender"
 	UserFieldEnumHasActiveSession              UserFieldEnum = "has_active_session"
+	UserFieldEnumHasUsablePassword             UserFieldEnum = "has_usable_password"
 	UserFieldEnumIdentityProviderFields        UserFieldEnum = "identity_provider_fields"
 	UserFieldEnumIdentityProviderLabel         UserFieldEnum = "identity_provider_label"
 	UserFieldEnumIdentityProviderManagementUrl UserFieldEnum = "identity_provider_management_url"
@@ -30411,6 +30414,7 @@ type User struct {
 	// Gender ISO 5218 gender code
 	Gender                        *User_Gender `json:"gender"`
 	HasActiveSession              *bool        `json:"has_active_session,omitempty"`
+	HasUsablePassword             *bool        `json:"has_usable_password,omitempty"`
 	IdentityProviderFields        *[]string    `json:"identity_provider_fields,omitempty"`
 	IdentityProviderLabel         *string      `json:"identity_provider_label,omitempty"`
 	IdentityProviderManagementUrl *string      `json:"identity_provider_management_url,omitempty"`
@@ -71823,6 +71827,9 @@ type ClientInterface interface {
 	// UsersRefreshToken request
 	UsersRefreshToken(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// UsersRemovePassword request
+	UsersRemovePassword(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// UsersSendNotification request
 	UsersSendNotification(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -108896,6 +108903,18 @@ func (c *Client) UsersPullRemoteUser(ctx context.Context, uuid openapi_types.UUI
 
 func (c *Client) UsersRefreshToken(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUsersRefreshTokenRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UsersRemovePassword(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersRemovePasswordRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -299698,6 +299717,40 @@ func NewUsersRefreshTokenRequest(server string, uuid openapi_types.UUID) (*http.
 	return req, nil
 }
 
+// NewUsersRemovePasswordRequest generates requests for UsersRemovePassword
+func NewUsersRemovePasswordRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/users/%s/remove_password/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewUsersSendNotificationRequest generates requests for UsersSendNotification
 func NewUsersSendNotificationRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -313598,6 +313651,9 @@ type ClientWithResponsesInterface interface {
 
 	// UsersRefreshTokenWithResponse request
 	UsersRefreshTokenWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UsersRefreshTokenResponse, error)
+
+	// UsersRemovePasswordWithResponse request
+	UsersRemovePasswordWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UsersRemovePasswordResponse, error)
 
 	// UsersSendNotificationWithResponse request
 	UsersSendNotificationWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UsersSendNotificationResponse, error)
@@ -362937,6 +362993,27 @@ func (r UsersRefreshTokenResponse) StatusCode() int {
 	return 0
 }
 
+type UsersRemovePasswordResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r UsersRemovePasswordResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UsersRemovePasswordResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type UsersSendNotificationResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -391046,6 +391123,15 @@ func (c *ClientWithResponses) UsersRefreshTokenWithResponse(ctx context.Context,
 		return nil, err
 	}
 	return ParseUsersRefreshTokenResponse(rsp)
+}
+
+// UsersRemovePasswordWithResponse request returning *UsersRemovePasswordResponse
+func (c *ClientWithResponses) UsersRemovePasswordWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UsersRemovePasswordResponse, error) {
+	rsp, err := c.UsersRemovePassword(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUsersRemovePasswordResponse(rsp)
 }
 
 // UsersSendNotificationWithResponse request returning *UsersSendNotificationResponse
@@ -443837,6 +443923,22 @@ func ParseUsersRefreshTokenResponse(rsp *http.Response) (*UsersRefreshTokenRespo
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseUsersRemovePasswordResponse parses an HTTP response from a UsersRemovePasswordWithResponse call
+func ParseUsersRemovePasswordResponse(rsp *http.Response) (*UsersRemovePasswordResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UsersRemovePasswordResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
