@@ -34223,7 +34223,7 @@ type CustomerQuotasListParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
 	// QuotaName Name of the quota
-	QuotaName CustomerQuotasQuotaNameEnum `form:"quota_name" json:"quota_name"`
+	QuotaName *CustomerQuotasQuotaNameEnum `form:"quota_name,omitempty" json:"quota_name,omitempty"`
 }
 
 // CustomerQuotasCountParams defines parameters for CustomerQuotasCount.
@@ -34235,7 +34235,7 @@ type CustomerQuotasCountParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
 	// QuotaName Name of the quota
-	QuotaName CustomerQuotasQuotaNameEnum `form:"quota_name" json:"quota_name"`
+	QuotaName *CustomerQuotasQuotaNameEnum `form:"quota_name,omitempty" json:"quota_name,omitempty"`
 }
 
 // CustomersListParams defines parameters for CustomersList.
@@ -46756,7 +46756,7 @@ type ProjectQuotasListParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
 	// QuotaName Name of the quota
-	QuotaName CustomerQuotasQuotaNameEnum `form:"quota_name" json:"quota_name"`
+	QuotaName *CustomerQuotasQuotaNameEnum `form:"quota_name,omitempty" json:"quota_name,omitempty"`
 }
 
 // ProjectQuotasCountParams defines parameters for ProjectQuotasCount.
@@ -46768,7 +46768,7 @@ type ProjectQuotasCountParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
 	// QuotaName Name of the quota
-	QuotaName CustomerQuotasQuotaNameEnum `form:"quota_name" json:"quota_name"`
+	QuotaName *CustomerQuotasQuotaNameEnum `form:"quota_name,omitempty" json:"quota_name,omitempty"`
 }
 
 // ProjectTypesListParams defines parameters for ProjectTypesList.
@@ -138512,16 +138512,20 @@ func NewCustomerQuotasListRequest(server string, params *CustomerQuotasListParam
 
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "quota_name", runtime.ParamLocationQuery, params.QuotaName); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.QuotaName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "quota_name", runtime.ParamLocationQuery, *params.QuotaName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
@@ -138589,16 +138593,20 @@ func NewCustomerQuotasCountRequest(server string, params *CustomerQuotasCountPar
 
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "quota_name", runtime.ParamLocationQuery, params.QuotaName); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.QuotaName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "quota_name", runtime.ParamLocationQuery, *params.QuotaName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
@@ -252712,16 +252720,20 @@ func NewProjectQuotasListRequest(server string, params *ProjectQuotasListParams)
 
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "quota_name", runtime.ParamLocationQuery, params.QuotaName); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.QuotaName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "quota_name", runtime.ParamLocationQuery, *params.QuotaName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
@@ -252789,16 +252801,20 @@ func NewProjectQuotasCountRequest(server string, params *ProjectQuotasCountParam
 
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "quota_name", runtime.ParamLocationQuery, params.QuotaName); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.QuotaName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "quota_name", runtime.ParamLocationQuery, *params.QuotaName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
