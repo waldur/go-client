@@ -9596,9 +9596,6 @@ type ChatRequestRequest struct {
 
 	// ThreadUuid Existing thread UUID. If omitted, a new thread is created.
 	ThreadUuid *openapi_types.UUID `json:"thread_uuid"`
-
-	// UpdateThreadName Thread UUID whose name should be set to the assistant's response. Skips message persistence for this call.
-	UpdateThreadName *openapi_types.UUID `json:"update_thread_name"`
 }
 
 // ChatRequestRequest_Mode 'reload': replace the last assistant response. 'edit': edit a user message and re-stream. Omit for normal new-message behavior.
