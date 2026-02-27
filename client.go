@@ -61616,33 +61616,6 @@ type NestedReviewerProfilePublicationsListParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
-// ReviewerProfilesAffiliationsListParams defines parameters for ReviewerProfilesAffiliationsList.
-type ReviewerProfilesAffiliationsListParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
-// ReviewerProfilesExpertiseListParams defines parameters for ReviewerProfilesExpertiseList.
-type ReviewerProfilesExpertiseListParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
-// ReviewerProfilesPublicationsListParams defines parameters for ReviewerProfilesPublicationsList.
-type ReviewerProfilesPublicationsListParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
 // ReviewerSuggestionsListParams defines parameters for ReviewerSuggestionsList.
 type ReviewerSuggestionsListParams struct {
 	CallUuid         *openapi_types.UUID `form:"call_uuid,omitempty" json:"call_uuid,omitempty"`
@@ -66600,23 +66573,14 @@ type ReviewerProfilesPartialUpdateJSONRequestBody = PatchedReviewerProfileReques
 // ReviewerProfilesUpdateJSONRequestBody defines body for ReviewerProfilesUpdate for application/json ContentType.
 type ReviewerProfilesUpdateJSONRequestBody = ReviewerProfileRequest
 
-// ReviewerProfilesAffiliationsCreateJSONRequestBody defines body for ReviewerProfilesAffiliationsCreate for application/json ContentType.
-type ReviewerProfilesAffiliationsCreateJSONRequestBody = ReviewerAffiliationRequest
-
 // ReviewerProfilesConnectOrcidCallbackJSONRequestBody defines body for ReviewerProfilesConnectOrcidCallback for application/json ContentType.
 type ReviewerProfilesConnectOrcidCallbackJSONRequestBody = OrcidCallbackRequest
 
 // ReviewerProfilesDisconnectOrcidJSONRequestBody defines body for ReviewerProfilesDisconnectOrcid for application/json ContentType.
 type ReviewerProfilesDisconnectOrcidJSONRequestBody = ReviewerProfileRequest
 
-// ReviewerProfilesExpertiseCreateJSONRequestBody defines body for ReviewerProfilesExpertiseCreate for application/json ContentType.
-type ReviewerProfilesExpertiseCreateJSONRequestBody = ReviewerExpertiseRequest
-
 // ReviewerProfilesImportPublicationsJSONRequestBody defines body for ReviewerProfilesImportPublications for application/json ContentType.
 type ReviewerProfilesImportPublicationsJSONRequestBody = ImportPublicationsRequest
-
-// ReviewerProfilesPublicationsCreateJSONRequestBody defines body for ReviewerProfilesPublicationsCreate for application/json ContentType.
-type ReviewerProfilesPublicationsCreateJSONRequestBody = ReviewerPublicationRequest
 
 // ReviewerProfilesSyncOrcidJSONRequestBody defines body for ReviewerProfilesSyncOrcid for application/json ContentType.
 type ReviewerProfilesSyncOrcidJSONRequestBody = ReviewerProfileRequest
@@ -83738,14 +83702,6 @@ type ClientInterface interface {
 
 	ReviewerProfilesUpdate(ctx context.Context, uuid openapi_types.UUID, body ReviewerProfilesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ReviewerProfilesAffiliationsList request
-	ReviewerProfilesAffiliationsList(ctx context.Context, uuid openapi_types.UUID, params *ReviewerProfilesAffiliationsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ReviewerProfilesAffiliationsCreateWithBody request with any body
-	ReviewerProfilesAffiliationsCreateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	ReviewerProfilesAffiliationsCreate(ctx context.Context, uuid openapi_types.UUID, body ReviewerProfilesAffiliationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// ReviewerProfilesConnectOrcidRetrieve request
 	ReviewerProfilesConnectOrcidRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -83759,26 +83715,10 @@ type ClientInterface interface {
 
 	ReviewerProfilesDisconnectOrcid(ctx context.Context, uuid openapi_types.UUID, body ReviewerProfilesDisconnectOrcidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ReviewerProfilesExpertiseList request
-	ReviewerProfilesExpertiseList(ctx context.Context, uuid openapi_types.UUID, params *ReviewerProfilesExpertiseListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ReviewerProfilesExpertiseCreateWithBody request with any body
-	ReviewerProfilesExpertiseCreateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	ReviewerProfilesExpertiseCreate(ctx context.Context, uuid openapi_types.UUID, body ReviewerProfilesExpertiseCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// ReviewerProfilesImportPublicationsWithBody request with any body
 	ReviewerProfilesImportPublicationsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	ReviewerProfilesImportPublications(ctx context.Context, uuid openapi_types.UUID, body ReviewerProfilesImportPublicationsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ReviewerProfilesPublicationsList request
-	ReviewerProfilesPublicationsList(ctx context.Context, uuid openapi_types.UUID, params *ReviewerProfilesPublicationsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ReviewerProfilesPublicationsCreateWithBody request with any body
-	ReviewerProfilesPublicationsCreateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	ReviewerProfilesPublicationsCreate(ctx context.Context, uuid openapi_types.UUID, body ReviewerProfilesPublicationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ReviewerProfilesSyncOrcidWithBody request with any body
 	ReviewerProfilesSyncOrcidWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -117823,42 +117763,6 @@ func (c *Client) ReviewerProfilesUpdate(ctx context.Context, uuid openapi_types.
 	return c.Client.Do(req)
 }
 
-func (c *Client) ReviewerProfilesAffiliationsList(ctx context.Context, uuid openapi_types.UUID, params *ReviewerProfilesAffiliationsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewReviewerProfilesAffiliationsListRequest(c.Server, uuid, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ReviewerProfilesAffiliationsCreateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewReviewerProfilesAffiliationsCreateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ReviewerProfilesAffiliationsCreate(ctx context.Context, uuid openapi_types.UUID, body ReviewerProfilesAffiliationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewReviewerProfilesAffiliationsCreateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) ReviewerProfilesConnectOrcidRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewReviewerProfilesConnectOrcidRetrieveRequest(c.Server, uuid)
 	if err != nil {
@@ -117919,42 +117823,6 @@ func (c *Client) ReviewerProfilesDisconnectOrcid(ctx context.Context, uuid opena
 	return c.Client.Do(req)
 }
 
-func (c *Client) ReviewerProfilesExpertiseList(ctx context.Context, uuid openapi_types.UUID, params *ReviewerProfilesExpertiseListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewReviewerProfilesExpertiseListRequest(c.Server, uuid, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ReviewerProfilesExpertiseCreateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewReviewerProfilesExpertiseCreateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ReviewerProfilesExpertiseCreate(ctx context.Context, uuid openapi_types.UUID, body ReviewerProfilesExpertiseCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewReviewerProfilesExpertiseCreateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) ReviewerProfilesImportPublicationsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewReviewerProfilesImportPublicationsRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -117969,42 +117837,6 @@ func (c *Client) ReviewerProfilesImportPublicationsWithBody(ctx context.Context,
 
 func (c *Client) ReviewerProfilesImportPublications(ctx context.Context, uuid openapi_types.UUID, body ReviewerProfilesImportPublicationsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewReviewerProfilesImportPublicationsRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ReviewerProfilesPublicationsList(ctx context.Context, uuid openapi_types.UUID, params *ReviewerProfilesPublicationsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewReviewerProfilesPublicationsListRequest(c.Server, uuid, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ReviewerProfilesPublicationsCreateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewReviewerProfilesPublicationsCreateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ReviewerProfilesPublicationsCreate(ctx context.Context, uuid openapi_types.UUID, body ReviewerProfilesPublicationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewReviewerProfilesPublicationsCreateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -291813,125 +291645,6 @@ func NewReviewerProfilesUpdateRequestWithBody(server string, uuid openapi_types.
 	return req, nil
 }
 
-// NewReviewerProfilesAffiliationsListRequest generates requests for ReviewerProfilesAffiliationsList
-func NewReviewerProfilesAffiliationsListRequest(server string, uuid openapi_types.UUID, params *ReviewerProfilesAffiliationsListParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/reviewer-profiles/%s/affiliations/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewReviewerProfilesAffiliationsCreateRequest calls the generic ReviewerProfilesAffiliationsCreate builder with application/json body
-func NewReviewerProfilesAffiliationsCreateRequest(server string, uuid openapi_types.UUID, body ReviewerProfilesAffiliationsCreateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewReviewerProfilesAffiliationsCreateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewReviewerProfilesAffiliationsCreateRequestWithBody generates requests for ReviewerProfilesAffiliationsCreate with any type of body
-func NewReviewerProfilesAffiliationsCreateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/reviewer-profiles/%s/affiliations/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
 // NewReviewerProfilesConnectOrcidRetrieveRequest generates requests for ReviewerProfilesConnectOrcidRetrieve
 func NewReviewerProfilesConnectOrcidRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -292060,125 +291773,6 @@ func NewReviewerProfilesDisconnectOrcidRequestWithBody(server string, uuid opena
 	return req, nil
 }
 
-// NewReviewerProfilesExpertiseListRequest generates requests for ReviewerProfilesExpertiseList
-func NewReviewerProfilesExpertiseListRequest(server string, uuid openapi_types.UUID, params *ReviewerProfilesExpertiseListParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/reviewer-profiles/%s/expertise/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewReviewerProfilesExpertiseCreateRequest calls the generic ReviewerProfilesExpertiseCreate builder with application/json body
-func NewReviewerProfilesExpertiseCreateRequest(server string, uuid openapi_types.UUID, body ReviewerProfilesExpertiseCreateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewReviewerProfilesExpertiseCreateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewReviewerProfilesExpertiseCreateRequestWithBody generates requests for ReviewerProfilesExpertiseCreate with any type of body
-func NewReviewerProfilesExpertiseCreateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/reviewer-profiles/%s/expertise/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
 // NewReviewerProfilesImportPublicationsRequest calls the generic ReviewerProfilesImportPublications builder with application/json body
 func NewReviewerProfilesImportPublicationsRequest(server string, uuid openapi_types.UUID, body ReviewerProfilesImportPublicationsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -292207,125 +291801,6 @@ func NewReviewerProfilesImportPublicationsRequestWithBody(server string, uuid op
 	}
 
 	operationPath := fmt.Sprintf("/api/reviewer-profiles/%s/import-publications/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewReviewerProfilesPublicationsListRequest generates requests for ReviewerProfilesPublicationsList
-func NewReviewerProfilesPublicationsListRequest(server string, uuid openapi_types.UUID, params *ReviewerProfilesPublicationsListParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/reviewer-profiles/%s/publications/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewReviewerProfilesPublicationsCreateRequest calls the generic ReviewerProfilesPublicationsCreate builder with application/json body
-func NewReviewerProfilesPublicationsCreateRequest(server string, uuid openapi_types.UUID, body ReviewerProfilesPublicationsCreateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewReviewerProfilesPublicationsCreateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewReviewerProfilesPublicationsCreateRequestWithBody generates requests for ReviewerProfilesPublicationsCreate with any type of body
-func NewReviewerProfilesPublicationsCreateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/reviewer-profiles/%s/publications/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -325563,14 +325038,6 @@ type ClientWithResponsesInterface interface {
 
 	ReviewerProfilesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ReviewerProfilesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ReviewerProfilesUpdateResponse, error)
 
-	// ReviewerProfilesAffiliationsListWithResponse request
-	ReviewerProfilesAffiliationsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ReviewerProfilesAffiliationsListParams, reqEditors ...RequestEditorFn) (*ReviewerProfilesAffiliationsListResponse, error)
-
-	// ReviewerProfilesAffiliationsCreateWithBodyWithResponse request with any body
-	ReviewerProfilesAffiliationsCreateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReviewerProfilesAffiliationsCreateResponse, error)
-
-	ReviewerProfilesAffiliationsCreateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ReviewerProfilesAffiliationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ReviewerProfilesAffiliationsCreateResponse, error)
-
 	// ReviewerProfilesConnectOrcidRetrieveWithResponse request
 	ReviewerProfilesConnectOrcidRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ReviewerProfilesConnectOrcidRetrieveResponse, error)
 
@@ -325584,26 +325051,10 @@ type ClientWithResponsesInterface interface {
 
 	ReviewerProfilesDisconnectOrcidWithResponse(ctx context.Context, uuid openapi_types.UUID, body ReviewerProfilesDisconnectOrcidJSONRequestBody, reqEditors ...RequestEditorFn) (*ReviewerProfilesDisconnectOrcidResponse, error)
 
-	// ReviewerProfilesExpertiseListWithResponse request
-	ReviewerProfilesExpertiseListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ReviewerProfilesExpertiseListParams, reqEditors ...RequestEditorFn) (*ReviewerProfilesExpertiseListResponse, error)
-
-	// ReviewerProfilesExpertiseCreateWithBodyWithResponse request with any body
-	ReviewerProfilesExpertiseCreateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReviewerProfilesExpertiseCreateResponse, error)
-
-	ReviewerProfilesExpertiseCreateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ReviewerProfilesExpertiseCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ReviewerProfilesExpertiseCreateResponse, error)
-
 	// ReviewerProfilesImportPublicationsWithBodyWithResponse request with any body
 	ReviewerProfilesImportPublicationsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReviewerProfilesImportPublicationsResponse, error)
 
 	ReviewerProfilesImportPublicationsWithResponse(ctx context.Context, uuid openapi_types.UUID, body ReviewerProfilesImportPublicationsJSONRequestBody, reqEditors ...RequestEditorFn) (*ReviewerProfilesImportPublicationsResponse, error)
-
-	// ReviewerProfilesPublicationsListWithResponse request
-	ReviewerProfilesPublicationsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ReviewerProfilesPublicationsListParams, reqEditors ...RequestEditorFn) (*ReviewerProfilesPublicationsListResponse, error)
-
-	// ReviewerProfilesPublicationsCreateWithBodyWithResponse request with any body
-	ReviewerProfilesPublicationsCreateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReviewerProfilesPublicationsCreateResponse, error)
-
-	ReviewerProfilesPublicationsCreateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ReviewerProfilesPublicationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ReviewerProfilesPublicationsCreateResponse, error)
 
 	// ReviewerProfilesSyncOrcidWithBodyWithResponse request with any body
 	ReviewerProfilesSyncOrcidWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReviewerProfilesSyncOrcidResponse, error)
@@ -370607,50 +370058,6 @@ func (r ReviewerProfilesUpdateResponse) StatusCode() int {
 	return 0
 }
 
-type ReviewerProfilesAffiliationsListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]ReviewerAffiliation
-}
-
-// Status returns HTTPResponse.Status
-func (r ReviewerProfilesAffiliationsListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ReviewerProfilesAffiliationsListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type ReviewerProfilesAffiliationsCreateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *ReviewerAffiliation
-}
-
-// Status returns HTTPResponse.Status
-func (r ReviewerProfilesAffiliationsCreateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ReviewerProfilesAffiliationsCreateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type ReviewerProfilesConnectOrcidRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -370719,50 +370126,6 @@ func (r ReviewerProfilesDisconnectOrcidResponse) StatusCode() int {
 	return 0
 }
 
-type ReviewerProfilesExpertiseListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]ReviewerExpertise
-}
-
-// Status returns HTTPResponse.Status
-func (r ReviewerProfilesExpertiseListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ReviewerProfilesExpertiseListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type ReviewerProfilesExpertiseCreateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *ReviewerExpertise
-}
-
-// Status returns HTTPResponse.Status
-func (r ReviewerProfilesExpertiseCreateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ReviewerProfilesExpertiseCreateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type ReviewerProfilesImportPublicationsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -370781,50 +370144,6 @@ func (r ReviewerProfilesImportPublicationsResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ReviewerProfilesImportPublicationsResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type ReviewerProfilesPublicationsListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]ReviewerPublication
-}
-
-// Status returns HTTPResponse.Status
-func (r ReviewerProfilesPublicationsListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ReviewerProfilesPublicationsListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type ReviewerProfilesPublicationsCreateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *ReviewerPublication
-}
-
-// Status returns HTTPResponse.Status
-func (r ReviewerProfilesPublicationsCreateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ReviewerProfilesPublicationsCreateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -401092,32 +400411,6 @@ func (c *ClientWithResponses) ReviewerProfilesUpdateWithResponse(ctx context.Con
 	return ParseReviewerProfilesUpdateResponse(rsp)
 }
 
-// ReviewerProfilesAffiliationsListWithResponse request returning *ReviewerProfilesAffiliationsListResponse
-func (c *ClientWithResponses) ReviewerProfilesAffiliationsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ReviewerProfilesAffiliationsListParams, reqEditors ...RequestEditorFn) (*ReviewerProfilesAffiliationsListResponse, error) {
-	rsp, err := c.ReviewerProfilesAffiliationsList(ctx, uuid, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseReviewerProfilesAffiliationsListResponse(rsp)
-}
-
-// ReviewerProfilesAffiliationsCreateWithBodyWithResponse request with arbitrary body returning *ReviewerProfilesAffiliationsCreateResponse
-func (c *ClientWithResponses) ReviewerProfilesAffiliationsCreateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReviewerProfilesAffiliationsCreateResponse, error) {
-	rsp, err := c.ReviewerProfilesAffiliationsCreateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseReviewerProfilesAffiliationsCreateResponse(rsp)
-}
-
-func (c *ClientWithResponses) ReviewerProfilesAffiliationsCreateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ReviewerProfilesAffiliationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ReviewerProfilesAffiliationsCreateResponse, error) {
-	rsp, err := c.ReviewerProfilesAffiliationsCreate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseReviewerProfilesAffiliationsCreateResponse(rsp)
-}
-
 // ReviewerProfilesConnectOrcidRetrieveWithResponse request returning *ReviewerProfilesConnectOrcidRetrieveResponse
 func (c *ClientWithResponses) ReviewerProfilesConnectOrcidRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ReviewerProfilesConnectOrcidRetrieveResponse, error) {
 	rsp, err := c.ReviewerProfilesConnectOrcidRetrieve(ctx, uuid, reqEditors...)
@@ -401161,32 +400454,6 @@ func (c *ClientWithResponses) ReviewerProfilesDisconnectOrcidWithResponse(ctx co
 	return ParseReviewerProfilesDisconnectOrcidResponse(rsp)
 }
 
-// ReviewerProfilesExpertiseListWithResponse request returning *ReviewerProfilesExpertiseListResponse
-func (c *ClientWithResponses) ReviewerProfilesExpertiseListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ReviewerProfilesExpertiseListParams, reqEditors ...RequestEditorFn) (*ReviewerProfilesExpertiseListResponse, error) {
-	rsp, err := c.ReviewerProfilesExpertiseList(ctx, uuid, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseReviewerProfilesExpertiseListResponse(rsp)
-}
-
-// ReviewerProfilesExpertiseCreateWithBodyWithResponse request with arbitrary body returning *ReviewerProfilesExpertiseCreateResponse
-func (c *ClientWithResponses) ReviewerProfilesExpertiseCreateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReviewerProfilesExpertiseCreateResponse, error) {
-	rsp, err := c.ReviewerProfilesExpertiseCreateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseReviewerProfilesExpertiseCreateResponse(rsp)
-}
-
-func (c *ClientWithResponses) ReviewerProfilesExpertiseCreateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ReviewerProfilesExpertiseCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ReviewerProfilesExpertiseCreateResponse, error) {
-	rsp, err := c.ReviewerProfilesExpertiseCreate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseReviewerProfilesExpertiseCreateResponse(rsp)
-}
-
 // ReviewerProfilesImportPublicationsWithBodyWithResponse request with arbitrary body returning *ReviewerProfilesImportPublicationsResponse
 func (c *ClientWithResponses) ReviewerProfilesImportPublicationsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReviewerProfilesImportPublicationsResponse, error) {
 	rsp, err := c.ReviewerProfilesImportPublicationsWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -401202,32 +400469,6 @@ func (c *ClientWithResponses) ReviewerProfilesImportPublicationsWithResponse(ctx
 		return nil, err
 	}
 	return ParseReviewerProfilesImportPublicationsResponse(rsp)
-}
-
-// ReviewerProfilesPublicationsListWithResponse request returning *ReviewerProfilesPublicationsListResponse
-func (c *ClientWithResponses) ReviewerProfilesPublicationsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ReviewerProfilesPublicationsListParams, reqEditors ...RequestEditorFn) (*ReviewerProfilesPublicationsListResponse, error) {
-	rsp, err := c.ReviewerProfilesPublicationsList(ctx, uuid, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseReviewerProfilesPublicationsListResponse(rsp)
-}
-
-// ReviewerProfilesPublicationsCreateWithBodyWithResponse request with arbitrary body returning *ReviewerProfilesPublicationsCreateResponse
-func (c *ClientWithResponses) ReviewerProfilesPublicationsCreateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReviewerProfilesPublicationsCreateResponse, error) {
-	rsp, err := c.ReviewerProfilesPublicationsCreateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseReviewerProfilesPublicationsCreateResponse(rsp)
-}
-
-func (c *ClientWithResponses) ReviewerProfilesPublicationsCreateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ReviewerProfilesPublicationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ReviewerProfilesPublicationsCreateResponse, error) {
-	rsp, err := c.ReviewerProfilesPublicationsCreate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseReviewerProfilesPublicationsCreateResponse(rsp)
 }
 
 // ReviewerProfilesSyncOrcidWithBodyWithResponse request with arbitrary body returning *ReviewerProfilesSyncOrcidResponse
@@ -451306,58 +450547,6 @@ func ParseReviewerProfilesUpdateResponse(rsp *http.Response) (*ReviewerProfilesU
 	return response, nil
 }
 
-// ParseReviewerProfilesAffiliationsListResponse parses an HTTP response from a ReviewerProfilesAffiliationsListWithResponse call
-func ParseReviewerProfilesAffiliationsListResponse(rsp *http.Response) (*ReviewerProfilesAffiliationsListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ReviewerProfilesAffiliationsListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []ReviewerAffiliation
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseReviewerProfilesAffiliationsCreateResponse parses an HTTP response from a ReviewerProfilesAffiliationsCreateWithResponse call
-func ParseReviewerProfilesAffiliationsCreateResponse(rsp *http.Response) (*ReviewerProfilesAffiliationsCreateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ReviewerProfilesAffiliationsCreateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ReviewerAffiliation
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseReviewerProfilesConnectOrcidRetrieveResponse parses an HTTP response from a ReviewerProfilesConnectOrcidRetrieveWithResponse call
 func ParseReviewerProfilesConnectOrcidRetrieveResponse(rsp *http.Response) (*ReviewerProfilesConnectOrcidRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -451438,58 +450627,6 @@ func ParseReviewerProfilesDisconnectOrcidResponse(rsp *http.Response) (*Reviewer
 	return response, nil
 }
 
-// ParseReviewerProfilesExpertiseListResponse parses an HTTP response from a ReviewerProfilesExpertiseListWithResponse call
-func ParseReviewerProfilesExpertiseListResponse(rsp *http.Response) (*ReviewerProfilesExpertiseListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ReviewerProfilesExpertiseListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []ReviewerExpertise
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseReviewerProfilesExpertiseCreateResponse parses an HTTP response from a ReviewerProfilesExpertiseCreateWithResponse call
-func ParseReviewerProfilesExpertiseCreateResponse(rsp *http.Response) (*ReviewerProfilesExpertiseCreateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ReviewerProfilesExpertiseCreateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ReviewerExpertise
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseReviewerProfilesImportPublicationsResponse parses an HTTP response from a ReviewerProfilesImportPublicationsWithResponse call
 func ParseReviewerProfilesImportPublicationsResponse(rsp *http.Response) (*ReviewerProfilesImportPublicationsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -451508,58 +450645,6 @@ func ParseReviewerProfilesImportPublicationsResponse(rsp *http.Response) (*Revie
 		var dest struct {
 			ImportedCount *int `json:"imported_count,omitempty"`
 		}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseReviewerProfilesPublicationsListResponse parses an HTTP response from a ReviewerProfilesPublicationsListWithResponse call
-func ParseReviewerProfilesPublicationsListResponse(rsp *http.Response) (*ReviewerProfilesPublicationsListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ReviewerProfilesPublicationsListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []ReviewerPublication
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseReviewerProfilesPublicationsCreateResponse parses an HTTP response from a ReviewerProfilesPublicationsCreateWithResponse call
-func ParseReviewerProfilesPublicationsCreateResponse(rsp *http.Response) (*ReviewerProfilesPublicationsCreateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ReviewerProfilesPublicationsCreateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ReviewerPublication
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
