@@ -6503,12 +6503,13 @@ type AgentIdentity struct {
 	ConfigFileContent *string `json:"config_file_content"`
 
 	// ConfigFilePath Example: '/etc/waldur/agent.yaml'
-	ConfigFilePath *string     `json:"config_file_path"`
-	Created        *time.Time  `json:"created,omitempty"`
-	Dependencies   interface{} `json:"dependencies,omitempty"`
-	LastRestarted  *time.Time  `json:"last_restarted,omitempty"`
-	Modified       *time.Time  `json:"modified,omitempty"`
-	Name           string      `json:"name"`
+	ConfigFilePath *string             `json:"config_file_path"`
+	Created        *time.Time          `json:"created,omitempty"`
+	CreatedBy      *openapi_types.UUID `json:"created_by,omitempty"`
+	Dependencies   interface{}         `json:"dependencies,omitempty"`
+	LastRestarted  *time.Time          `json:"last_restarted,omitempty"`
+	Modified       *time.Time          `json:"modified,omitempty"`
+	Name           string              `json:"name"`
 
 	// Offering UUID of an offering with a site-agent compatible type.
 	Offering openapi_types.UUID    `json:"offering"`
