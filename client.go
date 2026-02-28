@@ -7201,454 +7201,454 @@ func (e GrowthPeriodEnum) Valid() bool {
 
 // Defines values for GuestOsEnum.
 const (
-	ASIANUX3           GuestOsEnum = "ASIANUX_3"
-	ASIANUX364         GuestOsEnum = "ASIANUX_3_64"
-	ASIANUX4           GuestOsEnum = "ASIANUX_4"
-	ASIANUX464         GuestOsEnum = "ASIANUX_4_64"
-	ASIANUX564         GuestOsEnum = "ASIANUX_5_64"
-	ASIANUX764         GuestOsEnum = "ASIANUX_7_64"
-	CENTOS             GuestOsEnum = "CENTOS"
-	CENTOS6            GuestOsEnum = "CENTOS_6"
-	CENTOS64           GuestOsEnum = "CENTOS_64"
-	CENTOS664          GuestOsEnum = "CENTOS_6_64"
-	CENTOS7            GuestOsEnum = "CENTOS_7"
-	CENTOS764          GuestOsEnum = "CENTOS_7_64"
-	COREOS64           GuestOsEnum = "COREOS_64"
-	DARWIN             GuestOsEnum = "DARWIN"
-	DARWIN10           GuestOsEnum = "DARWIN_10"
-	DARWIN1064         GuestOsEnum = "DARWIN_10_64"
-	DARWIN11           GuestOsEnum = "DARWIN_11"
-	DARWIN1164         GuestOsEnum = "DARWIN_11_64"
-	DARWIN1264         GuestOsEnum = "DARWIN_12_64"
-	DARWIN1364         GuestOsEnum = "DARWIN_13_64"
-	DARWIN1464         GuestOsEnum = "DARWIN_14_64"
-	DARWIN1564         GuestOsEnum = "DARWIN_15_64"
-	DARWIN1664         GuestOsEnum = "DARWIN_16_64"
-	DARWIN64           GuestOsEnum = "DARWIN_64"
-	DEBIAN10           GuestOsEnum = "DEBIAN_10"
-	DEBIAN1064         GuestOsEnum = "DEBIAN_10_64"
-	DEBIAN4            GuestOsEnum = "DEBIAN_4"
-	DEBIAN464          GuestOsEnum = "DEBIAN_4_64"
-	DEBIAN5            GuestOsEnum = "DEBIAN_5"
-	DEBIAN564          GuestOsEnum = "DEBIAN_5_64"
-	DEBIAN6            GuestOsEnum = "DEBIAN_6"
-	DEBIAN664          GuestOsEnum = "DEBIAN_6_64"
-	DEBIAN7            GuestOsEnum = "DEBIAN_7"
-	DEBIAN764          GuestOsEnum = "DEBIAN_7_64"
-	DEBIAN8            GuestOsEnum = "DEBIAN_8"
-	DEBIAN864          GuestOsEnum = "DEBIAN_8_64"
-	DEBIAN9            GuestOsEnum = "DEBIAN_9"
-	DEBIAN964          GuestOsEnum = "DEBIAN_9_64"
-	DOS                GuestOsEnum = "DOS"
-	ECOMSTATION        GuestOsEnum = "ECOMSTATION"
-	ECOMSTATION2       GuestOsEnum = "ECOMSTATION_2"
-	FEDORA             GuestOsEnum = "FEDORA"
-	FEDORA64           GuestOsEnum = "FEDORA_64"
-	FREEBSD            GuestOsEnum = "FREEBSD"
-	FREEBSD64          GuestOsEnum = "FREEBSD_64"
-	GENERICLINUX       GuestOsEnum = "GENERIC_LINUX"
-	MANDRAKE           GuestOsEnum = "MANDRAKE"
-	MANDRIVA           GuestOsEnum = "MANDRIVA"
-	MANDRIVA64         GuestOsEnum = "MANDRIVA_64"
-	NETWARE4           GuestOsEnum = "NETWARE_4"
-	NETWARE5           GuestOsEnum = "NETWARE_5"
-	NETWARE6           GuestOsEnum = "NETWARE_6"
-	NLD9               GuestOsEnum = "NLD_9"
-	OES                GuestOsEnum = "OES"
-	OPENSERVER5        GuestOsEnum = "OPENSERVER_5"
-	OPENSERVER6        GuestOsEnum = "OPENSERVER_6"
-	OPENSUSE           GuestOsEnum = "OPENSUSE"
-	OPENSUSE64         GuestOsEnum = "OPENSUSE_64"
-	ORACLELINUX        GuestOsEnum = "ORACLE_LINUX"
-	ORACLELINUX6       GuestOsEnum = "ORACLE_LINUX_6"
-	ORACLELINUX64      GuestOsEnum = "ORACLE_LINUX_64"
-	ORACLELINUX664     GuestOsEnum = "ORACLE_LINUX_6_64"
-	ORACLELINUX7       GuestOsEnum = "ORACLE_LINUX_7"
-	ORACLELINUX764     GuestOsEnum = "ORACLE_LINUX_7_64"
-	OS2                GuestOsEnum = "OS2"
-	OTHER              GuestOsEnum = "OTHER"
-	OTHER24XLINUX      GuestOsEnum = "OTHER_24X_LINUX"
-	OTHER24XLINUX64    GuestOsEnum = "OTHER_24X_LINUX_64"
-	OTHER26XLINUX      GuestOsEnum = "OTHER_26X_LINUX"
-	OTHER26XLINUX64    GuestOsEnum = "OTHER_26X_LINUX_64"
-	OTHER3XLINUX       GuestOsEnum = "OTHER_3X_LINUX"
-	OTHER3XLINUX64     GuestOsEnum = "OTHER_3X_LINUX_64"
-	OTHER64            GuestOsEnum = "OTHER_64"
-	OTHERLINUX         GuestOsEnum = "OTHER_LINUX"
-	OTHERLINUX64       GuestOsEnum = "OTHER_LINUX_64"
-	REDHAT             GuestOsEnum = "REDHAT"
-	RHEL2              GuestOsEnum = "RHEL_2"
-	RHEL3              GuestOsEnum = "RHEL_3"
-	RHEL364            GuestOsEnum = "RHEL_3_64"
-	RHEL4              GuestOsEnum = "RHEL_4"
-	RHEL464            GuestOsEnum = "RHEL_4_64"
-	RHEL5              GuestOsEnum = "RHEL_5"
-	RHEL564            GuestOsEnum = "RHEL_5_64"
-	RHEL6              GuestOsEnum = "RHEL_6"
-	RHEL664            GuestOsEnum = "RHEL_6_64"
-	RHEL7              GuestOsEnum = "RHEL_7"
-	RHEL764            GuestOsEnum = "RHEL_7_64"
-	SJDS               GuestOsEnum = "SJDS"
-	SLES               GuestOsEnum = "SLES"
-	SLES10             GuestOsEnum = "SLES_10"
-	SLES1064           GuestOsEnum = "SLES_10_64"
-	SLES11             GuestOsEnum = "SLES_11"
-	SLES1164           GuestOsEnum = "SLES_11_64"
-	SLES12             GuestOsEnum = "SLES_12"
-	SLES1264           GuestOsEnum = "SLES_12_64"
-	SLES64             GuestOsEnum = "SLES_64"
-	SOLARIS10          GuestOsEnum = "SOLARIS_10"
-	SOLARIS1064        GuestOsEnum = "SOLARIS_10_64"
-	SOLARIS1164        GuestOsEnum = "SOLARIS_11_64"
-	SOLARIS6           GuestOsEnum = "SOLARIS_6"
-	SOLARIS7           GuestOsEnum = "SOLARIS_7"
-	SOLARIS8           GuestOsEnum = "SOLARIS_8"
-	SOLARIS9           GuestOsEnum = "SOLARIS_9"
-	SUSE               GuestOsEnum = "SUSE"
-	SUSE64             GuestOsEnum = "SUSE_64"
-	TURBOLINUX         GuestOsEnum = "TURBO_LINUX"
-	TURBOLINUX64       GuestOsEnum = "TURBO_LINUX_64"
-	UBUNTU             GuestOsEnum = "UBUNTU"
-	UBUNTU64           GuestOsEnum = "UBUNTU_64"
-	UNIXWARE7          GuestOsEnum = "UNIXWARE_7"
-	VMKERNEL           GuestOsEnum = "VMKERNEL"
-	VMKERNEL5          GuestOsEnum = "VMKERNEL_5"
-	VMKERNEL6          GuestOsEnum = "VMKERNEL_6"
-	VMKERNEL65         GuestOsEnum = "VMKERNEL_65"
-	VMWAREPHOTON64     GuestOsEnum = "VMWARE_PHOTON_64"
-	WIN2000ADVSERV     GuestOsEnum = "WIN_2000_ADV_SERV"
-	WIN2000PRO         GuestOsEnum = "WIN_2000_PRO"
-	WIN2000SERV        GuestOsEnum = "WIN_2000_SERV"
-	WIN31              GuestOsEnum = "WIN_31"
-	WIN95              GuestOsEnum = "WIN_95"
-	WIN98              GuestOsEnum = "WIN_98"
-	WINDOWS7           GuestOsEnum = "WINDOWS_7"
-	WINDOWS764         GuestOsEnum = "WINDOWS_7_64"
-	WINDOWS7SERVER64   GuestOsEnum = "WINDOWS_7_SERVER_64"
-	WINDOWS8           GuestOsEnum = "WINDOWS_8"
-	WINDOWS864         GuestOsEnum = "WINDOWS_8_64"
-	WINDOWS8SERVER64   GuestOsEnum = "WINDOWS_8_SERVER_64"
-	WINDOWS9           GuestOsEnum = "WINDOWS_9"
-	WINDOWS964         GuestOsEnum = "WINDOWS_9_64"
-	WINDOWS9SERVER64   GuestOsEnum = "WINDOWS_9_SERVER_64"
-	WINDOWSHYPERV      GuestOsEnum = "WINDOWS_HYPERV"
-	WINLONGHORN        GuestOsEnum = "WIN_LONGHORN"
-	WINLONGHORN64      GuestOsEnum = "WIN_LONGHORN_64"
-	WINME              GuestOsEnum = "WIN_ME"
-	WINNETBUSINESS     GuestOsEnum = "WIN_NET_BUSINESS"
-	WINNETDATACENTER   GuestOsEnum = "WIN_NET_DATACENTER"
-	WINNETDATACENTER64 GuestOsEnum = "WIN_NET_DATACENTER_64"
-	WINNETENTERPRISE   GuestOsEnum = "WIN_NET_ENTERPRISE"
-	WINNETENTERPRISE64 GuestOsEnum = "WIN_NET_ENTERPRISE_64"
-	WINNETSTANDARD     GuestOsEnum = "WIN_NET_STANDARD"
-	WINNETSTANDARD64   GuestOsEnum = "WIN_NET_STANDARD_64"
-	WINNETWEB          GuestOsEnum = "WIN_NET_WEB"
-	WINNT              GuestOsEnum = "WIN_NT"
-	WINVISTA           GuestOsEnum = "WIN_VISTA"
-	WINVISTA64         GuestOsEnum = "WIN_VISTA_64"
-	WINXPHOME          GuestOsEnum = "WIN_XP_HOME"
-	WINXPPRO           GuestOsEnum = "WIN_XP_PRO"
-	WINXPPRO64         GuestOsEnum = "WIN_XP_PRO_64"
+	GuestOsEnumASIANUX3           GuestOsEnum = "ASIANUX_3"
+	GuestOsEnumASIANUX364         GuestOsEnum = "ASIANUX_3_64"
+	GuestOsEnumASIANUX4           GuestOsEnum = "ASIANUX_4"
+	GuestOsEnumASIANUX464         GuestOsEnum = "ASIANUX_4_64"
+	GuestOsEnumASIANUX564         GuestOsEnum = "ASIANUX_5_64"
+	GuestOsEnumASIANUX764         GuestOsEnum = "ASIANUX_7_64"
+	GuestOsEnumCENTOS             GuestOsEnum = "CENTOS"
+	GuestOsEnumCENTOS6            GuestOsEnum = "CENTOS_6"
+	GuestOsEnumCENTOS64           GuestOsEnum = "CENTOS_64"
+	GuestOsEnumCENTOS664          GuestOsEnum = "CENTOS_6_64"
+	GuestOsEnumCENTOS7            GuestOsEnum = "CENTOS_7"
+	GuestOsEnumCENTOS764          GuestOsEnum = "CENTOS_7_64"
+	GuestOsEnumCOREOS64           GuestOsEnum = "COREOS_64"
+	GuestOsEnumDARWIN             GuestOsEnum = "DARWIN"
+	GuestOsEnumDARWIN10           GuestOsEnum = "DARWIN_10"
+	GuestOsEnumDARWIN1064         GuestOsEnum = "DARWIN_10_64"
+	GuestOsEnumDARWIN11           GuestOsEnum = "DARWIN_11"
+	GuestOsEnumDARWIN1164         GuestOsEnum = "DARWIN_11_64"
+	GuestOsEnumDARWIN1264         GuestOsEnum = "DARWIN_12_64"
+	GuestOsEnumDARWIN1364         GuestOsEnum = "DARWIN_13_64"
+	GuestOsEnumDARWIN1464         GuestOsEnum = "DARWIN_14_64"
+	GuestOsEnumDARWIN1564         GuestOsEnum = "DARWIN_15_64"
+	GuestOsEnumDARWIN1664         GuestOsEnum = "DARWIN_16_64"
+	GuestOsEnumDARWIN64           GuestOsEnum = "DARWIN_64"
+	GuestOsEnumDEBIAN10           GuestOsEnum = "DEBIAN_10"
+	GuestOsEnumDEBIAN1064         GuestOsEnum = "DEBIAN_10_64"
+	GuestOsEnumDEBIAN4            GuestOsEnum = "DEBIAN_4"
+	GuestOsEnumDEBIAN464          GuestOsEnum = "DEBIAN_4_64"
+	GuestOsEnumDEBIAN5            GuestOsEnum = "DEBIAN_5"
+	GuestOsEnumDEBIAN564          GuestOsEnum = "DEBIAN_5_64"
+	GuestOsEnumDEBIAN6            GuestOsEnum = "DEBIAN_6"
+	GuestOsEnumDEBIAN664          GuestOsEnum = "DEBIAN_6_64"
+	GuestOsEnumDEBIAN7            GuestOsEnum = "DEBIAN_7"
+	GuestOsEnumDEBIAN764          GuestOsEnum = "DEBIAN_7_64"
+	GuestOsEnumDEBIAN8            GuestOsEnum = "DEBIAN_8"
+	GuestOsEnumDEBIAN864          GuestOsEnum = "DEBIAN_8_64"
+	GuestOsEnumDEBIAN9            GuestOsEnum = "DEBIAN_9"
+	GuestOsEnumDEBIAN964          GuestOsEnum = "DEBIAN_9_64"
+	GuestOsEnumDOS                GuestOsEnum = "DOS"
+	GuestOsEnumECOMSTATION        GuestOsEnum = "ECOMSTATION"
+	GuestOsEnumECOMSTATION2       GuestOsEnum = "ECOMSTATION_2"
+	GuestOsEnumFEDORA             GuestOsEnum = "FEDORA"
+	GuestOsEnumFEDORA64           GuestOsEnum = "FEDORA_64"
+	GuestOsEnumFREEBSD            GuestOsEnum = "FREEBSD"
+	GuestOsEnumFREEBSD64          GuestOsEnum = "FREEBSD_64"
+	GuestOsEnumGENERICLINUX       GuestOsEnum = "GENERIC_LINUX"
+	GuestOsEnumMANDRAKE           GuestOsEnum = "MANDRAKE"
+	GuestOsEnumMANDRIVA           GuestOsEnum = "MANDRIVA"
+	GuestOsEnumMANDRIVA64         GuestOsEnum = "MANDRIVA_64"
+	GuestOsEnumNETWARE4           GuestOsEnum = "NETWARE_4"
+	GuestOsEnumNETWARE5           GuestOsEnum = "NETWARE_5"
+	GuestOsEnumNETWARE6           GuestOsEnum = "NETWARE_6"
+	GuestOsEnumNLD9               GuestOsEnum = "NLD_9"
+	GuestOsEnumOES                GuestOsEnum = "OES"
+	GuestOsEnumOPENSERVER5        GuestOsEnum = "OPENSERVER_5"
+	GuestOsEnumOPENSERVER6        GuestOsEnum = "OPENSERVER_6"
+	GuestOsEnumOPENSUSE           GuestOsEnum = "OPENSUSE"
+	GuestOsEnumOPENSUSE64         GuestOsEnum = "OPENSUSE_64"
+	GuestOsEnumORACLELINUX        GuestOsEnum = "ORACLE_LINUX"
+	GuestOsEnumORACLELINUX6       GuestOsEnum = "ORACLE_LINUX_6"
+	GuestOsEnumORACLELINUX64      GuestOsEnum = "ORACLE_LINUX_64"
+	GuestOsEnumORACLELINUX664     GuestOsEnum = "ORACLE_LINUX_6_64"
+	GuestOsEnumORACLELINUX7       GuestOsEnum = "ORACLE_LINUX_7"
+	GuestOsEnumORACLELINUX764     GuestOsEnum = "ORACLE_LINUX_7_64"
+	GuestOsEnumOS2                GuestOsEnum = "OS2"
+	GuestOsEnumOTHER              GuestOsEnum = "OTHER"
+	GuestOsEnumOTHER24XLINUX      GuestOsEnum = "OTHER_24X_LINUX"
+	GuestOsEnumOTHER24XLINUX64    GuestOsEnum = "OTHER_24X_LINUX_64"
+	GuestOsEnumOTHER26XLINUX      GuestOsEnum = "OTHER_26X_LINUX"
+	GuestOsEnumOTHER26XLINUX64    GuestOsEnum = "OTHER_26X_LINUX_64"
+	GuestOsEnumOTHER3XLINUX       GuestOsEnum = "OTHER_3X_LINUX"
+	GuestOsEnumOTHER3XLINUX64     GuestOsEnum = "OTHER_3X_LINUX_64"
+	GuestOsEnumOTHER64            GuestOsEnum = "OTHER_64"
+	GuestOsEnumOTHERLINUX         GuestOsEnum = "OTHER_LINUX"
+	GuestOsEnumOTHERLINUX64       GuestOsEnum = "OTHER_LINUX_64"
+	GuestOsEnumREDHAT             GuestOsEnum = "REDHAT"
+	GuestOsEnumRHEL2              GuestOsEnum = "RHEL_2"
+	GuestOsEnumRHEL3              GuestOsEnum = "RHEL_3"
+	GuestOsEnumRHEL364            GuestOsEnum = "RHEL_3_64"
+	GuestOsEnumRHEL4              GuestOsEnum = "RHEL_4"
+	GuestOsEnumRHEL464            GuestOsEnum = "RHEL_4_64"
+	GuestOsEnumRHEL5              GuestOsEnum = "RHEL_5"
+	GuestOsEnumRHEL564            GuestOsEnum = "RHEL_5_64"
+	GuestOsEnumRHEL6              GuestOsEnum = "RHEL_6"
+	GuestOsEnumRHEL664            GuestOsEnum = "RHEL_6_64"
+	GuestOsEnumRHEL7              GuestOsEnum = "RHEL_7"
+	GuestOsEnumRHEL764            GuestOsEnum = "RHEL_7_64"
+	GuestOsEnumSJDS               GuestOsEnum = "SJDS"
+	GuestOsEnumSLES               GuestOsEnum = "SLES"
+	GuestOsEnumSLES10             GuestOsEnum = "SLES_10"
+	GuestOsEnumSLES1064           GuestOsEnum = "SLES_10_64"
+	GuestOsEnumSLES11             GuestOsEnum = "SLES_11"
+	GuestOsEnumSLES1164           GuestOsEnum = "SLES_11_64"
+	GuestOsEnumSLES12             GuestOsEnum = "SLES_12"
+	GuestOsEnumSLES1264           GuestOsEnum = "SLES_12_64"
+	GuestOsEnumSLES64             GuestOsEnum = "SLES_64"
+	GuestOsEnumSOLARIS10          GuestOsEnum = "SOLARIS_10"
+	GuestOsEnumSOLARIS1064        GuestOsEnum = "SOLARIS_10_64"
+	GuestOsEnumSOLARIS1164        GuestOsEnum = "SOLARIS_11_64"
+	GuestOsEnumSOLARIS6           GuestOsEnum = "SOLARIS_6"
+	GuestOsEnumSOLARIS7           GuestOsEnum = "SOLARIS_7"
+	GuestOsEnumSOLARIS8           GuestOsEnum = "SOLARIS_8"
+	GuestOsEnumSOLARIS9           GuestOsEnum = "SOLARIS_9"
+	GuestOsEnumSUSE               GuestOsEnum = "SUSE"
+	GuestOsEnumSUSE64             GuestOsEnum = "SUSE_64"
+	GuestOsEnumTURBOLINUX         GuestOsEnum = "TURBO_LINUX"
+	GuestOsEnumTURBOLINUX64       GuestOsEnum = "TURBO_LINUX_64"
+	GuestOsEnumUBUNTU             GuestOsEnum = "UBUNTU"
+	GuestOsEnumUBUNTU64           GuestOsEnum = "UBUNTU_64"
+	GuestOsEnumUNIXWARE7          GuestOsEnum = "UNIXWARE_7"
+	GuestOsEnumVMKERNEL           GuestOsEnum = "VMKERNEL"
+	GuestOsEnumVMKERNEL5          GuestOsEnum = "VMKERNEL_5"
+	GuestOsEnumVMKERNEL6          GuestOsEnum = "VMKERNEL_6"
+	GuestOsEnumVMKERNEL65         GuestOsEnum = "VMKERNEL_65"
+	GuestOsEnumVMWAREPHOTON64     GuestOsEnum = "VMWARE_PHOTON_64"
+	GuestOsEnumWIN2000ADVSERV     GuestOsEnum = "WIN_2000_ADV_SERV"
+	GuestOsEnumWIN2000PRO         GuestOsEnum = "WIN_2000_PRO"
+	GuestOsEnumWIN2000SERV        GuestOsEnum = "WIN_2000_SERV"
+	GuestOsEnumWIN31              GuestOsEnum = "WIN_31"
+	GuestOsEnumWIN95              GuestOsEnum = "WIN_95"
+	GuestOsEnumWIN98              GuestOsEnum = "WIN_98"
+	GuestOsEnumWINDOWS7           GuestOsEnum = "WINDOWS_7"
+	GuestOsEnumWINDOWS764         GuestOsEnum = "WINDOWS_7_64"
+	GuestOsEnumWINDOWS7SERVER64   GuestOsEnum = "WINDOWS_7_SERVER_64"
+	GuestOsEnumWINDOWS8           GuestOsEnum = "WINDOWS_8"
+	GuestOsEnumWINDOWS864         GuestOsEnum = "WINDOWS_8_64"
+	GuestOsEnumWINDOWS8SERVER64   GuestOsEnum = "WINDOWS_8_SERVER_64"
+	GuestOsEnumWINDOWS9           GuestOsEnum = "WINDOWS_9"
+	GuestOsEnumWINDOWS964         GuestOsEnum = "WINDOWS_9_64"
+	GuestOsEnumWINDOWS9SERVER64   GuestOsEnum = "WINDOWS_9_SERVER_64"
+	GuestOsEnumWINDOWSHYPERV      GuestOsEnum = "WINDOWS_HYPERV"
+	GuestOsEnumWINLONGHORN        GuestOsEnum = "WIN_LONGHORN"
+	GuestOsEnumWINLONGHORN64      GuestOsEnum = "WIN_LONGHORN_64"
+	GuestOsEnumWINME              GuestOsEnum = "WIN_ME"
+	GuestOsEnumWINNETBUSINESS     GuestOsEnum = "WIN_NET_BUSINESS"
+	GuestOsEnumWINNETDATACENTER   GuestOsEnum = "WIN_NET_DATACENTER"
+	GuestOsEnumWINNETDATACENTER64 GuestOsEnum = "WIN_NET_DATACENTER_64"
+	GuestOsEnumWINNETENTERPRISE   GuestOsEnum = "WIN_NET_ENTERPRISE"
+	GuestOsEnumWINNETENTERPRISE64 GuestOsEnum = "WIN_NET_ENTERPRISE_64"
+	GuestOsEnumWINNETSTANDARD     GuestOsEnum = "WIN_NET_STANDARD"
+	GuestOsEnumWINNETSTANDARD64   GuestOsEnum = "WIN_NET_STANDARD_64"
+	GuestOsEnumWINNETWEB          GuestOsEnum = "WIN_NET_WEB"
+	GuestOsEnumWINNT              GuestOsEnum = "WIN_NT"
+	GuestOsEnumWINVISTA           GuestOsEnum = "WIN_VISTA"
+	GuestOsEnumWINVISTA64         GuestOsEnum = "WIN_VISTA_64"
+	GuestOsEnumWINXPHOME          GuestOsEnum = "WIN_XP_HOME"
+	GuestOsEnumWINXPPRO           GuestOsEnum = "WIN_XP_PRO"
+	GuestOsEnumWINXPPRO64         GuestOsEnum = "WIN_XP_PRO_64"
 )
 
 // Valid indicates whether the value is a known member of the GuestOsEnum enum.
 func (e GuestOsEnum) Valid() bool {
 	switch e {
-	case ASIANUX3:
+	case GuestOsEnumASIANUX3:
 		return true
-	case ASIANUX364:
+	case GuestOsEnumASIANUX364:
 		return true
-	case ASIANUX4:
+	case GuestOsEnumASIANUX4:
 		return true
-	case ASIANUX464:
+	case GuestOsEnumASIANUX464:
 		return true
-	case ASIANUX564:
+	case GuestOsEnumASIANUX564:
 		return true
-	case ASIANUX764:
+	case GuestOsEnumASIANUX764:
 		return true
-	case CENTOS:
+	case GuestOsEnumCENTOS:
 		return true
-	case CENTOS6:
+	case GuestOsEnumCENTOS6:
 		return true
-	case CENTOS64:
+	case GuestOsEnumCENTOS64:
 		return true
-	case CENTOS664:
+	case GuestOsEnumCENTOS664:
 		return true
-	case CENTOS7:
+	case GuestOsEnumCENTOS7:
 		return true
-	case CENTOS764:
+	case GuestOsEnumCENTOS764:
 		return true
-	case COREOS64:
+	case GuestOsEnumCOREOS64:
 		return true
-	case DARWIN:
+	case GuestOsEnumDARWIN:
 		return true
-	case DARWIN10:
+	case GuestOsEnumDARWIN10:
 		return true
-	case DARWIN1064:
+	case GuestOsEnumDARWIN1064:
 		return true
-	case DARWIN11:
+	case GuestOsEnumDARWIN11:
 		return true
-	case DARWIN1164:
+	case GuestOsEnumDARWIN1164:
 		return true
-	case DARWIN1264:
+	case GuestOsEnumDARWIN1264:
 		return true
-	case DARWIN1364:
+	case GuestOsEnumDARWIN1364:
 		return true
-	case DARWIN1464:
+	case GuestOsEnumDARWIN1464:
 		return true
-	case DARWIN1564:
+	case GuestOsEnumDARWIN1564:
 		return true
-	case DARWIN1664:
+	case GuestOsEnumDARWIN1664:
 		return true
-	case DARWIN64:
+	case GuestOsEnumDARWIN64:
 		return true
-	case DEBIAN10:
+	case GuestOsEnumDEBIAN10:
 		return true
-	case DEBIAN1064:
+	case GuestOsEnumDEBIAN1064:
 		return true
-	case DEBIAN4:
+	case GuestOsEnumDEBIAN4:
 		return true
-	case DEBIAN464:
+	case GuestOsEnumDEBIAN464:
 		return true
-	case DEBIAN5:
+	case GuestOsEnumDEBIAN5:
 		return true
-	case DEBIAN564:
+	case GuestOsEnumDEBIAN564:
 		return true
-	case DEBIAN6:
+	case GuestOsEnumDEBIAN6:
 		return true
-	case DEBIAN664:
+	case GuestOsEnumDEBIAN664:
 		return true
-	case DEBIAN7:
+	case GuestOsEnumDEBIAN7:
 		return true
-	case DEBIAN764:
+	case GuestOsEnumDEBIAN764:
 		return true
-	case DEBIAN8:
+	case GuestOsEnumDEBIAN8:
 		return true
-	case DEBIAN864:
+	case GuestOsEnumDEBIAN864:
 		return true
-	case DEBIAN9:
+	case GuestOsEnumDEBIAN9:
 		return true
-	case DEBIAN964:
+	case GuestOsEnumDEBIAN964:
 		return true
-	case DOS:
+	case GuestOsEnumDOS:
 		return true
-	case ECOMSTATION:
+	case GuestOsEnumECOMSTATION:
 		return true
-	case ECOMSTATION2:
+	case GuestOsEnumECOMSTATION2:
 		return true
-	case FEDORA:
+	case GuestOsEnumFEDORA:
 		return true
-	case FEDORA64:
+	case GuestOsEnumFEDORA64:
 		return true
-	case FREEBSD:
+	case GuestOsEnumFREEBSD:
 		return true
-	case FREEBSD64:
+	case GuestOsEnumFREEBSD64:
 		return true
-	case GENERICLINUX:
+	case GuestOsEnumGENERICLINUX:
 		return true
-	case MANDRAKE:
+	case GuestOsEnumMANDRAKE:
 		return true
-	case MANDRIVA:
+	case GuestOsEnumMANDRIVA:
 		return true
-	case MANDRIVA64:
+	case GuestOsEnumMANDRIVA64:
 		return true
-	case NETWARE4:
+	case GuestOsEnumNETWARE4:
 		return true
-	case NETWARE5:
+	case GuestOsEnumNETWARE5:
 		return true
-	case NETWARE6:
+	case GuestOsEnumNETWARE6:
 		return true
-	case NLD9:
+	case GuestOsEnumNLD9:
 		return true
-	case OES:
+	case GuestOsEnumOES:
 		return true
-	case OPENSERVER5:
+	case GuestOsEnumOPENSERVER5:
 		return true
-	case OPENSERVER6:
+	case GuestOsEnumOPENSERVER6:
 		return true
-	case OPENSUSE:
+	case GuestOsEnumOPENSUSE:
 		return true
-	case OPENSUSE64:
+	case GuestOsEnumOPENSUSE64:
 		return true
-	case ORACLELINUX:
+	case GuestOsEnumORACLELINUX:
 		return true
-	case ORACLELINUX6:
+	case GuestOsEnumORACLELINUX6:
 		return true
-	case ORACLELINUX64:
+	case GuestOsEnumORACLELINUX64:
 		return true
-	case ORACLELINUX664:
+	case GuestOsEnumORACLELINUX664:
 		return true
-	case ORACLELINUX7:
+	case GuestOsEnumORACLELINUX7:
 		return true
-	case ORACLELINUX764:
+	case GuestOsEnumORACLELINUX764:
 		return true
-	case OS2:
+	case GuestOsEnumOS2:
 		return true
-	case OTHER:
+	case GuestOsEnumOTHER:
 		return true
-	case OTHER24XLINUX:
+	case GuestOsEnumOTHER24XLINUX:
 		return true
-	case OTHER24XLINUX64:
+	case GuestOsEnumOTHER24XLINUX64:
 		return true
-	case OTHER26XLINUX:
+	case GuestOsEnumOTHER26XLINUX:
 		return true
-	case OTHER26XLINUX64:
+	case GuestOsEnumOTHER26XLINUX64:
 		return true
-	case OTHER3XLINUX:
+	case GuestOsEnumOTHER3XLINUX:
 		return true
-	case OTHER3XLINUX64:
+	case GuestOsEnumOTHER3XLINUX64:
 		return true
-	case OTHER64:
+	case GuestOsEnumOTHER64:
 		return true
-	case OTHERLINUX:
+	case GuestOsEnumOTHERLINUX:
 		return true
-	case OTHERLINUX64:
+	case GuestOsEnumOTHERLINUX64:
 		return true
-	case REDHAT:
+	case GuestOsEnumREDHAT:
 		return true
-	case RHEL2:
+	case GuestOsEnumRHEL2:
 		return true
-	case RHEL3:
+	case GuestOsEnumRHEL3:
 		return true
-	case RHEL364:
+	case GuestOsEnumRHEL364:
 		return true
-	case RHEL4:
+	case GuestOsEnumRHEL4:
 		return true
-	case RHEL464:
+	case GuestOsEnumRHEL464:
 		return true
-	case RHEL5:
+	case GuestOsEnumRHEL5:
 		return true
-	case RHEL564:
+	case GuestOsEnumRHEL564:
 		return true
-	case RHEL6:
+	case GuestOsEnumRHEL6:
 		return true
-	case RHEL664:
+	case GuestOsEnumRHEL664:
 		return true
-	case RHEL7:
+	case GuestOsEnumRHEL7:
 		return true
-	case RHEL764:
+	case GuestOsEnumRHEL764:
 		return true
-	case SJDS:
+	case GuestOsEnumSJDS:
 		return true
-	case SLES:
+	case GuestOsEnumSLES:
 		return true
-	case SLES10:
+	case GuestOsEnumSLES10:
 		return true
-	case SLES1064:
+	case GuestOsEnumSLES1064:
 		return true
-	case SLES11:
+	case GuestOsEnumSLES11:
 		return true
-	case SLES1164:
+	case GuestOsEnumSLES1164:
 		return true
-	case SLES12:
+	case GuestOsEnumSLES12:
 		return true
-	case SLES1264:
+	case GuestOsEnumSLES1264:
 		return true
-	case SLES64:
+	case GuestOsEnumSLES64:
 		return true
-	case SOLARIS10:
+	case GuestOsEnumSOLARIS10:
 		return true
-	case SOLARIS1064:
+	case GuestOsEnumSOLARIS1064:
 		return true
-	case SOLARIS1164:
+	case GuestOsEnumSOLARIS1164:
 		return true
-	case SOLARIS6:
+	case GuestOsEnumSOLARIS6:
 		return true
-	case SOLARIS7:
+	case GuestOsEnumSOLARIS7:
 		return true
-	case SOLARIS8:
+	case GuestOsEnumSOLARIS8:
 		return true
-	case SOLARIS9:
+	case GuestOsEnumSOLARIS9:
 		return true
-	case SUSE:
+	case GuestOsEnumSUSE:
 		return true
-	case SUSE64:
+	case GuestOsEnumSUSE64:
 		return true
-	case TURBOLINUX:
+	case GuestOsEnumTURBOLINUX:
 		return true
-	case TURBOLINUX64:
+	case GuestOsEnumTURBOLINUX64:
 		return true
-	case UBUNTU:
+	case GuestOsEnumUBUNTU:
 		return true
-	case UBUNTU64:
+	case GuestOsEnumUBUNTU64:
 		return true
-	case UNIXWARE7:
+	case GuestOsEnumUNIXWARE7:
 		return true
-	case VMKERNEL:
+	case GuestOsEnumVMKERNEL:
 		return true
-	case VMKERNEL5:
+	case GuestOsEnumVMKERNEL5:
 		return true
-	case VMKERNEL6:
+	case GuestOsEnumVMKERNEL6:
 		return true
-	case VMKERNEL65:
+	case GuestOsEnumVMKERNEL65:
 		return true
-	case VMWAREPHOTON64:
+	case GuestOsEnumVMWAREPHOTON64:
 		return true
-	case WIN2000ADVSERV:
+	case GuestOsEnumWIN2000ADVSERV:
 		return true
-	case WIN2000PRO:
+	case GuestOsEnumWIN2000PRO:
 		return true
-	case WIN2000SERV:
+	case GuestOsEnumWIN2000SERV:
 		return true
-	case WIN31:
+	case GuestOsEnumWIN31:
 		return true
-	case WIN95:
+	case GuestOsEnumWIN95:
 		return true
-	case WIN98:
+	case GuestOsEnumWIN98:
 		return true
-	case WINDOWS7:
+	case GuestOsEnumWINDOWS7:
 		return true
-	case WINDOWS764:
+	case GuestOsEnumWINDOWS764:
 		return true
-	case WINDOWS7SERVER64:
+	case GuestOsEnumWINDOWS7SERVER64:
 		return true
-	case WINDOWS8:
+	case GuestOsEnumWINDOWS8:
 		return true
-	case WINDOWS864:
+	case GuestOsEnumWINDOWS864:
 		return true
-	case WINDOWS8SERVER64:
+	case GuestOsEnumWINDOWS8SERVER64:
 		return true
-	case WINDOWS9:
+	case GuestOsEnumWINDOWS9:
 		return true
-	case WINDOWS964:
+	case GuestOsEnumWINDOWS964:
 		return true
-	case WINDOWS9SERVER64:
+	case GuestOsEnumWINDOWS9SERVER64:
 		return true
-	case WINDOWSHYPERV:
+	case GuestOsEnumWINDOWSHYPERV:
 		return true
-	case WINLONGHORN:
+	case GuestOsEnumWINLONGHORN:
 		return true
-	case WINLONGHORN64:
+	case GuestOsEnumWINLONGHORN64:
 		return true
-	case WINME:
+	case GuestOsEnumWINME:
 		return true
-	case WINNETBUSINESS:
+	case GuestOsEnumWINNETBUSINESS:
 		return true
-	case WINNETDATACENTER:
+	case GuestOsEnumWINNETDATACENTER:
 		return true
-	case WINNETDATACENTER64:
+	case GuestOsEnumWINNETDATACENTER64:
 		return true
-	case WINNETENTERPRISE:
+	case GuestOsEnumWINNETENTERPRISE:
 		return true
-	case WINNETENTERPRISE64:
+	case GuestOsEnumWINNETENTERPRISE64:
 		return true
-	case WINNETSTANDARD:
+	case GuestOsEnumWINNETSTANDARD:
 		return true
-	case WINNETSTANDARD64:
+	case GuestOsEnumWINNETSTANDARD64:
 		return true
-	case WINNETWEB:
+	case GuestOsEnumWINNETWEB:
 		return true
-	case WINNT:
+	case GuestOsEnumWINNT:
 		return true
-	case WINVISTA:
+	case GuestOsEnumWINVISTA:
 		return true
-	case WINVISTA64:
+	case GuestOsEnumWINVISTA64:
 		return true
-	case WINXPHOME:
+	case GuestOsEnumWINXPHOME:
 		return true
-	case WINXPPRO:
+	case GuestOsEnumWINXPPRO:
 		return true
-	case WINXPPRO64:
+	case GuestOsEnumWINXPPRO64:
 		return true
 	default:
 		return false
@@ -18053,6 +18053,465 @@ func (e UsernameGenerationPolicyEnum) Valid() bool {
 	}
 }
 
+// Defines values for VMwareVirtualMachineCreateOrderAttributesGuestOs.
+const (
+	VMwareVirtualMachineCreateOrderAttributesGuestOsASIANUX3           VMwareVirtualMachineCreateOrderAttributesGuestOs = "ASIANUX_3"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsASIANUX364         VMwareVirtualMachineCreateOrderAttributesGuestOs = "ASIANUX_3_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsASIANUX4           VMwareVirtualMachineCreateOrderAttributesGuestOs = "ASIANUX_4"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsASIANUX464         VMwareVirtualMachineCreateOrderAttributesGuestOs = "ASIANUX_4_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsASIANUX564         VMwareVirtualMachineCreateOrderAttributesGuestOs = "ASIANUX_5_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsASIANUX764         VMwareVirtualMachineCreateOrderAttributesGuestOs = "ASIANUX_7_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsCENTOS             VMwareVirtualMachineCreateOrderAttributesGuestOs = "CENTOS"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsCENTOS6            VMwareVirtualMachineCreateOrderAttributesGuestOs = "CENTOS_6"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsCENTOS64           VMwareVirtualMachineCreateOrderAttributesGuestOs = "CENTOS_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsCENTOS664          VMwareVirtualMachineCreateOrderAttributesGuestOs = "CENTOS_6_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsCENTOS7            VMwareVirtualMachineCreateOrderAttributesGuestOs = "CENTOS_7"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsCENTOS764          VMwareVirtualMachineCreateOrderAttributesGuestOs = "CENTOS_7_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsCOREOS64           VMwareVirtualMachineCreateOrderAttributesGuestOs = "COREOS_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN             VMwareVirtualMachineCreateOrderAttributesGuestOs = "DARWIN"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN10           VMwareVirtualMachineCreateOrderAttributesGuestOs = "DARWIN_10"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN1064         VMwareVirtualMachineCreateOrderAttributesGuestOs = "DARWIN_10_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN11           VMwareVirtualMachineCreateOrderAttributesGuestOs = "DARWIN_11"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN1164         VMwareVirtualMachineCreateOrderAttributesGuestOs = "DARWIN_11_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN1264         VMwareVirtualMachineCreateOrderAttributesGuestOs = "DARWIN_12_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN1364         VMwareVirtualMachineCreateOrderAttributesGuestOs = "DARWIN_13_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN1464         VMwareVirtualMachineCreateOrderAttributesGuestOs = "DARWIN_14_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN1564         VMwareVirtualMachineCreateOrderAttributesGuestOs = "DARWIN_15_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN1664         VMwareVirtualMachineCreateOrderAttributesGuestOs = "DARWIN_16_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN64           VMwareVirtualMachineCreateOrderAttributesGuestOs = "DARWIN_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN10           VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_10"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN1064         VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_10_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN4            VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_4"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN464          VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_4_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN5            VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_5"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN564          VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_5_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN6            VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_6"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN664          VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_6_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN7            VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_7"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN764          VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_7_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN8            VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_8"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN864          VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_8_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN9            VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_9"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN964          VMwareVirtualMachineCreateOrderAttributesGuestOs = "DEBIAN_9_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsDOS                VMwareVirtualMachineCreateOrderAttributesGuestOs = "DOS"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsECOMSTATION        VMwareVirtualMachineCreateOrderAttributesGuestOs = "ECOMSTATION"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsECOMSTATION2       VMwareVirtualMachineCreateOrderAttributesGuestOs = "ECOMSTATION_2"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsFEDORA             VMwareVirtualMachineCreateOrderAttributesGuestOs = "FEDORA"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsFEDORA64           VMwareVirtualMachineCreateOrderAttributesGuestOs = "FEDORA_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsFREEBSD            VMwareVirtualMachineCreateOrderAttributesGuestOs = "FREEBSD"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsFREEBSD64          VMwareVirtualMachineCreateOrderAttributesGuestOs = "FREEBSD_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsGENERICLINUX       VMwareVirtualMachineCreateOrderAttributesGuestOs = "GENERIC_LINUX"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsLessThannil        VMwareVirtualMachineCreateOrderAttributesGuestOs = "<nil>"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsMANDRAKE           VMwareVirtualMachineCreateOrderAttributesGuestOs = "MANDRAKE"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsMANDRIVA           VMwareVirtualMachineCreateOrderAttributesGuestOs = "MANDRIVA"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsMANDRIVA64         VMwareVirtualMachineCreateOrderAttributesGuestOs = "MANDRIVA_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsNETWARE4           VMwareVirtualMachineCreateOrderAttributesGuestOs = "NETWARE_4"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsNETWARE5           VMwareVirtualMachineCreateOrderAttributesGuestOs = "NETWARE_5"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsNETWARE6           VMwareVirtualMachineCreateOrderAttributesGuestOs = "NETWARE_6"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsNLD9               VMwareVirtualMachineCreateOrderAttributesGuestOs = "NLD_9"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsOES                VMwareVirtualMachineCreateOrderAttributesGuestOs = "OES"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsOPENSERVER5        VMwareVirtualMachineCreateOrderAttributesGuestOs = "OPENSERVER_5"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsOPENSERVER6        VMwareVirtualMachineCreateOrderAttributesGuestOs = "OPENSERVER_6"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsOPENSUSE           VMwareVirtualMachineCreateOrderAttributesGuestOs = "OPENSUSE"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsOPENSUSE64         VMwareVirtualMachineCreateOrderAttributesGuestOs = "OPENSUSE_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsORACLELINUX        VMwareVirtualMachineCreateOrderAttributesGuestOs = "ORACLE_LINUX"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsORACLELINUX6       VMwareVirtualMachineCreateOrderAttributesGuestOs = "ORACLE_LINUX_6"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsORACLELINUX64      VMwareVirtualMachineCreateOrderAttributesGuestOs = "ORACLE_LINUX_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsORACLELINUX664     VMwareVirtualMachineCreateOrderAttributesGuestOs = "ORACLE_LINUX_6_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsORACLELINUX7       VMwareVirtualMachineCreateOrderAttributesGuestOs = "ORACLE_LINUX_7"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsORACLELINUX764     VMwareVirtualMachineCreateOrderAttributesGuestOs = "ORACLE_LINUX_7_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsOS2                VMwareVirtualMachineCreateOrderAttributesGuestOs = "OS2"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsOTHER              VMwareVirtualMachineCreateOrderAttributesGuestOs = "OTHER"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsOTHER24XLINUX      VMwareVirtualMachineCreateOrderAttributesGuestOs = "OTHER_24X_LINUX"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsOTHER24XLINUX64    VMwareVirtualMachineCreateOrderAttributesGuestOs = "OTHER_24X_LINUX_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsOTHER26XLINUX      VMwareVirtualMachineCreateOrderAttributesGuestOs = "OTHER_26X_LINUX"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsOTHER26XLINUX64    VMwareVirtualMachineCreateOrderAttributesGuestOs = "OTHER_26X_LINUX_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsOTHER3XLINUX       VMwareVirtualMachineCreateOrderAttributesGuestOs = "OTHER_3X_LINUX"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsOTHER3XLINUX64     VMwareVirtualMachineCreateOrderAttributesGuestOs = "OTHER_3X_LINUX_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsOTHER64            VMwareVirtualMachineCreateOrderAttributesGuestOs = "OTHER_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsOTHERLINUX         VMwareVirtualMachineCreateOrderAttributesGuestOs = "OTHER_LINUX"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsOTHERLINUX64       VMwareVirtualMachineCreateOrderAttributesGuestOs = "OTHER_LINUX_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsREDHAT             VMwareVirtualMachineCreateOrderAttributesGuestOs = "REDHAT"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL2              VMwareVirtualMachineCreateOrderAttributesGuestOs = "RHEL_2"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL3              VMwareVirtualMachineCreateOrderAttributesGuestOs = "RHEL_3"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL364            VMwareVirtualMachineCreateOrderAttributesGuestOs = "RHEL_3_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL4              VMwareVirtualMachineCreateOrderAttributesGuestOs = "RHEL_4"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL464            VMwareVirtualMachineCreateOrderAttributesGuestOs = "RHEL_4_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL5              VMwareVirtualMachineCreateOrderAttributesGuestOs = "RHEL_5"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL564            VMwareVirtualMachineCreateOrderAttributesGuestOs = "RHEL_5_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL6              VMwareVirtualMachineCreateOrderAttributesGuestOs = "RHEL_6"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL664            VMwareVirtualMachineCreateOrderAttributesGuestOs = "RHEL_6_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL7              VMwareVirtualMachineCreateOrderAttributesGuestOs = "RHEL_7"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL764            VMwareVirtualMachineCreateOrderAttributesGuestOs = "RHEL_7_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsSJDS               VMwareVirtualMachineCreateOrderAttributesGuestOs = "SJDS"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsSLES               VMwareVirtualMachineCreateOrderAttributesGuestOs = "SLES"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsSLES10             VMwareVirtualMachineCreateOrderAttributesGuestOs = "SLES_10"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsSLES1064           VMwareVirtualMachineCreateOrderAttributesGuestOs = "SLES_10_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsSLES11             VMwareVirtualMachineCreateOrderAttributesGuestOs = "SLES_11"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsSLES1164           VMwareVirtualMachineCreateOrderAttributesGuestOs = "SLES_11_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsSLES12             VMwareVirtualMachineCreateOrderAttributesGuestOs = "SLES_12"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsSLES1264           VMwareVirtualMachineCreateOrderAttributesGuestOs = "SLES_12_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsSLES64             VMwareVirtualMachineCreateOrderAttributesGuestOs = "SLES_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsSOLARIS10          VMwareVirtualMachineCreateOrderAttributesGuestOs = "SOLARIS_10"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsSOLARIS1064        VMwareVirtualMachineCreateOrderAttributesGuestOs = "SOLARIS_10_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsSOLARIS1164        VMwareVirtualMachineCreateOrderAttributesGuestOs = "SOLARIS_11_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsSOLARIS6           VMwareVirtualMachineCreateOrderAttributesGuestOs = "SOLARIS_6"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsSOLARIS7           VMwareVirtualMachineCreateOrderAttributesGuestOs = "SOLARIS_7"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsSOLARIS8           VMwareVirtualMachineCreateOrderAttributesGuestOs = "SOLARIS_8"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsSOLARIS9           VMwareVirtualMachineCreateOrderAttributesGuestOs = "SOLARIS_9"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsSUSE               VMwareVirtualMachineCreateOrderAttributesGuestOs = "SUSE"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsSUSE64             VMwareVirtualMachineCreateOrderAttributesGuestOs = "SUSE_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsTURBOLINUX         VMwareVirtualMachineCreateOrderAttributesGuestOs = "TURBO_LINUX"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsTURBOLINUX64       VMwareVirtualMachineCreateOrderAttributesGuestOs = "TURBO_LINUX_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsUBUNTU             VMwareVirtualMachineCreateOrderAttributesGuestOs = "UBUNTU"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsUBUNTU64           VMwareVirtualMachineCreateOrderAttributesGuestOs = "UBUNTU_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsUNIXWARE7          VMwareVirtualMachineCreateOrderAttributesGuestOs = "UNIXWARE_7"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsVMKERNEL           VMwareVirtualMachineCreateOrderAttributesGuestOs = "VMKERNEL"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsVMKERNEL5          VMwareVirtualMachineCreateOrderAttributesGuestOs = "VMKERNEL_5"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsVMKERNEL6          VMwareVirtualMachineCreateOrderAttributesGuestOs = "VMKERNEL_6"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsVMKERNEL65         VMwareVirtualMachineCreateOrderAttributesGuestOs = "VMKERNEL_65"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsVMWAREPHOTON64     VMwareVirtualMachineCreateOrderAttributesGuestOs = "VMWARE_PHOTON_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWIN2000ADVSERV     VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_2000_ADV_SERV"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWIN2000PRO         VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_2000_PRO"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWIN2000SERV        VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_2000_SERV"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWIN31              VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_31"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWIN95              VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_95"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWIN98              VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_98"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS7           VMwareVirtualMachineCreateOrderAttributesGuestOs = "WINDOWS_7"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS764         VMwareVirtualMachineCreateOrderAttributesGuestOs = "WINDOWS_7_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS7SERVER64   VMwareVirtualMachineCreateOrderAttributesGuestOs = "WINDOWS_7_SERVER_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS8           VMwareVirtualMachineCreateOrderAttributesGuestOs = "WINDOWS_8"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS864         VMwareVirtualMachineCreateOrderAttributesGuestOs = "WINDOWS_8_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS8SERVER64   VMwareVirtualMachineCreateOrderAttributesGuestOs = "WINDOWS_8_SERVER_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS9           VMwareVirtualMachineCreateOrderAttributesGuestOs = "WINDOWS_9"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS964         VMwareVirtualMachineCreateOrderAttributesGuestOs = "WINDOWS_9_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS9SERVER64   VMwareVirtualMachineCreateOrderAttributesGuestOs = "WINDOWS_9_SERVER_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWSHYPERV      VMwareVirtualMachineCreateOrderAttributesGuestOs = "WINDOWS_HYPERV"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINLONGHORN        VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_LONGHORN"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINLONGHORN64      VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_LONGHORN_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINME              VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_ME"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINNETBUSINESS     VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_NET_BUSINESS"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINNETDATACENTER   VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_NET_DATACENTER"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINNETDATACENTER64 VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_NET_DATACENTER_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINNETENTERPRISE   VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_NET_ENTERPRISE"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINNETENTERPRISE64 VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_NET_ENTERPRISE_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINNETSTANDARD     VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_NET_STANDARD"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINNETSTANDARD64   VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_NET_STANDARD_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINNETWEB          VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_NET_WEB"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINNT              VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_NT"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINVISTA           VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_VISTA"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINVISTA64         VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_VISTA_64"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINXPHOME          VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_XP_HOME"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINXPPRO           VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_XP_PRO"
+	VMwareVirtualMachineCreateOrderAttributesGuestOsWINXPPRO64         VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_XP_PRO_64"
+)
+
+// Valid indicates whether the value is a known member of the VMwareVirtualMachineCreateOrderAttributesGuestOs enum.
+func (e VMwareVirtualMachineCreateOrderAttributesGuestOs) Valid() bool {
+	switch e {
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsASIANUX3:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsASIANUX364:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsASIANUX4:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsASIANUX464:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsASIANUX564:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsASIANUX764:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsCENTOS:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsCENTOS6:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsCENTOS64:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsCENTOS664:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsCENTOS7:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsCENTOS764:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsCOREOS64:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN10:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN1064:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN11:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN1164:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN1264:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN1364:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN1464:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN1564:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN1664:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsDARWIN64:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN10:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN1064:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN4:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN464:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN5:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN564:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN6:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN664:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN7:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN764:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN8:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN864:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN9:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsDEBIAN964:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsDOS:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsECOMSTATION:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsECOMSTATION2:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsFEDORA:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsFEDORA64:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsFREEBSD:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsFREEBSD64:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsGENERICLINUX:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsLessThannil:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsMANDRAKE:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsMANDRIVA:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsMANDRIVA64:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsNETWARE4:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsNETWARE5:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsNETWARE6:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsNLD9:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsOES:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsOPENSERVER5:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsOPENSERVER6:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsOPENSUSE:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsOPENSUSE64:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsORACLELINUX:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsORACLELINUX6:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsORACLELINUX64:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsORACLELINUX664:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsORACLELINUX7:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsORACLELINUX764:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsOS2:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsOTHER:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsOTHER24XLINUX:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsOTHER24XLINUX64:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsOTHER26XLINUX:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsOTHER26XLINUX64:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsOTHER3XLINUX:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsOTHER3XLINUX64:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsOTHER64:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsOTHERLINUX:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsOTHERLINUX64:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsREDHAT:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL2:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL3:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL364:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL4:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL464:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL5:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL564:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL6:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL664:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL7:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsRHEL764:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsSJDS:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsSLES:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsSLES10:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsSLES1064:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsSLES11:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsSLES1164:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsSLES12:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsSLES1264:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsSLES64:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsSOLARIS10:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsSOLARIS1064:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsSOLARIS1164:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsSOLARIS6:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsSOLARIS7:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsSOLARIS8:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsSOLARIS9:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsSUSE:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsSUSE64:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsTURBOLINUX:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsTURBOLINUX64:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsUBUNTU:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsUBUNTU64:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsUNIXWARE7:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsVMKERNEL:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsVMKERNEL5:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsVMKERNEL6:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsVMKERNEL65:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsVMWAREPHOTON64:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWIN2000ADVSERV:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWIN2000PRO:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWIN2000SERV:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWIN31:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWIN95:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWIN98:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS7:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS764:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS7SERVER64:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS8:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS864:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS8SERVER64:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS9:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS964:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWS9SERVER64:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINDOWSHYPERV:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINLONGHORN:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINLONGHORN64:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINME:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINNETBUSINESS:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINNETDATACENTER:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINNETDATACENTER64:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINNETENTERPRISE:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINNETENTERPRISE64:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINNETSTANDARD:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINNETSTANDARD64:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINNETWEB:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINNT:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINVISTA:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINVISTA64:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINXPHOME:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINXPPRO:
+		return true
+	case VMwareVirtualMachineCreateOrderAttributesGuestOsWINXPPRO64:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ValidationDecisionEnum.
 const (
 	ValidationDecisionEnumApproved ValidationDecisionEnum = "approved"
@@ -20575,6 +21034,13 @@ type AzureResourceGroup struct {
 // AzureResourceGroupFieldEnum defines model for AzureResourceGroupFieldEnum.
 type AzureResourceGroupFieldEnum string
 
+// AzureSQLServerCreateOrderAttributes defines model for AzureSQLServerCreateOrderAttributes.
+type AzureSQLServerCreateOrderAttributes struct {
+	Description *string `json:"description,omitempty"`
+	Location    *string `json:"location,omitempty"`
+	Name        string  `json:"name"`
+}
+
 // AzureSize defines model for AzureSize.
 type AzureSize struct {
 	MaxDataDiskCount     int                 `json:"max_data_disk_count"`
@@ -20791,6 +21257,15 @@ type AzureVirtualMachine struct {
 	UserData *string             `json:"user_data,omitempty"`
 	Username *string             `json:"username,omitempty"`
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// AzureVirtualMachineCreateOrderAttributes defines model for AzureVirtualMachineCreateOrderAttributes.
+type AzureVirtualMachineCreateOrderAttributes struct {
+	Description *string `json:"description,omitempty"`
+	Image       string  `json:"image"`
+	Location    *string `json:"location,omitempty"`
+	Name        string  `json:"name"`
+	Size        string  `json:"size"`
 }
 
 // AzureVirtualMachineFieldEnum defines model for AzureVirtualMachineFieldEnum.
@@ -28237,6 +28712,18 @@ type MarketplaceCustomerStats struct {
 	Uuid *string `json:"uuid,omitempty"`
 }
 
+// MarketplaceOpenPortalCreateOrderAttributes defines model for MarketplaceOpenPortalCreateOrderAttributes.
+type MarketplaceOpenPortalCreateOrderAttributes struct {
+	Description *string `json:"description,omitempty"`
+	Name        string  `json:"name"`
+}
+
+// MarketplaceOpenPortalRemoteCreateOrderAttributes defines model for MarketplaceOpenPortalRemoteCreateOrderAttributes.
+type MarketplaceOpenPortalRemoteCreateOrderAttributes struct {
+	Description *string `json:"description,omitempty"`
+	Name        string  `json:"name"`
+}
+
 // MarketplaceProviderCustomer defines model for MarketplaceProviderCustomer.
 type MarketplaceProviderCustomer struct {
 	Abbreviation         *string              `json:"abbreviation,omitempty"`
@@ -31567,6 +32054,15 @@ type OpenStackCreateFloatingIPRequest_IpAddress struct {
 	union json.RawMessage
 }
 
+// OpenStackCreateInstancePortRequest defines model for OpenStackCreateInstancePortRequest.
+type OpenStackCreateInstancePortRequest struct {
+	FixedIps *[]OpenStackFixedIpRequest `json:"fixed_ips,omitempty"`
+	Port     *string                    `json:"port,omitempty"`
+
+	// Subnet Subnet to which this port belongs
+	Subnet *string `json:"subnet,omitempty"`
+}
+
 // OpenStackCreatePortRequest defines model for OpenStackCreatePortRequest.
 type OpenStackCreatePortRequest struct {
 	FixedIps *[]OpenStackFixedIpRequest `json:"fixed_ips,omitempty"`
@@ -31598,6 +32094,12 @@ type OpenStackCredentialsRequest struct {
 	UserDomainName *string `json:"user_domain_name,omitempty"`
 	Username       string  `json:"username"`
 	VerifySsl      *bool   `json:"verify_ssl,omitempty"`
+}
+
+// OpenStackDataVolumeRequest defines model for OpenStackDataVolumeRequest.
+type OpenStackDataVolumeRequest struct {
+	Size       int     `json:"size"`
+	VolumeType *string `json:"volume_type,omitempty"`
 }
 
 // OpenStackFixedIp defines model for OpenStackFixedIp.
@@ -31906,6 +32408,54 @@ type OpenStackInstanceAvailabilityZone struct {
 	Settings  *string             `json:"settings,omitempty"`
 	Url       *string             `json:"url,omitempty"`
 	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// OpenStackInstanceCreateOrderAttributes defines model for OpenStackInstanceCreateOrderAttributes.
+type OpenStackInstanceCreateOrderAttributes struct {
+	// AvailabilityZone Availability zone where this instance is located
+	AvailabilityZone *string `json:"availability_zone,omitempty"`
+
+	// ConnectDirectlyToExternalNetwork If True, instance will be connected directly to external network
+	ConnectDirectlyToExternalNetwork *bool `json:"connect_directly_to_external_network,omitempty"`
+
+	// DataVolumeSize Size of the data volume in MiB. Minimum size is 1024 MiB (1 GiB)
+	DataVolumeSize *int `json:"data_volume_size,omitempty"`
+
+	// DataVolumeType Volume type for the data volume
+	DataVolumeType *string `json:"data_volume_type,omitempty"`
+
+	// DataVolumes Additional data volumes to attach to the instance
+	DataVolumes *[]OpenStackDataVolumeRequest `json:"data_volumes,omitempty"`
+	Description *string                       `json:"description,omitempty"`
+
+	// Flavor The flavor to use for the instance
+	Flavor *string `json:"flavor,omitempty"`
+
+	// FloatingIps Floating IPs to assign to the instance
+	FloatingIps *[]OpenStackCreateFloatingIPRequest `json:"floating_ips,omitempty"`
+
+	// Image The OS image to use for the instance
+	Image *string `json:"image,omitempty"`
+	Name  string  `json:"name"`
+
+	// Ports Network ports to attach to the instance
+	Ports *[]OpenStackCreateInstancePortRequest `json:"ports,omitempty"`
+
+	// SecurityGroups List of security groups to apply to the instance
+	SecurityGroups *[]OpenStackSecurityGroupHyperlinkRequest `json:"security_groups,omitempty"`
+
+	// ServerGroup Server group for instance scheduling policy
+	ServerGroup  *OpenStackServerGroupHyperlinkRequest `json:"server_group,omitempty"`
+	SshPublicKey *string                               `json:"ssh_public_key,omitempty"`
+
+	// SystemVolumeSize Size of the system volume in MiB. Minimum size is 1024 MiB (1 GiB)
+	SystemVolumeSize *int `json:"system_volume_size,omitempty"`
+
+	// SystemVolumeType Volume type for the system volume
+	SystemVolumeType *string `json:"system_volume_type,omitempty"`
+
+	// UserData Additional data that will be added to instance on provisioning
+	UserData *string `json:"user_data,omitempty"`
 }
 
 // OpenStackInstanceFieldEnum defines model for OpenStackInstanceFieldEnum.
@@ -32593,6 +33143,11 @@ type OpenStackServerGroup_Policy struct {
 // OpenStackServerGroupFieldEnum defines model for OpenStackServerGroupFieldEnum.
 type OpenStackServerGroupFieldEnum string
 
+// OpenStackServerGroupHyperlinkRequest defines model for OpenStackServerGroupHyperlinkRequest.
+type OpenStackServerGroupHyperlinkRequest struct {
+	Url string `json:"url"`
+}
+
 // OpenStackServerGroupRequest defines model for OpenStackServerGroupRequest.
 type OpenStackServerGroupRequest struct {
 	Description *string `json:"description,omitempty"`
@@ -33003,6 +33558,19 @@ type OpenStackTenantChangePasswordRequest struct {
 	UserPassword string `json:"user_password"`
 }
 
+// OpenStackTenantCreateOrderAttributes defines model for OpenStackTenantCreateOrderAttributes.
+type OpenStackTenantCreateOrderAttributes struct {
+	// AvailabilityZone Optional availability group. Will be used for all instances provisioned in this tenant
+	AvailabilityZone            *string                                `json:"availability_zone,omitempty"`
+	Description                 *string                                `json:"description,omitempty"`
+	Name                        string                                 `json:"name"`
+	SecurityGroups              *[]OpenStackTenantSecurityGroupRequest `json:"security_groups,omitempty"`
+	SkipConnectionExtnet        *bool                                  `json:"skip_connection_extnet,omitempty"`
+	SkipCreationOfDefaultRouter *bool                                  `json:"skip_creation_of_default_router,omitempty"`
+	SkipCreationOfDefaultSubnet *bool                                  `json:"skip_creation_of_default_subnet,omitempty"`
+	SubnetCidr                  *string                                `json:"subnet_cidr,omitempty"`
+}
+
 // OpenStackTenantFieldEnum defines model for OpenStackTenantFieldEnum.
 type OpenStackTenantFieldEnum string
 
@@ -33140,6 +33708,23 @@ type OpenStackVolumeAvailabilityZone struct {
 	Settings  *string             `json:"settings,omitempty"`
 	Url       *string             `json:"url,omitempty"`
 	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// OpenStackVolumeCreateOrderAttributes defines model for OpenStackVolumeCreateOrderAttributes.
+type OpenStackVolumeCreateOrderAttributes struct {
+	// AvailabilityZone Availability zone where this volume is located
+	AvailabilityZone *string `json:"availability_zone,omitempty"`
+	Description      *string `json:"description,omitempty"`
+
+	// Image Image that this volume was created from, if any
+	Image *string `json:"image,omitempty"`
+	Name  string  `json:"name"`
+
+	// Size Size in MiB
+	Size *int `json:"size,omitempty"`
+
+	// Type Type of the volume (e.g. SSD, HDD)
+	Type *string `json:"type,omitempty"`
 }
 
 // OpenStackVolumeExtendRequest defines model for OpenStackVolumeExtendRequest.
@@ -41771,6 +42356,12 @@ type SlurmCommandResultRequest struct {
 	Success bool `json:"success"`
 }
 
+// SlurmInvoicesSlurmPackageCreateOrderAttributes defines model for SlurmInvoicesSlurmPackageCreateOrderAttributes.
+type SlurmInvoicesSlurmPackageCreateOrderAttributes struct {
+	Description *string `json:"description,omitempty"`
+	Name        string  `json:"name"`
+}
+
 // SlurmPeriodicUsagePolicy defines model for SlurmPeriodicUsagePolicy.
 type SlurmPeriodicUsagePolicy struct {
 	Actions string `json:"actions"`
@@ -43630,6 +44221,22 @@ type UserRoleUpdateRequest struct {
 
 // UsernameGenerationPolicyEnum defines model for UsernameGenerationPolicyEnum.
 type UsernameGenerationPolicyEnum string
+
+// VMwareVirtualMachineCreateOrderAttributes defines model for VMwareVirtualMachineCreateOrderAttributes.
+type VMwareVirtualMachineCreateOrderAttributes struct {
+	Cluster *string `json:"cluster,omitempty"`
+
+	// CoresPerSocket Number of cores per socket in a VM
+	CoresPerSocket *int                                              `json:"cores_per_socket,omitempty"`
+	Datastore      *string                                           `json:"datastore,omitempty"`
+	Description    *string                                           `json:"description,omitempty"`
+	GuestOs        *VMwareVirtualMachineCreateOrderAttributesGuestOs `json:"guest_os,omitempty"`
+	Name           string                                            `json:"name"`
+	Template       *string                                           `json:"template,omitempty"`
+}
+
+// VMwareVirtualMachineCreateOrderAttributesGuestOs defines model for VMwareVirtualMachineCreateOrderAttributes.GuestOs.
+type VMwareVirtualMachineCreateOrderAttributesGuestOs string
 
 // ValidationDecisionEnum defines model for ValidationDecisionEnum.
 type ValidationDecisionEnum string
@@ -72533,6 +73140,240 @@ func (t OpenStackSubNetRequest_GatewayIp) MarshalJSON() ([]byte, error) {
 
 func (t *OpenStackSubNetRequest_GatewayIp) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAzureVirtualMachineCreateOrderAttributes returns the union data inside the OrderCreateRequest_Attributes as a AzureVirtualMachineCreateOrderAttributes
+func (t OrderCreateRequest_Attributes) AsAzureVirtualMachineCreateOrderAttributes() (AzureVirtualMachineCreateOrderAttributes, error) {
+	var body AzureVirtualMachineCreateOrderAttributes
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAzureVirtualMachineCreateOrderAttributes overwrites any union data inside the OrderCreateRequest_Attributes as the provided AzureVirtualMachineCreateOrderAttributes
+func (t *OrderCreateRequest_Attributes) FromAzureVirtualMachineCreateOrderAttributes(v AzureVirtualMachineCreateOrderAttributes) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAzureVirtualMachineCreateOrderAttributes performs a merge with any union data inside the OrderCreateRequest_Attributes, using the provided AzureVirtualMachineCreateOrderAttributes
+func (t *OrderCreateRequest_Attributes) MergeAzureVirtualMachineCreateOrderAttributes(v AzureVirtualMachineCreateOrderAttributes) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAzureSQLServerCreateOrderAttributes returns the union data inside the OrderCreateRequest_Attributes as a AzureSQLServerCreateOrderAttributes
+func (t OrderCreateRequest_Attributes) AsAzureSQLServerCreateOrderAttributes() (AzureSQLServerCreateOrderAttributes, error) {
+	var body AzureSQLServerCreateOrderAttributes
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAzureSQLServerCreateOrderAttributes overwrites any union data inside the OrderCreateRequest_Attributes as the provided AzureSQLServerCreateOrderAttributes
+func (t *OrderCreateRequest_Attributes) FromAzureSQLServerCreateOrderAttributes(v AzureSQLServerCreateOrderAttributes) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAzureSQLServerCreateOrderAttributes performs a merge with any union data inside the OrderCreateRequest_Attributes, using the provided AzureSQLServerCreateOrderAttributes
+func (t *OrderCreateRequest_Attributes) MergeAzureSQLServerCreateOrderAttributes(v AzureSQLServerCreateOrderAttributes) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsMarketplaceOpenPortalCreateOrderAttributes returns the union data inside the OrderCreateRequest_Attributes as a MarketplaceOpenPortalCreateOrderAttributes
+func (t OrderCreateRequest_Attributes) AsMarketplaceOpenPortalCreateOrderAttributes() (MarketplaceOpenPortalCreateOrderAttributes, error) {
+	var body MarketplaceOpenPortalCreateOrderAttributes
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromMarketplaceOpenPortalCreateOrderAttributes overwrites any union data inside the OrderCreateRequest_Attributes as the provided MarketplaceOpenPortalCreateOrderAttributes
+func (t *OrderCreateRequest_Attributes) FromMarketplaceOpenPortalCreateOrderAttributes(v MarketplaceOpenPortalCreateOrderAttributes) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeMarketplaceOpenPortalCreateOrderAttributes performs a merge with any union data inside the OrderCreateRequest_Attributes, using the provided MarketplaceOpenPortalCreateOrderAttributes
+func (t *OrderCreateRequest_Attributes) MergeMarketplaceOpenPortalCreateOrderAttributes(v MarketplaceOpenPortalCreateOrderAttributes) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsMarketplaceOpenPortalRemoteCreateOrderAttributes returns the union data inside the OrderCreateRequest_Attributes as a MarketplaceOpenPortalRemoteCreateOrderAttributes
+func (t OrderCreateRequest_Attributes) AsMarketplaceOpenPortalRemoteCreateOrderAttributes() (MarketplaceOpenPortalRemoteCreateOrderAttributes, error) {
+	var body MarketplaceOpenPortalRemoteCreateOrderAttributes
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromMarketplaceOpenPortalRemoteCreateOrderAttributes overwrites any union data inside the OrderCreateRequest_Attributes as the provided MarketplaceOpenPortalRemoteCreateOrderAttributes
+func (t *OrderCreateRequest_Attributes) FromMarketplaceOpenPortalRemoteCreateOrderAttributes(v MarketplaceOpenPortalRemoteCreateOrderAttributes) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeMarketplaceOpenPortalRemoteCreateOrderAttributes performs a merge with any union data inside the OrderCreateRequest_Attributes, using the provided MarketplaceOpenPortalRemoteCreateOrderAttributes
+func (t *OrderCreateRequest_Attributes) MergeMarketplaceOpenPortalRemoteCreateOrderAttributes(v MarketplaceOpenPortalRemoteCreateOrderAttributes) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackTenantCreateOrderAttributes returns the union data inside the OrderCreateRequest_Attributes as a OpenStackTenantCreateOrderAttributes
+func (t OrderCreateRequest_Attributes) AsOpenStackTenantCreateOrderAttributes() (OpenStackTenantCreateOrderAttributes, error) {
+	var body OpenStackTenantCreateOrderAttributes
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackTenantCreateOrderAttributes overwrites any union data inside the OrderCreateRequest_Attributes as the provided OpenStackTenantCreateOrderAttributes
+func (t *OrderCreateRequest_Attributes) FromOpenStackTenantCreateOrderAttributes(v OpenStackTenantCreateOrderAttributes) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackTenantCreateOrderAttributes performs a merge with any union data inside the OrderCreateRequest_Attributes, using the provided OpenStackTenantCreateOrderAttributes
+func (t *OrderCreateRequest_Attributes) MergeOpenStackTenantCreateOrderAttributes(v OpenStackTenantCreateOrderAttributes) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackInstanceCreateOrderAttributes returns the union data inside the OrderCreateRequest_Attributes as a OpenStackInstanceCreateOrderAttributes
+func (t OrderCreateRequest_Attributes) AsOpenStackInstanceCreateOrderAttributes() (OpenStackInstanceCreateOrderAttributes, error) {
+	var body OpenStackInstanceCreateOrderAttributes
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackInstanceCreateOrderAttributes overwrites any union data inside the OrderCreateRequest_Attributes as the provided OpenStackInstanceCreateOrderAttributes
+func (t *OrderCreateRequest_Attributes) FromOpenStackInstanceCreateOrderAttributes(v OpenStackInstanceCreateOrderAttributes) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackInstanceCreateOrderAttributes performs a merge with any union data inside the OrderCreateRequest_Attributes, using the provided OpenStackInstanceCreateOrderAttributes
+func (t *OrderCreateRequest_Attributes) MergeOpenStackInstanceCreateOrderAttributes(v OpenStackInstanceCreateOrderAttributes) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackVolumeCreateOrderAttributes returns the union data inside the OrderCreateRequest_Attributes as a OpenStackVolumeCreateOrderAttributes
+func (t OrderCreateRequest_Attributes) AsOpenStackVolumeCreateOrderAttributes() (OpenStackVolumeCreateOrderAttributes, error) {
+	var body OpenStackVolumeCreateOrderAttributes
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackVolumeCreateOrderAttributes overwrites any union data inside the OrderCreateRequest_Attributes as the provided OpenStackVolumeCreateOrderAttributes
+func (t *OrderCreateRequest_Attributes) FromOpenStackVolumeCreateOrderAttributes(v OpenStackVolumeCreateOrderAttributes) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackVolumeCreateOrderAttributes performs a merge with any union data inside the OrderCreateRequest_Attributes, using the provided OpenStackVolumeCreateOrderAttributes
+func (t *OrderCreateRequest_Attributes) MergeOpenStackVolumeCreateOrderAttributes(v OpenStackVolumeCreateOrderAttributes) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsSlurmInvoicesSlurmPackageCreateOrderAttributes returns the union data inside the OrderCreateRequest_Attributes as a SlurmInvoicesSlurmPackageCreateOrderAttributes
+func (t OrderCreateRequest_Attributes) AsSlurmInvoicesSlurmPackageCreateOrderAttributes() (SlurmInvoicesSlurmPackageCreateOrderAttributes, error) {
+	var body SlurmInvoicesSlurmPackageCreateOrderAttributes
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSlurmInvoicesSlurmPackageCreateOrderAttributes overwrites any union data inside the OrderCreateRequest_Attributes as the provided SlurmInvoicesSlurmPackageCreateOrderAttributes
+func (t *OrderCreateRequest_Attributes) FromSlurmInvoicesSlurmPackageCreateOrderAttributes(v SlurmInvoicesSlurmPackageCreateOrderAttributes) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSlurmInvoicesSlurmPackageCreateOrderAttributes performs a merge with any union data inside the OrderCreateRequest_Attributes, using the provided SlurmInvoicesSlurmPackageCreateOrderAttributes
+func (t *OrderCreateRequest_Attributes) MergeSlurmInvoicesSlurmPackageCreateOrderAttributes(v SlurmInvoicesSlurmPackageCreateOrderAttributes) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsVMwareVirtualMachineCreateOrderAttributes returns the union data inside the OrderCreateRequest_Attributes as a VMwareVirtualMachineCreateOrderAttributes
+func (t OrderCreateRequest_Attributes) AsVMwareVirtualMachineCreateOrderAttributes() (VMwareVirtualMachineCreateOrderAttributes, error) {
+	var body VMwareVirtualMachineCreateOrderAttributes
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromVMwareVirtualMachineCreateOrderAttributes overwrites any union data inside the OrderCreateRequest_Attributes as the provided VMwareVirtualMachineCreateOrderAttributes
+func (t *OrderCreateRequest_Attributes) FromVMwareVirtualMachineCreateOrderAttributes(v VMwareVirtualMachineCreateOrderAttributes) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeVMwareVirtualMachineCreateOrderAttributes performs a merge with any union data inside the OrderCreateRequest_Attributes, using the provided VMwareVirtualMachineCreateOrderAttributes
+func (t *OrderCreateRequest_Attributes) MergeVMwareVirtualMachineCreateOrderAttributes(v VMwareVirtualMachineCreateOrderAttributes) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
 	return err
 }
 
