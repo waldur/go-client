@@ -791,6 +791,24 @@ func (e AuthResultStateEnum) Valid() bool {
 	}
 }
 
+// Defines values for AuthTypeEnum.
+const (
+	AuthTypeEnumPassword                AuthTypeEnum = "password"
+	AuthTypeEnumV3applicationcredential AuthTypeEnum = "v3applicationcredential"
+)
+
+// Valid indicates whether the value is a known member of the AuthTypeEnum enum.
+func (e AuthTypeEnum) Valid() bool {
+	switch e {
+	case AuthTypeEnumPassword:
+		return true
+	case AuthTypeEnumV3applicationcredential:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for AvailableChecklistsResponseChecklistTypeEnum.
 const (
 	AvailableChecklistsResponseChecklistTypeEnumAll      AvailableChecklistsResponseChecklistTypeEnum = "all"
@@ -10750,16 +10768,16 @@ func (e OpenStackInstanceFieldEnum) Valid() bool {
 
 // Defines values for OpenStackInstanceOEnum.
 const (
-	MinusStartTime OpenStackInstanceOEnum = "-start_time"
-	StartTime      OpenStackInstanceOEnum = "start_time"
+	OpenStackInstanceOEnumMinusStartTime OpenStackInstanceOEnum = "-start_time"
+	OpenStackInstanceOEnumStartTime      OpenStackInstanceOEnum = "start_time"
 )
 
 // Valid indicates whether the value is a known member of the OpenStackInstanceOEnum enum.
 func (e OpenStackInstanceOEnum) Valid() bool {
 	switch e {
-	case MinusStartTime:
+	case OpenStackInstanceOEnumMinusStartTime:
 		return true
-	case StartTime:
+	case OpenStackInstanceOEnumStartTime:
 		return true
 	default:
 		return false
@@ -20683,6 +20701,9 @@ type AuthToken struct {
 	UserUsername *string `json:"user_username,omitempty"`
 }
 
+// AuthTypeEnum defines model for AuthTypeEnum.
+type AuthTypeEnum string
+
 // AvailabilityZoneResponse defines model for AvailabilityZoneResponse.
 type AvailabilityZoneResponse struct {
 	Name  string `json:"name"`
@@ -25782,6 +25803,9 @@ type DiscoverCustomersResponse struct {
 
 // DiscoverExternalNetworksRequestRequest defines model for DiscoverExternalNetworksRequestRequest.
 type DiscoverExternalNetworksRequestRequest struct {
+	// AuthType Authentication method: password or v3applicationcredential
+	AuthType *AuthTypeEnum `json:"auth_type,omitempty"`
+
 	// AuthUrl Keystone auth URL (e.g., https://cloud.example.com:5000/v3)
 	AuthUrl string `json:"auth_url"`
 
@@ -25803,6 +25827,9 @@ type DiscoverExternalNetworksRequestRequest struct {
 
 // DiscoverFlavorsRequestRequest defines model for DiscoverFlavorsRequestRequest.
 type DiscoverFlavorsRequestRequest struct {
+	// AuthType Authentication method: password or v3applicationcredential
+	AuthType *AuthTypeEnum `json:"auth_type,omitempty"`
+
 	// AuthUrl Keystone auth URL (e.g., https://cloud.example.com:5000/v3)
 	AuthUrl string `json:"auth_url"`
 
@@ -25824,6 +25851,9 @@ type DiscoverFlavorsRequestRequest struct {
 
 // DiscoverInstanceAvailabilityZonesRequestRequest defines model for DiscoverInstanceAvailabilityZonesRequestRequest.
 type DiscoverInstanceAvailabilityZonesRequestRequest struct {
+	// AuthType Authentication method: password or v3applicationcredential
+	AuthType *AuthTypeEnum `json:"auth_type,omitempty"`
+
 	// AuthUrl Keystone auth URL (e.g., https://cloud.example.com:5000/v3)
 	AuthUrl string `json:"auth_url"`
 
@@ -25936,6 +25966,9 @@ type DiscoverRequestTypesRequestRequest struct {
 
 // DiscoverVolumeAvailabilityZonesRequestRequest defines model for DiscoverVolumeAvailabilityZonesRequestRequest.
 type DiscoverVolumeAvailabilityZonesRequestRequest struct {
+	// AuthType Authentication method: password or v3applicationcredential
+	AuthType *AuthTypeEnum `json:"auth_type,omitempty"`
+
 	// AuthUrl Keystone auth URL (e.g., https://cloud.example.com:5000/v3)
 	AuthUrl string `json:"auth_url"`
 
@@ -25957,6 +25990,9 @@ type DiscoverVolumeAvailabilityZonesRequestRequest struct {
 
 // DiscoverVolumeTypesRequestRequest defines model for DiscoverVolumeTypesRequestRequest.
 type DiscoverVolumeTypesRequestRequest struct {
+	// AuthType Authentication method: password or v3applicationcredential
+	AuthType *AuthTypeEnum `json:"auth_type,omitempty"`
+
 	// AuthUrl Keystone auth URL (e.g., https://cloud.example.com:5000/v3)
 	AuthUrl string `json:"auth_url"`
 
@@ -27445,10 +27481,11 @@ type IntegrationStatus struct {
 
 // IntegrationStatusDetails defines model for IntegrationStatusDetails.
 type IntegrationStatusDetails struct {
-	LastRequestTimestamp *time.Time `json:"last_request_timestamp,omitempty"`
-	Offering             string     `json:"offering"`
-	Status               *string    `json:"status,omitempty"`
-	Url                  *string    `json:"url,omitempty"`
+	AgentType            *AgentTypeEnum `json:"agent_type,omitempty"`
+	LastRequestTimestamp *time.Time     `json:"last_request_timestamp,omitempty"`
+	Offering             string         `json:"offering"`
+	Status               *string        `json:"status,omitempty"`
+	Url                  *string        `json:"url,omitempty"`
 }
 
 // IntegrationStatusDetailsOEnum defines model for IntegrationStatusDetailsOEnum.
@@ -30934,7 +30971,7 @@ type OfferingKeycloakGroup struct {
 	Offering     string              `json:"offering"`
 	OfferingName *string             `json:"offering_name,omitempty"`
 	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
-	Resource     *string             `json:"resource"`
+	Resource     *string             `json:"resource,omitempty"`
 	ResourceName *string             `json:"resource_name,omitempty"`
 	ResourceUuid *openapi_types.UUID `json:"resource_uuid,omitempty"`
 	Role         string              `json:"role"`
@@ -32077,6 +32114,9 @@ type OpenStackCreatePortRequest struct {
 
 // OpenStackCredentialsRequest defines model for OpenStackCredentialsRequest.
 type OpenStackCredentialsRequest struct {
+	// AuthType Authentication method: password or v3applicationcredential
+	AuthType *AuthTypeEnum `json:"auth_type,omitempty"`
+
 	// AuthUrl Keystone auth URL (e.g., https://cloud.example.com:5000/v3)
 	AuthUrl string `json:"auth_url"`
 
@@ -36819,6 +36859,9 @@ type PolicyTypeEnum string
 
 // PreviewServiceAttributesRequestRequest defines model for PreviewServiceAttributesRequestRequest.
 type PreviewServiceAttributesRequestRequest struct {
+	// AuthType Authentication method: password or v3applicationcredential
+	AuthType *AuthTypeEnum `json:"auth_type,omitempty"`
+
 	// AuthUrl Keystone auth URL (e.g., https://cloud.example.com:5000/v3)
 	AuthUrl string `json:"auth_url"`
 
@@ -37410,7 +37453,7 @@ type ProjectTemplate struct {
 	Name           string  `json:"name"`
 
 	// Offering The offering for which this template applies.
-	Offering      *string                    `json:"offering"`
+	Offering      *string                    `json:"offering,omitempty"`
 	Offerings     []string                   `json:"offerings"`
 	OfferingsData *[]ProviderOfferingDetails `json:"offerings_data,omitempty"`
 	Portal        string                     `json:"portal"`
@@ -37443,7 +37486,7 @@ type ProjectTemplateRequest struct {
 	Name           string  `json:"name"`
 
 	// Offering The offering for which this template applies.
-	Offering  *string  `json:"offering"`
+	Offering  *string  `json:"offering,omitempty"`
 	Offerings []string `json:"offerings"`
 	Portal    string   `json:"portal"`
 	Provider  string   `json:"provider"`
@@ -41163,7 +41206,7 @@ type ReviewerSuggestionStatusEnum string
 
 // RmqClientProperties defines model for RmqClientProperties.
 type RmqClientProperties struct {
-	// Platform Client platform (e.g., 'Python 3.11')
+	// Platform Client platform (e.g., 'Python 3.12')
 	Platform *string `json:"platform,omitempty"`
 
 	// Product Client product name (e.g., 'pika', 'amqp-client')
@@ -42949,11 +42992,11 @@ type SupportStats struct {
 
 // SupportUser defines model for SupportUser.
 type SupportUser struct {
-	BackendId   *string             `json:"backend_id"`
+	BackendId   *string             `json:"backend_id,omitempty"`
 	BackendName *string             `json:"backend_name,omitempty"`
 	Name        string              `json:"name"`
 	Url         *string             `json:"url,omitempty"`
-	User        *string             `json:"user"`
+	User        *string             `json:"user,omitempty"`
 	Uuid        *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
@@ -54183,6 +54226,9 @@ type MarketplaceServiceProvidersCustomerProjectsListParams struct {
 
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// UserUuid Filter projects where the given user has a role.
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
 // MarketplaceServiceProvidersCustomersListParams defines parameters for MarketplaceServiceProvidersCustomersList.
@@ -54513,6 +54559,9 @@ type MarketplaceServiceProvidersProjectsListParams struct {
 
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// UserUuid Filter projects where the given user has a role.
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
 // MarketplaceServiceProvidersUserCustomersListParams defines parameters for MarketplaceServiceProvidersUserCustomersList.
@@ -56951,7 +57000,7 @@ type OpenportalUnmanagedProjectsListParams struct {
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
-	// UserUuid Filter by user UUID.
+	// UserUuid Filter projects where the given user has a role.
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
@@ -57019,7 +57068,7 @@ type OpenportalUnmanagedProjectsCountParams struct {
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
-	// UserUuid Filter by user UUID.
+	// UserUuid Filter projects where the given user has a role.
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
@@ -60027,7 +60076,7 @@ type ProjectsListParams struct {
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
-	// UserUuid Filter by user UUID.
+	// UserUuid Filter projects where the given user has a role.
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
@@ -60095,7 +60144,7 @@ type ProjectsCountParams struct {
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
-	// UserUuid Filter by user UUID.
+	// UserUuid Filter projects where the given user has a role.
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
@@ -213710,6 +213759,22 @@ func NewMarketplaceServiceProvidersCustomerProjectsListRequest(server string, se
 
 		}
 
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid", *params.UserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -215777,6 +215842,22 @@ func NewMarketplaceServiceProvidersProjectsListRequest(server string, servicePro
 		if params.Slug != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid", *params.UserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
