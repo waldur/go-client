@@ -71,6 +71,33 @@ func (e AccessorTypeEnum) Valid() bool {
 	}
 }
 
+// Defines values for ActionTakenEnum.
+const (
+	Allow  ActionTakenEnum = "allow"
+	Block  ActionTakenEnum = "block"
+	Flag   ActionTakenEnum = "flag"
+	Redact ActionTakenEnum = "redact"
+	Warn   ActionTakenEnum = "warn"
+)
+
+// Valid indicates whether the value is a known member of the ActionTakenEnum enum.
+func (e ActionTakenEnum) Valid() bool {
+	switch e {
+	case Allow:
+		return true
+	case Block:
+		return true
+	case Flag:
+		return true
+	case Redact:
+		return true
+	case Warn:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for AdminAnnouncementFieldEnum.
 const (
 	AdminAnnouncementFieldEnumActiveFrom                      AdminAnnouncementFieldEnum = "active_from"
@@ -5153,6 +5180,7 @@ const (
 	EventMetadataResponseEventGroupsCallDocumentAdded                                EventMetadataResponseEventGroups = "call_document_added"
 	EventMetadataResponseEventGroupsCallDocumentRemoved                              EventMetadataResponseEventGroups = "call_document_removed"
 	EventMetadataResponseEventGroupsChatInjectionDetected                            EventMetadataResponseEventGroups = "chat_injection_detected"
+	EventMetadataResponseEventGroupsChatPiiDetected                                  EventMetadataResponseEventGroups = "chat_pii_detected"
 	EventMetadataResponseEventGroupsChatSessionAccessed                              EventMetadataResponseEventGroups = "chat_session_accessed"
 	EventMetadataResponseEventGroupsChatThreadAccessed                               EventMetadataResponseEventGroups = "chat_thread_accessed"
 	EventMetadataResponseEventGroupsCreateOfCreditByStaff                            EventMetadataResponseEventGroups = "create_of_credit_by_staff"
@@ -5445,6 +5473,8 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 	case EventMetadataResponseEventGroupsCallDocumentRemoved:
 		return true
 	case EventMetadataResponseEventGroupsChatInjectionDetected:
+		return true
+	case EventMetadataResponseEventGroupsChatPiiDetected:
 		return true
 	case EventMetadataResponseEventGroupsChatSessionAccessed:
 		return true
@@ -5972,6 +6002,7 @@ const (
 	EventTypesEnumCallDocumentAdded                                EventTypesEnum = "call_document_added"
 	EventTypesEnumCallDocumentRemoved                              EventTypesEnum = "call_document_removed"
 	EventTypesEnumChatInjectionDetected                            EventTypesEnum = "chat_injection_detected"
+	EventTypesEnumChatPiiDetected                                  EventTypesEnum = "chat_pii_detected"
 	EventTypesEnumChatSessionAccessed                              EventTypesEnum = "chat_session_accessed"
 	EventTypesEnumChatThreadAccessed                               EventTypesEnum = "chat_thread_accessed"
 	EventTypesEnumCreateOfCreditByStaff                            EventTypesEnum = "create_of_credit_by_staff"
@@ -6264,6 +6295,8 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumCallDocumentRemoved:
 		return true
 	case EventTypesEnumChatInjectionDetected:
+		return true
+	case EventTypesEnumChatPiiDetected:
 		return true
 	case EventTypesEnumChatSessionAccessed:
 		return true
@@ -19290,6 +19323,9 @@ type AccessorUser struct {
 // AccountNameGenerationPolicyEnum defines model for AccountNameGenerationPolicyEnum.
 type AccountNameGenerationPolicyEnum = interface{}
 
+// ActionTakenEnum defines model for ActionTakenEnum.
+type ActionTakenEnum string
+
 // ActiveQueriesStats defines model for ActiveQueriesStats.
 type ActiveQueriesStats struct {
 	// Count Number of currently active queries
@@ -22642,6 +22678,9 @@ type ChatResponse struct {
 
 	// T Tag or language for dynamic blocks.
 	T *string `json:"t,omitempty"`
+
+	// W PII detection warning message.
+	W *string `json:"w,omitempty"`
 }
 
 // ChatSession defines model for ChatSession.
@@ -29581,15 +29620,16 @@ type MergedSecretOptionsRequest struct {
 
 // Message defines model for Message.
 type Message struct {
+	ActionTaken         *ActionTakenEnum       `json:"action_taken,omitempty"`
 	Content             string                 `json:"content"`
 	Created             *time.Time             `json:"created,omitempty"`
 	InjectionCategories interface{}            `json:"injection_categories,omitempty"`
-	InjectionScore      *float64               `json:"injection_score,omitempty"`
-	InjectionSeverity   *InjectionSeverityEnum `json:"injection_severity,omitempty"`
 	IsFlagged           *bool                  `json:"is_flagged,omitempty"`
+	PiiCategories       interface{}            `json:"pii_categories,omitempty"`
 	Replaces            *openapi_types.UUID    `json:"replaces,omitempty"`
 	Role                *MessageRoleEnum       `json:"role,omitempty"`
 	SequenceIndex       *int                   `json:"sequence_index,omitempty"`
+	Severity            *InjectionSeverityEnum `json:"severity,omitempty"`
 	Thread              *openapi_types.UUID    `json:"thread,omitempty"`
 	Uuid                *openapi_types.UUID    `json:"uuid,omitempty"`
 }
