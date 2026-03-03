@@ -66327,6 +66327,9 @@ type MarketplaceSlurmPeriodicUsagePoliciesDryRunJSONRequestBody = SlurmPolicyEva
 // MarketplaceSlurmPeriodicUsagePoliciesEvaluateJSONRequestBody defines body for MarketplaceSlurmPeriodicUsagePoliciesEvaluate for application/json ContentType.
 type MarketplaceSlurmPeriodicUsagePoliciesEvaluateJSONRequestBody = SlurmPolicyEvaluateRequestRequest
 
+// MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetJSONRequestBody defines body for MarketplaceSlurmPeriodicUsagePoliciesForcePeriodReset for application/json ContentType.
+type MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetJSONRequestBody = SlurmPolicyEvaluateRequestRequest
+
 // MarketplaceSlurmPeriodicUsagePoliciesReportCommandResultJSONRequestBody defines body for MarketplaceSlurmPeriodicUsagePoliciesReportCommandResult for application/json ContentType.
 type MarketplaceSlurmPeriodicUsagePoliciesReportCommandResultJSONRequestBody = SlurmCommandResultRequest
 
@@ -81322,6 +81325,11 @@ type ClientInterface interface {
 
 	// MarketplaceSlurmPeriodicUsagePoliciesEvaluationLogsList request
 	MarketplaceSlurmPeriodicUsagePoliciesEvaluationLogsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceSlurmPeriodicUsagePoliciesEvaluationLogsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetWithBody request with any body
+	MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceSlurmPeriodicUsagePoliciesForcePeriodReset(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceSlurmPeriodicUsagePoliciesReportCommandResultWithBody request with any body
 	MarketplaceSlurmPeriodicUsagePoliciesReportCommandResultWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -104190,6 +104198,30 @@ func (c *Client) MarketplaceSlurmPeriodicUsagePoliciesEvaluate(ctx context.Conte
 
 func (c *Client) MarketplaceSlurmPeriodicUsagePoliciesEvaluationLogsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceSlurmPeriodicUsagePoliciesEvaluationLogsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceSlurmPeriodicUsagePoliciesEvaluationLogsListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSlurmPeriodicUsagePoliciesForcePeriodReset(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -220134,6 +220166,53 @@ func NewMarketplaceSlurmPeriodicUsagePoliciesEvaluationLogsListRequest(server st
 	return req, nil
 }
 
+// NewMarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetRequest calls the generic MarketplaceSlurmPeriodicUsagePoliciesForcePeriodReset builder with application/json body
+func NewMarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetRequest(server string, uuid openapi_types.UUID, body MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetRequestWithBody generates requests for MarketplaceSlurmPeriodicUsagePoliciesForcePeriodReset with any type of body
+func NewMarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-slurm-periodic-usage-policies/%s/force-period-reset/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceSlurmPeriodicUsagePoliciesReportCommandResultRequest calls the generic MarketplaceSlurmPeriodicUsagePoliciesReportCommandResult builder with application/json body
 func NewMarketplaceSlurmPeriodicUsagePoliciesReportCommandResultRequest(server string, uuid openapi_types.UUID, body MarketplaceSlurmPeriodicUsagePoliciesReportCommandResultJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -322733,6 +322812,11 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceSlurmPeriodicUsagePoliciesEvaluationLogsListWithResponse request
 	MarketplaceSlurmPeriodicUsagePoliciesEvaluationLogsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceSlurmPeriodicUsagePoliciesEvaluationLogsListParams, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesEvaluationLogsListResponse, error)
 
+	// MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetWithBodyWithResponse request with any body
+	MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetResponse, error)
+
+	MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetResponse, error)
+
 	// MarketplaceSlurmPeriodicUsagePoliciesReportCommandResultWithBodyWithResponse request with any body
 	MarketplaceSlurmPeriodicUsagePoliciesReportCommandResultWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesReportCommandResultResponse, error)
 
@@ -351442,6 +351526,28 @@ func (r MarketplaceSlurmPeriodicUsagePoliciesEvaluationLogsListResponse) Status(
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceSlurmPeriodicUsagePoliciesEvaluationLogsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SlurmPolicyEvaluateResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -390875,6 +390981,23 @@ func (c *ClientWithResponses) MarketplaceSlurmPeriodicUsagePoliciesEvaluationLog
 		return nil, err
 	}
 	return ParseMarketplaceSlurmPeriodicUsagePoliciesEvaluationLogsListResponse(rsp)
+}
+
+// MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetWithBodyWithResponse request with arbitrary body returning *MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetResponse
+func (c *ClientWithResponses) MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetResponse, error) {
+	rsp, err := c.MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetResponse, error) {
+	rsp, err := c.MarketplaceSlurmPeriodicUsagePoliciesForcePeriodReset(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetResponse(rsp)
 }
 
 // MarketplaceSlurmPeriodicUsagePoliciesReportCommandResultWithBodyWithResponse request with arbitrary body returning *MarketplaceSlurmPeriodicUsagePoliciesReportCommandResultResponse
@@ -430728,6 +430851,32 @@ func ParseMarketplaceSlurmPeriodicUsagePoliciesEvaluationLogsListResponse(rsp *h
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest []SlurmPolicyEvaluationLog
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetResponse parses an HTTP response from a MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetWithResponse call
+func ParseMarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetResponse(rsp *http.Response) (*MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSlurmPeriodicUsagePoliciesForcePeriodResetResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SlurmPolicyEvaluateResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
