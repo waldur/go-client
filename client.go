@@ -29100,6 +29100,9 @@ type MergedPluginOptions struct {
 	// NotifyAboutProviderConsumerMessages If set to True, send email notifications when providers or consumers exchange messages on pending orders.
 	NotifyAboutProviderConsumerMessages *bool `json:"notify_about_provider_consumer_messages,omitempty"`
 
+	// OfferingUserAutoDeletion If set to True, offering users will be automatically marked for deletion by the cleanup task when users lose project access. If False (default), deletion must be triggered manually by the service provider.
+	OfferingUserAutoDeletion *bool `json:"offering_user_auto_deletion,omitempty"`
+
 	// OpenstackOfferingUuidList List of UUID of OpenStack offerings where tenant can be created
 	OpenstackOfferingUuidList *[]string `json:"openstack_offering_uuid_list,omitempty"`
 
@@ -29326,6 +29329,9 @@ type MergedPluginOptionsRequest struct {
 
 	// NotifyAboutProviderConsumerMessages If set to True, send email notifications when providers or consumers exchange messages on pending orders.
 	NotifyAboutProviderConsumerMessages *bool `json:"notify_about_provider_consumer_messages,omitempty"`
+
+	// OfferingUserAutoDeletion If set to True, offering users will be automatically marked for deletion by the cleanup task when users lose project access. If False (default), deletion must be triggered manually by the service provider.
+	OfferingUserAutoDeletion *bool `json:"offering_user_auto_deletion,omitempty"`
 
 	// OpenstackOfferingUuidList List of UUID of OpenStack offerings where tenant can be created
 	OpenstackOfferingUuidList *[]string `json:"openstack_offering_uuid_list,omitempty"`
@@ -43261,6 +43267,12 @@ type TableGrowthStatsResponse struct {
 
 	// WeeklyThresholdPercent Configured weekly growth alert threshold
 	WeeklyThresholdPercent int `json:"weekly_threshold_percent"`
+}
+
+// TableGrowthTriggerResponse defines model for TableGrowthTriggerResponse.
+type TableGrowthTriggerResponse struct {
+	// Detail Status message about the triggered task
+	Detail string `json:"detail"`
 }
 
 // TableSize defines model for TableSize.
@@ -84847,6 +84859,9 @@ type ClientInterface interface {
 	// StatsTableGrowthRetrieve request
 	StatsTableGrowthRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// StatsTableGrowth request
+	StatsTableGrowth(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// SupportAttachmentsList request
 	SupportAttachmentsList(ctx context.Context, params *SupportAttachmentsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -119631,6 +119646,18 @@ func (c *Client) StatsQuery(ctx context.Context, body StatsQueryJSONRequestBody,
 
 func (c *Client) StatsTableGrowthRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewStatsTableGrowthRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) StatsTableGrowth(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewStatsTableGrowthRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -296804,6 +296831,33 @@ func NewStatsTableGrowthRetrieveRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
+// NewStatsTableGrowthRequest generates requests for StatsTableGrowth
+func NewStatsTableGrowthRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/stats/table-growth/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewSupportAttachmentsListRequest generates requests for SupportAttachmentsList
 func NewSupportAttachmentsListRequest(server string, params *SupportAttachmentsListParams) (*http.Request, error) {
 	var err error
@@ -326214,6 +326268,9 @@ type ClientWithResponsesInterface interface {
 
 	// StatsTableGrowthRetrieveWithResponse request
 	StatsTableGrowthRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*StatsTableGrowthRetrieveResponse, error)
+
+	// StatsTableGrowthWithResponse request
+	StatsTableGrowthWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*StatsTableGrowthResponse, error)
 
 	// SupportAttachmentsListWithResponse request
 	SupportAttachmentsListWithResponse(ctx context.Context, params *SupportAttachmentsListParams, reqEditors ...RequestEditorFn) (*SupportAttachmentsListResponse, error)
@@ -372265,6 +372322,28 @@ func (r StatsTableGrowthRetrieveResponse) StatusCode() int {
 	return 0
 }
 
+type StatsTableGrowthResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON202      *TableGrowthTriggerResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r StatsTableGrowthResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r StatsTableGrowthResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type SupportAttachmentsListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -402060,6 +402139,15 @@ func (c *ClientWithResponses) StatsTableGrowthRetrieveWithResponse(ctx context.C
 		return nil, err
 	}
 	return ParseStatsTableGrowthRetrieveResponse(rsp)
+}
+
+// StatsTableGrowthWithResponse request returning *StatsTableGrowthResponse
+func (c *ClientWithResponses) StatsTableGrowthWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*StatsTableGrowthResponse, error) {
+	rsp, err := c.StatsTableGrowth(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseStatsTableGrowthResponse(rsp)
 }
 
 // SupportAttachmentsListWithResponse request returning *SupportAttachmentsListResponse
@@ -452853,6 +452941,32 @@ func ParseStatsTableGrowthRetrieveResponse(rsp *http.Response) (*StatsTableGrowt
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseStatsTableGrowthResponse parses an HTTP response from a StatsTableGrowthWithResponse call
+func ParseStatsTableGrowthResponse(rsp *http.Response) (*StatsTableGrowthResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &StatsTableGrowthResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest TableGrowthTriggerResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
 
 	}
 
