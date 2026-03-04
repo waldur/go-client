@@ -31085,6 +31085,9 @@ type NestedParentSoftware struct {
 
 // NestedPartition defines model for NestedPartition.
 type NestedPartition struct {
+	// CpuArch CPU architecture of the partition (e.g., x86_64/amd/zen3)
+	CpuArch *string `json:"cpu_arch,omitempty"`
+
 	// CpuBind Default task binding policy (SLURM cpu_bind)
 	CpuBind *int `json:"cpu_bind,omitempty"`
 
@@ -31108,6 +31111,9 @@ type NestedPartition struct {
 
 	// ExclusiveUser Exclusive user access required
 	ExclusiveUser *bool `json:"exclusive_user,omitempty"`
+
+	// GpuArch GPU architecture of the partition (e.g., nvidia/cc90, amd/gfx90a)
+	GpuArch *string `json:"gpu_arch,omitempty"`
 
 	// GraceTime Preemption grace time in seconds
 	GraceTime *int `json:"grace_time,omitempty"`
@@ -31333,6 +31339,9 @@ type NestedSoftwareCatalog struct {
 
 // NestedSoftwareTarget defines model for NestedSoftwareTarget.
 type NestedSoftwareTarget struct {
+	// GpuArchitectures List of GPU architectures this target supports (e.g., ['nvidia/cc70', 'nvidia/cc90'])
+	GpuArchitectures interface{} `json:"gpu_architectures,omitempty"`
+
 	// Location Target location (CVMFS path, download URL, etc.)
 	Location *string `json:"location,omitempty"`
 
@@ -32237,6 +32246,9 @@ type OfferingOverviewUpdateRequest struct {
 
 // OfferingPartition defines model for OfferingPartition.
 type OfferingPartition struct {
+	// CpuArch CPU architecture of the partition (e.g., x86_64/amd/zen3)
+	CpuArch *string `json:"cpu_arch,omitempty"`
+
 	// CpuBind Default task binding policy (SLURM cpu_bind)
 	CpuBind *int       `json:"cpu_bind,omitempty"`
 	Created *time.Time `json:"created,omitempty"`
@@ -32261,6 +32273,9 @@ type OfferingPartition struct {
 
 	// ExclusiveUser Exclusive user access required
 	ExclusiveUser *bool `json:"exclusive_user,omitempty"`
+
+	// GpuArch GPU architecture of the partition (e.g., nvidia/cc90, amd/gfx90a)
+	GpuArch *string `json:"gpu_arch,omitempty"`
 
 	// GraceTime Preemption grace time in seconds
 	GraceTime *int `json:"grace_time,omitempty"`
@@ -32305,6 +32320,9 @@ type OfferingPartition struct {
 
 // OfferingPartitionRequest defines model for OfferingPartitionRequest.
 type OfferingPartitionRequest struct {
+	// CpuArch CPU architecture of the partition (e.g., x86_64/amd/zen3)
+	CpuArch *string `json:"cpu_arch,omitempty"`
+
 	// CpuBind Default task binding policy (SLURM cpu_bind)
 	CpuBind *int `json:"cpu_bind,omitempty"`
 
@@ -32328,6 +32346,9 @@ type OfferingPartitionRequest struct {
 
 	// ExclusiveUser Exclusive user access required
 	ExclusiveUser *bool `json:"exclusive_user,omitempty"`
+
+	// GpuArch GPU architecture of the partition (e.g., nvidia/cc90, amd/gfx90a)
+	GpuArch *string `json:"gpu_arch,omitempty"`
 
 	// GraceTime Preemption grace time in seconds
 	GraceTime *int `json:"grace_time,omitempty"`
@@ -35867,6 +35888,12 @@ type PaidRequestMultipart struct {
 
 // PartitionSummary defines model for PartitionSummary.
 type PartitionSummary struct {
+	// CpuArch CPU architecture of the partition (e.g., x86_64/amd/zen3)
+	CpuArch *string `json:"cpu_arch,omitempty"`
+
+	// GpuArch GPU architecture of the partition (e.g., nvidia/cc90, amd/gfx90a)
+	GpuArch *string `json:"gpu_arch,omitempty"`
+
 	// PartitionName Name of the SLURM partition
 	PartitionName *string `json:"partition_name,omitempty"`
 
@@ -36813,6 +36840,9 @@ type PatchedOfferingEstimatedCostPolicyRequest struct {
 
 // PatchedOfferingPartitionUpdateRequest defines model for PatchedOfferingPartitionUpdateRequest.
 type PatchedOfferingPartitionUpdateRequest struct {
+	// CpuArch CPU architecture of the partition (e.g., x86_64/amd/zen3)
+	CpuArch *string `json:"cpu_arch,omitempty"`
+
 	// CpuBind Default task binding policy (SLURM cpu_bind)
 	CpuBind *int `json:"cpu_bind,omitempty"`
 
@@ -36836,6 +36866,9 @@ type PatchedOfferingPartitionUpdateRequest struct {
 
 	// ExclusiveUser Exclusive user access required
 	ExclusiveUser *bool `json:"exclusive_user,omitempty"`
+
+	// GpuArch GPU architecture of the partition (e.g., nvidia/cc90, amd/gfx90a)
+	GpuArch *string `json:"gpu_arch,omitempty"`
 
 	// GraceTime Preemption grace time in seconds
 	GraceTime *int `json:"grace_time,omitempty"`
@@ -44514,6 +44547,9 @@ type SoftwarePackageRequest struct {
 // SoftwareTarget defines model for SoftwareTarget.
 type SoftwareTarget struct {
 	Created *time.Time `json:"created,omitempty"`
+
+	// GpuArchitectures List of GPU architectures this target supports (e.g., ['nvidia/cc70', 'nvidia/cc90'])
+	GpuArchitectures interface{} `json:"gpu_architectures,omitempty"`
 
 	// Location Target location (CVMFS path, download URL, etc.)
 	Location *string `json:"location,omitempty"`
@@ -56816,6 +56852,12 @@ type MarketplaceSoftwarePackagesListParams struct {
 	// ExtensionType Filter packages having extensions of a specific type (e.g., 'python')
 	ExtensionType *string `form:"extension_type,omitempty" json:"extension_type,omitempty"`
 
+	// GpuArch Filter packages by GPU architecture (e.g., nvidia/cc90)
+	GpuArch *string `form:"gpu_arch,omitempty" json:"gpu_arch,omitempty"`
+
+	// HasGpu Filter packages that have GPU-enabled builds
+	HasGpu *bool `form:"has_gpu,omitempty" json:"has_gpu,omitempty"`
+
 	// HasVersion Filter packages that have a specific version
 	HasVersion *string `form:"has_version,omitempty" json:"has_version,omitempty"`
 
@@ -56890,6 +56932,12 @@ type MarketplaceSoftwarePackagesCountParams struct {
 	// ExtensionType Filter packages having extensions of a specific type (e.g., 'python')
 	ExtensionType *string `form:"extension_type,omitempty" json:"extension_type,omitempty"`
 
+	// GpuArch Filter packages by GPU architecture (e.g., nvidia/cc90)
+	GpuArch *string `form:"gpu_arch,omitempty" json:"gpu_arch,omitempty"`
+
+	// HasGpu Filter packages that have GPU-enabled builds
+	HasGpu *bool `form:"has_gpu,omitempty" json:"has_gpu,omitempty"`
+
 	// HasVersion Filter packages that have a specific version
 	HasVersion *string `form:"has_version,omitempty" json:"has_version,omitempty"`
 
@@ -56937,6 +56985,12 @@ type MarketplaceSoftwareTargetsListParams struct {
 	CpuFamily            *string             `form:"cpu_family,omitempty" json:"cpu_family,omitempty"`
 	CpuMicroarchitecture *string             `form:"cpu_microarchitecture,omitempty" json:"cpu_microarchitecture,omitempty"`
 
+	// GpuArch Filter targets by GPU architecture (e.g., nvidia/cc90)
+	GpuArch *string `form:"gpu_arch,omitempty" json:"gpu_arch,omitempty"`
+
+	// HasGpu Filter targets that have GPU architectures
+	HasGpu *bool `form:"has_gpu,omitempty" json:"has_gpu,omitempty"`
+
 	// O Ordering
 	//
 	O            *[]SoftwareTargetOEnum `form:"o,omitempty" json:"o,omitempty"`
@@ -56966,6 +57020,12 @@ type MarketplaceSoftwareTargetsCountParams struct {
 	CatalogUuid          *openapi_types.UUID `form:"catalog_uuid,omitempty" json:"catalog_uuid,omitempty"`
 	CpuFamily            *string             `form:"cpu_family,omitempty" json:"cpu_family,omitempty"`
 	CpuMicroarchitecture *string             `form:"cpu_microarchitecture,omitempty" json:"cpu_microarchitecture,omitempty"`
+
+	// GpuArch Filter targets by GPU architecture (e.g., nvidia/cc90)
+	GpuArch *string `form:"gpu_arch,omitempty" json:"gpu_arch,omitempty"`
+
+	// HasGpu Filter targets that have GPU architectures
+	HasGpu *bool `form:"has_gpu,omitempty" json:"has_gpu,omitempty"`
 
 	// O Ordering
 	//
@@ -56999,6 +57059,12 @@ type MarketplaceSoftwareVersionsListParams struct {
 	CatalogUuid          *openapi_types.UUID `form:"catalog_uuid,omitempty" json:"catalog_uuid,omitempty"`
 	CpuFamily            *string             `form:"cpu_family,omitempty" json:"cpu_family,omitempty"`
 	CpuMicroarchitecture *string             `form:"cpu_microarchitecture,omitempty" json:"cpu_microarchitecture,omitempty"`
+
+	// GpuArch Filter versions by GPU architecture (e.g., nvidia/cc90)
+	GpuArch *string `form:"gpu_arch,omitempty" json:"gpu_arch,omitempty"`
+
+	// HasGpu Filter versions that have GPU-enabled builds
+	HasGpu *bool `form:"has_gpu,omitempty" json:"has_gpu,omitempty"`
 
 	// O Ordering
 	//
@@ -57041,6 +57107,12 @@ type MarketplaceSoftwareVersionsCountParams struct {
 	CatalogUuid          *openapi_types.UUID `form:"catalog_uuid,omitempty" json:"catalog_uuid,omitempty"`
 	CpuFamily            *string             `form:"cpu_family,omitempty" json:"cpu_family,omitempty"`
 	CpuMicroarchitecture *string             `form:"cpu_microarchitecture,omitempty" json:"cpu_microarchitecture,omitempty"`
+
+	// GpuArch Filter versions by GPU architecture (e.g., nvidia/cc90)
+	GpuArch *string `form:"gpu_arch,omitempty" json:"gpu_arch,omitempty"`
+
+	// HasGpu Filter versions that have GPU-enabled builds
+	HasGpu *bool `form:"has_gpu,omitempty" json:"has_gpu,omitempty"`
 
 	// O Ordering
 	//
@@ -224773,6 +224845,38 @@ func NewMarketplaceSoftwarePackagesListRequest(server string, params *Marketplac
 
 		}
 
+		if params.GpuArch != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "gpu_arch", *params.GpuArch, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasGpu != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_gpu", *params.HasGpu, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.HasVersion != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_version", *params.HasVersion, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -225161,6 +225265,38 @@ func NewMarketplaceSoftwarePackagesCountRequest(server string, params *Marketpla
 		if params.ExtensionType != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "extension_type", *params.ExtensionType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.GpuArch != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "gpu_arch", *params.GpuArch, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasGpu != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_gpu", *params.HasGpu, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -225665,6 +225801,38 @@ func NewMarketplaceSoftwareTargetsListRequest(server string, params *Marketplace
 
 		}
 
+		if params.GpuArch != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "gpu_arch", *params.GpuArch, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasGpu != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_gpu", *params.HasGpu, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.O != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
@@ -225893,6 +226061,38 @@ func NewMarketplaceSoftwareTargetsCountRequest(server string, params *Marketplac
 		if params.CpuMicroarchitecture != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "cpu_microarchitecture", *params.CpuMicroarchitecture, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.GpuArch != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "gpu_arch", *params.GpuArch, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasGpu != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_gpu", *params.HasGpu, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -226326,6 +226526,38 @@ func NewMarketplaceSoftwareVersionsListRequest(server string, params *Marketplac
 
 		}
 
+		if params.GpuArch != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "gpu_arch", *params.GpuArch, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasGpu != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_gpu", *params.HasGpu, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.O != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
@@ -226618,6 +226850,38 @@ func NewMarketplaceSoftwareVersionsCountRequest(server string, params *Marketpla
 		if params.CpuMicroarchitecture != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "cpu_microarchitecture", *params.CpuMicroarchitecture, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.GpuArch != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "gpu_arch", *params.GpuArch, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasGpu != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_gpu", *params.HasGpu, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
