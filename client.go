@@ -401,6 +401,7 @@ const (
 	AllocationFieldEnumMarketplaceCategoryUuid          AllocationFieldEnum = "marketplace_category_uuid"
 	AllocationFieldEnumMarketplaceOfferingName          AllocationFieldEnum = "marketplace_offering_name"
 	AllocationFieldEnumMarketplaceOfferingPluginOptions AllocationFieldEnum = "marketplace_offering_plugin_options"
+	AllocationFieldEnumMarketplaceOfferingType          AllocationFieldEnum = "marketplace_offering_type"
 	AllocationFieldEnumMarketplaceOfferingUuid          AllocationFieldEnum = "marketplace_offering_uuid"
 	AllocationFieldEnumMarketplacePlanUuid              AllocationFieldEnum = "marketplace_plan_uuid"
 	AllocationFieldEnumMarketplaceResourceState         AllocationFieldEnum = "marketplace_resource_state"
@@ -463,6 +464,8 @@ func (e AllocationFieldEnum) Valid() bool {
 	case AllocationFieldEnumMarketplaceOfferingName:
 		return true
 	case AllocationFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case AllocationFieldEnumMarketplaceOfferingType:
 		return true
 	case AllocationFieldEnumMarketplaceOfferingUuid:
 		return true
@@ -886,6 +889,7 @@ const (
 	AwsInstanceFieldEnumMarketplaceCategoryUuid          AwsInstanceFieldEnum = "marketplace_category_uuid"
 	AwsInstanceFieldEnumMarketplaceOfferingName          AwsInstanceFieldEnum = "marketplace_offering_name"
 	AwsInstanceFieldEnumMarketplaceOfferingPluginOptions AwsInstanceFieldEnum = "marketplace_offering_plugin_options"
+	AwsInstanceFieldEnumMarketplaceOfferingType          AwsInstanceFieldEnum = "marketplace_offering_type"
 	AwsInstanceFieldEnumMarketplaceOfferingUuid          AwsInstanceFieldEnum = "marketplace_offering_uuid"
 	AwsInstanceFieldEnumMarketplacePlanUuid              AwsInstanceFieldEnum = "marketplace_plan_uuid"
 	AwsInstanceFieldEnumMarketplaceResourceState         AwsInstanceFieldEnum = "marketplace_resource_state"
@@ -971,6 +975,8 @@ func (e AwsInstanceFieldEnum) Valid() bool {
 		return true
 	case AwsInstanceFieldEnumMarketplaceOfferingPluginOptions:
 		return true
+	case AwsInstanceFieldEnumMarketplaceOfferingType:
+		return true
 	case AwsInstanceFieldEnumMarketplaceOfferingUuid:
 		return true
 	case AwsInstanceFieldEnumMarketplacePlanUuid:
@@ -1049,6 +1055,7 @@ const (
 	AwsVolumeFieldEnumMarketplaceCategoryUuid          AwsVolumeFieldEnum = "marketplace_category_uuid"
 	AwsVolumeFieldEnumMarketplaceOfferingName          AwsVolumeFieldEnum = "marketplace_offering_name"
 	AwsVolumeFieldEnumMarketplaceOfferingPluginOptions AwsVolumeFieldEnum = "marketplace_offering_plugin_options"
+	AwsVolumeFieldEnumMarketplaceOfferingType          AwsVolumeFieldEnum = "marketplace_offering_type"
 	AwsVolumeFieldEnumMarketplaceOfferingUuid          AwsVolumeFieldEnum = "marketplace_offering_uuid"
 	AwsVolumeFieldEnumMarketplacePlanUuid              AwsVolumeFieldEnum = "marketplace_plan_uuid"
 	AwsVolumeFieldEnumMarketplaceResourceState         AwsVolumeFieldEnum = "marketplace_resource_state"
@@ -1113,6 +1120,8 @@ func (e AwsVolumeFieldEnum) Valid() bool {
 	case AwsVolumeFieldEnumMarketplaceOfferingName:
 		return true
 	case AwsVolumeFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case AwsVolumeFieldEnumMarketplaceOfferingType:
 		return true
 	case AwsVolumeFieldEnumMarketplaceOfferingUuid:
 		return true
@@ -1183,6 +1192,7 @@ const (
 	AzurePublicIPFieldEnumMarketplaceCategoryUuid          AzurePublicIPFieldEnum = "marketplace_category_uuid"
 	AzurePublicIPFieldEnumMarketplaceOfferingName          AzurePublicIPFieldEnum = "marketplace_offering_name"
 	AzurePublicIPFieldEnumMarketplaceOfferingPluginOptions AzurePublicIPFieldEnum = "marketplace_offering_plugin_options"
+	AzurePublicIPFieldEnumMarketplaceOfferingType          AzurePublicIPFieldEnum = "marketplace_offering_type"
 	AzurePublicIPFieldEnumMarketplaceOfferingUuid          AzurePublicIPFieldEnum = "marketplace_offering_uuid"
 	AzurePublicIPFieldEnumMarketplacePlanUuid              AzurePublicIPFieldEnum = "marketplace_plan_uuid"
 	AzurePublicIPFieldEnumMarketplaceResourceState         AzurePublicIPFieldEnum = "marketplace_resource_state"
@@ -1242,6 +1252,8 @@ func (e AzurePublicIPFieldEnum) Valid() bool {
 	case AzurePublicIPFieldEnumMarketplaceOfferingName:
 		return true
 	case AzurePublicIPFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case AzurePublicIPFieldEnumMarketplaceOfferingType:
 		return true
 	case AzurePublicIPFieldEnumMarketplaceOfferingUuid:
 		return true
@@ -1306,6 +1318,7 @@ const (
 	AzureResourceGroupFieldEnumMarketplaceCategoryUuid          AzureResourceGroupFieldEnum = "marketplace_category_uuid"
 	AzureResourceGroupFieldEnumMarketplaceOfferingName          AzureResourceGroupFieldEnum = "marketplace_offering_name"
 	AzureResourceGroupFieldEnumMarketplaceOfferingPluginOptions AzureResourceGroupFieldEnum = "marketplace_offering_plugin_options"
+	AzureResourceGroupFieldEnumMarketplaceOfferingType          AzureResourceGroupFieldEnum = "marketplace_offering_type"
 	AzureResourceGroupFieldEnumMarketplaceOfferingUuid          AzureResourceGroupFieldEnum = "marketplace_offering_uuid"
 	AzureResourceGroupFieldEnumMarketplacePlanUuid              AzureResourceGroupFieldEnum = "marketplace_plan_uuid"
 	AzureResourceGroupFieldEnumMarketplaceResourceState         AzureResourceGroupFieldEnum = "marketplace_resource_state"
@@ -1364,6 +1377,8 @@ func (e AzureResourceGroupFieldEnum) Valid() bool {
 	case AzureResourceGroupFieldEnumMarketplaceOfferingName:
 		return true
 	case AzureResourceGroupFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case AzureResourceGroupFieldEnumMarketplaceOfferingType:
 		return true
 	case AzureResourceGroupFieldEnumMarketplaceOfferingUuid:
 		return true
@@ -1428,6 +1443,7 @@ const (
 	AzureSqlDatabaseFieldEnumMarketplaceCategoryUuid          AzureSqlDatabaseFieldEnum = "marketplace_category_uuid"
 	AzureSqlDatabaseFieldEnumMarketplaceOfferingName          AzureSqlDatabaseFieldEnum = "marketplace_offering_name"
 	AzureSqlDatabaseFieldEnumMarketplaceOfferingPluginOptions AzureSqlDatabaseFieldEnum = "marketplace_offering_plugin_options"
+	AzureSqlDatabaseFieldEnumMarketplaceOfferingType          AzureSqlDatabaseFieldEnum = "marketplace_offering_type"
 	AzureSqlDatabaseFieldEnumMarketplaceOfferingUuid          AzureSqlDatabaseFieldEnum = "marketplace_offering_uuid"
 	AzureSqlDatabaseFieldEnumMarketplacePlanUuid              AzureSqlDatabaseFieldEnum = "marketplace_plan_uuid"
 	AzureSqlDatabaseFieldEnumMarketplaceResourceState         AzureSqlDatabaseFieldEnum = "marketplace_resource_state"
@@ -1495,6 +1511,8 @@ func (e AzureSqlDatabaseFieldEnum) Valid() bool {
 	case AzureSqlDatabaseFieldEnumMarketplaceOfferingName:
 		return true
 	case AzureSqlDatabaseFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case AzureSqlDatabaseFieldEnumMarketplaceOfferingType:
 		return true
 	case AzureSqlDatabaseFieldEnumMarketplaceOfferingUuid:
 		return true
@@ -1569,6 +1587,7 @@ const (
 	AzureSqlServerFieldEnumMarketplaceCategoryUuid          AzureSqlServerFieldEnum = "marketplace_category_uuid"
 	AzureSqlServerFieldEnumMarketplaceOfferingName          AzureSqlServerFieldEnum = "marketplace_offering_name"
 	AzureSqlServerFieldEnumMarketplaceOfferingPluginOptions AzureSqlServerFieldEnum = "marketplace_offering_plugin_options"
+	AzureSqlServerFieldEnumMarketplaceOfferingType          AzureSqlServerFieldEnum = "marketplace_offering_type"
 	AzureSqlServerFieldEnumMarketplaceOfferingUuid          AzureSqlServerFieldEnum = "marketplace_offering_uuid"
 	AzureSqlServerFieldEnumMarketplacePlanUuid              AzureSqlServerFieldEnum = "marketplace_plan_uuid"
 	AzureSqlServerFieldEnumMarketplaceResourceState         AzureSqlServerFieldEnum = "marketplace_resource_state"
@@ -1636,6 +1655,8 @@ func (e AzureSqlServerFieldEnum) Valid() bool {
 	case AzureSqlServerFieldEnumMarketplaceOfferingName:
 		return true
 	case AzureSqlServerFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case AzureSqlServerFieldEnumMarketplaceOfferingType:
 		return true
 	case AzureSqlServerFieldEnumMarketplaceOfferingUuid:
 		return true
@@ -1719,6 +1740,7 @@ const (
 	AzureVirtualMachineFieldEnumMarketplaceCategoryUuid          AzureVirtualMachineFieldEnum = "marketplace_category_uuid"
 	AzureVirtualMachineFieldEnumMarketplaceOfferingName          AzureVirtualMachineFieldEnum = "marketplace_offering_name"
 	AzureVirtualMachineFieldEnumMarketplaceOfferingPluginOptions AzureVirtualMachineFieldEnum = "marketplace_offering_plugin_options"
+	AzureVirtualMachineFieldEnumMarketplaceOfferingType          AzureVirtualMachineFieldEnum = "marketplace_offering_type"
 	AzureVirtualMachineFieldEnumMarketplaceOfferingUuid          AzureVirtualMachineFieldEnum = "marketplace_offering_uuid"
 	AzureVirtualMachineFieldEnumMarketplacePlanUuid              AzureVirtualMachineFieldEnum = "marketplace_plan_uuid"
 	AzureVirtualMachineFieldEnumMarketplaceResourceState         AzureVirtualMachineFieldEnum = "marketplace_resource_state"
@@ -1812,6 +1834,8 @@ func (e AzureVirtualMachineFieldEnum) Valid() bool {
 	case AzureVirtualMachineFieldEnumMarketplaceOfferingName:
 		return true
 	case AzureVirtualMachineFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case AzureVirtualMachineFieldEnumMarketplaceOfferingType:
 		return true
 	case AzureVirtualMachineFieldEnumMarketplaceOfferingUuid:
 		return true
@@ -4696,6 +4720,7 @@ const (
 	DigitalOceanDropletFieldEnumMarketplaceCategoryUuid          DigitalOceanDropletFieldEnum = "marketplace_category_uuid"
 	DigitalOceanDropletFieldEnumMarketplaceOfferingName          DigitalOceanDropletFieldEnum = "marketplace_offering_name"
 	DigitalOceanDropletFieldEnumMarketplaceOfferingPluginOptions DigitalOceanDropletFieldEnum = "marketplace_offering_plugin_options"
+	DigitalOceanDropletFieldEnumMarketplaceOfferingType          DigitalOceanDropletFieldEnum = "marketplace_offering_type"
 	DigitalOceanDropletFieldEnumMarketplaceOfferingUuid          DigitalOceanDropletFieldEnum = "marketplace_offering_uuid"
 	DigitalOceanDropletFieldEnumMarketplacePlanUuid              DigitalOceanDropletFieldEnum = "marketplace_plan_uuid"
 	DigitalOceanDropletFieldEnumMarketplaceResourceState         DigitalOceanDropletFieldEnum = "marketplace_resource_state"
@@ -4782,6 +4807,8 @@ func (e DigitalOceanDropletFieldEnum) Valid() bool {
 	case DigitalOceanDropletFieldEnumMarketplaceOfferingName:
 		return true
 	case DigitalOceanDropletFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case DigitalOceanDropletFieldEnumMarketplaceOfferingType:
 		return true
 	case DigitalOceanDropletFieldEnumMarketplaceOfferingUuid:
 		return true
@@ -8513,6 +8540,30 @@ func (e LOGINPAGELAYOUTEnum) Valid() bool {
 	}
 }
 
+// Defines values for LbAlgorithmEnum.
+const (
+	LEASTCONNECTIONS LbAlgorithmEnum = "LEAST_CONNECTIONS"
+	ROUNDROBIN       LbAlgorithmEnum = "ROUND_ROBIN"
+	SOURCEIP         LbAlgorithmEnum = "SOURCE_IP"
+	SOURCEIPPORT     LbAlgorithmEnum = "SOURCE_IP_PORT"
+)
+
+// Valid indicates whether the value is a known member of the LbAlgorithmEnum enum.
+func (e LbAlgorithmEnum) Valid() bool {
+	switch e {
+	case LEASTCONNECTIONS:
+		return true
+	case ROUNDROBIN:
+		return true
+	case SOURCEIP:
+		return true
+	case SOURCEIPPORT:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for LimitPeriodEnum.
 const (
 	LimitPeriodEnumAnnual    LimitPeriodEnum = "annual"
@@ -8552,6 +8603,24 @@ func (e LimitTypeEnum) Valid() bool {
 	case GrpTRESMins:
 		return true
 	case MaxTRESMins:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for LoadBalancerProtocolEnum.
+const (
+	TCP LoadBalancerProtocolEnum = "TCP"
+	UDP LoadBalancerProtocolEnum = "UDP"
+)
+
+// Valid indicates whether the value is a known member of the LoadBalancerProtocolEnum enum.
+func (e LoadBalancerProtocolEnum) Valid() bool {
+	switch e {
+	case TCP:
+		return true
+	case UDP:
 		return true
 	default:
 		return false
@@ -10237,6 +10306,7 @@ const (
 	OpenStackBackupFieldEnumMarketplaceCategoryUuid          OpenStackBackupFieldEnum = "marketplace_category_uuid"
 	OpenStackBackupFieldEnumMarketplaceOfferingName          OpenStackBackupFieldEnum = "marketplace_offering_name"
 	OpenStackBackupFieldEnumMarketplaceOfferingPluginOptions OpenStackBackupFieldEnum = "marketplace_offering_plugin_options"
+	OpenStackBackupFieldEnumMarketplaceOfferingType          OpenStackBackupFieldEnum = "marketplace_offering_type"
 	OpenStackBackupFieldEnumMarketplaceOfferingUuid          OpenStackBackupFieldEnum = "marketplace_offering_uuid"
 	OpenStackBackupFieldEnumMarketplacePlanUuid              OpenStackBackupFieldEnum = "marketplace_plan_uuid"
 	OpenStackBackupFieldEnumMarketplaceResourceState         OpenStackBackupFieldEnum = "marketplace_resource_state"
@@ -10310,6 +10380,8 @@ func (e OpenStackBackupFieldEnum) Valid() bool {
 	case OpenStackBackupFieldEnumMarketplaceOfferingName:
 		return true
 	case OpenStackBackupFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case OpenStackBackupFieldEnumMarketplaceOfferingType:
 		return true
 	case OpenStackBackupFieldEnumMarketplaceOfferingUuid:
 		return true
@@ -10452,6 +10524,7 @@ const (
 	OpenStackFloatingIPFieldEnumMarketplaceCategoryUuid          OpenStackFloatingIPFieldEnum = "marketplace_category_uuid"
 	OpenStackFloatingIPFieldEnumMarketplaceOfferingName          OpenStackFloatingIPFieldEnum = "marketplace_offering_name"
 	OpenStackFloatingIPFieldEnumMarketplaceOfferingPluginOptions OpenStackFloatingIPFieldEnum = "marketplace_offering_plugin_options"
+	OpenStackFloatingIPFieldEnumMarketplaceOfferingType          OpenStackFloatingIPFieldEnum = "marketplace_offering_type"
 	OpenStackFloatingIPFieldEnumMarketplaceOfferingUuid          OpenStackFloatingIPFieldEnum = "marketplace_offering_uuid"
 	OpenStackFloatingIPFieldEnumMarketplacePlanUuid              OpenStackFloatingIPFieldEnum = "marketplace_plan_uuid"
 	OpenStackFloatingIPFieldEnumMarketplaceResourceState         OpenStackFloatingIPFieldEnum = "marketplace_resource_state"
@@ -10528,6 +10601,8 @@ func (e OpenStackFloatingIPFieldEnum) Valid() bool {
 		return true
 	case OpenStackFloatingIPFieldEnumMarketplaceOfferingPluginOptions:
 		return true
+	case OpenStackFloatingIPFieldEnumMarketplaceOfferingType:
+		return true
 	case OpenStackFloatingIPFieldEnumMarketplaceOfferingUuid:
 		return true
 	case OpenStackFloatingIPFieldEnumMarketplacePlanUuid:
@@ -10583,6 +10658,189 @@ func (e OpenStackFloatingIPFieldEnum) Valid() bool {
 	}
 }
 
+// Defines values for OpenStackHealthMonitorFieldEnum.
+const (
+	OpenStackHealthMonitorFieldEnumAccessUrl                        OpenStackHealthMonitorFieldEnum = "access_url"
+	OpenStackHealthMonitorFieldEnumBackendId                        OpenStackHealthMonitorFieldEnum = "backend_id"
+	OpenStackHealthMonitorFieldEnumCreated                          OpenStackHealthMonitorFieldEnum = "created"
+	OpenStackHealthMonitorFieldEnumCustomer                         OpenStackHealthMonitorFieldEnum = "customer"
+	OpenStackHealthMonitorFieldEnumCustomerAbbreviation             OpenStackHealthMonitorFieldEnum = "customer_abbreviation"
+	OpenStackHealthMonitorFieldEnumCustomerName                     OpenStackHealthMonitorFieldEnum = "customer_name"
+	OpenStackHealthMonitorFieldEnumCustomerNativeName               OpenStackHealthMonitorFieldEnum = "customer_native_name"
+	OpenStackHealthMonitorFieldEnumCustomerUuid                     OpenStackHealthMonitorFieldEnum = "customer_uuid"
+	OpenStackHealthMonitorFieldEnumDelay                            OpenStackHealthMonitorFieldEnum = "delay"
+	OpenStackHealthMonitorFieldEnumDescription                      OpenStackHealthMonitorFieldEnum = "description"
+	OpenStackHealthMonitorFieldEnumErrorMessage                     OpenStackHealthMonitorFieldEnum = "error_message"
+	OpenStackHealthMonitorFieldEnumErrorTraceback                   OpenStackHealthMonitorFieldEnum = "error_traceback"
+	OpenStackHealthMonitorFieldEnumIsLimitBased                     OpenStackHealthMonitorFieldEnum = "is_limit_based"
+	OpenStackHealthMonitorFieldEnumIsUsageBased                     OpenStackHealthMonitorFieldEnum = "is_usage_based"
+	OpenStackHealthMonitorFieldEnumLoadBalancerUuid                 OpenStackHealthMonitorFieldEnum = "load_balancer_uuid"
+	OpenStackHealthMonitorFieldEnumMarketplaceCategoryName          OpenStackHealthMonitorFieldEnum = "marketplace_category_name"
+	OpenStackHealthMonitorFieldEnumMarketplaceCategoryUuid          OpenStackHealthMonitorFieldEnum = "marketplace_category_uuid"
+	OpenStackHealthMonitorFieldEnumMarketplaceOfferingName          OpenStackHealthMonitorFieldEnum = "marketplace_offering_name"
+	OpenStackHealthMonitorFieldEnumMarketplaceOfferingPluginOptions OpenStackHealthMonitorFieldEnum = "marketplace_offering_plugin_options"
+	OpenStackHealthMonitorFieldEnumMarketplaceOfferingType          OpenStackHealthMonitorFieldEnum = "marketplace_offering_type"
+	OpenStackHealthMonitorFieldEnumMarketplaceOfferingUuid          OpenStackHealthMonitorFieldEnum = "marketplace_offering_uuid"
+	OpenStackHealthMonitorFieldEnumMarketplacePlanUuid              OpenStackHealthMonitorFieldEnum = "marketplace_plan_uuid"
+	OpenStackHealthMonitorFieldEnumMarketplaceResourceState         OpenStackHealthMonitorFieldEnum = "marketplace_resource_state"
+	OpenStackHealthMonitorFieldEnumMarketplaceResourceUuid          OpenStackHealthMonitorFieldEnum = "marketplace_resource_uuid"
+	OpenStackHealthMonitorFieldEnumMaxRetries                       OpenStackHealthMonitorFieldEnum = "max_retries"
+	OpenStackHealthMonitorFieldEnumModified                         OpenStackHealthMonitorFieldEnum = "modified"
+	OpenStackHealthMonitorFieldEnumName                             OpenStackHealthMonitorFieldEnum = "name"
+	OpenStackHealthMonitorFieldEnumOperatingStatus                  OpenStackHealthMonitorFieldEnum = "operating_status"
+	OpenStackHealthMonitorFieldEnumPool                             OpenStackHealthMonitorFieldEnum = "pool"
+	OpenStackHealthMonitorFieldEnumPoolName                         OpenStackHealthMonitorFieldEnum = "pool_name"
+	OpenStackHealthMonitorFieldEnumPoolUuid                         OpenStackHealthMonitorFieldEnum = "pool_uuid"
+	OpenStackHealthMonitorFieldEnumProject                          OpenStackHealthMonitorFieldEnum = "project"
+	OpenStackHealthMonitorFieldEnumProjectName                      OpenStackHealthMonitorFieldEnum = "project_name"
+	OpenStackHealthMonitorFieldEnumProjectUuid                      OpenStackHealthMonitorFieldEnum = "project_uuid"
+	OpenStackHealthMonitorFieldEnumProvisioningStatus               OpenStackHealthMonitorFieldEnum = "provisioning_status"
+	OpenStackHealthMonitorFieldEnumResourceType                     OpenStackHealthMonitorFieldEnum = "resource_type"
+	OpenStackHealthMonitorFieldEnumServiceName                      OpenStackHealthMonitorFieldEnum = "service_name"
+	OpenStackHealthMonitorFieldEnumServiceSettings                  OpenStackHealthMonitorFieldEnum = "service_settings"
+	OpenStackHealthMonitorFieldEnumServiceSettingsErrorMessage      OpenStackHealthMonitorFieldEnum = "service_settings_error_message"
+	OpenStackHealthMonitorFieldEnumServiceSettingsState             OpenStackHealthMonitorFieldEnum = "service_settings_state"
+	OpenStackHealthMonitorFieldEnumServiceSettingsUuid              OpenStackHealthMonitorFieldEnum = "service_settings_uuid"
+	OpenStackHealthMonitorFieldEnumState                            OpenStackHealthMonitorFieldEnum = "state"
+	OpenStackHealthMonitorFieldEnumTimeout                          OpenStackHealthMonitorFieldEnum = "timeout"
+	OpenStackHealthMonitorFieldEnumType                             OpenStackHealthMonitorFieldEnum = "type"
+	OpenStackHealthMonitorFieldEnumUrl                              OpenStackHealthMonitorFieldEnum = "url"
+	OpenStackHealthMonitorFieldEnumUuid                             OpenStackHealthMonitorFieldEnum = "uuid"
+)
+
+// Valid indicates whether the value is a known member of the OpenStackHealthMonitorFieldEnum enum.
+func (e OpenStackHealthMonitorFieldEnum) Valid() bool {
+	switch e {
+	case OpenStackHealthMonitorFieldEnumAccessUrl:
+		return true
+	case OpenStackHealthMonitorFieldEnumBackendId:
+		return true
+	case OpenStackHealthMonitorFieldEnumCreated:
+		return true
+	case OpenStackHealthMonitorFieldEnumCustomer:
+		return true
+	case OpenStackHealthMonitorFieldEnumCustomerAbbreviation:
+		return true
+	case OpenStackHealthMonitorFieldEnumCustomerName:
+		return true
+	case OpenStackHealthMonitorFieldEnumCustomerNativeName:
+		return true
+	case OpenStackHealthMonitorFieldEnumCustomerUuid:
+		return true
+	case OpenStackHealthMonitorFieldEnumDelay:
+		return true
+	case OpenStackHealthMonitorFieldEnumDescription:
+		return true
+	case OpenStackHealthMonitorFieldEnumErrorMessage:
+		return true
+	case OpenStackHealthMonitorFieldEnumErrorTraceback:
+		return true
+	case OpenStackHealthMonitorFieldEnumIsLimitBased:
+		return true
+	case OpenStackHealthMonitorFieldEnumIsUsageBased:
+		return true
+	case OpenStackHealthMonitorFieldEnumLoadBalancerUuid:
+		return true
+	case OpenStackHealthMonitorFieldEnumMarketplaceCategoryName:
+		return true
+	case OpenStackHealthMonitorFieldEnumMarketplaceCategoryUuid:
+		return true
+	case OpenStackHealthMonitorFieldEnumMarketplaceOfferingName:
+		return true
+	case OpenStackHealthMonitorFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case OpenStackHealthMonitorFieldEnumMarketplaceOfferingType:
+		return true
+	case OpenStackHealthMonitorFieldEnumMarketplaceOfferingUuid:
+		return true
+	case OpenStackHealthMonitorFieldEnumMarketplacePlanUuid:
+		return true
+	case OpenStackHealthMonitorFieldEnumMarketplaceResourceState:
+		return true
+	case OpenStackHealthMonitorFieldEnumMarketplaceResourceUuid:
+		return true
+	case OpenStackHealthMonitorFieldEnumMaxRetries:
+		return true
+	case OpenStackHealthMonitorFieldEnumModified:
+		return true
+	case OpenStackHealthMonitorFieldEnumName:
+		return true
+	case OpenStackHealthMonitorFieldEnumOperatingStatus:
+		return true
+	case OpenStackHealthMonitorFieldEnumPool:
+		return true
+	case OpenStackHealthMonitorFieldEnumPoolName:
+		return true
+	case OpenStackHealthMonitorFieldEnumPoolUuid:
+		return true
+	case OpenStackHealthMonitorFieldEnumProject:
+		return true
+	case OpenStackHealthMonitorFieldEnumProjectName:
+		return true
+	case OpenStackHealthMonitorFieldEnumProjectUuid:
+		return true
+	case OpenStackHealthMonitorFieldEnumProvisioningStatus:
+		return true
+	case OpenStackHealthMonitorFieldEnumResourceType:
+		return true
+	case OpenStackHealthMonitorFieldEnumServiceName:
+		return true
+	case OpenStackHealthMonitorFieldEnumServiceSettings:
+		return true
+	case OpenStackHealthMonitorFieldEnumServiceSettingsErrorMessage:
+		return true
+	case OpenStackHealthMonitorFieldEnumServiceSettingsState:
+		return true
+	case OpenStackHealthMonitorFieldEnumServiceSettingsUuid:
+		return true
+	case OpenStackHealthMonitorFieldEnumState:
+		return true
+	case OpenStackHealthMonitorFieldEnumTimeout:
+		return true
+	case OpenStackHealthMonitorFieldEnumType:
+		return true
+	case OpenStackHealthMonitorFieldEnumUrl:
+		return true
+	case OpenStackHealthMonitorFieldEnumUuid:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for OpenStackInstanceAggregateGroupByEnum.
+const (
+	OpenStackInstanceAggregateGroupByEnumAvailabilityZone   OpenStackInstanceAggregateGroupByEnum = "availability_zone"
+	OpenStackInstanceAggregateGroupByEnumCustomer           OpenStackInstanceAggregateGroupByEnum = "customer"
+	OpenStackInstanceAggregateGroupByEnumFlavorName         OpenStackInstanceAggregateGroupByEnum = "flavor_name"
+	OpenStackInstanceAggregateGroupByEnumHypervisorHostname OpenStackInstanceAggregateGroupByEnum = "hypervisor_hostname"
+	OpenStackInstanceAggregateGroupByEnumImageName          OpenStackInstanceAggregateGroupByEnum = "image_name"
+	OpenStackInstanceAggregateGroupByEnumRuntimeState       OpenStackInstanceAggregateGroupByEnum = "runtime_state"
+	OpenStackInstanceAggregateGroupByEnumServiceSettings    OpenStackInstanceAggregateGroupByEnum = "service_settings"
+)
+
+// Valid indicates whether the value is a known member of the OpenStackInstanceAggregateGroupByEnum enum.
+func (e OpenStackInstanceAggregateGroupByEnum) Valid() bool {
+	switch e {
+	case OpenStackInstanceAggregateGroupByEnumAvailabilityZone:
+		return true
+	case OpenStackInstanceAggregateGroupByEnumCustomer:
+		return true
+	case OpenStackInstanceAggregateGroupByEnumFlavorName:
+		return true
+	case OpenStackInstanceAggregateGroupByEnumHypervisorHostname:
+		return true
+	case OpenStackInstanceAggregateGroupByEnumImageName:
+		return true
+	case OpenStackInstanceAggregateGroupByEnumRuntimeState:
+		return true
+	case OpenStackInstanceAggregateGroupByEnumServiceSettings:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for OpenStackInstanceFieldEnum.
 const (
 	OpenStackInstanceFieldEnumAccessUrl                        OpenStackInstanceFieldEnum = "access_url"
@@ -10621,6 +10879,7 @@ const (
 	OpenStackInstanceFieldEnumMarketplaceCategoryUuid          OpenStackInstanceFieldEnum = "marketplace_category_uuid"
 	OpenStackInstanceFieldEnumMarketplaceOfferingName          OpenStackInstanceFieldEnum = "marketplace_offering_name"
 	OpenStackInstanceFieldEnumMarketplaceOfferingPluginOptions OpenStackInstanceFieldEnum = "marketplace_offering_plugin_options"
+	OpenStackInstanceFieldEnumMarketplaceOfferingType          OpenStackInstanceFieldEnum = "marketplace_offering_type"
 	OpenStackInstanceFieldEnumMarketplaceOfferingUuid          OpenStackInstanceFieldEnum = "marketplace_offering_uuid"
 	OpenStackInstanceFieldEnumMarketplacePlanUuid              OpenStackInstanceFieldEnum = "marketplace_plan_uuid"
 	OpenStackInstanceFieldEnumMarketplaceResourceState         OpenStackInstanceFieldEnum = "marketplace_resource_state"
@@ -10730,6 +10989,8 @@ func (e OpenStackInstanceFieldEnum) Valid() bool {
 		return true
 	case OpenStackInstanceFieldEnumMarketplaceOfferingPluginOptions:
 		return true
+	case OpenStackInstanceFieldEnumMarketplaceOfferingType:
+		return true
 	case OpenStackInstanceFieldEnumMarketplaceOfferingUuid:
 		return true
 	case OpenStackInstanceFieldEnumMarketplacePlanUuid:
@@ -10817,6 +11078,300 @@ func (e OpenStackInstanceOEnum) Valid() bool {
 	}
 }
 
+// Defines values for OpenStackListenerFieldEnum.
+const (
+	OpenStackListenerFieldEnumAccessUrl                        OpenStackListenerFieldEnum = "access_url"
+	OpenStackListenerFieldEnumBackendId                        OpenStackListenerFieldEnum = "backend_id"
+	OpenStackListenerFieldEnumCreated                          OpenStackListenerFieldEnum = "created"
+	OpenStackListenerFieldEnumCustomer                         OpenStackListenerFieldEnum = "customer"
+	OpenStackListenerFieldEnumCustomerAbbreviation             OpenStackListenerFieldEnum = "customer_abbreviation"
+	OpenStackListenerFieldEnumCustomerName                     OpenStackListenerFieldEnum = "customer_name"
+	OpenStackListenerFieldEnumCustomerNativeName               OpenStackListenerFieldEnum = "customer_native_name"
+	OpenStackListenerFieldEnumCustomerUuid                     OpenStackListenerFieldEnum = "customer_uuid"
+	OpenStackListenerFieldEnumDefaultPool                      OpenStackListenerFieldEnum = "default_pool"
+	OpenStackListenerFieldEnumDescription                      OpenStackListenerFieldEnum = "description"
+	OpenStackListenerFieldEnumErrorMessage                     OpenStackListenerFieldEnum = "error_message"
+	OpenStackListenerFieldEnumErrorTraceback                   OpenStackListenerFieldEnum = "error_traceback"
+	OpenStackListenerFieldEnumIsLimitBased                     OpenStackListenerFieldEnum = "is_limit_based"
+	OpenStackListenerFieldEnumIsUsageBased                     OpenStackListenerFieldEnum = "is_usage_based"
+	OpenStackListenerFieldEnumLoadBalancer                     OpenStackListenerFieldEnum = "load_balancer"
+	OpenStackListenerFieldEnumLoadBalancerName                 OpenStackListenerFieldEnum = "load_balancer_name"
+	OpenStackListenerFieldEnumLoadBalancerUuid                 OpenStackListenerFieldEnum = "load_balancer_uuid"
+	OpenStackListenerFieldEnumMarketplaceCategoryName          OpenStackListenerFieldEnum = "marketplace_category_name"
+	OpenStackListenerFieldEnumMarketplaceCategoryUuid          OpenStackListenerFieldEnum = "marketplace_category_uuid"
+	OpenStackListenerFieldEnumMarketplaceOfferingName          OpenStackListenerFieldEnum = "marketplace_offering_name"
+	OpenStackListenerFieldEnumMarketplaceOfferingPluginOptions OpenStackListenerFieldEnum = "marketplace_offering_plugin_options"
+	OpenStackListenerFieldEnumMarketplaceOfferingType          OpenStackListenerFieldEnum = "marketplace_offering_type"
+	OpenStackListenerFieldEnumMarketplaceOfferingUuid          OpenStackListenerFieldEnum = "marketplace_offering_uuid"
+	OpenStackListenerFieldEnumMarketplacePlanUuid              OpenStackListenerFieldEnum = "marketplace_plan_uuid"
+	OpenStackListenerFieldEnumMarketplaceResourceState         OpenStackListenerFieldEnum = "marketplace_resource_state"
+	OpenStackListenerFieldEnumMarketplaceResourceUuid          OpenStackListenerFieldEnum = "marketplace_resource_uuid"
+	OpenStackListenerFieldEnumModified                         OpenStackListenerFieldEnum = "modified"
+	OpenStackListenerFieldEnumName                             OpenStackListenerFieldEnum = "name"
+	OpenStackListenerFieldEnumOperatingStatus                  OpenStackListenerFieldEnum = "operating_status"
+	OpenStackListenerFieldEnumProject                          OpenStackListenerFieldEnum = "project"
+	OpenStackListenerFieldEnumProjectName                      OpenStackListenerFieldEnum = "project_name"
+	OpenStackListenerFieldEnumProjectUuid                      OpenStackListenerFieldEnum = "project_uuid"
+	OpenStackListenerFieldEnumProtocol                         OpenStackListenerFieldEnum = "protocol"
+	OpenStackListenerFieldEnumProtocolPort                     OpenStackListenerFieldEnum = "protocol_port"
+	OpenStackListenerFieldEnumProvisioningStatus               OpenStackListenerFieldEnum = "provisioning_status"
+	OpenStackListenerFieldEnumResourceType                     OpenStackListenerFieldEnum = "resource_type"
+	OpenStackListenerFieldEnumServiceName                      OpenStackListenerFieldEnum = "service_name"
+	OpenStackListenerFieldEnumServiceSettings                  OpenStackListenerFieldEnum = "service_settings"
+	OpenStackListenerFieldEnumServiceSettingsErrorMessage      OpenStackListenerFieldEnum = "service_settings_error_message"
+	OpenStackListenerFieldEnumServiceSettingsState             OpenStackListenerFieldEnum = "service_settings_state"
+	OpenStackListenerFieldEnumServiceSettingsUuid              OpenStackListenerFieldEnum = "service_settings_uuid"
+	OpenStackListenerFieldEnumState                            OpenStackListenerFieldEnum = "state"
+	OpenStackListenerFieldEnumUrl                              OpenStackListenerFieldEnum = "url"
+	OpenStackListenerFieldEnumUuid                             OpenStackListenerFieldEnum = "uuid"
+)
+
+// Valid indicates whether the value is a known member of the OpenStackListenerFieldEnum enum.
+func (e OpenStackListenerFieldEnum) Valid() bool {
+	switch e {
+	case OpenStackListenerFieldEnumAccessUrl:
+		return true
+	case OpenStackListenerFieldEnumBackendId:
+		return true
+	case OpenStackListenerFieldEnumCreated:
+		return true
+	case OpenStackListenerFieldEnumCustomer:
+		return true
+	case OpenStackListenerFieldEnumCustomerAbbreviation:
+		return true
+	case OpenStackListenerFieldEnumCustomerName:
+		return true
+	case OpenStackListenerFieldEnumCustomerNativeName:
+		return true
+	case OpenStackListenerFieldEnumCustomerUuid:
+		return true
+	case OpenStackListenerFieldEnumDefaultPool:
+		return true
+	case OpenStackListenerFieldEnumDescription:
+		return true
+	case OpenStackListenerFieldEnumErrorMessage:
+		return true
+	case OpenStackListenerFieldEnumErrorTraceback:
+		return true
+	case OpenStackListenerFieldEnumIsLimitBased:
+		return true
+	case OpenStackListenerFieldEnumIsUsageBased:
+		return true
+	case OpenStackListenerFieldEnumLoadBalancer:
+		return true
+	case OpenStackListenerFieldEnumLoadBalancerName:
+		return true
+	case OpenStackListenerFieldEnumLoadBalancerUuid:
+		return true
+	case OpenStackListenerFieldEnumMarketplaceCategoryName:
+		return true
+	case OpenStackListenerFieldEnumMarketplaceCategoryUuid:
+		return true
+	case OpenStackListenerFieldEnumMarketplaceOfferingName:
+		return true
+	case OpenStackListenerFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case OpenStackListenerFieldEnumMarketplaceOfferingType:
+		return true
+	case OpenStackListenerFieldEnumMarketplaceOfferingUuid:
+		return true
+	case OpenStackListenerFieldEnumMarketplacePlanUuid:
+		return true
+	case OpenStackListenerFieldEnumMarketplaceResourceState:
+		return true
+	case OpenStackListenerFieldEnumMarketplaceResourceUuid:
+		return true
+	case OpenStackListenerFieldEnumModified:
+		return true
+	case OpenStackListenerFieldEnumName:
+		return true
+	case OpenStackListenerFieldEnumOperatingStatus:
+		return true
+	case OpenStackListenerFieldEnumProject:
+		return true
+	case OpenStackListenerFieldEnumProjectName:
+		return true
+	case OpenStackListenerFieldEnumProjectUuid:
+		return true
+	case OpenStackListenerFieldEnumProtocol:
+		return true
+	case OpenStackListenerFieldEnumProtocolPort:
+		return true
+	case OpenStackListenerFieldEnumProvisioningStatus:
+		return true
+	case OpenStackListenerFieldEnumResourceType:
+		return true
+	case OpenStackListenerFieldEnumServiceName:
+		return true
+	case OpenStackListenerFieldEnumServiceSettings:
+		return true
+	case OpenStackListenerFieldEnumServiceSettingsErrorMessage:
+		return true
+	case OpenStackListenerFieldEnumServiceSettingsState:
+		return true
+	case OpenStackListenerFieldEnumServiceSettingsUuid:
+		return true
+	case OpenStackListenerFieldEnumState:
+		return true
+	case OpenStackListenerFieldEnumUrl:
+		return true
+	case OpenStackListenerFieldEnumUuid:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for OpenStackLoadBalancerFieldEnum.
+const (
+	OpenStackLoadBalancerFieldEnumAccessUrl                        OpenStackLoadBalancerFieldEnum = "access_url"
+	OpenStackLoadBalancerFieldEnumAttachedFloatingIp               OpenStackLoadBalancerFieldEnum = "attached_floating_ip"
+	OpenStackLoadBalancerFieldEnumBackendId                        OpenStackLoadBalancerFieldEnum = "backend_id"
+	OpenStackLoadBalancerFieldEnumCreated                          OpenStackLoadBalancerFieldEnum = "created"
+	OpenStackLoadBalancerFieldEnumCustomer                         OpenStackLoadBalancerFieldEnum = "customer"
+	OpenStackLoadBalancerFieldEnumCustomerAbbreviation             OpenStackLoadBalancerFieldEnum = "customer_abbreviation"
+	OpenStackLoadBalancerFieldEnumCustomerName                     OpenStackLoadBalancerFieldEnum = "customer_name"
+	OpenStackLoadBalancerFieldEnumCustomerNativeName               OpenStackLoadBalancerFieldEnum = "customer_native_name"
+	OpenStackLoadBalancerFieldEnumCustomerUuid                     OpenStackLoadBalancerFieldEnum = "customer_uuid"
+	OpenStackLoadBalancerFieldEnumDescription                      OpenStackLoadBalancerFieldEnum = "description"
+	OpenStackLoadBalancerFieldEnumErrorMessage                     OpenStackLoadBalancerFieldEnum = "error_message"
+	OpenStackLoadBalancerFieldEnumErrorTraceback                   OpenStackLoadBalancerFieldEnum = "error_traceback"
+	OpenStackLoadBalancerFieldEnumIsLimitBased                     OpenStackLoadBalancerFieldEnum = "is_limit_based"
+	OpenStackLoadBalancerFieldEnumIsUsageBased                     OpenStackLoadBalancerFieldEnum = "is_usage_based"
+	OpenStackLoadBalancerFieldEnumMarketplaceCategoryName          OpenStackLoadBalancerFieldEnum = "marketplace_category_name"
+	OpenStackLoadBalancerFieldEnumMarketplaceCategoryUuid          OpenStackLoadBalancerFieldEnum = "marketplace_category_uuid"
+	OpenStackLoadBalancerFieldEnumMarketplaceOfferingName          OpenStackLoadBalancerFieldEnum = "marketplace_offering_name"
+	OpenStackLoadBalancerFieldEnumMarketplaceOfferingPluginOptions OpenStackLoadBalancerFieldEnum = "marketplace_offering_plugin_options"
+	OpenStackLoadBalancerFieldEnumMarketplaceOfferingType          OpenStackLoadBalancerFieldEnum = "marketplace_offering_type"
+	OpenStackLoadBalancerFieldEnumMarketplaceOfferingUuid          OpenStackLoadBalancerFieldEnum = "marketplace_offering_uuid"
+	OpenStackLoadBalancerFieldEnumMarketplacePlanUuid              OpenStackLoadBalancerFieldEnum = "marketplace_plan_uuid"
+	OpenStackLoadBalancerFieldEnumMarketplaceResourceState         OpenStackLoadBalancerFieldEnum = "marketplace_resource_state"
+	OpenStackLoadBalancerFieldEnumMarketplaceResourceUuid          OpenStackLoadBalancerFieldEnum = "marketplace_resource_uuid"
+	OpenStackLoadBalancerFieldEnumModified                         OpenStackLoadBalancerFieldEnum = "modified"
+	OpenStackLoadBalancerFieldEnumName                             OpenStackLoadBalancerFieldEnum = "name"
+	OpenStackLoadBalancerFieldEnumOperatingStatus                  OpenStackLoadBalancerFieldEnum = "operating_status"
+	OpenStackLoadBalancerFieldEnumProject                          OpenStackLoadBalancerFieldEnum = "project"
+	OpenStackLoadBalancerFieldEnumProjectName                      OpenStackLoadBalancerFieldEnum = "project_name"
+	OpenStackLoadBalancerFieldEnumProjectUuid                      OpenStackLoadBalancerFieldEnum = "project_uuid"
+	OpenStackLoadBalancerFieldEnumProvider                         OpenStackLoadBalancerFieldEnum = "provider"
+	OpenStackLoadBalancerFieldEnumProvisioningStatus               OpenStackLoadBalancerFieldEnum = "provisioning_status"
+	OpenStackLoadBalancerFieldEnumResourceType                     OpenStackLoadBalancerFieldEnum = "resource_type"
+	OpenStackLoadBalancerFieldEnumServiceName                      OpenStackLoadBalancerFieldEnum = "service_name"
+	OpenStackLoadBalancerFieldEnumServiceSettings                  OpenStackLoadBalancerFieldEnum = "service_settings"
+	OpenStackLoadBalancerFieldEnumServiceSettingsErrorMessage      OpenStackLoadBalancerFieldEnum = "service_settings_error_message"
+	OpenStackLoadBalancerFieldEnumServiceSettingsState             OpenStackLoadBalancerFieldEnum = "service_settings_state"
+	OpenStackLoadBalancerFieldEnumServiceSettingsUuid              OpenStackLoadBalancerFieldEnum = "service_settings_uuid"
+	OpenStackLoadBalancerFieldEnumState                            OpenStackLoadBalancerFieldEnum = "state"
+	OpenStackLoadBalancerFieldEnumTenant                           OpenStackLoadBalancerFieldEnum = "tenant"
+	OpenStackLoadBalancerFieldEnumTenantName                       OpenStackLoadBalancerFieldEnum = "tenant_name"
+	OpenStackLoadBalancerFieldEnumTenantUuid                       OpenStackLoadBalancerFieldEnum = "tenant_uuid"
+	OpenStackLoadBalancerFieldEnumUrl                              OpenStackLoadBalancerFieldEnum = "url"
+	OpenStackLoadBalancerFieldEnumUuid                             OpenStackLoadBalancerFieldEnum = "uuid"
+	OpenStackLoadBalancerFieldEnumVipAddress                       OpenStackLoadBalancerFieldEnum = "vip_address"
+	OpenStackLoadBalancerFieldEnumVipPortId                        OpenStackLoadBalancerFieldEnum = "vip_port_id"
+	OpenStackLoadBalancerFieldEnumVipSubnetId                      OpenStackLoadBalancerFieldEnum = "vip_subnet_id"
+)
+
+// Valid indicates whether the value is a known member of the OpenStackLoadBalancerFieldEnum enum.
+func (e OpenStackLoadBalancerFieldEnum) Valid() bool {
+	switch e {
+	case OpenStackLoadBalancerFieldEnumAccessUrl:
+		return true
+	case OpenStackLoadBalancerFieldEnumAttachedFloatingIp:
+		return true
+	case OpenStackLoadBalancerFieldEnumBackendId:
+		return true
+	case OpenStackLoadBalancerFieldEnumCreated:
+		return true
+	case OpenStackLoadBalancerFieldEnumCustomer:
+		return true
+	case OpenStackLoadBalancerFieldEnumCustomerAbbreviation:
+		return true
+	case OpenStackLoadBalancerFieldEnumCustomerName:
+		return true
+	case OpenStackLoadBalancerFieldEnumCustomerNativeName:
+		return true
+	case OpenStackLoadBalancerFieldEnumCustomerUuid:
+		return true
+	case OpenStackLoadBalancerFieldEnumDescription:
+		return true
+	case OpenStackLoadBalancerFieldEnumErrorMessage:
+		return true
+	case OpenStackLoadBalancerFieldEnumErrorTraceback:
+		return true
+	case OpenStackLoadBalancerFieldEnumIsLimitBased:
+		return true
+	case OpenStackLoadBalancerFieldEnumIsUsageBased:
+		return true
+	case OpenStackLoadBalancerFieldEnumMarketplaceCategoryName:
+		return true
+	case OpenStackLoadBalancerFieldEnumMarketplaceCategoryUuid:
+		return true
+	case OpenStackLoadBalancerFieldEnumMarketplaceOfferingName:
+		return true
+	case OpenStackLoadBalancerFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case OpenStackLoadBalancerFieldEnumMarketplaceOfferingType:
+		return true
+	case OpenStackLoadBalancerFieldEnumMarketplaceOfferingUuid:
+		return true
+	case OpenStackLoadBalancerFieldEnumMarketplacePlanUuid:
+		return true
+	case OpenStackLoadBalancerFieldEnumMarketplaceResourceState:
+		return true
+	case OpenStackLoadBalancerFieldEnumMarketplaceResourceUuid:
+		return true
+	case OpenStackLoadBalancerFieldEnumModified:
+		return true
+	case OpenStackLoadBalancerFieldEnumName:
+		return true
+	case OpenStackLoadBalancerFieldEnumOperatingStatus:
+		return true
+	case OpenStackLoadBalancerFieldEnumProject:
+		return true
+	case OpenStackLoadBalancerFieldEnumProjectName:
+		return true
+	case OpenStackLoadBalancerFieldEnumProjectUuid:
+		return true
+	case OpenStackLoadBalancerFieldEnumProvider:
+		return true
+	case OpenStackLoadBalancerFieldEnumProvisioningStatus:
+		return true
+	case OpenStackLoadBalancerFieldEnumResourceType:
+		return true
+	case OpenStackLoadBalancerFieldEnumServiceName:
+		return true
+	case OpenStackLoadBalancerFieldEnumServiceSettings:
+		return true
+	case OpenStackLoadBalancerFieldEnumServiceSettingsErrorMessage:
+		return true
+	case OpenStackLoadBalancerFieldEnumServiceSettingsState:
+		return true
+	case OpenStackLoadBalancerFieldEnumServiceSettingsUuid:
+		return true
+	case OpenStackLoadBalancerFieldEnumState:
+		return true
+	case OpenStackLoadBalancerFieldEnumTenant:
+		return true
+	case OpenStackLoadBalancerFieldEnumTenantName:
+		return true
+	case OpenStackLoadBalancerFieldEnumTenantUuid:
+		return true
+	case OpenStackLoadBalancerFieldEnumUrl:
+		return true
+	case OpenStackLoadBalancerFieldEnumUuid:
+		return true
+	case OpenStackLoadBalancerFieldEnumVipAddress:
+		return true
+	case OpenStackLoadBalancerFieldEnumVipPortId:
+		return true
+	case OpenStackLoadBalancerFieldEnumVipSubnetId:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for OpenStackNetworkFieldEnum.
 const (
 	OpenStackNetworkFieldEnumAccessUrl                        OpenStackNetworkFieldEnum = "access_url"
@@ -10837,6 +11392,7 @@ const (
 	OpenStackNetworkFieldEnumMarketplaceCategoryUuid          OpenStackNetworkFieldEnum = "marketplace_category_uuid"
 	OpenStackNetworkFieldEnumMarketplaceOfferingName          OpenStackNetworkFieldEnum = "marketplace_offering_name"
 	OpenStackNetworkFieldEnumMarketplaceOfferingPluginOptions OpenStackNetworkFieldEnum = "marketplace_offering_plugin_options"
+	OpenStackNetworkFieldEnumMarketplaceOfferingType          OpenStackNetworkFieldEnum = "marketplace_offering_type"
 	OpenStackNetworkFieldEnumMarketplaceOfferingUuid          OpenStackNetworkFieldEnum = "marketplace_offering_uuid"
 	OpenStackNetworkFieldEnumMarketplacePlanUuid              OpenStackNetworkFieldEnum = "marketplace_plan_uuid"
 	OpenStackNetworkFieldEnumMarketplaceResourceState         OpenStackNetworkFieldEnum = "marketplace_resource_state"
@@ -10904,6 +11460,8 @@ func (e OpenStackNetworkFieldEnum) Valid() bool {
 		return true
 	case OpenStackNetworkFieldEnumMarketplaceOfferingPluginOptions:
 		return true
+	case OpenStackNetworkFieldEnumMarketplaceOfferingType:
+		return true
 	case OpenStackNetworkFieldEnumMarketplaceOfferingUuid:
 		return true
 	case OpenStackNetworkFieldEnumMarketplacePlanUuid:
@@ -10961,6 +11519,297 @@ func (e OpenStackNetworkFieldEnum) Valid() bool {
 	}
 }
 
+// Defines values for OpenStackPoolFieldEnum.
+const (
+	OpenStackPoolFieldEnumAccessUrl                        OpenStackPoolFieldEnum = "access_url"
+	OpenStackPoolFieldEnumBackendId                        OpenStackPoolFieldEnum = "backend_id"
+	OpenStackPoolFieldEnumCreated                          OpenStackPoolFieldEnum = "created"
+	OpenStackPoolFieldEnumCustomer                         OpenStackPoolFieldEnum = "customer"
+	OpenStackPoolFieldEnumCustomerAbbreviation             OpenStackPoolFieldEnum = "customer_abbreviation"
+	OpenStackPoolFieldEnumCustomerName                     OpenStackPoolFieldEnum = "customer_name"
+	OpenStackPoolFieldEnumCustomerNativeName               OpenStackPoolFieldEnum = "customer_native_name"
+	OpenStackPoolFieldEnumCustomerUuid                     OpenStackPoolFieldEnum = "customer_uuid"
+	OpenStackPoolFieldEnumDescription                      OpenStackPoolFieldEnum = "description"
+	OpenStackPoolFieldEnumErrorMessage                     OpenStackPoolFieldEnum = "error_message"
+	OpenStackPoolFieldEnumErrorTraceback                   OpenStackPoolFieldEnum = "error_traceback"
+	OpenStackPoolFieldEnumIsLimitBased                     OpenStackPoolFieldEnum = "is_limit_based"
+	OpenStackPoolFieldEnumIsUsageBased                     OpenStackPoolFieldEnum = "is_usage_based"
+	OpenStackPoolFieldEnumLbAlgorithm                      OpenStackPoolFieldEnum = "lb_algorithm"
+	OpenStackPoolFieldEnumLoadBalancer                     OpenStackPoolFieldEnum = "load_balancer"
+	OpenStackPoolFieldEnumLoadBalancerName                 OpenStackPoolFieldEnum = "load_balancer_name"
+	OpenStackPoolFieldEnumLoadBalancerUuid                 OpenStackPoolFieldEnum = "load_balancer_uuid"
+	OpenStackPoolFieldEnumMarketplaceCategoryName          OpenStackPoolFieldEnum = "marketplace_category_name"
+	OpenStackPoolFieldEnumMarketplaceCategoryUuid          OpenStackPoolFieldEnum = "marketplace_category_uuid"
+	OpenStackPoolFieldEnumMarketplaceOfferingName          OpenStackPoolFieldEnum = "marketplace_offering_name"
+	OpenStackPoolFieldEnumMarketplaceOfferingPluginOptions OpenStackPoolFieldEnum = "marketplace_offering_plugin_options"
+	OpenStackPoolFieldEnumMarketplaceOfferingType          OpenStackPoolFieldEnum = "marketplace_offering_type"
+	OpenStackPoolFieldEnumMarketplaceOfferingUuid          OpenStackPoolFieldEnum = "marketplace_offering_uuid"
+	OpenStackPoolFieldEnumMarketplacePlanUuid              OpenStackPoolFieldEnum = "marketplace_plan_uuid"
+	OpenStackPoolFieldEnumMarketplaceResourceState         OpenStackPoolFieldEnum = "marketplace_resource_state"
+	OpenStackPoolFieldEnumMarketplaceResourceUuid          OpenStackPoolFieldEnum = "marketplace_resource_uuid"
+	OpenStackPoolFieldEnumModified                         OpenStackPoolFieldEnum = "modified"
+	OpenStackPoolFieldEnumName                             OpenStackPoolFieldEnum = "name"
+	OpenStackPoolFieldEnumOperatingStatus                  OpenStackPoolFieldEnum = "operating_status"
+	OpenStackPoolFieldEnumProject                          OpenStackPoolFieldEnum = "project"
+	OpenStackPoolFieldEnumProjectName                      OpenStackPoolFieldEnum = "project_name"
+	OpenStackPoolFieldEnumProjectUuid                      OpenStackPoolFieldEnum = "project_uuid"
+	OpenStackPoolFieldEnumProtocol                         OpenStackPoolFieldEnum = "protocol"
+	OpenStackPoolFieldEnumProvisioningStatus               OpenStackPoolFieldEnum = "provisioning_status"
+	OpenStackPoolFieldEnumResourceType                     OpenStackPoolFieldEnum = "resource_type"
+	OpenStackPoolFieldEnumServiceName                      OpenStackPoolFieldEnum = "service_name"
+	OpenStackPoolFieldEnumServiceSettings                  OpenStackPoolFieldEnum = "service_settings"
+	OpenStackPoolFieldEnumServiceSettingsErrorMessage      OpenStackPoolFieldEnum = "service_settings_error_message"
+	OpenStackPoolFieldEnumServiceSettingsState             OpenStackPoolFieldEnum = "service_settings_state"
+	OpenStackPoolFieldEnumServiceSettingsUuid              OpenStackPoolFieldEnum = "service_settings_uuid"
+	OpenStackPoolFieldEnumState                            OpenStackPoolFieldEnum = "state"
+	OpenStackPoolFieldEnumUrl                              OpenStackPoolFieldEnum = "url"
+	OpenStackPoolFieldEnumUuid                             OpenStackPoolFieldEnum = "uuid"
+)
+
+// Valid indicates whether the value is a known member of the OpenStackPoolFieldEnum enum.
+func (e OpenStackPoolFieldEnum) Valid() bool {
+	switch e {
+	case OpenStackPoolFieldEnumAccessUrl:
+		return true
+	case OpenStackPoolFieldEnumBackendId:
+		return true
+	case OpenStackPoolFieldEnumCreated:
+		return true
+	case OpenStackPoolFieldEnumCustomer:
+		return true
+	case OpenStackPoolFieldEnumCustomerAbbreviation:
+		return true
+	case OpenStackPoolFieldEnumCustomerName:
+		return true
+	case OpenStackPoolFieldEnumCustomerNativeName:
+		return true
+	case OpenStackPoolFieldEnumCustomerUuid:
+		return true
+	case OpenStackPoolFieldEnumDescription:
+		return true
+	case OpenStackPoolFieldEnumErrorMessage:
+		return true
+	case OpenStackPoolFieldEnumErrorTraceback:
+		return true
+	case OpenStackPoolFieldEnumIsLimitBased:
+		return true
+	case OpenStackPoolFieldEnumIsUsageBased:
+		return true
+	case OpenStackPoolFieldEnumLbAlgorithm:
+		return true
+	case OpenStackPoolFieldEnumLoadBalancer:
+		return true
+	case OpenStackPoolFieldEnumLoadBalancerName:
+		return true
+	case OpenStackPoolFieldEnumLoadBalancerUuid:
+		return true
+	case OpenStackPoolFieldEnumMarketplaceCategoryName:
+		return true
+	case OpenStackPoolFieldEnumMarketplaceCategoryUuid:
+		return true
+	case OpenStackPoolFieldEnumMarketplaceOfferingName:
+		return true
+	case OpenStackPoolFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case OpenStackPoolFieldEnumMarketplaceOfferingType:
+		return true
+	case OpenStackPoolFieldEnumMarketplaceOfferingUuid:
+		return true
+	case OpenStackPoolFieldEnumMarketplacePlanUuid:
+		return true
+	case OpenStackPoolFieldEnumMarketplaceResourceState:
+		return true
+	case OpenStackPoolFieldEnumMarketplaceResourceUuid:
+		return true
+	case OpenStackPoolFieldEnumModified:
+		return true
+	case OpenStackPoolFieldEnumName:
+		return true
+	case OpenStackPoolFieldEnumOperatingStatus:
+		return true
+	case OpenStackPoolFieldEnumProject:
+		return true
+	case OpenStackPoolFieldEnumProjectName:
+		return true
+	case OpenStackPoolFieldEnumProjectUuid:
+		return true
+	case OpenStackPoolFieldEnumProtocol:
+		return true
+	case OpenStackPoolFieldEnumProvisioningStatus:
+		return true
+	case OpenStackPoolFieldEnumResourceType:
+		return true
+	case OpenStackPoolFieldEnumServiceName:
+		return true
+	case OpenStackPoolFieldEnumServiceSettings:
+		return true
+	case OpenStackPoolFieldEnumServiceSettingsErrorMessage:
+		return true
+	case OpenStackPoolFieldEnumServiceSettingsState:
+		return true
+	case OpenStackPoolFieldEnumServiceSettingsUuid:
+		return true
+	case OpenStackPoolFieldEnumState:
+		return true
+	case OpenStackPoolFieldEnumUrl:
+		return true
+	case OpenStackPoolFieldEnumUuid:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for OpenStackPoolMemberFieldEnum.
+const (
+	OpenStackPoolMemberFieldEnumAccessUrl                        OpenStackPoolMemberFieldEnum = "access_url"
+	OpenStackPoolMemberFieldEnumAddress                          OpenStackPoolMemberFieldEnum = "address"
+	OpenStackPoolMemberFieldEnumBackendId                        OpenStackPoolMemberFieldEnum = "backend_id"
+	OpenStackPoolMemberFieldEnumCreated                          OpenStackPoolMemberFieldEnum = "created"
+	OpenStackPoolMemberFieldEnumCustomer                         OpenStackPoolMemberFieldEnum = "customer"
+	OpenStackPoolMemberFieldEnumCustomerAbbreviation             OpenStackPoolMemberFieldEnum = "customer_abbreviation"
+	OpenStackPoolMemberFieldEnumCustomerName                     OpenStackPoolMemberFieldEnum = "customer_name"
+	OpenStackPoolMemberFieldEnumCustomerNativeName               OpenStackPoolMemberFieldEnum = "customer_native_name"
+	OpenStackPoolMemberFieldEnumCustomerUuid                     OpenStackPoolMemberFieldEnum = "customer_uuid"
+	OpenStackPoolMemberFieldEnumDescription                      OpenStackPoolMemberFieldEnum = "description"
+	OpenStackPoolMemberFieldEnumErrorMessage                     OpenStackPoolMemberFieldEnum = "error_message"
+	OpenStackPoolMemberFieldEnumErrorTraceback                   OpenStackPoolMemberFieldEnum = "error_traceback"
+	OpenStackPoolMemberFieldEnumIsLimitBased                     OpenStackPoolMemberFieldEnum = "is_limit_based"
+	OpenStackPoolMemberFieldEnumIsUsageBased                     OpenStackPoolMemberFieldEnum = "is_usage_based"
+	OpenStackPoolMemberFieldEnumLoadBalancerUuid                 OpenStackPoolMemberFieldEnum = "load_balancer_uuid"
+	OpenStackPoolMemberFieldEnumMarketplaceCategoryName          OpenStackPoolMemberFieldEnum = "marketplace_category_name"
+	OpenStackPoolMemberFieldEnumMarketplaceCategoryUuid          OpenStackPoolMemberFieldEnum = "marketplace_category_uuid"
+	OpenStackPoolMemberFieldEnumMarketplaceOfferingName          OpenStackPoolMemberFieldEnum = "marketplace_offering_name"
+	OpenStackPoolMemberFieldEnumMarketplaceOfferingPluginOptions OpenStackPoolMemberFieldEnum = "marketplace_offering_plugin_options"
+	OpenStackPoolMemberFieldEnumMarketplaceOfferingType          OpenStackPoolMemberFieldEnum = "marketplace_offering_type"
+	OpenStackPoolMemberFieldEnumMarketplaceOfferingUuid          OpenStackPoolMemberFieldEnum = "marketplace_offering_uuid"
+	OpenStackPoolMemberFieldEnumMarketplacePlanUuid              OpenStackPoolMemberFieldEnum = "marketplace_plan_uuid"
+	OpenStackPoolMemberFieldEnumMarketplaceResourceState         OpenStackPoolMemberFieldEnum = "marketplace_resource_state"
+	OpenStackPoolMemberFieldEnumMarketplaceResourceUuid          OpenStackPoolMemberFieldEnum = "marketplace_resource_uuid"
+	OpenStackPoolMemberFieldEnumModified                         OpenStackPoolMemberFieldEnum = "modified"
+	OpenStackPoolMemberFieldEnumName                             OpenStackPoolMemberFieldEnum = "name"
+	OpenStackPoolMemberFieldEnumOperatingStatus                  OpenStackPoolMemberFieldEnum = "operating_status"
+	OpenStackPoolMemberFieldEnumPool                             OpenStackPoolMemberFieldEnum = "pool"
+	OpenStackPoolMemberFieldEnumPoolName                         OpenStackPoolMemberFieldEnum = "pool_name"
+	OpenStackPoolMemberFieldEnumPoolUuid                         OpenStackPoolMemberFieldEnum = "pool_uuid"
+	OpenStackPoolMemberFieldEnumProject                          OpenStackPoolMemberFieldEnum = "project"
+	OpenStackPoolMemberFieldEnumProjectName                      OpenStackPoolMemberFieldEnum = "project_name"
+	OpenStackPoolMemberFieldEnumProjectUuid                      OpenStackPoolMemberFieldEnum = "project_uuid"
+	OpenStackPoolMemberFieldEnumProtocolPort                     OpenStackPoolMemberFieldEnum = "protocol_port"
+	OpenStackPoolMemberFieldEnumProvisioningStatus               OpenStackPoolMemberFieldEnum = "provisioning_status"
+	OpenStackPoolMemberFieldEnumResourceType                     OpenStackPoolMemberFieldEnum = "resource_type"
+	OpenStackPoolMemberFieldEnumServiceName                      OpenStackPoolMemberFieldEnum = "service_name"
+	OpenStackPoolMemberFieldEnumServiceSettings                  OpenStackPoolMemberFieldEnum = "service_settings"
+	OpenStackPoolMemberFieldEnumServiceSettingsErrorMessage      OpenStackPoolMemberFieldEnum = "service_settings_error_message"
+	OpenStackPoolMemberFieldEnumServiceSettingsState             OpenStackPoolMemberFieldEnum = "service_settings_state"
+	OpenStackPoolMemberFieldEnumServiceSettingsUuid              OpenStackPoolMemberFieldEnum = "service_settings_uuid"
+	OpenStackPoolMemberFieldEnumState                            OpenStackPoolMemberFieldEnum = "state"
+	OpenStackPoolMemberFieldEnumSubnetId                         OpenStackPoolMemberFieldEnum = "subnet_id"
+	OpenStackPoolMemberFieldEnumUrl                              OpenStackPoolMemberFieldEnum = "url"
+	OpenStackPoolMemberFieldEnumUuid                             OpenStackPoolMemberFieldEnum = "uuid"
+	OpenStackPoolMemberFieldEnumWeight                           OpenStackPoolMemberFieldEnum = "weight"
+)
+
+// Valid indicates whether the value is a known member of the OpenStackPoolMemberFieldEnum enum.
+func (e OpenStackPoolMemberFieldEnum) Valid() bool {
+	switch e {
+	case OpenStackPoolMemberFieldEnumAccessUrl:
+		return true
+	case OpenStackPoolMemberFieldEnumAddress:
+		return true
+	case OpenStackPoolMemberFieldEnumBackendId:
+		return true
+	case OpenStackPoolMemberFieldEnumCreated:
+		return true
+	case OpenStackPoolMemberFieldEnumCustomer:
+		return true
+	case OpenStackPoolMemberFieldEnumCustomerAbbreviation:
+		return true
+	case OpenStackPoolMemberFieldEnumCustomerName:
+		return true
+	case OpenStackPoolMemberFieldEnumCustomerNativeName:
+		return true
+	case OpenStackPoolMemberFieldEnumCustomerUuid:
+		return true
+	case OpenStackPoolMemberFieldEnumDescription:
+		return true
+	case OpenStackPoolMemberFieldEnumErrorMessage:
+		return true
+	case OpenStackPoolMemberFieldEnumErrorTraceback:
+		return true
+	case OpenStackPoolMemberFieldEnumIsLimitBased:
+		return true
+	case OpenStackPoolMemberFieldEnumIsUsageBased:
+		return true
+	case OpenStackPoolMemberFieldEnumLoadBalancerUuid:
+		return true
+	case OpenStackPoolMemberFieldEnumMarketplaceCategoryName:
+		return true
+	case OpenStackPoolMemberFieldEnumMarketplaceCategoryUuid:
+		return true
+	case OpenStackPoolMemberFieldEnumMarketplaceOfferingName:
+		return true
+	case OpenStackPoolMemberFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case OpenStackPoolMemberFieldEnumMarketplaceOfferingType:
+		return true
+	case OpenStackPoolMemberFieldEnumMarketplaceOfferingUuid:
+		return true
+	case OpenStackPoolMemberFieldEnumMarketplacePlanUuid:
+		return true
+	case OpenStackPoolMemberFieldEnumMarketplaceResourceState:
+		return true
+	case OpenStackPoolMemberFieldEnumMarketplaceResourceUuid:
+		return true
+	case OpenStackPoolMemberFieldEnumModified:
+		return true
+	case OpenStackPoolMemberFieldEnumName:
+		return true
+	case OpenStackPoolMemberFieldEnumOperatingStatus:
+		return true
+	case OpenStackPoolMemberFieldEnumPool:
+		return true
+	case OpenStackPoolMemberFieldEnumPoolName:
+		return true
+	case OpenStackPoolMemberFieldEnumPoolUuid:
+		return true
+	case OpenStackPoolMemberFieldEnumProject:
+		return true
+	case OpenStackPoolMemberFieldEnumProjectName:
+		return true
+	case OpenStackPoolMemberFieldEnumProjectUuid:
+		return true
+	case OpenStackPoolMemberFieldEnumProtocolPort:
+		return true
+	case OpenStackPoolMemberFieldEnumProvisioningStatus:
+		return true
+	case OpenStackPoolMemberFieldEnumResourceType:
+		return true
+	case OpenStackPoolMemberFieldEnumServiceName:
+		return true
+	case OpenStackPoolMemberFieldEnumServiceSettings:
+		return true
+	case OpenStackPoolMemberFieldEnumServiceSettingsErrorMessage:
+		return true
+	case OpenStackPoolMemberFieldEnumServiceSettingsState:
+		return true
+	case OpenStackPoolMemberFieldEnumServiceSettingsUuid:
+		return true
+	case OpenStackPoolMemberFieldEnumState:
+		return true
+	case OpenStackPoolMemberFieldEnumSubnetId:
+		return true
+	case OpenStackPoolMemberFieldEnumUrl:
+		return true
+	case OpenStackPoolMemberFieldEnumUuid:
+		return true
+	case OpenStackPoolMemberFieldEnumWeight:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for OpenStackPortFieldEnum.
 const (
 	OpenStackPortFieldEnumAccessUrl                        OpenStackPortFieldEnum = "access_url"
@@ -10987,6 +11836,7 @@ const (
 	OpenStackPortFieldEnumMarketplaceCategoryUuid          OpenStackPortFieldEnum = "marketplace_category_uuid"
 	OpenStackPortFieldEnumMarketplaceOfferingName          OpenStackPortFieldEnum = "marketplace_offering_name"
 	OpenStackPortFieldEnumMarketplaceOfferingPluginOptions OpenStackPortFieldEnum = "marketplace_offering_plugin_options"
+	OpenStackPortFieldEnumMarketplaceOfferingType          OpenStackPortFieldEnum = "marketplace_offering_type"
 	OpenStackPortFieldEnumMarketplaceOfferingUuid          OpenStackPortFieldEnum = "marketplace_offering_uuid"
 	OpenStackPortFieldEnumMarketplacePlanUuid              OpenStackPortFieldEnum = "marketplace_plan_uuid"
 	OpenStackPortFieldEnumMarketplaceResourceState         OpenStackPortFieldEnum = "marketplace_resource_state"
@@ -11067,6 +11917,8 @@ func (e OpenStackPortFieldEnum) Valid() bool {
 	case OpenStackPortFieldEnumMarketplaceOfferingName:
 		return true
 	case OpenStackPortFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case OpenStackPortFieldEnumMarketplaceOfferingType:
 		return true
 	case OpenStackPortFieldEnumMarketplaceOfferingUuid:
 		return true
@@ -11215,6 +12067,7 @@ const (
 	OpenStackRouterFieldEnumMarketplaceCategoryUuid          OpenStackRouterFieldEnum = "marketplace_category_uuid"
 	OpenStackRouterFieldEnumMarketplaceOfferingName          OpenStackRouterFieldEnum = "marketplace_offering_name"
 	OpenStackRouterFieldEnumMarketplaceOfferingPluginOptions OpenStackRouterFieldEnum = "marketplace_offering_plugin_options"
+	OpenStackRouterFieldEnumMarketplaceOfferingType          OpenStackRouterFieldEnum = "marketplace_offering_type"
 	OpenStackRouterFieldEnumMarketplaceOfferingUuid          OpenStackRouterFieldEnum = "marketplace_offering_uuid"
 	OpenStackRouterFieldEnumMarketplacePlanUuid              OpenStackRouterFieldEnum = "marketplace_plan_uuid"
 	OpenStackRouterFieldEnumMarketplaceResourceState         OpenStackRouterFieldEnum = "marketplace_resource_state"
@@ -11279,6 +12132,8 @@ func (e OpenStackRouterFieldEnum) Valid() bool {
 	case OpenStackRouterFieldEnumMarketplaceOfferingName:
 		return true
 	case OpenStackRouterFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case OpenStackRouterFieldEnumMarketplaceOfferingType:
 		return true
 	case OpenStackRouterFieldEnumMarketplaceOfferingUuid:
 		return true
@@ -11352,6 +12207,7 @@ const (
 	OpenStackSecurityGroupFieldEnumMarketplaceCategoryUuid          OpenStackSecurityGroupFieldEnum = "marketplace_category_uuid"
 	OpenStackSecurityGroupFieldEnumMarketplaceOfferingName          OpenStackSecurityGroupFieldEnum = "marketplace_offering_name"
 	OpenStackSecurityGroupFieldEnumMarketplaceOfferingPluginOptions OpenStackSecurityGroupFieldEnum = "marketplace_offering_plugin_options"
+	OpenStackSecurityGroupFieldEnumMarketplaceOfferingType          OpenStackSecurityGroupFieldEnum = "marketplace_offering_type"
 	OpenStackSecurityGroupFieldEnumMarketplaceOfferingUuid          OpenStackSecurityGroupFieldEnum = "marketplace_offering_uuid"
 	OpenStackSecurityGroupFieldEnumMarketplacePlanUuid              OpenStackSecurityGroupFieldEnum = "marketplace_plan_uuid"
 	OpenStackSecurityGroupFieldEnumMarketplaceResourceState         OpenStackSecurityGroupFieldEnum = "marketplace_resource_state"
@@ -11412,6 +12268,8 @@ func (e OpenStackSecurityGroupFieldEnum) Valid() bool {
 	case OpenStackSecurityGroupFieldEnumMarketplaceOfferingName:
 		return true
 	case OpenStackSecurityGroupFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case OpenStackSecurityGroupFieldEnumMarketplaceOfferingType:
 		return true
 	case OpenStackSecurityGroupFieldEnumMarketplaceOfferingUuid:
 		return true
@@ -11483,6 +12341,7 @@ const (
 	OpenStackServerGroupFieldEnumMarketplaceCategoryUuid          OpenStackServerGroupFieldEnum = "marketplace_category_uuid"
 	OpenStackServerGroupFieldEnumMarketplaceOfferingName          OpenStackServerGroupFieldEnum = "marketplace_offering_name"
 	OpenStackServerGroupFieldEnumMarketplaceOfferingPluginOptions OpenStackServerGroupFieldEnum = "marketplace_offering_plugin_options"
+	OpenStackServerGroupFieldEnumMarketplaceOfferingType          OpenStackServerGroupFieldEnum = "marketplace_offering_type"
 	OpenStackServerGroupFieldEnumMarketplaceOfferingUuid          OpenStackServerGroupFieldEnum = "marketplace_offering_uuid"
 	OpenStackServerGroupFieldEnumMarketplacePlanUuid              OpenStackServerGroupFieldEnum = "marketplace_plan_uuid"
 	OpenStackServerGroupFieldEnumMarketplaceResourceState         OpenStackServerGroupFieldEnum = "marketplace_resource_state"
@@ -11547,6 +12406,8 @@ func (e OpenStackServerGroupFieldEnum) Valid() bool {
 	case OpenStackServerGroupFieldEnumMarketplaceOfferingName:
 		return true
 	case OpenStackServerGroupFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case OpenStackServerGroupFieldEnumMarketplaceOfferingType:
 		return true
 	case OpenStackServerGroupFieldEnumMarketplaceOfferingUuid:
 		return true
@@ -11619,6 +12480,7 @@ const (
 	OpenStackSnapshotFieldEnumMarketplaceCategoryUuid          OpenStackSnapshotFieldEnum = "marketplace_category_uuid"
 	OpenStackSnapshotFieldEnumMarketplaceOfferingName          OpenStackSnapshotFieldEnum = "marketplace_offering_name"
 	OpenStackSnapshotFieldEnumMarketplaceOfferingPluginOptions OpenStackSnapshotFieldEnum = "marketplace_offering_plugin_options"
+	OpenStackSnapshotFieldEnumMarketplaceOfferingType          OpenStackSnapshotFieldEnum = "marketplace_offering_type"
 	OpenStackSnapshotFieldEnumMarketplaceOfferingUuid          OpenStackSnapshotFieldEnum = "marketplace_offering_uuid"
 	OpenStackSnapshotFieldEnumMarketplacePlanUuid              OpenStackSnapshotFieldEnum = "marketplace_plan_uuid"
 	OpenStackSnapshotFieldEnumMarketplaceResourceState         OpenStackSnapshotFieldEnum = "marketplace_resource_state"
@@ -11688,6 +12550,8 @@ func (e OpenStackSnapshotFieldEnum) Valid() bool {
 	case OpenStackSnapshotFieldEnumMarketplaceOfferingName:
 		return true
 	case OpenStackSnapshotFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case OpenStackSnapshotFieldEnumMarketplaceOfferingType:
 		return true
 	case OpenStackSnapshotFieldEnumMarketplaceOfferingUuid:
 		return true
@@ -11772,6 +12636,7 @@ const (
 	OpenStackSubNetFieldEnumMarketplaceCategoryUuid          OpenStackSubNetFieldEnum = "marketplace_category_uuid"
 	OpenStackSubNetFieldEnumMarketplaceOfferingName          OpenStackSubNetFieldEnum = "marketplace_offering_name"
 	OpenStackSubNetFieldEnumMarketplaceOfferingPluginOptions OpenStackSubNetFieldEnum = "marketplace_offering_plugin_options"
+	OpenStackSubNetFieldEnumMarketplaceOfferingType          OpenStackSubNetFieldEnum = "marketplace_offering_type"
 	OpenStackSubNetFieldEnumMarketplaceOfferingUuid          OpenStackSubNetFieldEnum = "marketplace_offering_uuid"
 	OpenStackSubNetFieldEnumMarketplacePlanUuid              OpenStackSubNetFieldEnum = "marketplace_plan_uuid"
 	OpenStackSubNetFieldEnumMarketplaceResourceState         OpenStackSubNetFieldEnum = "marketplace_resource_state"
@@ -11851,6 +12716,8 @@ func (e OpenStackSubNetFieldEnum) Valid() bool {
 		return true
 	case OpenStackSubNetFieldEnumMarketplaceOfferingPluginOptions:
 		return true
+	case OpenStackSubNetFieldEnumMarketplaceOfferingType:
+		return true
 	case OpenStackSubNetFieldEnumMarketplaceOfferingUuid:
 		return true
 	case OpenStackSubNetFieldEnumMarketplacePlanUuid:
@@ -11924,6 +12791,7 @@ const (
 	OpenStackTenantFieldEnumMarketplaceCategoryUuid          OpenStackTenantFieldEnum = "marketplace_category_uuid"
 	OpenStackTenantFieldEnumMarketplaceOfferingName          OpenStackTenantFieldEnum = "marketplace_offering_name"
 	OpenStackTenantFieldEnumMarketplaceOfferingPluginOptions OpenStackTenantFieldEnum = "marketplace_offering_plugin_options"
+	OpenStackTenantFieldEnumMarketplaceOfferingType          OpenStackTenantFieldEnum = "marketplace_offering_type"
 	OpenStackTenantFieldEnumMarketplaceOfferingUuid          OpenStackTenantFieldEnum = "marketplace_offering_uuid"
 	OpenStackTenantFieldEnumMarketplacePlanUuid              OpenStackTenantFieldEnum = "marketplace_plan_uuid"
 	OpenStackTenantFieldEnumMarketplaceResourceState         OpenStackTenantFieldEnum = "marketplace_resource_state"
@@ -11995,6 +12863,8 @@ func (e OpenStackTenantFieldEnum) Valid() bool {
 	case OpenStackTenantFieldEnumMarketplaceOfferingName:
 		return true
 	case OpenStackTenantFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case OpenStackTenantFieldEnumMarketplaceOfferingType:
 		return true
 	case OpenStackTenantFieldEnumMarketplaceOfferingUuid:
 		return true
@@ -12079,6 +12949,7 @@ const (
 	OpenStackVolumeFieldEnumMarketplaceCategoryUuid          OpenStackVolumeFieldEnum = "marketplace_category_uuid"
 	OpenStackVolumeFieldEnumMarketplaceOfferingName          OpenStackVolumeFieldEnum = "marketplace_offering_name"
 	OpenStackVolumeFieldEnumMarketplaceOfferingPluginOptions OpenStackVolumeFieldEnum = "marketplace_offering_plugin_options"
+	OpenStackVolumeFieldEnumMarketplaceOfferingType          OpenStackVolumeFieldEnum = "marketplace_offering_type"
 	OpenStackVolumeFieldEnumMarketplaceOfferingUuid          OpenStackVolumeFieldEnum = "marketplace_offering_uuid"
 	OpenStackVolumeFieldEnumMarketplacePlanUuid              OpenStackVolumeFieldEnum = "marketplace_plan_uuid"
 	OpenStackVolumeFieldEnumMarketplaceResourceState         OpenStackVolumeFieldEnum = "marketplace_resource_state"
@@ -12169,6 +13040,8 @@ func (e OpenStackVolumeFieldEnum) Valid() bool {
 	case OpenStackVolumeFieldEnumMarketplaceOfferingName:
 		return true
 	case OpenStackVolumeFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case OpenStackVolumeFieldEnumMarketplaceOfferingType:
 		return true
 	case OpenStackVolumeFieldEnumMarketplaceOfferingUuid:
 		return true
@@ -14081,27 +14954,6 @@ func (e ProtectedCallOEnum) Valid() bool {
 	}
 }
 
-// Defines values for ProtocolEnum.
-const (
-	Icmp ProtocolEnum = "icmp"
-	Tcp  ProtocolEnum = "tcp"
-	Udp  ProtocolEnum = "udp"
-)
-
-// Valid indicates whether the value is a known member of the ProtocolEnum enum.
-func (e ProtocolEnum) Valid() bool {
-	switch e {
-	case Icmp:
-		return true
-	case Tcp:
-		return true
-	case Udp:
-		return true
-	default:
-		return false
-	}
-}
-
 // Defines values for ProviderOfferingCustomerFieldEnum.
 const (
 	ProviderOfferingCustomerFieldEnumAbbreviation ProviderOfferingCustomerFieldEnum = "abbreviation"
@@ -14994,6 +15846,7 @@ const (
 	RancherApplicationFieldEnumMarketplaceCategoryUuid          RancherApplicationFieldEnum = "marketplace_category_uuid"
 	RancherApplicationFieldEnumMarketplaceOfferingName          RancherApplicationFieldEnum = "marketplace_offering_name"
 	RancherApplicationFieldEnumMarketplaceOfferingPluginOptions RancherApplicationFieldEnum = "marketplace_offering_plugin_options"
+	RancherApplicationFieldEnumMarketplaceOfferingType          RancherApplicationFieldEnum = "marketplace_offering_type"
 	RancherApplicationFieldEnumMarketplaceOfferingUuid          RancherApplicationFieldEnum = "marketplace_offering_uuid"
 	RancherApplicationFieldEnumMarketplacePlanUuid              RancherApplicationFieldEnum = "marketplace_plan_uuid"
 	RancherApplicationFieldEnumMarketplaceResourceState         RancherApplicationFieldEnum = "marketplace_resource_state"
@@ -15064,6 +15917,8 @@ func (e RancherApplicationFieldEnum) Valid() bool {
 	case RancherApplicationFieldEnumMarketplaceOfferingName:
 		return true
 	case RancherApplicationFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case RancherApplicationFieldEnumMarketplaceOfferingType:
 		return true
 	case RancherApplicationFieldEnumMarketplaceOfferingUuid:
 		return true
@@ -15166,6 +16021,7 @@ const (
 	RancherClusterFieldEnumMarketplaceCategoryUuid          RancherClusterFieldEnum = "marketplace_category_uuid"
 	RancherClusterFieldEnumMarketplaceOfferingName          RancherClusterFieldEnum = "marketplace_offering_name"
 	RancherClusterFieldEnumMarketplaceOfferingPluginOptions RancherClusterFieldEnum = "marketplace_offering_plugin_options"
+	RancherClusterFieldEnumMarketplaceOfferingType          RancherClusterFieldEnum = "marketplace_offering_type"
 	RancherClusterFieldEnumMarketplaceOfferingUuid          RancherClusterFieldEnum = "marketplace_offering_uuid"
 	RancherClusterFieldEnumMarketplacePlanUuid              RancherClusterFieldEnum = "marketplace_plan_uuid"
 	RancherClusterFieldEnumMarketplaceResourceState         RancherClusterFieldEnum = "marketplace_resource_state"
@@ -15239,6 +16095,8 @@ func (e RancherClusterFieldEnum) Valid() bool {
 	case RancherClusterFieldEnumMarketplaceOfferingName:
 		return true
 	case RancherClusterFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case RancherClusterFieldEnumMarketplaceOfferingType:
 		return true
 	case RancherClusterFieldEnumMarketplaceOfferingUuid:
 		return true
@@ -15318,6 +16176,7 @@ const (
 	RancherIngressFieldEnumMarketplaceCategoryUuid          RancherIngressFieldEnum = "marketplace_category_uuid"
 	RancherIngressFieldEnumMarketplaceOfferingName          RancherIngressFieldEnum = "marketplace_offering_name"
 	RancherIngressFieldEnumMarketplaceOfferingPluginOptions RancherIngressFieldEnum = "marketplace_offering_plugin_options"
+	RancherIngressFieldEnumMarketplaceOfferingType          RancherIngressFieldEnum = "marketplace_offering_type"
 	RancherIngressFieldEnumMarketplaceOfferingUuid          RancherIngressFieldEnum = "marketplace_offering_uuid"
 	RancherIngressFieldEnumMarketplacePlanUuid              RancherIngressFieldEnum = "marketplace_plan_uuid"
 	RancherIngressFieldEnumMarketplaceResourceState         RancherIngressFieldEnum = "marketplace_resource_state"
@@ -15380,6 +16239,8 @@ func (e RancherIngressFieldEnum) Valid() bool {
 	case RancherIngressFieldEnumMarketplaceOfferingName:
 		return true
 	case RancherIngressFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case RancherIngressFieldEnumMarketplaceOfferingType:
 		return true
 	case RancherIngressFieldEnumMarketplaceOfferingUuid:
 		return true
@@ -15520,6 +16381,7 @@ const (
 	RancherServiceFieldEnumMarketplaceCategoryUuid          RancherServiceFieldEnum = "marketplace_category_uuid"
 	RancherServiceFieldEnumMarketplaceOfferingName          RancherServiceFieldEnum = "marketplace_offering_name"
 	RancherServiceFieldEnumMarketplaceOfferingPluginOptions RancherServiceFieldEnum = "marketplace_offering_plugin_options"
+	RancherServiceFieldEnumMarketplaceOfferingType          RancherServiceFieldEnum = "marketplace_offering_type"
 	RancherServiceFieldEnumMarketplaceOfferingUuid          RancherServiceFieldEnum = "marketplace_offering_uuid"
 	RancherServiceFieldEnumMarketplacePlanUuid              RancherServiceFieldEnum = "marketplace_plan_uuid"
 	RancherServiceFieldEnumMarketplaceResourceState         RancherServiceFieldEnum = "marketplace_resource_state"
@@ -15583,6 +16445,8 @@ func (e RancherServiceFieldEnum) Valid() bool {
 	case RancherServiceFieldEnumMarketplaceOfferingName:
 		return true
 	case RancherServiceFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case RancherServiceFieldEnumMarketplaceOfferingType:
 		return true
 	case RancherServiceFieldEnumMarketplaceOfferingUuid:
 		return true
@@ -15772,6 +16636,7 @@ const (
 	RemoteAllocationFieldEnumMarketplaceCategoryUuid          RemoteAllocationFieldEnum = "marketplace_category_uuid"
 	RemoteAllocationFieldEnumMarketplaceOfferingName          RemoteAllocationFieldEnum = "marketplace_offering_name"
 	RemoteAllocationFieldEnumMarketplaceOfferingPluginOptions RemoteAllocationFieldEnum = "marketplace_offering_plugin_options"
+	RemoteAllocationFieldEnumMarketplaceOfferingType          RemoteAllocationFieldEnum = "marketplace_offering_type"
 	RemoteAllocationFieldEnumMarketplaceOfferingUuid          RemoteAllocationFieldEnum = "marketplace_offering_uuid"
 	RemoteAllocationFieldEnumMarketplacePlanUuid              RemoteAllocationFieldEnum = "marketplace_plan_uuid"
 	RemoteAllocationFieldEnumMarketplaceResourceState         RemoteAllocationFieldEnum = "marketplace_resource_state"
@@ -15833,6 +16698,8 @@ func (e RemoteAllocationFieldEnum) Valid() bool {
 	case RemoteAllocationFieldEnumMarketplaceOfferingName:
 		return true
 	case RemoteAllocationFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case RemoteAllocationFieldEnumMarketplaceOfferingType:
 		return true
 	case RemoteAllocationFieldEnumMarketplaceOfferingUuid:
 		return true
@@ -16838,6 +17705,27 @@ func (e SSHKEYALLOWEDTYPESEnum) Valid() bool {
 	}
 }
 
+// Defines values for SecurityGroupRuleProtocolEnum.
+const (
+	Icmp SecurityGroupRuleProtocolEnum = "icmp"
+	Tcp  SecurityGroupRuleProtocolEnum = "tcp"
+	Udp  SecurityGroupRuleProtocolEnum = "udp"
+)
+
+// Valid indicates whether the value is a known member of the SecurityGroupRuleProtocolEnum enum.
+func (e SecurityGroupRuleProtocolEnum) Valid() bool {
+	switch e {
+	case Icmp:
+		return true
+	case Tcp:
+		return true
+	case Udp:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ServiceProviderFieldEnum.
 const (
 	ServiceProviderFieldEnumCreated              ServiceProviderFieldEnum = "created"
@@ -17055,6 +17943,7 @@ const (
 	SlurmAllocationFieldEnumMarketplaceCategoryUuid          SlurmAllocationFieldEnum = "marketplace_category_uuid"
 	SlurmAllocationFieldEnumMarketplaceOfferingName          SlurmAllocationFieldEnum = "marketplace_offering_name"
 	SlurmAllocationFieldEnumMarketplaceOfferingPluginOptions SlurmAllocationFieldEnum = "marketplace_offering_plugin_options"
+	SlurmAllocationFieldEnumMarketplaceOfferingType          SlurmAllocationFieldEnum = "marketplace_offering_type"
 	SlurmAllocationFieldEnumMarketplaceOfferingUuid          SlurmAllocationFieldEnum = "marketplace_offering_uuid"
 	SlurmAllocationFieldEnumMarketplacePlanUuid              SlurmAllocationFieldEnum = "marketplace_plan_uuid"
 	SlurmAllocationFieldEnumMarketplaceResourceState         SlurmAllocationFieldEnum = "marketplace_resource_state"
@@ -17126,6 +18015,8 @@ func (e SlurmAllocationFieldEnum) Valid() bool {
 	case SlurmAllocationFieldEnumMarketplaceOfferingName:
 		return true
 	case SlurmAllocationFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case SlurmAllocationFieldEnumMarketplaceOfferingType:
 		return true
 	case SlurmAllocationFieldEnumMarketplaceOfferingUuid:
 		return true
@@ -18678,6 +19569,7 @@ const (
 	VmwareDiskFieldEnumMarketplaceCategoryUuid          VmwareDiskFieldEnum = "marketplace_category_uuid"
 	VmwareDiskFieldEnumMarketplaceOfferingName          VmwareDiskFieldEnum = "marketplace_offering_name"
 	VmwareDiskFieldEnumMarketplaceOfferingPluginOptions VmwareDiskFieldEnum = "marketplace_offering_plugin_options"
+	VmwareDiskFieldEnumMarketplaceOfferingType          VmwareDiskFieldEnum = "marketplace_offering_type"
 	VmwareDiskFieldEnumMarketplaceOfferingUuid          VmwareDiskFieldEnum = "marketplace_offering_uuid"
 	VmwareDiskFieldEnumMarketplacePlanUuid              VmwareDiskFieldEnum = "marketplace_plan_uuid"
 	VmwareDiskFieldEnumMarketplaceResourceState         VmwareDiskFieldEnum = "marketplace_resource_state"
@@ -18738,6 +19630,8 @@ func (e VmwareDiskFieldEnum) Valid() bool {
 	case VmwareDiskFieldEnumMarketplaceOfferingName:
 		return true
 	case VmwareDiskFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case VmwareDiskFieldEnumMarketplaceOfferingType:
 		return true
 	case VmwareDiskFieldEnumMarketplaceOfferingUuid:
 		return true
@@ -18808,6 +19702,7 @@ const (
 	VmwarePortFieldEnumMarketplaceCategoryUuid          VmwarePortFieldEnum = "marketplace_category_uuid"
 	VmwarePortFieldEnumMarketplaceOfferingName          VmwarePortFieldEnum = "marketplace_offering_name"
 	VmwarePortFieldEnumMarketplaceOfferingPluginOptions VmwarePortFieldEnum = "marketplace_offering_plugin_options"
+	VmwarePortFieldEnumMarketplaceOfferingType          VmwarePortFieldEnum = "marketplace_offering_type"
 	VmwarePortFieldEnumMarketplaceOfferingUuid          VmwarePortFieldEnum = "marketplace_offering_uuid"
 	VmwarePortFieldEnumMarketplacePlanUuid              VmwarePortFieldEnum = "marketplace_plan_uuid"
 	VmwarePortFieldEnumMarketplaceResourceState         VmwarePortFieldEnum = "marketplace_resource_state"
@@ -18871,6 +19766,8 @@ func (e VmwarePortFieldEnum) Valid() bool {
 	case VmwarePortFieldEnumMarketplaceOfferingName:
 		return true
 	case VmwarePortFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case VmwarePortFieldEnumMarketplaceOfferingType:
 		return true
 	case VmwarePortFieldEnumMarketplaceOfferingUuid:
 		return true
@@ -18955,6 +19852,7 @@ const (
 	VmwareVirtualMachineFieldEnumMarketplaceCategoryUuid          VmwareVirtualMachineFieldEnum = "marketplace_category_uuid"
 	VmwareVirtualMachineFieldEnumMarketplaceOfferingName          VmwareVirtualMachineFieldEnum = "marketplace_offering_name"
 	VmwareVirtualMachineFieldEnumMarketplaceOfferingPluginOptions VmwareVirtualMachineFieldEnum = "marketplace_offering_plugin_options"
+	VmwareVirtualMachineFieldEnumMarketplaceOfferingType          VmwareVirtualMachineFieldEnum = "marketplace_offering_type"
 	VmwareVirtualMachineFieldEnumMarketplaceOfferingUuid          VmwareVirtualMachineFieldEnum = "marketplace_offering_uuid"
 	VmwareVirtualMachineFieldEnumMarketplacePlanUuid              VmwareVirtualMachineFieldEnum = "marketplace_plan_uuid"
 	VmwareVirtualMachineFieldEnumMarketplaceResourceState         VmwareVirtualMachineFieldEnum = "marketplace_resource_state"
@@ -19045,6 +19943,8 @@ func (e VmwareVirtualMachineFieldEnum) Valid() bool {
 	case VmwareVirtualMachineFieldEnumMarketplaceOfferingName:
 		return true
 	case VmwareVirtualMachineFieldEnumMarketplaceOfferingPluginOptions:
+		return true
+	case VmwareVirtualMachineFieldEnumMarketplaceOfferingType:
 		return true
 	case VmwareVirtualMachineFieldEnumMarketplaceOfferingUuid:
 		return true
@@ -19746,6 +20646,7 @@ type Allocation struct {
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -20814,6 +21715,7 @@ type AwsInstance struct {
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -20920,6 +21822,7 @@ type AwsVolume struct {
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -21014,6 +21917,7 @@ type AzurePublicIP struct {
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -21068,6 +21972,7 @@ type AzureResourceGroup struct {
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -21132,6 +22037,7 @@ type AzureSqlDatabase struct {
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -21204,6 +22110,7 @@ type AzureSqlServer struct {
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -21276,6 +22183,7 @@ type AzureVirtualMachine struct {
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -24730,6 +25638,96 @@ type CreateFeedbackRequest struct {
 	Token      *string `json:"token,omitempty"`
 }
 
+// CreateHealthMonitor defines model for CreateHealthMonitor.
+type CreateHealthMonitor struct {
+	// Delay Interval between health checks in seconds
+	Delay int `json:"delay"`
+
+	// MaxRetries Number of retries before marking member as down
+	MaxRetries int     `json:"max_retries"`
+	Name       *string `json:"name,omitempty"`
+
+	// Pool Pool this health monitor belongs to
+	Pool            string  `json:"pool"`
+	Project         *string `json:"project,omitempty"`
+	ServiceSettings *string `json:"service_settings,omitempty"`
+
+	// Timeout Time in seconds to timeout a health check
+	Timeout int                      `json:"timeout"`
+	Type    LoadBalancerProtocolEnum `json:"type"`
+	Url     *string                  `json:"url,omitempty"`
+	Uuid    *openapi_types.UUID      `json:"uuid,omitempty"`
+}
+
+// CreateHealthMonitorRequest defines model for CreateHealthMonitorRequest.
+type CreateHealthMonitorRequest struct {
+	// Delay Interval between health checks in seconds
+	Delay int `json:"delay"`
+
+	// MaxRetries Number of retries before marking member as down
+	MaxRetries int     `json:"max_retries"`
+	Name       *string `json:"name,omitempty"`
+
+	// Pool Pool this health monitor belongs to
+	Pool string `json:"pool"`
+
+	// Timeout Time in seconds to timeout a health check
+	Timeout int                      `json:"timeout"`
+	Type    LoadBalancerProtocolEnum `json:"type"`
+}
+
+// CreateListener defines model for CreateListener.
+type CreateListener struct {
+	DefaultPool *string `json:"default_pool,omitempty"`
+
+	// LoadBalancer Load balancer this listener belongs to
+	LoadBalancer string                   `json:"load_balancer"`
+	Name         string                   `json:"name"`
+	Project      *string                  `json:"project,omitempty"`
+	Protocol     LoadBalancerProtocolEnum `json:"protocol"`
+
+	// ProtocolPort Port on which the listener listens
+	ProtocolPort    int                 `json:"protocol_port"`
+	ServiceSettings *string             `json:"service_settings,omitempty"`
+	Url             *string             `json:"url,omitempty"`
+	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// CreateListenerRequest defines model for CreateListenerRequest.
+type CreateListenerRequest struct {
+	DefaultPool *string `json:"default_pool,omitempty"`
+
+	// LoadBalancer Load balancer this listener belongs to
+	LoadBalancer string                   `json:"load_balancer"`
+	Name         string                   `json:"name"`
+	Protocol     LoadBalancerProtocolEnum `json:"protocol"`
+
+	// ProtocolPort Port on which the listener listens
+	ProtocolPort int `json:"protocol_port"`
+}
+
+// CreateLoadBalancer defines model for CreateLoadBalancer.
+type CreateLoadBalancer struct {
+	Name            string  `json:"name"`
+	Project         *string `json:"project,omitempty"`
+	ServiceSettings *string `json:"service_settings,omitempty"`
+
+	// Tenant OpenStack tenant this load balancer belongs to
+	Tenant      string              `json:"tenant"`
+	Url         *string             `json:"url,omitempty"`
+	Uuid        *openapi_types.UUID `json:"uuid,omitempty"`
+	VipSubnetId string              `json:"vip_subnet_id"`
+}
+
+// CreateLoadBalancerRequest defines model for CreateLoadBalancerRequest.
+type CreateLoadBalancerRequest struct {
+	Name string `json:"name"`
+
+	// Tenant OpenStack tenant this load balancer belongs to
+	Tenant      string `json:"tenant"`
+	VipSubnetId string `json:"vip_subnet_id"`
+}
+
 // CreateManualAssignmentRequest defines model for CreateManualAssignmentRequest.
 type CreateManualAssignmentRequest struct {
 	// ManagerNotes Optional notes about this assignment
@@ -24749,6 +25747,86 @@ type CreateManualAssignmentResponse struct {
 
 	// SkippedProposals Proposals that were skipped with reasons
 	SkippedProposals []map[string]interface{} `json:"skipped_proposals"`
+}
+
+// CreatePool defines model for CreatePool.
+type CreatePool struct {
+	LbAlgorithm *LbAlgorithmEnum `json:"lb_algorithm,omitempty"`
+
+	// LoadBalancer Load balancer this pool belongs to
+	LoadBalancer    string                   `json:"load_balancer"`
+	Name            string                   `json:"name"`
+	Project         *string                  `json:"project,omitempty"`
+	Protocol        LoadBalancerProtocolEnum `json:"protocol"`
+	ServiceSettings *string                  `json:"service_settings,omitempty"`
+	Url             *string                  `json:"url,omitempty"`
+	Uuid            *openapi_types.UUID      `json:"uuid,omitempty"`
+}
+
+// CreatePoolMember defines model for CreatePoolMember.
+type CreatePoolMember struct {
+	// Address An IPv4 or IPv6 address.
+	Address CreatePoolMember_Address `json:"address"`
+	Name    *string                  `json:"name,omitempty"`
+
+	// Pool Pool this member belongs to
+	Pool    string  `json:"pool"`
+	Project *string `json:"project,omitempty"`
+
+	// ProtocolPort Port on the backend server
+	ProtocolPort    int                 `json:"protocol_port"`
+	ServiceSettings *string             `json:"service_settings,omitempty"`
+	SubnetId        string              `json:"subnet_id"`
+	Url             *string             `json:"url,omitempty"`
+	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
+	Weight          *int                `json:"weight,omitempty"`
+}
+
+// CreatePoolMemberAddress0 defines model for .
+type CreatePoolMemberAddress0 = string
+
+// CreatePoolMemberAddress1 defines model for .
+type CreatePoolMemberAddress1 = string
+
+// CreatePoolMember_Address An IPv4 or IPv6 address.
+type CreatePoolMember_Address struct {
+	union json.RawMessage
+}
+
+// CreatePoolMemberRequest defines model for CreatePoolMemberRequest.
+type CreatePoolMemberRequest struct {
+	// Address An IPv4 or IPv6 address.
+	Address CreatePoolMemberRequest_Address `json:"address"`
+	Name    *string                         `json:"name,omitempty"`
+
+	// Pool Pool this member belongs to
+	Pool string `json:"pool"`
+
+	// ProtocolPort Port on the backend server
+	ProtocolPort int    `json:"protocol_port"`
+	SubnetId     string `json:"subnet_id"`
+	Weight       *int   `json:"weight,omitempty"`
+}
+
+// CreatePoolMemberRequestAddress0 defines model for .
+type CreatePoolMemberRequestAddress0 = string
+
+// CreatePoolMemberRequestAddress1 defines model for .
+type CreatePoolMemberRequestAddress1 = string
+
+// CreatePoolMemberRequest_Address An IPv4 or IPv6 address.
+type CreatePoolMemberRequest_Address struct {
+	union json.RawMessage
+}
+
+// CreatePoolRequest defines model for CreatePoolRequest.
+type CreatePoolRequest struct {
+	LbAlgorithm *LbAlgorithmEnum `json:"lb_algorithm,omitempty"`
+
+	// LoadBalancer Load balancer this pool belongs to
+	LoadBalancer string                   `json:"load_balancer"`
+	Name         string                   `json:"name"`
+	Protocol     LoadBalancerProtocolEnum `json:"protocol"`
 }
 
 // CreateRouter defines model for CreateRouter.
@@ -25673,6 +26751,7 @@ type DigitalOceanDroplet struct {
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -28306,6 +29385,9 @@ type KindEnum string
 // LOGINPAGELAYOUTEnum defines model for LOGINPAGELAYOUTEnum.
 type LOGINPAGELAYOUTEnum string
 
+// LbAlgorithmEnum defines model for LbAlgorithmEnum.
+type LbAlgorithmEnum string
+
 // LexisLink defines model for LexisLink.
 type LexisLink struct {
 	Created              *time.Time          `json:"created,omitempty"`
@@ -28385,6 +29467,19 @@ type LinkToInvoice struct {
 // LinkToInvoiceRequest defines model for LinkToInvoiceRequest.
 type LinkToInvoiceRequest struct {
 	Invoice string `json:"invoice"`
+}
+
+// LoadBalancerAttachFloatingIPRequest defines model for LoadBalancerAttachFloatingIPRequest.
+type LoadBalancerAttachFloatingIPRequest struct {
+	FloatingIp string `json:"floating_ip"`
+}
+
+// LoadBalancerProtocolEnum defines model for LoadBalancerProtocolEnum.
+type LoadBalancerProtocolEnum string
+
+// LoadBalancerUpdateVIPSecurityGroupsRequest defines model for LoadBalancerUpdateVIPSecurityGroupsRequest.
+type LoadBalancerUpdateVIPSecurityGroupsRequest struct {
+	SecurityGroups []string `json:"security_groups"`
 }
 
 // LockStats defines model for LockStats.
@@ -32047,6 +33142,7 @@ type OpenStackBackup struct {
 	MarketplaceCategoryUuid          *string                       `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                       `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{}       `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                       `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                       `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                       `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                       `json:"marketplace_resource_state,omitempty"`
@@ -32284,6 +33380,7 @@ type OpenStackFloatingIP struct {
 	MarketplaceCategoryUuid          *string                              `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                              `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{}              `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                              `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                              `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                              `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                              `json:"marketplace_resource_state,omitempty"`
@@ -32353,6 +33450,63 @@ type OpenStackFloatingIPRequest struct {
 	// Router Optional router to use for external network detection
 	Router *string `json:"router,omitempty"`
 }
+
+// OpenStackHealthMonitor defines model for OpenStackHealthMonitor.
+type OpenStackHealthMonitor struct {
+	AccessUrl *string `json:"access_url,omitempty"`
+
+	// BackendId Health monitor ID in Octavia
+	BackendId                        *string                 `json:"backend_id,omitempty"`
+	Created                          *time.Time              `json:"created,omitempty"`
+	Customer                         *string                 `json:"customer,omitempty"`
+	CustomerAbbreviation             *string                 `json:"customer_abbreviation,omitempty"`
+	CustomerName                     *string                 `json:"customer_name,omitempty"`
+	CustomerNativeName               *string                 `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID     `json:"customer_uuid,omitempty"`
+	Delay                            *int                    `json:"delay,omitempty"`
+	Description                      *string                 `json:"description,omitempty"`
+	ErrorMessage                     *string                 `json:"error_message,omitempty"`
+	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
+	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
+	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
+	LoadBalancerUuid                 *openapi_types.UUID     `json:"load_balancer_uuid,omitempty"`
+	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
+	MaxRetries                       *int                    `json:"max_retries,omitempty"`
+	Modified                         *time.Time              `json:"modified,omitempty"`
+	Name                             *string                 `json:"name,omitempty"`
+	OperatingStatus                  *string                 `json:"operating_status,omitempty"`
+
+	// Pool Pool this health monitor belongs to
+	Pool                        *string             `json:"pool,omitempty"`
+	PoolName                    *string             `json:"pool_name,omitempty"`
+	PoolUuid                    *openapi_types.UUID `json:"pool_uuid,omitempty"`
+	Project                     *string             `json:"project,omitempty"`
+	ProjectName                 *string             `json:"project_name,omitempty"`
+	ProjectUuid                 *openapi_types.UUID `json:"project_uuid,omitempty"`
+	ProvisioningStatus          *string             `json:"provisioning_status,omitempty"`
+	ResourceType                *string             `json:"resource_type,omitempty"`
+	ServiceName                 *string             `json:"service_name,omitempty"`
+	ServiceSettings             *string             `json:"service_settings,omitempty"`
+	ServiceSettingsErrorMessage *string             `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState        *string             `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid         *openapi_types.UUID `json:"service_settings_uuid,omitempty"`
+	State                       *CoreStates         `json:"state,omitempty"`
+	Timeout                     *int                `json:"timeout,omitempty"`
+	Type                        *string             `json:"type,omitempty"`
+	Url                         *string             `json:"url,omitempty"`
+	Uuid                        *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// OpenStackHealthMonitorFieldEnum defines model for OpenStackHealthMonitorFieldEnum.
+type OpenStackHealthMonitorFieldEnum string
 
 // OpenStackImage defines model for OpenStackImage.
 type OpenStackImage struct {
@@ -32428,6 +33582,7 @@ type OpenStackInstance struct {
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -32476,6 +33631,36 @@ type OpenStackInstance struct {
 	// Volumes List of volumes attached to the instance
 	Volumes *[]OpenStackNestedVolume `json:"volumes,omitempty"`
 }
+
+// OpenStackInstanceAggregate defines model for OpenStackInstanceAggregate.
+type OpenStackInstanceAggregate struct {
+	// GroupKey Group key value
+	GroupKey string `json:"group_key"`
+
+	// GroupLabel Human-readable group label
+	GroupLabel string `json:"group_label"`
+
+	// InstanceCount Number of instances
+	InstanceCount int `json:"instance_count"`
+
+	// TotalCores Total vCPUs
+	TotalCores int `json:"total_cores"`
+
+	// TotalDiskMb Total disk in MiB
+	TotalDiskMb int `json:"total_disk_mb"`
+
+	// TotalFloatingIps Total number of floating IPs
+	TotalFloatingIps int `json:"total_floating_ips"`
+
+	// TotalRamMb Total RAM in MiB
+	TotalRamMb int `json:"total_ram_mb"`
+
+	// TotalVolumeSizeMb Total attached volume size in MiB
+	TotalVolumeSizeMb int `json:"total_volume_size_mb"`
+}
+
+// OpenStackInstanceAggregateGroupByEnum defines model for OpenStackInstanceAggregateGroupByEnum.
+type OpenStackInstanceAggregateGroupByEnum string
 
 // OpenStackInstanceAllowedAddressPairsUpdateRequest defines model for OpenStackInstanceAllowedAddressPairsUpdateRequest.
 type OpenStackInstanceAllowedAddressPairsUpdateRequest struct {
@@ -32560,6 +33745,96 @@ type OpenStackInstancePortsUpdateRequest struct {
 	Ports []OpenStackCreatePortRequest `json:"ports"`
 }
 
+// OpenStackInstanceReport defines model for OpenStackInstanceReport.
+type OpenStackInstanceReport struct {
+	// AvailabilityZoneName Availability zone name
+	AvailabilityZoneName *string `json:"availability_zone_name"`
+
+	// Cores Number of vCPUs
+	Cores int `json:"cores"`
+
+	// Created Creation timestamp
+	Created time.Time `json:"created"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation string `json:"customer_abbreviation"`
+
+	// CustomerName Customer name
+	CustomerName string `json:"customer_name"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid openapi_types.UUID `json:"customer_uuid"`
+
+	// Disk Root disk in MiB
+	Disk int `json:"disk"`
+
+	// ExternalIps List of external IP addresses
+	ExternalIps []string `json:"external_ips"`
+
+	// FlavorDisk Flavor disk in MiB
+	FlavorDisk int `json:"flavor_disk"`
+
+	// FlavorName Flavor name
+	FlavorName string `json:"flavor_name"`
+
+	// FloatingIpCount Number of floating IPs
+	FloatingIpCount int `json:"floating_ip_count"`
+
+	// HypervisorHostname Hypervisor hostname
+	HypervisorHostname string `json:"hypervisor_hostname"`
+
+	// ImageName Image name
+	ImageName string `json:"image_name"`
+
+	// InternalIps List of internal IP addresses
+	InternalIps []string `json:"internal_ips"`
+
+	// Name Instance name
+	Name string `json:"name"`
+
+	// PortCount Number of ports
+	PortCount int `json:"port_count"`
+
+	// ProjectName Project name
+	ProjectName string `json:"project_name"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid openapi_types.UUID `json:"project_uuid"`
+
+	// Ram RAM in MiB
+	Ram int `json:"ram"`
+
+	// RuntimeState Runtime state (e.g. ACTIVE, SHUTOFF)
+	RuntimeState string `json:"runtime_state"`
+
+	// ServiceSettingsName Cluster name
+	ServiceSettingsName string `json:"service_settings_name"`
+
+	// ServiceSettingsUuid Cluster UUID
+	ServiceSettingsUuid openapi_types.UUID `json:"service_settings_uuid"`
+
+	// StartTime Last start time of the VM
+	StartTime *time.Time `json:"start_time"`
+
+	// State Provisioning state
+	State string `json:"state"`
+
+	// TenantName Tenant name
+	TenantName string `json:"tenant_name"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid openapi_types.UUID `json:"tenant_uuid"`
+
+	// TotalVolumeSizeMb Total attached volume size in MiB
+	TotalVolumeSizeMb int `json:"total_volume_size_mb"`
+
+	// Uuid Instance UUID
+	Uuid openapi_types.UUID `json:"uuid"`
+
+	// VolumeCount Number of attached volumes
+	VolumeCount int `json:"volume_count"`
+}
+
 // OpenStackInstanceRequest defines model for OpenStackInstanceRequest.
 type OpenStackInstanceRequest struct {
 	Description *string `json:"description,omitempty"`
@@ -32570,6 +33845,153 @@ type OpenStackInstanceRequest struct {
 type OpenStackInstanceSecurityGroupsUpdateRequest struct {
 	// SecurityGroups List of security groups to be assigned to the instance.
 	SecurityGroups []string `json:"security_groups"`
+}
+
+// OpenStackListener defines model for OpenStackListener.
+type OpenStackListener struct {
+	AccessUrl *string `json:"access_url,omitempty"`
+
+	// BackendId Listener ID in Octavia
+	BackendId            *string             `json:"backend_id,omitempty"`
+	Created              *time.Time          `json:"created,omitempty"`
+	Customer             *string             `json:"customer,omitempty"`
+	CustomerAbbreviation *string             `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string             `json:"customer_name,omitempty"`
+	CustomerNativeName   *string             `json:"customer_native_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID `json:"customer_uuid,omitempty"`
+
+	// DefaultPool Default pool for this listener
+	DefaultPool    *string `json:"default_pool,omitempty"`
+	Description    *string `json:"description,omitempty"`
+	ErrorMessage   *string `json:"error_message,omitempty"`
+	ErrorTraceback *string `json:"error_traceback,omitempty"`
+	IsLimitBased   *bool   `json:"is_limit_based,omitempty"`
+	IsUsageBased   *bool   `json:"is_usage_based,omitempty"`
+
+	// LoadBalancer Load balancer this listener belongs to
+	LoadBalancer                     *string                 `json:"load_balancer,omitempty"`
+	LoadBalancerName                 *string                 `json:"load_balancer_name,omitempty"`
+	LoadBalancerUuid                 *openapi_types.UUID     `json:"load_balancer_uuid,omitempty"`
+	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
+	Modified                         *time.Time              `json:"modified,omitempty"`
+	Name                             *string                 `json:"name,omitempty"`
+	OperatingStatus                  *string                 `json:"operating_status,omitempty"`
+	Project                          *string                 `json:"project,omitempty"`
+	ProjectName                      *string                 `json:"project_name,omitempty"`
+	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
+	Protocol                         *string                 `json:"protocol,omitempty"`
+	ProtocolPort                     *int                    `json:"protocol_port,omitempty"`
+	ProvisioningStatus               *string                 `json:"provisioning_status,omitempty"`
+	ResourceType                     *string                 `json:"resource_type,omitempty"`
+	ServiceName                      *string                 `json:"service_name,omitempty"`
+	ServiceSettings                  *string                 `json:"service_settings,omitempty"`
+	ServiceSettingsErrorMessage      *string                 `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
+	State                            *CoreStates             `json:"state,omitempty"`
+	Url                              *string                 `json:"url,omitempty"`
+	Uuid                             *openapi_types.UUID     `json:"uuid,omitempty"`
+}
+
+// OpenStackListenerFieldEnum defines model for OpenStackListenerFieldEnum.
+type OpenStackListenerFieldEnum string
+
+// OpenStackLoadBalancer defines model for OpenStackLoadBalancer.
+type OpenStackLoadBalancer struct {
+	AccessUrl *string `json:"access_url,omitempty"`
+
+	// AttachedFloatingIp Floating IP attached to the VIP port
+	AttachedFloatingIp *string `json:"attached_floating_ip,omitempty"`
+
+	// BackendId Load balancer ID in Octavia
+	BackendId                        *string                 `json:"backend_id,omitempty"`
+	Created                          *time.Time              `json:"created,omitempty"`
+	Customer                         *string                 `json:"customer,omitempty"`
+	CustomerAbbreviation             *string                 `json:"customer_abbreviation,omitempty"`
+	CustomerName                     *string                 `json:"customer_name,omitempty"`
+	CustomerNativeName               *string                 `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID     `json:"customer_uuid,omitempty"`
+	Description                      *string                 `json:"description,omitempty"`
+	ErrorMessage                     *string                 `json:"error_message,omitempty"`
+	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
+	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
+	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
+	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
+	Modified                         *time.Time              `json:"modified,omitempty"`
+	Name                             *string                 `json:"name,omitempty"`
+	OperatingStatus                  *string                 `json:"operating_status,omitempty"`
+	Project                          *string                 `json:"project,omitempty"`
+	ProjectName                      *string                 `json:"project_name,omitempty"`
+	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
+	Provider                         *string                 `json:"provider,omitempty"`
+	ProvisioningStatus               *string                 `json:"provisioning_status,omitempty"`
+	ResourceType                     *string                 `json:"resource_type,omitempty"`
+	ServiceName                      *string                 `json:"service_name,omitempty"`
+	ServiceSettings                  *string                 `json:"service_settings,omitempty"`
+	ServiceSettingsErrorMessage      *string                 `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
+	State                            *CoreStates             `json:"state,omitempty"`
+
+	// Tenant OpenStack tenant this load balancer belongs to
+	Tenant     *string             `json:"tenant,omitempty"`
+	TenantName *string             `json:"tenant_name,omitempty"`
+	TenantUuid *openapi_types.UUID `json:"tenant_uuid,omitempty"`
+	Url        *string             `json:"url,omitempty"`
+	Uuid       *openapi_types.UUID `json:"uuid,omitempty"`
+
+	// VipAddress An IPv4 or IPv6 address.
+	VipAddress  *OpenStackLoadBalancer_VipAddress `json:"vip_address,omitempty"`
+	VipPortId   *string                           `json:"vip_port_id,omitempty"`
+	VipSubnetId *string                           `json:"vip_subnet_id,omitempty"`
+}
+
+// OpenStackLoadBalancerVipAddress0 defines model for .
+type OpenStackLoadBalancerVipAddress0 = string
+
+// OpenStackLoadBalancerVipAddress1 defines model for .
+type OpenStackLoadBalancerVipAddress1 = string
+
+// OpenStackLoadBalancer_VipAddress An IPv4 or IPv6 address.
+type OpenStackLoadBalancer_VipAddress struct {
+	union json.RawMessage
+}
+
+// OpenStackLoadBalancerFieldEnum defines model for OpenStackLoadBalancerFieldEnum.
+type OpenStackLoadBalancerFieldEnum string
+
+// OpenStackLoadBalancerRequest defines model for OpenStackLoadBalancerRequest.
+type OpenStackLoadBalancerRequest struct {
+	// AttachedFloatingIp Floating IP attached to the VIP port
+	AttachedFloatingIp *string `json:"attached_floating_ip,omitempty"`
+
+	// BackendId Load balancer ID in Octavia
+	BackendId       *string `json:"backend_id,omitempty"`
+	Description     *string `json:"description,omitempty"`
+	ErrorMessage    *string `json:"error_message,omitempty"`
+	ErrorTraceback  *string `json:"error_traceback,omitempty"`
+	Name            string  `json:"name"`
+	Project         string  `json:"project"`
+	ServiceSettings string  `json:"service_settings"`
+
+	// Tenant OpenStack tenant this load balancer belongs to
+	Tenant string `json:"tenant"`
 }
 
 // OpenStackNestedFloatingIP defines model for OpenStackNestedFloatingIP.
@@ -32733,6 +34155,7 @@ type OpenStackNetwork struct {
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -32778,6 +34201,147 @@ type OpenStackNetworkRequest struct {
 	Name        string  `json:"name"`
 }
 
+// OpenStackPool defines model for OpenStackPool.
+type OpenStackPool struct {
+	AccessUrl *string `json:"access_url,omitempty"`
+
+	// BackendId Pool ID in Octavia
+	BackendId            *string             `json:"backend_id,omitempty"`
+	Created              *time.Time          `json:"created,omitempty"`
+	Customer             *string             `json:"customer,omitempty"`
+	CustomerAbbreviation *string             `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string             `json:"customer_name,omitempty"`
+	CustomerNativeName   *string             `json:"customer_native_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Description          *string             `json:"description,omitempty"`
+	ErrorMessage         *string             `json:"error_message,omitempty"`
+	ErrorTraceback       *string             `json:"error_traceback,omitempty"`
+	IsLimitBased         *bool               `json:"is_limit_based,omitempty"`
+	IsUsageBased         *bool               `json:"is_usage_based,omitempty"`
+	LbAlgorithm          *string             `json:"lb_algorithm,omitempty"`
+
+	// LoadBalancer Load balancer this pool belongs to
+	LoadBalancer                     *string                 `json:"load_balancer,omitempty"`
+	LoadBalancerName                 *string                 `json:"load_balancer_name,omitempty"`
+	LoadBalancerUuid                 *openapi_types.UUID     `json:"load_balancer_uuid,omitempty"`
+	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
+	Modified                         *time.Time              `json:"modified,omitempty"`
+	Name                             *string                 `json:"name,omitempty"`
+	OperatingStatus                  *string                 `json:"operating_status,omitempty"`
+	Project                          *string                 `json:"project,omitempty"`
+	ProjectName                      *string                 `json:"project_name,omitempty"`
+	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
+	Protocol                         *string                 `json:"protocol,omitempty"`
+	ProvisioningStatus               *string                 `json:"provisioning_status,omitempty"`
+	ResourceType                     *string                 `json:"resource_type,omitempty"`
+	ServiceName                      *string                 `json:"service_name,omitempty"`
+	ServiceSettings                  *string                 `json:"service_settings,omitempty"`
+	ServiceSettingsErrorMessage      *string                 `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
+	State                            *CoreStates             `json:"state,omitempty"`
+	Url                              *string                 `json:"url,omitempty"`
+	Uuid                             *openapi_types.UUID     `json:"uuid,omitempty"`
+}
+
+// OpenStackPoolFieldEnum defines model for OpenStackPoolFieldEnum.
+type OpenStackPoolFieldEnum string
+
+// OpenStackPoolMember defines model for OpenStackPoolMember.
+type OpenStackPoolMember struct {
+	AccessUrl *string `json:"access_url,omitempty"`
+
+	// Address An IPv4 or IPv6 address.
+	Address *OpenStackPoolMember_Address `json:"address,omitempty"`
+
+	// BackendId Member ID in Octavia
+	BackendId                        *string                 `json:"backend_id,omitempty"`
+	Created                          *time.Time              `json:"created,omitempty"`
+	Customer                         *string                 `json:"customer,omitempty"`
+	CustomerAbbreviation             *string                 `json:"customer_abbreviation,omitempty"`
+	CustomerName                     *string                 `json:"customer_name,omitempty"`
+	CustomerNativeName               *string                 `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID     `json:"customer_uuid,omitempty"`
+	Description                      *string                 `json:"description,omitempty"`
+	ErrorMessage                     *string                 `json:"error_message,omitempty"`
+	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
+	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
+	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
+	LoadBalancerUuid                 *openapi_types.UUID     `json:"load_balancer_uuid,omitempty"`
+	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
+	Modified                         *time.Time              `json:"modified,omitempty"`
+	Name                             *string                 `json:"name,omitempty"`
+	OperatingStatus                  *string                 `json:"operating_status,omitempty"`
+
+	// Pool Pool this member belongs to
+	Pool                        *string             `json:"pool,omitempty"`
+	PoolName                    *string             `json:"pool_name,omitempty"`
+	PoolUuid                    *openapi_types.UUID `json:"pool_uuid,omitempty"`
+	Project                     *string             `json:"project,omitempty"`
+	ProjectName                 *string             `json:"project_name,omitempty"`
+	ProjectUuid                 *openapi_types.UUID `json:"project_uuid,omitempty"`
+	ProtocolPort                *int                `json:"protocol_port,omitempty"`
+	ProvisioningStatus          *string             `json:"provisioning_status,omitempty"`
+	ResourceType                *string             `json:"resource_type,omitempty"`
+	ServiceName                 *string             `json:"service_name,omitempty"`
+	ServiceSettings             *string             `json:"service_settings,omitempty"`
+	ServiceSettingsErrorMessage *string             `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState        *string             `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid         *openapi_types.UUID `json:"service_settings_uuid,omitempty"`
+	State                       *CoreStates         `json:"state,omitempty"`
+
+	// SubnetId Subnet ID for the member (required for creation)
+	SubnetId *string             `json:"subnet_id,omitempty"`
+	Url      *string             `json:"url,omitempty"`
+	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
+	Weight   *int                `json:"weight,omitempty"`
+}
+
+// OpenStackPoolMemberAddress0 defines model for .
+type OpenStackPoolMemberAddress0 = string
+
+// OpenStackPoolMemberAddress1 defines model for .
+type OpenStackPoolMemberAddress1 = string
+
+// OpenStackPoolMember_Address An IPv4 or IPv6 address.
+type OpenStackPoolMember_Address struct {
+	union json.RawMessage
+}
+
+// OpenStackPoolMemberFieldEnum defines model for OpenStackPoolMemberFieldEnum.
+type OpenStackPoolMemberFieldEnum string
+
+// OpenStackPoolRequest defines model for OpenStackPoolRequest.
+type OpenStackPoolRequest struct {
+	// BackendId Pool ID in Octavia
+	BackendId      *string `json:"backend_id,omitempty"`
+	Description    *string `json:"description,omitempty"`
+	ErrorMessage   *string `json:"error_message,omitempty"`
+	ErrorTraceback *string `json:"error_traceback,omitempty"`
+
+	// LoadBalancer Load balancer this pool belongs to
+	LoadBalancer    string `json:"load_balancer"`
+	Name            string `json:"name"`
+	Project         string `json:"project"`
+	ServiceSettings string `json:"service_settings"`
+}
+
 // OpenStackPort defines model for OpenStackPort.
 type OpenStackPort struct {
 	AccessUrl *string `json:"access_url,omitempty"`
@@ -32814,6 +34378,7 @@ type OpenStackPort struct {
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -32932,6 +34497,7 @@ type OpenStackRouter struct {
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -33001,6 +34567,7 @@ type OpenStackSecurityGroup struct {
 	MarketplaceCategoryUuid          *string                             `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                             `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{}             `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                             `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                             `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                             `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                             `json:"marketplace_resource_state,omitempty"`
@@ -33195,6 +34762,7 @@ type OpenStackServerGroup struct {
 	MarketplaceCategoryUuid          *string                    `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                    `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{}    `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                    `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                    `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                    `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                    `json:"marketplace_resource_state,omitempty"`
@@ -33274,6 +34842,7 @@ type OpenStackSnapshot struct {
 	MarketplaceCategoryUuid          *string                         `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                         `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{}         `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                         `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                         `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                         `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                         `json:"marketplace_resource_state,omitempty"`
@@ -33424,6 +34993,7 @@ type OpenStackSubNet struct {
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -33610,6 +35180,7 @@ type OpenStackTenant struct {
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -33753,6 +35324,7 @@ type OpenStackVolume struct {
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -35423,10 +36995,43 @@ type PatchedOpenStackInstanceRequest struct {
 	Name        *string `json:"name,omitempty"`
 }
 
+// PatchedOpenStackLoadBalancerRequest defines model for PatchedOpenStackLoadBalancerRequest.
+type PatchedOpenStackLoadBalancerRequest struct {
+	// AttachedFloatingIp Floating IP attached to the VIP port
+	AttachedFloatingIp *string `json:"attached_floating_ip,omitempty"`
+
+	// BackendId Load balancer ID in Octavia
+	BackendId       *string `json:"backend_id,omitempty"`
+	Description     *string `json:"description,omitempty"`
+	ErrorMessage    *string `json:"error_message,omitempty"`
+	ErrorTraceback  *string `json:"error_traceback,omitempty"`
+	Name            *string `json:"name,omitempty"`
+	Project         *string `json:"project,omitempty"`
+	ServiceSettings *string `json:"service_settings,omitempty"`
+
+	// Tenant OpenStack tenant this load balancer belongs to
+	Tenant *string `json:"tenant,omitempty"`
+}
+
 // PatchedOpenStackNetworkRequest defines model for PatchedOpenStackNetworkRequest.
 type PatchedOpenStackNetworkRequest struct {
 	Description *string `json:"description,omitempty"`
 	Name        *string `json:"name,omitempty"`
+}
+
+// PatchedOpenStackPoolRequest defines model for PatchedOpenStackPoolRequest.
+type PatchedOpenStackPoolRequest struct {
+	// BackendId Pool ID in Octavia
+	BackendId      *string `json:"backend_id,omitempty"`
+	Description    *string `json:"description,omitempty"`
+	ErrorMessage   *string `json:"error_message,omitempty"`
+	ErrorTraceback *string `json:"error_traceback,omitempty"`
+
+	// LoadBalancer Load balancer this pool belongs to
+	LoadBalancer    *string `json:"load_balancer,omitempty"`
+	Name            *string `json:"name,omitempty"`
+	Project         *string `json:"project,omitempty"`
+	ServiceSettings *string `json:"service_settings,omitempty"`
 }
 
 // PatchedOpenStackPortRequest defines model for PatchedOpenStackPortRequest.
@@ -36378,6 +37983,26 @@ type PatchedTemplateRequest struct {
 	Description *string        `json:"description,omitempty"`
 	IssueType   *IssueTypeEnum `json:"issue_type,omitempty"`
 	Name        *string        `json:"name,omitempty"`
+}
+
+// PatchedUpdateHealthMonitorRequest defines model for PatchedUpdateHealthMonitorRequest.
+type PatchedUpdateHealthMonitorRequest struct {
+	Delay      *int    `json:"delay,omitempty"`
+	MaxRetries *int    `json:"max_retries,omitempty"`
+	Name       *string `json:"name,omitempty"`
+	Timeout    *int    `json:"timeout,omitempty"`
+}
+
+// PatchedUpdateListenerRequest defines model for PatchedUpdateListenerRequest.
+type PatchedUpdateListenerRequest struct {
+	DefaultPool *string `json:"default_pool,omitempty"`
+	Name        *string `json:"name,omitempty"`
+}
+
+// PatchedUpdatePoolMemberRequest defines model for PatchedUpdatePoolMemberRequest.
+type PatchedUpdatePoolMemberRequest struct {
+	Name   *string `json:"name,omitempty"`
+	Weight *int    `json:"weight,omitempty"`
 }
 
 // PatchedUserAgreementRequest defines model for PatchedUserAgreementRequest.
@@ -37987,9 +39612,6 @@ type ProtectedRoundRequest struct {
 	StartTime                time.Time           `json:"start_time"`
 }
 
-// ProtocolEnum defines model for ProtocolEnum.
-type ProtocolEnum string
-
 // ProviderCustomerStats defines model for ProviderCustomerStats.
 type ProviderCustomerStats struct {
 	// Monthly Monthly customer counts
@@ -39012,6 +40634,7 @@ type RancherApplication struct {
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -39171,6 +40794,7 @@ type RancherCluster struct {
 	MarketplaceCategoryUuid          *string                  `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                  `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{}  `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                  `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                  `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                  `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                  `json:"marketplace_resource_state,omitempty"`
@@ -39389,6 +41013,7 @@ type RancherIngress struct {
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -39609,6 +41234,7 @@ type RancherService struct {
 	MarketplaceCategoryUuid          *string                   `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                   `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{}   `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                   `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                   `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                   `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                   `json:"marketplace_resource_state,omitempty"`
@@ -39667,6 +41293,7 @@ type RancherServiceCreate struct {
 	MarketplaceCategoryUuid          *string                         `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                         `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{}         `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                         `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                         `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                         `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                         `json:"marketplace_resource_state,omitempty"`
@@ -39945,6 +41572,7 @@ type RemoteAllocation struct {
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -41956,6 +43584,9 @@ type SectionRequest struct {
 	Title        string `json:"title"`
 }
 
+// SecurityGroupRuleProtocolEnum defines model for SecurityGroupRuleProtocolEnum.
+type SecurityGroupRuleProtocolEnum string
+
 // SelfDeclaredConflictRequest defines model for SelfDeclaredConflictRequest.
 type SelfDeclaredConflictRequest struct {
 	CoiType      CoiTypeEnum        `json:"coi_type"`
@@ -42315,6 +43946,7 @@ type SlurmAllocation struct {
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -43583,6 +45215,34 @@ type UpdateActionsResponse struct {
 	Status             string  `json:"status"`
 }
 
+// UpdateHealthMonitor defines model for UpdateHealthMonitor.
+type UpdateHealthMonitor struct {
+	Delay      *int    `json:"delay,omitempty"`
+	MaxRetries *int    `json:"max_retries,omitempty"`
+	Name       *string `json:"name,omitempty"`
+	Timeout    *int    `json:"timeout,omitempty"`
+}
+
+// UpdateHealthMonitorRequest defines model for UpdateHealthMonitorRequest.
+type UpdateHealthMonitorRequest struct {
+	Delay      *int    `json:"delay,omitempty"`
+	MaxRetries *int    `json:"max_retries,omitempty"`
+	Name       *string `json:"name,omitempty"`
+	Timeout    *int    `json:"timeout,omitempty"`
+}
+
+// UpdateListener defines model for UpdateListener.
+type UpdateListener struct {
+	DefaultPool *string `json:"default_pool,omitempty"`
+	Name        *string `json:"name,omitempty"`
+}
+
+// UpdateListenerRequest defines model for UpdateListenerRequest.
+type UpdateListenerRequest struct {
+	DefaultPool *string `json:"default_pool,omitempty"`
+	Name        *string `json:"name,omitempty"`
+}
+
 // UpdateOfferingComponentRequest defines model for UpdateOfferingComponentRequest.
 type UpdateOfferingComponentRequest struct {
 	ArticleCode        *string                                     `json:"article_code,omitempty"`
@@ -43617,6 +45277,18 @@ type UpdateOfferingComponentRequest struct {
 // UpdateOfferingComponentRequest_LimitPeriod defines model for UpdateOfferingComponentRequest.LimitPeriod.
 type UpdateOfferingComponentRequest_LimitPeriod struct {
 	union json.RawMessage
+}
+
+// UpdatePoolMember defines model for UpdatePoolMember.
+type UpdatePoolMember struct {
+	Name   *string `json:"name,omitempty"`
+	Weight *int    `json:"weight,omitempty"`
+}
+
+// UpdatePoolMemberRequest defines model for UpdatePoolMemberRequest.
+type UpdatePoolMemberRequest struct {
+	Name   *string `json:"name,omitempty"`
+	Weight *int    `json:"weight,omitempty"`
 }
 
 // UrgencyEnum defines model for UrgencyEnum.
@@ -44470,6 +46142,7 @@ type VmwareDisk struct {
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -44585,6 +46258,7 @@ type VmwarePort struct {
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -44682,6 +46356,7 @@ type VmwareVirtualMachine struct {
 	MarketplaceCategoryUuid          *string                       `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                       `json:"marketplace_offering_name,omitempty"`
 	MarketplaceOfferingPluginOptions *map[string]interface{}       `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                       `json:"marketplace_offering_type,omitempty"`
 	MarketplaceOfferingUuid          *string                       `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                       `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                       `json:"marketplace_resource_state,omitempty"`
@@ -55645,6 +57320,216 @@ type MarketplaceStatsOfferingsCounterStatsCountParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
+// MarketplaceStatsOpenstackInstancesListParams defines parameters for MarketplaceStatsOpenstackInstancesList.
+type MarketplaceStatsOpenstackInstancesListParams struct {
+	// AvailabilityZoneName Filter by availability zone name.
+	AvailabilityZoneName *string `form:"availability_zone_name,omitempty" json:"availability_zone_name,omitempty"`
+
+	// CoresMax Maximum number of vCPUs.
+	CoresMax *int `form:"cores_max,omitempty" json:"cores_max,omitempty"`
+
+	// CoresMin Minimum number of vCPUs.
+	CoresMin *int `form:"cores_min,omitempty" json:"cores_min,omitempty"`
+
+	// CustomerUuid Filter by customer UUID.
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// DiskMax Maximum disk in MiB.
+	DiskMax *int `form:"disk_max,omitempty" json:"disk_max,omitempty"`
+
+	// DiskMin Minimum disk in MiB.
+	DiskMin *int `form:"disk_min,omitempty" json:"disk_min,omitempty"`
+
+	// FlavorName Filter by flavor name (case-insensitive partial match).
+	FlavorName *string `form:"flavor_name,omitempty" json:"flavor_name,omitempty"`
+
+	// HypervisorHostname Filter by hypervisor hostname (case-insensitive partial match).
+	HypervisorHostname *string `form:"hypervisor_hostname,omitempty" json:"hypervisor_hostname,omitempty"`
+
+	// ImageName Filter by image name (case-insensitive partial match).
+	ImageName *string `form:"image_name,omitempty" json:"image_name,omitempty"`
+
+	// Name Filter by instance name (case-insensitive partial match).
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// O Ordering field. Prefix with - for descending. Options: name, cores, ram, disk, created, runtime_state, flavor_name, hypervisor_hostname, customer_name, project_name, cluster_name, start_time.
+	O *string `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Filter by project UUID.
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// RamMax Maximum RAM in MiB.
+	RamMax *int `form:"ram_max,omitempty" json:"ram_max,omitempty"`
+
+	// RamMin Minimum RAM in MiB.
+	RamMin *int `form:"ram_min,omitempty" json:"ram_min,omitempty"`
+
+	// RuntimeState Filter by runtime state (e.g. ACTIVE, SHUTOFF).
+	RuntimeState *string `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+
+	// ServiceSettingsUuid Filter by cluster (service settings) UUID.
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State Filter by provisioning state (e.g. OK, ERRED). Supports multiple values.
+	State *string `form:"state,omitempty" json:"state,omitempty"`
+
+	// TenantUuid Filter by tenant UUID.
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+}
+
+// MarketplaceStatsOpenstackInstancesCountParams defines parameters for MarketplaceStatsOpenstackInstancesCount.
+type MarketplaceStatsOpenstackInstancesCountParams struct {
+	// AvailabilityZoneName Filter by availability zone name.
+	AvailabilityZoneName *string `form:"availability_zone_name,omitempty" json:"availability_zone_name,omitempty"`
+
+	// CoresMax Maximum number of vCPUs.
+	CoresMax *int `form:"cores_max,omitempty" json:"cores_max,omitempty"`
+
+	// CoresMin Minimum number of vCPUs.
+	CoresMin *int `form:"cores_min,omitempty" json:"cores_min,omitempty"`
+
+	// CustomerUuid Filter by customer UUID.
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// DiskMax Maximum disk in MiB.
+	DiskMax *int `form:"disk_max,omitempty" json:"disk_max,omitempty"`
+
+	// DiskMin Minimum disk in MiB.
+	DiskMin *int `form:"disk_min,omitempty" json:"disk_min,omitempty"`
+
+	// FlavorName Filter by flavor name (case-insensitive partial match).
+	FlavorName *string `form:"flavor_name,omitempty" json:"flavor_name,omitempty"`
+
+	// HypervisorHostname Filter by hypervisor hostname (case-insensitive partial match).
+	HypervisorHostname *string `form:"hypervisor_hostname,omitempty" json:"hypervisor_hostname,omitempty"`
+
+	// ImageName Filter by image name (case-insensitive partial match).
+	ImageName *string `form:"image_name,omitempty" json:"image_name,omitempty"`
+
+	// Name Filter by instance name (case-insensitive partial match).
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// O Ordering field. Prefix with - for descending. Options: name, cores, ram, disk, created, runtime_state, flavor_name, hypervisor_hostname, customer_name, project_name, cluster_name, start_time.
+	O *string `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Filter by project UUID.
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// RamMax Maximum RAM in MiB.
+	RamMax *int `form:"ram_max,omitempty" json:"ram_max,omitempty"`
+
+	// RamMin Minimum RAM in MiB.
+	RamMin *int `form:"ram_min,omitempty" json:"ram_min,omitempty"`
+
+	// RuntimeState Filter by runtime state (e.g. ACTIVE, SHUTOFF).
+	RuntimeState *string `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+
+	// ServiceSettingsUuid Filter by cluster (service settings) UUID.
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State Filter by provisioning state (e.g. OK, ERRED). Supports multiple values.
+	State *string `form:"state,omitempty" json:"state,omitempty"`
+
+	// TenantUuid Filter by tenant UUID.
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+}
+
+// MarketplaceStatsOpenstackInstancesAggregateListParams defines parameters for MarketplaceStatsOpenstackInstancesAggregateList.
+type MarketplaceStatsOpenstackInstancesAggregateListParams struct {
+	// CustomerUuid Filter by customer UUID.
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// FlavorName Filter by flavor name (case-insensitive partial match).
+	FlavorName *string `form:"flavor_name,omitempty" json:"flavor_name,omitempty"`
+
+	// GroupBy Dimension to group by.
+	GroupBy OpenStackInstanceAggregateGroupByEnum `form:"group_by" json:"group_by"`
+
+	// HypervisorHostname Filter by hypervisor hostname (case-insensitive partial match).
+	HypervisorHostname *string `form:"hypervisor_hostname,omitempty" json:"hypervisor_hostname,omitempty"`
+
+	// ImageName Filter by image name (case-insensitive partial match).
+	ImageName *string `form:"image_name,omitempty" json:"image_name,omitempty"`
+
+	// Name Filter by instance name (case-insensitive partial match).
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Filter by project UUID.
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// RuntimeState Filter by runtime state (e.g. ACTIVE, SHUTOFF).
+	RuntimeState *string `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+
+	// ServiceSettingsUuid Filter by cluster (service settings) UUID.
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State Filter by provisioning state (e.g. OK, ERRED).
+	State *string `form:"state,omitempty" json:"state,omitempty"`
+
+	// TenantUuid Filter by tenant UUID.
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+}
+
+// MarketplaceStatsOpenstackInstancesAggregateCountParams defines parameters for MarketplaceStatsOpenstackInstancesAggregateCount.
+type MarketplaceStatsOpenstackInstancesAggregateCountParams struct {
+	// CustomerUuid Filter by customer UUID.
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// FlavorName Filter by flavor name (case-insensitive partial match).
+	FlavorName *string `form:"flavor_name,omitempty" json:"flavor_name,omitempty"`
+
+	// GroupBy Dimension to group by.
+	GroupBy OpenStackInstanceAggregateGroupByEnum `form:"group_by" json:"group_by"`
+
+	// HypervisorHostname Filter by hypervisor hostname (case-insensitive partial match).
+	HypervisorHostname *string `form:"hypervisor_hostname,omitempty" json:"hypervisor_hostname,omitempty"`
+
+	// ImageName Filter by image name (case-insensitive partial match).
+	ImageName *string `form:"image_name,omitempty" json:"image_name,omitempty"`
+
+	// Name Filter by instance name (case-insensitive partial match).
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Filter by project UUID.
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// RuntimeState Filter by runtime state (e.g. ACTIVE, SHUTOFF).
+	RuntimeState *string `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+
+	// ServiceSettingsUuid Filter by cluster (service settings) UUID.
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State Filter by provisioning state (e.g. OK, ERRED).
+	State *string `form:"state,omitempty" json:"state,omitempty"`
+
+	// TenantUuid Filter by tenant UUID.
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+}
+
 // MarketplaceStatsOrderStatsRetrieveParams defines parameters for MarketplaceStatsOrderStatsRetrieve.
 type MarketplaceStatsOrderStatsRetrieveParams struct {
 	// CustomerUuid Filter by customer UUID.
@@ -57687,6 +59572,75 @@ type OpenstackFloatingIpsRetrieveParams struct {
 	Field *[]OpenStackFloatingIPFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 }
 
+// OpenstackHealthMonitorsListParams defines parameters for OpenstackHealthMonitorsList.
+type OpenstackHealthMonitorsListParams struct {
+	Field *[]OpenStackHealthMonitorFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+
+	// LoadBalancerUuid Load balancer UUID
+	LoadBalancerUuid *openapi_types.UUID `form:"load_balancer_uuid,omitempty" json:"load_balancer_uuid,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Pool Pool URL
+	Pool *string `form:"pool,omitempty" json:"pool,omitempty"`
+
+	// PoolUuid Pool UUID
+	PoolUuid *openapi_types.UUID `form:"pool_uuid,omitempty" json:"pool_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+}
+
+// OpenstackHealthMonitorsCountParams defines parameters for OpenstackHealthMonitorsCount.
+type OpenstackHealthMonitorsCountParams struct {
+	// LoadBalancerUuid Load balancer UUID
+	LoadBalancerUuid *openapi_types.UUID `form:"load_balancer_uuid,omitempty" json:"load_balancer_uuid,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Pool Pool URL
+	Pool *string `form:"pool,omitempty" json:"pool,omitempty"`
+
+	// PoolUuid Pool UUID
+	PoolUuid *openapi_types.UUID `form:"pool_uuid,omitempty" json:"pool_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+}
+
+// OpenstackHealthMonitorsRetrieveParams defines parameters for OpenstackHealthMonitorsRetrieve.
+type OpenstackHealthMonitorsRetrieveParams struct {
+	Field *[]OpenStackHealthMonitorFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+}
+
 // OpenstackImagesListParams defines parameters for OpenstackImagesList.
 type OpenstackImagesListParams struct {
 	// Name Name
@@ -58000,6 +59954,126 @@ type OpenstackInstancesPortsListParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// OpenstackListenersListParams defines parameters for OpenstackListenersList.
+type OpenstackListenersListParams struct {
+	Field *[]OpenStackListenerFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+
+	// LoadBalancer Load balancer URL
+	LoadBalancer *string `form:"load_balancer,omitempty" json:"load_balancer,omitempty"`
+
+	// LoadBalancerUuid Load balancer UUID
+	LoadBalancerUuid *openapi_types.UUID `form:"load_balancer_uuid,omitempty" json:"load_balancer_uuid,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// State State
+	//
+	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+}
+
+// OpenstackListenersCountParams defines parameters for OpenstackListenersCount.
+type OpenstackListenersCountParams struct {
+	// LoadBalancer Load balancer URL
+	LoadBalancer *string `form:"load_balancer,omitempty" json:"load_balancer,omitempty"`
+
+	// LoadBalancerUuid Load balancer UUID
+	LoadBalancerUuid *openapi_types.UUID `form:"load_balancer_uuid,omitempty" json:"load_balancer_uuid,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// State State
+	//
+	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+}
+
+// OpenstackListenersRetrieveParams defines parameters for OpenstackListenersRetrieve.
+type OpenstackListenersRetrieveParams struct {
+	Field *[]OpenStackListenerFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+}
+
+// OpenstackLoadbalancersListParams defines parameters for OpenstackLoadbalancersList.
+type OpenstackLoadbalancersListParams struct {
+	Field *[]OpenStackLoadBalancerFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// State State
+	//
+	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+}
+
+// OpenstackLoadbalancersCountParams defines parameters for OpenstackLoadbalancersCount.
+type OpenstackLoadbalancersCountParams struct {
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// State State
+	//
+	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+}
+
+// OpenstackLoadbalancersRetrieveParams defines parameters for OpenstackLoadbalancersRetrieve.
+type OpenstackLoadbalancersRetrieveParams struct {
+	Field *[]OpenStackLoadBalancerFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 }
 
 // OpenstackMarketplaceTenantsListParams defines parameters for OpenstackMarketplaceTenantsList.
@@ -58379,6 +60453,138 @@ type OpenstackNetworksCountParams struct {
 // OpenstackNetworksRetrieveParams defines parameters for OpenstackNetworksRetrieve.
 type OpenstackNetworksRetrieveParams struct {
 	Field *[]OpenStackNetworkFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+}
+
+// OpenstackPoolMembersListParams defines parameters for OpenstackPoolMembersList.
+type OpenstackPoolMembersListParams struct {
+	Field *[]OpenStackPoolMemberFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+
+	// LoadBalancerUuid Load balancer UUID
+	LoadBalancerUuid *openapi_types.UUID `form:"load_balancer_uuid,omitempty" json:"load_balancer_uuid,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Pool Pool URL
+	Pool *string `form:"pool,omitempty" json:"pool,omitempty"`
+
+	// PoolUuid Pool UUID
+	PoolUuid *openapi_types.UUID `form:"pool_uuid,omitempty" json:"pool_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+}
+
+// OpenstackPoolMembersCountParams defines parameters for OpenstackPoolMembersCount.
+type OpenstackPoolMembersCountParams struct {
+	// LoadBalancerUuid Load balancer UUID
+	LoadBalancerUuid *openapi_types.UUID `form:"load_balancer_uuid,omitempty" json:"load_balancer_uuid,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Pool Pool URL
+	Pool *string `form:"pool,omitempty" json:"pool,omitempty"`
+
+	// PoolUuid Pool UUID
+	PoolUuid *openapi_types.UUID `form:"pool_uuid,omitempty" json:"pool_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+}
+
+// OpenstackPoolMembersRetrieveParams defines parameters for OpenstackPoolMembersRetrieve.
+type OpenstackPoolMembersRetrieveParams struct {
+	Field *[]OpenStackPoolMemberFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+}
+
+// OpenstackPoolsListParams defines parameters for OpenstackPoolsList.
+type OpenstackPoolsListParams struct {
+	Field *[]OpenStackPoolFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+
+	// LoadBalancer Load balancer URL
+	LoadBalancer *string `form:"load_balancer,omitempty" json:"load_balancer,omitempty"`
+
+	// LoadBalancerUuid Load balancer UUID
+	LoadBalancerUuid *openapi_types.UUID `form:"load_balancer_uuid,omitempty" json:"load_balancer_uuid,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// State State
+	//
+	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+}
+
+// OpenstackPoolsCountParams defines parameters for OpenstackPoolsCount.
+type OpenstackPoolsCountParams struct {
+	// LoadBalancer Load balancer URL
+	LoadBalancer *string `form:"load_balancer,omitempty" json:"load_balancer,omitempty"`
+
+	// LoadBalancerUuid Load balancer UUID
+	LoadBalancerUuid *openapi_types.UUID `form:"load_balancer_uuid,omitempty" json:"load_balancer_uuid,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// State State
+	//
+	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+}
+
+// OpenstackPoolsRetrieveParams defines parameters for OpenstackPoolsRetrieve.
+type OpenstackPoolsRetrieveParams struct {
+	Field *[]OpenStackPoolFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 }
 
 // OpenstackPortsListParams defines parameters for OpenstackPortsList.
@@ -66603,6 +68809,15 @@ type OpenstackFloatingIpsSetErredJSONRequestBody = SetErredRequest
 // OpenstackFloatingIpsUpdateDescriptionJSONRequestBody defines body for OpenstackFloatingIpsUpdateDescription for application/json ContentType.
 type OpenstackFloatingIpsUpdateDescriptionJSONRequestBody = OpenStackFloatingIPDescriptionUpdateRequest
 
+// OpenstackHealthMonitorsCreateJSONRequestBody defines body for OpenstackHealthMonitorsCreate for application/json ContentType.
+type OpenstackHealthMonitorsCreateJSONRequestBody = CreateHealthMonitorRequest
+
+// OpenstackHealthMonitorsPartialUpdateJSONRequestBody defines body for OpenstackHealthMonitorsPartialUpdate for application/json ContentType.
+type OpenstackHealthMonitorsPartialUpdateJSONRequestBody = PatchedUpdateHealthMonitorRequest
+
+// OpenstackHealthMonitorsUpdateJSONRequestBody defines body for OpenstackHealthMonitorsUpdate for application/json ContentType.
+type OpenstackHealthMonitorsUpdateJSONRequestBody = UpdateHealthMonitorRequest
+
 // OpenstackInstancesPartialUpdateJSONRequestBody defines body for OpenstackInstancesPartialUpdate for application/json ContentType.
 type OpenstackInstancesPartialUpdateJSONRequestBody = PatchedOpenStackInstanceRequest
 
@@ -66629,6 +68844,30 @@ type OpenstackInstancesUpdatePortsJSONRequestBody = OpenStackInstancePortsUpdate
 
 // OpenstackInstancesUpdateSecurityGroupsJSONRequestBody defines body for OpenstackInstancesUpdateSecurityGroups for application/json ContentType.
 type OpenstackInstancesUpdateSecurityGroupsJSONRequestBody = OpenStackInstanceSecurityGroupsUpdateRequest
+
+// OpenstackListenersCreateJSONRequestBody defines body for OpenstackListenersCreate for application/json ContentType.
+type OpenstackListenersCreateJSONRequestBody = CreateListenerRequest
+
+// OpenstackListenersPartialUpdateJSONRequestBody defines body for OpenstackListenersPartialUpdate for application/json ContentType.
+type OpenstackListenersPartialUpdateJSONRequestBody = PatchedUpdateListenerRequest
+
+// OpenstackListenersUpdateJSONRequestBody defines body for OpenstackListenersUpdate for application/json ContentType.
+type OpenstackListenersUpdateJSONRequestBody = UpdateListenerRequest
+
+// OpenstackLoadbalancersCreateJSONRequestBody defines body for OpenstackLoadbalancersCreate for application/json ContentType.
+type OpenstackLoadbalancersCreateJSONRequestBody = CreateLoadBalancerRequest
+
+// OpenstackLoadbalancersPartialUpdateJSONRequestBody defines body for OpenstackLoadbalancersPartialUpdate for application/json ContentType.
+type OpenstackLoadbalancersPartialUpdateJSONRequestBody = PatchedOpenStackLoadBalancerRequest
+
+// OpenstackLoadbalancersUpdateJSONRequestBody defines body for OpenstackLoadbalancersUpdate for application/json ContentType.
+type OpenstackLoadbalancersUpdateJSONRequestBody = OpenStackLoadBalancerRequest
+
+// OpenstackLoadbalancersAttachFloatingIpJSONRequestBody defines body for OpenstackLoadbalancersAttachFloatingIp for application/json ContentType.
+type OpenstackLoadbalancersAttachFloatingIpJSONRequestBody = LoadBalancerAttachFloatingIPRequest
+
+// OpenstackLoadbalancersUpdateVipSecurityGroupsJSONRequestBody defines body for OpenstackLoadbalancersUpdateVipSecurityGroups for application/json ContentType.
+type OpenstackLoadbalancersUpdateVipSecurityGroupsJSONRequestBody = LoadBalancerUpdateVIPSecurityGroupsRequest
 
 // OpenstackMarketplaceTenantsCreateImageJSONRequestBody defines body for OpenstackMarketplaceTenantsCreateImage for application/json ContentType.
 type OpenstackMarketplaceTenantsCreateImageJSONRequestBody = ImageCreateRequest
@@ -66671,6 +68910,24 @@ type OpenstackNetworksSetErredJSONRequestBody = SetErredRequest
 
 // OpenstackNetworksSetMtuJSONRequestBody defines body for OpenstackNetworksSetMtu for application/json ContentType.
 type OpenstackNetworksSetMtuJSONRequestBody = SetMtuRequest
+
+// OpenstackPoolMembersCreateJSONRequestBody defines body for OpenstackPoolMembersCreate for application/json ContentType.
+type OpenstackPoolMembersCreateJSONRequestBody = CreatePoolMemberRequest
+
+// OpenstackPoolMembersPartialUpdateJSONRequestBody defines body for OpenstackPoolMembersPartialUpdate for application/json ContentType.
+type OpenstackPoolMembersPartialUpdateJSONRequestBody = PatchedUpdatePoolMemberRequest
+
+// OpenstackPoolMembersUpdateJSONRequestBody defines body for OpenstackPoolMembersUpdate for application/json ContentType.
+type OpenstackPoolMembersUpdateJSONRequestBody = UpdatePoolMemberRequest
+
+// OpenstackPoolsCreateJSONRequestBody defines body for OpenstackPoolsCreate for application/json ContentType.
+type OpenstackPoolsCreateJSONRequestBody = CreatePoolRequest
+
+// OpenstackPoolsPartialUpdateJSONRequestBody defines body for OpenstackPoolsPartialUpdate for application/json ContentType.
+type OpenstackPoolsPartialUpdateJSONRequestBody = PatchedOpenStackPoolRequest
+
+// OpenstackPoolsUpdateJSONRequestBody defines body for OpenstackPoolsUpdate for application/json ContentType.
+type OpenstackPoolsUpdateJSONRequestBody = OpenStackPoolRequest
 
 // OpenstackPortsCreateJSONRequestBody defines body for OpenstackPortsCreate for application/json ContentType.
 type OpenstackPortsCreateJSONRequestBody = OpenStackPortRequest
@@ -70379,6 +72636,130 @@ func (t *ConstanceSettingsRequestMultipart_SSHKEYALLOWEDTYPES_Item) UnmarshalJSO
 	return err
 }
 
+// AsCreatePoolMemberAddress0 returns the union data inside the CreatePoolMember_Address as a CreatePoolMemberAddress0
+func (t CreatePoolMember_Address) AsCreatePoolMemberAddress0() (CreatePoolMemberAddress0, error) {
+	var body CreatePoolMemberAddress0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromCreatePoolMemberAddress0 overwrites any union data inside the CreatePoolMember_Address as the provided CreatePoolMemberAddress0
+func (t *CreatePoolMember_Address) FromCreatePoolMemberAddress0(v CreatePoolMemberAddress0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeCreatePoolMemberAddress0 performs a merge with any union data inside the CreatePoolMember_Address, using the provided CreatePoolMemberAddress0
+func (t *CreatePoolMember_Address) MergeCreatePoolMemberAddress0(v CreatePoolMemberAddress0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsCreatePoolMemberAddress1 returns the union data inside the CreatePoolMember_Address as a CreatePoolMemberAddress1
+func (t CreatePoolMember_Address) AsCreatePoolMemberAddress1() (CreatePoolMemberAddress1, error) {
+	var body CreatePoolMemberAddress1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromCreatePoolMemberAddress1 overwrites any union data inside the CreatePoolMember_Address as the provided CreatePoolMemberAddress1
+func (t *CreatePoolMember_Address) FromCreatePoolMemberAddress1(v CreatePoolMemberAddress1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeCreatePoolMemberAddress1 performs a merge with any union data inside the CreatePoolMember_Address, using the provided CreatePoolMemberAddress1
+func (t *CreatePoolMember_Address) MergeCreatePoolMemberAddress1(v CreatePoolMemberAddress1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t CreatePoolMember_Address) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *CreatePoolMember_Address) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsCreatePoolMemberRequestAddress0 returns the union data inside the CreatePoolMemberRequest_Address as a CreatePoolMemberRequestAddress0
+func (t CreatePoolMemberRequest_Address) AsCreatePoolMemberRequestAddress0() (CreatePoolMemberRequestAddress0, error) {
+	var body CreatePoolMemberRequestAddress0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromCreatePoolMemberRequestAddress0 overwrites any union data inside the CreatePoolMemberRequest_Address as the provided CreatePoolMemberRequestAddress0
+func (t *CreatePoolMemberRequest_Address) FromCreatePoolMemberRequestAddress0(v CreatePoolMemberRequestAddress0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeCreatePoolMemberRequestAddress0 performs a merge with any union data inside the CreatePoolMemberRequest_Address, using the provided CreatePoolMemberRequestAddress0
+func (t *CreatePoolMemberRequest_Address) MergeCreatePoolMemberRequestAddress0(v CreatePoolMemberRequestAddress0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsCreatePoolMemberRequestAddress1 returns the union data inside the CreatePoolMemberRequest_Address as a CreatePoolMemberRequestAddress1
+func (t CreatePoolMemberRequest_Address) AsCreatePoolMemberRequestAddress1() (CreatePoolMemberRequestAddress1, error) {
+	var body CreatePoolMemberRequestAddress1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromCreatePoolMemberRequestAddress1 overwrites any union data inside the CreatePoolMemberRequest_Address as the provided CreatePoolMemberRequestAddress1
+func (t *CreatePoolMemberRequest_Address) FromCreatePoolMemberRequestAddress1(v CreatePoolMemberRequestAddress1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeCreatePoolMemberRequestAddress1 performs a merge with any union data inside the CreatePoolMemberRequest_Address, using the provided CreatePoolMemberRequestAddress1
+func (t *CreatePoolMemberRequest_Address) MergeCreatePoolMemberRequestAddress1(v CreatePoolMemberRequestAddress1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t CreatePoolMemberRequest_Address) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *CreatePoolMemberRequest_Address) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsCountryEnum returns the union data inside the Customer_Country as a CountryEnum
 func (t Customer_Country) AsCountryEnum() (CountryEnum, error) {
 	var body CountryEnum
@@ -71087,22 +73468,22 @@ func (t *NestedColumn_Widget) UnmarshalJSON(b []byte) error {
 	return err
 }
 
-// AsProtocolEnum returns the union data inside the NestedSecurityGroupRule_Protocol as a ProtocolEnum
-func (t NestedSecurityGroupRule_Protocol) AsProtocolEnum() (ProtocolEnum, error) {
-	var body ProtocolEnum
+// AsSecurityGroupRuleProtocolEnum returns the union data inside the NestedSecurityGroupRule_Protocol as a SecurityGroupRuleProtocolEnum
+func (t NestedSecurityGroupRule_Protocol) AsSecurityGroupRuleProtocolEnum() (SecurityGroupRuleProtocolEnum, error) {
+	var body SecurityGroupRuleProtocolEnum
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromProtocolEnum overwrites any union data inside the NestedSecurityGroupRule_Protocol as the provided ProtocolEnum
-func (t *NestedSecurityGroupRule_Protocol) FromProtocolEnum(v ProtocolEnum) error {
+// FromSecurityGroupRuleProtocolEnum overwrites any union data inside the NestedSecurityGroupRule_Protocol as the provided SecurityGroupRuleProtocolEnum
+func (t *NestedSecurityGroupRule_Protocol) FromSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeProtocolEnum performs a merge with any union data inside the NestedSecurityGroupRule_Protocol, using the provided ProtocolEnum
-func (t *NestedSecurityGroupRule_Protocol) MergeProtocolEnum(v ProtocolEnum) error {
+// MergeSecurityGroupRuleProtocolEnum performs a merge with any union data inside the NestedSecurityGroupRule_Protocol, using the provided SecurityGroupRuleProtocolEnum
+func (t *NestedSecurityGroupRule_Protocol) MergeSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -72069,6 +74450,68 @@ func (t *OpenStackFloatingIP_ExternalAddress) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsOpenStackLoadBalancerVipAddress0 returns the union data inside the OpenStackLoadBalancer_VipAddress as a OpenStackLoadBalancerVipAddress0
+func (t OpenStackLoadBalancer_VipAddress) AsOpenStackLoadBalancerVipAddress0() (OpenStackLoadBalancerVipAddress0, error) {
+	var body OpenStackLoadBalancerVipAddress0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackLoadBalancerVipAddress0 overwrites any union data inside the OpenStackLoadBalancer_VipAddress as the provided OpenStackLoadBalancerVipAddress0
+func (t *OpenStackLoadBalancer_VipAddress) FromOpenStackLoadBalancerVipAddress0(v OpenStackLoadBalancerVipAddress0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackLoadBalancerVipAddress0 performs a merge with any union data inside the OpenStackLoadBalancer_VipAddress, using the provided OpenStackLoadBalancerVipAddress0
+func (t *OpenStackLoadBalancer_VipAddress) MergeOpenStackLoadBalancerVipAddress0(v OpenStackLoadBalancerVipAddress0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackLoadBalancerVipAddress1 returns the union data inside the OpenStackLoadBalancer_VipAddress as a OpenStackLoadBalancerVipAddress1
+func (t OpenStackLoadBalancer_VipAddress) AsOpenStackLoadBalancerVipAddress1() (OpenStackLoadBalancerVipAddress1, error) {
+	var body OpenStackLoadBalancerVipAddress1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackLoadBalancerVipAddress1 overwrites any union data inside the OpenStackLoadBalancer_VipAddress as the provided OpenStackLoadBalancerVipAddress1
+func (t *OpenStackLoadBalancer_VipAddress) FromOpenStackLoadBalancerVipAddress1(v OpenStackLoadBalancerVipAddress1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackLoadBalancerVipAddress1 performs a merge with any union data inside the OpenStackLoadBalancer_VipAddress, using the provided OpenStackLoadBalancerVipAddress1
+func (t *OpenStackLoadBalancer_VipAddress) MergeOpenStackLoadBalancerVipAddress1(v OpenStackLoadBalancerVipAddress1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackLoadBalancer_VipAddress) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackLoadBalancer_VipAddress) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsOpenStackNestedFloatingIPAddress0 returns the union data inside the OpenStackNestedFloatingIP_Address as a OpenStackNestedFloatingIPAddress0
 func (t OpenStackNestedFloatingIP_Address) AsOpenStackNestedFloatingIPAddress0() (OpenStackNestedFloatingIPAddress0, error) {
 	var body OpenStackNestedFloatingIPAddress0
@@ -72193,6 +74636,68 @@ func (t *OpenStackNestedSubNet_GatewayIp) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsOpenStackPoolMemberAddress0 returns the union data inside the OpenStackPoolMember_Address as a OpenStackPoolMemberAddress0
+func (t OpenStackPoolMember_Address) AsOpenStackPoolMemberAddress0() (OpenStackPoolMemberAddress0, error) {
+	var body OpenStackPoolMemberAddress0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackPoolMemberAddress0 overwrites any union data inside the OpenStackPoolMember_Address as the provided OpenStackPoolMemberAddress0
+func (t *OpenStackPoolMember_Address) FromOpenStackPoolMemberAddress0(v OpenStackPoolMemberAddress0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackPoolMemberAddress0 performs a merge with any union data inside the OpenStackPoolMember_Address, using the provided OpenStackPoolMemberAddress0
+func (t *OpenStackPoolMember_Address) MergeOpenStackPoolMemberAddress0(v OpenStackPoolMemberAddress0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackPoolMemberAddress1 returns the union data inside the OpenStackPoolMember_Address as a OpenStackPoolMemberAddress1
+func (t OpenStackPoolMember_Address) AsOpenStackPoolMemberAddress1() (OpenStackPoolMemberAddress1, error) {
+	var body OpenStackPoolMemberAddress1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackPoolMemberAddress1 overwrites any union data inside the OpenStackPoolMember_Address as the provided OpenStackPoolMemberAddress1
+func (t *OpenStackPoolMember_Address) FromOpenStackPoolMemberAddress1(v OpenStackPoolMemberAddress1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackPoolMemberAddress1 performs a merge with any union data inside the OpenStackPoolMember_Address, using the provided OpenStackPoolMemberAddress1
+func (t *OpenStackPoolMember_Address) MergeOpenStackPoolMemberAddress1(v OpenStackPoolMemberAddress1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackPoolMember_Address) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackPoolMember_Address) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsOpenStackPortIPUpdateRequestIpAddress0 returns the union data inside the OpenStackPortIPUpdateRequest_IpAddress as a OpenStackPortIPUpdateRequestIpAddress0
 func (t OpenStackPortIPUpdateRequest_IpAddress) AsOpenStackPortIPUpdateRequestIpAddress0() (OpenStackPortIPUpdateRequestIpAddress0, error) {
 	var body OpenStackPortIPUpdateRequestIpAddress0
@@ -72255,22 +74760,22 @@ func (t *OpenStackPortIPUpdateRequest_IpAddress) UnmarshalJSON(b []byte) error {
 	return err
 }
 
-// AsProtocolEnum returns the union data inside the OpenStackSecurityGroupRuleCreate_Protocol as a ProtocolEnum
-func (t OpenStackSecurityGroupRuleCreate_Protocol) AsProtocolEnum() (ProtocolEnum, error) {
-	var body ProtocolEnum
+// AsSecurityGroupRuleProtocolEnum returns the union data inside the OpenStackSecurityGroupRuleCreate_Protocol as a SecurityGroupRuleProtocolEnum
+func (t OpenStackSecurityGroupRuleCreate_Protocol) AsSecurityGroupRuleProtocolEnum() (SecurityGroupRuleProtocolEnum, error) {
+	var body SecurityGroupRuleProtocolEnum
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromProtocolEnum overwrites any union data inside the OpenStackSecurityGroupRuleCreate_Protocol as the provided ProtocolEnum
-func (t *OpenStackSecurityGroupRuleCreate_Protocol) FromProtocolEnum(v ProtocolEnum) error {
+// FromSecurityGroupRuleProtocolEnum overwrites any union data inside the OpenStackSecurityGroupRuleCreate_Protocol as the provided SecurityGroupRuleProtocolEnum
+func (t *OpenStackSecurityGroupRuleCreate_Protocol) FromSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeProtocolEnum performs a merge with any union data inside the OpenStackSecurityGroupRuleCreate_Protocol, using the provided ProtocolEnum
-func (t *OpenStackSecurityGroupRuleCreate_Protocol) MergeProtocolEnum(v ProtocolEnum) error {
+// MergeSecurityGroupRuleProtocolEnum performs a merge with any union data inside the OpenStackSecurityGroupRuleCreate_Protocol, using the provided SecurityGroupRuleProtocolEnum
+func (t *OpenStackSecurityGroupRuleCreate_Protocol) MergeSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -72317,22 +74822,22 @@ func (t *OpenStackSecurityGroupRuleCreate_Protocol) UnmarshalJSON(b []byte) erro
 	return err
 }
 
-// AsProtocolEnum returns the union data inside the OpenStackSecurityGroupRuleCreateRequest_Protocol as a ProtocolEnum
-func (t OpenStackSecurityGroupRuleCreateRequest_Protocol) AsProtocolEnum() (ProtocolEnum, error) {
-	var body ProtocolEnum
+// AsSecurityGroupRuleProtocolEnum returns the union data inside the OpenStackSecurityGroupRuleCreateRequest_Protocol as a SecurityGroupRuleProtocolEnum
+func (t OpenStackSecurityGroupRuleCreateRequest_Protocol) AsSecurityGroupRuleProtocolEnum() (SecurityGroupRuleProtocolEnum, error) {
+	var body SecurityGroupRuleProtocolEnum
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromProtocolEnum overwrites any union data inside the OpenStackSecurityGroupRuleCreateRequest_Protocol as the provided ProtocolEnum
-func (t *OpenStackSecurityGroupRuleCreateRequest_Protocol) FromProtocolEnum(v ProtocolEnum) error {
+// FromSecurityGroupRuleProtocolEnum overwrites any union data inside the OpenStackSecurityGroupRuleCreateRequest_Protocol as the provided SecurityGroupRuleProtocolEnum
+func (t *OpenStackSecurityGroupRuleCreateRequest_Protocol) FromSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeProtocolEnum performs a merge with any union data inside the OpenStackSecurityGroupRuleCreateRequest_Protocol, using the provided ProtocolEnum
-func (t *OpenStackSecurityGroupRuleCreateRequest_Protocol) MergeProtocolEnum(v ProtocolEnum) error {
+// MergeSecurityGroupRuleProtocolEnum performs a merge with any union data inside the OpenStackSecurityGroupRuleCreateRequest_Protocol, using the provided SecurityGroupRuleProtocolEnum
+func (t *OpenStackSecurityGroupRuleCreateRequest_Protocol) MergeSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -72379,22 +74884,22 @@ func (t *OpenStackSecurityGroupRuleCreateRequest_Protocol) UnmarshalJSON(b []byt
 	return err
 }
 
-// AsProtocolEnum returns the union data inside the OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol as a ProtocolEnum
-func (t OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol) AsProtocolEnum() (ProtocolEnum, error) {
-	var body ProtocolEnum
+// AsSecurityGroupRuleProtocolEnum returns the union data inside the OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol as a SecurityGroupRuleProtocolEnum
+func (t OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol) AsSecurityGroupRuleProtocolEnum() (SecurityGroupRuleProtocolEnum, error) {
+	var body SecurityGroupRuleProtocolEnum
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromProtocolEnum overwrites any union data inside the OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol as the provided ProtocolEnum
-func (t *OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol) FromProtocolEnum(v ProtocolEnum) error {
+// FromSecurityGroupRuleProtocolEnum overwrites any union data inside the OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol as the provided SecurityGroupRuleProtocolEnum
+func (t *OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol) FromSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeProtocolEnum performs a merge with any union data inside the OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol, using the provided ProtocolEnum
-func (t *OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol) MergeProtocolEnum(v ProtocolEnum) error {
+// MergeSecurityGroupRuleProtocolEnum performs a merge with any union data inside the OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol, using the provided SecurityGroupRuleProtocolEnum
+func (t *OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol) MergeSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -72441,22 +74946,22 @@ func (t *OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol) UnmarshalJSON(b
 	return err
 }
 
-// AsProtocolEnum returns the union data inside the OpenStackSecurityGroupRuleUpdateRequest_Protocol as a ProtocolEnum
-func (t OpenStackSecurityGroupRuleUpdateRequest_Protocol) AsProtocolEnum() (ProtocolEnum, error) {
-	var body ProtocolEnum
+// AsSecurityGroupRuleProtocolEnum returns the union data inside the OpenStackSecurityGroupRuleUpdateRequest_Protocol as a SecurityGroupRuleProtocolEnum
+func (t OpenStackSecurityGroupRuleUpdateRequest_Protocol) AsSecurityGroupRuleProtocolEnum() (SecurityGroupRuleProtocolEnum, error) {
+	var body SecurityGroupRuleProtocolEnum
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromProtocolEnum overwrites any union data inside the OpenStackSecurityGroupRuleUpdateRequest_Protocol as the provided ProtocolEnum
-func (t *OpenStackSecurityGroupRuleUpdateRequest_Protocol) FromProtocolEnum(v ProtocolEnum) error {
+// FromSecurityGroupRuleProtocolEnum overwrites any union data inside the OpenStackSecurityGroupRuleUpdateRequest_Protocol as the provided SecurityGroupRuleProtocolEnum
+func (t *OpenStackSecurityGroupRuleUpdateRequest_Protocol) FromSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeProtocolEnum performs a merge with any union data inside the OpenStackSecurityGroupRuleUpdateRequest_Protocol, using the provided ProtocolEnum
-func (t *OpenStackSecurityGroupRuleUpdateRequest_Protocol) MergeProtocolEnum(v ProtocolEnum) error {
+// MergeSecurityGroupRuleProtocolEnum performs a merge with any union data inside the OpenStackSecurityGroupRuleUpdateRequest_Protocol, using the provided SecurityGroupRuleProtocolEnum
+func (t *OpenStackSecurityGroupRuleUpdateRequest_Protocol) MergeSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -75911,22 +78416,22 @@ func (t *QuestionWithAnswerReviewer_Operator) UnmarshalJSON(b []byte) error {
 	return err
 }
 
-// AsProtocolEnum returns the union data inside the RancherClusterSecurityGroupRule_Protocol as a ProtocolEnum
-func (t RancherClusterSecurityGroupRule_Protocol) AsProtocolEnum() (ProtocolEnum, error) {
-	var body ProtocolEnum
+// AsSecurityGroupRuleProtocolEnum returns the union data inside the RancherClusterSecurityGroupRule_Protocol as a SecurityGroupRuleProtocolEnum
+func (t RancherClusterSecurityGroupRule_Protocol) AsSecurityGroupRuleProtocolEnum() (SecurityGroupRuleProtocolEnum, error) {
+	var body SecurityGroupRuleProtocolEnum
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromProtocolEnum overwrites any union data inside the RancherClusterSecurityGroupRule_Protocol as the provided ProtocolEnum
-func (t *RancherClusterSecurityGroupRule_Protocol) FromProtocolEnum(v ProtocolEnum) error {
+// FromSecurityGroupRuleProtocolEnum overwrites any union data inside the RancherClusterSecurityGroupRule_Protocol as the provided SecurityGroupRuleProtocolEnum
+func (t *RancherClusterSecurityGroupRule_Protocol) FromSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeProtocolEnum performs a merge with any union data inside the RancherClusterSecurityGroupRule_Protocol, using the provided ProtocolEnum
-func (t *RancherClusterSecurityGroupRule_Protocol) MergeProtocolEnum(v ProtocolEnum) error {
+// MergeSecurityGroupRuleProtocolEnum performs a merge with any union data inside the RancherClusterSecurityGroupRule_Protocol, using the provided SecurityGroupRuleProtocolEnum
+func (t *RancherClusterSecurityGroupRule_Protocol) MergeSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -75973,22 +78478,22 @@ func (t *RancherClusterSecurityGroupRule_Protocol) UnmarshalJSON(b []byte) error
 	return err
 }
 
-// AsProtocolEnum returns the union data inside the RancherClusterSecurityGroupRuleRequest_Protocol as a ProtocolEnum
-func (t RancherClusterSecurityGroupRuleRequest_Protocol) AsProtocolEnum() (ProtocolEnum, error) {
-	var body ProtocolEnum
+// AsSecurityGroupRuleProtocolEnum returns the union data inside the RancherClusterSecurityGroupRuleRequest_Protocol as a SecurityGroupRuleProtocolEnum
+func (t RancherClusterSecurityGroupRuleRequest_Protocol) AsSecurityGroupRuleProtocolEnum() (SecurityGroupRuleProtocolEnum, error) {
+	var body SecurityGroupRuleProtocolEnum
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromProtocolEnum overwrites any union data inside the RancherClusterSecurityGroupRuleRequest_Protocol as the provided ProtocolEnum
-func (t *RancherClusterSecurityGroupRuleRequest_Protocol) FromProtocolEnum(v ProtocolEnum) error {
+// FromSecurityGroupRuleProtocolEnum overwrites any union data inside the RancherClusterSecurityGroupRuleRequest_Protocol as the provided SecurityGroupRuleProtocolEnum
+func (t *RancherClusterSecurityGroupRuleRequest_Protocol) FromSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeProtocolEnum performs a merge with any union data inside the RancherClusterSecurityGroupRuleRequest_Protocol, using the provided ProtocolEnum
-func (t *RancherClusterSecurityGroupRuleRequest_Protocol) MergeProtocolEnum(v ProtocolEnum) error {
+// MergeSecurityGroupRuleProtocolEnum performs a merge with any union data inside the RancherClusterSecurityGroupRuleRequest_Protocol, using the provided SecurityGroupRuleProtocolEnum
+func (t *RancherClusterSecurityGroupRuleRequest_Protocol) MergeSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -81550,6 +84055,18 @@ type ClientInterface interface {
 	// MarketplaceStatsOfferingsCounterStatsCount request
 	MarketplaceStatsOfferingsCounterStatsCount(ctx context.Context, params *MarketplaceStatsOfferingsCounterStatsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceStatsOpenstackInstancesList request
+	MarketplaceStatsOpenstackInstancesList(ctx context.Context, params *MarketplaceStatsOpenstackInstancesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceStatsOpenstackInstancesCount request
+	MarketplaceStatsOpenstackInstancesCount(ctx context.Context, params *MarketplaceStatsOpenstackInstancesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceStatsOpenstackInstancesAggregateList request
+	MarketplaceStatsOpenstackInstancesAggregateList(ctx context.Context, params *MarketplaceStatsOpenstackInstancesAggregateListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceStatsOpenstackInstancesAggregateCount request
+	MarketplaceStatsOpenstackInstancesAggregateCount(ctx context.Context, params *MarketplaceStatsOpenstackInstancesAggregateCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceStatsOrderStatsRetrieve request
 	MarketplaceStatsOrderStatsRetrieve(ctx context.Context, params *MarketplaceStatsOrderStatsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -82504,6 +85021,33 @@ type ClientInterface interface {
 
 	OpenstackFloatingIpsUpdateDescription(ctx context.Context, uuid openapi_types.UUID, body OpenstackFloatingIpsUpdateDescriptionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenstackHealthMonitorsList request
+	OpenstackHealthMonitorsList(ctx context.Context, params *OpenstackHealthMonitorsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackHealthMonitorsCount request
+	OpenstackHealthMonitorsCount(ctx context.Context, params *OpenstackHealthMonitorsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackHealthMonitorsCreateWithBody request with any body
+	OpenstackHealthMonitorsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackHealthMonitorsCreate(ctx context.Context, body OpenstackHealthMonitorsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackHealthMonitorsDestroy request
+	OpenstackHealthMonitorsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackHealthMonitorsRetrieve request
+	OpenstackHealthMonitorsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenstackHealthMonitorsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackHealthMonitorsPartialUpdateWithBody request with any body
+	OpenstackHealthMonitorsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackHealthMonitorsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackHealthMonitorsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackHealthMonitorsUpdateWithBody request with any body
+	OpenstackHealthMonitorsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackHealthMonitorsUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackHealthMonitorsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenstackImagesList request
 	OpenstackImagesList(ctx context.Context, params *OpenstackImagesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -82611,6 +85155,73 @@ type ClientInterface interface {
 	OpenstackInstancesUpdateSecurityGroupsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	OpenstackInstancesUpdateSecurityGroups(ctx context.Context, uuid openapi_types.UUID, body OpenstackInstancesUpdateSecurityGroupsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackListenersList request
+	OpenstackListenersList(ctx context.Context, params *OpenstackListenersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackListenersCount request
+	OpenstackListenersCount(ctx context.Context, params *OpenstackListenersCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackListenersCreateWithBody request with any body
+	OpenstackListenersCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackListenersCreate(ctx context.Context, body OpenstackListenersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackListenersDestroy request
+	OpenstackListenersDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackListenersRetrieve request
+	OpenstackListenersRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenstackListenersRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackListenersPartialUpdateWithBody request with any body
+	OpenstackListenersPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackListenersPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackListenersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackListenersUpdateWithBody request with any body
+	OpenstackListenersUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackListenersUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackListenersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackLoadbalancersList request
+	OpenstackLoadbalancersList(ctx context.Context, params *OpenstackLoadbalancersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackLoadbalancersCount request
+	OpenstackLoadbalancersCount(ctx context.Context, params *OpenstackLoadbalancersCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackLoadbalancersCreateWithBody request with any body
+	OpenstackLoadbalancersCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackLoadbalancersCreate(ctx context.Context, body OpenstackLoadbalancersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackLoadbalancersDestroy request
+	OpenstackLoadbalancersDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackLoadbalancersRetrieve request
+	OpenstackLoadbalancersRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenstackLoadbalancersRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackLoadbalancersPartialUpdateWithBody request with any body
+	OpenstackLoadbalancersPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackLoadbalancersPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackLoadbalancersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackLoadbalancersUpdateWithBody request with any body
+	OpenstackLoadbalancersUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackLoadbalancersUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackLoadbalancersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackLoadbalancersAttachFloatingIpWithBody request with any body
+	OpenstackLoadbalancersAttachFloatingIpWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackLoadbalancersAttachFloatingIp(ctx context.Context, uuid openapi_types.UUID, body OpenstackLoadbalancersAttachFloatingIpJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackLoadbalancersDetachFloatingIp request
+	OpenstackLoadbalancersDetachFloatingIp(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackLoadbalancersUpdateVipSecurityGroupsWithBody request with any body
+	OpenstackLoadbalancersUpdateVipSecurityGroupsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackLoadbalancersUpdateVipSecurityGroups(ctx context.Context, uuid openapi_types.UUID, body OpenstackLoadbalancersUpdateVipSecurityGroupsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackMarketplaceTenantsList request
 	OpenstackMarketplaceTenantsList(ctx context.Context, params *OpenstackMarketplaceTenantsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -82738,6 +85349,60 @@ type ClientInterface interface {
 
 	// OpenstackNetworksUnlink request
 	OpenstackNetworksUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackPoolMembersList request
+	OpenstackPoolMembersList(ctx context.Context, params *OpenstackPoolMembersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackPoolMembersCount request
+	OpenstackPoolMembersCount(ctx context.Context, params *OpenstackPoolMembersCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackPoolMembersCreateWithBody request with any body
+	OpenstackPoolMembersCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackPoolMembersCreate(ctx context.Context, body OpenstackPoolMembersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackPoolMembersDestroy request
+	OpenstackPoolMembersDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackPoolMembersRetrieve request
+	OpenstackPoolMembersRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenstackPoolMembersRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackPoolMembersPartialUpdateWithBody request with any body
+	OpenstackPoolMembersPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackPoolMembersPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackPoolMembersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackPoolMembersUpdateWithBody request with any body
+	OpenstackPoolMembersUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackPoolMembersUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackPoolMembersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackPoolsList request
+	OpenstackPoolsList(ctx context.Context, params *OpenstackPoolsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackPoolsCount request
+	OpenstackPoolsCount(ctx context.Context, params *OpenstackPoolsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackPoolsCreateWithBody request with any body
+	OpenstackPoolsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackPoolsCreate(ctx context.Context, body OpenstackPoolsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackPoolsDestroy request
+	OpenstackPoolsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackPoolsRetrieve request
+	OpenstackPoolsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenstackPoolsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackPoolsPartialUpdateWithBody request with any body
+	OpenstackPoolsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackPoolsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackPoolsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackPoolsUpdateWithBody request with any body
+	OpenstackPoolsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackPoolsUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackPoolsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackPortsList request
 	OpenstackPortsList(ctx context.Context, params *OpenstackPortsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -105144,6 +107809,54 @@ func (c *Client) MarketplaceStatsOfferingsCounterStatsCount(ctx context.Context,
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceStatsOpenstackInstancesList(ctx context.Context, params *MarketplaceStatsOpenstackInstancesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceStatsOpenstackInstancesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceStatsOpenstackInstancesCount(ctx context.Context, params *MarketplaceStatsOpenstackInstancesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceStatsOpenstackInstancesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceStatsOpenstackInstancesAggregateList(ctx context.Context, params *MarketplaceStatsOpenstackInstancesAggregateListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceStatsOpenstackInstancesAggregateListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceStatsOpenstackInstancesAggregateCount(ctx context.Context, params *MarketplaceStatsOpenstackInstancesAggregateCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceStatsOpenstackInstancesAggregateCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceStatsOrderStatsRetrieve(ctx context.Context, params *MarketplaceStatsOrderStatsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceStatsOrderStatsRetrieveRequest(c.Server, params)
 	if err != nil {
@@ -109272,6 +111985,126 @@ func (c *Client) OpenstackFloatingIpsUpdateDescription(ctx context.Context, uuid
 	return c.Client.Do(req)
 }
 
+func (c *Client) OpenstackHealthMonitorsList(ctx context.Context, params *OpenstackHealthMonitorsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackHealthMonitorsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackHealthMonitorsCount(ctx context.Context, params *OpenstackHealthMonitorsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackHealthMonitorsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackHealthMonitorsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackHealthMonitorsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackHealthMonitorsCreate(ctx context.Context, body OpenstackHealthMonitorsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackHealthMonitorsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackHealthMonitorsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackHealthMonitorsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackHealthMonitorsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenstackHealthMonitorsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackHealthMonitorsRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackHealthMonitorsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackHealthMonitorsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackHealthMonitorsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackHealthMonitorsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackHealthMonitorsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackHealthMonitorsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackHealthMonitorsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackHealthMonitorsUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackHealthMonitorsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackHealthMonitorsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OpenstackImagesList(ctx context.Context, params *OpenstackImagesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackImagesListRequest(c.Server, params)
 	if err != nil {
@@ -109730,6 +112563,306 @@ func (c *Client) OpenstackInstancesUpdateSecurityGroupsWithBody(ctx context.Cont
 
 func (c *Client) OpenstackInstancesUpdateSecurityGroups(ctx context.Context, uuid openapi_types.UUID, body OpenstackInstancesUpdateSecurityGroupsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackInstancesUpdateSecurityGroupsRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackListenersList(ctx context.Context, params *OpenstackListenersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackListenersListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackListenersCount(ctx context.Context, params *OpenstackListenersCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackListenersCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackListenersCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackListenersCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackListenersCreate(ctx context.Context, body OpenstackListenersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackListenersCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackListenersDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackListenersDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackListenersRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenstackListenersRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackListenersRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackListenersPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackListenersPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackListenersPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackListenersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackListenersPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackListenersUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackListenersUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackListenersUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackListenersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackListenersUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackLoadbalancersList(ctx context.Context, params *OpenstackLoadbalancersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackLoadbalancersListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackLoadbalancersCount(ctx context.Context, params *OpenstackLoadbalancersCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackLoadbalancersCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackLoadbalancersCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackLoadbalancersCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackLoadbalancersCreate(ctx context.Context, body OpenstackLoadbalancersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackLoadbalancersCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackLoadbalancersDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackLoadbalancersDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackLoadbalancersRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenstackLoadbalancersRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackLoadbalancersRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackLoadbalancersPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackLoadbalancersPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackLoadbalancersPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackLoadbalancersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackLoadbalancersPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackLoadbalancersUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackLoadbalancersUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackLoadbalancersUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackLoadbalancersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackLoadbalancersUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackLoadbalancersAttachFloatingIpWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackLoadbalancersAttachFloatingIpRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackLoadbalancersAttachFloatingIp(ctx context.Context, uuid openapi_types.UUID, body OpenstackLoadbalancersAttachFloatingIpJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackLoadbalancersAttachFloatingIpRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackLoadbalancersDetachFloatingIp(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackLoadbalancersDetachFloatingIpRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackLoadbalancersUpdateVipSecurityGroupsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackLoadbalancersUpdateVipSecurityGroupsRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackLoadbalancersUpdateVipSecurityGroups(ctx context.Context, uuid openapi_types.UUID, body OpenstackLoadbalancersUpdateVipSecurityGroupsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackLoadbalancersUpdateVipSecurityGroupsRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -110294,6 +113427,246 @@ func (c *Client) OpenstackNetworksSetOk(ctx context.Context, uuid openapi_types.
 
 func (c *Client) OpenstackNetworksUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackNetworksUnlinkRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPoolMembersList(ctx context.Context, params *OpenstackPoolMembersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPoolMembersListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPoolMembersCount(ctx context.Context, params *OpenstackPoolMembersCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPoolMembersCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPoolMembersCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPoolMembersCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPoolMembersCreate(ctx context.Context, body OpenstackPoolMembersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPoolMembersCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPoolMembersDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPoolMembersDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPoolMembersRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenstackPoolMembersRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPoolMembersRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPoolMembersPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPoolMembersPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPoolMembersPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackPoolMembersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPoolMembersPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPoolMembersUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPoolMembersUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPoolMembersUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackPoolMembersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPoolMembersUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPoolsList(ctx context.Context, params *OpenstackPoolsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPoolsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPoolsCount(ctx context.Context, params *OpenstackPoolsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPoolsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPoolsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPoolsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPoolsCreate(ctx context.Context, body OpenstackPoolsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPoolsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPoolsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPoolsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPoolsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenstackPoolsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPoolsRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPoolsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPoolsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPoolsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackPoolsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPoolsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPoolsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPoolsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPoolsUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackPoolsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPoolsUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -225673,6 +229046,1186 @@ func NewMarketplaceStatsOfferingsCounterStatsCountRequest(server string, params 
 	return req, nil
 }
 
+// NewMarketplaceStatsOpenstackInstancesListRequest generates requests for MarketplaceStatsOpenstackInstancesList
+func NewMarketplaceStatsOpenstackInstancesListRequest(server string, params *MarketplaceStatsOpenstackInstancesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-stats/openstack_instances/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.AvailabilityZoneName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "availability_zone_name", *params.AvailabilityZoneName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CoresMax != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "cores_max", *params.CoresMax, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CoresMin != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "cores_min", *params.CoresMin, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DiskMax != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "disk_max", *params.DiskMax, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DiskMin != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "disk_min", *params.DiskMin, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.FlavorName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "flavor_name", *params.FlavorName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HypervisorHostname != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "hypervisor_hostname", *params.HypervisorHostname, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ImageName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "image_name", *params.ImageName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RamMax != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "ram_max", *params.RamMax, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RamMin != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "ram_min", *params.RamMin, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RuntimeState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "runtime_state", *params.RuntimeState, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ServiceSettingsUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "service_settings_uuid", *params.ServiceSettingsUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TenantUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tenant_uuid", *params.TenantUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceStatsOpenstackInstancesCountRequest generates requests for MarketplaceStatsOpenstackInstancesCount
+func NewMarketplaceStatsOpenstackInstancesCountRequest(server string, params *MarketplaceStatsOpenstackInstancesCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-stats/openstack_instances/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.AvailabilityZoneName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "availability_zone_name", *params.AvailabilityZoneName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CoresMax != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "cores_max", *params.CoresMax, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CoresMin != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "cores_min", *params.CoresMin, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DiskMax != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "disk_max", *params.DiskMax, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DiskMin != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "disk_min", *params.DiskMin, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.FlavorName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "flavor_name", *params.FlavorName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HypervisorHostname != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "hypervisor_hostname", *params.HypervisorHostname, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ImageName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "image_name", *params.ImageName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RamMax != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "ram_max", *params.RamMax, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RamMin != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "ram_min", *params.RamMin, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RuntimeState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "runtime_state", *params.RuntimeState, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ServiceSettingsUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "service_settings_uuid", *params.ServiceSettingsUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TenantUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tenant_uuid", *params.TenantUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceStatsOpenstackInstancesAggregateListRequest generates requests for MarketplaceStatsOpenstackInstancesAggregateList
+func NewMarketplaceStatsOpenstackInstancesAggregateListRequest(server string, params *MarketplaceStatsOpenstackInstancesAggregateListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-stats/openstack_instances_aggregate/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.FlavorName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "flavor_name", *params.FlavorName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "group_by", params.GroupBy, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		if params.HypervisorHostname != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "hypervisor_hostname", *params.HypervisorHostname, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ImageName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "image_name", *params.ImageName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RuntimeState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "runtime_state", *params.RuntimeState, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ServiceSettingsUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "service_settings_uuid", *params.ServiceSettingsUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TenantUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tenant_uuid", *params.TenantUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceStatsOpenstackInstancesAggregateCountRequest generates requests for MarketplaceStatsOpenstackInstancesAggregateCount
+func NewMarketplaceStatsOpenstackInstancesAggregateCountRequest(server string, params *MarketplaceStatsOpenstackInstancesAggregateCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-stats/openstack_instances_aggregate/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.FlavorName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "flavor_name", *params.FlavorName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "group_by", params.GroupBy, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		if params.HypervisorHostname != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "hypervisor_hostname", *params.HypervisorHostname, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ImageName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "image_name", *params.ImageName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RuntimeState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "runtime_state", *params.RuntimeState, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ServiceSettingsUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "service_settings_uuid", *params.ServiceSettingsUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TenantUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tenant_uuid", *params.TenantUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceStatsOrderStatsRetrieveRequest generates requests for MarketplaceStatsOrderStatsRetrieve
 func NewMarketplaceStatsOrderStatsRetrieveRequest(server string, params *MarketplaceStatsOrderStatsRetrieveParams) (*http.Request, error) {
 	var err error
@@ -245724,6 +250277,600 @@ func NewOpenstackFloatingIpsUpdateDescriptionRequestWithBody(server string, uuid
 	return req, nil
 }
 
+// NewOpenstackHealthMonitorsListRequest generates requests for OpenstackHealthMonitorsList
+func NewOpenstackHealthMonitorsListRequest(server string, params *OpenstackHealthMonitorsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-health-monitors/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LoadBalancerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "load_balancer_uuid", *params.LoadBalancerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Pool != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "pool", *params.Pool, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PoolUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "pool_uuid", *params.PoolUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TenantUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tenant_uuid", *params.TenantUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackHealthMonitorsCountRequest generates requests for OpenstackHealthMonitorsCount
+func NewOpenstackHealthMonitorsCountRequest(server string, params *OpenstackHealthMonitorsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-health-monitors/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.LoadBalancerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "load_balancer_uuid", *params.LoadBalancerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Pool != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "pool", *params.Pool, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PoolUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "pool_uuid", *params.PoolUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TenantUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tenant_uuid", *params.TenantUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackHealthMonitorsCreateRequest calls the generic OpenstackHealthMonitorsCreate builder with application/json body
+func NewOpenstackHealthMonitorsCreateRequest(server string, body OpenstackHealthMonitorsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackHealthMonitorsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewOpenstackHealthMonitorsCreateRequestWithBody generates requests for OpenstackHealthMonitorsCreate with any type of body
+func NewOpenstackHealthMonitorsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-health-monitors/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackHealthMonitorsDestroyRequest generates requests for OpenstackHealthMonitorsDestroy
+func NewOpenstackHealthMonitorsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-health-monitors/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackHealthMonitorsRetrieveRequest generates requests for OpenstackHealthMonitorsRetrieve
+func NewOpenstackHealthMonitorsRetrieveRequest(server string, uuid openapi_types.UUID, params *OpenstackHealthMonitorsRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-health-monitors/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackHealthMonitorsPartialUpdateRequest calls the generic OpenstackHealthMonitorsPartialUpdate builder with application/json body
+func NewOpenstackHealthMonitorsPartialUpdateRequest(server string, uuid openapi_types.UUID, body OpenstackHealthMonitorsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackHealthMonitorsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackHealthMonitorsPartialUpdateRequestWithBody generates requests for OpenstackHealthMonitorsPartialUpdate with any type of body
+func NewOpenstackHealthMonitorsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-health-monitors/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackHealthMonitorsUpdateRequest calls the generic OpenstackHealthMonitorsUpdate builder with application/json body
+func NewOpenstackHealthMonitorsUpdateRequest(server string, uuid openapi_types.UUID, body OpenstackHealthMonitorsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackHealthMonitorsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackHealthMonitorsUpdateRequestWithBody generates requests for OpenstackHealthMonitorsUpdate with any type of body
+func NewOpenstackHealthMonitorsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-health-monitors/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewOpenstackImagesListRequest generates requests for OpenstackImagesList
 func NewOpenstackImagesListRequest(server string, params *OpenstackImagesListParams) (*http.Request, error) {
 	var err error
@@ -248398,6 +253545,1226 @@ func NewOpenstackInstancesUpdateSecurityGroupsRequestWithBody(server string, uui
 	}
 
 	operationPath := fmt.Sprintf("/api/openstack-instances/%s/update_security_groups/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackListenersListRequest generates requests for OpenstackListenersList
+func NewOpenstackListenersListRequest(server string, params *OpenstackListenersListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-listeners/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LoadBalancer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "load_balancer", *params.LoadBalancer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LoadBalancerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "load_balancer_uuid", *params.LoadBalancerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TenantUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tenant_uuid", *params.TenantUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackListenersCountRequest generates requests for OpenstackListenersCount
+func NewOpenstackListenersCountRequest(server string, params *OpenstackListenersCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-listeners/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.LoadBalancer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "load_balancer", *params.LoadBalancer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LoadBalancerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "load_balancer_uuid", *params.LoadBalancerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TenantUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tenant_uuid", *params.TenantUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackListenersCreateRequest calls the generic OpenstackListenersCreate builder with application/json body
+func NewOpenstackListenersCreateRequest(server string, body OpenstackListenersCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackListenersCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewOpenstackListenersCreateRequestWithBody generates requests for OpenstackListenersCreate with any type of body
+func NewOpenstackListenersCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-listeners/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackListenersDestroyRequest generates requests for OpenstackListenersDestroy
+func NewOpenstackListenersDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-listeners/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackListenersRetrieveRequest generates requests for OpenstackListenersRetrieve
+func NewOpenstackListenersRetrieveRequest(server string, uuid openapi_types.UUID, params *OpenstackListenersRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-listeners/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackListenersPartialUpdateRequest calls the generic OpenstackListenersPartialUpdate builder with application/json body
+func NewOpenstackListenersPartialUpdateRequest(server string, uuid openapi_types.UUID, body OpenstackListenersPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackListenersPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackListenersPartialUpdateRequestWithBody generates requests for OpenstackListenersPartialUpdate with any type of body
+func NewOpenstackListenersPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-listeners/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackListenersUpdateRequest calls the generic OpenstackListenersUpdate builder with application/json body
+func NewOpenstackListenersUpdateRequest(server string, uuid openapi_types.UUID, body OpenstackListenersUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackListenersUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackListenersUpdateRequestWithBody generates requests for OpenstackListenersUpdate with any type of body
+func NewOpenstackListenersUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-listeners/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackLoadbalancersListRequest generates requests for OpenstackLoadbalancersList
+func NewOpenstackLoadbalancersListRequest(server string, params *OpenstackLoadbalancersListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-loadbalancers/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Tenant != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tenant", *params.Tenant, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TenantUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tenant_uuid", *params.TenantUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackLoadbalancersCountRequest generates requests for OpenstackLoadbalancersCount
+func NewOpenstackLoadbalancersCountRequest(server string, params *OpenstackLoadbalancersCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-loadbalancers/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Tenant != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tenant", *params.Tenant, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TenantUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tenant_uuid", *params.TenantUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackLoadbalancersCreateRequest calls the generic OpenstackLoadbalancersCreate builder with application/json body
+func NewOpenstackLoadbalancersCreateRequest(server string, body OpenstackLoadbalancersCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackLoadbalancersCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewOpenstackLoadbalancersCreateRequestWithBody generates requests for OpenstackLoadbalancersCreate with any type of body
+func NewOpenstackLoadbalancersCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-loadbalancers/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackLoadbalancersDestroyRequest generates requests for OpenstackLoadbalancersDestroy
+func NewOpenstackLoadbalancersDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-loadbalancers/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackLoadbalancersRetrieveRequest generates requests for OpenstackLoadbalancersRetrieve
+func NewOpenstackLoadbalancersRetrieveRequest(server string, uuid openapi_types.UUID, params *OpenstackLoadbalancersRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-loadbalancers/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackLoadbalancersPartialUpdateRequest calls the generic OpenstackLoadbalancersPartialUpdate builder with application/json body
+func NewOpenstackLoadbalancersPartialUpdateRequest(server string, uuid openapi_types.UUID, body OpenstackLoadbalancersPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackLoadbalancersPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackLoadbalancersPartialUpdateRequestWithBody generates requests for OpenstackLoadbalancersPartialUpdate with any type of body
+func NewOpenstackLoadbalancersPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-loadbalancers/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackLoadbalancersUpdateRequest calls the generic OpenstackLoadbalancersUpdate builder with application/json body
+func NewOpenstackLoadbalancersUpdateRequest(server string, uuid openapi_types.UUID, body OpenstackLoadbalancersUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackLoadbalancersUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackLoadbalancersUpdateRequestWithBody generates requests for OpenstackLoadbalancersUpdate with any type of body
+func NewOpenstackLoadbalancersUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-loadbalancers/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackLoadbalancersAttachFloatingIpRequest calls the generic OpenstackLoadbalancersAttachFloatingIp builder with application/json body
+func NewOpenstackLoadbalancersAttachFloatingIpRequest(server string, uuid openapi_types.UUID, body OpenstackLoadbalancersAttachFloatingIpJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackLoadbalancersAttachFloatingIpRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackLoadbalancersAttachFloatingIpRequestWithBody generates requests for OpenstackLoadbalancersAttachFloatingIp with any type of body
+func NewOpenstackLoadbalancersAttachFloatingIpRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-loadbalancers/%s/attach_floating_ip/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackLoadbalancersDetachFloatingIpRequest generates requests for OpenstackLoadbalancersDetachFloatingIp
+func NewOpenstackLoadbalancersDetachFloatingIpRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-loadbalancers/%s/detach_floating_ip/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackLoadbalancersUpdateVipSecurityGroupsRequest calls the generic OpenstackLoadbalancersUpdateVipSecurityGroups builder with application/json body
+func NewOpenstackLoadbalancersUpdateVipSecurityGroupsRequest(server string, uuid openapi_types.UUID, body OpenstackLoadbalancersUpdateVipSecurityGroupsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackLoadbalancersUpdateVipSecurityGroupsRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackLoadbalancersUpdateVipSecurityGroupsRequestWithBody generates requests for OpenstackLoadbalancersUpdateVipSecurityGroups with any type of body
+func NewOpenstackLoadbalancersUpdateVipSecurityGroupsRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-loadbalancers/%s/update_vip_security_groups/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -251635,6 +258002,1162 @@ func NewOpenstackNetworksUnlinkRequest(server string, uuid openapi_types.UUID) (
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewOpenstackPoolMembersListRequest generates requests for OpenstackPoolMembersList
+func NewOpenstackPoolMembersListRequest(server string, params *OpenstackPoolMembersListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-pool-members/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LoadBalancerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "load_balancer_uuid", *params.LoadBalancerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Pool != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "pool", *params.Pool, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PoolUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "pool_uuid", *params.PoolUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TenantUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tenant_uuid", *params.TenantUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackPoolMembersCountRequest generates requests for OpenstackPoolMembersCount
+func NewOpenstackPoolMembersCountRequest(server string, params *OpenstackPoolMembersCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-pool-members/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.LoadBalancerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "load_balancer_uuid", *params.LoadBalancerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Pool != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "pool", *params.Pool, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PoolUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "pool_uuid", *params.PoolUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TenantUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tenant_uuid", *params.TenantUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackPoolMembersCreateRequest calls the generic OpenstackPoolMembersCreate builder with application/json body
+func NewOpenstackPoolMembersCreateRequest(server string, body OpenstackPoolMembersCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackPoolMembersCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewOpenstackPoolMembersCreateRequestWithBody generates requests for OpenstackPoolMembersCreate with any type of body
+func NewOpenstackPoolMembersCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-pool-members/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackPoolMembersDestroyRequest generates requests for OpenstackPoolMembersDestroy
+func NewOpenstackPoolMembersDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-pool-members/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackPoolMembersRetrieveRequest generates requests for OpenstackPoolMembersRetrieve
+func NewOpenstackPoolMembersRetrieveRequest(server string, uuid openapi_types.UUID, params *OpenstackPoolMembersRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-pool-members/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackPoolMembersPartialUpdateRequest calls the generic OpenstackPoolMembersPartialUpdate builder with application/json body
+func NewOpenstackPoolMembersPartialUpdateRequest(server string, uuid openapi_types.UUID, body OpenstackPoolMembersPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackPoolMembersPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackPoolMembersPartialUpdateRequestWithBody generates requests for OpenstackPoolMembersPartialUpdate with any type of body
+func NewOpenstackPoolMembersPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-pool-members/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackPoolMembersUpdateRequest calls the generic OpenstackPoolMembersUpdate builder with application/json body
+func NewOpenstackPoolMembersUpdateRequest(server string, uuid openapi_types.UUID, body OpenstackPoolMembersUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackPoolMembersUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackPoolMembersUpdateRequestWithBody generates requests for OpenstackPoolMembersUpdate with any type of body
+func NewOpenstackPoolMembersUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-pool-members/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackPoolsListRequest generates requests for OpenstackPoolsList
+func NewOpenstackPoolsListRequest(server string, params *OpenstackPoolsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-pools/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LoadBalancer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "load_balancer", *params.LoadBalancer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LoadBalancerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "load_balancer_uuid", *params.LoadBalancerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TenantUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tenant_uuid", *params.TenantUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackPoolsCountRequest generates requests for OpenstackPoolsCount
+func NewOpenstackPoolsCountRequest(server string, params *OpenstackPoolsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-pools/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.LoadBalancer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "load_balancer", *params.LoadBalancer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LoadBalancerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "load_balancer_uuid", *params.LoadBalancerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TenantUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tenant_uuid", *params.TenantUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackPoolsCreateRequest calls the generic OpenstackPoolsCreate builder with application/json body
+func NewOpenstackPoolsCreateRequest(server string, body OpenstackPoolsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackPoolsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewOpenstackPoolsCreateRequestWithBody generates requests for OpenstackPoolsCreate with any type of body
+func NewOpenstackPoolsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-pools/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackPoolsDestroyRequest generates requests for OpenstackPoolsDestroy
+func NewOpenstackPoolsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-pools/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackPoolsRetrieveRequest generates requests for OpenstackPoolsRetrieve
+func NewOpenstackPoolsRetrieveRequest(server string, uuid openapi_types.UUID, params *OpenstackPoolsRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-pools/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackPoolsPartialUpdateRequest calls the generic OpenstackPoolsPartialUpdate builder with application/json body
+func NewOpenstackPoolsPartialUpdateRequest(server string, uuid openapi_types.UUID, body OpenstackPoolsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackPoolsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackPoolsPartialUpdateRequestWithBody generates requests for OpenstackPoolsPartialUpdate with any type of body
+func NewOpenstackPoolsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-pools/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackPoolsUpdateRequest calls the generic OpenstackPoolsUpdate builder with application/json body
+func NewOpenstackPoolsUpdateRequest(server string, uuid openapi_types.UUID, body OpenstackPoolsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackPoolsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackPoolsUpdateRequestWithBody generates requests for OpenstackPoolsUpdate with any type of body
+func NewOpenstackPoolsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-pools/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -323036,6 +330559,18 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceStatsOfferingsCounterStatsCountWithResponse request
 	MarketplaceStatsOfferingsCounterStatsCountWithResponse(ctx context.Context, params *MarketplaceStatsOfferingsCounterStatsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsOfferingsCounterStatsCountResponse, error)
 
+	// MarketplaceStatsOpenstackInstancesListWithResponse request
+	MarketplaceStatsOpenstackInstancesListWithResponse(ctx context.Context, params *MarketplaceStatsOpenstackInstancesListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsOpenstackInstancesListResponse, error)
+
+	// MarketplaceStatsOpenstackInstancesCountWithResponse request
+	MarketplaceStatsOpenstackInstancesCountWithResponse(ctx context.Context, params *MarketplaceStatsOpenstackInstancesCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsOpenstackInstancesCountResponse, error)
+
+	// MarketplaceStatsOpenstackInstancesAggregateListWithResponse request
+	MarketplaceStatsOpenstackInstancesAggregateListWithResponse(ctx context.Context, params *MarketplaceStatsOpenstackInstancesAggregateListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsOpenstackInstancesAggregateListResponse, error)
+
+	// MarketplaceStatsOpenstackInstancesAggregateCountWithResponse request
+	MarketplaceStatsOpenstackInstancesAggregateCountWithResponse(ctx context.Context, params *MarketplaceStatsOpenstackInstancesAggregateCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsOpenstackInstancesAggregateCountResponse, error)
+
 	// MarketplaceStatsOrderStatsRetrieveWithResponse request
 	MarketplaceStatsOrderStatsRetrieveWithResponse(ctx context.Context, params *MarketplaceStatsOrderStatsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsOrderStatsRetrieveResponse, error)
 
@@ -323990,6 +331525,33 @@ type ClientWithResponsesInterface interface {
 
 	OpenstackFloatingIpsUpdateDescriptionWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackFloatingIpsUpdateDescriptionJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackFloatingIpsUpdateDescriptionResponse, error)
 
+	// OpenstackHealthMonitorsListWithResponse request
+	OpenstackHealthMonitorsListWithResponse(ctx context.Context, params *OpenstackHealthMonitorsListParams, reqEditors ...RequestEditorFn) (*OpenstackHealthMonitorsListResponse, error)
+
+	// OpenstackHealthMonitorsCountWithResponse request
+	OpenstackHealthMonitorsCountWithResponse(ctx context.Context, params *OpenstackHealthMonitorsCountParams, reqEditors ...RequestEditorFn) (*OpenstackHealthMonitorsCountResponse, error)
+
+	// OpenstackHealthMonitorsCreateWithBodyWithResponse request with any body
+	OpenstackHealthMonitorsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackHealthMonitorsCreateResponse, error)
+
+	OpenstackHealthMonitorsCreateWithResponse(ctx context.Context, body OpenstackHealthMonitorsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackHealthMonitorsCreateResponse, error)
+
+	// OpenstackHealthMonitorsDestroyWithResponse request
+	OpenstackHealthMonitorsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackHealthMonitorsDestroyResponse, error)
+
+	// OpenstackHealthMonitorsRetrieveWithResponse request
+	OpenstackHealthMonitorsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackHealthMonitorsRetrieveParams, reqEditors ...RequestEditorFn) (*OpenstackHealthMonitorsRetrieveResponse, error)
+
+	// OpenstackHealthMonitorsPartialUpdateWithBodyWithResponse request with any body
+	OpenstackHealthMonitorsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackHealthMonitorsPartialUpdateResponse, error)
+
+	OpenstackHealthMonitorsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackHealthMonitorsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackHealthMonitorsPartialUpdateResponse, error)
+
+	// OpenstackHealthMonitorsUpdateWithBodyWithResponse request with any body
+	OpenstackHealthMonitorsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackHealthMonitorsUpdateResponse, error)
+
+	OpenstackHealthMonitorsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackHealthMonitorsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackHealthMonitorsUpdateResponse, error)
+
 	// OpenstackImagesListWithResponse request
 	OpenstackImagesListWithResponse(ctx context.Context, params *OpenstackImagesListParams, reqEditors ...RequestEditorFn) (*OpenstackImagesListResponse, error)
 
@@ -324097,6 +331659,73 @@ type ClientWithResponsesInterface interface {
 	OpenstackInstancesUpdateSecurityGroupsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackInstancesUpdateSecurityGroupsResponse, error)
 
 	OpenstackInstancesUpdateSecurityGroupsWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackInstancesUpdateSecurityGroupsJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackInstancesUpdateSecurityGroupsResponse, error)
+
+	// OpenstackListenersListWithResponse request
+	OpenstackListenersListWithResponse(ctx context.Context, params *OpenstackListenersListParams, reqEditors ...RequestEditorFn) (*OpenstackListenersListResponse, error)
+
+	// OpenstackListenersCountWithResponse request
+	OpenstackListenersCountWithResponse(ctx context.Context, params *OpenstackListenersCountParams, reqEditors ...RequestEditorFn) (*OpenstackListenersCountResponse, error)
+
+	// OpenstackListenersCreateWithBodyWithResponse request with any body
+	OpenstackListenersCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackListenersCreateResponse, error)
+
+	OpenstackListenersCreateWithResponse(ctx context.Context, body OpenstackListenersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackListenersCreateResponse, error)
+
+	// OpenstackListenersDestroyWithResponse request
+	OpenstackListenersDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackListenersDestroyResponse, error)
+
+	// OpenstackListenersRetrieveWithResponse request
+	OpenstackListenersRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackListenersRetrieveParams, reqEditors ...RequestEditorFn) (*OpenstackListenersRetrieveResponse, error)
+
+	// OpenstackListenersPartialUpdateWithBodyWithResponse request with any body
+	OpenstackListenersPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackListenersPartialUpdateResponse, error)
+
+	OpenstackListenersPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackListenersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackListenersPartialUpdateResponse, error)
+
+	// OpenstackListenersUpdateWithBodyWithResponse request with any body
+	OpenstackListenersUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackListenersUpdateResponse, error)
+
+	OpenstackListenersUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackListenersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackListenersUpdateResponse, error)
+
+	// OpenstackLoadbalancersListWithResponse request
+	OpenstackLoadbalancersListWithResponse(ctx context.Context, params *OpenstackLoadbalancersListParams, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersListResponse, error)
+
+	// OpenstackLoadbalancersCountWithResponse request
+	OpenstackLoadbalancersCountWithResponse(ctx context.Context, params *OpenstackLoadbalancersCountParams, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersCountResponse, error)
+
+	// OpenstackLoadbalancersCreateWithBodyWithResponse request with any body
+	OpenstackLoadbalancersCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersCreateResponse, error)
+
+	OpenstackLoadbalancersCreateWithResponse(ctx context.Context, body OpenstackLoadbalancersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersCreateResponse, error)
+
+	// OpenstackLoadbalancersDestroyWithResponse request
+	OpenstackLoadbalancersDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersDestroyResponse, error)
+
+	// OpenstackLoadbalancersRetrieveWithResponse request
+	OpenstackLoadbalancersRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackLoadbalancersRetrieveParams, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersRetrieveResponse, error)
+
+	// OpenstackLoadbalancersPartialUpdateWithBodyWithResponse request with any body
+	OpenstackLoadbalancersPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersPartialUpdateResponse, error)
+
+	OpenstackLoadbalancersPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackLoadbalancersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersPartialUpdateResponse, error)
+
+	// OpenstackLoadbalancersUpdateWithBodyWithResponse request with any body
+	OpenstackLoadbalancersUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersUpdateResponse, error)
+
+	OpenstackLoadbalancersUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackLoadbalancersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersUpdateResponse, error)
+
+	// OpenstackLoadbalancersAttachFloatingIpWithBodyWithResponse request with any body
+	OpenstackLoadbalancersAttachFloatingIpWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersAttachFloatingIpResponse, error)
+
+	OpenstackLoadbalancersAttachFloatingIpWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackLoadbalancersAttachFloatingIpJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersAttachFloatingIpResponse, error)
+
+	// OpenstackLoadbalancersDetachFloatingIpWithResponse request
+	OpenstackLoadbalancersDetachFloatingIpWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersDetachFloatingIpResponse, error)
+
+	// OpenstackLoadbalancersUpdateVipSecurityGroupsWithBodyWithResponse request with any body
+	OpenstackLoadbalancersUpdateVipSecurityGroupsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersUpdateVipSecurityGroupsResponse, error)
+
+	OpenstackLoadbalancersUpdateVipSecurityGroupsWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackLoadbalancersUpdateVipSecurityGroupsJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersUpdateVipSecurityGroupsResponse, error)
 
 	// OpenstackMarketplaceTenantsListWithResponse request
 	OpenstackMarketplaceTenantsListWithResponse(ctx context.Context, params *OpenstackMarketplaceTenantsListParams, reqEditors ...RequestEditorFn) (*OpenstackMarketplaceTenantsListResponse, error)
@@ -324224,6 +331853,60 @@ type ClientWithResponsesInterface interface {
 
 	// OpenstackNetworksUnlinkWithResponse request
 	OpenstackNetworksUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackNetworksUnlinkResponse, error)
+
+	// OpenstackPoolMembersListWithResponse request
+	OpenstackPoolMembersListWithResponse(ctx context.Context, params *OpenstackPoolMembersListParams, reqEditors ...RequestEditorFn) (*OpenstackPoolMembersListResponse, error)
+
+	// OpenstackPoolMembersCountWithResponse request
+	OpenstackPoolMembersCountWithResponse(ctx context.Context, params *OpenstackPoolMembersCountParams, reqEditors ...RequestEditorFn) (*OpenstackPoolMembersCountResponse, error)
+
+	// OpenstackPoolMembersCreateWithBodyWithResponse request with any body
+	OpenstackPoolMembersCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPoolMembersCreateResponse, error)
+
+	OpenstackPoolMembersCreateWithResponse(ctx context.Context, body OpenstackPoolMembersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPoolMembersCreateResponse, error)
+
+	// OpenstackPoolMembersDestroyWithResponse request
+	OpenstackPoolMembersDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPoolMembersDestroyResponse, error)
+
+	// OpenstackPoolMembersRetrieveWithResponse request
+	OpenstackPoolMembersRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackPoolMembersRetrieveParams, reqEditors ...RequestEditorFn) (*OpenstackPoolMembersRetrieveResponse, error)
+
+	// OpenstackPoolMembersPartialUpdateWithBodyWithResponse request with any body
+	OpenstackPoolMembersPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPoolMembersPartialUpdateResponse, error)
+
+	OpenstackPoolMembersPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPoolMembersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPoolMembersPartialUpdateResponse, error)
+
+	// OpenstackPoolMembersUpdateWithBodyWithResponse request with any body
+	OpenstackPoolMembersUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPoolMembersUpdateResponse, error)
+
+	OpenstackPoolMembersUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPoolMembersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPoolMembersUpdateResponse, error)
+
+	// OpenstackPoolsListWithResponse request
+	OpenstackPoolsListWithResponse(ctx context.Context, params *OpenstackPoolsListParams, reqEditors ...RequestEditorFn) (*OpenstackPoolsListResponse, error)
+
+	// OpenstackPoolsCountWithResponse request
+	OpenstackPoolsCountWithResponse(ctx context.Context, params *OpenstackPoolsCountParams, reqEditors ...RequestEditorFn) (*OpenstackPoolsCountResponse, error)
+
+	// OpenstackPoolsCreateWithBodyWithResponse request with any body
+	OpenstackPoolsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPoolsCreateResponse, error)
+
+	OpenstackPoolsCreateWithResponse(ctx context.Context, body OpenstackPoolsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPoolsCreateResponse, error)
+
+	// OpenstackPoolsDestroyWithResponse request
+	OpenstackPoolsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPoolsDestroyResponse, error)
+
+	// OpenstackPoolsRetrieveWithResponse request
+	OpenstackPoolsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackPoolsRetrieveParams, reqEditors ...RequestEditorFn) (*OpenstackPoolsRetrieveResponse, error)
+
+	// OpenstackPoolsPartialUpdateWithBodyWithResponse request with any body
+	OpenstackPoolsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPoolsPartialUpdateResponse, error)
+
+	OpenstackPoolsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPoolsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPoolsPartialUpdateResponse, error)
+
+	// OpenstackPoolsUpdateWithBodyWithResponse request with any body
+	OpenstackPoolsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPoolsUpdateResponse, error)
+
+	OpenstackPoolsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPoolsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPoolsUpdateResponse, error)
 
 	// OpenstackPortsListWithResponse request
 	OpenstackPortsListWithResponse(ctx context.Context, params *OpenstackPortsListParams, reqEditors ...RequestEditorFn) (*OpenstackPortsListResponse, error)
@@ -352999,6 +360682,92 @@ func (r MarketplaceStatsOfferingsCounterStatsCountResponse) StatusCode() int {
 	return 0
 }
 
+type MarketplaceStatsOpenstackInstancesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OpenStackInstanceReport
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceStatsOpenstackInstancesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceStatsOpenstackInstancesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceStatsOpenstackInstancesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceStatsOpenstackInstancesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceStatsOpenstackInstancesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceStatsOpenstackInstancesAggregateListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OpenStackInstanceAggregate
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceStatsOpenstackInstancesAggregateListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceStatsOpenstackInstancesAggregateListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceStatsOpenstackInstancesAggregateCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceStatsOpenstackInstancesAggregateCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceStatsOpenstackInstancesAggregateCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceStatsOrderStatsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -358772,6 +366541,158 @@ func (r OpenstackFloatingIpsUpdateDescriptionResponse) StatusCode() int {
 	return 0
 }
 
+type OpenstackHealthMonitorsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OpenStackHealthMonitor
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackHealthMonitorsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackHealthMonitorsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackHealthMonitorsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackHealthMonitorsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackHealthMonitorsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackHealthMonitorsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *CreateHealthMonitor
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackHealthMonitorsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackHealthMonitorsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackHealthMonitorsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackHealthMonitorsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackHealthMonitorsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackHealthMonitorsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OpenStackHealthMonitor
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackHealthMonitorsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackHealthMonitorsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackHealthMonitorsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *UpdateHealthMonitor
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackHealthMonitorsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackHealthMonitorsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackHealthMonitorsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *UpdateHealthMonitor
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackHealthMonitorsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackHealthMonitorsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type OpenstackImagesListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -359414,6 +367335,373 @@ func (r OpenstackInstancesUpdateSecurityGroupsResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackInstancesUpdateSecurityGroupsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackListenersListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OpenStackListener
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackListenersListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackListenersListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackListenersCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackListenersCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackListenersCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackListenersCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *CreateListener
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackListenersCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackListenersCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackListenersDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackListenersDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackListenersDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackListenersRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OpenStackListener
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackListenersRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackListenersRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackListenersPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *UpdateListener
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackListenersPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackListenersPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackListenersUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *UpdateListener
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackListenersUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackListenersUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackLoadbalancersListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OpenStackLoadBalancer
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackLoadbalancersListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackLoadbalancersListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackLoadbalancersCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackLoadbalancersCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackLoadbalancersCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackLoadbalancersCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *CreateLoadBalancer
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackLoadbalancersCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackLoadbalancersCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackLoadbalancersDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackLoadbalancersDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackLoadbalancersDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackLoadbalancersRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OpenStackLoadBalancer
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackLoadbalancersRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackLoadbalancersRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackLoadbalancersPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OpenStackLoadBalancer
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackLoadbalancersPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackLoadbalancersPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackLoadbalancersUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OpenStackLoadBalancer
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackLoadbalancersUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackLoadbalancersUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackLoadbalancersAttachFloatingIpResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackLoadbalancersAttachFloatingIpResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackLoadbalancersAttachFloatingIpResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackLoadbalancersDetachFloatingIpResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackLoadbalancersDetachFloatingIpResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackLoadbalancersDetachFloatingIpResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackLoadbalancersUpdateVipSecurityGroupsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackLoadbalancersUpdateVipSecurityGroupsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackLoadbalancersUpdateVipSecurityGroupsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -360132,6 +368420,310 @@ func (r OpenstackNetworksUnlinkResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackNetworksUnlinkResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackPoolMembersListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OpenStackPoolMember
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPoolMembersListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPoolMembersListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackPoolMembersCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPoolMembersCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPoolMembersCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackPoolMembersCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *CreatePoolMember
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPoolMembersCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPoolMembersCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackPoolMembersDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPoolMembersDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPoolMembersDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackPoolMembersRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OpenStackPoolMember
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPoolMembersRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPoolMembersRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackPoolMembersPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *UpdatePoolMember
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPoolMembersPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPoolMembersPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackPoolMembersUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *UpdatePoolMember
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPoolMembersUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPoolMembersUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackPoolsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OpenStackPool
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPoolsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPoolsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackPoolsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPoolsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPoolsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackPoolsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *CreatePool
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPoolsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPoolsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackPoolsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPoolsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPoolsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackPoolsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OpenStackPool
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPoolsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPoolsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackPoolsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OpenStackPool
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPoolsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPoolsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackPoolsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OpenStackPool
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPoolsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPoolsUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -391675,6 +400267,42 @@ func (c *ClientWithResponses) MarketplaceStatsOfferingsCounterStatsCountWithResp
 	return ParseMarketplaceStatsOfferingsCounterStatsCountResponse(rsp)
 }
 
+// MarketplaceStatsOpenstackInstancesListWithResponse request returning *MarketplaceStatsOpenstackInstancesListResponse
+func (c *ClientWithResponses) MarketplaceStatsOpenstackInstancesListWithResponse(ctx context.Context, params *MarketplaceStatsOpenstackInstancesListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsOpenstackInstancesListResponse, error) {
+	rsp, err := c.MarketplaceStatsOpenstackInstancesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceStatsOpenstackInstancesListResponse(rsp)
+}
+
+// MarketplaceStatsOpenstackInstancesCountWithResponse request returning *MarketplaceStatsOpenstackInstancesCountResponse
+func (c *ClientWithResponses) MarketplaceStatsOpenstackInstancesCountWithResponse(ctx context.Context, params *MarketplaceStatsOpenstackInstancesCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsOpenstackInstancesCountResponse, error) {
+	rsp, err := c.MarketplaceStatsOpenstackInstancesCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceStatsOpenstackInstancesCountResponse(rsp)
+}
+
+// MarketplaceStatsOpenstackInstancesAggregateListWithResponse request returning *MarketplaceStatsOpenstackInstancesAggregateListResponse
+func (c *ClientWithResponses) MarketplaceStatsOpenstackInstancesAggregateListWithResponse(ctx context.Context, params *MarketplaceStatsOpenstackInstancesAggregateListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsOpenstackInstancesAggregateListResponse, error) {
+	rsp, err := c.MarketplaceStatsOpenstackInstancesAggregateList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceStatsOpenstackInstancesAggregateListResponse(rsp)
+}
+
+// MarketplaceStatsOpenstackInstancesAggregateCountWithResponse request returning *MarketplaceStatsOpenstackInstancesAggregateCountResponse
+func (c *ClientWithResponses) MarketplaceStatsOpenstackInstancesAggregateCountWithResponse(ctx context.Context, params *MarketplaceStatsOpenstackInstancesAggregateCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsOpenstackInstancesAggregateCountResponse, error) {
+	rsp, err := c.MarketplaceStatsOpenstackInstancesAggregateCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceStatsOpenstackInstancesAggregateCountResponse(rsp)
+}
+
 // MarketplaceStatsOrderStatsRetrieveWithResponse request returning *MarketplaceStatsOrderStatsRetrieveResponse
 func (c *ClientWithResponses) MarketplaceStatsOrderStatsRetrieveWithResponse(ctx context.Context, params *MarketplaceStatsOrderStatsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsOrderStatsRetrieveResponse, error) {
 	rsp, err := c.MarketplaceStatsOrderStatsRetrieve(ctx, params, reqEditors...)
@@ -394693,6 +403321,93 @@ func (c *ClientWithResponses) OpenstackFloatingIpsUpdateDescriptionWithResponse(
 	return ParseOpenstackFloatingIpsUpdateDescriptionResponse(rsp)
 }
 
+// OpenstackHealthMonitorsListWithResponse request returning *OpenstackHealthMonitorsListResponse
+func (c *ClientWithResponses) OpenstackHealthMonitorsListWithResponse(ctx context.Context, params *OpenstackHealthMonitorsListParams, reqEditors ...RequestEditorFn) (*OpenstackHealthMonitorsListResponse, error) {
+	rsp, err := c.OpenstackHealthMonitorsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackHealthMonitorsListResponse(rsp)
+}
+
+// OpenstackHealthMonitorsCountWithResponse request returning *OpenstackHealthMonitorsCountResponse
+func (c *ClientWithResponses) OpenstackHealthMonitorsCountWithResponse(ctx context.Context, params *OpenstackHealthMonitorsCountParams, reqEditors ...RequestEditorFn) (*OpenstackHealthMonitorsCountResponse, error) {
+	rsp, err := c.OpenstackHealthMonitorsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackHealthMonitorsCountResponse(rsp)
+}
+
+// OpenstackHealthMonitorsCreateWithBodyWithResponse request with arbitrary body returning *OpenstackHealthMonitorsCreateResponse
+func (c *ClientWithResponses) OpenstackHealthMonitorsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackHealthMonitorsCreateResponse, error) {
+	rsp, err := c.OpenstackHealthMonitorsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackHealthMonitorsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackHealthMonitorsCreateWithResponse(ctx context.Context, body OpenstackHealthMonitorsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackHealthMonitorsCreateResponse, error) {
+	rsp, err := c.OpenstackHealthMonitorsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackHealthMonitorsCreateResponse(rsp)
+}
+
+// OpenstackHealthMonitorsDestroyWithResponse request returning *OpenstackHealthMonitorsDestroyResponse
+func (c *ClientWithResponses) OpenstackHealthMonitorsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackHealthMonitorsDestroyResponse, error) {
+	rsp, err := c.OpenstackHealthMonitorsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackHealthMonitorsDestroyResponse(rsp)
+}
+
+// OpenstackHealthMonitorsRetrieveWithResponse request returning *OpenstackHealthMonitorsRetrieveResponse
+func (c *ClientWithResponses) OpenstackHealthMonitorsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackHealthMonitorsRetrieveParams, reqEditors ...RequestEditorFn) (*OpenstackHealthMonitorsRetrieveResponse, error) {
+	rsp, err := c.OpenstackHealthMonitorsRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackHealthMonitorsRetrieveResponse(rsp)
+}
+
+// OpenstackHealthMonitorsPartialUpdateWithBodyWithResponse request with arbitrary body returning *OpenstackHealthMonitorsPartialUpdateResponse
+func (c *ClientWithResponses) OpenstackHealthMonitorsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackHealthMonitorsPartialUpdateResponse, error) {
+	rsp, err := c.OpenstackHealthMonitorsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackHealthMonitorsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackHealthMonitorsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackHealthMonitorsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackHealthMonitorsPartialUpdateResponse, error) {
+	rsp, err := c.OpenstackHealthMonitorsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackHealthMonitorsPartialUpdateResponse(rsp)
+}
+
+// OpenstackHealthMonitorsUpdateWithBodyWithResponse request with arbitrary body returning *OpenstackHealthMonitorsUpdateResponse
+func (c *ClientWithResponses) OpenstackHealthMonitorsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackHealthMonitorsUpdateResponse, error) {
+	rsp, err := c.OpenstackHealthMonitorsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackHealthMonitorsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackHealthMonitorsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackHealthMonitorsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackHealthMonitorsUpdateResponse, error) {
+	rsp, err := c.OpenstackHealthMonitorsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackHealthMonitorsUpdateResponse(rsp)
+}
+
 // OpenstackImagesListWithResponse request returning *OpenstackImagesListResponse
 func (c *ClientWithResponses) OpenstackImagesListWithResponse(ctx context.Context, params *OpenstackImagesListParams, reqEditors ...RequestEditorFn) (*OpenstackImagesListResponse, error) {
 	rsp, err := c.OpenstackImagesList(ctx, params, reqEditors...)
@@ -395033,6 +403748,223 @@ func (c *ClientWithResponses) OpenstackInstancesUpdateSecurityGroupsWithResponse
 		return nil, err
 	}
 	return ParseOpenstackInstancesUpdateSecurityGroupsResponse(rsp)
+}
+
+// OpenstackListenersListWithResponse request returning *OpenstackListenersListResponse
+func (c *ClientWithResponses) OpenstackListenersListWithResponse(ctx context.Context, params *OpenstackListenersListParams, reqEditors ...RequestEditorFn) (*OpenstackListenersListResponse, error) {
+	rsp, err := c.OpenstackListenersList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackListenersListResponse(rsp)
+}
+
+// OpenstackListenersCountWithResponse request returning *OpenstackListenersCountResponse
+func (c *ClientWithResponses) OpenstackListenersCountWithResponse(ctx context.Context, params *OpenstackListenersCountParams, reqEditors ...RequestEditorFn) (*OpenstackListenersCountResponse, error) {
+	rsp, err := c.OpenstackListenersCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackListenersCountResponse(rsp)
+}
+
+// OpenstackListenersCreateWithBodyWithResponse request with arbitrary body returning *OpenstackListenersCreateResponse
+func (c *ClientWithResponses) OpenstackListenersCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackListenersCreateResponse, error) {
+	rsp, err := c.OpenstackListenersCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackListenersCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackListenersCreateWithResponse(ctx context.Context, body OpenstackListenersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackListenersCreateResponse, error) {
+	rsp, err := c.OpenstackListenersCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackListenersCreateResponse(rsp)
+}
+
+// OpenstackListenersDestroyWithResponse request returning *OpenstackListenersDestroyResponse
+func (c *ClientWithResponses) OpenstackListenersDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackListenersDestroyResponse, error) {
+	rsp, err := c.OpenstackListenersDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackListenersDestroyResponse(rsp)
+}
+
+// OpenstackListenersRetrieveWithResponse request returning *OpenstackListenersRetrieveResponse
+func (c *ClientWithResponses) OpenstackListenersRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackListenersRetrieveParams, reqEditors ...RequestEditorFn) (*OpenstackListenersRetrieveResponse, error) {
+	rsp, err := c.OpenstackListenersRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackListenersRetrieveResponse(rsp)
+}
+
+// OpenstackListenersPartialUpdateWithBodyWithResponse request with arbitrary body returning *OpenstackListenersPartialUpdateResponse
+func (c *ClientWithResponses) OpenstackListenersPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackListenersPartialUpdateResponse, error) {
+	rsp, err := c.OpenstackListenersPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackListenersPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackListenersPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackListenersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackListenersPartialUpdateResponse, error) {
+	rsp, err := c.OpenstackListenersPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackListenersPartialUpdateResponse(rsp)
+}
+
+// OpenstackListenersUpdateWithBodyWithResponse request with arbitrary body returning *OpenstackListenersUpdateResponse
+func (c *ClientWithResponses) OpenstackListenersUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackListenersUpdateResponse, error) {
+	rsp, err := c.OpenstackListenersUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackListenersUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackListenersUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackListenersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackListenersUpdateResponse, error) {
+	rsp, err := c.OpenstackListenersUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackListenersUpdateResponse(rsp)
+}
+
+// OpenstackLoadbalancersListWithResponse request returning *OpenstackLoadbalancersListResponse
+func (c *ClientWithResponses) OpenstackLoadbalancersListWithResponse(ctx context.Context, params *OpenstackLoadbalancersListParams, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersListResponse, error) {
+	rsp, err := c.OpenstackLoadbalancersList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackLoadbalancersListResponse(rsp)
+}
+
+// OpenstackLoadbalancersCountWithResponse request returning *OpenstackLoadbalancersCountResponse
+func (c *ClientWithResponses) OpenstackLoadbalancersCountWithResponse(ctx context.Context, params *OpenstackLoadbalancersCountParams, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersCountResponse, error) {
+	rsp, err := c.OpenstackLoadbalancersCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackLoadbalancersCountResponse(rsp)
+}
+
+// OpenstackLoadbalancersCreateWithBodyWithResponse request with arbitrary body returning *OpenstackLoadbalancersCreateResponse
+func (c *ClientWithResponses) OpenstackLoadbalancersCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersCreateResponse, error) {
+	rsp, err := c.OpenstackLoadbalancersCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackLoadbalancersCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackLoadbalancersCreateWithResponse(ctx context.Context, body OpenstackLoadbalancersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersCreateResponse, error) {
+	rsp, err := c.OpenstackLoadbalancersCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackLoadbalancersCreateResponse(rsp)
+}
+
+// OpenstackLoadbalancersDestroyWithResponse request returning *OpenstackLoadbalancersDestroyResponse
+func (c *ClientWithResponses) OpenstackLoadbalancersDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersDestroyResponse, error) {
+	rsp, err := c.OpenstackLoadbalancersDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackLoadbalancersDestroyResponse(rsp)
+}
+
+// OpenstackLoadbalancersRetrieveWithResponse request returning *OpenstackLoadbalancersRetrieveResponse
+func (c *ClientWithResponses) OpenstackLoadbalancersRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackLoadbalancersRetrieveParams, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersRetrieveResponse, error) {
+	rsp, err := c.OpenstackLoadbalancersRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackLoadbalancersRetrieveResponse(rsp)
+}
+
+// OpenstackLoadbalancersPartialUpdateWithBodyWithResponse request with arbitrary body returning *OpenstackLoadbalancersPartialUpdateResponse
+func (c *ClientWithResponses) OpenstackLoadbalancersPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersPartialUpdateResponse, error) {
+	rsp, err := c.OpenstackLoadbalancersPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackLoadbalancersPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackLoadbalancersPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackLoadbalancersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersPartialUpdateResponse, error) {
+	rsp, err := c.OpenstackLoadbalancersPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackLoadbalancersPartialUpdateResponse(rsp)
+}
+
+// OpenstackLoadbalancersUpdateWithBodyWithResponse request with arbitrary body returning *OpenstackLoadbalancersUpdateResponse
+func (c *ClientWithResponses) OpenstackLoadbalancersUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersUpdateResponse, error) {
+	rsp, err := c.OpenstackLoadbalancersUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackLoadbalancersUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackLoadbalancersUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackLoadbalancersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersUpdateResponse, error) {
+	rsp, err := c.OpenstackLoadbalancersUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackLoadbalancersUpdateResponse(rsp)
+}
+
+// OpenstackLoadbalancersAttachFloatingIpWithBodyWithResponse request with arbitrary body returning *OpenstackLoadbalancersAttachFloatingIpResponse
+func (c *ClientWithResponses) OpenstackLoadbalancersAttachFloatingIpWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersAttachFloatingIpResponse, error) {
+	rsp, err := c.OpenstackLoadbalancersAttachFloatingIpWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackLoadbalancersAttachFloatingIpResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackLoadbalancersAttachFloatingIpWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackLoadbalancersAttachFloatingIpJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersAttachFloatingIpResponse, error) {
+	rsp, err := c.OpenstackLoadbalancersAttachFloatingIp(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackLoadbalancersAttachFloatingIpResponse(rsp)
+}
+
+// OpenstackLoadbalancersDetachFloatingIpWithResponse request returning *OpenstackLoadbalancersDetachFloatingIpResponse
+func (c *ClientWithResponses) OpenstackLoadbalancersDetachFloatingIpWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersDetachFloatingIpResponse, error) {
+	rsp, err := c.OpenstackLoadbalancersDetachFloatingIp(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackLoadbalancersDetachFloatingIpResponse(rsp)
+}
+
+// OpenstackLoadbalancersUpdateVipSecurityGroupsWithBodyWithResponse request with arbitrary body returning *OpenstackLoadbalancersUpdateVipSecurityGroupsResponse
+func (c *ClientWithResponses) OpenstackLoadbalancersUpdateVipSecurityGroupsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersUpdateVipSecurityGroupsResponse, error) {
+	rsp, err := c.OpenstackLoadbalancersUpdateVipSecurityGroupsWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackLoadbalancersUpdateVipSecurityGroupsResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackLoadbalancersUpdateVipSecurityGroupsWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackLoadbalancersUpdateVipSecurityGroupsJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersUpdateVipSecurityGroupsResponse, error) {
+	rsp, err := c.OpenstackLoadbalancersUpdateVipSecurityGroups(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackLoadbalancersUpdateVipSecurityGroupsResponse(rsp)
 }
 
 // OpenstackMarketplaceTenantsListWithResponse request returning *OpenstackMarketplaceTenantsListResponse
@@ -395442,6 +404374,180 @@ func (c *ClientWithResponses) OpenstackNetworksUnlinkWithResponse(ctx context.Co
 		return nil, err
 	}
 	return ParseOpenstackNetworksUnlinkResponse(rsp)
+}
+
+// OpenstackPoolMembersListWithResponse request returning *OpenstackPoolMembersListResponse
+func (c *ClientWithResponses) OpenstackPoolMembersListWithResponse(ctx context.Context, params *OpenstackPoolMembersListParams, reqEditors ...RequestEditorFn) (*OpenstackPoolMembersListResponse, error) {
+	rsp, err := c.OpenstackPoolMembersList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPoolMembersListResponse(rsp)
+}
+
+// OpenstackPoolMembersCountWithResponse request returning *OpenstackPoolMembersCountResponse
+func (c *ClientWithResponses) OpenstackPoolMembersCountWithResponse(ctx context.Context, params *OpenstackPoolMembersCountParams, reqEditors ...RequestEditorFn) (*OpenstackPoolMembersCountResponse, error) {
+	rsp, err := c.OpenstackPoolMembersCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPoolMembersCountResponse(rsp)
+}
+
+// OpenstackPoolMembersCreateWithBodyWithResponse request with arbitrary body returning *OpenstackPoolMembersCreateResponse
+func (c *ClientWithResponses) OpenstackPoolMembersCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPoolMembersCreateResponse, error) {
+	rsp, err := c.OpenstackPoolMembersCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPoolMembersCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackPoolMembersCreateWithResponse(ctx context.Context, body OpenstackPoolMembersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPoolMembersCreateResponse, error) {
+	rsp, err := c.OpenstackPoolMembersCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPoolMembersCreateResponse(rsp)
+}
+
+// OpenstackPoolMembersDestroyWithResponse request returning *OpenstackPoolMembersDestroyResponse
+func (c *ClientWithResponses) OpenstackPoolMembersDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPoolMembersDestroyResponse, error) {
+	rsp, err := c.OpenstackPoolMembersDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPoolMembersDestroyResponse(rsp)
+}
+
+// OpenstackPoolMembersRetrieveWithResponse request returning *OpenstackPoolMembersRetrieveResponse
+func (c *ClientWithResponses) OpenstackPoolMembersRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackPoolMembersRetrieveParams, reqEditors ...RequestEditorFn) (*OpenstackPoolMembersRetrieveResponse, error) {
+	rsp, err := c.OpenstackPoolMembersRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPoolMembersRetrieveResponse(rsp)
+}
+
+// OpenstackPoolMembersPartialUpdateWithBodyWithResponse request with arbitrary body returning *OpenstackPoolMembersPartialUpdateResponse
+func (c *ClientWithResponses) OpenstackPoolMembersPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPoolMembersPartialUpdateResponse, error) {
+	rsp, err := c.OpenstackPoolMembersPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPoolMembersPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackPoolMembersPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPoolMembersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPoolMembersPartialUpdateResponse, error) {
+	rsp, err := c.OpenstackPoolMembersPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPoolMembersPartialUpdateResponse(rsp)
+}
+
+// OpenstackPoolMembersUpdateWithBodyWithResponse request with arbitrary body returning *OpenstackPoolMembersUpdateResponse
+func (c *ClientWithResponses) OpenstackPoolMembersUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPoolMembersUpdateResponse, error) {
+	rsp, err := c.OpenstackPoolMembersUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPoolMembersUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackPoolMembersUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPoolMembersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPoolMembersUpdateResponse, error) {
+	rsp, err := c.OpenstackPoolMembersUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPoolMembersUpdateResponse(rsp)
+}
+
+// OpenstackPoolsListWithResponse request returning *OpenstackPoolsListResponse
+func (c *ClientWithResponses) OpenstackPoolsListWithResponse(ctx context.Context, params *OpenstackPoolsListParams, reqEditors ...RequestEditorFn) (*OpenstackPoolsListResponse, error) {
+	rsp, err := c.OpenstackPoolsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPoolsListResponse(rsp)
+}
+
+// OpenstackPoolsCountWithResponse request returning *OpenstackPoolsCountResponse
+func (c *ClientWithResponses) OpenstackPoolsCountWithResponse(ctx context.Context, params *OpenstackPoolsCountParams, reqEditors ...RequestEditorFn) (*OpenstackPoolsCountResponse, error) {
+	rsp, err := c.OpenstackPoolsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPoolsCountResponse(rsp)
+}
+
+// OpenstackPoolsCreateWithBodyWithResponse request with arbitrary body returning *OpenstackPoolsCreateResponse
+func (c *ClientWithResponses) OpenstackPoolsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPoolsCreateResponse, error) {
+	rsp, err := c.OpenstackPoolsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPoolsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackPoolsCreateWithResponse(ctx context.Context, body OpenstackPoolsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPoolsCreateResponse, error) {
+	rsp, err := c.OpenstackPoolsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPoolsCreateResponse(rsp)
+}
+
+// OpenstackPoolsDestroyWithResponse request returning *OpenstackPoolsDestroyResponse
+func (c *ClientWithResponses) OpenstackPoolsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPoolsDestroyResponse, error) {
+	rsp, err := c.OpenstackPoolsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPoolsDestroyResponse(rsp)
+}
+
+// OpenstackPoolsRetrieveWithResponse request returning *OpenstackPoolsRetrieveResponse
+func (c *ClientWithResponses) OpenstackPoolsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackPoolsRetrieveParams, reqEditors ...RequestEditorFn) (*OpenstackPoolsRetrieveResponse, error) {
+	rsp, err := c.OpenstackPoolsRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPoolsRetrieveResponse(rsp)
+}
+
+// OpenstackPoolsPartialUpdateWithBodyWithResponse request with arbitrary body returning *OpenstackPoolsPartialUpdateResponse
+func (c *ClientWithResponses) OpenstackPoolsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPoolsPartialUpdateResponse, error) {
+	rsp, err := c.OpenstackPoolsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPoolsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackPoolsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPoolsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPoolsPartialUpdateResponse, error) {
+	rsp, err := c.OpenstackPoolsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPoolsPartialUpdateResponse(rsp)
+}
+
+// OpenstackPoolsUpdateWithBodyWithResponse request with arbitrary body returning *OpenstackPoolsUpdateResponse
+func (c *ClientWithResponses) OpenstackPoolsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPoolsUpdateResponse, error) {
+	rsp, err := c.OpenstackPoolsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPoolsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackPoolsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPoolsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPoolsUpdateResponse, error) {
+	rsp, err := c.OpenstackPoolsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPoolsUpdateResponse(rsp)
 }
 
 // OpenstackPortsListWithResponse request returning *OpenstackPortsListResponse
@@ -432339,6 +441445,90 @@ func ParseMarketplaceStatsOfferingsCounterStatsCountResponse(rsp *http.Response)
 	return response, nil
 }
 
+// ParseMarketplaceStatsOpenstackInstancesListResponse parses an HTTP response from a MarketplaceStatsOpenstackInstancesListWithResponse call
+func ParseMarketplaceStatsOpenstackInstancesListResponse(rsp *http.Response) (*MarketplaceStatsOpenstackInstancesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceStatsOpenstackInstancesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OpenStackInstanceReport
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceStatsOpenstackInstancesCountResponse parses an HTTP response from a MarketplaceStatsOpenstackInstancesCountWithResponse call
+func ParseMarketplaceStatsOpenstackInstancesCountResponse(rsp *http.Response) (*MarketplaceStatsOpenstackInstancesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceStatsOpenstackInstancesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceStatsOpenstackInstancesAggregateListResponse parses an HTTP response from a MarketplaceStatsOpenstackInstancesAggregateListWithResponse call
+func ParseMarketplaceStatsOpenstackInstancesAggregateListResponse(rsp *http.Response) (*MarketplaceStatsOpenstackInstancesAggregateListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceStatsOpenstackInstancesAggregateListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OpenStackInstanceAggregate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceStatsOpenstackInstancesAggregateCountResponse parses an HTTP response from a MarketplaceStatsOpenstackInstancesAggregateCountWithResponse call
+func ParseMarketplaceStatsOpenstackInstancesAggregateCountResponse(rsp *http.Response) (*MarketplaceStatsOpenstackInstancesAggregateCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceStatsOpenstackInstancesAggregateCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceStatsOrderStatsRetrieveResponse parses an HTTP response from a MarketplaceStatsOrderStatsRetrieveWithResponse call
 func ParseMarketplaceStatsOrderStatsRetrieveResponse(rsp *http.Response) (*MarketplaceStatsOrderStatsRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -438423,6 +447613,168 @@ func ParseOpenstackFloatingIpsUpdateDescriptionResponse(rsp *http.Response) (*Op
 	return response, nil
 }
 
+// ParseOpenstackHealthMonitorsListResponse parses an HTTP response from a OpenstackHealthMonitorsListWithResponse call
+func ParseOpenstackHealthMonitorsListResponse(rsp *http.Response) (*OpenstackHealthMonitorsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackHealthMonitorsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OpenStackHealthMonitor
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackHealthMonitorsCountResponse parses an HTTP response from a OpenstackHealthMonitorsCountWithResponse call
+func ParseOpenstackHealthMonitorsCountResponse(rsp *http.Response) (*OpenstackHealthMonitorsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackHealthMonitorsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackHealthMonitorsCreateResponse parses an HTTP response from a OpenstackHealthMonitorsCreateWithResponse call
+func ParseOpenstackHealthMonitorsCreateResponse(rsp *http.Response) (*OpenstackHealthMonitorsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackHealthMonitorsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest CreateHealthMonitor
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackHealthMonitorsDestroyResponse parses an HTTP response from a OpenstackHealthMonitorsDestroyWithResponse call
+func ParseOpenstackHealthMonitorsDestroyResponse(rsp *http.Response) (*OpenstackHealthMonitorsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackHealthMonitorsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackHealthMonitorsRetrieveResponse parses an HTTP response from a OpenstackHealthMonitorsRetrieveWithResponse call
+func ParseOpenstackHealthMonitorsRetrieveResponse(rsp *http.Response) (*OpenstackHealthMonitorsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackHealthMonitorsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OpenStackHealthMonitor
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackHealthMonitorsPartialUpdateResponse parses an HTTP response from a OpenstackHealthMonitorsPartialUpdateWithResponse call
+func ParseOpenstackHealthMonitorsPartialUpdateResponse(rsp *http.Response) (*OpenstackHealthMonitorsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackHealthMonitorsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UpdateHealthMonitor
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackHealthMonitorsUpdateResponse parses an HTTP response from a OpenstackHealthMonitorsUpdateWithResponse call
+func ParseOpenstackHealthMonitorsUpdateResponse(rsp *http.Response) (*OpenstackHealthMonitorsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackHealthMonitorsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UpdateHealthMonitor
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseOpenstackImagesListResponse parses an HTTP response from a OpenstackImagesListWithResponse call
 func ParseOpenstackImagesListResponse(rsp *http.Response) (*OpenstackImagesListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -439073,6 +448425,378 @@ func ParseOpenstackInstancesUpdateSecurityGroupsResponse(rsp *http.Response) (*O
 	}
 
 	response := &OpenstackInstancesUpdateSecurityGroupsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackListenersListResponse parses an HTTP response from a OpenstackListenersListWithResponse call
+func ParseOpenstackListenersListResponse(rsp *http.Response) (*OpenstackListenersListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackListenersListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OpenStackListener
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackListenersCountResponse parses an HTTP response from a OpenstackListenersCountWithResponse call
+func ParseOpenstackListenersCountResponse(rsp *http.Response) (*OpenstackListenersCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackListenersCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackListenersCreateResponse parses an HTTP response from a OpenstackListenersCreateWithResponse call
+func ParseOpenstackListenersCreateResponse(rsp *http.Response) (*OpenstackListenersCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackListenersCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest CreateListener
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackListenersDestroyResponse parses an HTTP response from a OpenstackListenersDestroyWithResponse call
+func ParseOpenstackListenersDestroyResponse(rsp *http.Response) (*OpenstackListenersDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackListenersDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackListenersRetrieveResponse parses an HTTP response from a OpenstackListenersRetrieveWithResponse call
+func ParseOpenstackListenersRetrieveResponse(rsp *http.Response) (*OpenstackListenersRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackListenersRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OpenStackListener
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackListenersPartialUpdateResponse parses an HTTP response from a OpenstackListenersPartialUpdateWithResponse call
+func ParseOpenstackListenersPartialUpdateResponse(rsp *http.Response) (*OpenstackListenersPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackListenersPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UpdateListener
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackListenersUpdateResponse parses an HTTP response from a OpenstackListenersUpdateWithResponse call
+func ParseOpenstackListenersUpdateResponse(rsp *http.Response) (*OpenstackListenersUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackListenersUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UpdateListener
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackLoadbalancersListResponse parses an HTTP response from a OpenstackLoadbalancersListWithResponse call
+func ParseOpenstackLoadbalancersListResponse(rsp *http.Response) (*OpenstackLoadbalancersListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackLoadbalancersListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OpenStackLoadBalancer
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackLoadbalancersCountResponse parses an HTTP response from a OpenstackLoadbalancersCountWithResponse call
+func ParseOpenstackLoadbalancersCountResponse(rsp *http.Response) (*OpenstackLoadbalancersCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackLoadbalancersCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackLoadbalancersCreateResponse parses an HTTP response from a OpenstackLoadbalancersCreateWithResponse call
+func ParseOpenstackLoadbalancersCreateResponse(rsp *http.Response) (*OpenstackLoadbalancersCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackLoadbalancersCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest CreateLoadBalancer
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackLoadbalancersDestroyResponse parses an HTTP response from a OpenstackLoadbalancersDestroyWithResponse call
+func ParseOpenstackLoadbalancersDestroyResponse(rsp *http.Response) (*OpenstackLoadbalancersDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackLoadbalancersDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackLoadbalancersRetrieveResponse parses an HTTP response from a OpenstackLoadbalancersRetrieveWithResponse call
+func ParseOpenstackLoadbalancersRetrieveResponse(rsp *http.Response) (*OpenstackLoadbalancersRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackLoadbalancersRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OpenStackLoadBalancer
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackLoadbalancersPartialUpdateResponse parses an HTTP response from a OpenstackLoadbalancersPartialUpdateWithResponse call
+func ParseOpenstackLoadbalancersPartialUpdateResponse(rsp *http.Response) (*OpenstackLoadbalancersPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackLoadbalancersPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OpenStackLoadBalancer
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackLoadbalancersUpdateResponse parses an HTTP response from a OpenstackLoadbalancersUpdateWithResponse call
+func ParseOpenstackLoadbalancersUpdateResponse(rsp *http.Response) (*OpenstackLoadbalancersUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackLoadbalancersUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OpenStackLoadBalancer
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackLoadbalancersAttachFloatingIpResponse parses an HTTP response from a OpenstackLoadbalancersAttachFloatingIpWithResponse call
+func ParseOpenstackLoadbalancersAttachFloatingIpResponse(rsp *http.Response) (*OpenstackLoadbalancersAttachFloatingIpResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackLoadbalancersAttachFloatingIpResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackLoadbalancersDetachFloatingIpResponse parses an HTTP response from a OpenstackLoadbalancersDetachFloatingIpWithResponse call
+func ParseOpenstackLoadbalancersDetachFloatingIpResponse(rsp *http.Response) (*OpenstackLoadbalancersDetachFloatingIpResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackLoadbalancersDetachFloatingIpResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackLoadbalancersUpdateVipSecurityGroupsResponse parses an HTTP response from a OpenstackLoadbalancersUpdateVipSecurityGroupsWithResponse call
+func ParseOpenstackLoadbalancersUpdateVipSecurityGroupsResponse(rsp *http.Response) (*OpenstackLoadbalancersUpdateVipSecurityGroupsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackLoadbalancersUpdateVipSecurityGroupsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -439850,6 +449574,330 @@ func ParseOpenstackNetworksUnlinkResponse(rsp *http.Response) (*OpenstackNetwork
 	response := &OpenstackNetworksUnlinkResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackPoolMembersListResponse parses an HTTP response from a OpenstackPoolMembersListWithResponse call
+func ParseOpenstackPoolMembersListResponse(rsp *http.Response) (*OpenstackPoolMembersListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPoolMembersListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OpenStackPoolMember
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackPoolMembersCountResponse parses an HTTP response from a OpenstackPoolMembersCountWithResponse call
+func ParseOpenstackPoolMembersCountResponse(rsp *http.Response) (*OpenstackPoolMembersCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPoolMembersCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackPoolMembersCreateResponse parses an HTTP response from a OpenstackPoolMembersCreateWithResponse call
+func ParseOpenstackPoolMembersCreateResponse(rsp *http.Response) (*OpenstackPoolMembersCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPoolMembersCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest CreatePoolMember
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackPoolMembersDestroyResponse parses an HTTP response from a OpenstackPoolMembersDestroyWithResponse call
+func ParseOpenstackPoolMembersDestroyResponse(rsp *http.Response) (*OpenstackPoolMembersDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPoolMembersDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackPoolMembersRetrieveResponse parses an HTTP response from a OpenstackPoolMembersRetrieveWithResponse call
+func ParseOpenstackPoolMembersRetrieveResponse(rsp *http.Response) (*OpenstackPoolMembersRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPoolMembersRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OpenStackPoolMember
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackPoolMembersPartialUpdateResponse parses an HTTP response from a OpenstackPoolMembersPartialUpdateWithResponse call
+func ParseOpenstackPoolMembersPartialUpdateResponse(rsp *http.Response) (*OpenstackPoolMembersPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPoolMembersPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UpdatePoolMember
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackPoolMembersUpdateResponse parses an HTTP response from a OpenstackPoolMembersUpdateWithResponse call
+func ParseOpenstackPoolMembersUpdateResponse(rsp *http.Response) (*OpenstackPoolMembersUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPoolMembersUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UpdatePoolMember
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackPoolsListResponse parses an HTTP response from a OpenstackPoolsListWithResponse call
+func ParseOpenstackPoolsListResponse(rsp *http.Response) (*OpenstackPoolsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPoolsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OpenStackPool
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackPoolsCountResponse parses an HTTP response from a OpenstackPoolsCountWithResponse call
+func ParseOpenstackPoolsCountResponse(rsp *http.Response) (*OpenstackPoolsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPoolsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackPoolsCreateResponse parses an HTTP response from a OpenstackPoolsCreateWithResponse call
+func ParseOpenstackPoolsCreateResponse(rsp *http.Response) (*OpenstackPoolsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPoolsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest CreatePool
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackPoolsDestroyResponse parses an HTTP response from a OpenstackPoolsDestroyWithResponse call
+func ParseOpenstackPoolsDestroyResponse(rsp *http.Response) (*OpenstackPoolsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPoolsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackPoolsRetrieveResponse parses an HTTP response from a OpenstackPoolsRetrieveWithResponse call
+func ParseOpenstackPoolsRetrieveResponse(rsp *http.Response) (*OpenstackPoolsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPoolsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OpenStackPool
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackPoolsPartialUpdateResponse parses an HTTP response from a OpenstackPoolsPartialUpdateWithResponse call
+func ParseOpenstackPoolsPartialUpdateResponse(rsp *http.Response) (*OpenstackPoolsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPoolsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OpenStackPool
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackPoolsUpdateResponse parses an HTTP response from a OpenstackPoolsUpdateWithResponse call
+func ParseOpenstackPoolsUpdateResponse(rsp *http.Response) (*OpenstackPoolsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPoolsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OpenStackPool
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
