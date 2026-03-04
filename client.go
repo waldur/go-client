@@ -7192,6 +7192,7 @@ func (e GlobalUserDataAccessLogOEnum) Valid() bool {
 
 // Defines values for GoogleCredentialsFieldEnum.
 const (
+	GoogleCredentialsFieldEnumAllowedDomains       GoogleCredentialsFieldEnum = "allowed_domains"
 	GoogleCredentialsFieldEnumCalendarRefreshToken GoogleCredentialsFieldEnum = "calendar_refresh_token"
 	GoogleCredentialsFieldEnumCalendarToken        GoogleCredentialsFieldEnum = "calendar_token"
 	GoogleCredentialsFieldEnumCreated              GoogleCredentialsFieldEnum = "created"
@@ -7216,6 +7217,8 @@ const (
 // Valid indicates whether the value is a known member of the GoogleCredentialsFieldEnum enum.
 func (e GoogleCredentialsFieldEnum) Valid() bool {
 	switch e {
+	case GoogleCredentialsFieldEnumAllowedDomains:
+		return true
 	case GoogleCredentialsFieldEnumCalendarRefreshToken:
 		return true
 	case GoogleCredentialsFieldEnumCalendarToken:
@@ -17728,6 +17731,7 @@ func (e SecurityGroupRuleProtocolEnum) Valid() bool {
 
 // Defines values for ServiceProviderFieldEnum.
 const (
+	ServiceProviderFieldEnumAllowedDomains       ServiceProviderFieldEnum = "allowed_domains"
 	ServiceProviderFieldEnumCreated              ServiceProviderFieldEnum = "created"
 	ServiceProviderFieldEnumCustomer             ServiceProviderFieldEnum = "customer"
 	ServiceProviderFieldEnumCustomerAbbreviation ServiceProviderFieldEnum = "customer_abbreviation"
@@ -17749,6 +17753,8 @@ const (
 // Valid indicates whether the value is a known member of the ServiceProviderFieldEnum enum.
 func (e ServiceProviderFieldEnum) Valid() bool {
 	switch e {
+	case ServiceProviderFieldEnumAllowedDomains:
+		return true
 	case ServiceProviderFieldEnumCreated:
 		return true
 	case ServiceProviderFieldEnumCustomer:
@@ -24352,6 +24358,7 @@ type ConstanceSettings struct {
 	OIDCCACHETIMEOUT                               *int                                                             `json:"OIDC_CACHE_TIMEOUT,omitempty"`
 	OIDCCLIENTID                                   *string                                                          `json:"OIDC_CLIENT_ID,omitempty"`
 	OIDCCLIENTSECRET                               *string                                                          `json:"OIDC_CLIENT_SECRET,omitempty"`
+	OIDCDEFAULTLOGOUTURL                           *string                                                          `json:"OIDC_DEFAULT_LOGOUT_URL,omitempty"`
 	OIDCINTROSPECTIONURL                           *string                                                          `json:"OIDC_INTROSPECTION_URL,omitempty"`
 	OIDCMATCHMAKINGBYEMAIL                         *bool                                                            `json:"OIDC_MATCHMAKING_BY_EMAIL,omitempty"`
 	OIDCUSERFIELD                                  *string                                                          `json:"OIDC_USER_FIELD,omitempty"`
@@ -24646,6 +24653,7 @@ type ConstanceSettingsRequest struct {
 	OIDCCACHETIMEOUT                               *int                                                                    `json:"OIDC_CACHE_TIMEOUT,omitempty"`
 	OIDCCLIENTID                                   *string                                                                 `json:"OIDC_CLIENT_ID,omitempty"`
 	OIDCCLIENTSECRET                               *string                                                                 `json:"OIDC_CLIENT_SECRET,omitempty"`
+	OIDCDEFAULTLOGOUTURL                           *string                                                                 `json:"OIDC_DEFAULT_LOGOUT_URL,omitempty"`
 	OIDCINTROSPECTIONURL                           *string                                                                 `json:"OIDC_INTROSPECTION_URL,omitempty"`
 	OIDCMATCHMAKINGBYEMAIL                         *bool                                                                   `json:"OIDC_MATCHMAKING_BY_EMAIL,omitempty"`
 	OIDCUSERFIELD                                  *string                                                                 `json:"OIDC_USER_FIELD,omitempty"`
@@ -24940,6 +24948,7 @@ type ConstanceSettingsRequestForm struct {
 	OIDCCACHETIMEOUT                               *int                                                                        `json:"OIDC_CACHE_TIMEOUT,omitempty"`
 	OIDCCLIENTID                                   *string                                                                     `json:"OIDC_CLIENT_ID,omitempty"`
 	OIDCCLIENTSECRET                               *string                                                                     `json:"OIDC_CLIENT_SECRET,omitempty"`
+	OIDCDEFAULTLOGOUTURL                           *string                                                                     `json:"OIDC_DEFAULT_LOGOUT_URL,omitempty"`
 	OIDCINTROSPECTIONURL                           *string                                                                     `json:"OIDC_INTROSPECTION_URL,omitempty"`
 	OIDCMATCHMAKINGBYEMAIL                         *bool                                                                       `json:"OIDC_MATCHMAKING_BY_EMAIL,omitempty"`
 	OIDCUSERFIELD                                  *string                                                                     `json:"OIDC_USER_FIELD,omitempty"`
@@ -25234,6 +25243,7 @@ type ConstanceSettingsRequestMultipart struct {
 	OIDCCACHETIMEOUT                               *int                                                                             `json:"OIDC_CACHE_TIMEOUT,omitempty"`
 	OIDCCLIENTID                                   *string                                                                          `json:"OIDC_CLIENT_ID,omitempty"`
 	OIDCCLIENTSECRET                               *string                                                                          `json:"OIDC_CLIENT_SECRET,omitempty"`
+	OIDCDEFAULTLOGOUTURL                           *string                                                                          `json:"OIDC_DEFAULT_LOGOUT_URL,omitempty"`
 	OIDCINTROSPECTIONURL                           *string                                                                          `json:"OIDC_INTROSPECTION_URL,omitempty"`
 	OIDCMATCHMAKINGBYEMAIL                         *bool                                                                            `json:"OIDC_MATCHMAKING_BY_EMAIL,omitempty"`
 	OIDCUSERFIELD                                  *string                                                                          `json:"OIDC_USER_FIELD,omitempty"`
@@ -28052,6 +28062,8 @@ type GoogleCalendar struct {
 
 // GoogleCredentials defines model for GoogleCredentials.
 type GoogleCredentials struct {
+	// AllowedDomains List of allowed domains for offering endpoints. Only staff can modify this field.
+	AllowedDomains       interface{}          `json:"allowed_domains,omitempty"`
 	CalendarRefreshToken *string              `json:"calendar_refresh_token,omitempty"`
 	CalendarToken        *string              `json:"calendar_token,omitempty"`
 	Created              *time.Time           `json:"created,omitempty"`
@@ -31062,6 +31074,13 @@ type NestedOfferingFile struct {
 	Created *time.Time `json:"created,omitempty"`
 	File    *string    `json:"file,omitempty"`
 	Name    *string    `json:"name,omitempty"`
+}
+
+// NestedParentSoftware defines model for NestedParentSoftware.
+type NestedParentSoftware struct {
+	Name string              `json:"name"`
+	Url  *string             `json:"url,omitempty"`
+	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // NestedPartition defines model for NestedPartition.
@@ -37862,6 +37881,8 @@ type PatchedSectionRequest struct {
 
 // PatchedServiceProviderRequest defines model for PatchedServiceProviderRequest.
 type PatchedServiceProviderRequest struct {
+	// AllowedDomains List of allowed domains for offering endpoints. Only staff can modify this field.
+	AllowedDomains      interface{}         `json:"allowed_domains,omitempty"`
 	Description         *string             `json:"description,omitempty"`
 	EnableNotifications *bool               `json:"enable_notifications,omitempty"`
 	Image               *openapi_types.File `json:"image,omitempty"`
@@ -37869,6 +37890,8 @@ type PatchedServiceProviderRequest struct {
 
 // PatchedServiceProviderRequestForm defines model for PatchedServiceProviderRequestForm.
 type PatchedServiceProviderRequestForm struct {
+	// AllowedDomains List of allowed domains for offering endpoints. Only staff can modify this field.
+	AllowedDomains      interface{}         `json:"allowed_domains,omitempty"`
 	Description         *string             `json:"description,omitempty"`
 	EnableNotifications *bool               `json:"enable_notifications,omitempty"`
 	Image               *openapi_types.File `json:"image,omitempty"`
@@ -37876,6 +37899,8 @@ type PatchedServiceProviderRequestForm struct {
 
 // PatchedServiceProviderRequestMultipart defines model for PatchedServiceProviderRequestMultipart.
 type PatchedServiceProviderRequestMultipart struct {
+	// AllowedDomains List of allowed domains for offering endpoints. Only staff can modify this field.
+	AllowedDomains      interface{}         `json:"allowed_domains,omitempty"`
 	Description         *string             `json:"description,omitempty"`
 	EnableNotifications *bool               `json:"enable_notifications,omitempty"`
 	Image               *openapi_types.File `json:"image,omitempty"`
@@ -37967,9 +37992,6 @@ type PatchedSoftwarePackageRequest struct {
 	// Maintainers Package maintainers
 	Maintainers interface{} `json:"maintainers,omitempty"`
 	Name        *string     `json:"name,omitempty"`
-
-	// ParentSoftware Parent package for extensions (e.g., Python package within Python)
-	ParentSoftware *string `json:"parent_software,omitempty"`
 }
 
 // PatchedTagRequest defines model for PatchedTagRequest.
@@ -43650,6 +43672,8 @@ type ServiceAttributesPreview struct {
 
 // ServiceProvider defines model for ServiceProvider.
 type ServiceProvider struct {
+	// AllowedDomains List of allowed domains for offering endpoints. Only staff can modify this field.
+	AllowedDomains       interface{}          `json:"allowed_domains,omitempty"`
 	Created              *time.Time           `json:"created,omitempty"`
 	Customer             *string              `json:"customer,omitempty"`
 	CustomerAbbreviation *string              `json:"customer_abbreviation,omitempty"`
@@ -43729,6 +43753,8 @@ type ServiceProviderOfferingUserComplianceStateEnum int
 
 // ServiceProviderRequest defines model for ServiceProviderRequest.
 type ServiceProviderRequest struct {
+	// AllowedDomains List of allowed domains for offering endpoints. Only staff can modify this field.
+	AllowedDomains      interface{}         `json:"allowed_domains,omitempty"`
 	Customer            string              `json:"customer"`
 	Description         *string             `json:"description,omitempty"`
 	EnableNotifications *bool               `json:"enable_notifications,omitempty"`
@@ -43737,6 +43763,8 @@ type ServiceProviderRequest struct {
 
 // ServiceProviderRequestForm defines model for ServiceProviderRequestForm.
 type ServiceProviderRequestForm struct {
+	// AllowedDomains List of allowed domains for offering endpoints. Only staff can modify this field.
+	AllowedDomains      interface{}         `json:"allowed_domains,omitempty"`
 	Customer            string              `json:"customer"`
 	Description         *string             `json:"description,omitempty"`
 	EnableNotifications *bool               `json:"enable_notifications,omitempty"`
@@ -43745,6 +43773,8 @@ type ServiceProviderRequestForm struct {
 
 // ServiceProviderRequestMultipart defines model for ServiceProviderRequestMultipart.
 type ServiceProviderRequestMultipart struct {
+	// AllowedDomains List of allowed domains for offering endpoints. Only staff can modify this field.
+	AllowedDomains      interface{}         `json:"allowed_domains,omitempty"`
 	Customer            string              `json:"customer"`
 	Description         *string             `json:"description,omitempty"`
 	EnableNotifications *bool               `json:"enable_notifications,omitempty"`
@@ -44448,16 +44478,14 @@ type SoftwarePackage struct {
 	Licenses interface{} `json:"licenses,omitempty"`
 
 	// Maintainers Package maintainers
-	Maintainers interface{} `json:"maintainers,omitempty"`
-	Modified    *time.Time  `json:"modified,omitempty"`
-	Name        string      `json:"name"`
-
-	// ParentSoftware Parent package for extensions (e.g., Python package within Python)
-	ParentSoftware *string                  `json:"parent_software,omitempty"`
-	Url            *string                  `json:"url,omitempty"`
-	Uuid           *openapi_types.UUID      `json:"uuid,omitempty"`
-	VersionCount   *int                     `json:"version_count,omitempty"`
-	Versions       *[]NestedSoftwareVersion `json:"versions,omitempty"`
+	Maintainers     interface{}              `json:"maintainers,omitempty"`
+	Modified        *time.Time               `json:"modified,omitempty"`
+	Name            string                   `json:"name"`
+	ParentSoftwares *[]NestedParentSoftware  `json:"parent_softwares,omitempty"`
+	Url             *string                  `json:"url,omitempty"`
+	Uuid            *openapi_types.UUID      `json:"uuid,omitempty"`
+	VersionCount    *int                     `json:"version_count,omitempty"`
+	Versions        *[]NestedSoftwareVersion `json:"versions,omitempty"`
 }
 
 // SoftwarePackageOEnum defines model for SoftwarePackageOEnum.
@@ -44481,9 +44509,6 @@ type SoftwarePackageRequest struct {
 	// Maintainers Package maintainers
 	Maintainers interface{} `json:"maintainers,omitempty"`
 	Name        string      `json:"name"`
-
-	// ParentSoftware Parent package for extensions (e.g., Python package within Python)
-	ParentSoftware *string `json:"parent_software,omitempty"`
 }
 
 // SoftwareTarget defines model for SoftwareTarget.
