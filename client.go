@@ -17729,6 +17729,27 @@ func (e SecurityGroupRuleProtocolEnum) Valid() bool {
 	}
 }
 
+// Defines values for ServiceAccountState.
+const (
+	ServiceAccountStateClosed ServiceAccountState = "Closed"
+	ServiceAccountStateErred  ServiceAccountState = "Erred"
+	ServiceAccountStateOK     ServiceAccountState = "OK"
+)
+
+// Valid indicates whether the value is a known member of the ServiceAccountState enum.
+func (e ServiceAccountState) Valid() bool {
+	switch e {
+	case ServiceAccountStateClosed:
+		return true
+	case ServiceAccountStateErred:
+		return true
+	case ServiceAccountStateOK:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ServiceProviderFieldEnum.
 const (
 	ServiceProviderFieldEnumAllowedDomains       ServiceProviderFieldEnum = "allowed_domains"
@@ -17890,34 +17911,34 @@ func (e ServiceSettingsFieldEnum) Valid() bool {
 
 // Defines values for ServiceSettingsStateEnum.
 const (
-	CREATING          ServiceSettingsStateEnum = "CREATING"
-	CREATIONSCHEDULED ServiceSettingsStateEnum = "CREATION_SCHEDULED"
-	DELETING          ServiceSettingsStateEnum = "DELETING"
-	DELETIONSCHEDULED ServiceSettingsStateEnum = "DELETION_SCHEDULED"
-	ERRED             ServiceSettingsStateEnum = "ERRED"
-	OK                ServiceSettingsStateEnum = "OK"
-	UPDATESCHEDULED   ServiceSettingsStateEnum = "UPDATE_SCHEDULED"
-	UPDATING          ServiceSettingsStateEnum = "UPDATING"
+	ServiceSettingsStateEnumCREATING          ServiceSettingsStateEnum = "CREATING"
+	ServiceSettingsStateEnumCREATIONSCHEDULED ServiceSettingsStateEnum = "CREATION_SCHEDULED"
+	ServiceSettingsStateEnumDELETING          ServiceSettingsStateEnum = "DELETING"
+	ServiceSettingsStateEnumDELETIONSCHEDULED ServiceSettingsStateEnum = "DELETION_SCHEDULED"
+	ServiceSettingsStateEnumERRED             ServiceSettingsStateEnum = "ERRED"
+	ServiceSettingsStateEnumOK                ServiceSettingsStateEnum = "OK"
+	ServiceSettingsStateEnumUPDATESCHEDULED   ServiceSettingsStateEnum = "UPDATE_SCHEDULED"
+	ServiceSettingsStateEnumUPDATING          ServiceSettingsStateEnum = "UPDATING"
 )
 
 // Valid indicates whether the value is a known member of the ServiceSettingsStateEnum enum.
 func (e ServiceSettingsStateEnum) Valid() bool {
 	switch e {
-	case CREATING:
+	case ServiceSettingsStateEnumCREATING:
 		return true
-	case CREATIONSCHEDULED:
+	case ServiceSettingsStateEnumCREATIONSCHEDULED:
 		return true
-	case DELETING:
+	case ServiceSettingsStateEnumDELETING:
 		return true
-	case DELETIONSCHEDULED:
+	case ServiceSettingsStateEnumDELETIONSCHEDULED:
 		return true
-	case ERRED:
+	case ServiceSettingsStateEnumERRED:
 		return true
-	case OK:
+	case ServiceSettingsStateEnumOK:
 		return true
-	case UPDATESCHEDULED:
+	case ServiceSettingsStateEnumUPDATESCHEDULED:
 		return true
-	case UPDATING:
+	case ServiceSettingsStateEnumUPDATING:
 		return true
 	default:
 		return false
@@ -25552,25 +25573,25 @@ type CountryEnum string
 
 // CourseAccount defines model for CourseAccount.
 type CourseAccount struct {
-	Created          *time.Time           `json:"created,omitempty"`
-	CustomerName     *string              `json:"customer_name,omitempty"`
-	CustomerUuid     *openapi_types.UUID  `json:"customer_uuid,omitempty"`
-	Description      *string              `json:"description,omitempty"`
-	Email            *openapi_types.Email `json:"email,omitempty"`
-	ErrorMessage     *string              `json:"error_message,omitempty"`
-	ErrorTraceback   *string              `json:"error_traceback,omitempty"`
-	Modified         *time.Time           `json:"modified,omitempty"`
-	Project          openapi_types.UUID   `json:"project"`
-	ProjectEndDate   *openapi_types.Date  `json:"project_end_date,omitempty"`
-	ProjectName      *string              `json:"project_name,omitempty"`
-	ProjectSlug      *string              `json:"project_slug,omitempty"`
-	ProjectStartDate *openapi_types.Date  `json:"project_start_date,omitempty"`
-	ProjectUuid      *openapi_types.UUID  `json:"project_uuid,omitempty"`
-	State            *ServiceAccountState `json:"state,omitempty"`
-	Url              *string              `json:"url,omitempty"`
-	UserUuid         *openapi_types.UUID  `json:"user_uuid,omitempty"`
-	Username         *string              `json:"username,omitempty"`
-	Uuid             *openapi_types.UUID  `json:"uuid,omitempty"`
+	Created          *time.Time              `json:"created,omitempty"`
+	CustomerName     *string                 `json:"customer_name,omitempty"`
+	CustomerUuid     *openapi_types.UUID     `json:"customer_uuid,omitempty"`
+	Description      *string                 `json:"description,omitempty"`
+	Email            *openapi_types.Email    `json:"email,omitempty"`
+	ErrorMessage     *string                 `json:"error_message,omitempty"`
+	ErrorTraceback   *string                 `json:"error_traceback,omitempty"`
+	Modified         *time.Time              `json:"modified,omitempty"`
+	Project          openapi_types.UUID      `json:"project"`
+	ProjectEndDate   *openapi_types.Date     `json:"project_end_date,omitempty"`
+	ProjectName      *string                 `json:"project_name,omitempty"`
+	ProjectSlug      *string                 `json:"project_slug,omitempty"`
+	ProjectStartDate *openapi_types.Date     `json:"project_start_date,omitempty"`
+	ProjectUuid      *openapi_types.UUID     `json:"project_uuid,omitempty"`
+	State            *CourseAccountStateEnum `json:"state,omitempty"`
+	Url              *string                 `json:"url,omitempty"`
+	UserUuid         *openapi_types.UUID     `json:"user_uuid,omitempty"`
+	Username         *string                 `json:"username,omitempty"`
+	Uuid             *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // CourseAccountCreateNestedRequest defines model for CourseAccountCreateNestedRequest.
@@ -25588,6 +25609,9 @@ type CourseAccountRequest struct {
 	Email       *openapi_types.Email `json:"email,omitempty"`
 	Project     openapi_types.UUID   `json:"project"`
 }
+
+// CourseAccountStateEnum defines model for CourseAccountStateEnum.
+type CourseAccountStateEnum = interface{}
 
 // CourseAccountsBulkCreateRequest defines model for CourseAccountsBulkCreateRequest.
 type CourseAccountsBulkCreateRequest struct {
@@ -43695,7 +43719,7 @@ type ServerInfo struct {
 }
 
 // ServiceAccountState defines model for ServiceAccountState.
-type ServiceAccountState = interface{}
+type ServiceAccountState string
 
 // ServiceAttributesPreview defines model for ServiceAttributesPreview.
 type ServiceAttributesPreview struct {
@@ -51821,7 +51845,7 @@ type MarketplaceCourseAccountsListParams struct {
 
 	// State Course account state
 	//
-	State *[]ServiceAccountState `form:"state,omitempty" json:"state,omitempty"`
+	State *[]CourseAccountStateEnum `form:"state,omitempty" json:"state,omitempty"`
 
 	// Username Username
 	Username *string `form:"username,omitempty" json:"username,omitempty"`
@@ -51859,7 +51883,7 @@ type MarketplaceCourseAccountsCountParams struct {
 
 	// State Course account state
 	//
-	State *[]ServiceAccountState `form:"state,omitempty" json:"state,omitempty"`
+	State *[]CourseAccountStateEnum `form:"state,omitempty" json:"state,omitempty"`
 
 	// Username Username
 	Username *string `form:"username,omitempty" json:"username,omitempty"`
@@ -51897,7 +51921,7 @@ type MarketplaceCourseAccountsCreateBulkParams struct {
 
 	// State Course account state
 	//
-	State *[]ServiceAccountState `form:"state,omitempty" json:"state,omitempty"`
+	State *[]CourseAccountStateEnum `form:"state,omitempty" json:"state,omitempty"`
 
 	// Username Username
 	Username *string `form:"username,omitempty" json:"username,omitempty"`
@@ -55946,7 +55970,7 @@ type MarketplaceServiceProvidersCourseAccountsListParams struct {
 
 	// State Course account state
 	//
-	State *[]ServiceAccountState `form:"state,omitempty" json:"state,omitempty"`
+	State *[]CourseAccountStateEnum `form:"state,omitempty" json:"state,omitempty"`
 
 	// Username Username
 	Username *string `form:"username,omitempty" json:"username,omitempty"`
