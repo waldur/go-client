@@ -26525,7 +26525,7 @@ type CustomerRequestMultipart_Country struct {
 // CustomerServiceAccount defines model for CustomerServiceAccount.
 type CustomerServiceAccount struct {
 	Created             *time.Time           `json:"created,omitempty"`
-	Customer            openapi_types.UUID   `json:"customer"`
+	Customer            *openapi_types.UUID  `json:"customer"`
 	CustomerName        *string              `json:"customer_name,omitempty"`
 	CustomerUuid        *openapi_types.UUID  `json:"customer_uuid,omitempty"`
 	Description         *string              `json:"description,omitempty"`
@@ -26544,7 +26544,7 @@ type CustomerServiceAccount struct {
 
 // CustomerServiceAccountRequest defines model for CustomerServiceAccountRequest.
 type CustomerServiceAccountRequest struct {
-	Customer            openapi_types.UUID   `json:"customer"`
+	Customer            *openapi_types.UUID  `json:"customer"`
 	Description         *string              `json:"description,omitempty"`
 	Email               *openapi_types.Email `json:"email,omitempty"`
 	ErrorTraceback      *string              `json:"error_traceback,omitempty"`
@@ -39207,7 +39207,7 @@ type ProjectServiceAccount struct {
 	ExpiresAt            *string              `json:"expires_at,omitempty"`
 	Modified             *time.Time           `json:"modified,omitempty"`
 	PreferredIdentifier  *string              `json:"preferred_identifier,omitempty"`
-	Project              openapi_types.UUID   `json:"project"`
+	Project              *openapi_types.UUID  `json:"project"`
 	ProjectName          *string              `json:"project_name,omitempty"`
 	ProjectUuid          *openapi_types.UUID  `json:"project_uuid,omitempty"`
 	State                *ServiceAccountState `json:"state,omitempty"`
@@ -39223,7 +39223,7 @@ type ProjectServiceAccountRequest struct {
 	Email               *openapi_types.Email `json:"email,omitempty"`
 	ErrorTraceback      *string              `json:"error_traceback,omitempty"`
 	PreferredIdentifier *string              `json:"preferred_identifier,omitempty"`
-	Project             openapi_types.UUID   `json:"project"`
+	Project             *openapi_types.UUID  `json:"project"`
 	Username            *string              `json:"username,omitempty"`
 }
 
