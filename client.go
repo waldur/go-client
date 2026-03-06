@@ -23593,23 +23593,65 @@ type ChatResponse struct {
 	// C Content payload.
 	C *string `json:"c,omitempty"`
 
+	// Content Intro text or form instructions.
+	Content *string `json:"content,omitempty"`
+
 	// E Error message.
 	E *string `json:"e,omitempty"`
+
+	// Error Error detail (present on error).
+	Error *string `json:"error,omitempty"`
+
+	// Flavor Flavor display string (e.g. 'm1.small (2 vCPU, 4GB RAM)').
+	Flavor *string `json:"flavor,omitempty"`
+
+	// Flavors Available flavor options [{name, cores, ram}]. Present when status='form'.
+	Flavors *[]interface{} `json:"flavors,omitempty"`
 
 	// H Table headers.
 	H *[]interface{} `json:"h,omitempty"`
 
-	// K Component Alias (e.g. 'markdown', 'code', 'table').
+	// Image Image name.
+	Image *string `json:"image,omitempty"`
+
+	// Images Available image options [{name, min_disk, min_ram}]. Present when status='form'.
+	Images *[]interface{} `json:"images,omitempty"`
+
+	// K Component key (e.g. 'markdown', 'code', 'table', 'vm_order').
 	K *string `json:"k,omitempty"`
 
-	// M System metadata.
+	// M System metadata (thread_uuid, message UUIDs).
 	M *map[string]interface{} `json:"m,omitempty"`
+
+	// Message Success message (present on success).
+	Message *string `json:"message,omitempty"`
 
 	// N Total row count.
 	N *int `json:"n,omitempty"`
 
+	// Name VM name.
+	Name *string `json:"name,omitempty"`
+
+	// OrderId Order UUID (present on success).
+	OrderId *string `json:"order_id,omitempty"`
+
+	// Organization Organization/customer name.
+	Organization *string `json:"organization,omitempty"`
+
+	// Project Project name.
+	Project *string `json:"project,omitempty"`
+
+	// ProjectUuid Project UUID.
+	ProjectUuid *string `json:"project_uuid,omitempty"`
+
+	// Projects Available project options [{name, organization, uuid}]. Present when status='project_form'.
+	Projects *[]interface{} `json:"projects,omitempty"`
+
 	// R Table rows.
 	R *[]interface{} `json:"r,omitempty"`
+
+	// Status vm_order status: 'form' | 'project_form' | 'preview' | 'success' | 'error'.
+	Status *string `json:"status,omitempty"`
 
 	// T Tag or language for dynamic blocks.
 	T *string `json:"t,omitempty"`
@@ -56039,8 +56081,8 @@ type MarketplaceServiceProvidersCustomerProjectsListParams struct {
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
-	// UserUuid Filter projects where the given user has a role.
-	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+	// UserUuidWithActiveRole Filter projects where the given user has a role.
+	UserUuidWithActiveRole *openapi_types.UUID `form:"user_uuid_with_active_role,omitempty" json:"user_uuid_with_active_role,omitempty"`
 }
 
 // MarketplaceServiceProvidersCustomersListParams defines parameters for MarketplaceServiceProvidersCustomersList.
@@ -56372,8 +56414,8 @@ type MarketplaceServiceProvidersProjectsListParams struct {
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
-	// UserUuid Filter projects where the given user has a role.
-	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+	// UserUuidWithActiveRole Filter projects where the given user has a role.
+	UserUuidWithActiveRole *openapi_types.UUID `form:"user_uuid_with_active_role,omitempty" json:"user_uuid_with_active_role,omitempty"`
 }
 
 // MarketplaceServiceProvidersUserCustomersListParams defines parameters for MarketplaceServiceProvidersUserCustomersList.
@@ -59058,8 +59100,11 @@ type OpenportalUnmanagedProjectsListParams struct {
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
-	// UserUuid Filter projects where the given user has a role.
+	// UserUuid Filter by user UUID.
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+
+	// UserUuidWithActiveRole Filter projects where the given user has a role.
+	UserUuidWithActiveRole *openapi_types.UUID `form:"user_uuid_with_active_role,omitempty" json:"user_uuid_with_active_role,omitempty"`
 }
 
 // OpenportalUnmanagedProjectsCountParams defines parameters for OpenportalUnmanagedProjectsCount.
@@ -59126,8 +59171,11 @@ type OpenportalUnmanagedProjectsCountParams struct {
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
-	// UserUuid Filter projects where the given user has a role.
+	// UserUuid Filter by user UUID.
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+
+	// UserUuidWithActiveRole Filter projects where the given user has a role.
+	UserUuidWithActiveRole *openapi_types.UUID `form:"user_uuid_with_active_role,omitempty" json:"user_uuid_with_active_role,omitempty"`
 }
 
 // OpenportalUnmanagedProjectsChecklistTemplateRetrieveParams defines parameters for OpenportalUnmanagedProjectsChecklistTemplateRetrieve.
@@ -62455,8 +62503,11 @@ type ProjectsListParams struct {
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
-	// UserUuid Filter projects where the given user has a role.
+	// UserUuid Filter by user UUID.
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+
+	// UserUuidWithActiveRole Filter projects where the given user has a role.
+	UserUuidWithActiveRole *openapi_types.UUID `form:"user_uuid_with_active_role,omitempty" json:"user_uuid_with_active_role,omitempty"`
 }
 
 // ProjectsCountParams defines parameters for ProjectsCount.
@@ -62523,8 +62574,11 @@ type ProjectsCountParams struct {
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
-	// UserUuid Filter projects where the given user has a role.
+	// UserUuid Filter by user UUID.
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+
+	// UserUuidWithActiveRole Filter projects where the given user has a role.
+	UserUuidWithActiveRole *openapi_types.UUID `form:"user_uuid_with_active_role,omitempty" json:"user_uuid_with_active_role,omitempty"`
 }
 
 // ProjectsChecklistTemplateRetrieveParams defines parameters for ProjectsChecklistTemplateRetrieve.
@@ -87199,9 +87253,6 @@ type ClientInterface interface {
 
 	// RemoteWaldurApiPullOfferingDetails request
 	RemoteWaldurApiPullOfferingDetails(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// RemoteWaldurApiPullOfferingInvoices request
-	RemoteWaldurApiPullOfferingInvoices(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RemoteWaldurApiPullOfferingOrders request
 	RemoteWaldurApiPullOfferingOrders(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -121168,18 +121219,6 @@ func (c *Client) RemoteWaldurApiImportOffering(ctx context.Context, body RemoteW
 
 func (c *Client) RemoteWaldurApiPullOfferingDetails(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewRemoteWaldurApiPullOfferingDetailsRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) RemoteWaldurApiPullOfferingInvoices(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRemoteWaldurApiPullOfferingInvoicesRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -217352,9 +217391,9 @@ func NewMarketplaceServiceProvidersCustomerProjectsListRequest(server string, se
 
 		}
 
-		if params.UserUuid != nil {
+		if params.UserUuidWithActiveRole != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid", *params.UserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid_with_active_role", *params.UserUuidWithActiveRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -219448,9 +219487,9 @@ func NewMarketplaceServiceProvidersProjectsListRequest(server string, servicePro
 
 		}
 
-		if params.UserUuid != nil {
+		if params.UserUuidWithActiveRole != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid", *params.UserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid_with_active_role", *params.UserUuidWithActiveRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -245027,6 +245066,22 @@ func NewOpenportalUnmanagedProjectsListRequest(server string, params *Openportal
 
 		}
 
+		if params.UserUuidWithActiveRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid_with_active_role", *params.UserUuidWithActiveRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -245399,6 +245454,22 @@ func NewOpenportalUnmanagedProjectsCountRequest(server string, params *Openporta
 		if params.UserUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid", *params.UserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserUuidWithActiveRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid_with_active_role", *params.UserUuidWithActiveRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -274999,6 +275070,22 @@ func NewProjectsListRequest(server string, params *ProjectsListParams) (*http.Re
 
 		}
 
+		if params.UserUuidWithActiveRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid_with_active_role", *params.UserUuidWithActiveRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -275371,6 +275458,22 @@ func NewProjectsCountRequest(server string, params *ProjectsCountParams) (*http.
 		if params.UserUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid", *params.UserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserUuidWithActiveRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid_with_active_role", *params.UserUuidWithActiveRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -297049,40 +297152,6 @@ func NewRemoteWaldurApiPullOfferingDetailsRequest(server string, uuid string) (*
 	}
 
 	operationPath := fmt.Sprintf("/api/remote-waldur-api/pull_offering_details/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewRemoteWaldurApiPullOfferingInvoicesRequest generates requests for RemoteWaldurApiPullOfferingInvoices
-func NewRemoteWaldurApiPullOfferingInvoicesRequest(server string, uuid string) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/remote-waldur-api/pull_offering_invoices/%s/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -333895,9 +333964,6 @@ type ClientWithResponsesInterface interface {
 
 	// RemoteWaldurApiPullOfferingDetailsWithResponse request
 	RemoteWaldurApiPullOfferingDetailsWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*RemoteWaldurApiPullOfferingDetailsResponse, error)
-
-	// RemoteWaldurApiPullOfferingInvoicesWithResponse request
-	RemoteWaldurApiPullOfferingInvoicesWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*RemoteWaldurApiPullOfferingInvoicesResponse, error)
 
 	// RemoteWaldurApiPullOfferingOrdersWithResponse request
 	RemoteWaldurApiPullOfferingOrdersWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*RemoteWaldurApiPullOfferingOrdersResponse, error)
@@ -378733,27 +378799,6 @@ func (r RemoteWaldurApiPullOfferingDetailsResponse) StatusCode() int {
 	return 0
 }
 
-type RemoteWaldurApiPullOfferingInvoicesResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// Status returns HTTPResponse.Status
-func (r RemoteWaldurApiPullOfferingInvoicesResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r RemoteWaldurApiPullOfferingInvoicesResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type RemoteWaldurApiPullOfferingOrdersResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -410226,15 +410271,6 @@ func (c *ClientWithResponses) RemoteWaldurApiPullOfferingDetailsWithResponse(ctx
 		return nil, err
 	}
 	return ParseRemoteWaldurApiPullOfferingDetailsResponse(rsp)
-}
-
-// RemoteWaldurApiPullOfferingInvoicesWithResponse request returning *RemoteWaldurApiPullOfferingInvoicesResponse
-func (c *ClientWithResponses) RemoteWaldurApiPullOfferingInvoicesWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*RemoteWaldurApiPullOfferingInvoicesResponse, error) {
-	rsp, err := c.RemoteWaldurApiPullOfferingInvoices(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseRemoteWaldurApiPullOfferingInvoicesResponse(rsp)
 }
 
 // RemoteWaldurApiPullOfferingOrdersWithResponse request returning *RemoteWaldurApiPullOfferingOrdersResponse
@@ -460665,22 +460701,6 @@ func ParseRemoteWaldurApiPullOfferingDetailsResponse(rsp *http.Response) (*Remot
 	}
 
 	response := &RemoteWaldurApiPullOfferingDetailsResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseRemoteWaldurApiPullOfferingInvoicesResponse parses an HTTP response from a RemoteWaldurApiPullOfferingInvoicesWithResponse call
-func ParseRemoteWaldurApiPullOfferingInvoicesResponse(rsp *http.Response) (*RemoteWaldurApiPullOfferingInvoicesResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &RemoteWaldurApiPullOfferingInvoicesResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
