@@ -2098,6 +2098,7 @@ const (
 	BookingResourceFieldEnumProjectName                BookingResourceFieldEnum = "project_name"
 	BookingResourceFieldEnumProjectSlug                BookingResourceFieldEnum = "project_slug"
 	BookingResourceFieldEnumProjectUuid                BookingResourceFieldEnum = "project_uuid"
+	BookingResourceFieldEnumProviderDescription        BookingResourceFieldEnum = "provider_description"
 	BookingResourceFieldEnumProviderName               BookingResourceFieldEnum = "provider_name"
 	BookingResourceFieldEnumProviderSlug               BookingResourceFieldEnum = "provider_slug"
 	BookingResourceFieldEnumProviderUuid               BookingResourceFieldEnum = "provider_uuid"
@@ -2257,6 +2258,8 @@ func (e BookingResourceFieldEnum) Valid() bool {
 	case BookingResourceFieldEnumProjectSlug:
 		return true
 	case BookingResourceFieldEnumProjectUuid:
+		return true
+	case BookingResourceFieldEnumProviderDescription:
 		return true
 	case BookingResourceFieldEnumProviderName:
 		return true
@@ -13261,6 +13264,7 @@ const (
 	OrderDetailsFieldEnumProjectName                       OrderDetailsFieldEnum = "project_name"
 	OrderDetailsFieldEnumProjectSlug                       OrderDetailsFieldEnum = "project_slug"
 	OrderDetailsFieldEnumProjectUuid                       OrderDetailsFieldEnum = "project_uuid"
+	OrderDetailsFieldEnumProviderDescription               OrderDetailsFieldEnum = "provider_description"
 	OrderDetailsFieldEnumProviderMessage                   OrderDetailsFieldEnum = "provider_message"
 	OrderDetailsFieldEnumProviderMessageAttachment         OrderDetailsFieldEnum = "provider_message_attachment"
 	OrderDetailsFieldEnumProviderMessageUrl                OrderDetailsFieldEnum = "provider_message_url"
@@ -13413,6 +13417,8 @@ func (e OrderDetailsFieldEnum) Valid() bool {
 	case OrderDetailsFieldEnumProjectSlug:
 		return true
 	case OrderDetailsFieldEnumProjectUuid:
+		return true
+	case OrderDetailsFieldEnumProviderDescription:
 		return true
 	case OrderDetailsFieldEnumProviderMessage:
 		return true
@@ -16957,6 +16963,7 @@ const (
 	ResourceFieldEnumProjectName               ResourceFieldEnum = "project_name"
 	ResourceFieldEnumProjectSlug               ResourceFieldEnum = "project_slug"
 	ResourceFieldEnumProjectUuid               ResourceFieldEnum = "project_uuid"
+	ResourceFieldEnumProviderDescription       ResourceFieldEnum = "provider_description"
 	ResourceFieldEnumProviderName              ResourceFieldEnum = "provider_name"
 	ResourceFieldEnumProviderSlug              ResourceFieldEnum = "provider_slug"
 	ResourceFieldEnumProviderUuid              ResourceFieldEnum = "provider_uuid"
@@ -17103,6 +17110,8 @@ func (e ResourceFieldEnum) Valid() bool {
 	case ResourceFieldEnumProjectSlug:
 		return true
 	case ResourceFieldEnumProjectUuid:
+		return true
+	case ResourceFieldEnumProviderDescription:
 		return true
 	case ResourceFieldEnumProviderName:
 		return true
@@ -22589,6 +22598,7 @@ type BookingResource struct {
 	ProjectName               *string                        `json:"project_name,omitempty"`
 	ProjectSlug               *string                        `json:"project_slug,omitempty"`
 	ProjectUuid               *openapi_types.UUID            `json:"project_uuid,omitempty"`
+	ProviderDescription       *string                        `json:"provider_description,omitempty"`
 	ProviderName              *string                        `json:"provider_name,omitempty"`
 	ProviderSlug              *string                        `json:"provider_slug,omitempty"`
 	ProviderUuid              *openapi_types.UUID            `json:"provider_uuid,omitempty"`
@@ -35745,6 +35755,7 @@ type OrderDetails struct {
 	ProjectName               *string             `json:"project_name,omitempty"`
 	ProjectSlug               *string             `json:"project_slug,omitempty"`
 	ProjectUuid               *openapi_types.UUID `json:"project_uuid,omitempty"`
+	ProviderDescription       *string             `json:"provider_description,omitempty"`
 	ProviderMessage           *string             `json:"provider_message,omitempty"`
 	ProviderMessageAttachment *string             `json:"provider_message_attachment,omitempty"`
 	ProviderMessageUrl        *string             `json:"provider_message_url,omitempty"`
@@ -42204,6 +42215,7 @@ type Resource struct {
 	ProjectName               *string                        `json:"project_name,omitempty"`
 	ProjectSlug               *string                        `json:"project_slug,omitempty"`
 	ProjectUuid               *openapi_types.UUID            `json:"project_uuid,omitempty"`
+	ProviderDescription       *string                        `json:"provider_description,omitempty"`
 	ProviderName              *string                        `json:"provider_name,omitempty"`
 	ProviderSlug              *string                        `json:"provider_slug,omitempty"`
 	ProviderUuid              *openapi_types.UUID            `json:"provider_uuid,omitempty"`
