@@ -9461,12 +9461,14 @@ const (
 	OfferingFieldEnumCustomerUuid              OfferingFieldEnum = "customer_uuid"
 	OfferingFieldEnumDataciteDoi               OfferingFieldEnum = "datacite_doi"
 	OfferingFieldEnumDescription               OfferingFieldEnum = "description"
+	OfferingFieldEnumDocumentationUrl          OfferingFieldEnum = "documentation_url"
 	OfferingFieldEnumEndpoints                 OfferingFieldEnum = "endpoints"
 	OfferingFieldEnumFiles                     OfferingFieldEnum = "files"
 	OfferingFieldEnumFullDescription           OfferingFieldEnum = "full_description"
 	OfferingFieldEnumGettingStarted            OfferingFieldEnum = "getting_started"
 	OfferingFieldEnumGooglecalendar            OfferingFieldEnum = "googlecalendar"
 	OfferingFieldEnumHasComplianceRequirements OfferingFieldEnum = "has_compliance_requirements"
+	OfferingFieldEnumHelpdeskUrl               OfferingFieldEnum = "helpdesk_url"
 	OfferingFieldEnumImage                     OfferingFieldEnum = "image"
 	OfferingFieldEnumIntegrationGuide          OfferingFieldEnum = "integration_guide"
 	OfferingFieldEnumIsAccessible              OfferingFieldEnum = "is_accessible"
@@ -9555,6 +9557,8 @@ func (e OfferingFieldEnum) Valid() bool {
 		return true
 	case OfferingFieldEnumDescription:
 		return true
+	case OfferingFieldEnumDocumentationUrl:
+		return true
 	case OfferingFieldEnumEndpoints:
 		return true
 	case OfferingFieldEnumFiles:
@@ -9566,6 +9570,8 @@ func (e OfferingFieldEnum) Valid() bool {
 	case OfferingFieldEnumGooglecalendar:
 		return true
 	case OfferingFieldEnumHasComplianceRequirements:
+		return true
+	case OfferingFieldEnumHelpdeskUrl:
 		return true
 	case OfferingFieldEnumImage:
 		return true
@@ -15015,6 +15021,7 @@ const (
 	ProviderOfferingDetailsFieldEnumCustomerUuid              ProviderOfferingDetailsFieldEnum = "customer_uuid"
 	ProviderOfferingDetailsFieldEnumDataciteDoi               ProviderOfferingDetailsFieldEnum = "datacite_doi"
 	ProviderOfferingDetailsFieldEnumDescription               ProviderOfferingDetailsFieldEnum = "description"
+	ProviderOfferingDetailsFieldEnumDocumentationUrl          ProviderOfferingDetailsFieldEnum = "documentation_url"
 	ProviderOfferingDetailsFieldEnumEndpoints                 ProviderOfferingDetailsFieldEnum = "endpoints"
 	ProviderOfferingDetailsFieldEnumFiles                     ProviderOfferingDetailsFieldEnum = "files"
 	ProviderOfferingDetailsFieldEnumFullDescription           ProviderOfferingDetailsFieldEnum = "full_description"
@@ -15022,6 +15029,7 @@ const (
 	ProviderOfferingDetailsFieldEnumGoogleCalendarIsPublic    ProviderOfferingDetailsFieldEnum = "google_calendar_is_public"
 	ProviderOfferingDetailsFieldEnumGoogleCalendarLink        ProviderOfferingDetailsFieldEnum = "google_calendar_link"
 	ProviderOfferingDetailsFieldEnumHasComplianceRequirements ProviderOfferingDetailsFieldEnum = "has_compliance_requirements"
+	ProviderOfferingDetailsFieldEnumHelpdeskUrl               ProviderOfferingDetailsFieldEnum = "helpdesk_url"
 	ProviderOfferingDetailsFieldEnumImage                     ProviderOfferingDetailsFieldEnum = "image"
 	ProviderOfferingDetailsFieldEnumIntegrationGuide          ProviderOfferingDetailsFieldEnum = "integration_guide"
 	ProviderOfferingDetailsFieldEnumIntegrationStatus         ProviderOfferingDetailsFieldEnum = "integration_status"
@@ -15111,6 +15119,8 @@ func (e ProviderOfferingDetailsFieldEnum) Valid() bool {
 		return true
 	case ProviderOfferingDetailsFieldEnumDescription:
 		return true
+	case ProviderOfferingDetailsFieldEnumDocumentationUrl:
+		return true
 	case ProviderOfferingDetailsFieldEnumEndpoints:
 		return true
 	case ProviderOfferingDetailsFieldEnumFiles:
@@ -15124,6 +15134,8 @@ func (e ProviderOfferingDetailsFieldEnum) Valid() bool {
 	case ProviderOfferingDetailsFieldEnumGoogleCalendarLink:
 		return true
 	case ProviderOfferingDetailsFieldEnumHasComplianceRequirements:
+		return true
+	case ProviderOfferingDetailsFieldEnumHelpdeskUrl:
 		return true
 	case ProviderOfferingDetailsFieldEnumImage:
 		return true
@@ -15524,6 +15536,7 @@ const (
 	PublicOfferingDetailsFieldEnumCustomerUuid              PublicOfferingDetailsFieldEnum = "customer_uuid"
 	PublicOfferingDetailsFieldEnumDataciteDoi               PublicOfferingDetailsFieldEnum = "datacite_doi"
 	PublicOfferingDetailsFieldEnumDescription               PublicOfferingDetailsFieldEnum = "description"
+	PublicOfferingDetailsFieldEnumDocumentationUrl          PublicOfferingDetailsFieldEnum = "documentation_url"
 	PublicOfferingDetailsFieldEnumEndpoints                 PublicOfferingDetailsFieldEnum = "endpoints"
 	PublicOfferingDetailsFieldEnumFiles                     PublicOfferingDetailsFieldEnum = "files"
 	PublicOfferingDetailsFieldEnumFullDescription           PublicOfferingDetailsFieldEnum = "full_description"
@@ -15531,6 +15544,7 @@ const (
 	PublicOfferingDetailsFieldEnumGoogleCalendarIsPublic    PublicOfferingDetailsFieldEnum = "google_calendar_is_public"
 	PublicOfferingDetailsFieldEnumGoogleCalendarLink        PublicOfferingDetailsFieldEnum = "google_calendar_link"
 	PublicOfferingDetailsFieldEnumHasComplianceRequirements PublicOfferingDetailsFieldEnum = "has_compliance_requirements"
+	PublicOfferingDetailsFieldEnumHelpdeskUrl               PublicOfferingDetailsFieldEnum = "helpdesk_url"
 	PublicOfferingDetailsFieldEnumImage                     PublicOfferingDetailsFieldEnum = "image"
 	PublicOfferingDetailsFieldEnumIntegrationGuide          PublicOfferingDetailsFieldEnum = "integration_guide"
 	PublicOfferingDetailsFieldEnumIsAccessible              PublicOfferingDetailsFieldEnum = "is_accessible"
@@ -15620,6 +15634,8 @@ func (e PublicOfferingDetailsFieldEnum) Valid() bool {
 		return true
 	case PublicOfferingDetailsFieldEnumDescription:
 		return true
+	case PublicOfferingDetailsFieldEnumDocumentationUrl:
+		return true
 	case PublicOfferingDetailsFieldEnumEndpoints:
 		return true
 	case PublicOfferingDetailsFieldEnumFiles:
@@ -15633,6 +15649,8 @@ func (e PublicOfferingDetailsFieldEnum) Valid() bool {
 	case PublicOfferingDetailsFieldEnumGoogleCalendarLink:
 		return true
 	case PublicOfferingDetailsFieldEnumHasComplianceRequirements:
+		return true
+	case PublicOfferingDetailsFieldEnumHelpdeskUrl:
 		return true
 	case PublicOfferingDetailsFieldEnumImage:
 		return true
@@ -31581,12 +31599,14 @@ type Offering struct {
 	CustomerUuid              *openapi_types.UUID   `json:"customer_uuid,omitempty"`
 	DataciteDoi               *string               `json:"datacite_doi,omitempty"`
 	Description               *string               `json:"description,omitempty"`
+	DocumentationUrl          *string               `json:"documentation_url,omitempty"`
 	Endpoints                 *[]NestedEndpoint     `json:"endpoints,omitempty"`
 	Files                     *[]NestedOfferingFile `json:"files,omitempty"`
 	FullDescription           *string               `json:"full_description,omitempty"`
 	GettingStarted            *string               `json:"getting_started,omitempty"`
 	Googlecalendar            *GoogleCalendar       `json:"googlecalendar,omitempty"`
 	HasComplianceRequirements *bool                 `json:"has_compliance_requirements,omitempty"`
+	HelpdeskUrl               *string               `json:"helpdesk_url,omitempty"`
 	Image                     *string               `json:"image,omitempty"`
 	IntegrationGuide          *string               `json:"integration_guide,omitempty"`
 	IsAccessible              *bool                 `json:"is_accessible,omitempty"`
@@ -31814,8 +31834,10 @@ type OfferingCreateRequest struct {
 	Customer          *string                                   `json:"customer,omitempty"`
 	DataciteDoi       *string                                   `json:"datacite_doi,omitempty"`
 	Description       *string                                   `json:"description,omitempty"`
+	DocumentationUrl  *string                                   `json:"documentation_url,omitempty"`
 	FullDescription   *string                                   `json:"full_description,omitempty"`
 	GettingStarted    *string                                   `json:"getting_started,omitempty"`
+	HelpdeskUrl       *string                                   `json:"helpdesk_url,omitempty"`
 	Image             *openapi_types.File                       `json:"image,omitempty"`
 	IntegrationGuide  *string                                   `json:"integration_guide,omitempty"`
 	Latitude          *float64                                  `json:"latitude,omitempty"`
@@ -31865,8 +31887,10 @@ type OfferingCreateRequestForm struct {
 	Customer          *string                                   `json:"customer,omitempty"`
 	DataciteDoi       *string                                   `json:"datacite_doi,omitempty"`
 	Description       *string                                   `json:"description,omitempty"`
+	DocumentationUrl  *string                                   `json:"documentation_url,omitempty"`
 	FullDescription   *string                                   `json:"full_description,omitempty"`
 	GettingStarted    *string                                   `json:"getting_started,omitempty"`
+	HelpdeskUrl       *string                                   `json:"helpdesk_url,omitempty"`
 	Image             *openapi_types.File                       `json:"image,omitempty"`
 	IntegrationGuide  *string                                   `json:"integration_guide,omitempty"`
 	Latitude          *float64                                  `json:"latitude,omitempty"`
@@ -31916,8 +31940,10 @@ type OfferingCreateRequestMultipart struct {
 	Customer          *string                                   `json:"customer,omitempty"`
 	DataciteDoi       *string                                   `json:"datacite_doi,omitempty"`
 	Description       *string                                   `json:"description,omitempty"`
+	DocumentationUrl  *string                                   `json:"documentation_url,omitempty"`
 	FullDescription   *string                                   `json:"full_description,omitempty"`
 	GettingStarted    *string                                   `json:"getting_started,omitempty"`
+	HelpdeskUrl       *string                                   `json:"helpdesk_url,omitempty"`
 	Image             *openapi_types.File                       `json:"image,omitempty"`
 	IntegrationGuide  *string                                   `json:"integration_guide,omitempty"`
 	Latitude          *float64                                  `json:"latitude,omitempty"`
@@ -32310,8 +32336,10 @@ type OfferingOverviewUpdateRequest struct {
 	// AccessUrl Publicly accessible offering access URL
 	AccessUrl         *string `json:"access_url,omitempty"`
 	Description       *string `json:"description,omitempty"`
+	DocumentationUrl  *string `json:"documentation_url,omitempty"`
 	FullDescription   *string `json:"full_description,omitempty"`
 	GettingStarted    *string `json:"getting_started,omitempty"`
+	HelpdeskUrl       *string `json:"helpdesk_url,omitempty"`
 	IntegrationGuide  *string `json:"integration_guide,omitempty"`
 	Name              string  `json:"name"`
 	PrivacyPolicyLink *string `json:"privacy_policy_link,omitempty"`
@@ -39849,6 +39877,7 @@ type ProviderOfferingDetails struct {
 	CustomerUuid           *openapi_types.UUID              `json:"customer_uuid,omitempty"`
 	DataciteDoi            *string                          `json:"datacite_doi,omitempty"`
 	Description            *string                          `json:"description,omitempty"`
+	DocumentationUrl       *string                          `json:"documentation_url,omitempty"`
 	Endpoints              *[]NestedEndpoint                `json:"endpoints,omitempty"`
 	Files                  *[]NestedOfferingFile            `json:"files,omitempty"`
 	FullDescription        *string                          `json:"full_description,omitempty"`
@@ -39858,6 +39887,7 @@ type ProviderOfferingDetails struct {
 	// GoogleCalendarLink Get the Google Calendar link for an offering.
 	GoogleCalendarLink        *string                             `json:"google_calendar_link,omitempty"`
 	HasComplianceRequirements *bool                               `json:"has_compliance_requirements,omitempty"`
+	HelpdeskUrl               *string                             `json:"helpdesk_url,omitempty"`
 	Image                     *string                             `json:"image,omitempty"`
 	IntegrationGuide          *string                             `json:"integration_guide,omitempty"`
 	IntegrationStatus         *[]IntegrationStatus                `json:"integration_status,omitempty"`
@@ -40196,6 +40226,7 @@ type PublicOfferingDetails struct {
 	CustomerUuid           *openapi_types.UUID            `json:"customer_uuid,omitempty"`
 	DataciteDoi            *string                        `json:"datacite_doi,omitempty"`
 	Description            *string                        `json:"description,omitempty"`
+	DocumentationUrl       *string                        `json:"documentation_url,omitempty"`
 	Endpoints              *[]NestedEndpoint              `json:"endpoints,omitempty"`
 	Files                  *[]NestedOfferingFile          `json:"files,omitempty"`
 	FullDescription        *string                        `json:"full_description,omitempty"`
@@ -40205,6 +40236,7 @@ type PublicOfferingDetails struct {
 	// GoogleCalendarLink Get the Google Calendar link for an offering.
 	GoogleCalendarLink        *string                           `json:"google_calendar_link,omitempty"`
 	HasComplianceRequirements *bool                             `json:"has_compliance_requirements,omitempty"`
+	HelpdeskUrl               *string                           `json:"helpdesk_url,omitempty"`
 	Image                     *string                           `json:"image,omitempty"`
 	IntegrationGuide          *string                           `json:"integration_guide,omitempty"`
 	IsAccessible              *bool                             `json:"is_accessible,omitempty"`
@@ -55781,10 +55813,19 @@ type MarketplaceRobotAccountsListParams struct {
 	// ResourceUuid Resource UUID
 	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
 
+	// ResponsibleUserUuid Responsible user UUID
+	ResponsibleUserUuid *openapi_types.UUID `form:"responsible_user_uuid,omitempty" json:"responsible_user_uuid,omitempty"`
+
 	// State Robot account state
 	//
 	State *RemoteResourceSyncStatusRemoteStateEnum `form:"state,omitempty" json:"state,omitempty"`
 	Type  *string                                  `form:"type,omitempty" json:"type,omitempty"`
+
+	// UserEmail Connected user email contains
+	UserEmail *string `form:"user_email,omitempty" json:"user_email,omitempty"`
+
+	// Username Username contains
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
 }
 
 // MarketplaceRobotAccountsCountParams defines parameters for MarketplaceRobotAccountsCount.
@@ -55816,10 +55857,19 @@ type MarketplaceRobotAccountsCountParams struct {
 	// ResourceUuid Resource UUID
 	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
 
+	// ResponsibleUserUuid Responsible user UUID
+	ResponsibleUserUuid *openapi_types.UUID `form:"responsible_user_uuid,omitempty" json:"responsible_user_uuid,omitempty"`
+
 	// State Robot account state
 	//
 	State *RemoteResourceSyncStatusRemoteStateEnum `form:"state,omitempty" json:"state,omitempty"`
 	Type  *string                                  `form:"type,omitempty" json:"type,omitempty"`
+
+	// UserEmail Connected user email contains
+	UserEmail *string `form:"user_email,omitempty" json:"user_email,omitempty"`
+
+	// Username Username contains
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
 }
 
 // MarketplaceRobotAccountsRetrieveParams defines parameters for MarketplaceRobotAccountsRetrieve.
@@ -214385,6 +214435,22 @@ func NewMarketplaceRobotAccountsListRequest(server string, params *MarketplaceRo
 
 		}
 
+		if params.ResponsibleUserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "responsible_user_uuid", *params.ResponsibleUserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
@@ -214404,6 +214470,38 @@ func NewMarketplaceRobotAccountsListRequest(server string, params *MarketplaceRo
 		if params.Type != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "type", *params.Type, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserEmail != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_email", *params.UserEmail, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Username != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "username", *params.Username, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -214594,6 +214692,22 @@ func NewMarketplaceRobotAccountsCountRequest(server string, params *MarketplaceR
 
 		}
 
+		if params.ResponsibleUserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "responsible_user_uuid", *params.ResponsibleUserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
@@ -214613,6 +214727,38 @@ func NewMarketplaceRobotAccountsCountRequest(server string, params *MarketplaceR
 		if params.Type != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "type", *params.Type, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserEmail != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_email", *params.UserEmail, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Username != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "username", *params.Username, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
