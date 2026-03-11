@@ -773,6 +773,36 @@ func (e AttachmentFieldEnum) Valid() bool {
 	}
 }
 
+// Defines values for AttributeTypeEnum.
+const (
+	AttributeTypeEnumBoolean AttributeTypeEnum = "boolean"
+	AttributeTypeEnumChoice  AttributeTypeEnum = "choice"
+	AttributeTypeEnumInteger AttributeTypeEnum = "integer"
+	AttributeTypeEnumList    AttributeTypeEnum = "list"
+	AttributeTypeEnumString  AttributeTypeEnum = "string"
+	AttributeTypeEnumText    AttributeTypeEnum = "text"
+)
+
+// Valid indicates whether the value is a known member of the AttributeTypeEnum enum.
+func (e AttributeTypeEnum) Valid() bool {
+	switch e {
+	case AttributeTypeEnumBoolean:
+		return true
+	case AttributeTypeEnumChoice:
+		return true
+	case AttributeTypeEnumInteger:
+		return true
+	case AttributeTypeEnumList:
+		return true
+	case AttributeTypeEnumString:
+		return true
+	case AttributeTypeEnumText:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for AuthMethodEnum.
 const (
 	AuthMethodEnumApiToken            AuthMethodEnum = "api_token"
@@ -2704,16 +2734,16 @@ func (e CampaignStateEnum) Valid() bool {
 
 // Defines values for CascadeStepTypeEnum.
 const (
-	CascadeStepTypeEnumSelectString      CascadeStepTypeEnum = "select_string"
-	CascadeStepTypeEnumSelectStringMulti CascadeStepTypeEnum = "select_string_multi"
+	SelectString      CascadeStepTypeEnum = "select_string"
+	SelectStringMulti CascadeStepTypeEnum = "select_string_multi"
 )
 
 // Valid indicates whether the value is a known member of the CascadeStepTypeEnum enum.
 func (e CascadeStepTypeEnum) Valid() bool {
 	switch e {
-	case CascadeStepTypeEnumSelectString:
+	case SelectString:
 		return true
-	case CascadeStepTypeEnumSelectStringMulti:
+	case SelectStringMulti:
 		return true
 	default:
 		return false
@@ -9191,36 +9221,6 @@ func (e NameEnum) Valid() bool {
 	case EESSI:
 		return true
 	case Spack:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for NestedAttributeTypeEnum.
-const (
-	NestedAttributeTypeEnumBoolean NestedAttributeTypeEnum = "boolean"
-	NestedAttributeTypeEnumChoice  NestedAttributeTypeEnum = "choice"
-	NestedAttributeTypeEnumInteger NestedAttributeTypeEnum = "integer"
-	NestedAttributeTypeEnumList    NestedAttributeTypeEnum = "list"
-	NestedAttributeTypeEnumString  NestedAttributeTypeEnum = "string"
-	NestedAttributeTypeEnumText    NestedAttributeTypeEnum = "text"
-)
-
-// Valid indicates whether the value is a known member of the NestedAttributeTypeEnum enum.
-func (e NestedAttributeTypeEnum) Valid() bool {
-	switch e {
-	case NestedAttributeTypeEnumBoolean:
-		return true
-	case NestedAttributeTypeEnumChoice:
-		return true
-	case NestedAttributeTypeEnumInteger:
-		return true
-	case NestedAttributeTypeEnumList:
-		return true
-	case NestedAttributeTypeEnumString:
-		return true
-	case NestedAttributeTypeEnumText:
 		return true
 	default:
 		return false
@@ -21635,6 +21635,55 @@ type AttachmentRequestMultipart struct {
 	Issue string             `json:"issue"`
 }
 
+// Attribute defines model for Attribute.
+type Attribute struct {
+	Created *time.Time  `json:"created,omitempty"`
+	Default interface{} `json:"default,omitempty"`
+	Key     string      `json:"key"`
+
+	// Required A value must be provided for the attribute.
+	Required     *bool               `json:"required,omitempty"`
+	Section      string              `json:"section"`
+	SectionTitle *string             `json:"section_title,omitempty"`
+	Title        string              `json:"title"`
+	Type         AttributeTypeEnum   `json:"type"`
+	Url          *string             `json:"url,omitempty"`
+	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// AttributeOption defines model for AttributeOption.
+type AttributeOption struct {
+	Attribute      string  `json:"attribute"`
+	AttributeTitle *string `json:"attribute_title,omitempty"`
+	Id             *int    `json:"id,omitempty"`
+
+	// IsDefault Return True if this option is the default for its attribute.
+	IsDefault *bool               `json:"is_default,omitempty"`
+	Key       string              `json:"key"`
+	Title     string              `json:"title"`
+	Url       *string             `json:"url,omitempty"`
+	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// AttributeOptionRequest defines model for AttributeOptionRequest.
+type AttributeOptionRequest struct {
+	Attribute string `json:"attribute"`
+	Key       string `json:"key"`
+	Title     string `json:"title"`
+}
+
+// AttributeRequest defines model for AttributeRequest.
+type AttributeRequest struct {
+	Default interface{} `json:"default,omitempty"`
+	Key     string      `json:"key"`
+
+	// Required A value must be provided for the attribute.
+	Required *bool             `json:"required,omitempty"`
+	Section  string            `json:"section"`
+	Title    string            `json:"title"`
+	Type     AttributeTypeEnum `json:"type"`
+}
+
 // AttributeSourceDetail defines model for AttributeSourceDetail.
 type AttributeSourceDetail struct {
 	AgeDays   float64 `json:"age_days"`
@@ -21642,6 +21691,9 @@ type AttributeSourceDetail struct {
 	Source    string  `json:"source"`
 	Timestamp string  `json:"timestamp"`
 }
+
+// AttributeTypeEnum defines model for AttributeTypeEnum.
+type AttributeTypeEnum string
 
 // AuthMethodEnum defines model for AuthMethodEnum.
 type AuthMethodEnum string
@@ -31049,19 +31101,20 @@ type NestedAttribute struct {
 	Options *[]NestedAttributeOption `json:"options,omitempty"`
 
 	// Required A value must be provided for the attribute.
-	Required *bool                    `json:"required,omitempty"`
-	Title    *string                  `json:"title,omitempty"`
-	Type     *NestedAttributeTypeEnum `json:"type,omitempty"`
+	Required *bool               `json:"required,omitempty"`
+	Title    *string             `json:"title,omitempty"`
+	Type     *AttributeTypeEnum  `json:"type,omitempty"`
+	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // NestedAttributeOption defines model for NestedAttributeOption.
 type NestedAttributeOption struct {
-	Key   *string `json:"key,omitempty"`
-	Title *string `json:"title,omitempty"`
+	// IsDefault Return True if this option is the default for its attribute.
+	IsDefault *bool               `json:"is_default,omitempty"`
+	Key       *string             `json:"key,omitempty"`
+	Title     *string             `json:"title,omitempty"`
+	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
 }
-
-// NestedAttributeTypeEnum defines model for NestedAttributeTypeEnum.
-type NestedAttributeTypeEnum string
 
 // NestedCampaign defines model for NestedCampaign.
 type NestedCampaign struct {
@@ -36100,6 +36153,25 @@ type PatchedAssignmentBatchRequest struct {
 type PatchedAssignmentItemRequest struct {
 	// DeclineReason Reason provided by reviewer for declining.
 	DeclineReason *string `json:"decline_reason,omitempty"`
+}
+
+// PatchedAttributeOptionRequest defines model for PatchedAttributeOptionRequest.
+type PatchedAttributeOptionRequest struct {
+	Attribute *string `json:"attribute,omitempty"`
+	Key       *string `json:"key,omitempty"`
+	Title     *string `json:"title,omitempty"`
+}
+
+// PatchedAttributeRequest defines model for PatchedAttributeRequest.
+type PatchedAttributeRequest struct {
+	Default interface{} `json:"default,omitempty"`
+	Key     *string     `json:"key,omitempty"`
+
+	// Required A value must be provided for the attribute.
+	Required *bool              `json:"required,omitempty"`
+	Section  *string            `json:"section,omitempty"`
+	Title    *string            `json:"title,omitempty"`
+	Type     *AttributeTypeEnum `json:"type,omitempty"`
 }
 
 // PatchedAwsInstanceRequest defines model for PatchedAwsInstanceRequest.
@@ -51492,6 +51564,54 @@ type ManagedRancherClusterResourcesCountParams struct {
 // ManagedRancherClusterResourcesRetrieveParams defines parameters for ManagedRancherClusterResourcesRetrieve.
 type ManagedRancherClusterResourcesRetrieveParams struct {
 	Field *[]ResourceFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+}
+
+// MarketplaceAttributeOptionsListParams defines parameters for MarketplaceAttributeOptionsList.
+type MarketplaceAttributeOptionsListParams struct {
+	// Attribute Attribute URL
+	Attribute *string `form:"attribute,omitempty" json:"attribute,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceAttributeOptionsCountParams defines parameters for MarketplaceAttributeOptionsCount.
+type MarketplaceAttributeOptionsCountParams struct {
+	// Attribute Attribute URL
+	Attribute *string `form:"attribute,omitempty" json:"attribute,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceAttributesListParams defines parameters for MarketplaceAttributesList.
+type MarketplaceAttributesListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Section Section URL
+	Section *string `form:"section,omitempty" json:"section,omitempty"`
+}
+
+// MarketplaceAttributesCountParams defines parameters for MarketplaceAttributesCount.
+type MarketplaceAttributesCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Section Section URL
+	Section *string `form:"section,omitempty" json:"section,omitempty"`
 }
 
 // MarketplaceCategoriesListParams defines parameters for MarketplaceCategoriesList.
@@ -68080,6 +68200,24 @@ type MaintenanceAnnouncementsUpdateJSONRequestBody = MaintenanceAnnouncementRequ
 // ManagedRancherClusterResourcesAddNodeJSONRequestBody defines body for ManagedRancherClusterResourcesAddNode for application/json ContentType.
 type ManagedRancherClusterResourcesAddNodeJSONRequestBody = ManagedRancherCreateNodeRequest
 
+// MarketplaceAttributeOptionsCreateJSONRequestBody defines body for MarketplaceAttributeOptionsCreate for application/json ContentType.
+type MarketplaceAttributeOptionsCreateJSONRequestBody = AttributeOptionRequest
+
+// MarketplaceAttributeOptionsPartialUpdateJSONRequestBody defines body for MarketplaceAttributeOptionsPartialUpdate for application/json ContentType.
+type MarketplaceAttributeOptionsPartialUpdateJSONRequestBody = PatchedAttributeOptionRequest
+
+// MarketplaceAttributeOptionsUpdateJSONRequestBody defines body for MarketplaceAttributeOptionsUpdate for application/json ContentType.
+type MarketplaceAttributeOptionsUpdateJSONRequestBody = AttributeOptionRequest
+
+// MarketplaceAttributesCreateJSONRequestBody defines body for MarketplaceAttributesCreate for application/json ContentType.
+type MarketplaceAttributesCreateJSONRequestBody = AttributeRequest
+
+// MarketplaceAttributesPartialUpdateJSONRequestBody defines body for MarketplaceAttributesPartialUpdate for application/json ContentType.
+type MarketplaceAttributesPartialUpdateJSONRequestBody = PatchedAttributeRequest
+
+// MarketplaceAttributesUpdateJSONRequestBody defines body for MarketplaceAttributesUpdate for application/json ContentType.
+type MarketplaceAttributesUpdateJSONRequestBody = AttributeRequest
+
 // MarketplaceCategoriesCreateJSONRequestBody defines body for MarketplaceCategoriesCreate for application/json ContentType.
 type MarketplaceCategoriesCreateJSONRequestBody = MarketplaceCategoryRequest
 
@@ -82157,6 +82295,60 @@ type ClientInterface interface {
 	ManagedRancherClusterResourcesAddNodeWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	ManagedRancherClusterResourcesAddNode(ctx context.Context, uuid openapi_types.UUID, body ManagedRancherClusterResourcesAddNodeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceAttributeOptionsList request
+	MarketplaceAttributeOptionsList(ctx context.Context, params *MarketplaceAttributeOptionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceAttributeOptionsCount request
+	MarketplaceAttributeOptionsCount(ctx context.Context, params *MarketplaceAttributeOptionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceAttributeOptionsCreateWithBody request with any body
+	MarketplaceAttributeOptionsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceAttributeOptionsCreate(ctx context.Context, body MarketplaceAttributeOptionsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceAttributeOptionsDestroy request
+	MarketplaceAttributeOptionsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceAttributeOptionsRetrieve request
+	MarketplaceAttributeOptionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceAttributeOptionsPartialUpdateWithBody request with any body
+	MarketplaceAttributeOptionsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceAttributeOptionsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceAttributeOptionsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceAttributeOptionsUpdateWithBody request with any body
+	MarketplaceAttributeOptionsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceAttributeOptionsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceAttributeOptionsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceAttributesList request
+	MarketplaceAttributesList(ctx context.Context, params *MarketplaceAttributesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceAttributesCount request
+	MarketplaceAttributesCount(ctx context.Context, params *MarketplaceAttributesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceAttributesCreateWithBody request with any body
+	MarketplaceAttributesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceAttributesCreate(ctx context.Context, body MarketplaceAttributesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceAttributesDestroy request
+	MarketplaceAttributesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceAttributesRetrieve request
+	MarketplaceAttributesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceAttributesPartialUpdateWithBody request with any body
+	MarketplaceAttributesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceAttributesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceAttributesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceAttributesUpdateWithBody request with any body
+	MarketplaceAttributesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceAttributesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceAttributesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceBookingsList request
 	MarketplaceBookingsList(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -98613,6 +98805,246 @@ func (c *Client) ManagedRancherClusterResourcesAddNodeWithBody(ctx context.Conte
 
 func (c *Client) ManagedRancherClusterResourcesAddNode(ctx context.Context, uuid openapi_types.UUID, body ManagedRancherClusterResourcesAddNodeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewManagedRancherClusterResourcesAddNodeRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceAttributeOptionsList(ctx context.Context, params *MarketplaceAttributeOptionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceAttributeOptionsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceAttributeOptionsCount(ctx context.Context, params *MarketplaceAttributeOptionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceAttributeOptionsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceAttributeOptionsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceAttributeOptionsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceAttributeOptionsCreate(ctx context.Context, body MarketplaceAttributeOptionsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceAttributeOptionsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceAttributeOptionsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceAttributeOptionsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceAttributeOptionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceAttributeOptionsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceAttributeOptionsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceAttributeOptionsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceAttributeOptionsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceAttributeOptionsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceAttributeOptionsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceAttributeOptionsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceAttributeOptionsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceAttributeOptionsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceAttributeOptionsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceAttributeOptionsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceAttributesList(ctx context.Context, params *MarketplaceAttributesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceAttributesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceAttributesCount(ctx context.Context, params *MarketplaceAttributesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceAttributesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceAttributesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceAttributesCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceAttributesCreate(ctx context.Context, body MarketplaceAttributesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceAttributesCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceAttributesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceAttributesDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceAttributesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceAttributesRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceAttributesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceAttributesPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceAttributesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceAttributesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceAttributesPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceAttributesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceAttributesUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceAttributesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceAttributesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceAttributesUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -176705,6 +177137,734 @@ func NewManagedRancherClusterResourcesAddNodeRequestWithBody(server string, uuid
 	}
 
 	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceAttributeOptionsListRequest generates requests for MarketplaceAttributeOptionsList
+func NewMarketplaceAttributeOptionsListRequest(server string, params *MarketplaceAttributeOptionsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-attribute-options/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Attribute != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "attribute", *params.Attribute, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceAttributeOptionsCountRequest generates requests for MarketplaceAttributeOptionsCount
+func NewMarketplaceAttributeOptionsCountRequest(server string, params *MarketplaceAttributeOptionsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-attribute-options/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Attribute != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "attribute", *params.Attribute, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceAttributeOptionsCreateRequest calls the generic MarketplaceAttributeOptionsCreate builder with application/json body
+func NewMarketplaceAttributeOptionsCreateRequest(server string, body MarketplaceAttributeOptionsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceAttributeOptionsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceAttributeOptionsCreateRequestWithBody generates requests for MarketplaceAttributeOptionsCreate with any type of body
+func NewMarketplaceAttributeOptionsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-attribute-options/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceAttributeOptionsDestroyRequest generates requests for MarketplaceAttributeOptionsDestroy
+func NewMarketplaceAttributeOptionsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-attribute-options/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceAttributeOptionsRetrieveRequest generates requests for MarketplaceAttributeOptionsRetrieve
+func NewMarketplaceAttributeOptionsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-attribute-options/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceAttributeOptionsPartialUpdateRequest calls the generic MarketplaceAttributeOptionsPartialUpdate builder with application/json body
+func NewMarketplaceAttributeOptionsPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceAttributeOptionsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceAttributeOptionsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceAttributeOptionsPartialUpdateRequestWithBody generates requests for MarketplaceAttributeOptionsPartialUpdate with any type of body
+func NewMarketplaceAttributeOptionsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-attribute-options/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceAttributeOptionsUpdateRequest calls the generic MarketplaceAttributeOptionsUpdate builder with application/json body
+func NewMarketplaceAttributeOptionsUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceAttributeOptionsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceAttributeOptionsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceAttributeOptionsUpdateRequestWithBody generates requests for MarketplaceAttributeOptionsUpdate with any type of body
+func NewMarketplaceAttributeOptionsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-attribute-options/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceAttributesListRequest generates requests for MarketplaceAttributesList
+func NewMarketplaceAttributesListRequest(server string, params *MarketplaceAttributesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-attributes/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Section != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "section", *params.Section, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceAttributesCountRequest generates requests for MarketplaceAttributesCount
+func NewMarketplaceAttributesCountRequest(server string, params *MarketplaceAttributesCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-attributes/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Section != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "section", *params.Section, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceAttributesCreateRequest calls the generic MarketplaceAttributesCreate builder with application/json body
+func NewMarketplaceAttributesCreateRequest(server string, body MarketplaceAttributesCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceAttributesCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceAttributesCreateRequestWithBody generates requests for MarketplaceAttributesCreate with any type of body
+func NewMarketplaceAttributesCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-attributes/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceAttributesDestroyRequest generates requests for MarketplaceAttributesDestroy
+func NewMarketplaceAttributesDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-attributes/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceAttributesRetrieveRequest generates requests for MarketplaceAttributesRetrieve
+func NewMarketplaceAttributesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-attributes/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceAttributesPartialUpdateRequest calls the generic MarketplaceAttributesPartialUpdate builder with application/json body
+func NewMarketplaceAttributesPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceAttributesPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceAttributesPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceAttributesPartialUpdateRequestWithBody generates requests for MarketplaceAttributesPartialUpdate with any type of body
+func NewMarketplaceAttributesPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-attributes/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceAttributesUpdateRequest calls the generic MarketplaceAttributesUpdate builder with application/json body
+func NewMarketplaceAttributesUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceAttributesUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceAttributesUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceAttributesUpdateRequestWithBody generates requests for MarketplaceAttributesUpdate with any type of body
+func NewMarketplaceAttributesUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-attributes/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
@@ -328965,6 +330125,60 @@ type ClientWithResponsesInterface interface {
 
 	ManagedRancherClusterResourcesAddNodeWithResponse(ctx context.Context, uuid openapi_types.UUID, body ManagedRancherClusterResourcesAddNodeJSONRequestBody, reqEditors ...RequestEditorFn) (*ManagedRancherClusterResourcesAddNodeResponse, error)
 
+	// MarketplaceAttributeOptionsListWithResponse request
+	MarketplaceAttributeOptionsListWithResponse(ctx context.Context, params *MarketplaceAttributeOptionsListParams, reqEditors ...RequestEditorFn) (*MarketplaceAttributeOptionsListResponse, error)
+
+	// MarketplaceAttributeOptionsCountWithResponse request
+	MarketplaceAttributeOptionsCountWithResponse(ctx context.Context, params *MarketplaceAttributeOptionsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceAttributeOptionsCountResponse, error)
+
+	// MarketplaceAttributeOptionsCreateWithBodyWithResponse request with any body
+	MarketplaceAttributeOptionsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceAttributeOptionsCreateResponse, error)
+
+	MarketplaceAttributeOptionsCreateWithResponse(ctx context.Context, body MarketplaceAttributeOptionsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceAttributeOptionsCreateResponse, error)
+
+	// MarketplaceAttributeOptionsDestroyWithResponse request
+	MarketplaceAttributeOptionsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceAttributeOptionsDestroyResponse, error)
+
+	// MarketplaceAttributeOptionsRetrieveWithResponse request
+	MarketplaceAttributeOptionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceAttributeOptionsRetrieveResponse, error)
+
+	// MarketplaceAttributeOptionsPartialUpdateWithBodyWithResponse request with any body
+	MarketplaceAttributeOptionsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceAttributeOptionsPartialUpdateResponse, error)
+
+	MarketplaceAttributeOptionsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceAttributeOptionsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceAttributeOptionsPartialUpdateResponse, error)
+
+	// MarketplaceAttributeOptionsUpdateWithBodyWithResponse request with any body
+	MarketplaceAttributeOptionsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceAttributeOptionsUpdateResponse, error)
+
+	MarketplaceAttributeOptionsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceAttributeOptionsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceAttributeOptionsUpdateResponse, error)
+
+	// MarketplaceAttributesListWithResponse request
+	MarketplaceAttributesListWithResponse(ctx context.Context, params *MarketplaceAttributesListParams, reqEditors ...RequestEditorFn) (*MarketplaceAttributesListResponse, error)
+
+	// MarketplaceAttributesCountWithResponse request
+	MarketplaceAttributesCountWithResponse(ctx context.Context, params *MarketplaceAttributesCountParams, reqEditors ...RequestEditorFn) (*MarketplaceAttributesCountResponse, error)
+
+	// MarketplaceAttributesCreateWithBodyWithResponse request with any body
+	MarketplaceAttributesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceAttributesCreateResponse, error)
+
+	MarketplaceAttributesCreateWithResponse(ctx context.Context, body MarketplaceAttributesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceAttributesCreateResponse, error)
+
+	// MarketplaceAttributesDestroyWithResponse request
+	MarketplaceAttributesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceAttributesDestroyResponse, error)
+
+	// MarketplaceAttributesRetrieveWithResponse request
+	MarketplaceAttributesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceAttributesRetrieveResponse, error)
+
+	// MarketplaceAttributesPartialUpdateWithBodyWithResponse request with any body
+	MarketplaceAttributesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceAttributesPartialUpdateResponse, error)
+
+	MarketplaceAttributesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceAttributesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceAttributesPartialUpdateResponse, error)
+
+	// MarketplaceAttributesUpdateWithBodyWithResponse request with any body
+	MarketplaceAttributesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceAttributesUpdateResponse, error)
+
+	MarketplaceAttributesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceAttributesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceAttributesUpdateResponse, error)
+
 	// MarketplaceBookingsListWithResponse request
 	MarketplaceBookingsListWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*MarketplaceBookingsListResponse, error)
 
@@ -348936,6 +350150,310 @@ func (r ManagedRancherClusterResourcesAddNodeResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ManagedRancherClusterResourcesAddNodeResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceAttributeOptionsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]AttributeOption
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceAttributeOptionsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceAttributeOptionsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceAttributeOptionsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceAttributeOptionsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceAttributeOptionsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceAttributeOptionsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *AttributeOption
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceAttributeOptionsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceAttributeOptionsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceAttributeOptionsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceAttributeOptionsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceAttributeOptionsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceAttributeOptionsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AttributeOption
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceAttributeOptionsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceAttributeOptionsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceAttributeOptionsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AttributeOption
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceAttributeOptionsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceAttributeOptionsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceAttributeOptionsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AttributeOption
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceAttributeOptionsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceAttributeOptionsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceAttributesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]Attribute
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceAttributesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceAttributesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceAttributesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceAttributesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceAttributesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceAttributesCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *Attribute
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceAttributesCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceAttributesCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceAttributesDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceAttributesDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceAttributesDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceAttributesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Attribute
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceAttributesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceAttributesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceAttributesPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Attribute
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceAttributesPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceAttributesPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceAttributesUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Attribute
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceAttributesUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceAttributesUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -393939,6 +395457,180 @@ func (c *ClientWithResponses) ManagedRancherClusterResourcesAddNodeWithResponse(
 	return ParseManagedRancherClusterResourcesAddNodeResponse(rsp)
 }
 
+// MarketplaceAttributeOptionsListWithResponse request returning *MarketplaceAttributeOptionsListResponse
+func (c *ClientWithResponses) MarketplaceAttributeOptionsListWithResponse(ctx context.Context, params *MarketplaceAttributeOptionsListParams, reqEditors ...RequestEditorFn) (*MarketplaceAttributeOptionsListResponse, error) {
+	rsp, err := c.MarketplaceAttributeOptionsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceAttributeOptionsListResponse(rsp)
+}
+
+// MarketplaceAttributeOptionsCountWithResponse request returning *MarketplaceAttributeOptionsCountResponse
+func (c *ClientWithResponses) MarketplaceAttributeOptionsCountWithResponse(ctx context.Context, params *MarketplaceAttributeOptionsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceAttributeOptionsCountResponse, error) {
+	rsp, err := c.MarketplaceAttributeOptionsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceAttributeOptionsCountResponse(rsp)
+}
+
+// MarketplaceAttributeOptionsCreateWithBodyWithResponse request with arbitrary body returning *MarketplaceAttributeOptionsCreateResponse
+func (c *ClientWithResponses) MarketplaceAttributeOptionsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceAttributeOptionsCreateResponse, error) {
+	rsp, err := c.MarketplaceAttributeOptionsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceAttributeOptionsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceAttributeOptionsCreateWithResponse(ctx context.Context, body MarketplaceAttributeOptionsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceAttributeOptionsCreateResponse, error) {
+	rsp, err := c.MarketplaceAttributeOptionsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceAttributeOptionsCreateResponse(rsp)
+}
+
+// MarketplaceAttributeOptionsDestroyWithResponse request returning *MarketplaceAttributeOptionsDestroyResponse
+func (c *ClientWithResponses) MarketplaceAttributeOptionsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceAttributeOptionsDestroyResponse, error) {
+	rsp, err := c.MarketplaceAttributeOptionsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceAttributeOptionsDestroyResponse(rsp)
+}
+
+// MarketplaceAttributeOptionsRetrieveWithResponse request returning *MarketplaceAttributeOptionsRetrieveResponse
+func (c *ClientWithResponses) MarketplaceAttributeOptionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceAttributeOptionsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceAttributeOptionsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceAttributeOptionsRetrieveResponse(rsp)
+}
+
+// MarketplaceAttributeOptionsPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceAttributeOptionsPartialUpdateResponse
+func (c *ClientWithResponses) MarketplaceAttributeOptionsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceAttributeOptionsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceAttributeOptionsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceAttributeOptionsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceAttributeOptionsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceAttributeOptionsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceAttributeOptionsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceAttributeOptionsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceAttributeOptionsPartialUpdateResponse(rsp)
+}
+
+// MarketplaceAttributeOptionsUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceAttributeOptionsUpdateResponse
+func (c *ClientWithResponses) MarketplaceAttributeOptionsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceAttributeOptionsUpdateResponse, error) {
+	rsp, err := c.MarketplaceAttributeOptionsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceAttributeOptionsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceAttributeOptionsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceAttributeOptionsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceAttributeOptionsUpdateResponse, error) {
+	rsp, err := c.MarketplaceAttributeOptionsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceAttributeOptionsUpdateResponse(rsp)
+}
+
+// MarketplaceAttributesListWithResponse request returning *MarketplaceAttributesListResponse
+func (c *ClientWithResponses) MarketplaceAttributesListWithResponse(ctx context.Context, params *MarketplaceAttributesListParams, reqEditors ...RequestEditorFn) (*MarketplaceAttributesListResponse, error) {
+	rsp, err := c.MarketplaceAttributesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceAttributesListResponse(rsp)
+}
+
+// MarketplaceAttributesCountWithResponse request returning *MarketplaceAttributesCountResponse
+func (c *ClientWithResponses) MarketplaceAttributesCountWithResponse(ctx context.Context, params *MarketplaceAttributesCountParams, reqEditors ...RequestEditorFn) (*MarketplaceAttributesCountResponse, error) {
+	rsp, err := c.MarketplaceAttributesCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceAttributesCountResponse(rsp)
+}
+
+// MarketplaceAttributesCreateWithBodyWithResponse request with arbitrary body returning *MarketplaceAttributesCreateResponse
+func (c *ClientWithResponses) MarketplaceAttributesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceAttributesCreateResponse, error) {
+	rsp, err := c.MarketplaceAttributesCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceAttributesCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceAttributesCreateWithResponse(ctx context.Context, body MarketplaceAttributesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceAttributesCreateResponse, error) {
+	rsp, err := c.MarketplaceAttributesCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceAttributesCreateResponse(rsp)
+}
+
+// MarketplaceAttributesDestroyWithResponse request returning *MarketplaceAttributesDestroyResponse
+func (c *ClientWithResponses) MarketplaceAttributesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceAttributesDestroyResponse, error) {
+	rsp, err := c.MarketplaceAttributesDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceAttributesDestroyResponse(rsp)
+}
+
+// MarketplaceAttributesRetrieveWithResponse request returning *MarketplaceAttributesRetrieveResponse
+func (c *ClientWithResponses) MarketplaceAttributesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceAttributesRetrieveResponse, error) {
+	rsp, err := c.MarketplaceAttributesRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceAttributesRetrieveResponse(rsp)
+}
+
+// MarketplaceAttributesPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceAttributesPartialUpdateResponse
+func (c *ClientWithResponses) MarketplaceAttributesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceAttributesPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceAttributesPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceAttributesPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceAttributesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceAttributesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceAttributesPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceAttributesPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceAttributesPartialUpdateResponse(rsp)
+}
+
+// MarketplaceAttributesUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceAttributesUpdateResponse
+func (c *ClientWithResponses) MarketplaceAttributesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceAttributesUpdateResponse, error) {
+	rsp, err := c.MarketplaceAttributesUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceAttributesUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceAttributesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceAttributesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceAttributesUpdateResponse, error) {
+	rsp, err := c.MarketplaceAttributesUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceAttributesUpdateResponse(rsp)
+}
+
 // MarketplaceBookingsListWithResponse request returning *MarketplaceBookingsListResponse
 func (c *ClientWithResponses) MarketplaceBookingsListWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*MarketplaceBookingsListResponse, error) {
 	rsp, err := c.MarketplaceBookingsList(ctx, uuid, reqEditors...)
@@ -428924,6 +430616,330 @@ func ParseManagedRancherClusterResourcesAddNodeResponse(rsp *http.Response) (*Ma
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest RancherNode
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceAttributeOptionsListResponse parses an HTTP response from a MarketplaceAttributeOptionsListWithResponse call
+func ParseMarketplaceAttributeOptionsListResponse(rsp *http.Response) (*MarketplaceAttributeOptionsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceAttributeOptionsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AttributeOption
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceAttributeOptionsCountResponse parses an HTTP response from a MarketplaceAttributeOptionsCountWithResponse call
+func ParseMarketplaceAttributeOptionsCountResponse(rsp *http.Response) (*MarketplaceAttributeOptionsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceAttributeOptionsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceAttributeOptionsCreateResponse parses an HTTP response from a MarketplaceAttributeOptionsCreateWithResponse call
+func ParseMarketplaceAttributeOptionsCreateResponse(rsp *http.Response) (*MarketplaceAttributeOptionsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceAttributeOptionsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest AttributeOption
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceAttributeOptionsDestroyResponse parses an HTTP response from a MarketplaceAttributeOptionsDestroyWithResponse call
+func ParseMarketplaceAttributeOptionsDestroyResponse(rsp *http.Response) (*MarketplaceAttributeOptionsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceAttributeOptionsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceAttributeOptionsRetrieveResponse parses an HTTP response from a MarketplaceAttributeOptionsRetrieveWithResponse call
+func ParseMarketplaceAttributeOptionsRetrieveResponse(rsp *http.Response) (*MarketplaceAttributeOptionsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceAttributeOptionsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AttributeOption
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceAttributeOptionsPartialUpdateResponse parses an HTTP response from a MarketplaceAttributeOptionsPartialUpdateWithResponse call
+func ParseMarketplaceAttributeOptionsPartialUpdateResponse(rsp *http.Response) (*MarketplaceAttributeOptionsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceAttributeOptionsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AttributeOption
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceAttributeOptionsUpdateResponse parses an HTTP response from a MarketplaceAttributeOptionsUpdateWithResponse call
+func ParseMarketplaceAttributeOptionsUpdateResponse(rsp *http.Response) (*MarketplaceAttributeOptionsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceAttributeOptionsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AttributeOption
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceAttributesListResponse parses an HTTP response from a MarketplaceAttributesListWithResponse call
+func ParseMarketplaceAttributesListResponse(rsp *http.Response) (*MarketplaceAttributesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceAttributesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Attribute
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceAttributesCountResponse parses an HTTP response from a MarketplaceAttributesCountWithResponse call
+func ParseMarketplaceAttributesCountResponse(rsp *http.Response) (*MarketplaceAttributesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceAttributesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceAttributesCreateResponse parses an HTTP response from a MarketplaceAttributesCreateWithResponse call
+func ParseMarketplaceAttributesCreateResponse(rsp *http.Response) (*MarketplaceAttributesCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceAttributesCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest Attribute
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceAttributesDestroyResponse parses an HTTP response from a MarketplaceAttributesDestroyWithResponse call
+func ParseMarketplaceAttributesDestroyResponse(rsp *http.Response) (*MarketplaceAttributesDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceAttributesDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceAttributesRetrieveResponse parses an HTTP response from a MarketplaceAttributesRetrieveWithResponse call
+func ParseMarketplaceAttributesRetrieveResponse(rsp *http.Response) (*MarketplaceAttributesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceAttributesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Attribute
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceAttributesPartialUpdateResponse parses an HTTP response from a MarketplaceAttributesPartialUpdateWithResponse call
+func ParseMarketplaceAttributesPartialUpdateResponse(rsp *http.Response) (*MarketplaceAttributesPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceAttributesPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Attribute
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceAttributesUpdateResponse parses an HTTP response from a MarketplaceAttributesUpdateWithResponse call
+func ParseMarketplaceAttributesUpdateResponse(rsp *http.Response) (*MarketplaceAttributesUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceAttributesUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Attribute
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
