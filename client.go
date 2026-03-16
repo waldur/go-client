@@ -5054,6 +5054,120 @@ func (e DryRunTypeEnum) Valid() bool {
 	}
 }
 
+// Defines values for ENABLEDREPORTINGSCREENSEnum.
+const (
+	ENABLEDREPORTINGSCREENSEnumCallPerformance       ENABLEDREPORTINGSCREENSEnum = "call-performance"
+	ENABLEDREPORTINGSCREENSEnumCapacity              ENABLEDREPORTINGSCREENSEnum = "capacity"
+	ENABLEDREPORTINGSCREENSEnumGrowth                ENABLEDREPORTINGSCREENSEnum = "growth"
+	ENABLEDREPORTINGSCREENSEnumMaintenanceOverview   ENABLEDREPORTINGSCREENSEnum = "maintenance-overview"
+	ENABLEDREPORTINGSCREENSEnumOfferingCosts         ENABLEDREPORTINGSCREENSEnum = "offering-costs"
+	ENABLEDREPORTINGSCREENSEnumOpenstackInstances    ENABLEDREPORTINGSCREENSEnum = "openstack-instances"
+	ENABLEDREPORTINGSCREENSEnumOrders                ENABLEDREPORTINGSCREENSEnum = "orders"
+	ENABLEDREPORTINGSCREENSEnumOrganizationSummary   ENABLEDREPORTINGSCREENSEnum = "organization-summary"
+	ENABLEDREPORTINGSCREENSEnumPricelist             ENABLEDREPORTINGSCREENSEnum = "pricelist"
+	ENABLEDREPORTINGSCREENSEnumProjectClassification ENABLEDREPORTINGSCREENSEnum = "project-classification"
+	ENABLEDREPORTINGSCREENSEnumProjectDetail         ENABLEDREPORTINGSCREENSEnum = "project-detail"
+	ENABLEDREPORTINGSCREENSEnumProviderCustomers     ENABLEDREPORTINGSCREENSEnum = "provider-customers"
+	ENABLEDREPORTINGSCREENSEnumProviderOfferings     ENABLEDREPORTINGSCREENSEnum = "provider-offerings"
+	ENABLEDREPORTINGSCREENSEnumProviderOrders        ENABLEDREPORTINGSCREENSEnum = "provider-orders"
+	ENABLEDREPORTINGSCREENSEnumProviderOverview      ENABLEDREPORTINGSCREENSEnum = "provider-overview"
+	ENABLEDREPORTINGSCREENSEnumProviderResources     ENABLEDREPORTINGSCREENSEnum = "provider-resources"
+	ENABLEDREPORTINGSCREENSEnumProviderRevenue       ENABLEDREPORTINGSCREENSEnum = "provider-revenue"
+	ENABLEDREPORTINGSCREENSEnumProvisioningStats     ENABLEDREPORTINGSCREENSEnum = "provisioning-stats"
+	ENABLEDREPORTINGSCREENSEnumQuotas                ENABLEDREPORTINGSCREENSEnum = "quotas"
+	ENABLEDREPORTINGSCREENSEnumResourceDemand        ENABLEDREPORTINGSCREENSEnum = "resource-demand"
+	ENABLEDREPORTINGSCREENSEnumResourceUsage         ENABLEDREPORTINGSCREENSEnum = "resource-usage"
+	ENABLEDREPORTINGSCREENSEnumResourcesGeography    ENABLEDREPORTINGSCREENSEnum = "resources-geography"
+	ENABLEDREPORTINGSCREENSEnumRevenue               ENABLEDREPORTINGSCREENSEnum = "revenue"
+	ENABLEDREPORTINGSCREENSEnumReviewProgress        ENABLEDREPORTINGSCREENSEnum = "review-progress"
+	ENABLEDREPORTINGSCREENSEnumUsageByCreator        ENABLEDREPORTINGSCREENSEnum = "usage-by-creator"
+	ENABLEDREPORTINGSCREENSEnumUsageByCustomer       ENABLEDREPORTINGSCREENSEnum = "usage-by-customer"
+	ENABLEDREPORTINGSCREENSEnumUsageByOrgType        ENABLEDREPORTINGSCREENSEnum = "usage-by-org-type"
+	ENABLEDREPORTINGSCREENSEnumUsageMonitoring       ENABLEDREPORTINGSCREENSEnum = "usage-monitoring"
+	ENABLEDREPORTINGSCREENSEnumUsageTrends           ENABLEDREPORTINGSCREENSEnum = "usage-trends"
+	ENABLEDREPORTINGSCREENSEnumUserAffiliations      ENABLEDREPORTINGSCREENSEnum = "user-affiliations"
+	ENABLEDREPORTINGSCREENSEnumUserDemographics      ENABLEDREPORTINGSCREENSEnum = "user-demographics"
+	ENABLEDREPORTINGSCREENSEnumUserOrganizations     ENABLEDREPORTINGSCREENSEnum = "user-organizations"
+	ENABLEDREPORTINGSCREENSEnumUserRoles             ENABLEDREPORTINGSCREENSEnum = "user-roles"
+	ENABLEDREPORTINGSCREENSEnumUserUsage             ENABLEDREPORTINGSCREENSEnum = "user-usage"
+)
+
+// Valid indicates whether the value is a known member of the ENABLEDREPORTINGSCREENSEnum enum.
+func (e ENABLEDREPORTINGSCREENSEnum) Valid() bool {
+	switch e {
+	case ENABLEDREPORTINGSCREENSEnumCallPerformance:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumCapacity:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumGrowth:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumMaintenanceOverview:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumOfferingCosts:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumOpenstackInstances:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumOrders:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumOrganizationSummary:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumPricelist:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumProjectClassification:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumProjectDetail:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumProviderCustomers:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumProviderOfferings:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumProviderOrders:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumProviderOverview:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumProviderResources:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumProviderRevenue:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumProvisioningStats:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumQuotas:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumResourceDemand:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumResourceUsage:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumResourcesGeography:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumRevenue:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumReviewProgress:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumUsageByCreator:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumUsageByCustomer:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumUsageByOrgType:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumUsageMonitoring:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumUsageTrends:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumUserAffiliations:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumUserDemographics:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumUserOrganizations:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumUserRoles:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumUserUsage:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for EmailLogOEnum.
 const (
 	MinusSentAt  EmailLogOEnum = "-sent_at"
@@ -11074,16 +11188,16 @@ func (e OpenStackInstanceFieldEnum) Valid() bool {
 
 // Defines values for OpenStackInstanceOEnum.
 const (
-	OpenStackInstanceOEnumMinusStartTime OpenStackInstanceOEnum = "-start_time"
-	OpenStackInstanceOEnumStartTime      OpenStackInstanceOEnum = "start_time"
+	MinusStartTime OpenStackInstanceOEnum = "-start_time"
+	StartTime      OpenStackInstanceOEnum = "start_time"
 )
 
 // Valid indicates whether the value is a known member of the OpenStackInstanceOEnum enum.
 func (e OpenStackInstanceOEnum) Valid() bool {
 	switch e {
-	case OpenStackInstanceOEnumMinusStartTime:
+	case MinusStartTime:
 		return true
-	case OpenStackInstanceOEnumStartTime:
+	case StartTime:
 		return true
 	default:
 		return false
@@ -24432,6 +24546,7 @@ type ConstanceSettings struct {
 	DOCKERSCRIPTDIR                                *string                                                          `json:"DOCKER_SCRIPT_DIR,omitempty"`
 	DOCKERVOLUMENAME                               *string                                                          `json:"DOCKER_VOLUME_NAME,omitempty"`
 	DOCSURL                                        *string                                                          `json:"DOCS_URL,omitempty"`
+	ENABLEDREPORTINGSCREENS                        *[]ConstanceSettings_ENABLEDREPORTINGSCREENS_Item                `json:"ENABLED_REPORTING_SCREENS,omitempty"`
 	ENABLEDUSERPROFILEATTRIBUTES                   *[]ConstanceSettings_ENABLEDUSERPROFILEATTRIBUTES_Item           `json:"ENABLED_USER_PROFILE_ATTRIBUTES,omitempty"`
 	ENABLEISSUESFORUSERSSHKEYCHANGES               *bool                                                            `json:"ENABLE_ISSUES_FOR_USER_SSH_KEY_CHANGES,omitempty"`
 	ENABLEMOCKCOURSEACCOUNTBACKEND                 *bool                                                            `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
@@ -24472,6 +24587,7 @@ type ConstanceSettings struct {
 	LLMCHATENABLED                                 *bool                                                            `json:"LLM_CHAT_ENABLED,omitempty"`
 	LLMCHATHISTORYLIMIT                            *int                                                             `json:"LLM_CHAT_HISTORY_LIMIT,omitempty"`
 	LLMCHATSESSIONRETENTIONDAYS                    *int                                                             `json:"LLM_CHAT_SESSION_RETENTION_DAYS,omitempty"`
+	LLMCOMPLETIONKWARGS                            *string                                                          `json:"LLM_COMPLETION_KWARGS,omitempty"`
 	LLMINFERENCESAPITOKEN                          *string                                                          `json:"LLM_INFERENCES_API_TOKEN,omitempty"`
 	LLMINFERENCESAPIURL                            *string                                                          `json:"LLM_INFERENCES_API_URL,omitempty"`
 	LLMINFERENCESBACKENDTYPE                       *string                                                          `json:"LLM_INFERENCES_BACKEND_TYPE,omitempty"`
@@ -24621,6 +24737,11 @@ type ConstanceSettings_DISABLEDOFFERINGTYPES_Item struct {
 	union json.RawMessage
 }
 
+// ConstanceSettings_ENABLEDREPORTINGSCREENS_Item defines model for ConstanceSettings.ENABLED_REPORTING_SCREENS.Item.
+type ConstanceSettings_ENABLEDREPORTINGSCREENS_Item struct {
+	union json.RawMessage
+}
+
 // ConstanceSettings_ENABLEDUSERPROFILEATTRIBUTES_Item defines model for ConstanceSettings.ENABLED_USER_PROFILE_ATTRIBUTES.Item.
 type ConstanceSettings_ENABLEDUSERPROFILEATTRIBUTES_Item struct {
 	union json.RawMessage
@@ -24727,6 +24848,7 @@ type ConstanceSettingsRequest struct {
 	DOCKERSCRIPTDIR                                *string                                                                 `json:"DOCKER_SCRIPT_DIR,omitempty"`
 	DOCKERVOLUMENAME                               *string                                                                 `json:"DOCKER_VOLUME_NAME,omitempty"`
 	DOCSURL                                        *string                                                                 `json:"DOCS_URL,omitempty"`
+	ENABLEDREPORTINGSCREENS                        *[]ConstanceSettingsRequest_ENABLEDREPORTINGSCREENS_Item                `json:"ENABLED_REPORTING_SCREENS,omitempty"`
 	ENABLEDUSERPROFILEATTRIBUTES                   *[]ConstanceSettingsRequest_ENABLEDUSERPROFILEATTRIBUTES_Item           `json:"ENABLED_USER_PROFILE_ATTRIBUTES,omitempty"`
 	ENABLEISSUESFORUSERSSHKEYCHANGES               *bool                                                                   `json:"ENABLE_ISSUES_FOR_USER_SSH_KEY_CHANGES,omitempty"`
 	ENABLEMOCKCOURSEACCOUNTBACKEND                 *bool                                                                   `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
@@ -24767,6 +24889,7 @@ type ConstanceSettingsRequest struct {
 	LLMCHATENABLED                                 *bool                                                                   `json:"LLM_CHAT_ENABLED,omitempty"`
 	LLMCHATHISTORYLIMIT                            *int                                                                    `json:"LLM_CHAT_HISTORY_LIMIT,omitempty"`
 	LLMCHATSESSIONRETENTIONDAYS                    *int                                                                    `json:"LLM_CHAT_SESSION_RETENTION_DAYS,omitempty"`
+	LLMCOMPLETIONKWARGS                            *string                                                                 `json:"LLM_COMPLETION_KWARGS,omitempty"`
 	LLMINFERENCESAPITOKEN                          *string                                                                 `json:"LLM_INFERENCES_API_TOKEN,omitempty"`
 	LLMINFERENCESAPIURL                            *string                                                                 `json:"LLM_INFERENCES_API_URL,omitempty"`
 	LLMINFERENCESBACKENDTYPE                       *string                                                                 `json:"LLM_INFERENCES_BACKEND_TYPE,omitempty"`
@@ -24916,6 +25039,11 @@ type ConstanceSettingsRequest_DISABLEDOFFERINGTYPES_Item struct {
 	union json.RawMessage
 }
 
+// ConstanceSettingsRequest_ENABLEDREPORTINGSCREENS_Item defines model for ConstanceSettingsRequest.ENABLED_REPORTING_SCREENS.Item.
+type ConstanceSettingsRequest_ENABLEDREPORTINGSCREENS_Item struct {
+	union json.RawMessage
+}
+
 // ConstanceSettingsRequest_ENABLEDUSERPROFILEATTRIBUTES_Item defines model for ConstanceSettingsRequest.ENABLED_USER_PROFILE_ATTRIBUTES.Item.
 type ConstanceSettingsRequest_ENABLEDUSERPROFILEATTRIBUTES_Item struct {
 	union json.RawMessage
@@ -25022,6 +25150,7 @@ type ConstanceSettingsRequestForm struct {
 	DOCKERSCRIPTDIR                                *string                                                                     `json:"DOCKER_SCRIPT_DIR,omitempty"`
 	DOCKERVOLUMENAME                               *string                                                                     `json:"DOCKER_VOLUME_NAME,omitempty"`
 	DOCSURL                                        *string                                                                     `json:"DOCS_URL,omitempty"`
+	ENABLEDREPORTINGSCREENS                        *[]ConstanceSettingsRequestForm_ENABLEDREPORTINGSCREENS_Item                `json:"ENABLED_REPORTING_SCREENS,omitempty"`
 	ENABLEDUSERPROFILEATTRIBUTES                   *[]ConstanceSettingsRequestForm_ENABLEDUSERPROFILEATTRIBUTES_Item           `json:"ENABLED_USER_PROFILE_ATTRIBUTES,omitempty"`
 	ENABLEISSUESFORUSERSSHKEYCHANGES               *bool                                                                       `json:"ENABLE_ISSUES_FOR_USER_SSH_KEY_CHANGES,omitempty"`
 	ENABLEMOCKCOURSEACCOUNTBACKEND                 *bool                                                                       `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
@@ -25062,6 +25191,7 @@ type ConstanceSettingsRequestForm struct {
 	LLMCHATENABLED                                 *bool                                                                       `json:"LLM_CHAT_ENABLED,omitempty"`
 	LLMCHATHISTORYLIMIT                            *int                                                                        `json:"LLM_CHAT_HISTORY_LIMIT,omitempty"`
 	LLMCHATSESSIONRETENTIONDAYS                    *int                                                                        `json:"LLM_CHAT_SESSION_RETENTION_DAYS,omitempty"`
+	LLMCOMPLETIONKWARGS                            *string                                                                     `json:"LLM_COMPLETION_KWARGS,omitempty"`
 	LLMINFERENCESAPITOKEN                          *string                                                                     `json:"LLM_INFERENCES_API_TOKEN,omitempty"`
 	LLMINFERENCESAPIURL                            *string                                                                     `json:"LLM_INFERENCES_API_URL,omitempty"`
 	LLMINFERENCESBACKENDTYPE                       *string                                                                     `json:"LLM_INFERENCES_BACKEND_TYPE,omitempty"`
@@ -25211,6 +25341,11 @@ type ConstanceSettingsRequestForm_DISABLEDOFFERINGTYPES_Item struct {
 	union json.RawMessage
 }
 
+// ConstanceSettingsRequestForm_ENABLEDREPORTINGSCREENS_Item defines model for ConstanceSettingsRequestForm.ENABLED_REPORTING_SCREENS.Item.
+type ConstanceSettingsRequestForm_ENABLEDREPORTINGSCREENS_Item struct {
+	union json.RawMessage
+}
+
 // ConstanceSettingsRequestForm_ENABLEDUSERPROFILEATTRIBUTES_Item defines model for ConstanceSettingsRequestForm.ENABLED_USER_PROFILE_ATTRIBUTES.Item.
 type ConstanceSettingsRequestForm_ENABLEDUSERPROFILEATTRIBUTES_Item struct {
 	union json.RawMessage
@@ -25317,6 +25452,7 @@ type ConstanceSettingsRequestMultipart struct {
 	DOCKERSCRIPTDIR                                *string                                                                          `json:"DOCKER_SCRIPT_DIR,omitempty"`
 	DOCKERVOLUMENAME                               *string                                                                          `json:"DOCKER_VOLUME_NAME,omitempty"`
 	DOCSURL                                        *string                                                                          `json:"DOCS_URL,omitempty"`
+	ENABLEDREPORTINGSCREENS                        *[]ConstanceSettingsRequestMultipart_ENABLEDREPORTINGSCREENS_Item                `json:"ENABLED_REPORTING_SCREENS,omitempty"`
 	ENABLEDUSERPROFILEATTRIBUTES                   *[]ConstanceSettingsRequestMultipart_ENABLEDUSERPROFILEATTRIBUTES_Item           `json:"ENABLED_USER_PROFILE_ATTRIBUTES,omitempty"`
 	ENABLEISSUESFORUSERSSHKEYCHANGES               *bool                                                                            `json:"ENABLE_ISSUES_FOR_USER_SSH_KEY_CHANGES,omitempty"`
 	ENABLEMOCKCOURSEACCOUNTBACKEND                 *bool                                                                            `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
@@ -25357,6 +25493,7 @@ type ConstanceSettingsRequestMultipart struct {
 	LLMCHATENABLED                                 *bool                                                                            `json:"LLM_CHAT_ENABLED,omitempty"`
 	LLMCHATHISTORYLIMIT                            *int                                                                             `json:"LLM_CHAT_HISTORY_LIMIT,omitempty"`
 	LLMCHATSESSIONRETENTIONDAYS                    *int                                                                             `json:"LLM_CHAT_SESSION_RETENTION_DAYS,omitempty"`
+	LLMCOMPLETIONKWARGS                            *string                                                                          `json:"LLM_COMPLETION_KWARGS,omitempty"`
 	LLMINFERENCESAPITOKEN                          *string                                                                          `json:"LLM_INFERENCES_API_TOKEN,omitempty"`
 	LLMINFERENCESAPIURL                            *string                                                                          `json:"LLM_INFERENCES_API_URL,omitempty"`
 	LLMINFERENCESBACKENDTYPE                       *string                                                                          `json:"LLM_INFERENCES_BACKEND_TYPE,omitempty"`
@@ -25503,6 +25640,11 @@ type ConstanceSettingsRequestMultipart_DEFAULTOFFERINGUSERATTRIBUTES_Item struct
 
 // ConstanceSettingsRequestMultipart_DISABLEDOFFERINGTYPES_Item defines model for ConstanceSettingsRequestMultipart.DISABLED_OFFERING_TYPES.Item.
 type ConstanceSettingsRequestMultipart_DISABLEDOFFERINGTYPES_Item struct {
+	union json.RawMessage
+}
+
+// ConstanceSettingsRequestMultipart_ENABLEDREPORTINGSCREENS_Item defines model for ConstanceSettingsRequestMultipart.ENABLED_REPORTING_SCREENS.Item.
+type ConstanceSettingsRequestMultipart_ENABLEDREPORTINGSCREENS_Item struct {
 	union json.RawMessage
 }
 
@@ -27315,6 +27457,9 @@ type DryRunStateEnum int
 
 // DryRunTypeEnum defines model for DryRunTypeEnum.
 type DryRunTypeEnum string
+
+// ENABLEDREPORTINGSCREENSEnum defines model for ENABLEDREPORTINGSCREENSEnum.
+type ENABLEDREPORTINGSCREENSEnum string
 
 // EligibilityCheck defines model for EligibilityCheck.
 type EligibilityCheck struct {
@@ -30890,6 +31035,7 @@ type Message struct {
 	SequenceIndex       *int                   `json:"sequence_index,omitempty"`
 	Severity            *InjectionSeverityEnum `json:"severity,omitempty"`
 	Thread              *openapi_types.UUID    `json:"thread,omitempty"`
+	ToolCalls           interface{}            `json:"tool_calls,omitempty"`
 	Uuid                *openapi_types.UUID    `json:"uuid,omitempty"`
 }
 
@@ -71014,6 +71160,68 @@ func (t *ConstanceSettings_DISABLEDOFFERINGTYPES_Item) UnmarshalJSON(b []byte) e
 	return err
 }
 
+// AsENABLEDREPORTINGSCREENSEnum returns the union data inside the ConstanceSettings_ENABLEDREPORTINGSCREENS_Item as a ENABLEDREPORTINGSCREENSEnum
+func (t ConstanceSettings_ENABLEDREPORTINGSCREENS_Item) AsENABLEDREPORTINGSCREENSEnum() (ENABLEDREPORTINGSCREENSEnum, error) {
+	var body ENABLEDREPORTINGSCREENSEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromENABLEDREPORTINGSCREENSEnum overwrites any union data inside the ConstanceSettings_ENABLEDREPORTINGSCREENS_Item as the provided ENABLEDREPORTINGSCREENSEnum
+func (t *ConstanceSettings_ENABLEDREPORTINGSCREENS_Item) FromENABLEDREPORTINGSCREENSEnum(v ENABLEDREPORTINGSCREENSEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeENABLEDREPORTINGSCREENSEnum performs a merge with any union data inside the ConstanceSettings_ENABLEDREPORTINGSCREENS_Item, using the provided ENABLEDREPORTINGSCREENSEnum
+func (t *ConstanceSettings_ENABLEDREPORTINGSCREENS_Item) MergeENABLEDREPORTINGSCREENSEnum(v ENABLEDREPORTINGSCREENSEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the ConstanceSettings_ENABLEDREPORTINGSCREENS_Item as a BlankEnum
+func (t ConstanceSettings_ENABLEDREPORTINGSCREENS_Item) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the ConstanceSettings_ENABLEDREPORTINGSCREENS_Item as the provided BlankEnum
+func (t *ConstanceSettings_ENABLEDREPORTINGSCREENS_Item) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the ConstanceSettings_ENABLEDREPORTINGSCREENS_Item, using the provided BlankEnum
+func (t *ConstanceSettings_ENABLEDREPORTINGSCREENS_Item) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ConstanceSettings_ENABLEDREPORTINGSCREENS_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ConstanceSettings_ENABLEDREPORTINGSCREENS_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsUserAttributeEnum returns the union data inside the ConstanceSettings_ENABLEDUSERPROFILEATTRIBUTES_Item as a UserAttributeEnum
 func (t ConstanceSettings_ENABLEDUSERPROFILEATTRIBUTES_Item) AsUserAttributeEnum() (UserAttributeEnum, error) {
 	var body UserAttributeEnum
@@ -71630,6 +71838,68 @@ func (t ConstanceSettingsRequest_DISABLEDOFFERINGTYPES_Item) MarshalJSON() ([]by
 }
 
 func (t *ConstanceSettingsRequest_DISABLEDOFFERINGTYPES_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsENABLEDREPORTINGSCREENSEnum returns the union data inside the ConstanceSettingsRequest_ENABLEDREPORTINGSCREENS_Item as a ENABLEDREPORTINGSCREENSEnum
+func (t ConstanceSettingsRequest_ENABLEDREPORTINGSCREENS_Item) AsENABLEDREPORTINGSCREENSEnum() (ENABLEDREPORTINGSCREENSEnum, error) {
+	var body ENABLEDREPORTINGSCREENSEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromENABLEDREPORTINGSCREENSEnum overwrites any union data inside the ConstanceSettingsRequest_ENABLEDREPORTINGSCREENS_Item as the provided ENABLEDREPORTINGSCREENSEnum
+func (t *ConstanceSettingsRequest_ENABLEDREPORTINGSCREENS_Item) FromENABLEDREPORTINGSCREENSEnum(v ENABLEDREPORTINGSCREENSEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeENABLEDREPORTINGSCREENSEnum performs a merge with any union data inside the ConstanceSettingsRequest_ENABLEDREPORTINGSCREENS_Item, using the provided ENABLEDREPORTINGSCREENSEnum
+func (t *ConstanceSettingsRequest_ENABLEDREPORTINGSCREENS_Item) MergeENABLEDREPORTINGSCREENSEnum(v ENABLEDREPORTINGSCREENSEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the ConstanceSettingsRequest_ENABLEDREPORTINGSCREENS_Item as a BlankEnum
+func (t ConstanceSettingsRequest_ENABLEDREPORTINGSCREENS_Item) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the ConstanceSettingsRequest_ENABLEDREPORTINGSCREENS_Item as the provided BlankEnum
+func (t *ConstanceSettingsRequest_ENABLEDREPORTINGSCREENS_Item) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the ConstanceSettingsRequest_ENABLEDREPORTINGSCREENS_Item, using the provided BlankEnum
+func (t *ConstanceSettingsRequest_ENABLEDREPORTINGSCREENS_Item) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ConstanceSettingsRequest_ENABLEDREPORTINGSCREENS_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ConstanceSettingsRequest_ENABLEDREPORTINGSCREENS_Item) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -72254,6 +72524,68 @@ func (t *ConstanceSettingsRequestForm_DISABLEDOFFERINGTYPES_Item) UnmarshalJSON(
 	return err
 }
 
+// AsENABLEDREPORTINGSCREENSEnum returns the union data inside the ConstanceSettingsRequestForm_ENABLEDREPORTINGSCREENS_Item as a ENABLEDREPORTINGSCREENSEnum
+func (t ConstanceSettingsRequestForm_ENABLEDREPORTINGSCREENS_Item) AsENABLEDREPORTINGSCREENSEnum() (ENABLEDREPORTINGSCREENSEnum, error) {
+	var body ENABLEDREPORTINGSCREENSEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromENABLEDREPORTINGSCREENSEnum overwrites any union data inside the ConstanceSettingsRequestForm_ENABLEDREPORTINGSCREENS_Item as the provided ENABLEDREPORTINGSCREENSEnum
+func (t *ConstanceSettingsRequestForm_ENABLEDREPORTINGSCREENS_Item) FromENABLEDREPORTINGSCREENSEnum(v ENABLEDREPORTINGSCREENSEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeENABLEDREPORTINGSCREENSEnum performs a merge with any union data inside the ConstanceSettingsRequestForm_ENABLEDREPORTINGSCREENS_Item, using the provided ENABLEDREPORTINGSCREENSEnum
+func (t *ConstanceSettingsRequestForm_ENABLEDREPORTINGSCREENS_Item) MergeENABLEDREPORTINGSCREENSEnum(v ENABLEDREPORTINGSCREENSEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the ConstanceSettingsRequestForm_ENABLEDREPORTINGSCREENS_Item as a BlankEnum
+func (t ConstanceSettingsRequestForm_ENABLEDREPORTINGSCREENS_Item) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the ConstanceSettingsRequestForm_ENABLEDREPORTINGSCREENS_Item as the provided BlankEnum
+func (t *ConstanceSettingsRequestForm_ENABLEDREPORTINGSCREENS_Item) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the ConstanceSettingsRequestForm_ENABLEDREPORTINGSCREENS_Item, using the provided BlankEnum
+func (t *ConstanceSettingsRequestForm_ENABLEDREPORTINGSCREENS_Item) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ConstanceSettingsRequestForm_ENABLEDREPORTINGSCREENS_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ConstanceSettingsRequestForm_ENABLEDREPORTINGSCREENS_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsUserAttributeEnum returns the union data inside the ConstanceSettingsRequestForm_ENABLEDUSERPROFILEATTRIBUTES_Item as a UserAttributeEnum
 func (t ConstanceSettingsRequestForm_ENABLEDUSERPROFILEATTRIBUTES_Item) AsUserAttributeEnum() (UserAttributeEnum, error) {
 	var body UserAttributeEnum
@@ -72870,6 +73202,68 @@ func (t ConstanceSettingsRequestMultipart_DISABLEDOFFERINGTYPES_Item) MarshalJSO
 }
 
 func (t *ConstanceSettingsRequestMultipart_DISABLEDOFFERINGTYPES_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsENABLEDREPORTINGSCREENSEnum returns the union data inside the ConstanceSettingsRequestMultipart_ENABLEDREPORTINGSCREENS_Item as a ENABLEDREPORTINGSCREENSEnum
+func (t ConstanceSettingsRequestMultipart_ENABLEDREPORTINGSCREENS_Item) AsENABLEDREPORTINGSCREENSEnum() (ENABLEDREPORTINGSCREENSEnum, error) {
+	var body ENABLEDREPORTINGSCREENSEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromENABLEDREPORTINGSCREENSEnum overwrites any union data inside the ConstanceSettingsRequestMultipart_ENABLEDREPORTINGSCREENS_Item as the provided ENABLEDREPORTINGSCREENSEnum
+func (t *ConstanceSettingsRequestMultipart_ENABLEDREPORTINGSCREENS_Item) FromENABLEDREPORTINGSCREENSEnum(v ENABLEDREPORTINGSCREENSEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeENABLEDREPORTINGSCREENSEnum performs a merge with any union data inside the ConstanceSettingsRequestMultipart_ENABLEDREPORTINGSCREENS_Item, using the provided ENABLEDREPORTINGSCREENSEnum
+func (t *ConstanceSettingsRequestMultipart_ENABLEDREPORTINGSCREENS_Item) MergeENABLEDREPORTINGSCREENSEnum(v ENABLEDREPORTINGSCREENSEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the ConstanceSettingsRequestMultipart_ENABLEDREPORTINGSCREENS_Item as a BlankEnum
+func (t ConstanceSettingsRequestMultipart_ENABLEDREPORTINGSCREENS_Item) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the ConstanceSettingsRequestMultipart_ENABLEDREPORTINGSCREENS_Item as the provided BlankEnum
+func (t *ConstanceSettingsRequestMultipart_ENABLEDREPORTINGSCREENS_Item) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the ConstanceSettingsRequestMultipart_ENABLEDREPORTINGSCREENS_Item, using the provided BlankEnum
+func (t *ConstanceSettingsRequestMultipart_ENABLEDREPORTINGSCREENS_Item) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ConstanceSettingsRequestMultipart_ENABLEDREPORTINGSCREENS_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ConstanceSettingsRequestMultipart_ENABLEDREPORTINGSCREENS_Item) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
