@@ -2123,6 +2123,7 @@ const (
 	BookingResourceFieldEnumPlanUuid                   BookingResourceFieldEnum = "plan_uuid"
 	BookingResourceFieldEnumProject                    BookingResourceFieldEnum = "project"
 	BookingResourceFieldEnumProjectDescription         BookingResourceFieldEnum = "project_description"
+	BookingResourceFieldEnumProjectEffectiveEndDate    BookingResourceFieldEnum = "project_effective_end_date"
 	BookingResourceFieldEnumProjectEndDate             BookingResourceFieldEnum = "project_end_date"
 	BookingResourceFieldEnumProjectEndDateRequestedBy  BookingResourceFieldEnum = "project_end_date_requested_by"
 	BookingResourceFieldEnumProjectName                BookingResourceFieldEnum = "project_name"
@@ -2278,6 +2279,8 @@ func (e BookingResourceFieldEnum) Valid() bool {
 	case BookingResourceFieldEnumProject:
 		return true
 	case BookingResourceFieldEnumProjectDescription:
+		return true
+	case BookingResourceFieldEnumProjectEffectiveEndDate:
 		return true
 	case BookingResourceFieldEnumProjectEndDate:
 		return true
@@ -14634,10 +14637,12 @@ const (
 	ProjectFieldEnumCustomerSlug                         ProjectFieldEnum = "customer_slug"
 	ProjectFieldEnumCustomerUuid                         ProjectFieldEnum = "customer_uuid"
 	ProjectFieldEnumDescription                          ProjectFieldEnum = "description"
+	ProjectFieldEnumEffectiveEndDate                     ProjectFieldEnum = "effective_end_date"
 	ProjectFieldEnumEndDate                              ProjectFieldEnum = "end_date"
 	ProjectFieldEnumEndDateRequestedBy                   ProjectFieldEnum = "end_date_requested_by"
 	ProjectFieldEnumGracePeriodDays                      ProjectFieldEnum = "grace_period_days"
 	ProjectFieldEnumImage                                ProjectFieldEnum = "image"
+	ProjectFieldEnumIsInGracePeriod                      ProjectFieldEnum = "is_in_grace_period"
 	ProjectFieldEnumIsIndustry                           ProjectFieldEnum = "is_industry"
 	ProjectFieldEnumIsRemoved                            ProjectFieldEnum = "is_removed"
 	ProjectFieldEnumKind                                 ProjectFieldEnum = "kind"
@@ -14687,6 +14692,8 @@ func (e ProjectFieldEnum) Valid() bool {
 		return true
 	case ProjectFieldEnumDescription:
 		return true
+	case ProjectFieldEnumEffectiveEndDate:
+		return true
 	case ProjectFieldEnumEndDate:
 		return true
 	case ProjectFieldEnumEndDateRequestedBy:
@@ -14694,6 +14701,8 @@ func (e ProjectFieldEnum) Valid() bool {
 	case ProjectFieldEnumGracePeriodDays:
 		return true
 	case ProjectFieldEnumImage:
+		return true
+	case ProjectFieldEnumIsInGracePeriod:
 		return true
 	case ProjectFieldEnumIsIndustry:
 		return true
@@ -17090,6 +17099,7 @@ const (
 	ResourceFieldEnumPlanUuid                  ResourceFieldEnum = "plan_uuid"
 	ResourceFieldEnumProject                   ResourceFieldEnum = "project"
 	ResourceFieldEnumProjectDescription        ResourceFieldEnum = "project_description"
+	ResourceFieldEnumProjectEffectiveEndDate   ResourceFieldEnum = "project_effective_end_date"
 	ResourceFieldEnumProjectEndDate            ResourceFieldEnum = "project_end_date"
 	ResourceFieldEnumProjectEndDateRequestedBy ResourceFieldEnum = "project_end_date_requested_by"
 	ResourceFieldEnumProjectName               ResourceFieldEnum = "project_name"
@@ -17232,6 +17242,8 @@ func (e ResourceFieldEnum) Valid() bool {
 	case ResourceFieldEnumProject:
 		return true
 	case ResourceFieldEnumProjectDescription:
+		return true
+	case ResourceFieldEnumProjectEffectiveEndDate:
 		return true
 	case ResourceFieldEnumProjectEndDate:
 		return true
@@ -22775,6 +22787,9 @@ type BookingResource struct {
 	PlanUuid           *openapi_types.UUID `json:"plan_uuid,omitempty"`
 	Project            *string             `json:"project,omitempty"`
 	ProjectDescription *string             `json:"project_description,omitempty"`
+
+	// ProjectEffectiveEndDate Effective project end date including grace period. After this date, resources will be terminated.
+	ProjectEffectiveEndDate *openapi_types.Date `json:"project_effective_end_date,omitempty"`
 
 	// ProjectEndDate The date is inclusive. Once reached, all project resource will be scheduled for termination.
 	ProjectEndDate            *openapi_types.Date            `json:"project_end_date,omitempty"`
@@ -39012,13 +39027,19 @@ type Project struct {
 	// Description Project description (HTML content will be sanitized)
 	Description *string `json:"description,omitempty"`
 
+	// EffectiveEndDate Effective end date including grace period. After this date, project resources will be terminated.
+	EffectiveEndDate *openapi_types.Date `json:"effective_end_date,omitempty"`
+
 	// EndDate Project end date. Setting this field requires DELETE_PROJECT permission.
 	EndDate            *openapi_types.Date `json:"end_date,omitempty"`
 	EndDateRequestedBy *string             `json:"end_date_requested_by,omitempty"`
 
 	// GracePeriodDays Number of extra days after project end date before resources are terminated. Overrides customer-level setting.
-	GracePeriodDays          *int            `json:"grace_period_days,omitempty"`
-	Image                    *string         `json:"image,omitempty"`
+	GracePeriodDays *int    `json:"grace_period_days,omitempty"`
+	Image           *string `json:"image,omitempty"`
+
+	// IsInGracePeriod True if the project is past its end date but still within the grace period.
+	IsInGracePeriod          *bool           `json:"is_in_grace_period,omitempty"`
 	IsIndustry               *bool           `json:"is_industry,omitempty"`
 	IsRemoved                *bool           `json:"is_removed,omitempty"`
 	Kind                     *KindEnum       `json:"kind,omitempty"`
@@ -42461,6 +42482,9 @@ type Resource struct {
 	PlanUuid           *openapi_types.UUID `json:"plan_uuid,omitempty"`
 	Project            *string             `json:"project,omitempty"`
 	ProjectDescription *string             `json:"project_description,omitempty"`
+
+	// ProjectEffectiveEndDate Effective project end date including grace period. After this date, resources will be terminated.
+	ProjectEffectiveEndDate *openapi_types.Date `json:"project_effective_end_date,omitempty"`
 
 	// ProjectEndDate The date is inclusive. Once reached, all project resource will be scheduled for termination.
 	ProjectEndDate            *openapi_types.Date            `json:"project_end_date,omitempty"`
