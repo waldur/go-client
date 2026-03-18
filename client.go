@@ -5486,6 +5486,9 @@ const (
 	EventMetadataResponseEventGroupsProjectCreationSucceeded                         EventMetadataResponseEventGroups = "project_creation_succeeded"
 	EventMetadataResponseEventGroupsProjectDeletionSucceeded                         EventMetadataResponseEventGroups = "project_deletion_succeeded"
 	EventMetadataResponseEventGroupsProjectDeletionTriggered                         EventMetadataResponseEventGroups = "project_deletion_triggered"
+	EventMetadataResponseEventGroupsProjectEndDateChangeRequestApproved              EventMetadataResponseEventGroups = "project_end_date_change_request_approved"
+	EventMetadataResponseEventGroupsProjectEndDateChangeRequestCreated               EventMetadataResponseEventGroups = "project_end_date_change_request_created"
+	EventMetadataResponseEventGroupsProjectEndDateChangeRequestRejected              EventMetadataResponseEventGroups = "project_end_date_change_request_rejected"
 	EventMetadataResponseEventGroupsProjectPermissionReviewClosed                    EventMetadataResponseEventGroups = "project_permission_review_closed"
 	EventMetadataResponseEventGroupsProjectPermissionReviewCreated                   EventMetadataResponseEventGroups = "project_permission_review_created"
 	EventMetadataResponseEventGroupsProjectUpdateRequestApproved                     EventMetadataResponseEventGroups = "project_update_request_approved"
@@ -5909,6 +5912,12 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 		return true
 	case EventMetadataResponseEventGroupsProjectDeletionTriggered:
 		return true
+	case EventMetadataResponseEventGroupsProjectEndDateChangeRequestApproved:
+		return true
+	case EventMetadataResponseEventGroupsProjectEndDateChangeRequestCreated:
+		return true
+	case EventMetadataResponseEventGroupsProjectEndDateChangeRequestRejected:
+		return true
 	case EventMetadataResponseEventGroupsProjectPermissionReviewClosed:
 		return true
 	case EventMetadataResponseEventGroupsProjectPermissionReviewCreated:
@@ -6308,6 +6317,9 @@ const (
 	EventTypesEnumProjectCreationSucceeded                         EventTypesEnum = "project_creation_succeeded"
 	EventTypesEnumProjectDeletionSucceeded                         EventTypesEnum = "project_deletion_succeeded"
 	EventTypesEnumProjectDeletionTriggered                         EventTypesEnum = "project_deletion_triggered"
+	EventTypesEnumProjectEndDateChangeRequestApproved              EventTypesEnum = "project_end_date_change_request_approved"
+	EventTypesEnumProjectEndDateChangeRequestCreated               EventTypesEnum = "project_end_date_change_request_created"
+	EventTypesEnumProjectEndDateChangeRequestRejected              EventTypesEnum = "project_end_date_change_request_rejected"
 	EventTypesEnumProjectPermissionReviewClosed                    EventTypesEnum = "project_permission_review_closed"
 	EventTypesEnumProjectPermissionReviewCreated                   EventTypesEnum = "project_permission_review_created"
 	EventTypesEnumProjectUpdateRequestApproved                     EventTypesEnum = "project_update_request_approved"
@@ -6730,6 +6742,12 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumProjectDeletionSucceeded:
 		return true
 	case EventTypesEnumProjectDeletionTriggered:
+		return true
+	case EventTypesEnumProjectEndDateChangeRequestApproved:
+		return true
+	case EventTypesEnumProjectEndDateChangeRequestCreated:
+		return true
+	case EventTypesEnumProjectEndDateChangeRequestRejected:
 		return true
 	case EventTypesEnumProjectPermissionReviewClosed:
 		return true
@@ -8603,6 +8621,30 @@ func (e KindEnum) Valid() bool {
 	case KindEnumDefault:
 		return true
 	case KindEnumPublic:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for LLMCHATENABLEDROLESEnum.
+const (
+	All             LLMCHATENABLEDROLESEnum = "all"
+	Disabled        LLMCHATENABLEDROLESEnum = "disabled"
+	Staff           LLMCHATENABLEDROLESEnum = "staff"
+	StaffAndSupport LLMCHATENABLEDROLESEnum = "staff_and_support"
+)
+
+// Valid indicates whether the value is a known member of the LLMCHATENABLEDROLESEnum enum.
+func (e LLMCHATENABLEDROLESEnum) Valid() bool {
+	switch e {
+	case All:
+		return true
+	case Disabled:
+		return true
+	case Staff:
+		return true
+	case StaffAndSupport:
 		return true
 	default:
 		return false
@@ -21549,11 +21591,16 @@ type AssignmentItem struct {
 	DeclineReason *string `json:"decline_reason,omitempty"`
 
 	// HasCoi Whether COI was detected during pre-check.
-	HasCoi       *bool               `json:"has_coi,omitempty"`
-	Proposal     *string             `json:"proposal,omitempty"`
-	ProposalName *string             `json:"proposal_name,omitempty"`
-	ProposalSlug *string             `json:"proposal_slug,omitempty"`
-	ProposalUuid *openapi_types.UUID `json:"proposal_uuid,omitempty"`
+	HasCoi           *bool      `json:"has_coi,omitempty"`
+	OverriddenAt     *time.Time `json:"overridden_at,omitempty"`
+	OverriddenByName *string    `json:"overridden_by_name,omitempty"`
+
+	// OverrideReason Reason for manager override of COI block.
+	OverrideReason *string             `json:"override_reason,omitempty"`
+	Proposal       *string             `json:"proposal,omitempty"`
+	ProposalName   *string             `json:"proposal_name,omitempty"`
+	ProposalSlug   *string             `json:"proposal_slug,omitempty"`
+	ProposalUuid   *openapi_types.UUID `json:"proposal_uuid,omitempty"`
 
 	// ReassignCount Number of times this proposal has been reassigned.
 	ReassignCount *int       `json:"reassign_count,omitempty"`
@@ -23268,11 +23315,16 @@ type CallReviewerPool struct {
 	InvitedEmail *openapi_types.Email `json:"invited_email,omitempty"`
 
 	// InvitedUser Waldur user if email matches existing account
-	InvitedUser     *string    `json:"invited_user,omitempty"`
-	InvitedUserName *string    `json:"invited_user_name,omitempty"`
-	MaxAssignments  *int       `json:"max_assignments,omitempty"`
-	ResponseDate    *time.Time `json:"response_date,omitempty"`
-	Reviewer        *string    `json:"reviewer,omitempty"`
+	InvitedUser      *string    `json:"invited_user,omitempty"`
+	InvitedUserName  *string    `json:"invited_user_name,omitempty"`
+	MaxAssignments   *int       `json:"max_assignments,omitempty"`
+	OverriddenAt     *time.Time `json:"overridden_at,omitempty"`
+	OverriddenByName *string    `json:"overridden_by_name,omitempty"`
+
+	// OverrideReason Reason for manager override of invitation status.
+	OverrideReason *string    `json:"override_reason,omitempty"`
+	ResponseDate   *time.Time `json:"response_date,omitempty"`
+	Reviewer       *string    `json:"reviewer,omitempty"`
 
 	// ReviewerEmail Get email from profile, invited_user, or invited_email.
 	ReviewerEmail *string `json:"reviewer_email,omitempty"`
@@ -24600,6 +24652,7 @@ type ConstanceSettings struct {
 	KEYCLOAKICON                                   *string                                                          `json:"KEYCLOAK_ICON,omitempty"`
 	LANGUAGECHOICES                                *string                                                          `json:"LANGUAGE_CHOICES,omitempty"`
 	LLMCHATENABLED                                 *bool                                                            `json:"LLM_CHAT_ENABLED,omitempty"`
+	LLMCHATENABLEDROLES                            *LLMCHATENABLEDROLESEnum                                         `json:"LLM_CHAT_ENABLED_ROLES,omitempty"`
 	LLMCHATHISTORYLIMIT                            *int                                                             `json:"LLM_CHAT_HISTORY_LIMIT,omitempty"`
 	LLMCHATSESSIONRETENTIONDAYS                    *int                                                             `json:"LLM_CHAT_SESSION_RETENTION_DAYS,omitempty"`
 	LLMCOMPLETIONKWARGS                            *string                                                          `json:"LLM_COMPLETION_KWARGS,omitempty"`
@@ -24902,6 +24955,7 @@ type ConstanceSettingsRequest struct {
 	KEYCLOAKICON                                   *openapi_types.File                                                     `json:"KEYCLOAK_ICON,omitempty"`
 	LANGUAGECHOICES                                *string                                                                 `json:"LANGUAGE_CHOICES,omitempty"`
 	LLMCHATENABLED                                 *bool                                                                   `json:"LLM_CHAT_ENABLED,omitempty"`
+	LLMCHATENABLEDROLES                            *LLMCHATENABLEDROLESEnum                                                `json:"LLM_CHAT_ENABLED_ROLES,omitempty"`
 	LLMCHATHISTORYLIMIT                            *int                                                                    `json:"LLM_CHAT_HISTORY_LIMIT,omitempty"`
 	LLMCHATSESSIONRETENTIONDAYS                    *int                                                                    `json:"LLM_CHAT_SESSION_RETENTION_DAYS,omitempty"`
 	LLMCOMPLETIONKWARGS                            *string                                                                 `json:"LLM_COMPLETION_KWARGS,omitempty"`
@@ -25204,6 +25258,7 @@ type ConstanceSettingsRequestForm struct {
 	KEYCLOAKICON                                   *openapi_types.File                                                         `json:"KEYCLOAK_ICON,omitempty"`
 	LANGUAGECHOICES                                *string                                                                     `json:"LANGUAGE_CHOICES,omitempty"`
 	LLMCHATENABLED                                 *bool                                                                       `json:"LLM_CHAT_ENABLED,omitempty"`
+	LLMCHATENABLEDROLES                            *LLMCHATENABLEDROLESEnum                                                    `json:"LLM_CHAT_ENABLED_ROLES,omitempty"`
 	LLMCHATHISTORYLIMIT                            *int                                                                        `json:"LLM_CHAT_HISTORY_LIMIT,omitempty"`
 	LLMCHATSESSIONRETENTIONDAYS                    *int                                                                        `json:"LLM_CHAT_SESSION_RETENTION_DAYS,omitempty"`
 	LLMCOMPLETIONKWARGS                            *string                                                                     `json:"LLM_COMPLETION_KWARGS,omitempty"`
@@ -25506,6 +25561,7 @@ type ConstanceSettingsRequestMultipart struct {
 	KEYCLOAKICON                                   *openapi_types.File                                                              `json:"KEYCLOAK_ICON,omitempty"`
 	LANGUAGECHOICES                                *string                                                                          `json:"LANGUAGE_CHOICES,omitempty"`
 	LLMCHATENABLED                                 *bool                                                                            `json:"LLM_CHAT_ENABLED,omitempty"`
+	LLMCHATENABLEDROLES                            *LLMCHATENABLEDROLESEnum                                                         `json:"LLM_CHAT_ENABLED_ROLES,omitempty"`
 	LLMCHATHISTORYLIMIT                            *int                                                                             `json:"LLM_CHAT_HISTORY_LIMIT,omitempty"`
 	LLMCHATSESSIONRETENTIONDAYS                    *int                                                                             `json:"LLM_CHAT_SESSION_RETENTION_DAYS,omitempty"`
 	LLMCOMPLETIONKWARGS                            *string                                                                          `json:"LLM_COMPLETION_KWARGS,omitempty"`
@@ -28241,6 +28297,16 @@ type FlavorResponse struct {
 	Vcpus int `json:"vcpus"`
 }
 
+// ForceAcceptPoolRequest defines model for ForceAcceptPoolRequest.
+type ForceAcceptPoolRequest struct {
+	OverrideReason string `json:"override_reason"`
+}
+
+// ForceUnblockRequest defines model for ForceUnblockRequest.
+type ForceUnblockRequest struct {
+	OverrideReason string `json:"override_reason"`
+}
+
 // FreeipaProfile defines model for FreeipaProfile.
 type FreeipaProfile struct {
 	// AgreementDate Indicates when the user has agreed with the policy.
@@ -29699,6 +29765,9 @@ type KeywordSearchModeEnum string
 
 // KindEnum defines model for KindEnum.
 type KindEnum string
+
+// LLMCHATENABLEDROLESEnum defines model for LLMCHATENABLEDROLESEnum.
+type LLMCHATENABLEDROLESEnum string
 
 // LOGINPAGELAYOUTEnum defines model for LOGINPAGELAYOUTEnum.
 type LOGINPAGELAYOUTEnum string
@@ -39226,6 +39295,61 @@ type ProjectDigestPreviewResponse struct {
 	HtmlBody string `json:"html_body"`
 	Subject  string `json:"subject"`
 	TextBody string `json:"text_body"`
+}
+
+// ProjectEndDateChangeRequest defines model for ProjectEndDateChangeRequest.
+type ProjectEndDateChangeRequest struct {
+	Created           *time.Time          `json:"created,omitempty"`
+	CreatedByFullName *string             `json:"created_by_full_name,omitempty"`
+	CreatedByUuid     *openapi_types.UUID `json:"created_by_uuid,omitempty"`
+	CustomerName      *string             `json:"customer_name,omitempty"`
+	CustomerUuid      *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Project           string              `json:"project"`
+	ProjectName       *string             `json:"project_name,omitempty"`
+	ProjectUuid       *openapi_types.UUID `json:"project_uuid,omitempty"`
+
+	// RequestedEndDate The requested new end date for the project
+	RequestedEndDate openapi_types.Date `json:"requested_end_date"`
+
+	// ReviewComment Optional comment provided during review
+	ReviewComment *string `json:"review_comment,omitempty"`
+
+	// ReviewedAt Timestamp when the review was completed
+	ReviewedAt         *time.Time          `json:"reviewed_at,omitempty"`
+	ReviewedByFullName *string             `json:"reviewed_by_full_name,omitempty"`
+	ReviewedByUuid     *openapi_types.UUID `json:"reviewed_by_uuid,omitempty"`
+	State              *string             `json:"state,omitempty"`
+	Url                *string             `json:"url,omitempty"`
+	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ProjectEndDateChangeRequestCreate defines model for ProjectEndDateChangeRequestCreate.
+type ProjectEndDateChangeRequestCreate struct {
+	Project string `json:"project"`
+
+	// RequestedEndDate The requested new end date for the project
+	RequestedEndDate openapi_types.Date  `json:"requested_end_date"`
+	State            *string             `json:"state,omitempty"`
+	Uuid             *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ProjectEndDateChangeRequestCreateRequest defines model for ProjectEndDateChangeRequestCreateRequest.
+type ProjectEndDateChangeRequestCreateRequest struct {
+	Project string `json:"project"`
+
+	// RequestedEndDate The requested new end date for the project
+	RequestedEndDate openapi_types.Date `json:"requested_end_date"`
+}
+
+// ProjectEndDateChangeRequestRequest defines model for ProjectEndDateChangeRequestRequest.
+type ProjectEndDateChangeRequestRequest struct {
+	Project string `json:"project"`
+
+	// RequestedEndDate The requested new end date for the project
+	RequestedEndDate openapi_types.Date `json:"requested_end_date"`
+
+	// ReviewComment Optional comment provided during review
+	ReviewComment *string `json:"review_comment,omitempty"`
 }
 
 // ProjectEstimatedCostPolicy defines model for ProjectEstimatedCostPolicy.
@@ -62961,6 +63085,44 @@ type ProjectCreditsCountParams struct {
 	Query       *string             `form:"query,omitempty" json:"query,omitempty"`
 }
 
+// ProjectEndDateChangeRequestsListParams defines parameters for ProjectEndDateChangeRequestsList.
+type ProjectEndDateChangeRequestsListParams struct {
+	// CreatedByUuid Created by UUID
+	CreatedByUuid *openapi_types.UUID `form:"created_by_uuid,omitempty" json:"created_by_uuid,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID                    `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	State       *[]RemoteProjectUpdateRequestStateEnum `form:"state,omitempty" json:"state,omitempty"`
+}
+
+// ProjectEndDateChangeRequestsCountParams defines parameters for ProjectEndDateChangeRequestsCount.
+type ProjectEndDateChangeRequestsCountParams struct {
+	// CreatedByUuid Created by UUID
+	CreatedByUuid *openapi_types.UUID `form:"created_by_uuid,omitempty" json:"created_by_uuid,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID                    `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	State       *[]RemoteProjectUpdateRequestStateEnum `form:"state,omitempty" json:"state,omitempty"`
+}
+
 // ProjectPermissionsReviewsListParams defines parameters for ProjectPermissionsReviewsList.
 type ProjectPermissionsReviewsListParams struct {
 	Closed *time.Time `form:"closed,omitempty" json:"closed,omitempty"`
@@ -68142,6 +68304,9 @@ type AssignmentItemsUpdateJSONRequestBody = AssignmentItemRequest
 // AssignmentItemsDeclineJSONRequestBody defines body for AssignmentItemsDecline for application/json ContentType.
 type AssignmentItemsDeclineJSONRequestBody = AssignmentItemDeclineRequest
 
+// AssignmentItemsForceUnblockJSONRequestBody defines body for AssignmentItemsForceUnblock for application/json ContentType.
+type AssignmentItemsForceUnblockJSONRequestBody = ForceUnblockRequest
+
 // AssignmentItemsReassignJSONRequestBody defines body for AssignmentItemsReassign for application/json ContentType.
 type AssignmentItemsReassignJSONRequestBody = ReassignItemRequest
 
@@ -68330,6 +68495,9 @@ type CallReviewerPoolsAcceptJSONRequestBody = CallReviewerPoolsAcceptJSONBody
 
 // CallReviewerPoolsDeclineJSONRequestBody defines body for CallReviewerPoolsDecline for application/json ContentType.
 type CallReviewerPoolsDeclineJSONRequestBody = InvitationDeclineRequest
+
+// CallReviewerPoolsForceAcceptJSONRequestBody defines body for CallReviewerPoolsForceAccept for application/json ContentType.
+type CallReviewerPoolsForceAcceptJSONRequestBody = ForceAcceptPoolRequest
 
 // ChatQuotaSetQuotaJSONRequestBody defines body for ChatQuotaSetQuota for application/json ContentType.
 type ChatQuotaSetQuotaJSONRequestBody = SetTokenQuotaRequest
@@ -69980,6 +70148,18 @@ type ProjectCreditsPartialUpdateJSONRequestBody = PatchedProjectCreditRequest
 
 // ProjectCreditsUpdateJSONRequestBody defines body for ProjectCreditsUpdate for application/json ContentType.
 type ProjectCreditsUpdateJSONRequestBody = ProjectCreditRequest
+
+// ProjectEndDateChangeRequestsCreateJSONRequestBody defines body for ProjectEndDateChangeRequestsCreate for application/json ContentType.
+type ProjectEndDateChangeRequestsCreateJSONRequestBody = ProjectEndDateChangeRequestCreateRequest
+
+// ProjectEndDateChangeRequestsApproveJSONRequestBody defines body for ProjectEndDateChangeRequestsApprove for application/json ContentType.
+type ProjectEndDateChangeRequestsApproveJSONRequestBody = ReviewCommentRequest
+
+// ProjectEndDateChangeRequestsCancelJSONRequestBody defines body for ProjectEndDateChangeRequestsCancel for application/json ContentType.
+type ProjectEndDateChangeRequestsCancelJSONRequestBody = ProjectEndDateChangeRequestRequest
+
+// ProjectEndDateChangeRequestsRejectJSONRequestBody defines body for ProjectEndDateChangeRequestsReject for application/json ContentType.
+type ProjectEndDateChangeRequestsRejectJSONRequestBody = ReviewCommentRequest
 
 // ProjectsCreateJSONRequestBody defines body for ProjectsCreate for application/json ContentType.
 type ProjectsCreateJSONRequestBody = ProjectRequest
@@ -81142,6 +81322,11 @@ type ClientInterface interface {
 
 	AssignmentItemsDecline(ctx context.Context, uuid openapi_types.UUID, body AssignmentItemsDeclineJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// AssignmentItemsForceUnblockWithBody request with any body
+	AssignmentItemsForceUnblockWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AssignmentItemsForceUnblock(ctx context.Context, uuid openapi_types.UUID, body AssignmentItemsForceUnblockJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// AssignmentItemsReassignWithBody request with any body
 	AssignmentItemsReassignWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -81822,6 +82007,11 @@ type ClientInterface interface {
 	CallReviewerPoolsDeclineWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	CallReviewerPoolsDecline(ctx context.Context, uuid openapi_types.UUID, body CallReviewerPoolsDeclineJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CallReviewerPoolsForceAcceptWithBody request with any body
+	CallReviewerPoolsForceAcceptWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	CallReviewerPoolsForceAccept(ctx context.Context, uuid openapi_types.UUID, body CallReviewerPoolsForceAcceptJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CallRoundsList request
 	CallRoundsList(ctx context.Context, params *CallRoundsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -83278,6 +83468,9 @@ type ClientInterface interface {
 
 	// MarketplaceCourseAccountsRetrieve request
 	MarketplaceCourseAccountsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceCourseAccountsRetry request
+	MarketplaceCourseAccountsRetry(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceCustomerComponentUsagePoliciesList request
 	MarketplaceCustomerComponentUsagePoliciesList(ctx context.Context, params *MarketplaceCustomerComponentUsagePoliciesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -87162,6 +87355,35 @@ type ClientInterface interface {
 	ProjectCreditsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	ProjectCreditsUpdate(ctx context.Context, uuid openapi_types.UUID, body ProjectCreditsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProjectEndDateChangeRequestsList request
+	ProjectEndDateChangeRequestsList(ctx context.Context, params *ProjectEndDateChangeRequestsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProjectEndDateChangeRequestsCount request
+	ProjectEndDateChangeRequestsCount(ctx context.Context, params *ProjectEndDateChangeRequestsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProjectEndDateChangeRequestsCreateWithBody request with any body
+	ProjectEndDateChangeRequestsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ProjectEndDateChangeRequestsCreate(ctx context.Context, body ProjectEndDateChangeRequestsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProjectEndDateChangeRequestsRetrieve request
+	ProjectEndDateChangeRequestsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProjectEndDateChangeRequestsApproveWithBody request with any body
+	ProjectEndDateChangeRequestsApproveWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ProjectEndDateChangeRequestsApprove(ctx context.Context, uuid openapi_types.UUID, body ProjectEndDateChangeRequestsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProjectEndDateChangeRequestsCancelWithBody request with any body
+	ProjectEndDateChangeRequestsCancelWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ProjectEndDateChangeRequestsCancel(ctx context.Context, uuid openapi_types.UUID, body ProjectEndDateChangeRequestsCancelJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProjectEndDateChangeRequestsRejectWithBody request with any body
+	ProjectEndDateChangeRequestsRejectWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ProjectEndDateChangeRequestsReject(ctx context.Context, uuid openapi_types.UUID, body ProjectEndDateChangeRequestsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProjectPermissionsReviewsList request
 	ProjectPermissionsReviewsList(ctx context.Context, params *ProjectPermissionsReviewsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -91394,6 +91616,30 @@ func (c *Client) AssignmentItemsDecline(ctx context.Context, uuid openapi_types.
 	return c.Client.Do(req)
 }
 
+func (c *Client) AssignmentItemsForceUnblockWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAssignmentItemsForceUnblockRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AssignmentItemsForceUnblock(ctx context.Context, uuid openapi_types.UUID, body AssignmentItemsForceUnblockJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAssignmentItemsForceUnblockRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) AssignmentItemsReassignWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewAssignmentItemsReassignRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -94348,6 +94594,30 @@ func (c *Client) CallReviewerPoolsDeclineWithBody(ctx context.Context, uuid open
 
 func (c *Client) CallReviewerPoolsDecline(ctx context.Context, uuid openapi_types.UUID, body CallReviewerPoolsDeclineJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCallReviewerPoolsDeclineRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CallReviewerPoolsForceAcceptWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCallReviewerPoolsForceAcceptRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CallReviewerPoolsForceAccept(ctx context.Context, uuid openapi_types.UUID, body CallReviewerPoolsForceAcceptJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCallReviewerPoolsForceAcceptRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -100720,6 +100990,18 @@ func (c *Client) MarketplaceCourseAccountsDestroy(ctx context.Context, uuid open
 
 func (c *Client) MarketplaceCourseAccountsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceCourseAccountsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCourseAccountsRetry(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCourseAccountsRetryRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -117772,6 +118054,138 @@ func (c *Client) ProjectCreditsUpdateWithBody(ctx context.Context, uuid openapi_
 
 func (c *Client) ProjectCreditsUpdate(ctx context.Context, uuid openapi_types.UUID, body ProjectCreditsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProjectCreditsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProjectEndDateChangeRequestsList(ctx context.Context, params *ProjectEndDateChangeRequestsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectEndDateChangeRequestsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProjectEndDateChangeRequestsCount(ctx context.Context, params *ProjectEndDateChangeRequestsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectEndDateChangeRequestsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProjectEndDateChangeRequestsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectEndDateChangeRequestsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProjectEndDateChangeRequestsCreate(ctx context.Context, body ProjectEndDateChangeRequestsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectEndDateChangeRequestsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProjectEndDateChangeRequestsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectEndDateChangeRequestsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProjectEndDateChangeRequestsApproveWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectEndDateChangeRequestsApproveRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProjectEndDateChangeRequestsApprove(ctx context.Context, uuid openapi_types.UUID, body ProjectEndDateChangeRequestsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectEndDateChangeRequestsApproveRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProjectEndDateChangeRequestsCancelWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectEndDateChangeRequestsCancelRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProjectEndDateChangeRequestsCancel(ctx context.Context, uuid openapi_types.UUID, body ProjectEndDateChangeRequestsCancelJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectEndDateChangeRequestsCancelRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProjectEndDateChangeRequestsRejectWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectEndDateChangeRequestsRejectRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProjectEndDateChangeRequestsReject(ctx context.Context, uuid openapi_types.UUID, body ProjectEndDateChangeRequestsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectEndDateChangeRequestsRejectRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -135653,6 +136067,53 @@ func NewAssignmentItemsDeclineRequestWithBody(server string, uuid openapi_types.
 	return req, nil
 }
 
+// NewAssignmentItemsForceUnblockRequest calls the generic AssignmentItemsForceUnblock builder with application/json body
+func NewAssignmentItemsForceUnblockRequest(server string, uuid openapi_types.UUID, body AssignmentItemsForceUnblockJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAssignmentItemsForceUnblockRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewAssignmentItemsForceUnblockRequestWithBody generates requests for AssignmentItemsForceUnblock with any type of body
+func NewAssignmentItemsForceUnblockRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/assignment-items/%s/force-unblock/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewAssignmentItemsReassignRequest calls the generic AssignmentItemsReassign builder with application/json body
 func NewAssignmentItemsReassignRequest(server string, uuid openapi_types.UUID, body AssignmentItemsReassignJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -151301,6 +151762,53 @@ func NewCallReviewerPoolsDeclineRequestWithBody(server string, uuid openapi_type
 	}
 
 	operationPath := fmt.Sprintf("/api/call-reviewer-pools/%s/decline/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewCallReviewerPoolsForceAcceptRequest calls the generic CallReviewerPoolsForceAccept builder with application/json body
+func NewCallReviewerPoolsForceAcceptRequest(server string, uuid openapi_types.UUID, body CallReviewerPoolsForceAcceptJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCallReviewerPoolsForceAcceptRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewCallReviewerPoolsForceAcceptRequestWithBody generates requests for CallReviewerPoolsForceAccept with any type of body
+func NewCallReviewerPoolsForceAcceptRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/call-reviewer-pools/%s/force-accept/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -183426,6 +183934,40 @@ func NewMarketplaceCourseAccountsRetrieveRequest(server string, uuid openapi_typ
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceCourseAccountsRetryRequest generates requests for MarketplaceCourseAccountsRetry
+func NewMarketplaceCourseAccountsRetryRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-course-accounts/%s/retry/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -277405,6 +277947,479 @@ func NewProjectCreditsUpdateRequestWithBody(server string, uuid openapi_types.UU
 	return req, nil
 }
 
+// NewProjectEndDateChangeRequestsListRequest generates requests for ProjectEndDateChangeRequestsList
+func NewProjectEndDateChangeRequestsListRequest(server string, params *ProjectEndDateChangeRequestsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/project-end-date-change-requests/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.CreatedByUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_by_uuid", *params.CreatedByUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProjectEndDateChangeRequestsCountRequest generates requests for ProjectEndDateChangeRequestsCount
+func NewProjectEndDateChangeRequestsCountRequest(server string, params *ProjectEndDateChangeRequestsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/project-end-date-change-requests/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.CreatedByUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_by_uuid", *params.CreatedByUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProjectEndDateChangeRequestsCreateRequest calls the generic ProjectEndDateChangeRequestsCreate builder with application/json body
+func NewProjectEndDateChangeRequestsCreateRequest(server string, body ProjectEndDateChangeRequestsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewProjectEndDateChangeRequestsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewProjectEndDateChangeRequestsCreateRequestWithBody generates requests for ProjectEndDateChangeRequestsCreate with any type of body
+func NewProjectEndDateChangeRequestsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/project-end-date-change-requests/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewProjectEndDateChangeRequestsRetrieveRequest generates requests for ProjectEndDateChangeRequestsRetrieve
+func NewProjectEndDateChangeRequestsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/project-end-date-change-requests/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProjectEndDateChangeRequestsApproveRequest calls the generic ProjectEndDateChangeRequestsApprove builder with application/json body
+func NewProjectEndDateChangeRequestsApproveRequest(server string, uuid openapi_types.UUID, body ProjectEndDateChangeRequestsApproveJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewProjectEndDateChangeRequestsApproveRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewProjectEndDateChangeRequestsApproveRequestWithBody generates requests for ProjectEndDateChangeRequestsApprove with any type of body
+func NewProjectEndDateChangeRequestsApproveRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/project-end-date-change-requests/%s/approve/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewProjectEndDateChangeRequestsCancelRequest calls the generic ProjectEndDateChangeRequestsCancel builder with application/json body
+func NewProjectEndDateChangeRequestsCancelRequest(server string, uuid openapi_types.UUID, body ProjectEndDateChangeRequestsCancelJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewProjectEndDateChangeRequestsCancelRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewProjectEndDateChangeRequestsCancelRequestWithBody generates requests for ProjectEndDateChangeRequestsCancel with any type of body
+func NewProjectEndDateChangeRequestsCancelRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/project-end-date-change-requests/%s/cancel/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewProjectEndDateChangeRequestsRejectRequest calls the generic ProjectEndDateChangeRequestsReject builder with application/json body
+func NewProjectEndDateChangeRequestsRejectRequest(server string, uuid openapi_types.UUID, body ProjectEndDateChangeRequestsRejectJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewProjectEndDateChangeRequestsRejectRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewProjectEndDateChangeRequestsRejectRequestWithBody generates requests for ProjectEndDateChangeRequestsReject with any type of body
+func NewProjectEndDateChangeRequestsRejectRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/project-end-date-change-requests/%s/reject/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewProjectPermissionsReviewsListRequest generates requests for ProjectPermissionsReviewsList
 func NewProjectPermissionsReviewsListRequest(server string, params *ProjectPermissionsReviewsListParams) (*http.Request, error) {
 	var err error
@@ -330539,6 +331554,11 @@ type ClientWithResponsesInterface interface {
 
 	AssignmentItemsDeclineWithResponse(ctx context.Context, uuid openapi_types.UUID, body AssignmentItemsDeclineJSONRequestBody, reqEditors ...RequestEditorFn) (*AssignmentItemsDeclineResponse, error)
 
+	// AssignmentItemsForceUnblockWithBodyWithResponse request with any body
+	AssignmentItemsForceUnblockWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AssignmentItemsForceUnblockResponse, error)
+
+	AssignmentItemsForceUnblockWithResponse(ctx context.Context, uuid openapi_types.UUID, body AssignmentItemsForceUnblockJSONRequestBody, reqEditors ...RequestEditorFn) (*AssignmentItemsForceUnblockResponse, error)
+
 	// AssignmentItemsReassignWithBodyWithResponse request with any body
 	AssignmentItemsReassignWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AssignmentItemsReassignResponse, error)
 
@@ -331219,6 +332239,11 @@ type ClientWithResponsesInterface interface {
 	CallReviewerPoolsDeclineWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CallReviewerPoolsDeclineResponse, error)
 
 	CallReviewerPoolsDeclineWithResponse(ctx context.Context, uuid openapi_types.UUID, body CallReviewerPoolsDeclineJSONRequestBody, reqEditors ...RequestEditorFn) (*CallReviewerPoolsDeclineResponse, error)
+
+	// CallReviewerPoolsForceAcceptWithBodyWithResponse request with any body
+	CallReviewerPoolsForceAcceptWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CallReviewerPoolsForceAcceptResponse, error)
+
+	CallReviewerPoolsForceAcceptWithResponse(ctx context.Context, uuid openapi_types.UUID, body CallReviewerPoolsForceAcceptJSONRequestBody, reqEditors ...RequestEditorFn) (*CallReviewerPoolsForceAcceptResponse, error)
 
 	// CallRoundsListWithResponse request
 	CallRoundsListWithResponse(ctx context.Context, params *CallRoundsListParams, reqEditors ...RequestEditorFn) (*CallRoundsListResponse, error)
@@ -332675,6 +333700,9 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceCourseAccountsRetrieveWithResponse request
 	MarketplaceCourseAccountsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsRetrieveResponse, error)
+
+	// MarketplaceCourseAccountsRetryWithResponse request
+	MarketplaceCourseAccountsRetryWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsRetryResponse, error)
 
 	// MarketplaceCustomerComponentUsagePoliciesListWithResponse request
 	MarketplaceCustomerComponentUsagePoliciesListWithResponse(ctx context.Context, params *MarketplaceCustomerComponentUsagePoliciesListParams, reqEditors ...RequestEditorFn) (*MarketplaceCustomerComponentUsagePoliciesListResponse, error)
@@ -336559,6 +337587,35 @@ type ClientWithResponsesInterface interface {
 	ProjectCreditsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectCreditsUpdateResponse, error)
 
 	ProjectCreditsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectCreditsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectCreditsUpdateResponse, error)
+
+	// ProjectEndDateChangeRequestsListWithResponse request
+	ProjectEndDateChangeRequestsListWithResponse(ctx context.Context, params *ProjectEndDateChangeRequestsListParams, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsListResponse, error)
+
+	// ProjectEndDateChangeRequestsCountWithResponse request
+	ProjectEndDateChangeRequestsCountWithResponse(ctx context.Context, params *ProjectEndDateChangeRequestsCountParams, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsCountResponse, error)
+
+	// ProjectEndDateChangeRequestsCreateWithBodyWithResponse request with any body
+	ProjectEndDateChangeRequestsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsCreateResponse, error)
+
+	ProjectEndDateChangeRequestsCreateWithResponse(ctx context.Context, body ProjectEndDateChangeRequestsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsCreateResponse, error)
+
+	// ProjectEndDateChangeRequestsRetrieveWithResponse request
+	ProjectEndDateChangeRequestsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsRetrieveResponse, error)
+
+	// ProjectEndDateChangeRequestsApproveWithBodyWithResponse request with any body
+	ProjectEndDateChangeRequestsApproveWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsApproveResponse, error)
+
+	ProjectEndDateChangeRequestsApproveWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectEndDateChangeRequestsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsApproveResponse, error)
+
+	// ProjectEndDateChangeRequestsCancelWithBodyWithResponse request with any body
+	ProjectEndDateChangeRequestsCancelWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsCancelResponse, error)
+
+	ProjectEndDateChangeRequestsCancelWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectEndDateChangeRequestsCancelJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsCancelResponse, error)
+
+	// ProjectEndDateChangeRequestsRejectWithBodyWithResponse request with any body
+	ProjectEndDateChangeRequestsRejectWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsRejectResponse, error)
+
+	ProjectEndDateChangeRequestsRejectWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectEndDateChangeRequestsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsRejectResponse, error)
 
 	// ProjectPermissionsReviewsListWithResponse request
 	ProjectPermissionsReviewsListWithResponse(ctx context.Context, params *ProjectPermissionsReviewsListParams, reqEditors ...RequestEditorFn) (*ProjectPermissionsReviewsListResponse, error)
@@ -341283,6 +342340,28 @@ func (r AssignmentItemsDeclineResponse) StatusCode() int {
 	return 0
 }
 
+type AssignmentItemsForceUnblockResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AssignmentItem
+}
+
+// Status returns HTTPResponse.Status
+func (r AssignmentItemsForceUnblockResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AssignmentItemsForceUnblockResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type AssignmentItemsReassignResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -345343,6 +346422,28 @@ func (r CallReviewerPoolsDeclineResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r CallReviewerPoolsDeclineResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CallReviewerPoolsForceAcceptResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CallReviewerPool
+}
+
+// Status returns HTTPResponse.Status
+func (r CallReviewerPoolsForceAcceptResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CallReviewerPoolsForceAcceptResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -353907,6 +355008,28 @@ func (r MarketplaceCourseAccountsRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceCourseAccountsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceCourseAccountsRetryResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON202      *CourseAccount
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCourseAccountsRetryResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCourseAccountsRetryResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -376557,6 +377680,156 @@ func (r ProjectCreditsUpdateResponse) StatusCode() int {
 	return 0
 }
 
+type ProjectEndDateChangeRequestsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ProjectEndDateChangeRequest
+}
+
+// Status returns HTTPResponse.Status
+func (r ProjectEndDateChangeRequestsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProjectEndDateChangeRequestsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ProjectEndDateChangeRequestsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ProjectEndDateChangeRequestsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProjectEndDateChangeRequestsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ProjectEndDateChangeRequestsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *ProjectEndDateChangeRequestCreate
+}
+
+// Status returns HTTPResponse.Status
+func (r ProjectEndDateChangeRequestsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProjectEndDateChangeRequestsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ProjectEndDateChangeRequestsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ProjectEndDateChangeRequest
+}
+
+// Status returns HTTPResponse.Status
+func (r ProjectEndDateChangeRequestsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProjectEndDateChangeRequestsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ProjectEndDateChangeRequestsApproveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ProjectEndDateChangeRequestsApproveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProjectEndDateChangeRequestsApproveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ProjectEndDateChangeRequestsCancelResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ProjectEndDateChangeRequestsCancelResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProjectEndDateChangeRequestsCancelResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ProjectEndDateChangeRequestsRejectResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ProjectEndDateChangeRequestsRejectResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProjectEndDateChangeRequestsRejectResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ProjectPermissionsReviewsListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -391803,6 +393076,23 @@ func (c *ClientWithResponses) AssignmentItemsDeclineWithResponse(ctx context.Con
 	return ParseAssignmentItemsDeclineResponse(rsp)
 }
 
+// AssignmentItemsForceUnblockWithBodyWithResponse request with arbitrary body returning *AssignmentItemsForceUnblockResponse
+func (c *ClientWithResponses) AssignmentItemsForceUnblockWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AssignmentItemsForceUnblockResponse, error) {
+	rsp, err := c.AssignmentItemsForceUnblockWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAssignmentItemsForceUnblockResponse(rsp)
+}
+
+func (c *ClientWithResponses) AssignmentItemsForceUnblockWithResponse(ctx context.Context, uuid openapi_types.UUID, body AssignmentItemsForceUnblockJSONRequestBody, reqEditors ...RequestEditorFn) (*AssignmentItemsForceUnblockResponse, error) {
+	rsp, err := c.AssignmentItemsForceUnblock(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAssignmentItemsForceUnblockResponse(rsp)
+}
+
 // AssignmentItemsReassignWithBodyWithResponse request with arbitrary body returning *AssignmentItemsReassignResponse
 func (c *ClientWithResponses) AssignmentItemsReassignWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AssignmentItemsReassignResponse, error) {
 	rsp, err := c.AssignmentItemsReassignWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -393964,6 +395254,23 @@ func (c *ClientWithResponses) CallReviewerPoolsDeclineWithResponse(ctx context.C
 		return nil, err
 	}
 	return ParseCallReviewerPoolsDeclineResponse(rsp)
+}
+
+// CallReviewerPoolsForceAcceptWithBodyWithResponse request with arbitrary body returning *CallReviewerPoolsForceAcceptResponse
+func (c *ClientWithResponses) CallReviewerPoolsForceAcceptWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CallReviewerPoolsForceAcceptResponse, error) {
+	rsp, err := c.CallReviewerPoolsForceAcceptWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCallReviewerPoolsForceAcceptResponse(rsp)
+}
+
+func (c *ClientWithResponses) CallReviewerPoolsForceAcceptWithResponse(ctx context.Context, uuid openapi_types.UUID, body CallReviewerPoolsForceAcceptJSONRequestBody, reqEditors ...RequestEditorFn) (*CallReviewerPoolsForceAcceptResponse, error) {
+	rsp, err := c.CallReviewerPoolsForceAccept(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCallReviewerPoolsForceAcceptResponse(rsp)
 }
 
 // CallRoundsListWithResponse request returning *CallRoundsListResponse
@@ -398606,6 +399913,15 @@ func (c *ClientWithResponses) MarketplaceCourseAccountsRetrieveWithResponse(ctx 
 		return nil, err
 	}
 	return ParseMarketplaceCourseAccountsRetrieveResponse(rsp)
+}
+
+// MarketplaceCourseAccountsRetryWithResponse request returning *MarketplaceCourseAccountsRetryResponse
+func (c *ClientWithResponses) MarketplaceCourseAccountsRetryWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsRetryResponse, error) {
+	rsp, err := c.MarketplaceCourseAccountsRetry(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCourseAccountsRetryResponse(rsp)
 }
 
 // MarketplaceCustomerComponentUsagePoliciesListWithResponse request returning *MarketplaceCustomerComponentUsagePoliciesListResponse
@@ -411018,6 +412334,101 @@ func (c *ClientWithResponses) ProjectCreditsUpdateWithResponse(ctx context.Conte
 	return ParseProjectCreditsUpdateResponse(rsp)
 }
 
+// ProjectEndDateChangeRequestsListWithResponse request returning *ProjectEndDateChangeRequestsListResponse
+func (c *ClientWithResponses) ProjectEndDateChangeRequestsListWithResponse(ctx context.Context, params *ProjectEndDateChangeRequestsListParams, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsListResponse, error) {
+	rsp, err := c.ProjectEndDateChangeRequestsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectEndDateChangeRequestsListResponse(rsp)
+}
+
+// ProjectEndDateChangeRequestsCountWithResponse request returning *ProjectEndDateChangeRequestsCountResponse
+func (c *ClientWithResponses) ProjectEndDateChangeRequestsCountWithResponse(ctx context.Context, params *ProjectEndDateChangeRequestsCountParams, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsCountResponse, error) {
+	rsp, err := c.ProjectEndDateChangeRequestsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectEndDateChangeRequestsCountResponse(rsp)
+}
+
+// ProjectEndDateChangeRequestsCreateWithBodyWithResponse request with arbitrary body returning *ProjectEndDateChangeRequestsCreateResponse
+func (c *ClientWithResponses) ProjectEndDateChangeRequestsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsCreateResponse, error) {
+	rsp, err := c.ProjectEndDateChangeRequestsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectEndDateChangeRequestsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ProjectEndDateChangeRequestsCreateWithResponse(ctx context.Context, body ProjectEndDateChangeRequestsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsCreateResponse, error) {
+	rsp, err := c.ProjectEndDateChangeRequestsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectEndDateChangeRequestsCreateResponse(rsp)
+}
+
+// ProjectEndDateChangeRequestsRetrieveWithResponse request returning *ProjectEndDateChangeRequestsRetrieveResponse
+func (c *ClientWithResponses) ProjectEndDateChangeRequestsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsRetrieveResponse, error) {
+	rsp, err := c.ProjectEndDateChangeRequestsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectEndDateChangeRequestsRetrieveResponse(rsp)
+}
+
+// ProjectEndDateChangeRequestsApproveWithBodyWithResponse request with arbitrary body returning *ProjectEndDateChangeRequestsApproveResponse
+func (c *ClientWithResponses) ProjectEndDateChangeRequestsApproveWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsApproveResponse, error) {
+	rsp, err := c.ProjectEndDateChangeRequestsApproveWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectEndDateChangeRequestsApproveResponse(rsp)
+}
+
+func (c *ClientWithResponses) ProjectEndDateChangeRequestsApproveWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectEndDateChangeRequestsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsApproveResponse, error) {
+	rsp, err := c.ProjectEndDateChangeRequestsApprove(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectEndDateChangeRequestsApproveResponse(rsp)
+}
+
+// ProjectEndDateChangeRequestsCancelWithBodyWithResponse request with arbitrary body returning *ProjectEndDateChangeRequestsCancelResponse
+func (c *ClientWithResponses) ProjectEndDateChangeRequestsCancelWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsCancelResponse, error) {
+	rsp, err := c.ProjectEndDateChangeRequestsCancelWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectEndDateChangeRequestsCancelResponse(rsp)
+}
+
+func (c *ClientWithResponses) ProjectEndDateChangeRequestsCancelWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectEndDateChangeRequestsCancelJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsCancelResponse, error) {
+	rsp, err := c.ProjectEndDateChangeRequestsCancel(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectEndDateChangeRequestsCancelResponse(rsp)
+}
+
+// ProjectEndDateChangeRequestsRejectWithBodyWithResponse request with arbitrary body returning *ProjectEndDateChangeRequestsRejectResponse
+func (c *ClientWithResponses) ProjectEndDateChangeRequestsRejectWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsRejectResponse, error) {
+	rsp, err := c.ProjectEndDateChangeRequestsRejectWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectEndDateChangeRequestsRejectResponse(rsp)
+}
+
+func (c *ClientWithResponses) ProjectEndDateChangeRequestsRejectWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectEndDateChangeRequestsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsRejectResponse, error) {
+	rsp, err := c.ProjectEndDateChangeRequestsReject(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectEndDateChangeRequestsRejectResponse(rsp)
+}
+
 // ProjectPermissionsReviewsListWithResponse request returning *ProjectPermissionsReviewsListResponse
 func (c *ClientWithResponses) ProjectPermissionsReviewsListWithResponse(ctx context.Context, params *ProjectPermissionsReviewsListParams, reqEditors ...RequestEditorFn) (*ProjectPermissionsReviewsListResponse, error) {
 	rsp, err := c.ProjectPermissionsReviewsList(ctx, params, reqEditors...)
@@ -421030,6 +422441,32 @@ func ParseAssignmentItemsDeclineResponse(rsp *http.Response) (*AssignmentItemsDe
 	return response, nil
 }
 
+// ParseAssignmentItemsForceUnblockResponse parses an HTTP response from a AssignmentItemsForceUnblockWithResponse call
+func ParseAssignmentItemsForceUnblockResponse(rsp *http.Response) (*AssignmentItemsForceUnblockResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AssignmentItemsForceUnblockResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AssignmentItem
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseAssignmentItemsReassignResponse parses an HTTP response from a AssignmentItemsReassignWithResponse call
 func ParseAssignmentItemsReassignResponse(rsp *http.Response) (*AssignmentItemsReassignResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -425327,6 +426764,32 @@ func ParseCallReviewerPoolsDeclineResponse(rsp *http.Response) (*CallReviewerPoo
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest InvitationDeclineResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCallReviewerPoolsForceAcceptResponse parses an HTTP response from a CallReviewerPoolsForceAcceptWithResponse call
+func ParseCallReviewerPoolsForceAcceptResponse(rsp *http.Response) (*CallReviewerPoolsForceAcceptResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CallReviewerPoolsForceAcceptResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CallReviewerPool
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -434451,6 +435914,32 @@ func ParseMarketplaceCourseAccountsRetrieveResponse(rsp *http.Response) (*Market
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceCourseAccountsRetryResponse parses an HTTP response from a MarketplaceCourseAccountsRetryWithResponse call
+func ParseMarketplaceCourseAccountsRetryResponse(rsp *http.Response) (*MarketplaceCourseAccountsRetryResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCourseAccountsRetryResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest CourseAccount
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
 
 	}
 
@@ -458339,6 +459828,148 @@ func ParseProjectCreditsUpdateResponse(rsp *http.Response) (*ProjectCreditsUpdat
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseProjectEndDateChangeRequestsListResponse parses an HTTP response from a ProjectEndDateChangeRequestsListWithResponse call
+func ParseProjectEndDateChangeRequestsListResponse(rsp *http.Response) (*ProjectEndDateChangeRequestsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProjectEndDateChangeRequestsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ProjectEndDateChangeRequest
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProjectEndDateChangeRequestsCountResponse parses an HTTP response from a ProjectEndDateChangeRequestsCountWithResponse call
+func ParseProjectEndDateChangeRequestsCountResponse(rsp *http.Response) (*ProjectEndDateChangeRequestsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProjectEndDateChangeRequestsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseProjectEndDateChangeRequestsCreateResponse parses an HTTP response from a ProjectEndDateChangeRequestsCreateWithResponse call
+func ParseProjectEndDateChangeRequestsCreateResponse(rsp *http.Response) (*ProjectEndDateChangeRequestsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProjectEndDateChangeRequestsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest ProjectEndDateChangeRequestCreate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProjectEndDateChangeRequestsRetrieveResponse parses an HTTP response from a ProjectEndDateChangeRequestsRetrieveWithResponse call
+func ParseProjectEndDateChangeRequestsRetrieveResponse(rsp *http.Response) (*ProjectEndDateChangeRequestsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProjectEndDateChangeRequestsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProjectEndDateChangeRequest
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProjectEndDateChangeRequestsApproveResponse parses an HTTP response from a ProjectEndDateChangeRequestsApproveWithResponse call
+func ParseProjectEndDateChangeRequestsApproveResponse(rsp *http.Response) (*ProjectEndDateChangeRequestsApproveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProjectEndDateChangeRequestsApproveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseProjectEndDateChangeRequestsCancelResponse parses an HTTP response from a ProjectEndDateChangeRequestsCancelWithResponse call
+func ParseProjectEndDateChangeRequestsCancelResponse(rsp *http.Response) (*ProjectEndDateChangeRequestsCancelResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProjectEndDateChangeRequestsCancelResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseProjectEndDateChangeRequestsRejectResponse parses an HTTP response from a ProjectEndDateChangeRequestsRejectWithResponse call
+func ParseProjectEndDateChangeRequestsRejectResponse(rsp *http.Response) (*ProjectEndDateChangeRequestsRejectResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProjectEndDateChangeRequestsRejectResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
