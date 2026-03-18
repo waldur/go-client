@@ -23,6 +23,30 @@ const (
 	WaldurOIDCAuthScopes = "waldurOIDCAuth.Scopes"
 )
 
+// Defines values for AIASSISTANTENABLEDROLESEnum.
+const (
+	AIASSISTANTENABLEDROLESEnumAll             AIASSISTANTENABLEDROLESEnum = "all"
+	AIASSISTANTENABLEDROLESEnumDisabled        AIASSISTANTENABLEDROLESEnum = "disabled"
+	AIASSISTANTENABLEDROLESEnumStaff           AIASSISTANTENABLEDROLESEnum = "staff"
+	AIASSISTANTENABLEDROLESEnumStaffAndSupport AIASSISTANTENABLEDROLESEnum = "staff_and_support"
+)
+
+// Valid indicates whether the value is a known member of the AIASSISTANTENABLEDROLESEnum enum.
+func (e AIASSISTANTENABLEDROLESEnum) Valid() bool {
+	switch e {
+	case AIASSISTANTENABLEDROLESEnumAll:
+		return true
+	case AIASSISTANTENABLEDROLESEnumDisabled:
+		return true
+	case AIASSISTANTENABLEDROLESEnumStaff:
+		return true
+	case AIASSISTANTENABLEDROLESEnumStaffAndSupport:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for AccessTypeEnum.
 const (
 	AccessTypeEnumStaff           AccessTypeEnum = "staff"
@@ -8621,30 +8645,6 @@ func (e KindEnum) Valid() bool {
 	case KindEnumDefault:
 		return true
 	case KindEnumPublic:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for LLMCHATENABLEDROLESEnum.
-const (
-	All             LLMCHATENABLEDROLESEnum = "all"
-	Disabled        LLMCHATENABLEDROLESEnum = "disabled"
-	Staff           LLMCHATENABLEDROLESEnum = "staff"
-	StaffAndSupport LLMCHATENABLEDROLESEnum = "staff_and_support"
-)
-
-// Valid indicates whether the value is a known member of the LLMCHATENABLEDROLESEnum enum.
-func (e LLMCHATENABLEDROLESEnum) Valid() bool {
-	switch e {
-	case All:
-		return true
-	case Disabled:
-		return true
-	case Staff:
-		return true
-	case StaffAndSupport:
 		return true
 	default:
 		return false
@@ -20414,6 +20414,9 @@ func (e CustomersUsersListParamsProjectRole0) Valid() bool {
 	}
 }
 
+// AIASSISTANTENABLEDROLESEnum defines model for AIASSISTANTENABLEDROLESEnum.
+type AIASSISTANTENABLEDROLESEnum string
+
 // AccessSubnet defines model for AccessSubnet.
 type AccessSubnet struct {
 	Customer    string              `json:"customer"`
@@ -24544,6 +24547,19 @@ type ConsoleUrl struct {
 
 // ConstanceSettings defines model for ConstanceSettings.
 type ConstanceSettings struct {
+	AIASSISTANTAPITOKEN                            *string                                                          `json:"AI_ASSISTANT_API_TOKEN,omitempty"`
+	AIASSISTANTAPIURL                              *string                                                          `json:"AI_ASSISTANT_API_URL,omitempty"`
+	AIASSISTANTBACKENDTYPE                         *string                                                          `json:"AI_ASSISTANT_BACKEND_TYPE,omitempty"`
+	AIASSISTANTCOMPLETIONKWARGS                    *string                                                          `json:"AI_ASSISTANT_COMPLETION_KWARGS,omitempty"`
+	AIASSISTANTENABLED                             *bool                                                            `json:"AI_ASSISTANT_ENABLED,omitempty"`
+	AIASSISTANTENABLEDROLES                        *AIASSISTANTENABLEDROLESEnum                                     `json:"AI_ASSISTANT_ENABLED_ROLES,omitempty"`
+	AIASSISTANTHISTORYLIMIT                        *int                                                             `json:"AI_ASSISTANT_HISTORY_LIMIT,omitempty"`
+	AIASSISTANTINJECTIONALLOWLIST                  *string                                                          `json:"AI_ASSISTANT_INJECTION_ALLOWLIST,omitempty"`
+	AIASSISTANTMODEL                               *string                                                          `json:"AI_ASSISTANT_MODEL,omitempty"`
+	AIASSISTANTSESSIONRETENTIONDAYS                *int                                                             `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
+	AIASSISTANTTOKENLIMITDAILY                     *int                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
+	AIASSISTANTTOKENLIMITMONTHLY                   *int                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_MONTHLY,omitempty"`
+	AIASSISTANTTOKENLIMITWEEKLY                    *int                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_WEEKLY,omitempty"`
 	ALLOWSERVICEPROVIDEROFFERINGMANAGEMENT         *bool                                                            `json:"ALLOW_SERVICE_PROVIDER_OFFERING_MANAGEMENT,omitempty"`
 	ANONYMOUSUSERCANVIEWOFFERINGS                  *bool                                                            `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
 	ANONYMOUSUSERCANVIEWPLANS                      *bool                                                            `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
@@ -24651,19 +24667,6 @@ type ConstanceSettings struct {
 	K8SNAMESPACE                                   *string                                                          `json:"K8S_NAMESPACE,omitempty"`
 	KEYCLOAKICON                                   *string                                                          `json:"KEYCLOAK_ICON,omitempty"`
 	LANGUAGECHOICES                                *string                                                          `json:"LANGUAGE_CHOICES,omitempty"`
-	LLMCHATENABLED                                 *bool                                                            `json:"LLM_CHAT_ENABLED,omitempty"`
-	LLMCHATENABLEDROLES                            *LLMCHATENABLEDROLESEnum                                         `json:"LLM_CHAT_ENABLED_ROLES,omitempty"`
-	LLMCHATHISTORYLIMIT                            *int                                                             `json:"LLM_CHAT_HISTORY_LIMIT,omitempty"`
-	LLMCHATSESSIONRETENTIONDAYS                    *int                                                             `json:"LLM_CHAT_SESSION_RETENTION_DAYS,omitempty"`
-	LLMCOMPLETIONKWARGS                            *string                                                          `json:"LLM_COMPLETION_KWARGS,omitempty"`
-	LLMINFERENCESAPITOKEN                          *string                                                          `json:"LLM_INFERENCES_API_TOKEN,omitempty"`
-	LLMINFERENCESAPIURL                            *string                                                          `json:"LLM_INFERENCES_API_URL,omitempty"`
-	LLMINFERENCESBACKENDTYPE                       *string                                                          `json:"LLM_INFERENCES_BACKEND_TYPE,omitempty"`
-	LLMINFERENCESMODEL                             *string                                                          `json:"LLM_INFERENCES_MODEL,omitempty"`
-	LLMINJECTIONALLOWLIST                          *string                                                          `json:"LLM_INJECTION_ALLOWLIST,omitempty"`
-	LLMTOKENLIMITDAILY                             *int                                                             `json:"LLM_TOKEN_LIMIT_DAILY,omitempty"`
-	LLMTOKENLIMITMONTHLY                           *int                                                             `json:"LLM_TOKEN_LIMIT_MONTHLY,omitempty"`
-	LLMTOKENLIMITWEEKLY                            *int                                                             `json:"LLM_TOKEN_LIMIT_WEEKLY,omitempty"`
 	LOGINLOGO                                      *string                                                          `json:"LOGIN_LOGO,omitempty"`
 	LOGINLOGOMULTILINGUAL                          *map[string]*string                                              `json:"LOGIN_LOGO_MULTILINGUAL,omitempty"`
 	LOGINPAGECAROUSELSLIDES                        *[]interface{}                                                   `json:"LOGIN_PAGE_CAROUSEL_SLIDES,omitempty"`
@@ -24847,6 +24850,19 @@ type ConstanceSettings_SSHKEYALLOWEDTYPES_Item struct {
 
 // ConstanceSettingsRequest defines model for ConstanceSettingsRequest.
 type ConstanceSettingsRequest struct {
+	AIASSISTANTAPITOKEN                            *string                                                                 `json:"AI_ASSISTANT_API_TOKEN,omitempty"`
+	AIASSISTANTAPIURL                              *string                                                                 `json:"AI_ASSISTANT_API_URL,omitempty"`
+	AIASSISTANTBACKENDTYPE                         *string                                                                 `json:"AI_ASSISTANT_BACKEND_TYPE,omitempty"`
+	AIASSISTANTCOMPLETIONKWARGS                    *string                                                                 `json:"AI_ASSISTANT_COMPLETION_KWARGS,omitempty"`
+	AIASSISTANTENABLED                             *bool                                                                   `json:"AI_ASSISTANT_ENABLED,omitempty"`
+	AIASSISTANTENABLEDROLES                        *AIASSISTANTENABLEDROLESEnum                                            `json:"AI_ASSISTANT_ENABLED_ROLES,omitempty"`
+	AIASSISTANTHISTORYLIMIT                        *int                                                                    `json:"AI_ASSISTANT_HISTORY_LIMIT,omitempty"`
+	AIASSISTANTINJECTIONALLOWLIST                  *string                                                                 `json:"AI_ASSISTANT_INJECTION_ALLOWLIST,omitempty"`
+	AIASSISTANTMODEL                               *string                                                                 `json:"AI_ASSISTANT_MODEL,omitempty"`
+	AIASSISTANTSESSIONRETENTIONDAYS                *int                                                                    `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
+	AIASSISTANTTOKENLIMITDAILY                     *int                                                                    `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
+	AIASSISTANTTOKENLIMITMONTHLY                   *int                                                                    `json:"AI_ASSISTANT_TOKEN_LIMIT_MONTHLY,omitempty"`
+	AIASSISTANTTOKENLIMITWEEKLY                    *int                                                                    `json:"AI_ASSISTANT_TOKEN_LIMIT_WEEKLY,omitempty"`
 	ALLOWSERVICEPROVIDEROFFERINGMANAGEMENT         *bool                                                                   `json:"ALLOW_SERVICE_PROVIDER_OFFERING_MANAGEMENT,omitempty"`
 	ANONYMOUSUSERCANVIEWOFFERINGS                  *bool                                                                   `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
 	ANONYMOUSUSERCANVIEWPLANS                      *bool                                                                   `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
@@ -24954,19 +24970,6 @@ type ConstanceSettingsRequest struct {
 	K8SNAMESPACE                                   *string                                                                 `json:"K8S_NAMESPACE,omitempty"`
 	KEYCLOAKICON                                   *openapi_types.File                                                     `json:"KEYCLOAK_ICON,omitempty"`
 	LANGUAGECHOICES                                *string                                                                 `json:"LANGUAGE_CHOICES,omitempty"`
-	LLMCHATENABLED                                 *bool                                                                   `json:"LLM_CHAT_ENABLED,omitempty"`
-	LLMCHATENABLEDROLES                            *LLMCHATENABLEDROLESEnum                                                `json:"LLM_CHAT_ENABLED_ROLES,omitempty"`
-	LLMCHATHISTORYLIMIT                            *int                                                                    `json:"LLM_CHAT_HISTORY_LIMIT,omitempty"`
-	LLMCHATSESSIONRETENTIONDAYS                    *int                                                                    `json:"LLM_CHAT_SESSION_RETENTION_DAYS,omitempty"`
-	LLMCOMPLETIONKWARGS                            *string                                                                 `json:"LLM_COMPLETION_KWARGS,omitempty"`
-	LLMINFERENCESAPITOKEN                          *string                                                                 `json:"LLM_INFERENCES_API_TOKEN,omitempty"`
-	LLMINFERENCESAPIURL                            *string                                                                 `json:"LLM_INFERENCES_API_URL,omitempty"`
-	LLMINFERENCESBACKENDTYPE                       *string                                                                 `json:"LLM_INFERENCES_BACKEND_TYPE,omitempty"`
-	LLMINFERENCESMODEL                             *string                                                                 `json:"LLM_INFERENCES_MODEL,omitempty"`
-	LLMINJECTIONALLOWLIST                          *string                                                                 `json:"LLM_INJECTION_ALLOWLIST,omitempty"`
-	LLMTOKENLIMITDAILY                             *int                                                                    `json:"LLM_TOKEN_LIMIT_DAILY,omitempty"`
-	LLMTOKENLIMITMONTHLY                           *int                                                                    `json:"LLM_TOKEN_LIMIT_MONTHLY,omitempty"`
-	LLMTOKENLIMITWEEKLY                            *int                                                                    `json:"LLM_TOKEN_LIMIT_WEEKLY,omitempty"`
 	LOGINLOGO                                      *openapi_types.File                                                     `json:"LOGIN_LOGO,omitempty"`
 	LOGINLOGOMULTILINGUAL                          *map[string]*openapi_types.File                                         `json:"LOGIN_LOGO_MULTILINGUAL,omitempty"`
 	LOGINPAGECAROUSELSLIDES                        *[]interface{}                                                          `json:"LOGIN_PAGE_CAROUSEL_SLIDES,omitempty"`
@@ -25150,6 +25153,19 @@ type ConstanceSettingsRequest_SSHKEYALLOWEDTYPES_Item struct {
 
 // ConstanceSettingsRequestForm defines model for ConstanceSettingsRequestForm.
 type ConstanceSettingsRequestForm struct {
+	AIASSISTANTAPITOKEN                            *string                                                                     `json:"AI_ASSISTANT_API_TOKEN,omitempty"`
+	AIASSISTANTAPIURL                              *string                                                                     `json:"AI_ASSISTANT_API_URL,omitempty"`
+	AIASSISTANTBACKENDTYPE                         *string                                                                     `json:"AI_ASSISTANT_BACKEND_TYPE,omitempty"`
+	AIASSISTANTCOMPLETIONKWARGS                    *string                                                                     `json:"AI_ASSISTANT_COMPLETION_KWARGS,omitempty"`
+	AIASSISTANTENABLED                             *bool                                                                       `json:"AI_ASSISTANT_ENABLED,omitempty"`
+	AIASSISTANTENABLEDROLES                        *AIASSISTANTENABLEDROLESEnum                                                `json:"AI_ASSISTANT_ENABLED_ROLES,omitempty"`
+	AIASSISTANTHISTORYLIMIT                        *int                                                                        `json:"AI_ASSISTANT_HISTORY_LIMIT,omitempty"`
+	AIASSISTANTINJECTIONALLOWLIST                  *string                                                                     `json:"AI_ASSISTANT_INJECTION_ALLOWLIST,omitempty"`
+	AIASSISTANTMODEL                               *string                                                                     `json:"AI_ASSISTANT_MODEL,omitempty"`
+	AIASSISTANTSESSIONRETENTIONDAYS                *int                                                                        `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
+	AIASSISTANTTOKENLIMITDAILY                     *int                                                                        `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
+	AIASSISTANTTOKENLIMITMONTHLY                   *int                                                                        `json:"AI_ASSISTANT_TOKEN_LIMIT_MONTHLY,omitempty"`
+	AIASSISTANTTOKENLIMITWEEKLY                    *int                                                                        `json:"AI_ASSISTANT_TOKEN_LIMIT_WEEKLY,omitempty"`
 	ALLOWSERVICEPROVIDEROFFERINGMANAGEMENT         *bool                                                                       `json:"ALLOW_SERVICE_PROVIDER_OFFERING_MANAGEMENT,omitempty"`
 	ANONYMOUSUSERCANVIEWOFFERINGS                  *bool                                                                       `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
 	ANONYMOUSUSERCANVIEWPLANS                      *bool                                                                       `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
@@ -25257,19 +25273,6 @@ type ConstanceSettingsRequestForm struct {
 	K8SNAMESPACE                                   *string                                                                     `json:"K8S_NAMESPACE,omitempty"`
 	KEYCLOAKICON                                   *openapi_types.File                                                         `json:"KEYCLOAK_ICON,omitempty"`
 	LANGUAGECHOICES                                *string                                                                     `json:"LANGUAGE_CHOICES,omitempty"`
-	LLMCHATENABLED                                 *bool                                                                       `json:"LLM_CHAT_ENABLED,omitempty"`
-	LLMCHATENABLEDROLES                            *LLMCHATENABLEDROLESEnum                                                    `json:"LLM_CHAT_ENABLED_ROLES,omitempty"`
-	LLMCHATHISTORYLIMIT                            *int                                                                        `json:"LLM_CHAT_HISTORY_LIMIT,omitempty"`
-	LLMCHATSESSIONRETENTIONDAYS                    *int                                                                        `json:"LLM_CHAT_SESSION_RETENTION_DAYS,omitempty"`
-	LLMCOMPLETIONKWARGS                            *string                                                                     `json:"LLM_COMPLETION_KWARGS,omitempty"`
-	LLMINFERENCESAPITOKEN                          *string                                                                     `json:"LLM_INFERENCES_API_TOKEN,omitempty"`
-	LLMINFERENCESAPIURL                            *string                                                                     `json:"LLM_INFERENCES_API_URL,omitempty"`
-	LLMINFERENCESBACKENDTYPE                       *string                                                                     `json:"LLM_INFERENCES_BACKEND_TYPE,omitempty"`
-	LLMINFERENCESMODEL                             *string                                                                     `json:"LLM_INFERENCES_MODEL,omitempty"`
-	LLMINJECTIONALLOWLIST                          *string                                                                     `json:"LLM_INJECTION_ALLOWLIST,omitempty"`
-	LLMTOKENLIMITDAILY                             *int                                                                        `json:"LLM_TOKEN_LIMIT_DAILY,omitempty"`
-	LLMTOKENLIMITMONTHLY                           *int                                                                        `json:"LLM_TOKEN_LIMIT_MONTHLY,omitempty"`
-	LLMTOKENLIMITWEEKLY                            *int                                                                        `json:"LLM_TOKEN_LIMIT_WEEKLY,omitempty"`
 	LOGINLOGO                                      *openapi_types.File                                                         `json:"LOGIN_LOGO,omitempty"`
 	LOGINLOGOMULTILINGUAL                          *map[string]*openapi_types.File                                             `json:"LOGIN_LOGO_MULTILINGUAL,omitempty"`
 	LOGINPAGECAROUSELSLIDES                        *[]interface{}                                                              `json:"LOGIN_PAGE_CAROUSEL_SLIDES,omitempty"`
@@ -25453,6 +25456,19 @@ type ConstanceSettingsRequestForm_SSHKEYALLOWEDTYPES_Item struct {
 
 // ConstanceSettingsRequestMultipart defines model for ConstanceSettingsRequestMultipart.
 type ConstanceSettingsRequestMultipart struct {
+	AIASSISTANTAPITOKEN                            *string                                                                          `json:"AI_ASSISTANT_API_TOKEN,omitempty"`
+	AIASSISTANTAPIURL                              *string                                                                          `json:"AI_ASSISTANT_API_URL,omitempty"`
+	AIASSISTANTBACKENDTYPE                         *string                                                                          `json:"AI_ASSISTANT_BACKEND_TYPE,omitempty"`
+	AIASSISTANTCOMPLETIONKWARGS                    *string                                                                          `json:"AI_ASSISTANT_COMPLETION_KWARGS,omitempty"`
+	AIASSISTANTENABLED                             *bool                                                                            `json:"AI_ASSISTANT_ENABLED,omitempty"`
+	AIASSISTANTENABLEDROLES                        *AIASSISTANTENABLEDROLESEnum                                                     `json:"AI_ASSISTANT_ENABLED_ROLES,omitempty"`
+	AIASSISTANTHISTORYLIMIT                        *int                                                                             `json:"AI_ASSISTANT_HISTORY_LIMIT,omitempty"`
+	AIASSISTANTINJECTIONALLOWLIST                  *string                                                                          `json:"AI_ASSISTANT_INJECTION_ALLOWLIST,omitempty"`
+	AIASSISTANTMODEL                               *string                                                                          `json:"AI_ASSISTANT_MODEL,omitempty"`
+	AIASSISTANTSESSIONRETENTIONDAYS                *int                                                                             `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
+	AIASSISTANTTOKENLIMITDAILY                     *int                                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
+	AIASSISTANTTOKENLIMITMONTHLY                   *int                                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_MONTHLY,omitempty"`
+	AIASSISTANTTOKENLIMITWEEKLY                    *int                                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_WEEKLY,omitempty"`
 	ALLOWSERVICEPROVIDEROFFERINGMANAGEMENT         *bool                                                                            `json:"ALLOW_SERVICE_PROVIDER_OFFERING_MANAGEMENT,omitempty"`
 	ANONYMOUSUSERCANVIEWOFFERINGS                  *bool                                                                            `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
 	ANONYMOUSUSERCANVIEWPLANS                      *bool                                                                            `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
@@ -25560,19 +25576,6 @@ type ConstanceSettingsRequestMultipart struct {
 	K8SNAMESPACE                                   *string                                                                          `json:"K8S_NAMESPACE,omitempty"`
 	KEYCLOAKICON                                   *openapi_types.File                                                              `json:"KEYCLOAK_ICON,omitempty"`
 	LANGUAGECHOICES                                *string                                                                          `json:"LANGUAGE_CHOICES,omitempty"`
-	LLMCHATENABLED                                 *bool                                                                            `json:"LLM_CHAT_ENABLED,omitempty"`
-	LLMCHATENABLEDROLES                            *LLMCHATENABLEDROLESEnum                                                         `json:"LLM_CHAT_ENABLED_ROLES,omitempty"`
-	LLMCHATHISTORYLIMIT                            *int                                                                             `json:"LLM_CHAT_HISTORY_LIMIT,omitempty"`
-	LLMCHATSESSIONRETENTIONDAYS                    *int                                                                             `json:"LLM_CHAT_SESSION_RETENTION_DAYS,omitempty"`
-	LLMCOMPLETIONKWARGS                            *string                                                                          `json:"LLM_COMPLETION_KWARGS,omitempty"`
-	LLMINFERENCESAPITOKEN                          *string                                                                          `json:"LLM_INFERENCES_API_TOKEN,omitempty"`
-	LLMINFERENCESAPIURL                            *string                                                                          `json:"LLM_INFERENCES_API_URL,omitempty"`
-	LLMINFERENCESBACKENDTYPE                       *string                                                                          `json:"LLM_INFERENCES_BACKEND_TYPE,omitempty"`
-	LLMINFERENCESMODEL                             *string                                                                          `json:"LLM_INFERENCES_MODEL,omitempty"`
-	LLMINJECTIONALLOWLIST                          *string                                                                          `json:"LLM_INJECTION_ALLOWLIST,omitempty"`
-	LLMTOKENLIMITDAILY                             *int                                                                             `json:"LLM_TOKEN_LIMIT_DAILY,omitempty"`
-	LLMTOKENLIMITMONTHLY                           *int                                                                             `json:"LLM_TOKEN_LIMIT_MONTHLY,omitempty"`
-	LLMTOKENLIMITWEEKLY                            *int                                                                             `json:"LLM_TOKEN_LIMIT_WEEKLY,omitempty"`
 	LOGINLOGO                                      *openapi_types.File                                                              `json:"LOGIN_LOGO,omitempty"`
 	LOGINLOGOMULTILINGUAL                          *map[string]*openapi_types.File                                                  `json:"LOGIN_LOGO_MULTILINGUAL,omitempty"`
 	LOGINPAGECAROUSELSLIDES                        *[]interface{}                                                                   `json:"LOGIN_PAGE_CAROUSEL_SLIDES,omitempty"`
@@ -29765,9 +29768,6 @@ type KeywordSearchModeEnum string
 
 // KindEnum defines model for KindEnum.
 type KindEnum string
-
-// LLMCHATENABLEDROLESEnum defines model for LLMCHATENABLEDROLESEnum.
-type LLMCHATENABLEDROLESEnum string
 
 // LOGINPAGELAYOUTEnum defines model for LOGINPAGELAYOUTEnum.
 type LOGINPAGELAYOUTEnum string
