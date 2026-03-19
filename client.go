@@ -31110,6 +31110,7 @@ type MergedSecretOptionsRequest struct {
 type Message struct {
 	ActionTaken         *ActionTakenEnum       `json:"action_taken,omitempty"`
 	Content             string                 `json:"content"`
+	ContentDisplay      *string                `json:"content_display,omitempty"`
 	Created             *time.Time             `json:"created,omitempty"`
 	InjectionCategories interface{}            `json:"injection_categories,omitempty"`
 	IsFlagged           *bool                  `json:"is_flagged,omitempty"`
@@ -83926,6 +83927,9 @@ type ClientInterface interface {
 
 	MarketplaceOrdersRejectByProvider(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersRejectByProviderJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceOrdersRetry request
+	MarketplaceOrdersRetry(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceOrdersSetBackendIdWithBody request with any body
 	MarketplaceOrdersSetBackendIdWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -102970,6 +102974,18 @@ func (c *Client) MarketplaceOrdersRejectByProviderWithBody(ctx context.Context, 
 
 func (c *Client) MarketplaceOrdersRejectByProvider(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersRejectByProviderJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceOrdersRejectByProviderRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOrdersRetry(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOrdersRetryRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -193820,6 +193836,40 @@ func NewMarketplaceOrdersRejectByProviderRequestWithBody(server string, uuid ope
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceOrdersRetryRequest generates requests for MarketplaceOrdersRetry
+func NewMarketplaceOrdersRetryRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-orders/%s/retry/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -334158,6 +334208,9 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceOrdersRejectByProviderWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersRejectByProviderJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersRejectByProviderResponse, error)
 
+	// MarketplaceOrdersRetryWithResponse request
+	MarketplaceOrdersRetryWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersRetryResponse, error)
+
 	// MarketplaceOrdersSetBackendIdWithBodyWithResponse request with any body
 	MarketplaceOrdersSetBackendIdWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOrdersSetBackendIdResponse, error)
 
@@ -357765,6 +357818,27 @@ func (r MarketplaceOrdersRejectByProviderResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceOrdersRejectByProviderResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOrdersRetryResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOrdersRetryResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOrdersRetryResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -401362,6 +401436,15 @@ func (c *ClientWithResponses) MarketplaceOrdersRejectByProviderWithResponse(ctx 
 	return ParseMarketplaceOrdersRejectByProviderResponse(rsp)
 }
 
+// MarketplaceOrdersRetryWithResponse request returning *MarketplaceOrdersRetryResponse
+func (c *ClientWithResponses) MarketplaceOrdersRetryWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersRetryResponse, error) {
+	rsp, err := c.MarketplaceOrdersRetry(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOrdersRetryResponse(rsp)
+}
+
 // MarketplaceOrdersSetBackendIdWithBodyWithResponse request with arbitrary body returning *MarketplaceOrdersSetBackendIdResponse
 func (c *ClientWithResponses) MarketplaceOrdersSetBackendIdWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOrdersSetBackendIdResponse, error) {
 	rsp, err := c.MarketplaceOrdersSetBackendIdWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -438809,6 +438892,22 @@ func ParseMarketplaceOrdersRejectByProviderResponse(rsp *http.Response) (*Market
 	}
 
 	response := &MarketplaceOrdersRejectByProviderResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOrdersRetryResponse parses an HTTP response from a MarketplaceOrdersRetryWithResponse call
+func ParseMarketplaceOrdersRetryResponse(rsp *http.Response) (*MarketplaceOrdersRetryResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOrdersRetryResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
