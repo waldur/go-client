@@ -39300,6 +39300,8 @@ type ProjectDigestPreviewResponse struct {
 
 // ProjectEndDateChangeRequest defines model for ProjectEndDateChangeRequest.
 type ProjectEndDateChangeRequest struct {
+	// Comment Optional comment from the requester
+	Comment           *string             `json:"comment,omitempty"`
 	Created           *time.Time          `json:"created,omitempty"`
 	CreatedByFullName *string             `json:"created_by_full_name,omitempty"`
 	CreatedByUuid     *openapi_types.UUID `json:"created_by_uuid,omitempty"`
@@ -39326,7 +39328,9 @@ type ProjectEndDateChangeRequest struct {
 
 // ProjectEndDateChangeRequestCreate defines model for ProjectEndDateChangeRequestCreate.
 type ProjectEndDateChangeRequestCreate struct {
-	Project string `json:"project"`
+	// Comment Optional comment from the requester
+	Comment *string `json:"comment,omitempty"`
+	Project string  `json:"project"`
 
 	// RequestedEndDate The requested new end date for the project
 	RequestedEndDate openapi_types.Date  `json:"requested_end_date"`
@@ -39336,21 +39340,12 @@ type ProjectEndDateChangeRequestCreate struct {
 
 // ProjectEndDateChangeRequestCreateRequest defines model for ProjectEndDateChangeRequestCreateRequest.
 type ProjectEndDateChangeRequestCreateRequest struct {
-	Project string `json:"project"`
+	// Comment Optional comment from the requester
+	Comment *string `json:"comment,omitempty"`
+	Project string  `json:"project"`
 
 	// RequestedEndDate The requested new end date for the project
 	RequestedEndDate openapi_types.Date `json:"requested_end_date"`
-}
-
-// ProjectEndDateChangeRequestRequest defines model for ProjectEndDateChangeRequestRequest.
-type ProjectEndDateChangeRequestRequest struct {
-	Project string `json:"project"`
-
-	// RequestedEndDate The requested new end date for the project
-	RequestedEndDate openapi_types.Date `json:"requested_end_date"`
-
-	// ReviewComment Optional comment provided during review
-	ReviewComment *string `json:"review_comment,omitempty"`
 }
 
 // ProjectEstimatedCostPolicy defines model for ProjectEstimatedCostPolicy.
@@ -70156,9 +70151,6 @@ type ProjectEndDateChangeRequestsCreateJSONRequestBody = ProjectEndDateChangeReq
 // ProjectEndDateChangeRequestsApproveJSONRequestBody defines body for ProjectEndDateChangeRequestsApprove for application/json ContentType.
 type ProjectEndDateChangeRequestsApproveJSONRequestBody = ReviewCommentRequest
 
-// ProjectEndDateChangeRequestsCancelJSONRequestBody defines body for ProjectEndDateChangeRequestsCancel for application/json ContentType.
-type ProjectEndDateChangeRequestsCancelJSONRequestBody = ProjectEndDateChangeRequestRequest
-
 // ProjectEndDateChangeRequestsRejectJSONRequestBody defines body for ProjectEndDateChangeRequestsReject for application/json ContentType.
 type ProjectEndDateChangeRequestsRejectJSONRequestBody = ReviewCommentRequest
 
@@ -87379,10 +87371,8 @@ type ClientInterface interface {
 
 	ProjectEndDateChangeRequestsApprove(ctx context.Context, uuid openapi_types.UUID, body ProjectEndDateChangeRequestsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ProjectEndDateChangeRequestsCancelWithBody request with any body
-	ProjectEndDateChangeRequestsCancelWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	ProjectEndDateChangeRequestsCancel(ctx context.Context, uuid openapi_types.UUID, body ProjectEndDateChangeRequestsCancelJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ProjectEndDateChangeRequestsCancel request
+	ProjectEndDateChangeRequestsCancel(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProjectEndDateChangeRequestsRejectWithBody request with any body
 	ProjectEndDateChangeRequestsRejectWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -118164,20 +118154,8 @@ func (c *Client) ProjectEndDateChangeRequestsApprove(ctx context.Context, uuid o
 	return c.Client.Do(req)
 }
 
-func (c *Client) ProjectEndDateChangeRequestsCancelWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProjectEndDateChangeRequestsCancelRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ProjectEndDateChangeRequestsCancel(ctx context.Context, uuid openapi_types.UUID, body ProjectEndDateChangeRequestsCancelJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProjectEndDateChangeRequestsCancelRequest(c.Server, uuid, body)
+func (c *Client) ProjectEndDateChangeRequestsCancel(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectEndDateChangeRequestsCancelRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -278376,19 +278354,8 @@ func NewProjectEndDateChangeRequestsApproveRequestWithBody(server string, uuid o
 	return req, nil
 }
 
-// NewProjectEndDateChangeRequestsCancelRequest calls the generic ProjectEndDateChangeRequestsCancel builder with application/json body
-func NewProjectEndDateChangeRequestsCancelRequest(server string, uuid openapi_types.UUID, body ProjectEndDateChangeRequestsCancelJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewProjectEndDateChangeRequestsCancelRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewProjectEndDateChangeRequestsCancelRequestWithBody generates requests for ProjectEndDateChangeRequestsCancel with any type of body
-func NewProjectEndDateChangeRequestsCancelRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewProjectEndDateChangeRequestsCancelRequest generates requests for ProjectEndDateChangeRequestsCancel
+func NewProjectEndDateChangeRequestsCancelRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -278413,12 +278380,10 @@ func NewProjectEndDateChangeRequestsCancelRequestWithBody(server string, uuid op
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", queryURL.String(), body)
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -337660,10 +337625,8 @@ type ClientWithResponsesInterface interface {
 
 	ProjectEndDateChangeRequestsApproveWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectEndDateChangeRequestsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsApproveResponse, error)
 
-	// ProjectEndDateChangeRequestsCancelWithBodyWithResponse request with any body
-	ProjectEndDateChangeRequestsCancelWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsCancelResponse, error)
-
-	ProjectEndDateChangeRequestsCancelWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectEndDateChangeRequestsCancelJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsCancelResponse, error)
+	// ProjectEndDateChangeRequestsCancelWithResponse request
+	ProjectEndDateChangeRequestsCancelWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsCancelResponse, error)
 
 	// ProjectEndDateChangeRequestsRejectWithBodyWithResponse request with any body
 	ProjectEndDateChangeRequestsRejectWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsRejectResponse, error)
@@ -412478,17 +412441,9 @@ func (c *ClientWithResponses) ProjectEndDateChangeRequestsApproveWithResponse(ct
 	return ParseProjectEndDateChangeRequestsApproveResponse(rsp)
 }
 
-// ProjectEndDateChangeRequestsCancelWithBodyWithResponse request with arbitrary body returning *ProjectEndDateChangeRequestsCancelResponse
-func (c *ClientWithResponses) ProjectEndDateChangeRequestsCancelWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsCancelResponse, error) {
-	rsp, err := c.ProjectEndDateChangeRequestsCancelWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseProjectEndDateChangeRequestsCancelResponse(rsp)
-}
-
-func (c *ClientWithResponses) ProjectEndDateChangeRequestsCancelWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectEndDateChangeRequestsCancelJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsCancelResponse, error) {
-	rsp, err := c.ProjectEndDateChangeRequestsCancel(ctx, uuid, body, reqEditors...)
+// ProjectEndDateChangeRequestsCancelWithResponse request returning *ProjectEndDateChangeRequestsCancelResponse
+func (c *ClientWithResponses) ProjectEndDateChangeRequestsCancelWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectEndDateChangeRequestsCancelResponse, error) {
+	rsp, err := c.ProjectEndDateChangeRequestsCancel(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
