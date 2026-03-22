@@ -14682,6 +14682,7 @@ const (
 	ProjectFieldEnumEffectiveEndDate                     ProjectFieldEnum = "effective_end_date"
 	ProjectFieldEnumEndDate                              ProjectFieldEnum = "end_date"
 	ProjectFieldEnumEndDateRequestedBy                   ProjectFieldEnum = "end_date_requested_by"
+	ProjectFieldEnumEndDateUpdatedAt                     ProjectFieldEnum = "end_date_updated_at"
 	ProjectFieldEnumGracePeriodDays                      ProjectFieldEnum = "grace_period_days"
 	ProjectFieldEnumImage                                ProjectFieldEnum = "image"
 	ProjectFieldEnumIsInGracePeriod                      ProjectFieldEnum = "is_in_grace_period"
@@ -14739,6 +14740,8 @@ func (e ProjectFieldEnum) Valid() bool {
 	case ProjectFieldEnumEndDate:
 		return true
 	case ProjectFieldEnumEndDateRequestedBy:
+		return true
+	case ProjectFieldEnumEndDateUpdatedAt:
 		return true
 	case ProjectFieldEnumGracePeriodDays:
 		return true
@@ -39104,6 +39107,9 @@ type Project struct {
 	EndDate            *openapi_types.Date `json:"end_date,omitempty"`
 	EndDateRequestedBy *string             `json:"end_date_requested_by,omitempty"`
 
+	// EndDateUpdatedAt Timestamp of the last end_date change.
+	EndDateUpdatedAt *time.Time `json:"end_date_updated_at,omitempty"`
+
 	// GracePeriodDays Number of extra days after project end date before resources are terminated. Overrides customer-level setting.
 	GracePeriodDays *int    `json:"grace_period_days,omitempty"`
 	Image           *string `json:"image,omitempty"`
@@ -42652,6 +42658,12 @@ type ResourceDownscaledRequest struct {
 
 // ResourceEndDateByProviderRequest defines model for ResourceEndDateByProviderRequest.
 type ResourceEndDateByProviderRequest struct {
+	// EndDate The date is inclusive. Once reached, a resource will be scheduled for termination.
+	EndDate *openapi_types.Date `json:"end_date,omitempty"`
+}
+
+// ResourceEndDateRequest defines model for ResourceEndDateRequest.
+type ResourceEndDateRequest struct {
 	// EndDate The date is inclusive. Once reached, a resource will be scheduled for termination.
 	EndDate *openapi_types.Date `json:"end_date,omitempty"`
 }
@@ -69296,6 +69308,9 @@ type MarketplaceProviderResourcesSetBackendMetadataJSONRequestBody = ResourceBac
 // MarketplaceProviderResourcesSetDownscaledJSONRequestBody defines body for MarketplaceProviderResourcesSetDownscaled for application/json ContentType.
 type MarketplaceProviderResourcesSetDownscaledJSONRequestBody = ResourceDownscaledRequest
 
+// MarketplaceProviderResourcesSetEndDateJSONRequestBody defines body for MarketplaceProviderResourcesSetEndDate for application/json ContentType.
+type MarketplaceProviderResourcesSetEndDateJSONRequestBody = ResourceEndDateRequest
+
 // MarketplaceProviderResourcesSetEndDateByProviderJSONRequestBody defines body for MarketplaceProviderResourcesSetEndDateByProvider for application/json ContentType.
 type MarketplaceProviderResourcesSetEndDateByProviderJSONRequestBody = ResourceEndDateByProviderRequest
 
@@ -69379,6 +69394,9 @@ type MarketplaceResourcesRestoreJSONRequestBody = ResourceRequest
 
 // MarketplaceResourcesSetDownscaledJSONRequestBody defines body for MarketplaceResourcesSetDownscaled for application/json ContentType.
 type MarketplaceResourcesSetDownscaledJSONRequestBody = ResourceDownscaledRequest
+
+// MarketplaceResourcesSetEndDateJSONRequestBody defines body for MarketplaceResourcesSetEndDate for application/json ContentType.
+type MarketplaceResourcesSetEndDateJSONRequestBody = ResourceEndDateRequest
 
 // MarketplaceResourcesSetEndDateByStaffJSONRequestBody defines body for MarketplaceResourcesSetEndDateByStaff for application/json ContentType.
 type MarketplaceResourcesSetEndDateByStaffJSONRequestBody = ResourceEndDateByProviderRequest
@@ -84510,6 +84528,11 @@ type ClientInterface interface {
 
 	MarketplaceProviderResourcesSetDownscaled(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetDownscaledJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderResourcesSetEndDateWithBody request with any body
+	MarketplaceProviderResourcesSetEndDateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderResourcesSetEndDate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetEndDateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderResourcesSetEndDateByProviderWithBody request with any body
 	MarketplaceProviderResourcesSetEndDateByProviderWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -84731,6 +84754,11 @@ type ClientInterface interface {
 	MarketplaceResourcesSetDownscaledWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceResourcesSetDownscaled(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetDownscaledJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourcesSetEndDateWithBody request with any body
+	MarketplaceResourcesSetEndDateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceResourcesSetEndDate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetEndDateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourcesSetEndDateByStaffWithBody request with any body
 	MarketplaceResourcesSetEndDateByStaffWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -105626,6 +105654,30 @@ func (c *Client) MarketplaceProviderResourcesSetDownscaled(ctx context.Context, 
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceProviderResourcesSetEndDateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesSetEndDateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderResourcesSetEndDate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetEndDateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesSetEndDateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceProviderResourcesSetEndDateByProviderWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderResourcesSetEndDateByProviderRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -106612,6 +106664,30 @@ func (c *Client) MarketplaceResourcesSetDownscaledWithBody(ctx context.Context, 
 
 func (c *Client) MarketplaceResourcesSetDownscaled(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetDownscaledJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceResourcesSetDownscaledRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourcesSetEndDateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesSetEndDateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourcesSetEndDate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetEndDateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesSetEndDateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -211253,6 +211329,53 @@ func NewMarketplaceProviderResourcesSetDownscaledRequestWithBody(server string, 
 	return req, nil
 }
 
+// NewMarketplaceProviderResourcesSetEndDateRequest calls the generic MarketplaceProviderResourcesSetEndDate builder with application/json body
+func NewMarketplaceProviderResourcesSetEndDateRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetEndDateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderResourcesSetEndDateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderResourcesSetEndDateRequestWithBody generates requests for MarketplaceProviderResourcesSetEndDate with any type of body
+func NewMarketplaceProviderResourcesSetEndDateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-resources/%s/set_end_date/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceProviderResourcesSetEndDateByProviderRequest calls the generic MarketplaceProviderResourcesSetEndDateByProvider builder with application/json body
 func NewMarketplaceProviderResourcesSetEndDateByProviderRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetEndDateByProviderJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -217387,6 +217510,53 @@ func NewMarketplaceResourcesSetDownscaledRequestWithBody(server string, uuid ope
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-resources/%s/set_downscaled/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceResourcesSetEndDateRequest calls the generic MarketplaceResourcesSetEndDate builder with application/json body
+func NewMarketplaceResourcesSetEndDateRequest(server string, uuid openapi_types.UUID, body MarketplaceResourcesSetEndDateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceResourcesSetEndDateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceResourcesSetEndDateRequestWithBody generates requests for MarketplaceResourcesSetEndDate with any type of body
+func NewMarketplaceResourcesSetEndDateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resources/%s/set_end_date/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -334764,6 +334934,11 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceProviderResourcesSetDownscaledWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetDownscaledJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetDownscaledResponse, error)
 
+	// MarketplaceProviderResourcesSetEndDateWithBodyWithResponse request with any body
+	MarketplaceProviderResourcesSetEndDateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetEndDateResponse, error)
+
+	MarketplaceProviderResourcesSetEndDateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetEndDateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetEndDateResponse, error)
+
 	// MarketplaceProviderResourcesSetEndDateByProviderWithBodyWithResponse request with any body
 	MarketplaceProviderResourcesSetEndDateByProviderWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetEndDateByProviderResponse, error)
 
@@ -334985,6 +335160,11 @@ type ClientWithResponsesInterface interface {
 	MarketplaceResourcesSetDownscaledWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetDownscaledResponse, error)
 
 	MarketplaceResourcesSetDownscaledWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetDownscaledJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetDownscaledResponse, error)
+
+	// MarketplaceResourcesSetEndDateWithBodyWithResponse request with any body
+	MarketplaceResourcesSetEndDateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetEndDateResponse, error)
+
+	MarketplaceResourcesSetEndDateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetEndDateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetEndDateResponse, error)
 
 	// MarketplaceResourcesSetEndDateByStaffWithBodyWithResponse request with any body
 	MarketplaceResourcesSetEndDateByStaffWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetEndDateByStaffResponse, error)
@@ -361021,6 +361201,27 @@ func (r MarketplaceProviderResourcesSetDownscaledResponse) StatusCode() int {
 	return 0
 }
 
+type MarketplaceProviderResourcesSetEndDateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderResourcesSetEndDateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderResourcesSetEndDateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceProviderResourcesSetEndDateByProviderResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -362250,6 +362451,27 @@ func (r MarketplaceResourcesSetDownscaledResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceResourcesSetDownscaledResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceResourcesSetEndDateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourcesSetEndDateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourcesSetEndDateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -403316,6 +403538,23 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesSetDownscaledWithRespo
 	return ParseMarketplaceProviderResourcesSetDownscaledResponse(rsp)
 }
 
+// MarketplaceProviderResourcesSetEndDateWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourcesSetEndDateResponse
+func (c *ClientWithResponses) MarketplaceProviderResourcesSetEndDateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetEndDateResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesSetEndDateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesSetEndDateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderResourcesSetEndDateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetEndDateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetEndDateResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesSetEndDate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesSetEndDateResponse(rsp)
+}
+
 // MarketplaceProviderResourcesSetEndDateByProviderWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourcesSetEndDateByProviderResponse
 func (c *ClientWithResponses) MarketplaceProviderResourcesSetEndDateByProviderWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetEndDateByProviderResponse, error) {
 	rsp, err := c.MarketplaceProviderResourcesSetEndDateByProviderWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -404034,6 +404273,23 @@ func (c *ClientWithResponses) MarketplaceResourcesSetDownscaledWithResponse(ctx 
 		return nil, err
 	}
 	return ParseMarketplaceResourcesSetDownscaledResponse(rsp)
+}
+
+// MarketplaceResourcesSetEndDateWithBodyWithResponse request with arbitrary body returning *MarketplaceResourcesSetEndDateResponse
+func (c *ClientWithResponses) MarketplaceResourcesSetEndDateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetEndDateResponse, error) {
+	rsp, err := c.MarketplaceResourcesSetEndDateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesSetEndDateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceResourcesSetEndDateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetEndDateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetEndDateResponse, error) {
+	rsp, err := c.MarketplaceResourcesSetEndDate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesSetEndDateResponse(rsp)
 }
 
 // MarketplaceResourcesSetEndDateByStaffWithBodyWithResponse request with arbitrary body returning *MarketplaceResourcesSetEndDateByStaffResponse
@@ -442189,6 +442445,22 @@ func ParseMarketplaceProviderResourcesSetDownscaledResponse(rsp *http.Response) 
 	return response, nil
 }
 
+// ParseMarketplaceProviderResourcesSetEndDateResponse parses an HTTP response from a MarketplaceProviderResourcesSetEndDateWithResponse call
+func ParseMarketplaceProviderResourcesSetEndDateResponse(rsp *http.Response) (*MarketplaceProviderResourcesSetEndDateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderResourcesSetEndDateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceProviderResourcesSetEndDateByProviderResponse parses an HTTP response from a MarketplaceProviderResourcesSetEndDateByProviderWithResponse call
 func ParseMarketplaceProviderResourcesSetEndDateByProviderResponse(rsp *http.Response) (*MarketplaceProviderResourcesSetEndDateByProviderResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -443553,6 +443825,22 @@ func ParseMarketplaceResourcesSetDownscaledResponse(rsp *http.Response) (*Market
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourcesSetEndDateResponse parses an HTTP response from a MarketplaceResourcesSetEndDateWithResponse call
+func ParseMarketplaceResourcesSetEndDateResponse(rsp *http.Response) (*MarketplaceResourcesSetEndDateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourcesSetEndDateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
