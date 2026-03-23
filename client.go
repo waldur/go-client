@@ -23899,6 +23899,9 @@ type ChatResponse struct {
 	// Name VM name.
 	Name *string `json:"name,omitempty"`
 
+	// Offerings Available offering options [{uuid, name}]. Present when status='offering_form'.
+	Offerings *[]interface{} `json:"offerings,omitempty"`
+
 	// OrderId Order UUID (present on success).
 	OrderId *string `json:"order_id,omitempty"`
 
@@ -39202,6 +39205,15 @@ type ProjectClassificationSummary struct {
 	TotalProjects int `json:"total_projects"`
 }
 
+// ProjectCreationTrend defines model for ProjectCreationTrend.
+type ProjectCreationTrend struct {
+	// Count Number of items created
+	Count int `json:"count"`
+
+	// Month Month in YYYY-MM format
+	Month string `json:"month"`
+}
+
 // ProjectCredit defines model for ProjectCredit.
 type ProjectCredit struct {
 	AllocatedCustomerCredit                     *float64                     `json:"allocated_customer_credit,omitempty"`
@@ -45696,6 +45708,21 @@ type TopQueue struct {
 	Vhost *string `json:"vhost,omitempty"`
 }
 
+// TopServiceProviderByResources defines model for TopServiceProviderByResources.
+type TopServiceProviderByResources struct {
+	// CustomerName Name of the service provider
+	CustomerName string `json:"customer_name"`
+
+	// CustomerUuid UUID of the service provider
+	CustomerUuid openapi_types.UUID `json:"customer_uuid"`
+
+	// ProjectsCount Number of distinct projects
+	ProjectsCount int `json:"projects_count"`
+
+	// ResourcesCount Number of active resources
+	ResourcesCount int `json:"resources_count"`
+}
+
 // TotalCustomerCost defines model for TotalCustomerCost.
 type TotalCustomerCost struct {
 	Price *float64 `json:"price,omitempty"`
@@ -46198,6 +46225,15 @@ type UserLanguageCount struct {
 	Language string `json:"language"`
 }
 
+// UserNationalityStats defines model for UserNationalityStats.
+type UserNationalityStats struct {
+	// Count Number of users
+	Count int `json:"count"`
+
+	// Nationality Nationality code
+	Nationality string `json:"nationality"`
+}
+
 // UserOfferingConsent defines model for UserOfferingConsent.
 type UserOfferingConsent struct {
 	AgreementDate *time.Time `json:"agreement_date,omitempty"`
@@ -46482,6 +46518,15 @@ type UserRequestMultipart struct {
 // UserRequestMultipart_Gender ISO 5218 gender code
 type UserRequestMultipart_Gender struct {
 	union json.RawMessage
+}
+
+// UserResidenceCountryStats defines model for UserResidenceCountryStats.
+type UserResidenceCountryStats struct {
+	// Count Number of users
+	Count int `json:"count"`
+
+	// CountryOfResidence Country of residence code
+	CountryOfResidence string `json:"country_of_residence"`
 }
 
 // UserRoleCreateRequest defines model for UserRoleCreateRequest.
@@ -58032,6 +58077,9 @@ type MarketplaceStatsComponentUsagesPerProjectCountParams struct {
 
 // MarketplaceStatsCountActiveResourcesGroupedByOfferingListParams defines parameters for MarketplaceStatsCountActiveResourcesGroupedByOfferingList.
 type MarketplaceStatsCountActiveResourcesGroupedByOfferingListParams struct {
+	// Limit Limit number of results (e.g. top N offerings). No limit by default.
+	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -58041,6 +58089,9 @@ type MarketplaceStatsCountActiveResourcesGroupedByOfferingListParams struct {
 
 // MarketplaceStatsCountActiveResourcesGroupedByOfferingCountParams defines parameters for MarketplaceStatsCountActiveResourcesGroupedByOfferingCount.
 type MarketplaceStatsCountActiveResourcesGroupedByOfferingCountParams struct {
+	// Limit Limit number of results (e.g. top N offerings). No limit by default.
+	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -58504,6 +58555,24 @@ type MarketplaceStatsOrganizationResourceCountCountParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
+// MarketplaceStatsProjectCreationTrendListParams defines parameters for MarketplaceStatsProjectCreationTrendList.
+type MarketplaceStatsProjectCreationTrendListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceStatsProjectCreationTrendCountParams defines parameters for MarketplaceStatsProjectCreationTrendCount.
+type MarketplaceStatsProjectCreationTrendCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
 // MarketplaceStatsProviderCustomersRetrieveParams defines parameters for MarketplaceStatsProviderCustomersRetrieve.
 type MarketplaceStatsProviderCustomersRetrieveParams struct {
 	// ProviderUuid Service provider UUID.
@@ -58538,6 +58607,24 @@ type MarketplaceStatsProviderResourcesRetrieveParams struct {
 type MarketplaceStatsProviderResourcesCountParams struct {
 	// ProviderUuid Service provider UUID.
 	ProviderUuid string `form:"provider_uuid" json:"provider_uuid"`
+}
+
+// MarketplaceStatsResourceCreationTrendListParams defines parameters for MarketplaceStatsResourceCreationTrendList.
+type MarketplaceStatsResourceCreationTrendListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceStatsResourceCreationTrendCountParams defines parameters for MarketplaceStatsResourceCreationTrendCount.
+type MarketplaceStatsResourceCreationTrendCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
 // MarketplaceStatsResourceProvisioningStatsListParams defines parameters for MarketplaceStatsResourceProvisioningStatsList.
@@ -58666,6 +58753,30 @@ type MarketplaceStatsResourcesMissingUsageCountParams struct {
 	ProviderUuid *string `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 }
 
+// MarketplaceStatsTopServiceProvidersByResourcesListParams defines parameters for MarketplaceStatsTopServiceProvidersByResourcesList.
+type MarketplaceStatsTopServiceProvidersByResourcesListParams struct {
+	// Limit Number of top providers to return. Default is 5.
+	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceStatsTopServiceProvidersByResourcesCountParams defines parameters for MarketplaceStatsTopServiceProvidersByResourcesCount.
+type MarketplaceStatsTopServiceProvidersByResourcesCountParams struct {
+	// Limit Number of top providers to return. Default is 5.
+	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
 // MarketplaceStatsTotalCostOfActiveResourcesPerOfferingListParams defines parameters for MarketplaceStatsTotalCostOfActiveResourcesPerOfferingList.
 type MarketplaceStatsTotalCostOfActiveResourcesPerOfferingListParams struct {
 	// Page A page number within the paginated result set.
@@ -58756,6 +58867,24 @@ type MarketplaceStatsUserJobTitleCountCountParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
+// MarketplaceStatsUserNationalityListParams defines parameters for MarketplaceStatsUserNationalityList.
+type MarketplaceStatsUserNationalityListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceStatsUserNationalityCountParams defines parameters for MarketplaceStatsUserNationalityCount.
+type MarketplaceStatsUserNationalityCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
 // MarketplaceStatsUserOrganizationCountListParams defines parameters for MarketplaceStatsUserOrganizationCountList.
 type MarketplaceStatsUserOrganizationCountListParams struct {
 	// Page A page number within the paginated result set.
@@ -58785,6 +58914,24 @@ type MarketplaceStatsUserOrganizationTypeCountListParams struct {
 
 // MarketplaceStatsUserOrganizationTypeCountCountParams defines parameters for MarketplaceStatsUserOrganizationTypeCountCount.
 type MarketplaceStatsUserOrganizationTypeCountCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceStatsUserResidenceCountryListParams defines parameters for MarketplaceStatsUserResidenceCountryList.
+type MarketplaceStatsUserResidenceCountryListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceStatsUserResidenceCountryCountParams defines parameters for MarketplaceStatsUserResidenceCountryCount.
+type MarketplaceStatsUserResidenceCountryCountParams struct {
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -85452,6 +85599,12 @@ type ClientInterface interface {
 	// MarketplaceStatsProjectClassificationSummaryCount request
 	MarketplaceStatsProjectClassificationSummaryCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceStatsProjectCreationTrendList request
+	MarketplaceStatsProjectCreationTrendList(ctx context.Context, params *MarketplaceStatsProjectCreationTrendListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceStatsProjectCreationTrendCount request
+	MarketplaceStatsProjectCreationTrendCount(ctx context.Context, params *MarketplaceStatsProjectCreationTrendCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceStatsProjectsLimitsGroupedByIndustryFlagRetrieve request
 	MarketplaceStatsProjectsLimitsGroupedByIndustryFlagRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -85493,6 +85646,12 @@ type ClientInterface interface {
 
 	// MarketplaceStatsProviderResourcesCount request
 	MarketplaceStatsProviderResourcesCount(ctx context.Context, params *MarketplaceStatsProviderResourcesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceStatsResourceCreationTrendList request
+	MarketplaceStatsResourceCreationTrendList(ctx context.Context, params *MarketplaceStatsResourceCreationTrendListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceStatsResourceCreationTrendCount request
+	MarketplaceStatsResourceCreationTrendCount(ctx context.Context, params *MarketplaceStatsResourceCreationTrendCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceStatsResourceProvisioningStatsList request
 	MarketplaceStatsResourceProvisioningStatsList(ctx context.Context, params *MarketplaceStatsResourceProvisioningStatsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -85536,6 +85695,12 @@ type ClientInterface interface {
 	// MarketplaceStatsResourcesMissingUsageCount request
 	MarketplaceStatsResourcesMissingUsageCount(ctx context.Context, params *MarketplaceStatsResourcesMissingUsageCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceStatsTopServiceProvidersByResourcesList request
+	MarketplaceStatsTopServiceProvidersByResourcesList(ctx context.Context, params *MarketplaceStatsTopServiceProvidersByResourcesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceStatsTopServiceProvidersByResourcesCount request
+	MarketplaceStatsTopServiceProvidersByResourcesCount(ctx context.Context, params *MarketplaceStatsTopServiceProvidersByResourcesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceStatsTotalCostOfActiveResourcesPerOfferingList request
 	MarketplaceStatsTotalCostOfActiveResourcesPerOfferingList(ctx context.Context, params *MarketplaceStatsTotalCostOfActiveResourcesPerOfferingListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -85566,6 +85731,12 @@ type ClientInterface interface {
 	// MarketplaceStatsUserJobTitleCountCount request
 	MarketplaceStatsUserJobTitleCountCount(ctx context.Context, params *MarketplaceStatsUserJobTitleCountCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceStatsUserNationalityList request
+	MarketplaceStatsUserNationalityList(ctx context.Context, params *MarketplaceStatsUserNationalityListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceStatsUserNationalityCount request
+	MarketplaceStatsUserNationalityCount(ctx context.Context, params *MarketplaceStatsUserNationalityCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceStatsUserOrganizationCountList request
 	MarketplaceStatsUserOrganizationCountList(ctx context.Context, params *MarketplaceStatsUserOrganizationCountListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -85577,6 +85748,12 @@ type ClientInterface interface {
 
 	// MarketplaceStatsUserOrganizationTypeCountCount request
 	MarketplaceStatsUserOrganizationTypeCountCount(ctx context.Context, params *MarketplaceStatsUserOrganizationTypeCountCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceStatsUserResidenceCountryList request
+	MarketplaceStatsUserResidenceCountryList(ctx context.Context, params *MarketplaceStatsUserResidenceCountryListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceStatsUserResidenceCountryCount request
+	MarketplaceStatsUserResidenceCountryCount(ctx context.Context, params *MarketplaceStatsUserResidenceCountryCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceTagsList request
 	MarketplaceTagsList(ctx context.Context, params *MarketplaceTagsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -109698,6 +109875,30 @@ func (c *Client) MarketplaceStatsProjectClassificationSummaryCount(ctx context.C
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceStatsProjectCreationTrendList(ctx context.Context, params *MarketplaceStatsProjectCreationTrendListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceStatsProjectCreationTrendListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceStatsProjectCreationTrendCount(ctx context.Context, params *MarketplaceStatsProjectCreationTrendCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceStatsProjectCreationTrendCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceStatsProjectsLimitsGroupedByIndustryFlagRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceStatsProjectsLimitsGroupedByIndustryFlagRetrieveRequest(c.Server)
 	if err != nil {
@@ -109856,6 +110057,30 @@ func (c *Client) MarketplaceStatsProviderResourcesRetrieve(ctx context.Context, 
 
 func (c *Client) MarketplaceStatsProviderResourcesCount(ctx context.Context, params *MarketplaceStatsProviderResourcesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceStatsProviderResourcesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceStatsResourceCreationTrendList(ctx context.Context, params *MarketplaceStatsResourceCreationTrendListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceStatsResourceCreationTrendListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceStatsResourceCreationTrendCount(ctx context.Context, params *MarketplaceStatsResourceCreationTrendCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceStatsResourceCreationTrendCountRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -110034,6 +110259,30 @@ func (c *Client) MarketplaceStatsResourcesMissingUsageCount(ctx context.Context,
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceStatsTopServiceProvidersByResourcesList(ctx context.Context, params *MarketplaceStatsTopServiceProvidersByResourcesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceStatsTopServiceProvidersByResourcesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceStatsTopServiceProvidersByResourcesCount(ctx context.Context, params *MarketplaceStatsTopServiceProvidersByResourcesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceStatsTopServiceProvidersByResourcesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceStatsTotalCostOfActiveResourcesPerOfferingList(ctx context.Context, params *MarketplaceStatsTotalCostOfActiveResourcesPerOfferingListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceStatsTotalCostOfActiveResourcesPerOfferingListRequest(c.Server, params)
 	if err != nil {
@@ -110154,6 +110403,30 @@ func (c *Client) MarketplaceStatsUserJobTitleCountCount(ctx context.Context, par
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceStatsUserNationalityList(ctx context.Context, params *MarketplaceStatsUserNationalityListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceStatsUserNationalityListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceStatsUserNationalityCount(ctx context.Context, params *MarketplaceStatsUserNationalityCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceStatsUserNationalityCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceStatsUserOrganizationCountList(ctx context.Context, params *MarketplaceStatsUserOrganizationCountListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceStatsUserOrganizationCountListRequest(c.Server, params)
 	if err != nil {
@@ -110192,6 +110465,30 @@ func (c *Client) MarketplaceStatsUserOrganizationTypeCountList(ctx context.Conte
 
 func (c *Client) MarketplaceStatsUserOrganizationTypeCountCount(ctx context.Context, params *MarketplaceStatsUserOrganizationTypeCountCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceStatsUserOrganizationTypeCountCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceStatsUserResidenceCountryList(ctx context.Context, params *MarketplaceStatsUserResidenceCountryListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceStatsUserResidenceCountryListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceStatsUserResidenceCountryCount(ctx context.Context, params *MarketplaceStatsUserResidenceCountryCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceStatsUserResidenceCountryCountRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -232031,6 +232328,22 @@ func NewMarketplaceStatsCountActiveResourcesGroupedByOfferingListRequest(server 
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "limit", *params.Limit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
@@ -232095,6 +232408,22 @@ func NewMarketplaceStatsCountActiveResourcesGroupedByOfferingCountRequest(server
 
 	if params != nil {
 		queryValues := queryURL.Query()
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "limit", *params.Limit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
 
 		if params.Page != nil {
 
@@ -235235,6 +235564,136 @@ func NewMarketplaceStatsProjectClassificationSummaryCountRequest(server string) 
 	return req, nil
 }
 
+// NewMarketplaceStatsProjectCreationTrendListRequest generates requests for MarketplaceStatsProjectCreationTrendList
+func NewMarketplaceStatsProjectCreationTrendListRequest(server string, params *MarketplaceStatsProjectCreationTrendListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-stats/project_creation_trend/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceStatsProjectCreationTrendCountRequest generates requests for MarketplaceStatsProjectCreationTrendCount
+func NewMarketplaceStatsProjectCreationTrendCountRequest(server string, params *MarketplaceStatsProjectCreationTrendCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-stats/project_creation_trend/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceStatsProjectsLimitsGroupedByIndustryFlagRetrieveRequest generates requests for MarketplaceStatsProjectsLimitsGroupedByIndustryFlagRetrieve
 func NewMarketplaceStatsProjectsLimitsGroupedByIndustryFlagRetrieveRequest(server string) (*http.Request, error) {
 	var err error
@@ -235708,6 +236167,136 @@ func NewMarketplaceStatsProviderResourcesCountRequest(server string, params *Mar
 					queryValues.Add(k, v2)
 				}
 			}
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceStatsResourceCreationTrendListRequest generates requests for MarketplaceStatsResourceCreationTrendList
+func NewMarketplaceStatsResourceCreationTrendListRequest(server string, params *MarketplaceStatsResourceCreationTrendListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-stats/resource_creation_trend/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceStatsResourceCreationTrendCountRequest generates requests for MarketplaceStatsResourceCreationTrendCount
+func NewMarketplaceStatsResourceCreationTrendCountRequest(server string, params *MarketplaceStatsResourceCreationTrendCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-stats/resource_creation_trend/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
@@ -236651,6 +237240,168 @@ func NewMarketplaceStatsResourcesMissingUsageCountRequest(server string, params 
 	return req, nil
 }
 
+// NewMarketplaceStatsTopServiceProvidersByResourcesListRequest generates requests for MarketplaceStatsTopServiceProvidersByResourcesList
+func NewMarketplaceStatsTopServiceProvidersByResourcesListRequest(server string, params *MarketplaceStatsTopServiceProvidersByResourcesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-stats/top_service_providers_by_resources/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "limit", *params.Limit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceStatsTopServiceProvidersByResourcesCountRequest generates requests for MarketplaceStatsTopServiceProvidersByResourcesCount
+func NewMarketplaceStatsTopServiceProvidersByResourcesCountRequest(server string, params *MarketplaceStatsTopServiceProvidersByResourcesCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-stats/top_service_providers_by_resources/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "limit", *params.Limit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceStatsTotalCostOfActiveResourcesPerOfferingListRequest generates requests for MarketplaceStatsTotalCostOfActiveResourcesPerOfferingList
 func NewMarketplaceStatsTotalCostOfActiveResourcesPerOfferingListRequest(server string, params *MarketplaceStatsTotalCostOfActiveResourcesPerOfferingListParams) (*http.Request, error) {
 	var err error
@@ -237301,6 +238052,136 @@ func NewMarketplaceStatsUserJobTitleCountCountRequest(server string, params *Mar
 	return req, nil
 }
 
+// NewMarketplaceStatsUserNationalityListRequest generates requests for MarketplaceStatsUserNationalityList
+func NewMarketplaceStatsUserNationalityListRequest(server string, params *MarketplaceStatsUserNationalityListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-stats/user_nationality/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceStatsUserNationalityCountRequest generates requests for MarketplaceStatsUserNationalityCount
+func NewMarketplaceStatsUserNationalityCountRequest(server string, params *MarketplaceStatsUserNationalityCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-stats/user_nationality/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceStatsUserOrganizationCountListRequest generates requests for MarketplaceStatsUserOrganizationCountList
 func NewMarketplaceStatsUserOrganizationCountListRequest(server string, params *MarketplaceStatsUserOrganizationCountListParams) (*http.Request, error) {
 	var err error
@@ -237506,6 +238387,136 @@ func NewMarketplaceStatsUserOrganizationTypeCountCountRequest(server string, par
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-stats/user_organization_type_count/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceStatsUserResidenceCountryListRequest generates requests for MarketplaceStatsUserResidenceCountryList
+func NewMarketplaceStatsUserResidenceCountryListRequest(server string, params *MarketplaceStatsUserResidenceCountryListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-stats/user_residence_country/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceStatsUserResidenceCountryCountRequest generates requests for MarketplaceStatsUserResidenceCountryCount
+func NewMarketplaceStatsUserResidenceCountryCountRequest(server string, params *MarketplaceStatsUserResidenceCountryCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-stats/user_residence_country/")
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -335858,6 +336869,12 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceStatsProjectClassificationSummaryCountWithResponse request
 	MarketplaceStatsProjectClassificationSummaryCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceStatsProjectClassificationSummaryCountResponse, error)
 
+	// MarketplaceStatsProjectCreationTrendListWithResponse request
+	MarketplaceStatsProjectCreationTrendListWithResponse(ctx context.Context, params *MarketplaceStatsProjectCreationTrendListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsProjectCreationTrendListResponse, error)
+
+	// MarketplaceStatsProjectCreationTrendCountWithResponse request
+	MarketplaceStatsProjectCreationTrendCountWithResponse(ctx context.Context, params *MarketplaceStatsProjectCreationTrendCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsProjectCreationTrendCountResponse, error)
+
 	// MarketplaceStatsProjectsLimitsGroupedByIndustryFlagRetrieveWithResponse request
 	MarketplaceStatsProjectsLimitsGroupedByIndustryFlagRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceStatsProjectsLimitsGroupedByIndustryFlagRetrieveResponse, error)
 
@@ -335899,6 +336916,12 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceStatsProviderResourcesCountWithResponse request
 	MarketplaceStatsProviderResourcesCountWithResponse(ctx context.Context, params *MarketplaceStatsProviderResourcesCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsProviderResourcesCountResponse, error)
+
+	// MarketplaceStatsResourceCreationTrendListWithResponse request
+	MarketplaceStatsResourceCreationTrendListWithResponse(ctx context.Context, params *MarketplaceStatsResourceCreationTrendListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsResourceCreationTrendListResponse, error)
+
+	// MarketplaceStatsResourceCreationTrendCountWithResponse request
+	MarketplaceStatsResourceCreationTrendCountWithResponse(ctx context.Context, params *MarketplaceStatsResourceCreationTrendCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsResourceCreationTrendCountResponse, error)
 
 	// MarketplaceStatsResourceProvisioningStatsListWithResponse request
 	MarketplaceStatsResourceProvisioningStatsListWithResponse(ctx context.Context, params *MarketplaceStatsResourceProvisioningStatsListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsResourceProvisioningStatsListResponse, error)
@@ -335942,6 +336965,12 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceStatsResourcesMissingUsageCountWithResponse request
 	MarketplaceStatsResourcesMissingUsageCountWithResponse(ctx context.Context, params *MarketplaceStatsResourcesMissingUsageCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsResourcesMissingUsageCountResponse, error)
 
+	// MarketplaceStatsTopServiceProvidersByResourcesListWithResponse request
+	MarketplaceStatsTopServiceProvidersByResourcesListWithResponse(ctx context.Context, params *MarketplaceStatsTopServiceProvidersByResourcesListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsTopServiceProvidersByResourcesListResponse, error)
+
+	// MarketplaceStatsTopServiceProvidersByResourcesCountWithResponse request
+	MarketplaceStatsTopServiceProvidersByResourcesCountWithResponse(ctx context.Context, params *MarketplaceStatsTopServiceProvidersByResourcesCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsTopServiceProvidersByResourcesCountResponse, error)
+
 	// MarketplaceStatsTotalCostOfActiveResourcesPerOfferingListWithResponse request
 	MarketplaceStatsTotalCostOfActiveResourcesPerOfferingListWithResponse(ctx context.Context, params *MarketplaceStatsTotalCostOfActiveResourcesPerOfferingListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsTotalCostOfActiveResourcesPerOfferingListResponse, error)
 
@@ -335972,6 +337001,12 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceStatsUserJobTitleCountCountWithResponse request
 	MarketplaceStatsUserJobTitleCountCountWithResponse(ctx context.Context, params *MarketplaceStatsUserJobTitleCountCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserJobTitleCountCountResponse, error)
 
+	// MarketplaceStatsUserNationalityListWithResponse request
+	MarketplaceStatsUserNationalityListWithResponse(ctx context.Context, params *MarketplaceStatsUserNationalityListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserNationalityListResponse, error)
+
+	// MarketplaceStatsUserNationalityCountWithResponse request
+	MarketplaceStatsUserNationalityCountWithResponse(ctx context.Context, params *MarketplaceStatsUserNationalityCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserNationalityCountResponse, error)
+
 	// MarketplaceStatsUserOrganizationCountListWithResponse request
 	MarketplaceStatsUserOrganizationCountListWithResponse(ctx context.Context, params *MarketplaceStatsUserOrganizationCountListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserOrganizationCountListResponse, error)
 
@@ -335983,6 +337018,12 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceStatsUserOrganizationTypeCountCountWithResponse request
 	MarketplaceStatsUserOrganizationTypeCountCountWithResponse(ctx context.Context, params *MarketplaceStatsUserOrganizationTypeCountCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserOrganizationTypeCountCountResponse, error)
+
+	// MarketplaceStatsUserResidenceCountryListWithResponse request
+	MarketplaceStatsUserResidenceCountryListWithResponse(ctx context.Context, params *MarketplaceStatsUserResidenceCountryListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserResidenceCountryListResponse, error)
+
+	// MarketplaceStatsUserResidenceCountryCountWithResponse request
+	MarketplaceStatsUserResidenceCountryCountWithResponse(ctx context.Context, params *MarketplaceStatsUserResidenceCountryCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserResidenceCountryCountResponse, error)
 
 	// MarketplaceTagsListWithResponse request
 	MarketplaceTagsListWithResponse(ctx context.Context, params *MarketplaceTagsListParams, reqEditors ...RequestEditorFn) (*MarketplaceTagsListResponse, error)
@@ -366660,6 +367701,49 @@ func (r MarketplaceStatsProjectClassificationSummaryCountResponse) StatusCode() 
 	return 0
 }
 
+type MarketplaceStatsProjectCreationTrendListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ProjectCreationTrend
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceStatsProjectCreationTrendListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceStatsProjectCreationTrendListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceStatsProjectCreationTrendCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceStatsProjectCreationTrendCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceStatsProjectCreationTrendCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceStatsProjectsLimitsGroupedByIndustryFlagRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -366955,6 +368039,49 @@ func (r MarketplaceStatsProviderResourcesCountResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceStatsProviderResourcesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceStatsResourceCreationTrendListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ProjectCreationTrend
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceStatsResourceCreationTrendListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceStatsResourceCreationTrendListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceStatsResourceCreationTrendCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceStatsResourceCreationTrendCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceStatsResourceCreationTrendCountResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -367262,6 +368389,49 @@ func (r MarketplaceStatsResourcesMissingUsageCountResponse) StatusCode() int {
 	return 0
 }
 
+type MarketplaceStatsTopServiceProvidersByResourcesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]TopServiceProviderByResources
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceStatsTopServiceProvidersByResourcesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceStatsTopServiceProvidersByResourcesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceStatsTopServiceProvidersByResourcesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceStatsTopServiceProvidersByResourcesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceStatsTopServiceProvidersByResourcesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceStatsTotalCostOfActiveResourcesPerOfferingListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -367477,6 +368647,49 @@ func (r MarketplaceStatsUserJobTitleCountCountResponse) StatusCode() int {
 	return 0
 }
 
+type MarketplaceStatsUserNationalityListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]UserNationalityStats
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceStatsUserNationalityListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceStatsUserNationalityListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceStatsUserNationalityCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceStatsUserNationalityCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceStatsUserNationalityCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceStatsUserOrganizationCountListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -367557,6 +368770,49 @@ func (r MarketplaceStatsUserOrganizationTypeCountCountResponse) Status() string 
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceStatsUserOrganizationTypeCountCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceStatsUserResidenceCountryListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]UserResidenceCountryStats
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceStatsUserResidenceCountryListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceStatsUserResidenceCountryListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceStatsUserResidenceCountryCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceStatsUserResidenceCountryCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceStatsUserResidenceCountryCountResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -406484,6 +407740,24 @@ func (c *ClientWithResponses) MarketplaceStatsProjectClassificationSummaryCountW
 	return ParseMarketplaceStatsProjectClassificationSummaryCountResponse(rsp)
 }
 
+// MarketplaceStatsProjectCreationTrendListWithResponse request returning *MarketplaceStatsProjectCreationTrendListResponse
+func (c *ClientWithResponses) MarketplaceStatsProjectCreationTrendListWithResponse(ctx context.Context, params *MarketplaceStatsProjectCreationTrendListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsProjectCreationTrendListResponse, error) {
+	rsp, err := c.MarketplaceStatsProjectCreationTrendList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceStatsProjectCreationTrendListResponse(rsp)
+}
+
+// MarketplaceStatsProjectCreationTrendCountWithResponse request returning *MarketplaceStatsProjectCreationTrendCountResponse
+func (c *ClientWithResponses) MarketplaceStatsProjectCreationTrendCountWithResponse(ctx context.Context, params *MarketplaceStatsProjectCreationTrendCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsProjectCreationTrendCountResponse, error) {
+	rsp, err := c.MarketplaceStatsProjectCreationTrendCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceStatsProjectCreationTrendCountResponse(rsp)
+}
+
 // MarketplaceStatsProjectsLimitsGroupedByIndustryFlagRetrieveWithResponse request returning *MarketplaceStatsProjectsLimitsGroupedByIndustryFlagRetrieveResponse
 func (c *ClientWithResponses) MarketplaceStatsProjectsLimitsGroupedByIndustryFlagRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceStatsProjectsLimitsGroupedByIndustryFlagRetrieveResponse, error) {
 	rsp, err := c.MarketplaceStatsProjectsLimitsGroupedByIndustryFlagRetrieve(ctx, reqEditors...)
@@ -406608,6 +407882,24 @@ func (c *ClientWithResponses) MarketplaceStatsProviderResourcesCountWithResponse
 		return nil, err
 	}
 	return ParseMarketplaceStatsProviderResourcesCountResponse(rsp)
+}
+
+// MarketplaceStatsResourceCreationTrendListWithResponse request returning *MarketplaceStatsResourceCreationTrendListResponse
+func (c *ClientWithResponses) MarketplaceStatsResourceCreationTrendListWithResponse(ctx context.Context, params *MarketplaceStatsResourceCreationTrendListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsResourceCreationTrendListResponse, error) {
+	rsp, err := c.MarketplaceStatsResourceCreationTrendList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceStatsResourceCreationTrendListResponse(rsp)
+}
+
+// MarketplaceStatsResourceCreationTrendCountWithResponse request returning *MarketplaceStatsResourceCreationTrendCountResponse
+func (c *ClientWithResponses) MarketplaceStatsResourceCreationTrendCountWithResponse(ctx context.Context, params *MarketplaceStatsResourceCreationTrendCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsResourceCreationTrendCountResponse, error) {
+	rsp, err := c.MarketplaceStatsResourceCreationTrendCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceStatsResourceCreationTrendCountResponse(rsp)
 }
 
 // MarketplaceStatsResourceProvisioningStatsListWithResponse request returning *MarketplaceStatsResourceProvisioningStatsListResponse
@@ -406736,6 +408028,24 @@ func (c *ClientWithResponses) MarketplaceStatsResourcesMissingUsageCountWithResp
 	return ParseMarketplaceStatsResourcesMissingUsageCountResponse(rsp)
 }
 
+// MarketplaceStatsTopServiceProvidersByResourcesListWithResponse request returning *MarketplaceStatsTopServiceProvidersByResourcesListResponse
+func (c *ClientWithResponses) MarketplaceStatsTopServiceProvidersByResourcesListWithResponse(ctx context.Context, params *MarketplaceStatsTopServiceProvidersByResourcesListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsTopServiceProvidersByResourcesListResponse, error) {
+	rsp, err := c.MarketplaceStatsTopServiceProvidersByResourcesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceStatsTopServiceProvidersByResourcesListResponse(rsp)
+}
+
+// MarketplaceStatsTopServiceProvidersByResourcesCountWithResponse request returning *MarketplaceStatsTopServiceProvidersByResourcesCountResponse
+func (c *ClientWithResponses) MarketplaceStatsTopServiceProvidersByResourcesCountWithResponse(ctx context.Context, params *MarketplaceStatsTopServiceProvidersByResourcesCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsTopServiceProvidersByResourcesCountResponse, error) {
+	rsp, err := c.MarketplaceStatsTopServiceProvidersByResourcesCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceStatsTopServiceProvidersByResourcesCountResponse(rsp)
+}
+
 // MarketplaceStatsTotalCostOfActiveResourcesPerOfferingListWithResponse request returning *MarketplaceStatsTotalCostOfActiveResourcesPerOfferingListResponse
 func (c *ClientWithResponses) MarketplaceStatsTotalCostOfActiveResourcesPerOfferingListWithResponse(ctx context.Context, params *MarketplaceStatsTotalCostOfActiveResourcesPerOfferingListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsTotalCostOfActiveResourcesPerOfferingListResponse, error) {
 	rsp, err := c.MarketplaceStatsTotalCostOfActiveResourcesPerOfferingList(ctx, params, reqEditors...)
@@ -406826,6 +408136,24 @@ func (c *ClientWithResponses) MarketplaceStatsUserJobTitleCountCountWithResponse
 	return ParseMarketplaceStatsUserJobTitleCountCountResponse(rsp)
 }
 
+// MarketplaceStatsUserNationalityListWithResponse request returning *MarketplaceStatsUserNationalityListResponse
+func (c *ClientWithResponses) MarketplaceStatsUserNationalityListWithResponse(ctx context.Context, params *MarketplaceStatsUserNationalityListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserNationalityListResponse, error) {
+	rsp, err := c.MarketplaceStatsUserNationalityList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceStatsUserNationalityListResponse(rsp)
+}
+
+// MarketplaceStatsUserNationalityCountWithResponse request returning *MarketplaceStatsUserNationalityCountResponse
+func (c *ClientWithResponses) MarketplaceStatsUserNationalityCountWithResponse(ctx context.Context, params *MarketplaceStatsUserNationalityCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserNationalityCountResponse, error) {
+	rsp, err := c.MarketplaceStatsUserNationalityCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceStatsUserNationalityCountResponse(rsp)
+}
+
 // MarketplaceStatsUserOrganizationCountListWithResponse request returning *MarketplaceStatsUserOrganizationCountListResponse
 func (c *ClientWithResponses) MarketplaceStatsUserOrganizationCountListWithResponse(ctx context.Context, params *MarketplaceStatsUserOrganizationCountListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserOrganizationCountListResponse, error) {
 	rsp, err := c.MarketplaceStatsUserOrganizationCountList(ctx, params, reqEditors...)
@@ -406860,6 +408188,24 @@ func (c *ClientWithResponses) MarketplaceStatsUserOrganizationTypeCountCountWith
 		return nil, err
 	}
 	return ParseMarketplaceStatsUserOrganizationTypeCountCountResponse(rsp)
+}
+
+// MarketplaceStatsUserResidenceCountryListWithResponse request returning *MarketplaceStatsUserResidenceCountryListResponse
+func (c *ClientWithResponses) MarketplaceStatsUserResidenceCountryListWithResponse(ctx context.Context, params *MarketplaceStatsUserResidenceCountryListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserResidenceCountryListResponse, error) {
+	rsp, err := c.MarketplaceStatsUserResidenceCountryList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceStatsUserResidenceCountryListResponse(rsp)
+}
+
+// MarketplaceStatsUserResidenceCountryCountWithResponse request returning *MarketplaceStatsUserResidenceCountryCountResponse
+func (c *ClientWithResponses) MarketplaceStatsUserResidenceCountryCountWithResponse(ctx context.Context, params *MarketplaceStatsUserResidenceCountryCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserResidenceCountryCountResponse, error) {
+	rsp, err := c.MarketplaceStatsUserResidenceCountryCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceStatsUserResidenceCountryCountResponse(rsp)
 }
 
 // MarketplaceTagsListWithResponse request returning *MarketplaceTagsListResponse
@@ -448334,6 +449680,48 @@ func ParseMarketplaceStatsProjectClassificationSummaryCountResponse(rsp *http.Re
 	return response, nil
 }
 
+// ParseMarketplaceStatsProjectCreationTrendListResponse parses an HTTP response from a MarketplaceStatsProjectCreationTrendListWithResponse call
+func ParseMarketplaceStatsProjectCreationTrendListResponse(rsp *http.Response) (*MarketplaceStatsProjectCreationTrendListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceStatsProjectCreationTrendListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ProjectCreationTrend
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceStatsProjectCreationTrendCountResponse parses an HTTP response from a MarketplaceStatsProjectCreationTrendCountWithResponse call
+func ParseMarketplaceStatsProjectCreationTrendCountResponse(rsp *http.Response) (*MarketplaceStatsProjectCreationTrendCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceStatsProjectCreationTrendCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceStatsProjectsLimitsGroupedByIndustryFlagRetrieveResponse parses an HTTP response from a MarketplaceStatsProjectsLimitsGroupedByIndustryFlagRetrieveWithResponse call
 func ParseMarketplaceStatsProjectsLimitsGroupedByIndustryFlagRetrieveResponse(rsp *http.Response) (*MarketplaceStatsProjectsLimitsGroupedByIndustryFlagRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -448621,6 +450009,48 @@ func ParseMarketplaceStatsProviderResourcesCountResponse(rsp *http.Response) (*M
 	}
 
 	response := &MarketplaceStatsProviderResourcesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceStatsResourceCreationTrendListResponse parses an HTTP response from a MarketplaceStatsResourceCreationTrendListWithResponse call
+func ParseMarketplaceStatsResourceCreationTrendListResponse(rsp *http.Response) (*MarketplaceStatsResourceCreationTrendListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceStatsResourceCreationTrendListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ProjectCreationTrend
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceStatsResourceCreationTrendCountResponse parses an HTTP response from a MarketplaceStatsResourceCreationTrendCountWithResponse call
+func ParseMarketplaceStatsResourceCreationTrendCountResponse(rsp *http.Response) (*MarketplaceStatsResourceCreationTrendCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceStatsResourceCreationTrendCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -448922,6 +450352,48 @@ func ParseMarketplaceStatsResourcesMissingUsageCountResponse(rsp *http.Response)
 	return response, nil
 }
 
+// ParseMarketplaceStatsTopServiceProvidersByResourcesListResponse parses an HTTP response from a MarketplaceStatsTopServiceProvidersByResourcesListWithResponse call
+func ParseMarketplaceStatsTopServiceProvidersByResourcesListResponse(rsp *http.Response) (*MarketplaceStatsTopServiceProvidersByResourcesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceStatsTopServiceProvidersByResourcesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []TopServiceProviderByResources
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceStatsTopServiceProvidersByResourcesCountResponse parses an HTTP response from a MarketplaceStatsTopServiceProvidersByResourcesCountWithResponse call
+func ParseMarketplaceStatsTopServiceProvidersByResourcesCountResponse(rsp *http.Response) (*MarketplaceStatsTopServiceProvidersByResourcesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceStatsTopServiceProvidersByResourcesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceStatsTotalCostOfActiveResourcesPerOfferingListResponse parses an HTTP response from a MarketplaceStatsTotalCostOfActiveResourcesPerOfferingListWithResponse call
 func ParseMarketplaceStatsTotalCostOfActiveResourcesPerOfferingListResponse(rsp *http.Response) (*MarketplaceStatsTotalCostOfActiveResourcesPerOfferingListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -449132,6 +450604,48 @@ func ParseMarketplaceStatsUserJobTitleCountCountResponse(rsp *http.Response) (*M
 	return response, nil
 }
 
+// ParseMarketplaceStatsUserNationalityListResponse parses an HTTP response from a MarketplaceStatsUserNationalityListWithResponse call
+func ParseMarketplaceStatsUserNationalityListResponse(rsp *http.Response) (*MarketplaceStatsUserNationalityListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceStatsUserNationalityListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []UserNationalityStats
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceStatsUserNationalityCountResponse parses an HTTP response from a MarketplaceStatsUserNationalityCountWithResponse call
+func ParseMarketplaceStatsUserNationalityCountResponse(rsp *http.Response) (*MarketplaceStatsUserNationalityCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceStatsUserNationalityCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceStatsUserOrganizationCountListResponse parses an HTTP response from a MarketplaceStatsUserOrganizationCountListWithResponse call
 func ParseMarketplaceStatsUserOrganizationCountListResponse(rsp *http.Response) (*MarketplaceStatsUserOrganizationCountListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -449209,6 +450723,48 @@ func ParseMarketplaceStatsUserOrganizationTypeCountCountResponse(rsp *http.Respo
 	}
 
 	response := &MarketplaceStatsUserOrganizationTypeCountCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceStatsUserResidenceCountryListResponse parses an HTTP response from a MarketplaceStatsUserResidenceCountryListWithResponse call
+func ParseMarketplaceStatsUserResidenceCountryListResponse(rsp *http.Response) (*MarketplaceStatsUserResidenceCountryListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceStatsUserResidenceCountryListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []UserResidenceCountryStats
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceStatsUserResidenceCountryCountResponse parses an HTTP response from a MarketplaceStatsUserResidenceCountryCountWithResponse call
+func ParseMarketplaceStatsUserResidenceCountryCountResponse(rsp *http.Response) (*MarketplaceStatsUserResidenceCountryCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceStatsUserResidenceCountryCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
