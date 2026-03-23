@@ -23311,9 +23311,9 @@ type CallReviewerPool struct {
 	// HasProfile Check if reviewer has a profile.
 	HasProfile              *bool                 `json:"has_profile,omitempty"`
 	InvitationExpiresAt     *time.Time            `json:"invitation_expires_at,omitempty"`
+	InvitationLink          *string               `json:"invitation_link,omitempty"`
 	InvitationStatus        *InvitationStatusEnum `json:"invitation_status,omitempty"`
 	InvitationStatusDisplay *string               `json:"invitation_status_display,omitempty"`
-	InvitationToken         *string               `json:"invitation_token,omitempty"`
 	InvitedAt               *time.Time            `json:"invited_at,omitempty"`
 	InvitedByName           *string               `json:"invited_by_name,omitempty"`
 
