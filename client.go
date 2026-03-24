@@ -5113,6 +5113,7 @@ const (
 	ENABLEDREPORTINGSCREENSEnumUsageMonitoring       ENABLEDREPORTINGSCREENSEnum = "usage-monitoring"
 	ENABLEDREPORTINGSCREENSEnumUsageTrends           ENABLEDREPORTINGSCREENSEnum = "usage-trends"
 	ENABLEDREPORTINGSCREENSEnumUserAffiliations      ENABLEDREPORTINGSCREENSEnum = "user-affiliations"
+	ENABLEDREPORTINGSCREENSEnumUserAnalytics         ENABLEDREPORTINGSCREENSEnum = "user-analytics"
 	ENABLEDREPORTINGSCREENSEnumUserDemographics      ENABLEDREPORTINGSCREENSEnum = "user-demographics"
 	ENABLEDREPORTINGSCREENSEnumUserOrganizations     ENABLEDREPORTINGSCREENSEnum = "user-organizations"
 	ENABLEDREPORTINGSCREENSEnumUserRoles             ENABLEDREPORTINGSCREENSEnum = "user-roles"
@@ -5181,6 +5182,8 @@ func (e ENABLEDREPORTINGSCREENSEnum) Valid() bool {
 	case ENABLEDREPORTINGSCREENSEnumUsageTrends:
 		return true
 	case ENABLEDREPORTINGSCREENSEnumUserAffiliations:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumUserAnalytics:
 		return true
 	case ENABLEDREPORTINGSCREENSEnumUserDemographics:
 		return true
