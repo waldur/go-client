@@ -42671,6 +42671,11 @@ type ResourceDownscaledRequest struct {
 	Downscaled *bool `json:"downscaled,omitempty"`
 }
 
+// ResourceEffectiveIDRequest defines model for ResourceEffectiveIDRequest.
+type ResourceEffectiveIDRequest struct {
+	EffectiveId *string `json:"effective_id,omitempty"`
+}
+
 // ResourceEndDateByProviderRequest defines model for ResourceEndDateByProviderRequest.
 type ResourceEndDateByProviderRequest struct {
 	// EndDate The date is inclusive. Once reached, a resource will be scheduled for termination.
@@ -69458,6 +69463,9 @@ type MarketplaceProviderResourcesSetBackendMetadataJSONRequestBody = ResourceBac
 // MarketplaceProviderResourcesSetDownscaledJSONRequestBody defines body for MarketplaceProviderResourcesSetDownscaled for application/json ContentType.
 type MarketplaceProviderResourcesSetDownscaledJSONRequestBody = ResourceDownscaledRequest
 
+// MarketplaceProviderResourcesSetEffectiveIdJSONRequestBody defines body for MarketplaceProviderResourcesSetEffectiveId for application/json ContentType.
+type MarketplaceProviderResourcesSetEffectiveIdJSONRequestBody = ResourceEffectiveIDRequest
+
 // MarketplaceProviderResourcesSetEndDateJSONRequestBody defines body for MarketplaceProviderResourcesSetEndDate for application/json ContentType.
 type MarketplaceProviderResourcesSetEndDateJSONRequestBody = ResourceEndDateRequest
 
@@ -84677,6 +84685,11 @@ type ClientInterface interface {
 	MarketplaceProviderResourcesSetDownscaledWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceProviderResourcesSetDownscaled(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetDownscaledJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderResourcesSetEffectiveIdWithBody request with any body
+	MarketplaceProviderResourcesSetEffectiveIdWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderResourcesSetEffectiveId(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetEffectiveIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderResourcesSetEndDateWithBody request with any body
 	MarketplaceProviderResourcesSetEndDateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -105824,6 +105837,30 @@ func (c *Client) MarketplaceProviderResourcesSetDownscaledWithBody(ctx context.C
 
 func (c *Client) MarketplaceProviderResourcesSetDownscaled(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetDownscaledJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderResourcesSetDownscaledRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderResourcesSetEffectiveIdWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesSetEffectiveIdRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderResourcesSetEffectiveId(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetEffectiveIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesSetEffectiveIdRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -211610,6 +211647,53 @@ func NewMarketplaceProviderResourcesSetDownscaledRequestWithBody(server string, 
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-provider-resources/%s/set_downscaled/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProviderResourcesSetEffectiveIdRequest calls the generic MarketplaceProviderResourcesSetEffectiveId builder with application/json body
+func NewMarketplaceProviderResourcesSetEffectiveIdRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetEffectiveIdJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderResourcesSetEffectiveIdRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderResourcesSetEffectiveIdRequestWithBody generates requests for MarketplaceProviderResourcesSetEffectiveId with any type of body
+func NewMarketplaceProviderResourcesSetEffectiveIdRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-resources/%s/set_effective_id/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -335948,6 +336032,11 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceProviderResourcesSetDownscaledWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetDownscaledJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetDownscaledResponse, error)
 
+	// MarketplaceProviderResourcesSetEffectiveIdWithBodyWithResponse request with any body
+	MarketplaceProviderResourcesSetEffectiveIdWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetEffectiveIdResponse, error)
+
+	MarketplaceProviderResourcesSetEffectiveIdWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetEffectiveIdJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetEffectiveIdResponse, error)
+
 	// MarketplaceProviderResourcesSetEndDateWithBodyWithResponse request with any body
 	MarketplaceProviderResourcesSetEndDateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetEndDateResponse, error)
 
@@ -362239,6 +362328,28 @@ func (r MarketplaceProviderResourcesSetDownscaledResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceProviderResourcesSetDownscaledResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProviderResourcesSetEffectiveIdResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ResourceResponseStatus
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderResourcesSetEffectiveIdResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderResourcesSetEffectiveIdResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -404797,6 +404908,23 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesSetDownscaledWithRespo
 	return ParseMarketplaceProviderResourcesSetDownscaledResponse(rsp)
 }
 
+// MarketplaceProviderResourcesSetEffectiveIdWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourcesSetEffectiveIdResponse
+func (c *ClientWithResponses) MarketplaceProviderResourcesSetEffectiveIdWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetEffectiveIdResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesSetEffectiveIdWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesSetEffectiveIdResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderResourcesSetEffectiveIdWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetEffectiveIdJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetEffectiveIdResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesSetEffectiveId(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesSetEffectiveIdResponse(rsp)
+}
+
 // MarketplaceProviderResourcesSetEndDateWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourcesSetEndDateResponse
 func (c *ClientWithResponses) MarketplaceProviderResourcesSetEndDateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetEndDateResponse, error) {
 	rsp, err := c.MarketplaceProviderResourcesSetEndDateWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -443784,6 +443912,32 @@ func ParseMarketplaceProviderResourcesSetDownscaledResponse(rsp *http.Response) 
 		var dest struct {
 			Status *string `json:"status,omitempty"`
 		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderResourcesSetEffectiveIdResponse parses an HTTP response from a MarketplaceProviderResourcesSetEffectiveIdWithResponse call
+func ParseMarketplaceProviderResourcesSetEffectiveIdResponse(rsp *http.Response) (*MarketplaceProviderResourcesSetEffectiveIdResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderResourcesSetEffectiveIdResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ResourceResponseStatus
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
