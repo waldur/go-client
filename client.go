@@ -5534,6 +5534,11 @@ const (
 	EventMetadataResponseEventGroupsReductionOfProjectExpectedConsumption            EventMetadataResponseEventGroups = "reduction_of_project_expected_consumption"
 	EventMetadataResponseEventGroupsRequestDownscaling                               EventMetadataResponseEventGroups = "request_downscaling"
 	EventMetadataResponseEventGroupsRequestPausing                                   EventMetadataResponseEventGroups = "request_pausing"
+	EventMetadataResponseEventGroupsRequestSlurmResourceDownscaling                  EventMetadataResponseEventGroups = "request_slurm_resource_downscaling"
+	EventMetadataResponseEventGroupsRequestSlurmResourcePausing                      EventMetadataResponseEventGroups = "request_slurm_resource_pausing"
+	EventMetadataResponseEventGroupsResetDownscaling                                 EventMetadataResponseEventGroups = "reset_downscaling"
+	EventMetadataResponseEventGroupsResetMemberRestriction                           EventMetadataResponseEventGroups = "reset_member_restriction"
+	EventMetadataResponseEventGroupsResetPausing                                     EventMetadataResponseEventGroups = "reset_pausing"
 	EventMetadataResponseEventGroupsResourceAssignFloatingIpFailed                   EventMetadataResponseEventGroups = "resource_assign_floating_ip_failed"
 	EventMetadataResponseEventGroupsResourceAssignFloatingIpScheduled                EventMetadataResponseEventGroups = "resource_assign_floating_ip_scheduled"
 	EventMetadataResponseEventGroupsResourceAssignFloatingIpSucceeded                EventMetadataResponseEventGroups = "resource_assign_floating_ip_succeeded"
@@ -5981,6 +5986,16 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 		return true
 	case EventMetadataResponseEventGroupsRequestPausing:
 		return true
+	case EventMetadataResponseEventGroupsRequestSlurmResourceDownscaling:
+		return true
+	case EventMetadataResponseEventGroupsRequestSlurmResourcePausing:
+		return true
+	case EventMetadataResponseEventGroupsResetDownscaling:
+		return true
+	case EventMetadataResponseEventGroupsResetMemberRestriction:
+		return true
+	case EventMetadataResponseEventGroupsResetPausing:
+		return true
 	case EventMetadataResponseEventGroupsResourceAssignFloatingIpFailed:
 		return true
 	case EventMetadataResponseEventGroupsResourceAssignFloatingIpScheduled:
@@ -6365,6 +6380,11 @@ const (
 	EventTypesEnumReductionOfProjectExpectedConsumption            EventTypesEnum = "reduction_of_project_expected_consumption"
 	EventTypesEnumRequestDownscaling                               EventTypesEnum = "request_downscaling"
 	EventTypesEnumRequestPausing                                   EventTypesEnum = "request_pausing"
+	EventTypesEnumRequestSlurmResourceDownscaling                  EventTypesEnum = "request_slurm_resource_downscaling"
+	EventTypesEnumRequestSlurmResourcePausing                      EventTypesEnum = "request_slurm_resource_pausing"
+	EventTypesEnumResetDownscaling                                 EventTypesEnum = "reset_downscaling"
+	EventTypesEnumResetMemberRestriction                           EventTypesEnum = "reset_member_restriction"
+	EventTypesEnumResetPausing                                     EventTypesEnum = "reset_pausing"
 	EventTypesEnumResourceAssignFloatingIpFailed                   EventTypesEnum = "resource_assign_floating_ip_failed"
 	EventTypesEnumResourceAssignFloatingIpScheduled                EventTypesEnum = "resource_assign_floating_ip_scheduled"
 	EventTypesEnumResourceAssignFloatingIpSucceeded                EventTypesEnum = "resource_assign_floating_ip_succeeded"
@@ -6811,6 +6831,16 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumRequestDownscaling:
 		return true
 	case EventTypesEnumRequestPausing:
+		return true
+	case EventTypesEnumRequestSlurmResourceDownscaling:
+		return true
+	case EventTypesEnumRequestSlurmResourcePausing:
+		return true
+	case EventTypesEnumResetDownscaling:
+		return true
+	case EventTypesEnumResetMemberRestriction:
+		return true
+	case EventTypesEnumResetPausing:
 		return true
 	case EventTypesEnumResourceAssignFloatingIpFailed:
 		return true
