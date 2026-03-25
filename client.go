@@ -32019,16 +32019,28 @@ type OfferingComponent struct {
 	LimitPeriod        *OfferingComponent_LimitPeriod `json:"limit_period,omitempty"`
 	MaxAvailableLimit  *int                           `json:"max_available_limit,omitempty"`
 	MaxPrepaidDuration *int                           `json:"max_prepaid_duration,omitempty"`
-	MaxValue           *int                           `json:"max_value,omitempty"`
+
+	// MaxRenewalDuration Maximum number of months allowed for a renewal.
+	MaxRenewalDuration *int `json:"max_renewal_duration,omitempty"`
+	MaxValue           *int `json:"max_value,omitempty"`
 
 	// MeasuredUnit Unit of measurement, for example, GB.
 	MeasuredUnit       *string `json:"measured_unit,omitempty"`
 	MinPrepaidDuration *int    `json:"min_prepaid_duration,omitempty"`
-	MinValue           *int    `json:"min_value,omitempty"`
+
+	// MinRenewalDuration Minimum number of months allowed for a renewal.
+	MinRenewalDuration *int `json:"min_renewal_duration,omitempty"`
+	MinValue           *int `json:"min_value,omitempty"`
 
 	// Name Display name for the measured unit, for example, Floating IP.
 	Name             *string             `json:"name,omitempty"`
 	OverageComponent *openapi_types.UUID `json:"overage_component,omitempty"`
+
+	// PrepaidDurationStep Step size in months for the initial prepaid duration at order creation. If set, only multiples of this value (starting from min_prepaid_duration) are valid. Defaults to 1 (any value between min and max).
+	PrepaidDurationStep *int `json:"prepaid_duration_step,omitempty"`
+
+	// RenewalDurationStep Step size in months for renewal. Only multiples of this value (starting from min_renewal_duration) are valid. Defaults to 1.
+	RenewalDurationStep *int `json:"renewal_duration_step,omitempty"`
 
 	// Type Unique internal name of the measured unit, for example floating_ip.
 	Type *string `json:"type,omitempty"`
@@ -32067,16 +32079,28 @@ type OfferingComponentRequest struct {
 	LimitPeriod        *OfferingComponentRequest_LimitPeriod `json:"limit_period,omitempty"`
 	MaxAvailableLimit  *int                                  `json:"max_available_limit,omitempty"`
 	MaxPrepaidDuration *int                                  `json:"max_prepaid_duration,omitempty"`
-	MaxValue           *int                                  `json:"max_value,omitempty"`
+
+	// MaxRenewalDuration Maximum number of months allowed for a renewal.
+	MaxRenewalDuration *int `json:"max_renewal_duration,omitempty"`
+	MaxValue           *int `json:"max_value,omitempty"`
 
 	// MeasuredUnit Unit of measurement, for example, GB.
 	MeasuredUnit       *string `json:"measured_unit,omitempty"`
 	MinPrepaidDuration *int    `json:"min_prepaid_duration,omitempty"`
-	MinValue           *int    `json:"min_value,omitempty"`
+
+	// MinRenewalDuration Minimum number of months allowed for a renewal.
+	MinRenewalDuration *int `json:"min_renewal_duration,omitempty"`
+	MinValue           *int `json:"min_value,omitempty"`
 
 	// Name Display name for the measured unit, for example, Floating IP.
 	Name             string              `json:"name"`
 	OverageComponent *openapi_types.UUID `json:"overage_component,omitempty"`
+
+	// PrepaidDurationStep Step size in months for the initial prepaid duration at order creation. If set, only multiples of this value (starting from min_prepaid_duration) are valid. Defaults to 1 (any value between min and max).
+	PrepaidDurationStep *int `json:"prepaid_duration_step,omitempty"`
+
+	// RenewalDurationStep Step size in months for renewal. Only multiples of this value (starting from min_renewal_duration) are valid. Defaults to 1.
+	RenewalDurationStep *int `json:"renewal_duration_step,omitempty"`
 
 	// Type Unique internal name of the measured unit, for example floating_ip.
 	Type string `json:"type"`
@@ -45868,16 +45892,28 @@ type UpdateOfferingComponentRequest struct {
 	LimitPeriod        *UpdateOfferingComponentRequest_LimitPeriod `json:"limit_period,omitempty"`
 	MaxAvailableLimit  *int                                        `json:"max_available_limit,omitempty"`
 	MaxPrepaidDuration *int                                        `json:"max_prepaid_duration,omitempty"`
-	MaxValue           *int                                        `json:"max_value,omitempty"`
+
+	// MaxRenewalDuration Maximum number of months allowed for a renewal.
+	MaxRenewalDuration *int `json:"max_renewal_duration,omitempty"`
+	MaxValue           *int `json:"max_value,omitempty"`
 
 	// MeasuredUnit Unit of measurement, for example, GB.
 	MeasuredUnit       *string `json:"measured_unit,omitempty"`
 	MinPrepaidDuration *int    `json:"min_prepaid_duration,omitempty"`
-	MinValue           *int    `json:"min_value,omitempty"`
+
+	// MinRenewalDuration Minimum number of months allowed for a renewal.
+	MinRenewalDuration *int `json:"min_renewal_duration,omitempty"`
+	MinValue           *int `json:"min_value,omitempty"`
 
 	// Name Display name for the measured unit, for example, Floating IP.
 	Name             string              `json:"name"`
 	OverageComponent *openapi_types.UUID `json:"overage_component,omitempty"`
+
+	// PrepaidDurationStep Step size in months for the initial prepaid duration at order creation. If set, only multiples of this value (starting from min_prepaid_duration) are valid. Defaults to 1 (any value between min and max).
+	PrepaidDurationStep *int `json:"prepaid_duration_step,omitempty"`
+
+	// RenewalDurationStep Step size in months for renewal. Only multiples of this value (starting from min_renewal_duration) are valid. Defaults to 1.
+	RenewalDurationStep *int `json:"renewal_duration_step,omitempty"`
 
 	// Type Unique internal name of the measured unit, for example floating_ip.
 	Type string `json:"type"`
