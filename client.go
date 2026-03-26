@@ -28702,6 +28702,11 @@ type ISDUserCount struct {
 	UserCount      int     `json:"user_count"`
 }
 
+// IdentityBridgeAllowedFields defines model for IdentityBridgeAllowedFields.
+type IdentityBridgeAllowedFields struct {
+	AllowedFields []string `json:"allowed_fields"`
+}
+
 // IdentityBridgeRemoveRequest defines model for IdentityBridgeRemoveRequest.
 type IdentityBridgeRemoveRequest struct {
 	// Source ISD source identifier, e.g. 'isd:puhuri'. Must match ^[a-z]+:[a-zA-Z0-9._-]+$.
@@ -83041,6 +83046,9 @@ type ClientInterface interface {
 
 	IdentityBridge(ctx context.Context, body IdentityBridgeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// IdentityBridgeAllowedFieldsRetrieve request
+	IdentityBridgeAllowedFieldsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// IdentityBridgeRemoveWithBody request with any body
 	IdentityBridgeRemoveWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -98343,6 +98351,18 @@ func (c *Client) IdentityBridgeWithBody(ctx context.Context, contentType string,
 
 func (c *Client) IdentityBridge(ctx context.Context, body IdentityBridgeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewIdentityBridgeRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) IdentityBridgeAllowedFieldsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewIdentityBridgeAllowedFieldsRetrieveRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -170617,6 +170637,33 @@ func NewIdentityBridgeRequestWithBody(server string, contentType string, body io
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewIdentityBridgeAllowedFieldsRetrieveRequest generates requests for IdentityBridgeAllowedFieldsRetrieve
+func NewIdentityBridgeAllowedFieldsRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/identity-bridge/allowed-fields/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -334387,6 +334434,9 @@ type ClientWithResponsesInterface interface {
 
 	IdentityBridgeWithResponse(ctx context.Context, body IdentityBridgeJSONRequestBody, reqEditors ...RequestEditorFn) (*IdentityBridgeResponse, error)
 
+	// IdentityBridgeAllowedFieldsRetrieveWithResponse request
+	IdentityBridgeAllowedFieldsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*IdentityBridgeAllowedFieldsRetrieveResponse, error)
+
 	// IdentityBridgeRemoveWithBodyWithResponse request with any body
 	IdentityBridgeRemoveWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*IdentityBridgeRemoveResponse, error)
 
@@ -352598,6 +352648,28 @@ func (r IdentityBridgeResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r IdentityBridgeResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type IdentityBridgeAllowedFieldsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *IdentityBridgeAllowedFields
+}
+
+// Status returns HTTPResponse.Status
+func (r IdentityBridgeAllowedFieldsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r IdentityBridgeAllowedFieldsRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -399483,6 +399555,15 @@ func (c *ClientWithResponses) IdentityBridgeWithResponse(ctx context.Context, bo
 	return ParseIdentityBridgeResponse(rsp)
 }
 
+// IdentityBridgeAllowedFieldsRetrieveWithResponse request returning *IdentityBridgeAllowedFieldsRetrieveResponse
+func (c *ClientWithResponses) IdentityBridgeAllowedFieldsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*IdentityBridgeAllowedFieldsRetrieveResponse, error) {
+	rsp, err := c.IdentityBridgeAllowedFieldsRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseIdentityBridgeAllowedFieldsRetrieveResponse(rsp)
+}
+
 // IdentityBridgeRemoveWithBodyWithResponse request with arbitrary body returning *IdentityBridgeRemoveResponse
 func (c *ClientWithResponses) IdentityBridgeRemoveWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*IdentityBridgeRemoveResponse, error) {
 	rsp, err := c.IdentityBridgeRemoveWithBody(ctx, contentType, body, reqEditors...)
@@ -433713,6 +433794,32 @@ func ParseIdentityBridgeResponse(rsp *http.Response) (*IdentityBridgeResponse, e
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest IdentityBridgeResult
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseIdentityBridgeAllowedFieldsRetrieveResponse parses an HTTP response from a IdentityBridgeAllowedFieldsRetrieveWithResponse call
+func ParseIdentityBridgeAllowedFieldsRetrieveResponse(rsp *http.Response) (*IdentityBridgeAllowedFieldsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &IdentityBridgeAllowedFieldsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest IdentityBridgeAllowedFields
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
