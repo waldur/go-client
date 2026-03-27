@@ -18448,10 +18448,8 @@ func (e SoftwarePackageOEnum) Valid() bool {
 
 // Defines values for SoftwareTargetOEnum.
 const (
-	SoftwareTargetOEnumCpuFamily                 SoftwareTargetOEnum = "cpu_family"
 	SoftwareTargetOEnumCpuMicroarchitecture      SoftwareTargetOEnum = "cpu_microarchitecture"
 	SoftwareTargetOEnumCreated                   SoftwareTargetOEnum = "created"
-	SoftwareTargetOEnumMinusCpuFamily            SoftwareTargetOEnum = "-cpu_family"
 	SoftwareTargetOEnumMinusCpuMicroarchitecture SoftwareTargetOEnum = "-cpu_microarchitecture"
 	SoftwareTargetOEnumMinusCreated              SoftwareTargetOEnum = "-created"
 	SoftwareTargetOEnumMinusPackageName          SoftwareTargetOEnum = "-package_name"
@@ -18465,13 +18463,9 @@ const (
 // Valid indicates whether the value is a known member of the SoftwareTargetOEnum enum.
 func (e SoftwareTargetOEnum) Valid() bool {
 	switch e {
-	case SoftwareTargetOEnumCpuFamily:
-		return true
 	case SoftwareTargetOEnumCpuMicroarchitecture:
 		return true
 	case SoftwareTargetOEnumCreated:
-		return true
-	case SoftwareTargetOEnumMinusCpuFamily:
 		return true
 	case SoftwareTargetOEnumMinusCpuMicroarchitecture:
 		return true
@@ -57937,7 +57931,9 @@ type MarketplaceSoftwareTargetsListParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Path     *string   `form:"path,omitempty" json:"path,omitempty"`
+
+	// Path Filter targets by location/path (case-insensitive partial match)
+	Path *string `form:"path,omitempty" json:"path,omitempty"`
 
 	// TargetName Filter targets by name (e.g., x86_64, aarch64)
 	TargetName *string `form:"target_name,omitempty" json:"target_name,omitempty"`
@@ -57973,7 +57969,9 @@ type MarketplaceSoftwareTargetsCountParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Path     *string   `form:"path,omitempty" json:"path,omitempty"`
+
+	// Path Filter targets by location/path (case-insensitive partial match)
+	Path *string `form:"path,omitempty" json:"path,omitempty"`
 
 	// TargetName Filter targets by name (e.g., x86_64, aarch64)
 	TargetName *string `form:"target_name,omitempty" json:"target_name,omitempty"`
