@@ -2761,16 +2761,16 @@ func (e CampaignStateEnum) Valid() bool {
 
 // Defines values for CascadeStepTypeEnum.
 const (
-	SelectString      CascadeStepTypeEnum = "select_string"
-	SelectStringMulti CascadeStepTypeEnum = "select_string_multi"
+	CascadeStepTypeEnumSelectString      CascadeStepTypeEnum = "select_string"
+	CascadeStepTypeEnumSelectStringMulti CascadeStepTypeEnum = "select_string_multi"
 )
 
 // Valid indicates whether the value is a known member of the CascadeStepTypeEnum enum.
 func (e CascadeStepTypeEnum) Valid() bool {
 	switch e {
-	case SelectString:
+	case CascadeStepTypeEnumSelectString:
 		return true
-	case SelectStringMulti:
+	case CascadeStepTypeEnumSelectStringMulti:
 		return true
 	default:
 		return false
@@ -8686,82 +8686,82 @@ func (e KindEnum) Valid() bool {
 
 // Defines values for LOGINPAGELAYOUTEnum.
 const (
-	AnimatedGradient LOGINPAGELAYOUTEnum = "animated-gradient"
-	BottomSheet      LOGINPAGELAYOUTEnum = "bottom-sheet"
-	BrandPattern     LOGINPAGELAYOUTEnum = "brand-pattern"
-	Carousel         LOGINPAGELAYOUTEnum = "carousel"
-	CenteredCard     LOGINPAGELAYOUTEnum = "centered-card"
-	Diagonal         LOGINPAGELAYOUTEnum = "diagonal"
-	Duotone          LOGINPAGELAYOUTEnum = "duotone"
-	FullHero         LOGINPAGELAYOUTEnum = "full-hero"
-	Glassmorphism    LOGINPAGELAYOUTEnum = "glassmorphism"
-	Gradient         LOGINPAGELAYOUTEnum = "gradient"
-	LogoWatermark    LOGINPAGELAYOUTEnum = "logo-watermark"
-	Minimal          LOGINPAGELAYOUTEnum = "minimal"
-	Neumorphism      LOGINPAGELAYOUTEnum = "neumorphism"
-	News             LOGINPAGELAYOUTEnum = "news"
-	RightSplit       LOGINPAGELAYOUTEnum = "right-split"
-	Seasonal         LOGINPAGELAYOUTEnum = "seasonal"
-	SplitScreen      LOGINPAGELAYOUTEnum = "split-screen"
-	Stacked          LOGINPAGELAYOUTEnum = "stacked"
-	Stats            LOGINPAGELAYOUTEnum = "stats"
-	Tabbed           LOGINPAGELAYOUTEnum = "tabbed"
-	TimeBased        LOGINPAGELAYOUTEnum = "time-based"
-	VideoBackground  LOGINPAGELAYOUTEnum = "video-background"
-	Weather          LOGINPAGELAYOUTEnum = "weather"
-	Wizard           LOGINPAGELAYOUTEnum = "wizard"
+	LOGINPAGELAYOUTEnumAnimatedGradient LOGINPAGELAYOUTEnum = "animated-gradient"
+	LOGINPAGELAYOUTEnumBottomSheet      LOGINPAGELAYOUTEnum = "bottom-sheet"
+	LOGINPAGELAYOUTEnumBrandPattern     LOGINPAGELAYOUTEnum = "brand-pattern"
+	LOGINPAGELAYOUTEnumCarousel         LOGINPAGELAYOUTEnum = "carousel"
+	LOGINPAGELAYOUTEnumCenteredCard     LOGINPAGELAYOUTEnum = "centered-card"
+	LOGINPAGELAYOUTEnumDiagonal         LOGINPAGELAYOUTEnum = "diagonal"
+	LOGINPAGELAYOUTEnumDuotone          LOGINPAGELAYOUTEnum = "duotone"
+	LOGINPAGELAYOUTEnumFullHero         LOGINPAGELAYOUTEnum = "full-hero"
+	LOGINPAGELAYOUTEnumGlassmorphism    LOGINPAGELAYOUTEnum = "glassmorphism"
+	LOGINPAGELAYOUTEnumGradient         LOGINPAGELAYOUTEnum = "gradient"
+	LOGINPAGELAYOUTEnumLogoWatermark    LOGINPAGELAYOUTEnum = "logo-watermark"
+	LOGINPAGELAYOUTEnumMinimal          LOGINPAGELAYOUTEnum = "minimal"
+	LOGINPAGELAYOUTEnumNeumorphism      LOGINPAGELAYOUTEnum = "neumorphism"
+	LOGINPAGELAYOUTEnumNews             LOGINPAGELAYOUTEnum = "news"
+	LOGINPAGELAYOUTEnumRightSplit       LOGINPAGELAYOUTEnum = "right-split"
+	LOGINPAGELAYOUTEnumSeasonal         LOGINPAGELAYOUTEnum = "seasonal"
+	LOGINPAGELAYOUTEnumSplitScreen      LOGINPAGELAYOUTEnum = "split-screen"
+	LOGINPAGELAYOUTEnumStacked          LOGINPAGELAYOUTEnum = "stacked"
+	LOGINPAGELAYOUTEnumStats            LOGINPAGELAYOUTEnum = "stats"
+	LOGINPAGELAYOUTEnumTabbed           LOGINPAGELAYOUTEnum = "tabbed"
+	LOGINPAGELAYOUTEnumTimeBased        LOGINPAGELAYOUTEnum = "time-based"
+	LOGINPAGELAYOUTEnumVideoBackground  LOGINPAGELAYOUTEnum = "video-background"
+	LOGINPAGELAYOUTEnumWeather          LOGINPAGELAYOUTEnum = "weather"
+	LOGINPAGELAYOUTEnumWizard           LOGINPAGELAYOUTEnum = "wizard"
 )
 
 // Valid indicates whether the value is a known member of the LOGINPAGELAYOUTEnum enum.
 func (e LOGINPAGELAYOUTEnum) Valid() bool {
 	switch e {
-	case AnimatedGradient:
+	case LOGINPAGELAYOUTEnumAnimatedGradient:
 		return true
-	case BottomSheet:
+	case LOGINPAGELAYOUTEnumBottomSheet:
 		return true
-	case BrandPattern:
+	case LOGINPAGELAYOUTEnumBrandPattern:
 		return true
-	case Carousel:
+	case LOGINPAGELAYOUTEnumCarousel:
 		return true
-	case CenteredCard:
+	case LOGINPAGELAYOUTEnumCenteredCard:
 		return true
-	case Diagonal:
+	case LOGINPAGELAYOUTEnumDiagonal:
 		return true
-	case Duotone:
+	case LOGINPAGELAYOUTEnumDuotone:
 		return true
-	case FullHero:
+	case LOGINPAGELAYOUTEnumFullHero:
 		return true
-	case Glassmorphism:
+	case LOGINPAGELAYOUTEnumGlassmorphism:
 		return true
-	case Gradient:
+	case LOGINPAGELAYOUTEnumGradient:
 		return true
-	case LogoWatermark:
+	case LOGINPAGELAYOUTEnumLogoWatermark:
 		return true
-	case Minimal:
+	case LOGINPAGELAYOUTEnumMinimal:
 		return true
-	case Neumorphism:
+	case LOGINPAGELAYOUTEnumNeumorphism:
 		return true
-	case News:
+	case LOGINPAGELAYOUTEnumNews:
 		return true
-	case RightSplit:
+	case LOGINPAGELAYOUTEnumRightSplit:
 		return true
-	case Seasonal:
+	case LOGINPAGELAYOUTEnumSeasonal:
 		return true
-	case SplitScreen:
+	case LOGINPAGELAYOUTEnumSplitScreen:
 		return true
-	case Stacked:
+	case LOGINPAGELAYOUTEnumStacked:
 		return true
-	case Stats:
+	case LOGINPAGELAYOUTEnumStats:
 		return true
-	case Tabbed:
+	case LOGINPAGELAYOUTEnumTabbed:
 		return true
-	case TimeBased:
+	case LOGINPAGELAYOUTEnumTimeBased:
 		return true
-	case VideoBackground:
+	case LOGINPAGELAYOUTEnumVideoBackground:
 		return true
-	case Weather:
+	case LOGINPAGELAYOUTEnumWeather:
 		return true
-	case Wizard:
+	case LOGINPAGELAYOUTEnumWizard:
 		return true
 	default:
 		return false
@@ -8849,6 +8849,51 @@ func (e LoadBalancerProtocolEnum) Valid() bool {
 	case TCP:
 		return true
 	case UDP:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MARKETPLACECARDSTYLEEnum.
+const (
+	MARKETPLACECARDSTYLEEnumCompact  MARKETPLACECARDSTYLEEnum = "compact"
+	MARKETPLACECARDSTYLEEnumDetailed MARKETPLACECARDSTYLEEnum = "detailed"
+	MARKETPLACECARDSTYLEEnumList     MARKETPLACECARDSTYLEEnum = "list"
+	MARKETPLACECARDSTYLEEnumMinimal  MARKETPLACECARDSTYLEEnum = "minimal"
+)
+
+// Valid indicates whether the value is a known member of the MARKETPLACECARDSTYLEEnum enum.
+func (e MARKETPLACECARDSTYLEEnum) Valid() bool {
+	switch e {
+	case MARKETPLACECARDSTYLEEnumCompact:
+		return true
+	case MARKETPLACECARDSTYLEEnumDetailed:
+		return true
+	case MARKETPLACECARDSTYLEEnumList:
+		return true
+	case MARKETPLACECARDSTYLEEnumMinimal:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MARKETPLACELAYOUTMODEEnum.
+const (
+	MARKETPLACELAYOUTMODEEnumCarousel MARKETPLACELAYOUTMODEEnum = "carousel"
+	MARKETPLACELAYOUTMODEEnumClassic  MARKETPLACELAYOUTMODEEnum = "classic"
+	MARKETPLACELAYOUTMODEEnumSidebar  MARKETPLACELAYOUTMODEEnum = "sidebar"
+)
+
+// Valid indicates whether the value is a known member of the MARKETPLACELAYOUTMODEEnum enum.
+func (e MARKETPLACELAYOUTMODEEnum) Valid() bool {
+	switch e {
+	case MARKETPLACELAYOUTMODEEnumCarousel:
+		return true
+	case MARKETPLACELAYOUTMODEEnumClassic:
+		return true
+	case MARKETPLACELAYOUTMODEEnumSidebar:
 		return true
 	default:
 		return false
@@ -24710,8 +24755,10 @@ type ConstanceSettings struct {
 	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES     *int                                                             `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM            *[]ConstanceSettings_MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM_Item    `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
 	MANDATORYUSERATTRIBUTES                        *[]ConstanceSettings_MANDATORYUSERATTRIBUTES_Item                `json:"MANDATORY_USER_ATTRIBUTES,omitempty"`
+	MARKETPLACECARDSTYLE                           *MARKETPLACECARDSTYLEEnum                                        `json:"MARKETPLACE_CARD_STYLE,omitempty"`
 	MARKETPLACEHEROIMAGE                           *string                                                          `json:"MARKETPLACE_HERO_IMAGE,omitempty"`
 	MARKETPLACELANDINGPAGE                         *string                                                          `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
+	MARKETPLACELAYOUTMODE                          *MARKETPLACELAYOUTMODEEnum                                       `json:"MARKETPLACE_LAYOUT_MODE,omitempty"`
 	NOTIFYABOUTRESOURCECHANGE                      *bool                                                            `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
 	NOTIFYSTAFFABOUTAPPROVALS                      *bool                                                            `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
 	OFFERINGLOGOPLACEHOLDER                        *string                                                          `json:"OFFERING_LOGO_PLACEHOLDER,omitempty"`
@@ -25013,8 +25060,10 @@ type ConstanceSettingsRequest struct {
 	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES     *int                                                                    `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM            *[]ConstanceSettingsRequest_MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM_Item    `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
 	MANDATORYUSERATTRIBUTES                        *[]ConstanceSettingsRequest_MANDATORYUSERATTRIBUTES_Item                `json:"MANDATORY_USER_ATTRIBUTES,omitempty"`
+	MARKETPLACECARDSTYLE                           *MARKETPLACECARDSTYLEEnum                                               `json:"MARKETPLACE_CARD_STYLE,omitempty"`
 	MARKETPLACEHEROIMAGE                           *openapi_types.File                                                     `json:"MARKETPLACE_HERO_IMAGE,omitempty"`
 	MARKETPLACELANDINGPAGE                         *string                                                                 `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
+	MARKETPLACELAYOUTMODE                          *MARKETPLACELAYOUTMODEEnum                                              `json:"MARKETPLACE_LAYOUT_MODE,omitempty"`
 	NOTIFYABOUTRESOURCECHANGE                      *bool                                                                   `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
 	NOTIFYSTAFFABOUTAPPROVALS                      *bool                                                                   `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
 	OFFERINGLOGOPLACEHOLDER                        *openapi_types.File                                                     `json:"OFFERING_LOGO_PLACEHOLDER,omitempty"`
@@ -25316,8 +25365,10 @@ type ConstanceSettingsRequestForm struct {
 	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES     *int                                                                        `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM            *[]ConstanceSettingsRequestForm_MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM_Item    `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
 	MANDATORYUSERATTRIBUTES                        *[]ConstanceSettingsRequestForm_MANDATORYUSERATTRIBUTES_Item                `json:"MANDATORY_USER_ATTRIBUTES,omitempty"`
+	MARKETPLACECARDSTYLE                           *MARKETPLACECARDSTYLEEnum                                                   `json:"MARKETPLACE_CARD_STYLE,omitempty"`
 	MARKETPLACEHEROIMAGE                           *openapi_types.File                                                         `json:"MARKETPLACE_HERO_IMAGE,omitempty"`
 	MARKETPLACELANDINGPAGE                         *string                                                                     `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
+	MARKETPLACELAYOUTMODE                          *MARKETPLACELAYOUTMODEEnum                                                  `json:"MARKETPLACE_LAYOUT_MODE,omitempty"`
 	NOTIFYABOUTRESOURCECHANGE                      *bool                                                                       `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
 	NOTIFYSTAFFABOUTAPPROVALS                      *bool                                                                       `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
 	OFFERINGLOGOPLACEHOLDER                        *openapi_types.File                                                         `json:"OFFERING_LOGO_PLACEHOLDER,omitempty"`
@@ -25619,8 +25670,10 @@ type ConstanceSettingsRequestMultipart struct {
 	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES     *int                                                                             `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM            *[]ConstanceSettingsRequestMultipart_MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM_Item    `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
 	MANDATORYUSERATTRIBUTES                        *[]ConstanceSettingsRequestMultipart_MANDATORYUSERATTRIBUTES_Item                `json:"MANDATORY_USER_ATTRIBUTES,omitempty"`
+	MARKETPLACECARDSTYLE                           *MARKETPLACECARDSTYLEEnum                                                        `json:"MARKETPLACE_CARD_STYLE,omitempty"`
 	MARKETPLACEHEROIMAGE                           *openapi_types.File                                                              `json:"MARKETPLACE_HERO_IMAGE,omitempty"`
 	MARKETPLACELANDINGPAGE                         *string                                                                          `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
+	MARKETPLACELAYOUTMODE                          *MARKETPLACELAYOUTMODEEnum                                                       `json:"MARKETPLACE_LAYOUT_MODE,omitempty"`
 	NOTIFYABOUTRESOURCECHANGE                      *bool                                                                            `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
 	NOTIFYSTAFFABOUTAPPROVALS                      *bool                                                                            `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
 	OFFERINGLOGOPLACEHOLDER                        *openapi_types.File                                                              `json:"OFFERING_LOGO_PLACEHOLDER,omitempty"`
@@ -29924,6 +29977,12 @@ type Logout struct {
 	// LogoutUrl URL to redirect to after logout
 	LogoutUrl *string `json:"logout_url,omitempty"`
 }
+
+// MARKETPLACECARDSTYLEEnum defines model for MARKETPLACECARDSTYLEEnum.
+type MARKETPLACECARDSTYLEEnum string
+
+// MARKETPLACELAYOUTMODEEnum defines model for MARKETPLACELAYOUTMODEEnum.
+type MARKETPLACELAYOUTMODEEnum string
 
 // MaintenanceActionResponse defines model for MaintenanceActionResponse.
 type MaintenanceActionResponse struct {
