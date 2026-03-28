@@ -26454,13 +26454,14 @@ type CustomerBillingSummaryResponse struct {
 
 // CustomerComponentUsagePolicy defines model for CustomerComponentUsagePolicy.
 type CustomerComponentUsagePolicy struct {
-	Actions            string                               `json:"actions"`
-	ComponentLimitsSet []NestedCustomerUsagePolicyComponent `json:"component_limits_set"`
-	Created            *time.Time                           `json:"created,omitempty"`
-	CreatedByFullName  *string                              `json:"created_by_full_name,omitempty"`
-	CreatedByUsername  *string                              `json:"created_by_username,omitempty"`
-	FiredDatetime      *time.Time                           `json:"fired_datetime,omitempty"`
-	HasFired           *bool                                `json:"has_fired,omitempty"`
+	Actions                string                               `json:"actions"`
+	AffectedResourcesCount *int                                 `json:"affected_resources_count,omitempty"`
+	ComponentLimitsSet     []NestedCustomerUsagePolicyComponent `json:"component_limits_set"`
+	Created                *time.Time                           `json:"created,omitempty"`
+	CreatedByFullName      *string                              `json:"created_by_full_name,omitempty"`
+	CreatedByUsername      *string                              `json:"created_by_username,omitempty"`
+	FiredDatetime          *time.Time                           `json:"fired_datetime,omitempty"`
+	HasFired               *bool                                `json:"has_fired,omitempty"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
 	Options   interface{}         `json:"options,omitempty"`
@@ -26561,15 +26562,16 @@ type CustomerDetails struct {
 
 // CustomerEstimatedCostPolicy defines model for CustomerEstimatedCostPolicy.
 type CustomerEstimatedCostPolicy struct {
-	Actions              string               `json:"actions"`
-	BillingPriceEstimate *NestedPriceEstimate `json:"billing_price_estimate,omitempty"`
-	Created              *time.Time           `json:"created,omitempty"`
-	CreatedByFullName    *string              `json:"created_by_full_name,omitempty"`
-	CreatedByUsername    *string              `json:"created_by_username,omitempty"`
-	CustomerCredit       *int                 `json:"customer_credit,omitempty"`
-	FiredDatetime        *time.Time           `json:"fired_datetime,omitempty"`
-	HasFired             *bool                `json:"has_fired,omitempty"`
-	LimitCost            int                  `json:"limit_cost"`
+	Actions                string               `json:"actions"`
+	AffectedResourcesCount *int                 `json:"affected_resources_count,omitempty"`
+	BillingPriceEstimate   *NestedPriceEstimate `json:"billing_price_estimate,omitempty"`
+	Created                *time.Time           `json:"created,omitempty"`
+	CreatedByFullName      *string              `json:"created_by_full_name,omitempty"`
+	CreatedByUsername      *string              `json:"created_by_username,omitempty"`
+	CustomerCredit         *int                 `json:"customer_credit,omitempty"`
+	FiredDatetime          *time.Time           `json:"fired_datetime,omitempty"`
+	HasFired               *bool                `json:"has_fired,omitempty"`
+	LimitCost              int                  `json:"limit_cost"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
 	Options    interface{}         `json:"options,omitempty"`
@@ -32383,7 +32385,8 @@ type OfferingDescriptionUpdateRequest struct {
 
 // OfferingEstimatedCostPolicy defines model for OfferingEstimatedCostPolicy.
 type OfferingEstimatedCostPolicy struct {
-	Actions string `json:"actions"`
+	Actions                string `json:"actions"`
+	AffectedResourcesCount *int   `json:"affected_resources_count,omitempty"`
 
 	// ApplyToAll If True, policy applies to all customers. Mutually exclusive with organization_groups.
 	ApplyToAll        *bool      `json:"apply_to_all,omitempty"`
@@ -33116,7 +33119,8 @@ type OfferingUUIDRequest struct {
 
 // OfferingUsagePolicy defines model for OfferingUsagePolicy.
 type OfferingUsagePolicy struct {
-	Actions string `json:"actions"`
+	Actions                string `json:"actions"`
+	AffectedResourcesCount *int   `json:"affected_resources_count,omitempty"`
 
 	// ApplyToAll If True, policy applies to all customers. Mutually exclusive with organization_groups.
 	ApplyToAll         *bool                          `json:"apply_to_all,omitempty"`
@@ -39483,15 +39487,16 @@ type ProjectEndDateChangeRequestCreateRequest struct {
 
 // ProjectEstimatedCostPolicy defines model for ProjectEstimatedCostPolicy.
 type ProjectEstimatedCostPolicy struct {
-	Actions              string               `json:"actions"`
-	BillingPriceEstimate *NestedPriceEstimate `json:"billing_price_estimate,omitempty"`
-	Created              *time.Time           `json:"created,omitempty"`
-	CreatedByFullName    *string              `json:"created_by_full_name,omitempty"`
-	CreatedByUsername    *string              `json:"created_by_username,omitempty"`
-	CustomerCredit       *float64             `json:"customer_credit,omitempty"`
-	FiredDatetime        *time.Time           `json:"fired_datetime,omitempty"`
-	HasFired             *bool                `json:"has_fired,omitempty"`
-	LimitCost            int                  `json:"limit_cost"`
+	Actions                string               `json:"actions"`
+	AffectedResourcesCount *int                 `json:"affected_resources_count,omitempty"`
+	BillingPriceEstimate   *NestedPriceEstimate `json:"billing_price_estimate,omitempty"`
+	Created                *time.Time           `json:"created,omitempty"`
+	CreatedByFullName      *string              `json:"created_by_full_name,omitempty"`
+	CreatedByUsername      *string              `json:"created_by_username,omitempty"`
+	CustomerCredit         *float64             `json:"customer_credit,omitempty"`
+	FiredDatetime          *time.Time           `json:"fired_datetime,omitempty"`
+	HasFired               *bool                `json:"has_fired,omitempty"`
+	LimitCost              int                  `json:"limit_cost"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
 	Options       interface{}         `json:"options,omitempty"`
@@ -44767,7 +44772,8 @@ type SlurmInvoicesSlurmPackageCreateOrderAttributes struct {
 
 // SlurmPeriodicUsagePolicy defines model for SlurmPeriodicUsagePolicy.
 type SlurmPeriodicUsagePolicy struct {
-	Actions string `json:"actions"`
+	Actions                string `json:"actions"`
+	AffectedResourcesCount *int   `json:"affected_resources_count,omitempty"`
 
 	// ApplyToAll If True, policy applies to all customers. Mutually exclusive with organization_groups.
 	ApplyToAll *bool `json:"apply_to_all,omitempty"`
