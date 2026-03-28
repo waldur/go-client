@@ -53759,6 +53759,7 @@ type MarketplaceProjectEstimatedCostPoliciesListParams struct {
 	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	Project     *string             `form:"project,omitempty" json:"project,omitempty"`
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	Query       *string             `form:"query,omitempty" json:"query,omitempty"`
 	Scope       *string             `form:"scope,omitempty" json:"scope,omitempty"`
 	ScopeUuid   *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 }
@@ -53775,6 +53776,7 @@ type MarketplaceProjectEstimatedCostPoliciesCountParams struct {
 	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	Project     *string             `form:"project,omitempty" json:"project,omitempty"`
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	Query       *string             `form:"query,omitempty" json:"query,omitempty"`
 	Scope       *string             `form:"scope,omitempty" json:"scope,omitempty"`
 	ScopeUuid   *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 }
@@ -196441,6 +196443,22 @@ func NewMarketplaceProjectEstimatedCostPoliciesListRequest(server string, params
 
 		}
 
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Scope != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "scope", *params.Scope, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
@@ -196589,6 +196607,22 @@ func NewMarketplaceProjectEstimatedCostPoliciesCountRequest(server string, param
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
