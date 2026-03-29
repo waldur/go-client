@@ -5388,6 +5388,7 @@ const (
 	EventMetadataResponseEventGroupsChatSessionAccessed                              EventMetadataResponseEventGroups = "chat_session_accessed"
 	EventMetadataResponseEventGroupsChatThreadAccessed                               EventMetadataResponseEventGroups = "chat_thread_accessed"
 	EventMetadataResponseEventGroupsCreateOfCreditByStaff                            EventMetadataResponseEventGroups = "create_of_credit_by_staff"
+	EventMetadataResponseEventGroupsCreateOfProjectCreditByStaff                     EventMetadataResponseEventGroups = "create_of_project_credit_by_staff"
 	EventMetadataResponseEventGroupsCustomNotification                               EventMetadataResponseEventGroups = "custom_notification"
 	EventMetadataResponseEventGroupsCustomerCreationSucceeded                        EventMetadataResponseEventGroups = "customer_creation_succeeded"
 	EventMetadataResponseEventGroupsCustomerDeletionSucceeded                        EventMetadataResponseEventGroups = "customer_deletion_succeeded"
@@ -5628,6 +5629,7 @@ const (
 	EventMetadataResponseEventGroupsTokenCreated                                     EventMetadataResponseEventGroups = "token_created"
 	EventMetadataResponseEventGroupsTokenLifetimeUpdated                             EventMetadataResponseEventGroups = "token_lifetime_updated"
 	EventMetadataResponseEventGroupsUpdateOfCreditByStaff                            EventMetadataResponseEventGroups = "update_of_credit_by_staff"
+	EventMetadataResponseEventGroupsUpdateOfProjectCreditByStaff                     EventMetadataResponseEventGroups = "update_of_project_credit_by_staff"
 	EventMetadataResponseEventGroupsUserActivated                                    EventMetadataResponseEventGroups = "user_activated"
 	EventMetadataResponseEventGroupsUserCreationSucceeded                            EventMetadataResponseEventGroups = "user_creation_succeeded"
 	EventMetadataResponseEventGroupsUserDataAccessed                                 EventMetadataResponseEventGroups = "user_data_accessed"
@@ -5693,6 +5695,8 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 	case EventMetadataResponseEventGroupsChatThreadAccessed:
 		return true
 	case EventMetadataResponseEventGroupsCreateOfCreditByStaff:
+		return true
+	case EventMetadataResponseEventGroupsCreateOfProjectCreditByStaff:
 		return true
 	case EventMetadataResponseEventGroupsCustomNotification:
 		return true
@@ -6174,6 +6178,8 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 		return true
 	case EventMetadataResponseEventGroupsUpdateOfCreditByStaff:
 		return true
+	case EventMetadataResponseEventGroupsUpdateOfProjectCreditByStaff:
+		return true
 	case EventMetadataResponseEventGroupsUserActivated:
 		return true
 	case EventMetadataResponseEventGroupsUserCreationSucceeded:
@@ -6234,6 +6240,7 @@ const (
 	EventTypesEnumChatSessionAccessed                              EventTypesEnum = "chat_session_accessed"
 	EventTypesEnumChatThreadAccessed                               EventTypesEnum = "chat_thread_accessed"
 	EventTypesEnumCreateOfCreditByStaff                            EventTypesEnum = "create_of_credit_by_staff"
+	EventTypesEnumCreateOfProjectCreditByStaff                     EventTypesEnum = "create_of_project_credit_by_staff"
 	EventTypesEnumCustomNotification                               EventTypesEnum = "custom_notification"
 	EventTypesEnumCustomerCreationSucceeded                        EventTypesEnum = "customer_creation_succeeded"
 	EventTypesEnumCustomerDeletionSucceeded                        EventTypesEnum = "customer_deletion_succeeded"
@@ -6474,6 +6481,7 @@ const (
 	EventTypesEnumTokenCreated                                     EventTypesEnum = "token_created"
 	EventTypesEnumTokenLifetimeUpdated                             EventTypesEnum = "token_lifetime_updated"
 	EventTypesEnumUpdateOfCreditByStaff                            EventTypesEnum = "update_of_credit_by_staff"
+	EventTypesEnumUpdateOfProjectCreditByStaff                     EventTypesEnum = "update_of_project_credit_by_staff"
 	EventTypesEnumUserActivated                                    EventTypesEnum = "user_activated"
 	EventTypesEnumUserCreationSucceeded                            EventTypesEnum = "user_creation_succeeded"
 	EventTypesEnumUserDataAccessed                                 EventTypesEnum = "user_data_accessed"
@@ -6539,6 +6547,8 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumChatThreadAccessed:
 		return true
 	case EventTypesEnumCreateOfCreditByStaff:
+		return true
+	case EventTypesEnumCreateOfProjectCreditByStaff:
 		return true
 	case EventTypesEnumCustomNotification:
 		return true
@@ -7019,6 +7029,8 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumTokenLifetimeUpdated:
 		return true
 	case EventTypesEnumUpdateOfCreditByStaff:
+		return true
+	case EventTypesEnumUpdateOfProjectCreditByStaff:
 		return true
 	case EventTypesEnumUserActivated:
 		return true
