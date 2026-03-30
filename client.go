@@ -31220,7 +31220,7 @@ type MergedSecretOptionsRequest struct {
 // Message defines model for Message.
 type Message struct {
 	ActionTaken         *ActionTakenEnum       `json:"action_taken,omitempty"`
-	Content             string                 `json:"content"`
+	Content             *string                `json:"content,omitempty"`
 	ContentDisplay      *string                `json:"content_display,omitempty"`
 	Created             *time.Time             `json:"created,omitempty"`
 	InjectionCategories interface{}            `json:"injection_categories,omitempty"`
@@ -68816,6 +68816,9 @@ type ChatQuotaSetQuotaJSONRequestBody = SetTokenQuotaRequest
 // ChatThreadsArchiveJSONRequestBody defines body for ChatThreadsArchive for application/json ContentType.
 type ChatThreadsArchiveJSONRequestBody = ThreadSessionRequest
 
+// ChatThreadsCancelJSONRequestBody defines body for ChatThreadsCancel for application/json ContentType.
+type ChatThreadsCancelJSONRequestBody = ThreadSessionRequest
+
 // ChatThreadsUnarchiveJSONRequestBody defines body for ChatThreadsUnarchive for application/json ContentType.
 type ChatThreadsUnarchiveJSONRequestBody = ThreadSessionRequest
 
@@ -82376,6 +82379,11 @@ type ClientInterface interface {
 
 	ChatThreadsArchive(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsArchiveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ChatThreadsCancelWithBody request with any body
+	ChatThreadsCancelWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChatThreadsCancel(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsCancelJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ChatThreadsUnarchiveWithBody request with any body
 	ChatThreadsUnarchiveWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -95176,6 +95184,30 @@ func (c *Client) ChatThreadsArchiveWithBody(ctx context.Context, uuid openapi_ty
 
 func (c *Client) ChatThreadsArchive(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsArchiveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewChatThreadsArchiveRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatThreadsCancelWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatThreadsCancelRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatThreadsCancel(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsCancelJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatThreadsCancelRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -153284,6 +153316,53 @@ func NewChatThreadsArchiveRequestWithBody(server string, uuid openapi_types.UUID
 	}
 
 	operationPath := fmt.Sprintf("/api/chat-threads/%s/archive/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChatThreadsCancelRequest calls the generic ChatThreadsCancel builder with application/json body
+func NewChatThreadsCancelRequest(server string, uuid openapi_types.UUID, body ChatThreadsCancelJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChatThreadsCancelRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewChatThreadsCancelRequestWithBody generates requests for ChatThreadsCancel with any type of body
+func NewChatThreadsCancelRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-threads/%s/cancel/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -333796,6 +333875,11 @@ type ClientWithResponsesInterface interface {
 
 	ChatThreadsArchiveWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsArchiveJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatThreadsArchiveResponse, error)
 
+	// ChatThreadsCancelWithBodyWithResponse request with any body
+	ChatThreadsCancelWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatThreadsCancelResponse, error)
+
+	ChatThreadsCancelWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsCancelJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatThreadsCancelResponse, error)
+
 	// ChatThreadsUnarchiveWithBodyWithResponse request with any body
 	ChatThreadsUnarchiveWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatThreadsUnarchiveResponse, error)
 
@@ -348303,6 +348387,27 @@ func (r ChatThreadsArchiveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ChatThreadsArchiveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatThreadsCancelResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatThreadsCancelResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatThreadsCancelResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -397291,6 +397396,23 @@ func (c *ClientWithResponses) ChatThreadsArchiveWithResponse(ctx context.Context
 	return ParseChatThreadsArchiveResponse(rsp)
 }
 
+// ChatThreadsCancelWithBodyWithResponse request with arbitrary body returning *ChatThreadsCancelResponse
+func (c *ClientWithResponses) ChatThreadsCancelWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatThreadsCancelResponse, error) {
+	rsp, err := c.ChatThreadsCancelWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatThreadsCancelResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChatThreadsCancelWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsCancelJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatThreadsCancelResponse, error) {
+	rsp, err := c.ChatThreadsCancel(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatThreadsCancelResponse(rsp)
+}
+
 // ChatThreadsUnarchiveWithBodyWithResponse request with arbitrary body returning *ChatThreadsUnarchiveResponse
 func (c *ClientWithResponses) ChatThreadsUnarchiveWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatThreadsUnarchiveResponse, error) {
 	rsp, err := c.ChatThreadsUnarchiveWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -429154,6 +429276,22 @@ func ParseChatThreadsArchiveResponse(rsp *http.Response) (*ChatThreadsArchiveRes
 	}
 
 	response := &ChatThreadsArchiveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseChatThreadsCancelResponse parses an HTTP response from a ChatThreadsCancelWithResponse call
+func ParseChatThreadsCancelResponse(rsp *http.Response) (*ChatThreadsCancelResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatThreadsCancelResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
