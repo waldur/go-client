@@ -23342,6 +23342,27 @@ type CallManagingOrganisationStat struct {
 	RoundsClosingInOneWeek  *int `json:"rounds_closing_in_one_week,omitempty"`
 }
 
+// CallPerformanceStat defines model for CallPerformanceStat.
+type CallPerformanceStat struct {
+	AcceptanceRate           *float64            `json:"acceptance_rate,omitempty"`
+	ActiveRounds             *int                `json:"active_rounds,omitempty"`
+	AverageScore             *float64            `json:"average_score,omitempty"`
+	CallName                 *string             `json:"call_name,omitempty"`
+	CallUuid                 *openapi_types.UUID `json:"call_uuid,omitempty"`
+	LastSubmissionDate       *openapi_types.Date `json:"last_submission_date,omitempty"`
+	ManagingOrganizationName *string             `json:"managing_organization_name,omitempty"`
+	ProposalsAccepted        *int                `json:"proposals_accepted,omitempty"`
+	ProposalsCanceled        *int                `json:"proposals_canceled,omitempty"`
+	ProposalsDraft           *int                `json:"proposals_draft,omitempty"`
+	ProposalsInReview        *int                `json:"proposals_in_review,omitempty"`
+	ProposalsRejected        *int                `json:"proposals_rejected,omitempty"`
+	ProposalsSubmitted       *int                `json:"proposals_submitted,omitempty"`
+	ReviewsCompleted         *int                `json:"reviews_completed,omitempty"`
+	State                    *string             `json:"state,omitempty"`
+	TotalProposals           *int                `json:"total_proposals,omitempty"`
+	TotalReviews             *int                `json:"total_reviews,omitempty"`
+}
+
 // CallResourceTemplate defines model for CallResourceTemplate.
 type CallResourceTemplate struct {
 	Attributes    interface{} `json:"attributes,omitempty"`
@@ -24646,6 +24667,7 @@ type ConstanceSettings struct {
 	AIASSISTANTHISTORYLIMIT                        *int                                                             `json:"AI_ASSISTANT_HISTORY_LIMIT,omitempty"`
 	AIASSISTANTINJECTIONALLOWLIST                  *string                                                          `json:"AI_ASSISTANT_INJECTION_ALLOWLIST,omitempty"`
 	AIASSISTANTMODEL                               *string                                                          `json:"AI_ASSISTANT_MODEL,omitempty"`
+	AIASSISTANTNAME                                *string                                                          `json:"AI_ASSISTANT_NAME,omitempty"`
 	AIASSISTANTSESSIONRETENTIONDAYS                *int                                                             `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
 	AIASSISTANTTOKENLIMITDAILY                     *int                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
 	AIASSISTANTTOKENLIMITMONTHLY                   *int                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_MONTHLY,omitempty"`
@@ -24951,6 +24973,7 @@ type ConstanceSettingsRequest struct {
 	AIASSISTANTHISTORYLIMIT                        *int                                                                    `json:"AI_ASSISTANT_HISTORY_LIMIT,omitempty"`
 	AIASSISTANTINJECTIONALLOWLIST                  *string                                                                 `json:"AI_ASSISTANT_INJECTION_ALLOWLIST,omitempty"`
 	AIASSISTANTMODEL                               *string                                                                 `json:"AI_ASSISTANT_MODEL,omitempty"`
+	AIASSISTANTNAME                                *string                                                                 `json:"AI_ASSISTANT_NAME,omitempty"`
 	AIASSISTANTSESSIONRETENTIONDAYS                *int                                                                    `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
 	AIASSISTANTTOKENLIMITDAILY                     *int                                                                    `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
 	AIASSISTANTTOKENLIMITMONTHLY                   *int                                                                    `json:"AI_ASSISTANT_TOKEN_LIMIT_MONTHLY,omitempty"`
@@ -25256,6 +25279,7 @@ type ConstanceSettingsRequestForm struct {
 	AIASSISTANTHISTORYLIMIT                        *int                                                                        `json:"AI_ASSISTANT_HISTORY_LIMIT,omitempty"`
 	AIASSISTANTINJECTIONALLOWLIST                  *string                                                                     `json:"AI_ASSISTANT_INJECTION_ALLOWLIST,omitempty"`
 	AIASSISTANTMODEL                               *string                                                                     `json:"AI_ASSISTANT_MODEL,omitempty"`
+	AIASSISTANTNAME                                *string                                                                     `json:"AI_ASSISTANT_NAME,omitempty"`
 	AIASSISTANTSESSIONRETENTIONDAYS                *int                                                                        `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
 	AIASSISTANTTOKENLIMITDAILY                     *int                                                                        `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
 	AIASSISTANTTOKENLIMITMONTHLY                   *int                                                                        `json:"AI_ASSISTANT_TOKEN_LIMIT_MONTHLY,omitempty"`
@@ -25561,6 +25585,7 @@ type ConstanceSettingsRequestMultipart struct {
 	AIASSISTANTHISTORYLIMIT                        *int                                                                             `json:"AI_ASSISTANT_HISTORY_LIMIT,omitempty"`
 	AIASSISTANTINJECTIONALLOWLIST                  *string                                                                          `json:"AI_ASSISTANT_INJECTION_ALLOWLIST,omitempty"`
 	AIASSISTANTMODEL                               *string                                                                          `json:"AI_ASSISTANT_MODEL,omitempty"`
+	AIASSISTANTNAME                                *string                                                                          `json:"AI_ASSISTANT_NAME,omitempty"`
 	AIASSISTANTSESSIONRETENTIONDAYS                *int                                                                             `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
 	AIASSISTANTTOKENLIMITDAILY                     *int                                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
 	AIASSISTANTTOKENLIMITMONTHLY                   *int                                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_MONTHLY,omitempty"`
@@ -42795,6 +42820,20 @@ type ResourceBackendMetadataRequest struct {
 	BackendMetadata interface{} `json:"backend_metadata"`
 }
 
+// ResourceDemandStat defines model for ResourceDemandStat.
+type ResourceDemandStat struct {
+	ApprovedCount        *int                `json:"approved_count,omitempty"`
+	OfferingName         *string             `json:"offering_name,omitempty"`
+	OfferingType         *string             `json:"offering_type,omitempty"`
+	OfferingUuid         *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	PendingCount         *int                `json:"pending_count,omitempty"`
+	ProposalCount        *int                `json:"proposal_count,omitempty"`
+	ProviderName         *string             `json:"provider_name,omitempty"`
+	RequestCount         *int                `json:"request_count,omitempty"`
+	TotalApprovedLimits  *map[string]float64 `json:"total_approved_limits,omitempty"`
+	TotalRequestedLimits *map[string]float64 `json:"total_requested_limits,omitempty"`
+}
+
 // ResourceDownscaledRequest defines model for ResourceDownscaledRequest.
 type ResourceDownscaledRequest struct {
 	Downscaled *bool `json:"downscaled,omitempty"`
@@ -43241,6 +43280,21 @@ type ResourcesLimits struct {
 type ReviewCommentRequest struct {
 	// Comment Optional comment for review
 	Comment *string `json:"comment,omitempty"`
+}
+
+// ReviewProgressStat defines model for ReviewProgressStat.
+type ReviewProgressStat struct {
+	AverageReviewTimeDays *float64             `json:"average_review_time_days,omitempty"`
+	AverageScore          *float64             `json:"average_score,omitempty"`
+	Completed             *int                 `json:"completed,omitempty"`
+	CompletionRate        *float64             `json:"completion_rate,omitempty"`
+	Declined              *int                 `json:"declined,omitempty"`
+	InProgress            *int                 `json:"in_progress,omitempty"`
+	Pending               *int                 `json:"pending,omitempty"`
+	ReviewerEmail         *openapi_types.Email `json:"reviewer_email,omitempty"`
+	ReviewerName          *string              `json:"reviewer_name,omitempty"`
+	ReviewerUuid          *openapi_types.UUID  `json:"reviewer_uuid,omitempty"`
+	TotalAssigned         *int                 `json:"total_assigned,omitempty"`
 }
 
 // ReviewStrategyEnum defines model for ReviewStrategyEnum.
@@ -49331,6 +49385,108 @@ type CallManagingOrganisationsListParams struct {
 
 // CallManagingOrganisationsCountParams defines parameters for CallManagingOrganisationsCount.
 type CallManagingOrganisationsCountParams struct {
+	Customer        *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerKeyword *string             `form:"customer_keyword,omitempty" json:"customer_keyword,omitempty"`
+	CustomerUuid    *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// O Ordering
+	//
+	O *[]CallManagingOrganisationOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// CallManagingOrganisationsGlobalStatsPerformanceListParams defines parameters for CallManagingOrganisationsGlobalStatsPerformanceList.
+type CallManagingOrganisationsGlobalStatsPerformanceListParams struct {
+	Customer        *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerKeyword *string             `form:"customer_keyword,omitempty" json:"customer_keyword,omitempty"`
+	CustomerUuid    *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// O Ordering
+	//
+	O *[]CallManagingOrganisationOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// CallManagingOrganisationsGlobalStatsPerformanceCountParams defines parameters for CallManagingOrganisationsGlobalStatsPerformanceCount.
+type CallManagingOrganisationsGlobalStatsPerformanceCountParams struct {
+	Customer        *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerKeyword *string             `form:"customer_keyword,omitempty" json:"customer_keyword,omitempty"`
+	CustomerUuid    *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// O Ordering
+	//
+	O *[]CallManagingOrganisationOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// CallManagingOrganisationsGlobalStatsResourceDemandListParams defines parameters for CallManagingOrganisationsGlobalStatsResourceDemandList.
+type CallManagingOrganisationsGlobalStatsResourceDemandListParams struct {
+	Customer        *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerKeyword *string             `form:"customer_keyword,omitempty" json:"customer_keyword,omitempty"`
+	CustomerUuid    *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// O Ordering
+	//
+	O *[]CallManagingOrganisationOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// CallManagingOrganisationsGlobalStatsResourceDemandCountParams defines parameters for CallManagingOrganisationsGlobalStatsResourceDemandCount.
+type CallManagingOrganisationsGlobalStatsResourceDemandCountParams struct {
+	Customer        *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerKeyword *string             `form:"customer_keyword,omitempty" json:"customer_keyword,omitempty"`
+	CustomerUuid    *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// O Ordering
+	//
+	O *[]CallManagingOrganisationOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// CallManagingOrganisationsGlobalStatsReviewProgressListParams defines parameters for CallManagingOrganisationsGlobalStatsReviewProgressList.
+type CallManagingOrganisationsGlobalStatsReviewProgressListParams struct {
+	Customer        *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerKeyword *string             `form:"customer_keyword,omitempty" json:"customer_keyword,omitempty"`
+	CustomerUuid    *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// O Ordering
+	//
+	O *[]CallManagingOrganisationOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// CallManagingOrganisationsGlobalStatsReviewProgressCountParams defines parameters for CallManagingOrganisationsGlobalStatsReviewProgressCount.
+type CallManagingOrganisationsGlobalStatsReviewProgressCountParams struct {
 	Customer        *string             `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerKeyword *string             `form:"customer_keyword,omitempty" json:"customer_keyword,omitempty"`
 	CustomerUuid    *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
@@ -82236,6 +82392,24 @@ type ClientInterface interface {
 
 	CallManagingOrganisationsCreateWithFormdataBody(ctx context.Context, body CallManagingOrganisationsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// CallManagingOrganisationsGlobalStatsPerformanceList request
+	CallManagingOrganisationsGlobalStatsPerformanceList(ctx context.Context, params *CallManagingOrganisationsGlobalStatsPerformanceListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CallManagingOrganisationsGlobalStatsPerformanceCount request
+	CallManagingOrganisationsGlobalStatsPerformanceCount(ctx context.Context, params *CallManagingOrganisationsGlobalStatsPerformanceCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CallManagingOrganisationsGlobalStatsResourceDemandList request
+	CallManagingOrganisationsGlobalStatsResourceDemandList(ctx context.Context, params *CallManagingOrganisationsGlobalStatsResourceDemandListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CallManagingOrganisationsGlobalStatsResourceDemandCount request
+	CallManagingOrganisationsGlobalStatsResourceDemandCount(ctx context.Context, params *CallManagingOrganisationsGlobalStatsResourceDemandCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CallManagingOrganisationsGlobalStatsReviewProgressList request
+	CallManagingOrganisationsGlobalStatsReviewProgressList(ctx context.Context, params *CallManagingOrganisationsGlobalStatsReviewProgressListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CallManagingOrganisationsGlobalStatsReviewProgressCount request
+	CallManagingOrganisationsGlobalStatsReviewProgressCount(ctx context.Context, params *CallManagingOrganisationsGlobalStatsReviewProgressCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// CallManagingOrganisationsDestroy request
 	CallManagingOrganisationsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -94548,6 +94722,78 @@ func (c *Client) CallManagingOrganisationsCreate(ctx context.Context, body CallM
 
 func (c *Client) CallManagingOrganisationsCreateWithFormdataBody(ctx context.Context, body CallManagingOrganisationsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCallManagingOrganisationsCreateRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CallManagingOrganisationsGlobalStatsPerformanceList(ctx context.Context, params *CallManagingOrganisationsGlobalStatsPerformanceListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCallManagingOrganisationsGlobalStatsPerformanceListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CallManagingOrganisationsGlobalStatsPerformanceCount(ctx context.Context, params *CallManagingOrganisationsGlobalStatsPerformanceCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCallManagingOrganisationsGlobalStatsPerformanceCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CallManagingOrganisationsGlobalStatsResourceDemandList(ctx context.Context, params *CallManagingOrganisationsGlobalStatsResourceDemandListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCallManagingOrganisationsGlobalStatsResourceDemandListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CallManagingOrganisationsGlobalStatsResourceDemandCount(ctx context.Context, params *CallManagingOrganisationsGlobalStatsResourceDemandCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCallManagingOrganisationsGlobalStatsResourceDemandCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CallManagingOrganisationsGlobalStatsReviewProgressList(ctx context.Context, params *CallManagingOrganisationsGlobalStatsReviewProgressListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCallManagingOrganisationsGlobalStatsReviewProgressListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CallManagingOrganisationsGlobalStatsReviewProgressCount(ctx context.Context, params *CallManagingOrganisationsGlobalStatsReviewProgressCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCallManagingOrganisationsGlobalStatsReviewProgressCountRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -150959,6 +151205,780 @@ func NewCallManagingOrganisationsCreateRequestWithBody(server string, contentTyp
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewCallManagingOrganisationsGlobalStatsPerformanceListRequest generates requests for CallManagingOrganisationsGlobalStatsPerformanceList
+func NewCallManagingOrganisationsGlobalStatsPerformanceListRequest(server string, params *CallManagingOrganisationsGlobalStatsPerformanceListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/call-managing-organisations/global_stats_performance/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer", *params.Customer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerKeyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_keyword", *params.CustomerKeyword, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCallManagingOrganisationsGlobalStatsPerformanceCountRequest generates requests for CallManagingOrganisationsGlobalStatsPerformanceCount
+func NewCallManagingOrganisationsGlobalStatsPerformanceCountRequest(server string, params *CallManagingOrganisationsGlobalStatsPerformanceCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/call-managing-organisations/global_stats_performance/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer", *params.Customer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerKeyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_keyword", *params.CustomerKeyword, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCallManagingOrganisationsGlobalStatsResourceDemandListRequest generates requests for CallManagingOrganisationsGlobalStatsResourceDemandList
+func NewCallManagingOrganisationsGlobalStatsResourceDemandListRequest(server string, params *CallManagingOrganisationsGlobalStatsResourceDemandListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/call-managing-organisations/global_stats_resource_demand/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer", *params.Customer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerKeyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_keyword", *params.CustomerKeyword, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCallManagingOrganisationsGlobalStatsResourceDemandCountRequest generates requests for CallManagingOrganisationsGlobalStatsResourceDemandCount
+func NewCallManagingOrganisationsGlobalStatsResourceDemandCountRequest(server string, params *CallManagingOrganisationsGlobalStatsResourceDemandCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/call-managing-organisations/global_stats_resource_demand/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer", *params.Customer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerKeyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_keyword", *params.CustomerKeyword, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCallManagingOrganisationsGlobalStatsReviewProgressListRequest generates requests for CallManagingOrganisationsGlobalStatsReviewProgressList
+func NewCallManagingOrganisationsGlobalStatsReviewProgressListRequest(server string, params *CallManagingOrganisationsGlobalStatsReviewProgressListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/call-managing-organisations/global_stats_review_progress/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer", *params.Customer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerKeyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_keyword", *params.CustomerKeyword, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCallManagingOrganisationsGlobalStatsReviewProgressCountRequest generates requests for CallManagingOrganisationsGlobalStatsReviewProgressCount
+func NewCallManagingOrganisationsGlobalStatsReviewProgressCountRequest(server string, params *CallManagingOrganisationsGlobalStatsReviewProgressCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/call-managing-organisations/global_stats_review_progress/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer", *params.Customer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerKeyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_keyword", *params.CustomerKeyword, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -333732,6 +334752,24 @@ type ClientWithResponsesInterface interface {
 
 	CallManagingOrganisationsCreateWithFormdataBodyWithResponse(ctx context.Context, body CallManagingOrganisationsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsCreateResponse, error)
 
+	// CallManagingOrganisationsGlobalStatsPerformanceListWithResponse request
+	CallManagingOrganisationsGlobalStatsPerformanceListWithResponse(ctx context.Context, params *CallManagingOrganisationsGlobalStatsPerformanceListParams, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsGlobalStatsPerformanceListResponse, error)
+
+	// CallManagingOrganisationsGlobalStatsPerformanceCountWithResponse request
+	CallManagingOrganisationsGlobalStatsPerformanceCountWithResponse(ctx context.Context, params *CallManagingOrganisationsGlobalStatsPerformanceCountParams, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsGlobalStatsPerformanceCountResponse, error)
+
+	// CallManagingOrganisationsGlobalStatsResourceDemandListWithResponse request
+	CallManagingOrganisationsGlobalStatsResourceDemandListWithResponse(ctx context.Context, params *CallManagingOrganisationsGlobalStatsResourceDemandListParams, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsGlobalStatsResourceDemandListResponse, error)
+
+	// CallManagingOrganisationsGlobalStatsResourceDemandCountWithResponse request
+	CallManagingOrganisationsGlobalStatsResourceDemandCountWithResponse(ctx context.Context, params *CallManagingOrganisationsGlobalStatsResourceDemandCountParams, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsGlobalStatsResourceDemandCountResponse, error)
+
+	// CallManagingOrganisationsGlobalStatsReviewProgressListWithResponse request
+	CallManagingOrganisationsGlobalStatsReviewProgressListWithResponse(ctx context.Context, params *CallManagingOrganisationsGlobalStatsReviewProgressListParams, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsGlobalStatsReviewProgressListResponse, error)
+
+	// CallManagingOrganisationsGlobalStatsReviewProgressCountWithResponse request
+	CallManagingOrganisationsGlobalStatsReviewProgressCountWithResponse(ctx context.Context, params *CallManagingOrganisationsGlobalStatsReviewProgressCountParams, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsGlobalStatsReviewProgressCountResponse, error)
+
 	// CallManagingOrganisationsDestroyWithResponse request
 	CallManagingOrganisationsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsDestroyResponse, error)
 
@@ -347580,6 +348618,135 @@ func (r CallManagingOrganisationsCreateResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r CallManagingOrganisationsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CallManagingOrganisationsGlobalStatsPerformanceListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]CallPerformanceStat
+}
+
+// Status returns HTTPResponse.Status
+func (r CallManagingOrganisationsGlobalStatsPerformanceListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CallManagingOrganisationsGlobalStatsPerformanceListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CallManagingOrganisationsGlobalStatsPerformanceCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r CallManagingOrganisationsGlobalStatsPerformanceCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CallManagingOrganisationsGlobalStatsPerformanceCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CallManagingOrganisationsGlobalStatsResourceDemandListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ResourceDemandStat
+}
+
+// Status returns HTTPResponse.Status
+func (r CallManagingOrganisationsGlobalStatsResourceDemandListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CallManagingOrganisationsGlobalStatsResourceDemandListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CallManagingOrganisationsGlobalStatsResourceDemandCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r CallManagingOrganisationsGlobalStatsResourceDemandCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CallManagingOrganisationsGlobalStatsResourceDemandCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CallManagingOrganisationsGlobalStatsReviewProgressListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ReviewProgressStat
+}
+
+// Status returns HTTPResponse.Status
+func (r CallManagingOrganisationsGlobalStatsReviewProgressListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CallManagingOrganisationsGlobalStatsReviewProgressListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CallManagingOrganisationsGlobalStatsReviewProgressCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r CallManagingOrganisationsGlobalStatsReviewProgressCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CallManagingOrganisationsGlobalStatsReviewProgressCountResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -396935,6 +398102,60 @@ func (c *ClientWithResponses) CallManagingOrganisationsCreateWithFormdataBodyWit
 	return ParseCallManagingOrganisationsCreateResponse(rsp)
 }
 
+// CallManagingOrganisationsGlobalStatsPerformanceListWithResponse request returning *CallManagingOrganisationsGlobalStatsPerformanceListResponse
+func (c *ClientWithResponses) CallManagingOrganisationsGlobalStatsPerformanceListWithResponse(ctx context.Context, params *CallManagingOrganisationsGlobalStatsPerformanceListParams, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsGlobalStatsPerformanceListResponse, error) {
+	rsp, err := c.CallManagingOrganisationsGlobalStatsPerformanceList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCallManagingOrganisationsGlobalStatsPerformanceListResponse(rsp)
+}
+
+// CallManagingOrganisationsGlobalStatsPerformanceCountWithResponse request returning *CallManagingOrganisationsGlobalStatsPerformanceCountResponse
+func (c *ClientWithResponses) CallManagingOrganisationsGlobalStatsPerformanceCountWithResponse(ctx context.Context, params *CallManagingOrganisationsGlobalStatsPerformanceCountParams, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsGlobalStatsPerformanceCountResponse, error) {
+	rsp, err := c.CallManagingOrganisationsGlobalStatsPerformanceCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCallManagingOrganisationsGlobalStatsPerformanceCountResponse(rsp)
+}
+
+// CallManagingOrganisationsGlobalStatsResourceDemandListWithResponse request returning *CallManagingOrganisationsGlobalStatsResourceDemandListResponse
+func (c *ClientWithResponses) CallManagingOrganisationsGlobalStatsResourceDemandListWithResponse(ctx context.Context, params *CallManagingOrganisationsGlobalStatsResourceDemandListParams, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsGlobalStatsResourceDemandListResponse, error) {
+	rsp, err := c.CallManagingOrganisationsGlobalStatsResourceDemandList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCallManagingOrganisationsGlobalStatsResourceDemandListResponse(rsp)
+}
+
+// CallManagingOrganisationsGlobalStatsResourceDemandCountWithResponse request returning *CallManagingOrganisationsGlobalStatsResourceDemandCountResponse
+func (c *ClientWithResponses) CallManagingOrganisationsGlobalStatsResourceDemandCountWithResponse(ctx context.Context, params *CallManagingOrganisationsGlobalStatsResourceDemandCountParams, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsGlobalStatsResourceDemandCountResponse, error) {
+	rsp, err := c.CallManagingOrganisationsGlobalStatsResourceDemandCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCallManagingOrganisationsGlobalStatsResourceDemandCountResponse(rsp)
+}
+
+// CallManagingOrganisationsGlobalStatsReviewProgressListWithResponse request returning *CallManagingOrganisationsGlobalStatsReviewProgressListResponse
+func (c *ClientWithResponses) CallManagingOrganisationsGlobalStatsReviewProgressListWithResponse(ctx context.Context, params *CallManagingOrganisationsGlobalStatsReviewProgressListParams, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsGlobalStatsReviewProgressListResponse, error) {
+	rsp, err := c.CallManagingOrganisationsGlobalStatsReviewProgressList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCallManagingOrganisationsGlobalStatsReviewProgressListResponse(rsp)
+}
+
+// CallManagingOrganisationsGlobalStatsReviewProgressCountWithResponse request returning *CallManagingOrganisationsGlobalStatsReviewProgressCountResponse
+func (c *ClientWithResponses) CallManagingOrganisationsGlobalStatsReviewProgressCountWithResponse(ctx context.Context, params *CallManagingOrganisationsGlobalStatsReviewProgressCountParams, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsGlobalStatsReviewProgressCountResponse, error) {
+	rsp, err := c.CallManagingOrganisationsGlobalStatsReviewProgressCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCallManagingOrganisationsGlobalStatsReviewProgressCountResponse(rsp)
+}
+
 // CallManagingOrganisationsDestroyWithResponse request returning *CallManagingOrganisationsDestroyResponse
 func (c *ClientWithResponses) CallManagingOrganisationsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsDestroyResponse, error) {
 	rsp, err := c.CallManagingOrganisationsDestroy(ctx, uuid, reqEditors...)
@@ -428389,6 +429610,132 @@ func ParseCallManagingOrganisationsCreateResponse(rsp *http.Response) (*CallMana
 		}
 		response.JSON201 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseCallManagingOrganisationsGlobalStatsPerformanceListResponse parses an HTTP response from a CallManagingOrganisationsGlobalStatsPerformanceListWithResponse call
+func ParseCallManagingOrganisationsGlobalStatsPerformanceListResponse(rsp *http.Response) (*CallManagingOrganisationsGlobalStatsPerformanceListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CallManagingOrganisationsGlobalStatsPerformanceListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []CallPerformanceStat
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCallManagingOrganisationsGlobalStatsPerformanceCountResponse parses an HTTP response from a CallManagingOrganisationsGlobalStatsPerformanceCountWithResponse call
+func ParseCallManagingOrganisationsGlobalStatsPerformanceCountResponse(rsp *http.Response) (*CallManagingOrganisationsGlobalStatsPerformanceCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CallManagingOrganisationsGlobalStatsPerformanceCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseCallManagingOrganisationsGlobalStatsResourceDemandListResponse parses an HTTP response from a CallManagingOrganisationsGlobalStatsResourceDemandListWithResponse call
+func ParseCallManagingOrganisationsGlobalStatsResourceDemandListResponse(rsp *http.Response) (*CallManagingOrganisationsGlobalStatsResourceDemandListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CallManagingOrganisationsGlobalStatsResourceDemandListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ResourceDemandStat
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCallManagingOrganisationsGlobalStatsResourceDemandCountResponse parses an HTTP response from a CallManagingOrganisationsGlobalStatsResourceDemandCountWithResponse call
+func ParseCallManagingOrganisationsGlobalStatsResourceDemandCountResponse(rsp *http.Response) (*CallManagingOrganisationsGlobalStatsResourceDemandCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CallManagingOrganisationsGlobalStatsResourceDemandCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseCallManagingOrganisationsGlobalStatsReviewProgressListResponse parses an HTTP response from a CallManagingOrganisationsGlobalStatsReviewProgressListWithResponse call
+func ParseCallManagingOrganisationsGlobalStatsReviewProgressListResponse(rsp *http.Response) (*CallManagingOrganisationsGlobalStatsReviewProgressListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CallManagingOrganisationsGlobalStatsReviewProgressListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ReviewProgressStat
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCallManagingOrganisationsGlobalStatsReviewProgressCountResponse parses an HTTP response from a CallManagingOrganisationsGlobalStatsReviewProgressCountWithResponse call
+func ParseCallManagingOrganisationsGlobalStatsReviewProgressCountResponse(rsp *http.Response) (*CallManagingOrganisationsGlobalStatsReviewProgressCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CallManagingOrganisationsGlobalStatsReviewProgressCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
