@@ -21546,6 +21546,68 @@ type ArrowVendorOfferingMappingRequest struct {
 	Settings string              `json:"settings"`
 }
 
+// ArticleCodeUpdateApplyRequest defines model for ArticleCodeUpdateApplyRequest.
+type ArticleCodeUpdateApplyRequest struct {
+	// ComponentUuids UUIDs of components to update (from preview results).
+	ComponentUuids []openapi_types.UUID `json:"component_uuids"`
+
+	// OfferingCategoryUuid Filter by offering category UUID.
+	OfferingCategoryUuid *openapi_types.UUID `json:"offering_category_uuid,omitempty"`
+
+	// OfferingCustomerUuid Filter by service provider (customer) UUID.
+	OfferingCustomerUuid *openapi_types.UUID `json:"offering_customer_uuid,omitempty"`
+
+	// OfferingName Filter by offering name (case-insensitive substring match).
+	OfferingName *string `json:"offering_name,omitempty"`
+
+	// OfferingState Filter by offering state.
+	OfferingState *OfferingState `json:"offering_state,omitempty"`
+
+	// Replace Replacement string.
+	Replace *string `json:"replace,omitempty"`
+
+	// Search Substring to search for in article codes.
+	Search string `json:"search"`
+}
+
+// ArticleCodeUpdateApplyResponse defines model for ArticleCodeUpdateApplyResponse.
+type ArticleCodeUpdateApplyResponse struct {
+	UpdatedCount int `json:"updated_count"`
+}
+
+// ArticleCodeUpdatePreviewItem defines model for ArticleCodeUpdatePreviewItem.
+type ArticleCodeUpdatePreviewItem struct {
+	ComponentName        string             `json:"component_name"`
+	ComponentType        string             `json:"component_type"`
+	ComponentUuid        openapi_types.UUID `json:"component_uuid"`
+	NewArticleCode       string             `json:"new_article_code"`
+	OfferingCustomerName string             `json:"offering_customer_name"`
+	OfferingName         string             `json:"offering_name"`
+	OfferingUuid         openapi_types.UUID `json:"offering_uuid"`
+	OldArticleCode       string             `json:"old_article_code"`
+}
+
+// ArticleCodeUpdatePreviewRequest defines model for ArticleCodeUpdatePreviewRequest.
+type ArticleCodeUpdatePreviewRequest struct {
+	// OfferingCategoryUuid Filter by offering category UUID.
+	OfferingCategoryUuid *openapi_types.UUID `json:"offering_category_uuid,omitempty"`
+
+	// OfferingCustomerUuid Filter by service provider (customer) UUID.
+	OfferingCustomerUuid *openapi_types.UUID `json:"offering_customer_uuid,omitempty"`
+
+	// OfferingName Filter by offering name (case-insensitive substring match).
+	OfferingName *string `json:"offering_name,omitempty"`
+
+	// OfferingState Filter by offering state.
+	OfferingState *OfferingState `json:"offering_state,omitempty"`
+
+	// Replace Replacement string.
+	Replace *string `json:"replace,omitempty"`
+
+	// Search Substring to search for in article codes.
+	Search string `json:"search"`
+}
+
 // AssignmentBatch defines model for AssignmentBatch.
 type AssignmentBatch struct {
 	Call     *string             `json:"call,omitempty"`
@@ -52273,6 +52335,15 @@ type ManagedRancherClusterResourcesRetrieveParams struct {
 	Field *[]ResourceFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 }
 
+// MarketplaceArticleCodeUpdatePreviewParams defines parameters for MarketplaceArticleCodeUpdatePreview.
+type MarketplaceArticleCodeUpdatePreviewParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
 // MarketplaceAttributeOptionsListParams defines parameters for MarketplaceAttributeOptionsList.
 type MarketplaceAttributeOptionsListParams struct {
 	// Attribute Attribute URL
@@ -69305,6 +69376,12 @@ type MaintenanceAnnouncementsUpdateJSONRequestBody = MaintenanceAnnouncementRequ
 // ManagedRancherClusterResourcesAddNodeJSONRequestBody defines body for ManagedRancherClusterResourcesAddNode for application/json ContentType.
 type ManagedRancherClusterResourcesAddNodeJSONRequestBody = ManagedRancherCreateNodeRequest
 
+// MarketplaceArticleCodeUpdateApplyJSONRequestBody defines body for MarketplaceArticleCodeUpdateApply for application/json ContentType.
+type MarketplaceArticleCodeUpdateApplyJSONRequestBody = ArticleCodeUpdateApplyRequest
+
+// MarketplaceArticleCodeUpdatePreviewJSONRequestBody defines body for MarketplaceArticleCodeUpdatePreview for application/json ContentType.
+type MarketplaceArticleCodeUpdatePreviewJSONRequestBody = ArticleCodeUpdatePreviewRequest
+
 // MarketplaceAttributeOptionsCreateJSONRequestBody defines body for MarketplaceAttributeOptionsCreate for application/json ContentType.
 type MarketplaceAttributeOptionsCreateJSONRequestBody = AttributeOptionRequest
 
@@ -83702,6 +83779,16 @@ type ClientInterface interface {
 	ManagedRancherClusterResourcesAddNodeWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	ManagedRancherClusterResourcesAddNode(ctx context.Context, uuid openapi_types.UUID, body ManagedRancherClusterResourcesAddNodeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceArticleCodeUpdateApplyWithBody request with any body
+	MarketplaceArticleCodeUpdateApplyWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceArticleCodeUpdateApply(ctx context.Context, body MarketplaceArticleCodeUpdateApplyJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceArticleCodeUpdatePreviewWithBody request with any body
+	MarketplaceArticleCodeUpdatePreviewWithBody(ctx context.Context, params *MarketplaceArticleCodeUpdatePreviewParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceArticleCodeUpdatePreview(ctx context.Context, params *MarketplaceArticleCodeUpdatePreviewParams, body MarketplaceArticleCodeUpdatePreviewJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceAttributeOptionsList request
 	MarketplaceAttributeOptionsList(ctx context.Context, params *MarketplaceAttributeOptionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -100446,6 +100533,54 @@ func (c *Client) ManagedRancherClusterResourcesAddNodeWithBody(ctx context.Conte
 
 func (c *Client) ManagedRancherClusterResourcesAddNode(ctx context.Context, uuid openapi_types.UUID, body ManagedRancherClusterResourcesAddNodeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewManagedRancherClusterResourcesAddNodeRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceArticleCodeUpdateApplyWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceArticleCodeUpdateApplyRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceArticleCodeUpdateApply(ctx context.Context, body MarketplaceArticleCodeUpdateApplyJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceArticleCodeUpdateApplyRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceArticleCodeUpdatePreviewWithBody(ctx context.Context, params *MarketplaceArticleCodeUpdatePreviewParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceArticleCodeUpdatePreviewRequestWithBody(c.Server, params, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceArticleCodeUpdatePreview(ctx context.Context, params *MarketplaceArticleCodeUpdatePreviewParams, body MarketplaceArticleCodeUpdatePreviewJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceArticleCodeUpdatePreviewRequest(c.Server, params, body)
 	if err != nil {
 		return nil, err
 	}
@@ -180325,6 +180460,124 @@ func NewManagedRancherClusterResourcesAddNodeRequestWithBody(server string, uuid
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceArticleCodeUpdateApplyRequest calls the generic MarketplaceArticleCodeUpdateApply builder with application/json body
+func NewMarketplaceArticleCodeUpdateApplyRequest(server string, body MarketplaceArticleCodeUpdateApplyJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceArticleCodeUpdateApplyRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceArticleCodeUpdateApplyRequestWithBody generates requests for MarketplaceArticleCodeUpdateApply with any type of body
+func NewMarketplaceArticleCodeUpdateApplyRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-article-code-update/apply/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceArticleCodeUpdatePreviewRequest calls the generic MarketplaceArticleCodeUpdatePreview builder with application/json body
+func NewMarketplaceArticleCodeUpdatePreviewRequest(server string, params *MarketplaceArticleCodeUpdatePreviewParams, body MarketplaceArticleCodeUpdatePreviewJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceArticleCodeUpdatePreviewRequestWithBody(server, params, "application/json", bodyReader)
+}
+
+// NewMarketplaceArticleCodeUpdatePreviewRequestWithBody generates requests for MarketplaceArticleCodeUpdatePreview with any type of body
+func NewMarketplaceArticleCodeUpdatePreviewRequestWithBody(server string, params *MarketplaceArticleCodeUpdatePreviewParams, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-article-code-update/preview/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("POST", queryURL.String(), body)
@@ -336063,6 +336316,16 @@ type ClientWithResponsesInterface interface {
 
 	ManagedRancherClusterResourcesAddNodeWithResponse(ctx context.Context, uuid openapi_types.UUID, body ManagedRancherClusterResourcesAddNodeJSONRequestBody, reqEditors ...RequestEditorFn) (*ManagedRancherClusterResourcesAddNodeResponse, error)
 
+	// MarketplaceArticleCodeUpdateApplyWithBodyWithResponse request with any body
+	MarketplaceArticleCodeUpdateApplyWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceArticleCodeUpdateApplyResponse, error)
+
+	MarketplaceArticleCodeUpdateApplyWithResponse(ctx context.Context, body MarketplaceArticleCodeUpdateApplyJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceArticleCodeUpdateApplyResponse, error)
+
+	// MarketplaceArticleCodeUpdatePreviewWithBodyWithResponse request with any body
+	MarketplaceArticleCodeUpdatePreviewWithBodyWithResponse(ctx context.Context, params *MarketplaceArticleCodeUpdatePreviewParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceArticleCodeUpdatePreviewResponse, error)
+
+	MarketplaceArticleCodeUpdatePreviewWithResponse(ctx context.Context, params *MarketplaceArticleCodeUpdatePreviewParams, body MarketplaceArticleCodeUpdatePreviewJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceArticleCodeUpdatePreviewResponse, error)
+
 	// MarketplaceAttributeOptionsListWithResponse request
 	MarketplaceAttributeOptionsListWithResponse(ctx context.Context, params *MarketplaceAttributeOptionsListParams, reqEditors ...RequestEditorFn) (*MarketplaceAttributeOptionsListResponse, error)
 
@@ -356382,6 +356645,50 @@ func (r ManagedRancherClusterResourcesAddNodeResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ManagedRancherClusterResourcesAddNodeResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceArticleCodeUpdateApplyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ArticleCodeUpdateApplyResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceArticleCodeUpdateApplyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceArticleCodeUpdateApplyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceArticleCodeUpdatePreviewResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ArticleCodeUpdatePreviewItem
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceArticleCodeUpdatePreviewResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceArticleCodeUpdatePreviewResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -402275,6 +402582,40 @@ func (c *ClientWithResponses) ManagedRancherClusterResourcesAddNodeWithResponse(
 	return ParseManagedRancherClusterResourcesAddNodeResponse(rsp)
 }
 
+// MarketplaceArticleCodeUpdateApplyWithBodyWithResponse request with arbitrary body returning *MarketplaceArticleCodeUpdateApplyResponse
+func (c *ClientWithResponses) MarketplaceArticleCodeUpdateApplyWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceArticleCodeUpdateApplyResponse, error) {
+	rsp, err := c.MarketplaceArticleCodeUpdateApplyWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceArticleCodeUpdateApplyResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceArticleCodeUpdateApplyWithResponse(ctx context.Context, body MarketplaceArticleCodeUpdateApplyJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceArticleCodeUpdateApplyResponse, error) {
+	rsp, err := c.MarketplaceArticleCodeUpdateApply(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceArticleCodeUpdateApplyResponse(rsp)
+}
+
+// MarketplaceArticleCodeUpdatePreviewWithBodyWithResponse request with arbitrary body returning *MarketplaceArticleCodeUpdatePreviewResponse
+func (c *ClientWithResponses) MarketplaceArticleCodeUpdatePreviewWithBodyWithResponse(ctx context.Context, params *MarketplaceArticleCodeUpdatePreviewParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceArticleCodeUpdatePreviewResponse, error) {
+	rsp, err := c.MarketplaceArticleCodeUpdatePreviewWithBody(ctx, params, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceArticleCodeUpdatePreviewResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceArticleCodeUpdatePreviewWithResponse(ctx context.Context, params *MarketplaceArticleCodeUpdatePreviewParams, body MarketplaceArticleCodeUpdatePreviewJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceArticleCodeUpdatePreviewResponse, error) {
+	rsp, err := c.MarketplaceArticleCodeUpdatePreview(ctx, params, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceArticleCodeUpdatePreviewResponse(rsp)
+}
+
 // MarketplaceAttributeOptionsListWithResponse request returning *MarketplaceAttributeOptionsListResponse
 func (c *ClientWithResponses) MarketplaceAttributeOptionsListWithResponse(ctx context.Context, params *MarketplaceAttributeOptionsListParams, reqEditors ...RequestEditorFn) (*MarketplaceAttributeOptionsListResponse, error) {
 	rsp, err := c.MarketplaceAttributeOptionsList(ctx, params, reqEditors...)
@@ -437900,6 +438241,58 @@ func ParseManagedRancherClusterResourcesAddNodeResponse(rsp *http.Response) (*Ma
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest RancherNode
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceArticleCodeUpdateApplyResponse parses an HTTP response from a MarketplaceArticleCodeUpdateApplyWithResponse call
+func ParseMarketplaceArticleCodeUpdateApplyResponse(rsp *http.Response) (*MarketplaceArticleCodeUpdateApplyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceArticleCodeUpdateApplyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ArticleCodeUpdateApplyResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceArticleCodeUpdatePreviewResponse parses an HTTP response from a MarketplaceArticleCodeUpdatePreviewWithResponse call
+func ParseMarketplaceArticleCodeUpdatePreviewResponse(rsp *http.Response) (*MarketplaceArticleCodeUpdatePreviewResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceArticleCodeUpdatePreviewResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ArticleCodeUpdatePreviewItem
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
