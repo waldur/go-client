@@ -3101,6 +3101,30 @@ func (e CoiTypeEnum) Valid() bool {
 	}
 }
 
+// Defines values for CommentOEnum.
+const (
+	CommentOEnumCreated       CommentOEnum = "created"
+	CommentOEnumMinusCreated  CommentOEnum = "-created"
+	CommentOEnumMinusModified CommentOEnum = "-modified"
+	CommentOEnumModified      CommentOEnum = "modified"
+)
+
+// Valid indicates whether the value is a known member of the CommentOEnum enum.
+func (e CommentOEnum) Valid() bool {
+	switch e {
+	case CommentOEnumCreated:
+		return true
+	case CommentOEnumMinusCreated:
+		return true
+	case CommentOEnumMinusModified:
+		return true
+	case CommentOEnumModified:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ComponentUsageFieldEnum.
 const (
 	ComponentUsageFieldEnumBillingPeriod ComponentUsageFieldEnum = "billing_period"
@@ -11323,16 +11347,16 @@ func (e OpenStackInstanceFieldEnum) Valid() bool {
 
 // Defines values for OpenStackInstanceOEnum.
 const (
-	MinusStartTime OpenStackInstanceOEnum = "-start_time"
-	StartTime      OpenStackInstanceOEnum = "start_time"
+	OpenStackInstanceOEnumMinusStartTime OpenStackInstanceOEnum = "-start_time"
+	OpenStackInstanceOEnumStartTime      OpenStackInstanceOEnum = "start_time"
 )
 
 // Valid indicates whether the value is a known member of the OpenStackInstanceOEnum enum.
 func (e OpenStackInstanceOEnum) Valid() bool {
 	switch e {
-	case MinusStartTime:
+	case OpenStackInstanceOEnumMinusStartTime:
 		return true
-	case StartTime:
+	case OpenStackInstanceOEnumStartTime:
 		return true
 	default:
 		return false
@@ -18781,18 +18805,23 @@ func (e SystemLogSourceEnum) Valid() bool {
 
 // Defines values for ThreadSessionFieldEnum.
 const (
-	ThreadSessionFieldEnumChatSession  ThreadSessionFieldEnum = "chat_session"
-	ThreadSessionFieldEnumCreated      ThreadSessionFieldEnum = "created"
-	ThreadSessionFieldEnumFlags        ThreadSessionFieldEnum = "flags"
-	ThreadSessionFieldEnumIsArchived   ThreadSessionFieldEnum = "is_archived"
-	ThreadSessionFieldEnumIsFlagged    ThreadSessionFieldEnum = "is_flagged"
-	ThreadSessionFieldEnumMaxSeverity  ThreadSessionFieldEnum = "max_severity"
-	ThreadSessionFieldEnumMessageCount ThreadSessionFieldEnum = "message_count"
-	ThreadSessionFieldEnumModified     ThreadSessionFieldEnum = "modified"
-	ThreadSessionFieldEnumName         ThreadSessionFieldEnum = "name"
-	ThreadSessionFieldEnumUserFullName ThreadSessionFieldEnum = "user_full_name"
-	ThreadSessionFieldEnumUserUsername ThreadSessionFieldEnum = "user_username"
-	ThreadSessionFieldEnumUuid         ThreadSessionFieldEnum = "uuid"
+	ThreadSessionFieldEnumChatSession          ThreadSessionFieldEnum = "chat_session"
+	ThreadSessionFieldEnumCreated              ThreadSessionFieldEnum = "created"
+	ThreadSessionFieldEnumFlags                ThreadSessionFieldEnum = "flags"
+	ThreadSessionFieldEnumInputTokens          ThreadSessionFieldEnum = "input_tokens"
+	ThreadSessionFieldEnumIsArchived           ThreadSessionFieldEnum = "is_archived"
+	ThreadSessionFieldEnumIsFlagged            ThreadSessionFieldEnum = "is_flagged"
+	ThreadSessionFieldEnumMaxSeverity          ThreadSessionFieldEnum = "max_severity"
+	ThreadSessionFieldEnumMessageCount         ThreadSessionFieldEnum = "message_count"
+	ThreadSessionFieldEnumModified             ThreadSessionFieldEnum = "modified"
+	ThreadSessionFieldEnumName                 ThreadSessionFieldEnum = "name"
+	ThreadSessionFieldEnumOutputTokens         ThreadSessionFieldEnum = "output_tokens"
+	ThreadSessionFieldEnumTitleGenInputTokens  ThreadSessionFieldEnum = "title_gen_input_tokens"
+	ThreadSessionFieldEnumTitleGenOutputTokens ThreadSessionFieldEnum = "title_gen_output_tokens"
+	ThreadSessionFieldEnumTotalTokens          ThreadSessionFieldEnum = "total_tokens"
+	ThreadSessionFieldEnumUserFullName         ThreadSessionFieldEnum = "user_full_name"
+	ThreadSessionFieldEnumUserUsername         ThreadSessionFieldEnum = "user_username"
+	ThreadSessionFieldEnumUuid                 ThreadSessionFieldEnum = "uuid"
 )
 
 // Valid indicates whether the value is a known member of the ThreadSessionFieldEnum enum.
@@ -18803,6 +18832,8 @@ func (e ThreadSessionFieldEnum) Valid() bool {
 	case ThreadSessionFieldEnumCreated:
 		return true
 	case ThreadSessionFieldEnumFlags:
+		return true
+	case ThreadSessionFieldEnumInputTokens:
 		return true
 	case ThreadSessionFieldEnumIsArchived:
 		return true
@@ -18815,6 +18846,14 @@ func (e ThreadSessionFieldEnum) Valid() bool {
 	case ThreadSessionFieldEnumModified:
 		return true
 	case ThreadSessionFieldEnumName:
+		return true
+	case ThreadSessionFieldEnumOutputTokens:
+		return true
+	case ThreadSessionFieldEnumTitleGenInputTokens:
+		return true
+	case ThreadSessionFieldEnumTitleGenOutputTokens:
+		return true
+	case ThreadSessionFieldEnumTotalTokens:
 		return true
 	case ThreadSessionFieldEnumUserFullName:
 		return true
@@ -18829,10 +18868,16 @@ func (e ThreadSessionFieldEnum) Valid() bool {
 
 // Defines values for ThreadSessionOEnum.
 const (
-	ThreadSessionOEnumCreated       ThreadSessionOEnum = "created"
-	ThreadSessionOEnumMinusCreated  ThreadSessionOEnum = "-created"
-	ThreadSessionOEnumMinusModified ThreadSessionOEnum = "-modified"
-	ThreadSessionOEnumModified      ThreadSessionOEnum = "modified"
+	ThreadSessionOEnumCreated           ThreadSessionOEnum = "created"
+	ThreadSessionOEnumInputTokens       ThreadSessionOEnum = "input_tokens"
+	ThreadSessionOEnumMinusCreated      ThreadSessionOEnum = "-created"
+	ThreadSessionOEnumMinusInputTokens  ThreadSessionOEnum = "-input_tokens"
+	ThreadSessionOEnumMinusModified     ThreadSessionOEnum = "-modified"
+	ThreadSessionOEnumMinusOutputTokens ThreadSessionOEnum = "-output_tokens"
+	ThreadSessionOEnumMinusTotalTokens  ThreadSessionOEnum = "-total_tokens"
+	ThreadSessionOEnumModified          ThreadSessionOEnum = "modified"
+	ThreadSessionOEnumOutputTokens      ThreadSessionOEnum = "output_tokens"
+	ThreadSessionOEnumTotalTokens       ThreadSessionOEnum = "total_tokens"
 )
 
 // Valid indicates whether the value is a known member of the ThreadSessionOEnum enum.
@@ -18840,11 +18885,23 @@ func (e ThreadSessionOEnum) Valid() bool {
 	switch e {
 	case ThreadSessionOEnumCreated:
 		return true
+	case ThreadSessionOEnumInputTokens:
+		return true
 	case ThreadSessionOEnumMinusCreated:
+		return true
+	case ThreadSessionOEnumMinusInputTokens:
 		return true
 	case ThreadSessionOEnumMinusModified:
 		return true
+	case ThreadSessionOEnumMinusOutputTokens:
+		return true
+	case ThreadSessionOEnumMinusTotalTokens:
+		return true
 	case ThreadSessionOEnumModified:
+		return true
+	case ThreadSessionOEnumOutputTokens:
+		return true
+	case ThreadSessionOEnumTotalTokens:
 		return true
 	default:
 		return false
@@ -18997,6 +19054,7 @@ const (
 	UserFieldEnumCivilNumber                   UserFieldEnum = "civil_number"
 	UserFieldEnumCountryOfResidence            UserFieldEnum = "country_of_residence"
 	UserFieldEnumDateJoined                    UserFieldEnum = "date_joined"
+	UserFieldEnumDeactivationReason            UserFieldEnum = "deactivation_reason"
 	UserFieldEnumDescription                   UserFieldEnum = "description"
 	UserFieldEnumEdupersonAssurance            UserFieldEnum = "eduperson_assurance"
 	UserFieldEnumEmail                         UserFieldEnum = "email"
@@ -19063,6 +19121,8 @@ func (e UserFieldEnum) Valid() bool {
 	case UserFieldEnumCountryOfResidence:
 		return true
 	case UserFieldEnumDateJoined:
+		return true
+	case UserFieldEnumDeactivationReason:
 		return true
 	case UserFieldEnumDescription:
 		return true
@@ -24368,6 +24428,9 @@ type Comment struct {
 	Url                *string              `json:"url,omitempty"`
 	Uuid               *openapi_types.UUID  `json:"uuid,omitempty"`
 }
+
+// CommentOEnum defines model for CommentOEnum.
+type CommentOEnum string
 
 // CommentRequest defines model for CommentRequest.
 type CommentRequest struct {
@@ -31315,7 +31378,9 @@ type Message struct {
 	ContentDisplay      *string                `json:"content_display,omitempty"`
 	Created             *time.Time             `json:"created,omitempty"`
 	InjectionCategories interface{}            `json:"injection_categories,omitempty"`
+	InputTokens         *int                   `json:"input_tokens,omitempty"`
 	IsFlagged           *bool                  `json:"is_flagged,omitempty"`
+	OutputTokens        *int                   `json:"output_tokens,omitempty"`
 	PiiCategories       interface{}            `json:"pii_categories,omitempty"`
 	Replaces            *openapi_types.UUID    `json:"replaces,omitempty"`
 	Role                *MessageRoleEnum       `json:"role,omitempty"`
@@ -38726,7 +38791,10 @@ type PatchedUserRequest struct {
 	AgreeWithPolicy    *bool               `json:"agree_with_policy,omitempty"`
 	BirthDate          *openapi_types.Date `json:"birth_date,omitempty"`
 	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
-	Description        *string             `json:"description,omitempty"`
+
+	// DeactivationReason Reason why the user was deactivated. Visible to staff and support.
+	DeactivationReason *string `json:"deactivation_reason,omitempty"`
+	Description        *string `json:"description,omitempty"`
 
 	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
 	EdupersonAssurance interface{} `json:"eduperson_assurance,omitempty"`
@@ -38798,7 +38866,10 @@ type PatchedUserRequestForm struct {
 	AgreeWithPolicy    *bool               `json:"agree_with_policy,omitempty"`
 	BirthDate          *openapi_types.Date `json:"birth_date,omitempty"`
 	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
-	Description        *string             `json:"description,omitempty"`
+
+	// DeactivationReason Reason why the user was deactivated. Visible to staff and support.
+	DeactivationReason *string `json:"deactivation_reason,omitempty"`
+	Description        *string `json:"description,omitempty"`
 
 	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
 	EdupersonAssurance interface{} `json:"eduperson_assurance,omitempty"`
@@ -38870,7 +38941,10 @@ type PatchedUserRequestMultipart struct {
 	AgreeWithPolicy    *bool               `json:"agree_with_policy,omitempty"`
 	BirthDate          *openapi_types.Date `json:"birth_date,omitempty"`
 	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
-	Description        *string             `json:"description,omitempty"`
+
+	// DeactivationReason Reason why the user was deactivated. Visible to staff and support.
+	DeactivationReason *string `json:"deactivation_reason,omitempty"`
+	Description        *string `json:"description,omitempty"`
 
 	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
 	EdupersonAssurance interface{} `json:"eduperson_assurance,omitempty"`
@@ -45834,18 +45908,23 @@ type TestConnectionResponse struct {
 
 // ThreadSession defines model for ThreadSession.
 type ThreadSession struct {
-	ChatSession  *openapi_types.UUID    `json:"chat_session,omitempty"`
-	Created      *time.Time             `json:"created,omitempty"`
-	Flags        interface{}            `json:"flags,omitempty"`
-	IsArchived   *bool                  `json:"is_archived,omitempty"`
-	IsFlagged    *bool                  `json:"is_flagged,omitempty"`
-	MaxSeverity  *InjectionSeverityEnum `json:"max_severity,omitempty"`
-	MessageCount *int                   `json:"message_count,omitempty"`
-	Modified     *time.Time             `json:"modified,omitempty"`
-	Name         *string                `json:"name,omitempty"`
-	UserFullName *string                `json:"user_full_name,omitempty"`
-	UserUsername *string                `json:"user_username,omitempty"`
-	Uuid         *openapi_types.UUID    `json:"uuid,omitempty"`
+	ChatSession          *openapi_types.UUID    `json:"chat_session,omitempty"`
+	Created              *time.Time             `json:"created,omitempty"`
+	Flags                interface{}            `json:"flags,omitempty"`
+	InputTokens          *int                   `json:"input_tokens,omitempty"`
+	IsArchived           *bool                  `json:"is_archived,omitempty"`
+	IsFlagged            *bool                  `json:"is_flagged,omitempty"`
+	MaxSeverity          *InjectionSeverityEnum `json:"max_severity,omitempty"`
+	MessageCount         *int                   `json:"message_count,omitempty"`
+	Modified             *time.Time             `json:"modified,omitempty"`
+	Name                 *string                `json:"name,omitempty"`
+	OutputTokens         *int                   `json:"output_tokens,omitempty"`
+	TitleGenInputTokens  *int                   `json:"title_gen_input_tokens,omitempty"`
+	TitleGenOutputTokens *int                   `json:"title_gen_output_tokens,omitempty"`
+	TotalTokens          *int                   `json:"total_tokens,omitempty"`
+	UserFullName         *string                `json:"user_full_name,omitempty"`
+	UserUsername         *string                `json:"user_username,omitempty"`
+	Uuid                 *openapi_types.UUID    `json:"uuid,omitempty"`
 }
 
 // ThreadSessionFieldEnum defines model for ThreadSessionFieldEnum.
@@ -46156,7 +46235,10 @@ type User struct {
 	CivilNumber        *string             `json:"civil_number,omitempty"`
 	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
 	DateJoined         *time.Time          `json:"date_joined,omitempty"`
-	Description        *string             `json:"description,omitempty"`
+
+	// DeactivationReason Reason why the user was deactivated. Visible to staff and support.
+	DeactivationReason *string `json:"deactivation_reason,omitempty"`
+	Description        *string `json:"description,omitempty"`
 
 	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
 	EdupersonAssurance interface{}          `json:"eduperson_assurance,omitempty"`
@@ -46577,7 +46659,10 @@ type UserRequest struct {
 	AgreeWithPolicy    *bool               `json:"agree_with_policy,omitempty"`
 	BirthDate          *openapi_types.Date `json:"birth_date,omitempty"`
 	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
-	Description        *string             `json:"description,omitempty"`
+
+	// DeactivationReason Reason why the user was deactivated. Visible to staff and support.
+	DeactivationReason *string `json:"deactivation_reason,omitempty"`
+	Description        *string `json:"description,omitempty"`
 
 	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
 	EdupersonAssurance interface{}         `json:"eduperson_assurance,omitempty"`
@@ -46650,7 +46735,10 @@ type UserRequestForm struct {
 	AgreeWithPolicy    *bool               `json:"agree_with_policy,omitempty"`
 	BirthDate          *openapi_types.Date `json:"birth_date,omitempty"`
 	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
-	Description        *string             `json:"description,omitempty"`
+
+	// DeactivationReason Reason why the user was deactivated. Visible to staff and support.
+	DeactivationReason *string `json:"deactivation_reason,omitempty"`
+	Description        *string `json:"description,omitempty"`
 
 	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
 	EdupersonAssurance interface{}         `json:"eduperson_assurance,omitempty"`
@@ -46723,7 +46811,10 @@ type UserRequestMultipart struct {
 	AgreeWithPolicy    *bool               `json:"agree_with_policy,omitempty"`
 	BirthDate          *openapi_types.Date `json:"birth_date,omitempty"`
 	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
-	Description        *string             `json:"description,omitempty"`
+
+	// DeactivationReason Reason why the user was deactivated. Visible to staff and support.
+	DeactivationReason *string `json:"deactivation_reason,omitempty"`
+	Description        *string `json:"description,omitempty"`
 
 	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
 	EdupersonAssurance interface{}         `json:"eduperson_assurance,omitempty"`
@@ -49732,24 +49823,30 @@ type ChatSessionsRetrieveParams struct {
 
 // ChatThreadsListParams defines parameters for ChatThreadsList.
 type ChatThreadsListParams struct {
-	Created     *openapi_types.Date       `form:"created,omitempty" json:"created,omitempty"`
-	Field       *[]ThreadSessionFieldEnum `form:"field,omitempty" json:"field,omitempty"`
-	IsArchived  *bool                     `form:"is_archived,omitempty" json:"is_archived,omitempty"`
-	IsFlagged   *bool                     `form:"is_flagged,omitempty" json:"is_flagged,omitempty"`
-	MaxSeverity *InjectionSeverityEnum    `form:"max_severity,omitempty" json:"max_severity,omitempty"`
-	Modified    *openapi_types.Date       `form:"modified,omitempty" json:"modified,omitempty"`
+	Created        *openapi_types.Date       `form:"created,omitempty" json:"created,omitempty"`
+	Field          *[]ThreadSessionFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+	InputTokensMax *float32                  `form:"input_tokens_max,omitempty" json:"input_tokens_max,omitempty"`
+	InputTokensMin *float32                  `form:"input_tokens_min,omitempty" json:"input_tokens_min,omitempty"`
+	IsArchived     *bool                     `form:"is_archived,omitempty" json:"is_archived,omitempty"`
+	IsFlagged      *bool                     `form:"is_flagged,omitempty" json:"is_flagged,omitempty"`
+	MaxSeverity    *InjectionSeverityEnum    `form:"max_severity,omitempty" json:"max_severity,omitempty"`
+	Modified       *openapi_types.Date       `form:"modified,omitempty" json:"modified,omitempty"`
 
 	// O Ordering
 	//
-	O *[]ThreadSessionOEnum `form:"o,omitempty" json:"o,omitempty"`
+	O               *[]ThreadSessionOEnum `form:"o,omitempty" json:"o,omitempty"`
+	OutputTokensMax *float32              `form:"output_tokens_max,omitempty" json:"output_tokens_max,omitempty"`
+	OutputTokensMin *float32              `form:"output_tokens_min,omitempty" json:"output_tokens_min,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Query    *string             `form:"query,omitempty" json:"query,omitempty"`
-	User     *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
+	PageSize       *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Query          *string             `form:"query,omitempty" json:"query,omitempty"`
+	TotalTokensMax *float32            `form:"total_tokens_max,omitempty" json:"total_tokens_max,omitempty"`
+	TotalTokensMin *float32            `form:"total_tokens_min,omitempty" json:"total_tokens_min,omitempty"`
+	User           *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
 }
 
 // ChatThreadsRetrieveParams defines parameters for ChatThreadsRetrieve.
@@ -66478,7 +66575,7 @@ type SupportCommentsListParams struct {
 
 	// O Ordering
 	//
-	O *[]ThreadSessionOEnum `form:"o,omitempty" json:"o,omitempty"`
+	O *[]CommentOEnum `form:"o,omitempty" json:"o,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -66504,7 +66601,7 @@ type SupportCommentsCountParams struct {
 
 	// O Ordering
 	//
-	O *[]ThreadSessionOEnum `form:"o,omitempty" json:"o,omitempty"`
+	O *[]CommentOEnum `form:"o,omitempty" json:"o,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -154292,6 +154389,38 @@ func NewChatThreadsListRequest(server string, params *ChatThreadsListParams) (*h
 
 		}
 
+		if params.InputTokensMax != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "input_tokens_max", *params.InputTokensMax, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "number", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.InputTokensMin != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "input_tokens_min", *params.InputTokensMin, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "number", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.IsArchived != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_archived", *params.IsArchived, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
@@ -154372,6 +154501,38 @@ func NewChatThreadsListRequest(server string, params *ChatThreadsListParams) (*h
 
 		}
 
+		if params.OutputTokensMax != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "output_tokens_max", *params.OutputTokensMax, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "number", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OutputTokensMin != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "output_tokens_min", *params.OutputTokensMin, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "number", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
@@ -154407,6 +154568,38 @@ func NewChatThreadsListRequest(server string, params *ChatThreadsListParams) (*h
 		if params.Query != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TotalTokensMax != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "total_tokens_max", *params.TotalTokensMax, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "number", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TotalTokensMin != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "total_tokens_min", *params.TotalTokensMin, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "number", Format: ""}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
