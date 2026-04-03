@@ -24720,253 +24720,254 @@ type ConsoleUrl struct {
 
 // ConstanceSettings defines model for ConstanceSettings.
 type ConstanceSettings struct {
-	AIASSISTANTAPITOKEN                            *string                                                          `json:"AI_ASSISTANT_API_TOKEN,omitempty"`
-	AIASSISTANTAPIURL                              *string                                                          `json:"AI_ASSISTANT_API_URL,omitempty"`
-	AIASSISTANTBACKENDTYPE                         *string                                                          `json:"AI_ASSISTANT_BACKEND_TYPE,omitempty"`
-	AIASSISTANTCOMPLETIONKWARGS                    *string                                                          `json:"AI_ASSISTANT_COMPLETION_KWARGS,omitempty"`
-	AIASSISTANTENABLED                             *bool                                                            `json:"AI_ASSISTANT_ENABLED,omitempty"`
-	AIASSISTANTENABLEDROLES                        *AIASSISTANTENABLEDROLESEnum                                     `json:"AI_ASSISTANT_ENABLED_ROLES,omitempty"`
-	AIASSISTANTHISTORYLIMIT                        *int                                                             `json:"AI_ASSISTANT_HISTORY_LIMIT,omitempty"`
-	AIASSISTANTINJECTIONALLOWLIST                  *string                                                          `json:"AI_ASSISTANT_INJECTION_ALLOWLIST,omitempty"`
-	AIASSISTANTMODEL                               *string                                                          `json:"AI_ASSISTANT_MODEL,omitempty"`
-	AIASSISTANTNAME                                *string                                                          `json:"AI_ASSISTANT_NAME,omitempty"`
-	AIASSISTANTSESSIONRETENTIONDAYS                *int                                                             `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
-	AIASSISTANTTOKENLIMITDAILY                     *int                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
-	AIASSISTANTTOKENLIMITMONTHLY                   *int                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_MONTHLY,omitempty"`
-	AIASSISTANTTOKENLIMITWEEKLY                    *int                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_WEEKLY,omitempty"`
-	ALLOWSERVICEPROVIDEROFFERINGMANAGEMENT         *bool                                                            `json:"ALLOW_SERVICE_PROVIDER_OFFERING_MANAGEMENT,omitempty"`
-	ANONYMOUSUSERCANVIEWOFFERINGS                  *bool                                                            `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
-	ANONYMOUSUSERCANVIEWPLANS                      *bool                                                            `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
-	ARROWAUTORECONCILIATION                        *bool                                                            `json:"ARROW_AUTO_RECONCILIATION,omitempty"`
-	ARROWBILLINGCHECKINTERVALHOURS                 *int                                                             `json:"ARROW_BILLING_CHECK_INTERVAL_HOURS,omitempty"`
-	ARROWCONSUMPTIONSYNCENABLED                    *bool                                                            `json:"ARROW_CONSUMPTION_SYNC_ENABLED,omitempty"`
-	ARROWCONSUMPTIONSYNCINTERVALHOURS              *int                                                             `json:"ARROW_CONSUMPTION_SYNC_INTERVAL_HOURS,omitempty"`
-	ARROWSYNCINTERVALHOURS                         *int                                                             `json:"ARROW_SYNC_INTERVAL_HOURS,omitempty"`
-	ATLASSIANAFFECTEDRESOURCEFIELD                 *string                                                          `json:"ATLASSIAN_AFFECTED_RESOURCE_FIELD,omitempty"`
-	ATLASSIANAPIURL                                *string                                                          `json:"ATLASSIAN_API_URL,omitempty"`
-	ATLASSIANCALLERFIELD                           *string                                                          `json:"ATLASSIAN_CALLER_FIELD,omitempty"`
-	ATLASSIANCUSTOMISSUEFIELDMAPPINGENABLED        *bool                                                            `json:"ATLASSIAN_CUSTOM_ISSUE_FIELD_MAPPING_ENABLED,omitempty"`
-	ATLASSIANDEFAULTOFFERINGISSUETYPE              *string                                                          `json:"ATLASSIAN_DEFAULT_OFFERING_ISSUE_TYPE,omitempty"`
-	ATLASSIANDESCRIPTIONTEMPLATE                   *string                                                          `json:"ATLASSIAN_DESCRIPTION_TEMPLATE,omitempty"`
-	ATLASSIANEMAIL                                 *openapi_types.Email                                             `json:"ATLASSIAN_EMAIL,omitempty"`
-	ATLASSIANEXCLUDEDATTACHMENTTYPES               *string                                                          `json:"ATLASSIAN_EXCLUDED_ATTACHMENT_TYPES,omitempty"`
-	ATLASSIANIMPACTFIELD                           *string                                                          `json:"ATLASSIAN_IMPACT_FIELD,omitempty"`
-	ATLASSIANLINKEDISSUETYPE                       *string                                                          `json:"ATLASSIAN_LINKED_ISSUE_TYPE,omitempty"`
-	ATLASSIANMAPWALDURUSERSTOSERVICEDESKAGENTS     *bool                                                            `json:"ATLASSIAN_MAP_WALDUR_USERS_TO_SERVICEDESK_AGENTS,omitempty"`
-	ATLASSIANOAUTH2ACCESSTOKEN                     *string                                                          `json:"ATLASSIAN_OAUTH2_ACCESS_TOKEN,omitempty"`
-	ATLASSIANOAUTH2CLIENTID                        *string                                                          `json:"ATLASSIAN_OAUTH2_CLIENT_ID,omitempty"`
-	ATLASSIANOAUTH2TOKENTYPE                       *string                                                          `json:"ATLASSIAN_OAUTH2_TOKEN_TYPE,omitempty"`
-	ATLASSIANORGANISATIONFIELD                     *string                                                          `json:"ATLASSIAN_ORGANISATION_FIELD,omitempty"`
-	ATLASSIANPASSWORD                              *string                                                          `json:"ATLASSIAN_PASSWORD,omitempty"`
-	ATLASSIANPERSONALACCESSTOKEN                   *string                                                          `json:"ATLASSIAN_PERSONAL_ACCESS_TOKEN,omitempty"`
-	ATLASSIANPROJECTFIELD                          *string                                                          `json:"ATLASSIAN_PROJECT_FIELD,omitempty"`
-	ATLASSIANPROJECTID                             *string                                                          `json:"ATLASSIAN_PROJECT_ID,omitempty"`
-	ATLASSIANREPORTERFIELD                         *string                                                          `json:"ATLASSIAN_REPORTER_FIELD,omitempty"`
-	ATLASSIANREQUESTFEEDBACKFIELD                  *string                                                          `json:"ATLASSIAN_REQUEST_FEEDBACK_FIELD,omitempty"`
-	ATLASSIANRESOLUTIONSLAFIELD                    *string                                                          `json:"ATLASSIAN_RESOLUTION_SLA_FIELD,omitempty"`
-	ATLASSIANSATISFACTIONFIELD                     *string                                                          `json:"ATLASSIAN_SATISFACTION_FIELD,omitempty"`
-	ATLASSIANSHAREDUSERNAME                        *bool                                                            `json:"ATLASSIAN_SHARED_USERNAME,omitempty"`
-	ATLASSIANSLAFIELD                              *string                                                          `json:"ATLASSIAN_SLA_FIELD,omitempty"`
-	ATLASSIANSUMMARYTEMPLATE                       *string                                                          `json:"ATLASSIAN_SUMMARY_TEMPLATE,omitempty"`
-	ATLASSIANTEMPLATEFIELD                         *string                                                          `json:"ATLASSIAN_TEMPLATE_FIELD,omitempty"`
-	ATLASSIANTOKEN                                 *string                                                          `json:"ATLASSIAN_TOKEN,omitempty"`
-	ATLASSIANUSERNAME                              *string                                                          `json:"ATLASSIAN_USERNAME,omitempty"`
-	ATLASSIANUSEOLDAPI                             *bool                                                            `json:"ATLASSIAN_USE_OLD_API,omitempty"`
-	ATLASSIANVERIFYSSL                             *bool                                                            `json:"ATLASSIAN_VERIFY_SSL,omitempty"`
-	ATLASSIANWALDURBACKENDIDFIELD                  *string                                                          `json:"ATLASSIAN_WALDUR_BACKEND_ID_FIELD,omitempty"`
-	AUTOMATEDMATCHINGENABLED                       *bool                                                            `json:"AUTOMATED_MATCHING_ENABLED,omitempty"`
-	AUTOAPPROVEUSERTOS                             *bool                                                            `json:"AUTO_APPROVE_USER_TOS,omitempty"`
-	BRANDCOLOR                                     *string                                                          `json:"BRAND_COLOR,omitempty"`
-	CALLMANAGEMENTHEROIMAGE                        *string                                                          `json:"CALL_MANAGEMENT_HERO_IMAGE,omitempty"`
-	COICOAUTHORSHIPLOOKBACKYEARS                   *int                                                             `json:"COI_COAUTHORSHIP_LOOKBACK_YEARS,omitempty"`
-	COICOAUTHORSHIPTHRESHOLDPAPERS                 *int                                                             `json:"COI_COAUTHORSHIP_THRESHOLD_PAPERS,omitempty"`
-	COIDETECTIONENABLED                            *bool                                                            `json:"COI_DETECTION_ENABLED,omitempty"`
-	COIDISCLOSUREREQUIRED                          *bool                                                            `json:"COI_DISCLOSURE_REQUIRED,omitempty"`
-	COIINSTITUTIONALLOOKBACKYEARS                  *int                                                             `json:"COI_INSTITUTIONAL_LOOKBACK_YEARS,omitempty"`
-	COMMONFOOTERHTML                               *string                                                          `json:"COMMON_FOOTER_HTML,omitempty"`
-	COMMONFOOTERTEXT                               *string                                                          `json:"COMMON_FOOTER_TEXT,omitempty"`
-	COUNTRIES                                      *[]string                                                        `json:"COUNTRIES,omitempty"`
-	CROSSREFMAILTO                                 *openapi_types.Email                                             `json:"CROSSREF_MAILTO,omitempty"`
-	CURRENCYNAME                                   *string                                                          `json:"CURRENCY_NAME,omitempty"`
-	DEACTIVATEUSERIFNOROLES                        *bool                                                            `json:"DEACTIVATE_USER_IF_NO_ROLES,omitempty"`
-	DEFAULTIDP                                     *ConstanceSettings_DEFAULTIDP                                    `json:"DEFAULT_IDP,omitempty"`
-	DEFAULTOFFERINGUSERATTRIBUTES                  *[]ConstanceSettings_DEFAULTOFFERINGUSERATTRIBUTES_Item          `json:"DEFAULT_OFFERING_USER_ATTRIBUTES,omitempty"`
-	DISABLEDOFFERINGTYPES                          *[]ConstanceSettings_DISABLEDOFFERINGTYPES_Item                  `json:"DISABLED_OFFERING_TYPES,omitempty"`
-	DISABLEDARKTHEME                               *bool                                                            `json:"DISABLE_DARK_THEME,omitempty"`
-	DISABLESENDINGNOTIFICATIONSABOUTRESOURCEUPDATE *bool                                                            `json:"DISABLE_SENDING_NOTIFICATIONS_ABOUT_RESOURCE_UPDATE,omitempty"`
-	DISCLAIMERAREALOGO                             *string                                                          `json:"DISCLAIMER_AREA_LOGO,omitempty"`
-	DISCLAIMERAREATEXT                             *string                                                          `json:"DISCLAIMER_AREA_TEXT,omitempty"`
-	DOCKERCLIENT                                   *string                                                          `json:"DOCKER_CLIENT,omitempty"`
-	DOCKERIMAGES                                   *string                                                          `json:"DOCKER_IMAGES,omitempty"`
-	DOCKERREMOVECONTAINER                          *bool                                                            `json:"DOCKER_REMOVE_CONTAINER,omitempty"`
-	DOCKERRUNOPTIONS                               *string                                                          `json:"DOCKER_RUN_OPTIONS,omitempty"`
-	DOCKERSCRIPTDIR                                *string                                                          `json:"DOCKER_SCRIPT_DIR,omitempty"`
-	DOCKERVOLUMENAME                               *string                                                          `json:"DOCKER_VOLUME_NAME,omitempty"`
-	DOCSURL                                        *string                                                          `json:"DOCS_URL,omitempty"`
-	ENABLEDREPORTINGSCREENS                        *[]ConstanceSettings_ENABLEDREPORTINGSCREENS_Item                `json:"ENABLED_REPORTING_SCREENS,omitempty"`
-	ENABLEDUSERPROFILEATTRIBUTES                   *[]ConstanceSettings_ENABLEDUSERPROFILEATTRIBUTES_Item           `json:"ENABLED_USER_PROFILE_ATTRIBUTES,omitempty"`
-	ENABLEISSUESFORUSERSSHKEYCHANGES               *bool                                                            `json:"ENABLE_ISSUES_FOR_USER_SSH_KEY_CHANGES,omitempty"`
-	ENABLEMOCKCOURSEACCOUNTBACKEND                 *bool                                                            `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
-	ENABLEMOCKSERVICEACCOUNTBACKEND                *bool                                                            `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
-	ENABLEORDERSTARTDATE                           *bool                                                            `json:"ENABLE_ORDER_START_DATE,omitempty"`
-	ENABLEPROJECTDIGEST                            *bool                                                            `json:"ENABLE_PROJECT_DIGEST,omitempty"`
-	ENABLESTALERESOURCENOTIFICATIONS               *bool                                                            `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
-	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                                                            `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
-	ENFORCEMANDATORYUSERATTRIBUTES                 *bool                                                            `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
-	ENFORCEOFFERINGUSERPROFILECOMPLETENESS         *bool                                                            `json:"ENFORCE_OFFERING_USER_PROFILE_COMPLETENESS,omitempty"`
-	ENFORCEUSERCONSENTFOROFFERINGS                 *bool                                                            `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
-	FAVICON                                        *string                                                          `json:"FAVICON,omitempty"`
-	FEDERATEDIDENTITYDEACTIVATIONPOLICY            *FEDERATEDIDENTITYDEACTIVATIONPOLICYEnum                         `json:"FEDERATED_IDENTITY_DEACTIVATION_POLICY,omitempty"`
-	FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES         *[]ConstanceSettings_FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES_Item `json:"FEDERATED_IDENTITY_SYNC_ALLOWED_ATTRIBUTES,omitempty"`
-	FEDERATEDIDENTITYSYNCENABLED                   *bool                                                            `json:"FEDERATED_IDENTITY_SYNC_ENABLED,omitempty"`
-	FONTFAMILY                                     *FONTFAMILYEnum                                                  `json:"FONT_FAMILY,omitempty"`
-	FREEIPABLACKLISTEDUSERNAMES                    *[]string                                                        `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
-	FREEIPAENABLED                                 *bool                                                            `json:"FREEIPA_ENABLED,omitempty"`
-	FREEIPAGROUPNAMEPREFIX                         *string                                                          `json:"FREEIPA_GROUPNAME_PREFIX,omitempty"`
-	FREEIPAGROUPSYNCHRONIZATIONENABLED             *bool                                                            `json:"FREEIPA_GROUP_SYNCHRONIZATION_ENABLED,omitempty"`
-	FREEIPAHOSTNAME                                *string                                                          `json:"FREEIPA_HOSTNAME,omitempty"`
-	FREEIPAPASSWORD                                *string                                                          `json:"FREEIPA_PASSWORD,omitempty"`
-	FREEIPAUSERNAME                                *string                                                          `json:"FREEIPA_USERNAME,omitempty"`
-	FREEIPAUSERNAMEPREFIX                          *string                                                          `json:"FREEIPA_USERNAME_PREFIX,omitempty"`
-	FREEIPAVERIFYSSL                               *bool                                                            `json:"FREEIPA_VERIFY_SSL,omitempty"`
-	FULLPAGETITLE                                  *string                                                          `json:"FULL_PAGE_TITLE,omitempty"`
-	HEROIMAGE                                      *string                                                          `json:"HERO_IMAGE,omitempty"`
-	HEROLINKLABEL                                  *string                                                          `json:"HERO_LINK_LABEL,omitempty"`
-	HEROLINKURL                                    *string                                                          `json:"HERO_LINK_URL,omitempty"`
-	HOMEPORTURL                                    *string                                                          `json:"HOMEPORT_URL,omitempty"`
-	INVITATIONALLOWEDFIELDS                        *[]ConstanceSettings_INVITATIONALLOWEDFIELDS_Item                `json:"INVITATION_ALLOWED_FIELDS,omitempty"`
-	INVITATIONDISABLEMULTIPLEROLES                 *bool                                                            `json:"INVITATION_DISABLE_MULTIPLE_ROLES,omitempty"`
-	K8SCONFIGPATH                                  *string                                                          `json:"K8S_CONFIG_PATH,omitempty"`
-	K8SJOBTIMEOUT                                  *int                                                             `json:"K8S_JOB_TIMEOUT,omitempty"`
-	K8SNAMESPACE                                   *string                                                          `json:"K8S_NAMESPACE,omitempty"`
-	KEYCLOAKICON                                   *string                                                          `json:"KEYCLOAK_ICON,omitempty"`
-	LANGUAGECHOICES                                *string                                                          `json:"LANGUAGE_CHOICES,omitempty"`
-	LOGINLOGO                                      *string                                                          `json:"LOGIN_LOGO,omitempty"`
-	LOGINLOGOMULTILINGUAL                          *map[string]*string                                              `json:"LOGIN_LOGO_MULTILINGUAL,omitempty"`
-	LOGINPAGECAROUSELSLIDES                        *[]interface{}                                                   `json:"LOGIN_PAGE_CAROUSEL_SLIDES,omitempty"`
-	LOGINPAGELAYOUT                                *LOGINPAGELAYOUTEnum                                             `json:"LOGIN_PAGE_LAYOUT,omitempty"`
-	LOGINPAGENEWS                                  *[]interface{}                                                   `json:"LOGIN_PAGE_NEWS,omitempty"`
-	LOGINPAGESTATS                                 *[]interface{}                                                   `json:"LOGIN_PAGE_STATS,omitempty"`
-	LOGINPAGEVIDEOURL                              *string                                                          `json:"LOGIN_PAGE_VIDEO_URL,omitempty"`
-	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES     *int                                                             `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
-	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM            *[]ConstanceSettings_MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM_Item    `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
-	MANDATORYUSERATTRIBUTES                        *[]ConstanceSettings_MANDATORYUSERATTRIBUTES_Item                `json:"MANDATORY_USER_ATTRIBUTES,omitempty"`
-	MARKETPLACECARDSTYLE                           *MARKETPLACECARDSTYLEEnum                                        `json:"MARKETPLACE_CARD_STYLE,omitempty"`
-	MARKETPLACEHEROIMAGE                           *string                                                          `json:"MARKETPLACE_HERO_IMAGE,omitempty"`
-	MARKETPLACELANDINGPAGE                         *string                                                          `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
-	MARKETPLACELAYOUTMODE                          *MARKETPLACELAYOUTMODEEnum                                       `json:"MARKETPLACE_LAYOUT_MODE,omitempty"`
-	NOTIFYABOUTRESOURCECHANGE                      *bool                                                            `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
-	NOTIFYSTAFFABOUTAPPROVALS                      *bool                                                            `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
-	OFFERINGLOGOPLACEHOLDER                        *string                                                          `json:"OFFERING_LOGO_PLACEHOLDER,omitempty"`
-	OIDCACCESSTOKENENABLED                         *bool                                                            `json:"OIDC_ACCESS_TOKEN_ENABLED,omitempty"`
-	OIDCAUTHURL                                    *string                                                          `json:"OIDC_AUTH_URL,omitempty"`
-	OIDCBLOCKCREATIONOFUNINVITEDUSERS              *bool                                                            `json:"OIDC_BLOCK_CREATION_OF_UNINVITED_USERS,omitempty"`
-	OIDCCACHETIMEOUT                               *int                                                             `json:"OIDC_CACHE_TIMEOUT,omitempty"`
-	OIDCCLIENTID                                   *string                                                          `json:"OIDC_CLIENT_ID,omitempty"`
-	OIDCCLIENTSECRET                               *string                                                          `json:"OIDC_CLIENT_SECRET,omitempty"`
-	OIDCDEFAULTLOGOUTURL                           *string                                                          `json:"OIDC_DEFAULT_LOGOUT_URL,omitempty"`
-	OIDCINTROSPECTIONURL                           *string                                                          `json:"OIDC_INTROSPECTION_URL,omitempty"`
-	OIDCMATCHMAKINGBYEMAIL                         *bool                                                            `json:"OIDC_MATCHMAKING_BY_EMAIL,omitempty"`
-	OIDCUSERFIELD                                  *string                                                          `json:"OIDC_USER_FIELD,omitempty"`
-	ONBOARDINGARIREGISTERBASEURL                   *string                                                          `json:"ONBOARDING_ARIREGISTER_BASE_URL,omitempty"`
-	ONBOARDINGARIREGISTERPASSWORD                  *string                                                          `json:"ONBOARDING_ARIREGISTER_PASSWORD,omitempty"`
-	ONBOARDINGARIREGISTERTIMEOUT                   *int                                                             `json:"ONBOARDING_ARIREGISTER_TIMEOUT,omitempty"`
-	ONBOARDINGARIREGISTERUSERNAME                  *string                                                          `json:"ONBOARDING_ARIREGISTER_USERNAME,omitempty"`
-	ONBOARDINGBOLAGSVERKETAPIURL                   *string                                                          `json:"ONBOARDING_BOLAGSVERKET_API_URL,omitempty"`
-	ONBOARDINGBOLAGSVERKETCLIENTID                 *string                                                          `json:"ONBOARDING_BOLAGSVERKET_CLIENT_ID,omitempty"`
-	ONBOARDINGBOLAGSVERKETCLIENTSECRET             *string                                                          `json:"ONBOARDING_BOLAGSVERKET_CLIENT_SECRET,omitempty"`
-	ONBOARDINGBOLAGSVERKETTOKENAPIURL              *string                                                          `json:"ONBOARDING_BOLAGSVERKET_TOKEN_API_URL,omitempty"`
-	ONBOARDINGBREGAPIURL                           *string                                                          `json:"ONBOARDING_BREG_API_URL,omitempty"`
-	ONBOARDINGVALIDATIONMETHODS                    *[]ConstanceSettings_ONBOARDINGVALIDATIONMETHODS_Item            `json:"ONBOARDING_VALIDATION_METHODS,omitempty"`
-	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                                                             `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
-	ONBOARDINGWICOAPIURL                           *string                                                          `json:"ONBOARDING_WICO_API_URL,omitempty"`
-	ONBOARDINGWICOTOKEN                            *string                                                          `json:"ONBOARDING_WICO_TOKEN,omitempty"`
-	ORCIDAPIURL                                    *string                                                          `json:"ORCID_API_URL,omitempty"`
-	ORCIDAUTHURL                                   *string                                                          `json:"ORCID_AUTH_URL,omitempty"`
-	ORCIDCLIENTID                                  *string                                                          `json:"ORCID_CLIENT_ID,omitempty"`
-	ORCIDCLIENTSECRET                              *string                                                          `json:"ORCID_CLIENT_SECRET,omitempty"`
-	ORCIDREDIRECTURI                               *string                                                          `json:"ORCID_REDIRECT_URI,omitempty"`
-	ORCIDSANDBOXMODE                               *bool                                                            `json:"ORCID_SANDBOX_MODE,omitempty"`
-	POWEREDBYLOGO                                  *string                                                          `json:"POWERED_BY_LOGO,omitempty"`
-	PROJECTENDDATEMANDATORY                        *bool                                                            `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
-	PROPOSALREVIEWDURATION                         *int                                                             `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
-	RANCHERUSERNAMEINPUTLABEL                      *string                                                          `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
-	REMOTEEDUTEAMSREFRESHTOKEN                     *string                                                          `json:"REMOTE_EDUTEAMS_REFRESH_TOKEN,omitempty"`
-	RESTRICTEDOFFERINGVISIBILITYMODE               *RESTRICTEDOFFERINGVISIBILITYMODEEnum                            `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
-	REVIEWERPROFILESENABLED                        *bool                                                            `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
-	SCIMAPIKEY                                     *string                                                          `json:"SCIM_API_KEY,omitempty"`
-	SCIMAPIURL                                     *string                                                          `json:"SCIM_API_URL,omitempty"`
-	SCIMMEMBERSHIPSYNCENABLED                      *bool                                                            `json:"SCIM_MEMBERSHIP_SYNC_ENABLED,omitempty"`
-	SCIMURNNAMESPACE                               *string                                                          `json:"SCIM_URN_NAMESPACE,omitempty"`
-	SCRIPTRUNMODE                                  *SCRIPTRUNMODEEnum                                               `json:"SCRIPT_RUN_MODE,omitempty"`
-	SEMANTICSCHOLARAPIKEY                          *string                                                          `json:"SEMANTIC_SCHOLAR_API_KEY,omitempty"`
-	SHORTPAGETITLE                                 *string                                                          `json:"SHORT_PAGE_TITLE,omitempty"`
-	SIDEBARLOGO                                    *string                                                          `json:"SIDEBAR_LOGO,omitempty"`
-	SIDEBARLOGODARK                                *string                                                          `json:"SIDEBAR_LOGO_DARK,omitempty"`
-	SIDEBARLOGOMOBILE                              *string                                                          `json:"SIDEBAR_LOGO_MOBILE,omitempty"`
-	SIDEBARSTYLE                                   *SIDEBARSTYLEEnum                                                `json:"SIDEBAR_STYLE,omitempty"`
-	SITEADDRESS                                    *string                                                          `json:"SITE_ADDRESS,omitempty"`
-	SITEDESCRIPTION                                *string                                                          `json:"SITE_DESCRIPTION,omitempty"`
-	SITEEMAIL                                      *string                                                          `json:"SITE_EMAIL,omitempty"`
-	SITENAME                                       *string                                                          `json:"SITE_NAME,omitempty"`
-	SITEPHONE                                      *string                                                          `json:"SITE_PHONE,omitempty"`
-	SLURMPOLICYEVALUATIONLOGRETENTIONDAYS          *int                                                             `json:"SLURM_POLICY_EVALUATION_LOG_RETENTION_DAYS,omitempty"`
-	SMAXAFFECTEDRESOURCEFIELD                      *string                                                          `json:"SMAX_AFFECTED_RESOURCE_FIELD,omitempty"`
-	SMAXAPIURL                                     *string                                                          `json:"SMAX_API_URL,omitempty"`
-	SMAXCREATIONSOURCENAME                         *string                                                          `json:"SMAX_CREATION_SOURCE_NAME,omitempty"`
-	SMAXLOGIN                                      *string                                                          `json:"SMAX_LOGIN,omitempty"`
-	SMAXORGANISATIONFIELD                          *string                                                          `json:"SMAX_ORGANISATION_FIELD,omitempty"`
-	SMAXPASSWORD                                   *string                                                          `json:"SMAX_PASSWORD,omitempty"`
-	SMAXPROJECTFIELD                               *string                                                          `json:"SMAX_PROJECT_FIELD,omitempty"`
-	SMAXREQUESTSOFFERING                           *string                                                          `json:"SMAX_REQUESTS_OFFERING,omitempty"`
-	SMAXSECONDSTOWAIT                              *int                                                             `json:"SMAX_SECONDS_TO_WAIT,omitempty"`
-	SMAXTENANTID                                   *string                                                          `json:"SMAX_TENANT_ID,omitempty"`
-	SMAXTIMESTOPULL                                *int                                                             `json:"SMAX_TIMES_TO_PULL,omitempty"`
-	SMAXVERIFYSSL                                  *bool                                                            `json:"SMAX_VERIFY_SSL,omitempty"`
-	SOFTWARECATALOGCLEANUPENABLED                  *bool                                                            `json:"SOFTWARE_CATALOG_CLEANUP_ENABLED,omitempty"`
-	SOFTWARECATALOGEESSIAPIURL                     *string                                                          `json:"SOFTWARE_CATALOG_EESSI_API_URL,omitempty"`
-	SOFTWARECATALOGEESSIINCLUDEEXTENSIONS          *bool                                                            `json:"SOFTWARE_CATALOG_EESSI_INCLUDE_EXTENSIONS,omitempty"`
-	SOFTWARECATALOGEESSIUPDATEENABLED              *bool                                                            `json:"SOFTWARE_CATALOG_EESSI_UPDATE_ENABLED,omitempty"`
-	SOFTWARECATALOGEESSIVERSION                    *string                                                          `json:"SOFTWARE_CATALOG_EESSI_VERSION,omitempty"`
-	SOFTWARECATALOGRETENTIONDAYS                   *int                                                             `json:"SOFTWARE_CATALOG_RETENTION_DAYS,omitempty"`
-	SOFTWARECATALOGSPACKDATAURL                    *string                                                          `json:"SOFTWARE_CATALOG_SPACK_DATA_URL,omitempty"`
-	SOFTWARECATALOGSPACKUPDATEENABLED              *bool                                                            `json:"SOFTWARE_CATALOG_SPACK_UPDATE_ENABLED,omitempty"`
-	SOFTWARECATALOGSPACKVERSION                    *string                                                          `json:"SOFTWARE_CATALOG_SPACK_VERSION,omitempty"`
-	SOFTWARECATALOGUPDATEEXISTINGPACKAGES          *bool                                                            `json:"SOFTWARE_CATALOG_UPDATE_EXISTING_PACKAGES,omitempty"`
-	SSHKEYALLOWEDTYPES                             *[]ConstanceSettings_SSHKEYALLOWEDTYPES_Item                     `json:"SSH_KEY_ALLOWED_TYPES,omitempty"`
-	SSHKEYMINRSAKEYSIZE                            *int                                                             `json:"SSH_KEY_MIN_RSA_KEY_SIZE,omitempty"`
-	SUPPORTPORTALURL                               *string                                                          `json:"SUPPORT_PORTAL_URL,omitempty"`
-	SYSTEMLOGENABLED                               *bool                                                            `json:"SYSTEM_LOG_ENABLED,omitempty"`
-	SYSTEMLOGMAXROWSPERSOURCE                      *int                                                             `json:"SYSTEM_LOG_MAX_ROWS_PER_SOURCE,omitempty"`
-	TABLEGROWTHMINSIZEBYTES                        *int                                                             `json:"TABLE_GROWTH_MIN_SIZE_BYTES,omitempty"`
-	TABLEGROWTHMONITORINGENABLED                   *bool                                                            `json:"TABLE_GROWTH_MONITORING_ENABLED,omitempty"`
-	TABLEGROWTHMONTHLYTHRESHOLDPERCENT             *int                                                             `json:"TABLE_GROWTH_MONTHLY_THRESHOLD_PERCENT,omitempty"`
-	TABLEGROWTHRETENTIONDAYS                       *int                                                             `json:"TABLE_GROWTH_RETENTION_DAYS,omitempty"`
-	TABLEGROWTHWEEKLYTHRESHOLDPERCENT              *int                                                             `json:"TABLE_GROWTH_WEEKLY_THRESHOLD_PERCENT,omitempty"`
-	TELEMETRYURL                                   *string                                                          `json:"TELEMETRY_URL,omitempty"`
-	TELEMETRYVERSION                               *int                                                             `json:"TELEMETRY_VERSION,omitempty"`
-	THUMBNAILSIZE                                  *string                                                          `json:"THUMBNAIL_SIZE,omitempty"`
-	USERACTIONSDEFAULTEXPIRATIONREMINDERS          *[]string                                                        `json:"USER_ACTIONS_DEFAULT_EXPIRATION_REMINDERS,omitempty"`
-	USERACTIONSENABLED                             *bool                                                            `json:"USER_ACTIONS_ENABLED,omitempty"`
-	USERACTIONSEXECUTIONRETENTIONDAYS              *int                                                             `json:"USER_ACTIONS_EXECUTION_RETENTION_DAYS,omitempty"`
-	USERACTIONSHIGHURGENCYNOTIFICATION             *bool                                                            `json:"USER_ACTIONS_HIGH_URGENCY_NOTIFICATION,omitempty"`
-	USERACTIONSNOTIFICATIONTHRESHOLD               *int                                                             `json:"USER_ACTIONS_NOTIFICATION_THRESHOLD,omitempty"`
-	USERACTIONSPENDINGORDERHOURS                   *int                                                             `json:"USER_ACTIONS_PENDING_ORDER_HOURS,omitempty"`
-	USERDATAACCESSLOGGINGENABLED                   *bool                                                            `json:"USER_DATA_ACCESS_LOGGING_ENABLED,omitempty"`
-	USERDATAACCESSLOGRETENTIONDAYS                 *int                                                             `json:"USER_DATA_ACCESS_LOG_RETENTION_DAYS,omitempty"`
-	USERDATAACCESSLOGSELFACCESS                    *bool                                                            `json:"USER_DATA_ACCESS_LOG_SELF_ACCESS,omitempty"`
-	USERTABLECOLUMNS                               *string                                                          `json:"USER_TABLE_COLUMNS,omitempty"`
-	WALDURAUTHSOCIALROLECLAIM                      *string                                                          `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
-	WALDURSUPPORTACTIVEBACKENDTYPE                 *WALDURSUPPORTACTIVEBACKENDTYPEEnum                              `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
-	WALDURSUPPORTDISPLAYREQUESTTYPE                *bool                                                            `json:"WALDUR_SUPPORT_DISPLAY_REQUEST_TYPE,omitempty"`
-	WALDURSUPPORTENABLED                           *bool                                                            `json:"WALDUR_SUPPORT_ENABLED,omitempty"`
-	ZAMMADAPIURL                                   *string                                                          `json:"ZAMMAD_API_URL,omitempty"`
-	ZAMMADARTICLETYPE                              *ZAMMADARTICLETYPEEnum                                           `json:"ZAMMAD_ARTICLE_TYPE,omitempty"`
-	ZAMMADCOMMENTCOOLDOWNDURATION                  *int                                                             `json:"ZAMMAD_COMMENT_COOLDOWN_DURATION,omitempty"`
-	ZAMMADCOMMENTMARKER                            *string                                                          `json:"ZAMMAD_COMMENT_MARKER,omitempty"`
-	ZAMMADCOMMENTPREFIX                            *string                                                          `json:"ZAMMAD_COMMENT_PREFIX,omitempty"`
-	ZAMMADGROUP                                    *string                                                          `json:"ZAMMAD_GROUP,omitempty"`
-	ZAMMADTOKEN                                    *string                                                          `json:"ZAMMAD_TOKEN,omitempty"`
+	AIASSISTANTAPITOKEN                              *string                                                          `json:"AI_ASSISTANT_API_TOKEN,omitempty"`
+	AIASSISTANTAPIURL                                *string                                                          `json:"AI_ASSISTANT_API_URL,omitempty"`
+	AIASSISTANTBACKENDTYPE                           *string                                                          `json:"AI_ASSISTANT_BACKEND_TYPE,omitempty"`
+	AIASSISTANTCOMPLETIONKWARGS                      *string                                                          `json:"AI_ASSISTANT_COMPLETION_KWARGS,omitempty"`
+	AIASSISTANTENABLED                               *bool                                                            `json:"AI_ASSISTANT_ENABLED,omitempty"`
+	AIASSISTANTENABLEDROLES                          *AIASSISTANTENABLEDROLESEnum                                     `json:"AI_ASSISTANT_ENABLED_ROLES,omitempty"`
+	AIASSISTANTHISTORYLIMIT                          *int                                                             `json:"AI_ASSISTANT_HISTORY_LIMIT,omitempty"`
+	AIASSISTANTINJECTIONALLOWLIST                    *string                                                          `json:"AI_ASSISTANT_INJECTION_ALLOWLIST,omitempty"`
+	AIASSISTANTMODEL                                 *string                                                          `json:"AI_ASSISTANT_MODEL,omitempty"`
+	AIASSISTANTNAME                                  *string                                                          `json:"AI_ASSISTANT_NAME,omitempty"`
+	AIASSISTANTSESSIONRETENTIONDAYS                  *int                                                             `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
+	AIASSISTANTTOKENLIMITDAILY                       *int                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
+	AIASSISTANTTOKENLIMITMONTHLY                     *int                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_MONTHLY,omitempty"`
+	AIASSISTANTTOKENLIMITWEEKLY                      *int                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_WEEKLY,omitempty"`
+	ALLOWSERVICEPROVIDEROFFERINGMANAGEMENT           *bool                                                            `json:"ALLOW_SERVICE_PROVIDER_OFFERING_MANAGEMENT,omitempty"`
+	ANONYMOUSUSERCANVIEWOFFERINGS                    *bool                                                            `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
+	ANONYMOUSUSERCANVIEWPLANS                        *bool                                                            `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
+	ARROWAUTORECONCILIATION                          *bool                                                            `json:"ARROW_AUTO_RECONCILIATION,omitempty"`
+	ARROWBILLINGCHECKINTERVALHOURS                   *int                                                             `json:"ARROW_BILLING_CHECK_INTERVAL_HOURS,omitempty"`
+	ARROWCONSUMPTIONSYNCENABLED                      *bool                                                            `json:"ARROW_CONSUMPTION_SYNC_ENABLED,omitempty"`
+	ARROWCONSUMPTIONSYNCINTERVALHOURS                *int                                                             `json:"ARROW_CONSUMPTION_SYNC_INTERVAL_HOURS,omitempty"`
+	ARROWSYNCINTERVALHOURS                           *int                                                             `json:"ARROW_SYNC_INTERVAL_HOURS,omitempty"`
+	ATLASSIANAFFECTEDRESOURCEFIELD                   *string                                                          `json:"ATLASSIAN_AFFECTED_RESOURCE_FIELD,omitempty"`
+	ATLASSIANAPIURL                                  *string                                                          `json:"ATLASSIAN_API_URL,omitempty"`
+	ATLASSIANCALLERFIELD                             *string                                                          `json:"ATLASSIAN_CALLER_FIELD,omitempty"`
+	ATLASSIANCUSTOMISSUEFIELDMAPPINGENABLED          *bool                                                            `json:"ATLASSIAN_CUSTOM_ISSUE_FIELD_MAPPING_ENABLED,omitempty"`
+	ATLASSIANDEFAULTOFFERINGISSUETYPE                *string                                                          `json:"ATLASSIAN_DEFAULT_OFFERING_ISSUE_TYPE,omitempty"`
+	ATLASSIANDESCRIPTIONTEMPLATE                     *string                                                          `json:"ATLASSIAN_DESCRIPTION_TEMPLATE,omitempty"`
+	ATLASSIANEMAIL                                   *openapi_types.Email                                             `json:"ATLASSIAN_EMAIL,omitempty"`
+	ATLASSIANEXCLUDEDATTACHMENTTYPES                 *string                                                          `json:"ATLASSIAN_EXCLUDED_ATTACHMENT_TYPES,omitempty"`
+	ATLASSIANIMPACTFIELD                             *string                                                          `json:"ATLASSIAN_IMPACT_FIELD,omitempty"`
+	ATLASSIANLINKEDISSUETYPE                         *string                                                          `json:"ATLASSIAN_LINKED_ISSUE_TYPE,omitempty"`
+	ATLASSIANMAPWALDURUSERSTOSERVICEDESKAGENTS       *bool                                                            `json:"ATLASSIAN_MAP_WALDUR_USERS_TO_SERVICEDESK_AGENTS,omitempty"`
+	ATLASSIANOAUTH2ACCESSTOKEN                       *string                                                          `json:"ATLASSIAN_OAUTH2_ACCESS_TOKEN,omitempty"`
+	ATLASSIANOAUTH2CLIENTID                          *string                                                          `json:"ATLASSIAN_OAUTH2_CLIENT_ID,omitempty"`
+	ATLASSIANOAUTH2TOKENTYPE                         *string                                                          `json:"ATLASSIAN_OAUTH2_TOKEN_TYPE,omitempty"`
+	ATLASSIANORGANISATIONFIELD                       *string                                                          `json:"ATLASSIAN_ORGANISATION_FIELD,omitempty"`
+	ATLASSIANPASSWORD                                *string                                                          `json:"ATLASSIAN_PASSWORD,omitempty"`
+	ATLASSIANPERSONALACCESSTOKEN                     *string                                                          `json:"ATLASSIAN_PERSONAL_ACCESS_TOKEN,omitempty"`
+	ATLASSIANPROJECTFIELD                            *string                                                          `json:"ATLASSIAN_PROJECT_FIELD,omitempty"`
+	ATLASSIANPROJECTID                               *string                                                          `json:"ATLASSIAN_PROJECT_ID,omitempty"`
+	ATLASSIANREPORTERFIELD                           *string                                                          `json:"ATLASSIAN_REPORTER_FIELD,omitempty"`
+	ATLASSIANREQUESTFEEDBACKFIELD                    *string                                                          `json:"ATLASSIAN_REQUEST_FEEDBACK_FIELD,omitempty"`
+	ATLASSIANRESOLUTIONSLAFIELD                      *string                                                          `json:"ATLASSIAN_RESOLUTION_SLA_FIELD,omitempty"`
+	ATLASSIANSATISFACTIONFIELD                       *string                                                          `json:"ATLASSIAN_SATISFACTION_FIELD,omitempty"`
+	ATLASSIANSHAREDUSERNAME                          *bool                                                            `json:"ATLASSIAN_SHARED_USERNAME,omitempty"`
+	ATLASSIANSLAFIELD                                *string                                                          `json:"ATLASSIAN_SLA_FIELD,omitempty"`
+	ATLASSIANSUMMARYTEMPLATE                         *string                                                          `json:"ATLASSIAN_SUMMARY_TEMPLATE,omitempty"`
+	ATLASSIANTEMPLATEFIELD                           *string                                                          `json:"ATLASSIAN_TEMPLATE_FIELD,omitempty"`
+	ATLASSIANTOKEN                                   *string                                                          `json:"ATLASSIAN_TOKEN,omitempty"`
+	ATLASSIANUSERNAME                                *string                                                          `json:"ATLASSIAN_USERNAME,omitempty"`
+	ATLASSIANUSEOLDAPI                               *bool                                                            `json:"ATLASSIAN_USE_OLD_API,omitempty"`
+	ATLASSIANVERIFYSSL                               *bool                                                            `json:"ATLASSIAN_VERIFY_SSL,omitempty"`
+	ATLASSIANWALDURBACKENDIDFIELD                    *string                                                          `json:"ATLASSIAN_WALDUR_BACKEND_ID_FIELD,omitempty"`
+	AUTOMATEDMATCHINGENABLED                         *bool                                                            `json:"AUTOMATED_MATCHING_ENABLED,omitempty"`
+	AUTOAPPROVEUSERTOS                               *bool                                                            `json:"AUTO_APPROVE_USER_TOS,omitempty"`
+	BRANDCOLOR                                       *string                                                          `json:"BRAND_COLOR,omitempty"`
+	CALLMANAGEMENTHEROIMAGE                          *string                                                          `json:"CALL_MANAGEMENT_HERO_IMAGE,omitempty"`
+	COICOAUTHORSHIPLOOKBACKYEARS                     *int                                                             `json:"COI_COAUTHORSHIP_LOOKBACK_YEARS,omitempty"`
+	COICOAUTHORSHIPTHRESHOLDPAPERS                   *int                                                             `json:"COI_COAUTHORSHIP_THRESHOLD_PAPERS,omitempty"`
+	COIDETECTIONENABLED                              *bool                                                            `json:"COI_DETECTION_ENABLED,omitempty"`
+	COIDISCLOSUREREQUIRED                            *bool                                                            `json:"COI_DISCLOSURE_REQUIRED,omitempty"`
+	COIINSTITUTIONALLOOKBACKYEARS                    *int                                                             `json:"COI_INSTITUTIONAL_LOOKBACK_YEARS,omitempty"`
+	COMMONFOOTERHTML                                 *string                                                          `json:"COMMON_FOOTER_HTML,omitempty"`
+	COMMONFOOTERTEXT                                 *string                                                          `json:"COMMON_FOOTER_TEXT,omitempty"`
+	COUNTRIES                                        *[]string                                                        `json:"COUNTRIES,omitempty"`
+	CROSSREFMAILTO                                   *openapi_types.Email                                             `json:"CROSSREF_MAILTO,omitempty"`
+	CURRENCYNAME                                     *string                                                          `json:"CURRENCY_NAME,omitempty"`
+	DEACTIVATEUSERIFNOROLES                          *bool                                                            `json:"DEACTIVATE_USER_IF_NO_ROLES,omitempty"`
+	DEFAULTIDP                                       *ConstanceSettings_DEFAULTIDP                                    `json:"DEFAULT_IDP,omitempty"`
+	DEFAULTOFFERINGUSERATTRIBUTES                    *[]ConstanceSettings_DEFAULTOFFERINGUSERATTRIBUTES_Item          `json:"DEFAULT_OFFERING_USER_ATTRIBUTES,omitempty"`
+	DISABLEDOFFERINGTYPES                            *[]ConstanceSettings_DISABLEDOFFERINGTYPES_Item                  `json:"DISABLED_OFFERING_TYPES,omitempty"`
+	DISABLEDARKTHEME                                 *bool                                                            `json:"DISABLE_DARK_THEME,omitempty"`
+	DISABLESENDINGNOTIFICATIONSABOUTRESOURCEUPDATE   *bool                                                            `json:"DISABLE_SENDING_NOTIFICATIONS_ABOUT_RESOURCE_UPDATE,omitempty"`
+	DISCLAIMERAREALOGO                               *string                                                          `json:"DISCLAIMER_AREA_LOGO,omitempty"`
+	DISCLAIMERAREATEXT                               *string                                                          `json:"DISCLAIMER_AREA_TEXT,omitempty"`
+	DOCKERCLIENT                                     *string                                                          `json:"DOCKER_CLIENT,omitempty"`
+	DOCKERIMAGES                                     *string                                                          `json:"DOCKER_IMAGES,omitempty"`
+	DOCKERREMOVECONTAINER                            *bool                                                            `json:"DOCKER_REMOVE_CONTAINER,omitempty"`
+	DOCKERRUNOPTIONS                                 *string                                                          `json:"DOCKER_RUN_OPTIONS,omitempty"`
+	DOCKERSCRIPTDIR                                  *string                                                          `json:"DOCKER_SCRIPT_DIR,omitempty"`
+	DOCKERVOLUMENAME                                 *string                                                          `json:"DOCKER_VOLUME_NAME,omitempty"`
+	DOCSURL                                          *string                                                          `json:"DOCS_URL,omitempty"`
+	ENABLEDREPORTINGSCREENS                          *[]ConstanceSettings_ENABLEDREPORTINGSCREENS_Item                `json:"ENABLED_REPORTING_SCREENS,omitempty"`
+	ENABLEDUSERPROFILEATTRIBUTES                     *[]ConstanceSettings_ENABLEDUSERPROFILEATTRIBUTES_Item           `json:"ENABLED_USER_PROFILE_ATTRIBUTES,omitempty"`
+	ENABLEISSUESFORUSERSSHKEYCHANGES                 *bool                                                            `json:"ENABLE_ISSUES_FOR_USER_SSH_KEY_CHANGES,omitempty"`
+	ENABLEMOCKCOURSEACCOUNTBACKEND                   *bool                                                            `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
+	ENABLEMOCKSERVICEACCOUNTBACKEND                  *bool                                                            `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
+	ENABLEORDERSTARTDATE                             *bool                                                            `json:"ENABLE_ORDER_START_DATE,omitempty"`
+	ENABLEPROJECTDIGEST                              *bool                                                            `json:"ENABLE_PROJECT_DIGEST,omitempty"`
+	ENABLESTALERESOURCENOTIFICATIONS                 *bool                                                            `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
+	ENABLESTRICTCHECKACCEPTINGINVITATION             *bool                                                            `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
+	ENFORCEMANDATORYUSERATTRIBUTES                   *bool                                                            `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
+	ENFORCEOFFERINGUSERPROFILECOMPLETENESS           *bool                                                            `json:"ENFORCE_OFFERING_USER_PROFILE_COMPLETENESS,omitempty"`
+	ENFORCEUSERCONSENTFOROFFERINGS                   *bool                                                            `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
+	FAVICON                                          *string                                                          `json:"FAVICON,omitempty"`
+	FEDERATEDIDENTITYDEACTIVATIONPOLICY              *FEDERATEDIDENTITYDEACTIVATIONPOLICYEnum                         `json:"FEDERATED_IDENTITY_DEACTIVATION_POLICY,omitempty"`
+	FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES           *[]ConstanceSettings_FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES_Item `json:"FEDERATED_IDENTITY_SYNC_ALLOWED_ATTRIBUTES,omitempty"`
+	FEDERATEDIDENTITYSYNCENABLED                     *bool                                                            `json:"FEDERATED_IDENTITY_SYNC_ENABLED,omitempty"`
+	FONTFAMILY                                       *FONTFAMILYEnum                                                  `json:"FONT_FAMILY,omitempty"`
+	FREEIPABLACKLISTEDUSERNAMES                      *[]string                                                        `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
+	FREEIPAENABLED                                   *bool                                                            `json:"FREEIPA_ENABLED,omitempty"`
+	FREEIPAGROUPNAMEPREFIX                           *string                                                          `json:"FREEIPA_GROUPNAME_PREFIX,omitempty"`
+	FREEIPAGROUPSYNCHRONIZATIONENABLED               *bool                                                            `json:"FREEIPA_GROUP_SYNCHRONIZATION_ENABLED,omitempty"`
+	FREEIPAHOSTNAME                                  *string                                                          `json:"FREEIPA_HOSTNAME,omitempty"`
+	FREEIPAPASSWORD                                  *string                                                          `json:"FREEIPA_PASSWORD,omitempty"`
+	FREEIPAUSERNAME                                  *string                                                          `json:"FREEIPA_USERNAME,omitempty"`
+	FREEIPAUSERNAMEPREFIX                            *string                                                          `json:"FREEIPA_USERNAME_PREFIX,omitempty"`
+	FREEIPAVERIFYSSL                                 *bool                                                            `json:"FREEIPA_VERIFY_SSL,omitempty"`
+	FULLPAGETITLE                                    *string                                                          `json:"FULL_PAGE_TITLE,omitempty"`
+	HEROIMAGE                                        *string                                                          `json:"HERO_IMAGE,omitempty"`
+	HEROLINKLABEL                                    *string                                                          `json:"HERO_LINK_LABEL,omitempty"`
+	HEROLINKURL                                      *string                                                          `json:"HERO_LINK_URL,omitempty"`
+	HOMEPORTURL                                      *string                                                          `json:"HOMEPORT_URL,omitempty"`
+	INVITATIONALLOWEDFIELDS                          *[]ConstanceSettings_INVITATIONALLOWEDFIELDS_Item                `json:"INVITATION_ALLOWED_FIELDS,omitempty"`
+	INVITATIONDISABLEMULTIPLEROLES                   *bool                                                            `json:"INVITATION_DISABLE_MULTIPLE_ROLES,omitempty"`
+	K8SCONFIGPATH                                    *string                                                          `json:"K8S_CONFIG_PATH,omitempty"`
+	K8SJOBTIMEOUT                                    *int                                                             `json:"K8S_JOB_TIMEOUT,omitempty"`
+	K8SNAMESPACE                                     *string                                                          `json:"K8S_NAMESPACE,omitempty"`
+	KEYCLOAKICON                                     *string                                                          `json:"KEYCLOAK_ICON,omitempty"`
+	LANGUAGECHOICES                                  *string                                                          `json:"LANGUAGE_CHOICES,omitempty"`
+	LOGINLOGO                                        *string                                                          `json:"LOGIN_LOGO,omitempty"`
+	LOGINLOGOMULTILINGUAL                            *map[string]*string                                              `json:"LOGIN_LOGO_MULTILINGUAL,omitempty"`
+	LOGINPAGECAROUSELSLIDES                          *[]interface{}                                                   `json:"LOGIN_PAGE_CAROUSEL_SLIDES,omitempty"`
+	LOGINPAGELAYOUT                                  *LOGINPAGELAYOUTEnum                                             `json:"LOGIN_PAGE_LAYOUT,omitempty"`
+	LOGINPAGENEWS                                    *[]interface{}                                                   `json:"LOGIN_PAGE_NEWS,omitempty"`
+	LOGINPAGESTATS                                   *[]interface{}                                                   `json:"LOGIN_PAGE_STATS,omitempty"`
+	LOGINPAGEVIDEOURL                                *string                                                          `json:"LOGIN_PAGE_VIDEO_URL,omitempty"`
+	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES       *int                                                             `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
+	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM              *[]ConstanceSettings_MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM_Item    `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
+	MANDATORYUSERATTRIBUTES                          *[]ConstanceSettings_MANDATORYUSERATTRIBUTES_Item                `json:"MANDATORY_USER_ATTRIBUTES,omitempty"`
+	MARKETPLACECARDSTYLE                             *MARKETPLACECARDSTYLEEnum                                        `json:"MARKETPLACE_CARD_STYLE,omitempty"`
+	MARKETPLACEHEROIMAGE                             *string                                                          `json:"MARKETPLACE_HERO_IMAGE,omitempty"`
+	MARKETPLACELANDINGPAGE                           *string                                                          `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
+	MARKETPLACELAYOUTMODE                            *MARKETPLACELAYOUTMODEEnum                                       `json:"MARKETPLACE_LAYOUT_MODE,omitempty"`
+	NOTIFYABOUTRESOURCECHANGE                        *bool                                                            `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
+	NOTIFYSTAFFABOUTAPPROVALS                        *bool                                                            `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
+	OFFERINGLOGOPLACEHOLDER                          *string                                                          `json:"OFFERING_LOGO_PLACEHOLDER,omitempty"`
+	OIDCACCESSTOKENENABLED                           *bool                                                            `json:"OIDC_ACCESS_TOKEN_ENABLED,omitempty"`
+	OIDCAUTHURL                                      *string                                                          `json:"OIDC_AUTH_URL,omitempty"`
+	OIDCBLOCKCREATIONOFUNINVITEDUSERS                *bool                                                            `json:"OIDC_BLOCK_CREATION_OF_UNINVITED_USERS,omitempty"`
+	OIDCBLOCKCREATIONOFUNINVITEDUSERSRESPONSEMESSAGE *string                                                          `json:"OIDC_BLOCK_CREATION_OF_UNINVITED_USERS_RESPONSE_MESSAGE,omitempty"`
+	OIDCCACHETIMEOUT                                 *int                                                             `json:"OIDC_CACHE_TIMEOUT,omitempty"`
+	OIDCCLIENTID                                     *string                                                          `json:"OIDC_CLIENT_ID,omitempty"`
+	OIDCCLIENTSECRET                                 *string                                                          `json:"OIDC_CLIENT_SECRET,omitempty"`
+	OIDCDEFAULTLOGOUTURL                             *string                                                          `json:"OIDC_DEFAULT_LOGOUT_URL,omitempty"`
+	OIDCINTROSPECTIONURL                             *string                                                          `json:"OIDC_INTROSPECTION_URL,omitempty"`
+	OIDCMATCHMAKINGBYEMAIL                           *bool                                                            `json:"OIDC_MATCHMAKING_BY_EMAIL,omitempty"`
+	OIDCUSERFIELD                                    *string                                                          `json:"OIDC_USER_FIELD,omitempty"`
+	ONBOARDINGARIREGISTERBASEURL                     *string                                                          `json:"ONBOARDING_ARIREGISTER_BASE_URL,omitempty"`
+	ONBOARDINGARIREGISTERPASSWORD                    *string                                                          `json:"ONBOARDING_ARIREGISTER_PASSWORD,omitempty"`
+	ONBOARDINGARIREGISTERTIMEOUT                     *int                                                             `json:"ONBOARDING_ARIREGISTER_TIMEOUT,omitempty"`
+	ONBOARDINGARIREGISTERUSERNAME                    *string                                                          `json:"ONBOARDING_ARIREGISTER_USERNAME,omitempty"`
+	ONBOARDINGBOLAGSVERKETAPIURL                     *string                                                          `json:"ONBOARDING_BOLAGSVERKET_API_URL,omitempty"`
+	ONBOARDINGBOLAGSVERKETCLIENTID                   *string                                                          `json:"ONBOARDING_BOLAGSVERKET_CLIENT_ID,omitempty"`
+	ONBOARDINGBOLAGSVERKETCLIENTSECRET               *string                                                          `json:"ONBOARDING_BOLAGSVERKET_CLIENT_SECRET,omitempty"`
+	ONBOARDINGBOLAGSVERKETTOKENAPIURL                *string                                                          `json:"ONBOARDING_BOLAGSVERKET_TOKEN_API_URL,omitempty"`
+	ONBOARDINGBREGAPIURL                             *string                                                          `json:"ONBOARDING_BREG_API_URL,omitempty"`
+	ONBOARDINGVALIDATIONMETHODS                      *[]ConstanceSettings_ONBOARDINGVALIDATIONMETHODS_Item            `json:"ONBOARDING_VALIDATION_METHODS,omitempty"`
+	ONBOARDINGVERIFICATIONEXPIRYHOURS                *int                                                             `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
+	ONBOARDINGWICOAPIURL                             *string                                                          `json:"ONBOARDING_WICO_API_URL,omitempty"`
+	ONBOARDINGWICOTOKEN                              *string                                                          `json:"ONBOARDING_WICO_TOKEN,omitempty"`
+	ORCIDAPIURL                                      *string                                                          `json:"ORCID_API_URL,omitempty"`
+	ORCIDAUTHURL                                     *string                                                          `json:"ORCID_AUTH_URL,omitempty"`
+	ORCIDCLIENTID                                    *string                                                          `json:"ORCID_CLIENT_ID,omitempty"`
+	ORCIDCLIENTSECRET                                *string                                                          `json:"ORCID_CLIENT_SECRET,omitempty"`
+	ORCIDREDIRECTURI                                 *string                                                          `json:"ORCID_REDIRECT_URI,omitempty"`
+	ORCIDSANDBOXMODE                                 *bool                                                            `json:"ORCID_SANDBOX_MODE,omitempty"`
+	POWEREDBYLOGO                                    *string                                                          `json:"POWERED_BY_LOGO,omitempty"`
+	PROJECTENDDATEMANDATORY                          *bool                                                            `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
+	PROPOSALREVIEWDURATION                           *int                                                             `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
+	RANCHERUSERNAMEINPUTLABEL                        *string                                                          `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
+	REMOTEEDUTEAMSREFRESHTOKEN                       *string                                                          `json:"REMOTE_EDUTEAMS_REFRESH_TOKEN,omitempty"`
+	RESTRICTEDOFFERINGVISIBILITYMODE                 *RESTRICTEDOFFERINGVISIBILITYMODEEnum                            `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
+	REVIEWERPROFILESENABLED                          *bool                                                            `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
+	SCIMAPIKEY                                       *string                                                          `json:"SCIM_API_KEY,omitempty"`
+	SCIMAPIURL                                       *string                                                          `json:"SCIM_API_URL,omitempty"`
+	SCIMMEMBERSHIPSYNCENABLED                        *bool                                                            `json:"SCIM_MEMBERSHIP_SYNC_ENABLED,omitempty"`
+	SCIMURNNAMESPACE                                 *string                                                          `json:"SCIM_URN_NAMESPACE,omitempty"`
+	SCRIPTRUNMODE                                    *SCRIPTRUNMODEEnum                                               `json:"SCRIPT_RUN_MODE,omitempty"`
+	SEMANTICSCHOLARAPIKEY                            *string                                                          `json:"SEMANTIC_SCHOLAR_API_KEY,omitempty"`
+	SHORTPAGETITLE                                   *string                                                          `json:"SHORT_PAGE_TITLE,omitempty"`
+	SIDEBARLOGO                                      *string                                                          `json:"SIDEBAR_LOGO,omitempty"`
+	SIDEBARLOGODARK                                  *string                                                          `json:"SIDEBAR_LOGO_DARK,omitempty"`
+	SIDEBARLOGOMOBILE                                *string                                                          `json:"SIDEBAR_LOGO_MOBILE,omitempty"`
+	SIDEBARSTYLE                                     *SIDEBARSTYLEEnum                                                `json:"SIDEBAR_STYLE,omitempty"`
+	SITEADDRESS                                      *string                                                          `json:"SITE_ADDRESS,omitempty"`
+	SITEDESCRIPTION                                  *string                                                          `json:"SITE_DESCRIPTION,omitempty"`
+	SITEEMAIL                                        *string                                                          `json:"SITE_EMAIL,omitempty"`
+	SITENAME                                         *string                                                          `json:"SITE_NAME,omitempty"`
+	SITEPHONE                                        *string                                                          `json:"SITE_PHONE,omitempty"`
+	SLURMPOLICYEVALUATIONLOGRETENTIONDAYS            *int                                                             `json:"SLURM_POLICY_EVALUATION_LOG_RETENTION_DAYS,omitempty"`
+	SMAXAFFECTEDRESOURCEFIELD                        *string                                                          `json:"SMAX_AFFECTED_RESOURCE_FIELD,omitempty"`
+	SMAXAPIURL                                       *string                                                          `json:"SMAX_API_URL,omitempty"`
+	SMAXCREATIONSOURCENAME                           *string                                                          `json:"SMAX_CREATION_SOURCE_NAME,omitempty"`
+	SMAXLOGIN                                        *string                                                          `json:"SMAX_LOGIN,omitempty"`
+	SMAXORGANISATIONFIELD                            *string                                                          `json:"SMAX_ORGANISATION_FIELD,omitempty"`
+	SMAXPASSWORD                                     *string                                                          `json:"SMAX_PASSWORD,omitempty"`
+	SMAXPROJECTFIELD                                 *string                                                          `json:"SMAX_PROJECT_FIELD,omitempty"`
+	SMAXREQUESTSOFFERING                             *string                                                          `json:"SMAX_REQUESTS_OFFERING,omitempty"`
+	SMAXSECONDSTOWAIT                                *int                                                             `json:"SMAX_SECONDS_TO_WAIT,omitempty"`
+	SMAXTENANTID                                     *string                                                          `json:"SMAX_TENANT_ID,omitempty"`
+	SMAXTIMESTOPULL                                  *int                                                             `json:"SMAX_TIMES_TO_PULL,omitempty"`
+	SMAXVERIFYSSL                                    *bool                                                            `json:"SMAX_VERIFY_SSL,omitempty"`
+	SOFTWARECATALOGCLEANUPENABLED                    *bool                                                            `json:"SOFTWARE_CATALOG_CLEANUP_ENABLED,omitempty"`
+	SOFTWARECATALOGEESSIAPIURL                       *string                                                          `json:"SOFTWARE_CATALOG_EESSI_API_URL,omitempty"`
+	SOFTWARECATALOGEESSIINCLUDEEXTENSIONS            *bool                                                            `json:"SOFTWARE_CATALOG_EESSI_INCLUDE_EXTENSIONS,omitempty"`
+	SOFTWARECATALOGEESSIUPDATEENABLED                *bool                                                            `json:"SOFTWARE_CATALOG_EESSI_UPDATE_ENABLED,omitempty"`
+	SOFTWARECATALOGEESSIVERSION                      *string                                                          `json:"SOFTWARE_CATALOG_EESSI_VERSION,omitempty"`
+	SOFTWARECATALOGRETENTIONDAYS                     *int                                                             `json:"SOFTWARE_CATALOG_RETENTION_DAYS,omitempty"`
+	SOFTWARECATALOGSPACKDATAURL                      *string                                                          `json:"SOFTWARE_CATALOG_SPACK_DATA_URL,omitempty"`
+	SOFTWARECATALOGSPACKUPDATEENABLED                *bool                                                            `json:"SOFTWARE_CATALOG_SPACK_UPDATE_ENABLED,omitempty"`
+	SOFTWARECATALOGSPACKVERSION                      *string                                                          `json:"SOFTWARE_CATALOG_SPACK_VERSION,omitempty"`
+	SOFTWARECATALOGUPDATEEXISTINGPACKAGES            *bool                                                            `json:"SOFTWARE_CATALOG_UPDATE_EXISTING_PACKAGES,omitempty"`
+	SSHKEYALLOWEDTYPES                               *[]ConstanceSettings_SSHKEYALLOWEDTYPES_Item                     `json:"SSH_KEY_ALLOWED_TYPES,omitempty"`
+	SSHKEYMINRSAKEYSIZE                              *int                                                             `json:"SSH_KEY_MIN_RSA_KEY_SIZE,omitempty"`
+	SUPPORTPORTALURL                                 *string                                                          `json:"SUPPORT_PORTAL_URL,omitempty"`
+	SYSTEMLOGENABLED                                 *bool                                                            `json:"SYSTEM_LOG_ENABLED,omitempty"`
+	SYSTEMLOGMAXROWSPERSOURCE                        *int                                                             `json:"SYSTEM_LOG_MAX_ROWS_PER_SOURCE,omitempty"`
+	TABLEGROWTHMINSIZEBYTES                          *int                                                             `json:"TABLE_GROWTH_MIN_SIZE_BYTES,omitempty"`
+	TABLEGROWTHMONITORINGENABLED                     *bool                                                            `json:"TABLE_GROWTH_MONITORING_ENABLED,omitempty"`
+	TABLEGROWTHMONTHLYTHRESHOLDPERCENT               *int                                                             `json:"TABLE_GROWTH_MONTHLY_THRESHOLD_PERCENT,omitempty"`
+	TABLEGROWTHRETENTIONDAYS                         *int                                                             `json:"TABLE_GROWTH_RETENTION_DAYS,omitempty"`
+	TABLEGROWTHWEEKLYTHRESHOLDPERCENT                *int                                                             `json:"TABLE_GROWTH_WEEKLY_THRESHOLD_PERCENT,omitempty"`
+	TELEMETRYURL                                     *string                                                          `json:"TELEMETRY_URL,omitempty"`
+	TELEMETRYVERSION                                 *int                                                             `json:"TELEMETRY_VERSION,omitempty"`
+	THUMBNAILSIZE                                    *string                                                          `json:"THUMBNAIL_SIZE,omitempty"`
+	USERACTIONSDEFAULTEXPIRATIONREMINDERS            *[]string                                                        `json:"USER_ACTIONS_DEFAULT_EXPIRATION_REMINDERS,omitempty"`
+	USERACTIONSENABLED                               *bool                                                            `json:"USER_ACTIONS_ENABLED,omitempty"`
+	USERACTIONSEXECUTIONRETENTIONDAYS                *int                                                             `json:"USER_ACTIONS_EXECUTION_RETENTION_DAYS,omitempty"`
+	USERACTIONSHIGHURGENCYNOTIFICATION               *bool                                                            `json:"USER_ACTIONS_HIGH_URGENCY_NOTIFICATION,omitempty"`
+	USERACTIONSNOTIFICATIONTHRESHOLD                 *int                                                             `json:"USER_ACTIONS_NOTIFICATION_THRESHOLD,omitempty"`
+	USERACTIONSPENDINGORDERHOURS                     *int                                                             `json:"USER_ACTIONS_PENDING_ORDER_HOURS,omitempty"`
+	USERDATAACCESSLOGGINGENABLED                     *bool                                                            `json:"USER_DATA_ACCESS_LOGGING_ENABLED,omitempty"`
+	USERDATAACCESSLOGRETENTIONDAYS                   *int                                                             `json:"USER_DATA_ACCESS_LOG_RETENTION_DAYS,omitempty"`
+	USERDATAACCESSLOGSELFACCESS                      *bool                                                            `json:"USER_DATA_ACCESS_LOG_SELF_ACCESS,omitempty"`
+	USERTABLECOLUMNS                                 *string                                                          `json:"USER_TABLE_COLUMNS,omitempty"`
+	WALDURAUTHSOCIALROLECLAIM                        *string                                                          `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
+	WALDURSUPPORTACTIVEBACKENDTYPE                   *WALDURSUPPORTACTIVEBACKENDTYPEEnum                              `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
+	WALDURSUPPORTDISPLAYREQUESTTYPE                  *bool                                                            `json:"WALDUR_SUPPORT_DISPLAY_REQUEST_TYPE,omitempty"`
+	WALDURSUPPORTENABLED                             *bool                                                            `json:"WALDUR_SUPPORT_ENABLED,omitempty"`
+	ZAMMADAPIURL                                     *string                                                          `json:"ZAMMAD_API_URL,omitempty"`
+	ZAMMADARTICLETYPE                                *ZAMMADARTICLETYPEEnum                                           `json:"ZAMMAD_ARTICLE_TYPE,omitempty"`
+	ZAMMADCOMMENTCOOLDOWNDURATION                    *int                                                             `json:"ZAMMAD_COMMENT_COOLDOWN_DURATION,omitempty"`
+	ZAMMADCOMMENTMARKER                              *string                                                          `json:"ZAMMAD_COMMENT_MARKER,omitempty"`
+	ZAMMADCOMMENTPREFIX                              *string                                                          `json:"ZAMMAD_COMMENT_PREFIX,omitempty"`
+	ZAMMADGROUP                                      *string                                                          `json:"ZAMMAD_GROUP,omitempty"`
+	ZAMMADTOKEN                                      *string                                                          `json:"ZAMMAD_TOKEN,omitempty"`
 }
 
 // ConstanceSettings_DEFAULTIDP defines model for ConstanceSettings.DEFAULTIDP.
@@ -25026,253 +25027,254 @@ type ConstanceSettings_SSHKEYALLOWEDTYPES_Item struct {
 
 // ConstanceSettingsRequest defines model for ConstanceSettingsRequest.
 type ConstanceSettingsRequest struct {
-	AIASSISTANTAPITOKEN                            *string                                                                 `json:"AI_ASSISTANT_API_TOKEN,omitempty"`
-	AIASSISTANTAPIURL                              *string                                                                 `json:"AI_ASSISTANT_API_URL,omitempty"`
-	AIASSISTANTBACKENDTYPE                         *string                                                                 `json:"AI_ASSISTANT_BACKEND_TYPE,omitempty"`
-	AIASSISTANTCOMPLETIONKWARGS                    *string                                                                 `json:"AI_ASSISTANT_COMPLETION_KWARGS,omitempty"`
-	AIASSISTANTENABLED                             *bool                                                                   `json:"AI_ASSISTANT_ENABLED,omitempty"`
-	AIASSISTANTENABLEDROLES                        *AIASSISTANTENABLEDROLESEnum                                            `json:"AI_ASSISTANT_ENABLED_ROLES,omitempty"`
-	AIASSISTANTHISTORYLIMIT                        *int                                                                    `json:"AI_ASSISTANT_HISTORY_LIMIT,omitempty"`
-	AIASSISTANTINJECTIONALLOWLIST                  *string                                                                 `json:"AI_ASSISTANT_INJECTION_ALLOWLIST,omitempty"`
-	AIASSISTANTMODEL                               *string                                                                 `json:"AI_ASSISTANT_MODEL,omitempty"`
-	AIASSISTANTNAME                                *string                                                                 `json:"AI_ASSISTANT_NAME,omitempty"`
-	AIASSISTANTSESSIONRETENTIONDAYS                *int                                                                    `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
-	AIASSISTANTTOKENLIMITDAILY                     *int                                                                    `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
-	AIASSISTANTTOKENLIMITMONTHLY                   *int                                                                    `json:"AI_ASSISTANT_TOKEN_LIMIT_MONTHLY,omitempty"`
-	AIASSISTANTTOKENLIMITWEEKLY                    *int                                                                    `json:"AI_ASSISTANT_TOKEN_LIMIT_WEEKLY,omitempty"`
-	ALLOWSERVICEPROVIDEROFFERINGMANAGEMENT         *bool                                                                   `json:"ALLOW_SERVICE_PROVIDER_OFFERING_MANAGEMENT,omitempty"`
-	ANONYMOUSUSERCANVIEWOFFERINGS                  *bool                                                                   `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
-	ANONYMOUSUSERCANVIEWPLANS                      *bool                                                                   `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
-	ARROWAUTORECONCILIATION                        *bool                                                                   `json:"ARROW_AUTO_RECONCILIATION,omitempty"`
-	ARROWBILLINGCHECKINTERVALHOURS                 *int                                                                    `json:"ARROW_BILLING_CHECK_INTERVAL_HOURS,omitempty"`
-	ARROWCONSUMPTIONSYNCENABLED                    *bool                                                                   `json:"ARROW_CONSUMPTION_SYNC_ENABLED,omitempty"`
-	ARROWCONSUMPTIONSYNCINTERVALHOURS              *int                                                                    `json:"ARROW_CONSUMPTION_SYNC_INTERVAL_HOURS,omitempty"`
-	ARROWSYNCINTERVALHOURS                         *int                                                                    `json:"ARROW_SYNC_INTERVAL_HOURS,omitempty"`
-	ATLASSIANAFFECTEDRESOURCEFIELD                 *string                                                                 `json:"ATLASSIAN_AFFECTED_RESOURCE_FIELD,omitempty"`
-	ATLASSIANAPIURL                                *string                                                                 `json:"ATLASSIAN_API_URL,omitempty"`
-	ATLASSIANCALLERFIELD                           *string                                                                 `json:"ATLASSIAN_CALLER_FIELD,omitempty"`
-	ATLASSIANCUSTOMISSUEFIELDMAPPINGENABLED        *bool                                                                   `json:"ATLASSIAN_CUSTOM_ISSUE_FIELD_MAPPING_ENABLED,omitempty"`
-	ATLASSIANDEFAULTOFFERINGISSUETYPE              *string                                                                 `json:"ATLASSIAN_DEFAULT_OFFERING_ISSUE_TYPE,omitempty"`
-	ATLASSIANDESCRIPTIONTEMPLATE                   *string                                                                 `json:"ATLASSIAN_DESCRIPTION_TEMPLATE,omitempty"`
-	ATLASSIANEMAIL                                 *openapi_types.Email                                                    `json:"ATLASSIAN_EMAIL,omitempty"`
-	ATLASSIANEXCLUDEDATTACHMENTTYPES               *string                                                                 `json:"ATLASSIAN_EXCLUDED_ATTACHMENT_TYPES,omitempty"`
-	ATLASSIANIMPACTFIELD                           *string                                                                 `json:"ATLASSIAN_IMPACT_FIELD,omitempty"`
-	ATLASSIANLINKEDISSUETYPE                       *string                                                                 `json:"ATLASSIAN_LINKED_ISSUE_TYPE,omitempty"`
-	ATLASSIANMAPWALDURUSERSTOSERVICEDESKAGENTS     *bool                                                                   `json:"ATLASSIAN_MAP_WALDUR_USERS_TO_SERVICEDESK_AGENTS,omitempty"`
-	ATLASSIANOAUTH2ACCESSTOKEN                     *string                                                                 `json:"ATLASSIAN_OAUTH2_ACCESS_TOKEN,omitempty"`
-	ATLASSIANOAUTH2CLIENTID                        *string                                                                 `json:"ATLASSIAN_OAUTH2_CLIENT_ID,omitempty"`
-	ATLASSIANOAUTH2TOKENTYPE                       *string                                                                 `json:"ATLASSIAN_OAUTH2_TOKEN_TYPE,omitempty"`
-	ATLASSIANORGANISATIONFIELD                     *string                                                                 `json:"ATLASSIAN_ORGANISATION_FIELD,omitempty"`
-	ATLASSIANPASSWORD                              *string                                                                 `json:"ATLASSIAN_PASSWORD,omitempty"`
-	ATLASSIANPERSONALACCESSTOKEN                   *string                                                                 `json:"ATLASSIAN_PERSONAL_ACCESS_TOKEN,omitempty"`
-	ATLASSIANPROJECTFIELD                          *string                                                                 `json:"ATLASSIAN_PROJECT_FIELD,omitempty"`
-	ATLASSIANPROJECTID                             *string                                                                 `json:"ATLASSIAN_PROJECT_ID,omitempty"`
-	ATLASSIANREPORTERFIELD                         *string                                                                 `json:"ATLASSIAN_REPORTER_FIELD,omitempty"`
-	ATLASSIANREQUESTFEEDBACKFIELD                  *string                                                                 `json:"ATLASSIAN_REQUEST_FEEDBACK_FIELD,omitempty"`
-	ATLASSIANRESOLUTIONSLAFIELD                    *string                                                                 `json:"ATLASSIAN_RESOLUTION_SLA_FIELD,omitempty"`
-	ATLASSIANSATISFACTIONFIELD                     *string                                                                 `json:"ATLASSIAN_SATISFACTION_FIELD,omitempty"`
-	ATLASSIANSHAREDUSERNAME                        *bool                                                                   `json:"ATLASSIAN_SHARED_USERNAME,omitempty"`
-	ATLASSIANSLAFIELD                              *string                                                                 `json:"ATLASSIAN_SLA_FIELD,omitempty"`
-	ATLASSIANSUMMARYTEMPLATE                       *string                                                                 `json:"ATLASSIAN_SUMMARY_TEMPLATE,omitempty"`
-	ATLASSIANTEMPLATEFIELD                         *string                                                                 `json:"ATLASSIAN_TEMPLATE_FIELD,omitempty"`
-	ATLASSIANTOKEN                                 *string                                                                 `json:"ATLASSIAN_TOKEN,omitempty"`
-	ATLASSIANUSERNAME                              *string                                                                 `json:"ATLASSIAN_USERNAME,omitempty"`
-	ATLASSIANUSEOLDAPI                             *bool                                                                   `json:"ATLASSIAN_USE_OLD_API,omitempty"`
-	ATLASSIANVERIFYSSL                             *bool                                                                   `json:"ATLASSIAN_VERIFY_SSL,omitempty"`
-	ATLASSIANWALDURBACKENDIDFIELD                  *string                                                                 `json:"ATLASSIAN_WALDUR_BACKEND_ID_FIELD,omitempty"`
-	AUTOMATEDMATCHINGENABLED                       *bool                                                                   `json:"AUTOMATED_MATCHING_ENABLED,omitempty"`
-	AUTOAPPROVEUSERTOS                             *bool                                                                   `json:"AUTO_APPROVE_USER_TOS,omitempty"`
-	BRANDCOLOR                                     *string                                                                 `json:"BRAND_COLOR,omitempty"`
-	CALLMANAGEMENTHEROIMAGE                        *openapi_types.File                                                     `json:"CALL_MANAGEMENT_HERO_IMAGE,omitempty"`
-	COICOAUTHORSHIPLOOKBACKYEARS                   *int                                                                    `json:"COI_COAUTHORSHIP_LOOKBACK_YEARS,omitempty"`
-	COICOAUTHORSHIPTHRESHOLDPAPERS                 *int                                                                    `json:"COI_COAUTHORSHIP_THRESHOLD_PAPERS,omitempty"`
-	COIDETECTIONENABLED                            *bool                                                                   `json:"COI_DETECTION_ENABLED,omitempty"`
-	COIDISCLOSUREREQUIRED                          *bool                                                                   `json:"COI_DISCLOSURE_REQUIRED,omitempty"`
-	COIINSTITUTIONALLOOKBACKYEARS                  *int                                                                    `json:"COI_INSTITUTIONAL_LOOKBACK_YEARS,omitempty"`
-	COMMONFOOTERHTML                               *string                                                                 `json:"COMMON_FOOTER_HTML,omitempty"`
-	COMMONFOOTERTEXT                               *string                                                                 `json:"COMMON_FOOTER_TEXT,omitempty"`
-	COUNTRIES                                      *[]string                                                               `json:"COUNTRIES,omitempty"`
-	CROSSREFMAILTO                                 *openapi_types.Email                                                    `json:"CROSSREF_MAILTO,omitempty"`
-	CURRENCYNAME                                   *string                                                                 `json:"CURRENCY_NAME,omitempty"`
-	DEACTIVATEUSERIFNOROLES                        *bool                                                                   `json:"DEACTIVATE_USER_IF_NO_ROLES,omitempty"`
-	DEFAULTIDP                                     *ConstanceSettingsRequest_DEFAULTIDP                                    `json:"DEFAULT_IDP,omitempty"`
-	DEFAULTOFFERINGUSERATTRIBUTES                  *[]ConstanceSettingsRequest_DEFAULTOFFERINGUSERATTRIBUTES_Item          `json:"DEFAULT_OFFERING_USER_ATTRIBUTES,omitempty"`
-	DISABLEDOFFERINGTYPES                          *[]ConstanceSettingsRequest_DISABLEDOFFERINGTYPES_Item                  `json:"DISABLED_OFFERING_TYPES,omitempty"`
-	DISABLEDARKTHEME                               *bool                                                                   `json:"DISABLE_DARK_THEME,omitempty"`
-	DISABLESENDINGNOTIFICATIONSABOUTRESOURCEUPDATE *bool                                                                   `json:"DISABLE_SENDING_NOTIFICATIONS_ABOUT_RESOURCE_UPDATE,omitempty"`
-	DISCLAIMERAREALOGO                             *openapi_types.File                                                     `json:"DISCLAIMER_AREA_LOGO,omitempty"`
-	DISCLAIMERAREATEXT                             *string                                                                 `json:"DISCLAIMER_AREA_TEXT,omitempty"`
-	DOCKERCLIENT                                   *string                                                                 `json:"DOCKER_CLIENT,omitempty"`
-	DOCKERIMAGES                                   *string                                                                 `json:"DOCKER_IMAGES,omitempty"`
-	DOCKERREMOVECONTAINER                          *bool                                                                   `json:"DOCKER_REMOVE_CONTAINER,omitempty"`
-	DOCKERRUNOPTIONS                               *string                                                                 `json:"DOCKER_RUN_OPTIONS,omitempty"`
-	DOCKERSCRIPTDIR                                *string                                                                 `json:"DOCKER_SCRIPT_DIR,omitempty"`
-	DOCKERVOLUMENAME                               *string                                                                 `json:"DOCKER_VOLUME_NAME,omitempty"`
-	DOCSURL                                        *string                                                                 `json:"DOCS_URL,omitempty"`
-	ENABLEDREPORTINGSCREENS                        *[]ConstanceSettingsRequest_ENABLEDREPORTINGSCREENS_Item                `json:"ENABLED_REPORTING_SCREENS,omitempty"`
-	ENABLEDUSERPROFILEATTRIBUTES                   *[]ConstanceSettingsRequest_ENABLEDUSERPROFILEATTRIBUTES_Item           `json:"ENABLED_USER_PROFILE_ATTRIBUTES,omitempty"`
-	ENABLEISSUESFORUSERSSHKEYCHANGES               *bool                                                                   `json:"ENABLE_ISSUES_FOR_USER_SSH_KEY_CHANGES,omitempty"`
-	ENABLEMOCKCOURSEACCOUNTBACKEND                 *bool                                                                   `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
-	ENABLEMOCKSERVICEACCOUNTBACKEND                *bool                                                                   `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
-	ENABLEORDERSTARTDATE                           *bool                                                                   `json:"ENABLE_ORDER_START_DATE,omitempty"`
-	ENABLEPROJECTDIGEST                            *bool                                                                   `json:"ENABLE_PROJECT_DIGEST,omitempty"`
-	ENABLESTALERESOURCENOTIFICATIONS               *bool                                                                   `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
-	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                                                                   `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
-	ENFORCEMANDATORYUSERATTRIBUTES                 *bool                                                                   `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
-	ENFORCEOFFERINGUSERPROFILECOMPLETENESS         *bool                                                                   `json:"ENFORCE_OFFERING_USER_PROFILE_COMPLETENESS,omitempty"`
-	ENFORCEUSERCONSENTFOROFFERINGS                 *bool                                                                   `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
-	FAVICON                                        *openapi_types.File                                                     `json:"FAVICON,omitempty"`
-	FEDERATEDIDENTITYDEACTIVATIONPOLICY            *FEDERATEDIDENTITYDEACTIVATIONPOLICYEnum                                `json:"FEDERATED_IDENTITY_DEACTIVATION_POLICY,omitempty"`
-	FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES         *[]ConstanceSettingsRequest_FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES_Item `json:"FEDERATED_IDENTITY_SYNC_ALLOWED_ATTRIBUTES,omitempty"`
-	FEDERATEDIDENTITYSYNCENABLED                   *bool                                                                   `json:"FEDERATED_IDENTITY_SYNC_ENABLED,omitempty"`
-	FONTFAMILY                                     *FONTFAMILYEnum                                                         `json:"FONT_FAMILY,omitempty"`
-	FREEIPABLACKLISTEDUSERNAMES                    *[]string                                                               `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
-	FREEIPAENABLED                                 *bool                                                                   `json:"FREEIPA_ENABLED,omitempty"`
-	FREEIPAGROUPNAMEPREFIX                         *string                                                                 `json:"FREEIPA_GROUPNAME_PREFIX,omitempty"`
-	FREEIPAGROUPSYNCHRONIZATIONENABLED             *bool                                                                   `json:"FREEIPA_GROUP_SYNCHRONIZATION_ENABLED,omitempty"`
-	FREEIPAHOSTNAME                                *string                                                                 `json:"FREEIPA_HOSTNAME,omitempty"`
-	FREEIPAPASSWORD                                *string                                                                 `json:"FREEIPA_PASSWORD,omitempty"`
-	FREEIPAUSERNAME                                *string                                                                 `json:"FREEIPA_USERNAME,omitempty"`
-	FREEIPAUSERNAMEPREFIX                          *string                                                                 `json:"FREEIPA_USERNAME_PREFIX,omitempty"`
-	FREEIPAVERIFYSSL                               *bool                                                                   `json:"FREEIPA_VERIFY_SSL,omitempty"`
-	FULLPAGETITLE                                  *string                                                                 `json:"FULL_PAGE_TITLE,omitempty"`
-	HEROIMAGE                                      *openapi_types.File                                                     `json:"HERO_IMAGE,omitempty"`
-	HEROLINKLABEL                                  *string                                                                 `json:"HERO_LINK_LABEL,omitempty"`
-	HEROLINKURL                                    *string                                                                 `json:"HERO_LINK_URL,omitempty"`
-	HOMEPORTURL                                    *string                                                                 `json:"HOMEPORT_URL,omitempty"`
-	INVITATIONALLOWEDFIELDS                        *[]ConstanceSettingsRequest_INVITATIONALLOWEDFIELDS_Item                `json:"INVITATION_ALLOWED_FIELDS,omitempty"`
-	INVITATIONDISABLEMULTIPLEROLES                 *bool                                                                   `json:"INVITATION_DISABLE_MULTIPLE_ROLES,omitempty"`
-	K8SCONFIGPATH                                  *string                                                                 `json:"K8S_CONFIG_PATH,omitempty"`
-	K8SJOBTIMEOUT                                  *int                                                                    `json:"K8S_JOB_TIMEOUT,omitempty"`
-	K8SNAMESPACE                                   *string                                                                 `json:"K8S_NAMESPACE,omitempty"`
-	KEYCLOAKICON                                   *openapi_types.File                                                     `json:"KEYCLOAK_ICON,omitempty"`
-	LANGUAGECHOICES                                *string                                                                 `json:"LANGUAGE_CHOICES,omitempty"`
-	LOGINLOGO                                      *openapi_types.File                                                     `json:"LOGIN_LOGO,omitempty"`
-	LOGINLOGOMULTILINGUAL                          *map[string]*openapi_types.File                                         `json:"LOGIN_LOGO_MULTILINGUAL,omitempty"`
-	LOGINPAGECAROUSELSLIDES                        *[]interface{}                                                          `json:"LOGIN_PAGE_CAROUSEL_SLIDES,omitempty"`
-	LOGINPAGELAYOUT                                *LOGINPAGELAYOUTEnum                                                    `json:"LOGIN_PAGE_LAYOUT,omitempty"`
-	LOGINPAGENEWS                                  *[]interface{}                                                          `json:"LOGIN_PAGE_NEWS,omitempty"`
-	LOGINPAGESTATS                                 *[]interface{}                                                          `json:"LOGIN_PAGE_STATS,omitempty"`
-	LOGINPAGEVIDEOURL                              *string                                                                 `json:"LOGIN_PAGE_VIDEO_URL,omitempty"`
-	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES     *int                                                                    `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
-	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM            *[]ConstanceSettingsRequest_MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM_Item    `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
-	MANDATORYUSERATTRIBUTES                        *[]ConstanceSettingsRequest_MANDATORYUSERATTRIBUTES_Item                `json:"MANDATORY_USER_ATTRIBUTES,omitempty"`
-	MARKETPLACECARDSTYLE                           *MARKETPLACECARDSTYLEEnum                                               `json:"MARKETPLACE_CARD_STYLE,omitempty"`
-	MARKETPLACEHEROIMAGE                           *openapi_types.File                                                     `json:"MARKETPLACE_HERO_IMAGE,omitempty"`
-	MARKETPLACELANDINGPAGE                         *string                                                                 `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
-	MARKETPLACELAYOUTMODE                          *MARKETPLACELAYOUTMODEEnum                                              `json:"MARKETPLACE_LAYOUT_MODE,omitempty"`
-	NOTIFYABOUTRESOURCECHANGE                      *bool                                                                   `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
-	NOTIFYSTAFFABOUTAPPROVALS                      *bool                                                                   `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
-	OFFERINGLOGOPLACEHOLDER                        *openapi_types.File                                                     `json:"OFFERING_LOGO_PLACEHOLDER,omitempty"`
-	OIDCACCESSTOKENENABLED                         *bool                                                                   `json:"OIDC_ACCESS_TOKEN_ENABLED,omitempty"`
-	OIDCAUTHURL                                    *string                                                                 `json:"OIDC_AUTH_URL,omitempty"`
-	OIDCBLOCKCREATIONOFUNINVITEDUSERS              *bool                                                                   `json:"OIDC_BLOCK_CREATION_OF_UNINVITED_USERS,omitempty"`
-	OIDCCACHETIMEOUT                               *int                                                                    `json:"OIDC_CACHE_TIMEOUT,omitempty"`
-	OIDCCLIENTID                                   *string                                                                 `json:"OIDC_CLIENT_ID,omitempty"`
-	OIDCCLIENTSECRET                               *string                                                                 `json:"OIDC_CLIENT_SECRET,omitempty"`
-	OIDCDEFAULTLOGOUTURL                           *string                                                                 `json:"OIDC_DEFAULT_LOGOUT_URL,omitempty"`
-	OIDCINTROSPECTIONURL                           *string                                                                 `json:"OIDC_INTROSPECTION_URL,omitempty"`
-	OIDCMATCHMAKINGBYEMAIL                         *bool                                                                   `json:"OIDC_MATCHMAKING_BY_EMAIL,omitempty"`
-	OIDCUSERFIELD                                  *string                                                                 `json:"OIDC_USER_FIELD,omitempty"`
-	ONBOARDINGARIREGISTERBASEURL                   *string                                                                 `json:"ONBOARDING_ARIREGISTER_BASE_URL,omitempty"`
-	ONBOARDINGARIREGISTERPASSWORD                  *string                                                                 `json:"ONBOARDING_ARIREGISTER_PASSWORD,omitempty"`
-	ONBOARDINGARIREGISTERTIMEOUT                   *int                                                                    `json:"ONBOARDING_ARIREGISTER_TIMEOUT,omitempty"`
-	ONBOARDINGARIREGISTERUSERNAME                  *string                                                                 `json:"ONBOARDING_ARIREGISTER_USERNAME,omitempty"`
-	ONBOARDINGBOLAGSVERKETAPIURL                   *string                                                                 `json:"ONBOARDING_BOLAGSVERKET_API_URL,omitempty"`
-	ONBOARDINGBOLAGSVERKETCLIENTID                 *string                                                                 `json:"ONBOARDING_BOLAGSVERKET_CLIENT_ID,omitempty"`
-	ONBOARDINGBOLAGSVERKETCLIENTSECRET             *string                                                                 `json:"ONBOARDING_BOLAGSVERKET_CLIENT_SECRET,omitempty"`
-	ONBOARDINGBOLAGSVERKETTOKENAPIURL              *string                                                                 `json:"ONBOARDING_BOLAGSVERKET_TOKEN_API_URL,omitempty"`
-	ONBOARDINGBREGAPIURL                           *string                                                                 `json:"ONBOARDING_BREG_API_URL,omitempty"`
-	ONBOARDINGVALIDATIONMETHODS                    *[]ConstanceSettingsRequest_ONBOARDINGVALIDATIONMETHODS_Item            `json:"ONBOARDING_VALIDATION_METHODS,omitempty"`
-	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                                                                    `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
-	ONBOARDINGWICOAPIURL                           *string                                                                 `json:"ONBOARDING_WICO_API_URL,omitempty"`
-	ONBOARDINGWICOTOKEN                            *string                                                                 `json:"ONBOARDING_WICO_TOKEN,omitempty"`
-	ORCIDAPIURL                                    *string                                                                 `json:"ORCID_API_URL,omitempty"`
-	ORCIDAUTHURL                                   *string                                                                 `json:"ORCID_AUTH_URL,omitempty"`
-	ORCIDCLIENTID                                  *string                                                                 `json:"ORCID_CLIENT_ID,omitempty"`
-	ORCIDCLIENTSECRET                              *string                                                                 `json:"ORCID_CLIENT_SECRET,omitempty"`
-	ORCIDREDIRECTURI                               *string                                                                 `json:"ORCID_REDIRECT_URI,omitempty"`
-	ORCIDSANDBOXMODE                               *bool                                                                   `json:"ORCID_SANDBOX_MODE,omitempty"`
-	POWEREDBYLOGO                                  *openapi_types.File                                                     `json:"POWERED_BY_LOGO,omitempty"`
-	PROJECTENDDATEMANDATORY                        *bool                                                                   `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
-	PROPOSALREVIEWDURATION                         *int                                                                    `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
-	RANCHERUSERNAMEINPUTLABEL                      *string                                                                 `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
-	REMOTEEDUTEAMSREFRESHTOKEN                     *string                                                                 `json:"REMOTE_EDUTEAMS_REFRESH_TOKEN,omitempty"`
-	RESTRICTEDOFFERINGVISIBILITYMODE               *RESTRICTEDOFFERINGVISIBILITYMODEEnum                                   `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
-	REVIEWERPROFILESENABLED                        *bool                                                                   `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
-	SCIMAPIKEY                                     *string                                                                 `json:"SCIM_API_KEY,omitempty"`
-	SCIMAPIURL                                     *string                                                                 `json:"SCIM_API_URL,omitempty"`
-	SCIMMEMBERSHIPSYNCENABLED                      *bool                                                                   `json:"SCIM_MEMBERSHIP_SYNC_ENABLED,omitempty"`
-	SCIMURNNAMESPACE                               *string                                                                 `json:"SCIM_URN_NAMESPACE,omitempty"`
-	SCRIPTRUNMODE                                  *SCRIPTRUNMODEEnum                                                      `json:"SCRIPT_RUN_MODE,omitempty"`
-	SEMANTICSCHOLARAPIKEY                          *string                                                                 `json:"SEMANTIC_SCHOLAR_API_KEY,omitempty"`
-	SHORTPAGETITLE                                 *string                                                                 `json:"SHORT_PAGE_TITLE,omitempty"`
-	SIDEBARLOGO                                    *openapi_types.File                                                     `json:"SIDEBAR_LOGO,omitempty"`
-	SIDEBARLOGODARK                                *openapi_types.File                                                     `json:"SIDEBAR_LOGO_DARK,omitempty"`
-	SIDEBARLOGOMOBILE                              *openapi_types.File                                                     `json:"SIDEBAR_LOGO_MOBILE,omitempty"`
-	SIDEBARSTYLE                                   *SIDEBARSTYLEEnum                                                       `json:"SIDEBAR_STYLE,omitempty"`
-	SITEADDRESS                                    *string                                                                 `json:"SITE_ADDRESS,omitempty"`
-	SITEDESCRIPTION                                *string                                                                 `json:"SITE_DESCRIPTION,omitempty"`
-	SITEEMAIL                                      *string                                                                 `json:"SITE_EMAIL,omitempty"`
-	SITENAME                                       *string                                                                 `json:"SITE_NAME,omitempty"`
-	SITEPHONE                                      *string                                                                 `json:"SITE_PHONE,omitempty"`
-	SLURMPOLICYEVALUATIONLOGRETENTIONDAYS          *int                                                                    `json:"SLURM_POLICY_EVALUATION_LOG_RETENTION_DAYS,omitempty"`
-	SMAXAFFECTEDRESOURCEFIELD                      *string                                                                 `json:"SMAX_AFFECTED_RESOURCE_FIELD,omitempty"`
-	SMAXAPIURL                                     *string                                                                 `json:"SMAX_API_URL,omitempty"`
-	SMAXCREATIONSOURCENAME                         *string                                                                 `json:"SMAX_CREATION_SOURCE_NAME,omitempty"`
-	SMAXLOGIN                                      *string                                                                 `json:"SMAX_LOGIN,omitempty"`
-	SMAXORGANISATIONFIELD                          *string                                                                 `json:"SMAX_ORGANISATION_FIELD,omitempty"`
-	SMAXPASSWORD                                   *string                                                                 `json:"SMAX_PASSWORD,omitempty"`
-	SMAXPROJECTFIELD                               *string                                                                 `json:"SMAX_PROJECT_FIELD,omitempty"`
-	SMAXREQUESTSOFFERING                           *string                                                                 `json:"SMAX_REQUESTS_OFFERING,omitempty"`
-	SMAXSECONDSTOWAIT                              *int                                                                    `json:"SMAX_SECONDS_TO_WAIT,omitempty"`
-	SMAXTENANTID                                   *string                                                                 `json:"SMAX_TENANT_ID,omitempty"`
-	SMAXTIMESTOPULL                                *int                                                                    `json:"SMAX_TIMES_TO_PULL,omitempty"`
-	SMAXVERIFYSSL                                  *bool                                                                   `json:"SMAX_VERIFY_SSL,omitempty"`
-	SOFTWARECATALOGCLEANUPENABLED                  *bool                                                                   `json:"SOFTWARE_CATALOG_CLEANUP_ENABLED,omitempty"`
-	SOFTWARECATALOGEESSIAPIURL                     *string                                                                 `json:"SOFTWARE_CATALOG_EESSI_API_URL,omitempty"`
-	SOFTWARECATALOGEESSIINCLUDEEXTENSIONS          *bool                                                                   `json:"SOFTWARE_CATALOG_EESSI_INCLUDE_EXTENSIONS,omitempty"`
-	SOFTWARECATALOGEESSIUPDATEENABLED              *bool                                                                   `json:"SOFTWARE_CATALOG_EESSI_UPDATE_ENABLED,omitempty"`
-	SOFTWARECATALOGEESSIVERSION                    *string                                                                 `json:"SOFTWARE_CATALOG_EESSI_VERSION,omitempty"`
-	SOFTWARECATALOGRETENTIONDAYS                   *int                                                                    `json:"SOFTWARE_CATALOG_RETENTION_DAYS,omitempty"`
-	SOFTWARECATALOGSPACKDATAURL                    *string                                                                 `json:"SOFTWARE_CATALOG_SPACK_DATA_URL,omitempty"`
-	SOFTWARECATALOGSPACKUPDATEENABLED              *bool                                                                   `json:"SOFTWARE_CATALOG_SPACK_UPDATE_ENABLED,omitempty"`
-	SOFTWARECATALOGSPACKVERSION                    *string                                                                 `json:"SOFTWARE_CATALOG_SPACK_VERSION,omitempty"`
-	SOFTWARECATALOGUPDATEEXISTINGPACKAGES          *bool                                                                   `json:"SOFTWARE_CATALOG_UPDATE_EXISTING_PACKAGES,omitempty"`
-	SSHKEYALLOWEDTYPES                             *[]ConstanceSettingsRequest_SSHKEYALLOWEDTYPES_Item                     `json:"SSH_KEY_ALLOWED_TYPES,omitempty"`
-	SSHKEYMINRSAKEYSIZE                            *int                                                                    `json:"SSH_KEY_MIN_RSA_KEY_SIZE,omitempty"`
-	SUPPORTPORTALURL                               *string                                                                 `json:"SUPPORT_PORTAL_URL,omitempty"`
-	SYSTEMLOGENABLED                               *bool                                                                   `json:"SYSTEM_LOG_ENABLED,omitempty"`
-	SYSTEMLOGMAXROWSPERSOURCE                      *int                                                                    `json:"SYSTEM_LOG_MAX_ROWS_PER_SOURCE,omitempty"`
-	TABLEGROWTHMINSIZEBYTES                        *int                                                                    `json:"TABLE_GROWTH_MIN_SIZE_BYTES,omitempty"`
-	TABLEGROWTHMONITORINGENABLED                   *bool                                                                   `json:"TABLE_GROWTH_MONITORING_ENABLED,omitempty"`
-	TABLEGROWTHMONTHLYTHRESHOLDPERCENT             *int                                                                    `json:"TABLE_GROWTH_MONTHLY_THRESHOLD_PERCENT,omitempty"`
-	TABLEGROWTHRETENTIONDAYS                       *int                                                                    `json:"TABLE_GROWTH_RETENTION_DAYS,omitempty"`
-	TABLEGROWTHWEEKLYTHRESHOLDPERCENT              *int                                                                    `json:"TABLE_GROWTH_WEEKLY_THRESHOLD_PERCENT,omitempty"`
-	TELEMETRYURL                                   *string                                                                 `json:"TELEMETRY_URL,omitempty"`
-	TELEMETRYVERSION                               *int                                                                    `json:"TELEMETRY_VERSION,omitempty"`
-	THUMBNAILSIZE                                  *string                                                                 `json:"THUMBNAIL_SIZE,omitempty"`
-	USERACTIONSDEFAULTEXPIRATIONREMINDERS          *[]string                                                               `json:"USER_ACTIONS_DEFAULT_EXPIRATION_REMINDERS,omitempty"`
-	USERACTIONSENABLED                             *bool                                                                   `json:"USER_ACTIONS_ENABLED,omitempty"`
-	USERACTIONSEXECUTIONRETENTIONDAYS              *int                                                                    `json:"USER_ACTIONS_EXECUTION_RETENTION_DAYS,omitempty"`
-	USERACTIONSHIGHURGENCYNOTIFICATION             *bool                                                                   `json:"USER_ACTIONS_HIGH_URGENCY_NOTIFICATION,omitempty"`
-	USERACTIONSNOTIFICATIONTHRESHOLD               *int                                                                    `json:"USER_ACTIONS_NOTIFICATION_THRESHOLD,omitempty"`
-	USERACTIONSPENDINGORDERHOURS                   *int                                                                    `json:"USER_ACTIONS_PENDING_ORDER_HOURS,omitempty"`
-	USERDATAACCESSLOGGINGENABLED                   *bool                                                                   `json:"USER_DATA_ACCESS_LOGGING_ENABLED,omitempty"`
-	USERDATAACCESSLOGRETENTIONDAYS                 *int                                                                    `json:"USER_DATA_ACCESS_LOG_RETENTION_DAYS,omitempty"`
-	USERDATAACCESSLOGSELFACCESS                    *bool                                                                   `json:"USER_DATA_ACCESS_LOG_SELF_ACCESS,omitempty"`
-	USERTABLECOLUMNS                               *string                                                                 `json:"USER_TABLE_COLUMNS,omitempty"`
-	WALDURAUTHSOCIALROLECLAIM                      *string                                                                 `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
-	WALDURSUPPORTACTIVEBACKENDTYPE                 *WALDURSUPPORTACTIVEBACKENDTYPEEnum                                     `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
-	WALDURSUPPORTDISPLAYREQUESTTYPE                *bool                                                                   `json:"WALDUR_SUPPORT_DISPLAY_REQUEST_TYPE,omitempty"`
-	WALDURSUPPORTENABLED                           *bool                                                                   `json:"WALDUR_SUPPORT_ENABLED,omitempty"`
-	ZAMMADAPIURL                                   *string                                                                 `json:"ZAMMAD_API_URL,omitempty"`
-	ZAMMADARTICLETYPE                              *ZAMMADARTICLETYPEEnum                                                  `json:"ZAMMAD_ARTICLE_TYPE,omitempty"`
-	ZAMMADCOMMENTCOOLDOWNDURATION                  *int                                                                    `json:"ZAMMAD_COMMENT_COOLDOWN_DURATION,omitempty"`
-	ZAMMADCOMMENTMARKER                            *string                                                                 `json:"ZAMMAD_COMMENT_MARKER,omitempty"`
-	ZAMMADCOMMENTPREFIX                            *string                                                                 `json:"ZAMMAD_COMMENT_PREFIX,omitempty"`
-	ZAMMADGROUP                                    *string                                                                 `json:"ZAMMAD_GROUP,omitempty"`
-	ZAMMADTOKEN                                    *string                                                                 `json:"ZAMMAD_TOKEN,omitempty"`
+	AIASSISTANTAPITOKEN                              *string                                                                 `json:"AI_ASSISTANT_API_TOKEN,omitempty"`
+	AIASSISTANTAPIURL                                *string                                                                 `json:"AI_ASSISTANT_API_URL,omitempty"`
+	AIASSISTANTBACKENDTYPE                           *string                                                                 `json:"AI_ASSISTANT_BACKEND_TYPE,omitempty"`
+	AIASSISTANTCOMPLETIONKWARGS                      *string                                                                 `json:"AI_ASSISTANT_COMPLETION_KWARGS,omitempty"`
+	AIASSISTANTENABLED                               *bool                                                                   `json:"AI_ASSISTANT_ENABLED,omitempty"`
+	AIASSISTANTENABLEDROLES                          *AIASSISTANTENABLEDROLESEnum                                            `json:"AI_ASSISTANT_ENABLED_ROLES,omitempty"`
+	AIASSISTANTHISTORYLIMIT                          *int                                                                    `json:"AI_ASSISTANT_HISTORY_LIMIT,omitempty"`
+	AIASSISTANTINJECTIONALLOWLIST                    *string                                                                 `json:"AI_ASSISTANT_INJECTION_ALLOWLIST,omitempty"`
+	AIASSISTANTMODEL                                 *string                                                                 `json:"AI_ASSISTANT_MODEL,omitempty"`
+	AIASSISTANTNAME                                  *string                                                                 `json:"AI_ASSISTANT_NAME,omitempty"`
+	AIASSISTANTSESSIONRETENTIONDAYS                  *int                                                                    `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
+	AIASSISTANTTOKENLIMITDAILY                       *int                                                                    `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
+	AIASSISTANTTOKENLIMITMONTHLY                     *int                                                                    `json:"AI_ASSISTANT_TOKEN_LIMIT_MONTHLY,omitempty"`
+	AIASSISTANTTOKENLIMITWEEKLY                      *int                                                                    `json:"AI_ASSISTANT_TOKEN_LIMIT_WEEKLY,omitempty"`
+	ALLOWSERVICEPROVIDEROFFERINGMANAGEMENT           *bool                                                                   `json:"ALLOW_SERVICE_PROVIDER_OFFERING_MANAGEMENT,omitempty"`
+	ANONYMOUSUSERCANVIEWOFFERINGS                    *bool                                                                   `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
+	ANONYMOUSUSERCANVIEWPLANS                        *bool                                                                   `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
+	ARROWAUTORECONCILIATION                          *bool                                                                   `json:"ARROW_AUTO_RECONCILIATION,omitempty"`
+	ARROWBILLINGCHECKINTERVALHOURS                   *int                                                                    `json:"ARROW_BILLING_CHECK_INTERVAL_HOURS,omitempty"`
+	ARROWCONSUMPTIONSYNCENABLED                      *bool                                                                   `json:"ARROW_CONSUMPTION_SYNC_ENABLED,omitempty"`
+	ARROWCONSUMPTIONSYNCINTERVALHOURS                *int                                                                    `json:"ARROW_CONSUMPTION_SYNC_INTERVAL_HOURS,omitempty"`
+	ARROWSYNCINTERVALHOURS                           *int                                                                    `json:"ARROW_SYNC_INTERVAL_HOURS,omitempty"`
+	ATLASSIANAFFECTEDRESOURCEFIELD                   *string                                                                 `json:"ATLASSIAN_AFFECTED_RESOURCE_FIELD,omitempty"`
+	ATLASSIANAPIURL                                  *string                                                                 `json:"ATLASSIAN_API_URL,omitempty"`
+	ATLASSIANCALLERFIELD                             *string                                                                 `json:"ATLASSIAN_CALLER_FIELD,omitempty"`
+	ATLASSIANCUSTOMISSUEFIELDMAPPINGENABLED          *bool                                                                   `json:"ATLASSIAN_CUSTOM_ISSUE_FIELD_MAPPING_ENABLED,omitempty"`
+	ATLASSIANDEFAULTOFFERINGISSUETYPE                *string                                                                 `json:"ATLASSIAN_DEFAULT_OFFERING_ISSUE_TYPE,omitempty"`
+	ATLASSIANDESCRIPTIONTEMPLATE                     *string                                                                 `json:"ATLASSIAN_DESCRIPTION_TEMPLATE,omitempty"`
+	ATLASSIANEMAIL                                   *openapi_types.Email                                                    `json:"ATLASSIAN_EMAIL,omitempty"`
+	ATLASSIANEXCLUDEDATTACHMENTTYPES                 *string                                                                 `json:"ATLASSIAN_EXCLUDED_ATTACHMENT_TYPES,omitempty"`
+	ATLASSIANIMPACTFIELD                             *string                                                                 `json:"ATLASSIAN_IMPACT_FIELD,omitempty"`
+	ATLASSIANLINKEDISSUETYPE                         *string                                                                 `json:"ATLASSIAN_LINKED_ISSUE_TYPE,omitempty"`
+	ATLASSIANMAPWALDURUSERSTOSERVICEDESKAGENTS       *bool                                                                   `json:"ATLASSIAN_MAP_WALDUR_USERS_TO_SERVICEDESK_AGENTS,omitempty"`
+	ATLASSIANOAUTH2ACCESSTOKEN                       *string                                                                 `json:"ATLASSIAN_OAUTH2_ACCESS_TOKEN,omitempty"`
+	ATLASSIANOAUTH2CLIENTID                          *string                                                                 `json:"ATLASSIAN_OAUTH2_CLIENT_ID,omitempty"`
+	ATLASSIANOAUTH2TOKENTYPE                         *string                                                                 `json:"ATLASSIAN_OAUTH2_TOKEN_TYPE,omitempty"`
+	ATLASSIANORGANISATIONFIELD                       *string                                                                 `json:"ATLASSIAN_ORGANISATION_FIELD,omitempty"`
+	ATLASSIANPASSWORD                                *string                                                                 `json:"ATLASSIAN_PASSWORD,omitempty"`
+	ATLASSIANPERSONALACCESSTOKEN                     *string                                                                 `json:"ATLASSIAN_PERSONAL_ACCESS_TOKEN,omitempty"`
+	ATLASSIANPROJECTFIELD                            *string                                                                 `json:"ATLASSIAN_PROJECT_FIELD,omitempty"`
+	ATLASSIANPROJECTID                               *string                                                                 `json:"ATLASSIAN_PROJECT_ID,omitempty"`
+	ATLASSIANREPORTERFIELD                           *string                                                                 `json:"ATLASSIAN_REPORTER_FIELD,omitempty"`
+	ATLASSIANREQUESTFEEDBACKFIELD                    *string                                                                 `json:"ATLASSIAN_REQUEST_FEEDBACK_FIELD,omitempty"`
+	ATLASSIANRESOLUTIONSLAFIELD                      *string                                                                 `json:"ATLASSIAN_RESOLUTION_SLA_FIELD,omitempty"`
+	ATLASSIANSATISFACTIONFIELD                       *string                                                                 `json:"ATLASSIAN_SATISFACTION_FIELD,omitempty"`
+	ATLASSIANSHAREDUSERNAME                          *bool                                                                   `json:"ATLASSIAN_SHARED_USERNAME,omitempty"`
+	ATLASSIANSLAFIELD                                *string                                                                 `json:"ATLASSIAN_SLA_FIELD,omitempty"`
+	ATLASSIANSUMMARYTEMPLATE                         *string                                                                 `json:"ATLASSIAN_SUMMARY_TEMPLATE,omitempty"`
+	ATLASSIANTEMPLATEFIELD                           *string                                                                 `json:"ATLASSIAN_TEMPLATE_FIELD,omitempty"`
+	ATLASSIANTOKEN                                   *string                                                                 `json:"ATLASSIAN_TOKEN,omitempty"`
+	ATLASSIANUSERNAME                                *string                                                                 `json:"ATLASSIAN_USERNAME,omitempty"`
+	ATLASSIANUSEOLDAPI                               *bool                                                                   `json:"ATLASSIAN_USE_OLD_API,omitempty"`
+	ATLASSIANVERIFYSSL                               *bool                                                                   `json:"ATLASSIAN_VERIFY_SSL,omitempty"`
+	ATLASSIANWALDURBACKENDIDFIELD                    *string                                                                 `json:"ATLASSIAN_WALDUR_BACKEND_ID_FIELD,omitempty"`
+	AUTOMATEDMATCHINGENABLED                         *bool                                                                   `json:"AUTOMATED_MATCHING_ENABLED,omitempty"`
+	AUTOAPPROVEUSERTOS                               *bool                                                                   `json:"AUTO_APPROVE_USER_TOS,omitempty"`
+	BRANDCOLOR                                       *string                                                                 `json:"BRAND_COLOR,omitempty"`
+	CALLMANAGEMENTHEROIMAGE                          *openapi_types.File                                                     `json:"CALL_MANAGEMENT_HERO_IMAGE,omitempty"`
+	COICOAUTHORSHIPLOOKBACKYEARS                     *int                                                                    `json:"COI_COAUTHORSHIP_LOOKBACK_YEARS,omitempty"`
+	COICOAUTHORSHIPTHRESHOLDPAPERS                   *int                                                                    `json:"COI_COAUTHORSHIP_THRESHOLD_PAPERS,omitempty"`
+	COIDETECTIONENABLED                              *bool                                                                   `json:"COI_DETECTION_ENABLED,omitempty"`
+	COIDISCLOSUREREQUIRED                            *bool                                                                   `json:"COI_DISCLOSURE_REQUIRED,omitempty"`
+	COIINSTITUTIONALLOOKBACKYEARS                    *int                                                                    `json:"COI_INSTITUTIONAL_LOOKBACK_YEARS,omitempty"`
+	COMMONFOOTERHTML                                 *string                                                                 `json:"COMMON_FOOTER_HTML,omitempty"`
+	COMMONFOOTERTEXT                                 *string                                                                 `json:"COMMON_FOOTER_TEXT,omitempty"`
+	COUNTRIES                                        *[]string                                                               `json:"COUNTRIES,omitempty"`
+	CROSSREFMAILTO                                   *openapi_types.Email                                                    `json:"CROSSREF_MAILTO,omitempty"`
+	CURRENCYNAME                                     *string                                                                 `json:"CURRENCY_NAME,omitempty"`
+	DEACTIVATEUSERIFNOROLES                          *bool                                                                   `json:"DEACTIVATE_USER_IF_NO_ROLES,omitempty"`
+	DEFAULTIDP                                       *ConstanceSettingsRequest_DEFAULTIDP                                    `json:"DEFAULT_IDP,omitempty"`
+	DEFAULTOFFERINGUSERATTRIBUTES                    *[]ConstanceSettingsRequest_DEFAULTOFFERINGUSERATTRIBUTES_Item          `json:"DEFAULT_OFFERING_USER_ATTRIBUTES,omitempty"`
+	DISABLEDOFFERINGTYPES                            *[]ConstanceSettingsRequest_DISABLEDOFFERINGTYPES_Item                  `json:"DISABLED_OFFERING_TYPES,omitempty"`
+	DISABLEDARKTHEME                                 *bool                                                                   `json:"DISABLE_DARK_THEME,omitempty"`
+	DISABLESENDINGNOTIFICATIONSABOUTRESOURCEUPDATE   *bool                                                                   `json:"DISABLE_SENDING_NOTIFICATIONS_ABOUT_RESOURCE_UPDATE,omitempty"`
+	DISCLAIMERAREALOGO                               *openapi_types.File                                                     `json:"DISCLAIMER_AREA_LOGO,omitempty"`
+	DISCLAIMERAREATEXT                               *string                                                                 `json:"DISCLAIMER_AREA_TEXT,omitempty"`
+	DOCKERCLIENT                                     *string                                                                 `json:"DOCKER_CLIENT,omitempty"`
+	DOCKERIMAGES                                     *string                                                                 `json:"DOCKER_IMAGES,omitempty"`
+	DOCKERREMOVECONTAINER                            *bool                                                                   `json:"DOCKER_REMOVE_CONTAINER,omitempty"`
+	DOCKERRUNOPTIONS                                 *string                                                                 `json:"DOCKER_RUN_OPTIONS,omitempty"`
+	DOCKERSCRIPTDIR                                  *string                                                                 `json:"DOCKER_SCRIPT_DIR,omitempty"`
+	DOCKERVOLUMENAME                                 *string                                                                 `json:"DOCKER_VOLUME_NAME,omitempty"`
+	DOCSURL                                          *string                                                                 `json:"DOCS_URL,omitempty"`
+	ENABLEDREPORTINGSCREENS                          *[]ConstanceSettingsRequest_ENABLEDREPORTINGSCREENS_Item                `json:"ENABLED_REPORTING_SCREENS,omitempty"`
+	ENABLEDUSERPROFILEATTRIBUTES                     *[]ConstanceSettingsRequest_ENABLEDUSERPROFILEATTRIBUTES_Item           `json:"ENABLED_USER_PROFILE_ATTRIBUTES,omitempty"`
+	ENABLEISSUESFORUSERSSHKEYCHANGES                 *bool                                                                   `json:"ENABLE_ISSUES_FOR_USER_SSH_KEY_CHANGES,omitempty"`
+	ENABLEMOCKCOURSEACCOUNTBACKEND                   *bool                                                                   `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
+	ENABLEMOCKSERVICEACCOUNTBACKEND                  *bool                                                                   `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
+	ENABLEORDERSTARTDATE                             *bool                                                                   `json:"ENABLE_ORDER_START_DATE,omitempty"`
+	ENABLEPROJECTDIGEST                              *bool                                                                   `json:"ENABLE_PROJECT_DIGEST,omitempty"`
+	ENABLESTALERESOURCENOTIFICATIONS                 *bool                                                                   `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
+	ENABLESTRICTCHECKACCEPTINGINVITATION             *bool                                                                   `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
+	ENFORCEMANDATORYUSERATTRIBUTES                   *bool                                                                   `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
+	ENFORCEOFFERINGUSERPROFILECOMPLETENESS           *bool                                                                   `json:"ENFORCE_OFFERING_USER_PROFILE_COMPLETENESS,omitempty"`
+	ENFORCEUSERCONSENTFOROFFERINGS                   *bool                                                                   `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
+	FAVICON                                          *openapi_types.File                                                     `json:"FAVICON,omitempty"`
+	FEDERATEDIDENTITYDEACTIVATIONPOLICY              *FEDERATEDIDENTITYDEACTIVATIONPOLICYEnum                                `json:"FEDERATED_IDENTITY_DEACTIVATION_POLICY,omitempty"`
+	FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES           *[]ConstanceSettingsRequest_FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES_Item `json:"FEDERATED_IDENTITY_SYNC_ALLOWED_ATTRIBUTES,omitempty"`
+	FEDERATEDIDENTITYSYNCENABLED                     *bool                                                                   `json:"FEDERATED_IDENTITY_SYNC_ENABLED,omitempty"`
+	FONTFAMILY                                       *FONTFAMILYEnum                                                         `json:"FONT_FAMILY,omitempty"`
+	FREEIPABLACKLISTEDUSERNAMES                      *[]string                                                               `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
+	FREEIPAENABLED                                   *bool                                                                   `json:"FREEIPA_ENABLED,omitempty"`
+	FREEIPAGROUPNAMEPREFIX                           *string                                                                 `json:"FREEIPA_GROUPNAME_PREFIX,omitempty"`
+	FREEIPAGROUPSYNCHRONIZATIONENABLED               *bool                                                                   `json:"FREEIPA_GROUP_SYNCHRONIZATION_ENABLED,omitempty"`
+	FREEIPAHOSTNAME                                  *string                                                                 `json:"FREEIPA_HOSTNAME,omitempty"`
+	FREEIPAPASSWORD                                  *string                                                                 `json:"FREEIPA_PASSWORD,omitempty"`
+	FREEIPAUSERNAME                                  *string                                                                 `json:"FREEIPA_USERNAME,omitempty"`
+	FREEIPAUSERNAMEPREFIX                            *string                                                                 `json:"FREEIPA_USERNAME_PREFIX,omitempty"`
+	FREEIPAVERIFYSSL                                 *bool                                                                   `json:"FREEIPA_VERIFY_SSL,omitempty"`
+	FULLPAGETITLE                                    *string                                                                 `json:"FULL_PAGE_TITLE,omitempty"`
+	HEROIMAGE                                        *openapi_types.File                                                     `json:"HERO_IMAGE,omitempty"`
+	HEROLINKLABEL                                    *string                                                                 `json:"HERO_LINK_LABEL,omitempty"`
+	HEROLINKURL                                      *string                                                                 `json:"HERO_LINK_URL,omitempty"`
+	HOMEPORTURL                                      *string                                                                 `json:"HOMEPORT_URL,omitempty"`
+	INVITATIONALLOWEDFIELDS                          *[]ConstanceSettingsRequest_INVITATIONALLOWEDFIELDS_Item                `json:"INVITATION_ALLOWED_FIELDS,omitempty"`
+	INVITATIONDISABLEMULTIPLEROLES                   *bool                                                                   `json:"INVITATION_DISABLE_MULTIPLE_ROLES,omitempty"`
+	K8SCONFIGPATH                                    *string                                                                 `json:"K8S_CONFIG_PATH,omitempty"`
+	K8SJOBTIMEOUT                                    *int                                                                    `json:"K8S_JOB_TIMEOUT,omitempty"`
+	K8SNAMESPACE                                     *string                                                                 `json:"K8S_NAMESPACE,omitempty"`
+	KEYCLOAKICON                                     *openapi_types.File                                                     `json:"KEYCLOAK_ICON,omitempty"`
+	LANGUAGECHOICES                                  *string                                                                 `json:"LANGUAGE_CHOICES,omitempty"`
+	LOGINLOGO                                        *openapi_types.File                                                     `json:"LOGIN_LOGO,omitempty"`
+	LOGINLOGOMULTILINGUAL                            *map[string]*openapi_types.File                                         `json:"LOGIN_LOGO_MULTILINGUAL,omitempty"`
+	LOGINPAGECAROUSELSLIDES                          *[]interface{}                                                          `json:"LOGIN_PAGE_CAROUSEL_SLIDES,omitempty"`
+	LOGINPAGELAYOUT                                  *LOGINPAGELAYOUTEnum                                                    `json:"LOGIN_PAGE_LAYOUT,omitempty"`
+	LOGINPAGENEWS                                    *[]interface{}                                                          `json:"LOGIN_PAGE_NEWS,omitempty"`
+	LOGINPAGESTATS                                   *[]interface{}                                                          `json:"LOGIN_PAGE_STATS,omitempty"`
+	LOGINPAGEVIDEOURL                                *string                                                                 `json:"LOGIN_PAGE_VIDEO_URL,omitempty"`
+	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES       *int                                                                    `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
+	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM              *[]ConstanceSettingsRequest_MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM_Item    `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
+	MANDATORYUSERATTRIBUTES                          *[]ConstanceSettingsRequest_MANDATORYUSERATTRIBUTES_Item                `json:"MANDATORY_USER_ATTRIBUTES,omitempty"`
+	MARKETPLACECARDSTYLE                             *MARKETPLACECARDSTYLEEnum                                               `json:"MARKETPLACE_CARD_STYLE,omitempty"`
+	MARKETPLACEHEROIMAGE                             *openapi_types.File                                                     `json:"MARKETPLACE_HERO_IMAGE,omitempty"`
+	MARKETPLACELANDINGPAGE                           *string                                                                 `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
+	MARKETPLACELAYOUTMODE                            *MARKETPLACELAYOUTMODEEnum                                              `json:"MARKETPLACE_LAYOUT_MODE,omitempty"`
+	NOTIFYABOUTRESOURCECHANGE                        *bool                                                                   `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
+	NOTIFYSTAFFABOUTAPPROVALS                        *bool                                                                   `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
+	OFFERINGLOGOPLACEHOLDER                          *openapi_types.File                                                     `json:"OFFERING_LOGO_PLACEHOLDER,omitempty"`
+	OIDCACCESSTOKENENABLED                           *bool                                                                   `json:"OIDC_ACCESS_TOKEN_ENABLED,omitempty"`
+	OIDCAUTHURL                                      *string                                                                 `json:"OIDC_AUTH_URL,omitempty"`
+	OIDCBLOCKCREATIONOFUNINVITEDUSERS                *bool                                                                   `json:"OIDC_BLOCK_CREATION_OF_UNINVITED_USERS,omitempty"`
+	OIDCBLOCKCREATIONOFUNINVITEDUSERSRESPONSEMESSAGE *string                                                                 `json:"OIDC_BLOCK_CREATION_OF_UNINVITED_USERS_RESPONSE_MESSAGE,omitempty"`
+	OIDCCACHETIMEOUT                                 *int                                                                    `json:"OIDC_CACHE_TIMEOUT,omitempty"`
+	OIDCCLIENTID                                     *string                                                                 `json:"OIDC_CLIENT_ID,omitempty"`
+	OIDCCLIENTSECRET                                 *string                                                                 `json:"OIDC_CLIENT_SECRET,omitempty"`
+	OIDCDEFAULTLOGOUTURL                             *string                                                                 `json:"OIDC_DEFAULT_LOGOUT_URL,omitempty"`
+	OIDCINTROSPECTIONURL                             *string                                                                 `json:"OIDC_INTROSPECTION_URL,omitempty"`
+	OIDCMATCHMAKINGBYEMAIL                           *bool                                                                   `json:"OIDC_MATCHMAKING_BY_EMAIL,omitempty"`
+	OIDCUSERFIELD                                    *string                                                                 `json:"OIDC_USER_FIELD,omitempty"`
+	ONBOARDINGARIREGISTERBASEURL                     *string                                                                 `json:"ONBOARDING_ARIREGISTER_BASE_URL,omitempty"`
+	ONBOARDINGARIREGISTERPASSWORD                    *string                                                                 `json:"ONBOARDING_ARIREGISTER_PASSWORD,omitempty"`
+	ONBOARDINGARIREGISTERTIMEOUT                     *int                                                                    `json:"ONBOARDING_ARIREGISTER_TIMEOUT,omitempty"`
+	ONBOARDINGARIREGISTERUSERNAME                    *string                                                                 `json:"ONBOARDING_ARIREGISTER_USERNAME,omitempty"`
+	ONBOARDINGBOLAGSVERKETAPIURL                     *string                                                                 `json:"ONBOARDING_BOLAGSVERKET_API_URL,omitempty"`
+	ONBOARDINGBOLAGSVERKETCLIENTID                   *string                                                                 `json:"ONBOARDING_BOLAGSVERKET_CLIENT_ID,omitempty"`
+	ONBOARDINGBOLAGSVERKETCLIENTSECRET               *string                                                                 `json:"ONBOARDING_BOLAGSVERKET_CLIENT_SECRET,omitempty"`
+	ONBOARDINGBOLAGSVERKETTOKENAPIURL                *string                                                                 `json:"ONBOARDING_BOLAGSVERKET_TOKEN_API_URL,omitempty"`
+	ONBOARDINGBREGAPIURL                             *string                                                                 `json:"ONBOARDING_BREG_API_URL,omitempty"`
+	ONBOARDINGVALIDATIONMETHODS                      *[]ConstanceSettingsRequest_ONBOARDINGVALIDATIONMETHODS_Item            `json:"ONBOARDING_VALIDATION_METHODS,omitempty"`
+	ONBOARDINGVERIFICATIONEXPIRYHOURS                *int                                                                    `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
+	ONBOARDINGWICOAPIURL                             *string                                                                 `json:"ONBOARDING_WICO_API_URL,omitempty"`
+	ONBOARDINGWICOTOKEN                              *string                                                                 `json:"ONBOARDING_WICO_TOKEN,omitempty"`
+	ORCIDAPIURL                                      *string                                                                 `json:"ORCID_API_URL,omitempty"`
+	ORCIDAUTHURL                                     *string                                                                 `json:"ORCID_AUTH_URL,omitempty"`
+	ORCIDCLIENTID                                    *string                                                                 `json:"ORCID_CLIENT_ID,omitempty"`
+	ORCIDCLIENTSECRET                                *string                                                                 `json:"ORCID_CLIENT_SECRET,omitempty"`
+	ORCIDREDIRECTURI                                 *string                                                                 `json:"ORCID_REDIRECT_URI,omitempty"`
+	ORCIDSANDBOXMODE                                 *bool                                                                   `json:"ORCID_SANDBOX_MODE,omitempty"`
+	POWEREDBYLOGO                                    *openapi_types.File                                                     `json:"POWERED_BY_LOGO,omitempty"`
+	PROJECTENDDATEMANDATORY                          *bool                                                                   `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
+	PROPOSALREVIEWDURATION                           *int                                                                    `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
+	RANCHERUSERNAMEINPUTLABEL                        *string                                                                 `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
+	REMOTEEDUTEAMSREFRESHTOKEN                       *string                                                                 `json:"REMOTE_EDUTEAMS_REFRESH_TOKEN,omitempty"`
+	RESTRICTEDOFFERINGVISIBILITYMODE                 *RESTRICTEDOFFERINGVISIBILITYMODEEnum                                   `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
+	REVIEWERPROFILESENABLED                          *bool                                                                   `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
+	SCIMAPIKEY                                       *string                                                                 `json:"SCIM_API_KEY,omitempty"`
+	SCIMAPIURL                                       *string                                                                 `json:"SCIM_API_URL,omitempty"`
+	SCIMMEMBERSHIPSYNCENABLED                        *bool                                                                   `json:"SCIM_MEMBERSHIP_SYNC_ENABLED,omitempty"`
+	SCIMURNNAMESPACE                                 *string                                                                 `json:"SCIM_URN_NAMESPACE,omitempty"`
+	SCRIPTRUNMODE                                    *SCRIPTRUNMODEEnum                                                      `json:"SCRIPT_RUN_MODE,omitempty"`
+	SEMANTICSCHOLARAPIKEY                            *string                                                                 `json:"SEMANTIC_SCHOLAR_API_KEY,omitempty"`
+	SHORTPAGETITLE                                   *string                                                                 `json:"SHORT_PAGE_TITLE,omitempty"`
+	SIDEBARLOGO                                      *openapi_types.File                                                     `json:"SIDEBAR_LOGO,omitempty"`
+	SIDEBARLOGODARK                                  *openapi_types.File                                                     `json:"SIDEBAR_LOGO_DARK,omitempty"`
+	SIDEBARLOGOMOBILE                                *openapi_types.File                                                     `json:"SIDEBAR_LOGO_MOBILE,omitempty"`
+	SIDEBARSTYLE                                     *SIDEBARSTYLEEnum                                                       `json:"SIDEBAR_STYLE,omitempty"`
+	SITEADDRESS                                      *string                                                                 `json:"SITE_ADDRESS,omitempty"`
+	SITEDESCRIPTION                                  *string                                                                 `json:"SITE_DESCRIPTION,omitempty"`
+	SITEEMAIL                                        *string                                                                 `json:"SITE_EMAIL,omitempty"`
+	SITENAME                                         *string                                                                 `json:"SITE_NAME,omitempty"`
+	SITEPHONE                                        *string                                                                 `json:"SITE_PHONE,omitempty"`
+	SLURMPOLICYEVALUATIONLOGRETENTIONDAYS            *int                                                                    `json:"SLURM_POLICY_EVALUATION_LOG_RETENTION_DAYS,omitempty"`
+	SMAXAFFECTEDRESOURCEFIELD                        *string                                                                 `json:"SMAX_AFFECTED_RESOURCE_FIELD,omitempty"`
+	SMAXAPIURL                                       *string                                                                 `json:"SMAX_API_URL,omitempty"`
+	SMAXCREATIONSOURCENAME                           *string                                                                 `json:"SMAX_CREATION_SOURCE_NAME,omitempty"`
+	SMAXLOGIN                                        *string                                                                 `json:"SMAX_LOGIN,omitempty"`
+	SMAXORGANISATIONFIELD                            *string                                                                 `json:"SMAX_ORGANISATION_FIELD,omitempty"`
+	SMAXPASSWORD                                     *string                                                                 `json:"SMAX_PASSWORD,omitempty"`
+	SMAXPROJECTFIELD                                 *string                                                                 `json:"SMAX_PROJECT_FIELD,omitempty"`
+	SMAXREQUESTSOFFERING                             *string                                                                 `json:"SMAX_REQUESTS_OFFERING,omitempty"`
+	SMAXSECONDSTOWAIT                                *int                                                                    `json:"SMAX_SECONDS_TO_WAIT,omitempty"`
+	SMAXTENANTID                                     *string                                                                 `json:"SMAX_TENANT_ID,omitempty"`
+	SMAXTIMESTOPULL                                  *int                                                                    `json:"SMAX_TIMES_TO_PULL,omitempty"`
+	SMAXVERIFYSSL                                    *bool                                                                   `json:"SMAX_VERIFY_SSL,omitempty"`
+	SOFTWARECATALOGCLEANUPENABLED                    *bool                                                                   `json:"SOFTWARE_CATALOG_CLEANUP_ENABLED,omitempty"`
+	SOFTWARECATALOGEESSIAPIURL                       *string                                                                 `json:"SOFTWARE_CATALOG_EESSI_API_URL,omitempty"`
+	SOFTWARECATALOGEESSIINCLUDEEXTENSIONS            *bool                                                                   `json:"SOFTWARE_CATALOG_EESSI_INCLUDE_EXTENSIONS,omitempty"`
+	SOFTWARECATALOGEESSIUPDATEENABLED                *bool                                                                   `json:"SOFTWARE_CATALOG_EESSI_UPDATE_ENABLED,omitempty"`
+	SOFTWARECATALOGEESSIVERSION                      *string                                                                 `json:"SOFTWARE_CATALOG_EESSI_VERSION,omitempty"`
+	SOFTWARECATALOGRETENTIONDAYS                     *int                                                                    `json:"SOFTWARE_CATALOG_RETENTION_DAYS,omitempty"`
+	SOFTWARECATALOGSPACKDATAURL                      *string                                                                 `json:"SOFTWARE_CATALOG_SPACK_DATA_URL,omitempty"`
+	SOFTWARECATALOGSPACKUPDATEENABLED                *bool                                                                   `json:"SOFTWARE_CATALOG_SPACK_UPDATE_ENABLED,omitempty"`
+	SOFTWARECATALOGSPACKVERSION                      *string                                                                 `json:"SOFTWARE_CATALOG_SPACK_VERSION,omitempty"`
+	SOFTWARECATALOGUPDATEEXISTINGPACKAGES            *bool                                                                   `json:"SOFTWARE_CATALOG_UPDATE_EXISTING_PACKAGES,omitempty"`
+	SSHKEYALLOWEDTYPES                               *[]ConstanceSettingsRequest_SSHKEYALLOWEDTYPES_Item                     `json:"SSH_KEY_ALLOWED_TYPES,omitempty"`
+	SSHKEYMINRSAKEYSIZE                              *int                                                                    `json:"SSH_KEY_MIN_RSA_KEY_SIZE,omitempty"`
+	SUPPORTPORTALURL                                 *string                                                                 `json:"SUPPORT_PORTAL_URL,omitempty"`
+	SYSTEMLOGENABLED                                 *bool                                                                   `json:"SYSTEM_LOG_ENABLED,omitempty"`
+	SYSTEMLOGMAXROWSPERSOURCE                        *int                                                                    `json:"SYSTEM_LOG_MAX_ROWS_PER_SOURCE,omitempty"`
+	TABLEGROWTHMINSIZEBYTES                          *int                                                                    `json:"TABLE_GROWTH_MIN_SIZE_BYTES,omitempty"`
+	TABLEGROWTHMONITORINGENABLED                     *bool                                                                   `json:"TABLE_GROWTH_MONITORING_ENABLED,omitempty"`
+	TABLEGROWTHMONTHLYTHRESHOLDPERCENT               *int                                                                    `json:"TABLE_GROWTH_MONTHLY_THRESHOLD_PERCENT,omitempty"`
+	TABLEGROWTHRETENTIONDAYS                         *int                                                                    `json:"TABLE_GROWTH_RETENTION_DAYS,omitempty"`
+	TABLEGROWTHWEEKLYTHRESHOLDPERCENT                *int                                                                    `json:"TABLE_GROWTH_WEEKLY_THRESHOLD_PERCENT,omitempty"`
+	TELEMETRYURL                                     *string                                                                 `json:"TELEMETRY_URL,omitempty"`
+	TELEMETRYVERSION                                 *int                                                                    `json:"TELEMETRY_VERSION,omitempty"`
+	THUMBNAILSIZE                                    *string                                                                 `json:"THUMBNAIL_SIZE,omitempty"`
+	USERACTIONSDEFAULTEXPIRATIONREMINDERS            *[]string                                                               `json:"USER_ACTIONS_DEFAULT_EXPIRATION_REMINDERS,omitempty"`
+	USERACTIONSENABLED                               *bool                                                                   `json:"USER_ACTIONS_ENABLED,omitempty"`
+	USERACTIONSEXECUTIONRETENTIONDAYS                *int                                                                    `json:"USER_ACTIONS_EXECUTION_RETENTION_DAYS,omitempty"`
+	USERACTIONSHIGHURGENCYNOTIFICATION               *bool                                                                   `json:"USER_ACTIONS_HIGH_URGENCY_NOTIFICATION,omitempty"`
+	USERACTIONSNOTIFICATIONTHRESHOLD                 *int                                                                    `json:"USER_ACTIONS_NOTIFICATION_THRESHOLD,omitempty"`
+	USERACTIONSPENDINGORDERHOURS                     *int                                                                    `json:"USER_ACTIONS_PENDING_ORDER_HOURS,omitempty"`
+	USERDATAACCESSLOGGINGENABLED                     *bool                                                                   `json:"USER_DATA_ACCESS_LOGGING_ENABLED,omitempty"`
+	USERDATAACCESSLOGRETENTIONDAYS                   *int                                                                    `json:"USER_DATA_ACCESS_LOG_RETENTION_DAYS,omitempty"`
+	USERDATAACCESSLOGSELFACCESS                      *bool                                                                   `json:"USER_DATA_ACCESS_LOG_SELF_ACCESS,omitempty"`
+	USERTABLECOLUMNS                                 *string                                                                 `json:"USER_TABLE_COLUMNS,omitempty"`
+	WALDURAUTHSOCIALROLECLAIM                        *string                                                                 `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
+	WALDURSUPPORTACTIVEBACKENDTYPE                   *WALDURSUPPORTACTIVEBACKENDTYPEEnum                                     `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
+	WALDURSUPPORTDISPLAYREQUESTTYPE                  *bool                                                                   `json:"WALDUR_SUPPORT_DISPLAY_REQUEST_TYPE,omitempty"`
+	WALDURSUPPORTENABLED                             *bool                                                                   `json:"WALDUR_SUPPORT_ENABLED,omitempty"`
+	ZAMMADAPIURL                                     *string                                                                 `json:"ZAMMAD_API_URL,omitempty"`
+	ZAMMADARTICLETYPE                                *ZAMMADARTICLETYPEEnum                                                  `json:"ZAMMAD_ARTICLE_TYPE,omitempty"`
+	ZAMMADCOMMENTCOOLDOWNDURATION                    *int                                                                    `json:"ZAMMAD_COMMENT_COOLDOWN_DURATION,omitempty"`
+	ZAMMADCOMMENTMARKER                              *string                                                                 `json:"ZAMMAD_COMMENT_MARKER,omitempty"`
+	ZAMMADCOMMENTPREFIX                              *string                                                                 `json:"ZAMMAD_COMMENT_PREFIX,omitempty"`
+	ZAMMADGROUP                                      *string                                                                 `json:"ZAMMAD_GROUP,omitempty"`
+	ZAMMADTOKEN                                      *string                                                                 `json:"ZAMMAD_TOKEN,omitempty"`
 }
 
 // ConstanceSettingsRequest_DEFAULTIDP defines model for ConstanceSettingsRequest.DEFAULTIDP.
@@ -25332,253 +25334,254 @@ type ConstanceSettingsRequest_SSHKEYALLOWEDTYPES_Item struct {
 
 // ConstanceSettingsRequestForm defines model for ConstanceSettingsRequestForm.
 type ConstanceSettingsRequestForm struct {
-	AIASSISTANTAPITOKEN                            *string                                                                     `json:"AI_ASSISTANT_API_TOKEN,omitempty"`
-	AIASSISTANTAPIURL                              *string                                                                     `json:"AI_ASSISTANT_API_URL,omitempty"`
-	AIASSISTANTBACKENDTYPE                         *string                                                                     `json:"AI_ASSISTANT_BACKEND_TYPE,omitempty"`
-	AIASSISTANTCOMPLETIONKWARGS                    *string                                                                     `json:"AI_ASSISTANT_COMPLETION_KWARGS,omitempty"`
-	AIASSISTANTENABLED                             *bool                                                                       `json:"AI_ASSISTANT_ENABLED,omitempty"`
-	AIASSISTANTENABLEDROLES                        *AIASSISTANTENABLEDROLESEnum                                                `json:"AI_ASSISTANT_ENABLED_ROLES,omitempty"`
-	AIASSISTANTHISTORYLIMIT                        *int                                                                        `json:"AI_ASSISTANT_HISTORY_LIMIT,omitempty"`
-	AIASSISTANTINJECTIONALLOWLIST                  *string                                                                     `json:"AI_ASSISTANT_INJECTION_ALLOWLIST,omitempty"`
-	AIASSISTANTMODEL                               *string                                                                     `json:"AI_ASSISTANT_MODEL,omitempty"`
-	AIASSISTANTNAME                                *string                                                                     `json:"AI_ASSISTANT_NAME,omitempty"`
-	AIASSISTANTSESSIONRETENTIONDAYS                *int                                                                        `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
-	AIASSISTANTTOKENLIMITDAILY                     *int                                                                        `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
-	AIASSISTANTTOKENLIMITMONTHLY                   *int                                                                        `json:"AI_ASSISTANT_TOKEN_LIMIT_MONTHLY,omitempty"`
-	AIASSISTANTTOKENLIMITWEEKLY                    *int                                                                        `json:"AI_ASSISTANT_TOKEN_LIMIT_WEEKLY,omitempty"`
-	ALLOWSERVICEPROVIDEROFFERINGMANAGEMENT         *bool                                                                       `json:"ALLOW_SERVICE_PROVIDER_OFFERING_MANAGEMENT,omitempty"`
-	ANONYMOUSUSERCANVIEWOFFERINGS                  *bool                                                                       `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
-	ANONYMOUSUSERCANVIEWPLANS                      *bool                                                                       `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
-	ARROWAUTORECONCILIATION                        *bool                                                                       `json:"ARROW_AUTO_RECONCILIATION,omitempty"`
-	ARROWBILLINGCHECKINTERVALHOURS                 *int                                                                        `json:"ARROW_BILLING_CHECK_INTERVAL_HOURS,omitempty"`
-	ARROWCONSUMPTIONSYNCENABLED                    *bool                                                                       `json:"ARROW_CONSUMPTION_SYNC_ENABLED,omitempty"`
-	ARROWCONSUMPTIONSYNCINTERVALHOURS              *int                                                                        `json:"ARROW_CONSUMPTION_SYNC_INTERVAL_HOURS,omitempty"`
-	ARROWSYNCINTERVALHOURS                         *int                                                                        `json:"ARROW_SYNC_INTERVAL_HOURS,omitempty"`
-	ATLASSIANAFFECTEDRESOURCEFIELD                 *string                                                                     `json:"ATLASSIAN_AFFECTED_RESOURCE_FIELD,omitempty"`
-	ATLASSIANAPIURL                                *string                                                                     `json:"ATLASSIAN_API_URL,omitempty"`
-	ATLASSIANCALLERFIELD                           *string                                                                     `json:"ATLASSIAN_CALLER_FIELD,omitempty"`
-	ATLASSIANCUSTOMISSUEFIELDMAPPINGENABLED        *bool                                                                       `json:"ATLASSIAN_CUSTOM_ISSUE_FIELD_MAPPING_ENABLED,omitempty"`
-	ATLASSIANDEFAULTOFFERINGISSUETYPE              *string                                                                     `json:"ATLASSIAN_DEFAULT_OFFERING_ISSUE_TYPE,omitempty"`
-	ATLASSIANDESCRIPTIONTEMPLATE                   *string                                                                     `json:"ATLASSIAN_DESCRIPTION_TEMPLATE,omitempty"`
-	ATLASSIANEMAIL                                 *openapi_types.Email                                                        `json:"ATLASSIAN_EMAIL,omitempty"`
-	ATLASSIANEXCLUDEDATTACHMENTTYPES               *string                                                                     `json:"ATLASSIAN_EXCLUDED_ATTACHMENT_TYPES,omitempty"`
-	ATLASSIANIMPACTFIELD                           *string                                                                     `json:"ATLASSIAN_IMPACT_FIELD,omitempty"`
-	ATLASSIANLINKEDISSUETYPE                       *string                                                                     `json:"ATLASSIAN_LINKED_ISSUE_TYPE,omitempty"`
-	ATLASSIANMAPWALDURUSERSTOSERVICEDESKAGENTS     *bool                                                                       `json:"ATLASSIAN_MAP_WALDUR_USERS_TO_SERVICEDESK_AGENTS,omitempty"`
-	ATLASSIANOAUTH2ACCESSTOKEN                     *string                                                                     `json:"ATLASSIAN_OAUTH2_ACCESS_TOKEN,omitempty"`
-	ATLASSIANOAUTH2CLIENTID                        *string                                                                     `json:"ATLASSIAN_OAUTH2_CLIENT_ID,omitempty"`
-	ATLASSIANOAUTH2TOKENTYPE                       *string                                                                     `json:"ATLASSIAN_OAUTH2_TOKEN_TYPE,omitempty"`
-	ATLASSIANORGANISATIONFIELD                     *string                                                                     `json:"ATLASSIAN_ORGANISATION_FIELD,omitempty"`
-	ATLASSIANPASSWORD                              *string                                                                     `json:"ATLASSIAN_PASSWORD,omitempty"`
-	ATLASSIANPERSONALACCESSTOKEN                   *string                                                                     `json:"ATLASSIAN_PERSONAL_ACCESS_TOKEN,omitempty"`
-	ATLASSIANPROJECTFIELD                          *string                                                                     `json:"ATLASSIAN_PROJECT_FIELD,omitempty"`
-	ATLASSIANPROJECTID                             *string                                                                     `json:"ATLASSIAN_PROJECT_ID,omitempty"`
-	ATLASSIANREPORTERFIELD                         *string                                                                     `json:"ATLASSIAN_REPORTER_FIELD,omitempty"`
-	ATLASSIANREQUESTFEEDBACKFIELD                  *string                                                                     `json:"ATLASSIAN_REQUEST_FEEDBACK_FIELD,omitempty"`
-	ATLASSIANRESOLUTIONSLAFIELD                    *string                                                                     `json:"ATLASSIAN_RESOLUTION_SLA_FIELD,omitempty"`
-	ATLASSIANSATISFACTIONFIELD                     *string                                                                     `json:"ATLASSIAN_SATISFACTION_FIELD,omitempty"`
-	ATLASSIANSHAREDUSERNAME                        *bool                                                                       `json:"ATLASSIAN_SHARED_USERNAME,omitempty"`
-	ATLASSIANSLAFIELD                              *string                                                                     `json:"ATLASSIAN_SLA_FIELD,omitempty"`
-	ATLASSIANSUMMARYTEMPLATE                       *string                                                                     `json:"ATLASSIAN_SUMMARY_TEMPLATE,omitempty"`
-	ATLASSIANTEMPLATEFIELD                         *string                                                                     `json:"ATLASSIAN_TEMPLATE_FIELD,omitempty"`
-	ATLASSIANTOKEN                                 *string                                                                     `json:"ATLASSIAN_TOKEN,omitempty"`
-	ATLASSIANUSERNAME                              *string                                                                     `json:"ATLASSIAN_USERNAME,omitempty"`
-	ATLASSIANUSEOLDAPI                             *bool                                                                       `json:"ATLASSIAN_USE_OLD_API,omitempty"`
-	ATLASSIANVERIFYSSL                             *bool                                                                       `json:"ATLASSIAN_VERIFY_SSL,omitempty"`
-	ATLASSIANWALDURBACKENDIDFIELD                  *string                                                                     `json:"ATLASSIAN_WALDUR_BACKEND_ID_FIELD,omitempty"`
-	AUTOMATEDMATCHINGENABLED                       *bool                                                                       `json:"AUTOMATED_MATCHING_ENABLED,omitempty"`
-	AUTOAPPROVEUSERTOS                             *bool                                                                       `json:"AUTO_APPROVE_USER_TOS,omitempty"`
-	BRANDCOLOR                                     *string                                                                     `json:"BRAND_COLOR,omitempty"`
-	CALLMANAGEMENTHEROIMAGE                        *openapi_types.File                                                         `json:"CALL_MANAGEMENT_HERO_IMAGE,omitempty"`
-	COICOAUTHORSHIPLOOKBACKYEARS                   *int                                                                        `json:"COI_COAUTHORSHIP_LOOKBACK_YEARS,omitempty"`
-	COICOAUTHORSHIPTHRESHOLDPAPERS                 *int                                                                        `json:"COI_COAUTHORSHIP_THRESHOLD_PAPERS,omitempty"`
-	COIDETECTIONENABLED                            *bool                                                                       `json:"COI_DETECTION_ENABLED,omitempty"`
-	COIDISCLOSUREREQUIRED                          *bool                                                                       `json:"COI_DISCLOSURE_REQUIRED,omitempty"`
-	COIINSTITUTIONALLOOKBACKYEARS                  *int                                                                        `json:"COI_INSTITUTIONAL_LOOKBACK_YEARS,omitempty"`
-	COMMONFOOTERHTML                               *string                                                                     `json:"COMMON_FOOTER_HTML,omitempty"`
-	COMMONFOOTERTEXT                               *string                                                                     `json:"COMMON_FOOTER_TEXT,omitempty"`
-	COUNTRIES                                      *[]string                                                                   `json:"COUNTRIES,omitempty"`
-	CROSSREFMAILTO                                 *openapi_types.Email                                                        `json:"CROSSREF_MAILTO,omitempty"`
-	CURRENCYNAME                                   *string                                                                     `json:"CURRENCY_NAME,omitempty"`
-	DEACTIVATEUSERIFNOROLES                        *bool                                                                       `json:"DEACTIVATE_USER_IF_NO_ROLES,omitempty"`
-	DEFAULTIDP                                     *ConstanceSettingsRequestForm_DEFAULTIDP                                    `json:"DEFAULT_IDP,omitempty"`
-	DEFAULTOFFERINGUSERATTRIBUTES                  *[]ConstanceSettingsRequestForm_DEFAULTOFFERINGUSERATTRIBUTES_Item          `json:"DEFAULT_OFFERING_USER_ATTRIBUTES,omitempty"`
-	DISABLEDOFFERINGTYPES                          *[]ConstanceSettingsRequestForm_DISABLEDOFFERINGTYPES_Item                  `json:"DISABLED_OFFERING_TYPES,omitempty"`
-	DISABLEDARKTHEME                               *bool                                                                       `json:"DISABLE_DARK_THEME,omitempty"`
-	DISABLESENDINGNOTIFICATIONSABOUTRESOURCEUPDATE *bool                                                                       `json:"DISABLE_SENDING_NOTIFICATIONS_ABOUT_RESOURCE_UPDATE,omitempty"`
-	DISCLAIMERAREALOGO                             *openapi_types.File                                                         `json:"DISCLAIMER_AREA_LOGO,omitempty"`
-	DISCLAIMERAREATEXT                             *string                                                                     `json:"DISCLAIMER_AREA_TEXT,omitempty"`
-	DOCKERCLIENT                                   *string                                                                     `json:"DOCKER_CLIENT,omitempty"`
-	DOCKERIMAGES                                   *string                                                                     `json:"DOCKER_IMAGES,omitempty"`
-	DOCKERREMOVECONTAINER                          *bool                                                                       `json:"DOCKER_REMOVE_CONTAINER,omitempty"`
-	DOCKERRUNOPTIONS                               *string                                                                     `json:"DOCKER_RUN_OPTIONS,omitempty"`
-	DOCKERSCRIPTDIR                                *string                                                                     `json:"DOCKER_SCRIPT_DIR,omitempty"`
-	DOCKERVOLUMENAME                               *string                                                                     `json:"DOCKER_VOLUME_NAME,omitempty"`
-	DOCSURL                                        *string                                                                     `json:"DOCS_URL,omitempty"`
-	ENABLEDREPORTINGSCREENS                        *[]ConstanceSettingsRequestForm_ENABLEDREPORTINGSCREENS_Item                `json:"ENABLED_REPORTING_SCREENS,omitempty"`
-	ENABLEDUSERPROFILEATTRIBUTES                   *[]ConstanceSettingsRequestForm_ENABLEDUSERPROFILEATTRIBUTES_Item           `json:"ENABLED_USER_PROFILE_ATTRIBUTES,omitempty"`
-	ENABLEISSUESFORUSERSSHKEYCHANGES               *bool                                                                       `json:"ENABLE_ISSUES_FOR_USER_SSH_KEY_CHANGES,omitempty"`
-	ENABLEMOCKCOURSEACCOUNTBACKEND                 *bool                                                                       `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
-	ENABLEMOCKSERVICEACCOUNTBACKEND                *bool                                                                       `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
-	ENABLEORDERSTARTDATE                           *bool                                                                       `json:"ENABLE_ORDER_START_DATE,omitempty"`
-	ENABLEPROJECTDIGEST                            *bool                                                                       `json:"ENABLE_PROJECT_DIGEST,omitempty"`
-	ENABLESTALERESOURCENOTIFICATIONS               *bool                                                                       `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
-	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                                                                       `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
-	ENFORCEMANDATORYUSERATTRIBUTES                 *bool                                                                       `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
-	ENFORCEOFFERINGUSERPROFILECOMPLETENESS         *bool                                                                       `json:"ENFORCE_OFFERING_USER_PROFILE_COMPLETENESS,omitempty"`
-	ENFORCEUSERCONSENTFOROFFERINGS                 *bool                                                                       `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
-	FAVICON                                        *openapi_types.File                                                         `json:"FAVICON,omitempty"`
-	FEDERATEDIDENTITYDEACTIVATIONPOLICY            *FEDERATEDIDENTITYDEACTIVATIONPOLICYEnum                                    `json:"FEDERATED_IDENTITY_DEACTIVATION_POLICY,omitempty"`
-	FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES         *[]ConstanceSettingsRequestForm_FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES_Item `json:"FEDERATED_IDENTITY_SYNC_ALLOWED_ATTRIBUTES,omitempty"`
-	FEDERATEDIDENTITYSYNCENABLED                   *bool                                                                       `json:"FEDERATED_IDENTITY_SYNC_ENABLED,omitempty"`
-	FONTFAMILY                                     *FONTFAMILYEnum                                                             `json:"FONT_FAMILY,omitempty"`
-	FREEIPABLACKLISTEDUSERNAMES                    *[]string                                                                   `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
-	FREEIPAENABLED                                 *bool                                                                       `json:"FREEIPA_ENABLED,omitempty"`
-	FREEIPAGROUPNAMEPREFIX                         *string                                                                     `json:"FREEIPA_GROUPNAME_PREFIX,omitempty"`
-	FREEIPAGROUPSYNCHRONIZATIONENABLED             *bool                                                                       `json:"FREEIPA_GROUP_SYNCHRONIZATION_ENABLED,omitempty"`
-	FREEIPAHOSTNAME                                *string                                                                     `json:"FREEIPA_HOSTNAME,omitempty"`
-	FREEIPAPASSWORD                                *string                                                                     `json:"FREEIPA_PASSWORD,omitempty"`
-	FREEIPAUSERNAME                                *string                                                                     `json:"FREEIPA_USERNAME,omitempty"`
-	FREEIPAUSERNAMEPREFIX                          *string                                                                     `json:"FREEIPA_USERNAME_PREFIX,omitempty"`
-	FREEIPAVERIFYSSL                               *bool                                                                       `json:"FREEIPA_VERIFY_SSL,omitempty"`
-	FULLPAGETITLE                                  *string                                                                     `json:"FULL_PAGE_TITLE,omitempty"`
-	HEROIMAGE                                      *openapi_types.File                                                         `json:"HERO_IMAGE,omitempty"`
-	HEROLINKLABEL                                  *string                                                                     `json:"HERO_LINK_LABEL,omitempty"`
-	HEROLINKURL                                    *string                                                                     `json:"HERO_LINK_URL,omitempty"`
-	HOMEPORTURL                                    *string                                                                     `json:"HOMEPORT_URL,omitempty"`
-	INVITATIONALLOWEDFIELDS                        *[]ConstanceSettingsRequestForm_INVITATIONALLOWEDFIELDS_Item                `json:"INVITATION_ALLOWED_FIELDS,omitempty"`
-	INVITATIONDISABLEMULTIPLEROLES                 *bool                                                                       `json:"INVITATION_DISABLE_MULTIPLE_ROLES,omitempty"`
-	K8SCONFIGPATH                                  *string                                                                     `json:"K8S_CONFIG_PATH,omitempty"`
-	K8SJOBTIMEOUT                                  *int                                                                        `json:"K8S_JOB_TIMEOUT,omitempty"`
-	K8SNAMESPACE                                   *string                                                                     `json:"K8S_NAMESPACE,omitempty"`
-	KEYCLOAKICON                                   *openapi_types.File                                                         `json:"KEYCLOAK_ICON,omitempty"`
-	LANGUAGECHOICES                                *string                                                                     `json:"LANGUAGE_CHOICES,omitempty"`
-	LOGINLOGO                                      *openapi_types.File                                                         `json:"LOGIN_LOGO,omitempty"`
-	LOGINLOGOMULTILINGUAL                          *map[string]*openapi_types.File                                             `json:"LOGIN_LOGO_MULTILINGUAL,omitempty"`
-	LOGINPAGECAROUSELSLIDES                        *[]interface{}                                                              `json:"LOGIN_PAGE_CAROUSEL_SLIDES,omitempty"`
-	LOGINPAGELAYOUT                                *LOGINPAGELAYOUTEnum                                                        `json:"LOGIN_PAGE_LAYOUT,omitempty"`
-	LOGINPAGENEWS                                  *[]interface{}                                                              `json:"LOGIN_PAGE_NEWS,omitempty"`
-	LOGINPAGESTATS                                 *[]interface{}                                                              `json:"LOGIN_PAGE_STATS,omitempty"`
-	LOGINPAGEVIDEOURL                              *string                                                                     `json:"LOGIN_PAGE_VIDEO_URL,omitempty"`
-	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES     *int                                                                        `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
-	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM            *[]ConstanceSettingsRequestForm_MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM_Item    `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
-	MANDATORYUSERATTRIBUTES                        *[]ConstanceSettingsRequestForm_MANDATORYUSERATTRIBUTES_Item                `json:"MANDATORY_USER_ATTRIBUTES,omitempty"`
-	MARKETPLACECARDSTYLE                           *MARKETPLACECARDSTYLEEnum                                                   `json:"MARKETPLACE_CARD_STYLE,omitempty"`
-	MARKETPLACEHEROIMAGE                           *openapi_types.File                                                         `json:"MARKETPLACE_HERO_IMAGE,omitempty"`
-	MARKETPLACELANDINGPAGE                         *string                                                                     `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
-	MARKETPLACELAYOUTMODE                          *MARKETPLACELAYOUTMODEEnum                                                  `json:"MARKETPLACE_LAYOUT_MODE,omitempty"`
-	NOTIFYABOUTRESOURCECHANGE                      *bool                                                                       `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
-	NOTIFYSTAFFABOUTAPPROVALS                      *bool                                                                       `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
-	OFFERINGLOGOPLACEHOLDER                        *openapi_types.File                                                         `json:"OFFERING_LOGO_PLACEHOLDER,omitempty"`
-	OIDCACCESSTOKENENABLED                         *bool                                                                       `json:"OIDC_ACCESS_TOKEN_ENABLED,omitempty"`
-	OIDCAUTHURL                                    *string                                                                     `json:"OIDC_AUTH_URL,omitempty"`
-	OIDCBLOCKCREATIONOFUNINVITEDUSERS              *bool                                                                       `json:"OIDC_BLOCK_CREATION_OF_UNINVITED_USERS,omitempty"`
-	OIDCCACHETIMEOUT                               *int                                                                        `json:"OIDC_CACHE_TIMEOUT,omitempty"`
-	OIDCCLIENTID                                   *string                                                                     `json:"OIDC_CLIENT_ID,omitempty"`
-	OIDCCLIENTSECRET                               *string                                                                     `json:"OIDC_CLIENT_SECRET,omitempty"`
-	OIDCDEFAULTLOGOUTURL                           *string                                                                     `json:"OIDC_DEFAULT_LOGOUT_URL,omitempty"`
-	OIDCINTROSPECTIONURL                           *string                                                                     `json:"OIDC_INTROSPECTION_URL,omitempty"`
-	OIDCMATCHMAKINGBYEMAIL                         *bool                                                                       `json:"OIDC_MATCHMAKING_BY_EMAIL,omitempty"`
-	OIDCUSERFIELD                                  *string                                                                     `json:"OIDC_USER_FIELD,omitempty"`
-	ONBOARDINGARIREGISTERBASEURL                   *string                                                                     `json:"ONBOARDING_ARIREGISTER_BASE_URL,omitempty"`
-	ONBOARDINGARIREGISTERPASSWORD                  *string                                                                     `json:"ONBOARDING_ARIREGISTER_PASSWORD,omitempty"`
-	ONBOARDINGARIREGISTERTIMEOUT                   *int                                                                        `json:"ONBOARDING_ARIREGISTER_TIMEOUT,omitempty"`
-	ONBOARDINGARIREGISTERUSERNAME                  *string                                                                     `json:"ONBOARDING_ARIREGISTER_USERNAME,omitempty"`
-	ONBOARDINGBOLAGSVERKETAPIURL                   *string                                                                     `json:"ONBOARDING_BOLAGSVERKET_API_URL,omitempty"`
-	ONBOARDINGBOLAGSVERKETCLIENTID                 *string                                                                     `json:"ONBOARDING_BOLAGSVERKET_CLIENT_ID,omitempty"`
-	ONBOARDINGBOLAGSVERKETCLIENTSECRET             *string                                                                     `json:"ONBOARDING_BOLAGSVERKET_CLIENT_SECRET,omitempty"`
-	ONBOARDINGBOLAGSVERKETTOKENAPIURL              *string                                                                     `json:"ONBOARDING_BOLAGSVERKET_TOKEN_API_URL,omitempty"`
-	ONBOARDINGBREGAPIURL                           *string                                                                     `json:"ONBOARDING_BREG_API_URL,omitempty"`
-	ONBOARDINGVALIDATIONMETHODS                    *[]ConstanceSettingsRequestForm_ONBOARDINGVALIDATIONMETHODS_Item            `json:"ONBOARDING_VALIDATION_METHODS,omitempty"`
-	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                                                                        `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
-	ONBOARDINGWICOAPIURL                           *string                                                                     `json:"ONBOARDING_WICO_API_URL,omitempty"`
-	ONBOARDINGWICOTOKEN                            *string                                                                     `json:"ONBOARDING_WICO_TOKEN,omitempty"`
-	ORCIDAPIURL                                    *string                                                                     `json:"ORCID_API_URL,omitempty"`
-	ORCIDAUTHURL                                   *string                                                                     `json:"ORCID_AUTH_URL,omitempty"`
-	ORCIDCLIENTID                                  *string                                                                     `json:"ORCID_CLIENT_ID,omitempty"`
-	ORCIDCLIENTSECRET                              *string                                                                     `json:"ORCID_CLIENT_SECRET,omitempty"`
-	ORCIDREDIRECTURI                               *string                                                                     `json:"ORCID_REDIRECT_URI,omitempty"`
-	ORCIDSANDBOXMODE                               *bool                                                                       `json:"ORCID_SANDBOX_MODE,omitempty"`
-	POWEREDBYLOGO                                  *openapi_types.File                                                         `json:"POWERED_BY_LOGO,omitempty"`
-	PROJECTENDDATEMANDATORY                        *bool                                                                       `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
-	PROPOSALREVIEWDURATION                         *int                                                                        `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
-	RANCHERUSERNAMEINPUTLABEL                      *string                                                                     `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
-	REMOTEEDUTEAMSREFRESHTOKEN                     *string                                                                     `json:"REMOTE_EDUTEAMS_REFRESH_TOKEN,omitempty"`
-	RESTRICTEDOFFERINGVISIBILITYMODE               *RESTRICTEDOFFERINGVISIBILITYMODEEnum                                       `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
-	REVIEWERPROFILESENABLED                        *bool                                                                       `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
-	SCIMAPIKEY                                     *string                                                                     `json:"SCIM_API_KEY,omitempty"`
-	SCIMAPIURL                                     *string                                                                     `json:"SCIM_API_URL,omitempty"`
-	SCIMMEMBERSHIPSYNCENABLED                      *bool                                                                       `json:"SCIM_MEMBERSHIP_SYNC_ENABLED,omitempty"`
-	SCIMURNNAMESPACE                               *string                                                                     `json:"SCIM_URN_NAMESPACE,omitempty"`
-	SCRIPTRUNMODE                                  *SCRIPTRUNMODEEnum                                                          `json:"SCRIPT_RUN_MODE,omitempty"`
-	SEMANTICSCHOLARAPIKEY                          *string                                                                     `json:"SEMANTIC_SCHOLAR_API_KEY,omitempty"`
-	SHORTPAGETITLE                                 *string                                                                     `json:"SHORT_PAGE_TITLE,omitempty"`
-	SIDEBARLOGO                                    *openapi_types.File                                                         `json:"SIDEBAR_LOGO,omitempty"`
-	SIDEBARLOGODARK                                *openapi_types.File                                                         `json:"SIDEBAR_LOGO_DARK,omitempty"`
-	SIDEBARLOGOMOBILE                              *openapi_types.File                                                         `json:"SIDEBAR_LOGO_MOBILE,omitempty"`
-	SIDEBARSTYLE                                   *SIDEBARSTYLEEnum                                                           `json:"SIDEBAR_STYLE,omitempty"`
-	SITEADDRESS                                    *string                                                                     `json:"SITE_ADDRESS,omitempty"`
-	SITEDESCRIPTION                                *string                                                                     `json:"SITE_DESCRIPTION,omitempty"`
-	SITEEMAIL                                      *string                                                                     `json:"SITE_EMAIL,omitempty"`
-	SITENAME                                       *string                                                                     `json:"SITE_NAME,omitempty"`
-	SITEPHONE                                      *string                                                                     `json:"SITE_PHONE,omitempty"`
-	SLURMPOLICYEVALUATIONLOGRETENTIONDAYS          *int                                                                        `json:"SLURM_POLICY_EVALUATION_LOG_RETENTION_DAYS,omitempty"`
-	SMAXAFFECTEDRESOURCEFIELD                      *string                                                                     `json:"SMAX_AFFECTED_RESOURCE_FIELD,omitempty"`
-	SMAXAPIURL                                     *string                                                                     `json:"SMAX_API_URL,omitempty"`
-	SMAXCREATIONSOURCENAME                         *string                                                                     `json:"SMAX_CREATION_SOURCE_NAME,omitempty"`
-	SMAXLOGIN                                      *string                                                                     `json:"SMAX_LOGIN,omitempty"`
-	SMAXORGANISATIONFIELD                          *string                                                                     `json:"SMAX_ORGANISATION_FIELD,omitempty"`
-	SMAXPASSWORD                                   *string                                                                     `json:"SMAX_PASSWORD,omitempty"`
-	SMAXPROJECTFIELD                               *string                                                                     `json:"SMAX_PROJECT_FIELD,omitempty"`
-	SMAXREQUESTSOFFERING                           *string                                                                     `json:"SMAX_REQUESTS_OFFERING,omitempty"`
-	SMAXSECONDSTOWAIT                              *int                                                                        `json:"SMAX_SECONDS_TO_WAIT,omitempty"`
-	SMAXTENANTID                                   *string                                                                     `json:"SMAX_TENANT_ID,omitempty"`
-	SMAXTIMESTOPULL                                *int                                                                        `json:"SMAX_TIMES_TO_PULL,omitempty"`
-	SMAXVERIFYSSL                                  *bool                                                                       `json:"SMAX_VERIFY_SSL,omitempty"`
-	SOFTWARECATALOGCLEANUPENABLED                  *bool                                                                       `json:"SOFTWARE_CATALOG_CLEANUP_ENABLED,omitempty"`
-	SOFTWARECATALOGEESSIAPIURL                     *string                                                                     `json:"SOFTWARE_CATALOG_EESSI_API_URL,omitempty"`
-	SOFTWARECATALOGEESSIINCLUDEEXTENSIONS          *bool                                                                       `json:"SOFTWARE_CATALOG_EESSI_INCLUDE_EXTENSIONS,omitempty"`
-	SOFTWARECATALOGEESSIUPDATEENABLED              *bool                                                                       `json:"SOFTWARE_CATALOG_EESSI_UPDATE_ENABLED,omitempty"`
-	SOFTWARECATALOGEESSIVERSION                    *string                                                                     `json:"SOFTWARE_CATALOG_EESSI_VERSION,omitempty"`
-	SOFTWARECATALOGRETENTIONDAYS                   *int                                                                        `json:"SOFTWARE_CATALOG_RETENTION_DAYS,omitempty"`
-	SOFTWARECATALOGSPACKDATAURL                    *string                                                                     `json:"SOFTWARE_CATALOG_SPACK_DATA_URL,omitempty"`
-	SOFTWARECATALOGSPACKUPDATEENABLED              *bool                                                                       `json:"SOFTWARE_CATALOG_SPACK_UPDATE_ENABLED,omitempty"`
-	SOFTWARECATALOGSPACKVERSION                    *string                                                                     `json:"SOFTWARE_CATALOG_SPACK_VERSION,omitempty"`
-	SOFTWARECATALOGUPDATEEXISTINGPACKAGES          *bool                                                                       `json:"SOFTWARE_CATALOG_UPDATE_EXISTING_PACKAGES,omitempty"`
-	SSHKEYALLOWEDTYPES                             *[]ConstanceSettingsRequestForm_SSHKEYALLOWEDTYPES_Item                     `json:"SSH_KEY_ALLOWED_TYPES,omitempty"`
-	SSHKEYMINRSAKEYSIZE                            *int                                                                        `json:"SSH_KEY_MIN_RSA_KEY_SIZE,omitempty"`
-	SUPPORTPORTALURL                               *string                                                                     `json:"SUPPORT_PORTAL_URL,omitempty"`
-	SYSTEMLOGENABLED                               *bool                                                                       `json:"SYSTEM_LOG_ENABLED,omitempty"`
-	SYSTEMLOGMAXROWSPERSOURCE                      *int                                                                        `json:"SYSTEM_LOG_MAX_ROWS_PER_SOURCE,omitempty"`
-	TABLEGROWTHMINSIZEBYTES                        *int                                                                        `json:"TABLE_GROWTH_MIN_SIZE_BYTES,omitempty"`
-	TABLEGROWTHMONITORINGENABLED                   *bool                                                                       `json:"TABLE_GROWTH_MONITORING_ENABLED,omitempty"`
-	TABLEGROWTHMONTHLYTHRESHOLDPERCENT             *int                                                                        `json:"TABLE_GROWTH_MONTHLY_THRESHOLD_PERCENT,omitempty"`
-	TABLEGROWTHRETENTIONDAYS                       *int                                                                        `json:"TABLE_GROWTH_RETENTION_DAYS,omitempty"`
-	TABLEGROWTHWEEKLYTHRESHOLDPERCENT              *int                                                                        `json:"TABLE_GROWTH_WEEKLY_THRESHOLD_PERCENT,omitempty"`
-	TELEMETRYURL                                   *string                                                                     `json:"TELEMETRY_URL,omitempty"`
-	TELEMETRYVERSION                               *int                                                                        `json:"TELEMETRY_VERSION,omitempty"`
-	THUMBNAILSIZE                                  *string                                                                     `json:"THUMBNAIL_SIZE,omitempty"`
-	USERACTIONSDEFAULTEXPIRATIONREMINDERS          *[]string                                                                   `json:"USER_ACTIONS_DEFAULT_EXPIRATION_REMINDERS,omitempty"`
-	USERACTIONSENABLED                             *bool                                                                       `json:"USER_ACTIONS_ENABLED,omitempty"`
-	USERACTIONSEXECUTIONRETENTIONDAYS              *int                                                                        `json:"USER_ACTIONS_EXECUTION_RETENTION_DAYS,omitempty"`
-	USERACTIONSHIGHURGENCYNOTIFICATION             *bool                                                                       `json:"USER_ACTIONS_HIGH_URGENCY_NOTIFICATION,omitempty"`
-	USERACTIONSNOTIFICATIONTHRESHOLD               *int                                                                        `json:"USER_ACTIONS_NOTIFICATION_THRESHOLD,omitempty"`
-	USERACTIONSPENDINGORDERHOURS                   *int                                                                        `json:"USER_ACTIONS_PENDING_ORDER_HOURS,omitempty"`
-	USERDATAACCESSLOGGINGENABLED                   *bool                                                                       `json:"USER_DATA_ACCESS_LOGGING_ENABLED,omitempty"`
-	USERDATAACCESSLOGRETENTIONDAYS                 *int                                                                        `json:"USER_DATA_ACCESS_LOG_RETENTION_DAYS,omitempty"`
-	USERDATAACCESSLOGSELFACCESS                    *bool                                                                       `json:"USER_DATA_ACCESS_LOG_SELF_ACCESS,omitempty"`
-	USERTABLECOLUMNS                               *string                                                                     `json:"USER_TABLE_COLUMNS,omitempty"`
-	WALDURAUTHSOCIALROLECLAIM                      *string                                                                     `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
-	WALDURSUPPORTACTIVEBACKENDTYPE                 *WALDURSUPPORTACTIVEBACKENDTYPEEnum                                         `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
-	WALDURSUPPORTDISPLAYREQUESTTYPE                *bool                                                                       `json:"WALDUR_SUPPORT_DISPLAY_REQUEST_TYPE,omitempty"`
-	WALDURSUPPORTENABLED                           *bool                                                                       `json:"WALDUR_SUPPORT_ENABLED,omitempty"`
-	ZAMMADAPIURL                                   *string                                                                     `json:"ZAMMAD_API_URL,omitempty"`
-	ZAMMADARTICLETYPE                              *ZAMMADARTICLETYPEEnum                                                      `json:"ZAMMAD_ARTICLE_TYPE,omitempty"`
-	ZAMMADCOMMENTCOOLDOWNDURATION                  *int                                                                        `json:"ZAMMAD_COMMENT_COOLDOWN_DURATION,omitempty"`
-	ZAMMADCOMMENTMARKER                            *string                                                                     `json:"ZAMMAD_COMMENT_MARKER,omitempty"`
-	ZAMMADCOMMENTPREFIX                            *string                                                                     `json:"ZAMMAD_COMMENT_PREFIX,omitempty"`
-	ZAMMADGROUP                                    *string                                                                     `json:"ZAMMAD_GROUP,omitempty"`
-	ZAMMADTOKEN                                    *string                                                                     `json:"ZAMMAD_TOKEN,omitempty"`
+	AIASSISTANTAPITOKEN                              *string                                                                     `json:"AI_ASSISTANT_API_TOKEN,omitempty"`
+	AIASSISTANTAPIURL                                *string                                                                     `json:"AI_ASSISTANT_API_URL,omitempty"`
+	AIASSISTANTBACKENDTYPE                           *string                                                                     `json:"AI_ASSISTANT_BACKEND_TYPE,omitempty"`
+	AIASSISTANTCOMPLETIONKWARGS                      *string                                                                     `json:"AI_ASSISTANT_COMPLETION_KWARGS,omitempty"`
+	AIASSISTANTENABLED                               *bool                                                                       `json:"AI_ASSISTANT_ENABLED,omitempty"`
+	AIASSISTANTENABLEDROLES                          *AIASSISTANTENABLEDROLESEnum                                                `json:"AI_ASSISTANT_ENABLED_ROLES,omitempty"`
+	AIASSISTANTHISTORYLIMIT                          *int                                                                        `json:"AI_ASSISTANT_HISTORY_LIMIT,omitempty"`
+	AIASSISTANTINJECTIONALLOWLIST                    *string                                                                     `json:"AI_ASSISTANT_INJECTION_ALLOWLIST,omitempty"`
+	AIASSISTANTMODEL                                 *string                                                                     `json:"AI_ASSISTANT_MODEL,omitempty"`
+	AIASSISTANTNAME                                  *string                                                                     `json:"AI_ASSISTANT_NAME,omitempty"`
+	AIASSISTANTSESSIONRETENTIONDAYS                  *int                                                                        `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
+	AIASSISTANTTOKENLIMITDAILY                       *int                                                                        `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
+	AIASSISTANTTOKENLIMITMONTHLY                     *int                                                                        `json:"AI_ASSISTANT_TOKEN_LIMIT_MONTHLY,omitempty"`
+	AIASSISTANTTOKENLIMITWEEKLY                      *int                                                                        `json:"AI_ASSISTANT_TOKEN_LIMIT_WEEKLY,omitempty"`
+	ALLOWSERVICEPROVIDEROFFERINGMANAGEMENT           *bool                                                                       `json:"ALLOW_SERVICE_PROVIDER_OFFERING_MANAGEMENT,omitempty"`
+	ANONYMOUSUSERCANVIEWOFFERINGS                    *bool                                                                       `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
+	ANONYMOUSUSERCANVIEWPLANS                        *bool                                                                       `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
+	ARROWAUTORECONCILIATION                          *bool                                                                       `json:"ARROW_AUTO_RECONCILIATION,omitempty"`
+	ARROWBILLINGCHECKINTERVALHOURS                   *int                                                                        `json:"ARROW_BILLING_CHECK_INTERVAL_HOURS,omitempty"`
+	ARROWCONSUMPTIONSYNCENABLED                      *bool                                                                       `json:"ARROW_CONSUMPTION_SYNC_ENABLED,omitempty"`
+	ARROWCONSUMPTIONSYNCINTERVALHOURS                *int                                                                        `json:"ARROW_CONSUMPTION_SYNC_INTERVAL_HOURS,omitempty"`
+	ARROWSYNCINTERVALHOURS                           *int                                                                        `json:"ARROW_SYNC_INTERVAL_HOURS,omitempty"`
+	ATLASSIANAFFECTEDRESOURCEFIELD                   *string                                                                     `json:"ATLASSIAN_AFFECTED_RESOURCE_FIELD,omitempty"`
+	ATLASSIANAPIURL                                  *string                                                                     `json:"ATLASSIAN_API_URL,omitempty"`
+	ATLASSIANCALLERFIELD                             *string                                                                     `json:"ATLASSIAN_CALLER_FIELD,omitempty"`
+	ATLASSIANCUSTOMISSUEFIELDMAPPINGENABLED          *bool                                                                       `json:"ATLASSIAN_CUSTOM_ISSUE_FIELD_MAPPING_ENABLED,omitempty"`
+	ATLASSIANDEFAULTOFFERINGISSUETYPE                *string                                                                     `json:"ATLASSIAN_DEFAULT_OFFERING_ISSUE_TYPE,omitempty"`
+	ATLASSIANDESCRIPTIONTEMPLATE                     *string                                                                     `json:"ATLASSIAN_DESCRIPTION_TEMPLATE,omitempty"`
+	ATLASSIANEMAIL                                   *openapi_types.Email                                                        `json:"ATLASSIAN_EMAIL,omitempty"`
+	ATLASSIANEXCLUDEDATTACHMENTTYPES                 *string                                                                     `json:"ATLASSIAN_EXCLUDED_ATTACHMENT_TYPES,omitempty"`
+	ATLASSIANIMPACTFIELD                             *string                                                                     `json:"ATLASSIAN_IMPACT_FIELD,omitempty"`
+	ATLASSIANLINKEDISSUETYPE                         *string                                                                     `json:"ATLASSIAN_LINKED_ISSUE_TYPE,omitempty"`
+	ATLASSIANMAPWALDURUSERSTOSERVICEDESKAGENTS       *bool                                                                       `json:"ATLASSIAN_MAP_WALDUR_USERS_TO_SERVICEDESK_AGENTS,omitempty"`
+	ATLASSIANOAUTH2ACCESSTOKEN                       *string                                                                     `json:"ATLASSIAN_OAUTH2_ACCESS_TOKEN,omitempty"`
+	ATLASSIANOAUTH2CLIENTID                          *string                                                                     `json:"ATLASSIAN_OAUTH2_CLIENT_ID,omitempty"`
+	ATLASSIANOAUTH2TOKENTYPE                         *string                                                                     `json:"ATLASSIAN_OAUTH2_TOKEN_TYPE,omitempty"`
+	ATLASSIANORGANISATIONFIELD                       *string                                                                     `json:"ATLASSIAN_ORGANISATION_FIELD,omitempty"`
+	ATLASSIANPASSWORD                                *string                                                                     `json:"ATLASSIAN_PASSWORD,omitempty"`
+	ATLASSIANPERSONALACCESSTOKEN                     *string                                                                     `json:"ATLASSIAN_PERSONAL_ACCESS_TOKEN,omitempty"`
+	ATLASSIANPROJECTFIELD                            *string                                                                     `json:"ATLASSIAN_PROJECT_FIELD,omitempty"`
+	ATLASSIANPROJECTID                               *string                                                                     `json:"ATLASSIAN_PROJECT_ID,omitempty"`
+	ATLASSIANREPORTERFIELD                           *string                                                                     `json:"ATLASSIAN_REPORTER_FIELD,omitempty"`
+	ATLASSIANREQUESTFEEDBACKFIELD                    *string                                                                     `json:"ATLASSIAN_REQUEST_FEEDBACK_FIELD,omitempty"`
+	ATLASSIANRESOLUTIONSLAFIELD                      *string                                                                     `json:"ATLASSIAN_RESOLUTION_SLA_FIELD,omitempty"`
+	ATLASSIANSATISFACTIONFIELD                       *string                                                                     `json:"ATLASSIAN_SATISFACTION_FIELD,omitempty"`
+	ATLASSIANSHAREDUSERNAME                          *bool                                                                       `json:"ATLASSIAN_SHARED_USERNAME,omitempty"`
+	ATLASSIANSLAFIELD                                *string                                                                     `json:"ATLASSIAN_SLA_FIELD,omitempty"`
+	ATLASSIANSUMMARYTEMPLATE                         *string                                                                     `json:"ATLASSIAN_SUMMARY_TEMPLATE,omitempty"`
+	ATLASSIANTEMPLATEFIELD                           *string                                                                     `json:"ATLASSIAN_TEMPLATE_FIELD,omitempty"`
+	ATLASSIANTOKEN                                   *string                                                                     `json:"ATLASSIAN_TOKEN,omitempty"`
+	ATLASSIANUSERNAME                                *string                                                                     `json:"ATLASSIAN_USERNAME,omitempty"`
+	ATLASSIANUSEOLDAPI                               *bool                                                                       `json:"ATLASSIAN_USE_OLD_API,omitempty"`
+	ATLASSIANVERIFYSSL                               *bool                                                                       `json:"ATLASSIAN_VERIFY_SSL,omitempty"`
+	ATLASSIANWALDURBACKENDIDFIELD                    *string                                                                     `json:"ATLASSIAN_WALDUR_BACKEND_ID_FIELD,omitempty"`
+	AUTOMATEDMATCHINGENABLED                         *bool                                                                       `json:"AUTOMATED_MATCHING_ENABLED,omitempty"`
+	AUTOAPPROVEUSERTOS                               *bool                                                                       `json:"AUTO_APPROVE_USER_TOS,omitempty"`
+	BRANDCOLOR                                       *string                                                                     `json:"BRAND_COLOR,omitempty"`
+	CALLMANAGEMENTHEROIMAGE                          *openapi_types.File                                                         `json:"CALL_MANAGEMENT_HERO_IMAGE,omitempty"`
+	COICOAUTHORSHIPLOOKBACKYEARS                     *int                                                                        `json:"COI_COAUTHORSHIP_LOOKBACK_YEARS,omitempty"`
+	COICOAUTHORSHIPTHRESHOLDPAPERS                   *int                                                                        `json:"COI_COAUTHORSHIP_THRESHOLD_PAPERS,omitempty"`
+	COIDETECTIONENABLED                              *bool                                                                       `json:"COI_DETECTION_ENABLED,omitempty"`
+	COIDISCLOSUREREQUIRED                            *bool                                                                       `json:"COI_DISCLOSURE_REQUIRED,omitempty"`
+	COIINSTITUTIONALLOOKBACKYEARS                    *int                                                                        `json:"COI_INSTITUTIONAL_LOOKBACK_YEARS,omitempty"`
+	COMMONFOOTERHTML                                 *string                                                                     `json:"COMMON_FOOTER_HTML,omitempty"`
+	COMMONFOOTERTEXT                                 *string                                                                     `json:"COMMON_FOOTER_TEXT,omitempty"`
+	COUNTRIES                                        *[]string                                                                   `json:"COUNTRIES,omitempty"`
+	CROSSREFMAILTO                                   *openapi_types.Email                                                        `json:"CROSSREF_MAILTO,omitempty"`
+	CURRENCYNAME                                     *string                                                                     `json:"CURRENCY_NAME,omitempty"`
+	DEACTIVATEUSERIFNOROLES                          *bool                                                                       `json:"DEACTIVATE_USER_IF_NO_ROLES,omitempty"`
+	DEFAULTIDP                                       *ConstanceSettingsRequestForm_DEFAULTIDP                                    `json:"DEFAULT_IDP,omitempty"`
+	DEFAULTOFFERINGUSERATTRIBUTES                    *[]ConstanceSettingsRequestForm_DEFAULTOFFERINGUSERATTRIBUTES_Item          `json:"DEFAULT_OFFERING_USER_ATTRIBUTES,omitempty"`
+	DISABLEDOFFERINGTYPES                            *[]ConstanceSettingsRequestForm_DISABLEDOFFERINGTYPES_Item                  `json:"DISABLED_OFFERING_TYPES,omitempty"`
+	DISABLEDARKTHEME                                 *bool                                                                       `json:"DISABLE_DARK_THEME,omitempty"`
+	DISABLESENDINGNOTIFICATIONSABOUTRESOURCEUPDATE   *bool                                                                       `json:"DISABLE_SENDING_NOTIFICATIONS_ABOUT_RESOURCE_UPDATE,omitempty"`
+	DISCLAIMERAREALOGO                               *openapi_types.File                                                         `json:"DISCLAIMER_AREA_LOGO,omitempty"`
+	DISCLAIMERAREATEXT                               *string                                                                     `json:"DISCLAIMER_AREA_TEXT,omitempty"`
+	DOCKERCLIENT                                     *string                                                                     `json:"DOCKER_CLIENT,omitempty"`
+	DOCKERIMAGES                                     *string                                                                     `json:"DOCKER_IMAGES,omitempty"`
+	DOCKERREMOVECONTAINER                            *bool                                                                       `json:"DOCKER_REMOVE_CONTAINER,omitempty"`
+	DOCKERRUNOPTIONS                                 *string                                                                     `json:"DOCKER_RUN_OPTIONS,omitempty"`
+	DOCKERSCRIPTDIR                                  *string                                                                     `json:"DOCKER_SCRIPT_DIR,omitempty"`
+	DOCKERVOLUMENAME                                 *string                                                                     `json:"DOCKER_VOLUME_NAME,omitempty"`
+	DOCSURL                                          *string                                                                     `json:"DOCS_URL,omitempty"`
+	ENABLEDREPORTINGSCREENS                          *[]ConstanceSettingsRequestForm_ENABLEDREPORTINGSCREENS_Item                `json:"ENABLED_REPORTING_SCREENS,omitempty"`
+	ENABLEDUSERPROFILEATTRIBUTES                     *[]ConstanceSettingsRequestForm_ENABLEDUSERPROFILEATTRIBUTES_Item           `json:"ENABLED_USER_PROFILE_ATTRIBUTES,omitempty"`
+	ENABLEISSUESFORUSERSSHKEYCHANGES                 *bool                                                                       `json:"ENABLE_ISSUES_FOR_USER_SSH_KEY_CHANGES,omitempty"`
+	ENABLEMOCKCOURSEACCOUNTBACKEND                   *bool                                                                       `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
+	ENABLEMOCKSERVICEACCOUNTBACKEND                  *bool                                                                       `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
+	ENABLEORDERSTARTDATE                             *bool                                                                       `json:"ENABLE_ORDER_START_DATE,omitempty"`
+	ENABLEPROJECTDIGEST                              *bool                                                                       `json:"ENABLE_PROJECT_DIGEST,omitempty"`
+	ENABLESTALERESOURCENOTIFICATIONS                 *bool                                                                       `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
+	ENABLESTRICTCHECKACCEPTINGINVITATION             *bool                                                                       `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
+	ENFORCEMANDATORYUSERATTRIBUTES                   *bool                                                                       `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
+	ENFORCEOFFERINGUSERPROFILECOMPLETENESS           *bool                                                                       `json:"ENFORCE_OFFERING_USER_PROFILE_COMPLETENESS,omitempty"`
+	ENFORCEUSERCONSENTFOROFFERINGS                   *bool                                                                       `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
+	FAVICON                                          *openapi_types.File                                                         `json:"FAVICON,omitempty"`
+	FEDERATEDIDENTITYDEACTIVATIONPOLICY              *FEDERATEDIDENTITYDEACTIVATIONPOLICYEnum                                    `json:"FEDERATED_IDENTITY_DEACTIVATION_POLICY,omitempty"`
+	FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES           *[]ConstanceSettingsRequestForm_FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES_Item `json:"FEDERATED_IDENTITY_SYNC_ALLOWED_ATTRIBUTES,omitempty"`
+	FEDERATEDIDENTITYSYNCENABLED                     *bool                                                                       `json:"FEDERATED_IDENTITY_SYNC_ENABLED,omitempty"`
+	FONTFAMILY                                       *FONTFAMILYEnum                                                             `json:"FONT_FAMILY,omitempty"`
+	FREEIPABLACKLISTEDUSERNAMES                      *[]string                                                                   `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
+	FREEIPAENABLED                                   *bool                                                                       `json:"FREEIPA_ENABLED,omitempty"`
+	FREEIPAGROUPNAMEPREFIX                           *string                                                                     `json:"FREEIPA_GROUPNAME_PREFIX,omitempty"`
+	FREEIPAGROUPSYNCHRONIZATIONENABLED               *bool                                                                       `json:"FREEIPA_GROUP_SYNCHRONIZATION_ENABLED,omitempty"`
+	FREEIPAHOSTNAME                                  *string                                                                     `json:"FREEIPA_HOSTNAME,omitempty"`
+	FREEIPAPASSWORD                                  *string                                                                     `json:"FREEIPA_PASSWORD,omitempty"`
+	FREEIPAUSERNAME                                  *string                                                                     `json:"FREEIPA_USERNAME,omitempty"`
+	FREEIPAUSERNAMEPREFIX                            *string                                                                     `json:"FREEIPA_USERNAME_PREFIX,omitempty"`
+	FREEIPAVERIFYSSL                                 *bool                                                                       `json:"FREEIPA_VERIFY_SSL,omitempty"`
+	FULLPAGETITLE                                    *string                                                                     `json:"FULL_PAGE_TITLE,omitempty"`
+	HEROIMAGE                                        *openapi_types.File                                                         `json:"HERO_IMAGE,omitempty"`
+	HEROLINKLABEL                                    *string                                                                     `json:"HERO_LINK_LABEL,omitempty"`
+	HEROLINKURL                                      *string                                                                     `json:"HERO_LINK_URL,omitempty"`
+	HOMEPORTURL                                      *string                                                                     `json:"HOMEPORT_URL,omitempty"`
+	INVITATIONALLOWEDFIELDS                          *[]ConstanceSettingsRequestForm_INVITATIONALLOWEDFIELDS_Item                `json:"INVITATION_ALLOWED_FIELDS,omitempty"`
+	INVITATIONDISABLEMULTIPLEROLES                   *bool                                                                       `json:"INVITATION_DISABLE_MULTIPLE_ROLES,omitempty"`
+	K8SCONFIGPATH                                    *string                                                                     `json:"K8S_CONFIG_PATH,omitempty"`
+	K8SJOBTIMEOUT                                    *int                                                                        `json:"K8S_JOB_TIMEOUT,omitempty"`
+	K8SNAMESPACE                                     *string                                                                     `json:"K8S_NAMESPACE,omitempty"`
+	KEYCLOAKICON                                     *openapi_types.File                                                         `json:"KEYCLOAK_ICON,omitempty"`
+	LANGUAGECHOICES                                  *string                                                                     `json:"LANGUAGE_CHOICES,omitempty"`
+	LOGINLOGO                                        *openapi_types.File                                                         `json:"LOGIN_LOGO,omitempty"`
+	LOGINLOGOMULTILINGUAL                            *map[string]*openapi_types.File                                             `json:"LOGIN_LOGO_MULTILINGUAL,omitempty"`
+	LOGINPAGECAROUSELSLIDES                          *[]interface{}                                                              `json:"LOGIN_PAGE_CAROUSEL_SLIDES,omitempty"`
+	LOGINPAGELAYOUT                                  *LOGINPAGELAYOUTEnum                                                        `json:"LOGIN_PAGE_LAYOUT,omitempty"`
+	LOGINPAGENEWS                                    *[]interface{}                                                              `json:"LOGIN_PAGE_NEWS,omitempty"`
+	LOGINPAGESTATS                                   *[]interface{}                                                              `json:"LOGIN_PAGE_STATS,omitempty"`
+	LOGINPAGEVIDEOURL                                *string                                                                     `json:"LOGIN_PAGE_VIDEO_URL,omitempty"`
+	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES       *int                                                                        `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
+	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM              *[]ConstanceSettingsRequestForm_MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM_Item    `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
+	MANDATORYUSERATTRIBUTES                          *[]ConstanceSettingsRequestForm_MANDATORYUSERATTRIBUTES_Item                `json:"MANDATORY_USER_ATTRIBUTES,omitempty"`
+	MARKETPLACECARDSTYLE                             *MARKETPLACECARDSTYLEEnum                                                   `json:"MARKETPLACE_CARD_STYLE,omitempty"`
+	MARKETPLACEHEROIMAGE                             *openapi_types.File                                                         `json:"MARKETPLACE_HERO_IMAGE,omitempty"`
+	MARKETPLACELANDINGPAGE                           *string                                                                     `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
+	MARKETPLACELAYOUTMODE                            *MARKETPLACELAYOUTMODEEnum                                                  `json:"MARKETPLACE_LAYOUT_MODE,omitempty"`
+	NOTIFYABOUTRESOURCECHANGE                        *bool                                                                       `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
+	NOTIFYSTAFFABOUTAPPROVALS                        *bool                                                                       `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
+	OFFERINGLOGOPLACEHOLDER                          *openapi_types.File                                                         `json:"OFFERING_LOGO_PLACEHOLDER,omitempty"`
+	OIDCACCESSTOKENENABLED                           *bool                                                                       `json:"OIDC_ACCESS_TOKEN_ENABLED,omitempty"`
+	OIDCAUTHURL                                      *string                                                                     `json:"OIDC_AUTH_URL,omitempty"`
+	OIDCBLOCKCREATIONOFUNINVITEDUSERS                *bool                                                                       `json:"OIDC_BLOCK_CREATION_OF_UNINVITED_USERS,omitempty"`
+	OIDCBLOCKCREATIONOFUNINVITEDUSERSRESPONSEMESSAGE *string                                                                     `json:"OIDC_BLOCK_CREATION_OF_UNINVITED_USERS_RESPONSE_MESSAGE,omitempty"`
+	OIDCCACHETIMEOUT                                 *int                                                                        `json:"OIDC_CACHE_TIMEOUT,omitempty"`
+	OIDCCLIENTID                                     *string                                                                     `json:"OIDC_CLIENT_ID,omitempty"`
+	OIDCCLIENTSECRET                                 *string                                                                     `json:"OIDC_CLIENT_SECRET,omitempty"`
+	OIDCDEFAULTLOGOUTURL                             *string                                                                     `json:"OIDC_DEFAULT_LOGOUT_URL,omitempty"`
+	OIDCINTROSPECTIONURL                             *string                                                                     `json:"OIDC_INTROSPECTION_URL,omitempty"`
+	OIDCMATCHMAKINGBYEMAIL                           *bool                                                                       `json:"OIDC_MATCHMAKING_BY_EMAIL,omitempty"`
+	OIDCUSERFIELD                                    *string                                                                     `json:"OIDC_USER_FIELD,omitempty"`
+	ONBOARDINGARIREGISTERBASEURL                     *string                                                                     `json:"ONBOARDING_ARIREGISTER_BASE_URL,omitempty"`
+	ONBOARDINGARIREGISTERPASSWORD                    *string                                                                     `json:"ONBOARDING_ARIREGISTER_PASSWORD,omitempty"`
+	ONBOARDINGARIREGISTERTIMEOUT                     *int                                                                        `json:"ONBOARDING_ARIREGISTER_TIMEOUT,omitempty"`
+	ONBOARDINGARIREGISTERUSERNAME                    *string                                                                     `json:"ONBOARDING_ARIREGISTER_USERNAME,omitempty"`
+	ONBOARDINGBOLAGSVERKETAPIURL                     *string                                                                     `json:"ONBOARDING_BOLAGSVERKET_API_URL,omitempty"`
+	ONBOARDINGBOLAGSVERKETCLIENTID                   *string                                                                     `json:"ONBOARDING_BOLAGSVERKET_CLIENT_ID,omitempty"`
+	ONBOARDINGBOLAGSVERKETCLIENTSECRET               *string                                                                     `json:"ONBOARDING_BOLAGSVERKET_CLIENT_SECRET,omitempty"`
+	ONBOARDINGBOLAGSVERKETTOKENAPIURL                *string                                                                     `json:"ONBOARDING_BOLAGSVERKET_TOKEN_API_URL,omitempty"`
+	ONBOARDINGBREGAPIURL                             *string                                                                     `json:"ONBOARDING_BREG_API_URL,omitempty"`
+	ONBOARDINGVALIDATIONMETHODS                      *[]ConstanceSettingsRequestForm_ONBOARDINGVALIDATIONMETHODS_Item            `json:"ONBOARDING_VALIDATION_METHODS,omitempty"`
+	ONBOARDINGVERIFICATIONEXPIRYHOURS                *int                                                                        `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
+	ONBOARDINGWICOAPIURL                             *string                                                                     `json:"ONBOARDING_WICO_API_URL,omitempty"`
+	ONBOARDINGWICOTOKEN                              *string                                                                     `json:"ONBOARDING_WICO_TOKEN,omitempty"`
+	ORCIDAPIURL                                      *string                                                                     `json:"ORCID_API_URL,omitempty"`
+	ORCIDAUTHURL                                     *string                                                                     `json:"ORCID_AUTH_URL,omitempty"`
+	ORCIDCLIENTID                                    *string                                                                     `json:"ORCID_CLIENT_ID,omitempty"`
+	ORCIDCLIENTSECRET                                *string                                                                     `json:"ORCID_CLIENT_SECRET,omitempty"`
+	ORCIDREDIRECTURI                                 *string                                                                     `json:"ORCID_REDIRECT_URI,omitempty"`
+	ORCIDSANDBOXMODE                                 *bool                                                                       `json:"ORCID_SANDBOX_MODE,omitempty"`
+	POWEREDBYLOGO                                    *openapi_types.File                                                         `json:"POWERED_BY_LOGO,omitempty"`
+	PROJECTENDDATEMANDATORY                          *bool                                                                       `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
+	PROPOSALREVIEWDURATION                           *int                                                                        `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
+	RANCHERUSERNAMEINPUTLABEL                        *string                                                                     `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
+	REMOTEEDUTEAMSREFRESHTOKEN                       *string                                                                     `json:"REMOTE_EDUTEAMS_REFRESH_TOKEN,omitempty"`
+	RESTRICTEDOFFERINGVISIBILITYMODE                 *RESTRICTEDOFFERINGVISIBILITYMODEEnum                                       `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
+	REVIEWERPROFILESENABLED                          *bool                                                                       `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
+	SCIMAPIKEY                                       *string                                                                     `json:"SCIM_API_KEY,omitempty"`
+	SCIMAPIURL                                       *string                                                                     `json:"SCIM_API_URL,omitempty"`
+	SCIMMEMBERSHIPSYNCENABLED                        *bool                                                                       `json:"SCIM_MEMBERSHIP_SYNC_ENABLED,omitempty"`
+	SCIMURNNAMESPACE                                 *string                                                                     `json:"SCIM_URN_NAMESPACE,omitempty"`
+	SCRIPTRUNMODE                                    *SCRIPTRUNMODEEnum                                                          `json:"SCRIPT_RUN_MODE,omitempty"`
+	SEMANTICSCHOLARAPIKEY                            *string                                                                     `json:"SEMANTIC_SCHOLAR_API_KEY,omitempty"`
+	SHORTPAGETITLE                                   *string                                                                     `json:"SHORT_PAGE_TITLE,omitempty"`
+	SIDEBARLOGO                                      *openapi_types.File                                                         `json:"SIDEBAR_LOGO,omitempty"`
+	SIDEBARLOGODARK                                  *openapi_types.File                                                         `json:"SIDEBAR_LOGO_DARK,omitempty"`
+	SIDEBARLOGOMOBILE                                *openapi_types.File                                                         `json:"SIDEBAR_LOGO_MOBILE,omitempty"`
+	SIDEBARSTYLE                                     *SIDEBARSTYLEEnum                                                           `json:"SIDEBAR_STYLE,omitempty"`
+	SITEADDRESS                                      *string                                                                     `json:"SITE_ADDRESS,omitempty"`
+	SITEDESCRIPTION                                  *string                                                                     `json:"SITE_DESCRIPTION,omitempty"`
+	SITEEMAIL                                        *string                                                                     `json:"SITE_EMAIL,omitempty"`
+	SITENAME                                         *string                                                                     `json:"SITE_NAME,omitempty"`
+	SITEPHONE                                        *string                                                                     `json:"SITE_PHONE,omitempty"`
+	SLURMPOLICYEVALUATIONLOGRETENTIONDAYS            *int                                                                        `json:"SLURM_POLICY_EVALUATION_LOG_RETENTION_DAYS,omitempty"`
+	SMAXAFFECTEDRESOURCEFIELD                        *string                                                                     `json:"SMAX_AFFECTED_RESOURCE_FIELD,omitempty"`
+	SMAXAPIURL                                       *string                                                                     `json:"SMAX_API_URL,omitempty"`
+	SMAXCREATIONSOURCENAME                           *string                                                                     `json:"SMAX_CREATION_SOURCE_NAME,omitempty"`
+	SMAXLOGIN                                        *string                                                                     `json:"SMAX_LOGIN,omitempty"`
+	SMAXORGANISATIONFIELD                            *string                                                                     `json:"SMAX_ORGANISATION_FIELD,omitempty"`
+	SMAXPASSWORD                                     *string                                                                     `json:"SMAX_PASSWORD,omitempty"`
+	SMAXPROJECTFIELD                                 *string                                                                     `json:"SMAX_PROJECT_FIELD,omitempty"`
+	SMAXREQUESTSOFFERING                             *string                                                                     `json:"SMAX_REQUESTS_OFFERING,omitempty"`
+	SMAXSECONDSTOWAIT                                *int                                                                        `json:"SMAX_SECONDS_TO_WAIT,omitempty"`
+	SMAXTENANTID                                     *string                                                                     `json:"SMAX_TENANT_ID,omitempty"`
+	SMAXTIMESTOPULL                                  *int                                                                        `json:"SMAX_TIMES_TO_PULL,omitempty"`
+	SMAXVERIFYSSL                                    *bool                                                                       `json:"SMAX_VERIFY_SSL,omitempty"`
+	SOFTWARECATALOGCLEANUPENABLED                    *bool                                                                       `json:"SOFTWARE_CATALOG_CLEANUP_ENABLED,omitempty"`
+	SOFTWARECATALOGEESSIAPIURL                       *string                                                                     `json:"SOFTWARE_CATALOG_EESSI_API_URL,omitempty"`
+	SOFTWARECATALOGEESSIINCLUDEEXTENSIONS            *bool                                                                       `json:"SOFTWARE_CATALOG_EESSI_INCLUDE_EXTENSIONS,omitempty"`
+	SOFTWARECATALOGEESSIUPDATEENABLED                *bool                                                                       `json:"SOFTWARE_CATALOG_EESSI_UPDATE_ENABLED,omitempty"`
+	SOFTWARECATALOGEESSIVERSION                      *string                                                                     `json:"SOFTWARE_CATALOG_EESSI_VERSION,omitempty"`
+	SOFTWARECATALOGRETENTIONDAYS                     *int                                                                        `json:"SOFTWARE_CATALOG_RETENTION_DAYS,omitempty"`
+	SOFTWARECATALOGSPACKDATAURL                      *string                                                                     `json:"SOFTWARE_CATALOG_SPACK_DATA_URL,omitempty"`
+	SOFTWARECATALOGSPACKUPDATEENABLED                *bool                                                                       `json:"SOFTWARE_CATALOG_SPACK_UPDATE_ENABLED,omitempty"`
+	SOFTWARECATALOGSPACKVERSION                      *string                                                                     `json:"SOFTWARE_CATALOG_SPACK_VERSION,omitempty"`
+	SOFTWARECATALOGUPDATEEXISTINGPACKAGES            *bool                                                                       `json:"SOFTWARE_CATALOG_UPDATE_EXISTING_PACKAGES,omitempty"`
+	SSHKEYALLOWEDTYPES                               *[]ConstanceSettingsRequestForm_SSHKEYALLOWEDTYPES_Item                     `json:"SSH_KEY_ALLOWED_TYPES,omitempty"`
+	SSHKEYMINRSAKEYSIZE                              *int                                                                        `json:"SSH_KEY_MIN_RSA_KEY_SIZE,omitempty"`
+	SUPPORTPORTALURL                                 *string                                                                     `json:"SUPPORT_PORTAL_URL,omitempty"`
+	SYSTEMLOGENABLED                                 *bool                                                                       `json:"SYSTEM_LOG_ENABLED,omitempty"`
+	SYSTEMLOGMAXROWSPERSOURCE                        *int                                                                        `json:"SYSTEM_LOG_MAX_ROWS_PER_SOURCE,omitempty"`
+	TABLEGROWTHMINSIZEBYTES                          *int                                                                        `json:"TABLE_GROWTH_MIN_SIZE_BYTES,omitempty"`
+	TABLEGROWTHMONITORINGENABLED                     *bool                                                                       `json:"TABLE_GROWTH_MONITORING_ENABLED,omitempty"`
+	TABLEGROWTHMONTHLYTHRESHOLDPERCENT               *int                                                                        `json:"TABLE_GROWTH_MONTHLY_THRESHOLD_PERCENT,omitempty"`
+	TABLEGROWTHRETENTIONDAYS                         *int                                                                        `json:"TABLE_GROWTH_RETENTION_DAYS,omitempty"`
+	TABLEGROWTHWEEKLYTHRESHOLDPERCENT                *int                                                                        `json:"TABLE_GROWTH_WEEKLY_THRESHOLD_PERCENT,omitempty"`
+	TELEMETRYURL                                     *string                                                                     `json:"TELEMETRY_URL,omitempty"`
+	TELEMETRYVERSION                                 *int                                                                        `json:"TELEMETRY_VERSION,omitempty"`
+	THUMBNAILSIZE                                    *string                                                                     `json:"THUMBNAIL_SIZE,omitempty"`
+	USERACTIONSDEFAULTEXPIRATIONREMINDERS            *[]string                                                                   `json:"USER_ACTIONS_DEFAULT_EXPIRATION_REMINDERS,omitempty"`
+	USERACTIONSENABLED                               *bool                                                                       `json:"USER_ACTIONS_ENABLED,omitempty"`
+	USERACTIONSEXECUTIONRETENTIONDAYS                *int                                                                        `json:"USER_ACTIONS_EXECUTION_RETENTION_DAYS,omitempty"`
+	USERACTIONSHIGHURGENCYNOTIFICATION               *bool                                                                       `json:"USER_ACTIONS_HIGH_URGENCY_NOTIFICATION,omitempty"`
+	USERACTIONSNOTIFICATIONTHRESHOLD                 *int                                                                        `json:"USER_ACTIONS_NOTIFICATION_THRESHOLD,omitempty"`
+	USERACTIONSPENDINGORDERHOURS                     *int                                                                        `json:"USER_ACTIONS_PENDING_ORDER_HOURS,omitempty"`
+	USERDATAACCESSLOGGINGENABLED                     *bool                                                                       `json:"USER_DATA_ACCESS_LOGGING_ENABLED,omitempty"`
+	USERDATAACCESSLOGRETENTIONDAYS                   *int                                                                        `json:"USER_DATA_ACCESS_LOG_RETENTION_DAYS,omitempty"`
+	USERDATAACCESSLOGSELFACCESS                      *bool                                                                       `json:"USER_DATA_ACCESS_LOG_SELF_ACCESS,omitempty"`
+	USERTABLECOLUMNS                                 *string                                                                     `json:"USER_TABLE_COLUMNS,omitempty"`
+	WALDURAUTHSOCIALROLECLAIM                        *string                                                                     `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
+	WALDURSUPPORTACTIVEBACKENDTYPE                   *WALDURSUPPORTACTIVEBACKENDTYPEEnum                                         `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
+	WALDURSUPPORTDISPLAYREQUESTTYPE                  *bool                                                                       `json:"WALDUR_SUPPORT_DISPLAY_REQUEST_TYPE,omitempty"`
+	WALDURSUPPORTENABLED                             *bool                                                                       `json:"WALDUR_SUPPORT_ENABLED,omitempty"`
+	ZAMMADAPIURL                                     *string                                                                     `json:"ZAMMAD_API_URL,omitempty"`
+	ZAMMADARTICLETYPE                                *ZAMMADARTICLETYPEEnum                                                      `json:"ZAMMAD_ARTICLE_TYPE,omitempty"`
+	ZAMMADCOMMENTCOOLDOWNDURATION                    *int                                                                        `json:"ZAMMAD_COMMENT_COOLDOWN_DURATION,omitempty"`
+	ZAMMADCOMMENTMARKER                              *string                                                                     `json:"ZAMMAD_COMMENT_MARKER,omitempty"`
+	ZAMMADCOMMENTPREFIX                              *string                                                                     `json:"ZAMMAD_COMMENT_PREFIX,omitempty"`
+	ZAMMADGROUP                                      *string                                                                     `json:"ZAMMAD_GROUP,omitempty"`
+	ZAMMADTOKEN                                      *string                                                                     `json:"ZAMMAD_TOKEN,omitempty"`
 }
 
 // ConstanceSettingsRequestForm_DEFAULTIDP defines model for ConstanceSettingsRequestForm.DEFAULTIDP.
@@ -25638,253 +25641,254 @@ type ConstanceSettingsRequestForm_SSHKEYALLOWEDTYPES_Item struct {
 
 // ConstanceSettingsRequestMultipart defines model for ConstanceSettingsRequestMultipart.
 type ConstanceSettingsRequestMultipart struct {
-	AIASSISTANTAPITOKEN                            *string                                                                          `json:"AI_ASSISTANT_API_TOKEN,omitempty"`
-	AIASSISTANTAPIURL                              *string                                                                          `json:"AI_ASSISTANT_API_URL,omitempty"`
-	AIASSISTANTBACKENDTYPE                         *string                                                                          `json:"AI_ASSISTANT_BACKEND_TYPE,omitempty"`
-	AIASSISTANTCOMPLETIONKWARGS                    *string                                                                          `json:"AI_ASSISTANT_COMPLETION_KWARGS,omitempty"`
-	AIASSISTANTENABLED                             *bool                                                                            `json:"AI_ASSISTANT_ENABLED,omitempty"`
-	AIASSISTANTENABLEDROLES                        *AIASSISTANTENABLEDROLESEnum                                                     `json:"AI_ASSISTANT_ENABLED_ROLES,omitempty"`
-	AIASSISTANTHISTORYLIMIT                        *int                                                                             `json:"AI_ASSISTANT_HISTORY_LIMIT,omitempty"`
-	AIASSISTANTINJECTIONALLOWLIST                  *string                                                                          `json:"AI_ASSISTANT_INJECTION_ALLOWLIST,omitempty"`
-	AIASSISTANTMODEL                               *string                                                                          `json:"AI_ASSISTANT_MODEL,omitempty"`
-	AIASSISTANTNAME                                *string                                                                          `json:"AI_ASSISTANT_NAME,omitempty"`
-	AIASSISTANTSESSIONRETENTIONDAYS                *int                                                                             `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
-	AIASSISTANTTOKENLIMITDAILY                     *int                                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
-	AIASSISTANTTOKENLIMITMONTHLY                   *int                                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_MONTHLY,omitempty"`
-	AIASSISTANTTOKENLIMITWEEKLY                    *int                                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_WEEKLY,omitempty"`
-	ALLOWSERVICEPROVIDEROFFERINGMANAGEMENT         *bool                                                                            `json:"ALLOW_SERVICE_PROVIDER_OFFERING_MANAGEMENT,omitempty"`
-	ANONYMOUSUSERCANVIEWOFFERINGS                  *bool                                                                            `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
-	ANONYMOUSUSERCANVIEWPLANS                      *bool                                                                            `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
-	ARROWAUTORECONCILIATION                        *bool                                                                            `json:"ARROW_AUTO_RECONCILIATION,omitempty"`
-	ARROWBILLINGCHECKINTERVALHOURS                 *int                                                                             `json:"ARROW_BILLING_CHECK_INTERVAL_HOURS,omitempty"`
-	ARROWCONSUMPTIONSYNCENABLED                    *bool                                                                            `json:"ARROW_CONSUMPTION_SYNC_ENABLED,omitempty"`
-	ARROWCONSUMPTIONSYNCINTERVALHOURS              *int                                                                             `json:"ARROW_CONSUMPTION_SYNC_INTERVAL_HOURS,omitempty"`
-	ARROWSYNCINTERVALHOURS                         *int                                                                             `json:"ARROW_SYNC_INTERVAL_HOURS,omitempty"`
-	ATLASSIANAFFECTEDRESOURCEFIELD                 *string                                                                          `json:"ATLASSIAN_AFFECTED_RESOURCE_FIELD,omitempty"`
-	ATLASSIANAPIURL                                *string                                                                          `json:"ATLASSIAN_API_URL,omitempty"`
-	ATLASSIANCALLERFIELD                           *string                                                                          `json:"ATLASSIAN_CALLER_FIELD,omitempty"`
-	ATLASSIANCUSTOMISSUEFIELDMAPPINGENABLED        *bool                                                                            `json:"ATLASSIAN_CUSTOM_ISSUE_FIELD_MAPPING_ENABLED,omitempty"`
-	ATLASSIANDEFAULTOFFERINGISSUETYPE              *string                                                                          `json:"ATLASSIAN_DEFAULT_OFFERING_ISSUE_TYPE,omitempty"`
-	ATLASSIANDESCRIPTIONTEMPLATE                   *string                                                                          `json:"ATLASSIAN_DESCRIPTION_TEMPLATE,omitempty"`
-	ATLASSIANEMAIL                                 *openapi_types.Email                                                             `json:"ATLASSIAN_EMAIL,omitempty"`
-	ATLASSIANEXCLUDEDATTACHMENTTYPES               *string                                                                          `json:"ATLASSIAN_EXCLUDED_ATTACHMENT_TYPES,omitempty"`
-	ATLASSIANIMPACTFIELD                           *string                                                                          `json:"ATLASSIAN_IMPACT_FIELD,omitempty"`
-	ATLASSIANLINKEDISSUETYPE                       *string                                                                          `json:"ATLASSIAN_LINKED_ISSUE_TYPE,omitempty"`
-	ATLASSIANMAPWALDURUSERSTOSERVICEDESKAGENTS     *bool                                                                            `json:"ATLASSIAN_MAP_WALDUR_USERS_TO_SERVICEDESK_AGENTS,omitempty"`
-	ATLASSIANOAUTH2ACCESSTOKEN                     *string                                                                          `json:"ATLASSIAN_OAUTH2_ACCESS_TOKEN,omitempty"`
-	ATLASSIANOAUTH2CLIENTID                        *string                                                                          `json:"ATLASSIAN_OAUTH2_CLIENT_ID,omitempty"`
-	ATLASSIANOAUTH2TOKENTYPE                       *string                                                                          `json:"ATLASSIAN_OAUTH2_TOKEN_TYPE,omitempty"`
-	ATLASSIANORGANISATIONFIELD                     *string                                                                          `json:"ATLASSIAN_ORGANISATION_FIELD,omitempty"`
-	ATLASSIANPASSWORD                              *string                                                                          `json:"ATLASSIAN_PASSWORD,omitempty"`
-	ATLASSIANPERSONALACCESSTOKEN                   *string                                                                          `json:"ATLASSIAN_PERSONAL_ACCESS_TOKEN,omitempty"`
-	ATLASSIANPROJECTFIELD                          *string                                                                          `json:"ATLASSIAN_PROJECT_FIELD,omitempty"`
-	ATLASSIANPROJECTID                             *string                                                                          `json:"ATLASSIAN_PROJECT_ID,omitempty"`
-	ATLASSIANREPORTERFIELD                         *string                                                                          `json:"ATLASSIAN_REPORTER_FIELD,omitempty"`
-	ATLASSIANREQUESTFEEDBACKFIELD                  *string                                                                          `json:"ATLASSIAN_REQUEST_FEEDBACK_FIELD,omitempty"`
-	ATLASSIANRESOLUTIONSLAFIELD                    *string                                                                          `json:"ATLASSIAN_RESOLUTION_SLA_FIELD,omitempty"`
-	ATLASSIANSATISFACTIONFIELD                     *string                                                                          `json:"ATLASSIAN_SATISFACTION_FIELD,omitempty"`
-	ATLASSIANSHAREDUSERNAME                        *bool                                                                            `json:"ATLASSIAN_SHARED_USERNAME,omitempty"`
-	ATLASSIANSLAFIELD                              *string                                                                          `json:"ATLASSIAN_SLA_FIELD,omitempty"`
-	ATLASSIANSUMMARYTEMPLATE                       *string                                                                          `json:"ATLASSIAN_SUMMARY_TEMPLATE,omitempty"`
-	ATLASSIANTEMPLATEFIELD                         *string                                                                          `json:"ATLASSIAN_TEMPLATE_FIELD,omitempty"`
-	ATLASSIANTOKEN                                 *string                                                                          `json:"ATLASSIAN_TOKEN,omitempty"`
-	ATLASSIANUSERNAME                              *string                                                                          `json:"ATLASSIAN_USERNAME,omitempty"`
-	ATLASSIANUSEOLDAPI                             *bool                                                                            `json:"ATLASSIAN_USE_OLD_API,omitempty"`
-	ATLASSIANVERIFYSSL                             *bool                                                                            `json:"ATLASSIAN_VERIFY_SSL,omitempty"`
-	ATLASSIANWALDURBACKENDIDFIELD                  *string                                                                          `json:"ATLASSIAN_WALDUR_BACKEND_ID_FIELD,omitempty"`
-	AUTOMATEDMATCHINGENABLED                       *bool                                                                            `json:"AUTOMATED_MATCHING_ENABLED,omitempty"`
-	AUTOAPPROVEUSERTOS                             *bool                                                                            `json:"AUTO_APPROVE_USER_TOS,omitempty"`
-	BRANDCOLOR                                     *string                                                                          `json:"BRAND_COLOR,omitempty"`
-	CALLMANAGEMENTHEROIMAGE                        *openapi_types.File                                                              `json:"CALL_MANAGEMENT_HERO_IMAGE,omitempty"`
-	COICOAUTHORSHIPLOOKBACKYEARS                   *int                                                                             `json:"COI_COAUTHORSHIP_LOOKBACK_YEARS,omitempty"`
-	COICOAUTHORSHIPTHRESHOLDPAPERS                 *int                                                                             `json:"COI_COAUTHORSHIP_THRESHOLD_PAPERS,omitempty"`
-	COIDETECTIONENABLED                            *bool                                                                            `json:"COI_DETECTION_ENABLED,omitempty"`
-	COIDISCLOSUREREQUIRED                          *bool                                                                            `json:"COI_DISCLOSURE_REQUIRED,omitempty"`
-	COIINSTITUTIONALLOOKBACKYEARS                  *int                                                                             `json:"COI_INSTITUTIONAL_LOOKBACK_YEARS,omitempty"`
-	COMMONFOOTERHTML                               *string                                                                          `json:"COMMON_FOOTER_HTML,omitempty"`
-	COMMONFOOTERTEXT                               *string                                                                          `json:"COMMON_FOOTER_TEXT,omitempty"`
-	COUNTRIES                                      *[]string                                                                        `json:"COUNTRIES,omitempty"`
-	CROSSREFMAILTO                                 *openapi_types.Email                                                             `json:"CROSSREF_MAILTO,omitempty"`
-	CURRENCYNAME                                   *string                                                                          `json:"CURRENCY_NAME,omitempty"`
-	DEACTIVATEUSERIFNOROLES                        *bool                                                                            `json:"DEACTIVATE_USER_IF_NO_ROLES,omitempty"`
-	DEFAULTIDP                                     *ConstanceSettingsRequestMultipart_DEFAULTIDP                                    `json:"DEFAULT_IDP,omitempty"`
-	DEFAULTOFFERINGUSERATTRIBUTES                  *[]ConstanceSettingsRequestMultipart_DEFAULTOFFERINGUSERATTRIBUTES_Item          `json:"DEFAULT_OFFERING_USER_ATTRIBUTES,omitempty"`
-	DISABLEDOFFERINGTYPES                          *[]ConstanceSettingsRequestMultipart_DISABLEDOFFERINGTYPES_Item                  `json:"DISABLED_OFFERING_TYPES,omitempty"`
-	DISABLEDARKTHEME                               *bool                                                                            `json:"DISABLE_DARK_THEME,omitempty"`
-	DISABLESENDINGNOTIFICATIONSABOUTRESOURCEUPDATE *bool                                                                            `json:"DISABLE_SENDING_NOTIFICATIONS_ABOUT_RESOURCE_UPDATE,omitempty"`
-	DISCLAIMERAREALOGO                             *openapi_types.File                                                              `json:"DISCLAIMER_AREA_LOGO,omitempty"`
-	DISCLAIMERAREATEXT                             *string                                                                          `json:"DISCLAIMER_AREA_TEXT,omitempty"`
-	DOCKERCLIENT                                   *string                                                                          `json:"DOCKER_CLIENT,omitempty"`
-	DOCKERIMAGES                                   *string                                                                          `json:"DOCKER_IMAGES,omitempty"`
-	DOCKERREMOVECONTAINER                          *bool                                                                            `json:"DOCKER_REMOVE_CONTAINER,omitempty"`
-	DOCKERRUNOPTIONS                               *string                                                                          `json:"DOCKER_RUN_OPTIONS,omitempty"`
-	DOCKERSCRIPTDIR                                *string                                                                          `json:"DOCKER_SCRIPT_DIR,omitempty"`
-	DOCKERVOLUMENAME                               *string                                                                          `json:"DOCKER_VOLUME_NAME,omitempty"`
-	DOCSURL                                        *string                                                                          `json:"DOCS_URL,omitempty"`
-	ENABLEDREPORTINGSCREENS                        *[]ConstanceSettingsRequestMultipart_ENABLEDREPORTINGSCREENS_Item                `json:"ENABLED_REPORTING_SCREENS,omitempty"`
-	ENABLEDUSERPROFILEATTRIBUTES                   *[]ConstanceSettingsRequestMultipart_ENABLEDUSERPROFILEATTRIBUTES_Item           `json:"ENABLED_USER_PROFILE_ATTRIBUTES,omitempty"`
-	ENABLEISSUESFORUSERSSHKEYCHANGES               *bool                                                                            `json:"ENABLE_ISSUES_FOR_USER_SSH_KEY_CHANGES,omitempty"`
-	ENABLEMOCKCOURSEACCOUNTBACKEND                 *bool                                                                            `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
-	ENABLEMOCKSERVICEACCOUNTBACKEND                *bool                                                                            `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
-	ENABLEORDERSTARTDATE                           *bool                                                                            `json:"ENABLE_ORDER_START_DATE,omitempty"`
-	ENABLEPROJECTDIGEST                            *bool                                                                            `json:"ENABLE_PROJECT_DIGEST,omitempty"`
-	ENABLESTALERESOURCENOTIFICATIONS               *bool                                                                            `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
-	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                                                                            `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
-	ENFORCEMANDATORYUSERATTRIBUTES                 *bool                                                                            `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
-	ENFORCEOFFERINGUSERPROFILECOMPLETENESS         *bool                                                                            `json:"ENFORCE_OFFERING_USER_PROFILE_COMPLETENESS,omitempty"`
-	ENFORCEUSERCONSENTFOROFFERINGS                 *bool                                                                            `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
-	FAVICON                                        *openapi_types.File                                                              `json:"FAVICON,omitempty"`
-	FEDERATEDIDENTITYDEACTIVATIONPOLICY            *FEDERATEDIDENTITYDEACTIVATIONPOLICYEnum                                         `json:"FEDERATED_IDENTITY_DEACTIVATION_POLICY,omitempty"`
-	FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES         *[]ConstanceSettingsRequestMultipart_FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES_Item `json:"FEDERATED_IDENTITY_SYNC_ALLOWED_ATTRIBUTES,omitempty"`
-	FEDERATEDIDENTITYSYNCENABLED                   *bool                                                                            `json:"FEDERATED_IDENTITY_SYNC_ENABLED,omitempty"`
-	FONTFAMILY                                     *FONTFAMILYEnum                                                                  `json:"FONT_FAMILY,omitempty"`
-	FREEIPABLACKLISTEDUSERNAMES                    *[]string                                                                        `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
-	FREEIPAENABLED                                 *bool                                                                            `json:"FREEIPA_ENABLED,omitempty"`
-	FREEIPAGROUPNAMEPREFIX                         *string                                                                          `json:"FREEIPA_GROUPNAME_PREFIX,omitempty"`
-	FREEIPAGROUPSYNCHRONIZATIONENABLED             *bool                                                                            `json:"FREEIPA_GROUP_SYNCHRONIZATION_ENABLED,omitempty"`
-	FREEIPAHOSTNAME                                *string                                                                          `json:"FREEIPA_HOSTNAME,omitempty"`
-	FREEIPAPASSWORD                                *string                                                                          `json:"FREEIPA_PASSWORD,omitempty"`
-	FREEIPAUSERNAME                                *string                                                                          `json:"FREEIPA_USERNAME,omitempty"`
-	FREEIPAUSERNAMEPREFIX                          *string                                                                          `json:"FREEIPA_USERNAME_PREFIX,omitempty"`
-	FREEIPAVERIFYSSL                               *bool                                                                            `json:"FREEIPA_VERIFY_SSL,omitempty"`
-	FULLPAGETITLE                                  *string                                                                          `json:"FULL_PAGE_TITLE,omitempty"`
-	HEROIMAGE                                      *openapi_types.File                                                              `json:"HERO_IMAGE,omitempty"`
-	HEROLINKLABEL                                  *string                                                                          `json:"HERO_LINK_LABEL,omitempty"`
-	HEROLINKURL                                    *string                                                                          `json:"HERO_LINK_URL,omitempty"`
-	HOMEPORTURL                                    *string                                                                          `json:"HOMEPORT_URL,omitempty"`
-	INVITATIONALLOWEDFIELDS                        *[]ConstanceSettingsRequestMultipart_INVITATIONALLOWEDFIELDS_Item                `json:"INVITATION_ALLOWED_FIELDS,omitempty"`
-	INVITATIONDISABLEMULTIPLEROLES                 *bool                                                                            `json:"INVITATION_DISABLE_MULTIPLE_ROLES,omitempty"`
-	K8SCONFIGPATH                                  *string                                                                          `json:"K8S_CONFIG_PATH,omitempty"`
-	K8SJOBTIMEOUT                                  *int                                                                             `json:"K8S_JOB_TIMEOUT,omitempty"`
-	K8SNAMESPACE                                   *string                                                                          `json:"K8S_NAMESPACE,omitempty"`
-	KEYCLOAKICON                                   *openapi_types.File                                                              `json:"KEYCLOAK_ICON,omitempty"`
-	LANGUAGECHOICES                                *string                                                                          `json:"LANGUAGE_CHOICES,omitempty"`
-	LOGINLOGO                                      *openapi_types.File                                                              `json:"LOGIN_LOGO,omitempty"`
-	LOGINLOGOMULTILINGUAL                          *map[string]*openapi_types.File                                                  `json:"LOGIN_LOGO_MULTILINGUAL,omitempty"`
-	LOGINPAGECAROUSELSLIDES                        *[]interface{}                                                                   `json:"LOGIN_PAGE_CAROUSEL_SLIDES,omitempty"`
-	LOGINPAGELAYOUT                                *LOGINPAGELAYOUTEnum                                                             `json:"LOGIN_PAGE_LAYOUT,omitempty"`
-	LOGINPAGENEWS                                  *[]interface{}                                                                   `json:"LOGIN_PAGE_NEWS,omitempty"`
-	LOGINPAGESTATS                                 *[]interface{}                                                                   `json:"LOGIN_PAGE_STATS,omitempty"`
-	LOGINPAGEVIDEOURL                              *string                                                                          `json:"LOGIN_PAGE_VIDEO_URL,omitempty"`
-	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES     *int                                                                             `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
-	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM            *[]ConstanceSettingsRequestMultipart_MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM_Item    `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
-	MANDATORYUSERATTRIBUTES                        *[]ConstanceSettingsRequestMultipart_MANDATORYUSERATTRIBUTES_Item                `json:"MANDATORY_USER_ATTRIBUTES,omitempty"`
-	MARKETPLACECARDSTYLE                           *MARKETPLACECARDSTYLEEnum                                                        `json:"MARKETPLACE_CARD_STYLE,omitempty"`
-	MARKETPLACEHEROIMAGE                           *openapi_types.File                                                              `json:"MARKETPLACE_HERO_IMAGE,omitempty"`
-	MARKETPLACELANDINGPAGE                         *string                                                                          `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
-	MARKETPLACELAYOUTMODE                          *MARKETPLACELAYOUTMODEEnum                                                       `json:"MARKETPLACE_LAYOUT_MODE,omitempty"`
-	NOTIFYABOUTRESOURCECHANGE                      *bool                                                                            `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
-	NOTIFYSTAFFABOUTAPPROVALS                      *bool                                                                            `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
-	OFFERINGLOGOPLACEHOLDER                        *openapi_types.File                                                              `json:"OFFERING_LOGO_PLACEHOLDER,omitempty"`
-	OIDCACCESSTOKENENABLED                         *bool                                                                            `json:"OIDC_ACCESS_TOKEN_ENABLED,omitempty"`
-	OIDCAUTHURL                                    *string                                                                          `json:"OIDC_AUTH_URL,omitempty"`
-	OIDCBLOCKCREATIONOFUNINVITEDUSERS              *bool                                                                            `json:"OIDC_BLOCK_CREATION_OF_UNINVITED_USERS,omitempty"`
-	OIDCCACHETIMEOUT                               *int                                                                             `json:"OIDC_CACHE_TIMEOUT,omitempty"`
-	OIDCCLIENTID                                   *string                                                                          `json:"OIDC_CLIENT_ID,omitempty"`
-	OIDCCLIENTSECRET                               *string                                                                          `json:"OIDC_CLIENT_SECRET,omitempty"`
-	OIDCDEFAULTLOGOUTURL                           *string                                                                          `json:"OIDC_DEFAULT_LOGOUT_URL,omitempty"`
-	OIDCINTROSPECTIONURL                           *string                                                                          `json:"OIDC_INTROSPECTION_URL,omitempty"`
-	OIDCMATCHMAKINGBYEMAIL                         *bool                                                                            `json:"OIDC_MATCHMAKING_BY_EMAIL,omitempty"`
-	OIDCUSERFIELD                                  *string                                                                          `json:"OIDC_USER_FIELD,omitempty"`
-	ONBOARDINGARIREGISTERBASEURL                   *string                                                                          `json:"ONBOARDING_ARIREGISTER_BASE_URL,omitempty"`
-	ONBOARDINGARIREGISTERPASSWORD                  *string                                                                          `json:"ONBOARDING_ARIREGISTER_PASSWORD,omitempty"`
-	ONBOARDINGARIREGISTERTIMEOUT                   *int                                                                             `json:"ONBOARDING_ARIREGISTER_TIMEOUT,omitempty"`
-	ONBOARDINGARIREGISTERUSERNAME                  *string                                                                          `json:"ONBOARDING_ARIREGISTER_USERNAME,omitempty"`
-	ONBOARDINGBOLAGSVERKETAPIURL                   *string                                                                          `json:"ONBOARDING_BOLAGSVERKET_API_URL,omitempty"`
-	ONBOARDINGBOLAGSVERKETCLIENTID                 *string                                                                          `json:"ONBOARDING_BOLAGSVERKET_CLIENT_ID,omitempty"`
-	ONBOARDINGBOLAGSVERKETCLIENTSECRET             *string                                                                          `json:"ONBOARDING_BOLAGSVERKET_CLIENT_SECRET,omitempty"`
-	ONBOARDINGBOLAGSVERKETTOKENAPIURL              *string                                                                          `json:"ONBOARDING_BOLAGSVERKET_TOKEN_API_URL,omitempty"`
-	ONBOARDINGBREGAPIURL                           *string                                                                          `json:"ONBOARDING_BREG_API_URL,omitempty"`
-	ONBOARDINGVALIDATIONMETHODS                    *[]ConstanceSettingsRequestMultipart_ONBOARDINGVALIDATIONMETHODS_Item            `json:"ONBOARDING_VALIDATION_METHODS,omitempty"`
-	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                                                                             `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
-	ONBOARDINGWICOAPIURL                           *string                                                                          `json:"ONBOARDING_WICO_API_URL,omitempty"`
-	ONBOARDINGWICOTOKEN                            *string                                                                          `json:"ONBOARDING_WICO_TOKEN,omitempty"`
-	ORCIDAPIURL                                    *string                                                                          `json:"ORCID_API_URL,omitempty"`
-	ORCIDAUTHURL                                   *string                                                                          `json:"ORCID_AUTH_URL,omitempty"`
-	ORCIDCLIENTID                                  *string                                                                          `json:"ORCID_CLIENT_ID,omitempty"`
-	ORCIDCLIENTSECRET                              *string                                                                          `json:"ORCID_CLIENT_SECRET,omitempty"`
-	ORCIDREDIRECTURI                               *string                                                                          `json:"ORCID_REDIRECT_URI,omitempty"`
-	ORCIDSANDBOXMODE                               *bool                                                                            `json:"ORCID_SANDBOX_MODE,omitempty"`
-	POWEREDBYLOGO                                  *openapi_types.File                                                              `json:"POWERED_BY_LOGO,omitempty"`
-	PROJECTENDDATEMANDATORY                        *bool                                                                            `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
-	PROPOSALREVIEWDURATION                         *int                                                                             `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
-	RANCHERUSERNAMEINPUTLABEL                      *string                                                                          `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
-	REMOTEEDUTEAMSREFRESHTOKEN                     *string                                                                          `json:"REMOTE_EDUTEAMS_REFRESH_TOKEN,omitempty"`
-	RESTRICTEDOFFERINGVISIBILITYMODE               *RESTRICTEDOFFERINGVISIBILITYMODEEnum                                            `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
-	REVIEWERPROFILESENABLED                        *bool                                                                            `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
-	SCIMAPIKEY                                     *string                                                                          `json:"SCIM_API_KEY,omitempty"`
-	SCIMAPIURL                                     *string                                                                          `json:"SCIM_API_URL,omitempty"`
-	SCIMMEMBERSHIPSYNCENABLED                      *bool                                                                            `json:"SCIM_MEMBERSHIP_SYNC_ENABLED,omitempty"`
-	SCIMURNNAMESPACE                               *string                                                                          `json:"SCIM_URN_NAMESPACE,omitempty"`
-	SCRIPTRUNMODE                                  *SCRIPTRUNMODEEnum                                                               `json:"SCRIPT_RUN_MODE,omitempty"`
-	SEMANTICSCHOLARAPIKEY                          *string                                                                          `json:"SEMANTIC_SCHOLAR_API_KEY,omitempty"`
-	SHORTPAGETITLE                                 *string                                                                          `json:"SHORT_PAGE_TITLE,omitempty"`
-	SIDEBARLOGO                                    *openapi_types.File                                                              `json:"SIDEBAR_LOGO,omitempty"`
-	SIDEBARLOGODARK                                *openapi_types.File                                                              `json:"SIDEBAR_LOGO_DARK,omitempty"`
-	SIDEBARLOGOMOBILE                              *openapi_types.File                                                              `json:"SIDEBAR_LOGO_MOBILE,omitempty"`
-	SIDEBARSTYLE                                   *SIDEBARSTYLEEnum                                                                `json:"SIDEBAR_STYLE,omitempty"`
-	SITEADDRESS                                    *string                                                                          `json:"SITE_ADDRESS,omitempty"`
-	SITEDESCRIPTION                                *string                                                                          `json:"SITE_DESCRIPTION,omitempty"`
-	SITEEMAIL                                      *string                                                                          `json:"SITE_EMAIL,omitempty"`
-	SITENAME                                       *string                                                                          `json:"SITE_NAME,omitempty"`
-	SITEPHONE                                      *string                                                                          `json:"SITE_PHONE,omitempty"`
-	SLURMPOLICYEVALUATIONLOGRETENTIONDAYS          *int                                                                             `json:"SLURM_POLICY_EVALUATION_LOG_RETENTION_DAYS,omitempty"`
-	SMAXAFFECTEDRESOURCEFIELD                      *string                                                                          `json:"SMAX_AFFECTED_RESOURCE_FIELD,omitempty"`
-	SMAXAPIURL                                     *string                                                                          `json:"SMAX_API_URL,omitempty"`
-	SMAXCREATIONSOURCENAME                         *string                                                                          `json:"SMAX_CREATION_SOURCE_NAME,omitempty"`
-	SMAXLOGIN                                      *string                                                                          `json:"SMAX_LOGIN,omitempty"`
-	SMAXORGANISATIONFIELD                          *string                                                                          `json:"SMAX_ORGANISATION_FIELD,omitempty"`
-	SMAXPASSWORD                                   *string                                                                          `json:"SMAX_PASSWORD,omitempty"`
-	SMAXPROJECTFIELD                               *string                                                                          `json:"SMAX_PROJECT_FIELD,omitempty"`
-	SMAXREQUESTSOFFERING                           *string                                                                          `json:"SMAX_REQUESTS_OFFERING,omitempty"`
-	SMAXSECONDSTOWAIT                              *int                                                                             `json:"SMAX_SECONDS_TO_WAIT,omitempty"`
-	SMAXTENANTID                                   *string                                                                          `json:"SMAX_TENANT_ID,omitempty"`
-	SMAXTIMESTOPULL                                *int                                                                             `json:"SMAX_TIMES_TO_PULL,omitempty"`
-	SMAXVERIFYSSL                                  *bool                                                                            `json:"SMAX_VERIFY_SSL,omitempty"`
-	SOFTWARECATALOGCLEANUPENABLED                  *bool                                                                            `json:"SOFTWARE_CATALOG_CLEANUP_ENABLED,omitempty"`
-	SOFTWARECATALOGEESSIAPIURL                     *string                                                                          `json:"SOFTWARE_CATALOG_EESSI_API_URL,omitempty"`
-	SOFTWARECATALOGEESSIINCLUDEEXTENSIONS          *bool                                                                            `json:"SOFTWARE_CATALOG_EESSI_INCLUDE_EXTENSIONS,omitempty"`
-	SOFTWARECATALOGEESSIUPDATEENABLED              *bool                                                                            `json:"SOFTWARE_CATALOG_EESSI_UPDATE_ENABLED,omitempty"`
-	SOFTWARECATALOGEESSIVERSION                    *string                                                                          `json:"SOFTWARE_CATALOG_EESSI_VERSION,omitempty"`
-	SOFTWARECATALOGRETENTIONDAYS                   *int                                                                             `json:"SOFTWARE_CATALOG_RETENTION_DAYS,omitempty"`
-	SOFTWARECATALOGSPACKDATAURL                    *string                                                                          `json:"SOFTWARE_CATALOG_SPACK_DATA_URL,omitempty"`
-	SOFTWARECATALOGSPACKUPDATEENABLED              *bool                                                                            `json:"SOFTWARE_CATALOG_SPACK_UPDATE_ENABLED,omitempty"`
-	SOFTWARECATALOGSPACKVERSION                    *string                                                                          `json:"SOFTWARE_CATALOG_SPACK_VERSION,omitempty"`
-	SOFTWARECATALOGUPDATEEXISTINGPACKAGES          *bool                                                                            `json:"SOFTWARE_CATALOG_UPDATE_EXISTING_PACKAGES,omitempty"`
-	SSHKEYALLOWEDTYPES                             *[]ConstanceSettingsRequestMultipart_SSHKEYALLOWEDTYPES_Item                     `json:"SSH_KEY_ALLOWED_TYPES,omitempty"`
-	SSHKEYMINRSAKEYSIZE                            *int                                                                             `json:"SSH_KEY_MIN_RSA_KEY_SIZE,omitempty"`
-	SUPPORTPORTALURL                               *string                                                                          `json:"SUPPORT_PORTAL_URL,omitempty"`
-	SYSTEMLOGENABLED                               *bool                                                                            `json:"SYSTEM_LOG_ENABLED,omitempty"`
-	SYSTEMLOGMAXROWSPERSOURCE                      *int                                                                             `json:"SYSTEM_LOG_MAX_ROWS_PER_SOURCE,omitempty"`
-	TABLEGROWTHMINSIZEBYTES                        *int                                                                             `json:"TABLE_GROWTH_MIN_SIZE_BYTES,omitempty"`
-	TABLEGROWTHMONITORINGENABLED                   *bool                                                                            `json:"TABLE_GROWTH_MONITORING_ENABLED,omitempty"`
-	TABLEGROWTHMONTHLYTHRESHOLDPERCENT             *int                                                                             `json:"TABLE_GROWTH_MONTHLY_THRESHOLD_PERCENT,omitempty"`
-	TABLEGROWTHRETENTIONDAYS                       *int                                                                             `json:"TABLE_GROWTH_RETENTION_DAYS,omitempty"`
-	TABLEGROWTHWEEKLYTHRESHOLDPERCENT              *int                                                                             `json:"TABLE_GROWTH_WEEKLY_THRESHOLD_PERCENT,omitempty"`
-	TELEMETRYURL                                   *string                                                                          `json:"TELEMETRY_URL,omitempty"`
-	TELEMETRYVERSION                               *int                                                                             `json:"TELEMETRY_VERSION,omitempty"`
-	THUMBNAILSIZE                                  *string                                                                          `json:"THUMBNAIL_SIZE,omitempty"`
-	USERACTIONSDEFAULTEXPIRATIONREMINDERS          *[]string                                                                        `json:"USER_ACTIONS_DEFAULT_EXPIRATION_REMINDERS,omitempty"`
-	USERACTIONSENABLED                             *bool                                                                            `json:"USER_ACTIONS_ENABLED,omitempty"`
-	USERACTIONSEXECUTIONRETENTIONDAYS              *int                                                                             `json:"USER_ACTIONS_EXECUTION_RETENTION_DAYS,omitempty"`
-	USERACTIONSHIGHURGENCYNOTIFICATION             *bool                                                                            `json:"USER_ACTIONS_HIGH_URGENCY_NOTIFICATION,omitempty"`
-	USERACTIONSNOTIFICATIONTHRESHOLD               *int                                                                             `json:"USER_ACTIONS_NOTIFICATION_THRESHOLD,omitempty"`
-	USERACTIONSPENDINGORDERHOURS                   *int                                                                             `json:"USER_ACTIONS_PENDING_ORDER_HOURS,omitempty"`
-	USERDATAACCESSLOGGINGENABLED                   *bool                                                                            `json:"USER_DATA_ACCESS_LOGGING_ENABLED,omitempty"`
-	USERDATAACCESSLOGRETENTIONDAYS                 *int                                                                             `json:"USER_DATA_ACCESS_LOG_RETENTION_DAYS,omitempty"`
-	USERDATAACCESSLOGSELFACCESS                    *bool                                                                            `json:"USER_DATA_ACCESS_LOG_SELF_ACCESS,omitempty"`
-	USERTABLECOLUMNS                               *string                                                                          `json:"USER_TABLE_COLUMNS,omitempty"`
-	WALDURAUTHSOCIALROLECLAIM                      *string                                                                          `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
-	WALDURSUPPORTACTIVEBACKENDTYPE                 *WALDURSUPPORTACTIVEBACKENDTYPEEnum                                              `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
-	WALDURSUPPORTDISPLAYREQUESTTYPE                *bool                                                                            `json:"WALDUR_SUPPORT_DISPLAY_REQUEST_TYPE,omitempty"`
-	WALDURSUPPORTENABLED                           *bool                                                                            `json:"WALDUR_SUPPORT_ENABLED,omitempty"`
-	ZAMMADAPIURL                                   *string                                                                          `json:"ZAMMAD_API_URL,omitempty"`
-	ZAMMADARTICLETYPE                              *ZAMMADARTICLETYPEEnum                                                           `json:"ZAMMAD_ARTICLE_TYPE,omitempty"`
-	ZAMMADCOMMENTCOOLDOWNDURATION                  *int                                                                             `json:"ZAMMAD_COMMENT_COOLDOWN_DURATION,omitempty"`
-	ZAMMADCOMMENTMARKER                            *string                                                                          `json:"ZAMMAD_COMMENT_MARKER,omitempty"`
-	ZAMMADCOMMENTPREFIX                            *string                                                                          `json:"ZAMMAD_COMMENT_PREFIX,omitempty"`
-	ZAMMADGROUP                                    *string                                                                          `json:"ZAMMAD_GROUP,omitempty"`
-	ZAMMADTOKEN                                    *string                                                                          `json:"ZAMMAD_TOKEN,omitempty"`
+	AIASSISTANTAPITOKEN                              *string                                                                          `json:"AI_ASSISTANT_API_TOKEN,omitempty"`
+	AIASSISTANTAPIURL                                *string                                                                          `json:"AI_ASSISTANT_API_URL,omitempty"`
+	AIASSISTANTBACKENDTYPE                           *string                                                                          `json:"AI_ASSISTANT_BACKEND_TYPE,omitempty"`
+	AIASSISTANTCOMPLETIONKWARGS                      *string                                                                          `json:"AI_ASSISTANT_COMPLETION_KWARGS,omitempty"`
+	AIASSISTANTENABLED                               *bool                                                                            `json:"AI_ASSISTANT_ENABLED,omitempty"`
+	AIASSISTANTENABLEDROLES                          *AIASSISTANTENABLEDROLESEnum                                                     `json:"AI_ASSISTANT_ENABLED_ROLES,omitempty"`
+	AIASSISTANTHISTORYLIMIT                          *int                                                                             `json:"AI_ASSISTANT_HISTORY_LIMIT,omitempty"`
+	AIASSISTANTINJECTIONALLOWLIST                    *string                                                                          `json:"AI_ASSISTANT_INJECTION_ALLOWLIST,omitempty"`
+	AIASSISTANTMODEL                                 *string                                                                          `json:"AI_ASSISTANT_MODEL,omitempty"`
+	AIASSISTANTNAME                                  *string                                                                          `json:"AI_ASSISTANT_NAME,omitempty"`
+	AIASSISTANTSESSIONRETENTIONDAYS                  *int                                                                             `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
+	AIASSISTANTTOKENLIMITDAILY                       *int                                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
+	AIASSISTANTTOKENLIMITMONTHLY                     *int                                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_MONTHLY,omitempty"`
+	AIASSISTANTTOKENLIMITWEEKLY                      *int                                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_WEEKLY,omitempty"`
+	ALLOWSERVICEPROVIDEROFFERINGMANAGEMENT           *bool                                                                            `json:"ALLOW_SERVICE_PROVIDER_OFFERING_MANAGEMENT,omitempty"`
+	ANONYMOUSUSERCANVIEWOFFERINGS                    *bool                                                                            `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
+	ANONYMOUSUSERCANVIEWPLANS                        *bool                                                                            `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
+	ARROWAUTORECONCILIATION                          *bool                                                                            `json:"ARROW_AUTO_RECONCILIATION,omitempty"`
+	ARROWBILLINGCHECKINTERVALHOURS                   *int                                                                             `json:"ARROW_BILLING_CHECK_INTERVAL_HOURS,omitempty"`
+	ARROWCONSUMPTIONSYNCENABLED                      *bool                                                                            `json:"ARROW_CONSUMPTION_SYNC_ENABLED,omitempty"`
+	ARROWCONSUMPTIONSYNCINTERVALHOURS                *int                                                                             `json:"ARROW_CONSUMPTION_SYNC_INTERVAL_HOURS,omitempty"`
+	ARROWSYNCINTERVALHOURS                           *int                                                                             `json:"ARROW_SYNC_INTERVAL_HOURS,omitempty"`
+	ATLASSIANAFFECTEDRESOURCEFIELD                   *string                                                                          `json:"ATLASSIAN_AFFECTED_RESOURCE_FIELD,omitempty"`
+	ATLASSIANAPIURL                                  *string                                                                          `json:"ATLASSIAN_API_URL,omitempty"`
+	ATLASSIANCALLERFIELD                             *string                                                                          `json:"ATLASSIAN_CALLER_FIELD,omitempty"`
+	ATLASSIANCUSTOMISSUEFIELDMAPPINGENABLED          *bool                                                                            `json:"ATLASSIAN_CUSTOM_ISSUE_FIELD_MAPPING_ENABLED,omitempty"`
+	ATLASSIANDEFAULTOFFERINGISSUETYPE                *string                                                                          `json:"ATLASSIAN_DEFAULT_OFFERING_ISSUE_TYPE,omitempty"`
+	ATLASSIANDESCRIPTIONTEMPLATE                     *string                                                                          `json:"ATLASSIAN_DESCRIPTION_TEMPLATE,omitempty"`
+	ATLASSIANEMAIL                                   *openapi_types.Email                                                             `json:"ATLASSIAN_EMAIL,omitempty"`
+	ATLASSIANEXCLUDEDATTACHMENTTYPES                 *string                                                                          `json:"ATLASSIAN_EXCLUDED_ATTACHMENT_TYPES,omitempty"`
+	ATLASSIANIMPACTFIELD                             *string                                                                          `json:"ATLASSIAN_IMPACT_FIELD,omitempty"`
+	ATLASSIANLINKEDISSUETYPE                         *string                                                                          `json:"ATLASSIAN_LINKED_ISSUE_TYPE,omitempty"`
+	ATLASSIANMAPWALDURUSERSTOSERVICEDESKAGENTS       *bool                                                                            `json:"ATLASSIAN_MAP_WALDUR_USERS_TO_SERVICEDESK_AGENTS,omitempty"`
+	ATLASSIANOAUTH2ACCESSTOKEN                       *string                                                                          `json:"ATLASSIAN_OAUTH2_ACCESS_TOKEN,omitempty"`
+	ATLASSIANOAUTH2CLIENTID                          *string                                                                          `json:"ATLASSIAN_OAUTH2_CLIENT_ID,omitempty"`
+	ATLASSIANOAUTH2TOKENTYPE                         *string                                                                          `json:"ATLASSIAN_OAUTH2_TOKEN_TYPE,omitempty"`
+	ATLASSIANORGANISATIONFIELD                       *string                                                                          `json:"ATLASSIAN_ORGANISATION_FIELD,omitempty"`
+	ATLASSIANPASSWORD                                *string                                                                          `json:"ATLASSIAN_PASSWORD,omitempty"`
+	ATLASSIANPERSONALACCESSTOKEN                     *string                                                                          `json:"ATLASSIAN_PERSONAL_ACCESS_TOKEN,omitempty"`
+	ATLASSIANPROJECTFIELD                            *string                                                                          `json:"ATLASSIAN_PROJECT_FIELD,omitempty"`
+	ATLASSIANPROJECTID                               *string                                                                          `json:"ATLASSIAN_PROJECT_ID,omitempty"`
+	ATLASSIANREPORTERFIELD                           *string                                                                          `json:"ATLASSIAN_REPORTER_FIELD,omitempty"`
+	ATLASSIANREQUESTFEEDBACKFIELD                    *string                                                                          `json:"ATLASSIAN_REQUEST_FEEDBACK_FIELD,omitempty"`
+	ATLASSIANRESOLUTIONSLAFIELD                      *string                                                                          `json:"ATLASSIAN_RESOLUTION_SLA_FIELD,omitempty"`
+	ATLASSIANSATISFACTIONFIELD                       *string                                                                          `json:"ATLASSIAN_SATISFACTION_FIELD,omitempty"`
+	ATLASSIANSHAREDUSERNAME                          *bool                                                                            `json:"ATLASSIAN_SHARED_USERNAME,omitempty"`
+	ATLASSIANSLAFIELD                                *string                                                                          `json:"ATLASSIAN_SLA_FIELD,omitempty"`
+	ATLASSIANSUMMARYTEMPLATE                         *string                                                                          `json:"ATLASSIAN_SUMMARY_TEMPLATE,omitempty"`
+	ATLASSIANTEMPLATEFIELD                           *string                                                                          `json:"ATLASSIAN_TEMPLATE_FIELD,omitempty"`
+	ATLASSIANTOKEN                                   *string                                                                          `json:"ATLASSIAN_TOKEN,omitempty"`
+	ATLASSIANUSERNAME                                *string                                                                          `json:"ATLASSIAN_USERNAME,omitempty"`
+	ATLASSIANUSEOLDAPI                               *bool                                                                            `json:"ATLASSIAN_USE_OLD_API,omitempty"`
+	ATLASSIANVERIFYSSL                               *bool                                                                            `json:"ATLASSIAN_VERIFY_SSL,omitempty"`
+	ATLASSIANWALDURBACKENDIDFIELD                    *string                                                                          `json:"ATLASSIAN_WALDUR_BACKEND_ID_FIELD,omitempty"`
+	AUTOMATEDMATCHINGENABLED                         *bool                                                                            `json:"AUTOMATED_MATCHING_ENABLED,omitempty"`
+	AUTOAPPROVEUSERTOS                               *bool                                                                            `json:"AUTO_APPROVE_USER_TOS,omitempty"`
+	BRANDCOLOR                                       *string                                                                          `json:"BRAND_COLOR,omitempty"`
+	CALLMANAGEMENTHEROIMAGE                          *openapi_types.File                                                              `json:"CALL_MANAGEMENT_HERO_IMAGE,omitempty"`
+	COICOAUTHORSHIPLOOKBACKYEARS                     *int                                                                             `json:"COI_COAUTHORSHIP_LOOKBACK_YEARS,omitempty"`
+	COICOAUTHORSHIPTHRESHOLDPAPERS                   *int                                                                             `json:"COI_COAUTHORSHIP_THRESHOLD_PAPERS,omitempty"`
+	COIDETECTIONENABLED                              *bool                                                                            `json:"COI_DETECTION_ENABLED,omitempty"`
+	COIDISCLOSUREREQUIRED                            *bool                                                                            `json:"COI_DISCLOSURE_REQUIRED,omitempty"`
+	COIINSTITUTIONALLOOKBACKYEARS                    *int                                                                             `json:"COI_INSTITUTIONAL_LOOKBACK_YEARS,omitempty"`
+	COMMONFOOTERHTML                                 *string                                                                          `json:"COMMON_FOOTER_HTML,omitempty"`
+	COMMONFOOTERTEXT                                 *string                                                                          `json:"COMMON_FOOTER_TEXT,omitempty"`
+	COUNTRIES                                        *[]string                                                                        `json:"COUNTRIES,omitempty"`
+	CROSSREFMAILTO                                   *openapi_types.Email                                                             `json:"CROSSREF_MAILTO,omitempty"`
+	CURRENCYNAME                                     *string                                                                          `json:"CURRENCY_NAME,omitempty"`
+	DEACTIVATEUSERIFNOROLES                          *bool                                                                            `json:"DEACTIVATE_USER_IF_NO_ROLES,omitempty"`
+	DEFAULTIDP                                       *ConstanceSettingsRequestMultipart_DEFAULTIDP                                    `json:"DEFAULT_IDP,omitempty"`
+	DEFAULTOFFERINGUSERATTRIBUTES                    *[]ConstanceSettingsRequestMultipart_DEFAULTOFFERINGUSERATTRIBUTES_Item          `json:"DEFAULT_OFFERING_USER_ATTRIBUTES,omitempty"`
+	DISABLEDOFFERINGTYPES                            *[]ConstanceSettingsRequestMultipart_DISABLEDOFFERINGTYPES_Item                  `json:"DISABLED_OFFERING_TYPES,omitempty"`
+	DISABLEDARKTHEME                                 *bool                                                                            `json:"DISABLE_DARK_THEME,omitempty"`
+	DISABLESENDINGNOTIFICATIONSABOUTRESOURCEUPDATE   *bool                                                                            `json:"DISABLE_SENDING_NOTIFICATIONS_ABOUT_RESOURCE_UPDATE,omitempty"`
+	DISCLAIMERAREALOGO                               *openapi_types.File                                                              `json:"DISCLAIMER_AREA_LOGO,omitempty"`
+	DISCLAIMERAREATEXT                               *string                                                                          `json:"DISCLAIMER_AREA_TEXT,omitempty"`
+	DOCKERCLIENT                                     *string                                                                          `json:"DOCKER_CLIENT,omitempty"`
+	DOCKERIMAGES                                     *string                                                                          `json:"DOCKER_IMAGES,omitempty"`
+	DOCKERREMOVECONTAINER                            *bool                                                                            `json:"DOCKER_REMOVE_CONTAINER,omitempty"`
+	DOCKERRUNOPTIONS                                 *string                                                                          `json:"DOCKER_RUN_OPTIONS,omitempty"`
+	DOCKERSCRIPTDIR                                  *string                                                                          `json:"DOCKER_SCRIPT_DIR,omitempty"`
+	DOCKERVOLUMENAME                                 *string                                                                          `json:"DOCKER_VOLUME_NAME,omitempty"`
+	DOCSURL                                          *string                                                                          `json:"DOCS_URL,omitempty"`
+	ENABLEDREPORTINGSCREENS                          *[]ConstanceSettingsRequestMultipart_ENABLEDREPORTINGSCREENS_Item                `json:"ENABLED_REPORTING_SCREENS,omitempty"`
+	ENABLEDUSERPROFILEATTRIBUTES                     *[]ConstanceSettingsRequestMultipart_ENABLEDUSERPROFILEATTRIBUTES_Item           `json:"ENABLED_USER_PROFILE_ATTRIBUTES,omitempty"`
+	ENABLEISSUESFORUSERSSHKEYCHANGES                 *bool                                                                            `json:"ENABLE_ISSUES_FOR_USER_SSH_KEY_CHANGES,omitempty"`
+	ENABLEMOCKCOURSEACCOUNTBACKEND                   *bool                                                                            `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
+	ENABLEMOCKSERVICEACCOUNTBACKEND                  *bool                                                                            `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
+	ENABLEORDERSTARTDATE                             *bool                                                                            `json:"ENABLE_ORDER_START_DATE,omitempty"`
+	ENABLEPROJECTDIGEST                              *bool                                                                            `json:"ENABLE_PROJECT_DIGEST,omitempty"`
+	ENABLESTALERESOURCENOTIFICATIONS                 *bool                                                                            `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
+	ENABLESTRICTCHECKACCEPTINGINVITATION             *bool                                                                            `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
+	ENFORCEMANDATORYUSERATTRIBUTES                   *bool                                                                            `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
+	ENFORCEOFFERINGUSERPROFILECOMPLETENESS           *bool                                                                            `json:"ENFORCE_OFFERING_USER_PROFILE_COMPLETENESS,omitempty"`
+	ENFORCEUSERCONSENTFOROFFERINGS                   *bool                                                                            `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
+	FAVICON                                          *openapi_types.File                                                              `json:"FAVICON,omitempty"`
+	FEDERATEDIDENTITYDEACTIVATIONPOLICY              *FEDERATEDIDENTITYDEACTIVATIONPOLICYEnum                                         `json:"FEDERATED_IDENTITY_DEACTIVATION_POLICY,omitempty"`
+	FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES           *[]ConstanceSettingsRequestMultipart_FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES_Item `json:"FEDERATED_IDENTITY_SYNC_ALLOWED_ATTRIBUTES,omitempty"`
+	FEDERATEDIDENTITYSYNCENABLED                     *bool                                                                            `json:"FEDERATED_IDENTITY_SYNC_ENABLED,omitempty"`
+	FONTFAMILY                                       *FONTFAMILYEnum                                                                  `json:"FONT_FAMILY,omitempty"`
+	FREEIPABLACKLISTEDUSERNAMES                      *[]string                                                                        `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
+	FREEIPAENABLED                                   *bool                                                                            `json:"FREEIPA_ENABLED,omitempty"`
+	FREEIPAGROUPNAMEPREFIX                           *string                                                                          `json:"FREEIPA_GROUPNAME_PREFIX,omitempty"`
+	FREEIPAGROUPSYNCHRONIZATIONENABLED               *bool                                                                            `json:"FREEIPA_GROUP_SYNCHRONIZATION_ENABLED,omitempty"`
+	FREEIPAHOSTNAME                                  *string                                                                          `json:"FREEIPA_HOSTNAME,omitempty"`
+	FREEIPAPASSWORD                                  *string                                                                          `json:"FREEIPA_PASSWORD,omitempty"`
+	FREEIPAUSERNAME                                  *string                                                                          `json:"FREEIPA_USERNAME,omitempty"`
+	FREEIPAUSERNAMEPREFIX                            *string                                                                          `json:"FREEIPA_USERNAME_PREFIX,omitempty"`
+	FREEIPAVERIFYSSL                                 *bool                                                                            `json:"FREEIPA_VERIFY_SSL,omitempty"`
+	FULLPAGETITLE                                    *string                                                                          `json:"FULL_PAGE_TITLE,omitempty"`
+	HEROIMAGE                                        *openapi_types.File                                                              `json:"HERO_IMAGE,omitempty"`
+	HEROLINKLABEL                                    *string                                                                          `json:"HERO_LINK_LABEL,omitempty"`
+	HEROLINKURL                                      *string                                                                          `json:"HERO_LINK_URL,omitempty"`
+	HOMEPORTURL                                      *string                                                                          `json:"HOMEPORT_URL,omitempty"`
+	INVITATIONALLOWEDFIELDS                          *[]ConstanceSettingsRequestMultipart_INVITATIONALLOWEDFIELDS_Item                `json:"INVITATION_ALLOWED_FIELDS,omitempty"`
+	INVITATIONDISABLEMULTIPLEROLES                   *bool                                                                            `json:"INVITATION_DISABLE_MULTIPLE_ROLES,omitempty"`
+	K8SCONFIGPATH                                    *string                                                                          `json:"K8S_CONFIG_PATH,omitempty"`
+	K8SJOBTIMEOUT                                    *int                                                                             `json:"K8S_JOB_TIMEOUT,omitempty"`
+	K8SNAMESPACE                                     *string                                                                          `json:"K8S_NAMESPACE,omitempty"`
+	KEYCLOAKICON                                     *openapi_types.File                                                              `json:"KEYCLOAK_ICON,omitempty"`
+	LANGUAGECHOICES                                  *string                                                                          `json:"LANGUAGE_CHOICES,omitempty"`
+	LOGINLOGO                                        *openapi_types.File                                                              `json:"LOGIN_LOGO,omitempty"`
+	LOGINLOGOMULTILINGUAL                            *map[string]*openapi_types.File                                                  `json:"LOGIN_LOGO_MULTILINGUAL,omitempty"`
+	LOGINPAGECAROUSELSLIDES                          *[]interface{}                                                                   `json:"LOGIN_PAGE_CAROUSEL_SLIDES,omitempty"`
+	LOGINPAGELAYOUT                                  *LOGINPAGELAYOUTEnum                                                             `json:"LOGIN_PAGE_LAYOUT,omitempty"`
+	LOGINPAGENEWS                                    *[]interface{}                                                                   `json:"LOGIN_PAGE_NEWS,omitempty"`
+	LOGINPAGESTATS                                   *[]interface{}                                                                   `json:"LOGIN_PAGE_STATS,omitempty"`
+	LOGINPAGEVIDEOURL                                *string                                                                          `json:"LOGIN_PAGE_VIDEO_URL,omitempty"`
+	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES       *int                                                                             `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
+	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM              *[]ConstanceSettingsRequestMultipart_MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM_Item    `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
+	MANDATORYUSERATTRIBUTES                          *[]ConstanceSettingsRequestMultipart_MANDATORYUSERATTRIBUTES_Item                `json:"MANDATORY_USER_ATTRIBUTES,omitempty"`
+	MARKETPLACECARDSTYLE                             *MARKETPLACECARDSTYLEEnum                                                        `json:"MARKETPLACE_CARD_STYLE,omitempty"`
+	MARKETPLACEHEROIMAGE                             *openapi_types.File                                                              `json:"MARKETPLACE_HERO_IMAGE,omitempty"`
+	MARKETPLACELANDINGPAGE                           *string                                                                          `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
+	MARKETPLACELAYOUTMODE                            *MARKETPLACELAYOUTMODEEnum                                                       `json:"MARKETPLACE_LAYOUT_MODE,omitempty"`
+	NOTIFYABOUTRESOURCECHANGE                        *bool                                                                            `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
+	NOTIFYSTAFFABOUTAPPROVALS                        *bool                                                                            `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
+	OFFERINGLOGOPLACEHOLDER                          *openapi_types.File                                                              `json:"OFFERING_LOGO_PLACEHOLDER,omitempty"`
+	OIDCACCESSTOKENENABLED                           *bool                                                                            `json:"OIDC_ACCESS_TOKEN_ENABLED,omitempty"`
+	OIDCAUTHURL                                      *string                                                                          `json:"OIDC_AUTH_URL,omitempty"`
+	OIDCBLOCKCREATIONOFUNINVITEDUSERS                *bool                                                                            `json:"OIDC_BLOCK_CREATION_OF_UNINVITED_USERS,omitempty"`
+	OIDCBLOCKCREATIONOFUNINVITEDUSERSRESPONSEMESSAGE *string                                                                          `json:"OIDC_BLOCK_CREATION_OF_UNINVITED_USERS_RESPONSE_MESSAGE,omitempty"`
+	OIDCCACHETIMEOUT                                 *int                                                                             `json:"OIDC_CACHE_TIMEOUT,omitempty"`
+	OIDCCLIENTID                                     *string                                                                          `json:"OIDC_CLIENT_ID,omitempty"`
+	OIDCCLIENTSECRET                                 *string                                                                          `json:"OIDC_CLIENT_SECRET,omitempty"`
+	OIDCDEFAULTLOGOUTURL                             *string                                                                          `json:"OIDC_DEFAULT_LOGOUT_URL,omitempty"`
+	OIDCINTROSPECTIONURL                             *string                                                                          `json:"OIDC_INTROSPECTION_URL,omitempty"`
+	OIDCMATCHMAKINGBYEMAIL                           *bool                                                                            `json:"OIDC_MATCHMAKING_BY_EMAIL,omitempty"`
+	OIDCUSERFIELD                                    *string                                                                          `json:"OIDC_USER_FIELD,omitempty"`
+	ONBOARDINGARIREGISTERBASEURL                     *string                                                                          `json:"ONBOARDING_ARIREGISTER_BASE_URL,omitempty"`
+	ONBOARDINGARIREGISTERPASSWORD                    *string                                                                          `json:"ONBOARDING_ARIREGISTER_PASSWORD,omitempty"`
+	ONBOARDINGARIREGISTERTIMEOUT                     *int                                                                             `json:"ONBOARDING_ARIREGISTER_TIMEOUT,omitempty"`
+	ONBOARDINGARIREGISTERUSERNAME                    *string                                                                          `json:"ONBOARDING_ARIREGISTER_USERNAME,omitempty"`
+	ONBOARDINGBOLAGSVERKETAPIURL                     *string                                                                          `json:"ONBOARDING_BOLAGSVERKET_API_URL,omitempty"`
+	ONBOARDINGBOLAGSVERKETCLIENTID                   *string                                                                          `json:"ONBOARDING_BOLAGSVERKET_CLIENT_ID,omitempty"`
+	ONBOARDINGBOLAGSVERKETCLIENTSECRET               *string                                                                          `json:"ONBOARDING_BOLAGSVERKET_CLIENT_SECRET,omitempty"`
+	ONBOARDINGBOLAGSVERKETTOKENAPIURL                *string                                                                          `json:"ONBOARDING_BOLAGSVERKET_TOKEN_API_URL,omitempty"`
+	ONBOARDINGBREGAPIURL                             *string                                                                          `json:"ONBOARDING_BREG_API_URL,omitempty"`
+	ONBOARDINGVALIDATIONMETHODS                      *[]ConstanceSettingsRequestMultipart_ONBOARDINGVALIDATIONMETHODS_Item            `json:"ONBOARDING_VALIDATION_METHODS,omitempty"`
+	ONBOARDINGVERIFICATIONEXPIRYHOURS                *int                                                                             `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
+	ONBOARDINGWICOAPIURL                             *string                                                                          `json:"ONBOARDING_WICO_API_URL,omitempty"`
+	ONBOARDINGWICOTOKEN                              *string                                                                          `json:"ONBOARDING_WICO_TOKEN,omitempty"`
+	ORCIDAPIURL                                      *string                                                                          `json:"ORCID_API_URL,omitempty"`
+	ORCIDAUTHURL                                     *string                                                                          `json:"ORCID_AUTH_URL,omitempty"`
+	ORCIDCLIENTID                                    *string                                                                          `json:"ORCID_CLIENT_ID,omitempty"`
+	ORCIDCLIENTSECRET                                *string                                                                          `json:"ORCID_CLIENT_SECRET,omitempty"`
+	ORCIDREDIRECTURI                                 *string                                                                          `json:"ORCID_REDIRECT_URI,omitempty"`
+	ORCIDSANDBOXMODE                                 *bool                                                                            `json:"ORCID_SANDBOX_MODE,omitempty"`
+	POWEREDBYLOGO                                    *openapi_types.File                                                              `json:"POWERED_BY_LOGO,omitempty"`
+	PROJECTENDDATEMANDATORY                          *bool                                                                            `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
+	PROPOSALREVIEWDURATION                           *int                                                                             `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
+	RANCHERUSERNAMEINPUTLABEL                        *string                                                                          `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
+	REMOTEEDUTEAMSREFRESHTOKEN                       *string                                                                          `json:"REMOTE_EDUTEAMS_REFRESH_TOKEN,omitempty"`
+	RESTRICTEDOFFERINGVISIBILITYMODE                 *RESTRICTEDOFFERINGVISIBILITYMODEEnum                                            `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
+	REVIEWERPROFILESENABLED                          *bool                                                                            `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
+	SCIMAPIKEY                                       *string                                                                          `json:"SCIM_API_KEY,omitempty"`
+	SCIMAPIURL                                       *string                                                                          `json:"SCIM_API_URL,omitempty"`
+	SCIMMEMBERSHIPSYNCENABLED                        *bool                                                                            `json:"SCIM_MEMBERSHIP_SYNC_ENABLED,omitempty"`
+	SCIMURNNAMESPACE                                 *string                                                                          `json:"SCIM_URN_NAMESPACE,omitempty"`
+	SCRIPTRUNMODE                                    *SCRIPTRUNMODEEnum                                                               `json:"SCRIPT_RUN_MODE,omitempty"`
+	SEMANTICSCHOLARAPIKEY                            *string                                                                          `json:"SEMANTIC_SCHOLAR_API_KEY,omitempty"`
+	SHORTPAGETITLE                                   *string                                                                          `json:"SHORT_PAGE_TITLE,omitempty"`
+	SIDEBARLOGO                                      *openapi_types.File                                                              `json:"SIDEBAR_LOGO,omitempty"`
+	SIDEBARLOGODARK                                  *openapi_types.File                                                              `json:"SIDEBAR_LOGO_DARK,omitempty"`
+	SIDEBARLOGOMOBILE                                *openapi_types.File                                                              `json:"SIDEBAR_LOGO_MOBILE,omitempty"`
+	SIDEBARSTYLE                                     *SIDEBARSTYLEEnum                                                                `json:"SIDEBAR_STYLE,omitempty"`
+	SITEADDRESS                                      *string                                                                          `json:"SITE_ADDRESS,omitempty"`
+	SITEDESCRIPTION                                  *string                                                                          `json:"SITE_DESCRIPTION,omitempty"`
+	SITEEMAIL                                        *string                                                                          `json:"SITE_EMAIL,omitempty"`
+	SITENAME                                         *string                                                                          `json:"SITE_NAME,omitempty"`
+	SITEPHONE                                        *string                                                                          `json:"SITE_PHONE,omitempty"`
+	SLURMPOLICYEVALUATIONLOGRETENTIONDAYS            *int                                                                             `json:"SLURM_POLICY_EVALUATION_LOG_RETENTION_DAYS,omitempty"`
+	SMAXAFFECTEDRESOURCEFIELD                        *string                                                                          `json:"SMAX_AFFECTED_RESOURCE_FIELD,omitempty"`
+	SMAXAPIURL                                       *string                                                                          `json:"SMAX_API_URL,omitempty"`
+	SMAXCREATIONSOURCENAME                           *string                                                                          `json:"SMAX_CREATION_SOURCE_NAME,omitempty"`
+	SMAXLOGIN                                        *string                                                                          `json:"SMAX_LOGIN,omitempty"`
+	SMAXORGANISATIONFIELD                            *string                                                                          `json:"SMAX_ORGANISATION_FIELD,omitempty"`
+	SMAXPASSWORD                                     *string                                                                          `json:"SMAX_PASSWORD,omitempty"`
+	SMAXPROJECTFIELD                                 *string                                                                          `json:"SMAX_PROJECT_FIELD,omitempty"`
+	SMAXREQUESTSOFFERING                             *string                                                                          `json:"SMAX_REQUESTS_OFFERING,omitempty"`
+	SMAXSECONDSTOWAIT                                *int                                                                             `json:"SMAX_SECONDS_TO_WAIT,omitempty"`
+	SMAXTENANTID                                     *string                                                                          `json:"SMAX_TENANT_ID,omitempty"`
+	SMAXTIMESTOPULL                                  *int                                                                             `json:"SMAX_TIMES_TO_PULL,omitempty"`
+	SMAXVERIFYSSL                                    *bool                                                                            `json:"SMAX_VERIFY_SSL,omitempty"`
+	SOFTWARECATALOGCLEANUPENABLED                    *bool                                                                            `json:"SOFTWARE_CATALOG_CLEANUP_ENABLED,omitempty"`
+	SOFTWARECATALOGEESSIAPIURL                       *string                                                                          `json:"SOFTWARE_CATALOG_EESSI_API_URL,omitempty"`
+	SOFTWARECATALOGEESSIINCLUDEEXTENSIONS            *bool                                                                            `json:"SOFTWARE_CATALOG_EESSI_INCLUDE_EXTENSIONS,omitempty"`
+	SOFTWARECATALOGEESSIUPDATEENABLED                *bool                                                                            `json:"SOFTWARE_CATALOG_EESSI_UPDATE_ENABLED,omitempty"`
+	SOFTWARECATALOGEESSIVERSION                      *string                                                                          `json:"SOFTWARE_CATALOG_EESSI_VERSION,omitempty"`
+	SOFTWARECATALOGRETENTIONDAYS                     *int                                                                             `json:"SOFTWARE_CATALOG_RETENTION_DAYS,omitempty"`
+	SOFTWARECATALOGSPACKDATAURL                      *string                                                                          `json:"SOFTWARE_CATALOG_SPACK_DATA_URL,omitempty"`
+	SOFTWARECATALOGSPACKUPDATEENABLED                *bool                                                                            `json:"SOFTWARE_CATALOG_SPACK_UPDATE_ENABLED,omitempty"`
+	SOFTWARECATALOGSPACKVERSION                      *string                                                                          `json:"SOFTWARE_CATALOG_SPACK_VERSION,omitempty"`
+	SOFTWARECATALOGUPDATEEXISTINGPACKAGES            *bool                                                                            `json:"SOFTWARE_CATALOG_UPDATE_EXISTING_PACKAGES,omitempty"`
+	SSHKEYALLOWEDTYPES                               *[]ConstanceSettingsRequestMultipart_SSHKEYALLOWEDTYPES_Item                     `json:"SSH_KEY_ALLOWED_TYPES,omitempty"`
+	SSHKEYMINRSAKEYSIZE                              *int                                                                             `json:"SSH_KEY_MIN_RSA_KEY_SIZE,omitempty"`
+	SUPPORTPORTALURL                                 *string                                                                          `json:"SUPPORT_PORTAL_URL,omitempty"`
+	SYSTEMLOGENABLED                                 *bool                                                                            `json:"SYSTEM_LOG_ENABLED,omitempty"`
+	SYSTEMLOGMAXROWSPERSOURCE                        *int                                                                             `json:"SYSTEM_LOG_MAX_ROWS_PER_SOURCE,omitempty"`
+	TABLEGROWTHMINSIZEBYTES                          *int                                                                             `json:"TABLE_GROWTH_MIN_SIZE_BYTES,omitempty"`
+	TABLEGROWTHMONITORINGENABLED                     *bool                                                                            `json:"TABLE_GROWTH_MONITORING_ENABLED,omitempty"`
+	TABLEGROWTHMONTHLYTHRESHOLDPERCENT               *int                                                                             `json:"TABLE_GROWTH_MONTHLY_THRESHOLD_PERCENT,omitempty"`
+	TABLEGROWTHRETENTIONDAYS                         *int                                                                             `json:"TABLE_GROWTH_RETENTION_DAYS,omitempty"`
+	TABLEGROWTHWEEKLYTHRESHOLDPERCENT                *int                                                                             `json:"TABLE_GROWTH_WEEKLY_THRESHOLD_PERCENT,omitempty"`
+	TELEMETRYURL                                     *string                                                                          `json:"TELEMETRY_URL,omitempty"`
+	TELEMETRYVERSION                                 *int                                                                             `json:"TELEMETRY_VERSION,omitempty"`
+	THUMBNAILSIZE                                    *string                                                                          `json:"THUMBNAIL_SIZE,omitempty"`
+	USERACTIONSDEFAULTEXPIRATIONREMINDERS            *[]string                                                                        `json:"USER_ACTIONS_DEFAULT_EXPIRATION_REMINDERS,omitempty"`
+	USERACTIONSENABLED                               *bool                                                                            `json:"USER_ACTIONS_ENABLED,omitempty"`
+	USERACTIONSEXECUTIONRETENTIONDAYS                *int                                                                             `json:"USER_ACTIONS_EXECUTION_RETENTION_DAYS,omitempty"`
+	USERACTIONSHIGHURGENCYNOTIFICATION               *bool                                                                            `json:"USER_ACTIONS_HIGH_URGENCY_NOTIFICATION,omitempty"`
+	USERACTIONSNOTIFICATIONTHRESHOLD                 *int                                                                             `json:"USER_ACTIONS_NOTIFICATION_THRESHOLD,omitempty"`
+	USERACTIONSPENDINGORDERHOURS                     *int                                                                             `json:"USER_ACTIONS_PENDING_ORDER_HOURS,omitempty"`
+	USERDATAACCESSLOGGINGENABLED                     *bool                                                                            `json:"USER_DATA_ACCESS_LOGGING_ENABLED,omitempty"`
+	USERDATAACCESSLOGRETENTIONDAYS                   *int                                                                             `json:"USER_DATA_ACCESS_LOG_RETENTION_DAYS,omitempty"`
+	USERDATAACCESSLOGSELFACCESS                      *bool                                                                            `json:"USER_DATA_ACCESS_LOG_SELF_ACCESS,omitempty"`
+	USERTABLECOLUMNS                                 *string                                                                          `json:"USER_TABLE_COLUMNS,omitempty"`
+	WALDURAUTHSOCIALROLECLAIM                        *string                                                                          `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
+	WALDURSUPPORTACTIVEBACKENDTYPE                   *WALDURSUPPORTACTIVEBACKENDTYPEEnum                                              `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
+	WALDURSUPPORTDISPLAYREQUESTTYPE                  *bool                                                                            `json:"WALDUR_SUPPORT_DISPLAY_REQUEST_TYPE,omitempty"`
+	WALDURSUPPORTENABLED                             *bool                                                                            `json:"WALDUR_SUPPORT_ENABLED,omitempty"`
+	ZAMMADAPIURL                                     *string                                                                          `json:"ZAMMAD_API_URL,omitempty"`
+	ZAMMADARTICLETYPE                                *ZAMMADARTICLETYPEEnum                                                           `json:"ZAMMAD_ARTICLE_TYPE,omitempty"`
+	ZAMMADCOMMENTCOOLDOWNDURATION                    *int                                                                             `json:"ZAMMAD_COMMENT_COOLDOWN_DURATION,omitempty"`
+	ZAMMADCOMMENTMARKER                              *string                                                                          `json:"ZAMMAD_COMMENT_MARKER,omitempty"`
+	ZAMMADCOMMENTPREFIX                              *string                                                                          `json:"ZAMMAD_COMMENT_PREFIX,omitempty"`
+	ZAMMADGROUP                                      *string                                                                          `json:"ZAMMAD_GROUP,omitempty"`
+	ZAMMADTOKEN                                      *string                                                                          `json:"ZAMMAD_TOKEN,omitempty"`
 }
 
 // ConstanceSettingsRequestMultipart_DEFAULTIDP defines model for ConstanceSettingsRequestMultipart.DEFAULTIDP.
@@ -49186,6 +49190,9 @@ type BookingResourcesListParams struct {
 	// Query Search by resource UUID, name, slug, backend ID, effective ID, IPs or hypervisor
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
 
+	// ResourceAttributes Resource attributes (JSON)
+	ResourceAttributes *string `form:"resource_attributes,omitempty" json:"resource_attributes,omitempty"`
+
 	// RestrictMemberAccess Restrict member access
 	RestrictMemberAccess *bool `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
 
@@ -49317,6 +49324,9 @@ type BookingResourcesCountParams struct {
 
 	// Query Search by resource UUID, name, slug, backend ID, effective ID, IPs or hypervisor
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ResourceAttributes Resource attributes (JSON)
+	ResourceAttributes *string `form:"resource_attributes,omitempty" json:"resource_attributes,omitempty"`
 
 	// RestrictMemberAccess Restrict member access
 	RestrictMemberAccess *bool `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
@@ -55775,6 +55785,9 @@ type MarketplaceProviderResourcesListParams struct {
 	// Query Search by resource UUID, name, slug, backend ID, effective ID, IPs or hypervisor
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
 
+	// ResourceAttributes Resource attributes (JSON)
+	ResourceAttributes *string `form:"resource_attributes,omitempty" json:"resource_attributes,omitempty"`
+
 	// RestrictMemberAccess Restrict member access
 	RestrictMemberAccess *bool `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
 
@@ -55908,6 +55921,9 @@ type MarketplaceProviderResourcesCountParams struct {
 
 	// Query Search by resource UUID, name, slug, backend ID, effective ID, IPs or hypervisor
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ResourceAttributes Resource attributes (JSON)
+	ResourceAttributes *string `form:"resource_attributes,omitempty" json:"resource_attributes,omitempty"`
 
 	// RestrictMemberAccess Restrict member access
 	RestrictMemberAccess *bool `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
@@ -56050,6 +56066,9 @@ type MarketplaceProviderResourcesHistoryListParams struct {
 
 	// Query Search by resource UUID, name, slug, backend ID, effective ID, IPs or hypervisor
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ResourceAttributes Resource attributes (JSON)
+	ResourceAttributes *string `form:"resource_attributes,omitempty" json:"resource_attributes,omitempty"`
 
 	// RestrictMemberAccess Restrict member access
 	RestrictMemberAccess *bool `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
@@ -56540,6 +56559,9 @@ type MarketplaceResourcesListParams struct {
 	// Query Search by resource UUID, name, slug, backend ID, effective ID, IPs or hypervisor
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
 
+	// ResourceAttributes Resource attributes (JSON)
+	ResourceAttributes *string `form:"resource_attributes,omitempty" json:"resource_attributes,omitempty"`
+
 	// RestrictMemberAccess Restrict member access
 	RestrictMemberAccess *bool `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
 
@@ -56673,6 +56695,9 @@ type MarketplaceResourcesCountParams struct {
 
 	// Query Search by resource UUID, name, slug, backend ID, effective ID, IPs or hypervisor
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ResourceAttributes Resource attributes (JSON)
+	ResourceAttributes *string `form:"resource_attributes,omitempty" json:"resource_attributes,omitempty"`
 
 	// RestrictMemberAccess Restrict member access
 	RestrictMemberAccess *bool `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
@@ -56815,6 +56840,9 @@ type MarketplaceResourcesHistoryListParams struct {
 
 	// Query Search by resource UUID, name, slug, backend ID, effective ID, IPs or hypervisor
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ResourceAttributes Resource attributes (JSON)
+	ResourceAttributes *string `form:"resource_attributes,omitempty" json:"resource_attributes,omitempty"`
 
 	// RestrictMemberAccess Restrict member access
 	RestrictMemberAccess *bool `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
@@ -148745,6 +148773,22 @@ func NewBookingResourcesListRequest(server string, params *BookingResourcesListP
 
 		}
 
+		if params.ResourceAttributes != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_attributes", *params.ResourceAttributes, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.RestrictMemberAccess != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "restrict_member_access", *params.RestrictMemberAccess, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
@@ -149469,6 +149513,22 @@ func NewBookingResourcesCountRequest(server string, params *BookingResourcesCoun
 		if params.Query != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceAttributes != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_attributes", *params.ResourceAttributes, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -210848,6 +210908,22 @@ func NewMarketplaceProviderResourcesListRequest(server string, params *Marketpla
 
 		}
 
+		if params.ResourceAttributes != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_attributes", *params.ResourceAttributes, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.RestrictMemberAccess != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "restrict_member_access", *params.RestrictMemberAccess, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
@@ -211572,6 +211648,22 @@ func NewMarketplaceProviderResourcesCountRequest(server string, params *Marketpl
 		if params.Query != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceAttributes != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_attributes", *params.ResourceAttributes, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -212550,6 +212642,22 @@ func NewMarketplaceProviderResourcesHistoryListRequest(server string, uuid opena
 		if params.Query != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceAttributes != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_attributes", *params.ResourceAttributes, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -217112,6 +217220,22 @@ func NewMarketplaceResourcesListRequest(server string, params *MarketplaceResour
 
 		}
 
+		if params.ResourceAttributes != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_attributes", *params.ResourceAttributes, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.RestrictMemberAccess != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "restrict_member_access", *params.RestrictMemberAccess, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
@@ -217836,6 +217960,22 @@ func NewMarketplaceResourcesCountRequest(server string, params *MarketplaceResou
 		if params.Query != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceAttributes != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_attributes", *params.ResourceAttributes, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -218901,6 +219041,22 @@ func NewMarketplaceResourcesHistoryListRequest(server string, uuid openapi_types
 		if params.Query != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceAttributes != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_attributes", *params.ResourceAttributes, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
