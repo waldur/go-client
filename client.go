@@ -21,6 +21,7 @@ import (
 const (
 	TokenAuthScopes      = "tokenAuth.Scopes"
 	WaldurOIDCAuthScopes = "waldurOIDCAuth.Scopes"
+	WaldurPATAuthScopes  = "waldurPATAuth.Scopes"
 )
 
 // Defines values for AIASSISTANTENABLEDROLESEnum.
@@ -5531,6 +5532,11 @@ const (
 	EventMetadataResponseEventGroupsOpenstackSubnetPulled                            EventMetadataResponseEventGroups = "openstack_subnet_pulled"
 	EventMetadataResponseEventGroupsOpenstackSubnetUpdated                           EventMetadataResponseEventGroups = "openstack_subnet_updated"
 	EventMetadataResponseEventGroupsOpenstackTenantQuotaLimitUpdated                 EventMetadataResponseEventGroups = "openstack_tenant_quota_limit_updated"
+	EventMetadataResponseEventGroupsPatCreated                                       EventMetadataResponseEventGroups = "pat_created"
+	EventMetadataResponseEventGroupsPatExpired                                       EventMetadataResponseEventGroups = "pat_expired"
+	EventMetadataResponseEventGroupsPatRevoked                                       EventMetadataResponseEventGroups = "pat_revoked"
+	EventMetadataResponseEventGroupsPatRotated                                       EventMetadataResponseEventGroups = "pat_rotated"
+	EventMetadataResponseEventGroupsPatUsedFromNewIp                                 EventMetadataResponseEventGroups = "pat_used_from_new_ip"
 	EventMetadataResponseEventGroupsPaymentAdded                                     EventMetadataResponseEventGroups = "payment_added"
 	EventMetadataResponseEventGroupsPaymentCreated                                   EventMetadataResponseEventGroups = "payment_created"
 	EventMetadataResponseEventGroupsPaymentRemoved                                   EventMetadataResponseEventGroups = "payment_removed"
@@ -5958,6 +5964,16 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 		return true
 	case EventMetadataResponseEventGroupsOpenstackTenantQuotaLimitUpdated:
 		return true
+	case EventMetadataResponseEventGroupsPatCreated:
+		return true
+	case EventMetadataResponseEventGroupsPatExpired:
+		return true
+	case EventMetadataResponseEventGroupsPatRevoked:
+		return true
+	case EventMetadataResponseEventGroupsPatRotated:
+		return true
+	case EventMetadataResponseEventGroupsPatUsedFromNewIp:
+		return true
 	case EventMetadataResponseEventGroupsPaymentAdded:
 		return true
 	case EventMetadataResponseEventGroupsPaymentCreated:
@@ -6383,6 +6399,11 @@ const (
 	EventTypesEnumOpenstackSubnetPulled                            EventTypesEnum = "openstack_subnet_pulled"
 	EventTypesEnumOpenstackSubnetUpdated                           EventTypesEnum = "openstack_subnet_updated"
 	EventTypesEnumOpenstackTenantQuotaLimitUpdated                 EventTypesEnum = "openstack_tenant_quota_limit_updated"
+	EventTypesEnumPatCreated                                       EventTypesEnum = "pat_created"
+	EventTypesEnumPatExpired                                       EventTypesEnum = "pat_expired"
+	EventTypesEnumPatRevoked                                       EventTypesEnum = "pat_revoked"
+	EventTypesEnumPatRotated                                       EventTypesEnum = "pat_rotated"
+	EventTypesEnumPatUsedFromNewIp                                 EventTypesEnum = "pat_used_from_new_ip"
 	EventTypesEnumPaymentAdded                                     EventTypesEnum = "payment_added"
 	EventTypesEnumPaymentCreated                                   EventTypesEnum = "payment_created"
 	EventTypesEnumPaymentRemoved                                   EventTypesEnum = "payment_removed"
@@ -6809,6 +6830,16 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumOpenstackSubnetUpdated:
 		return true
 	case EventTypesEnumOpenstackTenantQuotaLimitUpdated:
+		return true
+	case EventTypesEnumPatCreated:
+		return true
+	case EventTypesEnumPatExpired:
+		return true
+	case EventTypesEnumPatRevoked:
+		return true
+	case EventTypesEnumPatRotated:
+		return true
+	case EventTypesEnumPatUsedFromNewIp:
 		return true
 	case EventTypesEnumPaymentAdded:
 		return true
@@ -13995,6 +14026,8 @@ const (
 	PermissionMetadataResponsePermissionMapSERVICEPROVIDEROPENSTACKIMAGEMANAGEMENT PermissionMetadataResponsePermissionMap = "SERVICE_PROVIDER.OPENSTACK_IMAGE_MANAGEMENT"
 	PermissionMetadataResponsePermissionMapSERVICEPROVIDERREGISTER                 PermissionMetadataResponsePermissionMap = "SERVICE_PROVIDER.REGISTER"
 	PermissionMetadataResponsePermissionMapSERVICEPROVIDERSETOFFERINGSUSERNAME     PermissionMetadataResponsePermissionMap = "SERVICE_PROVIDER.SET_OFFERINGS_USERNAME"
+	PermissionMetadataResponsePermissionMapSTAFFACCESS                             PermissionMetadataResponsePermissionMap = "STAFF.ACCESS"
+	PermissionMetadataResponsePermissionMapSUPPORTACCESS                           PermissionMetadataResponsePermissionMap = "SUPPORT.ACCESS"
 )
 
 // Valid indicates whether the value is a known member of the PermissionMetadataResponsePermissionMap enum.
@@ -14238,6 +14271,10 @@ func (e PermissionMetadataResponsePermissionMap) Valid() bool {
 		return true
 	case PermissionMetadataResponsePermissionMapSERVICEPROVIDERSETOFFERINGSUSERNAME:
 		return true
+	case PermissionMetadataResponsePermissionMapSTAFFACCESS:
+		return true
+	case PermissionMetadataResponsePermissionMapSUPPORTACCESS:
+		return true
 	default:
 		return false
 	}
@@ -14364,6 +14401,8 @@ const (
 	PermissionMetadataResponsePermissionsSERVICEPROVIDEROPENSTACKIMAGEMANAGEMENT PermissionMetadataResponsePermissions = "SERVICE_PROVIDER.OPENSTACK_IMAGE_MANAGEMENT"
 	PermissionMetadataResponsePermissionsSERVICEPROVIDERREGISTER                 PermissionMetadataResponsePermissions = "SERVICE_PROVIDER.REGISTER"
 	PermissionMetadataResponsePermissionsSERVICEPROVIDERSETOFFERINGSUSERNAME     PermissionMetadataResponsePermissions = "SERVICE_PROVIDER.SET_OFFERINGS_USERNAME"
+	PermissionMetadataResponsePermissionsSTAFFACCESS                             PermissionMetadataResponsePermissions = "STAFF.ACCESS"
+	PermissionMetadataResponsePermissionsSUPPORTACCESS                           PermissionMetadataResponsePermissions = "SUPPORT.ACCESS"
 )
 
 // Valid indicates whether the value is a known member of the PermissionMetadataResponsePermissions enum.
@@ -14606,6 +14645,10 @@ func (e PermissionMetadataResponsePermissions) Valid() bool {
 	case PermissionMetadataResponsePermissionsSERVICEPROVIDERREGISTER:
 		return true
 	case PermissionMetadataResponsePermissionsSERVICEPROVIDERSETOFFERINGSUSERNAME:
+		return true
+	case PermissionMetadataResponsePermissionsSTAFFACCESS:
+		return true
+	case PermissionMetadataResponsePermissionsSUPPORTACCESS:
 		return true
 	default:
 		return false
@@ -22166,6 +22209,12 @@ type AvailableChecklistsResponse struct {
 // AvailableChecklistsResponseChecklistTypeEnum defines model for AvailableChecklistsResponseChecklistTypeEnum.
 type AvailableChecklistsResponseChecklistTypeEnum string
 
+// AvailableScope defines model for AvailableScope.
+type AvailableScope struct {
+	Description string `json:"description"`
+	Permission  string `json:"permission"`
+}
+
 // AwsImage defines model for AwsImage.
 type AwsImage struct {
 	Name   string              `json:"name"`
@@ -24951,6 +25000,9 @@ type ConstanceSettings struct {
 	ORCIDCLIENTSECRET                                *string                                                          `json:"ORCID_CLIENT_SECRET,omitempty"`
 	ORCIDREDIRECTURI                                 *string                                                          `json:"ORCID_REDIRECT_URI,omitempty"`
 	ORCIDSANDBOXMODE                                 *bool                                                            `json:"ORCID_SANDBOX_MODE,omitempty"`
+	PATENABLED                                       *bool                                                            `json:"PAT_ENABLED,omitempty"`
+	PATMAXLIFETIMEDAYS                               *int                                                             `json:"PAT_MAX_LIFETIME_DAYS,omitempty"`
+	PATMAXTOKENSPERUSER                              *int                                                             `json:"PAT_MAX_TOKENS_PER_USER,omitempty"`
 	POWEREDBYLOGO                                    *string                                                          `json:"POWERED_BY_LOGO,omitempty"`
 	PROJECTENDDATEMANDATORY                          *bool                                                            `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
 	PROPOSALREVIEWDURATION                           *int                                                             `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
@@ -25258,6 +25310,9 @@ type ConstanceSettingsRequest struct {
 	ORCIDCLIENTSECRET                                *string                                                                 `json:"ORCID_CLIENT_SECRET,omitempty"`
 	ORCIDREDIRECTURI                                 *string                                                                 `json:"ORCID_REDIRECT_URI,omitempty"`
 	ORCIDSANDBOXMODE                                 *bool                                                                   `json:"ORCID_SANDBOX_MODE,omitempty"`
+	PATENABLED                                       *bool                                                                   `json:"PAT_ENABLED,omitempty"`
+	PATMAXLIFETIMEDAYS                               *int                                                                    `json:"PAT_MAX_LIFETIME_DAYS,omitempty"`
+	PATMAXTOKENSPERUSER                              *int                                                                    `json:"PAT_MAX_TOKENS_PER_USER,omitempty"`
 	POWEREDBYLOGO                                    *openapi_types.File                                                     `json:"POWERED_BY_LOGO,omitempty"`
 	PROJECTENDDATEMANDATORY                          *bool                                                                   `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
 	PROPOSALREVIEWDURATION                           *int                                                                    `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
@@ -25565,6 +25620,9 @@ type ConstanceSettingsRequestForm struct {
 	ORCIDCLIENTSECRET                                *string                                                                     `json:"ORCID_CLIENT_SECRET,omitempty"`
 	ORCIDREDIRECTURI                                 *string                                                                     `json:"ORCID_REDIRECT_URI,omitempty"`
 	ORCIDSANDBOXMODE                                 *bool                                                                       `json:"ORCID_SANDBOX_MODE,omitempty"`
+	PATENABLED                                       *bool                                                                       `json:"PAT_ENABLED,omitempty"`
+	PATMAXLIFETIMEDAYS                               *int                                                                        `json:"PAT_MAX_LIFETIME_DAYS,omitempty"`
+	PATMAXTOKENSPERUSER                              *int                                                                        `json:"PAT_MAX_TOKENS_PER_USER,omitempty"`
 	POWEREDBYLOGO                                    *openapi_types.File                                                         `json:"POWERED_BY_LOGO,omitempty"`
 	PROJECTENDDATEMANDATORY                          *bool                                                                       `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
 	PROPOSALREVIEWDURATION                           *int                                                                        `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
@@ -25872,6 +25930,9 @@ type ConstanceSettingsRequestMultipart struct {
 	ORCIDCLIENTSECRET                                *string                                                                          `json:"ORCID_CLIENT_SECRET,omitempty"`
 	ORCIDREDIRECTURI                                 *string                                                                          `json:"ORCID_REDIRECT_URI,omitempty"`
 	ORCIDSANDBOXMODE                                 *bool                                                                            `json:"ORCID_SANDBOX_MODE,omitempty"`
+	PATENABLED                                       *bool                                                                            `json:"PAT_ENABLED,omitempty"`
+	PATMAXLIFETIMEDAYS                               *int                                                                             `json:"PAT_MAX_LIFETIME_DAYS,omitempty"`
+	PATMAXTOKENSPERUSER                              *int                                                                             `json:"PAT_MAX_TOKENS_PER_USER,omitempty"`
 	POWEREDBYLOGO                                    *openapi_types.File                                                              `json:"POWERED_BY_LOGO,omitempty"`
 	PROJECTENDDATEMANDATORY                          *bool                                                                            `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
 	PROPOSALREVIEWDURATION                           *int                                                                             `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
@@ -39215,6 +39276,52 @@ type PersonIdentifierFieldsResponse struct {
 
 	// ValidationMethod The validation method identifier
 	ValidationMethod string `json:"validation_method"`
+}
+
+// PersonalAccessToken defines model for PersonalAccessToken.
+type PersonalAccessToken struct {
+	Created    time.Time `json:"created"`
+	ExpiresAt  time.Time `json:"expires_at"`
+	IsActive   bool      `json:"is_active"`
+	LastUsedAt time.Time `json:"last_used_at"`
+
+	// LastUsedIp An IPv4 or IPv6 address.
+	LastUsedIp  PersonalAccessToken_LastUsedIp `json:"last_used_ip"`
+	Name        string                         `json:"name"`
+	Scopes      []string                       `json:"scopes"`
+	TokenPrefix string                         `json:"token_prefix"`
+	UseCount    int                            `json:"use_count"`
+	Uuid        openapi_types.UUID             `json:"uuid"`
+}
+
+// PersonalAccessTokenLastUsedIp0 defines model for .
+type PersonalAccessTokenLastUsedIp0 = string
+
+// PersonalAccessTokenLastUsedIp1 defines model for .
+type PersonalAccessTokenLastUsedIp1 = string
+
+// PersonalAccessToken_LastUsedIp An IPv4 or IPv6 address.
+type PersonalAccessToken_LastUsedIp struct {
+	union json.RawMessage
+}
+
+// PersonalAccessTokenCreateRequest defines model for PersonalAccessTokenCreateRequest.
+type PersonalAccessTokenCreateRequest struct {
+	ExpiresAt time.Time `json:"expires_at"`
+	Name      string    `json:"name"`
+	Scopes    []string  `json:"scopes"`
+}
+
+// PersonalAccessTokenCreated defines model for PersonalAccessTokenCreated.
+type PersonalAccessTokenCreated struct {
+	Created   time.Time `json:"created"`
+	ExpiresAt time.Time `json:"expires_at"`
+	Name      string    `json:"name"`
+	Scopes    []string  `json:"scopes"`
+
+	// Token Plaintext token — shown only once.
+	Token string             `json:"token"`
+	Uuid  openapi_types.UUID `json:"uuid"`
 }
 
 // PlanComponent defines model for PlanComponent.
@@ -63708,6 +63815,42 @@ type PaymentsCountParams struct {
 	ProfileUuid *openapi_types.UUID `form:"profile_uuid,omitempty" json:"profile_uuid,omitempty"`
 }
 
+// PersonalAccessTokensListParams defines parameters for PersonalAccessTokensList.
+type PersonalAccessTokensListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// PersonalAccessTokensCountParams defines parameters for PersonalAccessTokensCount.
+type PersonalAccessTokensCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// PersonalAccessTokensAvailableScopesListParams defines parameters for PersonalAccessTokensAvailableScopesList.
+type PersonalAccessTokensAvailableScopesListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// PersonalAccessTokensAvailableScopesCountParams defines parameters for PersonalAccessTokensAvailableScopesCount.
+type PersonalAccessTokensAvailableScopesCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
 // ProjectCreditsListParams defines parameters for ProjectCreditsList.
 type ProjectCreditsListParams struct {
 	CustomerName *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
@@ -70820,6 +70963,9 @@ type PaymentsUpdateMultipartRequestBody = PaymentRequestMultipart
 
 // PaymentsLinkToInvoiceJSONRequestBody defines body for PaymentsLinkToInvoice for application/json ContentType.
 type PaymentsLinkToInvoiceJSONRequestBody = LinkToInvoiceRequest
+
+// PersonalAccessTokensCreateJSONRequestBody defines body for PersonalAccessTokensCreate for application/json ContentType.
+type PersonalAccessTokensCreateJSONRequestBody = PersonalAccessTokenCreateRequest
 
 // ProjectCreditsCreateJSONRequestBody defines body for ProjectCreditsCreate for application/json ContentType.
 type ProjectCreditsCreateJSONRequestBody = ProjectCreditRequest
@@ -79000,6 +79146,68 @@ func (t PatchedUserRequestMultipart_Gender) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PatchedUserRequestMultipart_Gender) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsPersonalAccessTokenLastUsedIp0 returns the union data inside the PersonalAccessToken_LastUsedIp as a PersonalAccessTokenLastUsedIp0
+func (t PersonalAccessToken_LastUsedIp) AsPersonalAccessTokenLastUsedIp0() (PersonalAccessTokenLastUsedIp0, error) {
+	var body PersonalAccessTokenLastUsedIp0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPersonalAccessTokenLastUsedIp0 overwrites any union data inside the PersonalAccessToken_LastUsedIp as the provided PersonalAccessTokenLastUsedIp0
+func (t *PersonalAccessToken_LastUsedIp) FromPersonalAccessTokenLastUsedIp0(v PersonalAccessTokenLastUsedIp0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePersonalAccessTokenLastUsedIp0 performs a merge with any union data inside the PersonalAccessToken_LastUsedIp, using the provided PersonalAccessTokenLastUsedIp0
+func (t *PersonalAccessToken_LastUsedIp) MergePersonalAccessTokenLastUsedIp0(v PersonalAccessTokenLastUsedIp0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPersonalAccessTokenLastUsedIp1 returns the union data inside the PersonalAccessToken_LastUsedIp as a PersonalAccessTokenLastUsedIp1
+func (t PersonalAccessToken_LastUsedIp) AsPersonalAccessTokenLastUsedIp1() (PersonalAccessTokenLastUsedIp1, error) {
+	var body PersonalAccessTokenLastUsedIp1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPersonalAccessTokenLastUsedIp1 overwrites any union data inside the PersonalAccessToken_LastUsedIp as the provided PersonalAccessTokenLastUsedIp1
+func (t *PersonalAccessToken_LastUsedIp) FromPersonalAccessTokenLastUsedIp1(v PersonalAccessTokenLastUsedIp1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePersonalAccessTokenLastUsedIp1 performs a merge with any union data inside the PersonalAccessToken_LastUsedIp, using the provided PersonalAccessTokenLastUsedIp1
+func (t *PersonalAccessToken_LastUsedIp) MergePersonalAccessTokenLastUsedIp1(v PersonalAccessTokenLastUsedIp1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PersonalAccessToken_LastUsedIp) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PersonalAccessToken_LastUsedIp) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -88090,6 +88298,32 @@ type ClientInterface interface {
 
 	// PaymentsUnlinkFromInvoice request
 	PaymentsUnlinkFromInvoice(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PersonalAccessTokensList request
+	PersonalAccessTokensList(ctx context.Context, params *PersonalAccessTokensListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PersonalAccessTokensCount request
+	PersonalAccessTokensCount(ctx context.Context, params *PersonalAccessTokensCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PersonalAccessTokensCreateWithBody request with any body
+	PersonalAccessTokensCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	PersonalAccessTokensCreate(ctx context.Context, body PersonalAccessTokensCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PersonalAccessTokensAvailableScopesList request
+	PersonalAccessTokensAvailableScopesList(ctx context.Context, params *PersonalAccessTokensAvailableScopesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PersonalAccessTokensAvailableScopesCount request
+	PersonalAccessTokensAvailableScopesCount(ctx context.Context, params *PersonalAccessTokensAvailableScopesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PersonalAccessTokensDestroy request
+	PersonalAccessTokensDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PersonalAccessTokensRetrieve request
+	PersonalAccessTokensRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PersonalAccessTokensRotate request
+	PersonalAccessTokensRotate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProjectCreditsList request
 	ProjectCreditsList(ctx context.Context, params *ProjectCreditsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -119054,6 +119288,114 @@ func (c *Client) PaymentsLinkToInvoice(ctx context.Context, uuid openapi_types.U
 
 func (c *Client) PaymentsUnlinkFromInvoice(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewPaymentsUnlinkFromInvoiceRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PersonalAccessTokensList(ctx context.Context, params *PersonalAccessTokensListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPersonalAccessTokensListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PersonalAccessTokensCount(ctx context.Context, params *PersonalAccessTokensCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPersonalAccessTokensCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PersonalAccessTokensCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPersonalAccessTokensCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PersonalAccessTokensCreate(ctx context.Context, body PersonalAccessTokensCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPersonalAccessTokensCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PersonalAccessTokensAvailableScopesList(ctx context.Context, params *PersonalAccessTokensAvailableScopesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPersonalAccessTokensAvailableScopesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PersonalAccessTokensAvailableScopesCount(ctx context.Context, params *PersonalAccessTokensAvailableScopesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPersonalAccessTokensAvailableScopesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PersonalAccessTokensDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPersonalAccessTokensDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PersonalAccessTokensRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPersonalAccessTokensRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PersonalAccessTokensRotate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPersonalAccessTokensRotateRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -280610,6 +280952,408 @@ func NewPaymentsUnlinkFromInvoiceRequest(server string, uuid openapi_types.UUID)
 	return req, nil
 }
 
+// NewPersonalAccessTokensListRequest generates requests for PersonalAccessTokensList
+func NewPersonalAccessTokensListRequest(server string, params *PersonalAccessTokensListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/personal-access-tokens/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPersonalAccessTokensCountRequest generates requests for PersonalAccessTokensCount
+func NewPersonalAccessTokensCountRequest(server string, params *PersonalAccessTokensCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/personal-access-tokens/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPersonalAccessTokensCreateRequest calls the generic PersonalAccessTokensCreate builder with application/json body
+func NewPersonalAccessTokensCreateRequest(server string, body PersonalAccessTokensCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewPersonalAccessTokensCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewPersonalAccessTokensCreateRequestWithBody generates requests for PersonalAccessTokensCreate with any type of body
+func NewPersonalAccessTokensCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/personal-access-tokens/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewPersonalAccessTokensAvailableScopesListRequest generates requests for PersonalAccessTokensAvailableScopesList
+func NewPersonalAccessTokensAvailableScopesListRequest(server string, params *PersonalAccessTokensAvailableScopesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/personal-access-tokens/available_scopes/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPersonalAccessTokensAvailableScopesCountRequest generates requests for PersonalAccessTokensAvailableScopesCount
+func NewPersonalAccessTokensAvailableScopesCountRequest(server string, params *PersonalAccessTokensAvailableScopesCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/personal-access-tokens/available_scopes/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPersonalAccessTokensDestroyRequest generates requests for PersonalAccessTokensDestroy
+func NewPersonalAccessTokensDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/personal-access-tokens/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPersonalAccessTokensRetrieveRequest generates requests for PersonalAccessTokensRetrieve
+func NewPersonalAccessTokensRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/personal-access-tokens/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPersonalAccessTokensRotateRequest generates requests for PersonalAccessTokensRotate
+func NewPersonalAccessTokensRotateRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/personal-access-tokens/%s/rotate/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewProjectCreditsListRequest generates requests for ProjectCreditsList
 func NewProjectCreditsListRequest(server string, params *ProjectCreditsListParams) (*http.Request, error) {
 	var err error
@@ -340851,6 +341595,32 @@ type ClientWithResponsesInterface interface {
 	// PaymentsUnlinkFromInvoiceWithResponse request
 	PaymentsUnlinkFromInvoiceWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*PaymentsUnlinkFromInvoiceResponse, error)
 
+	// PersonalAccessTokensListWithResponse request
+	PersonalAccessTokensListWithResponse(ctx context.Context, params *PersonalAccessTokensListParams, reqEditors ...RequestEditorFn) (*PersonalAccessTokensListResponse, error)
+
+	// PersonalAccessTokensCountWithResponse request
+	PersonalAccessTokensCountWithResponse(ctx context.Context, params *PersonalAccessTokensCountParams, reqEditors ...RequestEditorFn) (*PersonalAccessTokensCountResponse, error)
+
+	// PersonalAccessTokensCreateWithBodyWithResponse request with any body
+	PersonalAccessTokensCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PersonalAccessTokensCreateResponse, error)
+
+	PersonalAccessTokensCreateWithResponse(ctx context.Context, body PersonalAccessTokensCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*PersonalAccessTokensCreateResponse, error)
+
+	// PersonalAccessTokensAvailableScopesListWithResponse request
+	PersonalAccessTokensAvailableScopesListWithResponse(ctx context.Context, params *PersonalAccessTokensAvailableScopesListParams, reqEditors ...RequestEditorFn) (*PersonalAccessTokensAvailableScopesListResponse, error)
+
+	// PersonalAccessTokensAvailableScopesCountWithResponse request
+	PersonalAccessTokensAvailableScopesCountWithResponse(ctx context.Context, params *PersonalAccessTokensAvailableScopesCountParams, reqEditors ...RequestEditorFn) (*PersonalAccessTokensAvailableScopesCountResponse, error)
+
+	// PersonalAccessTokensDestroyWithResponse request
+	PersonalAccessTokensDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*PersonalAccessTokensDestroyResponse, error)
+
+	// PersonalAccessTokensRetrieveWithResponse request
+	PersonalAccessTokensRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*PersonalAccessTokensRetrieveResponse, error)
+
+	// PersonalAccessTokensRotateWithResponse request
+	PersonalAccessTokensRotateWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*PersonalAccessTokensRotateResponse, error)
+
 	// ProjectCreditsListWithResponse request
 	ProjectCreditsListWithResponse(ctx context.Context, params *ProjectCreditsListParams, reqEditors ...RequestEditorFn) (*ProjectCreditsListResponse, error)
 
@@ -381332,6 +382102,179 @@ func (r PaymentsUnlinkFromInvoiceResponse) StatusCode() int {
 	return 0
 }
 
+type PersonalAccessTokensListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]PersonalAccessToken
+}
+
+// Status returns HTTPResponse.Status
+func (r PersonalAccessTokensListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PersonalAccessTokensListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PersonalAccessTokensCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r PersonalAccessTokensCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PersonalAccessTokensCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PersonalAccessTokensCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *PersonalAccessTokenCreated
+}
+
+// Status returns HTTPResponse.Status
+func (r PersonalAccessTokensCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PersonalAccessTokensCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PersonalAccessTokensAvailableScopesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]AvailableScope
+}
+
+// Status returns HTTPResponse.Status
+func (r PersonalAccessTokensAvailableScopesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PersonalAccessTokensAvailableScopesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PersonalAccessTokensAvailableScopesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r PersonalAccessTokensAvailableScopesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PersonalAccessTokensAvailableScopesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PersonalAccessTokensDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r PersonalAccessTokensDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PersonalAccessTokensDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PersonalAccessTokensRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *PersonalAccessToken
+}
+
+// Status returns HTTPResponse.Status
+func (r PersonalAccessTokensRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PersonalAccessTokensRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PersonalAccessTokensRotateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *PersonalAccessTokenCreated
+}
+
+// Status returns HTTPResponse.Status
+func (r PersonalAccessTokensRotateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PersonalAccessTokensRotateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ProjectCreditsListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -416313,6 +417256,86 @@ func (c *ClientWithResponses) PaymentsUnlinkFromInvoiceWithResponse(ctx context.
 		return nil, err
 	}
 	return ParsePaymentsUnlinkFromInvoiceResponse(rsp)
+}
+
+// PersonalAccessTokensListWithResponse request returning *PersonalAccessTokensListResponse
+func (c *ClientWithResponses) PersonalAccessTokensListWithResponse(ctx context.Context, params *PersonalAccessTokensListParams, reqEditors ...RequestEditorFn) (*PersonalAccessTokensListResponse, error) {
+	rsp, err := c.PersonalAccessTokensList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePersonalAccessTokensListResponse(rsp)
+}
+
+// PersonalAccessTokensCountWithResponse request returning *PersonalAccessTokensCountResponse
+func (c *ClientWithResponses) PersonalAccessTokensCountWithResponse(ctx context.Context, params *PersonalAccessTokensCountParams, reqEditors ...RequestEditorFn) (*PersonalAccessTokensCountResponse, error) {
+	rsp, err := c.PersonalAccessTokensCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePersonalAccessTokensCountResponse(rsp)
+}
+
+// PersonalAccessTokensCreateWithBodyWithResponse request with arbitrary body returning *PersonalAccessTokensCreateResponse
+func (c *ClientWithResponses) PersonalAccessTokensCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PersonalAccessTokensCreateResponse, error) {
+	rsp, err := c.PersonalAccessTokensCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePersonalAccessTokensCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) PersonalAccessTokensCreateWithResponse(ctx context.Context, body PersonalAccessTokensCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*PersonalAccessTokensCreateResponse, error) {
+	rsp, err := c.PersonalAccessTokensCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePersonalAccessTokensCreateResponse(rsp)
+}
+
+// PersonalAccessTokensAvailableScopesListWithResponse request returning *PersonalAccessTokensAvailableScopesListResponse
+func (c *ClientWithResponses) PersonalAccessTokensAvailableScopesListWithResponse(ctx context.Context, params *PersonalAccessTokensAvailableScopesListParams, reqEditors ...RequestEditorFn) (*PersonalAccessTokensAvailableScopesListResponse, error) {
+	rsp, err := c.PersonalAccessTokensAvailableScopesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePersonalAccessTokensAvailableScopesListResponse(rsp)
+}
+
+// PersonalAccessTokensAvailableScopesCountWithResponse request returning *PersonalAccessTokensAvailableScopesCountResponse
+func (c *ClientWithResponses) PersonalAccessTokensAvailableScopesCountWithResponse(ctx context.Context, params *PersonalAccessTokensAvailableScopesCountParams, reqEditors ...RequestEditorFn) (*PersonalAccessTokensAvailableScopesCountResponse, error) {
+	rsp, err := c.PersonalAccessTokensAvailableScopesCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePersonalAccessTokensAvailableScopesCountResponse(rsp)
+}
+
+// PersonalAccessTokensDestroyWithResponse request returning *PersonalAccessTokensDestroyResponse
+func (c *ClientWithResponses) PersonalAccessTokensDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*PersonalAccessTokensDestroyResponse, error) {
+	rsp, err := c.PersonalAccessTokensDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePersonalAccessTokensDestroyResponse(rsp)
+}
+
+// PersonalAccessTokensRetrieveWithResponse request returning *PersonalAccessTokensRetrieveResponse
+func (c *ClientWithResponses) PersonalAccessTokensRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*PersonalAccessTokensRetrieveResponse, error) {
+	rsp, err := c.PersonalAccessTokensRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePersonalAccessTokensRetrieveResponse(rsp)
+}
+
+// PersonalAccessTokensRotateWithResponse request returning *PersonalAccessTokensRotateResponse
+func (c *ClientWithResponses) PersonalAccessTokensRotateWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*PersonalAccessTokensRotateResponse, error) {
+	rsp, err := c.PersonalAccessTokensRotate(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePersonalAccessTokensRotateResponse(rsp)
 }
 
 // ProjectCreditsListWithResponse request returning *ProjectCreditsListResponse
@@ -464230,6 +465253,184 @@ func ParsePaymentsUnlinkFromInvoiceResponse(rsp *http.Response) (*PaymentsUnlink
 	response := &PaymentsUnlinkFromInvoiceResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParsePersonalAccessTokensListResponse parses an HTTP response from a PersonalAccessTokensListWithResponse call
+func ParsePersonalAccessTokensListResponse(rsp *http.Response) (*PersonalAccessTokensListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PersonalAccessTokensListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []PersonalAccessToken
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePersonalAccessTokensCountResponse parses an HTTP response from a PersonalAccessTokensCountWithResponse call
+func ParsePersonalAccessTokensCountResponse(rsp *http.Response) (*PersonalAccessTokensCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PersonalAccessTokensCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParsePersonalAccessTokensCreateResponse parses an HTTP response from a PersonalAccessTokensCreateWithResponse call
+func ParsePersonalAccessTokensCreateResponse(rsp *http.Response) (*PersonalAccessTokensCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PersonalAccessTokensCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest PersonalAccessTokenCreated
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePersonalAccessTokensAvailableScopesListResponse parses an HTTP response from a PersonalAccessTokensAvailableScopesListWithResponse call
+func ParsePersonalAccessTokensAvailableScopesListResponse(rsp *http.Response) (*PersonalAccessTokensAvailableScopesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PersonalAccessTokensAvailableScopesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AvailableScope
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePersonalAccessTokensAvailableScopesCountResponse parses an HTTP response from a PersonalAccessTokensAvailableScopesCountWithResponse call
+func ParsePersonalAccessTokensAvailableScopesCountResponse(rsp *http.Response) (*PersonalAccessTokensAvailableScopesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PersonalAccessTokensAvailableScopesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParsePersonalAccessTokensDestroyResponse parses an HTTP response from a PersonalAccessTokensDestroyWithResponse call
+func ParsePersonalAccessTokensDestroyResponse(rsp *http.Response) (*PersonalAccessTokensDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PersonalAccessTokensDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParsePersonalAccessTokensRetrieveResponse parses an HTTP response from a PersonalAccessTokensRetrieveWithResponse call
+func ParsePersonalAccessTokensRetrieveResponse(rsp *http.Response) (*PersonalAccessTokensRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PersonalAccessTokensRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PersonalAccessToken
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePersonalAccessTokensRotateResponse parses an HTTP response from a PersonalAccessTokensRotateWithResponse call
+func ParsePersonalAccessTokensRotateResponse(rsp *http.Response) (*PersonalAccessTokensRotateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PersonalAccessTokensRotateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest PersonalAccessTokenCreated
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
 	}
 
 	return response, nil
