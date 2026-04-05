@@ -2025,6 +2025,24 @@ func (e BidEnum) Valid() bool {
 	}
 }
 
+// Defines values for BillingModeEnum.
+const (
+	BillingModeEnumMonthly BillingModeEnum = "monthly"
+	BillingModeEnumPrepaid BillingModeEnum = "prepaid"
+)
+
+// Valid indicates whether the value is a known member of the BillingModeEnum enum.
+func (e BillingModeEnum) Valid() bool {
+	switch e {
+	case BillingModeEnumMonthly:
+		return true
+	case BillingModeEnumPrepaid:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for BillingTypeEnum.
 const (
 	BillingTypeEnumFew   BillingTypeEnum = "few"
@@ -7556,16 +7574,16 @@ func (e GoogleCredentialsFieldEnum) Valid() bool {
 
 // Defines values for GrowthPeriodEnum.
 const (
-	GrowthPeriodEnumMonthly GrowthPeriodEnum = "monthly"
-	GrowthPeriodEnumWeekly  GrowthPeriodEnum = "weekly"
+	Monthly GrowthPeriodEnum = "monthly"
+	Weekly  GrowthPeriodEnum = "weekly"
 )
 
 // Valid indicates whether the value is a known member of the GrowthPeriodEnum enum.
 func (e GrowthPeriodEnum) Valid() bool {
 	switch e {
-	case GrowthPeriodEnumMonthly:
+	case Monthly:
 		return true
-	case GrowthPeriodEnumWeekly:
+	case Weekly:
 		return true
 	default:
 		return false
@@ -9766,6 +9784,7 @@ const (
 	OfferingFieldEnumDataciteDoi               OfferingFieldEnum = "datacite_doi"
 	OfferingFieldEnumDescription               OfferingFieldEnum = "description"
 	OfferingFieldEnumDocumentationUrl          OfferingFieldEnum = "documentation_url"
+	OfferingFieldEnumEffectiveAvailableLimits  OfferingFieldEnum = "effective_available_limits"
 	OfferingFieldEnumEndpoints                 OfferingFieldEnum = "endpoints"
 	OfferingFieldEnumFiles                     OfferingFieldEnum = "files"
 	OfferingFieldEnumFullDescription           OfferingFieldEnum = "full_description"
@@ -9862,6 +9881,8 @@ func (e OfferingFieldEnum) Valid() bool {
 	case OfferingFieldEnumDescription:
 		return true
 	case OfferingFieldEnumDocumentationUrl:
+		return true
+	case OfferingFieldEnumEffectiveAvailableLimits:
 		return true
 	case OfferingFieldEnumEndpoints:
 		return true
@@ -15347,6 +15368,7 @@ const (
 	ProviderOfferingDetailsFieldEnumDataciteDoi               ProviderOfferingDetailsFieldEnum = "datacite_doi"
 	ProviderOfferingDetailsFieldEnumDescription               ProviderOfferingDetailsFieldEnum = "description"
 	ProviderOfferingDetailsFieldEnumDocumentationUrl          ProviderOfferingDetailsFieldEnum = "documentation_url"
+	ProviderOfferingDetailsFieldEnumEffectiveAvailableLimits  ProviderOfferingDetailsFieldEnum = "effective_available_limits"
 	ProviderOfferingDetailsFieldEnumEndpoints                 ProviderOfferingDetailsFieldEnum = "endpoints"
 	ProviderOfferingDetailsFieldEnumFiles                     ProviderOfferingDetailsFieldEnum = "files"
 	ProviderOfferingDetailsFieldEnumFullDescription           ProviderOfferingDetailsFieldEnum = "full_description"
@@ -15445,6 +15467,8 @@ func (e ProviderOfferingDetailsFieldEnum) Valid() bool {
 	case ProviderOfferingDetailsFieldEnumDescription:
 		return true
 	case ProviderOfferingDetailsFieldEnumDocumentationUrl:
+		return true
+	case ProviderOfferingDetailsFieldEnumEffectiveAvailableLimits:
 		return true
 	case ProviderOfferingDetailsFieldEnumEndpoints:
 		return true
@@ -15862,6 +15886,7 @@ const (
 	PublicOfferingDetailsFieldEnumDataciteDoi               PublicOfferingDetailsFieldEnum = "datacite_doi"
 	PublicOfferingDetailsFieldEnumDescription               PublicOfferingDetailsFieldEnum = "description"
 	PublicOfferingDetailsFieldEnumDocumentationUrl          PublicOfferingDetailsFieldEnum = "documentation_url"
+	PublicOfferingDetailsFieldEnumEffectiveAvailableLimits  PublicOfferingDetailsFieldEnum = "effective_available_limits"
 	PublicOfferingDetailsFieldEnumEndpoints                 PublicOfferingDetailsFieldEnum = "endpoints"
 	PublicOfferingDetailsFieldEnumFiles                     PublicOfferingDetailsFieldEnum = "files"
 	PublicOfferingDetailsFieldEnumFullDescription           PublicOfferingDetailsFieldEnum = "full_description"
@@ -15960,6 +15985,8 @@ func (e PublicOfferingDetailsFieldEnum) Valid() bool {
 	case PublicOfferingDetailsFieldEnumDescription:
 		return true
 	case PublicOfferingDetailsFieldEnumDocumentationUrl:
+		return true
+	case PublicOfferingDetailsFieldEnumEffectiveAvailableLimits:
 		return true
 	case PublicOfferingDetailsFieldEnumEndpoints:
 		return true
@@ -22992,6 +23019,9 @@ type BasicUser struct {
 
 // BidEnum defines model for BidEnum.
 type BidEnum string
+
+// BillingModeEnum defines model for BillingModeEnum.
+type BillingModeEnum string
 
 // BillingTypeEnum defines model for BillingTypeEnum.
 type BillingTypeEnum string
@@ -32212,6 +32242,7 @@ type Offering struct {
 	DataciteDoi               *string               `json:"datacite_doi,omitempty"`
 	Description               *string               `json:"description,omitempty"`
 	DocumentationUrl          *string               `json:"documentation_url,omitempty"`
+	EffectiveAvailableLimits  *[]string             `json:"effective_available_limits,omitempty"`
 	Endpoints                 *[]NestedEndpoint     `json:"endpoints,omitempty"`
 	Files                     *[]NestedOfferingFile `json:"files,omitempty"`
 	FullDescription           *string               `json:"full_description,omitempty"`
@@ -40654,19 +40685,20 @@ type ProviderOfferingDetails struct {
 	Components          *[]OfferingComponent `json:"components,omitempty"`
 
 	// Country Country code (ISO 3166-1 alpha-2)
-	Country                *ProviderOfferingDetails_Country `json:"country,omitempty"`
-	Created                *time.Time                       `json:"created,omitempty"`
-	Customer               *string                          `json:"customer,omitempty"`
-	CustomerName           *string                          `json:"customer_name,omitempty"`
-	CustomerUuid           *openapi_types.UUID              `json:"customer_uuid,omitempty"`
-	DataciteDoi            *string                          `json:"datacite_doi,omitempty"`
-	Description            *string                          `json:"description,omitempty"`
-	DocumentationUrl       *string                          `json:"documentation_url,omitempty"`
-	Endpoints              *[]NestedEndpoint                `json:"endpoints,omitempty"`
-	Files                  *[]NestedOfferingFile            `json:"files,omitempty"`
-	FullDescription        *string                          `json:"full_description,omitempty"`
-	GettingStarted         *string                          `json:"getting_started,omitempty"`
-	GoogleCalendarIsPublic *bool                            `json:"google_calendar_is_public,omitempty"`
+	Country                  *ProviderOfferingDetails_Country `json:"country,omitempty"`
+	Created                  *time.Time                       `json:"created,omitempty"`
+	Customer                 *string                          `json:"customer,omitempty"`
+	CustomerName             *string                          `json:"customer_name,omitempty"`
+	CustomerUuid             *openapi_types.UUID              `json:"customer_uuid,omitempty"`
+	DataciteDoi              *string                          `json:"datacite_doi,omitempty"`
+	Description              *string                          `json:"description,omitempty"`
+	DocumentationUrl         *string                          `json:"documentation_url,omitempty"`
+	EffectiveAvailableLimits *[]string                        `json:"effective_available_limits,omitempty"`
+	Endpoints                *[]NestedEndpoint                `json:"endpoints,omitempty"`
+	Files                    *[]NestedOfferingFile            `json:"files,omitempty"`
+	FullDescription          *string                          `json:"full_description,omitempty"`
+	GettingStarted           *string                          `json:"getting_started,omitempty"`
+	GoogleCalendarIsPublic   *bool                            `json:"google_calendar_is_public,omitempty"`
 
 	// GoogleCalendarLink Get the Google Calendar link for an offering.
 	GoogleCalendarLink        *string                             `json:"google_calendar_link,omitempty"`
@@ -41003,19 +41035,20 @@ type PublicOfferingDetails struct {
 	Components          *[]OfferingComponent `json:"components,omitempty"`
 
 	// Country Country code (ISO 3166-1 alpha-2)
-	Country                *PublicOfferingDetails_Country `json:"country,omitempty"`
-	Created                *time.Time                     `json:"created,omitempty"`
-	Customer               *string                        `json:"customer,omitempty"`
-	CustomerName           *string                        `json:"customer_name,omitempty"`
-	CustomerUuid           *openapi_types.UUID            `json:"customer_uuid,omitempty"`
-	DataciteDoi            *string                        `json:"datacite_doi,omitempty"`
-	Description            *string                        `json:"description,omitempty"`
-	DocumentationUrl       *string                        `json:"documentation_url,omitempty"`
-	Endpoints              *[]NestedEndpoint              `json:"endpoints,omitempty"`
-	Files                  *[]NestedOfferingFile          `json:"files,omitempty"`
-	FullDescription        *string                        `json:"full_description,omitempty"`
-	GettingStarted         *string                        `json:"getting_started,omitempty"`
-	GoogleCalendarIsPublic *bool                          `json:"google_calendar_is_public,omitempty"`
+	Country                  *PublicOfferingDetails_Country `json:"country,omitempty"`
+	Created                  *time.Time                     `json:"created,omitempty"`
+	Customer                 *string                        `json:"customer,omitempty"`
+	CustomerName             *string                        `json:"customer_name,omitempty"`
+	CustomerUuid             *openapi_types.UUID            `json:"customer_uuid,omitempty"`
+	DataciteDoi              *string                        `json:"datacite_doi,omitempty"`
+	Description              *string                        `json:"description,omitempty"`
+	DocumentationUrl         *string                        `json:"documentation_url,omitempty"`
+	EffectiveAvailableLimits *[]string                      `json:"effective_available_limits,omitempty"`
+	Endpoints                *[]NestedEndpoint              `json:"endpoints,omitempty"`
+	Files                    *[]NestedOfferingFile          `json:"files,omitempty"`
+	FullDescription          *string                        `json:"full_description,omitempty"`
+	GettingStarted           *string                        `json:"getting_started,omitempty"`
+	GoogleCalendarIsPublic   *bool                          `json:"google_calendar_is_public,omitempty"`
 
 	// GoogleCalendarLink Get the Google Calendar link for an offering.
 	GoogleCalendarLink        *string                           `json:"google_calendar_link,omitempty"`
@@ -45680,6 +45713,12 @@ type SupportUser struct {
 // SupportedCountriesResponse defines model for SupportedCountriesResponse.
 type SupportedCountriesResponse struct {
 	SupportedCountries []string `json:"supported_countries"`
+}
+
+// SwitchBillingModeRequest defines model for SwitchBillingModeRequest.
+type SwitchBillingModeRequest struct {
+	// BillingMode Switch all builtin components to monthly (LIMIT) or prepaid (ONE_TIME + is_prepaid) billing.
+	BillingMode BillingModeEnum `json:"billing_mode"`
 }
 
 // SyncFromArrowRequestRequest defines model for SyncFromArrowRequestRequest.
@@ -70019,6 +70058,9 @@ type MarketplaceProviderOfferingsRemoveSoftwareCatalogJSONRequestBody = RemoveSo
 // MarketplaceProviderOfferingsSetBackendMetadataJSONRequestBody defines body for MarketplaceProviderOfferingsSetBackendMetadata for application/json ContentType.
 type MarketplaceProviderOfferingsSetBackendMetadataJSONRequestBody = OfferingBackendMetadataRequest
 
+// MarketplaceProviderOfferingsSwitchBillingModeJSONRequestBody defines body for MarketplaceProviderOfferingsSwitchBillingMode for application/json ContentType.
+type MarketplaceProviderOfferingsSwitchBillingModeJSONRequestBody = SwitchBillingModeRequest
+
 // MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdate for application/json ContentType.
 type MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateJSONRequestBody = PatchedOfferingUserAttributeConfigRequest
 
@@ -85240,6 +85282,11 @@ type ClientInterface interface {
 
 	// MarketplaceProviderOfferingsStatsRetrieve request
 	MarketplaceProviderOfferingsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsSwitchBillingModeWithBody request with any body
+	MarketplaceProviderOfferingsSwitchBillingModeWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderOfferingsSwitchBillingMode(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSwitchBillingModeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsSync request
 	MarketplaceProviderOfferingsSync(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -105860,6 +105907,30 @@ func (c *Client) MarketplaceProviderOfferingsSetBackendMetadata(ctx context.Cont
 
 func (c *Client) MarketplaceProviderOfferingsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsStatsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsSwitchBillingModeWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsSwitchBillingModeRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsSwitchBillingMode(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSwitchBillingModeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsSwitchBillingModeRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -209659,6 +209730,53 @@ func NewMarketplaceProviderOfferingsStatsRetrieveRequest(server string, uuid ope
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsSwitchBillingModeRequest calls the generic MarketplaceProviderOfferingsSwitchBillingMode builder with application/json body
+func NewMarketplaceProviderOfferingsSwitchBillingModeRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSwitchBillingModeJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderOfferingsSwitchBillingModeRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsSwitchBillingModeRequestWithBody generates requests for MarketplaceProviderOfferingsSwitchBillingMode with any type of body
+func NewMarketplaceProviderOfferingsSwitchBillingModeRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/switch_billing_mode/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -338537,6 +338655,11 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceProviderOfferingsStatsRetrieveWithResponse request
 	MarketplaceProviderOfferingsStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsStatsRetrieveResponse, error)
 
+	// MarketplaceProviderOfferingsSwitchBillingModeWithBodyWithResponse request with any body
+	MarketplaceProviderOfferingsSwitchBillingModeWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSwitchBillingModeResponse, error)
+
+	MarketplaceProviderOfferingsSwitchBillingModeWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSwitchBillingModeJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSwitchBillingModeResponse, error)
+
 	// MarketplaceProviderOfferingsSyncWithResponse request
 	MarketplaceProviderOfferingsSyncWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSyncResponse, error)
 
@@ -364275,6 +364398,27 @@ func (r MarketplaceProviderOfferingsStatsRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceProviderOfferingsStatsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProviderOfferingsSwitchBillingModeResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsSwitchBillingModeResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsSwitchBillingModeResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -407486,6 +407630,23 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsStatsRetrieveWithRespo
 	return ParseMarketplaceProviderOfferingsStatsRetrieveResponse(rsp)
 }
 
+// MarketplaceProviderOfferingsSwitchBillingModeWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsSwitchBillingModeResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsSwitchBillingModeWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSwitchBillingModeResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsSwitchBillingModeWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsSwitchBillingModeResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderOfferingsSwitchBillingModeWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSwitchBillingModeJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSwitchBillingModeResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsSwitchBillingMode(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsSwitchBillingModeResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsSyncWithResponse request returning *MarketplaceProviderOfferingsSyncResponse
 func (c *ClientWithResponses) MarketplaceProviderOfferingsSyncWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSyncResponse, error) {
 	rsp, err := c.MarketplaceProviderOfferingsSync(ctx, uuid, reqEditors...)
@@ -446435,6 +446596,22 @@ func ParseMarketplaceProviderOfferingsStatsRetrieveResponse(rsp *http.Response) 
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsSwitchBillingModeResponse parses an HTTP response from a MarketplaceProviderOfferingsSwitchBillingModeWithResponse call
+func ParseMarketplaceProviderOfferingsSwitchBillingModeResponse(rsp *http.Response) (*MarketplaceProviderOfferingsSwitchBillingModeResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsSwitchBillingModeResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
