@@ -4381,6 +4381,7 @@ const (
 	CustomerFieldEnumAccountingStartDate          CustomerFieldEnum = "accounting_start_date"
 	CustomerFieldEnumAddress                      CustomerFieldEnum = "address"
 	CustomerFieldEnumAgreementNumber              CustomerFieldEnum = "agreement_number"
+	CustomerFieldEnumApartmentNr                  CustomerFieldEnum = "apartment_nr"
 	CustomerFieldEnumArchived                     CustomerFieldEnum = "archived"
 	CustomerFieldEnumBackendId                    CustomerFieldEnum = "backend_id"
 	CustomerFieldEnumBankAccount                  CustomerFieldEnum = "bank_account"
@@ -4388,6 +4389,7 @@ const (
 	CustomerFieldEnumBillingPriceEstimate         CustomerFieldEnum = "billing_price_estimate"
 	CustomerFieldEnumBlocked                      CustomerFieldEnum = "blocked"
 	CustomerFieldEnumCallManagingOrganizationUuid CustomerFieldEnum = "call_managing_organization_uuid"
+	CustomerFieldEnumCity                         CustomerFieldEnum = "city"
 	CustomerFieldEnumContactDetails               CustomerFieldEnum = "contact_details"
 	CustomerFieldEnumCountry                      CustomerFieldEnum = "country"
 	CustomerFieldEnumCountryName                  CustomerFieldEnum = "country_name"
@@ -4402,6 +4404,8 @@ const (
 	CustomerFieldEnumEmail                        CustomerFieldEnum = "email"
 	CustomerFieldEnumGracePeriodDays              CustomerFieldEnum = "grace_period_days"
 	CustomerFieldEnumHomepage                     CustomerFieldEnum = "homepage"
+	CustomerFieldEnumHouseNr                      CustomerFieldEnum = "house_nr"
+	CustomerFieldEnumHousehold                    CustomerFieldEnum = "household"
 	CustomerFieldEnumImage                        CustomerFieldEnum = "image"
 	CustomerFieldEnumIsServiceProvider            CustomerFieldEnum = "is_service_provider"
 	CustomerFieldEnumLatitude                     CustomerFieldEnum = "latitude"
@@ -4411,6 +4415,7 @@ const (
 	CustomerFieldEnumNativeName                   CustomerFieldEnum = "native_name"
 	CustomerFieldEnumNotificationEmails           CustomerFieldEnum = "notification_emails"
 	CustomerFieldEnumOrganizationGroups           CustomerFieldEnum = "organization_groups"
+	CustomerFieldEnumParish                       CustomerFieldEnum = "parish"
 	CustomerFieldEnumPaymentProfiles              CustomerFieldEnum = "payment_profiles"
 	CustomerFieldEnumPhoneNumber                  CustomerFieldEnum = "phone_number"
 	CustomerFieldEnumPostal                       CustomerFieldEnum = "postal"
@@ -4421,6 +4426,8 @@ const (
 	CustomerFieldEnumServiceProviderUuid          CustomerFieldEnum = "service_provider_uuid"
 	CustomerFieldEnumSlug                         CustomerFieldEnum = "slug"
 	CustomerFieldEnumSponsorNumber                CustomerFieldEnum = "sponsor_number"
+	CustomerFieldEnumState                        CustomerFieldEnum = "state"
+	CustomerFieldEnumStreet                       CustomerFieldEnum = "street"
 	CustomerFieldEnumUrl                          CustomerFieldEnum = "url"
 	CustomerFieldEnumUserAffiliations             CustomerFieldEnum = "user_affiliations"
 	CustomerFieldEnumUserEmailPatterns            CustomerFieldEnum = "user_email_patterns"
@@ -4443,6 +4450,8 @@ func (e CustomerFieldEnum) Valid() bool {
 		return true
 	case CustomerFieldEnumAgreementNumber:
 		return true
+	case CustomerFieldEnumApartmentNr:
+		return true
 	case CustomerFieldEnumArchived:
 		return true
 	case CustomerFieldEnumBackendId:
@@ -4456,6 +4465,8 @@ func (e CustomerFieldEnum) Valid() bool {
 	case CustomerFieldEnumBlocked:
 		return true
 	case CustomerFieldEnumCallManagingOrganizationUuid:
+		return true
+	case CustomerFieldEnumCity:
 		return true
 	case CustomerFieldEnumContactDetails:
 		return true
@@ -4485,6 +4496,10 @@ func (e CustomerFieldEnum) Valid() bool {
 		return true
 	case CustomerFieldEnumHomepage:
 		return true
+	case CustomerFieldEnumHouseNr:
+		return true
+	case CustomerFieldEnumHousehold:
+		return true
 	case CustomerFieldEnumImage:
 		return true
 	case CustomerFieldEnumIsServiceProvider:
@@ -4502,6 +4517,8 @@ func (e CustomerFieldEnum) Valid() bool {
 	case CustomerFieldEnumNotificationEmails:
 		return true
 	case CustomerFieldEnumOrganizationGroups:
+		return true
+	case CustomerFieldEnumParish:
 		return true
 	case CustomerFieldEnumPaymentProfiles:
 		return true
@@ -4522,6 +4539,10 @@ func (e CustomerFieldEnum) Valid() bool {
 	case CustomerFieldEnumSlug:
 		return true
 	case CustomerFieldEnumSponsorNumber:
+		return true
+	case CustomerFieldEnumState:
+		return true
+	case CustomerFieldEnumStreet:
 		return true
 	case CustomerFieldEnumUrl:
 		return true
@@ -8853,30 +8874,6 @@ func (e LOGINPAGELAYOUTEnum) Valid() bool {
 	}
 }
 
-// Defines values for LbAlgorithmEnum.
-const (
-	LEASTCONNECTIONS LbAlgorithmEnum = "LEAST_CONNECTIONS"
-	ROUNDROBIN       LbAlgorithmEnum = "ROUND_ROBIN"
-	SOURCEIP         LbAlgorithmEnum = "SOURCE_IP"
-	SOURCEIPPORT     LbAlgorithmEnum = "SOURCE_IP_PORT"
-)
-
-// Valid indicates whether the value is a known member of the LbAlgorithmEnum enum.
-func (e LbAlgorithmEnum) Valid() bool {
-	switch e {
-	case LEASTCONNECTIONS:
-		return true
-	case ROUNDROBIN:
-		return true
-	case SOURCEIP:
-		return true
-	case SOURCEIPPORT:
-		return true
-	default:
-		return false
-	}
-}
-
 // Defines values for LimitPeriodEnum.
 const (
 	LimitPeriodEnumAnnual    LimitPeriodEnum = "annual"
@@ -11605,8 +11602,8 @@ const (
 	OpenStackLoadBalancerFieldEnumUrl                              OpenStackLoadBalancerFieldEnum = "url"
 	OpenStackLoadBalancerFieldEnumUuid                             OpenStackLoadBalancerFieldEnum = "uuid"
 	OpenStackLoadBalancerFieldEnumVipAddress                       OpenStackLoadBalancerFieldEnum = "vip_address"
-	OpenStackLoadBalancerFieldEnumVipPortId                        OpenStackLoadBalancerFieldEnum = "vip_port_id"
-	OpenStackLoadBalancerFieldEnumVipSubnetId                      OpenStackLoadBalancerFieldEnum = "vip_subnet_id"
+	OpenStackLoadBalancerFieldEnumVipPort                          OpenStackLoadBalancerFieldEnum = "vip_port"
+	OpenStackLoadBalancerFieldEnumVipSubnet                        OpenStackLoadBalancerFieldEnum = "vip_subnet"
 )
 
 // Valid indicates whether the value is a known member of the OpenStackLoadBalancerFieldEnum enum.
@@ -11700,9 +11697,9 @@ func (e OpenStackLoadBalancerFieldEnum) Valid() bool {
 		return true
 	case OpenStackLoadBalancerFieldEnumVipAddress:
 		return true
-	case OpenStackLoadBalancerFieldEnumVipPortId:
+	case OpenStackLoadBalancerFieldEnumVipPort:
 		return true
-	case OpenStackLoadBalancerFieldEnumVipSubnetId:
+	case OpenStackLoadBalancerFieldEnumVipSubnet:
 		return true
 	default:
 		return false
@@ -12041,7 +12038,7 @@ const (
 	OpenStackPoolMemberFieldEnumServiceSettingsState             OpenStackPoolMemberFieldEnum = "service_settings_state"
 	OpenStackPoolMemberFieldEnumServiceSettingsUuid              OpenStackPoolMemberFieldEnum = "service_settings_uuid"
 	OpenStackPoolMemberFieldEnumState                            OpenStackPoolMemberFieldEnum = "state"
-	OpenStackPoolMemberFieldEnumSubnetId                         OpenStackPoolMemberFieldEnum = "subnet_id"
+	OpenStackPoolMemberFieldEnumSubnet                           OpenStackPoolMemberFieldEnum = "subnet"
 	OpenStackPoolMemberFieldEnumUrl                              OpenStackPoolMemberFieldEnum = "url"
 	OpenStackPoolMemberFieldEnumUuid                             OpenStackPoolMemberFieldEnum = "uuid"
 	OpenStackPoolMemberFieldEnumWeight                           OpenStackPoolMemberFieldEnum = "weight"
@@ -12134,7 +12131,7 @@ func (e OpenStackPoolMemberFieldEnum) Valid() bool {
 		return true
 	case OpenStackPoolMemberFieldEnumState:
 		return true
-	case OpenStackPoolMemberFieldEnumSubnetId:
+	case OpenStackPoolMemberFieldEnumSubnet:
 		return true
 	case OpenStackPoolMemberFieldEnumUrl:
 		return true
@@ -26356,19 +26353,16 @@ type CreateFeedbackRequest struct {
 // CreateHealthMonitor defines model for CreateHealthMonitor.
 type CreateHealthMonitor struct {
 	// Delay Interval between health checks in seconds
-	Delay int `json:"delay"`
-
-	// MaxRetries Number of retries before marking member as down
-	MaxRetries int     `json:"max_retries"`
-	Name       *string `json:"name,omitempty"`
+	Delay          *int    `json:"delay,omitempty"`
+	MaxRetries     *int    `json:"max_retries,omitempty"`
+	MaxRetriesDown *int    `json:"max_retries_down,omitempty"`
+	Name           *string `json:"name,omitempty"`
 
 	// Pool Pool this health monitor belongs to
-	Pool            string  `json:"pool"`
-	Project         *string `json:"project,omitempty"`
-	ServiceSettings *string `json:"service_settings,omitempty"`
+	Pool string `json:"pool"`
 
 	// Timeout Time in seconds to timeout a health check
-	Timeout int                      `json:"timeout"`
+	Timeout *int                     `json:"timeout,omitempty"`
 	Type    LoadBalancerProtocolEnum `json:"type"`
 	Url     *string                  `json:"url,omitempty"`
 	Uuid    *openapi_types.UUID      `json:"uuid,omitempty"`
@@ -26377,17 +26371,16 @@ type CreateHealthMonitor struct {
 // CreateHealthMonitorRequest defines model for CreateHealthMonitorRequest.
 type CreateHealthMonitorRequest struct {
 	// Delay Interval between health checks in seconds
-	Delay int `json:"delay"`
-
-	// MaxRetries Number of retries before marking member as down
-	MaxRetries int     `json:"max_retries"`
-	Name       *string `json:"name,omitempty"`
+	Delay          *int    `json:"delay,omitempty"`
+	MaxRetries     *int    `json:"max_retries,omitempty"`
+	MaxRetriesDown *int    `json:"max_retries_down,omitempty"`
+	Name           *string `json:"name,omitempty"`
 
 	// Pool Pool this health monitor belongs to
 	Pool string `json:"pool"`
 
 	// Timeout Time in seconds to timeout a health check
-	Timeout int                      `json:"timeout"`
+	Timeout *int                     `json:"timeout,omitempty"`
 	Type    LoadBalancerProtocolEnum `json:"type"`
 }
 
@@ -26397,15 +26390,13 @@ type CreateListener struct {
 
 	// LoadBalancer Load balancer this listener belongs to
 	LoadBalancer string                   `json:"load_balancer"`
-	Name         string                   `json:"name"`
-	Project      *string                  `json:"project,omitempty"`
+	Name         *string                  `json:"name,omitempty"`
 	Protocol     LoadBalancerProtocolEnum `json:"protocol"`
 
 	// ProtocolPort Port on which the listener listens
-	ProtocolPort    int                 `json:"protocol_port"`
-	ServiceSettings *string             `json:"service_settings,omitempty"`
-	Url             *string             `json:"url,omitempty"`
-	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
+	ProtocolPort int                 `json:"protocol_port"`
+	Url          *string             `json:"url,omitempty"`
+	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // CreateListenerRequest defines model for CreateListenerRequest.
@@ -26414,7 +26405,7 @@ type CreateListenerRequest struct {
 
 	// LoadBalancer Load balancer this listener belongs to
 	LoadBalancer string                   `json:"load_balancer"`
-	Name         string                   `json:"name"`
+	Name         *string                  `json:"name,omitempty"`
 	Protocol     LoadBalancerProtocolEnum `json:"protocol"`
 
 	// ProtocolPort Port on which the listener listens
@@ -26423,15 +26414,13 @@ type CreateListenerRequest struct {
 
 // CreateLoadBalancer defines model for CreateLoadBalancer.
 type CreateLoadBalancer struct {
-	Name            string  `json:"name"`
-	Project         *string `json:"project,omitempty"`
-	ServiceSettings *string `json:"service_settings,omitempty"`
+	Name string `json:"name"`
 
 	// Tenant OpenStack tenant this load balancer belongs to
-	Tenant      string              `json:"tenant"`
-	Url         *string             `json:"url,omitempty"`
-	Uuid        *openapi_types.UUID `json:"uuid,omitempty"`
-	VipSubnetId string              `json:"vip_subnet_id"`
+	Tenant    string              `json:"tenant"`
+	Url       *string             `json:"url,omitempty"`
+	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
+	VipSubnet string              `json:"vip_subnet"`
 }
 
 // CreateLoadBalancerRequest defines model for CreateLoadBalancerRequest.
@@ -26439,8 +26428,8 @@ type CreateLoadBalancerRequest struct {
 	Name string `json:"name"`
 
 	// Tenant OpenStack tenant this load balancer belongs to
-	Tenant      string `json:"tenant"`
-	VipSubnetId string `json:"vip_subnet_id"`
+	Tenant    string `json:"tenant"`
+	VipSubnet string `json:"vip_subnet"`
 }
 
 // CreateManualAssignmentRequest defines model for CreateManualAssignmentRequest.
@@ -26466,16 +26455,12 @@ type CreateManualAssignmentResponse struct {
 
 // CreatePool defines model for CreatePool.
 type CreatePool struct {
-	LbAlgorithm *LbAlgorithmEnum `json:"lb_algorithm,omitempty"`
-
 	// LoadBalancer Load balancer this pool belongs to
-	LoadBalancer    string                   `json:"load_balancer"`
-	Name            string                   `json:"name"`
-	Project         *string                  `json:"project,omitempty"`
-	Protocol        LoadBalancerProtocolEnum `json:"protocol"`
-	ServiceSettings *string                  `json:"service_settings,omitempty"`
-	Url             *string                  `json:"url,omitempty"`
-	Uuid            *openapi_types.UUID      `json:"uuid,omitempty"`
+	LoadBalancer string                   `json:"load_balancer"`
+	Name         string                   `json:"name"`
+	Protocol     LoadBalancerProtocolEnum `json:"protocol"`
+	Url          *string                  `json:"url,omitempty"`
+	Uuid         *openapi_types.UUID      `json:"uuid,omitempty"`
 }
 
 // CreatePoolMember defines model for CreatePoolMember.
@@ -26485,16 +26470,14 @@ type CreatePoolMember struct {
 	Name    *string                  `json:"name,omitempty"`
 
 	// Pool Pool this member belongs to
-	Pool    string  `json:"pool"`
-	Project *string `json:"project,omitempty"`
+	Pool string `json:"pool"`
 
 	// ProtocolPort Port on the backend server
-	ProtocolPort    int                 `json:"protocol_port"`
-	ServiceSettings *string             `json:"service_settings,omitempty"`
-	SubnetId        string              `json:"subnet_id"`
-	Url             *string             `json:"url,omitempty"`
-	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
-	Weight          *int                `json:"weight,omitempty"`
+	ProtocolPort int                 `json:"protocol_port"`
+	Subnet       string              `json:"subnet"`
+	Url          *string             `json:"url,omitempty"`
+	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+	Weight       *int                `json:"weight,omitempty"`
 }
 
 // CreatePoolMemberAddress0 defines model for .
@@ -26519,7 +26502,7 @@ type CreatePoolMemberRequest struct {
 
 	// ProtocolPort Port on the backend server
 	ProtocolPort int    `json:"protocol_port"`
-	SubnetId     string `json:"subnet_id"`
+	Subnet       string `json:"subnet"`
 	Weight       *int   `json:"weight,omitempty"`
 }
 
@@ -26536,8 +26519,6 @@ type CreatePoolMemberRequest_Address struct {
 
 // CreatePoolRequest defines model for CreatePoolRequest.
 type CreatePoolRequest struct {
-	LbAlgorithm *LbAlgorithmEnum `json:"lb_algorithm,omitempty"`
-
 	// LoadBalancer Load balancer this pool belongs to
 	LoadBalancer string                   `json:"load_balancer"`
 	Name         string                   `json:"name"`
@@ -26584,6 +26565,7 @@ type Customer struct {
 	AccountingStartDate *time.Time `json:"accounting_start_date,omitempty"`
 	Address             *string    `json:"address,omitempty"`
 	AgreementNumber     *string    `json:"agreement_number,omitempty"`
+	ApartmentNr         *string    `json:"apartment_nr,omitempty"`
 	Archived            *bool      `json:"archived,omitempty"`
 
 	// BackendId Organization identifier in another application.
@@ -26593,6 +26575,7 @@ type Customer struct {
 	BillingPriceEstimate         *NestedPriceEstimate `json:"billing_price_estimate,omitempty"`
 	Blocked                      *bool                `json:"blocked,omitempty"`
 	CallManagingOrganizationUuid *string              `json:"call_managing_organization_uuid,omitempty"`
+	City                         *string              `json:"city,omitempty"`
 	ContactDetails               *string              `json:"contact_details,omitempty"`
 
 	// Country Country code (ISO 3166-1 alpha-2)
@@ -26615,6 +26598,8 @@ type Customer struct {
 	// GracePeriodDays Number of extra days after project end date before resources are terminated
 	GracePeriodDays   *int     `json:"grace_period_days,omitempty"`
 	Homepage          *string  `json:"homepage,omitempty"`
+	HouseNr           *string  `json:"house_nr,omitempty"`
+	Household         *string  `json:"household,omitempty"`
 	Image             *string  `json:"image,omitempty"`
 	IsServiceProvider *bool    `json:"is_service_provider,omitempty"`
 	Latitude          *float64 `json:"latitude,omitempty"`
@@ -26630,6 +26615,7 @@ type Customer struct {
 
 	// OrganizationGroups Organization groups this customer belongs to
 	OrganizationGroups *[]OrganizationGroup `json:"organization_groups,omitempty"`
+	Parish             *string              `json:"parish,omitempty"`
 	PaymentProfiles    *[]PaymentProfile    `json:"payment_profiles,omitempty"`
 	PhoneNumber        *string              `json:"phone_number,omitempty"`
 	Postal             *string              `json:"postal,omitempty"`
@@ -26648,6 +26634,8 @@ type Customer struct {
 
 	// SponsorNumber External ID of the sponsor covering the costs
 	SponsorNumber     *int        `json:"sponsor_number,omitempty"`
+	State             *string     `json:"state,omitempty"`
+	Street            *string     `json:"street,omitempty"`
 	Url               *string     `json:"url,omitempty"`
 	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
 	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
@@ -26971,6 +26959,7 @@ type CustomerRequest struct {
 	AccountingStartDate *time.Time `json:"accounting_start_date,omitempty"`
 	Address             *string    `json:"address,omitempty"`
 	AgreementNumber     *string    `json:"agreement_number,omitempty"`
+	ApartmentNr         *string    `json:"apartment_nr,omitempty"`
 	Archived            *bool      `json:"archived,omitempty"`
 
 	// BackendId Organization identifier in another application.
@@ -26978,6 +26967,7 @@ type CustomerRequest struct {
 	BankAccount    *string `json:"bank_account,omitempty"`
 	BankName       *string `json:"bank_name,omitempty"`
 	Blocked        *bool   `json:"blocked,omitempty"`
+	City           *string `json:"city,omitempty"`
 	ContactDetails *string `json:"contact_details,omitempty"`
 
 	// Country Country code (ISO 3166-1 alpha-2)
@@ -26991,6 +26981,8 @@ type CustomerRequest struct {
 	// GracePeriodDays Number of extra days after project end date before resources are terminated
 	GracePeriodDays *int                `json:"grace_period_days,omitempty"`
 	Homepage        *string             `json:"homepage,omitempty"`
+	HouseNr         *string             `json:"house_nr,omitempty"`
+	Household       *string             `json:"household,omitempty"`
 	Image           *openapi_types.File `json:"image,omitempty"`
 	Latitude        *float64            `json:"latitude,omitempty"`
 	Longitude       *float64            `json:"longitude,omitempty"`
@@ -27002,6 +26994,7 @@ type CustomerRequest struct {
 
 	// NotificationEmails Comma-separated list of notification email addresses
 	NotificationEmails *string `json:"notification_emails,omitempty"`
+	Parish             *string `json:"parish,omitempty"`
 	PhoneNumber        *string `json:"phone_number,omitempty"`
 	Postal             *string `json:"postal,omitempty"`
 
@@ -27014,6 +27007,8 @@ type CustomerRequest struct {
 
 	// SponsorNumber External ID of the sponsor covering the costs
 	SponsorNumber     *int        `json:"sponsor_number,omitempty"`
+	State             *string     `json:"state,omitempty"`
+	Street            *string     `json:"street,omitempty"`
 	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
 	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
 
@@ -27038,6 +27033,7 @@ type CustomerRequestForm struct {
 	AccountingStartDate *time.Time `json:"accounting_start_date,omitempty"`
 	Address             *string    `json:"address,omitempty"`
 	AgreementNumber     *string    `json:"agreement_number,omitempty"`
+	ApartmentNr         *string    `json:"apartment_nr,omitempty"`
 	Archived            *bool      `json:"archived,omitempty"`
 
 	// BackendId Organization identifier in another application.
@@ -27045,6 +27041,7 @@ type CustomerRequestForm struct {
 	BankAccount    *string `json:"bank_account,omitempty"`
 	BankName       *string `json:"bank_name,omitempty"`
 	Blocked        *bool   `json:"blocked,omitempty"`
+	City           *string `json:"city,omitempty"`
 	ContactDetails *string `json:"contact_details,omitempty"`
 
 	// Country Country code (ISO 3166-1 alpha-2)
@@ -27058,6 +27055,8 @@ type CustomerRequestForm struct {
 	// GracePeriodDays Number of extra days after project end date before resources are terminated
 	GracePeriodDays *int                `json:"grace_period_days,omitempty"`
 	Homepage        *string             `json:"homepage,omitempty"`
+	HouseNr         *string             `json:"house_nr,omitempty"`
+	Household       *string             `json:"household,omitempty"`
 	Image           *openapi_types.File `json:"image,omitempty"`
 	Latitude        *float64            `json:"latitude,omitempty"`
 	Longitude       *float64            `json:"longitude,omitempty"`
@@ -27069,6 +27068,7 @@ type CustomerRequestForm struct {
 
 	// NotificationEmails Comma-separated list of notification email addresses
 	NotificationEmails *string `json:"notification_emails,omitempty"`
+	Parish             *string `json:"parish,omitempty"`
 	PhoneNumber        *string `json:"phone_number,omitempty"`
 	Postal             *string `json:"postal,omitempty"`
 
@@ -27081,6 +27081,8 @@ type CustomerRequestForm struct {
 
 	// SponsorNumber External ID of the sponsor covering the costs
 	SponsorNumber     *int        `json:"sponsor_number,omitempty"`
+	State             *string     `json:"state,omitempty"`
+	Street            *string     `json:"street,omitempty"`
 	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
 	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
 
@@ -27105,6 +27107,7 @@ type CustomerRequestMultipart struct {
 	AccountingStartDate *time.Time `json:"accounting_start_date,omitempty"`
 	Address             *string    `json:"address,omitempty"`
 	AgreementNumber     *string    `json:"agreement_number,omitempty"`
+	ApartmentNr         *string    `json:"apartment_nr,omitempty"`
 	Archived            *bool      `json:"archived,omitempty"`
 
 	// BackendId Organization identifier in another application.
@@ -27112,6 +27115,7 @@ type CustomerRequestMultipart struct {
 	BankAccount    *string `json:"bank_account,omitempty"`
 	BankName       *string `json:"bank_name,omitempty"`
 	Blocked        *bool   `json:"blocked,omitempty"`
+	City           *string `json:"city,omitempty"`
 	ContactDetails *string `json:"contact_details,omitempty"`
 
 	// Country Country code (ISO 3166-1 alpha-2)
@@ -27125,6 +27129,8 @@ type CustomerRequestMultipart struct {
 	// GracePeriodDays Number of extra days after project end date before resources are terminated
 	GracePeriodDays *int                `json:"grace_period_days,omitempty"`
 	Homepage        *string             `json:"homepage,omitempty"`
+	HouseNr         *string             `json:"house_nr,omitempty"`
+	Household       *string             `json:"household,omitempty"`
 	Image           *openapi_types.File `json:"image,omitempty"`
 	Latitude        *float64            `json:"latitude,omitempty"`
 	Longitude       *float64            `json:"longitude,omitempty"`
@@ -27136,6 +27142,7 @@ type CustomerRequestMultipart struct {
 
 	// NotificationEmails Comma-separated list of notification email addresses
 	NotificationEmails *string `json:"notification_emails,omitempty"`
+	Parish             *string `json:"parish,omitempty"`
 	PhoneNumber        *string `json:"phone_number,omitempty"`
 	Postal             *string `json:"postal,omitempty"`
 
@@ -27148,6 +27155,8 @@ type CustomerRequestMultipart struct {
 
 	// SponsorNumber External ID of the sponsor covering the costs
 	SponsorNumber     *int        `json:"sponsor_number,omitempty"`
+	State             *string     `json:"state,omitempty"`
+	Street            *string     `json:"street,omitempty"`
 	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
 	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
 
@@ -30122,9 +30131,6 @@ type KindEnum string
 // LOGINPAGELAYOUTEnum defines model for LOGINPAGELAYOUTEnum.
 type LOGINPAGELAYOUTEnum string
 
-// LbAlgorithmEnum defines model for LbAlgorithmEnum.
-type LbAlgorithmEnum string
-
 // LexisLink defines model for LexisLink.
 type LexisLink struct {
 	Created              *time.Time          `json:"created,omitempty"`
@@ -30206,6 +30212,12 @@ type LinkToInvoiceRequest struct {
 	Invoice string `json:"invoice"`
 }
 
+// LoadBalancerAsyncOperationResponse defines model for LoadBalancerAsyncOperationResponse.
+type LoadBalancerAsyncOperationResponse struct {
+	// Status Message that execution of the operation was scheduled.
+	Status string `json:"status"`
+}
+
 // LoadBalancerAttachFloatingIPRequest defines model for LoadBalancerAttachFloatingIPRequest.
 type LoadBalancerAttachFloatingIPRequest struct {
 	FloatingIp string `json:"floating_ip"`
@@ -30213,11 +30225,6 @@ type LoadBalancerAttachFloatingIPRequest struct {
 
 // LoadBalancerProtocolEnum defines model for LoadBalancerProtocolEnum.
 type LoadBalancerProtocolEnum string
-
-// LoadBalancerUpdateVIPSecurityGroupsRequest defines model for LoadBalancerUpdateVIPSecurityGroupsRequest.
-type LoadBalancerUpdateVIPSecurityGroupsRequest struct {
-	SecurityGroups []string `json:"security_groups"`
-}
 
 // LockStats defines model for LockStats.
 type LockStats struct {
@@ -30872,6 +30879,9 @@ type MergedPluginOptions struct {
 	// LatestDateForResourceTermination If set, it will be used as a latest date for resource termination. Format: YYYY-MM-DD
 	LatestDateForResourceTermination *string `json:"latest_date_for_resource_termination,omitempty"`
 
+	// LbaasEnabled If True, Octavia LBaaS (load balancers) is intended to be available for tenants from this offering.
+	LbaasEnabled *bool `json:"lbaas_enabled,omitempty"`
+
 	// ManagedRancherLoadBalancerDataVolumeSizeGb Data volume size in GB for managed Rancher load balancer
 	ManagedRancherLoadBalancerDataVolumeSizeGb *int `json:"managed_rancher_load_balancer_data_volume_size_gb,omitempty"`
 
@@ -31101,6 +31111,9 @@ type MergedPluginOptionsRequest struct {
 
 	// LatestDateForResourceTermination If set, it will be used as a latest date for resource termination. Format: YYYY-MM-DD
 	LatestDateForResourceTermination *string `json:"latest_date_for_resource_termination,omitempty"`
+
+	// LbaasEnabled If True, Octavia LBaaS (load balancers) is intended to be available for tenants from this offering.
+	LbaasEnabled *bool `json:"lbaas_enabled,omitempty"`
 
 	// ManagedRancherLoadBalancerDataVolumeSizeGb Data volume size in GB for managed Rancher load balancer
 	ManagedRancherLoadBalancerDataVolumeSizeGb *int `json:"managed_rancher_load_balancer_data_volume_size_gb,omitempty"`
@@ -34773,9 +34786,9 @@ type OpenStackLoadBalancer struct {
 	Uuid       *openapi_types.UUID `json:"uuid,omitempty"`
 
 	// VipAddress An IPv4 or IPv6 address.
-	VipAddress  *OpenStackLoadBalancer_VipAddress `json:"vip_address,omitempty"`
-	VipPortId   *string                           `json:"vip_port_id,omitempty"`
-	VipSubnetId *string                           `json:"vip_subnet_id,omitempty"`
+	VipAddress *OpenStackLoadBalancer_VipAddress `json:"vip_address,omitempty"`
+	VipPort    *string                           `json:"vip_port,omitempty"`
+	VipSubnet  *string                           `json:"vip_subnet,omitempty"`
 }
 
 // OpenStackLoadBalancerVipAddress0 defines model for .
@@ -34791,24 +34804,6 @@ type OpenStackLoadBalancer_VipAddress struct {
 
 // OpenStackLoadBalancerFieldEnum defines model for OpenStackLoadBalancerFieldEnum.
 type OpenStackLoadBalancerFieldEnum string
-
-// OpenStackLoadBalancerRequest defines model for OpenStackLoadBalancerRequest.
-type OpenStackLoadBalancerRequest struct {
-	// AttachedFloatingIp Floating IP attached to the VIP port
-	AttachedFloatingIp *string `json:"attached_floating_ip,omitempty"`
-
-	// BackendId Load balancer ID in Octavia
-	BackendId       *string `json:"backend_id,omitempty"`
-	Description     *string `json:"description,omitempty"`
-	ErrorMessage    *string `json:"error_message,omitempty"`
-	ErrorTraceback  *string `json:"error_traceback,omitempty"`
-	Name            string  `json:"name"`
-	Project         string  `json:"project"`
-	ServiceSettings string  `json:"service_settings"`
-
-	// Tenant OpenStack tenant this load balancer belongs to
-	Tenant string `json:"tenant"`
-}
 
 // OpenStackNestedFloatingIP defines model for OpenStackNestedFloatingIP.
 type OpenStackNestedFloatingIP struct {
@@ -35121,12 +35116,10 @@ type OpenStackPoolMember struct {
 	ServiceSettingsState        *string             `json:"service_settings_state,omitempty"`
 	ServiceSettingsUuid         *openapi_types.UUID `json:"service_settings_uuid,omitempty"`
 	State                       *CoreStates         `json:"state,omitempty"`
-
-	// SubnetId Subnet ID for the member (required for creation)
-	SubnetId *string             `json:"subnet_id,omitempty"`
-	Url      *string             `json:"url,omitempty"`
-	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
-	Weight   *int                `json:"weight,omitempty"`
+	Subnet                      *string             `json:"subnet,omitempty"`
+	Url                         *string             `json:"url,omitempty"`
+	Uuid                        *openapi_types.UUID `json:"uuid,omitempty"`
+	Weight                      *int                `json:"weight,omitempty"`
 }
 
 // OpenStackPoolMemberAddress0 defines model for .
@@ -35142,21 +35135,6 @@ type OpenStackPoolMember_Address struct {
 
 // OpenStackPoolMemberFieldEnum defines model for OpenStackPoolMemberFieldEnum.
 type OpenStackPoolMemberFieldEnum string
-
-// OpenStackPoolRequest defines model for OpenStackPoolRequest.
-type OpenStackPoolRequest struct {
-	// BackendId Pool ID in Octavia
-	BackendId      *string `json:"backend_id,omitempty"`
-	Description    *string `json:"description,omitempty"`
-	ErrorMessage   *string `json:"error_message,omitempty"`
-	ErrorTraceback *string `json:"error_traceback,omitempty"`
-
-	// LoadBalancer Load balancer this pool belongs to
-	LoadBalancer    string `json:"load_balancer"`
-	Name            string `json:"name"`
-	Project         string `json:"project"`
-	ServiceSettings string `json:"service_settings"`
-}
 
 // OpenStackPort defines model for OpenStackPort.
 type OpenStackPort struct {
@@ -37085,6 +37063,7 @@ type PatchedCustomerRequest struct {
 	AccountingStartDate *time.Time `json:"accounting_start_date,omitempty"`
 	Address             *string    `json:"address,omitempty"`
 	AgreementNumber     *string    `json:"agreement_number,omitempty"`
+	ApartmentNr         *string    `json:"apartment_nr,omitempty"`
 	Archived            *bool      `json:"archived,omitempty"`
 
 	// BackendId Organization identifier in another application.
@@ -37092,6 +37071,7 @@ type PatchedCustomerRequest struct {
 	BankAccount    *string `json:"bank_account,omitempty"`
 	BankName       *string `json:"bank_name,omitempty"`
 	Blocked        *bool   `json:"blocked,omitempty"`
+	City           *string `json:"city,omitempty"`
 	ContactDetails *string `json:"contact_details,omitempty"`
 
 	// Country Country code (ISO 3166-1 alpha-2)
@@ -37105,6 +37085,8 @@ type PatchedCustomerRequest struct {
 	// GracePeriodDays Number of extra days after project end date before resources are terminated
 	GracePeriodDays *int                `json:"grace_period_days,omitempty"`
 	Homepage        *string             `json:"homepage,omitempty"`
+	HouseNr         *string             `json:"house_nr,omitempty"`
+	Household       *string             `json:"household,omitempty"`
 	Image           *openapi_types.File `json:"image,omitempty"`
 	Latitude        *float64            `json:"latitude,omitempty"`
 	Longitude       *float64            `json:"longitude,omitempty"`
@@ -37116,6 +37098,7 @@ type PatchedCustomerRequest struct {
 
 	// NotificationEmails Comma-separated list of notification email addresses
 	NotificationEmails *string `json:"notification_emails,omitempty"`
+	Parish             *string `json:"parish,omitempty"`
 	PhoneNumber        *string `json:"phone_number,omitempty"`
 	Postal             *string `json:"postal,omitempty"`
 
@@ -37128,6 +37111,8 @@ type PatchedCustomerRequest struct {
 
 	// SponsorNumber External ID of the sponsor covering the costs
 	SponsorNumber     *int        `json:"sponsor_number,omitempty"`
+	State             *string     `json:"state,omitempty"`
+	Street            *string     `json:"street,omitempty"`
 	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
 	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
 
@@ -37152,6 +37137,7 @@ type PatchedCustomerRequestForm struct {
 	AccountingStartDate *time.Time `json:"accounting_start_date,omitempty"`
 	Address             *string    `json:"address,omitempty"`
 	AgreementNumber     *string    `json:"agreement_number,omitempty"`
+	ApartmentNr         *string    `json:"apartment_nr,omitempty"`
 	Archived            *bool      `json:"archived,omitempty"`
 
 	// BackendId Organization identifier in another application.
@@ -37159,6 +37145,7 @@ type PatchedCustomerRequestForm struct {
 	BankAccount    *string `json:"bank_account,omitempty"`
 	BankName       *string `json:"bank_name,omitempty"`
 	Blocked        *bool   `json:"blocked,omitempty"`
+	City           *string `json:"city,omitempty"`
 	ContactDetails *string `json:"contact_details,omitempty"`
 
 	// Country Country code (ISO 3166-1 alpha-2)
@@ -37172,6 +37159,8 @@ type PatchedCustomerRequestForm struct {
 	// GracePeriodDays Number of extra days after project end date before resources are terminated
 	GracePeriodDays *int                `json:"grace_period_days,omitempty"`
 	Homepage        *string             `json:"homepage,omitempty"`
+	HouseNr         *string             `json:"house_nr,omitempty"`
+	Household       *string             `json:"household,omitempty"`
 	Image           *openapi_types.File `json:"image,omitempty"`
 	Latitude        *float64            `json:"latitude,omitempty"`
 	Longitude       *float64            `json:"longitude,omitempty"`
@@ -37183,6 +37172,7 @@ type PatchedCustomerRequestForm struct {
 
 	// NotificationEmails Comma-separated list of notification email addresses
 	NotificationEmails *string `json:"notification_emails,omitempty"`
+	Parish             *string `json:"parish,omitempty"`
 	PhoneNumber        *string `json:"phone_number,omitempty"`
 	Postal             *string `json:"postal,omitempty"`
 
@@ -37195,6 +37185,8 @@ type PatchedCustomerRequestForm struct {
 
 	// SponsorNumber External ID of the sponsor covering the costs
 	SponsorNumber     *int        `json:"sponsor_number,omitempty"`
+	State             *string     `json:"state,omitempty"`
+	Street            *string     `json:"street,omitempty"`
 	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
 	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
 
@@ -37219,6 +37211,7 @@ type PatchedCustomerRequestMultipart struct {
 	AccountingStartDate *time.Time `json:"accounting_start_date,omitempty"`
 	Address             *string    `json:"address,omitempty"`
 	AgreementNumber     *string    `json:"agreement_number,omitempty"`
+	ApartmentNr         *string    `json:"apartment_nr,omitempty"`
 	Archived            *bool      `json:"archived,omitempty"`
 
 	// BackendId Organization identifier in another application.
@@ -37226,6 +37219,7 @@ type PatchedCustomerRequestMultipart struct {
 	BankAccount    *string `json:"bank_account,omitempty"`
 	BankName       *string `json:"bank_name,omitempty"`
 	Blocked        *bool   `json:"blocked,omitempty"`
+	City           *string `json:"city,omitempty"`
 	ContactDetails *string `json:"contact_details,omitempty"`
 
 	// Country Country code (ISO 3166-1 alpha-2)
@@ -37239,6 +37233,8 @@ type PatchedCustomerRequestMultipart struct {
 	// GracePeriodDays Number of extra days after project end date before resources are terminated
 	GracePeriodDays *int                `json:"grace_period_days,omitempty"`
 	Homepage        *string             `json:"homepage,omitempty"`
+	HouseNr         *string             `json:"house_nr,omitempty"`
+	Household       *string             `json:"household,omitempty"`
 	Image           *openapi_types.File `json:"image,omitempty"`
 	Latitude        *float64            `json:"latitude,omitempty"`
 	Longitude       *float64            `json:"longitude,omitempty"`
@@ -37250,6 +37246,7 @@ type PatchedCustomerRequestMultipart struct {
 
 	// NotificationEmails Comma-separated list of notification email addresses
 	NotificationEmails *string `json:"notification_emails,omitempty"`
+	Parish             *string `json:"parish,omitempty"`
 	PhoneNumber        *string `json:"phone_number,omitempty"`
 	Postal             *string `json:"postal,omitempty"`
 
@@ -37262,6 +37259,8 @@ type PatchedCustomerRequestMultipart struct {
 
 	// SponsorNumber External ID of the sponsor covering the costs
 	SponsorNumber     *int        `json:"sponsor_number,omitempty"`
+	State             *string     `json:"state,omitempty"`
+	Street            *string     `json:"street,omitempty"`
 	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
 	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
 
@@ -37843,43 +37842,10 @@ type PatchedOpenStackInstanceRequest struct {
 	Name        *string `json:"name,omitempty"`
 }
 
-// PatchedOpenStackLoadBalancerRequest defines model for PatchedOpenStackLoadBalancerRequest.
-type PatchedOpenStackLoadBalancerRequest struct {
-	// AttachedFloatingIp Floating IP attached to the VIP port
-	AttachedFloatingIp *string `json:"attached_floating_ip,omitempty"`
-
-	// BackendId Load balancer ID in Octavia
-	BackendId       *string `json:"backend_id,omitempty"`
-	Description     *string `json:"description,omitempty"`
-	ErrorMessage    *string `json:"error_message,omitempty"`
-	ErrorTraceback  *string `json:"error_traceback,omitempty"`
-	Name            *string `json:"name,omitempty"`
-	Project         *string `json:"project,omitempty"`
-	ServiceSettings *string `json:"service_settings,omitempty"`
-
-	// Tenant OpenStack tenant this load balancer belongs to
-	Tenant *string `json:"tenant,omitempty"`
-}
-
 // PatchedOpenStackNetworkRequest defines model for PatchedOpenStackNetworkRequest.
 type PatchedOpenStackNetworkRequest struct {
 	Description *string `json:"description,omitempty"`
 	Name        *string `json:"name,omitempty"`
-}
-
-// PatchedOpenStackPoolRequest defines model for PatchedOpenStackPoolRequest.
-type PatchedOpenStackPoolRequest struct {
-	// BackendId Pool ID in Octavia
-	BackendId      *string `json:"backend_id,omitempty"`
-	Description    *string `json:"description,omitempty"`
-	ErrorMessage   *string `json:"error_message,omitempty"`
-	ErrorTraceback *string `json:"error_traceback,omitempty"`
-
-	// LoadBalancer Load balancer this pool belongs to
-	LoadBalancer    *string `json:"load_balancer,omitempty"`
-	Name            *string `json:"name,omitempty"`
-	Project         *string `json:"project,omitempty"`
-	ServiceSettings *string `json:"service_settings,omitempty"`
 }
 
 // PatchedOpenStackPortRequest defines model for PatchedOpenStackPortRequest.
@@ -38838,10 +38804,14 @@ type PatchedTemplateRequest struct {
 
 // PatchedUpdateHealthMonitorRequest defines model for PatchedUpdateHealthMonitorRequest.
 type PatchedUpdateHealthMonitorRequest struct {
-	Delay      *int    `json:"delay,omitempty"`
-	MaxRetries *int    `json:"max_retries,omitempty"`
-	Name       *string `json:"name,omitempty"`
-	Timeout    *int    `json:"timeout,omitempty"`
+	// Delay Interval between health checks in seconds
+	Delay          *int    `json:"delay,omitempty"`
+	MaxRetries     *int    `json:"max_retries,omitempty"`
+	MaxRetriesDown *int    `json:"max_retries_down,omitempty"`
+	Name           *string `json:"name,omitempty"`
+
+	// Timeout Time in seconds to timeout a health check
+	Timeout *int `json:"timeout,omitempty"`
 }
 
 // PatchedUpdateListenerRequest defines model for PatchedUpdateListenerRequest.
@@ -38850,10 +38820,20 @@ type PatchedUpdateListenerRequest struct {
 	Name        *string `json:"name,omitempty"`
 }
 
+// PatchedUpdateLoadBalancerRequest defines model for PatchedUpdateLoadBalancerRequest.
+type PatchedUpdateLoadBalancerRequest struct {
+	Name *string `json:"name,omitempty"`
+}
+
 // PatchedUpdatePoolMemberRequest defines model for PatchedUpdatePoolMemberRequest.
 type PatchedUpdatePoolMemberRequest struct {
 	Name   *string `json:"name,omitempty"`
 	Weight *int    `json:"weight,omitempty"`
+}
+
+// PatchedUpdatePoolRequest defines model for PatchedUpdatePoolRequest.
+type PatchedUpdatePoolRequest struct {
+	Name *string `json:"name,omitempty"`
 }
 
 // PatchedUserAgreementRequest defines model for PatchedUserAgreementRequest.
@@ -46275,18 +46255,28 @@ type UpdateActionsResponse struct {
 
 // UpdateHealthMonitor defines model for UpdateHealthMonitor.
 type UpdateHealthMonitor struct {
-	Delay      *int    `json:"delay,omitempty"`
-	MaxRetries *int    `json:"max_retries,omitempty"`
-	Name       *string `json:"name,omitempty"`
-	Timeout    *int    `json:"timeout,omitempty"`
+	// Delay Interval between health checks in seconds
+	Delay          *int    `json:"delay,omitempty"`
+	MaxRetries     *int    `json:"max_retries,omitempty"`
+	MaxRetriesDown *int    `json:"max_retries_down,omitempty"`
+	Name           *string `json:"name,omitempty"`
+
+	// Timeout Time in seconds to timeout a health check
+	Timeout *int                `json:"timeout,omitempty"`
+	Url     *string             `json:"url,omitempty"`
+	Uuid    *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // UpdateHealthMonitorRequest defines model for UpdateHealthMonitorRequest.
 type UpdateHealthMonitorRequest struct {
-	Delay      *int    `json:"delay,omitempty"`
-	MaxRetries *int    `json:"max_retries,omitempty"`
-	Name       *string `json:"name,omitempty"`
-	Timeout    *int    `json:"timeout,omitempty"`
+	// Delay Interval between health checks in seconds
+	Delay          *int    `json:"delay,omitempty"`
+	MaxRetries     *int    `json:"max_retries,omitempty"`
+	MaxRetriesDown *int    `json:"max_retries_down,omitempty"`
+	Name           *string `json:"name,omitempty"`
+
+	// Timeout Time in seconds to timeout a health check
+	Timeout *int `json:"timeout,omitempty"`
 }
 
 // UpdateListener defines model for UpdateListener.
@@ -46299,6 +46289,18 @@ type UpdateListener struct {
 type UpdateListenerRequest struct {
 	DefaultPool *string `json:"default_pool,omitempty"`
 	Name        *string `json:"name,omitempty"`
+}
+
+// UpdateLoadBalancer defines model for UpdateLoadBalancer.
+type UpdateLoadBalancer struct {
+	Name string              `json:"name"`
+	Url  *string             `json:"url,omitempty"`
+	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// UpdateLoadBalancerRequest defines model for UpdateLoadBalancerRequest.
+type UpdateLoadBalancerRequest struct {
+	Name string `json:"name"`
 }
 
 // UpdateOfferingComponentRequest defines model for UpdateOfferingComponentRequest.
@@ -46349,16 +46351,30 @@ type UpdateOfferingComponentRequest_LimitPeriod struct {
 	union json.RawMessage
 }
 
+// UpdatePool defines model for UpdatePool.
+type UpdatePool struct {
+	Name string              `json:"name"`
+	Url  *string             `json:"url,omitempty"`
+	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
 // UpdatePoolMember defines model for UpdatePoolMember.
 type UpdatePoolMember struct {
-	Name   *string `json:"name,omitempty"`
-	Weight *int    `json:"weight,omitempty"`
+	Name   *string             `json:"name,omitempty"`
+	Url    *string             `json:"url,omitempty"`
+	Uuid   *openapi_types.UUID `json:"uuid,omitempty"`
+	Weight *int                `json:"weight,omitempty"`
 }
 
 // UpdatePoolMemberRequest defines model for UpdatePoolMemberRequest.
 type UpdatePoolMemberRequest struct {
 	Name   *string `json:"name,omitempty"`
 	Weight *int    `json:"weight,omitempty"`
+}
+
+// UpdatePoolRequest defines model for UpdatePoolRequest.
+type UpdatePoolRequest struct {
+	Name string `json:"name"`
 }
 
 // UrgencyEnum defines model for UrgencyEnum.
@@ -70734,16 +70750,13 @@ type OpenstackListenersUpdateJSONRequestBody = UpdateListenerRequest
 type OpenstackLoadbalancersCreateJSONRequestBody = CreateLoadBalancerRequest
 
 // OpenstackLoadbalancersPartialUpdateJSONRequestBody defines body for OpenstackLoadbalancersPartialUpdate for application/json ContentType.
-type OpenstackLoadbalancersPartialUpdateJSONRequestBody = PatchedOpenStackLoadBalancerRequest
+type OpenstackLoadbalancersPartialUpdateJSONRequestBody = PatchedUpdateLoadBalancerRequest
 
 // OpenstackLoadbalancersUpdateJSONRequestBody defines body for OpenstackLoadbalancersUpdate for application/json ContentType.
-type OpenstackLoadbalancersUpdateJSONRequestBody = OpenStackLoadBalancerRequest
+type OpenstackLoadbalancersUpdateJSONRequestBody = UpdateLoadBalancerRequest
 
 // OpenstackLoadbalancersAttachFloatingIpJSONRequestBody defines body for OpenstackLoadbalancersAttachFloatingIp for application/json ContentType.
 type OpenstackLoadbalancersAttachFloatingIpJSONRequestBody = LoadBalancerAttachFloatingIPRequest
-
-// OpenstackLoadbalancersUpdateVipSecurityGroupsJSONRequestBody defines body for OpenstackLoadbalancersUpdateVipSecurityGroups for application/json ContentType.
-type OpenstackLoadbalancersUpdateVipSecurityGroupsJSONRequestBody = LoadBalancerUpdateVIPSecurityGroupsRequest
 
 // OpenstackMarketplaceTenantsCreateImageJSONRequestBody defines body for OpenstackMarketplaceTenantsCreateImage for application/json ContentType.
 type OpenstackMarketplaceTenantsCreateImageJSONRequestBody = ImageCreateRequest
@@ -70800,10 +70813,10 @@ type OpenstackPoolMembersUpdateJSONRequestBody = UpdatePoolMemberRequest
 type OpenstackPoolsCreateJSONRequestBody = CreatePoolRequest
 
 // OpenstackPoolsPartialUpdateJSONRequestBody defines body for OpenstackPoolsPartialUpdate for application/json ContentType.
-type OpenstackPoolsPartialUpdateJSONRequestBody = PatchedOpenStackPoolRequest
+type OpenstackPoolsPartialUpdateJSONRequestBody = PatchedUpdatePoolRequest
 
 // OpenstackPoolsUpdateJSONRequestBody defines body for OpenstackPoolsUpdate for application/json ContentType.
-type OpenstackPoolsUpdateJSONRequestBody = OpenStackPoolRequest
+type OpenstackPoolsUpdateJSONRequestBody = UpdatePoolRequest
 
 // OpenstackPortsCreateJSONRequestBody defines body for OpenstackPortsCreate for application/json ContentType.
 type OpenstackPortsCreateJSONRequestBody = OpenStackPortRequest
@@ -87572,10 +87585,8 @@ type ClientInterface interface {
 	// OpenstackLoadbalancersDetachFloatingIp request
 	OpenstackLoadbalancersDetachFloatingIp(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// OpenstackLoadbalancersUpdateVipSecurityGroupsWithBody request with any body
-	OpenstackLoadbalancersUpdateVipSecurityGroupsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	OpenstackLoadbalancersUpdateVipSecurityGroups(ctx context.Context, uuid openapi_types.UUID, body OpenstackLoadbalancersUpdateVipSecurityGroupsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// OpenstackLoadbalancersUnlink request
+	OpenstackLoadbalancersUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackMarketplaceTenantsList request
 	OpenstackMarketplaceTenantsList(ctx context.Context, params *OpenstackMarketplaceTenantsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -115937,20 +115948,8 @@ func (c *Client) OpenstackLoadbalancersDetachFloatingIp(ctx context.Context, uui
 	return c.Client.Do(req)
 }
 
-func (c *Client) OpenstackLoadbalancersUpdateVipSecurityGroupsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackLoadbalancersUpdateVipSecurityGroupsRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) OpenstackLoadbalancersUpdateVipSecurityGroups(ctx context.Context, uuid openapi_types.UUID, body OpenstackLoadbalancersUpdateVipSecurityGroupsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackLoadbalancersUpdateVipSecurityGroupsRequest(c.Server, uuid, body)
+func (c *Client) OpenstackLoadbalancersUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackLoadbalancersUnlinkRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -262815,19 +262814,8 @@ func NewOpenstackLoadbalancersDetachFloatingIpRequest(server string, uuid openap
 	return req, nil
 }
 
-// NewOpenstackLoadbalancersUpdateVipSecurityGroupsRequest calls the generic OpenstackLoadbalancersUpdateVipSecurityGroups builder with application/json body
-func NewOpenstackLoadbalancersUpdateVipSecurityGroupsRequest(server string, uuid openapi_types.UUID, body OpenstackLoadbalancersUpdateVipSecurityGroupsJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewOpenstackLoadbalancersUpdateVipSecurityGroupsRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewOpenstackLoadbalancersUpdateVipSecurityGroupsRequestWithBody generates requests for OpenstackLoadbalancersUpdateVipSecurityGroups with any type of body
-func NewOpenstackLoadbalancersUpdateVipSecurityGroupsRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewOpenstackLoadbalancersUnlinkRequest generates requests for OpenstackLoadbalancersUnlink
+func NewOpenstackLoadbalancersUnlinkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -262842,7 +262830,7 @@ func NewOpenstackLoadbalancersUpdateVipSecurityGroupsRequestWithBody(server stri
 		return nil, err
 	}
 
-	operationPath := fmt.Sprintf("/api/openstack-loadbalancers/%s/update_vip_security_groups/", pathParam0)
+	operationPath := fmt.Sprintf("/api/openstack-loadbalancers/%s/unlink/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -262852,12 +262840,10 @@ func NewOpenstackLoadbalancersUpdateVipSecurityGroupsRequestWithBody(server stri
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", queryURL.String(), body)
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -340944,10 +340930,8 @@ type ClientWithResponsesInterface interface {
 	// OpenstackLoadbalancersDetachFloatingIpWithResponse request
 	OpenstackLoadbalancersDetachFloatingIpWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersDetachFloatingIpResponse, error)
 
-	// OpenstackLoadbalancersUpdateVipSecurityGroupsWithBodyWithResponse request with any body
-	OpenstackLoadbalancersUpdateVipSecurityGroupsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersUpdateVipSecurityGroupsResponse, error)
-
-	OpenstackLoadbalancersUpdateVipSecurityGroupsWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackLoadbalancersUpdateVipSecurityGroupsJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersUpdateVipSecurityGroupsResponse, error)
+	// OpenstackLoadbalancersUnlinkWithResponse request
+	OpenstackLoadbalancersUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersUnlinkResponse, error)
 
 	// OpenstackMarketplaceTenantsListWithResponse request
 	OpenstackMarketplaceTenantsListWithResponse(ctx context.Context, params *OpenstackMarketplaceTenantsListParams, reqEditors ...RequestEditorFn) (*OpenstackMarketplaceTenantsListResponse, error)
@@ -377783,7 +377767,7 @@ func (r OpenstackLoadbalancersRetrieveResponse) StatusCode() int {
 type OpenstackLoadbalancersPartialUpdateResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OpenStackLoadBalancer
+	JSON200      *UpdateLoadBalancer
 }
 
 // Status returns HTTPResponse.Status
@@ -377805,7 +377789,7 @@ func (r OpenstackLoadbalancersPartialUpdateResponse) StatusCode() int {
 type OpenstackLoadbalancersUpdateResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OpenStackLoadBalancer
+	JSON200      *UpdateLoadBalancer
 }
 
 // Status returns HTTPResponse.Status
@@ -377827,6 +377811,7 @@ func (r OpenstackLoadbalancersUpdateResponse) StatusCode() int {
 type OpenstackLoadbalancersAttachFloatingIpResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *LoadBalancerAsyncOperationResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -377848,6 +377833,7 @@ func (r OpenstackLoadbalancersAttachFloatingIpResponse) StatusCode() int {
 type OpenstackLoadbalancersDetachFloatingIpResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *LoadBalancerAsyncOperationResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -377866,13 +377852,13 @@ func (r OpenstackLoadbalancersDetachFloatingIpResponse) StatusCode() int {
 	return 0
 }
 
-type OpenstackLoadbalancersUpdateVipSecurityGroupsResponse struct {
+type OpenstackLoadbalancersUnlinkResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 }
 
 // Status returns HTTPResponse.Status
-func (r OpenstackLoadbalancersUpdateVipSecurityGroupsResponse) Status() string {
+func (r OpenstackLoadbalancersUnlinkResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -377880,7 +377866,7 @@ func (r OpenstackLoadbalancersUpdateVipSecurityGroupsResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r OpenstackLoadbalancersUpdateVipSecurityGroupsResponse) StatusCode() int {
+func (r OpenstackLoadbalancersUnlinkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -378868,7 +378854,7 @@ func (r OpenstackPoolsRetrieveResponse) StatusCode() int {
 type OpenstackPoolsPartialUpdateResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OpenStackPool
+	JSON200      *UpdatePool
 }
 
 // Status returns HTTPResponse.Status
@@ -378890,7 +378876,7 @@ func (r OpenstackPoolsPartialUpdateResponse) StatusCode() int {
 type OpenstackPoolsUpdateResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OpenStackPool
+	JSON200      *UpdatePool
 }
 
 // Status returns HTTPResponse.Status
@@ -414929,21 +414915,13 @@ func (c *ClientWithResponses) OpenstackLoadbalancersDetachFloatingIpWithResponse
 	return ParseOpenstackLoadbalancersDetachFloatingIpResponse(rsp)
 }
 
-// OpenstackLoadbalancersUpdateVipSecurityGroupsWithBodyWithResponse request with arbitrary body returning *OpenstackLoadbalancersUpdateVipSecurityGroupsResponse
-func (c *ClientWithResponses) OpenstackLoadbalancersUpdateVipSecurityGroupsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersUpdateVipSecurityGroupsResponse, error) {
-	rsp, err := c.OpenstackLoadbalancersUpdateVipSecurityGroupsWithBody(ctx, uuid, contentType, body, reqEditors...)
+// OpenstackLoadbalancersUnlinkWithResponse request returning *OpenstackLoadbalancersUnlinkResponse
+func (c *ClientWithResponses) OpenstackLoadbalancersUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersUnlinkResponse, error) {
+	rsp, err := c.OpenstackLoadbalancersUnlink(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseOpenstackLoadbalancersUpdateVipSecurityGroupsResponse(rsp)
-}
-
-func (c *ClientWithResponses) OpenstackLoadbalancersUpdateVipSecurityGroupsWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackLoadbalancersUpdateVipSecurityGroupsJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersUpdateVipSecurityGroupsResponse, error) {
-	rsp, err := c.OpenstackLoadbalancersUpdateVipSecurityGroups(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackLoadbalancersUpdateVipSecurityGroupsResponse(rsp)
+	return ParseOpenstackLoadbalancersUnlinkResponse(rsp)
 }
 
 // OpenstackMarketplaceTenantsListWithResponse request returning *OpenstackMarketplaceTenantsListResponse
@@ -460778,7 +460756,7 @@ func ParseOpenstackLoadbalancersPartialUpdateResponse(rsp *http.Response) (*Open
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OpenStackLoadBalancer
+		var dest UpdateLoadBalancer
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -460804,7 +460782,7 @@ func ParseOpenstackLoadbalancersUpdateResponse(rsp *http.Response) (*OpenstackLo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OpenStackLoadBalancer
+		var dest UpdateLoadBalancer
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -460828,6 +460806,16 @@ func ParseOpenstackLoadbalancersAttachFloatingIpResponse(rsp *http.Response) (*O
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest LoadBalancerAsyncOperationResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -460844,18 +460832,28 @@ func ParseOpenstackLoadbalancersDetachFloatingIpResponse(rsp *http.Response) (*O
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest LoadBalancerAsyncOperationResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	}
+
 	return response, nil
 }
 
-// ParseOpenstackLoadbalancersUpdateVipSecurityGroupsResponse parses an HTTP response from a OpenstackLoadbalancersUpdateVipSecurityGroupsWithResponse call
-func ParseOpenstackLoadbalancersUpdateVipSecurityGroupsResponse(rsp *http.Response) (*OpenstackLoadbalancersUpdateVipSecurityGroupsResponse, error) {
+// ParseOpenstackLoadbalancersUnlinkResponse parses an HTTP response from a OpenstackLoadbalancersUnlinkWithResponse call
+func ParseOpenstackLoadbalancersUnlinkResponse(rsp *http.Response) (*OpenstackLoadbalancersUnlinkResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &OpenstackLoadbalancersUpdateVipSecurityGroupsResponse{
+	response := &OpenstackLoadbalancersUnlinkResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -461925,7 +461923,7 @@ func ParseOpenstackPoolsPartialUpdateResponse(rsp *http.Response) (*OpenstackPoo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OpenStackPool
+		var dest UpdatePool
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -461951,7 +461949,7 @@ func ParseOpenstackPoolsUpdateResponse(rsp *http.Response) (*OpenstackPoolsUpdat
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OpenStackPool
+		var dest UpdatePool
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
