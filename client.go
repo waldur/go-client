@@ -2029,6 +2029,7 @@ func (e BidEnum) Valid() bool {
 const (
 	BillingModeEnumMonthly BillingModeEnum = "monthly"
 	BillingModeEnumPrepaid BillingModeEnum = "prepaid"
+	BillingModeEnumUsage   BillingModeEnum = "usage"
 )
 
 // Valid indicates whether the value is a known member of the BillingModeEnum enum.
@@ -2037,6 +2038,8 @@ func (e BillingModeEnum) Valid() bool {
 	case BillingModeEnumMonthly:
 		return true
 	case BillingModeEnumPrepaid:
+		return true
+	case BillingModeEnumUsage:
 		return true
 	default:
 		return false
@@ -7595,16 +7598,16 @@ func (e GoogleCredentialsFieldEnum) Valid() bool {
 
 // Defines values for GrowthPeriodEnum.
 const (
-	Monthly GrowthPeriodEnum = "monthly"
-	Weekly  GrowthPeriodEnum = "weekly"
+	GrowthPeriodEnumMonthly GrowthPeriodEnum = "monthly"
+	GrowthPeriodEnumWeekly  GrowthPeriodEnum = "weekly"
 )
 
 // Valid indicates whether the value is a known member of the GrowthPeriodEnum enum.
 func (e GrowthPeriodEnum) Valid() bool {
 	switch e {
-	case Monthly:
+	case GrowthPeriodEnumMonthly:
 		return true
-	case Weekly:
+	case GrowthPeriodEnumWeekly:
 		return true
 	default:
 		return false
@@ -33273,6 +33276,18 @@ type OfferingSoftwareCatalogRequest struct {
 // OfferingState defines model for OfferingState.
 type OfferingState string
 
+// OfferingStateCounter defines model for OfferingStateCounter.
+type OfferingStateCounter struct {
+	Count int    `json:"count"`
+	State string `json:"state"`
+}
+
+// OfferingStateCounters defines model for OfferingStateCounters.
+type OfferingStateCounters struct {
+	Resources []OfferingStateCounter `json:"resources"`
+	Users     []OfferingStateCounter `json:"users"`
+}
+
 // OfferingStats defines model for OfferingStats.
 type OfferingStats struct {
 	// Count Number of resources for the offering
@@ -45697,7 +45712,7 @@ type SupportedCountriesResponse struct {
 
 // SwitchBillingModeRequest defines model for SwitchBillingModeRequest.
 type SwitchBillingModeRequest struct {
-	// BillingMode Switch all builtin components to monthly (LIMIT) or prepaid (ONE_TIME + is_prepaid) billing.
+	// BillingMode Switch all builtin components to monthly (LIMIT), prepaid (ONE_TIME + is_prepaid), or usage-based billing.
 	BillingMode BillingModeEnum `json:"billing_mode"`
 }
 
@@ -85293,6 +85308,9 @@ type ClientInterface interface {
 
 	MarketplaceProviderOfferingsSetBackendMetadata(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSetBackendMetadataJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderOfferingsStateCountersRetrieve request
+	MarketplaceProviderOfferingsStateCountersRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderOfferingsStatsRetrieve request
 	MarketplaceProviderOfferingsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -105906,6 +105924,18 @@ func (c *Client) MarketplaceProviderOfferingsSetBackendMetadataWithBody(ctx cont
 
 func (c *Client) MarketplaceProviderOfferingsSetBackendMetadata(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSetBackendMetadataJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsSetBackendMetadataRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsStateCountersRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsStateCountersRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -209695,6 +209725,40 @@ func NewMarketplaceProviderOfferingsSetBackendMetadataRequestWithBody(server str
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsStateCountersRetrieveRequest generates requests for MarketplaceProviderOfferingsStateCountersRetrieve
+func NewMarketplaceProviderOfferingsStateCountersRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/state_counters/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -338638,6 +338702,9 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceProviderOfferingsSetBackendMetadataWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSetBackendMetadataJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSetBackendMetadataResponse, error)
 
+	// MarketplaceProviderOfferingsStateCountersRetrieveWithResponse request
+	MarketplaceProviderOfferingsStateCountersRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsStateCountersRetrieveResponse, error)
+
 	// MarketplaceProviderOfferingsStatsRetrieveWithResponse request
 	MarketplaceProviderOfferingsStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsStatsRetrieveResponse, error)
 
@@ -364357,6 +364424,28 @@ func (r MarketplaceProviderOfferingsSetBackendMetadataResponse) Status() string 
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceProviderOfferingsSetBackendMetadataResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProviderOfferingsStateCountersRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OfferingStateCounters
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsStateCountersRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsStateCountersRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -407607,6 +407696,15 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsSetBackendMetadataWith
 	return ParseMarketplaceProviderOfferingsSetBackendMetadataResponse(rsp)
 }
 
+// MarketplaceProviderOfferingsStateCountersRetrieveWithResponse request returning *MarketplaceProviderOfferingsStateCountersRetrieveResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsStateCountersRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsStateCountersRetrieveResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsStateCountersRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsStateCountersRetrieveResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsStatsRetrieveWithResponse request returning *MarketplaceProviderOfferingsStatsRetrieveResponse
 func (c *ClientWithResponses) MarketplaceProviderOfferingsStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsStatsRetrieveResponse, error) {
 	rsp, err := c.MarketplaceProviderOfferingsStatsRetrieve(ctx, uuid, reqEditors...)
@@ -446545,6 +446643,32 @@ func ParseMarketplaceProviderOfferingsSetBackendMetadataResponse(rsp *http.Respo
 	response := &MarketplaceProviderOfferingsSetBackendMetadataResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsStateCountersRetrieveResponse parses an HTTP response from a MarketplaceProviderOfferingsStateCountersRetrieveWithResponse call
+func ParseMarketplaceProviderOfferingsStateCountersRetrieveResponse(rsp *http.Response) (*MarketplaceProviderOfferingsStateCountersRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsStateCountersRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingStateCounters
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
