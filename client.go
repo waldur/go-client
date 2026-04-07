@@ -14852,6 +14852,7 @@ const (
 	ProjectFieldEnumCustomer                             ProjectFieldEnum = "customer"
 	ProjectFieldEnumCustomerAbbreviation                 ProjectFieldEnum = "customer_abbreviation"
 	ProjectFieldEnumCustomerDisplayBillingInfoInProjects ProjectFieldEnum = "customer_display_billing_info_in_projects"
+	ProjectFieldEnumCustomerGracePeriodDays              ProjectFieldEnum = "customer_grace_period_days"
 	ProjectFieldEnumCustomerName                         ProjectFieldEnum = "customer_name"
 	ProjectFieldEnumCustomerNativeName                   ProjectFieldEnum = "customer_native_name"
 	ProjectFieldEnumCustomerSlug                         ProjectFieldEnum = "customer_slug"
@@ -14902,6 +14903,8 @@ func (e ProjectFieldEnum) Valid() bool {
 	case ProjectFieldEnumCustomerAbbreviation:
 		return true
 	case ProjectFieldEnumCustomerDisplayBillingInfoInProjects:
+		return true
+	case ProjectFieldEnumCustomerGracePeriodDays:
 		return true
 	case ProjectFieldEnumCustomerName:
 		return true
@@ -39524,10 +39527,13 @@ type Project struct {
 	Customer                             *string              `json:"customer,omitempty"`
 	CustomerAbbreviation                 *string              `json:"customer_abbreviation,omitempty"`
 	CustomerDisplayBillingInfoInProjects *bool                `json:"customer_display_billing_info_in_projects,omitempty"`
-	CustomerName                         *string              `json:"customer_name,omitempty"`
-	CustomerNativeName                   *string              `json:"customer_native_name,omitempty"`
-	CustomerSlug                         *string              `json:"customer_slug,omitempty"`
-	CustomerUuid                         *openapi_types.UUID  `json:"customer_uuid,omitempty"`
+
+	// CustomerGracePeriodDays Grace period days set at the customer (organization) level. Used as default when project-level is not set.
+	CustomerGracePeriodDays *int                `json:"customer_grace_period_days,omitempty"`
+	CustomerName            *string             `json:"customer_name,omitempty"`
+	CustomerNativeName      *string             `json:"customer_native_name,omitempty"`
+	CustomerSlug            *string             `json:"customer_slug,omitempty"`
+	CustomerUuid            *openapi_types.UUID `json:"customer_uuid,omitempty"`
 
 	// Description Project description (HTML content will be sanitized)
 	Description *string `json:"description,omitempty"`
@@ -45464,11 +45470,12 @@ type SoftwarePackage struct {
 	CatalogVersion     *string `json:"catalog_version,omitempty"`
 
 	// Categories Package categories (e.g., ['bio', 'hpc', 'build-tools'])
-	Categories     interface{} `json:"categories,omitempty"`
-	Created        *time.Time  `json:"created,omitempty"`
-	Description    *string     `json:"description,omitempty"`
-	ExtensionCount *int        `json:"extension_count,omitempty"`
-	Homepage       *string     `json:"homepage,omitempty"`
+	Categories     interface{}             `json:"categories,omitempty"`
+	Created        *time.Time              `json:"created,omitempty"`
+	Description    *string                 `json:"description,omitempty"`
+	ExtensionCount *int                    `json:"extension_count,omitempty"`
+	Extensions     *[]NestedParentSoftware `json:"extensions,omitempty"`
+	Homepage       *string                 `json:"homepage,omitempty"`
 
 	// IsExtension Whether this package is an extension of another package
 	IsExtension *bool `json:"is_extension,omitempty"`
