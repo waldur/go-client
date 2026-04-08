@@ -31910,13 +31910,15 @@ type NestedPartition struct {
 
 // NestedPlanComponent defines model for NestedPlanComponent.
 type NestedPlanComponent struct {
-	Amount *int `json:"amount,omitempty"`
+	Amount              *int    `json:"amount,omitempty"`
+	DiscountDescription *string `json:"discount_description,omitempty"`
 
 	// DiscountRate Discount rate in percentage.
 	DiscountRate *int `json:"discount_rate,omitempty"`
 
 	// DiscountThreshold Minimum amount to be eligible for discount.
 	DiscountThreshold *int    `json:"discount_threshold,omitempty"`
+	DiscountedPrice   *string `json:"discounted_price,omitempty"`
 	FuturePrice       *string `json:"future_price,omitempty"`
 
 	// MeasuredUnit Unit of measurement, for example, GB.
