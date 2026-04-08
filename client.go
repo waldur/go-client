@@ -39302,14 +39302,20 @@ type PermissionMetadataResponseRoles string
 
 // PermissionRequest defines model for PermissionRequest.
 type PermissionRequest struct {
-	Created             *time.Time           `json:"created,omitempty"`
-	CreatedByEmail      *openapi_types.Email `json:"created_by_email,omitempty"`
-	CreatedByFullName   *string              `json:"created_by_full_name,omitempty"`
-	CreatedByUsername   *string              `json:"created_by_username,omitempty"`
-	CustomerName        *string              `json:"customer_name,omitempty"`
-	CustomerUuid        *openapi_types.UUID  `json:"customer_uuid,omitempty"`
-	Invitation          string               `json:"invitation"`
-	ProjectNameTemplate *string              `json:"project_name_template,omitempty"`
+	Created           *time.Time           `json:"created,omitempty"`
+	CreatedByEmail    *openapi_types.Email `json:"created_by_email,omitempty"`
+	CreatedByFullName *string              `json:"created_by_full_name,omitempty"`
+	CreatedByUsername *string              `json:"created_by_username,omitempty"`
+	CustomerName      *string              `json:"customer_name,omitempty"`
+	CustomerUuid      *openapi_types.UUID  `json:"customer_uuid,omitempty"`
+	Invitation        string               `json:"invitation"`
+
+	// ProjectDescription Custom project description provided by user during invitation acceptance.
+	ProjectDescription *string `json:"project_description,omitempty"`
+
+	// ProjectName Custom project name provided by user during invitation acceptance.
+	ProjectName         *string `json:"project_name,omitempty"`
+	ProjectNameTemplate *string `json:"project_name_template,omitempty"`
 
 	// ReviewComment Optional comment provided during review
 	ReviewComment *string `json:"review_comment,omitempty"`
