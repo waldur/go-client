@@ -85063,6 +85063,9 @@ type ClientInterface interface {
 
 	MarketplaceOrdersRejectByProvider(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersRejectByProviderJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceOrdersResourceRetrieve request
+	MarketplaceOrdersResourceRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceOrdersRetry request
 	MarketplaceOrdersRetry(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -104341,6 +104344,18 @@ func (c *Client) MarketplaceOrdersRejectByProviderWithBody(ctx context.Context, 
 
 func (c *Client) MarketplaceOrdersRejectByProvider(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersRejectByProviderJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceOrdersRejectByProviderRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOrdersResourceRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOrdersResourceRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -196785,6 +196800,40 @@ func NewMarketplaceOrdersRejectByProviderRequestWithBody(server string, uuid ope
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceOrdersResourceRetrieveRequest generates requests for MarketplaceOrdersResourceRetrieve
+func NewMarketplaceOrdersResourceRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-orders/%s/resource/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -339193,6 +339242,9 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceOrdersRejectByProviderWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersRejectByProviderJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersRejectByProviderResponse, error)
 
+	// MarketplaceOrdersResourceRetrieveWithResponse request
+	MarketplaceOrdersResourceRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersResourceRetrieveResponse, error)
+
 	// MarketplaceOrdersRetryWithResponse request
 	MarketplaceOrdersRetryWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersRetryResponse, error)
 
@@ -363094,6 +363146,28 @@ func (r MarketplaceOrdersRejectByProviderResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceOrdersRejectByProviderResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOrdersResourceRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Resource
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOrdersResourceRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOrdersResourceRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -407323,6 +407397,15 @@ func (c *ClientWithResponses) MarketplaceOrdersRejectByProviderWithResponse(ctx 
 	return ParseMarketplaceOrdersRejectByProviderResponse(rsp)
 }
 
+// MarketplaceOrdersResourceRetrieveWithResponse request returning *MarketplaceOrdersResourceRetrieveResponse
+func (c *ClientWithResponses) MarketplaceOrdersResourceRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersResourceRetrieveResponse, error) {
+	rsp, err := c.MarketplaceOrdersResourceRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOrdersResourceRetrieveResponse(rsp)
+}
+
 // MarketplaceOrdersRetryWithResponse request returning *MarketplaceOrdersRetryResponse
 func (c *ClientWithResponses) MarketplaceOrdersRetryWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersRetryResponse, error) {
 	rsp, err := c.MarketplaceOrdersRetry(ctx, uuid, reqEditors...)
@@ -445232,6 +445315,32 @@ func ParseMarketplaceOrdersRejectByProviderResponse(rsp *http.Response) (*Market
 	response := &MarketplaceOrdersRejectByProviderResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOrdersResourceRetrieveResponse parses an HTTP response from a MarketplaceOrdersResourceRetrieveWithResponse call
+func ParseMarketplaceOrdersResourceRetrieveResponse(rsp *http.Response) (*MarketplaceOrdersResourceRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOrdersResourceRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Resource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
