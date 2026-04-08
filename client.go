@@ -7442,22 +7442,19 @@ func (e FrequencyEnum) Valid() bool {
 
 // Defines values for GenderEnum.
 const (
-	GenderEnumN0 GenderEnum = 0
-	GenderEnumN1 GenderEnum = 1
-	GenderEnumN2 GenderEnum = 2
-	GenderEnumN9 GenderEnum = 9
+	GenderEnumFemale  GenderEnum = "female"
+	GenderEnumMale    GenderEnum = "male"
+	GenderEnumUnknown GenderEnum = "unknown"
 )
 
 // Valid indicates whether the value is a known member of the GenderEnum enum.
 func (e GenderEnum) Valid() bool {
 	switch e {
-	case GenderEnumN0:
+	case GenderEnumFemale:
 		return true
-	case GenderEnumN1:
+	case GenderEnumMale:
 		return true
-	case GenderEnumN2:
-		return true
-	case GenderEnumN9:
+	case GenderEnumUnknown:
 		return true
 	default:
 		return false
@@ -18296,34 +18293,34 @@ func (e ServiceSettingsFieldEnum) Valid() bool {
 
 // Defines values for ServiceSettingsStateEnum.
 const (
-	ServiceSettingsStateEnumCREATING          ServiceSettingsStateEnum = "CREATING"
-	ServiceSettingsStateEnumCREATIONSCHEDULED ServiceSettingsStateEnum = "CREATION_SCHEDULED"
-	ServiceSettingsStateEnumDELETING          ServiceSettingsStateEnum = "DELETING"
-	ServiceSettingsStateEnumDELETIONSCHEDULED ServiceSettingsStateEnum = "DELETION_SCHEDULED"
-	ServiceSettingsStateEnumERRED             ServiceSettingsStateEnum = "ERRED"
-	ServiceSettingsStateEnumOK                ServiceSettingsStateEnum = "OK"
-	ServiceSettingsStateEnumUPDATESCHEDULED   ServiceSettingsStateEnum = "UPDATE_SCHEDULED"
-	ServiceSettingsStateEnumUPDATING          ServiceSettingsStateEnum = "UPDATING"
+	CREATING          ServiceSettingsStateEnum = "CREATING"
+	CREATIONSCHEDULED ServiceSettingsStateEnum = "CREATION_SCHEDULED"
+	DELETING          ServiceSettingsStateEnum = "DELETING"
+	DELETIONSCHEDULED ServiceSettingsStateEnum = "DELETION_SCHEDULED"
+	ERRED             ServiceSettingsStateEnum = "ERRED"
+	OK                ServiceSettingsStateEnum = "OK"
+	UPDATESCHEDULED   ServiceSettingsStateEnum = "UPDATE_SCHEDULED"
+	UPDATING          ServiceSettingsStateEnum = "UPDATING"
 )
 
 // Valid indicates whether the value is a known member of the ServiceSettingsStateEnum enum.
 func (e ServiceSettingsStateEnum) Valid() bool {
 	switch e {
-	case ServiceSettingsStateEnumCREATING:
+	case CREATING:
 		return true
-	case ServiceSettingsStateEnumCREATIONSCHEDULED:
+	case CREATIONSCHEDULED:
 		return true
-	case ServiceSettingsStateEnumDELETING:
+	case DELETING:
 		return true
-	case ServiceSettingsStateEnumDELETIONSCHEDULED:
+	case DELETIONSCHEDULED:
 		return true
-	case ServiceSettingsStateEnumERRED:
+	case ERRED:
 		return true
-	case ServiceSettingsStateEnumOK:
+	case OK:
 		return true
-	case ServiceSettingsStateEnumUPDATESCHEDULED:
+	case UPDATESCHEDULED:
 		return true
-	case ServiceSettingsStateEnumUPDATING:
+	case UPDATING:
 		return true
 	default:
 		return false
@@ -20507,16 +20504,16 @@ func (e WebHookContentTypeEnum) Valid() bool {
 
 // Defines values for WebHookContentTypeEnum1.
 const (
-	WebHookContentTypeEnum1N1 WebHookContentTypeEnum1 = "1"
-	WebHookContentTypeEnum1N2 WebHookContentTypeEnum1 = "2"
+	N1 WebHookContentTypeEnum1 = "1"
+	N2 WebHookContentTypeEnum1 = "2"
 )
 
 // Valid indicates whether the value is a known member of the WebHookContentTypeEnum1 enum.
 func (e WebHookContentTypeEnum1) Valid() bool {
 	switch e {
-	case WebHookContentTypeEnum1N1:
+	case N1:
 		return true
-	case WebHookContentTypeEnum1N2:
+	case N2:
 		return true
 	default:
 		return false
@@ -28700,7 +28697,7 @@ type FreeipaProfileRequest struct {
 type FrequencyEnum string
 
 // GenderEnum defines model for GenderEnum.
-type GenderEnum int
+type GenderEnum string
 
 // GenerateAssignmentsRequest defines model for GenerateAssignmentsRequest.
 type GenerateAssignmentsRequest struct {
@@ -30730,7 +30727,7 @@ type MarketplaceServiceProviderUser struct {
 	FirstName          *string              `json:"first_name,omitempty"`
 	FullName           *string              `json:"full_name,omitempty"`
 
-	// Gender ISO 5218 gender code
+	// Gender User's gender (male, female, or unknown)
 	Gender *MarketplaceServiceProviderUser_Gender `json:"gender,omitempty"`
 
 	// IdentitySource Indicates what identity provider was used.
@@ -30769,7 +30766,7 @@ type MarketplaceServiceProviderUser struct {
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
-// MarketplaceServiceProviderUser_Gender ISO 5218 gender code
+// MarketplaceServiceProviderUser_Gender User's gender (male, female, or unknown)
 type MarketplaceServiceProviderUser_Gender struct {
 	union json.RawMessage
 }
@@ -33525,7 +33522,7 @@ type OfferingUser struct {
 	UserFirstName          *string              `json:"user_first_name,omitempty"`
 	UserFullName           *string              `json:"user_full_name,omitempty"`
 
-	// UserGender ISO 5218 gender code
+	// UserGender User's gender (male, female, or unknown)
 	UserGender *OfferingUser_UserGender `json:"user_gender,omitempty"`
 
 	// UserIdentitySource Indicates what identity provider was used.
@@ -33559,7 +33556,7 @@ type OfferingUser struct {
 	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
-// OfferingUser_UserGender ISO 5218 gender code
+// OfferingUser_UserGender User's gender (male, female, or unknown)
 type OfferingUser_UserGender struct {
 	union json.RawMessage
 }
@@ -38922,7 +38919,7 @@ type PatchedUserRequest struct {
 	EdupersonAssurance interface{} `json:"eduperson_assurance,omitempty"`
 	FirstName          *string     `json:"first_name,omitempty"`
 
-	// Gender ISO 5218 gender code
+	// Gender User's gender (male, female, or unknown)
 	Gender *PatchedUserRequest_Gender `json:"gender,omitempty"`
 	Image  *openapi_types.File        `json:"image,omitempty"`
 
@@ -38977,7 +38974,7 @@ type PatchedUserRequest struct {
 	Username *string `json:"username,omitempty"`
 }
 
-// PatchedUserRequest_Gender ISO 5218 gender code
+// PatchedUserRequest_Gender User's gender (male, female, or unknown)
 type PatchedUserRequest_Gender struct {
 	union json.RawMessage
 }
@@ -38997,7 +38994,7 @@ type PatchedUserRequestForm struct {
 	EdupersonAssurance interface{} `json:"eduperson_assurance,omitempty"`
 	FirstName          *string     `json:"first_name,omitempty"`
 
-	// Gender ISO 5218 gender code
+	// Gender User's gender (male, female, or unknown)
 	Gender *PatchedUserRequestForm_Gender `json:"gender,omitempty"`
 	Image  *openapi_types.File            `json:"image,omitempty"`
 
@@ -39052,7 +39049,7 @@ type PatchedUserRequestForm struct {
 	Username *string `json:"username,omitempty"`
 }
 
-// PatchedUserRequestForm_Gender ISO 5218 gender code
+// PatchedUserRequestForm_Gender User's gender (male, female, or unknown)
 type PatchedUserRequestForm_Gender struct {
 	union json.RawMessage
 }
@@ -39072,7 +39069,7 @@ type PatchedUserRequestMultipart struct {
 	EdupersonAssurance interface{} `json:"eduperson_assurance,omitempty"`
 	FirstName          *string     `json:"first_name,omitempty"`
 
-	// Gender ISO 5218 gender code
+	// Gender User's gender (male, female, or unknown)
 	Gender *PatchedUserRequestMultipart_Gender `json:"gender,omitempty"`
 	Image  *openapi_types.File                 `json:"image,omitempty"`
 
@@ -39127,7 +39124,7 @@ type PatchedUserRequestMultipart struct {
 	Username *string `json:"username,omitempty"`
 }
 
-// PatchedUserRequestMultipart_Gender ISO 5218 gender code
+// PatchedUserRequestMultipart_Gender User's gender (male, female, or unknown)
 type PatchedUserRequestMultipart_Gender struct {
 	union json.RawMessage
 }
@@ -46462,7 +46459,7 @@ type User struct {
 	FirstName          *string              `json:"first_name,omitempty"`
 	FullName           *string              `json:"full_name,omitempty"`
 
-	// Gender ISO 5218 gender code
+	// Gender User's gender (male, female, or unknown)
 	Gender                        *User_Gender `json:"gender,omitempty"`
 	HasActiveSession              *bool        `json:"has_active_session,omitempty"`
 	HasUsablePassword             *bool        `json:"has_usable_password,omitempty"`
@@ -46536,7 +46533,7 @@ type User struct {
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
-// User_Gender ISO 5218 gender code
+// User_Gender User's gender (male, female, or unknown)
 type User_Gender struct {
 	union json.RawMessage
 }
@@ -46885,7 +46882,7 @@ type UserRequest struct {
 	Email              openapi_types.Email `json:"email"`
 	FirstName          *string             `json:"first_name,omitempty"`
 
-	// Gender ISO 5218 gender code
+	// Gender User's gender (male, female, or unknown)
 	Gender *UserRequest_Gender `json:"gender,omitempty"`
 	Image  *openapi_types.File `json:"image,omitempty"`
 
@@ -46940,7 +46937,7 @@ type UserRequest struct {
 	Username string `json:"username"`
 }
 
-// UserRequest_Gender ISO 5218 gender code
+// UserRequest_Gender User's gender (male, female, or unknown)
 type UserRequest_Gender struct {
 	union json.RawMessage
 }
@@ -46961,7 +46958,7 @@ type UserRequestForm struct {
 	Email              openapi_types.Email `json:"email"`
 	FirstName          *string             `json:"first_name,omitempty"`
 
-	// Gender ISO 5218 gender code
+	// Gender User's gender (male, female, or unknown)
 	Gender *UserRequestForm_Gender `json:"gender,omitempty"`
 	Image  *openapi_types.File     `json:"image,omitempty"`
 
@@ -47016,7 +47013,7 @@ type UserRequestForm struct {
 	Username string `json:"username"`
 }
 
-// UserRequestForm_Gender ISO 5218 gender code
+// UserRequestForm_Gender User's gender (male, female, or unknown)
 type UserRequestForm_Gender struct {
 	union json.RawMessage
 }
@@ -47037,7 +47034,7 @@ type UserRequestMultipart struct {
 	Email              openapi_types.Email `json:"email"`
 	FirstName          *string             `json:"first_name,omitempty"`
 
-	// Gender ISO 5218 gender code
+	// Gender User's gender (male, female, or unknown)
 	Gender *UserRequestMultipart_Gender `json:"gender,omitempty"`
 	Image  *openapi_types.File          `json:"image,omitempty"`
 
@@ -47092,7 +47089,7 @@ type UserRequestMultipart struct {
 	Username string `json:"username"`
 }
 
-// UserRequestMultipart_Gender ISO 5218 gender code
+// UserRequestMultipart_Gender User's gender (male, female, or unknown)
 type UserRequestMultipart_Gender struct {
 	union json.RawMessage
 }
@@ -75561,6 +75558,32 @@ func (t *MarketplaceServiceProviderUser_Gender) MergeGenderEnum(v GenderEnum) er
 	return err
 }
 
+// AsBlankEnum returns the union data inside the MarketplaceServiceProviderUser_Gender as a BlankEnum
+func (t MarketplaceServiceProviderUser_Gender) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the MarketplaceServiceProviderUser_Gender as the provided BlankEnum
+func (t *MarketplaceServiceProviderUser_Gender) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the MarketplaceServiceProviderUser_Gender, using the provided BlankEnum
+func (t *MarketplaceServiceProviderUser_Gender) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
 // AsNullEnum returns the union data inside the MarketplaceServiceProviderUser_Gender as a NullEnum
 func (t MarketplaceServiceProviderUser_Gender) AsNullEnum() (NullEnum, error) {
 	var body NullEnum
@@ -76373,6 +76396,32 @@ func (t *OfferingUser_UserGender) FromGenderEnum(v GenderEnum) error {
 
 // MergeGenderEnum performs a merge with any union data inside the OfferingUser_UserGender, using the provided GenderEnum
 func (t *OfferingUser_UserGender) MergeGenderEnum(v GenderEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the OfferingUser_UserGender as a BlankEnum
+func (t OfferingUser_UserGender) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the OfferingUser_UserGender as the provided BlankEnum
+func (t *OfferingUser_UserGender) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the OfferingUser_UserGender, using the provided BlankEnum
+func (t *OfferingUser_UserGender) MergeBlankEnum(v BlankEnum) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -79237,6 +79286,32 @@ func (t *PatchedUserRequest_Gender) MergeGenderEnum(v GenderEnum) error {
 	return err
 }
 
+// AsBlankEnum returns the union data inside the PatchedUserRequest_Gender as a BlankEnum
+func (t PatchedUserRequest_Gender) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the PatchedUserRequest_Gender as the provided BlankEnum
+func (t *PatchedUserRequest_Gender) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the PatchedUserRequest_Gender, using the provided BlankEnum
+func (t *PatchedUserRequest_Gender) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
 // AsNullEnum returns the union data inside the PatchedUserRequest_Gender as a NullEnum
 func (t PatchedUserRequest_Gender) AsNullEnum() (NullEnum, error) {
 	var body NullEnum
@@ -79299,6 +79374,32 @@ func (t *PatchedUserRequestForm_Gender) MergeGenderEnum(v GenderEnum) error {
 	return err
 }
 
+// AsBlankEnum returns the union data inside the PatchedUserRequestForm_Gender as a BlankEnum
+func (t PatchedUserRequestForm_Gender) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the PatchedUserRequestForm_Gender as the provided BlankEnum
+func (t *PatchedUserRequestForm_Gender) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the PatchedUserRequestForm_Gender, using the provided BlankEnum
+func (t *PatchedUserRequestForm_Gender) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
 // AsNullEnum returns the union data inside the PatchedUserRequestForm_Gender as a NullEnum
 func (t PatchedUserRequestForm_Gender) AsNullEnum() (NullEnum, error) {
 	var body NullEnum
@@ -79351,6 +79452,32 @@ func (t *PatchedUserRequestMultipart_Gender) FromGenderEnum(v GenderEnum) error 
 
 // MergeGenderEnum performs a merge with any union data inside the PatchedUserRequestMultipart_Gender, using the provided GenderEnum
 func (t *PatchedUserRequestMultipart_Gender) MergeGenderEnum(v GenderEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the PatchedUserRequestMultipart_Gender as a BlankEnum
+func (t PatchedUserRequestMultipart_Gender) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the PatchedUserRequestMultipart_Gender as the provided BlankEnum
+func (t *PatchedUserRequestMultipart_Gender) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the PatchedUserRequestMultipart_Gender, using the provided BlankEnum
+func (t *PatchedUserRequestMultipart_Gender) MergeBlankEnum(v BlankEnum) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -81553,6 +81680,32 @@ func (t *User_Gender) MergeGenderEnum(v GenderEnum) error {
 	return err
 }
 
+// AsBlankEnum returns the union data inside the User_Gender as a BlankEnum
+func (t User_Gender) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the User_Gender as the provided BlankEnum
+func (t *User_Gender) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the User_Gender, using the provided BlankEnum
+func (t *User_Gender) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
 // AsNullEnum returns the union data inside the User_Gender as a NullEnum
 func (t User_Gender) AsNullEnum() (NullEnum, error) {
 	var body NullEnum
@@ -81677,6 +81830,32 @@ func (t *UserRequest_Gender) MergeGenderEnum(v GenderEnum) error {
 	return err
 }
 
+// AsBlankEnum returns the union data inside the UserRequest_Gender as a BlankEnum
+func (t UserRequest_Gender) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the UserRequest_Gender as the provided BlankEnum
+func (t *UserRequest_Gender) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the UserRequest_Gender, using the provided BlankEnum
+func (t *UserRequest_Gender) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
 // AsNullEnum returns the union data inside the UserRequest_Gender as a NullEnum
 func (t UserRequest_Gender) AsNullEnum() (NullEnum, error) {
 	var body NullEnum
@@ -81739,6 +81918,32 @@ func (t *UserRequestForm_Gender) MergeGenderEnum(v GenderEnum) error {
 	return err
 }
 
+// AsBlankEnum returns the union data inside the UserRequestForm_Gender as a BlankEnum
+func (t UserRequestForm_Gender) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the UserRequestForm_Gender as the provided BlankEnum
+func (t *UserRequestForm_Gender) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the UserRequestForm_Gender, using the provided BlankEnum
+func (t *UserRequestForm_Gender) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
 // AsNullEnum returns the union data inside the UserRequestForm_Gender as a NullEnum
 func (t UserRequestForm_Gender) AsNullEnum() (NullEnum, error) {
 	var body NullEnum
@@ -81791,6 +81996,32 @@ func (t *UserRequestMultipart_Gender) FromGenderEnum(v GenderEnum) error {
 
 // MergeGenderEnum performs a merge with any union data inside the UserRequestMultipart_Gender, using the provided GenderEnum
 func (t *UserRequestMultipart_Gender) MergeGenderEnum(v GenderEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the UserRequestMultipart_Gender as a BlankEnum
+func (t UserRequestMultipart_Gender) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the UserRequestMultipart_Gender as the provided BlankEnum
+func (t *UserRequestMultipart_Gender) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the UserRequestMultipart_Gender, using the provided BlankEnum
+func (t *UserRequestMultipart_Gender) MergeBlankEnum(v BlankEnum) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
