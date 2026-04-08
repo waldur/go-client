@@ -28825,6 +28825,12 @@ type GoogleCredentialsFieldEnum string
 
 // GroupInvitation defines model for GroupInvitation.
 type GroupInvitation struct {
+	// AllowCustomProjectDetails Allow users to provide custom project name and description when accepting the invitation. If disabled, the project name is auto-generated from the template.
+	AllowCustomProjectDetails *bool `json:"allow_custom_project_details,omitempty"`
+
+	// AllowMultipleRequests Allow users to submit multiple permission requests for this invitation.
+	AllowMultipleRequests *bool `json:"allow_multiple_requests,omitempty"`
+
 	// AutoApprove Automatically approve permission requests from users matching email patterns or affiliations
 	AutoApprove *bool `json:"auto_approve,omitempty"`
 
@@ -28894,6 +28900,12 @@ type GroupInvitation struct {
 
 // GroupInvitationRequest defines model for GroupInvitationRequest.
 type GroupInvitationRequest struct {
+	// AllowCustomProjectDetails Allow users to provide custom project name and description when accepting the invitation. If disabled, the project name is auto-generated from the template.
+	AllowCustomProjectDetails *bool `json:"allow_custom_project_details,omitempty"`
+
+	// AllowMultipleRequests Allow users to submit multiple permission requests for this invitation.
+	AllowMultipleRequests *bool `json:"allow_multiple_requests,omitempty"`
+
 	// AutoApprove Automatically approve permission requests from users matching email patterns or affiliations
 	AutoApprove *bool `json:"auto_approve,omitempty"`
 
@@ -28926,6 +28938,12 @@ type GroupInvitationRequest struct {
 
 // GroupInvitationUpdate defines model for GroupInvitationUpdate.
 type GroupInvitationUpdate struct {
+	// AllowCustomProjectDetails Allow users to provide custom project name and description when accepting the invitation. If disabled, the project name is auto-generated from the template.
+	AllowCustomProjectDetails *bool `json:"allow_custom_project_details,omitempty"`
+
+	// AllowMultipleRequests Allow users to submit multiple permission requests for this invitation.
+	AllowMultipleRequests *bool `json:"allow_multiple_requests,omitempty"`
+
 	// AutoApprove Automatically approve permission requests from users matching email patterns or affiliations
 	AutoApprove *bool `json:"auto_approve,omitempty"`
 
@@ -28958,6 +28976,12 @@ type GroupInvitationUpdate struct {
 
 // GroupInvitationUpdateRequest defines model for GroupInvitationUpdateRequest.
 type GroupInvitationUpdateRequest struct {
+	// AllowCustomProjectDetails Allow users to provide custom project name and description when accepting the invitation. If disabled, the project name is auto-generated from the template.
+	AllowCustomProjectDetails *bool `json:"allow_custom_project_details,omitempty"`
+
+	// AllowMultipleRequests Allow users to submit multiple permission requests for this invitation.
+	AllowMultipleRequests *bool `json:"allow_multiple_requests,omitempty"`
+
 	// AutoApprove Automatically approve permission requests from users matching email patterns or affiliations
 	AutoApprove *bool `json:"auto_approve,omitempty"`
 
@@ -37353,6 +37377,12 @@ type PatchedFirecrestJobRequest struct {
 
 // PatchedGroupInvitationUpdateRequest defines model for PatchedGroupInvitationUpdateRequest.
 type PatchedGroupInvitationUpdateRequest struct {
+	// AllowCustomProjectDetails Allow users to provide custom project name and description when accepting the invitation. If disabled, the project name is auto-generated from the template.
+	AllowCustomProjectDetails *bool `json:"allow_custom_project_details,omitempty"`
+
+	// AllowMultipleRequests Allow users to submit multiple permission requests for this invitation.
+	AllowMultipleRequests *bool `json:"allow_multiple_requests,omitempty"`
+
 	// AutoApprove Automatically approve permission requests from users matching email patterns or affiliations
 	AutoApprove *bool `json:"auto_approve,omitempty"`
 
