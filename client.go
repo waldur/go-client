@@ -45688,6 +45688,15 @@ type SubNetMappingRequest struct {
 	SrcCidr string `json:"src_cidr"`
 }
 
+// SubmitRequestRequest defines model for SubmitRequestRequest.
+type SubmitRequestRequest struct {
+	// ProjectDescription Custom project description
+	ProjectDescription *string `json:"project_description,omitempty"`
+
+	// ProjectName Custom project name to use instead of auto-generated one
+	ProjectName *string `json:"project_name,omitempty"`
+}
+
 // SubmitRequestResponse defines model for SubmitRequestResponse.
 type SubmitRequestResponse struct {
 	// AutoApproved Whether the request was automatically approved
@@ -71835,6 +71844,9 @@ type UserGroupInvitationsPartialUpdateJSONRequestBody = PatchedGroupInvitationUp
 // UserGroupInvitationsUpdateJSONRequestBody defines body for UserGroupInvitationsUpdate for application/json ContentType.
 type UserGroupInvitationsUpdateJSONRequestBody = GroupInvitationUpdateRequest
 
+// UserGroupInvitationsSubmitRequestJSONRequestBody defines body for UserGroupInvitationsSubmitRequest for application/json ContentType.
+type UserGroupInvitationsSubmitRequestJSONRequestBody = SubmitRequestRequest
+
 // UserInvitationsCreateJSONRequestBody defines body for UserInvitationsCreate for application/json ContentType.
 type UserInvitationsCreateJSONRequestBody = InvitationRequest
 
@@ -90825,8 +90837,10 @@ type ClientInterface interface {
 	// UserGroupInvitationsProjectsList request
 	UserGroupInvitationsProjectsList(ctx context.Context, uuid openapi_types.UUID, params *UserGroupInvitationsProjectsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// UserGroupInvitationsSubmitRequest request
-	UserGroupInvitationsSubmitRequest(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// UserGroupInvitationsSubmitRequestWithBody request with any body
+	UserGroupInvitationsSubmitRequestWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	UserGroupInvitationsSubmitRequest(ctx context.Context, uuid openapi_types.UUID, body UserGroupInvitationsSubmitRequestJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UserInvitationsList request
 	UserInvitationsList(ctx context.Context, params *UserInvitationsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -128785,8 +128799,20 @@ func (c *Client) UserGroupInvitationsProjectsList(ctx context.Context, uuid open
 	return c.Client.Do(req)
 }
 
-func (c *Client) UserGroupInvitationsSubmitRequest(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUserGroupInvitationsSubmitRequestRequest(c.Server, uuid)
+func (c *Client) UserGroupInvitationsSubmitRequestWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserGroupInvitationsSubmitRequestRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserGroupInvitationsSubmitRequest(ctx context.Context, uuid openapi_types.UUID, body UserGroupInvitationsSubmitRequestJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserGroupInvitationsSubmitRequestRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -323247,8 +323273,19 @@ func NewUserGroupInvitationsProjectsListRequest(server string, uuid openapi_type
 	return req, nil
 }
 
-// NewUserGroupInvitationsSubmitRequestRequest generates requests for UserGroupInvitationsSubmitRequest
-func NewUserGroupInvitationsSubmitRequestRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+// NewUserGroupInvitationsSubmitRequestRequest calls the generic UserGroupInvitationsSubmitRequest builder with application/json body
+func NewUserGroupInvitationsSubmitRequestRequest(server string, uuid openapi_types.UUID, body UserGroupInvitationsSubmitRequestJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewUserGroupInvitationsSubmitRequestRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewUserGroupInvitationsSubmitRequestRequestWithBody generates requests for UserGroupInvitationsSubmitRequest with any type of body
+func NewUserGroupInvitationsSubmitRequestRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -323273,10 +323310,12 @@ func NewUserGroupInvitationsSubmitRequestRequest(server string, uuid openapi_typ
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	req, err := http.NewRequest("POST", queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -345004,8 +345043,10 @@ type ClientWithResponsesInterface interface {
 	// UserGroupInvitationsProjectsListWithResponse request
 	UserGroupInvitationsProjectsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *UserGroupInvitationsProjectsListParams, reqEditors ...RequestEditorFn) (*UserGroupInvitationsProjectsListResponse, error)
 
-	// UserGroupInvitationsSubmitRequestWithResponse request
-	UserGroupInvitationsSubmitRequestWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UserGroupInvitationsSubmitRequestResponse, error)
+	// UserGroupInvitationsSubmitRequestWithBodyWithResponse request with any body
+	UserGroupInvitationsSubmitRequestWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserGroupInvitationsSubmitRequestResponse, error)
+
+	UserGroupInvitationsSubmitRequestWithResponse(ctx context.Context, uuid openapi_types.UUID, body UserGroupInvitationsSubmitRequestJSONRequestBody, reqEditors ...RequestEditorFn) (*UserGroupInvitationsSubmitRequestResponse, error)
 
 	// UserInvitationsListWithResponse request
 	UserInvitationsListWithResponse(ctx context.Context, params *UserInvitationsListParams, reqEditors ...RequestEditorFn) (*UserInvitationsListResponse, error)
@@ -425243,9 +425284,17 @@ func (c *ClientWithResponses) UserGroupInvitationsProjectsListWithResponse(ctx c
 	return ParseUserGroupInvitationsProjectsListResponse(rsp)
 }
 
-// UserGroupInvitationsSubmitRequestWithResponse request returning *UserGroupInvitationsSubmitRequestResponse
-func (c *ClientWithResponses) UserGroupInvitationsSubmitRequestWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UserGroupInvitationsSubmitRequestResponse, error) {
-	rsp, err := c.UserGroupInvitationsSubmitRequest(ctx, uuid, reqEditors...)
+// UserGroupInvitationsSubmitRequestWithBodyWithResponse request with arbitrary body returning *UserGroupInvitationsSubmitRequestResponse
+func (c *ClientWithResponses) UserGroupInvitationsSubmitRequestWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserGroupInvitationsSubmitRequestResponse, error) {
+	rsp, err := c.UserGroupInvitationsSubmitRequestWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserGroupInvitationsSubmitRequestResponse(rsp)
+}
+
+func (c *ClientWithResponses) UserGroupInvitationsSubmitRequestWithResponse(ctx context.Context, uuid openapi_types.UUID, body UserGroupInvitationsSubmitRequestJSONRequestBody, reqEditors ...RequestEditorFn) (*UserGroupInvitationsSubmitRequestResponse, error) {
+	rsp, err := c.UserGroupInvitationsSubmitRequest(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
