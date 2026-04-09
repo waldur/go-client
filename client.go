@@ -22950,7 +22950,7 @@ type BaseProviderPlan struct {
 	BackendId    *string                `json:"backend_id,omitempty"`
 	Components   *[]NestedPlanComponent `json:"components,omitempty"`
 	Description  *string                `json:"description,omitempty"`
-	FuturePrices *map[string]float64    `json:"future_prices,omitempty"`
+	FuturePrices *map[string]string     `json:"future_prices,omitempty"`
 	InitPrice    *float64               `json:"init_price,omitempty"`
 	IsActive     *bool                  `json:"is_active,omitempty"`
 
@@ -22960,8 +22960,8 @@ type BaseProviderPlan struct {
 	Name               *string              `json:"name,omitempty"`
 	OrganizationGroups *[]OrganizationGroup `json:"organization_groups,omitempty"`
 	PlanType           *string              `json:"plan_type,omitempty"`
-	Prices             *map[string]float64  `json:"prices,omitempty"`
-	Quotas             *map[string]float64  `json:"quotas,omitempty"`
+	Prices             *map[string]string   `json:"prices,omitempty"`
+	Quotas             *map[string]string   `json:"quotas,omitempty"`
 	ResourcesCount     *int                 `json:"resources_count,omitempty"`
 	SwitchPrice        *float64             `json:"switch_price,omitempty"`
 	Unit               *BillingUnit         `json:"unit,omitempty"`
@@ -22993,7 +22993,7 @@ type BasePublicPlan struct {
 	BackendId    *string                `json:"backend_id,omitempty"`
 	Components   *[]NestedPlanComponent `json:"components,omitempty"`
 	Description  *string                `json:"description,omitempty"`
-	FuturePrices *map[string]float64    `json:"future_prices,omitempty"`
+	FuturePrices *map[string]string     `json:"future_prices,omitempty"`
 	InitPrice    *float64               `json:"init_price,omitempty"`
 	IsActive     *bool                  `json:"is_active,omitempty"`
 
@@ -23003,8 +23003,8 @@ type BasePublicPlan struct {
 	Name               *string              `json:"name,omitempty"`
 	OrganizationGroups *[]OrganizationGroup `json:"organization_groups,omitempty"`
 	PlanType           *string              `json:"plan_type,omitempty"`
-	Prices             *map[string]float64  `json:"prices,omitempty"`
-	Quotas             *map[string]float64  `json:"quotas,omitempty"`
+	Prices             *map[string]string   `json:"prices,omitempty"`
+	Quotas             *map[string]string   `json:"quotas,omitempty"`
 	ResourcesCount     *int                 `json:"resources_count,omitempty"`
 	SwitchPrice        *float64             `json:"switch_price,omitempty"`
 	Unit               *BillingUnit         `json:"unit,omitempty"`
@@ -40840,7 +40840,7 @@ type ProviderPlanDetails struct {
 	BackendId    *string                `json:"backend_id,omitempty"`
 	Components   *[]NestedPlanComponent `json:"components,omitempty"`
 	Description  *string                `json:"description,omitempty"`
-	FuturePrices *map[string]float64    `json:"future_prices,omitempty"`
+	FuturePrices *map[string]string     `json:"future_prices,omitempty"`
 	InitPrice    *float64               `json:"init_price,omitempty"`
 	IsActive     *bool                  `json:"is_active,omitempty"`
 
@@ -40851,8 +40851,8 @@ type ProviderPlanDetails struct {
 	Offering           string               `json:"offering"`
 	OrganizationGroups *[]OrganizationGroup `json:"organization_groups,omitempty"`
 	PlanType           *string              `json:"plan_type,omitempty"`
-	Prices             *map[string]float64  `json:"prices,omitempty"`
-	Quotas             *map[string]float64  `json:"quotas,omitempty"`
+	Prices             *map[string]string   `json:"prices,omitempty"`
+	Quotas             *map[string]string   `json:"quotas,omitempty"`
 	ResourcesCount     *int                 `json:"resources_count,omitempty"`
 	SwitchPrice        *float64             `json:"switch_price,omitempty"`
 	Unit               *BillingUnit         `json:"unit,omitempty"`
