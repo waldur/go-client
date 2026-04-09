@@ -13560,6 +13560,7 @@ const (
 	OrderDetailsFieldEnumCustomerUuid                      OrderDetailsFieldEnum = "customer_uuid"
 	OrderDetailsFieldEnumErrorMessage                      OrderDetailsFieldEnum = "error_message"
 	OrderDetailsFieldEnumErrorTraceback                    OrderDetailsFieldEnum = "error_traceback"
+	OrderDetailsFieldEnumErrorUpdatedAt                    OrderDetailsFieldEnum = "error_updated_at"
 	OrderDetailsFieldEnumFixedPrice                        OrderDetailsFieldEnum = "fixed_price"
 	OrderDetailsFieldEnumIssue                             OrderDetailsFieldEnum = "issue"
 	OrderDetailsFieldEnumLimits                            OrderDetailsFieldEnum = "limits"
@@ -13583,6 +13584,7 @@ const (
 	OrderDetailsFieldEnumOldPlanUuid                       OrderDetailsFieldEnum = "old_plan_uuid"
 	OrderDetailsFieldEnumOrderSubtype                      OrderDetailsFieldEnum = "order_subtype"
 	OrderDetailsFieldEnumOutput                            OrderDetailsFieldEnum = "output"
+	OrderDetailsFieldEnumOutputUpdatedAt                   OrderDetailsFieldEnum = "output_updated_at"
 	OrderDetailsFieldEnumPlan                              OrderDetailsFieldEnum = "plan"
 	OrderDetailsFieldEnumPlanDescription                   OrderDetailsFieldEnum = "plan_description"
 	OrderDetailsFieldEnumPlanName                          OrderDetailsFieldEnum = "plan_name"
@@ -13682,6 +13684,8 @@ func (e OrderDetailsFieldEnum) Valid() bool {
 		return true
 	case OrderDetailsFieldEnumErrorTraceback:
 		return true
+	case OrderDetailsFieldEnumErrorUpdatedAt:
+		return true
 	case OrderDetailsFieldEnumFixedPrice:
 		return true
 	case OrderDetailsFieldEnumIssue:
@@ -13727,6 +13731,8 @@ func (e OrderDetailsFieldEnum) Valid() bool {
 	case OrderDetailsFieldEnumOrderSubtype:
 		return true
 	case OrderDetailsFieldEnumOutput:
+		return true
+	case OrderDetailsFieldEnumOutputUpdatedAt:
 		return true
 	case OrderDetailsFieldEnumPlan:
 		return true
@@ -13986,6 +13992,7 @@ const (
 	PermissionMetadataResponsePermissionMapORDERAPPROVE                            PermissionMetadataResponsePermissionMap = "ORDER.APPROVE"
 	PermissionMetadataResponsePermissionMapORDERAPPROVEPRIVATE                     PermissionMetadataResponsePermissionMap = "ORDER.APPROVE_PRIVATE"
 	PermissionMetadataResponsePermissionMapORDERCANCEL                             PermissionMetadataResponsePermissionMap = "ORDER.CANCEL"
+	PermissionMetadataResponsePermissionMapORDERCREATE                             PermissionMetadataResponsePermissionMap = "ORDER.CREATE"
 	PermissionMetadataResponsePermissionMapORDERDESTROY                            PermissionMetadataResponsePermissionMap = "ORDER.DESTROY"
 	PermissionMetadataResponsePermissionMapORDERLIST                               PermissionMetadataResponsePermissionMap = "ORDER.LIST"
 	PermissionMetadataResponsePermissionMapORDERREJECT                             PermissionMetadataResponsePermissionMap = "ORDER.REJECT"
@@ -14172,6 +14179,8 @@ func (e PermissionMetadataResponsePermissionMap) Valid() bool {
 	case PermissionMetadataResponsePermissionMapORDERAPPROVEPRIVATE:
 		return true
 	case PermissionMetadataResponsePermissionMapORDERCANCEL:
+		return true
+	case PermissionMetadataResponsePermissionMapORDERCREATE:
 		return true
 	case PermissionMetadataResponsePermissionMapORDERDESTROY:
 		return true
@@ -14361,6 +14370,7 @@ const (
 	PermissionMetadataResponsePermissionsORDERAPPROVE                            PermissionMetadataResponsePermissions = "ORDER.APPROVE"
 	PermissionMetadataResponsePermissionsORDERAPPROVEPRIVATE                     PermissionMetadataResponsePermissions = "ORDER.APPROVE_PRIVATE"
 	PermissionMetadataResponsePermissionsORDERCANCEL                             PermissionMetadataResponsePermissions = "ORDER.CANCEL"
+	PermissionMetadataResponsePermissionsORDERCREATE                             PermissionMetadataResponsePermissions = "ORDER.CREATE"
 	PermissionMetadataResponsePermissionsORDERDESTROY                            PermissionMetadataResponsePermissions = "ORDER.DESTROY"
 	PermissionMetadataResponsePermissionsORDERLIST                               PermissionMetadataResponsePermissions = "ORDER.LIST"
 	PermissionMetadataResponsePermissionsORDERREJECT                             PermissionMetadataResponsePermissions = "ORDER.REJECT"
@@ -14548,6 +14558,8 @@ func (e PermissionMetadataResponsePermissions) Valid() bool {
 		return true
 	case PermissionMetadataResponsePermissionsORDERCANCEL:
 		return true
+	case PermissionMetadataResponsePermissionsORDERCREATE:
+		return true
 	case PermissionMetadataResponsePermissionsORDERDESTROY:
 		return true
 	case PermissionMetadataResponsePermissionsORDERLIST:
@@ -14679,6 +14691,7 @@ const (
 	PermissionMetadataResponseRolesCALLREVIEWER    PermissionMetadataResponseRoles = "CALL.REVIEWER"
 	PermissionMetadataResponseRolesCUSTOMERMANAGER PermissionMetadataResponseRoles = "CUSTOMER.MANAGER"
 	PermissionMetadataResponseRolesCUSTOMEROWNER   PermissionMetadataResponseRoles = "CUSTOMER.OWNER"
+	PermissionMetadataResponseRolesCUSTOMERREADER  PermissionMetadataResponseRoles = "CUSTOMER.READER"
 	PermissionMetadataResponseRolesCUSTOMERSUPPORT PermissionMetadataResponseRoles = "CUSTOMER.SUPPORT"
 	PermissionMetadataResponseRolesOFFERINGMANAGER PermissionMetadataResponseRoles = "OFFERING.MANAGER"
 	PermissionMetadataResponseRolesPROJECTADMIN    PermissionMetadataResponseRoles = "PROJECT.ADMIN"
@@ -14698,6 +14711,8 @@ func (e PermissionMetadataResponseRoles) Valid() bool {
 	case PermissionMetadataResponseRolesCUSTOMERMANAGER:
 		return true
 	case PermissionMetadataResponseRolesCUSTOMEROWNER:
+		return true
+	case PermissionMetadataResponseRolesCUSTOMERREADER:
 		return true
 	case PermissionMetadataResponseRolesCUSTOMERSUPPORT:
 		return true
@@ -32317,7 +32332,7 @@ type Offering struct {
 	Roles                     *[]NestedRole         `json:"roles,omitempty"`
 	Scope                     *string               `json:"scope,omitempty"`
 	ScopeErrorMessage         *string               `json:"scope_error_message,omitempty"`
-	ScopeName                 *openapi_types.UUID   `json:"scope_name,omitempty"`
+	ScopeName                 *string               `json:"scope_name,omitempty"`
 	ScopeState                *Offering_ScopeState  `json:"scope_state,omitempty"`
 	ScopeUuid                 *openapi_types.UUID   `json:"scope_uuid,omitempty"`
 	Screenshots               *[]NestedScreenshot   `json:"screenshots,omitempty"`
@@ -36436,6 +36451,7 @@ type OrderDetails struct {
 	CustomerUuid            *openapi_types.UUID `json:"customer_uuid,omitempty"`
 	ErrorMessage            *string             `json:"error_message,omitempty"`
 	ErrorTraceback          *string             `json:"error_traceback,omitempty"`
+	ErrorUpdatedAt          *time.Time          `json:"error_updated_at,omitempty"`
 	FixedPrice              *float64            `json:"fixed_price,omitempty"`
 	Issue                   *IssueReference     `json:"issue,omitempty"`
 	Limits                  *map[string]int     `json:"limits,omitempty"`
@@ -36465,6 +36481,7 @@ type OrderDetails struct {
 	OldPlanUuid               *openapi_types.UUID `json:"old_plan_uuid,omitempty"`
 	OrderSubtype              *string             `json:"order_subtype,omitempty"`
 	Output                    *string             `json:"output,omitempty"`
+	OutputUpdatedAt           *time.Time          `json:"output_updated_at,omitempty"`
 	Plan                      *string             `json:"plan,omitempty"`
 	PlanDescription           *string             `json:"plan_description,omitempty"`
 	PlanName                  *string             `json:"plan_name,omitempty"`
@@ -40765,7 +40782,7 @@ type ProviderOfferingDetails struct {
 	Roles                     *[]NestedRole                       `json:"roles,omitempty"`
 	Scope                     *string                             `json:"scope,omitempty"`
 	ScopeErrorMessage         *string                             `json:"scope_error_message,omitempty"`
-	ScopeName                 *openapi_types.UUID                 `json:"scope_name,omitempty"`
+	ScopeName                 *string                             `json:"scope_name,omitempty"`
 	ScopeState                *ProviderOfferingDetails_ScopeState `json:"scope_state,omitempty"`
 	ScopeUuid                 *openapi_types.UUID                 `json:"scope_uuid,omitempty"`
 	Screenshots               *[]NestedScreenshot                 `json:"screenshots,omitempty"`
@@ -41116,7 +41133,7 @@ type PublicOfferingDetails struct {
 	Roles                     *[]NestedRole                     `json:"roles,omitempty"`
 	Scope                     *string                           `json:"scope,omitempty"`
 	ScopeErrorMessage         *string                           `json:"scope_error_message,omitempty"`
-	ScopeName                 *openapi_types.UUID               `json:"scope_name,omitempty"`
+	ScopeName                 *string                           `json:"scope_name,omitempty"`
 	ScopeState                *PublicOfferingDetails_ScopeState `json:"scope_state,omitempty"`
 	ScopeUuid                 *openapi_types.UUID               `json:"scope_uuid,omitempty"`
 	Screenshots               *[]NestedScreenshot               `json:"screenshots,omitempty"`
@@ -87862,6 +87879,9 @@ type ClientInterface interface {
 
 	OpenstackHealthMonitorsUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackHealthMonitorsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenstackHealthMonitorsPull request
+	OpenstackHealthMonitorsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenstackImagesList request
 	OpenstackImagesList(ctx context.Context, params *OpenstackImagesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -87997,6 +88017,9 @@ type ClientInterface interface {
 
 	OpenstackListenersUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackListenersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenstackListenersPull request
+	OpenstackListenersPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenstackLoadbalancersList request
 	OpenstackLoadbalancersList(ctx context.Context, params *OpenstackLoadbalancersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -88031,6 +88054,9 @@ type ClientInterface interface {
 
 	// OpenstackLoadbalancersDetachFloatingIp request
 	OpenstackLoadbalancersDetachFloatingIp(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackLoadbalancersPull request
+	OpenstackLoadbalancersPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackLoadbalancersUnlink request
 	OpenstackLoadbalancersUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -88189,6 +88215,9 @@ type ClientInterface interface {
 
 	OpenstackPoolMembersUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackPoolMembersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenstackPoolMembersPull request
+	OpenstackPoolMembersPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenstackPoolsList request
 	OpenstackPoolsList(ctx context.Context, params *OpenstackPoolsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -88215,6 +88244,9 @@ type ClientInterface interface {
 	OpenstackPoolsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	OpenstackPoolsUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackPoolsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackPoolsPull request
+	OpenstackPoolsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackPortsList request
 	OpenstackPortsList(ctx context.Context, params *OpenstackPortsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -115677,6 +115709,18 @@ func (c *Client) OpenstackHealthMonitorsUpdate(ctx context.Context, uuid openapi
 	return c.Client.Do(req)
 }
 
+func (c *Client) OpenstackHealthMonitorsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackHealthMonitorsPullRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OpenstackImagesList(ctx context.Context, params *OpenstackImagesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackImagesListRequest(c.Server, params)
 	if err != nil {
@@ -116265,6 +116309,18 @@ func (c *Client) OpenstackListenersUpdate(ctx context.Context, uuid openapi_type
 	return c.Client.Do(req)
 }
 
+func (c *Client) OpenstackListenersPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackListenersPullRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OpenstackLoadbalancersList(ctx context.Context, params *OpenstackLoadbalancersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackLoadbalancersListRequest(c.Server, params)
 	if err != nil {
@@ -116411,6 +116467,18 @@ func (c *Client) OpenstackLoadbalancersAttachFloatingIp(ctx context.Context, uui
 
 func (c *Client) OpenstackLoadbalancersDetachFloatingIp(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackLoadbalancersDetachFloatingIpRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackLoadbalancersPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackLoadbalancersPullRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -117117,6 +117185,18 @@ func (c *Client) OpenstackPoolMembersUpdate(ctx context.Context, uuid openapi_ty
 	return c.Client.Do(req)
 }
 
+func (c *Client) OpenstackPoolMembersPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPoolMembersPullRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OpenstackPoolsList(ctx context.Context, params *OpenstackPoolsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackPoolsListRequest(c.Server, params)
 	if err != nil {
@@ -117227,6 +117307,18 @@ func (c *Client) OpenstackPoolsUpdateWithBody(ctx context.Context, uuid openapi_
 
 func (c *Client) OpenstackPoolsUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackPoolsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackPoolsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPoolsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPoolsPullRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -260029,6 +260121,40 @@ func NewOpenstackHealthMonitorsUpdateRequestWithBody(server string, uuid openapi
 	return req, nil
 }
 
+// NewOpenstackHealthMonitorsPullRequest generates requests for OpenstackHealthMonitorsPull
+func NewOpenstackHealthMonitorsPullRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-health-monitors/%s/pull/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOpenstackImagesListRequest generates requests for OpenstackImagesList
 func NewOpenstackImagesListRequest(server string, params *OpenstackImagesListParams) (*http.Request, error) {
 	var err error
@@ -263284,6 +263410,40 @@ func NewOpenstackListenersUpdateRequestWithBody(server string, uuid openapi_type
 	return req, nil
 }
 
+// NewOpenstackListenersPullRequest generates requests for OpenstackListenersPull
+func NewOpenstackListenersPullRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-listeners/%s/pull/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOpenstackLoadbalancersListRequest generates requests for OpenstackLoadbalancersList
 func NewOpenstackLoadbalancersListRequest(server string, params *OpenstackLoadbalancersListParams) (*http.Request, error) {
 	var err error
@@ -263878,6 +264038,40 @@ func NewOpenstackLoadbalancersDetachFloatingIpRequest(server string, uuid openap
 	}
 
 	operationPath := fmt.Sprintf("/api/openstack-loadbalancers/%s/detach_floating_ip/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackLoadbalancersPullRequest generates requests for OpenstackLoadbalancersPull
+func NewOpenstackLoadbalancersPullRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-loadbalancers/%s/pull/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -267745,6 +267939,40 @@ func NewOpenstackPoolMembersUpdateRequestWithBody(server string, uuid openapi_ty
 	return req, nil
 }
 
+// NewOpenstackPoolMembersPullRequest generates requests for OpenstackPoolMembersPull
+func NewOpenstackPoolMembersPullRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-pool-members/%s/pull/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOpenstackPoolsListRequest generates requests for OpenstackPoolsList
 func NewOpenstackPoolsListRequest(server string, params *OpenstackPoolsListParams) (*http.Request, error) {
 	var err error
@@ -268303,6 +268531,40 @@ func NewOpenstackPoolsUpdateRequestWithBody(server string, uuid openapi_types.UU
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackPoolsPullRequest generates requests for OpenstackPoolsPull
+func NewOpenstackPoolsPullRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-pools/%s/pull/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -342068,6 +342330,9 @@ type ClientWithResponsesInterface interface {
 
 	OpenstackHealthMonitorsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackHealthMonitorsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackHealthMonitorsUpdateResponse, error)
 
+	// OpenstackHealthMonitorsPullWithResponse request
+	OpenstackHealthMonitorsPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackHealthMonitorsPullResponse, error)
+
 	// OpenstackImagesListWithResponse request
 	OpenstackImagesListWithResponse(ctx context.Context, params *OpenstackImagesListParams, reqEditors ...RequestEditorFn) (*OpenstackImagesListResponse, error)
 
@@ -342203,6 +342468,9 @@ type ClientWithResponsesInterface interface {
 
 	OpenstackListenersUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackListenersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackListenersUpdateResponse, error)
 
+	// OpenstackListenersPullWithResponse request
+	OpenstackListenersPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackListenersPullResponse, error)
+
 	// OpenstackLoadbalancersListWithResponse request
 	OpenstackLoadbalancersListWithResponse(ctx context.Context, params *OpenstackLoadbalancersListParams, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersListResponse, error)
 
@@ -342237,6 +342505,9 @@ type ClientWithResponsesInterface interface {
 
 	// OpenstackLoadbalancersDetachFloatingIpWithResponse request
 	OpenstackLoadbalancersDetachFloatingIpWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersDetachFloatingIpResponse, error)
+
+	// OpenstackLoadbalancersPullWithResponse request
+	OpenstackLoadbalancersPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersPullResponse, error)
 
 	// OpenstackLoadbalancersUnlinkWithResponse request
 	OpenstackLoadbalancersUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersUnlinkResponse, error)
@@ -342395,6 +342666,9 @@ type ClientWithResponsesInterface interface {
 
 	OpenstackPoolMembersUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPoolMembersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPoolMembersUpdateResponse, error)
 
+	// OpenstackPoolMembersPullWithResponse request
+	OpenstackPoolMembersPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPoolMembersPullResponse, error)
+
 	// OpenstackPoolsListWithResponse request
 	OpenstackPoolsListWithResponse(ctx context.Context, params *OpenstackPoolsListParams, reqEditors ...RequestEditorFn) (*OpenstackPoolsListResponse, error)
 
@@ -342421,6 +342695,9 @@ type ClientWithResponsesInterface interface {
 	OpenstackPoolsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPoolsUpdateResponse, error)
 
 	OpenstackPoolsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPoolsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPoolsUpdateResponse, error)
+
+	// OpenstackPoolsPullWithResponse request
+	OpenstackPoolsPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPoolsPullResponse, error)
 
 	// OpenstackPortsListWithResponse request
 	OpenstackPortsListWithResponse(ctx context.Context, params *OpenstackPortsListParams, reqEditors ...RequestEditorFn) (*OpenstackPortsListResponse, error)
@@ -378210,6 +378487,27 @@ func (r OpenstackHealthMonitorsUpdateResponse) StatusCode() int {
 	return 0
 }
 
+type OpenstackHealthMonitorsPullResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackHealthMonitorsPullResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackHealthMonitorsPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type OpenstackImagesListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -379010,6 +379308,27 @@ func (r OpenstackListenersUpdateResponse) StatusCode() int {
 	return 0
 }
 
+type OpenstackListenersPullResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackListenersPullResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackListenersPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type OpenstackLoadbalancersListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -379200,6 +379519,27 @@ func (r OpenstackLoadbalancersDetachFloatingIpResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackLoadbalancersDetachFloatingIpResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackLoadbalancersPullResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackLoadbalancersPullResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackLoadbalancersPullResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -380097,6 +380437,27 @@ func (r OpenstackPoolMembersUpdateResponse) StatusCode() int {
 	return 0
 }
 
+type OpenstackPoolMembersPullResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPoolMembersPullResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPoolMembersPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type OpenstackPoolsListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -380243,6 +380604,27 @@ func (r OpenstackPoolsUpdateResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackPoolsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackPoolsPullResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPoolsPullResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPoolsPullResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -415745,6 +416127,15 @@ func (c *ClientWithResponses) OpenstackHealthMonitorsUpdateWithResponse(ctx cont
 	return ParseOpenstackHealthMonitorsUpdateResponse(rsp)
 }
 
+// OpenstackHealthMonitorsPullWithResponse request returning *OpenstackHealthMonitorsPullResponse
+func (c *ClientWithResponses) OpenstackHealthMonitorsPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackHealthMonitorsPullResponse, error) {
+	rsp, err := c.OpenstackHealthMonitorsPull(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackHealthMonitorsPullResponse(rsp)
+}
+
 // OpenstackImagesListWithResponse request returning *OpenstackImagesListResponse
 func (c *ClientWithResponses) OpenstackImagesListWithResponse(ctx context.Context, params *OpenstackImagesListParams, reqEditors ...RequestEditorFn) (*OpenstackImagesListResponse, error) {
 	rsp, err := c.OpenstackImagesList(ctx, params, reqEditors...)
@@ -416174,6 +416565,15 @@ func (c *ClientWithResponses) OpenstackListenersUpdateWithResponse(ctx context.C
 	return ParseOpenstackListenersUpdateResponse(rsp)
 }
 
+// OpenstackListenersPullWithResponse request returning *OpenstackListenersPullResponse
+func (c *ClientWithResponses) OpenstackListenersPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackListenersPullResponse, error) {
+	rsp, err := c.OpenstackListenersPull(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackListenersPullResponse(rsp)
+}
+
 // OpenstackLoadbalancersListWithResponse request returning *OpenstackLoadbalancersListResponse
 func (c *ClientWithResponses) OpenstackLoadbalancersListWithResponse(ctx context.Context, params *OpenstackLoadbalancersListParams, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersListResponse, error) {
 	rsp, err := c.OpenstackLoadbalancersList(ctx, params, reqEditors...)
@@ -416285,6 +416685,15 @@ func (c *ClientWithResponses) OpenstackLoadbalancersDetachFloatingIpWithResponse
 		return nil, err
 	}
 	return ParseOpenstackLoadbalancersDetachFloatingIpResponse(rsp)
+}
+
+// OpenstackLoadbalancersPullWithResponse request returning *OpenstackLoadbalancersPullResponse
+func (c *ClientWithResponses) OpenstackLoadbalancersPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersPullResponse, error) {
+	rsp, err := c.OpenstackLoadbalancersPull(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackLoadbalancersPullResponse(rsp)
 }
 
 // OpenstackLoadbalancersUnlinkWithResponse request returning *OpenstackLoadbalancersUnlinkResponse
@@ -416792,6 +417201,15 @@ func (c *ClientWithResponses) OpenstackPoolMembersUpdateWithResponse(ctx context
 	return ParseOpenstackPoolMembersUpdateResponse(rsp)
 }
 
+// OpenstackPoolMembersPullWithResponse request returning *OpenstackPoolMembersPullResponse
+func (c *ClientWithResponses) OpenstackPoolMembersPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPoolMembersPullResponse, error) {
+	rsp, err := c.OpenstackPoolMembersPull(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPoolMembersPullResponse(rsp)
+}
+
 // OpenstackPoolsListWithResponse request returning *OpenstackPoolsListResponse
 func (c *ClientWithResponses) OpenstackPoolsListWithResponse(ctx context.Context, params *OpenstackPoolsListParams, reqEditors ...RequestEditorFn) (*OpenstackPoolsListResponse, error) {
 	rsp, err := c.OpenstackPoolsList(ctx, params, reqEditors...)
@@ -416877,6 +417295,15 @@ func (c *ClientWithResponses) OpenstackPoolsUpdateWithResponse(ctx context.Conte
 		return nil, err
 	}
 	return ParseOpenstackPoolsUpdateResponse(rsp)
+}
+
+// OpenstackPoolsPullWithResponse request returning *OpenstackPoolsPullResponse
+func (c *ClientWithResponses) OpenstackPoolsPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPoolsPullResponse, error) {
+	rsp, err := c.OpenstackPoolsPull(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPoolsPullResponse(rsp)
 }
 
 // OpenstackPortsListWithResponse request returning *OpenstackPortsListResponse
@@ -461244,6 +461671,22 @@ func ParseOpenstackHealthMonitorsUpdateResponse(rsp *http.Response) (*OpenstackH
 	return response, nil
 }
 
+// ParseOpenstackHealthMonitorsPullResponse parses an HTTP response from a OpenstackHealthMonitorsPullWithResponse call
+func ParseOpenstackHealthMonitorsPullResponse(rsp *http.Response) (*OpenstackHealthMonitorsPullResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackHealthMonitorsPullResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseOpenstackImagesListResponse parses an HTTP response from a OpenstackImagesListWithResponse call
 func ParseOpenstackImagesListResponse(rsp *http.Response) (*OpenstackImagesListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -462063,6 +462506,22 @@ func ParseOpenstackListenersUpdateResponse(rsp *http.Response) (*OpenstackListen
 	return response, nil
 }
 
+// ParseOpenstackListenersPullResponse parses an HTTP response from a OpenstackListenersPullWithResponse call
+func ParseOpenstackListenersPullResponse(rsp *http.Response) (*OpenstackListenersPullResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackListenersPullResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseOpenstackLoadbalancersListResponse parses an HTTP response from a OpenstackLoadbalancersListWithResponse call
 func ParseOpenstackLoadbalancersListResponse(rsp *http.Response) (*OpenstackLoadbalancersListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -462272,6 +462731,22 @@ func ParseOpenstackLoadbalancersDetachFloatingIpResponse(rsp *http.Response) (*O
 		}
 		response.JSON202 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackLoadbalancersPullResponse parses an HTTP response from a OpenstackLoadbalancersPullWithResponse call
+func ParseOpenstackLoadbalancersPullResponse(rsp *http.Response) (*OpenstackLoadbalancersPullResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackLoadbalancersPullResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
@@ -463230,6 +463705,22 @@ func ParseOpenstackPoolMembersUpdateResponse(rsp *http.Response) (*OpenstackPool
 	return response, nil
 }
 
+// ParseOpenstackPoolMembersPullResponse parses an HTTP response from a OpenstackPoolMembersPullWithResponse call
+func ParseOpenstackPoolMembersPullResponse(rsp *http.Response) (*OpenstackPoolMembersPullResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPoolMembersPullResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseOpenstackPoolsListResponse parses an HTTP response from a OpenstackPoolsListWithResponse call
 func ParseOpenstackPoolsListResponse(rsp *http.Response) (*OpenstackPoolsListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -463387,6 +463878,22 @@ func ParseOpenstackPoolsUpdateResponse(rsp *http.Response) (*OpenstackPoolsUpdat
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackPoolsPullResponse parses an HTTP response from a OpenstackPoolsPullWithResponse call
+func ParseOpenstackPoolsPullResponse(rsp *http.Response) (*OpenstackPoolsPullResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPoolsPullResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
