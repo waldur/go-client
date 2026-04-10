@@ -23054,7 +23054,7 @@ type BaseProviderPlan struct {
 	OrganizationGroups *[]OrganizationGroup `json:"organization_groups,omitempty"`
 	PlanType           *string              `json:"plan_type,omitempty"`
 	Prices             *map[string]string   `json:"prices,omitempty"`
-	Quotas             *map[string]string   `json:"quotas,omitempty"`
+	Quotas             *map[string]int      `json:"quotas,omitempty"`
 	ResourcesCount     *int                 `json:"resources_count,omitempty"`
 	SwitchPrice        *float64             `json:"switch_price,omitempty"`
 	Unit               *BillingUnit         `json:"unit,omitempty"`
@@ -23097,7 +23097,7 @@ type BasePublicPlan struct {
 	OrganizationGroups *[]OrganizationGroup `json:"organization_groups,omitempty"`
 	PlanType           *string              `json:"plan_type,omitempty"`
 	Prices             *map[string]string   `json:"prices,omitempty"`
-	Quotas             *map[string]string   `json:"quotas,omitempty"`
+	Quotas             *map[string]int      `json:"quotas,omitempty"`
 	ResourcesCount     *int                 `json:"resources_count,omitempty"`
 	SwitchPrice        *float64             `json:"switch_price,omitempty"`
 	Unit               *BillingUnit         `json:"unit,omitempty"`
@@ -26952,7 +26952,7 @@ type CustomerEstimatedCostPolicy struct {
 	Created                *time.Time           `json:"created,omitempty"`
 	CreatedByFullName      *string              `json:"created_by_full_name,omitempty"`
 	CreatedByUsername      *string              `json:"created_by_username,omitempty"`
-	CustomerCredit         *int                 `json:"customer_credit,omitempty"`
+	CustomerCredit         *string              `json:"customer_credit,omitempty"`
 	FiredDatetime          *time.Time           `json:"fired_datetime,omitempty"`
 	HasFired               *bool                `json:"has_fired,omitempty"`
 	LimitCost              int                  `json:"limit_cost"`
@@ -39994,7 +39994,7 @@ type ProjectEstimatedCostPolicy struct {
 	Created                *time.Time           `json:"created,omitempty"`
 	CreatedByFullName      *string              `json:"created_by_full_name,omitempty"`
 	CreatedByUsername      *string              `json:"created_by_username,omitempty"`
-	CustomerCredit         *float64             `json:"customer_credit,omitempty"`
+	CustomerCredit         *string              `json:"customer_credit,omitempty"`
 	FiredDatetime          *time.Time           `json:"fired_datetime,omitempty"`
 	HasFired               *bool                `json:"has_fired,omitempty"`
 	LimitCost              int                  `json:"limit_cost"`
@@ -40003,7 +40003,7 @@ type ProjectEstimatedCostPolicy struct {
 	Options       interface{}         `json:"options,omitempty"`
 	Period        *PolicyPeriodEnum   `json:"period,omitempty"`
 	PeriodName    *string             `json:"period_name,omitempty"`
-	ProjectCredit *float64            `json:"project_credit,omitempty"`
+	ProjectCredit *string             `json:"project_credit,omitempty"`
 	Scope         string              `json:"scope"`
 	ScopeName     *string             `json:"scope_name,omitempty"`
 	ScopeUuid     *openapi_types.UUID `json:"scope_uuid,omitempty"`
@@ -40985,7 +40985,7 @@ type ProviderPlanDetails struct {
 	OrganizationGroups *[]OrganizationGroup `json:"organization_groups,omitempty"`
 	PlanType           *string              `json:"plan_type,omitempty"`
 	Prices             *map[string]string   `json:"prices,omitempty"`
-	Quotas             *map[string]string   `json:"quotas,omitempty"`
+	Quotas             *map[string]int      `json:"quotas,omitempty"`
 	ResourcesCount     *int                 `json:"resources_count,omitempty"`
 	SwitchPrice        *float64             `json:"switch_price,omitempty"`
 	Unit               *BillingUnit         `json:"unit,omitempty"`
