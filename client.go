@@ -3216,6 +3216,69 @@ func (e ComponentUsageFieldEnum) Valid() bool {
 	}
 }
 
+// Defines values for ComponentUsageMonthlyFieldEnum.
+const (
+	ComponentUsageMonthlyFieldEnumBillingPeriod       ComponentUsageMonthlyFieldEnum = "billing_period"
+	ComponentUsageMonthlyFieldEnumBillingType         ComponentUsageMonthlyFieldEnum = "billing_type"
+	ComponentUsageMonthlyFieldEnumCategoryTitle       ComponentUsageMonthlyFieldEnum = "category_title"
+	ComponentUsageMonthlyFieldEnumCategoryUuid        ComponentUsageMonthlyFieldEnum = "category_uuid"
+	ComponentUsageMonthlyFieldEnumComponentName       ComponentUsageMonthlyFieldEnum = "component_name"
+	ComponentUsageMonthlyFieldEnumComponentType       ComponentUsageMonthlyFieldEnum = "component_type"
+	ComponentUsageMonthlyFieldEnumLimitAmount         ComponentUsageMonthlyFieldEnum = "limit_amount"
+	ComponentUsageMonthlyFieldEnumLimitPeriod         ComponentUsageMonthlyFieldEnum = "limit_period"
+	ComponentUsageMonthlyFieldEnumMeasuredUnit        ComponentUsageMonthlyFieldEnum = "measured_unit"
+	ComponentUsageMonthlyFieldEnumOfferingName        ComponentUsageMonthlyFieldEnum = "offering_name"
+	ComponentUsageMonthlyFieldEnumOfferingType        ComponentUsageMonthlyFieldEnum = "offering_type"
+	ComponentUsageMonthlyFieldEnumOfferingUuid        ComponentUsageMonthlyFieldEnum = "offering_uuid"
+	ComponentUsageMonthlyFieldEnumServiceProviderName ComponentUsageMonthlyFieldEnum = "service_provider_name"
+	ComponentUsageMonthlyFieldEnumServiceProviderUuid ComponentUsageMonthlyFieldEnum = "service_provider_uuid"
+	ComponentUsageMonthlyFieldEnumTotalAllocated      ComponentUsageMonthlyFieldEnum = "total_allocated"
+	ComponentUsageMonthlyFieldEnumTotalConsumed       ComponentUsageMonthlyFieldEnum = "total_consumed"
+	ComponentUsageMonthlyFieldEnumUsagePercent        ComponentUsageMonthlyFieldEnum = "usage_percent"
+)
+
+// Valid indicates whether the value is a known member of the ComponentUsageMonthlyFieldEnum enum.
+func (e ComponentUsageMonthlyFieldEnum) Valid() bool {
+	switch e {
+	case ComponentUsageMonthlyFieldEnumBillingPeriod:
+		return true
+	case ComponentUsageMonthlyFieldEnumBillingType:
+		return true
+	case ComponentUsageMonthlyFieldEnumCategoryTitle:
+		return true
+	case ComponentUsageMonthlyFieldEnumCategoryUuid:
+		return true
+	case ComponentUsageMonthlyFieldEnumComponentName:
+		return true
+	case ComponentUsageMonthlyFieldEnumComponentType:
+		return true
+	case ComponentUsageMonthlyFieldEnumLimitAmount:
+		return true
+	case ComponentUsageMonthlyFieldEnumLimitPeriod:
+		return true
+	case ComponentUsageMonthlyFieldEnumMeasuredUnit:
+		return true
+	case ComponentUsageMonthlyFieldEnumOfferingName:
+		return true
+	case ComponentUsageMonthlyFieldEnumOfferingType:
+		return true
+	case ComponentUsageMonthlyFieldEnumOfferingUuid:
+		return true
+	case ComponentUsageMonthlyFieldEnumServiceProviderName:
+		return true
+	case ComponentUsageMonthlyFieldEnumServiceProviderUuid:
+		return true
+	case ComponentUsageMonthlyFieldEnumTotalAllocated:
+		return true
+	case ComponentUsageMonthlyFieldEnumTotalConsumed:
+		return true
+	case ComponentUsageMonthlyFieldEnumUsagePercent:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ComponentUsageOEnum.
 const (
 	ComponentUsageOEnumBillingPeriod      ComponentUsageOEnum = "billing_period"
@@ -5155,6 +5218,7 @@ const (
 	ENABLEDREPORTINGSCREENSEnumGrowth                ENABLEDREPORTINGSCREENSEnum = "growth"
 	ENABLEDREPORTINGSCREENSEnumMaintenanceOverview   ENABLEDREPORTINGSCREENSEnum = "maintenance-overview"
 	ENABLEDREPORTINGSCREENSEnumOfferingCosts         ENABLEDREPORTINGSCREENSEnum = "offering-costs"
+	ENABLEDREPORTINGSCREENSEnumOfferingUsage         ENABLEDREPORTINGSCREENSEnum = "offering-usage"
 	ENABLEDREPORTINGSCREENSEnumOpenstackInstances    ENABLEDREPORTINGSCREENSEnum = "openstack-instances"
 	ENABLEDREPORTINGSCREENSEnumOrders                ENABLEDREPORTINGSCREENSEnum = "orders"
 	ENABLEDREPORTINGSCREENSEnumOrganizationSummary   ENABLEDREPORTINGSCREENSEnum = "organization-summary"
@@ -5199,6 +5263,8 @@ func (e ENABLEDREPORTINGSCREENSEnum) Valid() bool {
 	case ENABLEDREPORTINGSCREENSEnumMaintenanceOverview:
 		return true
 	case ENABLEDREPORTINGSCREENSEnumOfferingCosts:
+		return true
+	case ENABLEDREPORTINGSCREENSEnumOfferingUsage:
 		return true
 	case ENABLEDREPORTINGSCREENSEnumOpenstackInstances:
 		return true
@@ -11420,16 +11486,16 @@ func (e OpenStackInstanceFieldEnum) Valid() bool {
 
 // Defines values for OpenStackInstanceOEnum.
 const (
-	OpenStackInstanceOEnumMinusStartTime OpenStackInstanceOEnum = "-start_time"
-	OpenStackInstanceOEnumStartTime      OpenStackInstanceOEnum = "start_time"
+	MinusStartTime OpenStackInstanceOEnum = "-start_time"
+	StartTime      OpenStackInstanceOEnum = "start_time"
 )
 
 // Valid indicates whether the value is a known member of the OpenStackInstanceOEnum enum.
 func (e OpenStackInstanceOEnum) Valid() bool {
 	switch e {
-	case OpenStackInstanceOEnumMinusStartTime:
+	case MinusStartTime:
 		return true
-	case OpenStackInstanceOEnumStartTime:
+	case StartTime:
 		return true
 	default:
 		return false
@@ -24662,6 +24728,30 @@ type ComponentUsageItemRequest struct {
 	Type string `json:"type"`
 }
 
+// ComponentUsageMonthly defines model for ComponentUsageMonthly.
+type ComponentUsageMonthly struct {
+	BillingPeriod       *openapi_types.Date `json:"billing_period,omitempty"`
+	BillingType         *string             `json:"billing_type,omitempty"`
+	CategoryTitle       *string             `json:"category_title,omitempty"`
+	CategoryUuid        *openapi_types.UUID `json:"category_uuid,omitempty"`
+	ComponentName       *string             `json:"component_name,omitempty"`
+	ComponentType       *string             `json:"component_type,omitempty"`
+	LimitAmount         *int                `json:"limit_amount,omitempty"`
+	LimitPeriod         *string             `json:"limit_period,omitempty"`
+	MeasuredUnit        *string             `json:"measured_unit,omitempty"`
+	OfferingName        *string             `json:"offering_name,omitempty"`
+	OfferingType        *string             `json:"offering_type,omitempty"`
+	OfferingUuid        *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	ServiceProviderName *string             `json:"service_provider_name,omitempty"`
+	ServiceProviderUuid *openapi_types.UUID `json:"service_provider_uuid,omitempty"`
+	TotalAllocated      *string             `json:"total_allocated,omitempty"`
+	TotalConsumed       *string             `json:"total_consumed,omitempty"`
+	UsagePercent        *string             `json:"usage_percent,omitempty"`
+}
+
+// ComponentUsageMonthlyFieldEnum defines model for ComponentUsageMonthlyFieldEnum.
+type ComponentUsageMonthlyFieldEnum string
+
 // ComponentUsageOEnum defines model for ComponentUsageOEnum.
 type ComponentUsageOEnum string
 
@@ -31908,9 +31998,10 @@ type NestedOfferingFile struct {
 
 // NestedParentSoftware defines model for NestedParentSoftware.
 type NestedParentSoftware struct {
-	Name string              `json:"name"`
-	Url  *string             `json:"url,omitempty"`
-	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
+	Name     string              `json:"name"`
+	Url      *string             `json:"url,omitempty"`
+	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
+	Versions *[]string           `json:"versions,omitempty"`
 }
 
 // NestedPartition defines model for NestedPartition.
@@ -53020,6 +53111,51 @@ type MarketplaceCategoryHelpArticlesCountParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceComponentUsageMonthlyListParams defines parameters for MarketplaceComponentUsageMonthlyList.
+type MarketplaceComponentUsageMonthlyListParams struct {
+	BillingPeriod *openapi_types.Date               `form:"billing_period,omitempty" json:"billing_period,omitempty"`
+	BillingType   *string                           `form:"billing_type,omitempty" json:"billing_type,omitempty"`
+	ComponentType *string                           `form:"component_type,omitempty" json:"component_type,omitempty"`
+	CustomerUuid  *openapi_types.UUID               `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	End           *openapi_types.Date               `form:"end,omitempty" json:"end,omitempty"`
+	Field         *[]ComponentUsageMonthlyFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+
+	// O Which field to use when ordering the results.
+	O            *string             `form:"o,omitempty" json:"o,omitempty"`
+	OfferingType *string             `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	Start       *openapi_types.Date `form:"start,omitempty" json:"start,omitempty"`
+}
+
+// MarketplaceComponentUsageMonthlyCountParams defines parameters for MarketplaceComponentUsageMonthlyCount.
+type MarketplaceComponentUsageMonthlyCountParams struct {
+	BillingPeriod *openapi_types.Date `form:"billing_period,omitempty" json:"billing_period,omitempty"`
+	BillingType   *string             `form:"billing_type,omitempty" json:"billing_type,omitempty"`
+	ComponentType *string             `form:"component_type,omitempty" json:"component_type,omitempty"`
+	CustomerUuid  *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	End           *openapi_types.Date `form:"end,omitempty" json:"end,omitempty"`
+
+	// O Which field to use when ordering the results.
+	O            *string             `form:"o,omitempty" json:"o,omitempty"`
+	OfferingType *string             `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	Start       *openapi_types.Date `form:"start,omitempty" json:"start,omitempty"`
 }
 
 // MarketplaceComponentUsagesListParams defines parameters for MarketplaceComponentUsagesList.
@@ -84894,6 +85030,12 @@ type ClientInterface interface {
 
 	MarketplaceCategoryHelpArticlesUpdate(ctx context.Context, id int, body MarketplaceCategoryHelpArticlesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceComponentUsageMonthlyList request
+	MarketplaceComponentUsageMonthlyList(ctx context.Context, params *MarketplaceComponentUsageMonthlyListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceComponentUsageMonthlyCount request
+	MarketplaceComponentUsageMonthlyCount(ctx context.Context, params *MarketplaceComponentUsageMonthlyCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceComponentUsagesList request
 	MarketplaceComponentUsagesList(ctx context.Context, params *MarketplaceComponentUsagesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -102489,6 +102631,30 @@ func (c *Client) MarketplaceCategoryHelpArticlesUpdateWithBody(ctx context.Conte
 
 func (c *Client) MarketplaceCategoryHelpArticlesUpdate(ctx context.Context, id int, body MarketplaceCategoryHelpArticlesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceCategoryHelpArticlesUpdateRequest(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceComponentUsageMonthlyList(ctx context.Context, params *MarketplaceComponentUsageMonthlyListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceComponentUsageMonthlyListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceComponentUsageMonthlyCount(ctx context.Context, params *MarketplaceComponentUsageMonthlyCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceComponentUsageMonthlyCountRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -185260,6 +185426,472 @@ func NewMarketplaceCategoryHelpArticlesUpdateRequestWithBody(server string, id i
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceComponentUsageMonthlyListRequest generates requests for MarketplaceComponentUsageMonthlyList
+func NewMarketplaceComponentUsageMonthlyListRequest(server string, params *MarketplaceComponentUsageMonthlyListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-component-usage-monthly/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.BillingPeriod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "billing_period", *params.BillingPeriod, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.BillingType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "billing_type", *params.BillingType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ComponentType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "component_type", *params.ComponentType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.End != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "end", *params.End, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_type", *params.OfferingType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Start != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start", *params.Start, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceComponentUsageMonthlyCountRequest generates requests for MarketplaceComponentUsageMonthlyCount
+func NewMarketplaceComponentUsageMonthlyCountRequest(server string, params *MarketplaceComponentUsageMonthlyCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-component-usage-monthly/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.BillingPeriod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "billing_period", *params.BillingPeriod, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.BillingType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "billing_type", *params.BillingType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ComponentType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "component_type", *params.ComponentType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.End != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "end", *params.End, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_type", *params.OfferingType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Start != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start", *params.Start, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -339421,6 +340053,12 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceCategoryHelpArticlesUpdateWithResponse(ctx context.Context, id int, body MarketplaceCategoryHelpArticlesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCategoryHelpArticlesUpdateResponse, error)
 
+	// MarketplaceComponentUsageMonthlyListWithResponse request
+	MarketplaceComponentUsageMonthlyListWithResponse(ctx context.Context, params *MarketplaceComponentUsageMonthlyListParams, reqEditors ...RequestEditorFn) (*MarketplaceComponentUsageMonthlyListResponse, error)
+
+	// MarketplaceComponentUsageMonthlyCountWithResponse request
+	MarketplaceComponentUsageMonthlyCountWithResponse(ctx context.Context, params *MarketplaceComponentUsageMonthlyCountParams, reqEditors ...RequestEditorFn) (*MarketplaceComponentUsageMonthlyCountResponse, error)
+
 	// MarketplaceComponentUsagesListWithResponse request
 	MarketplaceComponentUsagesListWithResponse(ctx context.Context, params *MarketplaceComponentUsagesListParams, reqEditors ...RequestEditorFn) (*MarketplaceComponentUsagesListResponse, error)
 
@@ -360779,6 +361417,49 @@ func (r MarketplaceCategoryHelpArticlesUpdateResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceCategoryHelpArticlesUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceComponentUsageMonthlyListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ComponentUsageMonthly
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceComponentUsageMonthlyListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceComponentUsageMonthlyListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceComponentUsageMonthlyCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceComponentUsageMonthlyCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceComponentUsageMonthlyCountResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -406615,6 +407296,24 @@ func (c *ClientWithResponses) MarketplaceCategoryHelpArticlesUpdateWithResponse(
 	return ParseMarketplaceCategoryHelpArticlesUpdateResponse(rsp)
 }
 
+// MarketplaceComponentUsageMonthlyListWithResponse request returning *MarketplaceComponentUsageMonthlyListResponse
+func (c *ClientWithResponses) MarketplaceComponentUsageMonthlyListWithResponse(ctx context.Context, params *MarketplaceComponentUsageMonthlyListParams, reqEditors ...RequestEditorFn) (*MarketplaceComponentUsageMonthlyListResponse, error) {
+	rsp, err := c.MarketplaceComponentUsageMonthlyList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceComponentUsageMonthlyListResponse(rsp)
+}
+
+// MarketplaceComponentUsageMonthlyCountWithResponse request returning *MarketplaceComponentUsageMonthlyCountResponse
+func (c *ClientWithResponses) MarketplaceComponentUsageMonthlyCountWithResponse(ctx context.Context, params *MarketplaceComponentUsageMonthlyCountParams, reqEditors ...RequestEditorFn) (*MarketplaceComponentUsageMonthlyCountResponse, error) {
+	rsp, err := c.MarketplaceComponentUsageMonthlyCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceComponentUsageMonthlyCountResponse(rsp)
+}
+
 // MarketplaceComponentUsagesListWithResponse request returning *MarketplaceComponentUsagesListResponse
 func (c *ClientWithResponses) MarketplaceComponentUsagesListWithResponse(ctx context.Context, params *MarketplaceComponentUsagesListParams, reqEditors ...RequestEditorFn) (*MarketplaceComponentUsagesListResponse, error) {
 	rsp, err := c.MarketplaceComponentUsagesList(ctx, params, reqEditors...)
@@ -443009,6 +443708,48 @@ func ParseMarketplaceCategoryHelpArticlesUpdateResponse(rsp *http.Response) (*Ma
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceComponentUsageMonthlyListResponse parses an HTTP response from a MarketplaceComponentUsageMonthlyListWithResponse call
+func ParseMarketplaceComponentUsageMonthlyListResponse(rsp *http.Response) (*MarketplaceComponentUsageMonthlyListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceComponentUsageMonthlyListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ComponentUsageMonthly
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceComponentUsageMonthlyCountResponse parses an HTTP response from a MarketplaceComponentUsageMonthlyCountWithResponse call
+func ParseMarketplaceComponentUsageMonthlyCountResponse(rsp *http.Response) (*MarketplaceComponentUsageMonthlyCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceComponentUsageMonthlyCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
