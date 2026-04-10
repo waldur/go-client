@@ -8874,6 +8874,30 @@ func (e LOGINPAGELAYOUTEnum) Valid() bool {
 	}
 }
 
+// Defines values for LbAlgorithmEnum.
+const (
+	LEASTCONNECTIONS LbAlgorithmEnum = "LEAST_CONNECTIONS"
+	ROUNDROBIN       LbAlgorithmEnum = "ROUND_ROBIN"
+	SOURCEIP         LbAlgorithmEnum = "SOURCE_IP"
+	SOURCEIPPORT     LbAlgorithmEnum = "SOURCE_IP_PORT"
+)
+
+// Valid indicates whether the value is a known member of the LbAlgorithmEnum enum.
+func (e LbAlgorithmEnum) Valid() bool {
+	switch e {
+	case LEASTCONNECTIONS:
+		return true
+	case ROUNDROBIN:
+		return true
+	case SOURCEIP:
+		return true
+	case SOURCEIPPORT:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for LimitPeriodEnum.
 const (
 	LimitPeriodEnumAnnual    LimitPeriodEnum = "annual"
@@ -11603,6 +11627,7 @@ const (
 	OpenStackLoadBalancerFieldEnumUuid                             OpenStackLoadBalancerFieldEnum = "uuid"
 	OpenStackLoadBalancerFieldEnumVipAddress                       OpenStackLoadBalancerFieldEnum = "vip_address"
 	OpenStackLoadBalancerFieldEnumVipPort                          OpenStackLoadBalancerFieldEnum = "vip_port"
+	OpenStackLoadBalancerFieldEnumVipSecurityGroups                OpenStackLoadBalancerFieldEnum = "vip_security_groups"
 	OpenStackLoadBalancerFieldEnumVipSubnet                        OpenStackLoadBalancerFieldEnum = "vip_subnet"
 )
 
@@ -11698,6 +11723,8 @@ func (e OpenStackLoadBalancerFieldEnum) Valid() bool {
 	case OpenStackLoadBalancerFieldEnumVipAddress:
 		return true
 	case OpenStackLoadBalancerFieldEnumVipPort:
+		return true
+	case OpenStackLoadBalancerFieldEnumVipSecurityGroups:
 		return true
 	case OpenStackLoadBalancerFieldEnumVipSubnet:
 		return true
@@ -26473,6 +26500,8 @@ type CreateManualAssignmentResponse struct {
 
 // CreatePool defines model for CreatePool.
 type CreatePool struct {
+	LbAlgorithm *LbAlgorithmEnum `json:"lb_algorithm,omitempty"`
+
 	// LoadBalancer Load balancer this pool belongs to
 	LoadBalancer string                   `json:"load_balancer"`
 	Name         string                   `json:"name"`
@@ -26537,6 +26566,8 @@ type CreatePoolMemberRequest_Address struct {
 
 // CreatePoolRequest defines model for CreatePoolRequest.
 type CreatePoolRequest struct {
+	LbAlgorithm *LbAlgorithmEnum `json:"lb_algorithm,omitempty"`
+
 	// LoadBalancer Load balancer this pool belongs to
 	LoadBalancer string                   `json:"load_balancer"`
 	Name         string                   `json:"name"`
@@ -30173,6 +30204,9 @@ type KindEnum string
 // LOGINPAGELAYOUTEnum defines model for LOGINPAGELAYOUTEnum.
 type LOGINPAGELAYOUTEnum string
 
+// LbAlgorithmEnum defines model for LbAlgorithmEnum.
+type LbAlgorithmEnum string
+
 // LexisLink defines model for LexisLink.
 type LexisLink struct {
 	Created              *time.Time          `json:"created,omitempty"`
@@ -30267,6 +30301,11 @@ type LoadBalancerAttachFloatingIPRequest struct {
 
 // LoadBalancerProtocolEnum defines model for LoadBalancerProtocolEnum.
 type LoadBalancerProtocolEnum string
+
+// LoadBalancerSetSecurityGroupsRequest defines model for LoadBalancerSetSecurityGroupsRequest.
+type LoadBalancerSetSecurityGroupsRequest struct {
+	SecurityGroups []string `json:"security_groups"`
+}
 
 // LockStats defines model for LockStats.
 type LockStats struct {
@@ -34844,7 +34883,10 @@ type OpenStackLoadBalancer struct {
 	// VipAddress An IPv4 or IPv6 address.
 	VipAddress *OpenStackLoadBalancer_VipAddress `json:"vip_address,omitempty"`
 	VipPort    *string                           `json:"vip_port,omitempty"`
-	VipSubnet  *string                           `json:"vip_subnet,omitempty"`
+
+	// VipSecurityGroups Security groups assigned to the VIP port.
+	VipSecurityGroups *[]map[string]interface{} `json:"vip_security_groups,omitempty"`
+	VipSubnet         *string                   `json:"vip_subnet,omitempty"`
 }
 
 // OpenStackLoadBalancerVipAddress0 defines model for .
@@ -70979,6 +71021,9 @@ type OpenstackLoadbalancersUpdateJSONRequestBody = UpdateLoadBalancerRequest
 // OpenstackLoadbalancersAttachFloatingIpJSONRequestBody defines body for OpenstackLoadbalancersAttachFloatingIp for application/json ContentType.
 type OpenstackLoadbalancersAttachFloatingIpJSONRequestBody = LoadBalancerAttachFloatingIPRequest
 
+// OpenstackLoadbalancersSetSecurityGroupsJSONRequestBody defines body for OpenstackLoadbalancersSetSecurityGroups for application/json ContentType.
+type OpenstackLoadbalancersSetSecurityGroupsJSONRequestBody = LoadBalancerSetSecurityGroupsRequest
+
 // OpenstackMarketplaceTenantsCreateImageJSONRequestBody defines body for OpenstackMarketplaceTenantsCreateImage for application/json ContentType.
 type OpenstackMarketplaceTenantsCreateImageJSONRequestBody = ImageCreateRequest
 
@@ -88057,6 +88102,11 @@ type ClientInterface interface {
 
 	// OpenstackLoadbalancersPull request
 	OpenstackLoadbalancersPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackLoadbalancersSetSecurityGroupsWithBody request with any body
+	OpenstackLoadbalancersSetSecurityGroupsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackLoadbalancersSetSecurityGroups(ctx context.Context, uuid openapi_types.UUID, body OpenstackLoadbalancersSetSecurityGroupsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackLoadbalancersUnlink request
 	OpenstackLoadbalancersUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -116479,6 +116529,30 @@ func (c *Client) OpenstackLoadbalancersDetachFloatingIp(ctx context.Context, uui
 
 func (c *Client) OpenstackLoadbalancersPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackLoadbalancersPullRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackLoadbalancersSetSecurityGroupsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackLoadbalancersSetSecurityGroupsRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackLoadbalancersSetSecurityGroups(ctx context.Context, uuid openapi_types.UUID, body OpenstackLoadbalancersSetSecurityGroupsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackLoadbalancersSetSecurityGroupsRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -264089,6 +264163,53 @@ func NewOpenstackLoadbalancersPullRequest(server string, uuid openapi_types.UUID
 	return req, nil
 }
 
+// NewOpenstackLoadbalancersSetSecurityGroupsRequest calls the generic OpenstackLoadbalancersSetSecurityGroups builder with application/json body
+func NewOpenstackLoadbalancersSetSecurityGroupsRequest(server string, uuid openapi_types.UUID, body OpenstackLoadbalancersSetSecurityGroupsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackLoadbalancersSetSecurityGroupsRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackLoadbalancersSetSecurityGroupsRequestWithBody generates requests for OpenstackLoadbalancersSetSecurityGroups with any type of body
+func NewOpenstackLoadbalancersSetSecurityGroupsRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-loadbalancers/%s/set_security_groups/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewOpenstackLoadbalancersUnlinkRequest generates requests for OpenstackLoadbalancersUnlink
 func NewOpenstackLoadbalancersUnlinkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -342509,6 +342630,11 @@ type ClientWithResponsesInterface interface {
 	// OpenstackLoadbalancersPullWithResponse request
 	OpenstackLoadbalancersPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersPullResponse, error)
 
+	// OpenstackLoadbalancersSetSecurityGroupsWithBodyWithResponse request with any body
+	OpenstackLoadbalancersSetSecurityGroupsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersSetSecurityGroupsResponse, error)
+
+	OpenstackLoadbalancersSetSecurityGroupsWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackLoadbalancersSetSecurityGroupsJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersSetSecurityGroupsResponse, error)
+
 	// OpenstackLoadbalancersUnlinkWithResponse request
 	OpenstackLoadbalancersUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersUnlinkResponse, error)
 
@@ -379540,6 +379666,28 @@ func (r OpenstackLoadbalancersPullResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackLoadbalancersPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackLoadbalancersSetSecurityGroupsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON202      *LoadBalancerAsyncOperationResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackLoadbalancersSetSecurityGroupsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackLoadbalancersSetSecurityGroupsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -416694,6 +416842,23 @@ func (c *ClientWithResponses) OpenstackLoadbalancersPullWithResponse(ctx context
 		return nil, err
 	}
 	return ParseOpenstackLoadbalancersPullResponse(rsp)
+}
+
+// OpenstackLoadbalancersSetSecurityGroupsWithBodyWithResponse request with arbitrary body returning *OpenstackLoadbalancersSetSecurityGroupsResponse
+func (c *ClientWithResponses) OpenstackLoadbalancersSetSecurityGroupsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersSetSecurityGroupsResponse, error) {
+	rsp, err := c.OpenstackLoadbalancersSetSecurityGroupsWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackLoadbalancersSetSecurityGroupsResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackLoadbalancersSetSecurityGroupsWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackLoadbalancersSetSecurityGroupsJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackLoadbalancersSetSecurityGroupsResponse, error) {
+	rsp, err := c.OpenstackLoadbalancersSetSecurityGroups(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackLoadbalancersSetSecurityGroupsResponse(rsp)
 }
 
 // OpenstackLoadbalancersUnlinkWithResponse request returning *OpenstackLoadbalancersUnlinkResponse
@@ -462747,6 +462912,32 @@ func ParseOpenstackLoadbalancersPullResponse(rsp *http.Response) (*OpenstackLoad
 	response := &OpenstackLoadbalancersPullResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackLoadbalancersSetSecurityGroupsResponse parses an HTTP response from a OpenstackLoadbalancersSetSecurityGroupsWithResponse call
+func ParseOpenstackLoadbalancersSetSecurityGroupsResponse(rsp *http.Response) (*OpenstackLoadbalancersSetSecurityGroupsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackLoadbalancersSetSecurityGroupsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest LoadBalancerAsyncOperationResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
 	}
 
 	return response, nil
