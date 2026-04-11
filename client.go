@@ -23109,7 +23109,7 @@ type BaseProviderPlan struct {
 
 	// MaxAmount Maximum number of plans that could be active. Plan is disabled when maximum amount is reached.
 	MaxAmount          *int                 `json:"max_amount,omitempty"`
-	MinimalPrice       *float64             `json:"minimal_price,omitempty"`
+	MinimalPrice       *string              `json:"minimal_price,omitempty"`
 	Name               *string              `json:"name,omitempty"`
 	OrganizationGroups *[]OrganizationGroup `json:"organization_groups,omitempty"`
 	PlanType           *string              `json:"plan_type,omitempty"`
@@ -23152,7 +23152,7 @@ type BasePublicPlan struct {
 
 	// MaxAmount Maximum number of plans that could be active. Plan is disabled when maximum amount is reached.
 	MaxAmount          *int                 `json:"max_amount,omitempty"`
-	MinimalPrice       *float64             `json:"minimal_price,omitempty"`
+	MinimalPrice       *string              `json:"minimal_price,omitempty"`
 	Name               *string              `json:"name,omitempty"`
 	OrganizationGroups *[]OrganizationGroup `json:"organization_groups,omitempty"`
 	PlanType           *string              `json:"plan_type,omitempty"`
@@ -41054,7 +41054,7 @@ type ProviderPlanDetails struct {
 
 	// MaxAmount Maximum number of plans that could be active. Plan is disabled when maximum amount is reached.
 	MaxAmount          *int                 `json:"max_amount,omitempty"`
-	MinimalPrice       *float64             `json:"minimal_price,omitempty"`
+	MinimalPrice       *string              `json:"minimal_price,omitempty"`
 	Name               string               `json:"name"`
 	Offering           string               `json:"offering"`
 	OrganizationGroups *[]OrganizationGroup `json:"organization_groups,omitempty"`
