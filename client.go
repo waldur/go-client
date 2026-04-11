@@ -24334,8 +24334,14 @@ type ChatResponse struct {
 	// C Content payload.
 	C *string `json:"c,omitempty"`
 
+	// CategoryUuid Category UUID filter hint. Present when k='resource_list'.
+	CategoryUuid *string `json:"category_uuid,omitempty"`
+
 	// Content Intro text or form instructions.
 	Content *string `json:"content,omitempty"`
+
+	// CustomerUuid Customer/organization UUID filter hint. Present when k='resource_list'.
+	CustomerUuid *string `json:"customer_uuid,omitempty"`
 
 	// E Error message.
 	E *string `json:"e,omitempty"`
@@ -24349,16 +24355,13 @@ type ChatResponse struct {
 	// Flavors Available flavor options [{name, cores, ram}]. Present when status='form'.
 	Flavors *[]interface{} `json:"flavors,omitempty"`
 
-	// H Table headers.
-	H *[]interface{} `json:"h,omitempty"`
-
 	// Image Image name.
 	Image *string `json:"image,omitempty"`
 
 	// Images Available image options [{name, min_disk, min_ram}]. Present when status='form'.
 	Images *[]interface{} `json:"images,omitempty"`
 
-	// K Component key (e.g. 'markdown', 'code', 'table', 'vm_order').
+	// K Component key (e.g. 'markdown', 'code', 'vm_order', 'resource_list').
 	K *string `json:"k,omitempty"`
 
 	// M System metadata (thread_uuid, message UUIDs).
@@ -24366,9 +24369,6 @@ type ChatResponse struct {
 
 	// Message Success message (present on success).
 	Message *string `json:"message,omitempty"`
-
-	// N Total row count.
-	N *int `json:"n,omitempty"`
 
 	// Name VM name.
 	Name *string `json:"name,omitempty"`
@@ -24385,14 +24385,14 @@ type ChatResponse struct {
 	// Project Project name.
 	Project *string `json:"project,omitempty"`
 
-	// ProjectUuid Project UUID.
+	// ProjectUuid Project UUID. Present when k='vm_order' or k='resource_list'.
 	ProjectUuid *string `json:"project_uuid,omitempty"`
 
 	// Projects Available project options [{name, organization, uuid}]. Present when status='project_form'.
 	Projects *[]interface{} `json:"projects,omitempty"`
 
-	// R Table rows.
-	R *[]interface{} `json:"r,omitempty"`
+	// State State display name filters (e.g. ['OK', 'Erred']). Present when k='resource_list'.
+	State *[]interface{} `json:"state,omitempty"`
 
 	// Status vm_order status: 'form' | 'project_form' | 'preview' | 'success' | 'error'.
 	Status *string `json:"status,omitempty"`
