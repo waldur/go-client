@@ -24355,6 +24355,9 @@ type ChatResponse struct {
 	// Flavors Available flavor options [{name, cores, ram}]. Present when status='form'.
 	Flavors *[]interface{} `json:"flavors,omitempty"`
 
+	// H Table headers - list of column names. Present when k='table'.
+	H *[]interface{} `json:"h,omitempty"`
+
 	// Image Image name.
 	Image *string `json:"image,omitempty"`
 
@@ -24369,6 +24372,9 @@ type ChatResponse struct {
 
 	// Message Success message (present on success).
 	Message *string `json:"message,omitempty"`
+
+	// N Total count of rows in the table (used for pagination display). Present when k='table'.
+	N *int `json:"n,omitempty"`
 
 	// Name VM name.
 	Name *string `json:"name,omitempty"`
@@ -24390,6 +24396,9 @@ type ChatResponse struct {
 
 	// Projects Available project options [{name, organization, uuid}]. Present when status='project_form'.
 	Projects *[]interface{} `json:"projects,omitempty"`
+
+	// R Table rows - list of row data (each row is a list of strings). Present when k='table'.
+	R *[]interface{} `json:"r,omitempty"`
 
 	// State State display name filters (e.g. ['OK', 'Erred']). Present when k='resource_list'.
 	State *[]interface{} `json:"state,omitempty"`
