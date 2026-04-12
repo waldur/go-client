@@ -25239,6 +25239,7 @@ type ConstanceSettings struct {
 	SCRIPTRUNMODE                                    *SCRIPTRUNMODEEnum                                               `json:"SCRIPT_RUN_MODE,omitempty"`
 	SEMANTICSCHOLARAPIKEY                            *string                                                          `json:"SEMANTIC_SCHOLAR_API_KEY,omitempty"`
 	SHORTPAGETITLE                                   *string                                                          `json:"SHORT_PAGE_TITLE,omitempty"`
+	SHOWOFFERINGCOVERIMAGE                           *bool                                                            `json:"SHOW_OFFERING_COVER_IMAGE,omitempty"`
 	SIDEBARLOGO                                      *string                                                          `json:"SIDEBAR_LOGO,omitempty"`
 	SIDEBARLOGODARK                                  *string                                                          `json:"SIDEBAR_LOGO_DARK,omitempty"`
 	SIDEBARLOGOMOBILE                                *string                                                          `json:"SIDEBAR_LOGO_MOBILE,omitempty"`
@@ -25549,6 +25550,7 @@ type ConstanceSettingsRequest struct {
 	SCRIPTRUNMODE                                    *SCRIPTRUNMODEEnum                                                      `json:"SCRIPT_RUN_MODE,omitempty"`
 	SEMANTICSCHOLARAPIKEY                            *string                                                                 `json:"SEMANTIC_SCHOLAR_API_KEY,omitempty"`
 	SHORTPAGETITLE                                   *string                                                                 `json:"SHORT_PAGE_TITLE,omitempty"`
+	SHOWOFFERINGCOVERIMAGE                           *bool                                                                   `json:"SHOW_OFFERING_COVER_IMAGE,omitempty"`
 	SIDEBARLOGO                                      *openapi_types.File                                                     `json:"SIDEBAR_LOGO,omitempty"`
 	SIDEBARLOGODARK                                  *openapi_types.File                                                     `json:"SIDEBAR_LOGO_DARK,omitempty"`
 	SIDEBARLOGOMOBILE                                *openapi_types.File                                                     `json:"SIDEBAR_LOGO_MOBILE,omitempty"`
@@ -25859,6 +25861,7 @@ type ConstanceSettingsRequestForm struct {
 	SCRIPTRUNMODE                                    *SCRIPTRUNMODEEnum                                                          `json:"SCRIPT_RUN_MODE,omitempty"`
 	SEMANTICSCHOLARAPIKEY                            *string                                                                     `json:"SEMANTIC_SCHOLAR_API_KEY,omitempty"`
 	SHORTPAGETITLE                                   *string                                                                     `json:"SHORT_PAGE_TITLE,omitempty"`
+	SHOWOFFERINGCOVERIMAGE                           *bool                                                                       `json:"SHOW_OFFERING_COVER_IMAGE,omitempty"`
 	SIDEBARLOGO                                      *openapi_types.File                                                         `json:"SIDEBAR_LOGO,omitempty"`
 	SIDEBARLOGODARK                                  *openapi_types.File                                                         `json:"SIDEBAR_LOGO_DARK,omitempty"`
 	SIDEBARLOGOMOBILE                                *openapi_types.File                                                         `json:"SIDEBAR_LOGO_MOBILE,omitempty"`
@@ -26169,6 +26172,7 @@ type ConstanceSettingsRequestMultipart struct {
 	SCRIPTRUNMODE                                    *SCRIPTRUNMODEEnum                                                               `json:"SCRIPT_RUN_MODE,omitempty"`
 	SEMANTICSCHOLARAPIKEY                            *string                                                                          `json:"SEMANTIC_SCHOLAR_API_KEY,omitempty"`
 	SHORTPAGETITLE                                   *string                                                                          `json:"SHORT_PAGE_TITLE,omitempty"`
+	SHOWOFFERINGCOVERIMAGE                           *bool                                                                            `json:"SHOW_OFFERING_COVER_IMAGE,omitempty"`
 	SIDEBARLOGO                                      *openapi_types.File                                                              `json:"SIDEBAR_LOGO,omitempty"`
 	SIDEBARLOGODARK                                  *openapi_types.File                                                              `json:"SIDEBAR_LOGO_DARK,omitempty"`
 	SIDEBARLOGOMOBILE                                *openapi_types.File                                                              `json:"SIDEBAR_LOGO_MOBILE,omitempty"`
