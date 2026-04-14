@@ -9387,6 +9387,7 @@ func (e MarketplaceProviderCustomerProjectOEnum) Valid() bool {
 // Defines values for MarketplaceServiceProviderUserFieldEnum.
 const (
 	MarketplaceServiceProviderUserFieldEnumActiveIsds               MarketplaceServiceProviderUserFieldEnum = "active_isds"
+	MarketplaceServiceProviderUserFieldEnumAddress                  MarketplaceServiceProviderUserFieldEnum = "address"
 	MarketplaceServiceProviderUserFieldEnumAffiliations             MarketplaceServiceProviderUserFieldEnum = "affiliations"
 	MarketplaceServiceProviderUserFieldEnumBirthDate                MarketplaceServiceProviderUserFieldEnum = "birth_date"
 	MarketplaceServiceProviderUserFieldEnumCivilNumber              MarketplaceServiceProviderUserFieldEnum = "civil_number"
@@ -9419,6 +9420,8 @@ const (
 func (e MarketplaceServiceProviderUserFieldEnum) Valid() bool {
 	switch e {
 	case MarketplaceServiceProviderUserFieldEnumActiveIsds:
+		return true
+	case MarketplaceServiceProviderUserFieldEnumAddress:
 		return true
 	case MarketplaceServiceProviderUserFieldEnumAffiliations:
 		return true
@@ -10321,6 +10324,7 @@ const (
 	OfferingUserFieldEnumUrl                          OfferingUserFieldEnum = "url"
 	OfferingUserFieldEnumUser                         OfferingUserFieldEnum = "user"
 	OfferingUserFieldEnumUserActiveIsds               OfferingUserFieldEnum = "user_active_isds"
+	OfferingUserFieldEnumUserAddress                  OfferingUserFieldEnum = "user_address"
 	OfferingUserFieldEnumUserAffiliations             OfferingUserFieldEnum = "user_affiliations"
 	OfferingUserFieldEnumUserBirthDate                OfferingUserFieldEnum = "user_birth_date"
 	OfferingUserFieldEnumUserCivilNumber              OfferingUserFieldEnum = "user_civil_number"
@@ -10390,6 +10394,8 @@ func (e OfferingUserFieldEnum) Valid() bool {
 	case OfferingUserFieldEnumUser:
 		return true
 	case OfferingUserFieldEnumUserActiveIsds:
+		return true
+	case OfferingUserFieldEnumUserAddress:
 		return true
 	case OfferingUserFieldEnumUserAffiliations:
 		return true
@@ -19227,6 +19233,7 @@ func (e UserChecklistCompletionOEnum) Valid() bool {
 // Defines values for UserFieldEnum.
 const (
 	UserFieldEnumActiveIsds                    UserFieldEnum = "active_isds"
+	UserFieldEnumAddress                       UserFieldEnum = "address"
 	UserFieldEnumAffiliations                  UserFieldEnum = "affiliations"
 	UserFieldEnumAgreeWithPolicy               UserFieldEnum = "agree_with_policy"
 	UserFieldEnumAgreementDate                 UserFieldEnum = "agreement_date"
@@ -19286,6 +19293,8 @@ const (
 func (e UserFieldEnum) Valid() bool {
 	switch e {
 	case UserFieldEnumActiveIsds:
+		return true
+	case UserFieldEnumAddress:
 		return true
 	case UserFieldEnumAffiliations:
 		return true
@@ -29275,6 +29284,7 @@ type IdentityBridgeRemoveResult struct {
 
 // IdentityBridgeRequestRequest defines model for IdentityBridgeRequestRequest.
 type IdentityBridgeRequestRequest struct {
+	Address             *string              `json:"address,omitempty"`
 	Affiliations        *[]string            `json:"affiliations,omitempty"`
 	BirthDate           *openapi_types.Date  `json:"birth_date,omitempty"`
 	CivilNumber         *string              `json:"civil_number,omitempty"`
@@ -30931,6 +30941,7 @@ type MarketplaceProviderCustomerProjectOEnum string
 type MarketplaceServiceProviderUser struct {
 	// ActiveIsds List of ISDs that have asserted this user exists. User is deactivated when this becomes empty.
 	ActiveIsds interface{} `json:"active_isds,omitempty"`
+	Address    *string     `json:"address,omitempty"`
 
 	// Affiliations Person's affiliation within organization such as student, faculty, staff.
 	Affiliations       interface{}         `json:"affiliations,omitempty"`
@@ -33727,6 +33738,7 @@ type OfferingUser struct {
 
 	// UserActiveIsds List of ISDs that have asserted this user exists. User is deactivated when this becomes empty.
 	UserActiveIsds interface{} `json:"user_active_isds,omitempty"`
+	UserAddress    *string     `json:"user_address,omitempty"`
 
 	// UserAffiliations Person's affiliation within organization such as student, faculty, staff.
 	UserAffiliations       interface{}         `json:"user_affiliations,omitempty"`
@@ -33783,6 +33795,7 @@ type OfferingUser_UserGender struct {
 type OfferingUserAttributeConfig struct {
 	Created                        *time.Time `json:"created,omitempty"`
 	ExposeActiveIsds               *bool      `json:"expose_active_isds,omitempty"`
+	ExposeAddress                  *bool      `json:"expose_address,omitempty"`
 	ExposeAffiliations             *bool      `json:"expose_affiliations,omitempty"`
 	ExposeBirthDate                *bool      `json:"expose_birth_date,omitempty"`
 	ExposeCivilNumber              *bool      `json:"expose_civil_number,omitempty"`
@@ -33818,6 +33831,7 @@ type OfferingUserAttributeConfig struct {
 // OfferingUserAttributeConfigRequest defines model for OfferingUserAttributeConfigRequest.
 type OfferingUserAttributeConfigRequest struct {
 	ExposeActiveIsds               *bool               `json:"expose_active_isds,omitempty"`
+	ExposeAddress                  *bool               `json:"expose_address,omitempty"`
 	ExposeAffiliations             *bool               `json:"expose_affiliations,omitempty"`
 	ExposeBirthDate                *bool               `json:"expose_birth_date,omitempty"`
 	ExposeCivilNumber              *bool               `json:"expose_civil_number,omitempty"`
@@ -38027,6 +38041,7 @@ type PatchedOfferingUsagePolicyRequest struct {
 // PatchedOfferingUserAttributeConfigRequest defines model for PatchedOfferingUserAttributeConfigRequest.
 type PatchedOfferingUserAttributeConfigRequest struct {
 	ExposeActiveIsds               *bool               `json:"expose_active_isds,omitempty"`
+	ExposeAddress                  *bool               `json:"expose_address,omitempty"`
 	ExposeAffiliations             *bool               `json:"expose_affiliations,omitempty"`
 	ExposeBirthDate                *bool               `json:"expose_birth_date,omitempty"`
 	ExposeCivilNumber              *bool               `json:"expose_civil_number,omitempty"`
@@ -39143,6 +39158,8 @@ type PatchedUserOfferingConsentRequest struct {
 
 // PatchedUserRequest defines model for PatchedUserRequest.
 type PatchedUserRequest struct {
+	Address *string `json:"address,omitempty"`
+
 	// AgreeWithPolicy User must agree with the policy to register.
 	AgreeWithPolicy    *bool               `json:"agree_with_policy,omitempty"`
 	BirthDate          *openapi_types.Date `json:"birth_date,omitempty"`
@@ -39218,6 +39235,8 @@ type PatchedUserRequest_Gender struct {
 
 // PatchedUserRequestForm defines model for PatchedUserRequestForm.
 type PatchedUserRequestForm struct {
+	Address *string `json:"address,omitempty"`
+
 	// AgreeWithPolicy User must agree with the policy to register.
 	AgreeWithPolicy    *bool               `json:"agree_with_policy,omitempty"`
 	BirthDate          *openapi_types.Date `json:"birth_date,omitempty"`
@@ -39293,6 +39312,8 @@ type PatchedUserRequestForm_Gender struct {
 
 // PatchedUserRequestMultipart defines model for PatchedUserRequestMultipart.
 type PatchedUserRequestMultipart struct {
+	Address *string `json:"address,omitempty"`
+
 	// AgreeWithPolicy User must agree with the policy to register.
 	AgreeWithPolicy    *bool               `json:"agree_with_policy,omitempty"`
 	BirthDate          *openapi_types.Date `json:"birth_date,omitempty"`
@@ -46688,6 +46709,7 @@ type UrgencyEnum string
 type User struct {
 	// ActiveIsds List of ISDs that have asserted this user exists. User is deactivated when this becomes empty.
 	ActiveIsds interface{} `json:"active_isds,omitempty"`
+	Address    *string     `json:"address,omitempty"`
 
 	// Affiliations Person's affiliation within organization such as student, faculty, staff.
 	Affiliations interface{} `json:"affiliations,omitempty"`
@@ -47121,6 +47143,8 @@ type UserRegistrationTrend struct {
 
 // UserRequest defines model for UserRequest.
 type UserRequest struct {
+	Address *string `json:"address,omitempty"`
+
 	// AgreeWithPolicy User must agree with the policy to register.
 	AgreeWithPolicy    *bool               `json:"agree_with_policy,omitempty"`
 	BirthDate          *openapi_types.Date `json:"birth_date,omitempty"`
@@ -47197,6 +47221,8 @@ type UserRequest_Gender struct {
 
 // UserRequestForm defines model for UserRequestForm.
 type UserRequestForm struct {
+	Address *string `json:"address,omitempty"`
+
 	// AgreeWithPolicy User must agree with the policy to register.
 	AgreeWithPolicy    *bool               `json:"agree_with_policy,omitempty"`
 	BirthDate          *openapi_types.Date `json:"birth_date,omitempty"`
@@ -47273,6 +47299,8 @@ type UserRequestForm_Gender struct {
 
 // UserRequestMultipart defines model for UserRequestMultipart.
 type UserRequestMultipart struct {
+	Address *string `json:"address,omitempty"`
+
 	// AgreeWithPolicy User must agree with the policy to register.
 	AgreeWithPolicy    *bool               `json:"agree_with_policy,omitempty"`
 	BirthDate          *openapi_types.Date `json:"birth_date,omitempty"`
@@ -59331,9 +59359,6 @@ type MarketplaceStatsComponentUsagesPerProjectCountParams struct {
 
 // MarketplaceStatsCountActiveResourcesGroupedByOfferingListParams defines parameters for MarketplaceStatsCountActiveResourcesGroupedByOfferingList.
 type MarketplaceStatsCountActiveResourcesGroupedByOfferingListParams struct {
-	// Limit Limit number of results (e.g. top N offerings). No limit by default.
-	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
-
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -59343,9 +59368,6 @@ type MarketplaceStatsCountActiveResourcesGroupedByOfferingListParams struct {
 
 // MarketplaceStatsCountActiveResourcesGroupedByOfferingCountParams defines parameters for MarketplaceStatsCountActiveResourcesGroupedByOfferingCount.
 type MarketplaceStatsCountActiveResourcesGroupedByOfferingCountParams struct {
-	// Limit Limit number of results (e.g. top N offerings). No limit by default.
-	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
-
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -238241,22 +238263,6 @@ func NewMarketplaceStatsCountActiveResourcesGroupedByOfferingListRequest(server 
 	if params != nil {
 		queryValues := queryURL.Query()
 
-		if params.Limit != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "limit", *params.Limit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
@@ -238321,22 +238327,6 @@ func NewMarketplaceStatsCountActiveResourcesGroupedByOfferingCountRequest(server
 
 	if params != nil {
 		queryValues := queryURL.Query()
-
-		if params.Limit != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "limit", *params.Limit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
 
 		if params.Page != nil {
 
