@@ -8163,6 +8163,27 @@ func (e GuestPowerStateEnum) Valid() bool {
 	}
 }
 
+// Defines values for IdentityBridgeRequestGenderEnum.
+const (
+	Female  IdentityBridgeRequestGenderEnum = "female"
+	Male    IdentityBridgeRequestGenderEnum = "male"
+	Unknown IdentityBridgeRequestGenderEnum = "unknown"
+)
+
+// Valid indicates whether the value is a known member of the IdentityBridgeRequestGenderEnum enum.
+func (e IdentityBridgeRequestGenderEnum) Valid() bool {
+	switch e {
+	case Female:
+		return true
+	case Male:
+		return true
+	case Unknown:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ImpactLevelDisplayEnum.
 const (
 	DegradedPerformance ImpactLevelDisplayEnum = "Degraded performance"
@@ -29332,33 +29353,41 @@ type IdentityBridgeRemoveResult struct {
 	Uuid        openapi_types.UUID `json:"uuid"`
 }
 
+// IdentityBridgeRequestGenderEnum defines model for IdentityBridgeRequestGenderEnum.
+type IdentityBridgeRequestGenderEnum string
+
 // IdentityBridgeRequestRequest defines model for IdentityBridgeRequestRequest.
 type IdentityBridgeRequestRequest struct {
-	Address             *string              `json:"address,omitempty"`
-	Affiliations        *[]string            `json:"affiliations,omitempty"`
-	BirthDate           *openapi_types.Date  `json:"birth_date,omitempty"`
-	CivilNumber         *string              `json:"civil_number,omitempty"`
-	CountryOfResidence  *string              `json:"country_of_residence,omitempty"`
-	EdupersonAssurance  *[]string            `json:"eduperson_assurance,omitempty"`
-	Email               *openapi_types.Email `json:"email,omitempty"`
-	FirstName           *string              `json:"first_name,omitempty"`
-	Gender              *int                 `json:"gender,omitempty"`
-	IdentitySource      *string              `json:"identity_source,omitempty"`
-	LastName            *string              `json:"last_name,omitempty"`
-	Nationalities       *[]string            `json:"nationalities,omitempty"`
-	Nationality         *string              `json:"nationality,omitempty"`
-	Organization        *string              `json:"organization,omitempty"`
-	OrganizationCountry *string              `json:"organization_country,omitempty"`
-	OrganizationType    *string              `json:"organization_type,omitempty"`
-	PersonalTitle       *string              `json:"personal_title,omitempty"`
-	PhoneNumber         *string              `json:"phone_number,omitempty"`
-	PlaceOfBirth        *string              `json:"place_of_birth,omitempty"`
+	Address             *string                              `json:"address,omitempty"`
+	Affiliations        *[]string                            `json:"affiliations,omitempty"`
+	BirthDate           *openapi_types.Date                  `json:"birth_date,omitempty"`
+	CivilNumber         *string                              `json:"civil_number,omitempty"`
+	CountryOfResidence  *string                              `json:"country_of_residence,omitempty"`
+	EdupersonAssurance  *[]string                            `json:"eduperson_assurance,omitempty"`
+	Email               *openapi_types.Email                 `json:"email,omitempty"`
+	FirstName           *string                              `json:"first_name,omitempty"`
+	Gender              *IdentityBridgeRequestRequest_Gender `json:"gender,omitempty"`
+	IdentitySource      *string                              `json:"identity_source,omitempty"`
+	LastName            *string                              `json:"last_name,omitempty"`
+	Nationalities       *[]string                            `json:"nationalities,omitempty"`
+	Nationality         *string                              `json:"nationality,omitempty"`
+	Organization        *string                              `json:"organization,omitempty"`
+	OrganizationCountry *string                              `json:"organization_country,omitempty"`
+	OrganizationType    *string                              `json:"organization_type,omitempty"`
+	PersonalTitle       *string                              `json:"personal_title,omitempty"`
+	PhoneNumber         *string                              `json:"phone_number,omitempty"`
+	PlaceOfBirth        *string                              `json:"place_of_birth,omitempty"`
 
 	// Source ISD source identifier, e.g. 'isd:puhuri'. Must match ^[a-z]+:[a-zA-Z0-9._-]+$.
 	Source string `json:"source"`
 
 	// Username CUID / username of the user to create or update.
 	Username string `json:"username"`
+}
+
+// IdentityBridgeRequestRequest_Gender defines model for IdentityBridgeRequestRequest.Gender.
+type IdentityBridgeRequestRequest_Gender struct {
+	union json.RawMessage
 }
 
 // IdentityBridgeResult defines model for IdentityBridgeResult.
@@ -76118,6 +76147,68 @@ func (t GlobalUserDataAccessLog_IpAddress) MarshalJSON() ([]byte, error) {
 }
 
 func (t *GlobalUserDataAccessLog_IpAddress) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsIdentityBridgeRequestGenderEnum returns the union data inside the IdentityBridgeRequestRequest_Gender as a IdentityBridgeRequestGenderEnum
+func (t IdentityBridgeRequestRequest_Gender) AsIdentityBridgeRequestGenderEnum() (IdentityBridgeRequestGenderEnum, error) {
+	var body IdentityBridgeRequestGenderEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIdentityBridgeRequestGenderEnum overwrites any union data inside the IdentityBridgeRequestRequest_Gender as the provided IdentityBridgeRequestGenderEnum
+func (t *IdentityBridgeRequestRequest_Gender) FromIdentityBridgeRequestGenderEnum(v IdentityBridgeRequestGenderEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIdentityBridgeRequestGenderEnum performs a merge with any union data inside the IdentityBridgeRequestRequest_Gender, using the provided IdentityBridgeRequestGenderEnum
+func (t *IdentityBridgeRequestRequest_Gender) MergeIdentityBridgeRequestGenderEnum(v IdentityBridgeRequestGenderEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the IdentityBridgeRequestRequest_Gender as a NullEnum
+func (t IdentityBridgeRequestRequest_Gender) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the IdentityBridgeRequestRequest_Gender as the provided NullEnum
+func (t *IdentityBridgeRequestRequest_Gender) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the IdentityBridgeRequestRequest_Gender, using the provided NullEnum
+func (t *IdentityBridgeRequestRequest_Gender) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t IdentityBridgeRequestRequest_Gender) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *IdentityBridgeRequestRequest_Gender) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
