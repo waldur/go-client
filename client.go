@@ -29236,6 +29236,56 @@ type GuestOsEnum string
 // GuestPowerStateEnum defines model for GuestPowerStateEnum.
 type GuestPowerStateEnum string
 
+// Hypervisor defines model for Hypervisor.
+type Hypervisor struct {
+	BackendId string `json:"backend_id"`
+
+	// HypervisorType Hypervisor type, e.g. KVM, QEMU, VMware
+	HypervisorType *string `json:"hypervisor_type,omitempty"`
+
+	// LocalGb Total disk in GiB
+	LocalGb *int `json:"local_gb,omitempty"`
+
+	// LocalGbUsed Used disk in GiB
+	LocalGbUsed *int `json:"local_gb_used,omitempty"`
+
+	// MemoryMb Total RAM in MiB
+	MemoryMb *int `json:"memory_mb,omitempty"`
+
+	// MemoryMbUsed Used RAM in MiB
+	MemoryMbUsed *int   `json:"memory_mb_used,omitempty"`
+	Name         string `json:"name"`
+
+	// RunningVms Number of running VMs
+	RunningVms *int   `json:"running_vms,omitempty"`
+	Settings   string `json:"settings"`
+
+	// State Hypervisor state, e.g. up or down
+	State *string `json:"state,omitempty"`
+
+	// Status Hypervisor status, e.g. enabled or disabled
+	Status *string             `json:"status,omitempty"`
+	Url    *string             `json:"url,omitempty"`
+	Uuid   *openapi_types.UUID `json:"uuid,omitempty"`
+
+	// Vcpus Total vCPUs
+	Vcpus *int `json:"vcpus,omitempty"`
+
+	// VcpusUsed Used vCPUs
+	VcpusUsed *int `json:"vcpus_used,omitempty"`
+}
+
+// HypervisorSummary defines model for HypervisorSummary.
+type HypervisorSummary struct {
+	TotalLocalGb    int `json:"total_local_gb"`
+	TotalMemoryMb   int `json:"total_memory_mb"`
+	TotalRunningVms int `json:"total_running_vms"`
+	TotalVcpus      int `json:"total_vcpus"`
+	UsedLocalGb     int `json:"used_local_gb"`
+	UsedMemoryMb    int `json:"used_memory_mb"`
+	UsedVcpus       int `json:"used_vcpus"`
+}
+
 // IPMapping defines model for IPMapping.
 type IPMapping struct {
 	// ExternalIp External IP
@@ -43460,47 +43510,24 @@ type ResourceLimitPeriod struct {
 
 // ResourceMissingUsage defines model for ResourceMissingUsage.
 type ResourceMissingUsage struct {
-	// Created Creation date of the resource
-	Created time.Time `json:"created"`
-
-	// CustomerName Name of the customer organization
-	CustomerName string `json:"customer_name"`
-
-	// CustomerUuid UUID of the customer organization
-	CustomerUuid openapi_types.UUID `json:"customer_uuid"`
+	Created      *time.Time          `json:"created,omitempty"`
+	CustomerName *string             `json:"customer_name,omitempty"`
+	CustomerUuid *openapi_types.UUID `json:"customer_uuid,omitempty"`
 
 	// DaysSinceLastReport Number of days since last usage report
-	DaysSinceLastReport *int `json:"days_since_last_report"`
+	DaysSinceLastReport *int `json:"days_since_last_report,omitempty"`
 
 	// LastUsageDate Date of the last usage report
-	LastUsageDate *time.Time `json:"last_usage_date"`
-
-	// Name Name of the resource
-	Name string `json:"name"`
-
-	// OfferingName Name of the offering
-	OfferingName string `json:"offering_name"`
-
-	// OfferingUuid UUID of the offering
-	OfferingUuid openapi_types.UUID `json:"offering_uuid"`
-
-	// ProjectName Name of the project
-	ProjectName string `json:"project_name"`
-
-	// ProjectUuid UUID of the project
-	ProjectUuid openapi_types.UUID `json:"project_uuid"`
-
-	// ProviderName Name of the service provider
-	ProviderName string `json:"provider_name"`
-
-	// ProviderUuid UUID of the service provider
-	ProviderUuid openapi_types.UUID `json:"provider_uuid"`
-
-	// State Current state of the resource
-	State string `json:"state"`
-
-	// Uuid UUID of the resource
-	Uuid openapi_types.UUID `json:"uuid"`
+	LastUsageDate *time.Time          `json:"last_usage_date"`
+	Name          string              `json:"name"`
+	OfferingName  *string             `json:"offering_name,omitempty"`
+	OfferingUuid  *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	ProjectName   *string             `json:"project_name,omitempty"`
+	ProjectUuid   *openapi_types.UUID `json:"project_uuid,omitempty"`
+	ProviderName  *string             `json:"provider_name,omitempty"`
+	ProviderUuid  *openapi_types.UUID `json:"provider_uuid,omitempty"`
+	State         *string             `json:"state,omitempty"`
+	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // ResourceOEnum defines model for ResourceOEnum.
@@ -62006,6 +62033,56 @@ type OpenstackHealthMonitorsCountParams struct {
 // OpenstackHealthMonitorsRetrieveParams defines parameters for OpenstackHealthMonitorsRetrieve.
 type OpenstackHealthMonitorsRetrieveParams struct {
 	Field *[]OpenStackHealthMonitorFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+}
+
+// OpenstackHypervisorsListParams defines parameters for OpenstackHypervisorsList.
+type OpenstackHypervisorsListParams struct {
+	HypervisorType *string `form:"hypervisor_type,omitempty" json:"hypervisor_type,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
+	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
+	State        *string             `form:"state,omitempty" json:"state,omitempty"`
+	Status       *string             `form:"status,omitempty" json:"status,omitempty"`
+}
+
+// OpenstackHypervisorsCountParams defines parameters for OpenstackHypervisorsCount.
+type OpenstackHypervisorsCountParams struct {
+	HypervisorType *string `form:"hypervisor_type,omitempty" json:"hypervisor_type,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
+	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
+	State        *string             `form:"state,omitempty" json:"state,omitempty"`
+	Status       *string             `form:"status,omitempty" json:"status,omitempty"`
 }
 
 // OpenstackImagesListParams defines parameters for OpenstackImagesList.
@@ -88406,6 +88483,21 @@ type ClientInterface interface {
 
 	// OpenstackHealthMonitorsPull request
 	OpenstackHealthMonitorsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackHypervisorsList request
+	OpenstackHypervisorsList(ctx context.Context, params *OpenstackHypervisorsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackHypervisorsCount request
+	OpenstackHypervisorsCount(ctx context.Context, params *OpenstackHypervisorsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackHypervisorsSummaryRetrieve request
+	OpenstackHypervisorsSummaryRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackHypervisorsSummaryCount request
+	OpenstackHypervisorsSummaryCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackHypervisorsRetrieve request
+	OpenstackHypervisorsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackImagesList request
 	OpenstackImagesList(ctx context.Context, params *OpenstackImagesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -116450,6 +116542,66 @@ func (c *Client) OpenstackHealthMonitorsUpdate(ctx context.Context, uuid openapi
 
 func (c *Client) OpenstackHealthMonitorsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackHealthMonitorsPullRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackHypervisorsList(ctx context.Context, params *OpenstackHypervisorsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackHypervisorsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackHypervisorsCount(ctx context.Context, params *OpenstackHypervisorsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackHypervisorsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackHypervisorsSummaryRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackHypervisorsSummaryRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackHypervisorsSummaryCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackHypervisorsSummaryCountRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackHypervisorsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackHypervisorsRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -262559,6 +262711,448 @@ func NewOpenstackHealthMonitorsPullRequest(server string, uuid openapi_types.UUI
 	return req, nil
 }
 
+// NewOpenstackHypervisorsListRequest generates requests for OpenstackHypervisorsList
+func NewOpenstackHypervisorsListRequest(server string, params *OpenstackHypervisorsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-hypervisors/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.HypervisorType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "hypervisor_type", *params.HypervisorType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Settings != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "settings", *params.Settings, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.SettingsUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "settings_uuid", *params.SettingsUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Status != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "status", *params.Status, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackHypervisorsCountRequest generates requests for OpenstackHypervisorsCount
+func NewOpenstackHypervisorsCountRequest(server string, params *OpenstackHypervisorsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-hypervisors/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.HypervisorType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "hypervisor_type", *params.HypervisorType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Settings != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "settings", *params.Settings, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.SettingsUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "settings_uuid", *params.SettingsUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Status != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "status", *params.Status, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackHypervisorsSummaryRetrieveRequest generates requests for OpenstackHypervisorsSummaryRetrieve
+func NewOpenstackHypervisorsSummaryRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-hypervisors/summary/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackHypervisorsSummaryCountRequest generates requests for OpenstackHypervisorsSummaryCount
+func NewOpenstackHypervisorsSummaryCountRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-hypervisors/summary/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackHypervisorsRetrieveRequest generates requests for OpenstackHypervisorsRetrieve
+func NewOpenstackHypervisorsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-hypervisors/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOpenstackImagesListRequest generates requests for OpenstackImagesList
 func NewOpenstackImagesListRequest(server string, params *OpenstackImagesListParams) (*http.Request, error) {
 	var err error
@@ -344974,6 +345568,21 @@ type ClientWithResponsesInterface interface {
 	// OpenstackHealthMonitorsPullWithResponse request
 	OpenstackHealthMonitorsPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackHealthMonitorsPullResponse, error)
 
+	// OpenstackHypervisorsListWithResponse request
+	OpenstackHypervisorsListWithResponse(ctx context.Context, params *OpenstackHypervisorsListParams, reqEditors ...RequestEditorFn) (*OpenstackHypervisorsListResponse, error)
+
+	// OpenstackHypervisorsCountWithResponse request
+	OpenstackHypervisorsCountWithResponse(ctx context.Context, params *OpenstackHypervisorsCountParams, reqEditors ...RequestEditorFn) (*OpenstackHypervisorsCountResponse, error)
+
+	// OpenstackHypervisorsSummaryRetrieveWithResponse request
+	OpenstackHypervisorsSummaryRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenstackHypervisorsSummaryRetrieveResponse, error)
+
+	// OpenstackHypervisorsSummaryCountWithResponse request
+	OpenstackHypervisorsSummaryCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenstackHypervisorsSummaryCountResponse, error)
+
+	// OpenstackHypervisorsRetrieveWithResponse request
+	OpenstackHypervisorsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackHypervisorsRetrieveResponse, error)
+
 	// OpenstackImagesListWithResponse request
 	OpenstackImagesListWithResponse(ctx context.Context, params *OpenstackImagesListParams, reqEditors ...RequestEditorFn) (*OpenstackImagesListResponse, error)
 
@@ -381434,6 +382043,114 @@ func (r OpenstackHealthMonitorsPullResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackHealthMonitorsPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackHypervisorsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]Hypervisor
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackHypervisorsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackHypervisorsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackHypervisorsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackHypervisorsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackHypervisorsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackHypervisorsSummaryRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *HypervisorSummary
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackHypervisorsSummaryRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackHypervisorsSummaryRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackHypervisorsSummaryCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackHypervisorsSummaryCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackHypervisorsSummaryCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackHypervisorsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Hypervisor
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackHypervisorsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackHypervisorsRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -419258,6 +419975,51 @@ func (c *ClientWithResponses) OpenstackHealthMonitorsPullWithResponse(ctx contex
 		return nil, err
 	}
 	return ParseOpenstackHealthMonitorsPullResponse(rsp)
+}
+
+// OpenstackHypervisorsListWithResponse request returning *OpenstackHypervisorsListResponse
+func (c *ClientWithResponses) OpenstackHypervisorsListWithResponse(ctx context.Context, params *OpenstackHypervisorsListParams, reqEditors ...RequestEditorFn) (*OpenstackHypervisorsListResponse, error) {
+	rsp, err := c.OpenstackHypervisorsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackHypervisorsListResponse(rsp)
+}
+
+// OpenstackHypervisorsCountWithResponse request returning *OpenstackHypervisorsCountResponse
+func (c *ClientWithResponses) OpenstackHypervisorsCountWithResponse(ctx context.Context, params *OpenstackHypervisorsCountParams, reqEditors ...RequestEditorFn) (*OpenstackHypervisorsCountResponse, error) {
+	rsp, err := c.OpenstackHypervisorsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackHypervisorsCountResponse(rsp)
+}
+
+// OpenstackHypervisorsSummaryRetrieveWithResponse request returning *OpenstackHypervisorsSummaryRetrieveResponse
+func (c *ClientWithResponses) OpenstackHypervisorsSummaryRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenstackHypervisorsSummaryRetrieveResponse, error) {
+	rsp, err := c.OpenstackHypervisorsSummaryRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackHypervisorsSummaryRetrieveResponse(rsp)
+}
+
+// OpenstackHypervisorsSummaryCountWithResponse request returning *OpenstackHypervisorsSummaryCountResponse
+func (c *ClientWithResponses) OpenstackHypervisorsSummaryCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenstackHypervisorsSummaryCountResponse, error) {
+	rsp, err := c.OpenstackHypervisorsSummaryCount(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackHypervisorsSummaryCountResponse(rsp)
+}
+
+// OpenstackHypervisorsRetrieveWithResponse request returning *OpenstackHypervisorsRetrieveResponse
+func (c *ClientWithResponses) OpenstackHypervisorsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackHypervisorsRetrieveResponse, error) {
+	rsp, err := c.OpenstackHypervisorsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackHypervisorsRetrieveResponse(rsp)
 }
 
 // OpenstackImagesListWithResponse request returning *OpenstackImagesListResponse
@@ -465128,6 +465890,116 @@ func ParseOpenstackHealthMonitorsPullResponse(rsp *http.Response) (*OpenstackHea
 	response := &OpenstackHealthMonitorsPullResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackHypervisorsListResponse parses an HTTP response from a OpenstackHypervisorsListWithResponse call
+func ParseOpenstackHypervisorsListResponse(rsp *http.Response) (*OpenstackHypervisorsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackHypervisorsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Hypervisor
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackHypervisorsCountResponse parses an HTTP response from a OpenstackHypervisorsCountWithResponse call
+func ParseOpenstackHypervisorsCountResponse(rsp *http.Response) (*OpenstackHypervisorsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackHypervisorsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackHypervisorsSummaryRetrieveResponse parses an HTTP response from a OpenstackHypervisorsSummaryRetrieveWithResponse call
+func ParseOpenstackHypervisorsSummaryRetrieveResponse(rsp *http.Response) (*OpenstackHypervisorsSummaryRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackHypervisorsSummaryRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest HypervisorSummary
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackHypervisorsSummaryCountResponse parses an HTTP response from a OpenstackHypervisorsSummaryCountWithResponse call
+func ParseOpenstackHypervisorsSummaryCountResponse(rsp *http.Response) (*OpenstackHypervisorsSummaryCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackHypervisorsSummaryCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackHypervisorsRetrieveResponse parses an HTTP response from a OpenstackHypervisorsRetrieveWithResponse call
+func ParseOpenstackHypervisorsRetrieveResponse(rsp *http.Response) (*OpenstackHypervisorsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackHypervisorsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Hypervisor
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
