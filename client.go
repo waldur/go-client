@@ -19163,10 +19163,12 @@ const (
 	UserAttributeEnumCountryOfResidence       UserAttributeEnum = "country_of_residence"
 	UserAttributeEnumEdupersonAssurance       UserAttributeEnum = "eduperson_assurance"
 	UserAttributeEnumEmail                    UserAttributeEnum = "email"
+	UserAttributeEnumFirstName                UserAttributeEnum = "first_name"
 	UserAttributeEnumFullName                 UserAttributeEnum = "full_name"
 	UserAttributeEnumGender                   UserAttributeEnum = "gender"
 	UserAttributeEnumIdentitySource           UserAttributeEnum = "identity_source"
 	UserAttributeEnumJobTitle                 UserAttributeEnum = "job_title"
+	UserAttributeEnumLastName                 UserAttributeEnum = "last_name"
 	UserAttributeEnumNationalities            UserAttributeEnum = "nationalities"
 	UserAttributeEnumNationality              UserAttributeEnum = "nationality"
 	UserAttributeEnumOrganization             UserAttributeEnum = "organization"
@@ -19194,6 +19196,8 @@ func (e UserAttributeEnum) Valid() bool {
 		return true
 	case UserAttributeEnumEmail:
 		return true
+	case UserAttributeEnumFirstName:
+		return true
 	case UserAttributeEnumFullName:
 		return true
 	case UserAttributeEnumGender:
@@ -19201,6 +19205,8 @@ func (e UserAttributeEnum) Valid() bool {
 	case UserAttributeEnumIdentitySource:
 		return true
 	case UserAttributeEnumJobTitle:
+		return true
+	case UserAttributeEnumLastName:
 		return true
 	case UserAttributeEnumNationalities:
 		return true
@@ -23536,23 +23542,23 @@ type CachePerformance struct {
 
 // CachedProjectStorageReport defines model for CachedProjectStorageReport.
 type CachedProjectStorageReport struct {
-	Id                *int        `json:"id,omitempty"`
-	Month             int         `json:"month"`
-	ProjectIdentifier string      `json:"project_identifier"`
-	Report            interface{} `json:"report"`
-	Resource          string      `json:"resource"`
-	Year              int         `json:"year"`
+	Id                *int                 `json:"id,omitempty"`
+	Month             int                  `json:"month"`
+	ProjectIdentifier string               `json:"project_identifier"`
+	Report            ProjectStorageReport `json:"report"`
+	Resource          string               `json:"resource"`
+	Year              int                  `json:"year"`
 }
 
 // CachedProjectUsageReport defines model for CachedProjectUsageReport.
 type CachedProjectUsageReport struct {
-	Id                *int        `json:"id,omitempty"`
-	IsComplete        *bool       `json:"is_complete,omitempty"`
-	Month             int         `json:"month"`
-	ProjectIdentifier string      `json:"project_identifier"`
-	Report            interface{} `json:"report"`
-	Resource          string      `json:"resource"`
-	Year              int         `json:"year"`
+	Id                *int               `json:"id,omitempty"`
+	IsComplete        *bool              `json:"is_complete,omitempty"`
+	Month             int                `json:"month"`
+	ProjectIdentifier string             `json:"project_identifier"`
+	Report            ProjectUsageReport `json:"report"`
+	Resource          string             `json:"resource"`
+	Year              int                `json:"year"`
 }
 
 // CallApplicantAttributeConfig defines model for CallApplicantAttributeConfig.
@@ -27545,6 +27551,37 @@ type DailyOrderStats struct {
 
 	// TotalCost Total cost of orders
 	TotalCost *string `json:"total_cost"`
+}
+
+// DailyProjectUsageReport defines model for DailyProjectUsageReport.
+type DailyProjectUsageReport struct {
+	// Components component_name → local_username → Usage. e.g. { "cpu": { "chris.aiproject": { "seconds": 41055 } } }
+	Components *map[string]map[string]Usage `json:"components,omitempty"`
+	IsComplete bool                         `json:"is_complete"`
+	NumJobs    *int                         `json:"num_jobs,omitempty"`
+
+	// Reports local_username → Usage
+	Reports          map[string]Usage `json:"reports"`
+	TotalWaitSeconds *int             `json:"total_wait_seconds,omitempty"`
+
+	// UserJobCounts local_username → job count
+	UserJobCounts *map[string]int `json:"user_job_counts,omitempty"`
+
+	// UserWaitSeconds local_username → wait seconds
+	UserWaitSeconds *map[string]int `json:"user_wait_seconds,omitempty"`
+}
+
+// DailyStorageReport defines model for DailyStorageReport.
+type DailyStorageReport struct {
+	// GeneratedAt RFC3339 timestamp
+	GeneratedAt string `json:"generated_at"`
+	Project     string `json:"project"`
+
+	// ProjectQuotas Volume → Quota
+	ProjectQuotas map[string]OpenPortalQuota `json:"project_quotas"`
+
+	// UserQuotas UserIdentifier → (Volume → Quota)
+	UserQuotas map[string]map[string]OpenPortalQuota `json:"user_quotas"`
 }
 
 // DataAccessSummary defines model for DataAccessSummary.
@@ -34268,6 +34305,15 @@ type OnboardingVerificationStatusEnum1 string
 // OnboardingVerificationValidationMethodEnum defines model for OnboardingVerificationValidationMethodEnum.
 type OnboardingVerificationValidationMethodEnum string
 
+// OpenPortalQuota defines model for OpenPortalQuota.
+type OpenPortalQuota struct {
+	// Limit Size limit. "unlimited" or a size string e.g. "1024.00 GB"
+	Limit string `json:"limit"`
+
+	// Usage Size usage e.g. "24.00 KB". Absent when the server has no usage data.
+	Usage *string `json:"usage,omitempty"`
+}
+
 // OpenStackAllowedAddressPair defines model for OpenStackAllowedAddressPair.
 type OpenStackAllowedAddressPair struct {
 	MacAddress *string `json:"mac_address,omitempty"`
@@ -40496,6 +40542,25 @@ type ProjectServiceAccountRequest struct {
 	Username            *string              `json:"username,omitempty"`
 }
 
+// ProjectStorageReport defines model for ProjectStorageReport.
+type ProjectStorageReport struct {
+	// DailyReports "YYYY-MM-DD" → DailyStorageReportJson. Absent from JSON when there are no daily snapshots.
+	DailyReports *map[string]DailyStorageReport `json:"daily_reports,omitempty"`
+
+	// GeneratedAt RFC3339 timestamp
+	GeneratedAt string `json:"generated_at"`
+	Project     string `json:"project"`
+
+	// ProjectQuotas Volume → Quota
+	ProjectQuotas map[string]OpenPortalQuota `json:"project_quotas"`
+
+	// UserQuotas UserIdentifier → (Volume → Quota)
+	UserQuotas map[string]map[string]OpenPortalQuota `json:"user_quotas"`
+
+	// Users UserIdentifier → local_username
+	Users map[string]string `json:"users"`
+}
+
 // ProjectTemplate defines model for ProjectTemplate.
 type ProjectTemplate struct {
 	// AllocationUnitsMapping The mapping of credits to allocation units, i.e. how many allocation units to award per credit allocated.
@@ -40563,6 +40628,18 @@ type ProjectType struct {
 	Name        string              `json:"name"`
 	Url         *string             `json:"url,omitempty"`
 	Uuid        *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ProjectUsageReport defines model for ProjectUsageReport.
+type ProjectUsageReport struct {
+	// Project ProjectIdentifier string e.g. "aiproject.brics"
+	Project string `json:"project"`
+
+	// Reports "YYYY-MM-DD" → DailyProjectUsageReportJson
+	Reports map[string]DailyProjectUsageReport `json:"reports"`
+
+	// Users UserIdentifier → local_username. e.g. { "chris.aiproject.brics": "chris.aiproject" }
+	Users map[string]string `json:"users"`
 }
 
 // ProjectUser defines model for ProjectUser.
@@ -46801,6 +46878,11 @@ type UpdatePoolRequest struct {
 
 // UrgencyEnum defines model for UrgencyEnum.
 type UrgencyEnum string
+
+// Usage defines model for Usage.
+type Usage struct {
+	Seconds int `json:"seconds"`
+}
 
 // User defines model for User.
 type User struct {
