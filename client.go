@@ -23202,6 +23202,13 @@ type BasicCustomer struct {
 	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// BasicProject defines model for BasicProject.
+type BasicProject struct {
+	Name string              `json:"name"`
+	Url  *string             `json:"url,omitempty"`
+	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
 // BasicUser defines model for BasicUser.
 type BasicUser struct {
 	Email      *openapi_types.Email `json:"email,omitempty"`
@@ -23525,6 +23532,27 @@ type CachePerformance struct {
 
 	// SharedBuffers Configured shared_buffers setting
 	SharedBuffers *string `json:"shared_buffers,omitempty"`
+}
+
+// CachedProjectStorageReport defines model for CachedProjectStorageReport.
+type CachedProjectStorageReport struct {
+	Id                *int        `json:"id,omitempty"`
+	Month             int         `json:"month"`
+	ProjectIdentifier string      `json:"project_identifier"`
+	Report            interface{} `json:"report"`
+	Resource          string      `json:"resource"`
+	Year              int         `json:"year"`
+}
+
+// CachedProjectUsageReport defines model for CachedProjectUsageReport.
+type CachedProjectUsageReport struct {
+	Id                *int        `json:"id,omitempty"`
+	IsComplete        *bool       `json:"is_complete,omitempty"`
+	Month             int         `json:"month"`
+	ProjectIdentifier string      `json:"project_identifier"`
+	Report            interface{} `json:"report"`
+	Resource          string      `json:"resource"`
+	Year              int         `json:"year"`
 }
 
 // CallApplicantAttributeConfig defines model for CallApplicantAttributeConfig.
@@ -30829,7 +30857,7 @@ type ManagedProject struct {
 	// LocalIdentifier The local project identifier in this portal.
 	LocalIdentifier     *string          `json:"local_identifier,omitempty"`
 	Project             string           `json:"project"`
-	ProjectData         *Project         `json:"project_data,omitempty"`
+	ProjectData         *BasicProject    `json:"project_data,omitempty"`
 	ProjectTemplate     string           `json:"project_template"`
 	ProjectTemplateData *ProjectTemplate `json:"project_template_data,omitempty"`
 
@@ -39972,6 +40000,19 @@ type Project_OecdFos2007Code struct {
 	union json.RawMessage
 }
 
+// ProjectAccountingSummary defines model for ProjectAccountingSummary.
+type ProjectAccountingSummary struct {
+	CurrentMonthSpend *string             `json:"current_month_spend,omitempty"`
+	CustomerName      *string             `json:"customer_name,omitempty"`
+	CustomerUuid      *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	EndDate           *openapi_types.Date `json:"end_date,omitempty"`
+	ProjectName       *string             `json:"project_name,omitempty"`
+	ProjectUuid       *openapi_types.UUID `json:"project_uuid,omitempty"`
+	StartDate         *openapi_types.Date `json:"start_date,omitempty"`
+	TotalCredits      *string             `json:"total_credits,omitempty"`
+	TotalSpend        *string             `json:"total_spend,omitempty"`
+}
+
 // ProjectAnswer defines model for ProjectAnswer.
 type ProjectAnswer struct {
 	// AnswersCount Get count of answers.
@@ -40461,9 +40502,9 @@ type ProjectTemplate struct {
 	AllocationUnitsMapping interface{} `json:"allocation_units_mapping,omitempty"`
 
 	// ApprovalLimit The credit limit beyond which requests need to be approved by a local admin. If this is None, then no local approval is required. If this is set to 0, then all requests (including creating the project) need to be approved.
-	ApprovalLimit *string   `json:"approval_limit,omitempty"`
-	Customer      string    `json:"customer"`
-	CustomerData  *Customer `json:"customer_data,omitempty"`
+	ApprovalLimit *string        `json:"approval_limit,omitempty"`
+	Customer      string         `json:"customer"`
+	CustomerData  *BasicCustomer `json:"customer_data,omitempty"`
 
 	// Key The key that is used to authenticate requests for this class.
 	Key *string `json:"key,omitempty"`
@@ -40473,12 +40514,12 @@ type ProjectTemplate struct {
 	Name           string  `json:"name"`
 
 	// Offering The offering for which this template applies.
-	Offering      *string                    `json:"offering,omitempty"`
-	Offerings     []string                   `json:"offerings"`
-	OfferingsData *[]ProviderOfferingDetails `json:"offerings_data,omitempty"`
-	Portal        string                     `json:"portal"`
-	Provider      string                     `json:"provider"`
-	ProviderData  *Customer                  `json:"provider_data,omitempty"`
+	Offering      *string             `json:"offering,omitempty"`
+	Offerings     []string            `json:"offerings"`
+	OfferingsData *[]ResourceOffering `json:"offerings_data,omitempty"`
+	Portal        string              `json:"portal"`
+	Provider      string              `json:"provider"`
+	ProviderData  *BasicCustomer      `json:"provider_data,omitempty"`
 
 	// RoleMapping The mapping of role names from the remote portal to role information in this portal for users in projects created in this class.
 	RoleMapping interface{} `json:"role_mapping,omitempty"`
@@ -60825,6 +60866,32 @@ type OnboardingPersonIdentifierFieldsRetrieveParams struct {
 	ValidationMethod ValidationMethodEnum `form:"validation_method" json:"validation_method"`
 }
 
+// OpenportalAccountingSummaryListParams defines parameters for OpenportalAccountingSummaryList.
+type OpenportalAccountingSummaryListParams struct {
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	IsActive     *bool               `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+}
+
+// OpenportalAccountingSummaryCountParams defines parameters for OpenportalAccountingSummaryCount.
+type OpenportalAccountingSummaryCountParams struct {
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	IsActive     *bool               `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+}
+
 // OpenportalAllocationUserUsageListParams defines parameters for OpenportalAllocationUserUsageList.
 type OpenportalAllocationUserUsageListParams struct {
 	Allocation     *string             `form:"allocation,omitempty" json:"allocation,omitempty"`
@@ -61022,6 +61089,9 @@ type OpenportalManagedProjectsListParams struct {
 	Identifier      *string `form:"identifier,omitempty" json:"identifier,omitempty"`
 	LocalIdentifier *string `form:"local_identifier,omitempty" json:"local_identifier,omitempty"`
 
+	// O Which field to use when ordering the results.
+	O *string `form:"o,omitempty" json:"o,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -61031,6 +61101,7 @@ type OpenportalManagedProjectsListParams struct {
 	ProjectTemplate     *string                                `form:"project_template,omitempty" json:"project_template,omitempty"`
 	ProjectTemplateUuid *openapi_types.UUID                    `form:"project_template_uuid,omitempty" json:"project_template_uuid,omitempty"`
 	ProjectUuid         *openapi_types.UUID                    `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	Query               *string                                `form:"query,omitempty" json:"query,omitempty"`
 	State               *[]RemoteProjectUpdateRequestStateEnum `form:"state,omitempty" json:"state,omitempty"`
 }
 
@@ -61039,6 +61110,9 @@ type OpenportalManagedProjectsCountParams struct {
 	Identifier      *string `form:"identifier,omitempty" json:"identifier,omitempty"`
 	LocalIdentifier *string `form:"local_identifier,omitempty" json:"local_identifier,omitempty"`
 
+	// O Which field to use when ordering the results.
+	O *string `form:"o,omitempty" json:"o,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -61048,7 +61122,38 @@ type OpenportalManagedProjectsCountParams struct {
 	ProjectTemplate     *string                                `form:"project_template,omitempty" json:"project_template,omitempty"`
 	ProjectTemplateUuid *openapi_types.UUID                    `form:"project_template_uuid,omitempty" json:"project_template_uuid,omitempty"`
 	ProjectUuid         *openapi_types.UUID                    `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	Query               *string                                `form:"query,omitempty" json:"query,omitempty"`
 	State               *[]RemoteProjectUpdateRequestStateEnum `form:"state,omitempty" json:"state,omitempty"`
+}
+
+// OpenportalProjectStorageReportsListParams defines parameters for OpenportalProjectStorageReportsList.
+type OpenportalProjectStorageReportsListParams struct {
+	Month *int `form:"month,omitempty" json:"month,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize          *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectIdentifier *string             `form:"project_identifier,omitempty" json:"project_identifier,omitempty"`
+	ProjectUuid       *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	Resource          *string             `form:"resource,omitempty" json:"resource,omitempty"`
+	Year              *int                `form:"year,omitempty" json:"year,omitempty"`
+}
+
+// OpenportalProjectStorageReportsCountParams defines parameters for OpenportalProjectStorageReportsCount.
+type OpenportalProjectStorageReportsCountParams struct {
+	Month *int `form:"month,omitempty" json:"month,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize          *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectIdentifier *string             `form:"project_identifier,omitempty" json:"project_identifier,omitempty"`
+	ProjectUuid       *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	Resource          *string             `form:"resource,omitempty" json:"resource,omitempty"`
+	Year              *int                `form:"year,omitempty" json:"year,omitempty"`
 }
 
 // OpenportalProjectTemplateListParams defines parameters for OpenportalProjectTemplateList.
@@ -61075,6 +61180,38 @@ type OpenportalProjectTemplateCountParams struct {
 	PageSize *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	Portal   *string             `form:"portal,omitempty" json:"portal,omitempty"`
 	Uuid     *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
+}
+
+// OpenportalProjectUsageReportsListParams defines parameters for OpenportalProjectUsageReportsList.
+type OpenportalProjectUsageReportsListParams struct {
+	IsComplete *bool `form:"is_complete,omitempty" json:"is_complete,omitempty"`
+	Month      *int  `form:"month,omitempty" json:"month,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize          *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectIdentifier *string             `form:"project_identifier,omitempty" json:"project_identifier,omitempty"`
+	ProjectUuid       *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	Resource          *string             `form:"resource,omitempty" json:"resource,omitempty"`
+	Year              *int                `form:"year,omitempty" json:"year,omitempty"`
+}
+
+// OpenportalProjectUsageReportsCountParams defines parameters for OpenportalProjectUsageReportsCount.
+type OpenportalProjectUsageReportsCountParams struct {
+	IsComplete *bool `form:"is_complete,omitempty" json:"is_complete,omitempty"`
+	Month      *int  `form:"month,omitempty" json:"month,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize          *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectIdentifier *string             `form:"project_identifier,omitempty" json:"project_identifier,omitempty"`
+	ProjectUuid       *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	Resource          *string             `form:"resource,omitempty" json:"resource,omitempty"`
+	Year              *int                `form:"year,omitempty" json:"year,omitempty"`
 }
 
 // OpenportalProjectinfoListParams defines parameters for OpenportalProjectinfoList.
@@ -88098,6 +88235,15 @@ type ClientInterface interface {
 	// OnboardingSupportedCountriesRetrieve request
 	OnboardingSupportedCountriesRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenportalAccountingSummaryList request
+	OpenportalAccountingSummaryList(ctx context.Context, params *OpenportalAccountingSummaryListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenportalAccountingSummaryCount request
+	OpenportalAccountingSummaryCount(ctx context.Context, params *OpenportalAccountingSummaryCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenportalAccountingSummaryRetrieve request
+	OpenportalAccountingSummaryRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenportalAllocationUserUsageList request
 	OpenportalAllocationUserUsageList(ctx context.Context, params *OpenportalAllocationUserUsageListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -88195,6 +88341,15 @@ type ClientInterface interface {
 
 	OpenportalManagedProjectsReject(ctx context.Context, identifier string, destination string, body OpenportalManagedProjectsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenportalProjectStorageReportsList request
+	OpenportalProjectStorageReportsList(ctx context.Context, params *OpenportalProjectStorageReportsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenportalProjectStorageReportsCount request
+	OpenportalProjectStorageReportsCount(ctx context.Context, params *OpenportalProjectStorageReportsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenportalProjectStorageReportsRetrieve request
+	OpenportalProjectStorageReportsRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenportalProjectTemplateList request
 	OpenportalProjectTemplateList(ctx context.Context, params *OpenportalProjectTemplateListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -88224,6 +88379,15 @@ type ClientInterface interface {
 
 	// OpenportalProjectTemplateDeleteDestroy request
 	OpenportalProjectTemplateDeleteDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenportalProjectUsageReportsList request
+	OpenportalProjectUsageReportsList(ctx context.Context, params *OpenportalProjectUsageReportsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenportalProjectUsageReportsCount request
+	OpenportalProjectUsageReportsCount(ctx context.Context, params *OpenportalProjectUsageReportsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenportalProjectUsageReportsRetrieve request
+	OpenportalProjectUsageReportsRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalProjectinfoList request
 	OpenportalProjectinfoList(ctx context.Context, params *OpenportalProjectinfoListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -114543,6 +114707,42 @@ func (c *Client) OnboardingSupportedCountriesRetrieve(ctx context.Context, reqEd
 	return c.Client.Do(req)
 }
 
+func (c *Client) OpenportalAccountingSummaryList(ctx context.Context, params *OpenportalAccountingSummaryListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalAccountingSummaryListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenportalAccountingSummaryCount(ctx context.Context, params *OpenportalAccountingSummaryCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalAccountingSummaryCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenportalAccountingSummaryRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalAccountingSummaryRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OpenportalAllocationUserUsageList(ctx context.Context, params *OpenportalAllocationUserUsageListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalAllocationUserUsageListRequest(c.Server, params)
 	if err != nil {
@@ -114963,6 +115163,42 @@ func (c *Client) OpenportalManagedProjectsReject(ctx context.Context, identifier
 	return c.Client.Do(req)
 }
 
+func (c *Client) OpenportalProjectStorageReportsList(ctx context.Context, params *OpenportalProjectStorageReportsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalProjectStorageReportsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenportalProjectStorageReportsCount(ctx context.Context, params *OpenportalProjectStorageReportsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalProjectStorageReportsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenportalProjectStorageReportsRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalProjectStorageReportsRetrieveRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OpenportalProjectTemplateList(ctx context.Context, params *OpenportalProjectTemplateListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalProjectTemplateListRequest(c.Server, params)
 	if err != nil {
@@ -115085,6 +115321,42 @@ func (c *Client) OpenportalProjectTemplateUpdate(ctx context.Context, uuid opena
 
 func (c *Client) OpenportalProjectTemplateDeleteDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalProjectTemplateDeleteDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenportalProjectUsageReportsList(ctx context.Context, params *OpenportalProjectUsageReportsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalProjectUsageReportsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenportalProjectUsageReportsCount(ctx context.Context, params *OpenportalProjectUsageReportsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalProjectUsageReportsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenportalProjectUsageReportsRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalProjectUsageReportsRetrieveRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -251190,6 +251462,266 @@ func NewOnboardingSupportedCountriesRetrieveRequest(server string) (*http.Reques
 	return req, nil
 }
 
+// NewOpenportalAccountingSummaryListRequest generates requests for OpenportalAccountingSummaryList
+func NewOpenportalAccountingSummaryListRequest(server string, params *OpenportalAccountingSummaryListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openportal-accounting-summary/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_active", *params.IsActive, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenportalAccountingSummaryCountRequest generates requests for OpenportalAccountingSummaryCount
+func NewOpenportalAccountingSummaryCountRequest(server string, params *OpenportalAccountingSummaryCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openportal-accounting-summary/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_active", *params.IsActive, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenportalAccountingSummaryRetrieveRequest generates requests for OpenportalAccountingSummaryRetrieve
+func NewOpenportalAccountingSummaryRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openportal-accounting-summary/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOpenportalAllocationUserUsageListRequest generates requests for OpenportalAllocationUserUsageList
 func NewOpenportalAllocationUserUsageListRequest(server string, params *OpenportalAllocationUserUsageListParams) (*http.Request, error) {
 	var err error
@@ -253002,6 +253534,22 @@ func NewOpenportalManagedProjectsListRequest(server string, params *OpenportalMa
 
 		}
 
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
@@ -253085,6 +253633,22 @@ func NewOpenportalManagedProjectsListRequest(server string, params *OpenportalMa
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -253179,6 +253743,22 @@ func NewOpenportalManagedProjectsCountRequest(server string, params *OpenportalM
 
 		}
 
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
@@ -253262,6 +253842,22 @@ func NewOpenportalManagedProjectsCountRequest(server string, params *OpenportalM
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -253624,6 +254220,330 @@ func NewOpenportalManagedProjectsRejectRequestWithBody(server string, identifier
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenportalProjectStorageReportsListRequest generates requests for OpenportalProjectStorageReportsList
+func NewOpenportalProjectStorageReportsListRequest(server string, params *OpenportalProjectStorageReportsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openportal-project-storage-reports/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Month != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "month", *params.Month, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectIdentifier != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_identifier", *params.ProjectIdentifier, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Resource != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource", *params.Resource, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Year != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "year", *params.Year, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenportalProjectStorageReportsCountRequest generates requests for OpenportalProjectStorageReportsCount
+func NewOpenportalProjectStorageReportsCountRequest(server string, params *OpenportalProjectStorageReportsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openportal-project-storage-reports/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Month != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "month", *params.Month, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectIdentifier != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_identifier", *params.ProjectIdentifier, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Resource != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource", *params.Resource, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Year != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "year", *params.Year, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenportalProjectStorageReportsRetrieveRequest generates requests for OpenportalProjectStorageReportsRetrieve
+func NewOpenportalProjectStorageReportsRetrieveRequest(server string, id int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openportal-project-storage-reports/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -254083,6 +255003,362 @@ func NewOpenportalProjectTemplateDeleteDestroyRequest(server string, uuid openap
 	}
 
 	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenportalProjectUsageReportsListRequest generates requests for OpenportalProjectUsageReportsList
+func NewOpenportalProjectUsageReportsListRequest(server string, params *OpenportalProjectUsageReportsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openportal-project-usage-reports/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.IsComplete != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_complete", *params.IsComplete, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Month != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "month", *params.Month, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectIdentifier != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_identifier", *params.ProjectIdentifier, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Resource != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource", *params.Resource, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Year != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "year", *params.Year, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenportalProjectUsageReportsCountRequest generates requests for OpenportalProjectUsageReportsCount
+func NewOpenportalProjectUsageReportsCountRequest(server string, params *OpenportalProjectUsageReportsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openportal-project-usage-reports/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.IsComplete != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_complete", *params.IsComplete, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Month != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "month", *params.Month, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectIdentifier != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_identifier", *params.ProjectIdentifier, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Resource != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource", *params.Resource, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Year != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "year", *params.Year, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenportalProjectUsageReportsRetrieveRequest generates requests for OpenportalProjectUsageReportsRetrieve
+func NewOpenportalProjectUsageReportsRetrieveRequest(server string, id int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openportal-project-usage-reports/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -345182,6 +346458,15 @@ type ClientWithResponsesInterface interface {
 	// OnboardingSupportedCountriesRetrieveWithResponse request
 	OnboardingSupportedCountriesRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OnboardingSupportedCountriesRetrieveResponse, error)
 
+	// OpenportalAccountingSummaryListWithResponse request
+	OpenportalAccountingSummaryListWithResponse(ctx context.Context, params *OpenportalAccountingSummaryListParams, reqEditors ...RequestEditorFn) (*OpenportalAccountingSummaryListResponse, error)
+
+	// OpenportalAccountingSummaryCountWithResponse request
+	OpenportalAccountingSummaryCountWithResponse(ctx context.Context, params *OpenportalAccountingSummaryCountParams, reqEditors ...RequestEditorFn) (*OpenportalAccountingSummaryCountResponse, error)
+
+	// OpenportalAccountingSummaryRetrieveWithResponse request
+	OpenportalAccountingSummaryRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalAccountingSummaryRetrieveResponse, error)
+
 	// OpenportalAllocationUserUsageListWithResponse request
 	OpenportalAllocationUserUsageListWithResponse(ctx context.Context, params *OpenportalAllocationUserUsageListParams, reqEditors ...RequestEditorFn) (*OpenportalAllocationUserUsageListResponse, error)
 
@@ -345279,6 +346564,15 @@ type ClientWithResponsesInterface interface {
 
 	OpenportalManagedProjectsRejectWithResponse(ctx context.Context, identifier string, destination string, body OpenportalManagedProjectsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalManagedProjectsRejectResponse, error)
 
+	// OpenportalProjectStorageReportsListWithResponse request
+	OpenportalProjectStorageReportsListWithResponse(ctx context.Context, params *OpenportalProjectStorageReportsListParams, reqEditors ...RequestEditorFn) (*OpenportalProjectStorageReportsListResponse, error)
+
+	// OpenportalProjectStorageReportsCountWithResponse request
+	OpenportalProjectStorageReportsCountWithResponse(ctx context.Context, params *OpenportalProjectStorageReportsCountParams, reqEditors ...RequestEditorFn) (*OpenportalProjectStorageReportsCountResponse, error)
+
+	// OpenportalProjectStorageReportsRetrieveWithResponse request
+	OpenportalProjectStorageReportsRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*OpenportalProjectStorageReportsRetrieveResponse, error)
+
 	// OpenportalProjectTemplateListWithResponse request
 	OpenportalProjectTemplateListWithResponse(ctx context.Context, params *OpenportalProjectTemplateListParams, reqEditors ...RequestEditorFn) (*OpenportalProjectTemplateListResponse, error)
 
@@ -345308,6 +346602,15 @@ type ClientWithResponsesInterface interface {
 
 	// OpenportalProjectTemplateDeleteDestroyWithResponse request
 	OpenportalProjectTemplateDeleteDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalProjectTemplateDeleteDestroyResponse, error)
+
+	// OpenportalProjectUsageReportsListWithResponse request
+	OpenportalProjectUsageReportsListWithResponse(ctx context.Context, params *OpenportalProjectUsageReportsListParams, reqEditors ...RequestEditorFn) (*OpenportalProjectUsageReportsListResponse, error)
+
+	// OpenportalProjectUsageReportsCountWithResponse request
+	OpenportalProjectUsageReportsCountWithResponse(ctx context.Context, params *OpenportalProjectUsageReportsCountParams, reqEditors ...RequestEditorFn) (*OpenportalProjectUsageReportsCountResponse, error)
+
+	// OpenportalProjectUsageReportsRetrieveWithResponse request
+	OpenportalProjectUsageReportsRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*OpenportalProjectUsageReportsRetrieveResponse, error)
 
 	// OpenportalProjectinfoListWithResponse request
 	OpenportalProjectinfoListWithResponse(ctx context.Context, params *OpenportalProjectinfoListParams, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoListResponse, error)
@@ -379378,6 +380681,71 @@ func (r OnboardingSupportedCountriesRetrieveResponse) StatusCode() int {
 	return 0
 }
 
+type OpenportalAccountingSummaryListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ProjectAccountingSummary
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenportalAccountingSummaryListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenportalAccountingSummaryListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenportalAccountingSummaryCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenportalAccountingSummaryCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenportalAccountingSummaryCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenportalAccountingSummaryRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ProjectAccountingSummary
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenportalAccountingSummaryRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenportalAccountingSummaryRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type OpenportalAllocationUserUsageListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -379961,6 +381329,71 @@ func (r OpenportalManagedProjectsRejectResponse) StatusCode() int {
 	return 0
 }
 
+type OpenportalProjectStorageReportsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]CachedProjectStorageReport
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenportalProjectStorageReportsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenportalProjectStorageReportsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenportalProjectStorageReportsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenportalProjectStorageReportsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenportalProjectStorageReportsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenportalProjectStorageReportsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CachedProjectStorageReport
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenportalProjectStorageReportsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenportalProjectStorageReportsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type OpenportalProjectTemplateListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -380128,6 +381561,71 @@ func (r OpenportalProjectTemplateDeleteDestroyResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenportalProjectTemplateDeleteDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenportalProjectUsageReportsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]CachedProjectUsageReport
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenportalProjectUsageReportsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenportalProjectUsageReportsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenportalProjectUsageReportsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenportalProjectUsageReportsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenportalProjectUsageReportsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenportalProjectUsageReportsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CachedProjectUsageReport
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenportalProjectUsageReportsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenportalProjectUsageReportsRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -418541,6 +420039,33 @@ func (c *ClientWithResponses) OnboardingSupportedCountriesRetrieveWithResponse(c
 	return ParseOnboardingSupportedCountriesRetrieveResponse(rsp)
 }
 
+// OpenportalAccountingSummaryListWithResponse request returning *OpenportalAccountingSummaryListResponse
+func (c *ClientWithResponses) OpenportalAccountingSummaryListWithResponse(ctx context.Context, params *OpenportalAccountingSummaryListParams, reqEditors ...RequestEditorFn) (*OpenportalAccountingSummaryListResponse, error) {
+	rsp, err := c.OpenportalAccountingSummaryList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenportalAccountingSummaryListResponse(rsp)
+}
+
+// OpenportalAccountingSummaryCountWithResponse request returning *OpenportalAccountingSummaryCountResponse
+func (c *ClientWithResponses) OpenportalAccountingSummaryCountWithResponse(ctx context.Context, params *OpenportalAccountingSummaryCountParams, reqEditors ...RequestEditorFn) (*OpenportalAccountingSummaryCountResponse, error) {
+	rsp, err := c.OpenportalAccountingSummaryCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenportalAccountingSummaryCountResponse(rsp)
+}
+
+// OpenportalAccountingSummaryRetrieveWithResponse request returning *OpenportalAccountingSummaryRetrieveResponse
+func (c *ClientWithResponses) OpenportalAccountingSummaryRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalAccountingSummaryRetrieveResponse, error) {
+	rsp, err := c.OpenportalAccountingSummaryRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenportalAccountingSummaryRetrieveResponse(rsp)
+}
+
 // OpenportalAllocationUserUsageListWithResponse request returning *OpenportalAllocationUserUsageListResponse
 func (c *ClientWithResponses) OpenportalAllocationUserUsageListWithResponse(ctx context.Context, params *OpenportalAllocationUserUsageListParams, reqEditors ...RequestEditorFn) (*OpenportalAllocationUserUsageListResponse, error) {
 	rsp, err := c.OpenportalAllocationUserUsageList(ctx, params, reqEditors...)
@@ -418848,6 +420373,33 @@ func (c *ClientWithResponses) OpenportalManagedProjectsRejectWithResponse(ctx co
 	return ParseOpenportalManagedProjectsRejectResponse(rsp)
 }
 
+// OpenportalProjectStorageReportsListWithResponse request returning *OpenportalProjectStorageReportsListResponse
+func (c *ClientWithResponses) OpenportalProjectStorageReportsListWithResponse(ctx context.Context, params *OpenportalProjectStorageReportsListParams, reqEditors ...RequestEditorFn) (*OpenportalProjectStorageReportsListResponse, error) {
+	rsp, err := c.OpenportalProjectStorageReportsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenportalProjectStorageReportsListResponse(rsp)
+}
+
+// OpenportalProjectStorageReportsCountWithResponse request returning *OpenportalProjectStorageReportsCountResponse
+func (c *ClientWithResponses) OpenportalProjectStorageReportsCountWithResponse(ctx context.Context, params *OpenportalProjectStorageReportsCountParams, reqEditors ...RequestEditorFn) (*OpenportalProjectStorageReportsCountResponse, error) {
+	rsp, err := c.OpenportalProjectStorageReportsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenportalProjectStorageReportsCountResponse(rsp)
+}
+
+// OpenportalProjectStorageReportsRetrieveWithResponse request returning *OpenportalProjectStorageReportsRetrieveResponse
+func (c *ClientWithResponses) OpenportalProjectStorageReportsRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*OpenportalProjectStorageReportsRetrieveResponse, error) {
+	rsp, err := c.OpenportalProjectStorageReportsRetrieve(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenportalProjectStorageReportsRetrieveResponse(rsp)
+}
+
 // OpenportalProjectTemplateListWithResponse request returning *OpenportalProjectTemplateListResponse
 func (c *ClientWithResponses) OpenportalProjectTemplateListWithResponse(ctx context.Context, params *OpenportalProjectTemplateListParams, reqEditors ...RequestEditorFn) (*OpenportalProjectTemplateListResponse, error) {
 	rsp, err := c.OpenportalProjectTemplateList(ctx, params, reqEditors...)
@@ -418942,6 +420494,33 @@ func (c *ClientWithResponses) OpenportalProjectTemplateDeleteDestroyWithResponse
 		return nil, err
 	}
 	return ParseOpenportalProjectTemplateDeleteDestroyResponse(rsp)
+}
+
+// OpenportalProjectUsageReportsListWithResponse request returning *OpenportalProjectUsageReportsListResponse
+func (c *ClientWithResponses) OpenportalProjectUsageReportsListWithResponse(ctx context.Context, params *OpenportalProjectUsageReportsListParams, reqEditors ...RequestEditorFn) (*OpenportalProjectUsageReportsListResponse, error) {
+	rsp, err := c.OpenportalProjectUsageReportsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenportalProjectUsageReportsListResponse(rsp)
+}
+
+// OpenportalProjectUsageReportsCountWithResponse request returning *OpenportalProjectUsageReportsCountResponse
+func (c *ClientWithResponses) OpenportalProjectUsageReportsCountWithResponse(ctx context.Context, params *OpenportalProjectUsageReportsCountParams, reqEditors ...RequestEditorFn) (*OpenportalProjectUsageReportsCountResponse, error) {
+	rsp, err := c.OpenportalProjectUsageReportsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenportalProjectUsageReportsCountResponse(rsp)
+}
+
+// OpenportalProjectUsageReportsRetrieveWithResponse request returning *OpenportalProjectUsageReportsRetrieveResponse
+func (c *ClientWithResponses) OpenportalProjectUsageReportsRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*OpenportalProjectUsageReportsRetrieveResponse, error) {
+	rsp, err := c.OpenportalProjectUsageReportsRetrieve(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenportalProjectUsageReportsRetrieveResponse(rsp)
 }
 
 // OpenportalProjectinfoListWithResponse request returning *OpenportalProjectinfoListResponse
@@ -463040,6 +464619,74 @@ func ParseOnboardingSupportedCountriesRetrieveResponse(rsp *http.Response) (*Onb
 	return response, nil
 }
 
+// ParseOpenportalAccountingSummaryListResponse parses an HTTP response from a OpenportalAccountingSummaryListWithResponse call
+func ParseOpenportalAccountingSummaryListResponse(rsp *http.Response) (*OpenportalAccountingSummaryListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenportalAccountingSummaryListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ProjectAccountingSummary
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenportalAccountingSummaryCountResponse parses an HTTP response from a OpenportalAccountingSummaryCountWithResponse call
+func ParseOpenportalAccountingSummaryCountResponse(rsp *http.Response) (*OpenportalAccountingSummaryCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenportalAccountingSummaryCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenportalAccountingSummaryRetrieveResponse parses an HTTP response from a OpenportalAccountingSummaryRetrieveWithResponse call
+func ParseOpenportalAccountingSummaryRetrieveResponse(rsp *http.Response) (*OpenportalAccountingSummaryRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenportalAccountingSummaryRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProjectAccountingSummary
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseOpenportalAllocationUserUsageListResponse parses an HTTP response from a OpenportalAllocationUserUsageListWithResponse call
 func ParseOpenportalAllocationUserUsageListResponse(rsp *http.Response) (*OpenportalAllocationUserUsageListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -463629,6 +465276,74 @@ func ParseOpenportalManagedProjectsRejectResponse(rsp *http.Response) (*Openport
 	return response, nil
 }
 
+// ParseOpenportalProjectStorageReportsListResponse parses an HTTP response from a OpenportalProjectStorageReportsListWithResponse call
+func ParseOpenportalProjectStorageReportsListResponse(rsp *http.Response) (*OpenportalProjectStorageReportsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenportalProjectStorageReportsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []CachedProjectStorageReport
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenportalProjectStorageReportsCountResponse parses an HTTP response from a OpenportalProjectStorageReportsCountWithResponse call
+func ParseOpenportalProjectStorageReportsCountResponse(rsp *http.Response) (*OpenportalProjectStorageReportsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenportalProjectStorageReportsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenportalProjectStorageReportsRetrieveResponse parses an HTTP response from a OpenportalProjectStorageReportsRetrieveWithResponse call
+func ParseOpenportalProjectStorageReportsRetrieveResponse(rsp *http.Response) (*OpenportalProjectStorageReportsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenportalProjectStorageReportsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CachedProjectStorageReport
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseOpenportalProjectTemplateListResponse parses an HTTP response from a OpenportalProjectTemplateListWithResponse call
 func ParseOpenportalProjectTemplateListResponse(rsp *http.Response) (*OpenportalProjectTemplateListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -463802,6 +465517,74 @@ func ParseOpenportalProjectTemplateDeleteDestroyResponse(rsp *http.Response) (*O
 	response := &OpenportalProjectTemplateDeleteDestroyResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenportalProjectUsageReportsListResponse parses an HTTP response from a OpenportalProjectUsageReportsListWithResponse call
+func ParseOpenportalProjectUsageReportsListResponse(rsp *http.Response) (*OpenportalProjectUsageReportsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenportalProjectUsageReportsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []CachedProjectUsageReport
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenportalProjectUsageReportsCountResponse parses an HTTP response from a OpenportalProjectUsageReportsCountWithResponse call
+func ParseOpenportalProjectUsageReportsCountResponse(rsp *http.Response) (*OpenportalProjectUsageReportsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenportalProjectUsageReportsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenportalProjectUsageReportsRetrieveResponse parses an HTTP response from a OpenportalProjectUsageReportsRetrieveWithResponse call
+func ParseOpenportalProjectUsageReportsRetrieveResponse(rsp *http.Response) (*OpenportalProjectUsageReportsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenportalProjectUsageReportsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CachedProjectUsageReport
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
