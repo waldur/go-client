@@ -9624,6 +9624,39 @@ func (e MatchingAlgorithm) Valid() bool {
 	}
 }
 
+// Defines values for MessageBlocksKey.
+const (
+	Code         MessageBlocksKey = "code"
+	HomeportNav  MessageBlocksKey = "homeport_nav"
+	Markdown     MessageBlocksKey = "markdown"
+	Mermaid      MessageBlocksKey = "mermaid"
+	ResourceList MessageBlocksKey = "resource_list"
+	Tool         MessageBlocksKey = "tool"
+	VmOrder      MessageBlocksKey = "vm_order"
+)
+
+// Valid indicates whether the value is a known member of the MessageBlocksKey enum.
+func (e MessageBlocksKey) Valid() bool {
+	switch e {
+	case Code:
+		return true
+	case HomeportNav:
+		return true
+	case Markdown:
+		return true
+	case Mermaid:
+		return true
+	case ResourceList:
+		return true
+	case Tool:
+		return true
+	case VmOrder:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for MessageRoleEnum.
 const (
 	MessageRoleEnumAssistant MessageRoleEnum = "assistant"
@@ -19158,6 +19191,21 @@ func (e ThreadSessionOEnum) Valid() bool {
 	}
 }
 
+// Defines values for ThreadSessionScopeEnum.
+const (
+	Own ThreadSessionScopeEnum = "own"
+)
+
+// Valid indicates whether the value is a known member of the ThreadSessionScopeEnum enum.
+func (e ThreadSessionScopeEnum) Valid() bool {
+	switch e {
+	case Own:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for TriggerCOIDetectionJobTypeEnum.
 const (
 	TriggerCOIDetectionJobTypeEnumFullCall    TriggerCOIDetectionJobTypeEnum = "full_call"
@@ -24561,9 +24609,6 @@ type ChatResponse struct {
 	// Flavors Available flavor options [{name, cores, ram}]. Present when status='form'.
 	Flavors *[]interface{} `json:"flavors,omitempty"`
 
-	// H Table headers - list of column names. Present when k='table'.
-	H *[]interface{} `json:"h,omitempty"`
-
 	// Image Image name.
 	Image *string `json:"image,omitempty"`
 
@@ -24578,9 +24623,6 @@ type ChatResponse struct {
 
 	// Message Success message (present on success).
 	Message *string `json:"message,omitempty"`
-
-	// N Total count of rows in the table (used for pagination display). Present when k='table'.
-	N *int `json:"n,omitempty"`
 
 	// Name VM name.
 	Name *string `json:"name,omitempty"`
@@ -24602,9 +24644,6 @@ type ChatResponse struct {
 
 	// Projects Available project options [{name, organization, uuid}]. Present when status='project_form'.
 	Projects *[]interface{} `json:"projects,omitempty"`
-
-	// R Table rows - list of row data (each row is a list of strings). Present when k='table'.
-	R *[]interface{} `json:"r,omitempty"`
 
 	// State State display name filters (e.g. ['OK', 'Erred']). Present when k='resource_list'.
 	State *[]interface{} `json:"state,omitempty"`
@@ -32041,8 +32080,7 @@ type MergedSecretOptionsRequest struct {
 // Message defines model for Message.
 type Message struct {
 	ActionTaken         *ActionTakenEnum       `json:"action_taken,omitempty"`
-	Content             *string                `json:"content,omitempty"`
-	ContentDisplay      *string                `json:"content_display,omitempty"`
+	Blocks              *[]Message_Blocks_Item `json:"blocks,omitempty"`
 	Created             *time.Time             `json:"created,omitempty"`
 	InjectionCategories interface{}            `json:"injection_categories,omitempty"`
 	InputTokens         *int                   `json:"input_tokens,omitempty"`
@@ -32054,8 +32092,19 @@ type Message struct {
 	SequenceIndex       *int                   `json:"sequence_index,omitempty"`
 	Severity            *InjectionSeverityEnum `json:"severity,omitempty"`
 	Thread              *openapi_types.UUID    `json:"thread,omitempty"`
-	ToolCalls           interface{}            `json:"tool_calls,omitempty"`
 	Uuid                *openapi_types.UUID    `json:"uuid,omitempty"`
+	Warning             *string                `json:"warning,omitempty"`
+}
+
+// MessageBlocksKey defines model for Message.Blocks.Key.
+type MessageBlocksKey string
+
+// Message_Blocks_Item defines model for Message.blocks.Item.
+type Message_Blocks_Item struct {
+	Id                   string                 `json:"id"`
+	Key                  MessageBlocksKey       `json:"key"`
+	Status               string                 `json:"status"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // MessageResponse defines model for MessageResponse.
@@ -47014,6 +47063,9 @@ type ThreadSessionRequest struct {
 	Name       *string `json:"name,omitempty"`
 }
 
+// ThreadSessionScopeEnum defines model for ThreadSessionScopeEnum.
+type ThreadSessionScopeEnum string
+
 // TimeSeriesToSData defines model for TimeSeriesToSData.
 type TimeSeriesToSData struct {
 	// Count Count for the date
@@ -51124,11 +51176,12 @@ type ChatThreadsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize       *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Query          *string             `form:"query,omitempty" json:"query,omitempty"`
-	TotalTokensMax *float32            `form:"total_tokens_max,omitempty" json:"total_tokens_max,omitempty"`
-	TotalTokensMin *float32            `form:"total_tokens_min,omitempty" json:"total_tokens_min,omitempty"`
-	User           *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
+	PageSize       *PageSize               `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Query          *string                 `form:"query,omitempty" json:"query,omitempty"`
+	Scope          *ThreadSessionScopeEnum `form:"scope,omitempty" json:"scope,omitempty"`
+	TotalTokensMax *float32                `form:"total_tokens_max,omitempty" json:"total_tokens_max,omitempty"`
+	TotalTokensMin *float32                `form:"total_tokens_min,omitempty" json:"total_tokens_min,omitempty"`
+	User           *openapi_types.UUID     `form:"user,omitempty" json:"user,omitempty"`
 }
 
 // ChatThreadsRetrieveParams defines parameters for ChatThreadsRetrieve.
@@ -73357,6 +73410,98 @@ func (a GenericOrderAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(object)
 }
 
+// Getter for additional properties for Message_Blocks_Item. Returns the specified
+// element and whether it was found
+func (a Message_Blocks_Item) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for Message_Blocks_Item
+func (a *Message_Blocks_Item) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for Message_Blocks_Item to handle AdditionalProperties
+func (a *Message_Blocks_Item) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["id"]; found {
+		err = json.Unmarshal(raw, &a.Id)
+		if err != nil {
+			return fmt.Errorf("error reading 'id': %w", err)
+		}
+		delete(object, "id")
+	}
+
+	if raw, found := object["key"]; found {
+		err = json.Unmarshal(raw, &a.Key)
+		if err != nil {
+			return fmt.Errorf("error reading 'key': %w", err)
+		}
+		delete(object, "key")
+	}
+
+	if raw, found := object["status"]; found {
+		err = json.Unmarshal(raw, &a.Status)
+		if err != nil {
+			return fmt.Errorf("error reading 'status': %w", err)
+		}
+		delete(object, "status")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for Message_Blocks_Item to handle AdditionalProperties
+func (a Message_Blocks_Item) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["id"], err = json.Marshal(a.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'id': %w", err)
+	}
+
+	object["key"], err = json.Marshal(a.Key)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'key': %w", err)
+	}
+
+	object["status"], err = json.Marshal(a.Status)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'status': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
 // AsAllocationAccessUrl0 returns the union data inside the Allocation_AccessUrl as a AllocationAccessUrl0
 func (t Allocation_AccessUrl) AsAllocationAccessUrl0() (AllocationAccessUrl0, error) {
 	var body AllocationAccessUrl0
@@ -78075,32 +78220,6 @@ func (t *OfferingComponent_LimitPeriod) MergeLimitPeriodEnum(v LimitPeriodEnum) 
 	return err
 }
 
-// AsBlankEnum returns the union data inside the OfferingComponent_LimitPeriod as a BlankEnum
-func (t OfferingComponent_LimitPeriod) AsBlankEnum() (BlankEnum, error) {
-	var body BlankEnum
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromBlankEnum overwrites any union data inside the OfferingComponent_LimitPeriod as the provided BlankEnum
-func (t *OfferingComponent_LimitPeriod) FromBlankEnum(v BlankEnum) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeBlankEnum performs a merge with any union data inside the OfferingComponent_LimitPeriod, using the provided BlankEnum
-func (t *OfferingComponent_LimitPeriod) MergeBlankEnum(v BlankEnum) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
 // AsNullEnum returns the union data inside the OfferingComponent_LimitPeriod as a NullEnum
 func (t OfferingComponent_LimitPeriod) AsNullEnum() (NullEnum, error) {
 	var body NullEnum
@@ -78153,32 +78272,6 @@ func (t *OfferingComponentRequest_LimitPeriod) FromLimitPeriodEnum(v LimitPeriod
 
 // MergeLimitPeriodEnum performs a merge with any union data inside the OfferingComponentRequest_LimitPeriod, using the provided LimitPeriodEnum
 func (t *OfferingComponentRequest_LimitPeriod) MergeLimitPeriodEnum(v LimitPeriodEnum) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsBlankEnum returns the union data inside the OfferingComponentRequest_LimitPeriod as a BlankEnum
-func (t OfferingComponentRequest_LimitPeriod) AsBlankEnum() (BlankEnum, error) {
-	var body BlankEnum
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromBlankEnum overwrites any union data inside the OfferingComponentRequest_LimitPeriod as the provided BlankEnum
-func (t *OfferingComponentRequest_LimitPeriod) FromBlankEnum(v BlankEnum) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeBlankEnum performs a merge with any union data inside the OfferingComponentRequest_LimitPeriod, using the provided BlankEnum
-func (t *OfferingComponentRequest_LimitPeriod) MergeBlankEnum(v BlankEnum) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -85101,32 +85194,6 @@ func (t *UpdateOfferingComponentRequest_LimitPeriod) FromLimitPeriodEnum(v Limit
 
 // MergeLimitPeriodEnum performs a merge with any union data inside the UpdateOfferingComponentRequest_LimitPeriod, using the provided LimitPeriodEnum
 func (t *UpdateOfferingComponentRequest_LimitPeriod) MergeLimitPeriodEnum(v LimitPeriodEnum) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsBlankEnum returns the union data inside the UpdateOfferingComponentRequest_LimitPeriod as a BlankEnum
-func (t UpdateOfferingComponentRequest_LimitPeriod) AsBlankEnum() (BlankEnum, error) {
-	var body BlankEnum
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromBlankEnum overwrites any union data inside the UpdateOfferingComponentRequest_LimitPeriod as the provided BlankEnum
-func (t *UpdateOfferingComponentRequest_LimitPeriod) FromBlankEnum(v BlankEnum) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeBlankEnum performs a merge with any union data inside the UpdateOfferingComponentRequest_LimitPeriod, using the provided BlankEnum
-func (t *UpdateOfferingComponentRequest_LimitPeriod) MergeBlankEnum(v BlankEnum) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -160781,6 +160848,22 @@ func NewChatThreadsListRequest(server string, params *ChatThreadsListParams) (*h
 		if params.Query != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "scope", *params.Scope, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
