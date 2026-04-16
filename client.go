@@ -10387,6 +10387,7 @@ const (
 	OfferingUserFieldEnumMissingProfileAttributes     OfferingUserFieldEnum = "missing_profile_attributes"
 	OfferingUserFieldEnumModified                     OfferingUserFieldEnum = "modified"
 	OfferingUserFieldEnumOffering                     OfferingUserFieldEnum = "offering"
+	OfferingUserFieldEnumOfferingHasActiveTos         OfferingUserFieldEnum = "offering_has_active_tos"
 	OfferingUserFieldEnumOfferingName                 OfferingUserFieldEnum = "offering_name"
 	OfferingUserFieldEnumOfferingUuid                 OfferingUserFieldEnum = "offering_uuid"
 	OfferingUserFieldEnumRequiresReconsent            OfferingUserFieldEnum = "requires_reconsent"
@@ -10448,6 +10449,8 @@ func (e OfferingUserFieldEnum) Valid() bool {
 	case OfferingUserFieldEnumModified:
 		return true
 	case OfferingUserFieldEnumOffering:
+		return true
+	case OfferingUserFieldEnumOfferingHasActiveTos:
 		return true
 	case OfferingUserFieldEnumOfferingName:
 		return true
@@ -34078,6 +34081,7 @@ type OfferingUser struct {
 	MissingProfileAttributes *[]string           `json:"missing_profile_attributes,omitempty"`
 	Modified                 *time.Time          `json:"modified,omitempty"`
 	Offering                 *string             `json:"offering,omitempty"`
+	OfferingHasActiveTos     *bool               `json:"offering_has_active_tos,omitempty"`
 	OfferingName             *string             `json:"offering_name,omitempty"`
 	OfferingUuid             *openapi_types.UUID `json:"offering_uuid,omitempty"`
 
@@ -55132,6 +55136,9 @@ type MarketplaceOfferingUsersListParams struct {
 	O        *[]OfferingUserOEnum `form:"o,omitempty" json:"o,omitempty"`
 	Offering *string              `form:"offering,omitempty" json:"offering,omitempty"`
 
+	// OfferingHasActiveTos Offering has active Terms of Service
+	OfferingHasActiveTos *bool `form:"offering_has_active_tos,omitempty" json:"offering_has_active_tos,omitempty"`
+
 	// OfferingSlug Multiple values may be separated by commas.
 	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
 
@@ -55189,6 +55196,9 @@ type MarketplaceOfferingUsersCountParams struct {
 	//
 	O        *[]OfferingUserOEnum `form:"o,omitempty" json:"o,omitempty"`
 	Offering *string              `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingHasActiveTos Offering has active Terms of Service
+	OfferingHasActiveTos *bool `form:"offering_has_active_tos,omitempty" json:"offering_has_active_tos,omitempty"`
 
 	// OfferingSlug Multiple values may be separated by commas.
 	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
@@ -199976,6 +199986,22 @@ func NewMarketplaceOfferingUsersListRequest(server string, params *MarketplaceOf
 
 		}
 
+		if params.OfferingHasActiveTos != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_has_active_tos", *params.OfferingHasActiveTos, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.OfferingSlug != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "offering_slug", *params.OfferingSlug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
@@ -200300,6 +200326,22 @@ func NewMarketplaceOfferingUsersCountRequest(server string, params *MarketplaceO
 		if params.Offering != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering", *params.Offering, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingHasActiveTos != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_has_active_tos", *params.OfferingHasActiveTos, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
