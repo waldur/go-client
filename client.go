@@ -915,6 +915,24 @@ func (e AvailableChecklistsResponseChecklistTypeEnum) Valid() bool {
 	}
 }
 
+// Defines values for AvailableExternalNetworkSourceEnum.
+const (
+	AvailableExternalNetworkSourceEnumGlobal AvailableExternalNetworkSourceEnum = "global"
+	AvailableExternalNetworkSourceEnumRbac   AvailableExternalNetworkSourceEnum = "rbac"
+)
+
+// Valid indicates whether the value is a known member of the AvailableExternalNetworkSourceEnum enum.
+func (e AvailableExternalNetworkSourceEnum) Valid() bool {
+	switch e {
+	case AvailableExternalNetworkSourceEnumGlobal:
+		return true
+	case AvailableExternalNetworkSourceEnumRbac:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for AwsInstanceFieldEnum.
 const (
 	AwsInstanceFieldEnumAccessUrl                        AwsInstanceFieldEnum = "access_url"
@@ -12512,9 +12530,15 @@ const (
 	OpenStackRouterFieldEnumCustomerNativeName               OpenStackRouterFieldEnum = "customer_native_name"
 	OpenStackRouterFieldEnumCustomerUuid                     OpenStackRouterFieldEnum = "customer_uuid"
 	OpenStackRouterFieldEnumDescription                      OpenStackRouterFieldEnum = "description"
+	OpenStackRouterFieldEnumEnableSnat                       OpenStackRouterFieldEnum = "enable_snat"
 	OpenStackRouterFieldEnumErrorMessage                     OpenStackRouterFieldEnum = "error_message"
 	OpenStackRouterFieldEnumErrorTraceback                   OpenStackRouterFieldEnum = "error_traceback"
+	OpenStackRouterFieldEnumExternalFixedIps                 OpenStackRouterFieldEnum = "external_fixed_ips"
+	OpenStackRouterFieldEnumExternalNetworkId                OpenStackRouterFieldEnum = "external_network_id"
+	OpenStackRouterFieldEnumExternalNetworkName              OpenStackRouterFieldEnum = "external_network_name"
+	OpenStackRouterFieldEnumExternalNetworkUuid              OpenStackRouterFieldEnum = "external_network_uuid"
 	OpenStackRouterFieldEnumFixedIps                         OpenStackRouterFieldEnum = "fixed_ips"
+	OpenStackRouterFieldEnumHasExternalGateway               OpenStackRouterFieldEnum = "has_external_gateway"
 	OpenStackRouterFieldEnumIsLimitBased                     OpenStackRouterFieldEnum = "is_limit_based"
 	OpenStackRouterFieldEnumIsUsageBased                     OpenStackRouterFieldEnum = "is_usage_based"
 	OpenStackRouterFieldEnumMarketplaceCategoryName          OpenStackRouterFieldEnum = "marketplace_category_name"
@@ -12569,11 +12593,23 @@ func (e OpenStackRouterFieldEnum) Valid() bool {
 		return true
 	case OpenStackRouterFieldEnumDescription:
 		return true
+	case OpenStackRouterFieldEnumEnableSnat:
+		return true
 	case OpenStackRouterFieldEnumErrorMessage:
 		return true
 	case OpenStackRouterFieldEnumErrorTraceback:
 		return true
+	case OpenStackRouterFieldEnumExternalFixedIps:
+		return true
+	case OpenStackRouterFieldEnumExternalNetworkId:
+		return true
+	case OpenStackRouterFieldEnumExternalNetworkName:
+		return true
+	case OpenStackRouterFieldEnumExternalNetworkUuid:
+		return true
 	case OpenStackRouterFieldEnumFixedIps:
+		return true
+	case OpenStackRouterFieldEnumHasExternalGateway:
 		return true
 	case OpenStackRouterFieldEnumIsLimitBased:
 		return true
@@ -14109,6 +14145,7 @@ const (
 	PermissionMetadataResponsePermissionMapOPENSTACKINSTANCECONSOLEACCESS          PermissionMetadataResponsePermissionMap = "OPENSTACK_INSTANCE.CONSOLE_ACCESS"
 	PermissionMetadataResponsePermissionMapOPENSTACKINSTANCEMANAGE                 PermissionMetadataResponsePermissionMap = "OPENSTACK_INSTANCE.MANAGE"
 	PermissionMetadataResponsePermissionMapOPENSTACKINSTANCEMANAGEPOWER            PermissionMetadataResponsePermissionMap = "OPENSTACK_INSTANCE.MANAGE_POWER"
+	PermissionMetadataResponsePermissionMapOPENSTACKROUTERMANAGEGATEWAY            PermissionMetadataResponsePermissionMap = "OPENSTACK_ROUTER.MANAGE_GATEWAY"
 	PermissionMetadataResponsePermissionMapORDERAPPROVE                            PermissionMetadataResponsePermissionMap = "ORDER.APPROVE"
 	PermissionMetadataResponsePermissionMapORDERAPPROVEPRIVATE                     PermissionMetadataResponsePermissionMap = "ORDER.APPROVE_PRIVATE"
 	PermissionMetadataResponsePermissionMapORDERCANCEL                             PermissionMetadataResponsePermissionMap = "ORDER.CANCEL"
@@ -14293,6 +14330,8 @@ func (e PermissionMetadataResponsePermissionMap) Valid() bool {
 	case PermissionMetadataResponsePermissionMapOPENSTACKINSTANCEMANAGE:
 		return true
 	case PermissionMetadataResponsePermissionMapOPENSTACKINSTANCEMANAGEPOWER:
+		return true
+	case PermissionMetadataResponsePermissionMapOPENSTACKROUTERMANAGEGATEWAY:
 		return true
 	case PermissionMetadataResponsePermissionMapORDERAPPROVE:
 		return true
@@ -14487,6 +14526,7 @@ const (
 	PermissionMetadataResponsePermissionsOPENSTACKINSTANCECONSOLEACCESS          PermissionMetadataResponsePermissions = "OPENSTACK_INSTANCE.CONSOLE_ACCESS"
 	PermissionMetadataResponsePermissionsOPENSTACKINSTANCEMANAGE                 PermissionMetadataResponsePermissions = "OPENSTACK_INSTANCE.MANAGE"
 	PermissionMetadataResponsePermissionsOPENSTACKINSTANCEMANAGEPOWER            PermissionMetadataResponsePermissions = "OPENSTACK_INSTANCE.MANAGE_POWER"
+	PermissionMetadataResponsePermissionsOPENSTACKROUTERMANAGEGATEWAY            PermissionMetadataResponsePermissions = "OPENSTACK_ROUTER.MANAGE_GATEWAY"
 	PermissionMetadataResponsePermissionsORDERAPPROVE                            PermissionMetadataResponsePermissions = "ORDER.APPROVE"
 	PermissionMetadataResponsePermissionsORDERAPPROVEPRIVATE                     PermissionMetadataResponsePermissions = "ORDER.APPROVE_PRIVATE"
 	PermissionMetadataResponsePermissionsORDERCANCEL                             PermissionMetadataResponsePermissions = "ORDER.CANCEL"
@@ -14671,6 +14711,8 @@ func (e PermissionMetadataResponsePermissions) Valid() bool {
 	case PermissionMetadataResponsePermissionsOPENSTACKINSTANCEMANAGE:
 		return true
 	case PermissionMetadataResponsePermissionsOPENSTACKINSTANCEMANAGEPOWER:
+		return true
+	case PermissionMetadataResponsePermissionsOPENSTACKROUTERMANAGEGATEWAY:
 		return true
 	case PermissionMetadataResponsePermissionsORDERAPPROVE:
 		return true
@@ -21273,7 +21315,7 @@ type AgreementTypeEnum string
 
 // Allocation defines model for Allocation.
 type Allocation struct {
-	AccessUrl                        *string                 `json:"access_url,omitempty"`
+	AccessUrl                        *Allocation_AccessUrl   `json:"access_url,omitempty"`
 	BackendId                        *string                 `json:"backend_id,omitempty"`
 	Created                          *time.Time              `json:"created,omitempty"`
 	Customer                         *string                 `json:"customer,omitempty"`
@@ -21313,6 +21355,17 @@ type Allocation struct {
 	State                            *CoreStates             `json:"state,omitempty"`
 	Url                              *string                 `json:"url,omitempty"`
 	Uuid                             *openapi_types.UUID     `json:"uuid,omitempty"`
+}
+
+// AllocationAccessUrl0 defines model for .
+type AllocationAccessUrl0 = []string
+
+// AllocationAccessUrl1 defines model for .
+type AllocationAccessUrl1 = string
+
+// Allocation_AccessUrl defines model for Allocation.AccessUrl.
+type Allocation_AccessUrl struct {
+	union json.RawMessage
 }
 
 // AllocationFieldEnum defines model for AllocationFieldEnum.
@@ -22440,6 +22493,18 @@ type AvailableChecklistsResponse struct {
 // AvailableChecklistsResponseChecklistTypeEnum defines model for AvailableChecklistsResponseChecklistTypeEnum.
 type AvailableChecklistsResponseChecklistTypeEnum string
 
+// AvailableExternalNetwork defines model for AvailableExternalNetwork.
+type AvailableExternalNetwork struct {
+	BackendId   string                             `json:"backend_id"`
+	Description string                             `json:"description"`
+	Name        string                             `json:"name"`
+	Source      AvailableExternalNetworkSourceEnum `json:"source"`
+	Subnets     []map[string]interface{}           `json:"subnets"`
+}
+
+// AvailableExternalNetworkSourceEnum defines model for AvailableExternalNetworkSourceEnum.
+type AvailableExternalNetworkSourceEnum string
+
 // AvailableScope defines model for AvailableScope.
 type AvailableScope struct {
 	Description string `json:"description"`
@@ -22456,8 +22521,8 @@ type AwsImage struct {
 
 // AwsInstance defines model for AwsInstance.
 type AwsInstance struct {
-	AccessUrl *string `json:"access_url,omitempty"`
-	BackendId *string `json:"backend_id,omitempty"`
+	AccessUrl *AwsInstance_AccessUrl `json:"access_url,omitempty"`
+	BackendId *string                `json:"backend_id,omitempty"`
 
 	// Cores Number of cores in a VM
 	Cores                *int                `json:"cores,omitempty"`
@@ -22520,6 +22585,17 @@ type AwsInstance struct {
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// AwsInstanceAccessUrl0 defines model for .
+type AwsInstanceAccessUrl0 = []string
+
+// AwsInstanceAccessUrl1 defines model for .
+type AwsInstanceAccessUrl1 = string
+
+// AwsInstance_AccessUrl defines model for AwsInstance.AccessUrl.
+type AwsInstance_AccessUrl struct {
+	union json.RawMessage
+}
+
 // AwsInstanceFieldEnum defines model for AwsInstanceFieldEnum.
 type AwsInstanceFieldEnum string
 
@@ -22574,7 +22650,7 @@ type AwsSize struct {
 
 // AwsVolume defines model for AwsVolume.
 type AwsVolume struct {
-	AccessUrl                        *string                 `json:"access_url,omitempty"`
+	AccessUrl                        *AwsVolume_AccessUrl    `json:"access_url,omitempty"`
 	BackendId                        *string                 `json:"backend_id,omitempty"`
 	Created                          *time.Time              `json:"created,omitempty"`
 	Customer                         *string                 `json:"customer,omitempty"`
@@ -22617,6 +22693,17 @@ type AwsVolume struct {
 	Url        *string             `json:"url,omitempty"`
 	Uuid       *openapi_types.UUID `json:"uuid,omitempty"`
 	VolumeType *VolumeTypeEnum     `json:"volume_type,omitempty"`
+}
+
+// AwsVolumeAccessUrl0 defines model for .
+type AwsVolumeAccessUrl0 = []string
+
+// AwsVolumeAccessUrl1 defines model for .
+type AwsVolumeAccessUrl1 = string
+
+// AwsVolume_AccessUrl defines model for AwsVolume.AccessUrl.
+type AwsVolume_AccessUrl struct {
+	union json.RawMessage
 }
 
 // AwsVolumeAttach defines model for AwsVolumeAttach.
@@ -22670,44 +22757,55 @@ type AzureLocation struct {
 
 // AzurePublicIP defines model for AzurePublicIP.
 type AzurePublicIP struct {
-	AccessUrl                        *string                 `json:"access_url,omitempty"`
-	BackendId                        *string                 `json:"backend_id,omitempty"`
-	Created                          *time.Time              `json:"created,omitempty"`
-	Customer                         *string                 `json:"customer,omitempty"`
-	CustomerAbbreviation             *string                 `json:"customer_abbreviation,omitempty"`
-	CustomerName                     *string                 `json:"customer_name,omitempty"`
-	CustomerNativeName               *string                 `json:"customer_native_name,omitempty"`
-	CustomerUuid                     *openapi_types.UUID     `json:"customer_uuid,omitempty"`
-	Description                      *string                 `json:"description,omitempty"`
-	ErrorMessage                     *string                 `json:"error_message,omitempty"`
-	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
-	Location                         *string                 `json:"location,omitempty"`
-	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
-	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
-	Modified                         *time.Time              `json:"modified,omitempty"`
-	Name                             *string                 `json:"name,omitempty"`
-	Project                          *string                 `json:"project,omitempty"`
-	ProjectName                      *string                 `json:"project_name,omitempty"`
-	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
-	ResourceGroup                    *string                 `json:"resource_group,omitempty"`
-	ResourceType                     *string                 `json:"resource_type,omitempty"`
-	ServiceName                      *string                 `json:"service_name,omitempty"`
-	ServiceSettings                  *string                 `json:"service_settings,omitempty"`
-	ServiceSettingsErrorMessage      *string                 `json:"service_settings_error_message,omitempty"`
-	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
-	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
-	State                            *CoreStates             `json:"state,omitempty"`
-	Url                              *string                 `json:"url,omitempty"`
-	Uuid                             *openapi_types.UUID     `json:"uuid,omitempty"`
+	AccessUrl                        *AzurePublicIP_AccessUrl `json:"access_url,omitempty"`
+	BackendId                        *string                  `json:"backend_id,omitempty"`
+	Created                          *time.Time               `json:"created,omitempty"`
+	Customer                         *string                  `json:"customer,omitempty"`
+	CustomerAbbreviation             *string                  `json:"customer_abbreviation,omitempty"`
+	CustomerName                     *string                  `json:"customer_name,omitempty"`
+	CustomerNativeName               *string                  `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID      `json:"customer_uuid,omitempty"`
+	Description                      *string                  `json:"description,omitempty"`
+	ErrorMessage                     *string                  `json:"error_message,omitempty"`
+	ErrorTraceback                   *string                  `json:"error_traceback,omitempty"`
+	IsLimitBased                     *bool                    `json:"is_limit_based,omitempty"`
+	IsUsageBased                     *bool                    `json:"is_usage_based,omitempty"`
+	Location                         *string                  `json:"location,omitempty"`
+	MarketplaceCategoryName          *string                  `json:"marketplace_category_name,omitempty"`
+	MarketplaceCategoryUuid          *string                  `json:"marketplace_category_uuid,omitempty"`
+	MarketplaceOfferingName          *string                  `json:"marketplace_offering_name,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{}  `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                  `json:"marketplace_offering_type,omitempty"`
+	MarketplaceOfferingUuid          *string                  `json:"marketplace_offering_uuid,omitempty"`
+	MarketplacePlanUuid              *string                  `json:"marketplace_plan_uuid,omitempty"`
+	MarketplaceResourceState         *string                  `json:"marketplace_resource_state,omitempty"`
+	MarketplaceResourceUuid          *string                  `json:"marketplace_resource_uuid,omitempty"`
+	Modified                         *time.Time               `json:"modified,omitempty"`
+	Name                             *string                  `json:"name,omitempty"`
+	Project                          *string                  `json:"project,omitempty"`
+	ProjectName                      *string                  `json:"project_name,omitempty"`
+	ProjectUuid                      *openapi_types.UUID      `json:"project_uuid,omitempty"`
+	ResourceGroup                    *string                  `json:"resource_group,omitempty"`
+	ResourceType                     *string                  `json:"resource_type,omitempty"`
+	ServiceName                      *string                  `json:"service_name,omitempty"`
+	ServiceSettings                  *string                  `json:"service_settings,omitempty"`
+	ServiceSettingsErrorMessage      *string                  `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState             *string                  `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid              *openapi_types.UUID      `json:"service_settings_uuid,omitempty"`
+	State                            *CoreStates              `json:"state,omitempty"`
+	Url                              *string                  `json:"url,omitempty"`
+	Uuid                             *openapi_types.UUID      `json:"uuid,omitempty"`
+}
+
+// AzurePublicIPAccessUrl0 defines model for .
+type AzurePublicIPAccessUrl0 = []string
+
+// AzurePublicIPAccessUrl1 defines model for .
+type AzurePublicIPAccessUrl1 = string
+
+// AzurePublicIP_AccessUrl defines model for AzurePublicIP.AccessUrl.
+type AzurePublicIP_AccessUrl struct {
+	union json.RawMessage
 }
 
 // AzurePublicIPFieldEnum defines model for AzurePublicIPFieldEnum.
@@ -22725,43 +22823,54 @@ type AzurePublicIPRequest struct {
 
 // AzureResourceGroup defines model for AzureResourceGroup.
 type AzureResourceGroup struct {
-	AccessUrl                        *string                 `json:"access_url,omitempty"`
-	BackendId                        *string                 `json:"backend_id,omitempty"`
-	Created                          *time.Time              `json:"created,omitempty"`
-	Customer                         *string                 `json:"customer,omitempty"`
-	CustomerAbbreviation             *string                 `json:"customer_abbreviation,omitempty"`
-	CustomerName                     *string                 `json:"customer_name,omitempty"`
-	CustomerNativeName               *string                 `json:"customer_native_name,omitempty"`
-	CustomerUuid                     *openapi_types.UUID     `json:"customer_uuid,omitempty"`
-	Description                      *string                 `json:"description,omitempty"`
-	ErrorMessage                     *string                 `json:"error_message,omitempty"`
-	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
-	Location                         *string                 `json:"location,omitempty"`
-	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
-	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
-	Modified                         *time.Time              `json:"modified,omitempty"`
-	Name                             *string                 `json:"name,omitempty"`
-	Project                          *string                 `json:"project,omitempty"`
-	ProjectName                      *string                 `json:"project_name,omitempty"`
-	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
-	ResourceType                     *string                 `json:"resource_type,omitempty"`
-	ServiceName                      *string                 `json:"service_name,omitempty"`
-	ServiceSettings                  *string                 `json:"service_settings,omitempty"`
-	ServiceSettingsErrorMessage      *string                 `json:"service_settings_error_message,omitempty"`
-	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
-	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
-	State                            *CoreStates             `json:"state,omitempty"`
-	Url                              *string                 `json:"url,omitempty"`
-	Uuid                             *openapi_types.UUID     `json:"uuid,omitempty"`
+	AccessUrl                        *AzureResourceGroup_AccessUrl `json:"access_url,omitempty"`
+	BackendId                        *string                       `json:"backend_id,omitempty"`
+	Created                          *time.Time                    `json:"created,omitempty"`
+	Customer                         *string                       `json:"customer,omitempty"`
+	CustomerAbbreviation             *string                       `json:"customer_abbreviation,omitempty"`
+	CustomerName                     *string                       `json:"customer_name,omitempty"`
+	CustomerNativeName               *string                       `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID           `json:"customer_uuid,omitempty"`
+	Description                      *string                       `json:"description,omitempty"`
+	ErrorMessage                     *string                       `json:"error_message,omitempty"`
+	ErrorTraceback                   *string                       `json:"error_traceback,omitempty"`
+	IsLimitBased                     *bool                         `json:"is_limit_based,omitempty"`
+	IsUsageBased                     *bool                         `json:"is_usage_based,omitempty"`
+	Location                         *string                       `json:"location,omitempty"`
+	MarketplaceCategoryName          *string                       `json:"marketplace_category_name,omitempty"`
+	MarketplaceCategoryUuid          *string                       `json:"marketplace_category_uuid,omitempty"`
+	MarketplaceOfferingName          *string                       `json:"marketplace_offering_name,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{}       `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                       `json:"marketplace_offering_type,omitempty"`
+	MarketplaceOfferingUuid          *string                       `json:"marketplace_offering_uuid,omitempty"`
+	MarketplacePlanUuid              *string                       `json:"marketplace_plan_uuid,omitempty"`
+	MarketplaceResourceState         *string                       `json:"marketplace_resource_state,omitempty"`
+	MarketplaceResourceUuid          *string                       `json:"marketplace_resource_uuid,omitempty"`
+	Modified                         *time.Time                    `json:"modified,omitempty"`
+	Name                             *string                       `json:"name,omitempty"`
+	Project                          *string                       `json:"project,omitempty"`
+	ProjectName                      *string                       `json:"project_name,omitempty"`
+	ProjectUuid                      *openapi_types.UUID           `json:"project_uuid,omitempty"`
+	ResourceType                     *string                       `json:"resource_type,omitempty"`
+	ServiceName                      *string                       `json:"service_name,omitempty"`
+	ServiceSettings                  *string                       `json:"service_settings,omitempty"`
+	ServiceSettingsErrorMessage      *string                       `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState             *string                       `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid              *openapi_types.UUID           `json:"service_settings_uuid,omitempty"`
+	State                            *CoreStates                   `json:"state,omitempty"`
+	Url                              *string                       `json:"url,omitempty"`
+	Uuid                             *openapi_types.UUID           `json:"uuid,omitempty"`
+}
+
+// AzureResourceGroupAccessUrl0 defines model for .
+type AzureResourceGroupAccessUrl0 = []string
+
+// AzureResourceGroupAccessUrl1 defines model for .
+type AzureResourceGroupAccessUrl1 = string
+
+// AzureResourceGroup_AccessUrl defines model for AzureResourceGroup.AccessUrl.
+type AzureResourceGroup_AccessUrl struct {
+	union json.RawMessage
 }
 
 // AzureResourceGroupFieldEnum defines model for AzureResourceGroupFieldEnum.
@@ -22788,50 +22897,61 @@ type AzureSize struct {
 
 // AzureSqlDatabase defines model for AzureSqlDatabase.
 type AzureSqlDatabase struct {
-	AccessUrl                        *string                 `json:"access_url,omitempty"`
-	BackendId                        *string                 `json:"backend_id,omitempty"`
-	Charset                          *string                 `json:"charset,omitempty"`
-	Collation                        *string                 `json:"collation,omitempty"`
-	Created                          *time.Time              `json:"created,omitempty"`
-	Customer                         *string                 `json:"customer,omitempty"`
-	CustomerAbbreviation             *string                 `json:"customer_abbreviation,omitempty"`
-	CustomerName                     *string                 `json:"customer_name,omitempty"`
-	CustomerNativeName               *string                 `json:"customer_native_name,omitempty"`
-	CustomerUuid                     *openapi_types.UUID     `json:"customer_uuid,omitempty"`
-	Description                      *string                 `json:"description,omitempty"`
-	ErrorMessage                     *string                 `json:"error_message,omitempty"`
-	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
-	LocationName                     *string                 `json:"location_name,omitempty"`
-	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
-	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
-	Modified                         *time.Time              `json:"modified,omitempty"`
-	Name                             *string                 `json:"name,omitempty"`
-	Project                          *string                 `json:"project,omitempty"`
-	ProjectName                      *string                 `json:"project_name,omitempty"`
-	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
-	ResourceGroupName                *string                 `json:"resource_group_name,omitempty"`
-	ResourceType                     *string                 `json:"resource_type,omitempty"`
-	Server                           *string                 `json:"server,omitempty"`
-	ServerMarketplaceUuid            *openapi_types.UUID     `json:"server_marketplace_uuid,omitempty"`
-	ServerName                       *string                 `json:"server_name,omitempty"`
-	ServerUuid                       *openapi_types.UUID     `json:"server_uuid,omitempty"`
-	ServiceName                      *string                 `json:"service_name,omitempty"`
-	ServiceSettings                  *string                 `json:"service_settings,omitempty"`
-	ServiceSettingsErrorMessage      *string                 `json:"service_settings_error_message,omitempty"`
-	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
-	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
-	State                            *CoreStates             `json:"state,omitempty"`
-	Url                              *string                 `json:"url,omitempty"`
-	Uuid                             *openapi_types.UUID     `json:"uuid,omitempty"`
+	AccessUrl                        *AzureSqlDatabase_AccessUrl `json:"access_url,omitempty"`
+	BackendId                        *string                     `json:"backend_id,omitempty"`
+	Charset                          *string                     `json:"charset,omitempty"`
+	Collation                        *string                     `json:"collation,omitempty"`
+	Created                          *time.Time                  `json:"created,omitempty"`
+	Customer                         *string                     `json:"customer,omitempty"`
+	CustomerAbbreviation             *string                     `json:"customer_abbreviation,omitempty"`
+	CustomerName                     *string                     `json:"customer_name,omitempty"`
+	CustomerNativeName               *string                     `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID         `json:"customer_uuid,omitempty"`
+	Description                      *string                     `json:"description,omitempty"`
+	ErrorMessage                     *string                     `json:"error_message,omitempty"`
+	ErrorTraceback                   *string                     `json:"error_traceback,omitempty"`
+	IsLimitBased                     *bool                       `json:"is_limit_based,omitempty"`
+	IsUsageBased                     *bool                       `json:"is_usage_based,omitempty"`
+	LocationName                     *string                     `json:"location_name,omitempty"`
+	MarketplaceCategoryName          *string                     `json:"marketplace_category_name,omitempty"`
+	MarketplaceCategoryUuid          *string                     `json:"marketplace_category_uuid,omitempty"`
+	MarketplaceOfferingName          *string                     `json:"marketplace_offering_name,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{}     `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                     `json:"marketplace_offering_type,omitempty"`
+	MarketplaceOfferingUuid          *string                     `json:"marketplace_offering_uuid,omitempty"`
+	MarketplacePlanUuid              *string                     `json:"marketplace_plan_uuid,omitempty"`
+	MarketplaceResourceState         *string                     `json:"marketplace_resource_state,omitempty"`
+	MarketplaceResourceUuid          *string                     `json:"marketplace_resource_uuid,omitempty"`
+	Modified                         *time.Time                  `json:"modified,omitempty"`
+	Name                             *string                     `json:"name,omitempty"`
+	Project                          *string                     `json:"project,omitempty"`
+	ProjectName                      *string                     `json:"project_name,omitempty"`
+	ProjectUuid                      *openapi_types.UUID         `json:"project_uuid,omitempty"`
+	ResourceGroupName                *string                     `json:"resource_group_name,omitempty"`
+	ResourceType                     *string                     `json:"resource_type,omitempty"`
+	Server                           *string                     `json:"server,omitempty"`
+	ServerMarketplaceUuid            *openapi_types.UUID         `json:"server_marketplace_uuid,omitempty"`
+	ServerName                       *string                     `json:"server_name,omitempty"`
+	ServerUuid                       *openapi_types.UUID         `json:"server_uuid,omitempty"`
+	ServiceName                      *string                     `json:"service_name,omitempty"`
+	ServiceSettings                  *string                     `json:"service_settings,omitempty"`
+	ServiceSettingsErrorMessage      *string                     `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState             *string                     `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid              *openapi_types.UUID         `json:"service_settings_uuid,omitempty"`
+	State                            *CoreStates                 `json:"state,omitempty"`
+	Url                              *string                     `json:"url,omitempty"`
+	Uuid                             *openapi_types.UUID         `json:"uuid,omitempty"`
+}
+
+// AzureSqlDatabaseAccessUrl0 defines model for .
+type AzureSqlDatabaseAccessUrl0 = []string
+
+// AzureSqlDatabaseAccessUrl1 defines model for .
+type AzureSqlDatabaseAccessUrl1 = string
+
+// AzureSqlDatabase_AccessUrl defines model for AzureSqlDatabase.AccessUrl.
+type AzureSqlDatabase_AccessUrl struct {
+	union json.RawMessage
 }
 
 // AzureSqlDatabaseCreate defines model for AzureSqlDatabaseCreate.
@@ -22862,49 +22982,60 @@ type AzureSqlDatabaseRequest struct {
 
 // AzureSqlServer defines model for AzureSqlServer.
 type AzureSqlServer struct {
-	AccessUrl                        *string                 `json:"access_url,omitempty"`
-	BackendId                        *string                 `json:"backend_id,omitempty"`
-	Created                          *time.Time              `json:"created,omitempty"`
-	Customer                         *string                 `json:"customer,omitempty"`
-	CustomerAbbreviation             *string                 `json:"customer_abbreviation,omitempty"`
-	CustomerName                     *string                 `json:"customer_name,omitempty"`
-	CustomerNativeName               *string                 `json:"customer_native_name,omitempty"`
-	CustomerUuid                     *openapi_types.UUID     `json:"customer_uuid,omitempty"`
-	Description                      *string                 `json:"description,omitempty"`
-	ErrorMessage                     *string                 `json:"error_message,omitempty"`
-	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
-	Fqdn                             *string                 `json:"fqdn,omitempty"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
-	LocationName                     *string                 `json:"location_name,omitempty"`
-	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
-	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
-	Modified                         *time.Time              `json:"modified,omitempty"`
-	Name                             *string                 `json:"name,omitempty"`
-	Password                         *string                 `json:"password,omitempty"`
-	Project                          *string                 `json:"project,omitempty"`
-	ProjectName                      *string                 `json:"project_name,omitempty"`
-	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
-	ResourceGroup                    *string                 `json:"resource_group,omitempty"`
-	ResourceGroupName                *string                 `json:"resource_group_name,omitempty"`
-	ResourceType                     *string                 `json:"resource_type,omitempty"`
-	ServiceName                      *string                 `json:"service_name,omitempty"`
-	ServiceSettings                  *string                 `json:"service_settings,omitempty"`
-	ServiceSettingsErrorMessage      *string                 `json:"service_settings_error_message,omitempty"`
-	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
-	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
-	State                            *CoreStates             `json:"state,omitempty"`
-	StorageMb                        *int                    `json:"storage_mb,omitempty"`
-	Url                              *string                 `json:"url,omitempty"`
-	Username                         *string                 `json:"username,omitempty"`
-	Uuid                             *openapi_types.UUID     `json:"uuid,omitempty"`
+	AccessUrl                        *AzureSqlServer_AccessUrl `json:"access_url,omitempty"`
+	BackendId                        *string                   `json:"backend_id,omitempty"`
+	Created                          *time.Time                `json:"created,omitempty"`
+	Customer                         *string                   `json:"customer,omitempty"`
+	CustomerAbbreviation             *string                   `json:"customer_abbreviation,omitempty"`
+	CustomerName                     *string                   `json:"customer_name,omitempty"`
+	CustomerNativeName               *string                   `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID       `json:"customer_uuid,omitempty"`
+	Description                      *string                   `json:"description,omitempty"`
+	ErrorMessage                     *string                   `json:"error_message,omitempty"`
+	ErrorTraceback                   *string                   `json:"error_traceback,omitempty"`
+	Fqdn                             *string                   `json:"fqdn,omitempty"`
+	IsLimitBased                     *bool                     `json:"is_limit_based,omitempty"`
+	IsUsageBased                     *bool                     `json:"is_usage_based,omitempty"`
+	LocationName                     *string                   `json:"location_name,omitempty"`
+	MarketplaceCategoryName          *string                   `json:"marketplace_category_name,omitempty"`
+	MarketplaceCategoryUuid          *string                   `json:"marketplace_category_uuid,omitempty"`
+	MarketplaceOfferingName          *string                   `json:"marketplace_offering_name,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{}   `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                   `json:"marketplace_offering_type,omitempty"`
+	MarketplaceOfferingUuid          *string                   `json:"marketplace_offering_uuid,omitempty"`
+	MarketplacePlanUuid              *string                   `json:"marketplace_plan_uuid,omitempty"`
+	MarketplaceResourceState         *string                   `json:"marketplace_resource_state,omitempty"`
+	MarketplaceResourceUuid          *string                   `json:"marketplace_resource_uuid,omitempty"`
+	Modified                         *time.Time                `json:"modified,omitempty"`
+	Name                             *string                   `json:"name,omitempty"`
+	Password                         *string                   `json:"password,omitempty"`
+	Project                          *string                   `json:"project,omitempty"`
+	ProjectName                      *string                   `json:"project_name,omitempty"`
+	ProjectUuid                      *openapi_types.UUID       `json:"project_uuid,omitempty"`
+	ResourceGroup                    *string                   `json:"resource_group,omitempty"`
+	ResourceGroupName                *string                   `json:"resource_group_name,omitempty"`
+	ResourceType                     *string                   `json:"resource_type,omitempty"`
+	ServiceName                      *string                   `json:"service_name,omitempty"`
+	ServiceSettings                  *string                   `json:"service_settings,omitempty"`
+	ServiceSettingsErrorMessage      *string                   `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState             *string                   `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid              *openapi_types.UUID       `json:"service_settings_uuid,omitempty"`
+	State                            *CoreStates               `json:"state,omitempty"`
+	StorageMb                        *int                      `json:"storage_mb,omitempty"`
+	Url                              *string                   `json:"url,omitempty"`
+	Username                         *string                   `json:"username,omitempty"`
+	Uuid                             *openapi_types.UUID       `json:"uuid,omitempty"`
+}
+
+// AzureSqlServerAccessUrl0 defines model for .
+type AzureSqlServerAccessUrl0 = []string
+
+// AzureSqlServerAccessUrl1 defines model for .
+type AzureSqlServerAccessUrl1 = string
+
+// AzureSqlServer_AccessUrl defines model for AzureSqlServer.AccessUrl.
+type AzureSqlServer_AccessUrl struct {
+	union json.RawMessage
 }
 
 // AzureSqlServerFieldEnum defines model for AzureSqlServerFieldEnum.
@@ -22922,8 +23053,8 @@ type AzureSqlServerRequest struct {
 
 // AzureVirtualMachine defines model for AzureVirtualMachine.
 type AzureVirtualMachine struct {
-	AccessUrl *string `json:"access_url,omitempty"`
-	BackendId *string `json:"backend_id,omitempty"`
+	AccessUrl *AzureVirtualMachine_AccessUrl `json:"access_url,omitempty"`
+	BackendId *string                        `json:"backend_id,omitempty"`
 
 	// Cores Number of cores in a VM
 	Cores                *int                `json:"cores,omitempty"`
@@ -22993,6 +23124,17 @@ type AzureVirtualMachine struct {
 	UserData *string             `json:"user_data,omitempty"`
 	Username *string             `json:"username,omitempty"`
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// AzureVirtualMachineAccessUrl0 defines model for .
+type AzureVirtualMachineAccessUrl0 = []string
+
+// AzureVirtualMachineAccessUrl1 defines model for .
+type AzureVirtualMachineAccessUrl1 = string
+
+// AzureVirtualMachine_AccessUrl defines model for AzureVirtualMachine.AccessUrl.
+type AzureVirtualMachine_AccessUrl struct {
+	union json.RawMessage
 }
 
 // AzureVirtualMachineCreateOrderAttributes defines model for AzureVirtualMachineCreateOrderAttributes.
@@ -27754,8 +27896,8 @@ type DetectionMethodEnum string
 
 // DigitalOceanDroplet defines model for DigitalOceanDroplet.
 type DigitalOceanDroplet struct {
-	AccessUrl *string `json:"access_url,omitempty"`
-	BackendId *string `json:"backend_id,omitempty"`
+	AccessUrl *DigitalOceanDroplet_AccessUrl `json:"access_url,omitempty"`
+	BackendId *string                        `json:"backend_id,omitempty"`
 
 	// Cores Number of cores in a VM
 	Cores                *int                `json:"cores,omitempty"`
@@ -27818,6 +27960,17 @@ type DigitalOceanDroplet struct {
 	// UserData Additional data that will be added to instance on provisioning
 	UserData *string             `json:"user_data,omitempty"`
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// DigitalOceanDropletAccessUrl0 defines model for .
+type DigitalOceanDropletAccessUrl0 = []string
+
+// DigitalOceanDropletAccessUrl1 defines model for .
+type DigitalOceanDropletAccessUrl1 = string
+
+// DigitalOceanDroplet_AccessUrl defines model for DigitalOceanDroplet.AccessUrl.
+type DigitalOceanDroplet_AccessUrl struct {
+	union json.RawMessage
 }
 
 // DigitalOceanDropletFieldEnum defines model for DigitalOceanDropletFieldEnum.
@@ -28879,33 +29032,33 @@ type Fingerprint struct {
 
 // FirecrestJob defines model for FirecrestJob.
 type FirecrestJob struct {
-	AccessUrl                   *string             `json:"access_url,omitempty"`
-	BackendId                   *string             `json:"backend_id,omitempty"`
-	Created                     *time.Time          `json:"created,omitempty"`
-	Customer                    *string             `json:"customer,omitempty"`
-	CustomerAbbreviation        *string             `json:"customer_abbreviation,omitempty"`
-	CustomerName                *string             `json:"customer_name,omitempty"`
-	CustomerNativeName          *string             `json:"customer_native_name,omitempty"`
-	CustomerUuid                *openapi_types.UUID `json:"customer_uuid,omitempty"`
-	Description                 *string             `json:"description,omitempty"`
-	ErrorMessage                *string             `json:"error_message,omitempty"`
-	ErrorTraceback              *string             `json:"error_traceback,omitempty"`
-	File                        *string             `json:"file,omitempty"`
-	Modified                    *time.Time          `json:"modified,omitempty"`
-	Name                        *string             `json:"name,omitempty"`
-	Project                     *string             `json:"project,omitempty"`
-	ProjectName                 *string             `json:"project_name,omitempty"`
-	ProjectUuid                 *openapi_types.UUID `json:"project_uuid,omitempty"`
-	Report                      interface{}         `json:"report,omitempty"`
-	ResourceType                *string             `json:"resource_type,omitempty"`
-	RuntimeState                *string             `json:"runtime_state,omitempty"`
-	ServiceName                 *string             `json:"service_name,omitempty"`
-	ServiceSettings             *string             `json:"service_settings,omitempty"`
-	ServiceSettingsErrorMessage *string             `json:"service_settings_error_message,omitempty"`
-	ServiceSettingsState        *string             `json:"service_settings_state,omitempty"`
-	ServiceSettingsUuid         *openapi_types.UUID `json:"service_settings_uuid,omitempty"`
-	State                       *CoreStates         `json:"state,omitempty"`
-	Url                         *string             `json:"url,omitempty"`
+	AccessUrl                   *FirecrestJob_AccessUrl `json:"access_url,omitempty"`
+	BackendId                   *string                 `json:"backend_id,omitempty"`
+	Created                     *time.Time              `json:"created,omitempty"`
+	Customer                    *string                 `json:"customer,omitempty"`
+	CustomerAbbreviation        *string                 `json:"customer_abbreviation,omitempty"`
+	CustomerName                *string                 `json:"customer_name,omitempty"`
+	CustomerNativeName          *string                 `json:"customer_native_name,omitempty"`
+	CustomerUuid                *openapi_types.UUID     `json:"customer_uuid,omitempty"`
+	Description                 *string                 `json:"description,omitempty"`
+	ErrorMessage                *string                 `json:"error_message,omitempty"`
+	ErrorTraceback              *string                 `json:"error_traceback,omitempty"`
+	File                        *string                 `json:"file,omitempty"`
+	Modified                    *time.Time              `json:"modified,omitempty"`
+	Name                        *string                 `json:"name,omitempty"`
+	Project                     *string                 `json:"project,omitempty"`
+	ProjectName                 *string                 `json:"project_name,omitempty"`
+	ProjectUuid                 *openapi_types.UUID     `json:"project_uuid,omitempty"`
+	Report                      interface{}             `json:"report,omitempty"`
+	ResourceType                *string                 `json:"resource_type,omitempty"`
+	RuntimeState                *string                 `json:"runtime_state,omitempty"`
+	ServiceName                 *string                 `json:"service_name,omitempty"`
+	ServiceSettings             *string                 `json:"service_settings,omitempty"`
+	ServiceSettingsErrorMessage *string                 `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState        *string                 `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid         *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
+	State                       *CoreStates             `json:"state,omitempty"`
+	Url                         *string                 `json:"url,omitempty"`
 
 	// User Reference to user which submitted job
 	User *string `json:"user,omitempty"`
@@ -28914,6 +29067,17 @@ type FirecrestJob struct {
 	UserUsername *string             `json:"user_username,omitempty"`
 	UserUuid     *openapi_types.UUID `json:"user_uuid,omitempty"`
 	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// FirecrestJobAccessUrl0 defines model for .
+type FirecrestJobAccessUrl0 = []string
+
+// FirecrestJobAccessUrl1 defines model for .
+type FirecrestJobAccessUrl1 = string
+
+// FirecrestJob_AccessUrl defines model for FirecrestJob.AccessUrl.
+type FirecrestJob_AccessUrl struct {
+	union json.RawMessage
 }
 
 // FirecrestJobFieldEnum defines model for FirecrestJobFieldEnum.
@@ -34366,17 +34530,17 @@ type OpenStackBackendVolumes struct {
 
 // OpenStackBackup defines model for OpenStackBackup.
 type OpenStackBackup struct {
-	AccessUrl            *string             `json:"access_url,omitempty"`
-	BackendId            *string             `json:"backend_id,omitempty"`
-	Created              *time.Time          `json:"created,omitempty"`
-	Customer             *string             `json:"customer,omitempty"`
-	CustomerAbbreviation *string             `json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `json:"customer_uuid,omitempty"`
-	Description          *string             `json:"description,omitempty"`
-	ErrorMessage         *string             `json:"error_message,omitempty"`
-	ErrorTraceback       *string             `json:"error_traceback,omitempty"`
+	AccessUrl            *OpenStackBackup_AccessUrl `json:"access_url,omitempty"`
+	BackendId            *string                    `json:"backend_id,omitempty"`
+	Created              *time.Time                 `json:"created,omitempty"`
+	Customer             *string                    `json:"customer,omitempty"`
+	CustomerAbbreviation *string                    `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string                    `json:"customer_name,omitempty"`
+	CustomerNativeName   *string                    `json:"customer_native_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID        `json:"customer_uuid,omitempty"`
+	Description          *string                    `json:"description,omitempty"`
+	ErrorMessage         *string                    `json:"error_message,omitempty"`
+	ErrorTraceback       *string                    `json:"error_traceback,omitempty"`
 
 	// Instance Instance that this backup is created from
 	Instance                *string                         `json:"instance,omitempty"`
@@ -34416,6 +34580,17 @@ type OpenStackBackup struct {
 	TenantUuid                       *openapi_types.UUID           `json:"tenant_uuid,omitempty"`
 	Url                              *string                       `json:"url,omitempty"`
 	Uuid                             *openapi_types.UUID           `json:"uuid,omitempty"`
+}
+
+// OpenStackBackupAccessUrl0 defines model for .
+type OpenStackBackupAccessUrl0 = []string
+
+// OpenStackBackupAccessUrl1 defines model for .
+type OpenStackBackupAccessUrl1 = string
+
+// OpenStackBackup_AccessUrl defines model for OpenStackBackup.AccessUrl.
+type OpenStackBackup_AccessUrl struct {
+	union json.RawMessage
 }
 
 // OpenStackBackupFieldEnum defines model for OpenStackBackupFieldEnum.
@@ -34606,7 +34781,7 @@ type OpenStackFlavorOEnum string
 
 // OpenStackFloatingIP defines model for OpenStackFloatingIP.
 type OpenStackFloatingIP struct {
-	AccessUrl *string `json:"access_url,omitempty"`
+	AccessUrl *OpenStackFloatingIP_AccessUrl `json:"access_url,omitempty"`
 
 	// Address The public IPv4 address of the floating IP
 	Address   *OpenStackFloatingIP_Address `json:"address,omitempty"`
@@ -34664,6 +34839,17 @@ type OpenStackFloatingIP struct {
 	Uuid       *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// OpenStackFloatingIPAccessUrl0 defines model for .
+type OpenStackFloatingIPAccessUrl0 = []string
+
+// OpenStackFloatingIPAccessUrl1 defines model for .
+type OpenStackFloatingIPAccessUrl1 = string
+
+// OpenStackFloatingIP_AccessUrl defines model for OpenStackFloatingIP.AccessUrl.
+type OpenStackFloatingIP_AccessUrl struct {
+	union json.RawMessage
+}
+
 // OpenStackFloatingIPAddress0 defines model for .
 type OpenStackFloatingIPAddress0 = string
 
@@ -34708,7 +34894,7 @@ type OpenStackFloatingIPRequest struct {
 
 // OpenStackHealthMonitor defines model for OpenStackHealthMonitor.
 type OpenStackHealthMonitor struct {
-	AccessUrl *string `json:"access_url,omitempty"`
+	AccessUrl *OpenStackHealthMonitor_AccessUrl `json:"access_url,omitempty"`
 
 	// BackendId Health monitor ID in Octavia
 	BackendId                        *string                 `json:"backend_id,omitempty"`
@@ -34760,6 +34946,17 @@ type OpenStackHealthMonitor struct {
 	Uuid                        *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// OpenStackHealthMonitorAccessUrl0 defines model for .
+type OpenStackHealthMonitorAccessUrl0 = []string
+
+// OpenStackHealthMonitorAccessUrl1 defines model for .
+type OpenStackHealthMonitorAccessUrl1 = string
+
+// OpenStackHealthMonitor_AccessUrl defines model for OpenStackHealthMonitor.AccessUrl.
+type OpenStackHealthMonitor_AccessUrl struct {
+	union json.RawMessage
+}
+
 // OpenStackHealthMonitorFieldEnum defines model for OpenStackHealthMonitorFieldEnum.
 type OpenStackHealthMonitorFieldEnum string
 
@@ -34781,8 +34978,8 @@ type OpenStackImage struct {
 
 // OpenStackInstance defines model for OpenStackInstance.
 type OpenStackInstance struct {
-	AccessUrl *string `json:"access_url,omitempty"`
-	Action    *string `json:"action,omitempty"`
+	AccessUrl *OpenStackInstance_AccessUrl `json:"access_url,omitempty"`
+	Action    *string                      `json:"action,omitempty"`
 
 	// ActionDetails Details about ongoing or completed actions
 	ActionDetails interface{} `json:"action_details,omitempty"`
@@ -34885,6 +35082,17 @@ type OpenStackInstance struct {
 
 	// Volumes List of volumes attached to the instance
 	Volumes *[]OpenStackNestedVolume `json:"volumes,omitempty"`
+}
+
+// OpenStackInstanceAccessUrl0 defines model for .
+type OpenStackInstanceAccessUrl0 = []string
+
+// OpenStackInstanceAccessUrl1 defines model for .
+type OpenStackInstanceAccessUrl1 = string
+
+// OpenStackInstance_AccessUrl defines model for OpenStackInstance.AccessUrl.
+type OpenStackInstance_AccessUrl struct {
+	union json.RawMessage
 }
 
 // OpenStackInstanceAggregate defines model for OpenStackInstanceAggregate.
@@ -35104,7 +35312,7 @@ type OpenStackInstanceSecurityGroupsUpdateRequest struct {
 
 // OpenStackListener defines model for OpenStackListener.
 type OpenStackListener struct {
-	AccessUrl *string `json:"access_url,omitempty"`
+	AccessUrl *OpenStackListener_AccessUrl `json:"access_url,omitempty"`
 
 	// BackendId Listener ID in Octavia
 	BackendId            *string             `json:"backend_id,omitempty"`
@@ -35156,12 +35364,23 @@ type OpenStackListener struct {
 	Uuid                             *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
+// OpenStackListenerAccessUrl0 defines model for .
+type OpenStackListenerAccessUrl0 = []string
+
+// OpenStackListenerAccessUrl1 defines model for .
+type OpenStackListenerAccessUrl1 = string
+
+// OpenStackListener_AccessUrl defines model for OpenStackListener.AccessUrl.
+type OpenStackListener_AccessUrl struct {
+	union json.RawMessage
+}
+
 // OpenStackListenerFieldEnum defines model for OpenStackListenerFieldEnum.
 type OpenStackListenerFieldEnum string
 
 // OpenStackLoadBalancer defines model for OpenStackLoadBalancer.
 type OpenStackLoadBalancer struct {
-	AccessUrl *string `json:"access_url,omitempty"`
+	AccessUrl *OpenStackLoadBalancer_AccessUrl `json:"access_url,omitempty"`
 
 	// AttachedFloatingIp Floating IP attached to the VIP port
 	AttachedFloatingIp *string `json:"attached_floating_ip,omitempty"`
@@ -35218,6 +35437,17 @@ type OpenStackLoadBalancer struct {
 	// VipSecurityGroups Security groups assigned to the VIP port.
 	VipSecurityGroups *[]map[string]interface{} `json:"vip_security_groups,omitempty"`
 	VipSubnet         *string                   `json:"vip_subnet,omitempty"`
+}
+
+// OpenStackLoadBalancerAccessUrl0 defines model for .
+type OpenStackLoadBalancerAccessUrl0 = []string
+
+// OpenStackLoadBalancerAccessUrl1 defines model for .
+type OpenStackLoadBalancerAccessUrl1 = string
+
+// OpenStackLoadBalancer_AccessUrl defines model for OpenStackLoadBalancer.AccessUrl.
+type OpenStackLoadBalancer_AccessUrl struct {
+	union json.RawMessage
 }
 
 // OpenStackLoadBalancerVipAddress0 defines model for .
@@ -35375,17 +35605,17 @@ type OpenStackNestedVolume struct {
 
 // OpenStackNetwork defines model for OpenStackNetwork.
 type OpenStackNetwork struct {
-	AccessUrl            *string             `json:"access_url,omitempty"`
-	BackendId            *string             `json:"backend_id,omitempty"`
-	Created              *time.Time          `json:"created,omitempty"`
-	Customer             *string             `json:"customer,omitempty"`
-	CustomerAbbreviation *string             `json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `json:"customer_uuid,omitempty"`
-	Description          *string             `json:"description,omitempty"`
-	ErrorMessage         *string             `json:"error_message,omitempty"`
-	ErrorTraceback       *string             `json:"error_traceback,omitempty"`
+	AccessUrl            *OpenStackNetwork_AccessUrl `json:"access_url,omitempty"`
+	BackendId            *string                     `json:"backend_id,omitempty"`
+	Created              *time.Time                  `json:"created,omitempty"`
+	Customer             *string                     `json:"customer,omitempty"`
+	CustomerAbbreviation *string                     `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string                     `json:"customer_name,omitempty"`
+	CustomerNativeName   *string                     `json:"customer_native_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID         `json:"customer_uuid,omitempty"`
+	Description          *string                     `json:"description,omitempty"`
+	ErrorMessage         *string                     `json:"error_message,omitempty"`
+	ErrorTraceback       *string                     `json:"error_traceback,omitempty"`
 
 	// IsExternal Defines whether this network is external (public) or internal (private)
 	IsExternal                       *bool                   `json:"is_external,omitempty"`
@@ -35432,6 +35662,17 @@ type OpenStackNetwork struct {
 	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// OpenStackNetworkAccessUrl0 defines model for .
+type OpenStackNetworkAccessUrl0 = []string
+
+// OpenStackNetworkAccessUrl1 defines model for .
+type OpenStackNetworkAccessUrl1 = string
+
+// OpenStackNetwork_AccessUrl defines model for OpenStackNetwork.AccessUrl.
+type OpenStackNetwork_AccessUrl struct {
+	union json.RawMessage
+}
+
 // OpenStackNetworkFieldEnum defines model for OpenStackNetworkFieldEnum.
 type OpenStackNetworkFieldEnum string
 
@@ -35443,7 +35684,7 @@ type OpenStackNetworkRequest struct {
 
 // OpenStackPool defines model for OpenStackPool.
 type OpenStackPool struct {
-	AccessUrl *string `json:"access_url,omitempty"`
+	AccessUrl *OpenStackPool_AccessUrl `json:"access_url,omitempty"`
 
 	// BackendId Pool ID in Octavia
 	BackendId            *string             `json:"backend_id,omitempty"`
@@ -35492,12 +35733,23 @@ type OpenStackPool struct {
 	Uuid                             *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
+// OpenStackPoolAccessUrl0 defines model for .
+type OpenStackPoolAccessUrl0 = []string
+
+// OpenStackPoolAccessUrl1 defines model for .
+type OpenStackPoolAccessUrl1 = string
+
+// OpenStackPool_AccessUrl defines model for OpenStackPool.AccessUrl.
+type OpenStackPool_AccessUrl struct {
+	union json.RawMessage
+}
+
 // OpenStackPoolFieldEnum defines model for OpenStackPoolFieldEnum.
 type OpenStackPoolFieldEnum string
 
 // OpenStackPoolMember defines model for OpenStackPoolMember.
 type OpenStackPoolMember struct {
-	AccessUrl *string `json:"access_url,omitempty"`
+	AccessUrl *OpenStackPoolMember_AccessUrl `json:"access_url,omitempty"`
 
 	// Address An IPv4 or IPv6 address.
 	Address *OpenStackPoolMember_Address `json:"address,omitempty"`
@@ -35551,6 +35803,17 @@ type OpenStackPoolMember struct {
 	Weight                      *int                `json:"weight,omitempty"`
 }
 
+// OpenStackPoolMemberAccessUrl0 defines model for .
+type OpenStackPoolMemberAccessUrl0 = []string
+
+// OpenStackPoolMemberAccessUrl1 defines model for .
+type OpenStackPoolMemberAccessUrl1 = string
+
+// OpenStackPoolMember_AccessUrl defines model for OpenStackPoolMember.AccessUrl.
+type OpenStackPoolMember_AccessUrl struct {
+	union json.RawMessage
+}
+
 // OpenStackPoolMemberAddress0 defines model for .
 type OpenStackPoolMemberAddress0 = string
 
@@ -35567,7 +35830,7 @@ type OpenStackPoolMemberFieldEnum string
 
 // OpenStackPort defines model for OpenStackPort.
 type OpenStackPort struct {
-	AccessUrl *string `json:"access_url,omitempty"`
+	AccessUrl *OpenStackPort_AccessUrl `json:"access_url,omitempty"`
 
 	// AdminStateUp Administrative state of the port. If down, port does not forward packets
 	AdminStateUp        *bool                          `json:"admin_state_up,omitempty"`
@@ -35639,6 +35902,17 @@ type OpenStackPort struct {
 	Uuid       *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// OpenStackPortAccessUrl0 defines model for .
+type OpenStackPortAccessUrl0 = []string
+
+// OpenStackPortAccessUrl1 defines model for .
+type OpenStackPortAccessUrl1 = string
+
+// OpenStackPort_AccessUrl defines model for OpenStackPort.AccessUrl.
+type OpenStackPort_AccessUrl struct {
+	union json.RawMessage
+}
+
 // OpenStackPortFieldEnum defines model for OpenStackPortFieldEnum.
 type OpenStackPortFieldEnum string
 
@@ -35700,20 +35974,30 @@ type OpenStackPortRequest struct {
 
 // OpenStackRouter defines model for OpenStackRouter.
 type OpenStackRouter struct {
-	AccessUrl *string `json:"access_url,omitempty"`
+	AccessUrl *OpenStackRouter_AccessUrl `json:"access_url,omitempty"`
 
 	// BackendId Router ID in OpenStack
-	BackendId                        *string                 `json:"backend_id,omitempty"`
-	Created                          *time.Time              `json:"created,omitempty"`
-	Customer                         *string                 `json:"customer,omitempty"`
-	CustomerAbbreviation             *string                 `json:"customer_abbreviation,omitempty"`
-	CustomerName                     *string                 `json:"customer_name,omitempty"`
-	CustomerNativeName               *string                 `json:"customer_native_name,omitempty"`
-	CustomerUuid                     *openapi_types.UUID     `json:"customer_uuid,omitempty"`
-	Description                      *string                 `json:"description,omitempty"`
-	ErrorMessage                     *string                 `json:"error_message,omitempty"`
-	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
+	BackendId            *string             `json:"backend_id,omitempty"`
+	Created              *time.Time          `json:"created,omitempty"`
+	Customer             *string             `json:"customer,omitempty"`
+	CustomerAbbreviation *string             `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string             `json:"customer_name,omitempty"`
+	CustomerNativeName   *string             `json:"customer_native_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Description          *string             `json:"description,omitempty"`
+
+	// EnableSnat Whether SNAT is enabled on the external gateway. None means OpenStack default (True).
+	EnableSnat       *bool       `json:"enable_snat,omitempty"`
+	ErrorMessage     *string     `json:"error_message,omitempty"`
+	ErrorTraceback   *string     `json:"error_traceback,omitempty"`
+	ExternalFixedIps interface{} `json:"external_fixed_ips,omitempty"`
+
+	// ExternalNetworkId Backend ID of the external network used as gateway
+	ExternalNetworkId                *string                 `json:"external_network_id,omitempty"`
+	ExternalNetworkName              *string                 `json:"external_network_name,omitempty"`
+	ExternalNetworkUuid              *openapi_types.UUID     `json:"external_network_uuid,omitempty"`
 	FixedIps                         *[]OpenStackFixedIp     `json:"fixed_ips,omitempty"`
+	HasExternalGateway               *bool                   `json:"has_external_gateway,omitempty"`
 	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
 	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
@@ -35749,6 +36033,17 @@ type OpenStackRouter struct {
 	Uuid       *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// OpenStackRouterAccessUrl0 defines model for .
+type OpenStackRouterAccessUrl0 = []string
+
+// OpenStackRouterAccessUrl1 defines model for .
+type OpenStackRouterAccessUrl1 = string
+
+// OpenStackRouter_AccessUrl defines model for OpenStackRouter.AccessUrl.
+type OpenStackRouter_AccessUrl struct {
+	union json.RawMessage
+}
+
 // OpenStackRouterFieldEnum defines model for OpenStackRouterFieldEnum.
 type OpenStackRouterFieldEnum string
 
@@ -35773,7 +36068,7 @@ type OpenStackRouterSetRoutesRequest struct {
 
 // OpenStackSecurityGroup defines model for OpenStackSecurityGroup.
 type OpenStackSecurityGroup struct {
-	AccessUrl                        *string                             `json:"access_url,omitempty"`
+	AccessUrl                        *OpenStackSecurityGroup_AccessUrl   `json:"access_url,omitempty"`
 	BackendId                        *string                             `json:"backend_id,omitempty"`
 	Created                          *time.Time                          `json:"created,omitempty"`
 	Customer                         *string                             `json:"customer,omitempty"`
@@ -35813,6 +36108,17 @@ type OpenStackSecurityGroup struct {
 	TenantUuid                       *openapi_types.UUID                 `json:"tenant_uuid,omitempty"`
 	Url                              *string                             `json:"url,omitempty"`
 	Uuid                             *openapi_types.UUID                 `json:"uuid,omitempty"`
+}
+
+// OpenStackSecurityGroupAccessUrl0 defines model for .
+type OpenStackSecurityGroupAccessUrl0 = []string
+
+// OpenStackSecurityGroupAccessUrl1 defines model for .
+type OpenStackSecurityGroupAccessUrl1 = string
+
+// OpenStackSecurityGroup_AccessUrl defines model for OpenStackSecurityGroup.AccessUrl.
+type OpenStackSecurityGroup_AccessUrl struct {
+	union json.RawMessage
 }
 
 // OpenStackSecurityGroupFieldEnum defines model for OpenStackSecurityGroupFieldEnum.
@@ -35966,32 +36272,32 @@ type OpenStackSecurityGroupUpdateRequest struct {
 
 // OpenStackServerGroup defines model for OpenStackServerGroup.
 type OpenStackServerGroup struct {
-	AccessUrl                        *string                    `json:"access_url,omitempty"`
-	BackendId                        *string                    `json:"backend_id,omitempty"`
-	Created                          *time.Time                 `json:"created,omitempty"`
-	Customer                         *string                    `json:"customer,omitempty"`
-	CustomerAbbreviation             *string                    `json:"customer_abbreviation,omitempty"`
-	CustomerName                     *string                    `json:"customer_name,omitempty"`
-	CustomerNativeName               *string                    `json:"customer_native_name,omitempty"`
-	CustomerUuid                     *openapi_types.UUID        `json:"customer_uuid,omitempty"`
-	Description                      *string                    `json:"description,omitempty"`
-	DisplayName                      *string                    `json:"display_name,omitempty"`
-	ErrorMessage                     *string                    `json:"error_message,omitempty"`
-	ErrorTraceback                   *string                    `json:"error_traceback,omitempty"`
-	Instances                        *[]OpenStackNestedInstance `json:"instances,omitempty"`
-	IsLimitBased                     *bool                      `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                      `json:"is_usage_based,omitempty"`
-	MarketplaceCategoryName          *string                    `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                    `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                    `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{}    `json:"marketplace_offering_plugin_options,omitempty"`
-	MarketplaceOfferingType          *string                    `json:"marketplace_offering_type,omitempty"`
-	MarketplaceOfferingUuid          *string                    `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                    `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                    `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                    `json:"marketplace_resource_uuid,omitempty"`
-	Modified                         *time.Time                 `json:"modified,omitempty"`
-	Name                             *string                    `json:"name,omitempty"`
+	AccessUrl                        *OpenStackServerGroup_AccessUrl `json:"access_url,omitempty"`
+	BackendId                        *string                         `json:"backend_id,omitempty"`
+	Created                          *time.Time                      `json:"created,omitempty"`
+	Customer                         *string                         `json:"customer,omitempty"`
+	CustomerAbbreviation             *string                         `json:"customer_abbreviation,omitempty"`
+	CustomerName                     *string                         `json:"customer_name,omitempty"`
+	CustomerNativeName               *string                         `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID             `json:"customer_uuid,omitempty"`
+	Description                      *string                         `json:"description,omitempty"`
+	DisplayName                      *string                         `json:"display_name,omitempty"`
+	ErrorMessage                     *string                         `json:"error_message,omitempty"`
+	ErrorTraceback                   *string                         `json:"error_traceback,omitempty"`
+	Instances                        *[]OpenStackNestedInstance      `json:"instances,omitempty"`
+	IsLimitBased                     *bool                           `json:"is_limit_based,omitempty"`
+	IsUsageBased                     *bool                           `json:"is_usage_based,omitempty"`
+	MarketplaceCategoryName          *string                         `json:"marketplace_category_name,omitempty"`
+	MarketplaceCategoryUuid          *string                         `json:"marketplace_category_uuid,omitempty"`
+	MarketplaceOfferingName          *string                         `json:"marketplace_offering_name,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{}         `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                         `json:"marketplace_offering_type,omitempty"`
+	MarketplaceOfferingUuid          *string                         `json:"marketplace_offering_uuid,omitempty"`
+	MarketplacePlanUuid              *string                         `json:"marketplace_plan_uuid,omitempty"`
+	MarketplaceResourceState         *string                         `json:"marketplace_resource_state,omitempty"`
+	MarketplaceResourceUuid          *string                         `json:"marketplace_resource_uuid,omitempty"`
+	Modified                         *time.Time                      `json:"modified,omitempty"`
+	Name                             *string                         `json:"name,omitempty"`
 
 	// Policy affinity — all instances are placed on the same hypervisor. anti-affinity — all instances are placed on different hypervisors. soft-affinity — instances are placed on the same hypervisor if possible, but not enforced. soft-anti-affinity — instances are placed on different hypervisors if possible, but not enforced.
 	Policy                      *OpenStackServerGroup_Policy `json:"policy,omitempty"`
@@ -36010,6 +36316,17 @@ type OpenStackServerGroup struct {
 	TenantUuid                  *openapi_types.UUID          `json:"tenant_uuid,omitempty"`
 	Url                         *string                      `json:"url,omitempty"`
 	Uuid                        *openapi_types.UUID          `json:"uuid,omitempty"`
+}
+
+// OpenStackServerGroupAccessUrl0 defines model for .
+type OpenStackServerGroupAccessUrl0 = []string
+
+// OpenStackServerGroupAccessUrl1 defines model for .
+type OpenStackServerGroupAccessUrl1 = string
+
+// OpenStackServerGroup_AccessUrl defines model for OpenStackServerGroup.AccessUrl.
+type OpenStackServerGroup_AccessUrl struct {
+	union json.RawMessage
 }
 
 // OpenStackServerGroup_Policy affinity — all instances are placed on the same hypervisor. anti-affinity — all instances are placed on different hypervisors. soft-affinity — instances are placed on the same hypervisor if possible, but not enforced. soft-anti-affinity — instances are placed on different hypervisors if possible, but not enforced.
@@ -36041,9 +36358,9 @@ type OpenStackServerGroupRequest_Policy struct {
 
 // OpenStackSnapshot defines model for OpenStackSnapshot.
 type OpenStackSnapshot struct {
-	AccessUrl     *string     `json:"access_url,omitempty"`
-	Action        *string     `json:"action,omitempty"`
-	ActionDetails interface{} `json:"action_details,omitempty"`
+	AccessUrl     *OpenStackSnapshot_AccessUrl `json:"access_url,omitempty"`
+	Action        *string                      `json:"action,omitempty"`
+	ActionDetails interface{}                  `json:"action_details,omitempty"`
 
 	// BackendId Snapshot ID in the OpenStack backend
 	BackendId            *string             `json:"backend_id,omitempty"`
@@ -36095,6 +36412,17 @@ type OpenStackSnapshot struct {
 	State                       *CoreStates         `json:"state,omitempty"`
 	Url                         *string             `json:"url,omitempty"`
 	Uuid                        *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// OpenStackSnapshotAccessUrl0 defines model for .
+type OpenStackSnapshotAccessUrl0 = []string
+
+// OpenStackSnapshotAccessUrl1 defines model for .
+type OpenStackSnapshotAccessUrl1 = string
+
+// OpenStackSnapshot_AccessUrl defines model for OpenStackSnapshot.AccessUrl.
+type OpenStackSnapshot_AccessUrl struct {
+	union json.RawMessage
 }
 
 // OpenStackSnapshotFieldEnum defines model for OpenStackSnapshotFieldEnum.
@@ -36180,7 +36508,7 @@ type OpenStackStaticRouteRequest_Nexthop struct {
 
 // OpenStackSubNet defines model for OpenStackSubNet.
 type OpenStackSubNet struct {
-	AccessUrl            *string                          `json:"access_url,omitempty"`
+	AccessUrl            *OpenStackSubNet_AccessUrl       `json:"access_url,omitempty"`
 	AllocationPools      *[]OpenStackSubNetAllocationPool `json:"allocation_pools,omitempty"`
 	BackendId            *string                          `json:"backend_id,omitempty"`
 	Cidr                 *string                          `json:"cidr,omitempty"`
@@ -36241,6 +36569,17 @@ type OpenStackSubNet struct {
 	TenantName                  *string             `json:"tenant_name,omitempty"`
 	Url                         *string             `json:"url,omitempty"`
 	Uuid                        *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// OpenStackSubNetAccessUrl0 defines model for .
+type OpenStackSubNetAccessUrl0 = []string
+
+// OpenStackSubNetAccessUrl1 defines model for .
+type OpenStackSubNetAccessUrl1 = string
+
+// OpenStackSubNet_AccessUrl defines model for OpenStackSubNet.AccessUrl.
+type OpenStackSubNet_AccessUrl struct {
+	union json.RawMessage
 }
 
 // OpenStackSubNetDnsNameservers0 defines model for .
@@ -36370,7 +36709,7 @@ type OpenStackSubNetRequest_GatewayIp struct {
 
 // OpenStackTenant defines model for OpenStackTenant.
 type OpenStackTenant struct {
-	AccessUrl *string `json:"access_url,omitempty"`
+	AccessUrl *OpenStackTenant_AccessUrl `json:"access_url,omitempty"`
 
 	// AvailabilityZone Optional availability group. Will be used for all instances provisioned in this tenant
 	AvailabilityZone *string `json:"availability_zone,omitempty"`
@@ -36430,6 +36769,17 @@ type OpenStackTenant struct {
 	// UserUsername Username of the tenant user
 	UserUsername *string             `json:"user_username,omitempty"`
 	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// OpenStackTenantAccessUrl0 defines model for .
+type OpenStackTenantAccessUrl0 = []string
+
+// OpenStackTenantAccessUrl1 defines model for .
+type OpenStackTenantAccessUrl1 = string
+
+// OpenStackTenant_AccessUrl defines model for OpenStackTenant.AccessUrl.
+type OpenStackTenant_AccessUrl struct {
+	union json.RawMessage
 }
 
 // OpenStackTenantChangePasswordRequest defines model for OpenStackTenantChangePasswordRequest.
@@ -36501,9 +36851,9 @@ type OpenStackTenantSecurityGroupRequest struct {
 
 // OpenStackVolume defines model for OpenStackVolume.
 type OpenStackVolume struct {
-	AccessUrl     *string     `json:"access_url,omitempty"`
-	Action        *string     `json:"action,omitempty"`
-	ActionDetails interface{} `json:"action_details,omitempty"`
+	AccessUrl     *OpenStackVolume_AccessUrl `json:"access_url,omitempty"`
+	Action        *string                    `json:"action,omitempty"`
+	ActionDetails interface{}                `json:"action_details,omitempty"`
 
 	// AvailabilityZone Availability zone where this volume is located
 	AvailabilityZone     *string `json:"availability_zone,omitempty"`
@@ -36580,6 +36930,17 @@ type OpenStackVolume struct {
 	TypeName *string             `json:"type_name,omitempty"`
 	Url      *string             `json:"url,omitempty"`
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// OpenStackVolumeAccessUrl0 defines model for .
+type OpenStackVolumeAccessUrl0 = []string
+
+// OpenStackVolumeAccessUrl1 defines model for .
+type OpenStackVolumeAccessUrl1 = string
+
+// OpenStackVolume_AccessUrl defines model for OpenStackVolume.AccessUrl.
+type OpenStackVolume_AccessUrl struct {
+	union json.RawMessage
 }
 
 // OpenStackVolumeAvailabilityZone defines model for OpenStackVolumeAvailabilityZone.
@@ -42087,52 +42448,63 @@ type RESTRICTEDOFFERINGVISIBILITYMODEEnum string
 
 // RancherApplication defines model for RancherApplication.
 type RancherApplication struct {
-	AccessUrl                        *string                 `json:"access_url,omitempty"`
-	Answers                          *map[string]interface{} `json:"answers,omitempty"`
-	BackendId                        *string                 `json:"backend_id,omitempty"`
-	CatalogName                      *string                 `json:"catalog_name,omitempty"`
-	Created                          *time.Time              `json:"created,omitempty"`
-	Customer                         *string                 `json:"customer,omitempty"`
-	CustomerAbbreviation             *string                 `json:"customer_abbreviation,omitempty"`
-	CustomerName                     *string                 `json:"customer_name,omitempty"`
-	CustomerNativeName               *string                 `json:"customer_native_name,omitempty"`
-	CustomerUuid                     *openapi_types.UUID     `json:"customer_uuid,omitempty"`
-	Description                      *string                 `json:"description,omitempty"`
-	ErrorMessage                     *string                 `json:"error_message,omitempty"`
-	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
-	ExternalUrl                      *string                 `json:"external_url,omitempty"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
-	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
-	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
-	Modified                         *time.Time              `json:"modified,omitempty"`
-	Name                             *string                 `json:"name,omitempty"`
-	Namespace                        *string                 `json:"namespace,omitempty"`
-	Project                          *string                 `json:"project,omitempty"`
-	ProjectName                      *string                 `json:"project_name,omitempty"`
-	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
-	RancherProject                   *string                 `json:"rancher_project,omitempty"`
-	RancherProjectName               *string                 `json:"rancher_project_name,omitempty"`
-	ResourceType                     *string                 `json:"resource_type,omitempty"`
-	RuntimeState                     *string                 `json:"runtime_state,omitempty"`
-	ServiceName                      *string                 `json:"service_name,omitempty"`
-	ServiceSettings                  *string                 `json:"service_settings,omitempty"`
-	ServiceSettingsErrorMessage      *string                 `json:"service_settings_error_message,omitempty"`
-	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
-	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
-	State                            *CoreStates             `json:"state,omitempty"`
-	Template                         *string                 `json:"template,omitempty"`
-	TemplateName                     *string                 `json:"template_name,omitempty"`
-	Url                              *string                 `json:"url,omitempty"`
-	Uuid                             *openapi_types.UUID     `json:"uuid,omitempty"`
-	Version                          *string                 `json:"version,omitempty"`
+	AccessUrl                        *RancherApplication_AccessUrl `json:"access_url,omitempty"`
+	Answers                          *map[string]interface{}       `json:"answers,omitempty"`
+	BackendId                        *string                       `json:"backend_id,omitempty"`
+	CatalogName                      *string                       `json:"catalog_name,omitempty"`
+	Created                          *time.Time                    `json:"created,omitempty"`
+	Customer                         *string                       `json:"customer,omitempty"`
+	CustomerAbbreviation             *string                       `json:"customer_abbreviation,omitempty"`
+	CustomerName                     *string                       `json:"customer_name,omitempty"`
+	CustomerNativeName               *string                       `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID           `json:"customer_uuid,omitempty"`
+	Description                      *string                       `json:"description,omitempty"`
+	ErrorMessage                     *string                       `json:"error_message,omitempty"`
+	ErrorTraceback                   *string                       `json:"error_traceback,omitempty"`
+	ExternalUrl                      *string                       `json:"external_url,omitempty"`
+	IsLimitBased                     *bool                         `json:"is_limit_based,omitempty"`
+	IsUsageBased                     *bool                         `json:"is_usage_based,omitempty"`
+	MarketplaceCategoryName          *string                       `json:"marketplace_category_name,omitempty"`
+	MarketplaceCategoryUuid          *string                       `json:"marketplace_category_uuid,omitempty"`
+	MarketplaceOfferingName          *string                       `json:"marketplace_offering_name,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{}       `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                       `json:"marketplace_offering_type,omitempty"`
+	MarketplaceOfferingUuid          *string                       `json:"marketplace_offering_uuid,omitempty"`
+	MarketplacePlanUuid              *string                       `json:"marketplace_plan_uuid,omitempty"`
+	MarketplaceResourceState         *string                       `json:"marketplace_resource_state,omitempty"`
+	MarketplaceResourceUuid          *string                       `json:"marketplace_resource_uuid,omitempty"`
+	Modified                         *time.Time                    `json:"modified,omitempty"`
+	Name                             *string                       `json:"name,omitempty"`
+	Namespace                        *string                       `json:"namespace,omitempty"`
+	Project                          *string                       `json:"project,omitempty"`
+	ProjectName                      *string                       `json:"project_name,omitempty"`
+	ProjectUuid                      *openapi_types.UUID           `json:"project_uuid,omitempty"`
+	RancherProject                   *string                       `json:"rancher_project,omitempty"`
+	RancherProjectName               *string                       `json:"rancher_project_name,omitempty"`
+	ResourceType                     *string                       `json:"resource_type,omitempty"`
+	RuntimeState                     *string                       `json:"runtime_state,omitempty"`
+	ServiceName                      *string                       `json:"service_name,omitempty"`
+	ServiceSettings                  *string                       `json:"service_settings,omitempty"`
+	ServiceSettingsErrorMessage      *string                       `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState             *string                       `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid              *openapi_types.UUID           `json:"service_settings_uuid,omitempty"`
+	State                            *CoreStates                   `json:"state,omitempty"`
+	Template                         *string                       `json:"template,omitempty"`
+	TemplateName                     *string                       `json:"template_name,omitempty"`
+	Url                              *string                       `json:"url,omitempty"`
+	Uuid                             *openapi_types.UUID           `json:"uuid,omitempty"`
+	Version                          *string                       `json:"version,omitempty"`
+}
+
+// RancherApplicationAccessUrl0 defines model for .
+type RancherApplicationAccessUrl0 = []string
+
+// RancherApplicationAccessUrl1 defines model for .
+type RancherApplicationAccessUrl1 = string
+
+// RancherApplication_AccessUrl defines model for RancherApplication.AccessUrl.
+type RancherApplication_AccessUrl struct {
+	union json.RawMessage
 }
 
 // RancherApplicationFieldEnum defines model for RancherApplicationFieldEnum.
@@ -42240,8 +42612,8 @@ type RancherCatalogUpdateRequest struct {
 
 // RancherCluster defines model for RancherCluster.
 type RancherCluster struct {
-	AccessUrl *string `json:"access_url,omitempty"`
-	BackendId *string `json:"backend_id,omitempty"`
+	AccessUrl *RancherCluster_AccessUrl `json:"access_url,omitempty"`
+	BackendId *string                   `json:"backend_id,omitempty"`
 
 	// Capacity Cluster capacity in the format {'cpu': '10', 'ram': '49125240Ki', 'pods': '330'}
 	Capacity             interface{}         `json:"capacity,omitempty"`
@@ -42296,6 +42668,17 @@ type RancherCluster struct {
 	Url                         *string             `json:"url,omitempty"`
 	Uuid                        *openapi_types.UUID `json:"uuid,omitempty"`
 	VmProject                   *string             `json:"vm_project,omitempty"`
+}
+
+// RancherClusterAccessUrl0 defines model for .
+type RancherClusterAccessUrl0 = []string
+
+// RancherClusterAccessUrl1 defines model for .
+type RancherClusterAccessUrl1 = string
+
+// RancherCluster_AccessUrl defines model for RancherCluster.AccessUrl.
+type RancherCluster_AccessUrl struct {
+	union json.RawMessage
 }
 
 // RancherClusterFieldEnum defines model for RancherClusterFieldEnum.
@@ -42469,48 +42852,59 @@ type RancherImportYamlRequest struct {
 
 // RancherIngress defines model for RancherIngress.
 type RancherIngress struct {
-	AccessUrl                        *string                 `json:"access_url,omitempty"`
-	BackendId                        *string                 `json:"backend_id,omitempty"`
-	Created                          *time.Time              `json:"created,omitempty"`
-	Customer                         *string                 `json:"customer,omitempty"`
-	CustomerAbbreviation             *string                 `json:"customer_abbreviation,omitempty"`
-	CustomerName                     *string                 `json:"customer_name,omitempty"`
-	CustomerNativeName               *string                 `json:"customer_native_name,omitempty"`
-	CustomerUuid                     *openapi_types.UUID     `json:"customer_uuid,omitempty"`
-	Description                      *string                 `json:"description,omitempty"`
-	ErrorMessage                     *string                 `json:"error_message,omitempty"`
-	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
-	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
-	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
-	Modified                         *time.Time              `json:"modified,omitempty"`
-	Name                             *string                 `json:"name,omitempty"`
-	Namespace                        *string                 `json:"namespace,omitempty"`
-	NamespaceName                    *string                 `json:"namespace_name,omitempty"`
-	Project                          *string                 `json:"project,omitempty"`
-	ProjectName                      *string                 `json:"project_name,omitempty"`
-	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
-	RancherProject                   *string                 `json:"rancher_project,omitempty"`
-	RancherProjectName               *string                 `json:"rancher_project_name,omitempty"`
-	ResourceType                     *string                 `json:"resource_type,omitempty"`
-	Rules                            interface{}             `json:"rules,omitempty"`
-	RuntimeState                     *string                 `json:"runtime_state,omitempty"`
-	ServiceName                      *string                 `json:"service_name,omitempty"`
-	ServiceSettings                  *string                 `json:"service_settings,omitempty"`
-	ServiceSettingsErrorMessage      *string                 `json:"service_settings_error_message,omitempty"`
-	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
-	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
-	State                            *CoreStates             `json:"state,omitempty"`
-	Url                              *string                 `json:"url,omitempty"`
-	Uuid                             *openapi_types.UUID     `json:"uuid,omitempty"`
+	AccessUrl                        *RancherIngress_AccessUrl `json:"access_url,omitempty"`
+	BackendId                        *string                   `json:"backend_id,omitempty"`
+	Created                          *time.Time                `json:"created,omitempty"`
+	Customer                         *string                   `json:"customer,omitempty"`
+	CustomerAbbreviation             *string                   `json:"customer_abbreviation,omitempty"`
+	CustomerName                     *string                   `json:"customer_name,omitempty"`
+	CustomerNativeName               *string                   `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID       `json:"customer_uuid,omitempty"`
+	Description                      *string                   `json:"description,omitempty"`
+	ErrorMessage                     *string                   `json:"error_message,omitempty"`
+	ErrorTraceback                   *string                   `json:"error_traceback,omitempty"`
+	IsLimitBased                     *bool                     `json:"is_limit_based,omitempty"`
+	IsUsageBased                     *bool                     `json:"is_usage_based,omitempty"`
+	MarketplaceCategoryName          *string                   `json:"marketplace_category_name,omitempty"`
+	MarketplaceCategoryUuid          *string                   `json:"marketplace_category_uuid,omitempty"`
+	MarketplaceOfferingName          *string                   `json:"marketplace_offering_name,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{}   `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                   `json:"marketplace_offering_type,omitempty"`
+	MarketplaceOfferingUuid          *string                   `json:"marketplace_offering_uuid,omitempty"`
+	MarketplacePlanUuid              *string                   `json:"marketplace_plan_uuid,omitempty"`
+	MarketplaceResourceState         *string                   `json:"marketplace_resource_state,omitempty"`
+	MarketplaceResourceUuid          *string                   `json:"marketplace_resource_uuid,omitempty"`
+	Modified                         *time.Time                `json:"modified,omitempty"`
+	Name                             *string                   `json:"name,omitempty"`
+	Namespace                        *string                   `json:"namespace,omitempty"`
+	NamespaceName                    *string                   `json:"namespace_name,omitempty"`
+	Project                          *string                   `json:"project,omitempty"`
+	ProjectName                      *string                   `json:"project_name,omitempty"`
+	ProjectUuid                      *openapi_types.UUID       `json:"project_uuid,omitempty"`
+	RancherProject                   *string                   `json:"rancher_project,omitempty"`
+	RancherProjectName               *string                   `json:"rancher_project_name,omitempty"`
+	ResourceType                     *string                   `json:"resource_type,omitempty"`
+	Rules                            interface{}               `json:"rules,omitempty"`
+	RuntimeState                     *string                   `json:"runtime_state,omitempty"`
+	ServiceName                      *string                   `json:"service_name,omitempty"`
+	ServiceSettings                  *string                   `json:"service_settings,omitempty"`
+	ServiceSettingsErrorMessage      *string                   `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState             *string                   `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid              *openapi_types.UUID       `json:"service_settings_uuid,omitempty"`
+	State                            *CoreStates               `json:"state,omitempty"`
+	Url                              *string                   `json:"url,omitempty"`
+	Uuid                             *openapi_types.UUID       `json:"uuid,omitempty"`
+}
+
+// RancherIngressAccessUrl0 defines model for .
+type RancherIngressAccessUrl0 = []string
+
+// RancherIngressAccessUrl1 defines model for .
+type RancherIngressAccessUrl1 = string
+
+// RancherIngress_AccessUrl defines model for RancherIngress.AccessUrl.
+type RancherIngress_AccessUrl struct {
+	union json.RawMessage
 }
 
 // RancherIngressFieldEnum defines model for RancherIngressFieldEnum.
@@ -42687,8 +43081,8 @@ type RancherRoleScopeType string
 
 // RancherService defines model for RancherService.
 type RancherService struct {
-	AccessUrl *string `json:"access_url,omitempty"`
-	BackendId *string `json:"backend_id,omitempty"`
+	AccessUrl *RancherService_AccessUrl `json:"access_url,omitempty"`
+	BackendId *string                   `json:"backend_id,omitempty"`
 
 	// ClusterIp An IPv4 or IPv6 address.
 	ClusterIp                        *RancherService_ClusterIp `json:"cluster_ip,omitempty"`
@@ -42733,6 +43127,17 @@ type RancherService struct {
 	Uuid                             *openapi_types.UUID       `json:"uuid,omitempty"`
 }
 
+// RancherServiceAccessUrl0 defines model for .
+type RancherServiceAccessUrl0 = []string
+
+// RancherServiceAccessUrl1 defines model for .
+type RancherServiceAccessUrl1 = string
+
+// RancherService_AccessUrl defines model for RancherService.AccessUrl.
+type RancherService_AccessUrl struct {
+	union json.RawMessage
+}
+
 // RancherServiceClusterIp0 defines model for .
 type RancherServiceClusterIp0 = string
 
@@ -42746,8 +43151,8 @@ type RancherService_ClusterIp struct {
 
 // RancherServiceCreate defines model for RancherServiceCreate.
 type RancherServiceCreate struct {
-	AccessUrl *string `json:"access_url,omitempty"`
-	BackendId *string `json:"backend_id,omitempty"`
+	AccessUrl *RancherServiceCreate_AccessUrl `json:"access_url,omitempty"`
+	BackendId *string                         `json:"backend_id,omitempty"`
 
 	// ClusterIp An IPv4 or IPv6 address.
 	ClusterIp                        *RancherServiceCreate_ClusterIp `json:"cluster_ip,omitempty"`
@@ -42790,6 +43195,17 @@ type RancherServiceCreate struct {
 	TargetWorkloads                  *[]RancherWorkloadCreate        `json:"target_workloads,omitempty"`
 	Url                              *string                         `json:"url,omitempty"`
 	Uuid                             *openapi_types.UUID             `json:"uuid,omitempty"`
+}
+
+// RancherServiceCreateAccessUrl0 defines model for .
+type RancherServiceCreateAccessUrl0 = []string
+
+// RancherServiceCreateAccessUrl1 defines model for .
+type RancherServiceCreateAccessUrl1 = string
+
+// RancherServiceCreate_AccessUrl defines model for RancherServiceCreate.AccessUrl.
+type RancherServiceCreate_AccessUrl struct {
+	union json.RawMessage
 }
 
 // RancherServiceCreateClusterIp0 defines model for .
@@ -43027,36 +43443,36 @@ type RelationshipTypeEnum string
 
 // RemoteAllocation defines model for RemoteAllocation.
 type RemoteAllocation struct {
-	AccessUrl                        *string                 `json:"access_url,omitempty"`
-	BackendId                        *string                 `json:"backend_id,omitempty"`
-	Created                          *time.Time              `json:"created,omitempty"`
-	Customer                         *string                 `json:"customer,omitempty"`
-	CustomerAbbreviation             *string                 `json:"customer_abbreviation,omitempty"`
-	CustomerName                     *string                 `json:"customer_name,omitempty"`
-	CustomerNativeName               *string                 `json:"customer_native_name,omitempty"`
-	CustomerUuid                     *openapi_types.UUID     `json:"customer_uuid,omitempty"`
-	Description                      *string                 `json:"description,omitempty"`
-	ErrorMessage                     *string                 `json:"error_message,omitempty"`
-	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
-	IsActive                         *bool                   `json:"is_active,omitempty"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
-	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
-	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
-	Modified                         *time.Time              `json:"modified,omitempty"`
-	Name                             *string                 `json:"name,omitempty"`
-	NodeLimit                        *int64                  `json:"node_limit,omitempty"`
-	NodeUsage                        *string                 `json:"node_usage,omitempty"`
-	Project                          *string                 `json:"project,omitempty"`
-	ProjectName                      *string                 `json:"project_name,omitempty"`
-	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
+	AccessUrl                        *RemoteAllocation_AccessUrl `json:"access_url,omitempty"`
+	BackendId                        *string                     `json:"backend_id,omitempty"`
+	Created                          *time.Time                  `json:"created,omitempty"`
+	Customer                         *string                     `json:"customer,omitempty"`
+	CustomerAbbreviation             *string                     `json:"customer_abbreviation,omitempty"`
+	CustomerName                     *string                     `json:"customer_name,omitempty"`
+	CustomerNativeName               *string                     `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID         `json:"customer_uuid,omitempty"`
+	Description                      *string                     `json:"description,omitempty"`
+	ErrorMessage                     *string                     `json:"error_message,omitempty"`
+	ErrorTraceback                   *string                     `json:"error_traceback,omitempty"`
+	IsActive                         *bool                       `json:"is_active,omitempty"`
+	IsLimitBased                     *bool                       `json:"is_limit_based,omitempty"`
+	IsUsageBased                     *bool                       `json:"is_usage_based,omitempty"`
+	MarketplaceCategoryName          *string                     `json:"marketplace_category_name,omitempty"`
+	MarketplaceCategoryUuid          *string                     `json:"marketplace_category_uuid,omitempty"`
+	MarketplaceOfferingName          *string                     `json:"marketplace_offering_name,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{}     `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                     `json:"marketplace_offering_type,omitempty"`
+	MarketplaceOfferingUuid          *string                     `json:"marketplace_offering_uuid,omitempty"`
+	MarketplacePlanUuid              *string                     `json:"marketplace_plan_uuid,omitempty"`
+	MarketplaceResourceState         *string                     `json:"marketplace_resource_state,omitempty"`
+	MarketplaceResourceUuid          *string                     `json:"marketplace_resource_uuid,omitempty"`
+	Modified                         *time.Time                  `json:"modified,omitempty"`
+	Name                             *string                     `json:"name,omitempty"`
+	NodeLimit                        *int64                      `json:"node_limit,omitempty"`
+	NodeUsage                        *string                     `json:"node_usage,omitempty"`
+	Project                          *string                     `json:"project,omitempty"`
+	ProjectName                      *string                     `json:"project_name,omitempty"`
+	ProjectUuid                      *openapi_types.UUID         `json:"project_uuid,omitempty"`
 
 	// RemoteProjectIdentifier The identifier of the project in the remote OpenPortal instance.
 	RemoteProjectIdentifier     *string             `json:"remote_project_identifier,omitempty"`
@@ -43069,6 +43485,17 @@ type RemoteAllocation struct {
 	State                       *CoreStates         `json:"state,omitempty"`
 	Url                         *string             `json:"url,omitempty"`
 	Uuid                        *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// RemoteAllocationAccessUrl0 defines model for .
+type RemoteAllocationAccessUrl0 = []string
+
+// RemoteAllocationAccessUrl1 defines model for .
+type RemoteAllocationAccessUrl1 = string
+
+// RemoteAllocation_AccessUrl defines model for RemoteAllocation.AccessUrl.
+type RemoteAllocation_AccessUrl struct {
+	union json.RawMessage
 }
 
 // RemoteAllocationFieldEnum defines model for RemoteAllocationFieldEnum.
@@ -45351,6 +45778,18 @@ type SetErredResponse struct {
 	Detail string `json:"detail"`
 }
 
+// SetExternalGatewayRequest defines model for SetExternalGatewayRequest.
+type SetExternalGatewayRequest struct {
+	// EnableSnat Whether to enable SNAT on the gateway. None means use OpenStack default (True). Requires advanced permissions.
+	EnableSnat *bool `json:"enable_snat,omitempty"`
+
+	// ExternalFixedIps List of fixed IP specifications for the gateway port. Each entry should have 'ip_address' and optionally 'subnet_id'. Requires advanced permissions.
+	ExternalFixedIps *[]map[string]interface{} `json:"external_fixed_ips,omitempty"`
+
+	// ExternalNetworkId Backend ID (OpenStack UUID) of the external network.
+	ExternalNetworkId string `json:"external_network_id"`
+}
+
 // SetMtu defines model for SetMtu.
 type SetMtu struct {
 	Mtu int `json:"mtu"`
@@ -45425,51 +45864,62 @@ type SiteAgentConfigGenerationRequest struct {
 
 // SlurmAllocation defines model for SlurmAllocation.
 type SlurmAllocation struct {
-	AccessUrl                        *string                 `json:"access_url,omitempty"`
-	BackendId                        *string                 `json:"backend_id,omitempty"`
-	CpuLimit                         *int                    `json:"cpu_limit,omitempty"`
-	CpuUsage                         *int                    `json:"cpu_usage,omitempty"`
-	Created                          *time.Time              `json:"created,omitempty"`
-	Customer                         *string                 `json:"customer,omitempty"`
-	CustomerAbbreviation             *string                 `json:"customer_abbreviation,omitempty"`
-	CustomerName                     *string                 `json:"customer_name,omitempty"`
-	CustomerNativeName               *string                 `json:"customer_native_name,omitempty"`
-	CustomerUuid                     *openapi_types.UUID     `json:"customer_uuid,omitempty"`
-	Description                      *string                 `json:"description,omitempty"`
-	ErrorMessage                     *string                 `json:"error_message,omitempty"`
-	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
-	Gateway                          *string                 `json:"gateway,omitempty"`
-	GpuLimit                         *int                    `json:"gpu_limit,omitempty"`
-	GpuUsage                         *int                    `json:"gpu_usage,omitempty"`
-	IsActive                         *bool                   `json:"is_active,omitempty"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
-	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
-	MarketplaceOfferingType          *string                 `json:"marketplace_offering_type,omitempty"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
-	Modified                         *time.Time              `json:"modified,omitempty"`
-	Name                             *string                 `json:"name,omitempty"`
-	Project                          *string                 `json:"project,omitempty"`
-	ProjectName                      *string                 `json:"project_name,omitempty"`
-	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
-	RamLimit                         *int                    `json:"ram_limit,omitempty"`
-	RamUsage                         *int                    `json:"ram_usage,omitempty"`
-	ResourceType                     *string                 `json:"resource_type,omitempty"`
-	ServiceName                      *string                 `json:"service_name,omitempty"`
-	ServiceSettings                  *string                 `json:"service_settings,omitempty"`
-	ServiceSettingsErrorMessage      *string                 `json:"service_settings_error_message,omitempty"`
-	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
-	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
-	State                            *CoreStates             `json:"state,omitempty"`
-	Url                              *string                 `json:"url,omitempty"`
-	Username                         *string                 `json:"username,omitempty"`
-	Uuid                             *openapi_types.UUID     `json:"uuid,omitempty"`
+	AccessUrl                        *SlurmAllocation_AccessUrl `json:"access_url,omitempty"`
+	BackendId                        *string                    `json:"backend_id,omitempty"`
+	CpuLimit                         *int                       `json:"cpu_limit,omitempty"`
+	CpuUsage                         *int                       `json:"cpu_usage,omitempty"`
+	Created                          *time.Time                 `json:"created,omitempty"`
+	Customer                         *string                    `json:"customer,omitempty"`
+	CustomerAbbreviation             *string                    `json:"customer_abbreviation,omitempty"`
+	CustomerName                     *string                    `json:"customer_name,omitempty"`
+	CustomerNativeName               *string                    `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID        `json:"customer_uuid,omitempty"`
+	Description                      *string                    `json:"description,omitempty"`
+	ErrorMessage                     *string                    `json:"error_message,omitempty"`
+	ErrorTraceback                   *string                    `json:"error_traceback,omitempty"`
+	Gateway                          *string                    `json:"gateway,omitempty"`
+	GpuLimit                         *int                       `json:"gpu_limit,omitempty"`
+	GpuUsage                         *int                       `json:"gpu_usage,omitempty"`
+	IsActive                         *bool                      `json:"is_active,omitempty"`
+	IsLimitBased                     *bool                      `json:"is_limit_based,omitempty"`
+	IsUsageBased                     *bool                      `json:"is_usage_based,omitempty"`
+	MarketplaceCategoryName          *string                    `json:"marketplace_category_name,omitempty"`
+	MarketplaceCategoryUuid          *string                    `json:"marketplace_category_uuid,omitempty"`
+	MarketplaceOfferingName          *string                    `json:"marketplace_offering_name,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{}    `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingType          *string                    `json:"marketplace_offering_type,omitempty"`
+	MarketplaceOfferingUuid          *string                    `json:"marketplace_offering_uuid,omitempty"`
+	MarketplacePlanUuid              *string                    `json:"marketplace_plan_uuid,omitempty"`
+	MarketplaceResourceState         *string                    `json:"marketplace_resource_state,omitempty"`
+	MarketplaceResourceUuid          *string                    `json:"marketplace_resource_uuid,omitempty"`
+	Modified                         *time.Time                 `json:"modified,omitempty"`
+	Name                             *string                    `json:"name,omitempty"`
+	Project                          *string                    `json:"project,omitempty"`
+	ProjectName                      *string                    `json:"project_name,omitempty"`
+	ProjectUuid                      *openapi_types.UUID        `json:"project_uuid,omitempty"`
+	RamLimit                         *int                       `json:"ram_limit,omitempty"`
+	RamUsage                         *int                       `json:"ram_usage,omitempty"`
+	ResourceType                     *string                    `json:"resource_type,omitempty"`
+	ServiceName                      *string                    `json:"service_name,omitempty"`
+	ServiceSettings                  *string                    `json:"service_settings,omitempty"`
+	ServiceSettingsErrorMessage      *string                    `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState             *string                    `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid              *openapi_types.UUID        `json:"service_settings_uuid,omitempty"`
+	State                            *CoreStates                `json:"state,omitempty"`
+	Url                              *string                    `json:"url,omitempty"`
+	Username                         *string                    `json:"username,omitempty"`
+	Uuid                             *openapi_types.UUID        `json:"uuid,omitempty"`
+}
+
+// SlurmAllocationAccessUrl0 defines model for .
+type SlurmAllocationAccessUrl0 = []string
+
+// SlurmAllocationAccessUrl1 defines model for .
+type SlurmAllocationAccessUrl1 = string
+
+// SlurmAllocation_AccessUrl defines model for SlurmAllocation.AccessUrl.
+type SlurmAllocation_AccessUrl struct {
+	union json.RawMessage
 }
 
 // SlurmAllocationFieldEnum defines model for SlurmAllocationFieldEnum.
@@ -47752,7 +48202,7 @@ type VmwareDatastore struct {
 
 // VmwareDisk defines model for VmwareDisk.
 type VmwareDisk struct {
-	AccessUrl                        *string                 `json:"access_url,omitempty"`
+	AccessUrl                        *VmwareDisk_AccessUrl   `json:"access_url,omitempty"`
 	BackendId                        *string                 `json:"backend_id,omitempty"`
 	Created                          *time.Time              `json:"created,omitempty"`
 	Customer                         *string                 `json:"customer,omitempty"`
@@ -47794,6 +48244,17 @@ type VmwareDisk struct {
 	Vm     *string             `json:"vm,omitempty"`
 	VmName *string             `json:"vm_name,omitempty"`
 	VmUuid *openapi_types.UUID `json:"vm_uuid,omitempty"`
+}
+
+// VmwareDiskAccessUrl0 defines model for .
+type VmwareDiskAccessUrl0 = []string
+
+// VmwareDiskAccessUrl1 defines model for .
+type VmwareDiskAccessUrl1 = string
+
+// VmwareDisk_AccessUrl defines model for VmwareDisk.AccessUrl.
+type VmwareDisk_AccessUrl struct {
+	union json.RawMessage
 }
 
 // VmwareDiskExtend defines model for VmwareDiskExtend.
@@ -47867,7 +48328,7 @@ type VmwareNetwork struct {
 
 // VmwarePort defines model for VmwarePort.
 type VmwarePort struct {
-	AccessUrl                        *string                 `json:"access_url,omitempty"`
+	AccessUrl                        *VmwarePort_AccessUrl   `json:"access_url,omitempty"`
 	BackendId                        *string                 `json:"backend_id,omitempty"`
 	Created                          *time.Time              `json:"created,omitempty"`
 	Customer                         *string                 `json:"customer,omitempty"`
@@ -47911,6 +48372,17 @@ type VmwarePort struct {
 	VmUuid                           *openapi_types.UUID     `json:"vm_uuid,omitempty"`
 }
 
+// VmwarePortAccessUrl0 defines model for .
+type VmwarePortAccessUrl0 = []string
+
+// VmwarePortAccessUrl1 defines model for .
+type VmwarePortAccessUrl1 = string
+
+// VmwarePort_AccessUrl defines model for VmwarePort.AccessUrl.
+type VmwarePort_AccessUrl struct {
+	union json.RawMessage
+}
+
 // VmwarePortFieldEnum defines model for VmwarePortFieldEnum.
 type VmwarePortFieldEnum string
 
@@ -47947,10 +48419,10 @@ type VmwareTemplate struct {
 
 // VmwareVirtualMachine defines model for VmwareVirtualMachine.
 type VmwareVirtualMachine struct {
-	AccessUrl   *string `json:"access_url,omitempty"`
-	BackendId   *string `json:"backend_id,omitempty"`
-	Cluster     *string `json:"cluster,omitempty"`
-	ClusterName *string `json:"cluster_name,omitempty"`
+	AccessUrl   *VmwareVirtualMachine_AccessUrl `json:"access_url,omitempty"`
+	BackendId   *string                         `json:"backend_id,omitempty"`
+	Cluster     *string                         `json:"cluster,omitempty"`
+	ClusterName *string                         `json:"cluster_name,omitempty"`
 
 	// Cores Number of cores in a VM
 	Cores *int `json:"cores,omitempty"`
@@ -48010,6 +48482,17 @@ type VmwareVirtualMachine struct {
 	ToolsState                  *string             `json:"tools_state,omitempty"`
 	Url                         *string             `json:"url,omitempty"`
 	Uuid                        *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// VmwareVirtualMachineAccessUrl0 defines model for .
+type VmwareVirtualMachineAccessUrl0 = []string
+
+// VmwareVirtualMachineAccessUrl1 defines model for .
+type VmwareVirtualMachineAccessUrl1 = string
+
+// VmwareVirtualMachine_AccessUrl defines model for VmwareVirtualMachine.AccessUrl.
+type VmwareVirtualMachine_AccessUrl struct {
+	union json.RawMessage
 }
 
 // VmwareVirtualMachine_GuestOs defines model for VmwareVirtualMachine.GuestOs.
@@ -63442,6 +63925,31 @@ type OpenstackRoutersRetrieveParams struct {
 	Field *[]OpenStackRouterFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 }
 
+// OpenstackRoutersAvailableExternalNetworksListParams defines parameters for OpenstackRoutersAvailableExternalNetworksList.
+type OpenstackRoutersAvailableExternalNetworksListParams struct {
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// State State
+	//
+	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+}
+
 // OpenstackSecurityGroupsListParams defines parameters for OpenstackSecurityGroupsList.
 type OpenstackSecurityGroupsListParams struct {
 	// BackendId Backend ID
@@ -71869,6 +72377,9 @@ type OpenstackRoutersRemoveRouterInterfaceJSONRequestBody = OpenStackRouterInter
 // OpenstackRoutersSetErredJSONRequestBody defines body for OpenstackRoutersSetErred for application/json ContentType.
 type OpenstackRoutersSetErredJSONRequestBody = SetErredRequest
 
+// OpenstackRoutersSetExternalGatewayJSONRequestBody defines body for OpenstackRoutersSetExternalGateway for application/json ContentType.
+type OpenstackRoutersSetExternalGatewayJSONRequestBody = SetExternalGatewayRequest
+
 // OpenstackRoutersSetRoutesJSONRequestBody defines body for OpenstackRoutersSetRoutes for application/json ContentType.
 type OpenstackRoutersSetRoutesJSONRequestBody = OpenStackRouterSetRoutesRequest
 
@@ -72844,6 +73355,502 @@ func (a GenericOrderAttributes) MarshalJSON() ([]byte, error) {
 		}
 	}
 	return json.Marshal(object)
+}
+
+// AsAllocationAccessUrl0 returns the union data inside the Allocation_AccessUrl as a AllocationAccessUrl0
+func (t Allocation_AccessUrl) AsAllocationAccessUrl0() (AllocationAccessUrl0, error) {
+	var body AllocationAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAllocationAccessUrl0 overwrites any union data inside the Allocation_AccessUrl as the provided AllocationAccessUrl0
+func (t *Allocation_AccessUrl) FromAllocationAccessUrl0(v AllocationAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAllocationAccessUrl0 performs a merge with any union data inside the Allocation_AccessUrl, using the provided AllocationAccessUrl0
+func (t *Allocation_AccessUrl) MergeAllocationAccessUrl0(v AllocationAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAllocationAccessUrl1 returns the union data inside the Allocation_AccessUrl as a AllocationAccessUrl1
+func (t Allocation_AccessUrl) AsAllocationAccessUrl1() (AllocationAccessUrl1, error) {
+	var body AllocationAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAllocationAccessUrl1 overwrites any union data inside the Allocation_AccessUrl as the provided AllocationAccessUrl1
+func (t *Allocation_AccessUrl) FromAllocationAccessUrl1(v AllocationAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAllocationAccessUrl1 performs a merge with any union data inside the Allocation_AccessUrl, using the provided AllocationAccessUrl1
+func (t *Allocation_AccessUrl) MergeAllocationAccessUrl1(v AllocationAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t Allocation_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *Allocation_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAwsInstanceAccessUrl0 returns the union data inside the AwsInstance_AccessUrl as a AwsInstanceAccessUrl0
+func (t AwsInstance_AccessUrl) AsAwsInstanceAccessUrl0() (AwsInstanceAccessUrl0, error) {
+	var body AwsInstanceAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAwsInstanceAccessUrl0 overwrites any union data inside the AwsInstance_AccessUrl as the provided AwsInstanceAccessUrl0
+func (t *AwsInstance_AccessUrl) FromAwsInstanceAccessUrl0(v AwsInstanceAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAwsInstanceAccessUrl0 performs a merge with any union data inside the AwsInstance_AccessUrl, using the provided AwsInstanceAccessUrl0
+func (t *AwsInstance_AccessUrl) MergeAwsInstanceAccessUrl0(v AwsInstanceAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAwsInstanceAccessUrl1 returns the union data inside the AwsInstance_AccessUrl as a AwsInstanceAccessUrl1
+func (t AwsInstance_AccessUrl) AsAwsInstanceAccessUrl1() (AwsInstanceAccessUrl1, error) {
+	var body AwsInstanceAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAwsInstanceAccessUrl1 overwrites any union data inside the AwsInstance_AccessUrl as the provided AwsInstanceAccessUrl1
+func (t *AwsInstance_AccessUrl) FromAwsInstanceAccessUrl1(v AwsInstanceAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAwsInstanceAccessUrl1 performs a merge with any union data inside the AwsInstance_AccessUrl, using the provided AwsInstanceAccessUrl1
+func (t *AwsInstance_AccessUrl) MergeAwsInstanceAccessUrl1(v AwsInstanceAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AwsInstance_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AwsInstance_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAwsVolumeAccessUrl0 returns the union data inside the AwsVolume_AccessUrl as a AwsVolumeAccessUrl0
+func (t AwsVolume_AccessUrl) AsAwsVolumeAccessUrl0() (AwsVolumeAccessUrl0, error) {
+	var body AwsVolumeAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAwsVolumeAccessUrl0 overwrites any union data inside the AwsVolume_AccessUrl as the provided AwsVolumeAccessUrl0
+func (t *AwsVolume_AccessUrl) FromAwsVolumeAccessUrl0(v AwsVolumeAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAwsVolumeAccessUrl0 performs a merge with any union data inside the AwsVolume_AccessUrl, using the provided AwsVolumeAccessUrl0
+func (t *AwsVolume_AccessUrl) MergeAwsVolumeAccessUrl0(v AwsVolumeAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAwsVolumeAccessUrl1 returns the union data inside the AwsVolume_AccessUrl as a AwsVolumeAccessUrl1
+func (t AwsVolume_AccessUrl) AsAwsVolumeAccessUrl1() (AwsVolumeAccessUrl1, error) {
+	var body AwsVolumeAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAwsVolumeAccessUrl1 overwrites any union data inside the AwsVolume_AccessUrl as the provided AwsVolumeAccessUrl1
+func (t *AwsVolume_AccessUrl) FromAwsVolumeAccessUrl1(v AwsVolumeAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAwsVolumeAccessUrl1 performs a merge with any union data inside the AwsVolume_AccessUrl, using the provided AwsVolumeAccessUrl1
+func (t *AwsVolume_AccessUrl) MergeAwsVolumeAccessUrl1(v AwsVolumeAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AwsVolume_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AwsVolume_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAzurePublicIPAccessUrl0 returns the union data inside the AzurePublicIP_AccessUrl as a AzurePublicIPAccessUrl0
+func (t AzurePublicIP_AccessUrl) AsAzurePublicIPAccessUrl0() (AzurePublicIPAccessUrl0, error) {
+	var body AzurePublicIPAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAzurePublicIPAccessUrl0 overwrites any union data inside the AzurePublicIP_AccessUrl as the provided AzurePublicIPAccessUrl0
+func (t *AzurePublicIP_AccessUrl) FromAzurePublicIPAccessUrl0(v AzurePublicIPAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAzurePublicIPAccessUrl0 performs a merge with any union data inside the AzurePublicIP_AccessUrl, using the provided AzurePublicIPAccessUrl0
+func (t *AzurePublicIP_AccessUrl) MergeAzurePublicIPAccessUrl0(v AzurePublicIPAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAzurePublicIPAccessUrl1 returns the union data inside the AzurePublicIP_AccessUrl as a AzurePublicIPAccessUrl1
+func (t AzurePublicIP_AccessUrl) AsAzurePublicIPAccessUrl1() (AzurePublicIPAccessUrl1, error) {
+	var body AzurePublicIPAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAzurePublicIPAccessUrl1 overwrites any union data inside the AzurePublicIP_AccessUrl as the provided AzurePublicIPAccessUrl1
+func (t *AzurePublicIP_AccessUrl) FromAzurePublicIPAccessUrl1(v AzurePublicIPAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAzurePublicIPAccessUrl1 performs a merge with any union data inside the AzurePublicIP_AccessUrl, using the provided AzurePublicIPAccessUrl1
+func (t *AzurePublicIP_AccessUrl) MergeAzurePublicIPAccessUrl1(v AzurePublicIPAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AzurePublicIP_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AzurePublicIP_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAzureResourceGroupAccessUrl0 returns the union data inside the AzureResourceGroup_AccessUrl as a AzureResourceGroupAccessUrl0
+func (t AzureResourceGroup_AccessUrl) AsAzureResourceGroupAccessUrl0() (AzureResourceGroupAccessUrl0, error) {
+	var body AzureResourceGroupAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAzureResourceGroupAccessUrl0 overwrites any union data inside the AzureResourceGroup_AccessUrl as the provided AzureResourceGroupAccessUrl0
+func (t *AzureResourceGroup_AccessUrl) FromAzureResourceGroupAccessUrl0(v AzureResourceGroupAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAzureResourceGroupAccessUrl0 performs a merge with any union data inside the AzureResourceGroup_AccessUrl, using the provided AzureResourceGroupAccessUrl0
+func (t *AzureResourceGroup_AccessUrl) MergeAzureResourceGroupAccessUrl0(v AzureResourceGroupAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAzureResourceGroupAccessUrl1 returns the union data inside the AzureResourceGroup_AccessUrl as a AzureResourceGroupAccessUrl1
+func (t AzureResourceGroup_AccessUrl) AsAzureResourceGroupAccessUrl1() (AzureResourceGroupAccessUrl1, error) {
+	var body AzureResourceGroupAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAzureResourceGroupAccessUrl1 overwrites any union data inside the AzureResourceGroup_AccessUrl as the provided AzureResourceGroupAccessUrl1
+func (t *AzureResourceGroup_AccessUrl) FromAzureResourceGroupAccessUrl1(v AzureResourceGroupAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAzureResourceGroupAccessUrl1 performs a merge with any union data inside the AzureResourceGroup_AccessUrl, using the provided AzureResourceGroupAccessUrl1
+func (t *AzureResourceGroup_AccessUrl) MergeAzureResourceGroupAccessUrl1(v AzureResourceGroupAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AzureResourceGroup_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AzureResourceGroup_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAzureSqlDatabaseAccessUrl0 returns the union data inside the AzureSqlDatabase_AccessUrl as a AzureSqlDatabaseAccessUrl0
+func (t AzureSqlDatabase_AccessUrl) AsAzureSqlDatabaseAccessUrl0() (AzureSqlDatabaseAccessUrl0, error) {
+	var body AzureSqlDatabaseAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAzureSqlDatabaseAccessUrl0 overwrites any union data inside the AzureSqlDatabase_AccessUrl as the provided AzureSqlDatabaseAccessUrl0
+func (t *AzureSqlDatabase_AccessUrl) FromAzureSqlDatabaseAccessUrl0(v AzureSqlDatabaseAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAzureSqlDatabaseAccessUrl0 performs a merge with any union data inside the AzureSqlDatabase_AccessUrl, using the provided AzureSqlDatabaseAccessUrl0
+func (t *AzureSqlDatabase_AccessUrl) MergeAzureSqlDatabaseAccessUrl0(v AzureSqlDatabaseAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAzureSqlDatabaseAccessUrl1 returns the union data inside the AzureSqlDatabase_AccessUrl as a AzureSqlDatabaseAccessUrl1
+func (t AzureSqlDatabase_AccessUrl) AsAzureSqlDatabaseAccessUrl1() (AzureSqlDatabaseAccessUrl1, error) {
+	var body AzureSqlDatabaseAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAzureSqlDatabaseAccessUrl1 overwrites any union data inside the AzureSqlDatabase_AccessUrl as the provided AzureSqlDatabaseAccessUrl1
+func (t *AzureSqlDatabase_AccessUrl) FromAzureSqlDatabaseAccessUrl1(v AzureSqlDatabaseAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAzureSqlDatabaseAccessUrl1 performs a merge with any union data inside the AzureSqlDatabase_AccessUrl, using the provided AzureSqlDatabaseAccessUrl1
+func (t *AzureSqlDatabase_AccessUrl) MergeAzureSqlDatabaseAccessUrl1(v AzureSqlDatabaseAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AzureSqlDatabase_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AzureSqlDatabase_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAzureSqlServerAccessUrl0 returns the union data inside the AzureSqlServer_AccessUrl as a AzureSqlServerAccessUrl0
+func (t AzureSqlServer_AccessUrl) AsAzureSqlServerAccessUrl0() (AzureSqlServerAccessUrl0, error) {
+	var body AzureSqlServerAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAzureSqlServerAccessUrl0 overwrites any union data inside the AzureSqlServer_AccessUrl as the provided AzureSqlServerAccessUrl0
+func (t *AzureSqlServer_AccessUrl) FromAzureSqlServerAccessUrl0(v AzureSqlServerAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAzureSqlServerAccessUrl0 performs a merge with any union data inside the AzureSqlServer_AccessUrl, using the provided AzureSqlServerAccessUrl0
+func (t *AzureSqlServer_AccessUrl) MergeAzureSqlServerAccessUrl0(v AzureSqlServerAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAzureSqlServerAccessUrl1 returns the union data inside the AzureSqlServer_AccessUrl as a AzureSqlServerAccessUrl1
+func (t AzureSqlServer_AccessUrl) AsAzureSqlServerAccessUrl1() (AzureSqlServerAccessUrl1, error) {
+	var body AzureSqlServerAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAzureSqlServerAccessUrl1 overwrites any union data inside the AzureSqlServer_AccessUrl as the provided AzureSqlServerAccessUrl1
+func (t *AzureSqlServer_AccessUrl) FromAzureSqlServerAccessUrl1(v AzureSqlServerAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAzureSqlServerAccessUrl1 performs a merge with any union data inside the AzureSqlServer_AccessUrl, using the provided AzureSqlServerAccessUrl1
+func (t *AzureSqlServer_AccessUrl) MergeAzureSqlServerAccessUrl1(v AzureSqlServerAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AzureSqlServer_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AzureSqlServer_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAzureVirtualMachineAccessUrl0 returns the union data inside the AzureVirtualMachine_AccessUrl as a AzureVirtualMachineAccessUrl0
+func (t AzureVirtualMachine_AccessUrl) AsAzureVirtualMachineAccessUrl0() (AzureVirtualMachineAccessUrl0, error) {
+	var body AzureVirtualMachineAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAzureVirtualMachineAccessUrl0 overwrites any union data inside the AzureVirtualMachine_AccessUrl as the provided AzureVirtualMachineAccessUrl0
+func (t *AzureVirtualMachine_AccessUrl) FromAzureVirtualMachineAccessUrl0(v AzureVirtualMachineAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAzureVirtualMachineAccessUrl0 performs a merge with any union data inside the AzureVirtualMachine_AccessUrl, using the provided AzureVirtualMachineAccessUrl0
+func (t *AzureVirtualMachine_AccessUrl) MergeAzureVirtualMachineAccessUrl0(v AzureVirtualMachineAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAzureVirtualMachineAccessUrl1 returns the union data inside the AzureVirtualMachine_AccessUrl as a AzureVirtualMachineAccessUrl1
+func (t AzureVirtualMachine_AccessUrl) AsAzureVirtualMachineAccessUrl1() (AzureVirtualMachineAccessUrl1, error) {
+	var body AzureVirtualMachineAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAzureVirtualMachineAccessUrl1 overwrites any union data inside the AzureVirtualMachine_AccessUrl as the provided AzureVirtualMachineAccessUrl1
+func (t *AzureVirtualMachine_AccessUrl) FromAzureVirtualMachineAccessUrl1(v AzureVirtualMachineAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAzureVirtualMachineAccessUrl1 performs a merge with any union data inside the AzureVirtualMachine_AccessUrl, using the provided AzureVirtualMachineAccessUrl1
+func (t *AzureVirtualMachine_AccessUrl) MergeAzureVirtualMachineAccessUrl1(v AzureVirtualMachineAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AzureVirtualMachine_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AzureVirtualMachine_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
 }
 
 // AsWidgetEnum returns the union data inside the CategoryColumn_Widget as a WidgetEnum
@@ -76184,6 +77191,68 @@ func (t *CustomerRequestMultipart_Country) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsDigitalOceanDropletAccessUrl0 returns the union data inside the DigitalOceanDroplet_AccessUrl as a DigitalOceanDropletAccessUrl0
+func (t DigitalOceanDroplet_AccessUrl) AsDigitalOceanDropletAccessUrl0() (DigitalOceanDropletAccessUrl0, error) {
+	var body DigitalOceanDropletAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromDigitalOceanDropletAccessUrl0 overwrites any union data inside the DigitalOceanDroplet_AccessUrl as the provided DigitalOceanDropletAccessUrl0
+func (t *DigitalOceanDroplet_AccessUrl) FromDigitalOceanDropletAccessUrl0(v DigitalOceanDropletAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeDigitalOceanDropletAccessUrl0 performs a merge with any union data inside the DigitalOceanDroplet_AccessUrl, using the provided DigitalOceanDropletAccessUrl0
+func (t *DigitalOceanDroplet_AccessUrl) MergeDigitalOceanDropletAccessUrl0(v DigitalOceanDropletAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsDigitalOceanDropletAccessUrl1 returns the union data inside the DigitalOceanDroplet_AccessUrl as a DigitalOceanDropletAccessUrl1
+func (t DigitalOceanDroplet_AccessUrl) AsDigitalOceanDropletAccessUrl1() (DigitalOceanDropletAccessUrl1, error) {
+	var body DigitalOceanDropletAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromDigitalOceanDropletAccessUrl1 overwrites any union data inside the DigitalOceanDroplet_AccessUrl as the provided DigitalOceanDropletAccessUrl1
+func (t *DigitalOceanDroplet_AccessUrl) FromDigitalOceanDropletAccessUrl1(v DigitalOceanDropletAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeDigitalOceanDropletAccessUrl1 performs a merge with any union data inside the DigitalOceanDroplet_AccessUrl, using the provided DigitalOceanDropletAccessUrl1
+func (t *DigitalOceanDroplet_AccessUrl) MergeDigitalOceanDropletAccessUrl1(v DigitalOceanDropletAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t DigitalOceanDroplet_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *DigitalOceanDroplet_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsEventSubscriptionSourceIp0 returns the union data inside the EventSubscription_SourceIp as a EventSubscriptionSourceIp0
 func (t EventSubscription_SourceIp) AsEventSubscriptionSourceIp0() (EventSubscriptionSourceIp0, error) {
 	var body EventSubscriptionSourceIp0
@@ -76304,6 +77373,68 @@ func (t ExternalSubnet_GatewayIp) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ExternalSubnet_GatewayIp) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsFirecrestJobAccessUrl0 returns the union data inside the FirecrestJob_AccessUrl as a FirecrestJobAccessUrl0
+func (t FirecrestJob_AccessUrl) AsFirecrestJobAccessUrl0() (FirecrestJobAccessUrl0, error) {
+	var body FirecrestJobAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromFirecrestJobAccessUrl0 overwrites any union data inside the FirecrestJob_AccessUrl as the provided FirecrestJobAccessUrl0
+func (t *FirecrestJob_AccessUrl) FromFirecrestJobAccessUrl0(v FirecrestJobAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeFirecrestJobAccessUrl0 performs a merge with any union data inside the FirecrestJob_AccessUrl, using the provided FirecrestJobAccessUrl0
+func (t *FirecrestJob_AccessUrl) MergeFirecrestJobAccessUrl0(v FirecrestJobAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsFirecrestJobAccessUrl1 returns the union data inside the FirecrestJob_AccessUrl as a FirecrestJobAccessUrl1
+func (t FirecrestJob_AccessUrl) AsFirecrestJobAccessUrl1() (FirecrestJobAccessUrl1, error) {
+	var body FirecrestJobAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromFirecrestJobAccessUrl1 overwrites any union data inside the FirecrestJob_AccessUrl as the provided FirecrestJobAccessUrl1
+func (t *FirecrestJob_AccessUrl) FromFirecrestJobAccessUrl1(v FirecrestJobAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeFirecrestJobAccessUrl1 performs a merge with any union data inside the FirecrestJob_AccessUrl, using the provided FirecrestJobAccessUrl1
+func (t *FirecrestJob_AccessUrl) MergeFirecrestJobAccessUrl1(v FirecrestJobAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t FirecrestJob_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *FirecrestJob_AccessUrl) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -77430,6 +78561,68 @@ func (t *OnboardingCompanyValidationRequestRequest_ValidationMethod) UnmarshalJS
 	return err
 }
 
+// AsOpenStackBackupAccessUrl0 returns the union data inside the OpenStackBackup_AccessUrl as a OpenStackBackupAccessUrl0
+func (t OpenStackBackup_AccessUrl) AsOpenStackBackupAccessUrl0() (OpenStackBackupAccessUrl0, error) {
+	var body OpenStackBackupAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackBackupAccessUrl0 overwrites any union data inside the OpenStackBackup_AccessUrl as the provided OpenStackBackupAccessUrl0
+func (t *OpenStackBackup_AccessUrl) FromOpenStackBackupAccessUrl0(v OpenStackBackupAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackBackupAccessUrl0 performs a merge with any union data inside the OpenStackBackup_AccessUrl, using the provided OpenStackBackupAccessUrl0
+func (t *OpenStackBackup_AccessUrl) MergeOpenStackBackupAccessUrl0(v OpenStackBackupAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackBackupAccessUrl1 returns the union data inside the OpenStackBackup_AccessUrl as a OpenStackBackupAccessUrl1
+func (t OpenStackBackup_AccessUrl) AsOpenStackBackupAccessUrl1() (OpenStackBackupAccessUrl1, error) {
+	var body OpenStackBackupAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackBackupAccessUrl1 overwrites any union data inside the OpenStackBackup_AccessUrl as the provided OpenStackBackupAccessUrl1
+func (t *OpenStackBackup_AccessUrl) FromOpenStackBackupAccessUrl1(v OpenStackBackupAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackBackupAccessUrl1 performs a merge with any union data inside the OpenStackBackup_AccessUrl, using the provided OpenStackBackupAccessUrl1
+func (t *OpenStackBackup_AccessUrl) MergeOpenStackBackupAccessUrl1(v OpenStackBackupAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackBackup_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackBackup_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsOpenStackCreateFloatingIPRequestIpAddress0 returns the union data inside the OpenStackCreateFloatingIPRequest_IpAddress as a OpenStackCreateFloatingIPRequestIpAddress0
 func (t OpenStackCreateFloatingIPRequest_IpAddress) AsOpenStackCreateFloatingIPRequestIpAddress0() (OpenStackCreateFloatingIPRequestIpAddress0, error) {
 	var body OpenStackCreateFloatingIPRequestIpAddress0
@@ -77616,6 +78809,68 @@ func (t *OpenStackFixedIpRequest_IpAddress) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsOpenStackFloatingIPAccessUrl0 returns the union data inside the OpenStackFloatingIP_AccessUrl as a OpenStackFloatingIPAccessUrl0
+func (t OpenStackFloatingIP_AccessUrl) AsOpenStackFloatingIPAccessUrl0() (OpenStackFloatingIPAccessUrl0, error) {
+	var body OpenStackFloatingIPAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackFloatingIPAccessUrl0 overwrites any union data inside the OpenStackFloatingIP_AccessUrl as the provided OpenStackFloatingIPAccessUrl0
+func (t *OpenStackFloatingIP_AccessUrl) FromOpenStackFloatingIPAccessUrl0(v OpenStackFloatingIPAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackFloatingIPAccessUrl0 performs a merge with any union data inside the OpenStackFloatingIP_AccessUrl, using the provided OpenStackFloatingIPAccessUrl0
+func (t *OpenStackFloatingIP_AccessUrl) MergeOpenStackFloatingIPAccessUrl0(v OpenStackFloatingIPAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackFloatingIPAccessUrl1 returns the union data inside the OpenStackFloatingIP_AccessUrl as a OpenStackFloatingIPAccessUrl1
+func (t OpenStackFloatingIP_AccessUrl) AsOpenStackFloatingIPAccessUrl1() (OpenStackFloatingIPAccessUrl1, error) {
+	var body OpenStackFloatingIPAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackFloatingIPAccessUrl1 overwrites any union data inside the OpenStackFloatingIP_AccessUrl as the provided OpenStackFloatingIPAccessUrl1
+func (t *OpenStackFloatingIP_AccessUrl) FromOpenStackFloatingIPAccessUrl1(v OpenStackFloatingIPAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackFloatingIPAccessUrl1 performs a merge with any union data inside the OpenStackFloatingIP_AccessUrl, using the provided OpenStackFloatingIPAccessUrl1
+func (t *OpenStackFloatingIP_AccessUrl) MergeOpenStackFloatingIPAccessUrl1(v OpenStackFloatingIPAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackFloatingIP_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackFloatingIP_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsOpenStackFloatingIPAddress0 returns the union data inside the OpenStackFloatingIP_Address as a OpenStackFloatingIPAddress0
 func (t OpenStackFloatingIP_Address) AsOpenStackFloatingIPAddress0() (OpenStackFloatingIPAddress0, error) {
 	var body OpenStackFloatingIPAddress0
@@ -77736,6 +78991,254 @@ func (t OpenStackFloatingIP_ExternalAddress) MarshalJSON() ([]byte, error) {
 }
 
 func (t *OpenStackFloatingIP_ExternalAddress) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackHealthMonitorAccessUrl0 returns the union data inside the OpenStackHealthMonitor_AccessUrl as a OpenStackHealthMonitorAccessUrl0
+func (t OpenStackHealthMonitor_AccessUrl) AsOpenStackHealthMonitorAccessUrl0() (OpenStackHealthMonitorAccessUrl0, error) {
+	var body OpenStackHealthMonitorAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackHealthMonitorAccessUrl0 overwrites any union data inside the OpenStackHealthMonitor_AccessUrl as the provided OpenStackHealthMonitorAccessUrl0
+func (t *OpenStackHealthMonitor_AccessUrl) FromOpenStackHealthMonitorAccessUrl0(v OpenStackHealthMonitorAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackHealthMonitorAccessUrl0 performs a merge with any union data inside the OpenStackHealthMonitor_AccessUrl, using the provided OpenStackHealthMonitorAccessUrl0
+func (t *OpenStackHealthMonitor_AccessUrl) MergeOpenStackHealthMonitorAccessUrl0(v OpenStackHealthMonitorAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackHealthMonitorAccessUrl1 returns the union data inside the OpenStackHealthMonitor_AccessUrl as a OpenStackHealthMonitorAccessUrl1
+func (t OpenStackHealthMonitor_AccessUrl) AsOpenStackHealthMonitorAccessUrl1() (OpenStackHealthMonitorAccessUrl1, error) {
+	var body OpenStackHealthMonitorAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackHealthMonitorAccessUrl1 overwrites any union data inside the OpenStackHealthMonitor_AccessUrl as the provided OpenStackHealthMonitorAccessUrl1
+func (t *OpenStackHealthMonitor_AccessUrl) FromOpenStackHealthMonitorAccessUrl1(v OpenStackHealthMonitorAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackHealthMonitorAccessUrl1 performs a merge with any union data inside the OpenStackHealthMonitor_AccessUrl, using the provided OpenStackHealthMonitorAccessUrl1
+func (t *OpenStackHealthMonitor_AccessUrl) MergeOpenStackHealthMonitorAccessUrl1(v OpenStackHealthMonitorAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackHealthMonitor_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackHealthMonitor_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackInstanceAccessUrl0 returns the union data inside the OpenStackInstance_AccessUrl as a OpenStackInstanceAccessUrl0
+func (t OpenStackInstance_AccessUrl) AsOpenStackInstanceAccessUrl0() (OpenStackInstanceAccessUrl0, error) {
+	var body OpenStackInstanceAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackInstanceAccessUrl0 overwrites any union data inside the OpenStackInstance_AccessUrl as the provided OpenStackInstanceAccessUrl0
+func (t *OpenStackInstance_AccessUrl) FromOpenStackInstanceAccessUrl0(v OpenStackInstanceAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackInstanceAccessUrl0 performs a merge with any union data inside the OpenStackInstance_AccessUrl, using the provided OpenStackInstanceAccessUrl0
+func (t *OpenStackInstance_AccessUrl) MergeOpenStackInstanceAccessUrl0(v OpenStackInstanceAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackInstanceAccessUrl1 returns the union data inside the OpenStackInstance_AccessUrl as a OpenStackInstanceAccessUrl1
+func (t OpenStackInstance_AccessUrl) AsOpenStackInstanceAccessUrl1() (OpenStackInstanceAccessUrl1, error) {
+	var body OpenStackInstanceAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackInstanceAccessUrl1 overwrites any union data inside the OpenStackInstance_AccessUrl as the provided OpenStackInstanceAccessUrl1
+func (t *OpenStackInstance_AccessUrl) FromOpenStackInstanceAccessUrl1(v OpenStackInstanceAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackInstanceAccessUrl1 performs a merge with any union data inside the OpenStackInstance_AccessUrl, using the provided OpenStackInstanceAccessUrl1
+func (t *OpenStackInstance_AccessUrl) MergeOpenStackInstanceAccessUrl1(v OpenStackInstanceAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackInstance_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackInstance_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackListenerAccessUrl0 returns the union data inside the OpenStackListener_AccessUrl as a OpenStackListenerAccessUrl0
+func (t OpenStackListener_AccessUrl) AsOpenStackListenerAccessUrl0() (OpenStackListenerAccessUrl0, error) {
+	var body OpenStackListenerAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackListenerAccessUrl0 overwrites any union data inside the OpenStackListener_AccessUrl as the provided OpenStackListenerAccessUrl0
+func (t *OpenStackListener_AccessUrl) FromOpenStackListenerAccessUrl0(v OpenStackListenerAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackListenerAccessUrl0 performs a merge with any union data inside the OpenStackListener_AccessUrl, using the provided OpenStackListenerAccessUrl0
+func (t *OpenStackListener_AccessUrl) MergeOpenStackListenerAccessUrl0(v OpenStackListenerAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackListenerAccessUrl1 returns the union data inside the OpenStackListener_AccessUrl as a OpenStackListenerAccessUrl1
+func (t OpenStackListener_AccessUrl) AsOpenStackListenerAccessUrl1() (OpenStackListenerAccessUrl1, error) {
+	var body OpenStackListenerAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackListenerAccessUrl1 overwrites any union data inside the OpenStackListener_AccessUrl as the provided OpenStackListenerAccessUrl1
+func (t *OpenStackListener_AccessUrl) FromOpenStackListenerAccessUrl1(v OpenStackListenerAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackListenerAccessUrl1 performs a merge with any union data inside the OpenStackListener_AccessUrl, using the provided OpenStackListenerAccessUrl1
+func (t *OpenStackListener_AccessUrl) MergeOpenStackListenerAccessUrl1(v OpenStackListenerAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackListener_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackListener_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackLoadBalancerAccessUrl0 returns the union data inside the OpenStackLoadBalancer_AccessUrl as a OpenStackLoadBalancerAccessUrl0
+func (t OpenStackLoadBalancer_AccessUrl) AsOpenStackLoadBalancerAccessUrl0() (OpenStackLoadBalancerAccessUrl0, error) {
+	var body OpenStackLoadBalancerAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackLoadBalancerAccessUrl0 overwrites any union data inside the OpenStackLoadBalancer_AccessUrl as the provided OpenStackLoadBalancerAccessUrl0
+func (t *OpenStackLoadBalancer_AccessUrl) FromOpenStackLoadBalancerAccessUrl0(v OpenStackLoadBalancerAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackLoadBalancerAccessUrl0 performs a merge with any union data inside the OpenStackLoadBalancer_AccessUrl, using the provided OpenStackLoadBalancerAccessUrl0
+func (t *OpenStackLoadBalancer_AccessUrl) MergeOpenStackLoadBalancerAccessUrl0(v OpenStackLoadBalancerAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackLoadBalancerAccessUrl1 returns the union data inside the OpenStackLoadBalancer_AccessUrl as a OpenStackLoadBalancerAccessUrl1
+func (t OpenStackLoadBalancer_AccessUrl) AsOpenStackLoadBalancerAccessUrl1() (OpenStackLoadBalancerAccessUrl1, error) {
+	var body OpenStackLoadBalancerAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackLoadBalancerAccessUrl1 overwrites any union data inside the OpenStackLoadBalancer_AccessUrl as the provided OpenStackLoadBalancerAccessUrl1
+func (t *OpenStackLoadBalancer_AccessUrl) FromOpenStackLoadBalancerAccessUrl1(v OpenStackLoadBalancerAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackLoadBalancerAccessUrl1 performs a merge with any union data inside the OpenStackLoadBalancer_AccessUrl, using the provided OpenStackLoadBalancerAccessUrl1
+func (t *OpenStackLoadBalancer_AccessUrl) MergeOpenStackLoadBalancerAccessUrl1(v OpenStackLoadBalancerAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackLoadBalancer_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackLoadBalancer_AccessUrl) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -77926,6 +79429,192 @@ func (t *OpenStackNestedSubNet_GatewayIp) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsOpenStackNetworkAccessUrl0 returns the union data inside the OpenStackNetwork_AccessUrl as a OpenStackNetworkAccessUrl0
+func (t OpenStackNetwork_AccessUrl) AsOpenStackNetworkAccessUrl0() (OpenStackNetworkAccessUrl0, error) {
+	var body OpenStackNetworkAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackNetworkAccessUrl0 overwrites any union data inside the OpenStackNetwork_AccessUrl as the provided OpenStackNetworkAccessUrl0
+func (t *OpenStackNetwork_AccessUrl) FromOpenStackNetworkAccessUrl0(v OpenStackNetworkAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackNetworkAccessUrl0 performs a merge with any union data inside the OpenStackNetwork_AccessUrl, using the provided OpenStackNetworkAccessUrl0
+func (t *OpenStackNetwork_AccessUrl) MergeOpenStackNetworkAccessUrl0(v OpenStackNetworkAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackNetworkAccessUrl1 returns the union data inside the OpenStackNetwork_AccessUrl as a OpenStackNetworkAccessUrl1
+func (t OpenStackNetwork_AccessUrl) AsOpenStackNetworkAccessUrl1() (OpenStackNetworkAccessUrl1, error) {
+	var body OpenStackNetworkAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackNetworkAccessUrl1 overwrites any union data inside the OpenStackNetwork_AccessUrl as the provided OpenStackNetworkAccessUrl1
+func (t *OpenStackNetwork_AccessUrl) FromOpenStackNetworkAccessUrl1(v OpenStackNetworkAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackNetworkAccessUrl1 performs a merge with any union data inside the OpenStackNetwork_AccessUrl, using the provided OpenStackNetworkAccessUrl1
+func (t *OpenStackNetwork_AccessUrl) MergeOpenStackNetworkAccessUrl1(v OpenStackNetworkAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackNetwork_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackNetwork_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackPoolAccessUrl0 returns the union data inside the OpenStackPool_AccessUrl as a OpenStackPoolAccessUrl0
+func (t OpenStackPool_AccessUrl) AsOpenStackPoolAccessUrl0() (OpenStackPoolAccessUrl0, error) {
+	var body OpenStackPoolAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackPoolAccessUrl0 overwrites any union data inside the OpenStackPool_AccessUrl as the provided OpenStackPoolAccessUrl0
+func (t *OpenStackPool_AccessUrl) FromOpenStackPoolAccessUrl0(v OpenStackPoolAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackPoolAccessUrl0 performs a merge with any union data inside the OpenStackPool_AccessUrl, using the provided OpenStackPoolAccessUrl0
+func (t *OpenStackPool_AccessUrl) MergeOpenStackPoolAccessUrl0(v OpenStackPoolAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackPoolAccessUrl1 returns the union data inside the OpenStackPool_AccessUrl as a OpenStackPoolAccessUrl1
+func (t OpenStackPool_AccessUrl) AsOpenStackPoolAccessUrl1() (OpenStackPoolAccessUrl1, error) {
+	var body OpenStackPoolAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackPoolAccessUrl1 overwrites any union data inside the OpenStackPool_AccessUrl as the provided OpenStackPoolAccessUrl1
+func (t *OpenStackPool_AccessUrl) FromOpenStackPoolAccessUrl1(v OpenStackPoolAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackPoolAccessUrl1 performs a merge with any union data inside the OpenStackPool_AccessUrl, using the provided OpenStackPoolAccessUrl1
+func (t *OpenStackPool_AccessUrl) MergeOpenStackPoolAccessUrl1(v OpenStackPoolAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackPool_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackPool_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackPoolMemberAccessUrl0 returns the union data inside the OpenStackPoolMember_AccessUrl as a OpenStackPoolMemberAccessUrl0
+func (t OpenStackPoolMember_AccessUrl) AsOpenStackPoolMemberAccessUrl0() (OpenStackPoolMemberAccessUrl0, error) {
+	var body OpenStackPoolMemberAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackPoolMemberAccessUrl0 overwrites any union data inside the OpenStackPoolMember_AccessUrl as the provided OpenStackPoolMemberAccessUrl0
+func (t *OpenStackPoolMember_AccessUrl) FromOpenStackPoolMemberAccessUrl0(v OpenStackPoolMemberAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackPoolMemberAccessUrl0 performs a merge with any union data inside the OpenStackPoolMember_AccessUrl, using the provided OpenStackPoolMemberAccessUrl0
+func (t *OpenStackPoolMember_AccessUrl) MergeOpenStackPoolMemberAccessUrl0(v OpenStackPoolMemberAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackPoolMemberAccessUrl1 returns the union data inside the OpenStackPoolMember_AccessUrl as a OpenStackPoolMemberAccessUrl1
+func (t OpenStackPoolMember_AccessUrl) AsOpenStackPoolMemberAccessUrl1() (OpenStackPoolMemberAccessUrl1, error) {
+	var body OpenStackPoolMemberAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackPoolMemberAccessUrl1 overwrites any union data inside the OpenStackPoolMember_AccessUrl as the provided OpenStackPoolMemberAccessUrl1
+func (t *OpenStackPoolMember_AccessUrl) FromOpenStackPoolMemberAccessUrl1(v OpenStackPoolMemberAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackPoolMemberAccessUrl1 performs a merge with any union data inside the OpenStackPoolMember_AccessUrl, using the provided OpenStackPoolMemberAccessUrl1
+func (t *OpenStackPoolMember_AccessUrl) MergeOpenStackPoolMemberAccessUrl1(v OpenStackPoolMemberAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackPoolMember_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackPoolMember_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsOpenStackPoolMemberAddress0 returns the union data inside the OpenStackPoolMember_Address as a OpenStackPoolMemberAddress0
 func (t OpenStackPoolMember_Address) AsOpenStackPoolMemberAddress0() (OpenStackPoolMemberAddress0, error) {
 	var body OpenStackPoolMemberAddress0
@@ -77988,6 +79677,68 @@ func (t *OpenStackPoolMember_Address) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsOpenStackPortAccessUrl0 returns the union data inside the OpenStackPort_AccessUrl as a OpenStackPortAccessUrl0
+func (t OpenStackPort_AccessUrl) AsOpenStackPortAccessUrl0() (OpenStackPortAccessUrl0, error) {
+	var body OpenStackPortAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackPortAccessUrl0 overwrites any union data inside the OpenStackPort_AccessUrl as the provided OpenStackPortAccessUrl0
+func (t *OpenStackPort_AccessUrl) FromOpenStackPortAccessUrl0(v OpenStackPortAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackPortAccessUrl0 performs a merge with any union data inside the OpenStackPort_AccessUrl, using the provided OpenStackPortAccessUrl0
+func (t *OpenStackPort_AccessUrl) MergeOpenStackPortAccessUrl0(v OpenStackPortAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackPortAccessUrl1 returns the union data inside the OpenStackPort_AccessUrl as a OpenStackPortAccessUrl1
+func (t OpenStackPort_AccessUrl) AsOpenStackPortAccessUrl1() (OpenStackPortAccessUrl1, error) {
+	var body OpenStackPortAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackPortAccessUrl1 overwrites any union data inside the OpenStackPort_AccessUrl as the provided OpenStackPortAccessUrl1
+func (t *OpenStackPort_AccessUrl) FromOpenStackPortAccessUrl1(v OpenStackPortAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackPortAccessUrl1 performs a merge with any union data inside the OpenStackPort_AccessUrl, using the provided OpenStackPortAccessUrl1
+func (t *OpenStackPort_AccessUrl) MergeOpenStackPortAccessUrl1(v OpenStackPortAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackPort_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackPort_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsOpenStackPortIPUpdateRequestIpAddress0 returns the union data inside the OpenStackPortIPUpdateRequest_IpAddress as a OpenStackPortIPUpdateRequestIpAddress0
 func (t OpenStackPortIPUpdateRequest_IpAddress) AsOpenStackPortIPUpdateRequestIpAddress0() (OpenStackPortIPUpdateRequestIpAddress0, error) {
 	var body OpenStackPortIPUpdateRequestIpAddress0
@@ -78046,6 +79797,130 @@ func (t OpenStackPortIPUpdateRequest_IpAddress) MarshalJSON() ([]byte, error) {
 }
 
 func (t *OpenStackPortIPUpdateRequest_IpAddress) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackRouterAccessUrl0 returns the union data inside the OpenStackRouter_AccessUrl as a OpenStackRouterAccessUrl0
+func (t OpenStackRouter_AccessUrl) AsOpenStackRouterAccessUrl0() (OpenStackRouterAccessUrl0, error) {
+	var body OpenStackRouterAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackRouterAccessUrl0 overwrites any union data inside the OpenStackRouter_AccessUrl as the provided OpenStackRouterAccessUrl0
+func (t *OpenStackRouter_AccessUrl) FromOpenStackRouterAccessUrl0(v OpenStackRouterAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackRouterAccessUrl0 performs a merge with any union data inside the OpenStackRouter_AccessUrl, using the provided OpenStackRouterAccessUrl0
+func (t *OpenStackRouter_AccessUrl) MergeOpenStackRouterAccessUrl0(v OpenStackRouterAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackRouterAccessUrl1 returns the union data inside the OpenStackRouter_AccessUrl as a OpenStackRouterAccessUrl1
+func (t OpenStackRouter_AccessUrl) AsOpenStackRouterAccessUrl1() (OpenStackRouterAccessUrl1, error) {
+	var body OpenStackRouterAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackRouterAccessUrl1 overwrites any union data inside the OpenStackRouter_AccessUrl as the provided OpenStackRouterAccessUrl1
+func (t *OpenStackRouter_AccessUrl) FromOpenStackRouterAccessUrl1(v OpenStackRouterAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackRouterAccessUrl1 performs a merge with any union data inside the OpenStackRouter_AccessUrl, using the provided OpenStackRouterAccessUrl1
+func (t *OpenStackRouter_AccessUrl) MergeOpenStackRouterAccessUrl1(v OpenStackRouterAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackRouter_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackRouter_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackSecurityGroupAccessUrl0 returns the union data inside the OpenStackSecurityGroup_AccessUrl as a OpenStackSecurityGroupAccessUrl0
+func (t OpenStackSecurityGroup_AccessUrl) AsOpenStackSecurityGroupAccessUrl0() (OpenStackSecurityGroupAccessUrl0, error) {
+	var body OpenStackSecurityGroupAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackSecurityGroupAccessUrl0 overwrites any union data inside the OpenStackSecurityGroup_AccessUrl as the provided OpenStackSecurityGroupAccessUrl0
+func (t *OpenStackSecurityGroup_AccessUrl) FromOpenStackSecurityGroupAccessUrl0(v OpenStackSecurityGroupAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackSecurityGroupAccessUrl0 performs a merge with any union data inside the OpenStackSecurityGroup_AccessUrl, using the provided OpenStackSecurityGroupAccessUrl0
+func (t *OpenStackSecurityGroup_AccessUrl) MergeOpenStackSecurityGroupAccessUrl0(v OpenStackSecurityGroupAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackSecurityGroupAccessUrl1 returns the union data inside the OpenStackSecurityGroup_AccessUrl as a OpenStackSecurityGroupAccessUrl1
+func (t OpenStackSecurityGroup_AccessUrl) AsOpenStackSecurityGroupAccessUrl1() (OpenStackSecurityGroupAccessUrl1, error) {
+	var body OpenStackSecurityGroupAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackSecurityGroupAccessUrl1 overwrites any union data inside the OpenStackSecurityGroup_AccessUrl as the provided OpenStackSecurityGroupAccessUrl1
+func (t *OpenStackSecurityGroup_AccessUrl) FromOpenStackSecurityGroupAccessUrl1(v OpenStackSecurityGroupAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackSecurityGroupAccessUrl1 performs a merge with any union data inside the OpenStackSecurityGroup_AccessUrl, using the provided OpenStackSecurityGroupAccessUrl1
+func (t *OpenStackSecurityGroup_AccessUrl) MergeOpenStackSecurityGroupAccessUrl1(v OpenStackSecurityGroupAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackSecurityGroup_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackSecurityGroup_AccessUrl) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -78298,6 +80173,68 @@ func (t *OpenStackSecurityGroupRuleUpdateRequest_Protocol) UnmarshalJSON(b []byt
 	return err
 }
 
+// AsOpenStackServerGroupAccessUrl0 returns the union data inside the OpenStackServerGroup_AccessUrl as a OpenStackServerGroupAccessUrl0
+func (t OpenStackServerGroup_AccessUrl) AsOpenStackServerGroupAccessUrl0() (OpenStackServerGroupAccessUrl0, error) {
+	var body OpenStackServerGroupAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackServerGroupAccessUrl0 overwrites any union data inside the OpenStackServerGroup_AccessUrl as the provided OpenStackServerGroupAccessUrl0
+func (t *OpenStackServerGroup_AccessUrl) FromOpenStackServerGroupAccessUrl0(v OpenStackServerGroupAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackServerGroupAccessUrl0 performs a merge with any union data inside the OpenStackServerGroup_AccessUrl, using the provided OpenStackServerGroupAccessUrl0
+func (t *OpenStackServerGroup_AccessUrl) MergeOpenStackServerGroupAccessUrl0(v OpenStackServerGroupAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackServerGroupAccessUrl1 returns the union data inside the OpenStackServerGroup_AccessUrl as a OpenStackServerGroupAccessUrl1
+func (t OpenStackServerGroup_AccessUrl) AsOpenStackServerGroupAccessUrl1() (OpenStackServerGroupAccessUrl1, error) {
+	var body OpenStackServerGroupAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackServerGroupAccessUrl1 overwrites any union data inside the OpenStackServerGroup_AccessUrl as the provided OpenStackServerGroupAccessUrl1
+func (t *OpenStackServerGroup_AccessUrl) FromOpenStackServerGroupAccessUrl1(v OpenStackServerGroupAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackServerGroupAccessUrl1 performs a merge with any union data inside the OpenStackServerGroup_AccessUrl, using the provided OpenStackServerGroupAccessUrl1
+func (t *OpenStackServerGroup_AccessUrl) MergeOpenStackServerGroupAccessUrl1(v OpenStackServerGroupAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackServerGroup_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackServerGroup_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsPolicyEnum returns the union data inside the OpenStackServerGroup_Policy as a PolicyEnum
 func (t OpenStackServerGroup_Policy) AsPolicyEnum() (PolicyEnum, error) {
 	var body PolicyEnum
@@ -78422,6 +80359,68 @@ func (t *OpenStackServerGroupRequest_Policy) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsOpenStackSnapshotAccessUrl0 returns the union data inside the OpenStackSnapshot_AccessUrl as a OpenStackSnapshotAccessUrl0
+func (t OpenStackSnapshot_AccessUrl) AsOpenStackSnapshotAccessUrl0() (OpenStackSnapshotAccessUrl0, error) {
+	var body OpenStackSnapshotAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackSnapshotAccessUrl0 overwrites any union data inside the OpenStackSnapshot_AccessUrl as the provided OpenStackSnapshotAccessUrl0
+func (t *OpenStackSnapshot_AccessUrl) FromOpenStackSnapshotAccessUrl0(v OpenStackSnapshotAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackSnapshotAccessUrl0 performs a merge with any union data inside the OpenStackSnapshot_AccessUrl, using the provided OpenStackSnapshotAccessUrl0
+func (t *OpenStackSnapshot_AccessUrl) MergeOpenStackSnapshotAccessUrl0(v OpenStackSnapshotAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackSnapshotAccessUrl1 returns the union data inside the OpenStackSnapshot_AccessUrl as a OpenStackSnapshotAccessUrl1
+func (t OpenStackSnapshot_AccessUrl) AsOpenStackSnapshotAccessUrl1() (OpenStackSnapshotAccessUrl1, error) {
+	var body OpenStackSnapshotAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackSnapshotAccessUrl1 overwrites any union data inside the OpenStackSnapshot_AccessUrl as the provided OpenStackSnapshotAccessUrl1
+func (t *OpenStackSnapshot_AccessUrl) FromOpenStackSnapshotAccessUrl1(v OpenStackSnapshotAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackSnapshotAccessUrl1 performs a merge with any union data inside the OpenStackSnapshot_AccessUrl, using the provided OpenStackSnapshotAccessUrl1
+func (t *OpenStackSnapshot_AccessUrl) MergeOpenStackSnapshotAccessUrl1(v OpenStackSnapshotAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackSnapshot_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackSnapshot_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsOpenStackStaticRouteNexthop0 returns the union data inside the OpenStackStaticRoute_Nexthop as a OpenStackStaticRouteNexthop0
 func (t OpenStackStaticRoute_Nexthop) AsOpenStackStaticRouteNexthop0() (OpenStackStaticRouteNexthop0, error) {
 	var body OpenStackStaticRouteNexthop0
@@ -78542,6 +80541,68 @@ func (t OpenStackStaticRouteRequest_Nexthop) MarshalJSON() ([]byte, error) {
 }
 
 func (t *OpenStackStaticRouteRequest_Nexthop) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackSubNetAccessUrl0 returns the union data inside the OpenStackSubNet_AccessUrl as a OpenStackSubNetAccessUrl0
+func (t OpenStackSubNet_AccessUrl) AsOpenStackSubNetAccessUrl0() (OpenStackSubNetAccessUrl0, error) {
+	var body OpenStackSubNetAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackSubNetAccessUrl0 overwrites any union data inside the OpenStackSubNet_AccessUrl as the provided OpenStackSubNetAccessUrl0
+func (t *OpenStackSubNet_AccessUrl) FromOpenStackSubNetAccessUrl0(v OpenStackSubNetAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackSubNetAccessUrl0 performs a merge with any union data inside the OpenStackSubNet_AccessUrl, using the provided OpenStackSubNetAccessUrl0
+func (t *OpenStackSubNet_AccessUrl) MergeOpenStackSubNetAccessUrl0(v OpenStackSubNetAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackSubNetAccessUrl1 returns the union data inside the OpenStackSubNet_AccessUrl as a OpenStackSubNetAccessUrl1
+func (t OpenStackSubNet_AccessUrl) AsOpenStackSubNetAccessUrl1() (OpenStackSubNetAccessUrl1, error) {
+	var body OpenStackSubNetAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackSubNetAccessUrl1 overwrites any union data inside the OpenStackSubNet_AccessUrl as the provided OpenStackSubNetAccessUrl1
+func (t *OpenStackSubNet_AccessUrl) FromOpenStackSubNetAccessUrl1(v OpenStackSubNetAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackSubNetAccessUrl1 performs a merge with any union data inside the OpenStackSubNet_AccessUrl, using the provided OpenStackSubNetAccessUrl1
+func (t *OpenStackSubNet_AccessUrl) MergeOpenStackSubNetAccessUrl1(v OpenStackSubNetAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackSubNet_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackSubNet_AccessUrl) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -79038,6 +81099,130 @@ func (t OpenStackSubNetRequest_GatewayIp) MarshalJSON() ([]byte, error) {
 }
 
 func (t *OpenStackSubNetRequest_GatewayIp) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackTenantAccessUrl0 returns the union data inside the OpenStackTenant_AccessUrl as a OpenStackTenantAccessUrl0
+func (t OpenStackTenant_AccessUrl) AsOpenStackTenantAccessUrl0() (OpenStackTenantAccessUrl0, error) {
+	var body OpenStackTenantAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackTenantAccessUrl0 overwrites any union data inside the OpenStackTenant_AccessUrl as the provided OpenStackTenantAccessUrl0
+func (t *OpenStackTenant_AccessUrl) FromOpenStackTenantAccessUrl0(v OpenStackTenantAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackTenantAccessUrl0 performs a merge with any union data inside the OpenStackTenant_AccessUrl, using the provided OpenStackTenantAccessUrl0
+func (t *OpenStackTenant_AccessUrl) MergeOpenStackTenantAccessUrl0(v OpenStackTenantAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackTenantAccessUrl1 returns the union data inside the OpenStackTenant_AccessUrl as a OpenStackTenantAccessUrl1
+func (t OpenStackTenant_AccessUrl) AsOpenStackTenantAccessUrl1() (OpenStackTenantAccessUrl1, error) {
+	var body OpenStackTenantAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackTenantAccessUrl1 overwrites any union data inside the OpenStackTenant_AccessUrl as the provided OpenStackTenantAccessUrl1
+func (t *OpenStackTenant_AccessUrl) FromOpenStackTenantAccessUrl1(v OpenStackTenantAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackTenantAccessUrl1 performs a merge with any union data inside the OpenStackTenant_AccessUrl, using the provided OpenStackTenantAccessUrl1
+func (t *OpenStackTenant_AccessUrl) MergeOpenStackTenantAccessUrl1(v OpenStackTenantAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackTenant_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackTenant_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackVolumeAccessUrl0 returns the union data inside the OpenStackVolume_AccessUrl as a OpenStackVolumeAccessUrl0
+func (t OpenStackVolume_AccessUrl) AsOpenStackVolumeAccessUrl0() (OpenStackVolumeAccessUrl0, error) {
+	var body OpenStackVolumeAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackVolumeAccessUrl0 overwrites any union data inside the OpenStackVolume_AccessUrl as the provided OpenStackVolumeAccessUrl0
+func (t *OpenStackVolume_AccessUrl) FromOpenStackVolumeAccessUrl0(v OpenStackVolumeAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackVolumeAccessUrl0 performs a merge with any union data inside the OpenStackVolume_AccessUrl, using the provided OpenStackVolumeAccessUrl0
+func (t *OpenStackVolume_AccessUrl) MergeOpenStackVolumeAccessUrl0(v OpenStackVolumeAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackVolumeAccessUrl1 returns the union data inside the OpenStackVolume_AccessUrl as a OpenStackVolumeAccessUrl1
+func (t OpenStackVolume_AccessUrl) AsOpenStackVolumeAccessUrl1() (OpenStackVolumeAccessUrl1, error) {
+	var body OpenStackVolumeAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackVolumeAccessUrl1 overwrites any union data inside the OpenStackVolume_AccessUrl as the provided OpenStackVolumeAccessUrl1
+func (t *OpenStackVolume_AccessUrl) FromOpenStackVolumeAccessUrl1(v OpenStackVolumeAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackVolumeAccessUrl1 performs a merge with any union data inside the OpenStackVolume_AccessUrl, using the provided OpenStackVolumeAccessUrl1
+func (t *OpenStackVolume_AccessUrl) MergeOpenStackVolumeAccessUrl1(v OpenStackVolumeAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackVolume_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackVolume_AccessUrl) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -81846,6 +84031,130 @@ func (t *QuestionWithAnswerReviewer_Operator) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsRancherApplicationAccessUrl0 returns the union data inside the RancherApplication_AccessUrl as a RancherApplicationAccessUrl0
+func (t RancherApplication_AccessUrl) AsRancherApplicationAccessUrl0() (RancherApplicationAccessUrl0, error) {
+	var body RancherApplicationAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRancherApplicationAccessUrl0 overwrites any union data inside the RancherApplication_AccessUrl as the provided RancherApplicationAccessUrl0
+func (t *RancherApplication_AccessUrl) FromRancherApplicationAccessUrl0(v RancherApplicationAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRancherApplicationAccessUrl0 performs a merge with any union data inside the RancherApplication_AccessUrl, using the provided RancherApplicationAccessUrl0
+func (t *RancherApplication_AccessUrl) MergeRancherApplicationAccessUrl0(v RancherApplicationAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsRancherApplicationAccessUrl1 returns the union data inside the RancherApplication_AccessUrl as a RancherApplicationAccessUrl1
+func (t RancherApplication_AccessUrl) AsRancherApplicationAccessUrl1() (RancherApplicationAccessUrl1, error) {
+	var body RancherApplicationAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRancherApplicationAccessUrl1 overwrites any union data inside the RancherApplication_AccessUrl as the provided RancherApplicationAccessUrl1
+func (t *RancherApplication_AccessUrl) FromRancherApplicationAccessUrl1(v RancherApplicationAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRancherApplicationAccessUrl1 performs a merge with any union data inside the RancherApplication_AccessUrl, using the provided RancherApplicationAccessUrl1
+func (t *RancherApplication_AccessUrl) MergeRancherApplicationAccessUrl1(v RancherApplicationAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t RancherApplication_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *RancherApplication_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsRancherClusterAccessUrl0 returns the union data inside the RancherCluster_AccessUrl as a RancherClusterAccessUrl0
+func (t RancherCluster_AccessUrl) AsRancherClusterAccessUrl0() (RancherClusterAccessUrl0, error) {
+	var body RancherClusterAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRancherClusterAccessUrl0 overwrites any union data inside the RancherCluster_AccessUrl as the provided RancherClusterAccessUrl0
+func (t *RancherCluster_AccessUrl) FromRancherClusterAccessUrl0(v RancherClusterAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRancherClusterAccessUrl0 performs a merge with any union data inside the RancherCluster_AccessUrl, using the provided RancherClusterAccessUrl0
+func (t *RancherCluster_AccessUrl) MergeRancherClusterAccessUrl0(v RancherClusterAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsRancherClusterAccessUrl1 returns the union data inside the RancherCluster_AccessUrl as a RancherClusterAccessUrl1
+func (t RancherCluster_AccessUrl) AsRancherClusterAccessUrl1() (RancherClusterAccessUrl1, error) {
+	var body RancherClusterAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRancherClusterAccessUrl1 overwrites any union data inside the RancherCluster_AccessUrl as the provided RancherClusterAccessUrl1
+func (t *RancherCluster_AccessUrl) FromRancherClusterAccessUrl1(v RancherClusterAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRancherClusterAccessUrl1 performs a merge with any union data inside the RancherCluster_AccessUrl, using the provided RancherClusterAccessUrl1
+func (t *RancherCluster_AccessUrl) MergeRancherClusterAccessUrl1(v RancherClusterAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t RancherCluster_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *RancherCluster_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsSecurityGroupRuleProtocolEnum returns the union data inside the RancherClusterSecurityGroupRule_Protocol as a SecurityGroupRuleProtocolEnum
 func (t RancherClusterSecurityGroupRule_Protocol) AsSecurityGroupRuleProtocolEnum() (SecurityGroupRuleProtocolEnum, error) {
 	var body SecurityGroupRuleProtocolEnum
@@ -81966,6 +84275,68 @@ func (t RancherClusterSecurityGroupRuleRequest_Protocol) MarshalJSON() ([]byte, 
 }
 
 func (t *RancherClusterSecurityGroupRuleRequest_Protocol) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsRancherIngressAccessUrl0 returns the union data inside the RancherIngress_AccessUrl as a RancherIngressAccessUrl0
+func (t RancherIngress_AccessUrl) AsRancherIngressAccessUrl0() (RancherIngressAccessUrl0, error) {
+	var body RancherIngressAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRancherIngressAccessUrl0 overwrites any union data inside the RancherIngress_AccessUrl as the provided RancherIngressAccessUrl0
+func (t *RancherIngress_AccessUrl) FromRancherIngressAccessUrl0(v RancherIngressAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRancherIngressAccessUrl0 performs a merge with any union data inside the RancherIngress_AccessUrl, using the provided RancherIngressAccessUrl0
+func (t *RancherIngress_AccessUrl) MergeRancherIngressAccessUrl0(v RancherIngressAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsRancherIngressAccessUrl1 returns the union data inside the RancherIngress_AccessUrl as a RancherIngressAccessUrl1
+func (t RancherIngress_AccessUrl) AsRancherIngressAccessUrl1() (RancherIngressAccessUrl1, error) {
+	var body RancherIngressAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRancherIngressAccessUrl1 overwrites any union data inside the RancherIngress_AccessUrl as the provided RancherIngressAccessUrl1
+func (t *RancherIngress_AccessUrl) FromRancherIngressAccessUrl1(v RancherIngressAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRancherIngressAccessUrl1 performs a merge with any union data inside the RancherIngress_AccessUrl, using the provided RancherIngressAccessUrl1
+func (t *RancherIngress_AccessUrl) MergeRancherIngressAccessUrl1(v RancherIngressAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t RancherIngress_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *RancherIngress_AccessUrl) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -82094,6 +84465,68 @@ func (t *RancherNestedPublicIP_IpAddress) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsRancherServiceAccessUrl0 returns the union data inside the RancherService_AccessUrl as a RancherServiceAccessUrl0
+func (t RancherService_AccessUrl) AsRancherServiceAccessUrl0() (RancherServiceAccessUrl0, error) {
+	var body RancherServiceAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRancherServiceAccessUrl0 overwrites any union data inside the RancherService_AccessUrl as the provided RancherServiceAccessUrl0
+func (t *RancherService_AccessUrl) FromRancherServiceAccessUrl0(v RancherServiceAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRancherServiceAccessUrl0 performs a merge with any union data inside the RancherService_AccessUrl, using the provided RancherServiceAccessUrl0
+func (t *RancherService_AccessUrl) MergeRancherServiceAccessUrl0(v RancherServiceAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsRancherServiceAccessUrl1 returns the union data inside the RancherService_AccessUrl as a RancherServiceAccessUrl1
+func (t RancherService_AccessUrl) AsRancherServiceAccessUrl1() (RancherServiceAccessUrl1, error) {
+	var body RancherServiceAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRancherServiceAccessUrl1 overwrites any union data inside the RancherService_AccessUrl as the provided RancherServiceAccessUrl1
+func (t *RancherService_AccessUrl) FromRancherServiceAccessUrl1(v RancherServiceAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRancherServiceAccessUrl1 performs a merge with any union data inside the RancherService_AccessUrl, using the provided RancherServiceAccessUrl1
+func (t *RancherService_AccessUrl) MergeRancherServiceAccessUrl1(v RancherServiceAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t RancherService_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *RancherService_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsRancherServiceClusterIp0 returns the union data inside the RancherService_ClusterIp as a RancherServiceClusterIp0
 func (t RancherService_ClusterIp) AsRancherServiceClusterIp0() (RancherServiceClusterIp0, error) {
 	var body RancherServiceClusterIp0
@@ -82152,6 +84585,68 @@ func (t RancherService_ClusterIp) MarshalJSON() ([]byte, error) {
 }
 
 func (t *RancherService_ClusterIp) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsRancherServiceCreateAccessUrl0 returns the union data inside the RancherServiceCreate_AccessUrl as a RancherServiceCreateAccessUrl0
+func (t RancherServiceCreate_AccessUrl) AsRancherServiceCreateAccessUrl0() (RancherServiceCreateAccessUrl0, error) {
+	var body RancherServiceCreateAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRancherServiceCreateAccessUrl0 overwrites any union data inside the RancherServiceCreate_AccessUrl as the provided RancherServiceCreateAccessUrl0
+func (t *RancherServiceCreate_AccessUrl) FromRancherServiceCreateAccessUrl0(v RancherServiceCreateAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRancherServiceCreateAccessUrl0 performs a merge with any union data inside the RancherServiceCreate_AccessUrl, using the provided RancherServiceCreateAccessUrl0
+func (t *RancherServiceCreate_AccessUrl) MergeRancherServiceCreateAccessUrl0(v RancherServiceCreateAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsRancherServiceCreateAccessUrl1 returns the union data inside the RancherServiceCreate_AccessUrl as a RancherServiceCreateAccessUrl1
+func (t RancherServiceCreate_AccessUrl) AsRancherServiceCreateAccessUrl1() (RancherServiceCreateAccessUrl1, error) {
+	var body RancherServiceCreateAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRancherServiceCreateAccessUrl1 overwrites any union data inside the RancherServiceCreate_AccessUrl as the provided RancherServiceCreateAccessUrl1
+func (t *RancherServiceCreate_AccessUrl) FromRancherServiceCreateAccessUrl1(v RancherServiceCreateAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRancherServiceCreateAccessUrl1 performs a merge with any union data inside the RancherServiceCreate_AccessUrl, using the provided RancherServiceCreateAccessUrl1
+func (t *RancherServiceCreate_AccessUrl) MergeRancherServiceCreateAccessUrl1(v RancherServiceCreateAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t RancherServiceCreate_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *RancherServiceCreate_AccessUrl) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -82342,6 +84837,68 @@ func (t *RancherServiceRequest_ClusterIp) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsRemoteAllocationAccessUrl0 returns the union data inside the RemoteAllocation_AccessUrl as a RemoteAllocationAccessUrl0
+func (t RemoteAllocation_AccessUrl) AsRemoteAllocationAccessUrl0() (RemoteAllocationAccessUrl0, error) {
+	var body RemoteAllocationAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRemoteAllocationAccessUrl0 overwrites any union data inside the RemoteAllocation_AccessUrl as the provided RemoteAllocationAccessUrl0
+func (t *RemoteAllocation_AccessUrl) FromRemoteAllocationAccessUrl0(v RemoteAllocationAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRemoteAllocationAccessUrl0 performs a merge with any union data inside the RemoteAllocation_AccessUrl, using the provided RemoteAllocationAccessUrl0
+func (t *RemoteAllocation_AccessUrl) MergeRemoteAllocationAccessUrl0(v RemoteAllocationAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsRemoteAllocationAccessUrl1 returns the union data inside the RemoteAllocation_AccessUrl as a RemoteAllocationAccessUrl1
+func (t RemoteAllocation_AccessUrl) AsRemoteAllocationAccessUrl1() (RemoteAllocationAccessUrl1, error) {
+	var body RemoteAllocationAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRemoteAllocationAccessUrl1 overwrites any union data inside the RemoteAllocation_AccessUrl as the provided RemoteAllocationAccessUrl1
+func (t *RemoteAllocation_AccessUrl) FromRemoteAllocationAccessUrl1(v RemoteAllocationAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRemoteAllocationAccessUrl1 performs a merge with any union data inside the RemoteAllocation_AccessUrl, using the provided RemoteAllocationAccessUrl1
+func (t *RemoteAllocation_AccessUrl) MergeRemoteAllocationAccessUrl1(v RemoteAllocationAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t RemoteAllocation_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *RemoteAllocation_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsRemoteResourceSyncStatusRemoteStateEnum returns the union data inside the RemoteResourceSyncStatus_RemoteState as a RemoteResourceSyncStatusRemoteStateEnum
 func (t RemoteResourceSyncStatus_RemoteState) AsRemoteResourceSyncStatusRemoteStateEnum() (RemoteResourceSyncStatusRemoteStateEnum, error) {
 	var body RemoteResourceSyncStatusRemoteStateEnum
@@ -82462,6 +85019,68 @@ func (t RmqSubscription_SourceIp) MarshalJSON() ([]byte, error) {
 }
 
 func (t *RmqSubscription_SourceIp) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsSlurmAllocationAccessUrl0 returns the union data inside the SlurmAllocation_AccessUrl as a SlurmAllocationAccessUrl0
+func (t SlurmAllocation_AccessUrl) AsSlurmAllocationAccessUrl0() (SlurmAllocationAccessUrl0, error) {
+	var body SlurmAllocationAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSlurmAllocationAccessUrl0 overwrites any union data inside the SlurmAllocation_AccessUrl as the provided SlurmAllocationAccessUrl0
+func (t *SlurmAllocation_AccessUrl) FromSlurmAllocationAccessUrl0(v SlurmAllocationAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSlurmAllocationAccessUrl0 performs a merge with any union data inside the SlurmAllocation_AccessUrl, using the provided SlurmAllocationAccessUrl0
+func (t *SlurmAllocation_AccessUrl) MergeSlurmAllocationAccessUrl0(v SlurmAllocationAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsSlurmAllocationAccessUrl1 returns the union data inside the SlurmAllocation_AccessUrl as a SlurmAllocationAccessUrl1
+func (t SlurmAllocation_AccessUrl) AsSlurmAllocationAccessUrl1() (SlurmAllocationAccessUrl1, error) {
+	var body SlurmAllocationAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSlurmAllocationAccessUrl1 overwrites any union data inside the SlurmAllocation_AccessUrl as the provided SlurmAllocationAccessUrl1
+func (t *SlurmAllocation_AccessUrl) FromSlurmAllocationAccessUrl1(v SlurmAllocationAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSlurmAllocationAccessUrl1 performs a merge with any union data inside the SlurmAllocation_AccessUrl, using the provided SlurmAllocationAccessUrl1
+func (t *SlurmAllocation_AccessUrl) MergeSlurmAllocationAccessUrl1(v SlurmAllocationAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t SlurmAllocation_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *SlurmAllocation_AccessUrl) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -82964,6 +85583,192 @@ func (t UserRequestMultipart_Gender) MarshalJSON() ([]byte, error) {
 }
 
 func (t *UserRequestMultipart_Gender) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsVmwareDiskAccessUrl0 returns the union data inside the VmwareDisk_AccessUrl as a VmwareDiskAccessUrl0
+func (t VmwareDisk_AccessUrl) AsVmwareDiskAccessUrl0() (VmwareDiskAccessUrl0, error) {
+	var body VmwareDiskAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromVmwareDiskAccessUrl0 overwrites any union data inside the VmwareDisk_AccessUrl as the provided VmwareDiskAccessUrl0
+func (t *VmwareDisk_AccessUrl) FromVmwareDiskAccessUrl0(v VmwareDiskAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeVmwareDiskAccessUrl0 performs a merge with any union data inside the VmwareDisk_AccessUrl, using the provided VmwareDiskAccessUrl0
+func (t *VmwareDisk_AccessUrl) MergeVmwareDiskAccessUrl0(v VmwareDiskAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsVmwareDiskAccessUrl1 returns the union data inside the VmwareDisk_AccessUrl as a VmwareDiskAccessUrl1
+func (t VmwareDisk_AccessUrl) AsVmwareDiskAccessUrl1() (VmwareDiskAccessUrl1, error) {
+	var body VmwareDiskAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromVmwareDiskAccessUrl1 overwrites any union data inside the VmwareDisk_AccessUrl as the provided VmwareDiskAccessUrl1
+func (t *VmwareDisk_AccessUrl) FromVmwareDiskAccessUrl1(v VmwareDiskAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeVmwareDiskAccessUrl1 performs a merge with any union data inside the VmwareDisk_AccessUrl, using the provided VmwareDiskAccessUrl1
+func (t *VmwareDisk_AccessUrl) MergeVmwareDiskAccessUrl1(v VmwareDiskAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t VmwareDisk_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *VmwareDisk_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsVmwarePortAccessUrl0 returns the union data inside the VmwarePort_AccessUrl as a VmwarePortAccessUrl0
+func (t VmwarePort_AccessUrl) AsVmwarePortAccessUrl0() (VmwarePortAccessUrl0, error) {
+	var body VmwarePortAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromVmwarePortAccessUrl0 overwrites any union data inside the VmwarePort_AccessUrl as the provided VmwarePortAccessUrl0
+func (t *VmwarePort_AccessUrl) FromVmwarePortAccessUrl0(v VmwarePortAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeVmwarePortAccessUrl0 performs a merge with any union data inside the VmwarePort_AccessUrl, using the provided VmwarePortAccessUrl0
+func (t *VmwarePort_AccessUrl) MergeVmwarePortAccessUrl0(v VmwarePortAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsVmwarePortAccessUrl1 returns the union data inside the VmwarePort_AccessUrl as a VmwarePortAccessUrl1
+func (t VmwarePort_AccessUrl) AsVmwarePortAccessUrl1() (VmwarePortAccessUrl1, error) {
+	var body VmwarePortAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromVmwarePortAccessUrl1 overwrites any union data inside the VmwarePort_AccessUrl as the provided VmwarePortAccessUrl1
+func (t *VmwarePort_AccessUrl) FromVmwarePortAccessUrl1(v VmwarePortAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeVmwarePortAccessUrl1 performs a merge with any union data inside the VmwarePort_AccessUrl, using the provided VmwarePortAccessUrl1
+func (t *VmwarePort_AccessUrl) MergeVmwarePortAccessUrl1(v VmwarePortAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t VmwarePort_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *VmwarePort_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsVmwareVirtualMachineAccessUrl0 returns the union data inside the VmwareVirtualMachine_AccessUrl as a VmwareVirtualMachineAccessUrl0
+func (t VmwareVirtualMachine_AccessUrl) AsVmwareVirtualMachineAccessUrl0() (VmwareVirtualMachineAccessUrl0, error) {
+	var body VmwareVirtualMachineAccessUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromVmwareVirtualMachineAccessUrl0 overwrites any union data inside the VmwareVirtualMachine_AccessUrl as the provided VmwareVirtualMachineAccessUrl0
+func (t *VmwareVirtualMachine_AccessUrl) FromVmwareVirtualMachineAccessUrl0(v VmwareVirtualMachineAccessUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeVmwareVirtualMachineAccessUrl0 performs a merge with any union data inside the VmwareVirtualMachine_AccessUrl, using the provided VmwareVirtualMachineAccessUrl0
+func (t *VmwareVirtualMachine_AccessUrl) MergeVmwareVirtualMachineAccessUrl0(v VmwareVirtualMachineAccessUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsVmwareVirtualMachineAccessUrl1 returns the union data inside the VmwareVirtualMachine_AccessUrl as a VmwareVirtualMachineAccessUrl1
+func (t VmwareVirtualMachine_AccessUrl) AsVmwareVirtualMachineAccessUrl1() (VmwareVirtualMachineAccessUrl1, error) {
+	var body VmwareVirtualMachineAccessUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromVmwareVirtualMachineAccessUrl1 overwrites any union data inside the VmwareVirtualMachine_AccessUrl as the provided VmwareVirtualMachineAccessUrl1
+func (t *VmwareVirtualMachine_AccessUrl) FromVmwareVirtualMachineAccessUrl1(v VmwareVirtualMachineAccessUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeVmwareVirtualMachineAccessUrl1 performs a merge with any union data inside the VmwareVirtualMachine_AccessUrl, using the provided VmwareVirtualMachineAccessUrl1
+func (t *VmwareVirtualMachine_AccessUrl) MergeVmwareVirtualMachineAccessUrl1(v VmwareVirtualMachineAccessUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t VmwareVirtualMachine_AccessUrl) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *VmwareVirtualMachine_AccessUrl) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -89292,6 +92097,12 @@ type ClientInterface interface {
 
 	OpenstackRoutersAddRouterInterface(ctx context.Context, uuid openapi_types.UUID, body OpenstackRoutersAddRouterInterfaceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenstackRoutersAvailableExternalNetworksList request
+	OpenstackRoutersAvailableExternalNetworksList(ctx context.Context, uuid openapi_types.UUID, params *OpenstackRoutersAvailableExternalNetworksListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackRoutersRemoveExternalGateway request
+	OpenstackRoutersRemoveExternalGateway(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenstackRoutersRemoveRouterInterfaceWithBody request with any body
 	OpenstackRoutersRemoveRouterInterfaceWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -89301,6 +92112,11 @@ type ClientInterface interface {
 	OpenstackRoutersSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	OpenstackRoutersSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenstackRoutersSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackRoutersSetExternalGatewayWithBody request with any body
+	OpenstackRoutersSetExternalGatewayWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackRoutersSetExternalGateway(ctx context.Context, uuid openapi_types.UUID, body OpenstackRoutersSetExternalGatewayJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackRoutersSetOk request
 	OpenstackRoutersSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -119061,6 +121877,30 @@ func (c *Client) OpenstackRoutersAddRouterInterface(ctx context.Context, uuid op
 	return c.Client.Do(req)
 }
 
+func (c *Client) OpenstackRoutersAvailableExternalNetworksList(ctx context.Context, uuid openapi_types.UUID, params *OpenstackRoutersAvailableExternalNetworksListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackRoutersAvailableExternalNetworksListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackRoutersRemoveExternalGateway(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackRoutersRemoveExternalGatewayRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OpenstackRoutersRemoveRouterInterfaceWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackRoutersRemoveRouterInterfaceRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -119099,6 +121939,30 @@ func (c *Client) OpenstackRoutersSetErredWithBody(ctx context.Context, uuid open
 
 func (c *Client) OpenstackRoutersSetErred(ctx context.Context, uuid openapi_types.UUID, body OpenstackRoutersSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackRoutersSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackRoutersSetExternalGatewayWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackRoutersSetExternalGatewayRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackRoutersSetExternalGateway(ctx context.Context, uuid openapi_types.UUID, body OpenstackRoutersSetExternalGatewayJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackRoutersSetExternalGatewayRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -274839,6 +277703,192 @@ func NewOpenstackRoutersAddRouterInterfaceRequestWithBody(server string, uuid op
 	return req, nil
 }
 
+// NewOpenstackRoutersAvailableExternalNetworksListRequest generates requests for OpenstackRoutersAvailableExternalNetworksList
+func NewOpenstackRoutersAvailableExternalNetworksListRequest(server string, uuid openapi_types.UUID, params *OpenstackRoutersAvailableExternalNetworksListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-routers/%s/available_external_networks/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Tenant != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tenant", *params.Tenant, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TenantUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tenant_uuid", *params.TenantUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackRoutersRemoveExternalGatewayRequest generates requests for OpenstackRoutersRemoveExternalGateway
+func NewOpenstackRoutersRemoveExternalGatewayRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-routers/%s/remove_external_gateway/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOpenstackRoutersRemoveRouterInterfaceRequest calls the generic OpenstackRoutersRemoveRouterInterface builder with application/json body
 func NewOpenstackRoutersRemoveRouterInterfaceRequest(server string, uuid openapi_types.UUID, body OpenstackRoutersRemoveRouterInterfaceJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -274914,6 +277964,53 @@ func NewOpenstackRoutersSetErredRequestWithBody(server string, uuid openapi_type
 	}
 
 	operationPath := fmt.Sprintf("/api/openstack-routers/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackRoutersSetExternalGatewayRequest calls the generic OpenstackRoutersSetExternalGateway builder with application/json body
+func NewOpenstackRoutersSetExternalGatewayRequest(server string, uuid openapi_types.UUID, body OpenstackRoutersSetExternalGatewayJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackRoutersSetExternalGatewayRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackRoutersSetExternalGatewayRequestWithBody generates requests for OpenstackRoutersSetExternalGateway with any type of body
+func NewOpenstackRoutersSetExternalGatewayRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-routers/%s/set_external_gateway/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -347515,6 +350612,12 @@ type ClientWithResponsesInterface interface {
 
 	OpenstackRoutersAddRouterInterfaceWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackRoutersAddRouterInterfaceJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackRoutersAddRouterInterfaceResponse, error)
 
+	// OpenstackRoutersAvailableExternalNetworksListWithResponse request
+	OpenstackRoutersAvailableExternalNetworksListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackRoutersAvailableExternalNetworksListParams, reqEditors ...RequestEditorFn) (*OpenstackRoutersAvailableExternalNetworksListResponse, error)
+
+	// OpenstackRoutersRemoveExternalGatewayWithResponse request
+	OpenstackRoutersRemoveExternalGatewayWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackRoutersRemoveExternalGatewayResponse, error)
+
 	// OpenstackRoutersRemoveRouterInterfaceWithBodyWithResponse request with any body
 	OpenstackRoutersRemoveRouterInterfaceWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackRoutersRemoveRouterInterfaceResponse, error)
 
@@ -347524,6 +350627,11 @@ type ClientWithResponsesInterface interface {
 	OpenstackRoutersSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackRoutersSetErredResponse, error)
 
 	OpenstackRoutersSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackRoutersSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackRoutersSetErredResponse, error)
+
+	// OpenstackRoutersSetExternalGatewayWithBodyWithResponse request with any body
+	OpenstackRoutersSetExternalGatewayWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackRoutersSetExternalGatewayResponse, error)
+
+	OpenstackRoutersSetExternalGatewayWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackRoutersSetExternalGatewayJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackRoutersSetExternalGatewayResponse, error)
 
 	// OpenstackRoutersSetOkWithResponse request
 	OpenstackRoutersSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackRoutersSetOkResponse, error)
@@ -386468,6 +389576,49 @@ func (r OpenstackRoutersAddRouterInterfaceResponse) StatusCode() int {
 	return 0
 }
 
+type OpenstackRoutersAvailableExternalNetworksListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]AvailableExternalNetwork
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackRoutersAvailableExternalNetworksListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackRoutersAvailableExternalNetworksListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackRoutersRemoveExternalGatewayResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackRoutersRemoveExternalGatewayResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackRoutersRemoveExternalGatewayResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type OpenstackRoutersRemoveRouterInterfaceResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -386505,6 +389656,27 @@ func (r OpenstackRoutersSetErredResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackRoutersSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackRoutersSetExternalGatewayResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackRoutersSetExternalGatewayResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackRoutersSetExternalGatewayResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -423232,6 +426404,24 @@ func (c *ClientWithResponses) OpenstackRoutersAddRouterInterfaceWithResponse(ctx
 	return ParseOpenstackRoutersAddRouterInterfaceResponse(rsp)
 }
 
+// OpenstackRoutersAvailableExternalNetworksListWithResponse request returning *OpenstackRoutersAvailableExternalNetworksListResponse
+func (c *ClientWithResponses) OpenstackRoutersAvailableExternalNetworksListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackRoutersAvailableExternalNetworksListParams, reqEditors ...RequestEditorFn) (*OpenstackRoutersAvailableExternalNetworksListResponse, error) {
+	rsp, err := c.OpenstackRoutersAvailableExternalNetworksList(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackRoutersAvailableExternalNetworksListResponse(rsp)
+}
+
+// OpenstackRoutersRemoveExternalGatewayWithResponse request returning *OpenstackRoutersRemoveExternalGatewayResponse
+func (c *ClientWithResponses) OpenstackRoutersRemoveExternalGatewayWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackRoutersRemoveExternalGatewayResponse, error) {
+	rsp, err := c.OpenstackRoutersRemoveExternalGateway(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackRoutersRemoveExternalGatewayResponse(rsp)
+}
+
 // OpenstackRoutersRemoveRouterInterfaceWithBodyWithResponse request with arbitrary body returning *OpenstackRoutersRemoveRouterInterfaceResponse
 func (c *ClientWithResponses) OpenstackRoutersRemoveRouterInterfaceWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackRoutersRemoveRouterInterfaceResponse, error) {
 	rsp, err := c.OpenstackRoutersRemoveRouterInterfaceWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -423264,6 +426454,23 @@ func (c *ClientWithResponses) OpenstackRoutersSetErredWithResponse(ctx context.C
 		return nil, err
 	}
 	return ParseOpenstackRoutersSetErredResponse(rsp)
+}
+
+// OpenstackRoutersSetExternalGatewayWithBodyWithResponse request with arbitrary body returning *OpenstackRoutersSetExternalGatewayResponse
+func (c *ClientWithResponses) OpenstackRoutersSetExternalGatewayWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackRoutersSetExternalGatewayResponse, error) {
+	rsp, err := c.OpenstackRoutersSetExternalGatewayWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackRoutersSetExternalGatewayResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackRoutersSetExternalGatewayWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackRoutersSetExternalGatewayJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackRoutersSetExternalGatewayResponse, error) {
+	rsp, err := c.OpenstackRoutersSetExternalGateway(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackRoutersSetExternalGatewayResponse(rsp)
 }
 
 // OpenstackRoutersSetOkWithResponse request returning *OpenstackRoutersSetOkResponse
@@ -470684,6 +473891,48 @@ func ParseOpenstackRoutersAddRouterInterfaceResponse(rsp *http.Response) (*Opens
 	return response, nil
 }
 
+// ParseOpenstackRoutersAvailableExternalNetworksListResponse parses an HTTP response from a OpenstackRoutersAvailableExternalNetworksListWithResponse call
+func ParseOpenstackRoutersAvailableExternalNetworksListResponse(rsp *http.Response) (*OpenstackRoutersAvailableExternalNetworksListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackRoutersAvailableExternalNetworksListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AvailableExternalNetwork
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackRoutersRemoveExternalGatewayResponse parses an HTTP response from a OpenstackRoutersRemoveExternalGatewayWithResponse call
+func ParseOpenstackRoutersRemoveExternalGatewayResponse(rsp *http.Response) (*OpenstackRoutersRemoveExternalGatewayResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackRoutersRemoveExternalGatewayResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseOpenstackRoutersRemoveRouterInterfaceResponse parses an HTTP response from a OpenstackRoutersRemoveRouterInterfaceWithResponse call
 func ParseOpenstackRoutersRemoveRouterInterfaceResponse(rsp *http.Response) (*OpenstackRoutersRemoveRouterInterfaceResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -470721,6 +473970,22 @@ func ParseOpenstackRoutersSetErredResponse(rsp *http.Response) (*OpenstackRouter
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackRoutersSetExternalGatewayResponse parses an HTTP response from a OpenstackRoutersSetExternalGatewayWithResponse call
+func ParseOpenstackRoutersSetExternalGatewayResponse(rsp *http.Response) (*OpenstackRoutersSetExternalGatewayResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackRoutersSetExternalGatewayResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
