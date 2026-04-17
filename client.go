@@ -20874,6 +20874,28 @@ func (e CustomersUsersListParamsProjectRole0) Valid() bool {
 // AIASSISTANTENABLEDROLESEnum defines model for AIASSISTANTENABLEDROLESEnum.
 type AIASSISTANTENABLEDROLESEnum string
 
+// AccessProject defines model for AccessProject.
+type AccessProject struct {
+	Name      string           `json:"name"`
+	Resources []AccessResource `json:"resources"`
+}
+
+// AccessResource defines model for AccessResource.
+type AccessResource struct {
+	Name     string `json:"name"`
+	Username string `json:"username"`
+}
+
+// AccessResponse defines model for AccessResponse.
+type AccessResponse struct {
+	Email     openapi_types.Email      `json:"email"`
+	InvitedBy string                   `json:"invited_by"`
+	Projects  map[string]AccessProject `json:"projects"`
+	Reason    string                   `json:"reason"`
+	ShortName string                   `json:"short_name"`
+	Status    string                   `json:"status"`
+}
+
 // AccessSubnet defines model for AccessSubnet.
 type AccessSubnet struct {
 	Customer    string              `json:"customer"`
@@ -62290,6 +62312,12 @@ type OpenportalUserinfoCountParams struct {
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
+// OpenportalAccessForEmailListParams defines parameters for OpenportalAccessForEmailList.
+type OpenportalAccessForEmailListParams struct {
+	// Q Free text search query (email, short_name, project_name, or project_id)
+	Q string `form:"q" json:"q"`
+}
+
 // OpenstackBackupsListParams defines parameters for OpenstackBackupsList.
 type OpenstackBackupsListParams struct {
 	// BackendId Backend ID
@@ -91569,6 +91597,9 @@ type ClientInterface interface {
 
 	OpenportalUserinfoSetShortnameUpdate(ctx context.Context, user int, body OpenportalUserinfoSetShortnameUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenportalAccessForEmailList request
+	OpenportalAccessForEmailList(ctx context.Context, params *OpenportalAccessForEmailListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenstackBackupsList request
 	OpenstackBackupsList(ctx context.Context, params *OpenstackBackupsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -119304,6 +119335,18 @@ func (c *Client) OpenportalUserinfoSetShortnameUpdateWithBody(ctx context.Contex
 
 func (c *Client) OpenportalUserinfoSetShortnameUpdate(ctx context.Context, user int, body OpenportalUserinfoSetShortnameUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalUserinfoSetShortnameUpdateRequest(c.Server, user, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenportalAccessForEmailList(ctx context.Context, params *OpenportalAccessForEmailListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalAccessForEmailListRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -262858,6 +262901,51 @@ func NewOpenportalUserinfoSetShortnameUpdateRequestWithBody(server string, user 
 	return req, nil
 }
 
+// NewOpenportalAccessForEmailListRequest generates requests for OpenportalAccessForEmailList
+func NewOpenportalAccessForEmailListRequest(server string, params *OpenportalAccessForEmailListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openportal/access_for_email/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "q", params.Q, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOpenstackBackupsListRequest generates requests for OpenstackBackupsList
 func NewOpenstackBackupsListRequest(server string, params *OpenstackBackupsListParams) (*http.Request, error) {
 	var err error
@@ -350132,6 +350220,9 @@ type ClientWithResponsesInterface interface {
 
 	OpenportalUserinfoSetShortnameUpdateWithResponse(ctx context.Context, user int, body OpenportalUserinfoSetShortnameUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalUserinfoSetShortnameUpdateResponse, error)
 
+	// OpenportalAccessForEmailListWithResponse request
+	OpenportalAccessForEmailListWithResponse(ctx context.Context, params *OpenportalAccessForEmailListParams, reqEditors ...RequestEditorFn) (*OpenportalAccessForEmailListResponse, error)
+
 	// OpenstackBackupsListWithResponse request
 	OpenstackBackupsListWithResponse(ctx context.Context, params *OpenstackBackupsListParams, reqEditors ...RequestEditorFn) (*OpenstackBackupsListResponse, error)
 
@@ -386124,6 +386215,28 @@ func (r OpenportalUserinfoSetShortnameUpdateResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenportalUserinfoSetShortnameUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenportalAccessForEmailListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]AccessResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenportalAccessForEmailListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenportalAccessForEmailListResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -424602,6 +424715,15 @@ func (c *ClientWithResponses) OpenportalUserinfoSetShortnameUpdateWithResponse(c
 		return nil, err
 	}
 	return ParseOpenportalUserinfoSetShortnameUpdateResponse(rsp)
+}
+
+// OpenportalAccessForEmailListWithResponse request returning *OpenportalAccessForEmailListResponse
+func (c *ClientWithResponses) OpenportalAccessForEmailListWithResponse(ctx context.Context, params *OpenportalAccessForEmailListParams, reqEditors ...RequestEditorFn) (*OpenportalAccessForEmailListResponse, error) {
+	rsp, err := c.OpenportalAccessForEmailList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenportalAccessForEmailListResponse(rsp)
 }
 
 // OpenstackBackupsListWithResponse request returning *OpenstackBackupsListResponse
@@ -470321,6 +470443,32 @@ func ParseOpenportalUserinfoSetShortnameUpdateResponse(rsp *http.Response) (*Ope
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest UserInfo
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenportalAccessForEmailListResponse parses an HTTP response from a OpenportalAccessForEmailListWithResponse call
+func ParseOpenportalAccessForEmailListResponse(rsp *http.Response) (*OpenportalAccessForEmailListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenportalAccessForEmailListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AccessResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
