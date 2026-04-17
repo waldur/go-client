@@ -33007,6 +33007,7 @@ type OfferingComponent struct {
 
 	// Name Display name for the measured unit, for example, Floating IP.
 	Name             *string             `json:"name,omitempty"`
+	OfferingUuid     *openapi_types.UUID `json:"offering_uuid,omitempty"`
 	OverageComponent *openapi_types.UUID `json:"overage_component,omitempty"`
 
 	// PrepaidDurationStep Step size in months for the initial prepaid duration at order creation. If set, only multiples of this value (starting from min_prepaid_duration) are valid. Defaults to 1 (any value between min and max).
