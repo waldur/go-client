@@ -33730,6 +33730,14 @@ type OfferingLocationUpdateRequest struct {
 	Longitude float64 `json:"longitude"`
 }
 
+// OfferingMappingResponse defines model for OfferingMappingResponse.
+type OfferingMappingResponse struct {
+	Description string `json:"description"`
+	Name        string `json:"name"`
+	Slug        string `json:"slug"`
+	Uuid        string `json:"uuid"`
+}
+
 // OfferingOptions defines model for OfferingOptions.
 type OfferingOptions struct {
 	Options *map[string]OptionField `json:"options,omitempty"`
@@ -40865,6 +40873,14 @@ type ProjectInfoRequest struct {
 	Shortname *string `json:"shortname,omitempty"`
 }
 
+// ProjectMappingResponse defines model for ProjectMappingResponse.
+type ProjectMappingResponse struct {
+	CustomerName string `json:"customer_name"`
+	CustomerUuid string `json:"customer_uuid"`
+	Name         string `json:"name"`
+	Uuid         string `json:"uuid"`
+}
+
 // ProjectPermissionLog defines model for ProjectPermissionLog.
 type ProjectPermissionLog struct {
 	Created           *time.Time `json:"created,omitempty"`
@@ -47875,6 +47891,14 @@ type UserJobTitleCount struct {
 type UserLanguageCount struct {
 	Count    int    `json:"count"`
 	Language string `json:"language"`
+}
+
+// UserMappingResponse defines model for UserMappingResponse.
+type UserMappingResponse struct {
+	Email    openapi_types.Email `json:"email"`
+	FullName string              `json:"full_name"`
+	Username string              `json:"username"`
+	Uuid     string              `json:"uuid"`
 }
 
 // UserNationalityStats defines model for UserNationalityStats.
@@ -62423,6 +62447,24 @@ type OpenportalUserinfoCountParams struct {
 type OpenportalAccessForEmailListParams struct {
 	// Q Free text search query (email, short_name, project_name, or project_id)
 	Q string `form:"q" json:"q"`
+}
+
+// OpenportalOfferingMappingRetrieveParams defines parameters for OpenportalOfferingMappingRetrieve.
+type OpenportalOfferingMappingRetrieveParams struct {
+	// Identifier OpenPortal destination string (repeatable).
+	Identifier *[]string `form:"identifier,omitempty" json:"identifier,omitempty"`
+}
+
+// OpenportalProjectMappingRetrieveParams defines parameters for OpenportalProjectMappingRetrieve.
+type OpenportalProjectMappingRetrieveParams struct {
+	// Identifier OpenPortal ProjectIdentifier string (repeatable).
+	Identifier *[]string `form:"identifier,omitempty" json:"identifier,omitempty"`
+}
+
+// OpenportalUserMappingRetrieveParams defines parameters for OpenportalUserMappingRetrieve.
+type OpenportalUserMappingRetrieveParams struct {
+	// Identifier OpenPortal UserIdentifier string or email address (repeatable). All values in a single request must be the same type.
+	Identifier *[]string `form:"identifier,omitempty" json:"identifier,omitempty"`
 }
 
 // OpenstackBackupsListParams defines parameters for OpenstackBackupsList.
@@ -91839,6 +91881,15 @@ type ClientInterface interface {
 	// OpenportalAccessForEmailList request
 	OpenportalAccessForEmailList(ctx context.Context, params *OpenportalAccessForEmailListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenportalOfferingMappingRetrieve request
+	OpenportalOfferingMappingRetrieve(ctx context.Context, params *OpenportalOfferingMappingRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenportalProjectMappingRetrieve request
+	OpenportalProjectMappingRetrieve(ctx context.Context, params *OpenportalProjectMappingRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenportalUserMappingRetrieve request
+	OpenportalUserMappingRetrieve(ctx context.Context, params *OpenportalUserMappingRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenstackBackupsList request
 	OpenstackBackupsList(ctx context.Context, params *OpenstackBackupsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -119610,6 +119661,42 @@ func (c *Client) OpenportalUserinfoSetShortnameUpdate(ctx context.Context, user 
 
 func (c *Client) OpenportalAccessForEmailList(ctx context.Context, params *OpenportalAccessForEmailListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalAccessForEmailListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenportalOfferingMappingRetrieve(ctx context.Context, params *OpenportalOfferingMappingRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalOfferingMappingRetrieveRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenportalProjectMappingRetrieve(ctx context.Context, params *OpenportalProjectMappingRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalProjectMappingRetrieveRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenportalUserMappingRetrieve(ctx context.Context, params *OpenportalUserMappingRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalUserMappingRetrieveRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -263288,6 +263375,153 @@ func NewOpenportalAccessForEmailListRequest(server string, params *OpenportalAcc
 	return req, nil
 }
 
+// NewOpenportalOfferingMappingRetrieveRequest generates requests for OpenportalOfferingMappingRetrieve
+func NewOpenportalOfferingMappingRetrieveRequest(server string, params *OpenportalOfferingMappingRetrieveParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openportal/offering_mapping/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Identifier != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "identifier", *params.Identifier, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenportalProjectMappingRetrieveRequest generates requests for OpenportalProjectMappingRetrieve
+func NewOpenportalProjectMappingRetrieveRequest(server string, params *OpenportalProjectMappingRetrieveParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openportal/project_mapping/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Identifier != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "identifier", *params.Identifier, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenportalUserMappingRetrieveRequest generates requests for OpenportalUserMappingRetrieve
+func NewOpenportalUserMappingRetrieveRequest(server string, params *OpenportalUserMappingRetrieveParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openportal/user_mapping/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Identifier != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "identifier", *params.Identifier, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOpenstackBackupsListRequest generates requests for OpenstackBackupsList
 func NewOpenstackBackupsListRequest(server string, params *OpenstackBackupsListParams) (*http.Request, error) {
 	var err error
@@ -350570,6 +350804,15 @@ type ClientWithResponsesInterface interface {
 	// OpenportalAccessForEmailListWithResponse request
 	OpenportalAccessForEmailListWithResponse(ctx context.Context, params *OpenportalAccessForEmailListParams, reqEditors ...RequestEditorFn) (*OpenportalAccessForEmailListResponse, error)
 
+	// OpenportalOfferingMappingRetrieveWithResponse request
+	OpenportalOfferingMappingRetrieveWithResponse(ctx context.Context, params *OpenportalOfferingMappingRetrieveParams, reqEditors ...RequestEditorFn) (*OpenportalOfferingMappingRetrieveResponse, error)
+
+	// OpenportalProjectMappingRetrieveWithResponse request
+	OpenportalProjectMappingRetrieveWithResponse(ctx context.Context, params *OpenportalProjectMappingRetrieveParams, reqEditors ...RequestEditorFn) (*OpenportalProjectMappingRetrieveResponse, error)
+
+	// OpenportalUserMappingRetrieveWithResponse request
+	OpenportalUserMappingRetrieveWithResponse(ctx context.Context, params *OpenportalUserMappingRetrieveParams, reqEditors ...RequestEditorFn) (*OpenportalUserMappingRetrieveResponse, error)
+
 	// OpenstackBackupsListWithResponse request
 	OpenstackBackupsListWithResponse(ctx context.Context, params *OpenstackBackupsListParams, reqEditors ...RequestEditorFn) (*OpenstackBackupsListResponse, error)
 
@@ -386606,6 +386849,72 @@ func (r OpenportalAccessForEmailListResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenportalAccessForEmailListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenportalOfferingMappingRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OfferingMappingResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenportalOfferingMappingRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenportalOfferingMappingRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenportalProjectMappingRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ProjectMappingResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenportalProjectMappingRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenportalProjectMappingRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenportalUserMappingRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *UserMappingResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenportalUserMappingRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenportalUserMappingRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -425110,6 +425419,33 @@ func (c *ClientWithResponses) OpenportalAccessForEmailListWithResponse(ctx conte
 		return nil, err
 	}
 	return ParseOpenportalAccessForEmailListResponse(rsp)
+}
+
+// OpenportalOfferingMappingRetrieveWithResponse request returning *OpenportalOfferingMappingRetrieveResponse
+func (c *ClientWithResponses) OpenportalOfferingMappingRetrieveWithResponse(ctx context.Context, params *OpenportalOfferingMappingRetrieveParams, reqEditors ...RequestEditorFn) (*OpenportalOfferingMappingRetrieveResponse, error) {
+	rsp, err := c.OpenportalOfferingMappingRetrieve(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenportalOfferingMappingRetrieveResponse(rsp)
+}
+
+// OpenportalProjectMappingRetrieveWithResponse request returning *OpenportalProjectMappingRetrieveResponse
+func (c *ClientWithResponses) OpenportalProjectMappingRetrieveWithResponse(ctx context.Context, params *OpenportalProjectMappingRetrieveParams, reqEditors ...RequestEditorFn) (*OpenportalProjectMappingRetrieveResponse, error) {
+	rsp, err := c.OpenportalProjectMappingRetrieve(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenportalProjectMappingRetrieveResponse(rsp)
+}
+
+// OpenportalUserMappingRetrieveWithResponse request returning *OpenportalUserMappingRetrieveResponse
+func (c *ClientWithResponses) OpenportalUserMappingRetrieveWithResponse(ctx context.Context, params *OpenportalUserMappingRetrieveParams, reqEditors ...RequestEditorFn) (*OpenportalUserMappingRetrieveResponse, error) {
+	rsp, err := c.OpenportalUserMappingRetrieve(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenportalUserMappingRetrieveResponse(rsp)
 }
 
 // OpenstackBackupsListWithResponse request returning *OpenstackBackupsListResponse
@@ -470881,6 +471217,84 @@ func ParseOpenportalAccessForEmailListResponse(rsp *http.Response) (*OpenportalA
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest []AccessResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenportalOfferingMappingRetrieveResponse parses an HTTP response from a OpenportalOfferingMappingRetrieveWithResponse call
+func ParseOpenportalOfferingMappingRetrieveResponse(rsp *http.Response) (*OpenportalOfferingMappingRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenportalOfferingMappingRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingMappingResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenportalProjectMappingRetrieveResponse parses an HTTP response from a OpenportalProjectMappingRetrieveWithResponse call
+func ParseOpenportalProjectMappingRetrieveResponse(rsp *http.Response) (*OpenportalProjectMappingRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenportalProjectMappingRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProjectMappingResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenportalUserMappingRetrieveResponse parses an HTTP response from a OpenportalUserMappingRetrieveWithResponse call
+func ParseOpenportalUserMappingRetrieveResponse(rsp *http.Response) (*OpenportalUserMappingRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenportalUserMappingRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UserMappingResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
