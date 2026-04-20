@@ -2877,54 +2877,6 @@ func (e CategoryComponentUsageFieldEnum) Valid() bool {
 	}
 }
 
-// Defines values for CategoryEnum.
-const (
-	CategoryEnumApprove   CategoryEnum = "approve"
-	CategoryEnumBackup    CategoryEnum = "backup"
-	CategoryEnumConfigure CategoryEnum = "configure"
-	CategoryEnumContact   CategoryEnum = "contact"
-	CategoryEnumEscalate  CategoryEnum = "escalate"
-	CategoryEnumExtend    CategoryEnum = "extend"
-	CategoryEnumMigrate   CategoryEnum = "migrate"
-	CategoryEnumMonitor   CategoryEnum = "monitor"
-	CategoryEnumReject    CategoryEnum = "reject"
-	CategoryEnumRepair    CategoryEnum = "repair"
-	CategoryEnumTerminate CategoryEnum = "terminate"
-	CategoryEnumView      CategoryEnum = "view"
-)
-
-// Valid indicates whether the value is a known member of the CategoryEnum enum.
-func (e CategoryEnum) Valid() bool {
-	switch e {
-	case CategoryEnumApprove:
-		return true
-	case CategoryEnumBackup:
-		return true
-	case CategoryEnumConfigure:
-		return true
-	case CategoryEnumContact:
-		return true
-	case CategoryEnumEscalate:
-		return true
-	case CategoryEnumExtend:
-		return true
-	case CategoryEnumMigrate:
-		return true
-	case CategoryEnumMonitor:
-		return true
-	case CategoryEnumReject:
-		return true
-	case CategoryEnumRepair:
-		return true
-	case CategoryEnumTerminate:
-		return true
-	case CategoryEnumView:
-		return true
-	default:
-		return false
-	}
-}
-
 // Defines values for CategoryGroupFieldEnum.
 const (
 	CategoryGroupFieldEnumDescription CategoryGroupFieldEnum = "description"
@@ -3543,6 +3495,54 @@ func (e CoreStates) Valid() bool {
 	case CoreStatesUPDATESCHEDULED:
 		return true
 	case CoreStatesUPDATING:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for CorrectiveActionCategoryEnum.
+const (
+	CorrectiveActionCategoryEnumApprove   CorrectiveActionCategoryEnum = "approve"
+	CorrectiveActionCategoryEnumBackup    CorrectiveActionCategoryEnum = "backup"
+	CorrectiveActionCategoryEnumConfigure CorrectiveActionCategoryEnum = "configure"
+	CorrectiveActionCategoryEnumContact   CorrectiveActionCategoryEnum = "contact"
+	CorrectiveActionCategoryEnumEscalate  CorrectiveActionCategoryEnum = "escalate"
+	CorrectiveActionCategoryEnumExtend    CorrectiveActionCategoryEnum = "extend"
+	CorrectiveActionCategoryEnumMigrate   CorrectiveActionCategoryEnum = "migrate"
+	CorrectiveActionCategoryEnumMonitor   CorrectiveActionCategoryEnum = "monitor"
+	CorrectiveActionCategoryEnumReject    CorrectiveActionCategoryEnum = "reject"
+	CorrectiveActionCategoryEnumRepair    CorrectiveActionCategoryEnum = "repair"
+	CorrectiveActionCategoryEnumTerminate CorrectiveActionCategoryEnum = "terminate"
+	CorrectiveActionCategoryEnumView      CorrectiveActionCategoryEnum = "view"
+)
+
+// Valid indicates whether the value is a known member of the CorrectiveActionCategoryEnum enum.
+func (e CorrectiveActionCategoryEnum) Valid() bool {
+	switch e {
+	case CorrectiveActionCategoryEnumApprove:
+		return true
+	case CorrectiveActionCategoryEnumBackup:
+		return true
+	case CorrectiveActionCategoryEnumConfigure:
+		return true
+	case CorrectiveActionCategoryEnumContact:
+		return true
+	case CorrectiveActionCategoryEnumEscalate:
+		return true
+	case CorrectiveActionCategoryEnumExtend:
+		return true
+	case CorrectiveActionCategoryEnumMigrate:
+		return true
+	case CorrectiveActionCategoryEnumMonitor:
+		return true
+	case CorrectiveActionCategoryEnumReject:
+		return true
+	case CorrectiveActionCategoryEnumRepair:
+		return true
+	case CorrectiveActionCategoryEnumTerminate:
+		return true
+	case CorrectiveActionCategoryEnumView:
 		return true
 	default:
 		return false
@@ -4504,6 +4504,7 @@ const (
 	CustomerFieldEnumPhoneNumber                  CustomerFieldEnum = "phone_number"
 	CustomerFieldEnumPostal                       CustomerFieldEnum = "postal"
 	CustomerFieldEnumProjectMetadataChecklist     CustomerFieldEnum = "project_metadata_checklist"
+	CustomerFieldEnumProjectSlugTemplate          CustomerFieldEnum = "project_slug_template"
 	CustomerFieldEnumProjectsCount                CustomerFieldEnum = "projects_count"
 	CustomerFieldEnumRegistrationCode             CustomerFieldEnum = "registration_code"
 	CustomerFieldEnumServiceProvider              CustomerFieldEnum = "service_provider"
@@ -4611,6 +4612,8 @@ func (e CustomerFieldEnum) Valid() bool {
 	case CustomerFieldEnumPostal:
 		return true
 	case CustomerFieldEnumProjectMetadataChecklist:
+		return true
+	case CustomerFieldEnumProjectSlugTemplate:
 		return true
 	case CustomerFieldEnumProjectsCount:
 		return true
@@ -5534,6 +5537,7 @@ const (
 	EventMetadataResponseEventGroupsBlockModificationOfExistingResources             EventMetadataResponseEventGroups = "block_modification_of_existing_resources"
 	EventMetadataResponseEventGroupsCallDocumentAdded                                EventMetadataResponseEventGroups = "call_document_added"
 	EventMetadataResponseEventGroupsCallDocumentRemoved                              EventMetadataResponseEventGroups = "call_document_removed"
+	EventMetadataResponseEventGroupsChatFeedbackSubmitted                            EventMetadataResponseEventGroups = "chat_feedback_submitted"
 	EventMetadataResponseEventGroupsChatInjectionDetected                            EventMetadataResponseEventGroups = "chat_injection_detected"
 	EventMetadataResponseEventGroupsChatPiiDetected                                  EventMetadataResponseEventGroups = "chat_pii_detected"
 	EventMetadataResponseEventGroupsChatSessionAccessed                              EventMetadataResponseEventGroups = "chat_session_accessed"
@@ -5841,6 +5845,8 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 	case EventMetadataResponseEventGroupsCallDocumentAdded:
 		return true
 	case EventMetadataResponseEventGroupsCallDocumentRemoved:
+		return true
+	case EventMetadataResponseEventGroupsChatFeedbackSubmitted:
 		return true
 	case EventMetadataResponseEventGroupsChatInjectionDetected:
 		return true
@@ -6401,6 +6407,7 @@ const (
 	EventTypesEnumBlockModificationOfExistingResources             EventTypesEnum = "block_modification_of_existing_resources"
 	EventTypesEnumCallDocumentAdded                                EventTypesEnum = "call_document_added"
 	EventTypesEnumCallDocumentRemoved                              EventTypesEnum = "call_document_removed"
+	EventTypesEnumChatFeedbackSubmitted                            EventTypesEnum = "chat_feedback_submitted"
 	EventTypesEnumChatInjectionDetected                            EventTypesEnum = "chat_injection_detected"
 	EventTypesEnumChatPiiDetected                                  EventTypesEnum = "chat_pii_detected"
 	EventTypesEnumChatSessionAccessed                              EventTypesEnum = "chat_session_accessed"
@@ -6708,6 +6715,8 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumCallDocumentAdded:
 		return true
 	case EventTypesEnumCallDocumentRemoved:
+		return true
+	case EventTypesEnumChatFeedbackSubmitted:
 		return true
 	case EventTypesEnumChatInjectionDetected:
 		return true
@@ -7392,6 +7401,33 @@ func (e FONTFAMILYEnum) Valid() bool {
 	case Inter:
 		return true
 	case MavenPro:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for FeedbackCategoryEnum.
+const (
+	FeedbackCategoryEnumInaccurate    FeedbackCategoryEnum = "inaccurate"
+	FeedbackCategoryEnumIncomplete    FeedbackCategoryEnum = "incomplete"
+	FeedbackCategoryEnumMisunderstood FeedbackCategoryEnum = "misunderstood"
+	FeedbackCategoryEnumOther         FeedbackCategoryEnum = "other"
+	FeedbackCategoryEnumSlowOrFailed  FeedbackCategoryEnum = "slow_or_failed"
+)
+
+// Valid indicates whether the value is a known member of the FeedbackCategoryEnum enum.
+func (e FeedbackCategoryEnum) Valid() bool {
+	switch e {
+	case FeedbackCategoryEnumInaccurate:
+		return true
+	case FeedbackCategoryEnumIncomplete:
+		return true
+	case FeedbackCategoryEnumMisunderstood:
+		return true
+	case FeedbackCategoryEnumOther:
+		return true
+	case FeedbackCategoryEnumSlowOrFailed:
 		return true
 	default:
 		return false
@@ -19100,6 +19136,7 @@ const (
 	ThreadSessionFieldEnumChatSession          ThreadSessionFieldEnum = "chat_session"
 	ThreadSessionFieldEnumCreated              ThreadSessionFieldEnum = "created"
 	ThreadSessionFieldEnumFlags                ThreadSessionFieldEnum = "flags"
+	ThreadSessionFieldEnumHasFeedback          ThreadSessionFieldEnum = "has_feedback"
 	ThreadSessionFieldEnumInputTokens          ThreadSessionFieldEnum = "input_tokens"
 	ThreadSessionFieldEnumIsArchived           ThreadSessionFieldEnum = "is_archived"
 	ThreadSessionFieldEnumIsFlagged            ThreadSessionFieldEnum = "is_flagged"
@@ -19124,6 +19161,8 @@ func (e ThreadSessionFieldEnum) Valid() bool {
 	case ThreadSessionFieldEnumCreated:
 		return true
 	case ThreadSessionFieldEnumFlags:
+		return true
+	case ThreadSessionFieldEnumHasFeedback:
 		return true
 	case ThreadSessionFieldEnumInputTokens:
 		return true
@@ -20186,31 +20225,31 @@ func (e ValidationMethodEnum) Valid() bool {
 
 // Defines values for VenueTypeEnum.
 const (
-	VenueTypeEnumBook       VenueTypeEnum = "book"
-	VenueTypeEnumConference VenueTypeEnum = "conference"
-	VenueTypeEnumJournal    VenueTypeEnum = "journal"
-	VenueTypeEnumOther      VenueTypeEnum = "other"
-	VenueTypeEnumPreprint   VenueTypeEnum = "preprint"
-	VenueTypeEnumReport     VenueTypeEnum = "report"
-	VenueTypeEnumThesis     VenueTypeEnum = "thesis"
+	Book       VenueTypeEnum = "book"
+	Conference VenueTypeEnum = "conference"
+	Journal    VenueTypeEnum = "journal"
+	Other      VenueTypeEnum = "other"
+	Preprint   VenueTypeEnum = "preprint"
+	Report     VenueTypeEnum = "report"
+	Thesis     VenueTypeEnum = "thesis"
 )
 
 // Valid indicates whether the value is a known member of the VenueTypeEnum enum.
 func (e VenueTypeEnum) Valid() bool {
 	switch e {
-	case VenueTypeEnumBook:
+	case Book:
 		return true
-	case VenueTypeEnumConference:
+	case Conference:
 		return true
-	case VenueTypeEnumJournal:
+	case Journal:
 		return true
-	case VenueTypeEnumOther:
+	case Other:
 		return true
-	case VenueTypeEnumPreprint:
+	case Preprint:
 		return true
-	case VenueTypeEnumReport:
+	case Report:
 		return true
-	case VenueTypeEnumThesis:
+	case Thesis:
 		return true
 	default:
 		return false
@@ -24375,9 +24414,6 @@ type CategoryComponentsRequest struct {
 	Type string `json:"type"`
 }
 
-// CategoryEnum defines model for CategoryEnum.
-type CategoryEnum string
-
 // CategoryGroup defines model for CategoryGroup.
 type CategoryGroup struct {
 	Description *string             `json:"description,omitempty"`
@@ -26615,7 +26651,7 @@ type CoreStates string
 // CorrectiveAction defines model for CorrectiveAction.
 type CorrectiveAction struct {
 	ApiEndpoint          *bool                        `json:"api_endpoint,omitempty"`
-	Category             CategoryEnum                 `json:"category"`
+	Category             CorrectiveActionCategoryEnum `json:"category"`
 	ConfirmationRequired *bool                        `json:"confirmation_required,omitempty"`
 	Label                string                       `json:"label"`
 	Metadata             *map[string]interface{}      `json:"metadata,omitempty"`
@@ -26625,6 +26661,9 @@ type CorrectiveAction struct {
 	RouteParams          *map[string]interface{}      `json:"route_params,omitempty"`
 	Severity             CorrectiveActionSeverityEnum `json:"severity"`
 }
+
+// CorrectiveActionCategoryEnum defines model for CorrectiveActionCategoryEnum.
+type CorrectiveActionCategoryEnum string
 
 // CorrectiveActionSeverityEnum defines model for CorrectiveActionSeverityEnum.
 type CorrectiveActionSeverityEnum string
@@ -27111,6 +27150,9 @@ type Customer struct {
 	// ProjectMetadataChecklist Checklist to be used for project metadata validation in this organization
 	ProjectMetadataChecklist *openapi_types.UUID `json:"project_metadata_checklist,omitempty"`
 
+	// ProjectSlugTemplate Template for project slugs. Supports: {customer_slug}, {project_name}, {year}, {month}, {counter}, {counter_padded}. Default: slugified project name
+	ProjectSlugTemplate *string `json:"project_slug_template,omitempty"`
+
 	// ProjectsCount Number of projects in this organization
 	ProjectsCount       *int                `json:"projects_count,omitempty"`
 	RegistrationCode    *string             `json:"registration_code,omitempty"`
@@ -27488,7 +27530,10 @@ type CustomerRequest struct {
 
 	// ProjectMetadataChecklist Checklist to be used for project metadata validation in this organization
 	ProjectMetadataChecklist *openapi_types.UUID `json:"project_metadata_checklist,omitempty"`
-	RegistrationCode         *string             `json:"registration_code,omitempty"`
+
+	// ProjectSlugTemplate Template for project slugs. Supports: {customer_slug}, {project_name}, {year}, {month}, {counter}, {counter_padded}. Default: slugified project name
+	ProjectSlugTemplate *string `json:"project_slug_template,omitempty"`
+	RegistrationCode    *string `json:"registration_code,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug *string `json:"slug,omitempty"`
@@ -27562,7 +27607,10 @@ type CustomerRequestForm struct {
 
 	// ProjectMetadataChecklist Checklist to be used for project metadata validation in this organization
 	ProjectMetadataChecklist *openapi_types.UUID `json:"project_metadata_checklist,omitempty"`
-	RegistrationCode         *string             `json:"registration_code,omitempty"`
+
+	// ProjectSlugTemplate Template for project slugs. Supports: {customer_slug}, {project_name}, {year}, {month}, {counter}, {counter_padded}. Default: slugified project name
+	ProjectSlugTemplate *string `json:"project_slug_template,omitempty"`
+	RegistrationCode    *string `json:"registration_code,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug *string `json:"slug,omitempty"`
@@ -27636,7 +27684,10 @@ type CustomerRequestMultipart struct {
 
 	// ProjectMetadataChecklist Checklist to be used for project metadata validation in this organization
 	ProjectMetadataChecklist *openapi_types.UUID `json:"project_metadata_checklist,omitempty"`
-	RegistrationCode         *string             `json:"registration_code,omitempty"`
+
+	// ProjectSlugTemplate Template for project slugs. Supports: {customer_slug}, {project_name}, {year}, {month}, {counter}, {counter_padded}. Default: slugified project name
+	ProjectSlugTemplate *string `json:"project_slug_template,omitempty"`
+	RegistrationCode    *string `json:"registration_code,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug *string `json:"slug,omitempty"`
@@ -28994,6 +29045,9 @@ type Feedback struct {
 	UserFullName *string             `json:"user_full_name,omitempty"`
 	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
 }
+
+// FeedbackCategoryEnum defines model for FeedbackCategoryEnum.
+type FeedbackCategoryEnum string
 
 // FetchBillingExportRequestRequest defines model for FetchBillingExportRequestRequest.
 type FetchBillingExportRequestRequest struct {
@@ -32110,9 +32164,21 @@ type MergedSecretOptionsRequest struct {
 
 // Message defines model for Message.
 type Message struct {
-	ActionTaken         *ActionTakenEnum       `json:"action_taken,omitempty"`
-	Blocks              *[]Message_Blocks_Item `json:"blocks,omitempty"`
-	Created             *time.Time             `json:"created,omitempty"`
+	ActionTaken *ActionTakenEnum       `json:"action_taken,omitempty"`
+	Blocks      *[]Message_Blocks_Item `json:"blocks,omitempty"`
+	Created     *time.Time             `json:"created,omitempty"`
+
+	// FeedbackCategory Category tag when feedback_score is False (thumbs down); null otherwise.
+	FeedbackCategory *Message_FeedbackCategory `json:"feedback_category,omitempty"`
+
+	// FeedbackComment Optional user comment accompanying feedback.
+	FeedbackComment *string `json:"feedback_comment,omitempty"`
+
+	// FeedbackScore User feedback: True=thumbs up, False=thumbs down, None=no feedback.
+	FeedbackScore *bool `json:"feedback_score,omitempty"`
+
+	// FeedbackSubmittedAt Timestamp of the most recent feedback submission; overwritten on resubmit.
+	FeedbackSubmittedAt *time.Time             `json:"feedback_submitted_at,omitempty"`
 	InjectionCategories interface{}            `json:"injection_categories,omitempty"`
 	InputTokens         *int                   `json:"input_tokens,omitempty"`
 	IsFlagged           *bool                  `json:"is_flagged,omitempty"`
@@ -32136,6 +32202,28 @@ type Message_Blocks_Item struct {
 	Key                  MessageBlocksKey       `json:"key"`
 	Status               string                 `json:"status"`
 	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// Message_FeedbackCategory Category tag when feedback_score is False (thumbs down); null otherwise.
+type Message_FeedbackCategory struct {
+	union json.RawMessage
+}
+
+// MessageFeedbackRequest defines model for MessageFeedbackRequest.
+type MessageFeedbackRequest struct {
+	// Category Optional category tag (only accepted when score=false).
+	Category *MessageFeedbackRequest_Category `json:"category,omitempty"`
+
+	// Comment Optional comment.
+	Comment *string `json:"comment,omitempty"`
+
+	// Score Feedback score: true=thumbs up, false=thumbs down.
+	Score bool `json:"score"`
+}
+
+// MessageFeedbackRequest_Category Optional category tag (only accepted when score=false).
+type MessageFeedbackRequest_Category struct {
+	union json.RawMessage
 }
 
 // MessageResponse defines model for MessageResponse.
@@ -37992,7 +38080,10 @@ type PatchedCustomerRequest struct {
 
 	// ProjectMetadataChecklist Checklist to be used for project metadata validation in this organization
 	ProjectMetadataChecklist *openapi_types.UUID `json:"project_metadata_checklist,omitempty"`
-	RegistrationCode         *string             `json:"registration_code,omitempty"`
+
+	// ProjectSlugTemplate Template for project slugs. Supports: {customer_slug}, {project_name}, {year}, {month}, {counter}, {counter_padded}. Default: slugified project name
+	ProjectSlugTemplate *string `json:"project_slug_template,omitempty"`
+	RegistrationCode    *string `json:"registration_code,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug *string `json:"slug,omitempty"`
@@ -38066,7 +38157,10 @@ type PatchedCustomerRequestForm struct {
 
 	// ProjectMetadataChecklist Checklist to be used for project metadata validation in this organization
 	ProjectMetadataChecklist *openapi_types.UUID `json:"project_metadata_checklist,omitempty"`
-	RegistrationCode         *string             `json:"registration_code,omitempty"`
+
+	// ProjectSlugTemplate Template for project slugs. Supports: {customer_slug}, {project_name}, {year}, {month}, {counter}, {counter_padded}. Default: slugified project name
+	ProjectSlugTemplate *string `json:"project_slug_template,omitempty"`
+	RegistrationCode    *string `json:"registration_code,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug *string `json:"slug,omitempty"`
@@ -38140,7 +38234,10 @@ type PatchedCustomerRequestMultipart struct {
 
 	// ProjectMetadataChecklist Checklist to be used for project metadata validation in this organization
 	ProjectMetadataChecklist *openapi_types.UUID `json:"project_metadata_checklist,omitempty"`
-	RegistrationCode         *string             `json:"registration_code,omitempty"`
+
+	// ProjectSlugTemplate Template for project slugs. Supports: {customer_slug}, {project_name}, {year}, {month}, {counter}, {counter_padded}. Default: slugified project name
+	ProjectSlugTemplate *string `json:"project_slug_template,omitempty"`
+	RegistrationCode    *string `json:"registration_code,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug *string `json:"slug,omitempty"`
@@ -47068,6 +47165,7 @@ type ThreadSession struct {
 	ChatSession          *openapi_types.UUID    `json:"chat_session,omitempty"`
 	Created              *time.Time             `json:"created,omitempty"`
 	Flags                interface{}            `json:"flags,omitempty"`
+	HasFeedback          *bool                  `json:"has_feedback,omitempty"`
 	InputTokens          *int                   `json:"input_tokens,omitempty"`
 	IsArchived           *bool                  `json:"is_archived,omitempty"`
 	IsFlagged            *bool                  `json:"is_flagged,omitempty"`
@@ -51161,6 +51259,7 @@ type CallRoundsReviewersListParams struct {
 
 // ChatMessagesListParams defines parameters for ChatMessagesList.
 type ChatMessagesListParams struct {
+	FeedbackScore  *bool               `form:"feedback_score,omitempty" json:"feedback_score,omitempty"`
 	IncludeHistory *bool               `form:"include_history,omitempty" json:"include_history,omitempty"`
 	IsFlagged      *bool               `form:"is_flagged,omitempty" json:"is_flagged,omitempty"`
 	Thread         *openapi_types.UUID `form:"thread,omitempty" json:"thread,omitempty"`
@@ -51192,6 +51291,7 @@ type ChatSessionsRetrieveParams struct {
 type ChatThreadsListParams struct {
 	Created        *openapi_types.Date       `form:"created,omitempty" json:"created,omitempty"`
 	Field          *[]ThreadSessionFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+	HasFeedback    *bool                     `form:"has_feedback,omitempty" json:"has_feedback,omitempty"`
 	InputTokensMax *float32                  `form:"input_tokens_max,omitempty" json:"input_tokens_max,omitempty"`
 	InputTokensMin *float32                  `form:"input_tokens_min,omitempty" json:"input_tokens_min,omitempty"`
 	IsArchived     *bool                     `form:"is_archived,omitempty" json:"is_archived,omitempty"`
@@ -70981,6 +71081,9 @@ type CallReviewerPoolsDeclineJSONRequestBody = InvitationDeclineRequest
 // CallReviewerPoolsForceAcceptJSONRequestBody defines body for CallReviewerPoolsForceAccept for application/json ContentType.
 type CallReviewerPoolsForceAcceptJSONRequestBody = ForceAcceptPoolRequest
 
+// ChatMessagesFeedbackJSONRequestBody defines body for ChatMessagesFeedback for application/json ContentType.
+type ChatMessagesFeedbackJSONRequestBody = MessageFeedbackRequest
+
 // ChatQuotaSetQuotaJSONRequestBody defines body for ChatQuotaSetQuota for application/json ContentType.
 type ChatQuotaSetQuotaJSONRequestBody = SetTokenQuotaRequest
 
@@ -77961,6 +78064,130 @@ func (t MergedPluginOptionsRequest_AccountNameGenerationPolicy) MarshalJSON() ([
 }
 
 func (t *MergedPluginOptionsRequest_AccountNameGenerationPolicy) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsFeedbackCategoryEnum returns the union data inside the Message_FeedbackCategory as a FeedbackCategoryEnum
+func (t Message_FeedbackCategory) AsFeedbackCategoryEnum() (FeedbackCategoryEnum, error) {
+	var body FeedbackCategoryEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromFeedbackCategoryEnum overwrites any union data inside the Message_FeedbackCategory as the provided FeedbackCategoryEnum
+func (t *Message_FeedbackCategory) FromFeedbackCategoryEnum(v FeedbackCategoryEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeFeedbackCategoryEnum performs a merge with any union data inside the Message_FeedbackCategory, using the provided FeedbackCategoryEnum
+func (t *Message_FeedbackCategory) MergeFeedbackCategoryEnum(v FeedbackCategoryEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the Message_FeedbackCategory as a NullEnum
+func (t Message_FeedbackCategory) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the Message_FeedbackCategory as the provided NullEnum
+func (t *Message_FeedbackCategory) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the Message_FeedbackCategory, using the provided NullEnum
+func (t *Message_FeedbackCategory) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t Message_FeedbackCategory) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *Message_FeedbackCategory) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsFeedbackCategoryEnum returns the union data inside the MessageFeedbackRequest_Category as a FeedbackCategoryEnum
+func (t MessageFeedbackRequest_Category) AsFeedbackCategoryEnum() (FeedbackCategoryEnum, error) {
+	var body FeedbackCategoryEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromFeedbackCategoryEnum overwrites any union data inside the MessageFeedbackRequest_Category as the provided FeedbackCategoryEnum
+func (t *MessageFeedbackRequest_Category) FromFeedbackCategoryEnum(v FeedbackCategoryEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeFeedbackCategoryEnum performs a merge with any union data inside the MessageFeedbackRequest_Category, using the provided FeedbackCategoryEnum
+func (t *MessageFeedbackRequest_Category) MergeFeedbackCategoryEnum(v FeedbackCategoryEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the MessageFeedbackRequest_Category as a NullEnum
+func (t MessageFeedbackRequest_Category) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the MessageFeedbackRequest_Category as the provided NullEnum
+func (t *MessageFeedbackRequest_Category) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the MessageFeedbackRequest_Category, using the provided NullEnum
+func (t *MessageFeedbackRequest_Category) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t MessageFeedbackRequest_Category) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *MessageFeedbackRequest_Category) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -87265,6 +87492,11 @@ type ClientInterface interface {
 
 	// ChatMessagesList request
 	ChatMessagesList(ctx context.Context, params *ChatMessagesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatMessagesFeedbackWithBody request with any body
+	ChatMessagesFeedbackWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChatMessagesFeedback(ctx context.Context, uuid openapi_types.UUID, body ChatMessagesFeedbackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ChatQuotaSetQuotaWithBody request with any body
 	ChatQuotaSetQuotaWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -100346,6 +100578,30 @@ func (c *Client) CeleryStatsRetrieve(ctx context.Context, reqEditors ...RequestE
 
 func (c *Client) ChatMessagesList(ctx context.Context, params *ChatMessagesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewChatMessagesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatMessagesFeedbackWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatMessagesFeedbackRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatMessagesFeedback(ctx context.Context, uuid openapi_types.UUID, body ChatMessagesFeedbackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatMessagesFeedbackRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -160367,6 +160623,22 @@ func NewChatMessagesListRequest(server string, params *ChatMessagesListParams) (
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.FeedbackScore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "feedback_score", *params.FeedbackScore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.IncludeHistory != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "include_history", *params.IncludeHistory, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
@@ -160422,6 +160694,53 @@ func NewChatMessagesListRequest(server string, params *ChatMessagesListParams) (
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewChatMessagesFeedbackRequest calls the generic ChatMessagesFeedback builder with application/json body
+func NewChatMessagesFeedbackRequest(server string, uuid openapi_types.UUID, body ChatMessagesFeedbackJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChatMessagesFeedbackRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewChatMessagesFeedbackRequestWithBody generates requests for ChatMessagesFeedback with any type of body
+func NewChatMessagesFeedbackRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-messages/%s/feedback/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -160716,6 +161035,22 @@ func NewChatThreadsListRequest(server string, params *ChatThreadsListParams) (*h
 		if params.Field != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasFeedback != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_feedback", *params.HasFeedback, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -345889,6 +346224,11 @@ type ClientWithResponsesInterface interface {
 	// ChatMessagesListWithResponse request
 	ChatMessagesListWithResponse(ctx context.Context, params *ChatMessagesListParams, reqEditors ...RequestEditorFn) (*ChatMessagesListResponse, error)
 
+	// ChatMessagesFeedbackWithBodyWithResponse request with any body
+	ChatMessagesFeedbackWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatMessagesFeedbackResponse, error)
+
+	ChatMessagesFeedbackWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatMessagesFeedbackJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatMessagesFeedbackResponse, error)
+
 	// ChatQuotaSetQuotaWithBodyWithResponse request with any body
 	ChatQuotaSetQuotaWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatQuotaSetQuotaResponse, error)
 
@@ -360740,6 +361080,28 @@ func (r ChatMessagesListResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ChatMessagesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatMessagesFeedbackResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Message
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatMessagesFeedbackResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatMessagesFeedbackResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -410888,6 +411250,23 @@ func (c *ClientWithResponses) ChatMessagesListWithResponse(ctx context.Context, 
 	return ParseChatMessagesListResponse(rsp)
 }
 
+// ChatMessagesFeedbackWithBodyWithResponse request with arbitrary body returning *ChatMessagesFeedbackResponse
+func (c *ClientWithResponses) ChatMessagesFeedbackWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatMessagesFeedbackResponse, error) {
+	rsp, err := c.ChatMessagesFeedbackWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatMessagesFeedbackResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChatMessagesFeedbackWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatMessagesFeedbackJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatMessagesFeedbackResponse, error) {
+	rsp, err := c.ChatMessagesFeedback(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatMessagesFeedbackResponse(rsp)
+}
+
 // ChatQuotaSetQuotaWithBodyWithResponse request with arbitrary body returning *ChatQuotaSetQuotaResponse
 func (c *ClientWithResponses) ChatQuotaSetQuotaWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatQuotaSetQuotaResponse, error) {
 	rsp, err := c.ChatQuotaSetQuotaWithBody(ctx, contentType, body, reqEditors...)
@@ -443454,6 +443833,32 @@ func ParseChatMessagesListResponse(rsp *http.Response) (*ChatMessagesListRespons
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest []Message
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChatMessagesFeedbackResponse parses an HTTP response from a ChatMessagesFeedbackWithResponse call
+func ParseChatMessagesFeedbackResponse(rsp *http.Response) (*ChatMessagesFeedbackResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatMessagesFeedbackResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Message
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
