@@ -14189,6 +14189,7 @@ const (
 	PermissionMetadataResponsePermissionMapORDERDESTROY                            PermissionMetadataResponsePermissionMap = "ORDER.DESTROY"
 	PermissionMetadataResponsePermissionMapORDERLIST                               PermissionMetadataResponsePermissionMap = "ORDER.LIST"
 	PermissionMetadataResponsePermissionMapORDERREJECT                             PermissionMetadataResponsePermissionMap = "ORDER.REJECT"
+	PermissionMetadataResponsePermissionMapORDERSETCONSUMERINFO                    PermissionMetadataResponsePermissionMap = "ORDER.SET_CONSUMER_INFO"
 	PermissionMetadataResponsePermissionMapPROJECTCOURSEACCOUNTMANAGE              PermissionMetadataResponsePermissionMap = "PROJECT.COURSE_ACCOUNT_MANAGE"
 	PermissionMetadataResponsePermissionMapPROJECTCREATE                           PermissionMetadataResponsePermissionMap = "PROJECT.CREATE"
 	PermissionMetadataResponsePermissionMapPROJECTCREATEPERMISSION                 PermissionMetadataResponsePermissionMap = "PROJECT.CREATE_PERMISSION"
@@ -14383,6 +14384,8 @@ func (e PermissionMetadataResponsePermissionMap) Valid() bool {
 		return true
 	case PermissionMetadataResponsePermissionMapORDERREJECT:
 		return true
+	case PermissionMetadataResponsePermissionMapORDERSETCONSUMERINFO:
+		return true
 	case PermissionMetadataResponsePermissionMapPROJECTCOURSEACCOUNTMANAGE:
 		return true
 	case PermissionMetadataResponsePermissionMapPROJECTCREATE:
@@ -14570,6 +14573,7 @@ const (
 	PermissionMetadataResponsePermissionsORDERDESTROY                            PermissionMetadataResponsePermissions = "ORDER.DESTROY"
 	PermissionMetadataResponsePermissionsORDERLIST                               PermissionMetadataResponsePermissions = "ORDER.LIST"
 	PermissionMetadataResponsePermissionsORDERREJECT                             PermissionMetadataResponsePermissions = "ORDER.REJECT"
+	PermissionMetadataResponsePermissionsORDERSETCONSUMERINFO                    PermissionMetadataResponsePermissions = "ORDER.SET_CONSUMER_INFO"
 	PermissionMetadataResponsePermissionsPROJECTCOURSEACCOUNTMANAGE              PermissionMetadataResponsePermissions = "PROJECT.COURSE_ACCOUNT_MANAGE"
 	PermissionMetadataResponsePermissionsPROJECTCREATE                           PermissionMetadataResponsePermissions = "PROJECT.CREATE"
 	PermissionMetadataResponsePermissionsPROJECTCREATEPERMISSION                 PermissionMetadataResponsePermissions = "PROJECT.CREATE_PERMISSION"
@@ -14763,6 +14767,8 @@ func (e PermissionMetadataResponsePermissions) Valid() bool {
 	case PermissionMetadataResponsePermissionsORDERLIST:
 		return true
 	case PermissionMetadataResponsePermissionsORDERREJECT:
+		return true
+	case PermissionMetadataResponsePermissionsORDERSETCONSUMERINFO:
 		return true
 	case PermissionMetadataResponsePermissionsPROJECTCOURSEACCOUNTMANAGE:
 		return true
