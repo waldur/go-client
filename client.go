@@ -44511,8 +44511,26 @@ type ResourceUpdate struct {
 
 // ResourceUpdateLimitsRequest defines model for ResourceUpdateLimitsRequest.
 type ResourceUpdateLimitsRequest struct {
-	Limits         map[string]int `json:"limits"`
-	RequestComment *string        `json:"request_comment,omitempty"`
+	// Attachment Optional PDF attachment for the limit update request.
+	Attachment     *openapi_types.File `json:"attachment,omitempty"`
+	Limits         map[string]int      `json:"limits"`
+	RequestComment *string             `json:"request_comment,omitempty"`
+}
+
+// ResourceUpdateLimitsRequestForm defines model for ResourceUpdateLimitsRequestForm.
+type ResourceUpdateLimitsRequestForm struct {
+	// Attachment Optional PDF attachment for the limit update request.
+	Attachment     *openapi_types.File `json:"attachment,omitempty"`
+	Limits         map[string]int      `json:"limits"`
+	RequestComment *string             `json:"request_comment,omitempty"`
+}
+
+// ResourceUpdateLimitsRequestMultipart defines model for ResourceUpdateLimitsRequestMultipart.
+type ResourceUpdateLimitsRequestMultipart struct {
+	// Attachment Optional PDF attachment for the limit update request.
+	Attachment     *openapi_types.File `json:"attachment,omitempty"`
+	Limits         map[string]int      `json:"limits"`
+	RequestComment *string             `json:"request_comment,omitempty"`
 }
 
 // ResourceUpdateRequest defines model for ResourceUpdateRequest.
@@ -53168,32 +53186,44 @@ type HooksWebCountParams struct {
 
 // HooksListParams defines parameters for HooksList.
 type HooksListParams struct {
-	// AuthorUuid Filter by author UUID.
-	AuthorUuid *openapi_types.UUID `form:"author_uuid,omitempty" json:"author_uuid,omitempty"`
+	AuthorEmail *string `form:"author_email,omitempty" json:"author_email,omitempty"`
 
-	// IsActive Filter by active status.
-	IsActive *bool `form:"is_active,omitempty" json:"is_active,omitempty"`
+	// AuthorFullname User full name contains
+	AuthorFullname *string             `form:"author_fullname,omitempty" json:"author_fullname,omitempty"`
+	AuthorUsername *string             `form:"author_username,omitempty" json:"author_username,omitempty"`
+	AuthorUuid     *openapi_types.UUID `form:"author_uuid,omitempty" json:"author_uuid,omitempty"`
+	IsActive       *bool               `form:"is_active,omitempty" json:"is_active,omitempty"`
+	LastPublished  *time.Time          `form:"last_published,omitempty" json:"last_published,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Filter by author name, username and email
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
 }
 
 // HooksCountParams defines parameters for HooksCount.
 type HooksCountParams struct {
-	// AuthorUuid Filter by author UUID.
-	AuthorUuid *openapi_types.UUID `form:"author_uuid,omitempty" json:"author_uuid,omitempty"`
+	AuthorEmail *string `form:"author_email,omitempty" json:"author_email,omitempty"`
 
-	// IsActive Filter by active status.
-	IsActive *bool `form:"is_active,omitempty" json:"is_active,omitempty"`
+	// AuthorFullname User full name contains
+	AuthorFullname *string             `form:"author_fullname,omitempty" json:"author_fullname,omitempty"`
+	AuthorUsername *string             `form:"author_username,omitempty" json:"author_username,omitempty"`
+	AuthorUuid     *openapi_types.UUID `form:"author_uuid,omitempty" json:"author_uuid,omitempty"`
+	IsActive       *bool               `form:"is_active,omitempty" json:"is_active,omitempty"`
+	LastPublished  *time.Time          `form:"last_published,omitempty" json:"last_published,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Filter by author name, username and email
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
 }
 
 // IdentityProvidersListParams defines parameters for IdentityProvidersList.
@@ -72053,6 +72083,12 @@ type MarketplaceResourcesTerminateJSONRequestBody = ResourceTerminateRequest
 // MarketplaceResourcesUpdateLimitsJSONRequestBody defines body for MarketplaceResourcesUpdateLimits for application/json ContentType.
 type MarketplaceResourcesUpdateLimitsJSONRequestBody = ResourceUpdateLimitsRequest
 
+// MarketplaceResourcesUpdateLimitsFormdataRequestBody defines body for MarketplaceResourcesUpdateLimits for application/x-www-form-urlencoded ContentType.
+type MarketplaceResourcesUpdateLimitsFormdataRequestBody = ResourceUpdateLimitsRequestForm
+
+// MarketplaceResourcesUpdateLimitsMultipartRequestBody defines body for MarketplaceResourcesUpdateLimits for multipart/form-data ContentType.
+type MarketplaceResourcesUpdateLimitsMultipartRequestBody = ResourceUpdateLimitsRequestMultipart
+
 // MarketplaceResourcesUpdateOptionsJSONRequestBody defines body for MarketplaceResourcesUpdateOptions for application/json ContentType.
 type MarketplaceResourcesUpdateOptionsJSONRequestBody = ResourceOptionsRequest
 
@@ -90338,6 +90374,8 @@ type ClientInterface interface {
 	MarketplaceResourcesUpdateLimitsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceResourcesUpdateLimits(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesUpdateLimitsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceResourcesUpdateLimitsWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesUpdateLimitsFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourcesUpdateOptionsWithBody request with any body
 	MarketplaceResourcesUpdateOptionsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -113001,6 +113039,18 @@ func (c *Client) MarketplaceResourcesUpdateLimitsWithBody(ctx context.Context, u
 
 func (c *Client) MarketplaceResourcesUpdateLimits(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesUpdateLimitsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceResourcesUpdateLimitsRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourcesUpdateLimitsWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesUpdateLimitsFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesUpdateLimitsRequestWithFormdataBody(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -178883,6 +178933,54 @@ func NewHooksListRequest(server string, params *HooksListParams) (*http.Request,
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.AuthorEmail != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "author_email", *params.AuthorEmail, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.AuthorFullname != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "author_fullname", *params.AuthorFullname, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.AuthorUsername != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "author_username", *params.AuthorUsername, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.AuthorUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "author_uuid", *params.AuthorUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
@@ -178915,6 +179013,22 @@ func NewHooksListRequest(server string, params *HooksListParams) (*http.Request,
 
 		}
 
+		if params.LastPublished != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "last_published", *params.LastPublished, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
@@ -178934,6 +179048,22 @@ func NewHooksListRequest(server string, params *HooksListParams) (*http.Request,
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -178980,6 +179110,54 @@ func NewHooksCountRequest(server string, params *HooksCountParams) (*http.Reques
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.AuthorEmail != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "author_email", *params.AuthorEmail, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.AuthorFullname != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "author_fullname", *params.AuthorFullname, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.AuthorUsername != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "author_username", *params.AuthorUsername, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.AuthorUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "author_uuid", *params.AuthorUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
@@ -179012,6 +179190,22 @@ func NewHooksCountRequest(server string, params *HooksCountParams) (*http.Reques
 
 		}
 
+		if params.LastPublished != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "last_published", *params.LastPublished, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
@@ -179031,6 +179225,22 @@ func NewHooksCountRequest(server string, params *HooksCountParams) (*http.Reques
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -228081,6 +228291,17 @@ func NewMarketplaceResourcesUpdateLimitsRequest(server string, uuid openapi_type
 	}
 	bodyReader = bytes.NewReader(buf)
 	return NewMarketplaceResourcesUpdateLimitsRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceResourcesUpdateLimitsRequestWithFormdataBody calls the generic MarketplaceResourcesUpdateLimits builder with application/x-www-form-urlencoded body
+func NewMarketplaceResourcesUpdateLimitsRequestWithFormdataBody(server string, uuid openapi_types.UUID, body MarketplaceResourcesUpdateLimitsFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewMarketplaceResourcesUpdateLimitsRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
 }
 
 // NewMarketplaceResourcesUpdateLimitsRequestWithBody generates requests for MarketplaceResourcesUpdateLimits with any type of body
@@ -349262,6 +349483,8 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceResourcesUpdateLimitsWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesUpdateLimitsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesUpdateLimitsResponse, error)
 
+	MarketplaceResourcesUpdateLimitsWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesUpdateLimitsFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesUpdateLimitsResponse, error)
+
 	// MarketplaceResourcesUpdateOptionsWithBodyWithResponse request with any body
 	MarketplaceResourcesUpdateOptionsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesUpdateOptionsResponse, error)
 
@@ -420543,6 +420766,14 @@ func (c *ClientWithResponses) MarketplaceResourcesUpdateLimitsWithBodyWithRespon
 
 func (c *ClientWithResponses) MarketplaceResourcesUpdateLimitsWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesUpdateLimitsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesUpdateLimitsResponse, error) {
 	rsp, err := c.MarketplaceResourcesUpdateLimits(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesUpdateLimitsResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceResourcesUpdateLimitsWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesUpdateLimitsFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesUpdateLimitsResponse, error) {
+	rsp, err := c.MarketplaceResourcesUpdateLimitsWithFormdataBody(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
