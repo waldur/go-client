@@ -21119,11 +21119,6 @@ type AffiliatedOrganizationStats struct {
 	ResourcesCount       int    `json:"resources_count"`
 }
 
-// AffiliatedOrganizationsUpdateRequest defines model for AffiliatedOrganizationsUpdateRequest.
-type AffiliatedOrganizationsUpdateRequest struct {
-	AffiliatedOrganizations *[]openapi_types.UUID `json:"affiliated_organizations,omitempty"`
-}
-
 // AffiliationTypeEnum defines model for AffiliationTypeEnum.
 type AffiliationTypeEnum string
 
@@ -40607,6 +40602,11 @@ type ProjectAccountingSummary struct {
 	TotalSpend        *string             `json:"total_spend,omitempty"`
 }
 
+// ProjectAffiliatedOrganizationsUpdateRequest defines model for ProjectAffiliatedOrganizationsUpdateRequest.
+type ProjectAffiliatedOrganizationsUpdateRequest struct {
+	AffiliatedOrganizations *[]openapi_types.UUID `json:"affiliated_organizations,omitempty"`
+}
+
 // ProjectAnswer defines model for ProjectAnswer.
 type ProjectAnswer struct {
 	// AnswersCount Get count of answers.
@@ -49598,9 +49598,6 @@ type AwsInstancesListParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // AwsInstancesCountParams defines parameters for AwsInstancesCount.
@@ -49660,9 +49657,6 @@ type AwsInstancesCountParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // AwsInstancesRetrieveParams defines parameters for AwsInstancesRetrieve.
@@ -49913,9 +49907,6 @@ type AzurePublicIpsListParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // AzurePublicIpsCountParams defines parameters for AzurePublicIpsCount.
@@ -49979,9 +49970,6 @@ type AzurePublicIpsCountParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // AzurePublicIpsRetrieveParams defines parameters for AzurePublicIpsRetrieve.
@@ -50128,9 +50116,6 @@ type AzureSqlDatabasesListParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // AzureSqlDatabasesCountParams defines parameters for AzureSqlDatabasesCount.
@@ -50196,9 +50181,6 @@ type AzureSqlDatabasesCountParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // AzureSqlDatabasesRetrieveParams defines parameters for AzureSqlDatabasesRetrieve.
@@ -50268,9 +50250,6 @@ type AzureSqlServersListParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // AzureSqlServersCountParams defines parameters for AzureSqlServersCount.
@@ -50334,9 +50313,6 @@ type AzureSqlServersCountParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // AzureSqlServersRetrieveParams defines parameters for AzureSqlServersRetrieve.
@@ -50406,9 +50382,6 @@ type AzureVirtualmachinesListParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // AzureVirtualmachinesCountParams defines parameters for AzureVirtualmachinesCount.
@@ -50472,9 +50445,6 @@ type AzureVirtualmachinesCountParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // AzureVirtualmachinesRetrieveParams defines parameters for AzureVirtualmachinesRetrieve.
@@ -52412,9 +52382,6 @@ type DigitaloceanDropletsListParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // DigitaloceanDropletsCountParams defines parameters for DigitaloceanDropletsCount.
@@ -52474,9 +52441,6 @@ type DigitaloceanDropletsCountParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // DigitaloceanDropletsRetrieveParams defines parameters for DigitaloceanDropletsRetrieve.
@@ -53625,9 +53589,6 @@ type KeysListParams struct {
 
 	// UserUuid User UUID
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // KeysCountParams defines parameters for KeysCount.
@@ -53666,9 +53627,6 @@ type KeysCountParams struct {
 
 	// UserUuid User UUID
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // KeysRetrieveParams defines parameters for KeysRetrieve.
@@ -53715,9 +53673,6 @@ type KeysHistoryListParams struct {
 
 	// UserUuid User UUID
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // KeysHistoryAtRetrieveParams defines parameters for KeysHistoryAtRetrieve.
@@ -57841,6 +57796,12 @@ type MarketplaceProviderResourcesHistoryAtRetrieveParams struct {
 	Timestamp string `form:"timestamp" json:"timestamp"`
 }
 
+// MarketplaceProviderResourcesTeamListParams defines parameters for MarketplaceProviderResourcesTeamList.
+type MarketplaceProviderResourcesTeamListParams struct {
+	// HasConsent When true, return only users who have active consent for this offering.
+	HasConsent *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
+}
+
 // MarketplacePublicOfferingsListParams defines parameters for MarketplacePublicOfferingsList.
 type MarketplacePublicOfferingsListParams struct {
 	// AccessibleViaCalls Accessible via calls
@@ -58630,6 +58591,12 @@ type MarketplaceResourcesHistoryAtRetrieveParams struct {
 	Timestamp string `form:"timestamp" json:"timestamp"`
 }
 
+// MarketplaceResourcesTeamListParams defines parameters for MarketplaceResourcesTeamList.
+type MarketplaceResourcesTeamListParams struct {
+	// HasConsent When true, return only users who have active consent for this offering.
+	HasConsent *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
+}
+
 // MarketplaceRobotAccountsListParams defines parameters for MarketplaceRobotAccountsList.
 type MarketplaceRobotAccountsListParams struct {
 	// Created Created after
@@ -59104,9 +59071,6 @@ type MarketplaceServiceProvidersKeysListParams struct {
 
 	// UserUuid User UUID
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // MarketplaceServiceProvidersOfferingsListParams defines parameters for MarketplaceServiceProvidersOfferingsList.
@@ -61796,9 +61760,6 @@ type OpenportalAllocationsListParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenportalAllocationsCountParams defines parameters for OpenportalAllocationsCount.
@@ -61861,9 +61822,6 @@ type OpenportalAllocationsCountParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenportalAllocationsRetrieveParams defines parameters for OpenportalAllocationsRetrieve.
@@ -62108,9 +62066,6 @@ type OpenportalRemoteAllocationsListParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenportalRemoteAllocationsCountParams defines parameters for OpenportalRemoteAllocationsCount.
@@ -62173,9 +62128,6 @@ type OpenportalRemoteAllocationsCountParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenportalRemoteAllocationsRetrieveParams defines parameters for OpenportalRemoteAllocationsRetrieve.
@@ -62569,9 +62521,6 @@ type OpenstackBackupsListParams struct {
 
 	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackBackupsCountParams defines parameters for OpenstackBackupsCount.
@@ -62645,9 +62594,6 @@ type OpenstackBackupsCountParams struct {
 
 	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackBackupsRetrieveParams defines parameters for OpenstackBackupsRetrieve.
@@ -62881,9 +62827,6 @@ type OpenstackFloatingIpsListParams struct {
 
 	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackFloatingIpsCountParams defines parameters for OpenstackFloatingIpsCount.
@@ -62957,9 +62900,6 @@ type OpenstackFloatingIpsCountParams struct {
 
 	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackFloatingIpsRetrieveParams defines parameters for OpenstackFloatingIpsRetrieve.
@@ -63285,9 +63225,6 @@ type OpenstackInstancesListParams struct {
 
 	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackInstancesCountParams defines parameters for OpenstackInstancesCount.
@@ -63368,9 +63305,6 @@ type OpenstackInstancesCountParams struct {
 
 	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackInstancesRetrieveParams defines parameters for OpenstackInstancesRetrieve.
@@ -63580,9 +63514,6 @@ type OpenstackMarketplaceTenantsListParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackMarketplaceTenantsCountParams defines parameters for OpenstackMarketplaceTenantsCount.
@@ -63644,9 +63575,6 @@ type OpenstackMarketplaceTenantsCountParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackMarketplaceTenantsUploadImageDataJSONBody defines parameters for OpenstackMarketplaceTenantsUploadImageData.
@@ -63812,9 +63740,6 @@ type OpenstackNetworksListParams struct {
 	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
 	Type       *string             `form:"type,omitempty" json:"type,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackNetworksCountParams defines parameters for OpenstackNetworksCount.
@@ -63890,9 +63815,6 @@ type OpenstackNetworksCountParams struct {
 	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
 	Type       *string             `form:"type,omitempty" json:"type,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackNetworksRetrieveParams defines parameters for OpenstackNetworksRetrieve.
@@ -64289,9 +64211,6 @@ type OpenstackSecurityGroupsListParams struct {
 
 	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackSecurityGroupsCountParams defines parameters for OpenstackSecurityGroupsCount.
@@ -64362,9 +64281,6 @@ type OpenstackSecurityGroupsCountParams struct {
 
 	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackSecurityGroupsRetrieveParams defines parameters for OpenstackSecurityGroupsRetrieve.
@@ -64441,9 +64357,6 @@ type OpenstackServerGroupsListParams struct {
 
 	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackServerGroupsCountParams defines parameters for OpenstackServerGroupsCount.
@@ -64511,9 +64424,6 @@ type OpenstackServerGroupsCountParams struct {
 
 	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackServerGroupsRetrieveParams defines parameters for OpenstackServerGroupsRetrieve.
@@ -64600,9 +64510,6 @@ type OpenstackSnapshotsListParams struct {
 
 	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackSnapshotsCountParams defines parameters for OpenstackSnapshotsCount.
@@ -64683,9 +64590,6 @@ type OpenstackSnapshotsCountParams struct {
 
 	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackSnapshotsRetrieveParams defines parameters for OpenstackSnapshotsRetrieve.
@@ -64782,9 +64686,6 @@ type OpenstackSubnetsListParams struct {
 
 	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackSubnetsCountParams defines parameters for OpenstackSubnetsCount.
@@ -64866,9 +64767,6 @@ type OpenstackSubnetsCountParams struct {
 
 	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackSubnetsRetrieveParams defines parameters for OpenstackSubnetsRetrieve.
@@ -64936,9 +64834,6 @@ type OpenstackTenantsListParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackTenantsCountParams defines parameters for OpenstackTenantsCount.
@@ -65000,9 +64895,6 @@ type OpenstackTenantsCountParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackTenantsRetrieveParams defines parameters for OpenstackTenantsRetrieve.
@@ -65069,9 +64961,6 @@ type OpenstackTenantsBackendInstancesListParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackTenantsBackendVolumesListParams defines parameters for OpenstackTenantsBackendVolumesList.
@@ -65133,9 +65022,6 @@ type OpenstackTenantsBackendVolumesListParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackTenantsPushSecurityGroupsJSONBody defines parameters for OpenstackTenantsPushSecurityGroups.
@@ -65340,9 +65226,6 @@ type OpenstackVolumesListParams struct {
 
 	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackVolumesCountParams defines parameters for OpenstackVolumesCount.
@@ -65429,9 +65312,6 @@ type OpenstackVolumesCountParams struct {
 
 	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackVolumesRetrieveParams defines parameters for OpenstackVolumesRetrieve.
@@ -67024,9 +66904,6 @@ type RancherAppsListParams struct {
 	//
 	State        *[]CoreStates       `form:"state,omitempty" json:"state,omitempty"`
 	TemplateUuid *openapi_types.UUID `form:"template_uuid,omitempty" json:"template_uuid,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // RancherAppsCountParams defines parameters for RancherAppsCount.
@@ -67089,9 +66966,6 @@ type RancherAppsCountParams struct {
 	//
 	State        *[]CoreStates       `form:"state,omitempty" json:"state,omitempty"`
 	TemplateUuid *openapi_types.UUID `form:"template_uuid,omitempty" json:"template_uuid,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // RancherAppsRetrieveParams defines parameters for RancherAppsRetrieve.
@@ -67229,9 +67103,6 @@ type RancherClustersListParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // RancherClustersCountParams defines parameters for RancherClustersCount.
@@ -67293,9 +67164,6 @@ type RancherClustersCountParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // RancherClustersRetrieveParams defines parameters for RancherClustersRetrieve.
@@ -67418,9 +67286,6 @@ type RancherIngressesListParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // RancherIngressesCountParams defines parameters for RancherIngressesCount.
@@ -67485,9 +67350,6 @@ type RancherIngressesCountParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // RancherIngressesRetrieveParams defines parameters for RancherIngressesRetrieve.
@@ -67726,9 +67588,6 @@ type RancherServicesListParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // RancherServicesCountParams defines parameters for RancherServicesCount.
@@ -67793,9 +67652,6 @@ type RancherServicesCountParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // RancherServicesRetrieveParams defines parameters for RancherServicesRetrieve.
@@ -68392,9 +68248,6 @@ type SlurmAllocationsListParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // SlurmAllocationsCountParams defines parameters for SlurmAllocationsCount.
@@ -68457,9 +68310,6 @@ type SlurmAllocationsCountParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // SlurmAllocationsRetrieveParams defines parameters for SlurmAllocationsRetrieve.
@@ -70307,10 +70157,7 @@ type VmwareDisksListParams struct {
 
 	// State State
 	//
-	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid   *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
+	State  *[]CoreStates       `form:"state,omitempty" json:"state,omitempty"`
 	Vm     *string             `form:"vm,omitempty" json:"vm,omitempty"`
 	VmUuid *openapi_types.UUID `form:"vm_uuid,omitempty" json:"vm_uuid,omitempty"`
 }
@@ -70373,10 +70220,7 @@ type VmwareDisksCountParams struct {
 
 	// State State
 	//
-	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid   *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
+	State  *[]CoreStates       `form:"state,omitempty" json:"state,omitempty"`
 	Vm     *string             `form:"vm,omitempty" json:"vm,omitempty"`
 	VmUuid *openapi_types.UUID `form:"vm_uuid,omitempty" json:"vm_uuid,omitempty"`
 }
@@ -70549,10 +70393,7 @@ type VmwarePortsListParams struct {
 
 	// State State
 	//
-	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid   *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
+	State  *[]CoreStates       `form:"state,omitempty" json:"state,omitempty"`
 	Vm     *string             `form:"vm,omitempty" json:"vm,omitempty"`
 	VmUuid *openapi_types.UUID `form:"vm_uuid,omitempty" json:"vm_uuid,omitempty"`
 }
@@ -70617,10 +70458,7 @@ type VmwarePortsCountParams struct {
 
 	// State State
 	//
-	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid   *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
+	State  *[]CoreStates       `form:"state,omitempty" json:"state,omitempty"`
 	Vm     *string             `form:"vm,omitempty" json:"vm,omitempty"`
 	VmUuid *openapi_types.UUID `form:"vm_uuid,omitempty" json:"vm_uuid,omitempty"`
 }
@@ -70733,9 +70571,6 @@ type VmwareVirtualMachineListParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // VmwareVirtualMachineCountParams defines parameters for VmwareVirtualMachineCount.
@@ -70798,9 +70633,6 @@ type VmwareVirtualMachineCountParams struct {
 	// State State
 	//
 	State *[]CoreStates `form:"state,omitempty" json:"state,omitempty"`
-
-	// Uuid UUID
-	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // VmwareVirtualMachineRetrieveParams defines parameters for VmwareVirtualMachineRetrieve.
@@ -72468,7 +72300,7 @@ type OpenportalUnmanagedProjectsRecoverJSONRequestBody = ProjectRecoveryRequest
 type OpenportalUnmanagedProjectsSubmitAnswersJSONRequestBody = OpenportalUnmanagedProjectsSubmitAnswersJSONBody
 
 // OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsJSONRequestBody defines body for OpenportalUnmanagedProjectsUpdateAffiliatedOrganizations for application/json ContentType.
-type OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsJSONRequestBody = AffiliatedOrganizationsUpdateRequest
+type OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsJSONRequestBody = ProjectAffiliatedOrganizationsUpdateRequest
 
 // OpenportalUnmanagedProjectsUpdateUserJSONRequestBody defines body for OpenportalUnmanagedProjectsUpdateUser for application/json ContentType.
 type OpenportalUnmanagedProjectsUpdateUserJSONRequestBody = UserRoleUpdateRequest
@@ -72894,7 +72726,7 @@ type ProjectsRecoverJSONRequestBody = ProjectRecoveryRequest
 type ProjectsSubmitAnswersJSONRequestBody = ProjectsSubmitAnswersJSONBody
 
 // ProjectsUpdateAffiliatedOrganizationsJSONRequestBody defines body for ProjectsUpdateAffiliatedOrganizations for application/json ContentType.
-type ProjectsUpdateAffiliatedOrganizationsJSONRequestBody = AffiliatedOrganizationsUpdateRequest
+type ProjectsUpdateAffiliatedOrganizationsJSONRequestBody = ProjectAffiliatedOrganizationsUpdateRequest
 
 // ProjectsUpdateUserJSONRequestBody defines body for ProjectsUpdateUser for application/json ContentType.
 type ProjectsUpdateUserJSONRequestBody = UserRoleUpdateRequest
@@ -90151,7 +89983,7 @@ type ClientInterface interface {
 	MarketplaceProviderResourcesSubmitReport(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSubmitReportJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderResourcesTeamList request
-	MarketplaceProviderResourcesTeamList(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	MarketplaceProviderResourcesTeamList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderResourcesTeamListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderResourcesTerminateWithBody request with any body
 	MarketplaceProviderResourcesTerminateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -90360,7 +90192,7 @@ type ClientInterface interface {
 	MarketplaceResourcesSwitchPlan(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSwitchPlanJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourcesTeamList request
-	MarketplaceResourcesTeamList(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	MarketplaceResourcesTeamList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourcesTeamListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourcesTerminateWithBody request with any body
 	MarketplaceResourcesTerminateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -112041,8 +111873,8 @@ func (c *Client) MarketplaceProviderResourcesSubmitReport(ctx context.Context, u
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceProviderResourcesTeamList(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceProviderResourcesTeamListRequest(c.Server, uuid)
+func (c *Client) MarketplaceProviderResourcesTeamList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderResourcesTeamListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesTeamListRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -112977,8 +112809,8 @@ func (c *Client) MarketplaceResourcesSwitchPlan(ctx context.Context, uuid openap
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceResourcesTeamList(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceResourcesTeamListRequest(c.Server, uuid)
+func (c *Client) MarketplaceResourcesTeamList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourcesTeamListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesTeamListRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -145216,22 +145048,6 @@ func NewAwsInstancesListRequest(server string, params *AwsInstancesListParams) (
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -145556,22 +145372,6 @@ func NewAwsInstancesCountRequest(server string, params *AwsInstancesCountParams)
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -148247,22 +148047,6 @@ func NewAzurePublicIpsListRequest(server string, params *AzurePublicIpsListParam
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -148619,22 +148403,6 @@ func NewAzurePublicIpsCountRequest(server string, params *AzurePublicIpsCountPar
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -150028,22 +149796,6 @@ func NewAzureSqlDatabasesListRequest(server string, params *AzureSqlDatabasesLis
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -150432,22 +150184,6 @@ func NewAzureSqlDatabasesCountRequest(server string, params *AzureSqlDatabasesCo
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -151219,22 +150955,6 @@ func NewAzureSqlServersListRequest(server string, params *AzureSqlServersListPar
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -151591,22 +151311,6 @@ func NewAzureSqlServersCountRequest(server string, params *AzureSqlServersCountP
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -152425,22 +152129,6 @@ func NewAzureVirtualmachinesListRequest(server string, params *AzureVirtualmachi
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -152797,22 +152485,6 @@ func NewAzureVirtualmachinesCountRequest(server string, params *AzureVirtualmach
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -171534,22 +171206,6 @@ func NewDigitaloceanDropletsListRequest(server string, params *DigitaloceanDropl
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -171874,22 +171530,6 @@ func NewDigitaloceanDropletsCountRequest(server string, params *DigitaloceanDrop
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -184134,22 +183774,6 @@ func NewKeysListRequest(server string, params *KeysListParams) (*http.Request, e
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -184394,22 +184018,6 @@ func NewKeysCountRequest(server string, params *KeysCountParams) (*http.Request,
 		if params.UserUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid", *params.UserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -184820,22 +184428,6 @@ func NewKeysHistoryListRequest(server string, uuid openapi_types.UUID, params *K
 		if params.UserUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid", *params.UserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -222015,7 +221607,7 @@ func NewMarketplaceProviderResourcesSubmitReportRequestWithBody(server string, u
 }
 
 // NewMarketplaceProviderResourcesTeamListRequest generates requests for MarketplaceProviderResourcesTeamList
-func NewMarketplaceProviderResourcesTeamListRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+func NewMarketplaceProviderResourcesTeamListRequest(server string, uuid openapi_types.UUID, params *MarketplaceProviderResourcesTeamListParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -222038,6 +221630,28 @@ func NewMarketplaceProviderResourcesTeamListRequest(server string, uuid openapi_
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.HasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_consent", *params.HasConsent, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -228168,7 +227782,7 @@ func NewMarketplaceResourcesSwitchPlanRequestWithBody(server string, uuid openap
 }
 
 // NewMarketplaceResourcesTeamListRequest generates requests for MarketplaceResourcesTeamList
-func NewMarketplaceResourcesTeamListRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+func NewMarketplaceResourcesTeamListRequest(server string, uuid openapi_types.UUID, params *MarketplaceResourcesTeamListParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -228191,6 +227805,28 @@ func NewMarketplaceResourcesTeamListRequest(server string, uuid openapi_types.UU
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.HasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_consent", *params.HasConsent, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -232438,22 +232074,6 @@ func NewMarketplaceServiceProvidersKeysListRequest(server string, serviceProvide
 		if params.UserUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid", *params.UserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -256200,22 +255820,6 @@ func NewOpenportalAllocationsListRequest(server string, params *OpenportalAlloca
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -256556,22 +256160,6 @@ func NewOpenportalAllocationsCountRequest(server string, params *OpenportalAlloc
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -259978,22 +259566,6 @@ func NewOpenportalRemoteAllocationsListRequest(server string, params *Openportal
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -260334,22 +259906,6 @@ func NewOpenportalRemoteAllocationsCountRequest(server string, params *Openporta
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -264149,22 +263705,6 @@ func NewOpenstackBackupsListRequest(server string, params *OpenstackBackupsListP
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -264553,22 +264093,6 @@ func NewOpenstackBackupsCountRequest(server string, params *OpenstackBackupsCoun
 		if params.TenantUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tenant_uuid", *params.TenantUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -266579,22 +266103,6 @@ func NewOpenstackFloatingIpsListRequest(server string, params *OpenstackFloating
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -266999,22 +266507,6 @@ func NewOpenstackFloatingIpsCountRequest(server string, params *OpenstackFloatin
 		if params.TenantUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tenant_uuid", *params.TenantUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -269760,22 +269252,6 @@ func NewOpenstackInstancesListRequest(server string, params *OpenstackInstancesL
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -270212,22 +269688,6 @@ func NewOpenstackInstancesCountRequest(server string, params *OpenstackInstances
 		if params.TenantUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tenant_uuid", *params.TenantUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -272817,22 +272277,6 @@ func NewOpenstackMarketplaceTenantsListRequest(server string, params *OpenstackM
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -273157,22 +272601,6 @@ func NewOpenstackMarketplaceTenantsCountRequest(server string, params *Openstack
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -274722,22 +274150,6 @@ func NewOpenstackNetworksListRequest(server string, params *OpenstackNetworksLis
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -275158,22 +274570,6 @@ func NewOpenstackNetworksCountRequest(server string, params *OpenstackNetworksCo
 		if params.Type != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "type", *params.Type, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -279511,22 +278907,6 @@ func NewOpenstackSecurityGroupsListRequest(server string, params *OpenstackSecur
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -279899,22 +279279,6 @@ func NewOpenstackSecurityGroupsCountRequest(server string, params *OpenstackSecu
 		if params.TenantUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tenant_uuid", *params.TenantUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -280693,22 +280057,6 @@ func NewOpenstackServerGroupsListRequest(server string, params *OpenstackServerG
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -281065,22 +280413,6 @@ func NewOpenstackServerGroupsCountRequest(server string, params *OpenstackServer
 		if params.TenantUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tenant_uuid", *params.TenantUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -281838,22 +281170,6 @@ func NewOpenstackSnapshotsListRequest(server string, params *OpenstackSnapshotsL
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -282290,22 +281606,6 @@ func NewOpenstackSnapshotsCountRequest(server string, params *OpenstackSnapshots
 		if params.TenantUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tenant_uuid", *params.TenantUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -283252,22 +282552,6 @@ func NewOpenstackSubnetsListRequest(server string, params *OpenstackSubnetsListP
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -283720,22 +283004,6 @@ func NewOpenstackSubnetsCountRequest(server string, params *OpenstackSubnetsCoun
 		if params.TenantUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tenant_uuid", *params.TenantUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -284503,22 +283771,6 @@ func NewOpenstackTenantsListRequest(server string, params *OpenstackTenantsListP
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -284843,22 +284095,6 @@ func NewOpenstackTenantsCountRequest(server string, params *OpenstackTenantsCoun
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -285366,22 +284602,6 @@ func NewOpenstackTenantsBackendInstancesListRequest(server string, uuid openapi_
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -285713,22 +284933,6 @@ func NewOpenstackTenantsBackendVolumesListRequest(server string, uuid openapi_ty
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -287651,22 +286855,6 @@ func NewOpenstackVolumesListRequest(server string, params *OpenstackVolumesListP
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -288135,22 +287323,6 @@ func NewOpenstackVolumesCountRequest(server string, params *OpenstackVolumesCoun
 		if params.TenantUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tenant_uuid", *params.TenantUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -306555,22 +305727,6 @@ func NewRancherAppsListRequest(server string, params *RancherAppsListParams) (*h
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -306943,22 +306099,6 @@ func NewRancherAppsCountRequest(server string, params *RancherAppsCountParams) (
 		if params.TemplateUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "template_uuid", *params.TemplateUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -308595,22 +307735,6 @@ func NewRancherClustersListRequest(server string, params *RancherClustersListPar
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -308935,22 +308059,6 @@ func NewRancherClustersCountRequest(server string, params *RancherClustersCountP
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -310576,22 +309684,6 @@ func NewRancherIngressesListRequest(server string, params *RancherIngressesListP
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -310964,22 +310056,6 @@ func NewRancherIngressesCountRequest(server string, params *RancherIngressesCoun
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -313498,22 +312574,6 @@ func NewRancherServicesListRequest(server string, params *RancherServicesListPar
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -313886,22 +312946,6 @@ func NewRancherServicesCountRequest(server string, params *RancherServicesCountP
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -322010,22 +321054,6 @@ func NewSlurmAllocationsListRequest(server string, params *SlurmAllocationsListP
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -322366,22 +321394,6 @@ func NewSlurmAllocationsCountRequest(server string, params *SlurmAllocationsCoun
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -341134,22 +340146,6 @@ func NewVmwareDisksListRequest(server string, params *VmwareDisksListParams) (*h
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		if params.Vm != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "vm", *params.Vm, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
@@ -341506,22 +340502,6 @@ func NewVmwareDisksCountRequest(server string, params *VmwareDisksCountParams) (
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -342952,22 +341932,6 @@ func NewVmwarePortsListRequest(server string, params *VmwarePortsListParams) (*h
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		if params.Vm != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "vm", *params.Vm, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
@@ -343356,22 +342320,6 @@ func NewVmwarePortsCountRequest(server string, params *VmwarePortsCountParams) (
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -344317,22 +343265,6 @@ func NewVmwareVirtualMachineListRequest(server string, params *VmwareVirtualMach
 
 		}
 
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -344673,22 +343605,6 @@ func NewVmwareVirtualMachineCountRequest(server string, params *VmwareVirtualMac
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Uuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -349259,7 +348175,7 @@ type ClientWithResponsesInterface interface {
 	MarketplaceProviderResourcesSubmitReportWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSubmitReportJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSubmitReportResponse, error)
 
 	// MarketplaceProviderResourcesTeamListWithResponse request
-	MarketplaceProviderResourcesTeamListWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesTeamListResponse, error)
+	MarketplaceProviderResourcesTeamListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderResourcesTeamListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesTeamListResponse, error)
 
 	// MarketplaceProviderResourcesTerminateWithBodyWithResponse request with any body
 	MarketplaceProviderResourcesTerminateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesTerminateResponse, error)
@@ -349468,7 +348384,7 @@ type ClientWithResponsesInterface interface {
 	MarketplaceResourcesSwitchPlanWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSwitchPlanJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSwitchPlanResponse, error)
 
 	// MarketplaceResourcesTeamListWithResponse request
-	MarketplaceResourcesTeamListWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesTeamListResponse, error)
+	MarketplaceResourcesTeamListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourcesTeamListParams, reqEditors ...RequestEditorFn) (*MarketplaceResourcesTeamListResponse, error)
 
 	// MarketplaceResourcesTerminateWithBodyWithResponse request with any body
 	MarketplaceResourcesTerminateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesTerminateResponse, error)
@@ -420044,8 +418960,8 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesSubmitReportWithRespon
 }
 
 // MarketplaceProviderResourcesTeamListWithResponse request returning *MarketplaceProviderResourcesTeamListResponse
-func (c *ClientWithResponses) MarketplaceProviderResourcesTeamListWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesTeamListResponse, error) {
-	rsp, err := c.MarketplaceProviderResourcesTeamList(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) MarketplaceProviderResourcesTeamListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderResourcesTeamListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesTeamListResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesTeamList(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -420721,8 +419637,8 @@ func (c *ClientWithResponses) MarketplaceResourcesSwitchPlanWithResponse(ctx con
 }
 
 // MarketplaceResourcesTeamListWithResponse request returning *MarketplaceResourcesTeamListResponse
-func (c *ClientWithResponses) MarketplaceResourcesTeamListWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesTeamListResponse, error) {
-	rsp, err := c.MarketplaceResourcesTeamList(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) MarketplaceResourcesTeamListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourcesTeamListParams, reqEditors ...RequestEditorFn) (*MarketplaceResourcesTeamListResponse, error) {
+	rsp, err := c.MarketplaceResourcesTeamList(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
