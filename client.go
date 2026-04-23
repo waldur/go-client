@@ -25381,6 +25381,7 @@ type ConstanceSettings struct {
 	AIASSISTANTMODEL                                 *string                                                          `json:"AI_ASSISTANT_MODEL,omitempty"`
 	AIASSISTANTNAME                                  *string                                                          `json:"AI_ASSISTANT_NAME,omitempty"`
 	AIASSISTANTSESSIONRETENTIONDAYS                  *int                                                             `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
+	AIASSISTANTSYSTEMPROMPTCUSTOMINSTRUCTIONS        *string                                                          `json:"AI_ASSISTANT_SYSTEM_PROMPT_CUSTOM_INSTRUCTIONS,omitempty"`
 	AIASSISTANTTOKENLIMITDAILY                       *int                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
 	AIASSISTANTTOKENLIMITMONTHLY                     *int                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_MONTHLY,omitempty"`
 	AIASSISTANTTOKENLIMITWEEKLY                      *int                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_WEEKLY,omitempty"`
@@ -25692,6 +25693,7 @@ type ConstanceSettingsRequest struct {
 	AIASSISTANTMODEL                                 *string                                                                 `json:"AI_ASSISTANT_MODEL,omitempty"`
 	AIASSISTANTNAME                                  *string                                                                 `json:"AI_ASSISTANT_NAME,omitempty"`
 	AIASSISTANTSESSIONRETENTIONDAYS                  *int                                                                    `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
+	AIASSISTANTSYSTEMPROMPTCUSTOMINSTRUCTIONS        *string                                                                 `json:"AI_ASSISTANT_SYSTEM_PROMPT_CUSTOM_INSTRUCTIONS,omitempty"`
 	AIASSISTANTTOKENLIMITDAILY                       *int                                                                    `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
 	AIASSISTANTTOKENLIMITMONTHLY                     *int                                                                    `json:"AI_ASSISTANT_TOKEN_LIMIT_MONTHLY,omitempty"`
 	AIASSISTANTTOKENLIMITWEEKLY                      *int                                                                    `json:"AI_ASSISTANT_TOKEN_LIMIT_WEEKLY,omitempty"`
@@ -26003,6 +26005,7 @@ type ConstanceSettingsRequestForm struct {
 	AIASSISTANTMODEL                                 *string                                                                     `json:"AI_ASSISTANT_MODEL,omitempty"`
 	AIASSISTANTNAME                                  *string                                                                     `json:"AI_ASSISTANT_NAME,omitempty"`
 	AIASSISTANTSESSIONRETENTIONDAYS                  *int                                                                        `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
+	AIASSISTANTSYSTEMPROMPTCUSTOMINSTRUCTIONS        *string                                                                     `json:"AI_ASSISTANT_SYSTEM_PROMPT_CUSTOM_INSTRUCTIONS,omitempty"`
 	AIASSISTANTTOKENLIMITDAILY                       *int                                                                        `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
 	AIASSISTANTTOKENLIMITMONTHLY                     *int                                                                        `json:"AI_ASSISTANT_TOKEN_LIMIT_MONTHLY,omitempty"`
 	AIASSISTANTTOKENLIMITWEEKLY                      *int                                                                        `json:"AI_ASSISTANT_TOKEN_LIMIT_WEEKLY,omitempty"`
@@ -26314,6 +26317,7 @@ type ConstanceSettingsRequestMultipart struct {
 	AIASSISTANTMODEL                                 *string                                                                          `json:"AI_ASSISTANT_MODEL,omitempty"`
 	AIASSISTANTNAME                                  *string                                                                          `json:"AI_ASSISTANT_NAME,omitempty"`
 	AIASSISTANTSESSIONRETENTIONDAYS                  *int                                                                             `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
+	AIASSISTANTSYSTEMPROMPTCUSTOMINSTRUCTIONS        *string                                                                          `json:"AI_ASSISTANT_SYSTEM_PROMPT_CUSTOM_INSTRUCTIONS,omitempty"`
 	AIASSISTANTTOKENLIMITDAILY                       *int                                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
 	AIASSISTANTTOKENLIMITMONTHLY                     *int                                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_MONTHLY,omitempty"`
 	AIASSISTANTTOKENLIMITWEEKLY                      *int                                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_WEEKLY,omitempty"`
@@ -31054,7 +31058,7 @@ type MaintenanceAnnouncementStateEnum string
 
 // MaintenanceAnnouncementTemplate defines model for MaintenanceAnnouncementTemplate.
 type MaintenanceAnnouncementTemplate struct {
-	AffectedOfferings *[]MaintenanceAnnouncementOffering `json:"affected_offerings,omitempty"`
+	AffectedOfferings *[]MaintenanceAnnouncementOfferingTemplate `json:"affected_offerings,omitempty"`
 
 	// MaintenanceType Type of maintenance being performed
 	MaintenanceType *MaintenanceTypeEnum `json:"maintenance_type,omitempty"`
@@ -39786,6 +39790,14 @@ type PatchedSoftwarePackageRequest struct {
 	Name        *string     `json:"name,omitempty"`
 }
 
+// PatchedSystemPromptRequest defines model for PatchedSystemPromptRequest.
+type PatchedSystemPromptRequest struct {
+	// CustomInstructions Additional instructions injected into the system prompt. Use this for organisation-specific context, terminology, FAQ content, or behavioural guidelines. Supports {assistant_name} and {organization} placeholders.
+	CustomInstructions *string `json:"custom_instructions,omitempty"`
+	Description        *string `json:"description,omitempty"`
+	Name               *string `json:"name,omitempty"`
+}
+
 // PatchedTagRequest defines model for PatchedTagRequest.
 type PatchedTagRequest struct {
 	Description *string `json:"description,omitempty"`
@@ -47011,6 +47023,29 @@ type SystemLogStatsResponse struct {
 	TotalSizeMb    *float64                  `json:"total_size_mb,omitempty"`
 }
 
+// SystemPrompt defines model for SystemPrompt.
+type SystemPrompt struct {
+	Created *time.Time `json:"created,omitempty"`
+
+	// CustomInstructions Additional instructions injected into the system prompt. Use this for organisation-specific context, terminology, FAQ content, or behavioural guidelines. Supports {assistant_name} and {organization} placeholders.
+	CustomInstructions *string `json:"custom_instructions,omitempty"`
+	Description        *string `json:"description,omitempty"`
+
+	// IsActive Whether this prompt is currently used by the AI Assistant. Only one prompt can be active.
+	IsActive *bool               `json:"is_active,omitempty"`
+	Modified *time.Time          `json:"modified,omitempty"`
+	Name     string              `json:"name"`
+	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// SystemPromptRequest defines model for SystemPromptRequest.
+type SystemPromptRequest struct {
+	// CustomInstructions Additional instructions injected into the system prompt. Use this for organisation-specific context, terminology, FAQ content, or behavioural guidelines. Supports {assistant_name} and {organization} placeholders.
+	CustomInstructions *string `json:"custom_instructions,omitempty"`
+	Description        *string `json:"description,omitempty"`
+	Name               string  `json:"name"`
+}
+
 // TableGrowthAlert defines model for TableGrowthAlert.
 type TableGrowthAlert struct {
 	// GrowthPercent Actual growth percentage observed
@@ -51299,6 +51334,24 @@ type ChatSessionsListParams struct {
 // ChatSessionsRetrieveParams defines parameters for ChatSessionsRetrieve.
 type ChatSessionsRetrieveParams struct {
 	Field *[]ChatSessionFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+}
+
+// ChatSystemPromptsListParams defines parameters for ChatSystemPromptsList.
+type ChatSystemPromptsListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// ChatSystemPromptsCountParams defines parameters for ChatSystemPromptsCount.
+type ChatSystemPromptsCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
 // ChatThreadsListParams defines parameters for ChatThreadsList.
@@ -70993,6 +71046,21 @@ type ChatMessagesFeedbackJSONRequestBody = MessageFeedbackRequest
 // ChatQuotaSetQuotaJSONRequestBody defines body for ChatQuotaSetQuota for application/json ContentType.
 type ChatQuotaSetQuotaJSONRequestBody = SetTokenQuotaRequest
 
+// ChatSystemPromptsCreateJSONRequestBody defines body for ChatSystemPromptsCreate for application/json ContentType.
+type ChatSystemPromptsCreateJSONRequestBody = SystemPromptRequest
+
+// ChatSystemPromptsPartialUpdateJSONRequestBody defines body for ChatSystemPromptsPartialUpdate for application/json ContentType.
+type ChatSystemPromptsPartialUpdateJSONRequestBody = PatchedSystemPromptRequest
+
+// ChatSystemPromptsUpdateJSONRequestBody defines body for ChatSystemPromptsUpdate for application/json ContentType.
+type ChatSystemPromptsUpdateJSONRequestBody = SystemPromptRequest
+
+// ChatSystemPromptsActivateJSONRequestBody defines body for ChatSystemPromptsActivate for application/json ContentType.
+type ChatSystemPromptsActivateJSONRequestBody = SystemPromptRequest
+
+// ChatSystemPromptsDeactivateJSONRequestBody defines body for ChatSystemPromptsDeactivate for application/json ContentType.
+type ChatSystemPromptsDeactivateJSONRequestBody = SystemPromptRequest
+
 // ChatThreadsArchiveJSONRequestBody defines body for ChatThreadsArchive for application/json ContentType.
 type ChatThreadsArchiveJSONRequestBody = ThreadSessionRequest
 
@@ -87427,6 +87495,43 @@ type ClientInterface interface {
 	// ChatSessionsRetrieve request
 	ChatSessionsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ChatSessionsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ChatSystemPromptsList request
+	ChatSystemPromptsList(ctx context.Context, params *ChatSystemPromptsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatSystemPromptsCount request
+	ChatSystemPromptsCount(ctx context.Context, params *ChatSystemPromptsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatSystemPromptsCreateWithBody request with any body
+	ChatSystemPromptsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChatSystemPromptsCreate(ctx context.Context, body ChatSystemPromptsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatSystemPromptsDestroy request
+	ChatSystemPromptsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatSystemPromptsRetrieve request
+	ChatSystemPromptsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatSystemPromptsPartialUpdateWithBody request with any body
+	ChatSystemPromptsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChatSystemPromptsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ChatSystemPromptsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatSystemPromptsUpdateWithBody request with any body
+	ChatSystemPromptsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChatSystemPromptsUpdate(ctx context.Context, uuid openapi_types.UUID, body ChatSystemPromptsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatSystemPromptsActivateWithBody request with any body
+	ChatSystemPromptsActivateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChatSystemPromptsActivate(ctx context.Context, uuid openapi_types.UUID, body ChatSystemPromptsActivateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatSystemPromptsDeactivateWithBody request with any body
+	ChatSystemPromptsDeactivateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChatSystemPromptsDeactivate(ctx context.Context, uuid openapi_types.UUID, body ChatSystemPromptsDeactivateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ChatThreadsList request
 	ChatThreadsList(ctx context.Context, params *ChatThreadsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -100597,6 +100702,174 @@ func (c *Client) ChatSessionsCurrentRetrieve(ctx context.Context, reqEditors ...
 
 func (c *Client) ChatSessionsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ChatSessionsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewChatSessionsRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatSystemPromptsList(ctx context.Context, params *ChatSystemPromptsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatSystemPromptsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatSystemPromptsCount(ctx context.Context, params *ChatSystemPromptsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatSystemPromptsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatSystemPromptsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatSystemPromptsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatSystemPromptsCreate(ctx context.Context, body ChatSystemPromptsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatSystemPromptsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatSystemPromptsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatSystemPromptsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatSystemPromptsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatSystemPromptsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatSystemPromptsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatSystemPromptsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatSystemPromptsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ChatSystemPromptsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatSystemPromptsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatSystemPromptsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatSystemPromptsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatSystemPromptsUpdate(ctx context.Context, uuid openapi_types.UUID, body ChatSystemPromptsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatSystemPromptsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatSystemPromptsActivateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatSystemPromptsActivateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatSystemPromptsActivate(ctx context.Context, uuid openapi_types.UUID, body ChatSystemPromptsActivateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatSystemPromptsActivateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatSystemPromptsDeactivateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatSystemPromptsDeactivateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatSystemPromptsDeactivate(ctx context.Context, uuid openapi_types.UUID, body ChatSystemPromptsDeactivateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatSystemPromptsDeactivateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -160801,6 +161074,432 @@ func NewChatSessionsRetrieveRequest(server string, uuid openapi_types.UUID, para
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewChatSystemPromptsListRequest generates requests for ChatSystemPromptsList
+func NewChatSystemPromptsListRequest(server string, params *ChatSystemPromptsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-system-prompts/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChatSystemPromptsCountRequest generates requests for ChatSystemPromptsCount
+func NewChatSystemPromptsCountRequest(server string, params *ChatSystemPromptsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-system-prompts/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChatSystemPromptsCreateRequest calls the generic ChatSystemPromptsCreate builder with application/json body
+func NewChatSystemPromptsCreateRequest(server string, body ChatSystemPromptsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChatSystemPromptsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewChatSystemPromptsCreateRequestWithBody generates requests for ChatSystemPromptsCreate with any type of body
+func NewChatSystemPromptsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-system-prompts/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChatSystemPromptsDestroyRequest generates requests for ChatSystemPromptsDestroy
+func NewChatSystemPromptsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-system-prompts/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChatSystemPromptsRetrieveRequest generates requests for ChatSystemPromptsRetrieve
+func NewChatSystemPromptsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-system-prompts/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChatSystemPromptsPartialUpdateRequest calls the generic ChatSystemPromptsPartialUpdate builder with application/json body
+func NewChatSystemPromptsPartialUpdateRequest(server string, uuid openapi_types.UUID, body ChatSystemPromptsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChatSystemPromptsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewChatSystemPromptsPartialUpdateRequestWithBody generates requests for ChatSystemPromptsPartialUpdate with any type of body
+func NewChatSystemPromptsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-system-prompts/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChatSystemPromptsUpdateRequest calls the generic ChatSystemPromptsUpdate builder with application/json body
+func NewChatSystemPromptsUpdateRequest(server string, uuid openapi_types.UUID, body ChatSystemPromptsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChatSystemPromptsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewChatSystemPromptsUpdateRequestWithBody generates requests for ChatSystemPromptsUpdate with any type of body
+func NewChatSystemPromptsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-system-prompts/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChatSystemPromptsActivateRequest calls the generic ChatSystemPromptsActivate builder with application/json body
+func NewChatSystemPromptsActivateRequest(server string, uuid openapi_types.UUID, body ChatSystemPromptsActivateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChatSystemPromptsActivateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewChatSystemPromptsActivateRequestWithBody generates requests for ChatSystemPromptsActivate with any type of body
+func NewChatSystemPromptsActivateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-system-prompts/%s/activate/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChatSystemPromptsDeactivateRequest calls the generic ChatSystemPromptsDeactivate builder with application/json body
+func NewChatSystemPromptsDeactivateRequest(server string, uuid openapi_types.UUID, body ChatSystemPromptsDeactivateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChatSystemPromptsDeactivateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewChatSystemPromptsDeactivateRequestWithBody generates requests for ChatSystemPromptsDeactivate with any type of body
+func NewChatSystemPromptsDeactivateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-system-prompts/%s/deactivate/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -345619,6 +346318,43 @@ type ClientWithResponsesInterface interface {
 	// ChatSessionsRetrieveWithResponse request
 	ChatSessionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ChatSessionsRetrieveParams, reqEditors ...RequestEditorFn) (*ChatSessionsRetrieveResponse, error)
 
+	// ChatSystemPromptsListWithResponse request
+	ChatSystemPromptsListWithResponse(ctx context.Context, params *ChatSystemPromptsListParams, reqEditors ...RequestEditorFn) (*ChatSystemPromptsListResponse, error)
+
+	// ChatSystemPromptsCountWithResponse request
+	ChatSystemPromptsCountWithResponse(ctx context.Context, params *ChatSystemPromptsCountParams, reqEditors ...RequestEditorFn) (*ChatSystemPromptsCountResponse, error)
+
+	// ChatSystemPromptsCreateWithBodyWithResponse request with any body
+	ChatSystemPromptsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatSystemPromptsCreateResponse, error)
+
+	ChatSystemPromptsCreateWithResponse(ctx context.Context, body ChatSystemPromptsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatSystemPromptsCreateResponse, error)
+
+	// ChatSystemPromptsDestroyWithResponse request
+	ChatSystemPromptsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChatSystemPromptsDestroyResponse, error)
+
+	// ChatSystemPromptsRetrieveWithResponse request
+	ChatSystemPromptsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChatSystemPromptsRetrieveResponse, error)
+
+	// ChatSystemPromptsPartialUpdateWithBodyWithResponse request with any body
+	ChatSystemPromptsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatSystemPromptsPartialUpdateResponse, error)
+
+	ChatSystemPromptsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatSystemPromptsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatSystemPromptsPartialUpdateResponse, error)
+
+	// ChatSystemPromptsUpdateWithBodyWithResponse request with any body
+	ChatSystemPromptsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatSystemPromptsUpdateResponse, error)
+
+	ChatSystemPromptsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatSystemPromptsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatSystemPromptsUpdateResponse, error)
+
+	// ChatSystemPromptsActivateWithBodyWithResponse request with any body
+	ChatSystemPromptsActivateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatSystemPromptsActivateResponse, error)
+
+	ChatSystemPromptsActivateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatSystemPromptsActivateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatSystemPromptsActivateResponse, error)
+
+	// ChatSystemPromptsDeactivateWithBodyWithResponse request with any body
+	ChatSystemPromptsDeactivateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatSystemPromptsDeactivateResponse, error)
+
+	ChatSystemPromptsDeactivateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatSystemPromptsDeactivateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatSystemPromptsDeactivateResponse, error)
+
 	// ChatThreadsListWithResponse request
 	ChatThreadsListWithResponse(ctx context.Context, params *ChatThreadsListParams, reqEditors ...RequestEditorFn) (*ChatThreadsListResponse, error)
 
@@ -360595,6 +361331,202 @@ func (r ChatSessionsRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ChatSessionsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatSystemPromptsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]SystemPrompt
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatSystemPromptsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatSystemPromptsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatSystemPromptsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatSystemPromptsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatSystemPromptsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatSystemPromptsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *SystemPrompt
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatSystemPromptsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatSystemPromptsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatSystemPromptsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatSystemPromptsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatSystemPromptsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatSystemPromptsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SystemPrompt
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatSystemPromptsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatSystemPromptsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatSystemPromptsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SystemPrompt
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatSystemPromptsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatSystemPromptsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatSystemPromptsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SystemPrompt
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatSystemPromptsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatSystemPromptsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatSystemPromptsActivateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SystemPrompt
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatSystemPromptsActivateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatSystemPromptsActivateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatSystemPromptsDeactivateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SystemPrompt
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatSystemPromptsDeactivateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatSystemPromptsDeactivateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -410770,6 +411702,127 @@ func (c *ClientWithResponses) ChatSessionsRetrieveWithResponse(ctx context.Conte
 	return ParseChatSessionsRetrieveResponse(rsp)
 }
 
+// ChatSystemPromptsListWithResponse request returning *ChatSystemPromptsListResponse
+func (c *ClientWithResponses) ChatSystemPromptsListWithResponse(ctx context.Context, params *ChatSystemPromptsListParams, reqEditors ...RequestEditorFn) (*ChatSystemPromptsListResponse, error) {
+	rsp, err := c.ChatSystemPromptsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatSystemPromptsListResponse(rsp)
+}
+
+// ChatSystemPromptsCountWithResponse request returning *ChatSystemPromptsCountResponse
+func (c *ClientWithResponses) ChatSystemPromptsCountWithResponse(ctx context.Context, params *ChatSystemPromptsCountParams, reqEditors ...RequestEditorFn) (*ChatSystemPromptsCountResponse, error) {
+	rsp, err := c.ChatSystemPromptsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatSystemPromptsCountResponse(rsp)
+}
+
+// ChatSystemPromptsCreateWithBodyWithResponse request with arbitrary body returning *ChatSystemPromptsCreateResponse
+func (c *ClientWithResponses) ChatSystemPromptsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatSystemPromptsCreateResponse, error) {
+	rsp, err := c.ChatSystemPromptsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatSystemPromptsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChatSystemPromptsCreateWithResponse(ctx context.Context, body ChatSystemPromptsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatSystemPromptsCreateResponse, error) {
+	rsp, err := c.ChatSystemPromptsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatSystemPromptsCreateResponse(rsp)
+}
+
+// ChatSystemPromptsDestroyWithResponse request returning *ChatSystemPromptsDestroyResponse
+func (c *ClientWithResponses) ChatSystemPromptsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChatSystemPromptsDestroyResponse, error) {
+	rsp, err := c.ChatSystemPromptsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatSystemPromptsDestroyResponse(rsp)
+}
+
+// ChatSystemPromptsRetrieveWithResponse request returning *ChatSystemPromptsRetrieveResponse
+func (c *ClientWithResponses) ChatSystemPromptsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChatSystemPromptsRetrieveResponse, error) {
+	rsp, err := c.ChatSystemPromptsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatSystemPromptsRetrieveResponse(rsp)
+}
+
+// ChatSystemPromptsPartialUpdateWithBodyWithResponse request with arbitrary body returning *ChatSystemPromptsPartialUpdateResponse
+func (c *ClientWithResponses) ChatSystemPromptsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatSystemPromptsPartialUpdateResponse, error) {
+	rsp, err := c.ChatSystemPromptsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatSystemPromptsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChatSystemPromptsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatSystemPromptsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatSystemPromptsPartialUpdateResponse, error) {
+	rsp, err := c.ChatSystemPromptsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatSystemPromptsPartialUpdateResponse(rsp)
+}
+
+// ChatSystemPromptsUpdateWithBodyWithResponse request with arbitrary body returning *ChatSystemPromptsUpdateResponse
+func (c *ClientWithResponses) ChatSystemPromptsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatSystemPromptsUpdateResponse, error) {
+	rsp, err := c.ChatSystemPromptsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatSystemPromptsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChatSystemPromptsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatSystemPromptsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatSystemPromptsUpdateResponse, error) {
+	rsp, err := c.ChatSystemPromptsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatSystemPromptsUpdateResponse(rsp)
+}
+
+// ChatSystemPromptsActivateWithBodyWithResponse request with arbitrary body returning *ChatSystemPromptsActivateResponse
+func (c *ClientWithResponses) ChatSystemPromptsActivateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatSystemPromptsActivateResponse, error) {
+	rsp, err := c.ChatSystemPromptsActivateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatSystemPromptsActivateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChatSystemPromptsActivateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatSystemPromptsActivateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatSystemPromptsActivateResponse, error) {
+	rsp, err := c.ChatSystemPromptsActivate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatSystemPromptsActivateResponse(rsp)
+}
+
+// ChatSystemPromptsDeactivateWithBodyWithResponse request with arbitrary body returning *ChatSystemPromptsDeactivateResponse
+func (c *ClientWithResponses) ChatSystemPromptsDeactivateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatSystemPromptsDeactivateResponse, error) {
+	rsp, err := c.ChatSystemPromptsDeactivateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatSystemPromptsDeactivateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChatSystemPromptsDeactivateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatSystemPromptsDeactivateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatSystemPromptsDeactivateResponse, error) {
+	rsp, err := c.ChatSystemPromptsDeactivate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatSystemPromptsDeactivateResponse(rsp)
+}
+
 // ChatThreadsListWithResponse request returning *ChatThreadsListResponse
 func (c *ClientWithResponses) ChatThreadsListWithResponse(ctx context.Context, params *ChatThreadsListParams, reqEditors ...RequestEditorFn) (*ChatThreadsListResponse, error) {
 	rsp, err := c.ChatThreadsList(ctx, params, reqEditors...)
@@ -443464,6 +444517,220 @@ func ParseChatSessionsRetrieveResponse(rsp *http.Response) (*ChatSessionsRetriev
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest ChatSession
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChatSystemPromptsListResponse parses an HTTP response from a ChatSystemPromptsListWithResponse call
+func ParseChatSystemPromptsListResponse(rsp *http.Response) (*ChatSystemPromptsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatSystemPromptsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []SystemPrompt
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChatSystemPromptsCountResponse parses an HTTP response from a ChatSystemPromptsCountWithResponse call
+func ParseChatSystemPromptsCountResponse(rsp *http.Response) (*ChatSystemPromptsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatSystemPromptsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseChatSystemPromptsCreateResponse parses an HTTP response from a ChatSystemPromptsCreateWithResponse call
+func ParseChatSystemPromptsCreateResponse(rsp *http.Response) (*ChatSystemPromptsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatSystemPromptsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest SystemPrompt
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChatSystemPromptsDestroyResponse parses an HTTP response from a ChatSystemPromptsDestroyWithResponse call
+func ParseChatSystemPromptsDestroyResponse(rsp *http.Response) (*ChatSystemPromptsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatSystemPromptsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseChatSystemPromptsRetrieveResponse parses an HTTP response from a ChatSystemPromptsRetrieveWithResponse call
+func ParseChatSystemPromptsRetrieveResponse(rsp *http.Response) (*ChatSystemPromptsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatSystemPromptsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SystemPrompt
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChatSystemPromptsPartialUpdateResponse parses an HTTP response from a ChatSystemPromptsPartialUpdateWithResponse call
+func ParseChatSystemPromptsPartialUpdateResponse(rsp *http.Response) (*ChatSystemPromptsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatSystemPromptsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SystemPrompt
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChatSystemPromptsUpdateResponse parses an HTTP response from a ChatSystemPromptsUpdateWithResponse call
+func ParseChatSystemPromptsUpdateResponse(rsp *http.Response) (*ChatSystemPromptsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatSystemPromptsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SystemPrompt
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChatSystemPromptsActivateResponse parses an HTTP response from a ChatSystemPromptsActivateWithResponse call
+func ParseChatSystemPromptsActivateResponse(rsp *http.Response) (*ChatSystemPromptsActivateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatSystemPromptsActivateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SystemPrompt
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChatSystemPromptsDeactivateResponse parses an HTTP response from a ChatSystemPromptsDeactivateWithResponse call
+func ParseChatSystemPromptsDeactivateResponse(rsp *http.Response) (*ChatSystemPromptsDeactivateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatSystemPromptsDeactivateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SystemPrompt
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
