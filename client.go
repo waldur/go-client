@@ -29646,13 +29646,15 @@ type Hypervisor struct {
 
 // HypervisorSummary defines model for HypervisorSummary.
 type HypervisorSummary struct {
-	TotalLocalGb    int `json:"total_local_gb"`
-	TotalMemoryMb   int `json:"total_memory_mb"`
-	TotalRunningVms int `json:"total_running_vms"`
-	TotalVcpus      int `json:"total_vcpus"`
-	UsedLocalGb     int `json:"used_local_gb"`
-	UsedMemoryMb    int `json:"used_memory_mb"`
-	UsedVcpus       int `json:"used_vcpus"`
+	CpuAllocationRatio float64 `json:"cpu_allocation_ratio"`
+	EffectiveVcpus     int     `json:"effective_vcpus"`
+	TotalLocalGb       int     `json:"total_local_gb"`
+	TotalMemoryMb      int     `json:"total_memory_mb"`
+	TotalRunningVms    int     `json:"total_running_vms"`
+	TotalVcpus         int     `json:"total_vcpus"`
+	UsedLocalGb        int     `json:"used_local_gb"`
+	UsedMemoryMb       int     `json:"used_memory_mb"`
+	UsedVcpus          int     `json:"used_vcpus"`
 }
 
 // IPMapping defines model for IPMapping.
