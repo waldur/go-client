@@ -9662,31 +9662,31 @@ func (e MatchingAlgorithm) Valid() bool {
 
 // Defines values for MessageBlocksKey.
 const (
-	Code         MessageBlocksKey = "code"
-	HomeportNav  MessageBlocksKey = "homeport_nav"
-	Markdown     MessageBlocksKey = "markdown"
-	Mermaid      MessageBlocksKey = "mermaid"
-	ResourceList MessageBlocksKey = "resource_list"
-	Tool         MessageBlocksKey = "tool"
-	VmOrder      MessageBlocksKey = "vm_order"
+	MessageBlocksKeyCode         MessageBlocksKey = "code"
+	MessageBlocksKeyHomeportNav  MessageBlocksKey = "homeport_nav"
+	MessageBlocksKeyMarkdown     MessageBlocksKey = "markdown"
+	MessageBlocksKeyMermaid      MessageBlocksKey = "mermaid"
+	MessageBlocksKeyResourceList MessageBlocksKey = "resource_list"
+	MessageBlocksKeyTool         MessageBlocksKey = "tool"
+	MessageBlocksKeyVmOrder      MessageBlocksKey = "vm_order"
 )
 
 // Valid indicates whether the value is a known member of the MessageBlocksKey enum.
 func (e MessageBlocksKey) Valid() bool {
 	switch e {
-	case Code:
+	case MessageBlocksKeyCode:
 		return true
-	case HomeportNav:
+	case MessageBlocksKeyHomeportNav:
 		return true
-	case Markdown:
+	case MessageBlocksKeyMarkdown:
 		return true
-	case Mermaid:
+	case MessageBlocksKeyMermaid:
 		return true
-	case ResourceList:
+	case MessageBlocksKeyResourceList:
 		return true
-	case Tool:
+	case MessageBlocksKeyTool:
 		return true
-	case VmOrder:
+	case MessageBlocksKeyVmOrder:
 		return true
 	default:
 		return false
@@ -13026,6 +13026,7 @@ const (
 	OpenStackSnapshotFieldEnumAction                           OpenStackSnapshotFieldEnum = "action"
 	OpenStackSnapshotFieldEnumActionDetails                    OpenStackSnapshotFieldEnum = "action_details"
 	OpenStackSnapshotFieldEnumBackendId                        OpenStackSnapshotFieldEnum = "backend_id"
+	OpenStackSnapshotFieldEnumBackups                          OpenStackSnapshotFieldEnum = "backups"
 	OpenStackSnapshotFieldEnumCreated                          OpenStackSnapshotFieldEnum = "created"
 	OpenStackSnapshotFieldEnumCustomer                         OpenStackSnapshotFieldEnum = "customer"
 	OpenStackSnapshotFieldEnumCustomerAbbreviation             OpenStackSnapshotFieldEnum = "customer_abbreviation"
@@ -13080,6 +13081,8 @@ func (e OpenStackSnapshotFieldEnum) Valid() bool {
 	case OpenStackSnapshotFieldEnumActionDetails:
 		return true
 	case OpenStackSnapshotFieldEnumBackendId:
+		return true
+	case OpenStackSnapshotFieldEnumBackups:
 		return true
 	case OpenStackSnapshotFieldEnumCreated:
 		return true
@@ -18378,6 +18381,66 @@ func (e SSHKEYALLOWEDTYPESEnum) Valid() bool {
 	case SshEd25519:
 		return true
 	case SshRsa:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ScienceDomainOEnum.
+const (
+	ScienceDomainOEnumCode      ScienceDomainOEnum = "code"
+	ScienceDomainOEnumMinusCode ScienceDomainOEnum = "-code"
+	ScienceDomainOEnumMinusName ScienceDomainOEnum = "-name"
+	ScienceDomainOEnumName      ScienceDomainOEnum = "name"
+)
+
+// Valid indicates whether the value is a known member of the ScienceDomainOEnum enum.
+func (e ScienceDomainOEnum) Valid() bool {
+	switch e {
+	case ScienceDomainOEnumCode:
+		return true
+	case ScienceDomainOEnumMinusCode:
+		return true
+	case ScienceDomainOEnumMinusName:
+		return true
+	case ScienceDomainOEnumName:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ScienceSubDomainOEnum.
+const (
+	ScienceSubDomainOEnumCode               ScienceSubDomainOEnum = "code"
+	ScienceSubDomainOEnumDomainName         ScienceSubDomainOEnum = "domain_name"
+	ScienceSubDomainOEnumMinusCode          ScienceSubDomainOEnum = "-code"
+	ScienceSubDomainOEnumMinusDomainName    ScienceSubDomainOEnum = "-domain_name"
+	ScienceSubDomainOEnumMinusName          ScienceSubDomainOEnum = "-name"
+	ScienceSubDomainOEnumMinusProjectsCount ScienceSubDomainOEnum = "-projects_count"
+	ScienceSubDomainOEnumName               ScienceSubDomainOEnum = "name"
+	ScienceSubDomainOEnumProjectsCount      ScienceSubDomainOEnum = "projects_count"
+)
+
+// Valid indicates whether the value is a known member of the ScienceSubDomainOEnum enum.
+func (e ScienceSubDomainOEnum) Valid() bool {
+	switch e {
+	case ScienceSubDomainOEnumCode:
+		return true
+	case ScienceSubDomainOEnumDomainName:
+		return true
+	case ScienceSubDomainOEnumMinusCode:
+		return true
+	case ScienceSubDomainOEnumMinusDomainName:
+		return true
+	case ScienceSubDomainOEnumMinusName:
+		return true
+	case ScienceSubDomainOEnumMinusProjectsCount:
+		return true
+	case ScienceSubDomainOEnumName:
+		return true
+	case ScienceSubDomainOEnumProjectsCount:
 		return true
 	default:
 		return false
@@ -36601,18 +36664,19 @@ type OpenStackSnapshot struct {
 	ActionDetails interface{}                  `json:"action_details,omitempty"`
 
 	// BackendId Snapshot ID in the OpenStack backend
-	BackendId            *string             `json:"backend_id,omitempty"`
-	Created              *time.Time          `json:"created,omitempty"`
-	Customer             *string             `json:"customer,omitempty"`
-	CustomerAbbreviation *string             `json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `json:"customer_uuid,omitempty"`
-	Description          *string             `json:"description,omitempty"`
-	ErrorMessage         *string             `json:"error_message,omitempty"`
-	ErrorTraceback       *string             `json:"error_traceback,omitempty"`
-	IsLimitBased         *bool               `json:"is_limit_based,omitempty"`
-	IsUsageBased         *bool               `json:"is_usage_based,omitempty"`
+	BackendId            *string                    `json:"backend_id,omitempty"`
+	Backups              *[]OpenStackSnapshotBackup `json:"backups,omitempty"`
+	Created              *time.Time                 `json:"created,omitempty"`
+	Customer             *string                    `json:"customer,omitempty"`
+	CustomerAbbreviation *string                    `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string                    `json:"customer_name,omitempty"`
+	CustomerNativeName   *string                    `json:"customer_native_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID        `json:"customer_uuid,omitempty"`
+	Description          *string                    `json:"description,omitempty"`
+	ErrorMessage         *string                    `json:"error_message,omitempty"`
+	ErrorTraceback       *string                    `json:"error_traceback,omitempty"`
+	IsLimitBased         *bool                      `json:"is_limit_based,omitempty"`
+	IsUsageBased         *bool                      `json:"is_usage_based,omitempty"`
 
 	// KeptUntil Guaranteed time of snapshot retention. If null - keep forever.
 	KeptUntil                        *time.Time                      `json:"kept_until,omitempty"`
@@ -36661,6 +36725,12 @@ type OpenStackSnapshotAccessUrl1 = string
 // OpenStackSnapshot_AccessUrl defines model for OpenStackSnapshot.AccessUrl.
 type OpenStackSnapshot_AccessUrl struct {
 	union json.RawMessage
+}
+
+// OpenStackSnapshotBackup defines model for OpenStackSnapshotBackup.
+type OpenStackSnapshotBackup struct {
+	Name *string             `json:"name,omitempty"`
+	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // OpenStackSnapshotFieldEnum defines model for OpenStackSnapshotFieldEnum.
@@ -45779,6 +45849,9 @@ type ScienceDomain struct {
 	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// ScienceDomainOEnum defines model for ScienceDomainOEnum.
+type ScienceDomainOEnum string
+
 // ScienceDomainPreset defines model for ScienceDomainPreset.
 type ScienceDomainPreset struct {
 	Description string `json:"description"`
@@ -45812,6 +45885,9 @@ type ScienceSubDomain struct {
 	Url           *string             `json:"url,omitempty"`
 	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
 }
+
+// ScienceSubDomainOEnum defines model for ScienceSubDomainOEnum.
+type ScienceSubDomainOEnum string
 
 // ScienceSubDomainRequest defines model for ScienceSubDomainRequest.
 type ScienceSubDomainRequest struct {
@@ -68326,8 +68402,9 @@ type ScienceDomainsListParams struct {
 	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
-	// O Which field to use when ordering the results.
-	O *string `form:"o,omitempty" json:"o,omitempty"`
+	// O Ordering
+	//
+	O *[]ScienceDomainOEnum `form:"o,omitempty" json:"o,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -68344,8 +68421,9 @@ type ScienceDomainsCountParams struct {
 	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
-	// O Which field to use when ordering the results.
-	O *string `form:"o,omitempty" json:"o,omitempty"`
+	// O Ordering
+	//
+	O *[]ScienceDomainOEnum `form:"o,omitempty" json:"o,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -68362,8 +68440,9 @@ type ScienceDomainsPresetsListParams struct {
 	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
-	// O Which field to use when ordering the results.
-	O *string `form:"o,omitempty" json:"o,omitempty"`
+	// O Ordering
+	//
+	O *[]ScienceDomainOEnum `form:"o,omitempty" json:"o,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -68380,8 +68459,9 @@ type ScienceDomainsPresetsCountParams struct {
 	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
-	// O Which field to use when ordering the results.
-	O *string `form:"o,omitempty" json:"o,omitempty"`
+	// O Ordering
+	//
+	O *[]ScienceDomainOEnum `form:"o,omitempty" json:"o,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -68404,8 +68484,9 @@ type ScienceSubDomainsListParams struct {
 	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
-	// O Which field to use when ordering the results.
-	O *string `form:"o,omitempty" json:"o,omitempty"`
+	// O Ordering
+	//
+	O *[]ScienceSubDomainOEnum `form:"o,omitempty" json:"o,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -68428,8 +68509,9 @@ type ScienceSubDomainsCountParams struct {
 	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
-	// O Which field to use when ordering the results.
-	O *string `form:"o,omitempty" json:"o,omitempty"`
+	// O Ordering
+	//
+	O *[]ScienceSubDomainOEnum `form:"o,omitempty" json:"o,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -321451,7 +321533,7 @@ func NewScienceDomainsListRequest(server string, params *ScienceDomainsListParam
 
 		if params.O != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -321564,7 +321646,7 @@ func NewScienceDomainsCountRequest(server string, params *ScienceDomainsCountPar
 
 		if params.O != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -321757,7 +321839,7 @@ func NewScienceDomainsPresetsListRequest(server string, params *ScienceDomainsPr
 
 		if params.O != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -321870,7 +321952,7 @@ func NewScienceDomainsPresetsCountRequest(server string, params *ScienceDomainsP
 
 		if params.O != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -322177,7 +322259,7 @@ func NewScienceSubDomainsListRequest(server string, params *ScienceSubDomainsLis
 
 		if params.O != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -322322,7 +322404,7 @@ func NewScienceSubDomainsCountRequest(server string, params *ScienceSubDomainsCo
 
 		if params.O != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
