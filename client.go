@@ -15039,6 +15039,24 @@ func (e PolicyTypeEnum) Valid() bool {
 	}
 }
 
+// Defines values for PresetEnum.
+const (
+	Cscs        PresetEnum = "cscs"
+	OecdFos2007 PresetEnum = "oecd_fos_2007"
+)
+
+// Valid indicates whether the value is a known member of the PresetEnum enum.
+func (e PresetEnum) Valid() bool {
+	switch e {
+	case Cscs:
+		return true
+	case OecdFos2007:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ProficiencyLevelEnum.
 const (
 	ProficiencyLevelEnumBasic    ProficiencyLevelEnum = "basic"
@@ -15128,6 +15146,12 @@ const (
 	ProjectFieldEnumOecdFos2007Label                     ProjectFieldEnum = "oecd_fos_2007_label"
 	ProjectFieldEnumProjectCredit                        ProjectFieldEnum = "project_credit"
 	ProjectFieldEnumResourcesCount                       ProjectFieldEnum = "resources_count"
+	ProjectFieldEnumScienceDomainCode                    ProjectFieldEnum = "science_domain_code"
+	ProjectFieldEnumScienceDomainName                    ProjectFieldEnum = "science_domain_name"
+	ProjectFieldEnumScienceDomainUuid                    ProjectFieldEnum = "science_domain_uuid"
+	ProjectFieldEnumScienceSubDomain                     ProjectFieldEnum = "science_sub_domain"
+	ProjectFieldEnumScienceSubDomainCode                 ProjectFieldEnum = "science_sub_domain_code"
+	ProjectFieldEnumScienceSubDomainName                 ProjectFieldEnum = "science_sub_domain_name"
 	ProjectFieldEnumSlug                                 ProjectFieldEnum = "slug"
 	ProjectFieldEnumStaffNotes                           ProjectFieldEnum = "staff_notes"
 	ProjectFieldEnumStartDate                            ProjectFieldEnum = "start_date"
@@ -15204,6 +15228,18 @@ func (e ProjectFieldEnum) Valid() bool {
 	case ProjectFieldEnumProjectCredit:
 		return true
 	case ProjectFieldEnumResourcesCount:
+		return true
+	case ProjectFieldEnumScienceDomainCode:
+		return true
+	case ProjectFieldEnumScienceDomainName:
+		return true
+	case ProjectFieldEnumScienceDomainUuid:
+		return true
+	case ProjectFieldEnumScienceSubDomain:
+		return true
+	case ProjectFieldEnumScienceSubDomainCode:
+		return true
+	case ProjectFieldEnumScienceSubDomainName:
 		return true
 	case ProjectFieldEnumSlug:
 		return true
@@ -25602,6 +25638,7 @@ type ConstanceSettings struct {
 	TELEMETRYURL                                     *string                                                          `json:"TELEMETRY_URL,omitempty"`
 	TELEMETRYVERSION                                 *int                                                             `json:"TELEMETRY_VERSION,omitempty"`
 	THUMBNAILSIZE                                    *string                                                          `json:"THUMBNAIL_SIZE,omitempty"`
+	USAGEPOLLRECORDRETENTIONMONTHS                   *int                                                             `json:"USAGE_POLL_RECORD_RETENTION_MONTHS,omitempty"`
 	USERACTIONSDEFAULTEXPIRATIONREMINDERS            *[]string                                                        `json:"USER_ACTIONS_DEFAULT_EXPIRATION_REMINDERS,omitempty"`
 	USERACTIONSENABLED                               *bool                                                            `json:"USER_ACTIONS_ENABLED,omitempty"`
 	USERACTIONSEXECUTIONRETENTIONDAYS                *int                                                             `json:"USER_ACTIONS_EXECUTION_RETENTION_DAYS,omitempty"`
@@ -25914,6 +25951,7 @@ type ConstanceSettingsRequest struct {
 	TELEMETRYURL                                     *string                                                                 `json:"TELEMETRY_URL,omitempty"`
 	TELEMETRYVERSION                                 *int                                                                    `json:"TELEMETRY_VERSION,omitempty"`
 	THUMBNAILSIZE                                    *string                                                                 `json:"THUMBNAIL_SIZE,omitempty"`
+	USAGEPOLLRECORDRETENTIONMONTHS                   *int                                                                    `json:"USAGE_POLL_RECORD_RETENTION_MONTHS,omitempty"`
 	USERACTIONSDEFAULTEXPIRATIONREMINDERS            *[]string                                                               `json:"USER_ACTIONS_DEFAULT_EXPIRATION_REMINDERS,omitempty"`
 	USERACTIONSENABLED                               *bool                                                                   `json:"USER_ACTIONS_ENABLED,omitempty"`
 	USERACTIONSEXECUTIONRETENTIONDAYS                *int                                                                    `json:"USER_ACTIONS_EXECUTION_RETENTION_DAYS,omitempty"`
@@ -26226,6 +26264,7 @@ type ConstanceSettingsRequestForm struct {
 	TELEMETRYURL                                     *string                                                                     `json:"TELEMETRY_URL,omitempty"`
 	TELEMETRYVERSION                                 *int                                                                        `json:"TELEMETRY_VERSION,omitempty"`
 	THUMBNAILSIZE                                    *string                                                                     `json:"THUMBNAIL_SIZE,omitempty"`
+	USAGEPOLLRECORDRETENTIONMONTHS                   *int                                                                        `json:"USAGE_POLL_RECORD_RETENTION_MONTHS,omitempty"`
 	USERACTIONSDEFAULTEXPIRATIONREMINDERS            *[]string                                                                   `json:"USER_ACTIONS_DEFAULT_EXPIRATION_REMINDERS,omitempty"`
 	USERACTIONSENABLED                               *bool                                                                       `json:"USER_ACTIONS_ENABLED,omitempty"`
 	USERACTIONSEXECUTIONRETENTIONDAYS                *int                                                                        `json:"USER_ACTIONS_EXECUTION_RETENTION_DAYS,omitempty"`
@@ -26538,6 +26577,7 @@ type ConstanceSettingsRequestMultipart struct {
 	TELEMETRYURL                                     *string                                                                          `json:"TELEMETRY_URL,omitempty"`
 	TELEMETRYVERSION                                 *int                                                                             `json:"TELEMETRY_VERSION,omitempty"`
 	THUMBNAILSIZE                                    *string                                                                          `json:"THUMBNAIL_SIZE,omitempty"`
+	USAGEPOLLRECORDRETENTIONMONTHS                   *int                                                                             `json:"USAGE_POLL_RECORD_RETENTION_MONTHS,omitempty"`
 	USERACTIONSDEFAULTEXPIRATIONREMINDERS            *[]string                                                                        `json:"USER_ACTIONS_DEFAULT_EXPIRATION_REMINDERS,omitempty"`
 	USERACTIONSENABLED                               *bool                                                                            `json:"USER_ACTIONS_ENABLED,omitempty"`
 	USERACTIONSEXECUTIONRETENTIONDAYS                *int                                                                             `json:"USER_ACTIONS_EXECUTION_RETENTION_DAYS,omitempty"`
@@ -30913,6 +30953,19 @@ type LoadBalancerSetSecurityGroupsRequest struct {
 	SecurityGroups []string `json:"security_groups"`
 }
 
+// LoadScienceDomainPresetRequest defines model for LoadScienceDomainPresetRequest.
+type LoadScienceDomainPresetRequest struct {
+	Preset PresetEnum `json:"preset"`
+}
+
+// LoadScienceDomainPresetResponse defines model for LoadScienceDomainPresetResponse.
+type LoadScienceDomainPresetResponse struct {
+	CreatedDomains    int `json:"created_domains"`
+	CreatedSubdomains int `json:"created_subdomains"`
+	SkippedDomains    int `json:"skipped_domains"`
+	SkippedSubdomains int `json:"skipped_subdomains"`
+}
+
 // LockStats defines model for LockStats.
 type LockStats struct {
 	// AccessExclusiveLocks Number of AccessExclusive locks (blocks all access)
@@ -31684,6 +31737,9 @@ type MergedPluginOptions struct {
 	// UniqueResourcePerAttribute Attribute name to enforce uniqueness per value. E.g., 'storage_data_type' ensures only one resource per storage type per project.
 	UniqueResourcePerAttribute *string `json:"unique_resource_per_attribute,omitempty"`
 
+	// UsagePollIntervalMinutes Interval in minutes between usage polling for this offering (default: 60)
+	UsagePollIntervalMinutes *int `json:"usage_poll_interval_minutes,omitempty"`
+
 	// UsernameAnonymizedPrefix GLAuth prefix for anonymized usernames
 	UsernameAnonymizedPrefix *string `json:"username_anonymized_prefix,omitempty"`
 
@@ -31916,6 +31972,9 @@ type MergedPluginOptionsRequest struct {
 
 	// UniqueResourcePerAttribute Attribute name to enforce uniqueness per value. E.g., 'storage_data_type' ensures only one resource per storage type per project.
 	UniqueResourcePerAttribute *string `json:"unique_resource_per_attribute,omitempty"`
+
+	// UsagePollIntervalMinutes Interval in minutes between usage polling for this offering (default: 60)
+	UsagePollIntervalMinutes *int `json:"usage_poll_interval_minutes,omitempty"`
 
 	// UsernameAnonymizedPrefix GLAuth prefix for anonymized usernames
 	UsernameAnonymizedPrefix *string `json:"username_anonymized_prefix,omitempty"`
@@ -39040,12 +39099,13 @@ type PatchedProjectRequest struct {
 	EndDate *openapi_types.Date `json:"end_date,omitempty"`
 
 	// GracePeriodDays Number of extra days after project end date before resources are terminated. Overrides customer-level setting.
-	GracePeriodDays *int                                   `json:"grace_period_days,omitempty"`
-	Image           *openapi_types.File                    `json:"image,omitempty"`
-	IsIndustry      *bool                                  `json:"is_industry,omitempty"`
-	Kind            *KindEnum                              `json:"kind,omitempty"`
-	Name            *string                                `json:"name,omitempty"`
-	OecdFos2007Code *PatchedProjectRequest_OecdFos2007Code `json:"oecd_fos_2007_code,omitempty"`
+	GracePeriodDays  *int                                   `json:"grace_period_days,omitempty"`
+	Image            *openapi_types.File                    `json:"image,omitempty"`
+	IsIndustry       *bool                                  `json:"is_industry,omitempty"`
+	Kind             *KindEnum                              `json:"kind,omitempty"`
+	Name             *string                                `json:"name,omitempty"`
+	OecdFos2007Code  *PatchedProjectRequest_OecdFos2007Code `json:"oecd_fos_2007_code,omitempty"`
+	ScienceSubDomain *openapi_types.UUID                    `json:"science_sub_domain,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug *string `json:"slug,omitempty"`
@@ -39080,12 +39140,13 @@ type PatchedProjectRequestForm struct {
 	EndDate *openapi_types.Date `json:"end_date,omitempty"`
 
 	// GracePeriodDays Number of extra days after project end date before resources are terminated. Overrides customer-level setting.
-	GracePeriodDays *int                                       `json:"grace_period_days,omitempty"`
-	Image           *openapi_types.File                        `json:"image,omitempty"`
-	IsIndustry      *bool                                      `json:"is_industry,omitempty"`
-	Kind            *KindEnum                                  `json:"kind,omitempty"`
-	Name            *string                                    `json:"name,omitempty"`
-	OecdFos2007Code *PatchedProjectRequestForm_OecdFos2007Code `json:"oecd_fos_2007_code,omitempty"`
+	GracePeriodDays  *int                                       `json:"grace_period_days,omitempty"`
+	Image            *openapi_types.File                        `json:"image,omitempty"`
+	IsIndustry       *bool                                      `json:"is_industry,omitempty"`
+	Kind             *KindEnum                                  `json:"kind,omitempty"`
+	Name             *string                                    `json:"name,omitempty"`
+	OecdFos2007Code  *PatchedProjectRequestForm_OecdFos2007Code `json:"oecd_fos_2007_code,omitempty"`
+	ScienceSubDomain *openapi_types.UUID                        `json:"science_sub_domain,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug *string `json:"slug,omitempty"`
@@ -39120,12 +39181,13 @@ type PatchedProjectRequestMultipart struct {
 	EndDate *openapi_types.Date `json:"end_date,omitempty"`
 
 	// GracePeriodDays Number of extra days after project end date before resources are terminated. Overrides customer-level setting.
-	GracePeriodDays *int                                            `json:"grace_period_days,omitempty"`
-	Image           *openapi_types.File                             `json:"image,omitempty"`
-	IsIndustry      *bool                                           `json:"is_industry,omitempty"`
-	Kind            *KindEnum                                       `json:"kind,omitempty"`
-	Name            *string                                         `json:"name,omitempty"`
-	OecdFos2007Code *PatchedProjectRequestMultipart_OecdFos2007Code `json:"oecd_fos_2007_code,omitempty"`
+	GracePeriodDays  *int                                            `json:"grace_period_days,omitempty"`
+	Image            *openapi_types.File                             `json:"image,omitempty"`
+	IsIndustry       *bool                                           `json:"is_industry,omitempty"`
+	Kind             *KindEnum                                       `json:"kind,omitempty"`
+	Name             *string                                         `json:"name,omitempty"`
+	OecdFos2007Code  *PatchedProjectRequestMultipart_OecdFos2007Code `json:"oecd_fos_2007_code,omitempty"`
+	ScienceSubDomain *openapi_types.UUID                             `json:"science_sub_domain,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug *string `json:"slug,omitempty"`
@@ -39657,6 +39719,21 @@ type PatchedRuleRequest struct {
 	UseUserOrganizationAsCustomerName *bool                   `json:"use_user_organization_as_customer_name,omitempty"`
 	UserAffiliations                  *[]string               `json:"user_affiliations,omitempty"`
 	UserEmailPatterns                 *[]string               `json:"user_email_patterns,omitempty"`
+}
+
+// PatchedScienceDomainRequest defines model for PatchedScienceDomainRequest.
+type PatchedScienceDomainRequest struct {
+	// Code Domain code (e.g. '1'). Auto-derived if left blank.
+	Code *string `json:"code,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+// PatchedScienceSubDomainRequest defines model for PatchedScienceSubDomainRequest.
+type PatchedScienceSubDomainRequest struct {
+	// Code Sub-domain code (e.g. '1.1'). Auto-derived from domain code if left blank.
+	Code   *string `json:"code,omitempty"`
+	Domain *string `json:"domain,omitempty"`
+	Name   *string `json:"name,omitempty"`
 }
 
 // PatchedScreenshotRequest defines model for PatchedScreenshotRequest.
@@ -40435,6 +40512,9 @@ type PolicyPeriodEnum int
 // PolicyTypeEnum defines model for PolicyTypeEnum.
 type PolicyTypeEnum string
 
+// PresetEnum defines model for PresetEnum.
+type PresetEnum string
+
 // PreviewServiceAttributesRequestRequest defines model for PreviewServiceAttributesRequestRequest.
 type PreviewServiceAttributesRequestRequest struct {
 	// AuthType Authentication method: password or v3applicationcredential
@@ -40574,6 +40654,16 @@ type Project struct {
 
 	// ResourcesCount Number of active resources in this project
 	ResourcesCount *int `json:"resources_count,omitempty"`
+
+	// ScienceDomainCode Domain code (e.g. '1'). Auto-derived if left blank.
+	ScienceDomainCode *string             `json:"science_domain_code,omitempty"`
+	ScienceDomainName *string             `json:"science_domain_name,omitempty"`
+	ScienceDomainUuid *openapi_types.UUID `json:"science_domain_uuid,omitempty"`
+	ScienceSubDomain  *openapi_types.UUID `json:"science_sub_domain,omitempty"`
+
+	// ScienceSubDomainCode Sub-domain code (e.g. '1.1'). Auto-derived from domain code if left blank.
+	ScienceSubDomainCode *string `json:"science_sub_domain_code,omitempty"`
+	ScienceSubDomainName *string `json:"science_sub_domain_name,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug *string `json:"slug,omitempty"`
@@ -40971,12 +41061,13 @@ type ProjectRequest struct {
 	EndDate *openapi_types.Date `json:"end_date,omitempty"`
 
 	// GracePeriodDays Number of extra days after project end date before resources are terminated. Overrides customer-level setting.
-	GracePeriodDays *int                            `json:"grace_period_days,omitempty"`
-	Image           *openapi_types.File             `json:"image,omitempty"`
-	IsIndustry      *bool                           `json:"is_industry,omitempty"`
-	Kind            *KindEnum                       `json:"kind,omitempty"`
-	Name            string                          `json:"name"`
-	OecdFos2007Code *ProjectRequest_OecdFos2007Code `json:"oecd_fos_2007_code,omitempty"`
+	GracePeriodDays  *int                            `json:"grace_period_days,omitempty"`
+	Image            *openapi_types.File             `json:"image,omitempty"`
+	IsIndustry       *bool                           `json:"is_industry,omitempty"`
+	Kind             *KindEnum                       `json:"kind,omitempty"`
+	Name             string                          `json:"name"`
+	OecdFos2007Code  *ProjectRequest_OecdFos2007Code `json:"oecd_fos_2007_code,omitempty"`
+	ScienceSubDomain *openapi_types.UUID             `json:"science_sub_domain,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug *string `json:"slug,omitempty"`
@@ -41011,12 +41102,13 @@ type ProjectRequestForm struct {
 	EndDate *openapi_types.Date `json:"end_date,omitempty"`
 
 	// GracePeriodDays Number of extra days after project end date before resources are terminated. Overrides customer-level setting.
-	GracePeriodDays *int                                `json:"grace_period_days,omitempty"`
-	Image           *openapi_types.File                 `json:"image,omitempty"`
-	IsIndustry      *bool                               `json:"is_industry,omitempty"`
-	Kind            *KindEnum                           `json:"kind,omitempty"`
-	Name            string                              `json:"name"`
-	OecdFos2007Code *ProjectRequestForm_OecdFos2007Code `json:"oecd_fos_2007_code,omitempty"`
+	GracePeriodDays  *int                                `json:"grace_period_days,omitempty"`
+	Image            *openapi_types.File                 `json:"image,omitempty"`
+	IsIndustry       *bool                               `json:"is_industry,omitempty"`
+	Kind             *KindEnum                           `json:"kind,omitempty"`
+	Name             string                              `json:"name"`
+	OecdFos2007Code  *ProjectRequestForm_OecdFos2007Code `json:"oecd_fos_2007_code,omitempty"`
+	ScienceSubDomain *openapi_types.UUID                 `json:"science_sub_domain,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug *string `json:"slug,omitempty"`
@@ -41051,12 +41143,13 @@ type ProjectRequestMultipart struct {
 	EndDate *openapi_types.Date `json:"end_date,omitempty"`
 
 	// GracePeriodDays Number of extra days after project end date before resources are terminated. Overrides customer-level setting.
-	GracePeriodDays *int                                     `json:"grace_period_days,omitempty"`
-	Image           *openapi_types.File                      `json:"image,omitempty"`
-	IsIndustry      *bool                                    `json:"is_industry,omitempty"`
-	Kind            *KindEnum                                `json:"kind,omitempty"`
-	Name            string                                   `json:"name"`
-	OecdFos2007Code *ProjectRequestMultipart_OecdFos2007Code `json:"oecd_fos_2007_code,omitempty"`
+	GracePeriodDays  *int                                     `json:"grace_period_days,omitempty"`
+	Image            *openapi_types.File                      `json:"image,omitempty"`
+	IsIndustry       *bool                                    `json:"is_industry,omitempty"`
+	Kind             *KindEnum                                `json:"kind,omitempty"`
+	Name             string                                   `json:"name"`
+	OecdFos2007Code  *ProjectRequestMultipart_OecdFos2007Code `json:"oecd_fos_2007_code,omitempty"`
+	ScienceSubDomain *openapi_types.UUID                      `json:"science_sub_domain,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug *string `json:"slug,omitempty"`
@@ -41282,6 +41375,10 @@ type Proposal struct {
 	ProjectName               *string                   `json:"project_name,omitempty"`
 	ProjectSummary            *string                   `json:"project_summary,omitempty"`
 	Round                     *NestedRound              `json:"round,omitempty"`
+	ScienceDomainName         *string                   `json:"science_domain_name,omitempty"`
+	ScienceDomainUuid         *openapi_types.UUID       `json:"science_domain_uuid,omitempty"`
+	ScienceSubDomain          *openapi_types.UUID       `json:"science_sub_domain,omitempty"`
+	ScienceSubDomainName      *string                   `json:"science_sub_domain_name,omitempty"`
 	Slug                      *string                   `json:"slug,omitempty"`
 	State                     *ProposalStates           `json:"state,omitempty"`
 	SupportingDocumentation   *[]ProposalDocumentation  `json:"supporting_documentation,omitempty"`
@@ -41372,6 +41469,7 @@ type ProposalRequest struct {
 	ProjectIsConfidential     *bool                            `json:"project_is_confidential,omitempty"`
 	ProjectSummary            *string                          `json:"project_summary,omitempty"`
 	RoundUuid                 *openapi_types.UUID              `json:"round_uuid,omitempty"`
+	ScienceSubDomain          *openapi_types.UUID              `json:"science_sub_domain,omitempty"`
 }
 
 // ProposalRequest_OecdFos2007Code defines model for ProposalRequest.OecdFos2007Code.
@@ -45665,6 +45763,62 @@ type SaveSettingsResponse struct {
 	MappingsCreated int                `json:"mappings_created"`
 	Message         string             `json:"message"`
 	SettingsUuid    openapi_types.UUID `json:"settings_uuid"`
+}
+
+// ScienceDomain defines model for ScienceDomain.
+type ScienceDomain struct {
+	// Code Domain code (e.g. '1'). Auto-derived if left blank.
+	Code     *string    `json:"code,omitempty"`
+	Created  *time.Time `json:"created,omitempty"`
+	Modified *time.Time `json:"modified,omitempty"`
+	Name     string     `json:"name"`
+
+	// SubdomainsCount Number of sub-domains in this domain
+	SubdomainsCount *int                `json:"subdomains_count,omitempty"`
+	Url             *string             `json:"url,omitempty"`
+	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ScienceDomainPreset defines model for ScienceDomainPreset.
+type ScienceDomainPreset struct {
+	Description string `json:"description"`
+	Label       string `json:"label"`
+	Name        string `json:"name"`
+}
+
+// ScienceDomainRequest defines model for ScienceDomainRequest.
+type ScienceDomainRequest struct {
+	// Code Domain code (e.g. '1'). Auto-derived if left blank.
+	Code *string `json:"code,omitempty"`
+	Name string  `json:"name"`
+}
+
+// ScienceSubDomain defines model for ScienceSubDomain.
+type ScienceSubDomain struct {
+	// Code Sub-domain code (e.g. '1.1'). Auto-derived from domain code if left blank.
+	Code    *string    `json:"code,omitempty"`
+	Created *time.Time `json:"created,omitempty"`
+	Domain  string     `json:"domain"`
+
+	// DomainCode Domain code (e.g. '1'). Auto-derived if left blank.
+	DomainCode *string             `json:"domain_code,omitempty"`
+	DomainName *string             `json:"domain_name,omitempty"`
+	DomainUuid *openapi_types.UUID `json:"domain_uuid,omitempty"`
+	Modified   *time.Time          `json:"modified,omitempty"`
+	Name       string              `json:"name"`
+
+	// ProjectsCount Number of active projects using this sub-domain
+	ProjectsCount *int                `json:"projects_count,omitempty"`
+	Url           *string             `json:"url,omitempty"`
+	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ScienceSubDomainRequest defines model for ScienceSubDomainRequest.
+type ScienceSubDomainRequest struct {
+	// Code Sub-domain code (e.g. '1.1'). Auto-derived from domain code if left blank.
+	Code   *string `json:"code,omitempty"`
+	Domain string  `json:"domain"`
+	Name   string  `json:"name"`
 }
 
 // ScimSyncAllResponse defines model for ScimSyncAllResponse.
@@ -59035,6 +59189,12 @@ type MarketplaceServiceProvidersCustomerProjectsListParams struct {
 	// Query Filter by name, slug, UUID, backend ID or resource effective ID
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
 
+	// ScienceDomainUuid Science domain UUID
+	ScienceDomainUuid *openapi_types.UUID `form:"science_domain_uuid,omitempty" json:"science_domain_uuid,omitempty"`
+
+	// ScienceSubDomainUuid Science sub-domain UUID
+	ScienceSubDomainUuid *openapi_types.UUID `form:"science_sub_domain_uuid,omitempty" json:"science_sub_domain_uuid,omitempty"`
+
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
@@ -59402,6 +59562,12 @@ type MarketplaceServiceProvidersProjectsListParams struct {
 
 	// Query Filter by name, slug, UUID, backend ID or resource effective ID
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ScienceDomainUuid Science domain UUID
+	ScienceDomainUuid *openapi_types.UUID `form:"science_domain_uuid,omitempty" json:"science_domain_uuid,omitempty"`
+
+	// ScienceSubDomainUuid Science sub-domain UUID
+	ScienceSubDomainUuid *openapi_types.UUID `form:"science_sub_domain_uuid,omitempty" json:"science_sub_domain_uuid,omitempty"`
 
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
@@ -62291,6 +62457,12 @@ type OpenportalUnmanagedProjectsListParams struct {
 	// Query Filter by name, slug, UUID, backend ID or resource effective ID
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
 
+	// ScienceDomainUuid Science domain UUID
+	ScienceDomainUuid *openapi_types.UUID `form:"science_domain_uuid,omitempty" json:"science_domain_uuid,omitempty"`
+
+	// ScienceSubDomainUuid Science sub-domain UUID
+	ScienceSubDomainUuid *openapi_types.UUID `form:"science_sub_domain_uuid,omitempty" json:"science_sub_domain_uuid,omitempty"`
+
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
@@ -62376,6 +62548,12 @@ type OpenportalUnmanagedProjectsCountParams struct {
 
 	// Query Filter by name, slug, UUID, backend ID or resource effective ID
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ScienceDomainUuid Science domain UUID
+	ScienceDomainUuid *openapi_types.UUID `form:"science_domain_uuid,omitempty" json:"science_domain_uuid,omitempty"`
+
+	// ScienceSubDomainUuid Science sub-domain UUID
+	ScienceSubDomainUuid *openapi_types.UUID `form:"science_sub_domain_uuid,omitempty" json:"science_sub_domain_uuid,omitempty"`
 
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
@@ -65825,6 +66003,12 @@ type ProjectsListParams struct {
 	// Query Filter by name, slug, UUID, backend ID or resource effective ID
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
 
+	// ScienceDomainUuid Science domain UUID
+	ScienceDomainUuid *openapi_types.UUID `form:"science_domain_uuid,omitempty" json:"science_domain_uuid,omitempty"`
+
+	// ScienceSubDomainUuid Science sub-domain UUID
+	ScienceSubDomainUuid *openapi_types.UUID `form:"science_sub_domain_uuid,omitempty" json:"science_sub_domain_uuid,omitempty"`
+
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
@@ -65910,6 +66094,12 @@ type ProjectsCountParams struct {
 
 	// Query Filter by name, slug, UUID, backend ID or resource effective ID
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ScienceDomainUuid Science domain UUID
+	ScienceDomainUuid *openapi_types.UUID `form:"science_domain_uuid,omitempty" json:"science_domain_uuid,omitempty"`
+
+	// ScienceSubDomainUuid Science sub-domain UUID
+	ScienceSubDomainUuid *openapi_types.UUID `form:"science_sub_domain_uuid,omitempty" json:"science_sub_domain_uuid,omitempty"`
 
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
@@ -68126,6 +68316,126 @@ type RolesCountParams struct {
 // RolesRetrieveParams defines parameters for RolesRetrieve.
 type RolesRetrieveParams struct {
 	Field *[]RoleDetailsFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+}
+
+// ScienceDomainsListParams defines parameters for ScienceDomainsList.
+type ScienceDomainsListParams struct {
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Which field to use when ordering the results.
+	O *string `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// ScienceDomainsCountParams defines parameters for ScienceDomainsCount.
+type ScienceDomainsCountParams struct {
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Which field to use when ordering the results.
+	O *string `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// ScienceDomainsPresetsListParams defines parameters for ScienceDomainsPresetsList.
+type ScienceDomainsPresetsListParams struct {
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Which field to use when ordering the results.
+	O *string `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// ScienceDomainsPresetsCountParams defines parameters for ScienceDomainsPresetsCount.
+type ScienceDomainsPresetsCountParams struct {
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Which field to use when ordering the results.
+	O *string `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// ScienceSubDomainsListParams defines parameters for ScienceSubDomainsList.
+type ScienceSubDomainsListParams struct {
+	// DomainName Domain name
+	DomainName *string `form:"domain_name,omitempty" json:"domain_name,omitempty"`
+
+	// DomainUuid Domain UUID
+	DomainUuid *openapi_types.UUID `form:"domain_uuid,omitempty" json:"domain_uuid,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Which field to use when ordering the results.
+	O *string `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// ScienceSubDomainsCountParams defines parameters for ScienceSubDomainsCount.
+type ScienceSubDomainsCountParams struct {
+	// DomainName Domain name
+	DomainName *string `form:"domain_name,omitempty" json:"domain_name,omitempty"`
+
+	// DomainUuid Domain UUID
+	DomainUuid *openapi_types.UUID `form:"domain_uuid,omitempty" json:"domain_uuid,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Which field to use when ordering the results.
+	O *string `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
 // ServiceSettingsListParams defines parameters for ServiceSettingsList.
@@ -73187,6 +73497,27 @@ type RolesUpdateJSONRequestBody = RoleModifyRequest
 
 // RolesUpdateDescriptionsUpdateJSONRequestBody defines body for RolesUpdateDescriptionsUpdate for application/json ContentType.
 type RolesUpdateDescriptionsUpdateJSONRequestBody = RoleDescriptionRequest
+
+// ScienceDomainsCreateJSONRequestBody defines body for ScienceDomainsCreate for application/json ContentType.
+type ScienceDomainsCreateJSONRequestBody = ScienceDomainRequest
+
+// ScienceDomainsLoadPresetJSONRequestBody defines body for ScienceDomainsLoadPreset for application/json ContentType.
+type ScienceDomainsLoadPresetJSONRequestBody = LoadScienceDomainPresetRequest
+
+// ScienceDomainsPartialUpdateJSONRequestBody defines body for ScienceDomainsPartialUpdate for application/json ContentType.
+type ScienceDomainsPartialUpdateJSONRequestBody = PatchedScienceDomainRequest
+
+// ScienceDomainsUpdateJSONRequestBody defines body for ScienceDomainsUpdate for application/json ContentType.
+type ScienceDomainsUpdateJSONRequestBody = ScienceDomainRequest
+
+// ScienceSubDomainsCreateJSONRequestBody defines body for ScienceSubDomainsCreate for application/json ContentType.
+type ScienceSubDomainsCreateJSONRequestBody = ScienceSubDomainRequest
+
+// ScienceSubDomainsPartialUpdateJSONRequestBody defines body for ScienceSubDomainsPartialUpdate for application/json ContentType.
+type ScienceSubDomainsPartialUpdateJSONRequestBody = PatchedScienceSubDomainRequest
+
+// ScienceSubDomainsUpdateJSONRequestBody defines body for ScienceSubDomainsUpdate for application/json ContentType.
+type ScienceSubDomainsUpdateJSONRequestBody = ScienceSubDomainRequest
 
 // SlurmAllocationsCreateJSONRequestBody defines body for SlurmAllocationsCreate for application/json ContentType.
 type SlurmAllocationsCreateJSONRequestBody = SlurmAllocationRequest
@@ -94448,6 +94779,71 @@ type ClientInterface interface {
 	RolesUpdateDescriptionsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	RolesUpdateDescriptionsUpdate(ctx context.Context, uuid openapi_types.UUID, body RolesUpdateDescriptionsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ScienceDomainsList request
+	ScienceDomainsList(ctx context.Context, params *ScienceDomainsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ScienceDomainsCount request
+	ScienceDomainsCount(ctx context.Context, params *ScienceDomainsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ScienceDomainsCreateWithBody request with any body
+	ScienceDomainsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ScienceDomainsCreate(ctx context.Context, body ScienceDomainsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ScienceDomainsLoadPresetWithBody request with any body
+	ScienceDomainsLoadPresetWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ScienceDomainsLoadPreset(ctx context.Context, body ScienceDomainsLoadPresetJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ScienceDomainsPresetsList request
+	ScienceDomainsPresetsList(ctx context.Context, params *ScienceDomainsPresetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ScienceDomainsPresetsCount request
+	ScienceDomainsPresetsCount(ctx context.Context, params *ScienceDomainsPresetsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ScienceDomainsDestroy request
+	ScienceDomainsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ScienceDomainsRetrieve request
+	ScienceDomainsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ScienceDomainsPartialUpdateWithBody request with any body
+	ScienceDomainsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ScienceDomainsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ScienceDomainsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ScienceDomainsUpdateWithBody request with any body
+	ScienceDomainsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ScienceDomainsUpdate(ctx context.Context, uuid openapi_types.UUID, body ScienceDomainsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ScienceSubDomainsList request
+	ScienceSubDomainsList(ctx context.Context, params *ScienceSubDomainsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ScienceSubDomainsCount request
+	ScienceSubDomainsCount(ctx context.Context, params *ScienceSubDomainsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ScienceSubDomainsCreateWithBody request with any body
+	ScienceSubDomainsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ScienceSubDomainsCreate(ctx context.Context, body ScienceSubDomainsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ScienceSubDomainsDestroy request
+	ScienceSubDomainsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ScienceSubDomainsRetrieve request
+	ScienceSubDomainsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ScienceSubDomainsPartialUpdateWithBody request with any body
+	ScienceSubDomainsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ScienceSubDomainsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ScienceSubDomainsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ScienceSubDomainsUpdateWithBody request with any body
+	ScienceSubDomainsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ScienceSubDomainsUpdate(ctx context.Context, uuid openapi_types.UUID, body ScienceSubDomainsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ServiceSettingsList request
 	ServiceSettingsList(ctx context.Context, params *ServiceSettingsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -131218,6 +131614,294 @@ func (c *Client) RolesUpdateDescriptionsUpdateWithBody(ctx context.Context, uuid
 
 func (c *Client) RolesUpdateDescriptionsUpdate(ctx context.Context, uuid openapi_types.UUID, body RolesUpdateDescriptionsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewRolesUpdateDescriptionsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ScienceDomainsList(ctx context.Context, params *ScienceDomainsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewScienceDomainsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ScienceDomainsCount(ctx context.Context, params *ScienceDomainsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewScienceDomainsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ScienceDomainsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewScienceDomainsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ScienceDomainsCreate(ctx context.Context, body ScienceDomainsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewScienceDomainsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ScienceDomainsLoadPresetWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewScienceDomainsLoadPresetRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ScienceDomainsLoadPreset(ctx context.Context, body ScienceDomainsLoadPresetJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewScienceDomainsLoadPresetRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ScienceDomainsPresetsList(ctx context.Context, params *ScienceDomainsPresetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewScienceDomainsPresetsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ScienceDomainsPresetsCount(ctx context.Context, params *ScienceDomainsPresetsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewScienceDomainsPresetsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ScienceDomainsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewScienceDomainsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ScienceDomainsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewScienceDomainsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ScienceDomainsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewScienceDomainsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ScienceDomainsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ScienceDomainsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewScienceDomainsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ScienceDomainsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewScienceDomainsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ScienceDomainsUpdate(ctx context.Context, uuid openapi_types.UUID, body ScienceDomainsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewScienceDomainsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ScienceSubDomainsList(ctx context.Context, params *ScienceSubDomainsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewScienceSubDomainsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ScienceSubDomainsCount(ctx context.Context, params *ScienceSubDomainsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewScienceSubDomainsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ScienceSubDomainsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewScienceSubDomainsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ScienceSubDomainsCreate(ctx context.Context, body ScienceSubDomainsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewScienceSubDomainsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ScienceSubDomainsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewScienceSubDomainsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ScienceSubDomainsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewScienceSubDomainsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ScienceSubDomainsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewScienceSubDomainsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ScienceSubDomainsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ScienceSubDomainsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewScienceSubDomainsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ScienceSubDomainsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewScienceSubDomainsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ScienceSubDomainsUpdate(ctx context.Context, uuid openapi_types.UUID, body ScienceSubDomainsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewScienceSubDomainsUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -232148,6 +232832,38 @@ func NewMarketplaceServiceProvidersCustomerProjectsListRequest(server string, se
 
 		}
 
+		if params.ScienceDomainUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "science_domain_uuid", *params.ScienceDomainUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScienceSubDomainUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "science_sub_domain_uuid", *params.ScienceSubDomainUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Slug != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -234423,6 +235139,38 @@ func NewMarketplaceServiceProvidersProjectsListRequest(server string, servicePro
 		if params.Query != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScienceDomainUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "science_domain_uuid", *params.ScienceDomainUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScienceSubDomainUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "science_sub_domain_uuid", *params.ScienceSubDomainUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -261717,6 +262465,38 @@ func NewOpenportalUnmanagedProjectsListRequest(server string, params *Openportal
 
 		}
 
+		if params.ScienceDomainUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "science_domain_uuid", *params.ScienceDomainUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScienceSubDomainUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "science_sub_domain_uuid", *params.ScienceSubDomainUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Slug != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -262185,6 +262965,38 @@ func NewOpenportalUnmanagedProjectsCountRequest(server string, params *Openporta
 		if params.Query != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScienceDomainUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "science_domain_uuid", *params.ScienceDomainUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScienceSubDomainUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "science_sub_domain_uuid", *params.ScienceSubDomainUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -293477,6 +294289,38 @@ func NewProjectsListRequest(server string, params *ProjectsListParams) (*http.Re
 
 		}
 
+		if params.ScienceDomainUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "science_domain_uuid", *params.ScienceDomainUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScienceSubDomainUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "science_sub_domain_uuid", *params.ScienceSubDomainUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Slug != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -293945,6 +294789,38 @@ func NewProjectsCountRequest(server string, params *ProjectsCountParams) (*http.
 		if params.Query != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScienceDomainUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "science_domain_uuid", *params.ScienceDomainUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScienceSubDomainUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "science_sub_domain_uuid", *params.ScienceSubDomainUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -320500,6 +321376,1192 @@ func NewRolesUpdateDescriptionsUpdateRequestWithBody(server string, uuid openapi
 	}
 
 	operationPath := fmt.Sprintf("/api/roles/%s/update_descriptions/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewScienceDomainsListRequest generates requests for ScienceDomainsList
+func NewScienceDomainsListRequest(server string, params *ScienceDomainsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/science-domains/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewScienceDomainsCountRequest generates requests for ScienceDomainsCount
+func NewScienceDomainsCountRequest(server string, params *ScienceDomainsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/science-domains/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewScienceDomainsCreateRequest calls the generic ScienceDomainsCreate builder with application/json body
+func NewScienceDomainsCreateRequest(server string, body ScienceDomainsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewScienceDomainsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewScienceDomainsCreateRequestWithBody generates requests for ScienceDomainsCreate with any type of body
+func NewScienceDomainsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/science-domains/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewScienceDomainsLoadPresetRequest calls the generic ScienceDomainsLoadPreset builder with application/json body
+func NewScienceDomainsLoadPresetRequest(server string, body ScienceDomainsLoadPresetJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewScienceDomainsLoadPresetRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewScienceDomainsLoadPresetRequestWithBody generates requests for ScienceDomainsLoadPreset with any type of body
+func NewScienceDomainsLoadPresetRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/science-domains/load_preset/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewScienceDomainsPresetsListRequest generates requests for ScienceDomainsPresetsList
+func NewScienceDomainsPresetsListRequest(server string, params *ScienceDomainsPresetsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/science-domains/presets/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewScienceDomainsPresetsCountRequest generates requests for ScienceDomainsPresetsCount
+func NewScienceDomainsPresetsCountRequest(server string, params *ScienceDomainsPresetsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/science-domains/presets/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewScienceDomainsDestroyRequest generates requests for ScienceDomainsDestroy
+func NewScienceDomainsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/science-domains/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewScienceDomainsRetrieveRequest generates requests for ScienceDomainsRetrieve
+func NewScienceDomainsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/science-domains/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewScienceDomainsPartialUpdateRequest calls the generic ScienceDomainsPartialUpdate builder with application/json body
+func NewScienceDomainsPartialUpdateRequest(server string, uuid openapi_types.UUID, body ScienceDomainsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewScienceDomainsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewScienceDomainsPartialUpdateRequestWithBody generates requests for ScienceDomainsPartialUpdate with any type of body
+func NewScienceDomainsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/science-domains/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewScienceDomainsUpdateRequest calls the generic ScienceDomainsUpdate builder with application/json body
+func NewScienceDomainsUpdateRequest(server string, uuid openapi_types.UUID, body ScienceDomainsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewScienceDomainsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewScienceDomainsUpdateRequestWithBody generates requests for ScienceDomainsUpdate with any type of body
+func NewScienceDomainsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/science-domains/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewScienceSubDomainsListRequest generates requests for ScienceSubDomainsList
+func NewScienceSubDomainsListRequest(server string, params *ScienceSubDomainsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/science-sub-domains/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.DomainName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "domain_name", *params.DomainName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DomainUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "domain_uuid", *params.DomainUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewScienceSubDomainsCountRequest generates requests for ScienceSubDomainsCount
+func NewScienceSubDomainsCountRequest(server string, params *ScienceSubDomainsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/science-sub-domains/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.DomainName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "domain_name", *params.DomainName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DomainUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "domain_uuid", *params.DomainUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewScienceSubDomainsCreateRequest calls the generic ScienceSubDomainsCreate builder with application/json body
+func NewScienceSubDomainsCreateRequest(server string, body ScienceSubDomainsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewScienceSubDomainsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewScienceSubDomainsCreateRequestWithBody generates requests for ScienceSubDomainsCreate with any type of body
+func NewScienceSubDomainsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/science-sub-domains/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewScienceSubDomainsDestroyRequest generates requests for ScienceSubDomainsDestroy
+func NewScienceSubDomainsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/science-sub-domains/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewScienceSubDomainsRetrieveRequest generates requests for ScienceSubDomainsRetrieve
+func NewScienceSubDomainsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/science-sub-domains/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewScienceSubDomainsPartialUpdateRequest calls the generic ScienceSubDomainsPartialUpdate builder with application/json body
+func NewScienceSubDomainsPartialUpdateRequest(server string, uuid openapi_types.UUID, body ScienceSubDomainsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewScienceSubDomainsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewScienceSubDomainsPartialUpdateRequestWithBody generates requests for ScienceSubDomainsPartialUpdate with any type of body
+func NewScienceSubDomainsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/science-sub-domains/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewScienceSubDomainsUpdateRequest calls the generic ScienceSubDomainsUpdate builder with application/json body
+func NewScienceSubDomainsUpdateRequest(server string, uuid openapi_types.UUID, body ScienceSubDomainsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewScienceSubDomainsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewScienceSubDomainsUpdateRequestWithBody generates requests for ScienceSubDomainsUpdate with any type of body
+func NewScienceSubDomainsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/science-sub-domains/%s/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -353271,6 +355333,71 @@ type ClientWithResponsesInterface interface {
 	RolesUpdateDescriptionsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RolesUpdateDescriptionsUpdateResponse, error)
 
 	RolesUpdateDescriptionsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body RolesUpdateDescriptionsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*RolesUpdateDescriptionsUpdateResponse, error)
+
+	// ScienceDomainsListWithResponse request
+	ScienceDomainsListWithResponse(ctx context.Context, params *ScienceDomainsListParams, reqEditors ...RequestEditorFn) (*ScienceDomainsListResponse, error)
+
+	// ScienceDomainsCountWithResponse request
+	ScienceDomainsCountWithResponse(ctx context.Context, params *ScienceDomainsCountParams, reqEditors ...RequestEditorFn) (*ScienceDomainsCountResponse, error)
+
+	// ScienceDomainsCreateWithBodyWithResponse request with any body
+	ScienceDomainsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ScienceDomainsCreateResponse, error)
+
+	ScienceDomainsCreateWithResponse(ctx context.Context, body ScienceDomainsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ScienceDomainsCreateResponse, error)
+
+	// ScienceDomainsLoadPresetWithBodyWithResponse request with any body
+	ScienceDomainsLoadPresetWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ScienceDomainsLoadPresetResponse, error)
+
+	ScienceDomainsLoadPresetWithResponse(ctx context.Context, body ScienceDomainsLoadPresetJSONRequestBody, reqEditors ...RequestEditorFn) (*ScienceDomainsLoadPresetResponse, error)
+
+	// ScienceDomainsPresetsListWithResponse request
+	ScienceDomainsPresetsListWithResponse(ctx context.Context, params *ScienceDomainsPresetsListParams, reqEditors ...RequestEditorFn) (*ScienceDomainsPresetsListResponse, error)
+
+	// ScienceDomainsPresetsCountWithResponse request
+	ScienceDomainsPresetsCountWithResponse(ctx context.Context, params *ScienceDomainsPresetsCountParams, reqEditors ...RequestEditorFn) (*ScienceDomainsPresetsCountResponse, error)
+
+	// ScienceDomainsDestroyWithResponse request
+	ScienceDomainsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ScienceDomainsDestroyResponse, error)
+
+	// ScienceDomainsRetrieveWithResponse request
+	ScienceDomainsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ScienceDomainsRetrieveResponse, error)
+
+	// ScienceDomainsPartialUpdateWithBodyWithResponse request with any body
+	ScienceDomainsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ScienceDomainsPartialUpdateResponse, error)
+
+	ScienceDomainsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ScienceDomainsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ScienceDomainsPartialUpdateResponse, error)
+
+	// ScienceDomainsUpdateWithBodyWithResponse request with any body
+	ScienceDomainsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ScienceDomainsUpdateResponse, error)
+
+	ScienceDomainsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ScienceDomainsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ScienceDomainsUpdateResponse, error)
+
+	// ScienceSubDomainsListWithResponse request
+	ScienceSubDomainsListWithResponse(ctx context.Context, params *ScienceSubDomainsListParams, reqEditors ...RequestEditorFn) (*ScienceSubDomainsListResponse, error)
+
+	// ScienceSubDomainsCountWithResponse request
+	ScienceSubDomainsCountWithResponse(ctx context.Context, params *ScienceSubDomainsCountParams, reqEditors ...RequestEditorFn) (*ScienceSubDomainsCountResponse, error)
+
+	// ScienceSubDomainsCreateWithBodyWithResponse request with any body
+	ScienceSubDomainsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ScienceSubDomainsCreateResponse, error)
+
+	ScienceSubDomainsCreateWithResponse(ctx context.Context, body ScienceSubDomainsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ScienceSubDomainsCreateResponse, error)
+
+	// ScienceSubDomainsDestroyWithResponse request
+	ScienceSubDomainsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ScienceSubDomainsDestroyResponse, error)
+
+	// ScienceSubDomainsRetrieveWithResponse request
+	ScienceSubDomainsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ScienceSubDomainsRetrieveResponse, error)
+
+	// ScienceSubDomainsPartialUpdateWithBodyWithResponse request with any body
+	ScienceSubDomainsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ScienceSubDomainsPartialUpdateResponse, error)
+
+	ScienceSubDomainsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ScienceSubDomainsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ScienceSubDomainsPartialUpdateResponse, error)
+
+	// ScienceSubDomainsUpdateWithBodyWithResponse request with any body
+	ScienceSubDomainsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ScienceSubDomainsUpdateResponse, error)
+
+	ScienceSubDomainsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ScienceSubDomainsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ScienceSubDomainsUpdateResponse, error)
 
 	// ServiceSettingsListWithResponse request
 	ServiceSettingsListWithResponse(ctx context.Context, params *ServiceSettingsListParams, reqEditors ...RequestEditorFn) (*ServiceSettingsListResponse, error)
@@ -401962,6 +404089,375 @@ func (r RolesUpdateDescriptionsUpdateResponse) StatusCode() int {
 	return 0
 }
 
+type ScienceDomainsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ScienceDomain
+}
+
+// Status returns HTTPResponse.Status
+func (r ScienceDomainsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ScienceDomainsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ScienceDomainsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ScienceDomainsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ScienceDomainsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ScienceDomainsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *ScienceDomain
+}
+
+// Status returns HTTPResponse.Status
+func (r ScienceDomainsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ScienceDomainsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ScienceDomainsLoadPresetResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *LoadScienceDomainPresetResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ScienceDomainsLoadPresetResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ScienceDomainsLoadPresetResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ScienceDomainsPresetsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ScienceDomainPreset
+}
+
+// Status returns HTTPResponse.Status
+func (r ScienceDomainsPresetsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ScienceDomainsPresetsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ScienceDomainsPresetsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ScienceDomainsPresetsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ScienceDomainsPresetsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ScienceDomainsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ScienceDomainsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ScienceDomainsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ScienceDomainsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ScienceDomain
+}
+
+// Status returns HTTPResponse.Status
+func (r ScienceDomainsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ScienceDomainsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ScienceDomainsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ScienceDomain
+}
+
+// Status returns HTTPResponse.Status
+func (r ScienceDomainsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ScienceDomainsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ScienceDomainsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ScienceDomain
+}
+
+// Status returns HTTPResponse.Status
+func (r ScienceDomainsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ScienceDomainsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ScienceSubDomainsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ScienceSubDomain
+}
+
+// Status returns HTTPResponse.Status
+func (r ScienceSubDomainsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ScienceSubDomainsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ScienceSubDomainsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ScienceSubDomainsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ScienceSubDomainsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ScienceSubDomainsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *ScienceSubDomain
+}
+
+// Status returns HTTPResponse.Status
+func (r ScienceSubDomainsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ScienceSubDomainsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ScienceSubDomainsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ScienceSubDomainsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ScienceSubDomainsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ScienceSubDomainsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ScienceSubDomain
+}
+
+// Status returns HTTPResponse.Status
+func (r ScienceSubDomainsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ScienceSubDomainsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ScienceSubDomainsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ScienceSubDomain
+}
+
+// Status returns HTTPResponse.Status
+func (r ScienceSubDomainsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ScienceSubDomainsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ScienceSubDomainsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ScienceSubDomain
+}
+
+// Status returns HTTPResponse.Status
+func (r ScienceSubDomainsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ScienceSubDomainsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ServiceSettingsListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -433912,6 +436408,215 @@ func (c *ClientWithResponses) RolesUpdateDescriptionsUpdateWithResponse(ctx cont
 		return nil, err
 	}
 	return ParseRolesUpdateDescriptionsUpdateResponse(rsp)
+}
+
+// ScienceDomainsListWithResponse request returning *ScienceDomainsListResponse
+func (c *ClientWithResponses) ScienceDomainsListWithResponse(ctx context.Context, params *ScienceDomainsListParams, reqEditors ...RequestEditorFn) (*ScienceDomainsListResponse, error) {
+	rsp, err := c.ScienceDomainsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseScienceDomainsListResponse(rsp)
+}
+
+// ScienceDomainsCountWithResponse request returning *ScienceDomainsCountResponse
+func (c *ClientWithResponses) ScienceDomainsCountWithResponse(ctx context.Context, params *ScienceDomainsCountParams, reqEditors ...RequestEditorFn) (*ScienceDomainsCountResponse, error) {
+	rsp, err := c.ScienceDomainsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseScienceDomainsCountResponse(rsp)
+}
+
+// ScienceDomainsCreateWithBodyWithResponse request with arbitrary body returning *ScienceDomainsCreateResponse
+func (c *ClientWithResponses) ScienceDomainsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ScienceDomainsCreateResponse, error) {
+	rsp, err := c.ScienceDomainsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseScienceDomainsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ScienceDomainsCreateWithResponse(ctx context.Context, body ScienceDomainsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ScienceDomainsCreateResponse, error) {
+	rsp, err := c.ScienceDomainsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseScienceDomainsCreateResponse(rsp)
+}
+
+// ScienceDomainsLoadPresetWithBodyWithResponse request with arbitrary body returning *ScienceDomainsLoadPresetResponse
+func (c *ClientWithResponses) ScienceDomainsLoadPresetWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ScienceDomainsLoadPresetResponse, error) {
+	rsp, err := c.ScienceDomainsLoadPresetWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseScienceDomainsLoadPresetResponse(rsp)
+}
+
+func (c *ClientWithResponses) ScienceDomainsLoadPresetWithResponse(ctx context.Context, body ScienceDomainsLoadPresetJSONRequestBody, reqEditors ...RequestEditorFn) (*ScienceDomainsLoadPresetResponse, error) {
+	rsp, err := c.ScienceDomainsLoadPreset(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseScienceDomainsLoadPresetResponse(rsp)
+}
+
+// ScienceDomainsPresetsListWithResponse request returning *ScienceDomainsPresetsListResponse
+func (c *ClientWithResponses) ScienceDomainsPresetsListWithResponse(ctx context.Context, params *ScienceDomainsPresetsListParams, reqEditors ...RequestEditorFn) (*ScienceDomainsPresetsListResponse, error) {
+	rsp, err := c.ScienceDomainsPresetsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseScienceDomainsPresetsListResponse(rsp)
+}
+
+// ScienceDomainsPresetsCountWithResponse request returning *ScienceDomainsPresetsCountResponse
+func (c *ClientWithResponses) ScienceDomainsPresetsCountWithResponse(ctx context.Context, params *ScienceDomainsPresetsCountParams, reqEditors ...RequestEditorFn) (*ScienceDomainsPresetsCountResponse, error) {
+	rsp, err := c.ScienceDomainsPresetsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseScienceDomainsPresetsCountResponse(rsp)
+}
+
+// ScienceDomainsDestroyWithResponse request returning *ScienceDomainsDestroyResponse
+func (c *ClientWithResponses) ScienceDomainsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ScienceDomainsDestroyResponse, error) {
+	rsp, err := c.ScienceDomainsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseScienceDomainsDestroyResponse(rsp)
+}
+
+// ScienceDomainsRetrieveWithResponse request returning *ScienceDomainsRetrieveResponse
+func (c *ClientWithResponses) ScienceDomainsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ScienceDomainsRetrieveResponse, error) {
+	rsp, err := c.ScienceDomainsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseScienceDomainsRetrieveResponse(rsp)
+}
+
+// ScienceDomainsPartialUpdateWithBodyWithResponse request with arbitrary body returning *ScienceDomainsPartialUpdateResponse
+func (c *ClientWithResponses) ScienceDomainsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ScienceDomainsPartialUpdateResponse, error) {
+	rsp, err := c.ScienceDomainsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseScienceDomainsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ScienceDomainsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ScienceDomainsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ScienceDomainsPartialUpdateResponse, error) {
+	rsp, err := c.ScienceDomainsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseScienceDomainsPartialUpdateResponse(rsp)
+}
+
+// ScienceDomainsUpdateWithBodyWithResponse request with arbitrary body returning *ScienceDomainsUpdateResponse
+func (c *ClientWithResponses) ScienceDomainsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ScienceDomainsUpdateResponse, error) {
+	rsp, err := c.ScienceDomainsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseScienceDomainsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ScienceDomainsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ScienceDomainsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ScienceDomainsUpdateResponse, error) {
+	rsp, err := c.ScienceDomainsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseScienceDomainsUpdateResponse(rsp)
+}
+
+// ScienceSubDomainsListWithResponse request returning *ScienceSubDomainsListResponse
+func (c *ClientWithResponses) ScienceSubDomainsListWithResponse(ctx context.Context, params *ScienceSubDomainsListParams, reqEditors ...RequestEditorFn) (*ScienceSubDomainsListResponse, error) {
+	rsp, err := c.ScienceSubDomainsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseScienceSubDomainsListResponse(rsp)
+}
+
+// ScienceSubDomainsCountWithResponse request returning *ScienceSubDomainsCountResponse
+func (c *ClientWithResponses) ScienceSubDomainsCountWithResponse(ctx context.Context, params *ScienceSubDomainsCountParams, reqEditors ...RequestEditorFn) (*ScienceSubDomainsCountResponse, error) {
+	rsp, err := c.ScienceSubDomainsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseScienceSubDomainsCountResponse(rsp)
+}
+
+// ScienceSubDomainsCreateWithBodyWithResponse request with arbitrary body returning *ScienceSubDomainsCreateResponse
+func (c *ClientWithResponses) ScienceSubDomainsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ScienceSubDomainsCreateResponse, error) {
+	rsp, err := c.ScienceSubDomainsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseScienceSubDomainsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ScienceSubDomainsCreateWithResponse(ctx context.Context, body ScienceSubDomainsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ScienceSubDomainsCreateResponse, error) {
+	rsp, err := c.ScienceSubDomainsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseScienceSubDomainsCreateResponse(rsp)
+}
+
+// ScienceSubDomainsDestroyWithResponse request returning *ScienceSubDomainsDestroyResponse
+func (c *ClientWithResponses) ScienceSubDomainsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ScienceSubDomainsDestroyResponse, error) {
+	rsp, err := c.ScienceSubDomainsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseScienceSubDomainsDestroyResponse(rsp)
+}
+
+// ScienceSubDomainsRetrieveWithResponse request returning *ScienceSubDomainsRetrieveResponse
+func (c *ClientWithResponses) ScienceSubDomainsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ScienceSubDomainsRetrieveResponse, error) {
+	rsp, err := c.ScienceSubDomainsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseScienceSubDomainsRetrieveResponse(rsp)
+}
+
+// ScienceSubDomainsPartialUpdateWithBodyWithResponse request with arbitrary body returning *ScienceSubDomainsPartialUpdateResponse
+func (c *ClientWithResponses) ScienceSubDomainsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ScienceSubDomainsPartialUpdateResponse, error) {
+	rsp, err := c.ScienceSubDomainsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseScienceSubDomainsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ScienceSubDomainsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ScienceSubDomainsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ScienceSubDomainsPartialUpdateResponse, error) {
+	rsp, err := c.ScienceSubDomainsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseScienceSubDomainsPartialUpdateResponse(rsp)
+}
+
+// ScienceSubDomainsUpdateWithBodyWithResponse request with arbitrary body returning *ScienceSubDomainsUpdateResponse
+func (c *ClientWithResponses) ScienceSubDomainsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ScienceSubDomainsUpdateResponse, error) {
+	rsp, err := c.ScienceSubDomainsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseScienceSubDomainsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ScienceSubDomainsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ScienceSubDomainsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ScienceSubDomainsUpdateResponse, error) {
+	rsp, err := c.ScienceSubDomainsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseScienceSubDomainsUpdateResponse(rsp)
 }
 
 // ServiceSettingsListWithResponse request returning *ServiceSettingsListResponse
@@ -487670,6 +490375,398 @@ func ParseRolesUpdateDescriptionsUpdateResponse(rsp *http.Response) (*RolesUpdat
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest RoleDescription
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseScienceDomainsListResponse parses an HTTP response from a ScienceDomainsListWithResponse call
+func ParseScienceDomainsListResponse(rsp *http.Response) (*ScienceDomainsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ScienceDomainsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ScienceDomain
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseScienceDomainsCountResponse parses an HTTP response from a ScienceDomainsCountWithResponse call
+func ParseScienceDomainsCountResponse(rsp *http.Response) (*ScienceDomainsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ScienceDomainsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseScienceDomainsCreateResponse parses an HTTP response from a ScienceDomainsCreateWithResponse call
+func ParseScienceDomainsCreateResponse(rsp *http.Response) (*ScienceDomainsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ScienceDomainsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest ScienceDomain
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseScienceDomainsLoadPresetResponse parses an HTTP response from a ScienceDomainsLoadPresetWithResponse call
+func ParseScienceDomainsLoadPresetResponse(rsp *http.Response) (*ScienceDomainsLoadPresetResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ScienceDomainsLoadPresetResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest LoadScienceDomainPresetResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseScienceDomainsPresetsListResponse parses an HTTP response from a ScienceDomainsPresetsListWithResponse call
+func ParseScienceDomainsPresetsListResponse(rsp *http.Response) (*ScienceDomainsPresetsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ScienceDomainsPresetsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ScienceDomainPreset
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseScienceDomainsPresetsCountResponse parses an HTTP response from a ScienceDomainsPresetsCountWithResponse call
+func ParseScienceDomainsPresetsCountResponse(rsp *http.Response) (*ScienceDomainsPresetsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ScienceDomainsPresetsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseScienceDomainsDestroyResponse parses an HTTP response from a ScienceDomainsDestroyWithResponse call
+func ParseScienceDomainsDestroyResponse(rsp *http.Response) (*ScienceDomainsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ScienceDomainsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseScienceDomainsRetrieveResponse parses an HTTP response from a ScienceDomainsRetrieveWithResponse call
+func ParseScienceDomainsRetrieveResponse(rsp *http.Response) (*ScienceDomainsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ScienceDomainsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ScienceDomain
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseScienceDomainsPartialUpdateResponse parses an HTTP response from a ScienceDomainsPartialUpdateWithResponse call
+func ParseScienceDomainsPartialUpdateResponse(rsp *http.Response) (*ScienceDomainsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ScienceDomainsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ScienceDomain
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseScienceDomainsUpdateResponse parses an HTTP response from a ScienceDomainsUpdateWithResponse call
+func ParseScienceDomainsUpdateResponse(rsp *http.Response) (*ScienceDomainsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ScienceDomainsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ScienceDomain
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseScienceSubDomainsListResponse parses an HTTP response from a ScienceSubDomainsListWithResponse call
+func ParseScienceSubDomainsListResponse(rsp *http.Response) (*ScienceSubDomainsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ScienceSubDomainsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ScienceSubDomain
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseScienceSubDomainsCountResponse parses an HTTP response from a ScienceSubDomainsCountWithResponse call
+func ParseScienceSubDomainsCountResponse(rsp *http.Response) (*ScienceSubDomainsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ScienceSubDomainsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseScienceSubDomainsCreateResponse parses an HTTP response from a ScienceSubDomainsCreateWithResponse call
+func ParseScienceSubDomainsCreateResponse(rsp *http.Response) (*ScienceSubDomainsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ScienceSubDomainsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest ScienceSubDomain
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseScienceSubDomainsDestroyResponse parses an HTTP response from a ScienceSubDomainsDestroyWithResponse call
+func ParseScienceSubDomainsDestroyResponse(rsp *http.Response) (*ScienceSubDomainsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ScienceSubDomainsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseScienceSubDomainsRetrieveResponse parses an HTTP response from a ScienceSubDomainsRetrieveWithResponse call
+func ParseScienceSubDomainsRetrieveResponse(rsp *http.Response) (*ScienceSubDomainsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ScienceSubDomainsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ScienceSubDomain
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseScienceSubDomainsPartialUpdateResponse parses an HTTP response from a ScienceSubDomainsPartialUpdateWithResponse call
+func ParseScienceSubDomainsPartialUpdateResponse(rsp *http.Response) (*ScienceSubDomainsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ScienceSubDomainsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ScienceSubDomain
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseScienceSubDomainsUpdateResponse parses an HTTP response from a ScienceSubDomainsUpdateWithResponse call
+func ParseScienceSubDomainsUpdateResponse(rsp *http.Response) (*ScienceSubDomainsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ScienceSubDomainsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ScienceSubDomain
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
