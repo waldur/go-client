@@ -2190,6 +2190,7 @@ const (
 	BookingResourceFieldEnumProjectEffectiveEndDate    BookingResourceFieldEnum = "project_effective_end_date"
 	BookingResourceFieldEnumProjectEndDate             BookingResourceFieldEnum = "project_end_date"
 	BookingResourceFieldEnumProjectEndDateRequestedBy  BookingResourceFieldEnum = "project_end_date_requested_by"
+	BookingResourceFieldEnumProjectIsInGracePeriod     BookingResourceFieldEnum = "project_is_in_grace_period"
 	BookingResourceFieldEnumProjectName                BookingResourceFieldEnum = "project_name"
 	BookingResourceFieldEnumProjectSlug                BookingResourceFieldEnum = "project_slug"
 	BookingResourceFieldEnumProjectUuid                BookingResourceFieldEnum = "project_uuid"
@@ -2349,6 +2350,8 @@ func (e BookingResourceFieldEnum) Valid() bool {
 	case BookingResourceFieldEnumProjectEndDate:
 		return true
 	case BookingResourceFieldEnumProjectEndDateRequestedBy:
+		return true
+	case BookingResourceFieldEnumProjectIsInGracePeriod:
 		return true
 	case BookingResourceFieldEnumProjectName:
 		return true
@@ -17628,6 +17631,7 @@ const (
 	ResourceFieldEnumProjectEffectiveEndDate   ResourceFieldEnum = "project_effective_end_date"
 	ResourceFieldEnumProjectEndDate            ResourceFieldEnum = "project_end_date"
 	ResourceFieldEnumProjectEndDateRequestedBy ResourceFieldEnum = "project_end_date_requested_by"
+	ResourceFieldEnumProjectIsInGracePeriod    ResourceFieldEnum = "project_is_in_grace_period"
 	ResourceFieldEnumProjectName               ResourceFieldEnum = "project_name"
 	ResourceFieldEnumProjectSlug               ResourceFieldEnum = "project_slug"
 	ResourceFieldEnumProjectUuid               ResourceFieldEnum = "project_uuid"
@@ -17774,6 +17778,8 @@ func (e ResourceFieldEnum) Valid() bool {
 	case ResourceFieldEnumProjectEndDate:
 		return true
 	case ResourceFieldEnumProjectEndDateRequestedBy:
+		return true
+	case ResourceFieldEnumProjectIsInGracePeriod:
 		return true
 	case ResourceFieldEnumProjectName:
 		return true
@@ -23695,23 +23701,26 @@ type BookingResource struct {
 	ProjectEffectiveEndDate *openapi_types.Date `json:"project_effective_end_date,omitempty"`
 
 	// ProjectEndDate The date is inclusive. Once reached, all project resource will be scheduled for termination.
-	ProjectEndDate            *openapi_types.Date            `json:"project_end_date,omitempty"`
-	ProjectEndDateRequestedBy *string                        `json:"project_end_date_requested_by,omitempty"`
-	ProjectName               *string                        `json:"project_name,omitempty"`
-	ProjectSlug               *string                        `json:"project_slug,omitempty"`
-	ProjectUuid               *openapi_types.UUID            `json:"project_uuid,omitempty"`
-	ProviderDescription       *string                        `json:"provider_description,omitempty"`
-	ProviderName              *string                        `json:"provider_name,omitempty"`
-	ProviderSlug              *string                        `json:"provider_slug,omitempty"`
-	ProviderUuid              *openapi_types.UUID            `json:"provider_uuid,omitempty"`
-	RenewalDate               *map[string]openapi_types.Date `json:"renewal_date,omitempty"`
-	Report                    *[]ReportSection               `json:"report,omitempty"`
-	ResourceType              *string                        `json:"resource_type,omitempty"`
-	ResourceUuid              *openapi_types.UUID            `json:"resource_uuid,omitempty"`
-	RestrictMemberAccess      *bool                          `json:"restrict_member_access,omitempty"`
-	Scope                     *string                        `json:"scope,omitempty"`
-	ServiceSettingsUuid       *openapi_types.UUID            `json:"service_settings_uuid,omitempty"`
-	Slots                     *[]BookingSlot                 `json:"slots,omitempty"`
+	ProjectEndDate            *openapi_types.Date `json:"project_end_date,omitempty"`
+	ProjectEndDateRequestedBy *string             `json:"project_end_date_requested_by,omitempty"`
+
+	// ProjectIsInGracePeriod True if the project is past its end date but still within the grace period.
+	ProjectIsInGracePeriod *bool                          `json:"project_is_in_grace_period,omitempty"`
+	ProjectName            *string                        `json:"project_name,omitempty"`
+	ProjectSlug            *string                        `json:"project_slug,omitempty"`
+	ProjectUuid            *openapi_types.UUID            `json:"project_uuid,omitempty"`
+	ProviderDescription    *string                        `json:"provider_description,omitempty"`
+	ProviderName           *string                        `json:"provider_name,omitempty"`
+	ProviderSlug           *string                        `json:"provider_slug,omitempty"`
+	ProviderUuid           *openapi_types.UUID            `json:"provider_uuid,omitempty"`
+	RenewalDate            *map[string]openapi_types.Date `json:"renewal_date,omitempty"`
+	Report                 *[]ReportSection               `json:"report,omitempty"`
+	ResourceType           *string                        `json:"resource_type,omitempty"`
+	ResourceUuid           *openapi_types.UUID            `json:"resource_uuid,omitempty"`
+	RestrictMemberAccess   *bool                          `json:"restrict_member_access,omitempty"`
+	Scope                  *string                        `json:"scope,omitempty"`
+	ServiceSettingsUuid    *openapi_types.UUID            `json:"service_settings_uuid,omitempty"`
+	Slots                  *[]BookingSlot                 `json:"slots,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug  *string        `json:"slug,omitempty"`
@@ -44358,22 +44367,25 @@ type Resource struct {
 	ProjectEffectiveEndDate *openapi_types.Date `json:"project_effective_end_date,omitempty"`
 
 	// ProjectEndDate The date is inclusive. Once reached, all project resource will be scheduled for termination.
-	ProjectEndDate            *openapi_types.Date            `json:"project_end_date,omitempty"`
-	ProjectEndDateRequestedBy *string                        `json:"project_end_date_requested_by,omitempty"`
-	ProjectName               *string                        `json:"project_name,omitempty"`
-	ProjectSlug               *string                        `json:"project_slug,omitempty"`
-	ProjectUuid               *openapi_types.UUID            `json:"project_uuid,omitempty"`
-	ProviderDescription       *string                        `json:"provider_description,omitempty"`
-	ProviderName              *string                        `json:"provider_name,omitempty"`
-	ProviderSlug              *string                        `json:"provider_slug,omitempty"`
-	ProviderUuid              *openapi_types.UUID            `json:"provider_uuid,omitempty"`
-	RenewalDate               *map[string]openapi_types.Date `json:"renewal_date,omitempty"`
-	Report                    *[]ReportSection               `json:"report,omitempty"`
-	ResourceType              *string                        `json:"resource_type,omitempty"`
-	ResourceUuid              *openapi_types.UUID            `json:"resource_uuid,omitempty"`
-	RestrictMemberAccess      *bool                          `json:"restrict_member_access,omitempty"`
-	Scope                     *string                        `json:"scope,omitempty"`
-	ServiceSettingsUuid       *openapi_types.UUID            `json:"service_settings_uuid,omitempty"`
+	ProjectEndDate            *openapi_types.Date `json:"project_end_date,omitempty"`
+	ProjectEndDateRequestedBy *string             `json:"project_end_date_requested_by,omitempty"`
+
+	// ProjectIsInGracePeriod True if the project is past its end date but still within the grace period.
+	ProjectIsInGracePeriod *bool                          `json:"project_is_in_grace_period,omitempty"`
+	ProjectName            *string                        `json:"project_name,omitempty"`
+	ProjectSlug            *string                        `json:"project_slug,omitempty"`
+	ProjectUuid            *openapi_types.UUID            `json:"project_uuid,omitempty"`
+	ProviderDescription    *string                        `json:"provider_description,omitempty"`
+	ProviderName           *string                        `json:"provider_name,omitempty"`
+	ProviderSlug           *string                        `json:"provider_slug,omitempty"`
+	ProviderUuid           *openapi_types.UUID            `json:"provider_uuid,omitempty"`
+	RenewalDate            *map[string]openapi_types.Date `json:"renewal_date,omitempty"`
+	Report                 *[]ReportSection               `json:"report,omitempty"`
+	ResourceType           *string                        `json:"resource_type,omitempty"`
+	ResourceUuid           *openapi_types.UUID            `json:"resource_uuid,omitempty"`
+	RestrictMemberAccess   *bool                          `json:"restrict_member_access,omitempty"`
+	Scope                  *string                        `json:"scope,omitempty"`
+	ServiceSettingsUuid    *openapi_types.UUID            `json:"service_settings_uuid,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug  *string        `json:"slug,omitempty"`
