@@ -63347,6 +63347,18 @@ type OpenstackHypervisorsCountParams struct {
 	Status       *string             `form:"status,omitempty" json:"status,omitempty"`
 }
 
+// OpenstackHypervisorsSummaryRetrieveParams defines parameters for OpenstackHypervisorsSummaryRetrieve.
+type OpenstackHypervisorsSummaryRetrieveParams struct {
+	// SettingsUuid UUID of the OpenStack ServiceSettings to aggregate over.
+	SettingsUuid openapi_types.UUID `form:"settings_uuid" json:"settings_uuid"`
+}
+
+// OpenstackHypervisorsSummaryCountParams defines parameters for OpenstackHypervisorsSummaryCount.
+type OpenstackHypervisorsSummaryCountParams struct {
+	// SettingsUuid UUID of the OpenStack ServiceSettings to aggregate over.
+	SettingsUuid openapi_types.UUID `form:"settings_uuid" json:"settings_uuid"`
+}
+
 // OpenstackImagesListParams defines parameters for OpenstackImagesList.
 type OpenstackImagesListParams struct {
 	// Name Name
@@ -92433,10 +92445,10 @@ type ClientInterface interface {
 	OpenstackHypervisorsCount(ctx context.Context, params *OpenstackHypervisorsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackHypervisorsSummaryRetrieve request
-	OpenstackHypervisorsSummaryRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OpenstackHypervisorsSummaryRetrieve(ctx context.Context, params *OpenstackHypervisorsSummaryRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackHypervisorsSummaryCount request
-	OpenstackHypervisorsSummaryCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OpenstackHypervisorsSummaryCount(ctx context.Context, params *OpenstackHypervisorsSummaryCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackHypervisorsRetrieve request
 	OpenstackHypervisorsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -120954,8 +120966,8 @@ func (c *Client) OpenstackHypervisorsCount(ctx context.Context, params *Openstac
 	return c.Client.Do(req)
 }
 
-func (c *Client) OpenstackHypervisorsSummaryRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackHypervisorsSummaryRetrieveRequest(c.Server)
+func (c *Client) OpenstackHypervisorsSummaryRetrieve(ctx context.Context, params *OpenstackHypervisorsSummaryRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackHypervisorsSummaryRetrieveRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -120966,8 +120978,8 @@ func (c *Client) OpenstackHypervisorsSummaryRetrieve(ctx context.Context, reqEdi
 	return c.Client.Do(req)
 }
 
-func (c *Client) OpenstackHypervisorsSummaryCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackHypervisorsSummaryCountRequest(c.Server)
+func (c *Client) OpenstackHypervisorsSummaryCount(ctx context.Context, params *OpenstackHypervisorsSummaryCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackHypervisorsSummaryCountRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -269488,7 +269500,7 @@ func NewOpenstackHypervisorsCountRequest(server string, params *OpenstackHypervi
 }
 
 // NewOpenstackHypervisorsSummaryRetrieveRequest generates requests for OpenstackHypervisorsSummaryRetrieve
-func NewOpenstackHypervisorsSummaryRetrieveRequest(server string) (*http.Request, error) {
+func NewOpenstackHypervisorsSummaryRetrieveRequest(server string, params *OpenstackHypervisorsSummaryRetrieveParams) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -269504,6 +269516,24 @@ func NewOpenstackHypervisorsSummaryRetrieveRequest(server string) (*http.Request
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "settings_uuid", params.SettingsUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -269515,7 +269545,7 @@ func NewOpenstackHypervisorsSummaryRetrieveRequest(server string) (*http.Request
 }
 
 // NewOpenstackHypervisorsSummaryCountRequest generates requests for OpenstackHypervisorsSummaryCount
-func NewOpenstackHypervisorsSummaryCountRequest(server string) (*http.Request, error) {
+func NewOpenstackHypervisorsSummaryCountRequest(server string, params *OpenstackHypervisorsSummaryCountParams) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -269531,6 +269561,24 @@ func NewOpenstackHypervisorsSummaryCountRequest(server string) (*http.Request, e
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "settings_uuid", params.SettingsUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
@@ -352987,10 +353035,10 @@ type ClientWithResponsesInterface interface {
 	OpenstackHypervisorsCountWithResponse(ctx context.Context, params *OpenstackHypervisorsCountParams, reqEditors ...RequestEditorFn) (*OpenstackHypervisorsCountResponse, error)
 
 	// OpenstackHypervisorsSummaryRetrieveWithResponse request
-	OpenstackHypervisorsSummaryRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenstackHypervisorsSummaryRetrieveResponse, error)
+	OpenstackHypervisorsSummaryRetrieveWithResponse(ctx context.Context, params *OpenstackHypervisorsSummaryRetrieveParams, reqEditors ...RequestEditorFn) (*OpenstackHypervisorsSummaryRetrieveResponse, error)
 
 	// OpenstackHypervisorsSummaryCountWithResponse request
-	OpenstackHypervisorsSummaryCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenstackHypervisorsSummaryCountResponse, error)
+	OpenstackHypervisorsSummaryCountWithResponse(ctx context.Context, params *OpenstackHypervisorsSummaryCountParams, reqEditors ...RequestEditorFn) (*OpenstackHypervisorsSummaryCountResponse, error)
 
 	// OpenstackHypervisorsRetrieveWithResponse request
 	OpenstackHypervisorsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackHypervisorsRetrieveResponse, error)
@@ -428681,8 +428729,8 @@ func (c *ClientWithResponses) OpenstackHypervisorsCountWithResponse(ctx context.
 }
 
 // OpenstackHypervisorsSummaryRetrieveWithResponse request returning *OpenstackHypervisorsSummaryRetrieveResponse
-func (c *ClientWithResponses) OpenstackHypervisorsSummaryRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenstackHypervisorsSummaryRetrieveResponse, error) {
-	rsp, err := c.OpenstackHypervisorsSummaryRetrieve(ctx, reqEditors...)
+func (c *ClientWithResponses) OpenstackHypervisorsSummaryRetrieveWithResponse(ctx context.Context, params *OpenstackHypervisorsSummaryRetrieveParams, reqEditors ...RequestEditorFn) (*OpenstackHypervisorsSummaryRetrieveResponse, error) {
+	rsp, err := c.OpenstackHypervisorsSummaryRetrieve(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -428690,8 +428738,8 @@ func (c *ClientWithResponses) OpenstackHypervisorsSummaryRetrieveWithResponse(ct
 }
 
 // OpenstackHypervisorsSummaryCountWithResponse request returning *OpenstackHypervisorsSummaryCountResponse
-func (c *ClientWithResponses) OpenstackHypervisorsSummaryCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenstackHypervisorsSummaryCountResponse, error) {
-	rsp, err := c.OpenstackHypervisorsSummaryCount(ctx, reqEditors...)
+func (c *ClientWithResponses) OpenstackHypervisorsSummaryCountWithResponse(ctx context.Context, params *OpenstackHypervisorsSummaryCountParams, reqEditors ...RequestEditorFn) (*OpenstackHypervisorsSummaryCountResponse, error) {
+	rsp, err := c.OpenstackHypervisorsSummaryCount(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
