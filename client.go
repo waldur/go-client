@@ -9665,6 +9665,7 @@ func (e MatchingAlgorithm) Valid() bool {
 
 // Defines values for MessageBlocksKey.
 const (
+	MessageBlocksKeyAskUserForm  MessageBlocksKey = "ask_user_form"
 	MessageBlocksKeyCode         MessageBlocksKey = "code"
 	MessageBlocksKeyHomeportNav  MessageBlocksKey = "homeport_nav"
 	MessageBlocksKeyMarkdown     MessageBlocksKey = "markdown"
@@ -9677,6 +9678,8 @@ const (
 // Valid indicates whether the value is a known member of the MessageBlocksKey enum.
 func (e MessageBlocksKey) Valid() bool {
 	switch e {
+	case MessageBlocksKeyAskUserForm:
+		return true
 	case MessageBlocksKeyCode:
 		return true
 	case MessageBlocksKeyHomeportNav:
@@ -24797,6 +24800,9 @@ type ChatResponse struct {
 	// Name VM name.
 	Name *string `json:"name,omitempty"`
 
+	// Network Network name (e.g. 'default'). Present when status='preview'.
+	Network *string `json:"network,omitempty"`
+
 	// Offerings Available offering options [{uuid, name}]. Present when status='offering_form'.
 	Offerings *[]interface{} `json:"offerings,omitempty"`
 
@@ -24815,11 +24821,17 @@ type ChatResponse struct {
 	// Projects Available project options [{name, organization, uuid}]. Present when status='project_form'.
 	Projects *[]interface{} `json:"projects,omitempty"`
 
+	// SshKeyName SSH key name. Present when status='preview'.
+	SshKeyName *string `json:"ssh_key_name,omitempty"`
+
 	// State State display name filters (e.g. ['OK', 'Erred']). Present when k='resource_list'.
 	State *[]interface{} `json:"state,omitempty"`
 
 	// Status vm_order status: 'form' | 'project_form' | 'preview' | 'success' | 'error'.
 	Status *string `json:"status,omitempty"`
+
+	// SystemVolumeSize System volume size in GB. Present when status='preview'.
+	SystemVolumeSize *int `json:"system_volume_size,omitempty"`
 
 	// T Tag or language for dynamic blocks.
 	T *string `json:"t,omitempty"`
