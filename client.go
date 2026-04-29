@@ -15476,6 +15476,7 @@ func (e ProposalStates) Valid() bool {
 
 // Defines values for ProtectedCallFieldEnum.
 const (
+	ProtectedCallFieldEnumApplicantVisibilityConfig           ProtectedCallFieldEnum = "applicant_visibility_config"
 	ProtectedCallFieldEnumBackendId                           ProtectedCallFieldEnum = "backend_id"
 	ProtectedCallFieldEnumComplianceChecklist                 ProtectedCallFieldEnum = "compliance_checklist"
 	ProtectedCallFieldEnumComplianceChecklistName             ProtectedCallFieldEnum = "compliance_checklist_name"
@@ -15515,6 +15516,8 @@ const (
 // Valid indicates whether the value is a known member of the ProtectedCallFieldEnum enum.
 func (e ProtectedCallFieldEnum) Valid() bool {
 	switch e {
+	case ProtectedCallFieldEnumApplicantVisibilityConfig:
+		return true
 	case ProtectedCallFieldEnumBackendId:
 		return true
 	case ProtectedCallFieldEnumComplianceChecklist:
@@ -23973,6 +23976,67 @@ type CallApplicantAttributeConfigRequest struct {
 	ReviewersSeeApplicantDetails *bool `json:"reviewers_see_applicant_details,omitempty"`
 }
 
+// CallApplicantVisibilityConfig defines model for CallApplicantVisibilityConfig.
+type CallApplicantVisibilityConfig struct {
+	Created                        *time.Time `json:"created,omitempty"`
+	ExposeActiveIsds               *bool      `json:"expose_active_isds,omitempty"`
+	ExposeAddress                  *bool      `json:"expose_address,omitempty"`
+	ExposeAffiliations             *bool      `json:"expose_affiliations,omitempty"`
+	ExposeBirthDate                *bool      `json:"expose_birth_date,omitempty"`
+	ExposeCivilNumber              *bool      `json:"expose_civil_number,omitempty"`
+	ExposeCountryOfResidence       *bool      `json:"expose_country_of_residence,omitempty"`
+	ExposeEdupersonAssurance       *bool      `json:"expose_eduperson_assurance,omitempty"`
+	ExposeEmail                    *bool      `json:"expose_email,omitempty"`
+	ExposeFullName                 *bool      `json:"expose_full_name,omitempty"`
+	ExposeGender                   *bool      `json:"expose_gender,omitempty"`
+	ExposeIdentitySource           *bool      `json:"expose_identity_source,omitempty"`
+	ExposeJobTitle                 *bool      `json:"expose_job_title,omitempty"`
+	ExposeNationalities            *bool      `json:"expose_nationalities,omitempty"`
+	ExposeNationality              *bool      `json:"expose_nationality,omitempty"`
+	ExposeOrganization             *bool      `json:"expose_organization,omitempty"`
+	ExposeOrganizationCountry      *bool      `json:"expose_organization_country,omitempty"`
+	ExposeOrganizationRegistryCode *bool      `json:"expose_organization_registry_code,omitempty"`
+	ExposeOrganizationType         *bool      `json:"expose_organization_type,omitempty"`
+	ExposePersonalTitle            *bool      `json:"expose_personal_title,omitempty"`
+	ExposePhoneNumber              *bool      `json:"expose_phone_number,omitempty"`
+	ExposePlaceOfBirth             *bool      `json:"expose_place_of_birth,omitempty"`
+	ExposeRegistrationMethod       *bool      `json:"expose_registration_method,omitempty"`
+	ExposeUsername                 *bool      `json:"expose_username,omitempty"`
+	ExposedFields                  *[]string  `json:"exposed_fields,omitempty"`
+
+	// IsDefault Return True if this is a default (unsaved) config.
+	IsDefault *bool               `json:"is_default,omitempty"`
+	Modified  *time.Time          `json:"modified,omitempty"`
+	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// CallApplicantVisibilityConfigRequest defines model for CallApplicantVisibilityConfigRequest.
+type CallApplicantVisibilityConfigRequest struct {
+	ExposeActiveIsds               *bool `json:"expose_active_isds,omitempty"`
+	ExposeAddress                  *bool `json:"expose_address,omitempty"`
+	ExposeAffiliations             *bool `json:"expose_affiliations,omitempty"`
+	ExposeBirthDate                *bool `json:"expose_birth_date,omitempty"`
+	ExposeCivilNumber              *bool `json:"expose_civil_number,omitempty"`
+	ExposeCountryOfResidence       *bool `json:"expose_country_of_residence,omitempty"`
+	ExposeEdupersonAssurance       *bool `json:"expose_eduperson_assurance,omitempty"`
+	ExposeEmail                    *bool `json:"expose_email,omitempty"`
+	ExposeFullName                 *bool `json:"expose_full_name,omitempty"`
+	ExposeGender                   *bool `json:"expose_gender,omitempty"`
+	ExposeIdentitySource           *bool `json:"expose_identity_source,omitempty"`
+	ExposeJobTitle                 *bool `json:"expose_job_title,omitempty"`
+	ExposeNationalities            *bool `json:"expose_nationalities,omitempty"`
+	ExposeNationality              *bool `json:"expose_nationality,omitempty"`
+	ExposeOrganization             *bool `json:"expose_organization,omitempty"`
+	ExposeOrganizationCountry      *bool `json:"expose_organization_country,omitempty"`
+	ExposeOrganizationRegistryCode *bool `json:"expose_organization_registry_code,omitempty"`
+	ExposeOrganizationType         *bool `json:"expose_organization_type,omitempty"`
+	ExposePersonalTitle            *bool `json:"expose_personal_title,omitempty"`
+	ExposePhoneNumber              *bool `json:"expose_phone_number,omitempty"`
+	ExposePlaceOfBirth             *bool `json:"expose_place_of_birth,omitempty"`
+	ExposeRegistrationMethod       *bool `json:"expose_registration_method,omitempty"`
+	ExposeUsername                 *bool `json:"expose_username,omitempty"`
+}
+
 // CallAssignmentConfiguration defines model for CallAssignmentConfiguration.
 type CallAssignmentConfiguration struct {
 	// AssignmentExpirationDays Days until assignment invitation expires if not responded to.
@@ -25560,6 +25624,7 @@ type ConstanceSettings struct {
 	CROSSREFMAILTO                                   *openapi_types.Email                                             `json:"CROSSREF_MAILTO,omitempty"`
 	CURRENCYNAME                                     *string                                                          `json:"CURRENCY_NAME,omitempty"`
 	DEACTIVATEUSERIFNOROLES                          *bool                                                            `json:"DEACTIVATE_USER_IF_NO_ROLES,omitempty"`
+	DEFAULTCALLUSERATTRIBUTES                        *[]ConstanceSettings_DEFAULTCALLUSERATTRIBUTES_Item              `json:"DEFAULT_CALL_USER_ATTRIBUTES,omitempty"`
 	DEFAULTIDP                                       *ConstanceSettings_DEFAULTIDP                                    `json:"DEFAULT_IDP,omitempty"`
 	DEFAULTOFFERINGUSERATTRIBUTES                    *[]ConstanceSettings_DEFAULTOFFERINGUSERATTRIBUTES_Item          `json:"DEFAULT_OFFERING_USER_ATTRIBUTES,omitempty"`
 	DISABLEDOFFERINGTYPES                            *[]ConstanceSettings_DISABLEDOFFERINGTYPES_Item                  `json:"DISABLED_OFFERING_TYPES,omitempty"`
@@ -25746,6 +25811,11 @@ type ConstanceSettings struct {
 	ZAMMADTOKEN                                      *string                                                          `json:"ZAMMAD_TOKEN,omitempty"`
 }
 
+// ConstanceSettings_DEFAULTCALLUSERATTRIBUTES_Item defines model for ConstanceSettings.DEFAULT_CALL_USER_ATTRIBUTES.Item.
+type ConstanceSettings_DEFAULTCALLUSERATTRIBUTES_Item struct {
+	union json.RawMessage
+}
+
 // ConstanceSettings_DEFAULTIDP defines model for ConstanceSettings.DEFAULTIDP.
 type ConstanceSettings_DEFAULTIDP struct {
 	union json.RawMessage
@@ -25873,6 +25943,7 @@ type ConstanceSettingsRequest struct {
 	CROSSREFMAILTO                                   *openapi_types.Email                                                    `json:"CROSSREF_MAILTO,omitempty"`
 	CURRENCYNAME                                     *string                                                                 `json:"CURRENCY_NAME,omitempty"`
 	DEACTIVATEUSERIFNOROLES                          *bool                                                                   `json:"DEACTIVATE_USER_IF_NO_ROLES,omitempty"`
+	DEFAULTCALLUSERATTRIBUTES                        *[]ConstanceSettingsRequest_DEFAULTCALLUSERATTRIBUTES_Item              `json:"DEFAULT_CALL_USER_ATTRIBUTES,omitempty"`
 	DEFAULTIDP                                       *ConstanceSettingsRequest_DEFAULTIDP                                    `json:"DEFAULT_IDP,omitempty"`
 	DEFAULTOFFERINGUSERATTRIBUTES                    *[]ConstanceSettingsRequest_DEFAULTOFFERINGUSERATTRIBUTES_Item          `json:"DEFAULT_OFFERING_USER_ATTRIBUTES,omitempty"`
 	DISABLEDOFFERINGTYPES                            *[]ConstanceSettingsRequest_DISABLEDOFFERINGTYPES_Item                  `json:"DISABLED_OFFERING_TYPES,omitempty"`
@@ -26059,6 +26130,11 @@ type ConstanceSettingsRequest struct {
 	ZAMMADTOKEN                                      *string                                                                 `json:"ZAMMAD_TOKEN,omitempty"`
 }
 
+// ConstanceSettingsRequest_DEFAULTCALLUSERATTRIBUTES_Item defines model for ConstanceSettingsRequest.DEFAULT_CALL_USER_ATTRIBUTES.Item.
+type ConstanceSettingsRequest_DEFAULTCALLUSERATTRIBUTES_Item struct {
+	union json.RawMessage
+}
+
 // ConstanceSettingsRequest_DEFAULTIDP defines model for ConstanceSettingsRequest.DEFAULTIDP.
 type ConstanceSettingsRequest_DEFAULTIDP struct {
 	union json.RawMessage
@@ -26186,6 +26262,7 @@ type ConstanceSettingsRequestForm struct {
 	CROSSREFMAILTO                                   *openapi_types.Email                                                        `json:"CROSSREF_MAILTO,omitempty"`
 	CURRENCYNAME                                     *string                                                                     `json:"CURRENCY_NAME,omitempty"`
 	DEACTIVATEUSERIFNOROLES                          *bool                                                                       `json:"DEACTIVATE_USER_IF_NO_ROLES,omitempty"`
+	DEFAULTCALLUSERATTRIBUTES                        *[]ConstanceSettingsRequestForm_DEFAULTCALLUSERATTRIBUTES_Item              `json:"DEFAULT_CALL_USER_ATTRIBUTES,omitempty"`
 	DEFAULTIDP                                       *ConstanceSettingsRequestForm_DEFAULTIDP                                    `json:"DEFAULT_IDP,omitempty"`
 	DEFAULTOFFERINGUSERATTRIBUTES                    *[]ConstanceSettingsRequestForm_DEFAULTOFFERINGUSERATTRIBUTES_Item          `json:"DEFAULT_OFFERING_USER_ATTRIBUTES,omitempty"`
 	DISABLEDOFFERINGTYPES                            *[]ConstanceSettingsRequestForm_DISABLEDOFFERINGTYPES_Item                  `json:"DISABLED_OFFERING_TYPES,omitempty"`
@@ -26372,6 +26449,11 @@ type ConstanceSettingsRequestForm struct {
 	ZAMMADTOKEN                                      *string                                                                     `json:"ZAMMAD_TOKEN,omitempty"`
 }
 
+// ConstanceSettingsRequestForm_DEFAULTCALLUSERATTRIBUTES_Item defines model for ConstanceSettingsRequestForm.DEFAULT_CALL_USER_ATTRIBUTES.Item.
+type ConstanceSettingsRequestForm_DEFAULTCALLUSERATTRIBUTES_Item struct {
+	union json.RawMessage
+}
+
 // ConstanceSettingsRequestForm_DEFAULTIDP defines model for ConstanceSettingsRequestForm.DEFAULTIDP.
 type ConstanceSettingsRequestForm_DEFAULTIDP struct {
 	union json.RawMessage
@@ -26499,6 +26581,7 @@ type ConstanceSettingsRequestMultipart struct {
 	CROSSREFMAILTO                                   *openapi_types.Email                                                             `json:"CROSSREF_MAILTO,omitempty"`
 	CURRENCYNAME                                     *string                                                                          `json:"CURRENCY_NAME,omitempty"`
 	DEACTIVATEUSERIFNOROLES                          *bool                                                                            `json:"DEACTIVATE_USER_IF_NO_ROLES,omitempty"`
+	DEFAULTCALLUSERATTRIBUTES                        *[]ConstanceSettingsRequestMultipart_DEFAULTCALLUSERATTRIBUTES_Item              `json:"DEFAULT_CALL_USER_ATTRIBUTES,omitempty"`
 	DEFAULTIDP                                       *ConstanceSettingsRequestMultipart_DEFAULTIDP                                    `json:"DEFAULT_IDP,omitempty"`
 	DEFAULTOFFERINGUSERATTRIBUTES                    *[]ConstanceSettingsRequestMultipart_DEFAULTOFFERINGUSERATTRIBUTES_Item          `json:"DEFAULT_OFFERING_USER_ATTRIBUTES,omitempty"`
 	DISABLEDOFFERINGTYPES                            *[]ConstanceSettingsRequestMultipart_DISABLEDOFFERINGTYPES_Item                  `json:"DISABLED_OFFERING_TYPES,omitempty"`
@@ -26683,6 +26766,11 @@ type ConstanceSettingsRequestMultipart struct {
 	ZAMMADCOMMENTPREFIX                              *string                                                                          `json:"ZAMMAD_COMMENT_PREFIX,omitempty"`
 	ZAMMADGROUP                                      *string                                                                          `json:"ZAMMAD_GROUP,omitempty"`
 	ZAMMADTOKEN                                      *string                                                                          `json:"ZAMMAD_TOKEN,omitempty"`
+}
+
+// ConstanceSettingsRequestMultipart_DEFAULTCALLUSERATTRIBUTES_Item defines model for ConstanceSettingsRequestMultipart.DEFAULT_CALL_USER_ATTRIBUTES.Item.
+type ConstanceSettingsRequestMultipart_DEFAULTCALLUSERATTRIBUTES_Item struct {
+	union json.RawMessage
 }
 
 // ConstanceSettingsRequestMultipart_DEFAULTIDP defines model for ConstanceSettingsRequestMultipart.DEFAULTIDP.
@@ -34445,10 +34533,9 @@ type OfferingUserAttributeConfig struct {
 	ExposePersonalTitle            *bool      `json:"expose_personal_title,omitempty"`
 	ExposePhoneNumber              *bool      `json:"expose_phone_number,omitempty"`
 	ExposePlaceOfBirth             *bool      `json:"expose_place_of_birth,omitempty"`
+	ExposeRegistrationMethod       *bool      `json:"expose_registration_method,omitempty"`
 	ExposeUsername                 *bool      `json:"expose_username,omitempty"`
-
-	// ExposedFields Return list of field names currently configured for exposure.
-	ExposedFields *[]string `json:"exposed_fields,omitempty"`
+	ExposedFields                  *[]string  `json:"exposed_fields,omitempty"`
 
 	// IsDefault Return True if this is a default (unsaved) config.
 	IsDefault    *bool               `json:"is_default,omitempty"`
@@ -34481,6 +34568,7 @@ type OfferingUserAttributeConfigRequest struct {
 	ExposePersonalTitle            *bool               `json:"expose_personal_title,omitempty"`
 	ExposePhoneNumber              *bool               `json:"expose_phone_number,omitempty"`
 	ExposePlaceOfBirth             *bool               `json:"expose_place_of_birth,omitempty"`
+	ExposeRegistrationMethod       *bool               `json:"expose_registration_method,omitempty"`
 	ExposeUsername                 *bool               `json:"expose_username,omitempty"`
 	Offering                       *openapi_types.UUID `json:"offering,omitempty"`
 }
@@ -38913,6 +39001,7 @@ type PatchedOfferingUserAttributeConfigRequest struct {
 	ExposePersonalTitle            *bool               `json:"expose_personal_title,omitempty"`
 	ExposePhoneNumber              *bool               `json:"expose_phone_number,omitempty"`
 	ExposePlaceOfBirth             *bool               `json:"expose_place_of_birth,omitempty"`
+	ExposeRegistrationMethod       *bool               `json:"expose_registration_method,omitempty"`
 	ExposeUsername                 *bool               `json:"expose_username,omitempty"`
 	Offering                       *openapi_types.UUID `json:"offering,omitempty"`
 }
@@ -39363,7 +39452,8 @@ type PatchedProposalReviewRequest struct {
 
 // PatchedProtectedCallRequest defines model for PatchedProtectedCallRequest.
 type PatchedProtectedCallRequest struct {
-	BackendId *string `json:"backend_id,omitempty"`
+	ApplicantVisibilityConfig *CallApplicantVisibilityConfigRequest `json:"applicant_visibility_config,omitempty"`
+	BackendId                 *string                               `json:"backend_id,omitempty"`
 
 	// ComplianceChecklist Compliance checklist that proposals must complete before submission
 	ComplianceChecklist *openapi_types.UUID `json:"compliance_checklist,omitempty"`
@@ -41442,7 +41532,56 @@ type ProjectsUsagesGroupedByOecd struct {
 
 // Proposal defines model for Proposal.
 type Proposal struct {
-	AllocationComment            *string                 `json:"allocation_comment,omitempty"`
+	AllocationComment *string `json:"allocation_comment,omitempty"`
+
+	// ApplicantActiveIsds List of ISDs that have asserted this user exists. User is deactivated when this becomes empty.
+	ApplicantActiveIsds interface{} `json:"applicant_active_isds,omitempty"`
+	ApplicantAddress    *string     `json:"applicant_address,omitempty"`
+
+	// ApplicantAffiliations Person's affiliation within organization such as student, faculty, staff.
+	ApplicantAffiliations       interface{}         `json:"applicant_affiliations,omitempty"`
+	ApplicantBirthDate          *openapi_types.Date `json:"applicant_birth_date,omitempty"`
+	ApplicantCivilNumber        *string             `json:"applicant_civil_number,omitempty"`
+	ApplicantCountryOfResidence *string             `json:"applicant_country_of_residence,omitempty"`
+
+	// ApplicantEdupersonAssurance REFEDS assurance profile URIs from identity provider
+	ApplicantEdupersonAssurance interface{}          `json:"applicant_eduperson_assurance,omitempty"`
+	ApplicantEmail              *openapi_types.Email `json:"applicant_email,omitempty"`
+	ApplicantFirstName          *string              `json:"applicant_first_name,omitempty"`
+	ApplicantFullName           *string              `json:"applicant_full_name,omitempty"`
+
+	// ApplicantGender User's gender (male, female, or unknown)
+	ApplicantGender *Proposal_ApplicantGender `json:"applicant_gender,omitempty"`
+
+	// ApplicantIdentitySource Indicates what identity provider was used.
+	ApplicantIdentitySource *string `json:"applicant_identity_source,omitempty"`
+	ApplicantJobTitle       *string `json:"applicant_job_title,omitempty"`
+	ApplicantLastName       *string `json:"applicant_last_name,omitempty"`
+
+	// ApplicantNationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
+	ApplicantNationalities interface{} `json:"applicant_nationalities,omitempty"`
+
+	// ApplicantNationality Primary citizenship (ISO 3166-1 alpha-2 code)
+	ApplicantNationality         *string `json:"applicant_nationality,omitempty"`
+	ApplicantOrganization        *string `json:"applicant_organization,omitempty"`
+	ApplicantOrganizationCountry *string `json:"applicant_organization_country,omitempty"`
+
+	// ApplicantOrganizationRegistryCode Company registration code of the user's organization, if known
+	ApplicantOrganizationRegistryCode *string `json:"applicant_organization_registry_code,omitempty"`
+
+	// ApplicantOrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
+	ApplicantOrganizationType *string `json:"applicant_organization_type,omitempty"`
+
+	// ApplicantPersonalTitle Honorific title (Mr, Ms, Dr, Prof, etc.)
+	ApplicantPersonalTitle *string `json:"applicant_personal_title,omitempty"`
+	ApplicantPhoneNumber   *string `json:"applicant_phone_number,omitempty"`
+	ApplicantPlaceOfBirth  *string `json:"applicant_place_of_birth,omitempty"`
+
+	// ApplicantRegistrationMethod Indicates what registration method was used.
+	ApplicantRegistrationMethod *string `json:"applicant_registration_method,omitempty"`
+
+	// ApplicantUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
+	ApplicantUsername            *string                 `json:"applicant_username,omitempty"`
 	ApprovedBy                   *string                 `json:"approved_by,omitempty"`
 	CallManagingOrganisationUuid *openapi_types.UUID     `json:"call_managing_organisation_uuid,omitempty"`
 	CallName                     *string                 `json:"call_name,omitempty"`
@@ -41475,6 +41614,11 @@ type Proposal struct {
 	SupportingDocumentation   *[]ProposalDocumentation  `json:"supporting_documentation,omitempty"`
 	Url                       *string                   `json:"url,omitempty"`
 	Uuid                      *openapi_types.UUID       `json:"uuid,omitempty"`
+}
+
+// Proposal_ApplicantGender User's gender (male, female, or unknown)
+type Proposal_ApplicantGender struct {
+	union json.RawMessage
 }
 
 // Proposal_OecdFos2007Code defines model for Proposal.OecdFos2007Code.
@@ -41679,7 +41823,8 @@ type ProposedAssignment struct {
 
 // ProtectedCall defines model for ProtectedCall.
 type ProtectedCall struct {
-	BackendId *string `json:"backend_id,omitempty"`
+	ApplicantVisibilityConfig *CallApplicantVisibilityConfig `json:"applicant_visibility_config,omitempty"`
+	BackendId                 *string                        `json:"backend_id,omitempty"`
 
 	// ComplianceChecklist Compliance checklist that proposals must complete before submission
 	ComplianceChecklist     *openapi_types.UUID `json:"compliance_checklist,omitempty"`
@@ -41747,7 +41892,8 @@ type ProtectedCallOEnum string
 
 // ProtectedCallRequest defines model for ProtectedCallRequest.
 type ProtectedCallRequest struct {
-	BackendId *string `json:"backend_id,omitempty"`
+	ApplicantVisibilityConfig *CallApplicantVisibilityConfigRequest `json:"applicant_visibility_config,omitempty"`
+	BackendId                 *string                               `json:"backend_id,omitempty"`
 
 	// ComplianceChecklist Compliance checklist that proposals must complete before submission
 	ComplianceChecklist *openapi_types.UUID `json:"compliance_checklist,omitempty"`
@@ -74813,6 +74959,68 @@ func (t *ChatRequestRequest_Mode) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsUserAttributeEnum returns the union data inside the ConstanceSettings_DEFAULTCALLUSERATTRIBUTES_Item as a UserAttributeEnum
+func (t ConstanceSettings_DEFAULTCALLUSERATTRIBUTES_Item) AsUserAttributeEnum() (UserAttributeEnum, error) {
+	var body UserAttributeEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUserAttributeEnum overwrites any union data inside the ConstanceSettings_DEFAULTCALLUSERATTRIBUTES_Item as the provided UserAttributeEnum
+func (t *ConstanceSettings_DEFAULTCALLUSERATTRIBUTES_Item) FromUserAttributeEnum(v UserAttributeEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUserAttributeEnum performs a merge with any union data inside the ConstanceSettings_DEFAULTCALLUSERATTRIBUTES_Item, using the provided UserAttributeEnum
+func (t *ConstanceSettings_DEFAULTCALLUSERATTRIBUTES_Item) MergeUserAttributeEnum(v UserAttributeEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the ConstanceSettings_DEFAULTCALLUSERATTRIBUTES_Item as a BlankEnum
+func (t ConstanceSettings_DEFAULTCALLUSERATTRIBUTES_Item) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the ConstanceSettings_DEFAULTCALLUSERATTRIBUTES_Item as the provided BlankEnum
+func (t *ConstanceSettings_DEFAULTCALLUSERATTRIBUTES_Item) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the ConstanceSettings_DEFAULTCALLUSERATTRIBUTES_Item, using the provided BlankEnum
+func (t *ConstanceSettings_DEFAULTCALLUSERATTRIBUTES_Item) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ConstanceSettings_DEFAULTCALLUSERATTRIBUTES_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ConstanceSettings_DEFAULTCALLUSERATTRIBUTES_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsDEFAULTIDPEnum returns the union data inside the ConstanceSettings_DEFAULTIDP as a DEFAULTIDPEnum
 func (t ConstanceSettings_DEFAULTIDP) AsDEFAULTIDPEnum() (DEFAULTIDPEnum, error) {
 	var body DEFAULTIDPEnum
@@ -75491,6 +75699,68 @@ func (t ConstanceSettings_SSHKEYALLOWEDTYPES_Item) MarshalJSON() ([]byte, error)
 }
 
 func (t *ConstanceSettings_SSHKEYALLOWEDTYPES_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsUserAttributeEnum returns the union data inside the ConstanceSettingsRequest_DEFAULTCALLUSERATTRIBUTES_Item as a UserAttributeEnum
+func (t ConstanceSettingsRequest_DEFAULTCALLUSERATTRIBUTES_Item) AsUserAttributeEnum() (UserAttributeEnum, error) {
+	var body UserAttributeEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUserAttributeEnum overwrites any union data inside the ConstanceSettingsRequest_DEFAULTCALLUSERATTRIBUTES_Item as the provided UserAttributeEnum
+func (t *ConstanceSettingsRequest_DEFAULTCALLUSERATTRIBUTES_Item) FromUserAttributeEnum(v UserAttributeEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUserAttributeEnum performs a merge with any union data inside the ConstanceSettingsRequest_DEFAULTCALLUSERATTRIBUTES_Item, using the provided UserAttributeEnum
+func (t *ConstanceSettingsRequest_DEFAULTCALLUSERATTRIBUTES_Item) MergeUserAttributeEnum(v UserAttributeEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the ConstanceSettingsRequest_DEFAULTCALLUSERATTRIBUTES_Item as a BlankEnum
+func (t ConstanceSettingsRequest_DEFAULTCALLUSERATTRIBUTES_Item) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the ConstanceSettingsRequest_DEFAULTCALLUSERATTRIBUTES_Item as the provided BlankEnum
+func (t *ConstanceSettingsRequest_DEFAULTCALLUSERATTRIBUTES_Item) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the ConstanceSettingsRequest_DEFAULTCALLUSERATTRIBUTES_Item, using the provided BlankEnum
+func (t *ConstanceSettingsRequest_DEFAULTCALLUSERATTRIBUTES_Item) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ConstanceSettingsRequest_DEFAULTCALLUSERATTRIBUTES_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ConstanceSettingsRequest_DEFAULTCALLUSERATTRIBUTES_Item) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -76177,6 +76447,68 @@ func (t *ConstanceSettingsRequest_SSHKEYALLOWEDTYPES_Item) UnmarshalJSON(b []byt
 	return err
 }
 
+// AsUserAttributeEnum returns the union data inside the ConstanceSettingsRequestForm_DEFAULTCALLUSERATTRIBUTES_Item as a UserAttributeEnum
+func (t ConstanceSettingsRequestForm_DEFAULTCALLUSERATTRIBUTES_Item) AsUserAttributeEnum() (UserAttributeEnum, error) {
+	var body UserAttributeEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUserAttributeEnum overwrites any union data inside the ConstanceSettingsRequestForm_DEFAULTCALLUSERATTRIBUTES_Item as the provided UserAttributeEnum
+func (t *ConstanceSettingsRequestForm_DEFAULTCALLUSERATTRIBUTES_Item) FromUserAttributeEnum(v UserAttributeEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUserAttributeEnum performs a merge with any union data inside the ConstanceSettingsRequestForm_DEFAULTCALLUSERATTRIBUTES_Item, using the provided UserAttributeEnum
+func (t *ConstanceSettingsRequestForm_DEFAULTCALLUSERATTRIBUTES_Item) MergeUserAttributeEnum(v UserAttributeEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the ConstanceSettingsRequestForm_DEFAULTCALLUSERATTRIBUTES_Item as a BlankEnum
+func (t ConstanceSettingsRequestForm_DEFAULTCALLUSERATTRIBUTES_Item) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the ConstanceSettingsRequestForm_DEFAULTCALLUSERATTRIBUTES_Item as the provided BlankEnum
+func (t *ConstanceSettingsRequestForm_DEFAULTCALLUSERATTRIBUTES_Item) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the ConstanceSettingsRequestForm_DEFAULTCALLUSERATTRIBUTES_Item, using the provided BlankEnum
+func (t *ConstanceSettingsRequestForm_DEFAULTCALLUSERATTRIBUTES_Item) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ConstanceSettingsRequestForm_DEFAULTCALLUSERATTRIBUTES_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ConstanceSettingsRequestForm_DEFAULTCALLUSERATTRIBUTES_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsDEFAULTIDPEnum returns the union data inside the ConstanceSettingsRequestForm_DEFAULTIDP as a DEFAULTIDPEnum
 func (t ConstanceSettingsRequestForm_DEFAULTIDP) AsDEFAULTIDPEnum() (DEFAULTIDPEnum, error) {
 	var body DEFAULTIDPEnum
@@ -76855,6 +77187,68 @@ func (t ConstanceSettingsRequestForm_SSHKEYALLOWEDTYPES_Item) MarshalJSON() ([]b
 }
 
 func (t *ConstanceSettingsRequestForm_SSHKEYALLOWEDTYPES_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsUserAttributeEnum returns the union data inside the ConstanceSettingsRequestMultipart_DEFAULTCALLUSERATTRIBUTES_Item as a UserAttributeEnum
+func (t ConstanceSettingsRequestMultipart_DEFAULTCALLUSERATTRIBUTES_Item) AsUserAttributeEnum() (UserAttributeEnum, error) {
+	var body UserAttributeEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUserAttributeEnum overwrites any union data inside the ConstanceSettingsRequestMultipart_DEFAULTCALLUSERATTRIBUTES_Item as the provided UserAttributeEnum
+func (t *ConstanceSettingsRequestMultipart_DEFAULTCALLUSERATTRIBUTES_Item) FromUserAttributeEnum(v UserAttributeEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUserAttributeEnum performs a merge with any union data inside the ConstanceSettingsRequestMultipart_DEFAULTCALLUSERATTRIBUTES_Item, using the provided UserAttributeEnum
+func (t *ConstanceSettingsRequestMultipart_DEFAULTCALLUSERATTRIBUTES_Item) MergeUserAttributeEnum(v UserAttributeEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the ConstanceSettingsRequestMultipart_DEFAULTCALLUSERATTRIBUTES_Item as a BlankEnum
+func (t ConstanceSettingsRequestMultipart_DEFAULTCALLUSERATTRIBUTES_Item) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the ConstanceSettingsRequestMultipart_DEFAULTCALLUSERATTRIBUTES_Item as the provided BlankEnum
+func (t *ConstanceSettingsRequestMultipart_DEFAULTCALLUSERATTRIBUTES_Item) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the ConstanceSettingsRequestMultipart_DEFAULTCALLUSERATTRIBUTES_Item, using the provided BlankEnum
+func (t *ConstanceSettingsRequestMultipart_DEFAULTCALLUSERATTRIBUTES_Item) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ConstanceSettingsRequestMultipart_DEFAULTCALLUSERATTRIBUTES_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ConstanceSettingsRequestMultipart_DEFAULTCALLUSERATTRIBUTES_Item) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -83875,6 +84269,94 @@ func (t ProjectUser_OfferingUserState) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ProjectUser_OfferingUserState) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsGenderEnum returns the union data inside the Proposal_ApplicantGender as a GenderEnum
+func (t Proposal_ApplicantGender) AsGenderEnum() (GenderEnum, error) {
+	var body GenderEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromGenderEnum overwrites any union data inside the Proposal_ApplicantGender as the provided GenderEnum
+func (t *Proposal_ApplicantGender) FromGenderEnum(v GenderEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeGenderEnum performs a merge with any union data inside the Proposal_ApplicantGender, using the provided GenderEnum
+func (t *Proposal_ApplicantGender) MergeGenderEnum(v GenderEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the Proposal_ApplicantGender as a BlankEnum
+func (t Proposal_ApplicantGender) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the Proposal_ApplicantGender as the provided BlankEnum
+func (t *Proposal_ApplicantGender) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the Proposal_ApplicantGender, using the provided BlankEnum
+func (t *Proposal_ApplicantGender) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the Proposal_ApplicantGender as a NullEnum
+func (t Proposal_ApplicantGender) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the Proposal_ApplicantGender as the provided NullEnum
+func (t *Proposal_ApplicantGender) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the Proposal_ApplicantGender, using the provided NullEnum
+func (t *Proposal_ApplicantGender) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t Proposal_ApplicantGender) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *Proposal_ApplicantGender) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
