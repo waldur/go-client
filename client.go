@@ -19427,6 +19427,7 @@ const (
 	UserAttributeEnumPersonalTitle            UserAttributeEnum = "personal_title"
 	UserAttributeEnumPhoneNumber              UserAttributeEnum = "phone_number"
 	UserAttributeEnumPlaceOfBirth             UserAttributeEnum = "place_of_birth"
+	UserAttributeEnumRegistrationMethod       UserAttributeEnum = "registration_method"
 	UserAttributeEnumUsername                 UserAttributeEnum = "username"
 )
 
@@ -19474,6 +19475,8 @@ func (e UserAttributeEnum) Valid() bool {
 	case UserAttributeEnumPhoneNumber:
 		return true
 	case UserAttributeEnumPlaceOfBirth:
+		return true
+	case UserAttributeEnumRegistrationMethod:
 		return true
 	case UserAttributeEnumUsername:
 		return true
@@ -23928,52 +23931,6 @@ type CachedProjectUsageReport struct {
 	Report            ProjectUsageReport `json:"report"`
 	Resource          string             `json:"resource"`
 	Year              int                `json:"year"`
-}
-
-// CallApplicantAttributeConfig defines model for CallApplicantAttributeConfig.
-type CallApplicantAttributeConfig struct {
-	CallName                  *string             `json:"call_name,omitempty"`
-	CallUuid                  *openapi_types.UUID `json:"call_uuid,omitempty"`
-	ExposeAffiliations        *bool               `json:"expose_affiliations,omitempty"`
-	ExposeCountryOfResidence  *bool               `json:"expose_country_of_residence,omitempty"`
-	ExposeEdupersonAssurance  *bool               `json:"expose_eduperson_assurance,omitempty"`
-	ExposeEmail               *bool               `json:"expose_email,omitempty"`
-	ExposeFullName            *bool               `json:"expose_full_name,omitempty"`
-	ExposeIdentitySource      *bool               `json:"expose_identity_source,omitempty"`
-	ExposeNationalities       *bool               `json:"expose_nationalities,omitempty"`
-	ExposeNationality         *bool               `json:"expose_nationality,omitempty"`
-	ExposeOrganization        *bool               `json:"expose_organization,omitempty"`
-	ExposeOrganizationCountry *bool               `json:"expose_organization_country,omitempty"`
-	ExposeOrganizationType    *bool               `json:"expose_organization_type,omitempty"`
-
-	// ExposedFields Return list of currently exposed field names.
-	ExposedFields *[]string `json:"exposed_fields,omitempty"`
-
-	// IsDefault Return True if this is a default (unsaved) config.
-	IsDefault *bool `json:"is_default,omitempty"`
-
-	// ReviewersSeeApplicantDetails If True, reviewers see applicant identity. If False, proposals are anonymized for reviewers.
-	ReviewersSeeApplicantDetails *bool               `json:"reviewers_see_applicant_details,omitempty"`
-	Uuid                         *openapi_types.UUID `json:"uuid,omitempty"`
-}
-
-// CallApplicantAttributeConfigRequest defines model for CallApplicantAttributeConfigRequest.
-type CallApplicantAttributeConfigRequest struct {
-	Call                      *openapi_types.UUID `json:"call,omitempty"`
-	ExposeAffiliations        *bool               `json:"expose_affiliations,omitempty"`
-	ExposeCountryOfResidence  *bool               `json:"expose_country_of_residence,omitempty"`
-	ExposeEdupersonAssurance  *bool               `json:"expose_eduperson_assurance,omitempty"`
-	ExposeEmail               *bool               `json:"expose_email,omitempty"`
-	ExposeFullName            *bool               `json:"expose_full_name,omitempty"`
-	ExposeIdentitySource      *bool               `json:"expose_identity_source,omitempty"`
-	ExposeNationalities       *bool               `json:"expose_nationalities,omitempty"`
-	ExposeNationality         *bool               `json:"expose_nationality,omitempty"`
-	ExposeOrganization        *bool               `json:"expose_organization,omitempty"`
-	ExposeOrganizationCountry *bool               `json:"expose_organization_country,omitempty"`
-	ExposeOrganizationType    *bool               `json:"expose_organization_type,omitempty"`
-
-	// ReviewersSeeApplicantDetails If True, reviewers see applicant identity. If False, proposals are anonymized for reviewers.
-	ReviewersSeeApplicantDetails *bool `json:"reviewers_see_applicant_details,omitempty"`
 }
 
 // CallApplicantVisibilityConfig defines model for CallApplicantVisibilityConfig.
@@ -38034,25 +37991,6 @@ type PatchedBroadcastMessageRequest struct {
 	Query   interface{}         `json:"query,omitempty"`
 	SendAt  *openapi_types.Date `json:"send_at,omitempty"`
 	Subject *string             `json:"subject,omitempty"`
-}
-
-// PatchedCallApplicantAttributeConfigRequest defines model for PatchedCallApplicantAttributeConfigRequest.
-type PatchedCallApplicantAttributeConfigRequest struct {
-	Call                      *openapi_types.UUID `json:"call,omitempty"`
-	ExposeAffiliations        *bool               `json:"expose_affiliations,omitempty"`
-	ExposeCountryOfResidence  *bool               `json:"expose_country_of_residence,omitempty"`
-	ExposeEdupersonAssurance  *bool               `json:"expose_eduperson_assurance,omitempty"`
-	ExposeEmail               *bool               `json:"expose_email,omitempty"`
-	ExposeFullName            *bool               `json:"expose_full_name,omitempty"`
-	ExposeIdentitySource      *bool               `json:"expose_identity_source,omitempty"`
-	ExposeNationalities       *bool               `json:"expose_nationalities,omitempty"`
-	ExposeNationality         *bool               `json:"expose_nationality,omitempty"`
-	ExposeOrganization        *bool               `json:"expose_organization,omitempty"`
-	ExposeOrganizationCountry *bool               `json:"expose_organization_country,omitempty"`
-	ExposeOrganizationType    *bool               `json:"expose_organization_type,omitempty"`
-
-	// ReviewersSeeApplicantDetails If True, reviewers see applicant identity. If False, proposals are anonymized for reviewers.
-	ReviewersSeeApplicantDetails *bool `json:"reviewers_see_applicant_details,omitempty"`
 }
 
 // PatchedCallAssignmentConfigurationRequest defines model for PatchedCallAssignmentConfigurationRequest.
@@ -73510,12 +73448,6 @@ type ProposalProtectedCallsRoundsCloseJSONRequestBody = ProtectedCallRequest
 // ProposalProtectedCallsSendAllAssignmentsJSONRequestBody defines body for ProposalProtectedCallsSendAllAssignments for application/json ContentType.
 type ProposalProtectedCallsSendAllAssignmentsJSONRequestBody = SendAllAssignmentBatchesRequest
 
-// ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateJSONRequestBody defines body for ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdate for application/json ContentType.
-type ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateJSONRequestBody = PatchedCallApplicantAttributeConfigRequest
-
-// ProposalProtectedCallsUpdateApplicantAttributeConfigJSONRequestBody defines body for ProposalProtectedCallsUpdateApplicantAttributeConfig for application/json ContentType.
-type ProposalProtectedCallsUpdateApplicantAttributeConfigJSONRequestBody = CallApplicantAttributeConfigRequest
-
 // ProposalProtectedCallsUpdateUserJSONRequestBody defines body for ProposalProtectedCallsUpdateUser for application/json ContentType.
 type ProposalProtectedCallsUpdateUserJSONRequestBody = UserRoleUpdateRequest
 
@@ -94306,9 +94238,6 @@ type ClientInterface interface {
 	// ProposalProtectedCallsAffinityMatrixRetrieve request
 	ProposalProtectedCallsAffinityMatrixRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsAffinityMatrixRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ProposalProtectedCallsApplicantAttributeConfigRetrieve request
-	ProposalProtectedCallsApplicantAttributeConfigRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// ProposalProtectedCallsArchive request
 	ProposalProtectedCallsArchive(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -94343,9 +94272,6 @@ type ClientInterface interface {
 	ProposalProtectedCallsCreateManualAssignmentWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	ProposalProtectedCallsCreateManualAssignment(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsCreateManualAssignmentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ProposalProtectedCallsDeleteApplicantAttributeConfigDestroy request
-	ProposalProtectedCallsDeleteApplicantAttributeConfigDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProtectedCallsDeleteUserWithBody request with any body
 	ProposalProtectedCallsDeleteUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -94494,16 +94420,6 @@ type ClientInterface interface {
 
 	// ProposalProtectedCallsSuggestionsList request
 	ProposalProtectedCallsSuggestionsList(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsSuggestionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateWithBody request with any body
-	ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ProposalProtectedCallsUpdateApplicantAttributeConfigWithBody request with any body
-	ProposalProtectedCallsUpdateApplicantAttributeConfigWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	ProposalProtectedCallsUpdateApplicantAttributeConfig(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateApplicantAttributeConfigJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProtectedCallsUpdateUserWithBody request with any body
 	ProposalProtectedCallsUpdateUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -127496,18 +127412,6 @@ func (c *Client) ProposalProtectedCallsAffinityMatrixRetrieve(ctx context.Contex
 	return c.Client.Do(req)
 }
 
-func (c *Client) ProposalProtectedCallsApplicantAttributeConfigRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProposalProtectedCallsApplicantAttributeConfigRetrieveRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) ProposalProtectedCallsArchive(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProtectedCallsArchiveRequest(c.Server, uuid)
 	if err != nil {
@@ -127654,18 +127558,6 @@ func (c *Client) ProposalProtectedCallsCreateManualAssignmentWithBody(ctx contex
 
 func (c *Client) ProposalProtectedCallsCreateManualAssignment(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsCreateManualAssignmentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProtectedCallsCreateManualAssignmentRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ProposalProtectedCallsDeleteApplicantAttributeConfigDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProposalProtectedCallsDeleteApplicantAttributeConfigDestroyRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -128338,54 +128230,6 @@ func (c *Client) ProposalProtectedCallsSendInvitations(ctx context.Context, uuid
 
 func (c *Client) ProposalProtectedCallsSuggestionsList(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsSuggestionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProtectedCallsSuggestionsListRequest(c.Server, uuid, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ProposalProtectedCallsUpdateApplicantAttributeConfigWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProposalProtectedCallsUpdateApplicantAttributeConfigRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ProposalProtectedCallsUpdateApplicantAttributeConfig(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateApplicantAttributeConfigJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProposalProtectedCallsUpdateApplicantAttributeConfigRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -300878,40 +300722,6 @@ func NewProposalProtectedCallsAffinityMatrixRetrieveRequest(server string, uuid 
 	return req, nil
 }
 
-// NewProposalProtectedCallsApplicantAttributeConfigRetrieveRequest generates requests for ProposalProtectedCallsApplicantAttributeConfigRetrieve
-func NewProposalProtectedCallsApplicantAttributeConfigRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/proposal-protected-calls/%s/applicant_attribute_config/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewProposalProtectedCallsArchiveRequest generates requests for ProposalProtectedCallsArchive
 func NewProposalProtectedCallsArchiveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -301464,40 +301274,6 @@ func NewProposalProtectedCallsCreateManualAssignmentRequestWithBody(server strin
 	}
 
 	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewProposalProtectedCallsDeleteApplicantAttributeConfigDestroyRequest generates requests for ProposalProtectedCallsDeleteApplicantAttributeConfigDestroy
-func NewProposalProtectedCallsDeleteApplicantAttributeConfigDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/proposal-protected-calls/%s/delete_applicant_attribute_config/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
 
 	return req, nil
 }
@@ -304238,100 +304014,6 @@ func NewProposalProtectedCallsSuggestionsListRequest(server string, uuid openapi
 	if err != nil {
 		return nil, err
 	}
-
-	return req, nil
-}
-
-// NewProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateRequest calls the generic ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdate builder with application/json body
-func NewProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateRequest(server string, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateRequestWithBody generates requests for ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdate with any type of body
-func NewProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/proposal-protected-calls/%s/update_applicant_attribute_config/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("PATCH", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewProposalProtectedCallsUpdateApplicantAttributeConfigRequest calls the generic ProposalProtectedCallsUpdateApplicantAttributeConfig builder with application/json body
-func NewProposalProtectedCallsUpdateApplicantAttributeConfigRequest(server string, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateApplicantAttributeConfigJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewProposalProtectedCallsUpdateApplicantAttributeConfigRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewProposalProtectedCallsUpdateApplicantAttributeConfigRequestWithBody generates requests for ProposalProtectedCallsUpdateApplicantAttributeConfig with any type of body
-func NewProposalProtectedCallsUpdateApplicantAttributeConfigRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/proposal-protected-calls/%s/update_applicant_attribute_config/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -354896,9 +354578,6 @@ type ClientWithResponsesInterface interface {
 	// ProposalProtectedCallsAffinityMatrixRetrieveWithResponse request
 	ProposalProtectedCallsAffinityMatrixRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsAffinityMatrixRetrieveParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsAffinityMatrixRetrieveResponse, error)
 
-	// ProposalProtectedCallsApplicantAttributeConfigRetrieveWithResponse request
-	ProposalProtectedCallsApplicantAttributeConfigRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsApplicantAttributeConfigRetrieveResponse, error)
-
 	// ProposalProtectedCallsArchiveWithResponse request
 	ProposalProtectedCallsArchiveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsArchiveResponse, error)
 
@@ -354933,9 +354612,6 @@ type ClientWithResponsesInterface interface {
 	ProposalProtectedCallsCreateManualAssignmentWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsCreateManualAssignmentResponse, error)
 
 	ProposalProtectedCallsCreateManualAssignmentWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsCreateManualAssignmentJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsCreateManualAssignmentResponse, error)
-
-	// ProposalProtectedCallsDeleteApplicantAttributeConfigDestroyWithResponse request
-	ProposalProtectedCallsDeleteApplicantAttributeConfigDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsDeleteApplicantAttributeConfigDestroyResponse, error)
 
 	// ProposalProtectedCallsDeleteUserWithBodyWithResponse request with any body
 	ProposalProtectedCallsDeleteUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsDeleteUserResponse, error)
@@ -355084,16 +354760,6 @@ type ClientWithResponsesInterface interface {
 
 	// ProposalProtectedCallsSuggestionsListWithResponse request
 	ProposalProtectedCallsSuggestionsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsSuggestionsListParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsSuggestionsListResponse, error)
-
-	// ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateWithBodyWithResponse request with any body
-	ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse, error)
-
-	ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse, error)
-
-	// ProposalProtectedCallsUpdateApplicantAttributeConfigWithBodyWithResponse request with any body
-	ProposalProtectedCallsUpdateApplicantAttributeConfigWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsUpdateApplicantAttributeConfigResponse, error)
-
-	ProposalProtectedCallsUpdateApplicantAttributeConfigWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateApplicantAttributeConfigJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsUpdateApplicantAttributeConfigResponse, error)
 
 	// ProposalProtectedCallsUpdateUserWithBodyWithResponse request with any body
 	ProposalProtectedCallsUpdateUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsUpdateUserResponse, error)
@@ -398483,28 +398149,6 @@ func (r ProposalProtectedCallsAffinityMatrixRetrieveResponse) StatusCode() int {
 	return 0
 }
 
-type ProposalProtectedCallsApplicantAttributeConfigRetrieveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *CallApplicantAttributeConfig
-}
-
-// Status returns HTTPResponse.Status
-func (r ProposalProtectedCallsApplicantAttributeConfigRetrieveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ProposalProtectedCallsApplicantAttributeConfigRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type ProposalProtectedCallsArchiveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -398696,27 +398340,6 @@ func (r ProposalProtectedCallsCreateManualAssignmentResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ProposalProtectedCallsCreateManualAssignmentResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type ProposalProtectedCallsDeleteApplicantAttributeConfigDestroyResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// Status returns HTTPResponse.Status
-func (r ProposalProtectedCallsDeleteApplicantAttributeConfigDestroyResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ProposalProtectedCallsDeleteApplicantAttributeConfigDestroyResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -399504,50 +399127,6 @@ func (r ProposalProtectedCallsSuggestionsListResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ProposalProtectedCallsSuggestionsListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *CallApplicantAttributeConfig
-}
-
-// Status returns HTTPResponse.Status
-func (r ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type ProposalProtectedCallsUpdateApplicantAttributeConfigResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *CallApplicantAttributeConfig
-}
-
-// Status returns HTTPResponse.Status
-func (r ProposalProtectedCallsUpdateApplicantAttributeConfigResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ProposalProtectedCallsUpdateApplicantAttributeConfigResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -433608,15 +433187,6 @@ func (c *ClientWithResponses) ProposalProtectedCallsAffinityMatrixRetrieveWithRe
 	return ParseProposalProtectedCallsAffinityMatrixRetrieveResponse(rsp)
 }
 
-// ProposalProtectedCallsApplicantAttributeConfigRetrieveWithResponse request returning *ProposalProtectedCallsApplicantAttributeConfigRetrieveResponse
-func (c *ClientWithResponses) ProposalProtectedCallsApplicantAttributeConfigRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsApplicantAttributeConfigRetrieveResponse, error) {
-	rsp, err := c.ProposalProtectedCallsApplicantAttributeConfigRetrieve(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseProposalProtectedCallsApplicantAttributeConfigRetrieveResponse(rsp)
-}
-
 // ProposalProtectedCallsArchiveWithResponse request returning *ProposalProtectedCallsArchiveResponse
 func (c *ClientWithResponses) ProposalProtectedCallsArchiveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsArchiveResponse, error) {
 	rsp, err := c.ProposalProtectedCallsArchive(ctx, uuid, reqEditors...)
@@ -433728,15 +433298,6 @@ func (c *ClientWithResponses) ProposalProtectedCallsCreateManualAssignmentWithRe
 		return nil, err
 	}
 	return ParseProposalProtectedCallsCreateManualAssignmentResponse(rsp)
-}
-
-// ProposalProtectedCallsDeleteApplicantAttributeConfigDestroyWithResponse request returning *ProposalProtectedCallsDeleteApplicantAttributeConfigDestroyResponse
-func (c *ClientWithResponses) ProposalProtectedCallsDeleteApplicantAttributeConfigDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsDeleteApplicantAttributeConfigDestroyResponse, error) {
-	rsp, err := c.ProposalProtectedCallsDeleteApplicantAttributeConfigDestroy(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseProposalProtectedCallsDeleteApplicantAttributeConfigDestroyResponse(rsp)
 }
 
 // ProposalProtectedCallsDeleteUserWithBodyWithResponse request with arbitrary body returning *ProposalProtectedCallsDeleteUserResponse
@@ -434221,40 +433782,6 @@ func (c *ClientWithResponses) ProposalProtectedCallsSuggestionsListWithResponse(
 		return nil, err
 	}
 	return ParseProposalProtectedCallsSuggestionsListResponse(rsp)
-}
-
-// ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateWithBodyWithResponse request with arbitrary body returning *ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse
-func (c *ClientWithResponses) ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse, error) {
-	rsp, err := c.ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse(rsp)
-}
-
-func (c *ClientWithResponses) ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse, error) {
-	rsp, err := c.ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse(rsp)
-}
-
-// ProposalProtectedCallsUpdateApplicantAttributeConfigWithBodyWithResponse request with arbitrary body returning *ProposalProtectedCallsUpdateApplicantAttributeConfigResponse
-func (c *ClientWithResponses) ProposalProtectedCallsUpdateApplicantAttributeConfigWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsUpdateApplicantAttributeConfigResponse, error) {
-	rsp, err := c.ProposalProtectedCallsUpdateApplicantAttributeConfigWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseProposalProtectedCallsUpdateApplicantAttributeConfigResponse(rsp)
-}
-
-func (c *ClientWithResponses) ProposalProtectedCallsUpdateApplicantAttributeConfigWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateApplicantAttributeConfigJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsUpdateApplicantAttributeConfigResponse, error) {
-	rsp, err := c.ProposalProtectedCallsUpdateApplicantAttributeConfig(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseProposalProtectedCallsUpdateApplicantAttributeConfigResponse(rsp)
 }
 
 // ProposalProtectedCallsUpdateUserWithBodyWithResponse request with arbitrary body returning *ProposalProtectedCallsUpdateUserResponse
@@ -484241,32 +483768,6 @@ func ParseProposalProtectedCallsAffinityMatrixRetrieveResponse(rsp *http.Respons
 	return response, nil
 }
 
-// ParseProposalProtectedCallsApplicantAttributeConfigRetrieveResponse parses an HTTP response from a ProposalProtectedCallsApplicantAttributeConfigRetrieveWithResponse call
-func ParseProposalProtectedCallsApplicantAttributeConfigRetrieveResponse(rsp *http.Response) (*ProposalProtectedCallsApplicantAttributeConfigRetrieveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ProposalProtectedCallsApplicantAttributeConfigRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest CallApplicantAttributeConfig
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseProposalProtectedCallsArchiveResponse parses an HTTP response from a ProposalProtectedCallsArchiveWithResponse call
 func ParseProposalProtectedCallsArchiveResponse(rsp *http.Response) (*ProposalProtectedCallsArchiveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -484486,22 +483987,6 @@ func ParseProposalProtectedCallsCreateManualAssignmentResponse(rsp *http.Respons
 		}
 		response.JSON200 = &dest
 
-	}
-
-	return response, nil
-}
-
-// ParseProposalProtectedCallsDeleteApplicantAttributeConfigDestroyResponse parses an HTTP response from a ProposalProtectedCallsDeleteApplicantAttributeConfigDestroyWithResponse call
-func ParseProposalProtectedCallsDeleteApplicantAttributeConfigDestroyResponse(rsp *http.Response) (*ProposalProtectedCallsDeleteApplicantAttributeConfigDestroyResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ProposalProtectedCallsDeleteApplicantAttributeConfigDestroyResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
 	}
 
 	return response, nil
@@ -485383,58 +484868,6 @@ func ParseProposalProtectedCallsSuggestionsListResponse(rsp *http.Response) (*Pr
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest []ReviewerSuggestion
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse parses an HTTP response from a ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateWithResponse call
-func ParseProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse(rsp *http.Response) (*ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest CallApplicantAttributeConfig
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseProposalProtectedCallsUpdateApplicantAttributeConfigResponse parses an HTTP response from a ProposalProtectedCallsUpdateApplicantAttributeConfigWithResponse call
-func ParseProposalProtectedCallsUpdateApplicantAttributeConfigResponse(rsp *http.Response) (*ProposalProtectedCallsUpdateApplicantAttributeConfigResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ProposalProtectedCallsUpdateApplicantAttributeConfigResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest CallApplicantAttributeConfig
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
