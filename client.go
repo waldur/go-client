@@ -30244,6 +30244,19 @@ type InstanceFlavorChangeRequest struct {
 	Flavor string `json:"flavor"`
 }
 
+// InstancePlacementAllocation defines model for InstancePlacementAllocation.
+type InstancePlacementAllocation struct {
+	ResourceProviderName string         `json:"resource_provider_name"`
+	ResourceProviderUuid string         `json:"resource_provider_uuid"`
+	Resources            map[string]int `json:"resources"`
+}
+
+// InstanceRescueRequest defines model for InstanceRescueRequest.
+type InstanceRescueRequest struct {
+	// RescueImage Optional rescue image. Required for volume-backed instances; must be a Glance image with hw_rescue_device or hw_rescue_bus set (a 'stable device rescue' image).
+	RescueImage *string `json:"rescue_image,omitempty"`
+}
+
 // IntegrationStatus defines model for IntegrationStatus.
 type IntegrationStatus struct {
 	AgentType            *AgentTypeEnum `json:"agent_type,omitempty"`
@@ -35317,6 +35330,13 @@ type OpenStackHealthMonitorFieldEnum string
 type OpenStackImage struct {
 	BackendCreatedAt *time.Time `json:"backend_created_at,omitempty"`
 	BackendId        string     `json:"backend_id"`
+
+	// HwRescueBus Glance hw_rescue_bus property (scsi/virtio/ide/usb).
+	HwRescueBus *string `json:"hw_rescue_bus,omitempty"`
+
+	// HwRescueDevice Glance hw_rescue_device property (cdrom/disk/floppy).
+	HwRescueDevice *string `json:"hw_rescue_device,omitempty"`
+	IsRescueImage  *bool   `json:"is_rescue_image,omitempty"`
 
 	// MinDisk Minimum disk size in MiB
 	MinDisk *int `json:"min_disk,omitempty"`
@@ -58293,6 +58313,45 @@ type MarketplaceProviderResourcesHistoryAtRetrieveParams struct {
 	Timestamp string `form:"timestamp" json:"timestamp"`
 }
 
+// MarketplaceProviderResourcesListUsersListParams defines parameters for MarketplaceProviderResourcesListUsersList.
+type MarketplaceProviderResourcesListUsersListParams struct {
+	// Field Fields to include in response
+	Field *[]UserRoleDetailsFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+
+	// FullName User full name
+	FullName *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+
+	// NativeName User native name
+	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
+
+	// O Ordering fields
+	O *[]UserRoleDetailsOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Role Role UUID or name
+	Role *openapi_types.UUID `form:"role,omitempty" json:"role,omitempty"`
+
+	// SearchString Search string for user
+	SearchString *string `form:"search_string,omitempty" json:"search_string,omitempty"`
+
+	// User User UUID
+	User *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
+
+	// UserSlug User slug
+	UserSlug *string `form:"user_slug,omitempty" json:"user_slug,omitempty"`
+
+	// UserUrl User URL
+	UserUrl *string `form:"user_url,omitempty" json:"user_url,omitempty"`
+
+	// Username User username
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
+}
+
 // MarketplaceProviderResourcesTeamListParams defines parameters for MarketplaceProviderResourcesTeamList.
 type MarketplaceProviderResourcesTeamListParams struct {
 	// HasConsent When true, return only users who have active consent for this offering.
@@ -63645,6 +63704,9 @@ type OpenstackHypervisorsSummaryCountParams struct {
 
 // OpenstackImagesListParams defines parameters for OpenstackImagesList.
 type OpenstackImagesListParams struct {
+	// IsRescueImage Filter to images usable as Nova rescue images.
+	IsRescueImage *bool `form:"is_rescue_image,omitempty" json:"is_rescue_image,omitempty"`
+
 	// Name Name
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
 
@@ -63678,6 +63740,9 @@ type OpenstackImagesListParams struct {
 
 // OpenstackImagesCountParams defines parameters for OpenstackImagesCount.
 type OpenstackImagesCountParams struct {
+	// IsRescueImage Filter to images usable as Nova rescue images.
+	IsRescueImage *bool `form:"is_rescue_image,omitempty" json:"is_rescue_image,omitempty"`
+
 	// Name Name
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
 
@@ -63936,6 +64001,15 @@ type OpenstackInstancesConsoleLogRetrieveParams struct {
 
 // OpenstackInstancesFloatingIpsListParams defines parameters for OpenstackInstancesFloatingIpsList.
 type OpenstackInstancesFloatingIpsListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// OpenstackInstancesPlacementAllocationsListParams defines parameters for OpenstackInstancesPlacementAllocationsList.
+type OpenstackInstancesPlacementAllocationsListParams struct {
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -72637,6 +72711,12 @@ type MarketplaceProviderResourcesPartialUpdateJSONRequestBody = PatchedResourceU
 // MarketplaceProviderResourcesUpdateJSONRequestBody defines body for MarketplaceProviderResourcesUpdate for application/json ContentType.
 type MarketplaceProviderResourcesUpdateJSONRequestBody = ResourceUpdateRequest
 
+// MarketplaceProviderResourcesAddUserJSONRequestBody defines body for MarketplaceProviderResourcesAddUser for application/json ContentType.
+type MarketplaceProviderResourcesAddUserJSONRequestBody = UserRoleCreateRequest
+
+// MarketplaceProviderResourcesDeleteUserJSONRequestBody defines body for MarketplaceProviderResourcesDeleteUser for application/json ContentType.
+type MarketplaceProviderResourcesDeleteUserJSONRequestBody = UserRoleDeleteRequest
+
 // MarketplaceProviderResourcesMoveResourceJSONRequestBody defines body for MarketplaceProviderResourcesMoveResource for application/json ContentType.
 type MarketplaceProviderResourcesMoveResourceJSONRequestBody = MoveResourceRequest
 
@@ -72690,6 +72770,9 @@ type MarketplaceProviderResourcesUpdateOptionsJSONRequestBody = ResourceOptionsR
 
 // MarketplaceProviderResourcesUpdateOptionsDirectJSONRequestBody defines body for MarketplaceProviderResourcesUpdateOptionsDirect for application/json ContentType.
 type MarketplaceProviderResourcesUpdateOptionsDirectJSONRequestBody = ResourceOptionsRequest
+
+// MarketplaceProviderResourcesUpdateUserJSONRequestBody defines body for MarketplaceProviderResourcesUpdateUser for application/json ContentType.
+type MarketplaceProviderResourcesUpdateUserJSONRequestBody = UserRoleUpdateRequest
 
 // MarketplacePublicApiCheckSignatureJSONRequestBody defines body for MarketplacePublicApiCheckSignature for application/json ContentType.
 type MarketplacePublicApiCheckSignatureJSONRequestBody = ServiceProviderSignatureRequest
@@ -73221,6 +73304,9 @@ type OpenstackInstancesBackupJSONRequestBody = OpenStackBackupRequest
 
 // OpenstackInstancesChangeFlavorJSONRequestBody defines body for OpenstackInstancesChangeFlavor for application/json ContentType.
 type OpenstackInstancesChangeFlavorJSONRequestBody = InstanceFlavorChangeRequest
+
+// OpenstackInstancesRescueJSONRequestBody defines body for OpenstackInstancesRescue for application/json ContentType.
+type OpenstackInstancesRescueJSONRequestBody = InstanceRescueRequest
 
 // OpenstackInstancesSetErredJSONRequestBody defines body for OpenstackInstancesSetErred for application/json ContentType.
 type OpenstackInstancesSetErredJSONRequestBody = SetErredRequest
@@ -91332,6 +91418,16 @@ type ClientInterface interface {
 
 	MarketplaceProviderResourcesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderResourcesAddUserWithBody request with any body
+	MarketplaceProviderResourcesAddUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderResourcesAddUser(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesAddUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderResourcesDeleteUserWithBody request with any body
+	MarketplaceProviderResourcesDeleteUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderResourcesDeleteUser(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesDeleteUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderResourcesDetailsRetrieve request
 	MarketplaceProviderResourcesDetailsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -91343,6 +91439,9 @@ type ClientInterface interface {
 
 	// MarketplaceProviderResourcesHistoryAtRetrieve request
 	MarketplaceProviderResourcesHistoryAtRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderResourcesHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderResourcesListUsersList request
+	MarketplaceProviderResourcesListUsersList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderResourcesListUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderResourcesMoveResourceWithBody request with any body
 	MarketplaceProviderResourcesMoveResourceWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -91460,6 +91559,11 @@ type ClientInterface interface {
 	MarketplaceProviderResourcesUpdateOptionsDirectWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceProviderResourcesUpdateOptionsDirect(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesUpdateOptionsDirectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderResourcesUpdateUserWithBody request with any body
+	MarketplaceProviderResourcesUpdateUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderResourcesUpdateUser(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplacePublicApiCheckSignatureWithBody request with any body
 	MarketplacePublicApiCheckSignatureWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -93422,11 +93526,19 @@ type ClientInterface interface {
 	// OpenstackInstancesFloatingIpsList request
 	OpenstackInstancesFloatingIpsList(ctx context.Context, uuid openapi_types.UUID, params *OpenstackInstancesFloatingIpsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenstackInstancesPlacementAllocationsList request
+	OpenstackInstancesPlacementAllocationsList(ctx context.Context, uuid openapi_types.UUID, params *OpenstackInstancesPlacementAllocationsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenstackInstancesPortsList request
 	OpenstackInstancesPortsList(ctx context.Context, uuid openapi_types.UUID, params *OpenstackInstancesPortsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackInstancesPull request
 	OpenstackInstancesPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackInstancesRescueWithBody request with any body
+	OpenstackInstancesRescueWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackInstancesRescue(ctx context.Context, uuid openapi_types.UUID, body OpenstackInstancesRescueJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackInstancesRestart request
 	OpenstackInstancesRestart(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -93447,6 +93559,9 @@ type ClientInterface interface {
 
 	// OpenstackInstancesUnlink request
 	OpenstackInstancesUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackInstancesUnrescue request
+	OpenstackInstancesUnrescue(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackInstancesUpdateAllowedAddressPairsWithBody request with any body
 	OpenstackInstancesUpdateAllowedAddressPairsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -113465,6 +113580,54 @@ func (c *Client) MarketplaceProviderResourcesUpdate(ctx context.Context, uuid op
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceProviderResourcesAddUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesAddUserRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderResourcesAddUser(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesAddUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesAddUserRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderResourcesDeleteUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesDeleteUserRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderResourcesDeleteUser(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesDeleteUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesDeleteUserRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceProviderResourcesDetailsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderResourcesDetailsRetrieveRequest(c.Server, uuid)
 	if err != nil {
@@ -113503,6 +113666,18 @@ func (c *Client) MarketplaceProviderResourcesHistoryList(ctx context.Context, uu
 
 func (c *Client) MarketplaceProviderResourcesHistoryAtRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderResourcesHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderResourcesHistoryAtRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderResourcesListUsersList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderResourcesListUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesListUsersListRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -114043,6 +114218,30 @@ func (c *Client) MarketplaceProviderResourcesUpdateOptionsDirectWithBody(ctx con
 
 func (c *Client) MarketplaceProviderResourcesUpdateOptionsDirect(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesUpdateOptionsDirectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderResourcesUpdateOptionsDirectRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderResourcesUpdateUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesUpdateUserRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderResourcesUpdateUser(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesUpdateUserRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -122561,6 +122760,18 @@ func (c *Client) OpenstackInstancesFloatingIpsList(ctx context.Context, uuid ope
 	return c.Client.Do(req)
 }
 
+func (c *Client) OpenstackInstancesPlacementAllocationsList(ctx context.Context, uuid openapi_types.UUID, params *OpenstackInstancesPlacementAllocationsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackInstancesPlacementAllocationsListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OpenstackInstancesPortsList(ctx context.Context, uuid openapi_types.UUID, params *OpenstackInstancesPortsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackInstancesPortsListRequest(c.Server, uuid, params)
 	if err != nil {
@@ -122575,6 +122786,30 @@ func (c *Client) OpenstackInstancesPortsList(ctx context.Context, uuid openapi_t
 
 func (c *Client) OpenstackInstancesPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackInstancesPullRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackInstancesRescueWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackInstancesRescueRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackInstancesRescue(ctx context.Context, uuid openapi_types.UUID, body OpenstackInstancesRescueJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackInstancesRescueRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -122659,6 +122894,18 @@ func (c *Client) OpenstackInstancesStop(ctx context.Context, uuid openapi_types.
 
 func (c *Client) OpenstackInstancesUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackInstancesUnlinkRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackInstancesUnrescue(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackInstancesUnrescueRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -214924,6 +215171,100 @@ func NewMarketplaceProviderResourcesUpdateRequestWithBody(server string, uuid op
 	return req, nil
 }
 
+// NewMarketplaceProviderResourcesAddUserRequest calls the generic MarketplaceProviderResourcesAddUser builder with application/json body
+func NewMarketplaceProviderResourcesAddUserRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderResourcesAddUserJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderResourcesAddUserRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderResourcesAddUserRequestWithBody generates requests for MarketplaceProviderResourcesAddUser with any type of body
+func NewMarketplaceProviderResourcesAddUserRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-resources/%s/add_user/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProviderResourcesDeleteUserRequest calls the generic MarketplaceProviderResourcesDeleteUser builder with application/json body
+func NewMarketplaceProviderResourcesDeleteUserRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderResourcesDeleteUserJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderResourcesDeleteUserRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderResourcesDeleteUserRequestWithBody generates requests for MarketplaceProviderResourcesDeleteUser with any type of body
+func NewMarketplaceProviderResourcesDeleteUserRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-resources/%s/delete_user/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceProviderResourcesDetailsRetrieveRequest generates requests for MarketplaceProviderResourcesDetailsRetrieve
 func NewMarketplaceProviderResourcesDetailsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -215646,6 +215987,199 @@ func NewMarketplaceProviderResourcesHistoryAtRetrieveRequest(server string, uuid
 			for _, qp := range strings.Split(queryFrag, "&") {
 				rawQueryFragments = append(rawQueryFragments, qp)
 			}
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceProviderResourcesListUsersListRequest generates requests for MarketplaceProviderResourcesListUsersList
+func NewMarketplaceProviderResourcesListUsersListRequest(server string, uuid openapi_types.UUID, params *MarketplaceProviderResourcesListUsersListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-resources/%s/list_users/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FullName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "full_name", *params.FullName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.NativeName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "native_name", *params.NativeName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Role != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role", *params.Role, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.SearchString != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "search_string", *params.SearchString, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.User != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user", *params.User, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_slug", *params.UserSlug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserUrl != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_url", *params.UserUrl, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Username != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "username", *params.Username, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
 		}
 
 		if encoded := queryValues.Encode(); encoded != "" {
@@ -216822,6 +217356,53 @@ func NewMarketplaceProviderResourcesUpdateOptionsDirectRequestWithBody(server st
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-provider-resources/%s/update_options_direct/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProviderResourcesUpdateUserRequest calls the generic MarketplaceProviderResourcesUpdateUser builder with application/json body
+func NewMarketplaceProviderResourcesUpdateUserRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderResourcesUpdateUserJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderResourcesUpdateUserRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderResourcesUpdateUserRequestWithBody generates requests for MarketplaceProviderResourcesUpdateUser with any type of body
+func NewMarketplaceProviderResourcesUpdateUserRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-resources/%s/update_user/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -258726,6 +259307,18 @@ func NewOpenstackImagesListRequest(server string, params *OpenstackImagesListPar
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
+		if params.IsRescueImage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_rescue_image", *params.IsRescueImage, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.Name != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -258887,6 +259480,18 @@ func NewOpenstackImagesCountRequest(server string, params *OpenstackImagesCountP
 		// styled parameters, preserving literal commas as delimiters
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
+
+		if params.IsRescueImage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_rescue_image", *params.IsRescueImage, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
 
 		if params.Name != nil {
 
@@ -260557,6 +261162,79 @@ func NewOpenstackInstancesFloatingIpsListRequest(server string, uuid openapi_typ
 	return req, nil
 }
 
+// NewOpenstackInstancesPlacementAllocationsListRequest generates requests for OpenstackInstancesPlacementAllocationsList
+func NewOpenstackInstancesPlacementAllocationsListRequest(server string, uuid openapi_types.UUID, params *OpenstackInstancesPlacementAllocationsListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-instances/%s/placement_allocations/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOpenstackInstancesPortsListRequest generates requests for OpenstackInstancesPortsList
 func NewOpenstackInstancesPortsListRequest(server string, uuid openapi_types.UUID, params *OpenstackInstancesPortsListParams) (*http.Request, error) {
 	var err error
@@ -260660,6 +261338,53 @@ func NewOpenstackInstancesPullRequest(server string, uuid openapi_types.UUID) (*
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewOpenstackInstancesRescueRequest calls the generic OpenstackInstancesRescue builder with application/json body
+func NewOpenstackInstancesRescueRequest(server string, uuid openapi_types.UUID, body OpenstackInstancesRescueJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackInstancesRescueRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackInstancesRescueRequestWithBody generates requests for OpenstackInstancesRescue with any type of body
+func NewOpenstackInstancesRescueRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-instances/%s/rescue/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -260864,6 +261589,40 @@ func NewOpenstackInstancesUnlinkRequest(server string, uuid openapi_types.UUID) 
 	}
 
 	operationPath := fmt.Sprintf("/api/openstack-instances/%s/unlink/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackInstancesUnrescueRequest generates requests for OpenstackInstancesUnrescue
+func NewOpenstackInstancesUnrescueRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-instances/%s/unrescue/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -332444,6 +333203,16 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceProviderResourcesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesUpdateResponse, error)
 
+	// MarketplaceProviderResourcesAddUserWithBodyWithResponse request with any body
+	MarketplaceProviderResourcesAddUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesAddUserResponse, error)
+
+	MarketplaceProviderResourcesAddUserWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesAddUserJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesAddUserResponse, error)
+
+	// MarketplaceProviderResourcesDeleteUserWithBodyWithResponse request with any body
+	MarketplaceProviderResourcesDeleteUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesDeleteUserResponse, error)
+
+	MarketplaceProviderResourcesDeleteUserWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesDeleteUserJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesDeleteUserResponse, error)
+
 	// MarketplaceProviderResourcesDetailsRetrieveWithResponse request
 	MarketplaceProviderResourcesDetailsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesDetailsRetrieveResponse, error)
 
@@ -332455,6 +333224,9 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceProviderResourcesHistoryAtRetrieveWithResponse request
 	MarketplaceProviderResourcesHistoryAtRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderResourcesHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesHistoryAtRetrieveResponse, error)
+
+	// MarketplaceProviderResourcesListUsersListWithResponse request
+	MarketplaceProviderResourcesListUsersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderResourcesListUsersListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesListUsersListResponse, error)
 
 	// MarketplaceProviderResourcesMoveResourceWithBodyWithResponse request with any body
 	MarketplaceProviderResourcesMoveResourceWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesMoveResourceResponse, error)
@@ -332572,6 +333344,11 @@ type ClientWithResponsesInterface interface {
 	MarketplaceProviderResourcesUpdateOptionsDirectWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesUpdateOptionsDirectResponse, error)
 
 	MarketplaceProviderResourcesUpdateOptionsDirectWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesUpdateOptionsDirectJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesUpdateOptionsDirectResponse, error)
+
+	// MarketplaceProviderResourcesUpdateUserWithBodyWithResponse request with any body
+	MarketplaceProviderResourcesUpdateUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesUpdateUserResponse, error)
+
+	MarketplaceProviderResourcesUpdateUserWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesUpdateUserResponse, error)
 
 	// MarketplacePublicApiCheckSignatureWithBodyWithResponse request with any body
 	MarketplacePublicApiCheckSignatureWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplacePublicApiCheckSignatureResponse, error)
@@ -334534,11 +335311,19 @@ type ClientWithResponsesInterface interface {
 	// OpenstackInstancesFloatingIpsListWithResponse request
 	OpenstackInstancesFloatingIpsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackInstancesFloatingIpsListParams, reqEditors ...RequestEditorFn) (*OpenstackInstancesFloatingIpsListResponse, error)
 
+	// OpenstackInstancesPlacementAllocationsListWithResponse request
+	OpenstackInstancesPlacementAllocationsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackInstancesPlacementAllocationsListParams, reqEditors ...RequestEditorFn) (*OpenstackInstancesPlacementAllocationsListResponse, error)
+
 	// OpenstackInstancesPortsListWithResponse request
 	OpenstackInstancesPortsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackInstancesPortsListParams, reqEditors ...RequestEditorFn) (*OpenstackInstancesPortsListResponse, error)
 
 	// OpenstackInstancesPullWithResponse request
 	OpenstackInstancesPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackInstancesPullResponse, error)
+
+	// OpenstackInstancesRescueWithBodyWithResponse request with any body
+	OpenstackInstancesRescueWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackInstancesRescueResponse, error)
+
+	OpenstackInstancesRescueWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackInstancesRescueJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackInstancesRescueResponse, error)
 
 	// OpenstackInstancesRestartWithResponse request
 	OpenstackInstancesRestartWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackInstancesRestartResponse, error)
@@ -334559,6 +335344,9 @@ type ClientWithResponsesInterface interface {
 
 	// OpenstackInstancesUnlinkWithResponse request
 	OpenstackInstancesUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackInstancesUnlinkResponse, error)
+
+	// OpenstackInstancesUnrescueWithResponse request
+	OpenstackInstancesUnrescueWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackInstancesUnrescueResponse, error)
 
 	// OpenstackInstancesUpdateAllowedAddressPairsWithBodyWithResponse request with any body
 	OpenstackInstancesUpdateAllowedAddressPairsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackInstancesUpdateAllowedAddressPairsResponse, error)
@@ -367930,6 +368718,65 @@ func (r MarketplaceProviderResourcesUpdateResponse) ContentType() string {
 	return ""
 }
 
+type MarketplaceProviderResourcesAddUserResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *UserRoleExpirationTime
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderResourcesAddUserResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderResourcesAddUserResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderResourcesAddUserResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProviderResourcesDeleteUserResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderResourcesDeleteUserResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderResourcesDeleteUserResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderResourcesDeleteUserResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type MarketplaceProviderResourcesDetailsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -368045,6 +368892,36 @@ func (r MarketplaceProviderResourcesHistoryAtRetrieveResponse) StatusCode() int 
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceProviderResourcesHistoryAtRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProviderResourcesListUsersListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]UserRoleDetails
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderResourcesListUsersListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderResourcesListUsersListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderResourcesListUsersListResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -368859,6 +369736,36 @@ func (r MarketplaceProviderResourcesUpdateOptionsDirectResponse) StatusCode() in
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceProviderResourcesUpdateOptionsDirectResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProviderResourcesUpdateUserResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *UserRoleExpirationTime
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderResourcesUpdateUserResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderResourcesUpdateUserResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderResourcesUpdateUserResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -385021,6 +385928,36 @@ func (r OpenstackInstancesFloatingIpsListResponse) ContentType() string {
 	return ""
 }
 
+type OpenstackInstancesPlacementAllocationsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]InstancePlacementAllocation
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackInstancesPlacementAllocationsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackInstancesPlacementAllocationsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenstackInstancesPlacementAllocationsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type OpenstackInstancesPortsListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -385076,6 +386013,35 @@ func (r OpenstackInstancesPullResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r OpenstackInstancesPullResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenstackInstancesRescueResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackInstancesRescueResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackInstancesRescueResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenstackInstancesRescueResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -385252,6 +386218,35 @@ func (r OpenstackInstancesUnlinkResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r OpenstackInstancesUnlinkResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenstackInstancesUnrescueResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackInstancesUnrescueResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackInstancesUnrescueResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenstackInstancesUnrescueResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -424354,6 +425349,40 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesUpdateWithResponse(ctx
 	return ParseMarketplaceProviderResourcesUpdateResponse(rsp)
 }
 
+// MarketplaceProviderResourcesAddUserWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourcesAddUserResponse
+func (c *ClientWithResponses) MarketplaceProviderResourcesAddUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesAddUserResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesAddUserWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesAddUserResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderResourcesAddUserWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesAddUserJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesAddUserResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesAddUser(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesAddUserResponse(rsp)
+}
+
+// MarketplaceProviderResourcesDeleteUserWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourcesDeleteUserResponse
+func (c *ClientWithResponses) MarketplaceProviderResourcesDeleteUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesDeleteUserResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesDeleteUserWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesDeleteUserResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderResourcesDeleteUserWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesDeleteUserJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesDeleteUserResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesDeleteUser(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesDeleteUserResponse(rsp)
+}
+
 // MarketplaceProviderResourcesDetailsRetrieveWithResponse request returning *MarketplaceProviderResourcesDetailsRetrieveResponse
 func (c *ClientWithResponses) MarketplaceProviderResourcesDetailsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesDetailsRetrieveResponse, error) {
 	rsp, err := c.MarketplaceProviderResourcesDetailsRetrieve(ctx, uuid, reqEditors...)
@@ -424388,6 +425417,15 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesHistoryAtRetrieveWithR
 		return nil, err
 	}
 	return ParseMarketplaceProviderResourcesHistoryAtRetrieveResponse(rsp)
+}
+
+// MarketplaceProviderResourcesListUsersListWithResponse request returning *MarketplaceProviderResourcesListUsersListResponse
+func (c *ClientWithResponses) MarketplaceProviderResourcesListUsersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderResourcesListUsersListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesListUsersListResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesListUsersList(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesListUsersListResponse(rsp)
 }
 
 // MarketplaceProviderResourcesMoveResourceWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourcesMoveResourceResponse
@@ -424775,6 +425813,23 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesUpdateOptionsDirectWit
 		return nil, err
 	}
 	return ParseMarketplaceProviderResourcesUpdateOptionsDirectResponse(rsp)
+}
+
+// MarketplaceProviderResourcesUpdateUserWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourcesUpdateUserResponse
+func (c *ClientWithResponses) MarketplaceProviderResourcesUpdateUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesUpdateUserResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesUpdateUserWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesUpdateUserResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderResourcesUpdateUserWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesUpdateUserResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesUpdateUser(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesUpdateUserResponse(rsp)
 }
 
 // MarketplacePublicApiCheckSignatureWithBodyWithResponse request with arbitrary body returning *MarketplacePublicApiCheckSignatureResponse
@@ -430992,6 +432047,15 @@ func (c *ClientWithResponses) OpenstackInstancesFloatingIpsListWithResponse(ctx 
 	return ParseOpenstackInstancesFloatingIpsListResponse(rsp)
 }
 
+// OpenstackInstancesPlacementAllocationsListWithResponse request returning *OpenstackInstancesPlacementAllocationsListResponse
+func (c *ClientWithResponses) OpenstackInstancesPlacementAllocationsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackInstancesPlacementAllocationsListParams, reqEditors ...RequestEditorFn) (*OpenstackInstancesPlacementAllocationsListResponse, error) {
+	rsp, err := c.OpenstackInstancesPlacementAllocationsList(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackInstancesPlacementAllocationsListResponse(rsp)
+}
+
 // OpenstackInstancesPortsListWithResponse request returning *OpenstackInstancesPortsListResponse
 func (c *ClientWithResponses) OpenstackInstancesPortsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackInstancesPortsListParams, reqEditors ...RequestEditorFn) (*OpenstackInstancesPortsListResponse, error) {
 	rsp, err := c.OpenstackInstancesPortsList(ctx, uuid, params, reqEditors...)
@@ -431008,6 +432072,23 @@ func (c *ClientWithResponses) OpenstackInstancesPullWithResponse(ctx context.Con
 		return nil, err
 	}
 	return ParseOpenstackInstancesPullResponse(rsp)
+}
+
+// OpenstackInstancesRescueWithBodyWithResponse request with arbitrary body returning *OpenstackInstancesRescueResponse
+func (c *ClientWithResponses) OpenstackInstancesRescueWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackInstancesRescueResponse, error) {
+	rsp, err := c.OpenstackInstancesRescueWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackInstancesRescueResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackInstancesRescueWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackInstancesRescueJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackInstancesRescueResponse, error) {
+	rsp, err := c.OpenstackInstancesRescue(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackInstancesRescueResponse(rsp)
 }
 
 // OpenstackInstancesRestartWithResponse request returning *OpenstackInstancesRestartResponse
@@ -431070,6 +432151,15 @@ func (c *ClientWithResponses) OpenstackInstancesUnlinkWithResponse(ctx context.C
 		return nil, err
 	}
 	return ParseOpenstackInstancesUnlinkResponse(rsp)
+}
+
+// OpenstackInstancesUnrescueWithResponse request returning *OpenstackInstancesUnrescueResponse
+func (c *ClientWithResponses) OpenstackInstancesUnrescueWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackInstancesUnrescueResponse, error) {
+	rsp, err := c.OpenstackInstancesUnrescue(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackInstancesUnrescueResponse(rsp)
 }
 
 // OpenstackInstancesUpdateAllowedAddressPairsWithBodyWithResponse request with arbitrary body returning *OpenstackInstancesUpdateAllowedAddressPairsResponse
@@ -465016,6 +466106,48 @@ func ParseMarketplaceProviderResourcesUpdateResponse(rsp *http.Response) (*Marke
 	return response, nil
 }
 
+// ParseMarketplaceProviderResourcesAddUserResponse parses an HTTP response from a MarketplaceProviderResourcesAddUserWithResponse call
+func ParseMarketplaceProviderResourcesAddUserResponse(rsp *http.Response) (*MarketplaceProviderResourcesAddUserResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderResourcesAddUserResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest UserRoleExpirationTime
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderResourcesDeleteUserResponse parses an HTTP response from a MarketplaceProviderResourcesDeleteUserWithResponse call
+func ParseMarketplaceProviderResourcesDeleteUserResponse(rsp *http.Response) (*MarketplaceProviderResourcesDeleteUserResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderResourcesDeleteUserResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceProviderResourcesDetailsRetrieveResponse parses an HTTP response from a MarketplaceProviderResourcesDetailsRetrieveWithResponse call
 func ParseMarketplaceProviderResourcesDetailsRetrieveResponse(rsp *http.Response) (*MarketplaceProviderResourcesDetailsRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -465118,6 +466250,32 @@ func ParseMarketplaceProviderResourcesHistoryAtRetrieveResponse(rsp *http.Respon
 			return nil, err
 		}
 		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderResourcesListUsersListResponse parses an HTTP response from a MarketplaceProviderResourcesListUsersListWithResponse call
+func ParseMarketplaceProviderResourcesListUsersListResponse(rsp *http.Response) (*MarketplaceProviderResourcesListUsersListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderResourcesListUsersListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []UserRoleDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
 
 	}
 
@@ -465763,6 +466921,32 @@ func ParseMarketplaceProviderResourcesUpdateOptionsDirectResponse(rsp *http.Resp
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest ResourceResponseStatus
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderResourcesUpdateUserResponse parses an HTTP response from a MarketplaceProviderResourcesUpdateUserWithResponse call
+func ParseMarketplaceProviderResourcesUpdateUserResponse(rsp *http.Response) (*MarketplaceProviderResourcesUpdateUserResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderResourcesUpdateUserResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UserRoleExpirationTime
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -478365,6 +479549,32 @@ func ParseOpenstackInstancesFloatingIpsListResponse(rsp *http.Response) (*Openst
 	return response, nil
 }
 
+// ParseOpenstackInstancesPlacementAllocationsListResponse parses an HTTP response from a OpenstackInstancesPlacementAllocationsListWithResponse call
+func ParseOpenstackInstancesPlacementAllocationsListResponse(rsp *http.Response) (*OpenstackInstancesPlacementAllocationsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackInstancesPlacementAllocationsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []InstancePlacementAllocation
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseOpenstackInstancesPortsListResponse parses an HTTP response from a OpenstackInstancesPortsListWithResponse call
 func ParseOpenstackInstancesPortsListResponse(rsp *http.Response) (*OpenstackInstancesPortsListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -478419,6 +479629,22 @@ func ParseOpenstackInstancesPullResponse(rsp *http.Response) (*OpenstackInstance
 		}
 		response.JSON409 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackInstancesRescueResponse parses an HTTP response from a OpenstackInstancesRescueWithResponse call
+func ParseOpenstackInstancesRescueResponse(rsp *http.Response) (*OpenstackInstancesRescueResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackInstancesRescueResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
@@ -478533,6 +479759,22 @@ func ParseOpenstackInstancesUnlinkResponse(rsp *http.Response) (*OpenstackInstan
 	}
 
 	response := &OpenstackInstancesUnlinkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackInstancesUnrescueResponse parses an HTTP response from a OpenstackInstancesUnrescueWithResponse call
+func ParseOpenstackInstancesUnrescueResponse(rsp *http.Response) (*OpenstackInstancesUnrescueResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackInstancesUnrescueResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
