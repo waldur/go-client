@@ -27,6 +27,7 @@ const (
 // Defines values for AIASSISTANTENABLEDROLESEnum.
 const (
 	AIASSISTANTENABLEDROLESEnumAll             AIASSISTANTENABLEDROLESEnum = "all"
+	AIASSISTANTENABLEDROLESEnumAnonymous       AIASSISTANTENABLEDROLESEnum = "anonymous"
 	AIASSISTANTENABLEDROLESEnumDisabled        AIASSISTANTENABLEDROLESEnum = "disabled"
 	AIASSISTANTENABLEDROLESEnumStaff           AIASSISTANTENABLEDROLESEnum = "staff"
 	AIASSISTANTENABLEDROLESEnumStaffAndSupport AIASSISTANTENABLEDROLESEnum = "staff_and_support"
@@ -36,6 +37,8 @@ const (
 func (e AIASSISTANTENABLEDROLESEnum) Valid() bool {
 	switch e {
 	case AIASSISTANTENABLEDROLESEnumAll:
+		return true
+	case AIASSISTANTENABLEDROLESEnumAnonymous:
 		return true
 	case AIASSISTANTENABLEDROLESEnumDisabled:
 		return true
@@ -576,6 +579,60 @@ func (e AmountRangeEnum) Valid() bool {
 	case AmountRangeEnumOver50k:
 		return true
 	case AmountRangeEnumUnder5k:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for AnonymousChatFeedbackOEnum.
+const (
+	AnonymousChatFeedbackOEnumLlmResolutionScore      AnonymousChatFeedbackOEnum = "llm_resolution_score"
+	AnonymousChatFeedbackOEnumMinusLlmResolutionScore AnonymousChatFeedbackOEnum = "-llm_resolution_score"
+	AnonymousChatFeedbackOEnumMinusScore              AnonymousChatFeedbackOEnum = "-score"
+	AnonymousChatFeedbackOEnumMinusSubmittedAt        AnonymousChatFeedbackOEnum = "-submitted_at"
+	AnonymousChatFeedbackOEnumScore                   AnonymousChatFeedbackOEnum = "score"
+	AnonymousChatFeedbackOEnumSubmittedAt             AnonymousChatFeedbackOEnum = "submitted_at"
+)
+
+// Valid indicates whether the value is a known member of the AnonymousChatFeedbackOEnum enum.
+func (e AnonymousChatFeedbackOEnum) Valid() bool {
+	switch e {
+	case AnonymousChatFeedbackOEnumLlmResolutionScore:
+		return true
+	case AnonymousChatFeedbackOEnumMinusLlmResolutionScore:
+		return true
+	case AnonymousChatFeedbackOEnumMinusScore:
+		return true
+	case AnonymousChatFeedbackOEnumMinusSubmittedAt:
+		return true
+	case AnonymousChatFeedbackOEnumScore:
+		return true
+	case AnonymousChatFeedbackOEnumSubmittedAt:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for AnonymousChatInteractionOEnum.
+const (
+	AnonymousChatInteractionOEnumCreated          AnonymousChatInteractionOEnum = "created"
+	AnonymousChatInteractionOEnumMinusCreated     AnonymousChatInteractionOEnum = "-created"
+	AnonymousChatInteractionOEnumMinusResultCount AnonymousChatInteractionOEnum = "-result_count"
+	AnonymousChatInteractionOEnumResultCount      AnonymousChatInteractionOEnum = "result_count"
+)
+
+// Valid indicates whether the value is a known member of the AnonymousChatInteractionOEnum enum.
+func (e AnonymousChatInteractionOEnum) Valid() bool {
+	switch e {
+	case AnonymousChatInteractionOEnumCreated:
+		return true
+	case AnonymousChatInteractionOEnumMinusCreated:
+		return true
+	case AnonymousChatInteractionOEnumMinusResultCount:
+		return true
+	case AnonymousChatInteractionOEnumResultCount:
 		return true
 	default:
 		return false
@@ -11600,16 +11657,16 @@ func (e OpenStackInstanceFieldEnum) Valid() bool {
 
 // Defines values for OpenStackInstanceOEnum.
 const (
-	MinusStartTime OpenStackInstanceOEnum = "-start_time"
-	StartTime      OpenStackInstanceOEnum = "start_time"
+	OpenStackInstanceOEnumMinusStartTime OpenStackInstanceOEnum = "-start_time"
+	OpenStackInstanceOEnumStartTime      OpenStackInstanceOEnum = "start_time"
 )
 
 // Valid indicates whether the value is a known member of the OpenStackInstanceOEnum enum.
 func (e OpenStackInstanceOEnum) Valid() bool {
 	switch e {
-	case MinusStartTime:
+	case OpenStackInstanceOEnumMinusStartTime:
 		return true
-	case StartTime:
+	case OpenStackInstanceOEnumStartTime:
 		return true
 	default:
 		return false
@@ -17957,28 +18014,28 @@ func (e ReviewStrategyEnum) Valid() bool {
 
 // Defines values for ReviewerBidOEnum.
 const (
-	Bid              ReviewerBidOEnum = "bid"
-	MinusBid         ReviewerBidOEnum = "-bid"
-	MinusModifiedAt  ReviewerBidOEnum = "-modified_at"
-	MinusSubmittedAt ReviewerBidOEnum = "-submitted_at"
-	ModifiedAt       ReviewerBidOEnum = "modified_at"
-	SubmittedAt      ReviewerBidOEnum = "submitted_at"
+	ReviewerBidOEnumBid              ReviewerBidOEnum = "bid"
+	ReviewerBidOEnumMinusBid         ReviewerBidOEnum = "-bid"
+	ReviewerBidOEnumMinusModifiedAt  ReviewerBidOEnum = "-modified_at"
+	ReviewerBidOEnumMinusSubmittedAt ReviewerBidOEnum = "-submitted_at"
+	ReviewerBidOEnumModifiedAt       ReviewerBidOEnum = "modified_at"
+	ReviewerBidOEnumSubmittedAt      ReviewerBidOEnum = "submitted_at"
 )
 
 // Valid indicates whether the value is a known member of the ReviewerBidOEnum enum.
 func (e ReviewerBidOEnum) Valid() bool {
 	switch e {
-	case Bid:
+	case ReviewerBidOEnumBid:
 		return true
-	case MinusBid:
+	case ReviewerBidOEnumMinusBid:
 		return true
-	case MinusModifiedAt:
+	case ReviewerBidOEnumMinusModifiedAt:
 		return true
-	case MinusSubmittedAt:
+	case ReviewerBidOEnumMinusSubmittedAt:
 		return true
-	case ModifiedAt:
+	case ReviewerBidOEnumModifiedAt:
 		return true
-	case SubmittedAt:
+	case ReviewerBidOEnumSubmittedAt:
 		return true
 	default:
 		return false
@@ -21682,6 +21739,178 @@ type AllocationUserUsage struct {
 
 // AmountRangeEnum defines model for AmountRangeEnum.
 type AmountRangeEnum string
+
+// AnonymousChatBudgetSnapshot defines model for AnonymousChatBudgetSnapshot.
+type AnonymousChatBudgetSnapshot struct {
+	ResetsAt    time.Time `json:"resets_at"`
+	TokensLimit int       `json:"tokens_limit"`
+	TokensToday int       `json:"tokens_today"`
+}
+
+// AnonymousChatClickRequestRequest defines model for AnonymousChatClickRequestRequest.
+type AnonymousChatClickRequestRequest struct {
+	// FeedbackToken HMAC-bound bearer issued in the streaming `m` frame (same as /feedback/).
+	FeedbackToken string `json:"feedback_token"`
+
+	// InteractionUuid UUID of the interaction this click belongs to.
+	InteractionUuid openapi_types.UUID `json:"interaction_uuid"`
+
+	// OfferingUuid UUID of the clicked offering. Must appear in the parent interaction's recommended set, else 400.
+	OfferingUuid openapi_types.UUID `json:"offering_uuid"`
+}
+
+// AnonymousChatFeedback defines model for AnonymousChatFeedback.
+type AnonymousChatFeedback struct {
+	Category                 *FeedbackCategoryEnum `json:"category,omitempty"`
+	Comment                  *string               `json:"comment,omitempty"`
+	InteractionUuid          *openapi_types.UUID   `json:"interaction_uuid,omitempty"`
+	LlmHallucinationDetails  *string               `json:"llm_hallucination_details,omitempty"`
+	LlmHallucinationDetected *bool                 `json:"llm_hallucination_detected,omitempty"`
+	LlmIntentCategory        *string               `json:"llm_intent_category,omitempty"`
+	LlmJudgeInputTokens      *int                  `json:"llm_judge_input_tokens,omitempty"`
+	LlmJudgeModel            *string               `json:"llm_judge_model,omitempty"`
+	LlmJudgeOutputTokens     *int                  `json:"llm_judge_output_tokens,omitempty"`
+	LlmResolutionScore       *int                  `json:"llm_resolution_score,omitempty"`
+	LlmReviewedAt            *time.Time            `json:"llm_reviewed_at,omitempty"`
+	LlmSummary               *string               `json:"llm_summary,omitempty"`
+	ModifiedAt               *time.Time            `json:"modified_at,omitempty"`
+	Score                    *int                  `json:"score,omitempty"`
+	SubmittedAt              *time.Time            `json:"submitted_at,omitempty"`
+
+	// SubmittedFromIp An IPv4 or IPv6 address.
+	SubmittedFromIp *AnonymousChatFeedback_SubmittedFromIp `json:"submitted_from_ip,omitempty"`
+}
+
+// AnonymousChatFeedbackSubmittedFromIp0 defines model for .
+type AnonymousChatFeedbackSubmittedFromIp0 = string
+
+// AnonymousChatFeedbackSubmittedFromIp1 defines model for .
+type AnonymousChatFeedbackSubmittedFromIp1 = string
+
+// AnonymousChatFeedback_SubmittedFromIp An IPv4 or IPv6 address.
+type AnonymousChatFeedback_SubmittedFromIp struct {
+	union json.RawMessage
+}
+
+// AnonymousChatFeedbackOEnum defines model for AnonymousChatFeedbackOEnum.
+type AnonymousChatFeedbackOEnum string
+
+// AnonymousChatFeedbackRequestRequest defines model for AnonymousChatFeedbackRequestRequest.
+type AnonymousChatFeedbackRequestRequest struct {
+	// Category Required when score == -1; rejected when score == 1.
+	Category *AnonymousChatFeedbackRequestRequest_Category `json:"category,omitempty"`
+
+	// Comment Optional free-text comment.
+	Comment *string `json:"comment,omitempty"`
+
+	// FeedbackToken HMAC-bound bearer issued in the streaming `m` frame.
+	FeedbackToken string `json:"feedback_token"`
+
+	// InteractionUuid UUID of the interaction the feedback is about (from the streaming `m` frame).
+	InteractionUuid openapi_types.UUID `json:"interaction_uuid"`
+
+	// Score +1 thumbs-up or -1 thumbs-down (0 not accepted).
+	Score int `json:"score"`
+}
+
+// AnonymousChatFeedbackRequestRequest_Category Required when score == -1; rejected when score == 1.
+type AnonymousChatFeedbackRequestRequest_Category struct {
+	union json.RawMessage
+}
+
+// AnonymousChatInteraction defines model for AnonymousChatInteraction.
+type AnonymousChatInteraction struct {
+	ActionTaken         *string                `json:"action_taken,omitempty"`
+	AssistantBlocks     interface{}            `json:"assistant_blocks,omitempty"`
+	Created             *time.Time             `json:"created,omitempty"`
+	Feedback            *AnonymousChatFeedback `json:"feedback,omitempty"`
+	InjectionCategories interface{}            `json:"injection_categories,omitempty"`
+
+	// IpAddress An IPv4 or IPv6 address.
+	IpAddress     *AnonymousChatInteraction_IpAddress `json:"ip_address,omitempty"`
+	IsFlagged     *bool                               `json:"is_flagged,omitempty"`
+	LastActiveAt  *time.Time                          `json:"last_active_at,omitempty"`
+	OfferingUuids interface{}                         `json:"offering_uuids,omitempty"`
+	PiiCategories interface{}                         `json:"pii_categories,omitempty"`
+	ResultCount   *int                                `json:"result_count,omitempty"`
+	SessionId     *string                             `json:"session_id,omitempty"`
+	Severity      *string                             `json:"severity,omitempty"`
+	UserInput     *string                             `json:"user_input,omitempty"`
+	UserSlug      *string                             `json:"user_slug,omitempty"`
+	Uuid          *openapi_types.UUID                 `json:"uuid,omitempty"`
+	Warning       *string                             `json:"warning,omitempty"`
+}
+
+// AnonymousChatInteractionIpAddress0 defines model for .
+type AnonymousChatInteractionIpAddress0 = string
+
+// AnonymousChatInteractionIpAddress1 defines model for .
+type AnonymousChatInteractionIpAddress1 = string
+
+// AnonymousChatInteraction_IpAddress An IPv4 or IPv6 address.
+type AnonymousChatInteraction_IpAddress struct {
+	union json.RawMessage
+}
+
+// AnonymousChatInteractionOEnum defines model for AnonymousChatInteractionOEnum.
+type AnonymousChatInteractionOEnum string
+
+// AnonymousChatKpiResponse defines model for AnonymousChatKpiResponse.
+type AnonymousChatKpiResponse struct {
+	// AvgLlmResolutionScore Mean of llm_resolution_score across reviewed sessions (1-5).
+	AvgLlmResolutionScore *float64 `json:"avg_llm_resolution_score,omitempty"`
+
+	// ClickThroughRate clicks / interactions; null when no interactions.
+	ClickThroughRate float64 `json:"click_through_rate"`
+	ClicksTotal      int     `json:"clicks_total"`
+
+	// DailyVolume Per-day query counts across the filter window.
+	DailyVolume      *[]map[string]interface{} `json:"daily_volume,omitempty"`
+	FeedbackNegative int                       `json:"feedback_negative"`
+	FeedbackPositive int                       `json:"feedback_positive"`
+	FlaggedTotal     int                       `json:"flagged_total"`
+
+	// HallucinationRate Share of reviewed sessions flagged as hallucinating.
+	HallucinationRate *float64 `json:"hallucination_rate,omitempty"`
+	InteractionsTotal int      `json:"interactions_total"`
+
+	// LlmIntentDistribution Counts keyed by llm_intent_category.
+	LlmIntentDistribution *map[string]int `json:"llm_intent_distribution,omitempty"`
+
+	// ReviewCoverage Reviewed sessions / total reviewable sessions. Operations health signal — drops below ~90% if the review budget is too tight or the task is failing.
+	ReviewCoverage *float64 `json:"review_coverage,omitempty"`
+
+	// SatisfactionRate positive / (positive + negative); null when no human feedback.
+	SatisfactionRate float64 `json:"satisfaction_rate"`
+	SessionsTotal    int     `json:"sessions_total"`
+
+	// SeverityByDay Stacked-bar input. Shape: {labels: [iso-date], series: {NONE: [...], LOW: [...], MEDIUM: [...], HIGH: [...], CRITICAL: [...]}}
+	SeverityByDay *map[string]interface{} `json:"severity_by_day,omitempty"`
+
+	// UniqueUsers Distinct user_slug values in the window — proxy for active anonymous users.
+	UniqueUsers int `json:"unique_users"`
+}
+
+// AnonymousChatStreamRequestRequest defines model for AnonymousChatStreamRequestRequest.
+type AnonymousChatStreamRequestRequest struct {
+	// Input User input text for the anonymous marketplace assistant.
+	Input string `json:"input"`
+
+	// SessionId Client-generated session identifier. Bound to the originating IP on first use; subsequent requests from a different IP get 403.
+	SessionId string `json:"session_id"`
+}
+
+// AnonymousChatUserAggregate defines model for AnonymousChatUserAggregate.
+type AnonymousChatUserAggregate struct {
+	InjectionStrikes  int        `json:"injection_strikes"`
+	LastSeen          *time.Time `json:"last_seen"`
+	NegativeFeedback  int        `json:"negative_feedback"`
+	NoFeedback        int        `json:"no_feedback"`
+	PositiveFeedback  int        `json:"positive_feedback"`
+	SessionCount      int        `json:"session_count"`
+	TotalInteractions int        `json:"total_interactions"`
+	UserSlug          string     `json:"user_slug"`
+}
 
 // Answer defines model for Answer.
 type Answer struct {
@@ -25565,16 +25794,25 @@ type ConstanceSettings struct {
 	AIASSISTANTCOMPLETIONKWARGS                      *string                                                          `json:"AI_ASSISTANT_COMPLETION_KWARGS,omitempty"`
 	AIASSISTANTENABLED                               *bool                                                            `json:"AI_ASSISTANT_ENABLED,omitempty"`
 	AIASSISTANTENABLEDROLES                          *AIASSISTANTENABLEDROLESEnum                                     `json:"AI_ASSISTANT_ENABLED_ROLES,omitempty"`
+	AIASSISTANTGLOBALDAILYTOKENBUDGET                *int                                                             `json:"AI_ASSISTANT_GLOBAL_DAILY_TOKEN_BUDGET,omitempty"`
+	AIASSISTANTGLOBALREQUESTSPERMINUTE               *int                                                             `json:"AI_ASSISTANT_GLOBAL_REQUESTS_PER_MINUTE,omitempty"`
 	AIASSISTANTHISTORYLIMIT                          *int                                                             `json:"AI_ASSISTANT_HISTORY_LIMIT,omitempty"`
 	AIASSISTANTINJECTIONALLOWLIST                    *string                                                          `json:"AI_ASSISTANT_INJECTION_ALLOWLIST,omitempty"`
 	AIASSISTANTMODEL                                 *string                                                          `json:"AI_ASSISTANT_MODEL,omitempty"`
 	AIASSISTANTNAME                                  *string                                                          `json:"AI_ASSISTANT_NAME,omitempty"`
 	AIASSISTANTSESSIONRETENTIONDAYS                  *int                                                             `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
+	AIASSISTANTSTREAMTIMEOUTSECONDS                  *int                                                             `json:"AI_ASSISTANT_STREAM_TIMEOUT_SECONDS,omitempty"`
 	AIASSISTANTSYSTEMPROMPTCUSTOMINSTRUCTIONS        *string                                                          `json:"AI_ASSISTANT_SYSTEM_PROMPT_CUSTOM_INSTRUCTIONS,omitempty"`
 	AIASSISTANTTOKENLIMITDAILY                       *int                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
 	AIASSISTANTTOKENLIMITMONTHLY                     *int                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_MONTHLY,omitempty"`
 	AIASSISTANTTOKENLIMITWEEKLY                      *int                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_WEEKLY,omitempty"`
 	ALLOWSERVICEPROVIDEROFFERINGMANAGEMENT           *bool                                                            `json:"ALLOW_SERVICE_PROVIDER_OFFERING_MANAGEMENT,omitempty"`
+	ANONYMOUSCHATARTIFACTRETENTIONDAYS               *int                                                             `json:"ANONYMOUS_CHAT_ARTIFACT_RETENTION_DAYS,omitempty"`
+	ANONYMOUSCHATCATALOGMAXENTRIES                   *int                                                             `json:"ANONYMOUS_CHAT_CATALOG_MAX_ENTRIES,omitempty"`
+	ANONYMOUSCHATFEEDBACKTOKENSECRET                 *string                                                          `json:"ANONYMOUS_CHAT_FEEDBACK_TOKEN_SECRET,omitempty"`
+	ANONYMOUSCHATREVIEWDAILYTOKENBUDGET              *int                                                             `json:"ANONYMOUS_CHAT_REVIEW_DAILY_TOKEN_BUDGET,omitempty"`
+	ANONYMOUSCHATREVIEWENABLED                       *bool                                                            `json:"ANONYMOUS_CHAT_REVIEW_ENABLED,omitempty"`
+	ANONYMOUSCHATUSERSLUGSALT                        *string                                                          `json:"ANONYMOUS_CHAT_USER_SLUG_SALT,omitempty"`
 	ANONYMOUSUSERCANVIEWOFFERINGS                    *bool                                                            `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
 	ANONYMOUSUSERCANVIEWPLANS                        *bool                                                            `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
 	ARROWAUTORECONCILIATION                          *bool                                                            `json:"ARROW_AUTO_RECONCILIATION,omitempty"`
@@ -25884,16 +26122,25 @@ type ConstanceSettingsRequest struct {
 	AIASSISTANTCOMPLETIONKWARGS                      *string                                                                 `json:"AI_ASSISTANT_COMPLETION_KWARGS,omitempty"`
 	AIASSISTANTENABLED                               *bool                                                                   `json:"AI_ASSISTANT_ENABLED,omitempty"`
 	AIASSISTANTENABLEDROLES                          *AIASSISTANTENABLEDROLESEnum                                            `json:"AI_ASSISTANT_ENABLED_ROLES,omitempty"`
+	AIASSISTANTGLOBALDAILYTOKENBUDGET                *int                                                                    `json:"AI_ASSISTANT_GLOBAL_DAILY_TOKEN_BUDGET,omitempty"`
+	AIASSISTANTGLOBALREQUESTSPERMINUTE               *int                                                                    `json:"AI_ASSISTANT_GLOBAL_REQUESTS_PER_MINUTE,omitempty"`
 	AIASSISTANTHISTORYLIMIT                          *int                                                                    `json:"AI_ASSISTANT_HISTORY_LIMIT,omitempty"`
 	AIASSISTANTINJECTIONALLOWLIST                    *string                                                                 `json:"AI_ASSISTANT_INJECTION_ALLOWLIST,omitempty"`
 	AIASSISTANTMODEL                                 *string                                                                 `json:"AI_ASSISTANT_MODEL,omitempty"`
 	AIASSISTANTNAME                                  *string                                                                 `json:"AI_ASSISTANT_NAME,omitempty"`
 	AIASSISTANTSESSIONRETENTIONDAYS                  *int                                                                    `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
+	AIASSISTANTSTREAMTIMEOUTSECONDS                  *int                                                                    `json:"AI_ASSISTANT_STREAM_TIMEOUT_SECONDS,omitempty"`
 	AIASSISTANTSYSTEMPROMPTCUSTOMINSTRUCTIONS        *string                                                                 `json:"AI_ASSISTANT_SYSTEM_PROMPT_CUSTOM_INSTRUCTIONS,omitempty"`
 	AIASSISTANTTOKENLIMITDAILY                       *int                                                                    `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
 	AIASSISTANTTOKENLIMITMONTHLY                     *int                                                                    `json:"AI_ASSISTANT_TOKEN_LIMIT_MONTHLY,omitempty"`
 	AIASSISTANTTOKENLIMITWEEKLY                      *int                                                                    `json:"AI_ASSISTANT_TOKEN_LIMIT_WEEKLY,omitempty"`
 	ALLOWSERVICEPROVIDEROFFERINGMANAGEMENT           *bool                                                                   `json:"ALLOW_SERVICE_PROVIDER_OFFERING_MANAGEMENT,omitempty"`
+	ANONYMOUSCHATARTIFACTRETENTIONDAYS               *int                                                                    `json:"ANONYMOUS_CHAT_ARTIFACT_RETENTION_DAYS,omitempty"`
+	ANONYMOUSCHATCATALOGMAXENTRIES                   *int                                                                    `json:"ANONYMOUS_CHAT_CATALOG_MAX_ENTRIES,omitempty"`
+	ANONYMOUSCHATFEEDBACKTOKENSECRET                 *string                                                                 `json:"ANONYMOUS_CHAT_FEEDBACK_TOKEN_SECRET,omitempty"`
+	ANONYMOUSCHATREVIEWDAILYTOKENBUDGET              *int                                                                    `json:"ANONYMOUS_CHAT_REVIEW_DAILY_TOKEN_BUDGET,omitempty"`
+	ANONYMOUSCHATREVIEWENABLED                       *bool                                                                   `json:"ANONYMOUS_CHAT_REVIEW_ENABLED,omitempty"`
+	ANONYMOUSCHATUSERSLUGSALT                        *string                                                                 `json:"ANONYMOUS_CHAT_USER_SLUG_SALT,omitempty"`
 	ANONYMOUSUSERCANVIEWOFFERINGS                    *bool                                                                   `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
 	ANONYMOUSUSERCANVIEWPLANS                        *bool                                                                   `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
 	ARROWAUTORECONCILIATION                          *bool                                                                   `json:"ARROW_AUTO_RECONCILIATION,omitempty"`
@@ -26203,16 +26450,25 @@ type ConstanceSettingsRequestForm struct {
 	AIASSISTANTCOMPLETIONKWARGS                      *string                                                                     `json:"AI_ASSISTANT_COMPLETION_KWARGS,omitempty"`
 	AIASSISTANTENABLED                               *bool                                                                       `json:"AI_ASSISTANT_ENABLED,omitempty"`
 	AIASSISTANTENABLEDROLES                          *AIASSISTANTENABLEDROLESEnum                                                `json:"AI_ASSISTANT_ENABLED_ROLES,omitempty"`
+	AIASSISTANTGLOBALDAILYTOKENBUDGET                *int                                                                        `json:"AI_ASSISTANT_GLOBAL_DAILY_TOKEN_BUDGET,omitempty"`
+	AIASSISTANTGLOBALREQUESTSPERMINUTE               *int                                                                        `json:"AI_ASSISTANT_GLOBAL_REQUESTS_PER_MINUTE,omitempty"`
 	AIASSISTANTHISTORYLIMIT                          *int                                                                        `json:"AI_ASSISTANT_HISTORY_LIMIT,omitempty"`
 	AIASSISTANTINJECTIONALLOWLIST                    *string                                                                     `json:"AI_ASSISTANT_INJECTION_ALLOWLIST,omitempty"`
 	AIASSISTANTMODEL                                 *string                                                                     `json:"AI_ASSISTANT_MODEL,omitempty"`
 	AIASSISTANTNAME                                  *string                                                                     `json:"AI_ASSISTANT_NAME,omitempty"`
 	AIASSISTANTSESSIONRETENTIONDAYS                  *int                                                                        `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
+	AIASSISTANTSTREAMTIMEOUTSECONDS                  *int                                                                        `json:"AI_ASSISTANT_STREAM_TIMEOUT_SECONDS,omitempty"`
 	AIASSISTANTSYSTEMPROMPTCUSTOMINSTRUCTIONS        *string                                                                     `json:"AI_ASSISTANT_SYSTEM_PROMPT_CUSTOM_INSTRUCTIONS,omitempty"`
 	AIASSISTANTTOKENLIMITDAILY                       *int                                                                        `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
 	AIASSISTANTTOKENLIMITMONTHLY                     *int                                                                        `json:"AI_ASSISTANT_TOKEN_LIMIT_MONTHLY,omitempty"`
 	AIASSISTANTTOKENLIMITWEEKLY                      *int                                                                        `json:"AI_ASSISTANT_TOKEN_LIMIT_WEEKLY,omitempty"`
 	ALLOWSERVICEPROVIDEROFFERINGMANAGEMENT           *bool                                                                       `json:"ALLOW_SERVICE_PROVIDER_OFFERING_MANAGEMENT,omitempty"`
+	ANONYMOUSCHATARTIFACTRETENTIONDAYS               *int                                                                        `json:"ANONYMOUS_CHAT_ARTIFACT_RETENTION_DAYS,omitempty"`
+	ANONYMOUSCHATCATALOGMAXENTRIES                   *int                                                                        `json:"ANONYMOUS_CHAT_CATALOG_MAX_ENTRIES,omitempty"`
+	ANONYMOUSCHATFEEDBACKTOKENSECRET                 *string                                                                     `json:"ANONYMOUS_CHAT_FEEDBACK_TOKEN_SECRET,omitempty"`
+	ANONYMOUSCHATREVIEWDAILYTOKENBUDGET              *int                                                                        `json:"ANONYMOUS_CHAT_REVIEW_DAILY_TOKEN_BUDGET,omitempty"`
+	ANONYMOUSCHATREVIEWENABLED                       *bool                                                                       `json:"ANONYMOUS_CHAT_REVIEW_ENABLED,omitempty"`
+	ANONYMOUSCHATUSERSLUGSALT                        *string                                                                     `json:"ANONYMOUS_CHAT_USER_SLUG_SALT,omitempty"`
 	ANONYMOUSUSERCANVIEWOFFERINGS                    *bool                                                                       `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
 	ANONYMOUSUSERCANVIEWPLANS                        *bool                                                                       `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
 	ARROWAUTORECONCILIATION                          *bool                                                                       `json:"ARROW_AUTO_RECONCILIATION,omitempty"`
@@ -26522,16 +26778,25 @@ type ConstanceSettingsRequestMultipart struct {
 	AIASSISTANTCOMPLETIONKWARGS                      *string                                                                          `json:"AI_ASSISTANT_COMPLETION_KWARGS,omitempty"`
 	AIASSISTANTENABLED                               *bool                                                                            `json:"AI_ASSISTANT_ENABLED,omitempty"`
 	AIASSISTANTENABLEDROLES                          *AIASSISTANTENABLEDROLESEnum                                                     `json:"AI_ASSISTANT_ENABLED_ROLES,omitempty"`
+	AIASSISTANTGLOBALDAILYTOKENBUDGET                *int                                                                             `json:"AI_ASSISTANT_GLOBAL_DAILY_TOKEN_BUDGET,omitempty"`
+	AIASSISTANTGLOBALREQUESTSPERMINUTE               *int                                                                             `json:"AI_ASSISTANT_GLOBAL_REQUESTS_PER_MINUTE,omitempty"`
 	AIASSISTANTHISTORYLIMIT                          *int                                                                             `json:"AI_ASSISTANT_HISTORY_LIMIT,omitempty"`
 	AIASSISTANTINJECTIONALLOWLIST                    *string                                                                          `json:"AI_ASSISTANT_INJECTION_ALLOWLIST,omitempty"`
 	AIASSISTANTMODEL                                 *string                                                                          `json:"AI_ASSISTANT_MODEL,omitempty"`
 	AIASSISTANTNAME                                  *string                                                                          `json:"AI_ASSISTANT_NAME,omitempty"`
 	AIASSISTANTSESSIONRETENTIONDAYS                  *int                                                                             `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
+	AIASSISTANTSTREAMTIMEOUTSECONDS                  *int                                                                             `json:"AI_ASSISTANT_STREAM_TIMEOUT_SECONDS,omitempty"`
 	AIASSISTANTSYSTEMPROMPTCUSTOMINSTRUCTIONS        *string                                                                          `json:"AI_ASSISTANT_SYSTEM_PROMPT_CUSTOM_INSTRUCTIONS,omitempty"`
 	AIASSISTANTTOKENLIMITDAILY                       *int                                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
 	AIASSISTANTTOKENLIMITMONTHLY                     *int                                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_MONTHLY,omitempty"`
 	AIASSISTANTTOKENLIMITWEEKLY                      *int                                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_WEEKLY,omitempty"`
 	ALLOWSERVICEPROVIDEROFFERINGMANAGEMENT           *bool                                                                            `json:"ALLOW_SERVICE_PROVIDER_OFFERING_MANAGEMENT,omitempty"`
+	ANONYMOUSCHATARTIFACTRETENTIONDAYS               *int                                                                             `json:"ANONYMOUS_CHAT_ARTIFACT_RETENTION_DAYS,omitempty"`
+	ANONYMOUSCHATCATALOGMAXENTRIES                   *int                                                                             `json:"ANONYMOUS_CHAT_CATALOG_MAX_ENTRIES,omitempty"`
+	ANONYMOUSCHATFEEDBACKTOKENSECRET                 *string                                                                          `json:"ANONYMOUS_CHAT_FEEDBACK_TOKEN_SECRET,omitempty"`
+	ANONYMOUSCHATREVIEWDAILYTOKENBUDGET              *int                                                                             `json:"ANONYMOUS_CHAT_REVIEW_DAILY_TOKEN_BUDGET,omitempty"`
+	ANONYMOUSCHATREVIEWENABLED                       *bool                                                                            `json:"ANONYMOUS_CHAT_REVIEW_ENABLED,omitempty"`
+	ANONYMOUSCHATUSERSLUGSALT                        *string                                                                          `json:"ANONYMOUS_CHAT_USER_SLUG_SALT,omitempty"`
 	ANONYMOUSUSERCANVIEWOFFERINGS                    *bool                                                                            `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
 	ANONYMOUSUSERCANVIEWPLANS                        *bool                                                                            `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
 	ARROWAUTORECONCILIATION                          *bool                                                                            `json:"ARROW_AUTO_RECONCILIATION,omitempty"`
@@ -49806,6 +50071,109 @@ type AffiliatedOrganizationsReportCountParams struct {
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
 }
 
+// AnonymousChatFeedbacksListParams defines parameters for AnonymousChatFeedbacksList.
+type AnonymousChatFeedbacksListParams struct {
+	Category   *string `form:"category,omitempty" json:"category,omitempty"`
+	HasComment *bool   `form:"has_comment,omitempty" json:"has_comment,omitempty"`
+
+	// O Ordering
+	//
+	O *[]AnonymousChatFeedbackOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize      *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Score         *int                `form:"score,omitempty" json:"score,omitempty"`
+	SubmittedFrom *openapi_types.Date `form:"submitted_from,omitempty" json:"submitted_from,omitempty"`
+	SubmittedTo   *openapi_types.Date `form:"submitted_to,omitempty" json:"submitted_to,omitempty"`
+}
+
+// AnonymousChatInteractionsListParams defines parameters for AnonymousChatInteractionsList.
+type AnonymousChatInteractionsListParams struct {
+	CreatedFrom         *openapi_types.Date `form:"created_from,omitempty" json:"created_from,omitempty"`
+	CreatedTo           *openapi_types.Date `form:"created_to,omitempty" json:"created_to,omitempty"`
+	HasNegativeFeedback *bool               `form:"has_negative_feedback,omitempty" json:"has_negative_feedback,omitempty"`
+	IsFlagged           *bool               `form:"is_flagged,omitempty" json:"is_flagged,omitempty"`
+
+	// O Ordering
+	//
+	O *[]AnonymousChatInteractionOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize  *PageSize              `form:"page_size,omitempty" json:"page_size,omitempty"`
+	SessionId *string                `form:"session_id,omitempty" json:"session_id,omitempty"`
+	Severity  *InjectionSeverityEnum `form:"severity,omitempty" json:"severity,omitempty"`
+	UserSlug  *string                `form:"user_slug,omitempty" json:"user_slug,omitempty"`
+}
+
+// AnonymousChatInteractionsBySessionListParams defines parameters for AnonymousChatInteractionsBySessionList.
+type AnonymousChatInteractionsBySessionListParams struct {
+	CreatedFrom         *openapi_types.Date `form:"created_from,omitempty" json:"created_from,omitempty"`
+	CreatedTo           *openapi_types.Date `form:"created_to,omitempty" json:"created_to,omitempty"`
+	HasNegativeFeedback *bool               `form:"has_negative_feedback,omitempty" json:"has_negative_feedback,omitempty"`
+	IsFlagged           *bool               `form:"is_flagged,omitempty" json:"is_flagged,omitempty"`
+
+	// O Ordering
+	//
+	O *[]AnonymousChatInteractionOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize  *PageSize              `form:"page_size,omitempty" json:"page_size,omitempty"`
+	SessionId *string                `form:"session_id,omitempty" json:"session_id,omitempty"`
+	Severity  *InjectionSeverityEnum `form:"severity,omitempty" json:"severity,omitempty"`
+	UserSlug  *string                `form:"user_slug,omitempty" json:"user_slug,omitempty"`
+}
+
+// AnonymousChatInteractionsByUserAggregateParams defines parameters for AnonymousChatInteractionsByUserAggregate.
+type AnonymousChatInteractionsByUserAggregateParams struct {
+	CreatedFrom         *openapi_types.Date `form:"created_from,omitempty" json:"created_from,omitempty"`
+	CreatedTo           *openapi_types.Date `form:"created_to,omitempty" json:"created_to,omitempty"`
+	HasNegativeFeedback *bool               `form:"has_negative_feedback,omitempty" json:"has_negative_feedback,omitempty"`
+	IsFlagged           *bool               `form:"is_flagged,omitempty" json:"is_flagged,omitempty"`
+
+	// O Ordering
+	//
+	O *[]AnonymousChatInteractionOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize  *PageSize              `form:"page_size,omitempty" json:"page_size,omitempty"`
+	SessionId *string                `form:"session_id,omitempty" json:"session_id,omitempty"`
+	Severity  *InjectionSeverityEnum `form:"severity,omitempty" json:"severity,omitempty"`
+	UserSlug  *string                `form:"user_slug,omitempty" json:"user_slug,omitempty"`
+}
+
+// AnonymousChatInteractionsByUserListParams defines parameters for AnonymousChatInteractionsByUserList.
+type AnonymousChatInteractionsByUserListParams struct {
+	CreatedFrom         *openapi_types.Date `form:"created_from,omitempty" json:"created_from,omitempty"`
+	CreatedTo           *openapi_types.Date `form:"created_to,omitempty" json:"created_to,omitempty"`
+	HasNegativeFeedback *bool               `form:"has_negative_feedback,omitempty" json:"has_negative_feedback,omitempty"`
+	IsFlagged           *bool               `form:"is_flagged,omitempty" json:"is_flagged,omitempty"`
+
+	// O Ordering
+	//
+	O *[]AnonymousChatInteractionOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize  *PageSize              `form:"page_size,omitempty" json:"page_size,omitempty"`
+	SessionId *string                `form:"session_id,omitempty" json:"session_id,omitempty"`
+	Severity  *InjectionSeverityEnum `form:"severity,omitempty" json:"severity,omitempty"`
+	UserSlug  *string                `form:"user_slug,omitempty" json:"user_slug,omitempty"`
+}
+
 // AssignmentBatchesListParams defines parameters for AssignmentBatchesList.
 type AssignmentBatchesListParams struct {
 	CallUuid *openapi_types.UUID `form:"call_uuid,omitempty" json:"call_uuid,omitempty"`
@@ -72318,6 +72686,15 @@ type MarketplaceCategoryHelpArticlesPartialUpdateJSONRequestBody = PatchedCatego
 // MarketplaceCategoryHelpArticlesUpdateJSONRequestBody defines body for MarketplaceCategoryHelpArticlesUpdate for application/json ContentType.
 type MarketplaceCategoryHelpArticlesUpdateJSONRequestBody = CategoryHelpArticlesRequest
 
+// MarketplaceChatClickJSONRequestBody defines body for MarketplaceChatClick for application/json ContentType.
+type MarketplaceChatClickJSONRequestBody = AnonymousChatClickRequestRequest
+
+// MarketplaceChatFeedbackJSONRequestBody defines body for MarketplaceChatFeedback for application/json ContentType.
+type MarketplaceChatFeedbackJSONRequestBody = AnonymousChatFeedbackRequestRequest
+
+// MarketplaceChatStreamJSONRequestBody defines body for MarketplaceChatStream for application/json ContentType.
+type MarketplaceChatStreamJSONRequestBody = AnonymousChatStreamRequestRequest
+
 // MarketplaceComponentUsagesSetUsageJSONRequestBody defines body for MarketplaceComponentUsagesSetUsage for application/json ContentType.
 type MarketplaceComponentUsagesSetUsageJSONRequestBody = ComponentUsageCreateRequest
 
@@ -74576,6 +74953,218 @@ func (t Allocation_AccessUrl) MarshalJSON() ([]byte, error) {
 }
 
 func (t *Allocation_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAnonymousChatFeedbackSubmittedFromIp0 returns the union data inside the AnonymousChatFeedback_SubmittedFromIp as a AnonymousChatFeedbackSubmittedFromIp0
+func (t AnonymousChatFeedback_SubmittedFromIp) AsAnonymousChatFeedbackSubmittedFromIp0() (AnonymousChatFeedbackSubmittedFromIp0, error) {
+	var body AnonymousChatFeedbackSubmittedFromIp0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAnonymousChatFeedbackSubmittedFromIp0 overwrites any union data inside the AnonymousChatFeedback_SubmittedFromIp as the provided AnonymousChatFeedbackSubmittedFromIp0
+func (t *AnonymousChatFeedback_SubmittedFromIp) FromAnonymousChatFeedbackSubmittedFromIp0(v AnonymousChatFeedbackSubmittedFromIp0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAnonymousChatFeedbackSubmittedFromIp0 performs a merge with any union data inside the AnonymousChatFeedback_SubmittedFromIp, using the provided AnonymousChatFeedbackSubmittedFromIp0
+func (t *AnonymousChatFeedback_SubmittedFromIp) MergeAnonymousChatFeedbackSubmittedFromIp0(v AnonymousChatFeedbackSubmittedFromIp0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAnonymousChatFeedbackSubmittedFromIp1 returns the union data inside the AnonymousChatFeedback_SubmittedFromIp as a AnonymousChatFeedbackSubmittedFromIp1
+func (t AnonymousChatFeedback_SubmittedFromIp) AsAnonymousChatFeedbackSubmittedFromIp1() (AnonymousChatFeedbackSubmittedFromIp1, error) {
+	var body AnonymousChatFeedbackSubmittedFromIp1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAnonymousChatFeedbackSubmittedFromIp1 overwrites any union data inside the AnonymousChatFeedback_SubmittedFromIp as the provided AnonymousChatFeedbackSubmittedFromIp1
+func (t *AnonymousChatFeedback_SubmittedFromIp) FromAnonymousChatFeedbackSubmittedFromIp1(v AnonymousChatFeedbackSubmittedFromIp1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAnonymousChatFeedbackSubmittedFromIp1 performs a merge with any union data inside the AnonymousChatFeedback_SubmittedFromIp, using the provided AnonymousChatFeedbackSubmittedFromIp1
+func (t *AnonymousChatFeedback_SubmittedFromIp) MergeAnonymousChatFeedbackSubmittedFromIp1(v AnonymousChatFeedbackSubmittedFromIp1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AnonymousChatFeedback_SubmittedFromIp) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AnonymousChatFeedback_SubmittedFromIp) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsFeedbackCategoryEnum returns the union data inside the AnonymousChatFeedbackRequestRequest_Category as a FeedbackCategoryEnum
+func (t AnonymousChatFeedbackRequestRequest_Category) AsFeedbackCategoryEnum() (FeedbackCategoryEnum, error) {
+	var body FeedbackCategoryEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromFeedbackCategoryEnum overwrites any union data inside the AnonymousChatFeedbackRequestRequest_Category as the provided FeedbackCategoryEnum
+func (t *AnonymousChatFeedbackRequestRequest_Category) FromFeedbackCategoryEnum(v FeedbackCategoryEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeFeedbackCategoryEnum performs a merge with any union data inside the AnonymousChatFeedbackRequestRequest_Category, using the provided FeedbackCategoryEnum
+func (t *AnonymousChatFeedbackRequestRequest_Category) MergeFeedbackCategoryEnum(v FeedbackCategoryEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the AnonymousChatFeedbackRequestRequest_Category as a BlankEnum
+func (t AnonymousChatFeedbackRequestRequest_Category) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the AnonymousChatFeedbackRequestRequest_Category as the provided BlankEnum
+func (t *AnonymousChatFeedbackRequestRequest_Category) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the AnonymousChatFeedbackRequestRequest_Category, using the provided BlankEnum
+func (t *AnonymousChatFeedbackRequestRequest_Category) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the AnonymousChatFeedbackRequestRequest_Category as a NullEnum
+func (t AnonymousChatFeedbackRequestRequest_Category) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the AnonymousChatFeedbackRequestRequest_Category as the provided NullEnum
+func (t *AnonymousChatFeedbackRequestRequest_Category) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the AnonymousChatFeedbackRequestRequest_Category, using the provided NullEnum
+func (t *AnonymousChatFeedbackRequestRequest_Category) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AnonymousChatFeedbackRequestRequest_Category) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AnonymousChatFeedbackRequestRequest_Category) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAnonymousChatInteractionIpAddress0 returns the union data inside the AnonymousChatInteraction_IpAddress as a AnonymousChatInteractionIpAddress0
+func (t AnonymousChatInteraction_IpAddress) AsAnonymousChatInteractionIpAddress0() (AnonymousChatInteractionIpAddress0, error) {
+	var body AnonymousChatInteractionIpAddress0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAnonymousChatInteractionIpAddress0 overwrites any union data inside the AnonymousChatInteraction_IpAddress as the provided AnonymousChatInteractionIpAddress0
+func (t *AnonymousChatInteraction_IpAddress) FromAnonymousChatInteractionIpAddress0(v AnonymousChatInteractionIpAddress0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAnonymousChatInteractionIpAddress0 performs a merge with any union data inside the AnonymousChatInteraction_IpAddress, using the provided AnonymousChatInteractionIpAddress0
+func (t *AnonymousChatInteraction_IpAddress) MergeAnonymousChatInteractionIpAddress0(v AnonymousChatInteractionIpAddress0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAnonymousChatInteractionIpAddress1 returns the union data inside the AnonymousChatInteraction_IpAddress as a AnonymousChatInteractionIpAddress1
+func (t AnonymousChatInteraction_IpAddress) AsAnonymousChatInteractionIpAddress1() (AnonymousChatInteractionIpAddress1, error) {
+	var body AnonymousChatInteractionIpAddress1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAnonymousChatInteractionIpAddress1 overwrites any union data inside the AnonymousChatInteraction_IpAddress as the provided AnonymousChatInteractionIpAddress1
+func (t *AnonymousChatInteraction_IpAddress) FromAnonymousChatInteractionIpAddress1(v AnonymousChatInteractionIpAddress1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAnonymousChatInteractionIpAddress1 performs a merge with any union data inside the AnonymousChatInteraction_IpAddress, using the provided AnonymousChatInteractionIpAddress1
+func (t *AnonymousChatInteraction_IpAddress) MergeAnonymousChatInteractionIpAddress1(v AnonymousChatInteractionIpAddress1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AnonymousChatInteraction_IpAddress) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AnonymousChatInteraction_IpAddress) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -88019,6 +88608,33 @@ type ClientInterface interface {
 	// AffiliatedOrganizationsStatsRetrieve request
 	AffiliatedOrganizationsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// AnonymousChatFeedbacksList request
+	AnonymousChatFeedbacksList(ctx context.Context, params *AnonymousChatFeedbacksListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AnonymousChatFeedbacksRetrieve request
+	AnonymousChatFeedbacksRetrieve(ctx context.Context, interactionUuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AnonymousChatInteractionsList request
+	AnonymousChatInteractionsList(ctx context.Context, params *AnonymousChatInteractionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AnonymousChatInteractionsBudgetRetrieve request
+	AnonymousChatInteractionsBudgetRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AnonymousChatInteractionsBySessionList request
+	AnonymousChatInteractionsBySessionList(ctx context.Context, sessionId string, params *AnonymousChatInteractionsBySessionListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AnonymousChatInteractionsByUserAggregate request
+	AnonymousChatInteractionsByUserAggregate(ctx context.Context, params *AnonymousChatInteractionsByUserAggregateParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AnonymousChatInteractionsByUserList request
+	AnonymousChatInteractionsByUserList(ctx context.Context, userSlug string, params *AnonymousChatInteractionsByUserListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AnonymousChatInteractionsKpiRetrieve request
+	AnonymousChatInteractionsKpiRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AnonymousChatInteractionsRetrieve request
+	AnonymousChatInteractionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// AssignmentBatchesList request
 	AssignmentBatchesList(ctx context.Context, params *AssignmentBatchesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -90263,6 +90879,21 @@ type ClientInterface interface {
 	MarketplaceCategoryHelpArticlesUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceCategoryHelpArticlesUpdate(ctx context.Context, id int, body MarketplaceCategoryHelpArticlesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceChatClickWithBody request with any body
+	MarketplaceChatClickWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceChatClick(ctx context.Context, body MarketplaceChatClickJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceChatFeedbackWithBody request with any body
+	MarketplaceChatFeedbackWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceChatFeedback(ctx context.Context, body MarketplaceChatFeedbackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceChatStreamWithBody request with any body
+	MarketplaceChatStreamWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceChatStream(ctx context.Context, body MarketplaceChatStreamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceComponentUsageMonthlyList request
 	MarketplaceComponentUsageMonthlyList(ctx context.Context, params *MarketplaceComponentUsageMonthlyListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -98630,6 +99261,114 @@ func (c *Client) AffiliatedOrganizationsUpdate(ctx context.Context, uuid openapi
 
 func (c *Client) AffiliatedOrganizationsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewAffiliatedOrganizationsStatsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AnonymousChatFeedbacksList(ctx context.Context, params *AnonymousChatFeedbacksListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAnonymousChatFeedbacksListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AnonymousChatFeedbacksRetrieve(ctx context.Context, interactionUuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAnonymousChatFeedbacksRetrieveRequest(c.Server, interactionUuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AnonymousChatInteractionsList(ctx context.Context, params *AnonymousChatInteractionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAnonymousChatInteractionsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AnonymousChatInteractionsBudgetRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAnonymousChatInteractionsBudgetRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AnonymousChatInteractionsBySessionList(ctx context.Context, sessionId string, params *AnonymousChatInteractionsBySessionListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAnonymousChatInteractionsBySessionListRequest(c.Server, sessionId, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AnonymousChatInteractionsByUserAggregate(ctx context.Context, params *AnonymousChatInteractionsByUserAggregateParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAnonymousChatInteractionsByUserAggregateRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AnonymousChatInteractionsByUserList(ctx context.Context, userSlug string, params *AnonymousChatInteractionsByUserListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAnonymousChatInteractionsByUserListRequest(c.Server, userSlug, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AnonymousChatInteractionsKpiRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAnonymousChatInteractionsKpiRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AnonymousChatInteractionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAnonymousChatInteractionsRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -108458,6 +109197,78 @@ func (c *Client) MarketplaceCategoryHelpArticlesUpdateWithBody(ctx context.Conte
 
 func (c *Client) MarketplaceCategoryHelpArticlesUpdate(ctx context.Context, id int, body MarketplaceCategoryHelpArticlesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceCategoryHelpArticlesUpdateRequest(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceChatClickWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceChatClickRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceChatClick(ctx context.Context, body MarketplaceChatClickJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceChatClickRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceChatFeedbackWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceChatFeedbackRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceChatFeedback(ctx context.Context, body MarketplaceChatFeedbackJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceChatFeedbackRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceChatStreamWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceChatStreamRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceChatStream(ctx context.Context, body MarketplaceChatStreamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceChatStreamRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -144258,6 +145069,928 @@ func NewAffiliatedOrganizationsStatsRetrieveRequest(server string, uuid openapi_
 	}
 
 	operationPath := fmt.Sprintf("/api/affiliated-organizations/%s/stats/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAnonymousChatFeedbacksListRequest generates requests for AnonymousChatFeedbacksList
+func NewAnonymousChatFeedbacksListRequest(server string, params *AnonymousChatFeedbacksListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/anonymous-chat-feedbacks/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Category != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "category", *params.Category, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasComment != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_comment", *params.HasComment, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Score != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "score", *params.Score, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.SubmittedFrom != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "submitted_from", *params.SubmittedFrom, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.SubmittedTo != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "submitted_to", *params.SubmittedTo, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAnonymousChatFeedbacksRetrieveRequest generates requests for AnonymousChatFeedbacksRetrieve
+func NewAnonymousChatFeedbacksRetrieveRequest(server string, interactionUuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "interaction_uuid", interactionUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/anonymous-chat-feedbacks/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAnonymousChatInteractionsListRequest generates requests for AnonymousChatInteractionsList
+func NewAnonymousChatInteractionsListRequest(server string, params *AnonymousChatInteractionsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/anonymous-chat-interactions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CreatedFrom != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_from", *params.CreatedFrom, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedTo != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_to", *params.CreatedTo, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasNegativeFeedback != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_negative_feedback", *params.HasNegativeFeedback, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsFlagged != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_flagged", *params.IsFlagged, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.SessionId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "session_id", *params.SessionId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Severity != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "severity", *params.Severity, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_slug", *params.UserSlug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAnonymousChatInteractionsBudgetRetrieveRequest generates requests for AnonymousChatInteractionsBudgetRetrieve
+func NewAnonymousChatInteractionsBudgetRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/anonymous-chat-interactions/budget/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAnonymousChatInteractionsBySessionListRequest generates requests for AnonymousChatInteractionsBySessionList
+func NewAnonymousChatInteractionsBySessionListRequest(server string, sessionId string, params *AnonymousChatInteractionsBySessionListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "session_id", sessionId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/anonymous-chat-interactions/by-session/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CreatedFrom != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_from", *params.CreatedFrom, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedTo != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_to", *params.CreatedTo, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasNegativeFeedback != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_negative_feedback", *params.HasNegativeFeedback, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsFlagged != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_flagged", *params.IsFlagged, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.SessionId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "session_id", *params.SessionId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Severity != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "severity", *params.Severity, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_slug", *params.UserSlug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAnonymousChatInteractionsByUserAggregateRequest generates requests for AnonymousChatInteractionsByUserAggregate
+func NewAnonymousChatInteractionsByUserAggregateRequest(server string, params *AnonymousChatInteractionsByUserAggregateParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/anonymous-chat-interactions/by-user/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CreatedFrom != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_from", *params.CreatedFrom, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedTo != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_to", *params.CreatedTo, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasNegativeFeedback != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_negative_feedback", *params.HasNegativeFeedback, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsFlagged != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_flagged", *params.IsFlagged, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.SessionId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "session_id", *params.SessionId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Severity != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "severity", *params.Severity, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_slug", *params.UserSlug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAnonymousChatInteractionsByUserListRequest generates requests for AnonymousChatInteractionsByUserList
+func NewAnonymousChatInteractionsByUserListRequest(server string, userSlug string, params *AnonymousChatInteractionsByUserListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "user_slug", userSlug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/anonymous-chat-interactions/by-user/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CreatedFrom != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_from", *params.CreatedFrom, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedTo != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_to", *params.CreatedTo, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasNegativeFeedback != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_negative_feedback", *params.HasNegativeFeedback, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsFlagged != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_flagged", *params.IsFlagged, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.SessionId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "session_id", *params.SessionId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Severity != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "severity", *params.Severity, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_slug", *params.UserSlug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAnonymousChatInteractionsKpiRetrieveRequest generates requests for AnonymousChatInteractionsKpiRetrieve
+func NewAnonymousChatInteractionsKpiRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/anonymous-chat-interactions/kpi/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAnonymousChatInteractionsRetrieveRequest generates requests for AnonymousChatInteractionsRetrieve
+func NewAnonymousChatInteractionsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/anonymous-chat-interactions/%s/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -188715,6 +190448,126 @@ func NewMarketplaceCategoryHelpArticlesUpdateRequestWithBody(server string, id i
 	}
 
 	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceChatClickRequest calls the generic MarketplaceChatClick builder with application/json body
+func NewMarketplaceChatClickRequest(server string, body MarketplaceChatClickJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceChatClickRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceChatClickRequestWithBody generates requests for MarketplaceChatClick with any type of body
+func NewMarketplaceChatClickRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-chat/click/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceChatFeedbackRequest calls the generic MarketplaceChatFeedback builder with application/json body
+func NewMarketplaceChatFeedbackRequest(server string, body MarketplaceChatFeedbackJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceChatFeedbackRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceChatFeedbackRequestWithBody generates requests for MarketplaceChatFeedback with any type of body
+func NewMarketplaceChatFeedbackRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-chat/feedback/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceChatStreamRequest calls the generic MarketplaceChatStream builder with application/json body
+func NewMarketplaceChatStreamRequest(server string, body MarketplaceChatStreamJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceChatStreamRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceChatStreamRequestWithBody generates requests for MarketplaceChatStream with any type of body
+func NewMarketplaceChatStreamRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-chat/stream/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
@@ -329804,6 +331657,33 @@ type ClientWithResponsesInterface interface {
 	// AffiliatedOrganizationsStatsRetrieveWithResponse request
 	AffiliatedOrganizationsStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AffiliatedOrganizationsStatsRetrieveResponse, error)
 
+	// AnonymousChatFeedbacksListWithResponse request
+	AnonymousChatFeedbacksListWithResponse(ctx context.Context, params *AnonymousChatFeedbacksListParams, reqEditors ...RequestEditorFn) (*AnonymousChatFeedbacksListResponse, error)
+
+	// AnonymousChatFeedbacksRetrieveWithResponse request
+	AnonymousChatFeedbacksRetrieveWithResponse(ctx context.Context, interactionUuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AnonymousChatFeedbacksRetrieveResponse, error)
+
+	// AnonymousChatInteractionsListWithResponse request
+	AnonymousChatInteractionsListWithResponse(ctx context.Context, params *AnonymousChatInteractionsListParams, reqEditors ...RequestEditorFn) (*AnonymousChatInteractionsListResponse, error)
+
+	// AnonymousChatInteractionsBudgetRetrieveWithResponse request
+	AnonymousChatInteractionsBudgetRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AnonymousChatInteractionsBudgetRetrieveResponse, error)
+
+	// AnonymousChatInteractionsBySessionListWithResponse request
+	AnonymousChatInteractionsBySessionListWithResponse(ctx context.Context, sessionId string, params *AnonymousChatInteractionsBySessionListParams, reqEditors ...RequestEditorFn) (*AnonymousChatInteractionsBySessionListResponse, error)
+
+	// AnonymousChatInteractionsByUserAggregateWithResponse request
+	AnonymousChatInteractionsByUserAggregateWithResponse(ctx context.Context, params *AnonymousChatInteractionsByUserAggregateParams, reqEditors ...RequestEditorFn) (*AnonymousChatInteractionsByUserAggregateResponse, error)
+
+	// AnonymousChatInteractionsByUserListWithResponse request
+	AnonymousChatInteractionsByUserListWithResponse(ctx context.Context, userSlug string, params *AnonymousChatInteractionsByUserListParams, reqEditors ...RequestEditorFn) (*AnonymousChatInteractionsByUserListResponse, error)
+
+	// AnonymousChatInteractionsKpiRetrieveWithResponse request
+	AnonymousChatInteractionsKpiRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AnonymousChatInteractionsKpiRetrieveResponse, error)
+
+	// AnonymousChatInteractionsRetrieveWithResponse request
+	AnonymousChatInteractionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AnonymousChatInteractionsRetrieveResponse, error)
+
 	// AssignmentBatchesListWithResponse request
 	AssignmentBatchesListWithResponse(ctx context.Context, params *AssignmentBatchesListParams, reqEditors ...RequestEditorFn) (*AssignmentBatchesListResponse, error)
 
@@ -332048,6 +333928,21 @@ type ClientWithResponsesInterface interface {
 	MarketplaceCategoryHelpArticlesUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceCategoryHelpArticlesUpdateResponse, error)
 
 	MarketplaceCategoryHelpArticlesUpdateWithResponse(ctx context.Context, id int, body MarketplaceCategoryHelpArticlesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCategoryHelpArticlesUpdateResponse, error)
+
+	// MarketplaceChatClickWithBodyWithResponse request with any body
+	MarketplaceChatClickWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChatClickResponse, error)
+
+	MarketplaceChatClickWithResponse(ctx context.Context, body MarketplaceChatClickJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChatClickResponse, error)
+
+	// MarketplaceChatFeedbackWithBodyWithResponse request with any body
+	MarketplaceChatFeedbackWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChatFeedbackResponse, error)
+
+	MarketplaceChatFeedbackWithResponse(ctx context.Context, body MarketplaceChatFeedbackJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChatFeedbackResponse, error)
+
+	// MarketplaceChatStreamWithBodyWithResponse request with any body
+	MarketplaceChatStreamWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChatStreamResponse, error)
+
+	MarketplaceChatStreamWithResponse(ctx context.Context, body MarketplaceChatStreamJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChatStreamResponse, error)
 
 	// MarketplaceComponentUsageMonthlyListWithResponse request
 	MarketplaceComponentUsageMonthlyListWithResponse(ctx context.Context, params *MarketplaceComponentUsageMonthlyListParams, reqEditors ...RequestEditorFn) (*MarketplaceComponentUsageMonthlyListResponse, error)
@@ -341694,6 +343589,276 @@ func (r AffiliatedOrganizationsStatsRetrieveResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r AffiliatedOrganizationsStatsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type AnonymousChatFeedbacksListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]AnonymousChatFeedback
+}
+
+// Status returns HTTPResponse.Status
+func (r AnonymousChatFeedbacksListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AnonymousChatFeedbacksListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AnonymousChatFeedbacksListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type AnonymousChatFeedbacksRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AnonymousChatFeedback
+}
+
+// Status returns HTTPResponse.Status
+func (r AnonymousChatFeedbacksRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AnonymousChatFeedbacksRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AnonymousChatFeedbacksRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type AnonymousChatInteractionsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]AnonymousChatInteraction
+}
+
+// Status returns HTTPResponse.Status
+func (r AnonymousChatInteractionsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AnonymousChatInteractionsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AnonymousChatInteractionsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type AnonymousChatInteractionsBudgetRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AnonymousChatBudgetSnapshot
+}
+
+// Status returns HTTPResponse.Status
+func (r AnonymousChatInteractionsBudgetRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AnonymousChatInteractionsBudgetRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AnonymousChatInteractionsBudgetRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type AnonymousChatInteractionsBySessionListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]AnonymousChatInteraction
+}
+
+// Status returns HTTPResponse.Status
+func (r AnonymousChatInteractionsBySessionListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AnonymousChatInteractionsBySessionListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AnonymousChatInteractionsBySessionListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type AnonymousChatInteractionsByUserAggregateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]AnonymousChatUserAggregate
+}
+
+// Status returns HTTPResponse.Status
+func (r AnonymousChatInteractionsByUserAggregateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AnonymousChatInteractionsByUserAggregateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AnonymousChatInteractionsByUserAggregateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type AnonymousChatInteractionsByUserListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]AnonymousChatInteraction
+}
+
+// Status returns HTTPResponse.Status
+func (r AnonymousChatInteractionsByUserListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AnonymousChatInteractionsByUserListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AnonymousChatInteractionsByUserListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type AnonymousChatInteractionsKpiRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AnonymousChatKpiResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AnonymousChatInteractionsKpiRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AnonymousChatInteractionsKpiRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AnonymousChatInteractionsKpiRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type AnonymousChatInteractionsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AnonymousChatInteraction
+}
+
+// Status returns HTTPResponse.Status
+func (r AnonymousChatInteractionsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AnonymousChatInteractionsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AnonymousChatInteractionsRetrieveResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -359749,6 +361914,93 @@ func (r MarketplaceCategoryHelpArticlesUpdateResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceCategoryHelpArticlesUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceChatClickResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceChatClickResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceChatClickResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceChatClickResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceChatFeedbackResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceChatFeedbackResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceChatFeedbackResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceChatFeedbackResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceChatStreamResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceChatStreamResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceChatStreamResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceChatStreamResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -414480,6 +416732,87 @@ func (c *ClientWithResponses) AffiliatedOrganizationsStatsRetrieveWithResponse(c
 	return ParseAffiliatedOrganizationsStatsRetrieveResponse(rsp)
 }
 
+// AnonymousChatFeedbacksListWithResponse request returning *AnonymousChatFeedbacksListResponse
+func (c *ClientWithResponses) AnonymousChatFeedbacksListWithResponse(ctx context.Context, params *AnonymousChatFeedbacksListParams, reqEditors ...RequestEditorFn) (*AnonymousChatFeedbacksListResponse, error) {
+	rsp, err := c.AnonymousChatFeedbacksList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAnonymousChatFeedbacksListResponse(rsp)
+}
+
+// AnonymousChatFeedbacksRetrieveWithResponse request returning *AnonymousChatFeedbacksRetrieveResponse
+func (c *ClientWithResponses) AnonymousChatFeedbacksRetrieveWithResponse(ctx context.Context, interactionUuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AnonymousChatFeedbacksRetrieveResponse, error) {
+	rsp, err := c.AnonymousChatFeedbacksRetrieve(ctx, interactionUuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAnonymousChatFeedbacksRetrieveResponse(rsp)
+}
+
+// AnonymousChatInteractionsListWithResponse request returning *AnonymousChatInteractionsListResponse
+func (c *ClientWithResponses) AnonymousChatInteractionsListWithResponse(ctx context.Context, params *AnonymousChatInteractionsListParams, reqEditors ...RequestEditorFn) (*AnonymousChatInteractionsListResponse, error) {
+	rsp, err := c.AnonymousChatInteractionsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAnonymousChatInteractionsListResponse(rsp)
+}
+
+// AnonymousChatInteractionsBudgetRetrieveWithResponse request returning *AnonymousChatInteractionsBudgetRetrieveResponse
+func (c *ClientWithResponses) AnonymousChatInteractionsBudgetRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AnonymousChatInteractionsBudgetRetrieveResponse, error) {
+	rsp, err := c.AnonymousChatInteractionsBudgetRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAnonymousChatInteractionsBudgetRetrieveResponse(rsp)
+}
+
+// AnonymousChatInteractionsBySessionListWithResponse request returning *AnonymousChatInteractionsBySessionListResponse
+func (c *ClientWithResponses) AnonymousChatInteractionsBySessionListWithResponse(ctx context.Context, sessionId string, params *AnonymousChatInteractionsBySessionListParams, reqEditors ...RequestEditorFn) (*AnonymousChatInteractionsBySessionListResponse, error) {
+	rsp, err := c.AnonymousChatInteractionsBySessionList(ctx, sessionId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAnonymousChatInteractionsBySessionListResponse(rsp)
+}
+
+// AnonymousChatInteractionsByUserAggregateWithResponse request returning *AnonymousChatInteractionsByUserAggregateResponse
+func (c *ClientWithResponses) AnonymousChatInteractionsByUserAggregateWithResponse(ctx context.Context, params *AnonymousChatInteractionsByUserAggregateParams, reqEditors ...RequestEditorFn) (*AnonymousChatInteractionsByUserAggregateResponse, error) {
+	rsp, err := c.AnonymousChatInteractionsByUserAggregate(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAnonymousChatInteractionsByUserAggregateResponse(rsp)
+}
+
+// AnonymousChatInteractionsByUserListWithResponse request returning *AnonymousChatInteractionsByUserListResponse
+func (c *ClientWithResponses) AnonymousChatInteractionsByUserListWithResponse(ctx context.Context, userSlug string, params *AnonymousChatInteractionsByUserListParams, reqEditors ...RequestEditorFn) (*AnonymousChatInteractionsByUserListResponse, error) {
+	rsp, err := c.AnonymousChatInteractionsByUserList(ctx, userSlug, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAnonymousChatInteractionsByUserListResponse(rsp)
+}
+
+// AnonymousChatInteractionsKpiRetrieveWithResponse request returning *AnonymousChatInteractionsKpiRetrieveResponse
+func (c *ClientWithResponses) AnonymousChatInteractionsKpiRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AnonymousChatInteractionsKpiRetrieveResponse, error) {
+	rsp, err := c.AnonymousChatInteractionsKpiRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAnonymousChatInteractionsKpiRetrieveResponse(rsp)
+}
+
+// AnonymousChatInteractionsRetrieveWithResponse request returning *AnonymousChatInteractionsRetrieveResponse
+func (c *ClientWithResponses) AnonymousChatInteractionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AnonymousChatInteractionsRetrieveResponse, error) {
+	rsp, err := c.AnonymousChatInteractionsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAnonymousChatInteractionsRetrieveResponse(rsp)
+}
+
 // AssignmentBatchesListWithResponse request returning *AssignmentBatchesListResponse
 func (c *ClientWithResponses) AssignmentBatchesListWithResponse(ctx context.Context, params *AssignmentBatchesListParams, reqEditors ...RequestEditorFn) (*AssignmentBatchesListResponse, error) {
 	rsp, err := c.AssignmentBatchesList(ctx, params, reqEditors...)
@@ -421637,6 +423970,57 @@ func (c *ClientWithResponses) MarketplaceCategoryHelpArticlesUpdateWithResponse(
 		return nil, err
 	}
 	return ParseMarketplaceCategoryHelpArticlesUpdateResponse(rsp)
+}
+
+// MarketplaceChatClickWithBodyWithResponse request with arbitrary body returning *MarketplaceChatClickResponse
+func (c *ClientWithResponses) MarketplaceChatClickWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChatClickResponse, error) {
+	rsp, err := c.MarketplaceChatClickWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceChatClickResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceChatClickWithResponse(ctx context.Context, body MarketplaceChatClickJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChatClickResponse, error) {
+	rsp, err := c.MarketplaceChatClick(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceChatClickResponse(rsp)
+}
+
+// MarketplaceChatFeedbackWithBodyWithResponse request with arbitrary body returning *MarketplaceChatFeedbackResponse
+func (c *ClientWithResponses) MarketplaceChatFeedbackWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChatFeedbackResponse, error) {
+	rsp, err := c.MarketplaceChatFeedbackWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceChatFeedbackResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceChatFeedbackWithResponse(ctx context.Context, body MarketplaceChatFeedbackJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChatFeedbackResponse, error) {
+	rsp, err := c.MarketplaceChatFeedback(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceChatFeedbackResponse(rsp)
+}
+
+// MarketplaceChatStreamWithBodyWithResponse request with arbitrary body returning *MarketplaceChatStreamResponse
+func (c *ClientWithResponses) MarketplaceChatStreamWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChatStreamResponse, error) {
+	rsp, err := c.MarketplaceChatStreamWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceChatStreamResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceChatStreamWithResponse(ctx context.Context, body MarketplaceChatStreamJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChatStreamResponse, error) {
+	rsp, err := c.MarketplaceChatStream(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceChatStreamResponse(rsp)
 }
 
 // MarketplaceComponentUsageMonthlyListWithResponse request returning *MarketplaceComponentUsageMonthlyListResponse
@@ -445244,6 +447628,240 @@ func ParseAffiliatedOrganizationsStatsRetrieveResponse(rsp *http.Response) (*Aff
 	return response, nil
 }
 
+// ParseAnonymousChatFeedbacksListResponse parses an HTTP response from a AnonymousChatFeedbacksListWithResponse call
+func ParseAnonymousChatFeedbacksListResponse(rsp *http.Response) (*AnonymousChatFeedbacksListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AnonymousChatFeedbacksListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AnonymousChatFeedback
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAnonymousChatFeedbacksRetrieveResponse parses an HTTP response from a AnonymousChatFeedbacksRetrieveWithResponse call
+func ParseAnonymousChatFeedbacksRetrieveResponse(rsp *http.Response) (*AnonymousChatFeedbacksRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AnonymousChatFeedbacksRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AnonymousChatFeedback
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAnonymousChatInteractionsListResponse parses an HTTP response from a AnonymousChatInteractionsListWithResponse call
+func ParseAnonymousChatInteractionsListResponse(rsp *http.Response) (*AnonymousChatInteractionsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AnonymousChatInteractionsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AnonymousChatInteraction
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAnonymousChatInteractionsBudgetRetrieveResponse parses an HTTP response from a AnonymousChatInteractionsBudgetRetrieveWithResponse call
+func ParseAnonymousChatInteractionsBudgetRetrieveResponse(rsp *http.Response) (*AnonymousChatInteractionsBudgetRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AnonymousChatInteractionsBudgetRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AnonymousChatBudgetSnapshot
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAnonymousChatInteractionsBySessionListResponse parses an HTTP response from a AnonymousChatInteractionsBySessionListWithResponse call
+func ParseAnonymousChatInteractionsBySessionListResponse(rsp *http.Response) (*AnonymousChatInteractionsBySessionListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AnonymousChatInteractionsBySessionListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AnonymousChatInteraction
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAnonymousChatInteractionsByUserAggregateResponse parses an HTTP response from a AnonymousChatInteractionsByUserAggregateWithResponse call
+func ParseAnonymousChatInteractionsByUserAggregateResponse(rsp *http.Response) (*AnonymousChatInteractionsByUserAggregateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AnonymousChatInteractionsByUserAggregateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AnonymousChatUserAggregate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAnonymousChatInteractionsByUserListResponse parses an HTTP response from a AnonymousChatInteractionsByUserListWithResponse call
+func ParseAnonymousChatInteractionsByUserListResponse(rsp *http.Response) (*AnonymousChatInteractionsByUserListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AnonymousChatInteractionsByUserListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AnonymousChatInteraction
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAnonymousChatInteractionsKpiRetrieveResponse parses an HTTP response from a AnonymousChatInteractionsKpiRetrieveWithResponse call
+func ParseAnonymousChatInteractionsKpiRetrieveResponse(rsp *http.Response) (*AnonymousChatInteractionsKpiRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AnonymousChatInteractionsKpiRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AnonymousChatKpiResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAnonymousChatInteractionsRetrieveResponse parses an HTTP response from a AnonymousChatInteractionsRetrieveWithResponse call
+func ParseAnonymousChatInteractionsRetrieveResponse(rsp *http.Response) (*AnonymousChatInteractionsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AnonymousChatInteractionsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AnonymousChatInteraction
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseAssignmentBatchesListResponse parses an HTTP response from a AssignmentBatchesListWithResponse call
 func ParseAssignmentBatchesListResponse(rsp *http.Response) (*AssignmentBatchesListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -459312,6 +461930,54 @@ func ParseMarketplaceCategoryHelpArticlesUpdateResponse(rsp *http.Response) (*Ma
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceChatClickResponse parses an HTTP response from a MarketplaceChatClickWithResponse call
+func ParseMarketplaceChatClickResponse(rsp *http.Response) (*MarketplaceChatClickResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceChatClickResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceChatFeedbackResponse parses an HTTP response from a MarketplaceChatFeedbackWithResponse call
+func ParseMarketplaceChatFeedbackResponse(rsp *http.Response) (*MarketplaceChatFeedbackResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceChatFeedbackResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceChatStreamResponse parses an HTTP response from a MarketplaceChatStreamWithResponse call
+func ParseMarketplaceChatStreamResponse(rsp *http.Response) (*MarketplaceChatStreamResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceChatStreamResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
