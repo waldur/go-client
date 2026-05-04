@@ -44896,6 +44896,7 @@ type ResourceProject struct {
 	// CurrentUsages Dictionary mapping component types to current usage amounts. Populated by backend synchronization.
 	CurrentUsages interface{} `json:"current_usages,omitempty"`
 	Description   *string     `json:"description,omitempty"`
+	ErrorMessage  *string     `json:"error_message,omitempty"`
 
 	// Limits Dictionary mapping component types to quota values. Same format as Resource.limits.
 	Limits       interface{}         `json:"limits,omitempty"`
@@ -44916,6 +44917,18 @@ type ResourceProjectBackendId struct {
 // ResourceProjectBackendIdRequest defines model for ResourceProjectBackendIdRequest.
 type ResourceProjectBackendIdRequest struct {
 	BackendId string `json:"backend_id"`
+}
+
+// ResourceProjectErrorMessage defines model for ResourceProjectErrorMessage.
+type ResourceProjectErrorMessage struct {
+	// ErrorMessage Free-form description of why the project transitioned to Erred.
+	ErrorMessage *string `json:"error_message,omitempty"`
+}
+
+// ResourceProjectErrorMessageRequest defines model for ResourceProjectErrorMessageRequest.
+type ResourceProjectErrorMessageRequest struct {
+	// ErrorMessage Free-form description of why the project transitioned to Erred.
+	ErrorMessage *string `json:"error_message,omitempty"`
 }
 
 // ResourceProjectRequest defines model for ResourceProjectRequest.
@@ -73074,10 +73087,7 @@ type MarketplaceProviderResourceProjectsDeleteUserJSONRequestBody = UserRoleDele
 type MarketplaceProviderResourceProjectsSetBackendIdJSONRequestBody = ResourceProjectBackendIdRequest
 
 // MarketplaceProviderResourceProjectsSetStateErredJSONRequestBody defines body for MarketplaceProviderResourceProjectsSetStateErred for application/json ContentType.
-type MarketplaceProviderResourceProjectsSetStateErredJSONRequestBody = ResourceProjectRequest
-
-// MarketplaceProviderResourceProjectsSetStateOkJSONRequestBody defines body for MarketplaceProviderResourceProjectsSetStateOk for application/json ContentType.
-type MarketplaceProviderResourceProjectsSetStateOkJSONRequestBody = ResourceProjectRequest
+type MarketplaceProviderResourceProjectsSetStateErredJSONRequestBody = ResourceProjectErrorMessageRequest
 
 // MarketplaceProviderResourceProjectsUpdateUserJSONRequestBody defines body for MarketplaceProviderResourceProjectsUpdateUser for application/json ContentType.
 type MarketplaceProviderResourceProjectsUpdateUserJSONRequestBody = UserRoleUpdateRequest
@@ -92020,10 +92030,8 @@ type ClientInterface interface {
 
 	MarketplaceProviderResourceProjectsSetStateErred(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourceProjectsSetStateErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceProviderResourceProjectsSetStateOkWithBody request with any body
-	MarketplaceProviderResourceProjectsSetStateOkWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	MarketplaceProviderResourceProjectsSetStateOk(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourceProjectsSetStateOkJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// MarketplaceProviderResourceProjectsSetStateOk request
+	MarketplaceProviderResourceProjectsSetStateOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderResourceProjectsUpdateUserWithBody request with any body
 	MarketplaceProviderResourceProjectsUpdateUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -114259,20 +114267,8 @@ func (c *Client) MarketplaceProviderResourceProjectsSetStateErred(ctx context.Co
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceProviderResourceProjectsSetStateOkWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceProviderResourceProjectsSetStateOkRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceProviderResourceProjectsSetStateOk(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourceProjectsSetStateOkJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceProviderResourceProjectsSetStateOkRequest(c.Server, uuid, body)
+func (c *Client) MarketplaceProviderResourceProjectsSetStateOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourceProjectsSetStateOkRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -215575,19 +215571,8 @@ func NewMarketplaceProviderResourceProjectsSetStateErredRequestWithBody(server s
 	return req, nil
 }
 
-// NewMarketplaceProviderResourceProjectsSetStateOkRequest calls the generic MarketplaceProviderResourceProjectsSetStateOk builder with application/json body
-func NewMarketplaceProviderResourceProjectsSetStateOkRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderResourceProjectsSetStateOkJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceProviderResourceProjectsSetStateOkRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewMarketplaceProviderResourceProjectsSetStateOkRequestWithBody generates requests for MarketplaceProviderResourceProjectsSetStateOk with any type of body
-func NewMarketplaceProviderResourceProjectsSetStateOkRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewMarketplaceProviderResourceProjectsSetStateOkRequest generates requests for MarketplaceProviderResourceProjectsSetStateOk
+func NewMarketplaceProviderResourceProjectsSetStateOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -215612,12 +215597,10 @@ func NewMarketplaceProviderResourceProjectsSetStateOkRequestWithBody(server stri
 		return nil, err
 	}
 
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -335069,10 +335052,8 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceProviderResourceProjectsSetStateErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourceProjectsSetStateErredJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourceProjectsSetStateErredResponse, error)
 
-	// MarketplaceProviderResourceProjectsSetStateOkWithBodyWithResponse request with any body
-	MarketplaceProviderResourceProjectsSetStateOkWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourceProjectsSetStateOkResponse, error)
-
-	MarketplaceProviderResourceProjectsSetStateOkWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourceProjectsSetStateOkJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourceProjectsSetStateOkResponse, error)
+	// MarketplaceProviderResourceProjectsSetStateOkWithResponse request
+	MarketplaceProviderResourceProjectsSetStateOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourceProjectsSetStateOkResponse, error)
 
 	// MarketplaceProviderResourceProjectsUpdateUserWithBodyWithResponse request with any body
 	MarketplaceProviderResourceProjectsUpdateUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourceProjectsUpdateUserResponse, error)
@@ -370734,7 +370715,7 @@ func (r MarketplaceProviderResourceProjectsSetBackendIdResponse) ContentType() s
 type MarketplaceProviderResourceProjectsSetStateErredResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ResourceProject
+	JSON200      *ResourceProjectErrorMessage
 }
 
 // Status returns HTTPResponse.Status
@@ -370764,7 +370745,7 @@ func (r MarketplaceProviderResourceProjectsSetStateErredResponse) ContentType() 
 type MarketplaceProviderResourceProjectsSetStateOkResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ResourceProject
+	JSON200      *map[string]interface{}
 }
 
 // Status returns HTTPResponse.Status
@@ -427638,17 +427619,9 @@ func (c *ClientWithResponses) MarketplaceProviderResourceProjectsSetStateErredWi
 	return ParseMarketplaceProviderResourceProjectsSetStateErredResponse(rsp)
 }
 
-// MarketplaceProviderResourceProjectsSetStateOkWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourceProjectsSetStateOkResponse
-func (c *ClientWithResponses) MarketplaceProviderResourceProjectsSetStateOkWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourceProjectsSetStateOkResponse, error) {
-	rsp, err := c.MarketplaceProviderResourceProjectsSetStateOkWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceProviderResourceProjectsSetStateOkResponse(rsp)
-}
-
-func (c *ClientWithResponses) MarketplaceProviderResourceProjectsSetStateOkWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourceProjectsSetStateOkJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourceProjectsSetStateOkResponse, error) {
-	rsp, err := c.MarketplaceProviderResourceProjectsSetStateOk(ctx, uuid, body, reqEditors...)
+// MarketplaceProviderResourceProjectsSetStateOkWithResponse request returning *MarketplaceProviderResourceProjectsSetStateOkResponse
+func (c *ClientWithResponses) MarketplaceProviderResourceProjectsSetStateOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourceProjectsSetStateOkResponse, error) {
+	rsp, err := c.MarketplaceProviderResourceProjectsSetStateOk(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -468589,7 +468562,7 @@ func ParseMarketplaceProviderResourceProjectsSetStateErredResponse(rsp *http.Res
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ResourceProject
+		var dest ResourceProjectErrorMessage
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -468615,7 +468588,7 @@ func ParseMarketplaceProviderResourceProjectsSetStateOkResponse(rsp *http.Respon
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ResourceProject
+		var dest map[string]interface{}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
