@@ -25458,6 +25458,24 @@ type ComponentStats struct {
 	Usage        *int                `json:"usage,omitempty"`
 }
 
+// ComponentStatsPerOffering defines model for ComponentStatsPerOffering.
+type ComponentStatsPerOffering struct {
+	BillingType        *string             `json:"billing_type,omitempty"`
+	CurrentPeriodEnd   *openapi_types.Date `json:"current_period_end,omitempty"`
+	CurrentPeriodLabel *string             `json:"current_period_label,omitempty"`
+	CurrentPeriodStart *openapi_types.Date `json:"current_period_start,omitempty"`
+	Description        *string             `json:"description,omitempty"`
+	Limit              *float64            `json:"limit,omitempty"`
+	LimitPeriod        *string             `json:"limit_period,omitempty"`
+	LimitUsage         *float64            `json:"limit_usage,omitempty"`
+	MeasuredUnit       *string             `json:"measured_unit,omitempty"`
+	Name               *string             `json:"name,omitempty"`
+	OfferingName       *string             `json:"offering_name,omitempty"`
+	OfferingUuid       *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	Type               *string             `json:"type,omitempty"`
+	Usage              *float64            `json:"usage,omitempty"`
+}
+
 // ComponentUsage defines model for ComponentUsage.
 type ComponentUsage struct {
 	BillingPeriod *openapi_types.Date `json:"billing_period,omitempty"`
@@ -25682,6 +25700,11 @@ type ComponentUserUsageOEnum string
 // ComponentsUsageStats defines model for ComponentsUsageStats.
 type ComponentsUsageStats struct {
 	Components *[]ComponentStats `json:"components,omitempty"`
+}
+
+// ComponentsUsageStatsPerOffering defines model for ComponentsUsageStatsPerOffering.
+type ComponentsUsageStatsPerOffering struct {
+	Components *[]ComponentStatsPerOffering `json:"components,omitempty"`
 }
 
 // ComputeAffinitiesResponse defines model for ComputeAffinitiesResponse.
@@ -89852,6 +89875,9 @@ type ClientInterface interface {
 
 	CustomersAddUser(ctx context.Context, uuid openapi_types.UUID, body CustomersAddUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// CustomersComponentsUsageRetrieve request
+	CustomersComponentsUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// CustomersContactWithBody request with any body
 	CustomersContactWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -93853,6 +93879,9 @@ type ClientInterface interface {
 	// OpenportalUnmanagedProjectsCompletionStatusRetrieve request
 	OpenportalUnmanagedProjectsCompletionStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenportalUnmanagedProjectsComponentsUsageRetrieve request
+	OpenportalUnmanagedProjectsComponentsUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenportalUnmanagedProjectsDeleteUserWithBody request with any body
 	OpenportalUnmanagedProjectsDeleteUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -95243,6 +95272,9 @@ type ClientInterface interface {
 
 	// ProjectsCompletionStatusRetrieve request
 	ProjectsCompletionStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProjectsComponentsUsageRetrieve request
+	ProjectsComponentsUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProjectsDeleteUserWithBody request with any body
 	ProjectsDeleteUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -104669,6 +104701,18 @@ func (c *Client) CustomersAddUserWithBody(ctx context.Context, uuid openapi_type
 
 func (c *Client) CustomersAddUser(ctx context.Context, uuid openapi_types.UUID, body CustomersAddUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCustomersAddUserRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomersComponentsUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomersComponentsUsageRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -122223,6 +122267,18 @@ func (c *Client) OpenportalUnmanagedProjectsCompletionStatusRetrieve(ctx context
 	return c.Client.Do(req)
 }
 
+func (c *Client) OpenportalUnmanagedProjectsComponentsUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalUnmanagedProjectsComponentsUsageRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OpenportalUnmanagedProjectsDeleteUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalUnmanagedProjectsDeleteUserRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -128321,6 +128377,18 @@ func (c *Client) ProjectsChecklistRetrieve(ctx context.Context, uuid openapi_typ
 
 func (c *Client) ProjectsCompletionStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProjectsCompletionStatusRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProjectsComponentsUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectsComponentsUsageRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -170406,6 +170474,40 @@ func NewCustomersAddUserRequestWithBody(server string, uuid openapi_types.UUID, 
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewCustomersComponentsUsageRetrieveRequest generates requests for CustomersComponentsUsageRetrieve
+func NewCustomersComponentsUsageRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/customers/%s/components-usage/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -255377,6 +255479,40 @@ func NewOpenportalUnmanagedProjectsCompletionStatusRetrieveRequest(server string
 	return req, nil
 }
 
+// NewOpenportalUnmanagedProjectsComponentsUsageRetrieveRequest generates requests for OpenportalUnmanagedProjectsComponentsUsageRetrieve
+func NewOpenportalUnmanagedProjectsComponentsUsageRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openportal-unmanaged-projects/%s/components-usage/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOpenportalUnmanagedProjectsDeleteUserRequest calls the generic OpenportalUnmanagedProjectsDeleteUser builder with application/json body
 func NewOpenportalUnmanagedProjectsDeleteUserRequest(server string, uuid openapi_types.UUID, body OpenportalUnmanagedProjectsDeleteUserJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -284704,6 +284840,40 @@ func NewProjectsCompletionStatusRetrieveRequest(server string, uuid openapi_type
 	}
 
 	operationPath := fmt.Sprintf("/api/projects/%s/completion_status/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProjectsComponentsUsageRetrieveRequest generates requests for ProjectsComponentsUsageRetrieve
+func NewProjectsComponentsUsageRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/projects/%s/components-usage/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -332874,6 +333044,9 @@ type ClientWithResponsesInterface interface {
 
 	CustomersAddUserWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomersAddUserJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomersAddUserResponse, error)
 
+	// CustomersComponentsUsageRetrieveWithResponse request
+	CustomersComponentsUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomersComponentsUsageRetrieveResponse, error)
+
 	// CustomersContactWithBodyWithResponse request with any body
 	CustomersContactWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomersContactResponse, error)
 
@@ -336875,6 +337048,9 @@ type ClientWithResponsesInterface interface {
 	// OpenportalUnmanagedProjectsCompletionStatusRetrieveWithResponse request
 	OpenportalUnmanagedProjectsCompletionStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsCompletionStatusRetrieveResponse, error)
 
+	// OpenportalUnmanagedProjectsComponentsUsageRetrieveWithResponse request
+	OpenportalUnmanagedProjectsComponentsUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsComponentsUsageRetrieveResponse, error)
+
 	// OpenportalUnmanagedProjectsDeleteUserWithBodyWithResponse request with any body
 	OpenportalUnmanagedProjectsDeleteUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsDeleteUserResponse, error)
 
@@ -338265,6 +338441,9 @@ type ClientWithResponsesInterface interface {
 
 	// ProjectsCompletionStatusRetrieveWithResponse request
 	ProjectsCompletionStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectsCompletionStatusRetrieveResponse, error)
+
+	// ProjectsComponentsUsageRetrieveWithResponse request
+	ProjectsComponentsUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectsComponentsUsageRetrieveResponse, error)
 
 	// ProjectsDeleteUserWithBodyWithResponse request with any body
 	ProjectsDeleteUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectsDeleteUserResponse, error)
@@ -353506,6 +353685,36 @@ func (r CustomersAddUserResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r CustomersAddUserResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type CustomersComponentsUsageRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ComponentsUsageStatsPerOffering
+}
+
+// Status returns HTTPResponse.Status
+func (r CustomersComponentsUsageRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CustomersComponentsUsageRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r CustomersComponentsUsageRetrieveResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -385546,6 +385755,36 @@ func (r OpenportalUnmanagedProjectsCompletionStatusRetrieveResponse) ContentType
 	return ""
 }
 
+type OpenportalUnmanagedProjectsComponentsUsageRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ComponentsUsageStatsPerOffering
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenportalUnmanagedProjectsComponentsUsageRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenportalUnmanagedProjectsComponentsUsageRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenportalUnmanagedProjectsComponentsUsageRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type OpenportalUnmanagedProjectsDeleteUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -396612,6 +396851,36 @@ func (r ProjectsCompletionStatusRetrieveResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r ProjectsCompletionStatusRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProjectsComponentsUsageRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ComponentsUsageStatsPerOffering
+}
+
+// Status returns HTTPResponse.Status
+func (r ProjectsComponentsUsageRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProjectsComponentsUsageRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProjectsComponentsUsageRetrieveResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -420647,6 +420916,15 @@ func (c *ClientWithResponses) CustomersAddUserWithResponse(ctx context.Context, 
 	return ParseCustomersAddUserResponse(rsp)
 }
 
+// CustomersComponentsUsageRetrieveWithResponse request returning *CustomersComponentsUsageRetrieveResponse
+func (c *ClientWithResponses) CustomersComponentsUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomersComponentsUsageRetrieveResponse, error) {
+	rsp, err := c.CustomersComponentsUsageRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomersComponentsUsageRetrieveResponse(rsp)
+}
+
 // CustomersContactWithBodyWithResponse request with arbitrary body returning *CustomersContactResponse
 func (c *ClientWithResponses) CustomersContactWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomersContactResponse, error) {
 	rsp, err := c.CustomersContactWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -433420,6 +433698,15 @@ func (c *ClientWithResponses) OpenportalUnmanagedProjectsCompletionStatusRetriev
 	return ParseOpenportalUnmanagedProjectsCompletionStatusRetrieveResponse(rsp)
 }
 
+// OpenportalUnmanagedProjectsComponentsUsageRetrieveWithResponse request returning *OpenportalUnmanagedProjectsComponentsUsageRetrieveResponse
+func (c *ClientWithResponses) OpenportalUnmanagedProjectsComponentsUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsComponentsUsageRetrieveResponse, error) {
+	rsp, err := c.OpenportalUnmanagedProjectsComponentsUsageRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenportalUnmanagedProjectsComponentsUsageRetrieveResponse(rsp)
+}
+
 // OpenportalUnmanagedProjectsDeleteUserWithBodyWithResponse request with arbitrary body returning *OpenportalUnmanagedProjectsDeleteUserResponse
 func (c *ClientWithResponses) OpenportalUnmanagedProjectsDeleteUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsDeleteUserResponse, error) {
 	rsp, err := c.OpenportalUnmanagedProjectsDeleteUserWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -437863,6 +438150,15 @@ func (c *ClientWithResponses) ProjectsCompletionStatusRetrieveWithResponse(ctx c
 		return nil, err
 	}
 	return ParseProjectsCompletionStatusRetrieveResponse(rsp)
+}
+
+// ProjectsComponentsUsageRetrieveWithResponse request returning *ProjectsComponentsUsageRetrieveResponse
+func (c *ClientWithResponses) ProjectsComponentsUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectsComponentsUsageRetrieveResponse, error) {
+	rsp, err := c.ProjectsComponentsUsageRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectsComponentsUsageRetrieveResponse(rsp)
 }
 
 // ProjectsDeleteUserWithBodyWithResponse request with arbitrary body returning *ProjectsDeleteUserResponse
@@ -455364,6 +455660,32 @@ func ParseCustomersAddUserResponse(rsp *http.Response) (*CustomersAddUserRespons
 			return nil, err
 		}
 		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCustomersComponentsUsageRetrieveResponse parses an HTTP response from a CustomersComponentsUsageRetrieveWithResponse call
+func ParseCustomersComponentsUsageRetrieveResponse(rsp *http.Response) (*CustomersComponentsUsageRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CustomersComponentsUsageRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ComponentsUsageStatsPerOffering
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
 
 	}
 
@@ -480162,6 +480484,32 @@ func ParseOpenportalUnmanagedProjectsCompletionStatusRetrieveResponse(rsp *http.
 	return response, nil
 }
 
+// ParseOpenportalUnmanagedProjectsComponentsUsageRetrieveResponse parses an HTTP response from a OpenportalUnmanagedProjectsComponentsUsageRetrieveWithResponse call
+func ParseOpenportalUnmanagedProjectsComponentsUsageRetrieveResponse(rsp *http.Response) (*OpenportalUnmanagedProjectsComponentsUsageRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenportalUnmanagedProjectsComponentsUsageRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ComponentsUsageStatsPerOffering
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseOpenportalUnmanagedProjectsDeleteUserResponse parses an HTTP response from a OpenportalUnmanagedProjectsDeleteUserWithResponse call
 func ParseOpenportalUnmanagedProjectsDeleteUserResponse(rsp *http.Response) (*OpenportalUnmanagedProjectsDeleteUserResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -488617,6 +488965,32 @@ func ParseProjectsCompletionStatusRetrieveResponse(rsp *http.Response) (*Project
 			return nil, err
 		}
 		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProjectsComponentsUsageRetrieveResponse parses an HTTP response from a ProjectsComponentsUsageRetrieveWithResponse call
+func ParseProjectsComponentsUsageRetrieveResponse(rsp *http.Response) (*ProjectsComponentsUsageRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProjectsComponentsUsageRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ComponentsUsageStatsPerOffering
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
 
 	}
 
