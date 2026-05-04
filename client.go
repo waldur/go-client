@@ -27815,17 +27815,6 @@ type CustomerCreditConsumption struct {
 // CustomerCreditOEnum defines model for CustomerCreditOEnum.
 type CustomerCreditOEnum string
 
-// CustomerCreditRequest defines model for CustomerCreditRequest.
-type CustomerCreditRequest struct {
-	ApplyAsMinimalConsumption *bool                        `json:"apply_as_minimal_consumption,omitempty"`
-	Customer                  string                       `json:"customer"`
-	EndDate                   *openapi_types.Date          `json:"end_date,omitempty"`
-	ExpectedConsumption       *string                      `json:"expected_consumption,omitempty"`
-	GraceCoefficient          *string                      `json:"grace_coefficient,omitempty"`
-	MinimalConsumptionLogic   *MinimalConsumptionLogicEnum `json:"minimal_consumption_logic,omitempty"`
-	Value                     *string                      `json:"value,omitempty"`
-}
-
 // CustomerDetails defines model for CustomerDetails.
 type CustomerDetails struct {
 	Address     *string              `json:"address,omitempty"`
@@ -32180,6 +32169,9 @@ type MergedPluginOptions struct {
 	// ResourceNamePattern Python format string for generating resource names. Available variables: {customer_name}, {customer_slug}, {project_name}, {project_slug}, {offering_name}, {offering_slug}, {plan_name}, {counter}, {attributes[KEY]}.
 	ResourceNamePattern *string `json:"resource_name_pattern,omitempty"`
 
+	// ResourceProjectsLimitsRequired If set to True, every limit-billing component declared by the offering must have a value when creating or updating a resource project. Use this for backends that reject projects without resource quotas (e.g. the rancher-keycloak-operator's project-level resourceQuota.limit cap).
+	ResourceProjectsLimitsRequired *bool `json:"resource_projects_limits_required,omitempty"`
+
 	// RestrictDeletionWithActiveResources If set to True, offering cannot be deleted while it has non-terminated resources.
 	RestrictDeletionWithActiveResources *bool `json:"restrict_deletion_with_active_resources,omitempty"`
 
@@ -32406,6 +32398,9 @@ type MergedPluginOptionsRequest struct {
 
 	// ResourceNamePattern Python format string for generating resource names. Available variables: {customer_name}, {customer_slug}, {project_name}, {project_slug}, {offering_name}, {offering_slug}, {plan_name}, {counter}, {attributes[KEY]}.
 	ResourceNamePattern *string `json:"resource_name_pattern,omitempty"`
+
+	// ResourceProjectsLimitsRequired If set to True, every limit-billing component declared by the offering must have a value when creating or updating a resource project. Use this for backends that reject projects without resource quotas (e.g. the rancher-keycloak-operator's project-level resourceQuota.limit cap).
+	ResourceProjectsLimitsRequired *bool `json:"resource_projects_limits_required,omitempty"`
 
 	// RestrictDeletionWithActiveResources If set to True, offering cannot be deleted while it has non-terminated resources.
 	RestrictDeletionWithActiveResources *bool `json:"restrict_deletion_with_active_resources,omitempty"`
@@ -43358,15 +43353,6 @@ type RancherCatalogCreateRequest struct {
 	Password    *string `json:"password,omitempty"`
 	Scope       string  `json:"scope"`
 	Username    *string `json:"username,omitempty"`
-}
-
-// RancherCatalogRequest defines model for RancherCatalogRequest.
-type RancherCatalogRequest struct {
-	Branch      string  `json:"branch"`
-	CatalogUrl  string  `json:"catalog_url"`
-	Description *string `json:"description,omitempty"`
-	Name        string  `json:"name"`
-	Scope       string  `json:"scope"`
 }
 
 // RancherCatalogScopeType defines model for RancherCatalogScopeType.
@@ -72281,14 +72267,8 @@ type ChatSystemPromptsActivateJSONRequestBody = SystemPromptRequest
 // ChatSystemPromptsDeactivateJSONRequestBody defines body for ChatSystemPromptsDeactivate for application/json ContentType.
 type ChatSystemPromptsDeactivateJSONRequestBody = SystemPromptRequest
 
-// ChatThreadsArchiveJSONRequestBody defines body for ChatThreadsArchive for application/json ContentType.
-type ChatThreadsArchiveJSONRequestBody = ThreadSessionRequest
-
 // ChatThreadsCancelJSONRequestBody defines body for ChatThreadsCancel for application/json ContentType.
 type ChatThreadsCancelJSONRequestBody = ThreadSessionRequest
-
-// ChatThreadsUnarchiveJSONRequestBody defines body for ChatThreadsUnarchive for application/json ContentType.
-type ChatThreadsUnarchiveJSONRequestBody = ThreadSessionRequest
 
 // ChatToolsExecuteJSONRequestBody defines body for ChatToolsExecute for application/json ContentType.
 type ChatToolsExecuteJSONRequestBody = ToolExecuteRequest
@@ -72367,12 +72347,6 @@ type CustomerCreditsPartialUpdateJSONRequestBody = PatchedCreateCustomerCreditRe
 
 // CustomerCreditsUpdateJSONRequestBody defines body for CustomerCreditsUpdate for application/json ContentType.
 type CustomerCreditsUpdateJSONRequestBody = CreateCustomerCreditRequest
-
-// CustomerCreditsApplyCompensationsJSONRequestBody defines body for CustomerCreditsApplyCompensations for application/json ContentType.
-type CustomerCreditsApplyCompensationsJSONRequestBody = CustomerCreditRequest
-
-// CustomerCreditsClearCompensationsJSONRequestBody defines body for CustomerCreditsClearCompensations for application/json ContentType.
-type CustomerCreditsClearCompensationsJSONRequestBody = CustomerCreditRequest
 
 // CustomersCreateJSONRequestBody defines body for CustomersCreate for application/json ContentType.
 type CustomersCreateJSONRequestBody = CustomerRequest
@@ -73445,9 +73419,6 @@ type MarketplaceSoftwareCatalogsPartialUpdateJSONRequestBody = PatchedSoftwareCa
 // MarketplaceSoftwareCatalogsUpdateJSONRequestBody defines body for MarketplaceSoftwareCatalogsUpdate for application/json ContentType.
 type MarketplaceSoftwareCatalogsUpdateJSONRequestBody = SoftwareCatalogRequest
 
-// MarketplaceSoftwareCatalogsUpdateCatalogJSONRequestBody defines body for MarketplaceSoftwareCatalogsUpdateCatalog for application/json ContentType.
-type MarketplaceSoftwareCatalogsUpdateCatalogJSONRequestBody = SoftwareCatalogRequest
-
 // MarketplaceSoftwarePackagesCreateJSONRequestBody defines body for MarketplaceSoftwarePackagesCreate for application/json ContentType.
 type MarketplaceSoftwarePackagesCreateJSONRequestBody = SoftwarePackageRequest
 
@@ -74159,9 +74130,6 @@ type ProposalProtectedCallsAttachDocumentsJSONRequestBody = CallAttachDocumentsR
 // ProposalProtectedCallsCoiConfigurationPartialUpdateJSONRequestBody defines body for ProposalProtectedCallsCoiConfigurationPartialUpdate for application/json ContentType.
 type ProposalProtectedCallsCoiConfigurationPartialUpdateJSONRequestBody = PatchedCallCOIConfigurationRequest
 
-// ProposalProtectedCallsComputeAffinitiesJSONRequestBody defines body for ProposalProtectedCallsComputeAffinities for application/json ContentType.
-type ProposalProtectedCallsComputeAffinitiesJSONRequestBody = ProtectedCallRequest
-
 // ProposalProtectedCallsCreateManualAssignmentJSONRequestBody defines body for ProposalProtectedCallsCreateManualAssignment for application/json ContentType.
 type ProposalProtectedCallsCreateManualAssignmentJSONRequestBody = CreateManualAssignmentRequest
 
@@ -74266,9 +74234,6 @@ type RancherCatalogsPartialUpdateJSONRequestBody = PatchedRancherCatalogRequest
 
 // RancherCatalogsUpdateJSONRequestBody defines body for RancherCatalogsUpdate for application/json ContentType.
 type RancherCatalogsUpdateJSONRequestBody = RancherCatalogUpdateRequest
-
-// RancherCatalogsRefreshJSONRequestBody defines body for RancherCatalogsRefresh for application/json ContentType.
-type RancherCatalogsRefreshJSONRequestBody = RancherCatalogRequest
 
 // RancherClusterSecurityGroupsPartialUpdateJSONRequestBody defines body for RancherClusterSecurityGroupsPartialUpdate for application/json ContentType.
 type RancherClusterSecurityGroupsPartialUpdateJSONRequestBody = PatchedClusterSecurityGroupRequest
@@ -74572,9 +74537,6 @@ type SupportIssuesUpdateJSONRequestBody = IssueRequest
 
 // SupportIssuesCommentJSONRequestBody defines body for SupportIssuesComment for application/json ContentType.
 type SupportIssuesCommentJSONRequestBody = CommentRequest
-
-// SupportIssuesSyncJSONRequestBody defines body for SupportIssuesSync for application/json ContentType.
-type SupportIssuesSyncJSONRequestBody = IssueRequest
 
 // SupportJiraWebhookJSONRequestBody defines body for SupportJiraWebhook for application/json ContentType.
 type SupportJiraWebhookJSONRequestBody = WebHookReceiverRequest
@@ -89535,20 +89497,16 @@ type ClientInterface interface {
 	// ChatThreadsRetrieve request
 	ChatThreadsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ChatThreadsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ChatThreadsArchiveWithBody request with any body
-	ChatThreadsArchiveWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	ChatThreadsArchive(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsArchiveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ChatThreadsArchive request
+	ChatThreadsArchive(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ChatThreadsCancelWithBody request with any body
 	ChatThreadsCancelWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	ChatThreadsCancel(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsCancelJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ChatThreadsUnarchiveWithBody request with any body
-	ChatThreadsUnarchiveWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	ChatThreadsUnarchive(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsUnarchiveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ChatThreadsUnarchive request
+	ChatThreadsUnarchive(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ChatToolsExecuteWithBody request with any body
 	ChatToolsExecuteWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -89785,15 +89743,11 @@ type ClientInterface interface {
 
 	CustomerCreditsUpdate(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// CustomerCreditsApplyCompensationsWithBody request with any body
-	CustomerCreditsApplyCompensationsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CustomerCreditsApplyCompensations request
+	CustomerCreditsApplyCompensations(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CustomerCreditsApplyCompensations(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsApplyCompensationsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// CustomerCreditsClearCompensationsWithBody request with any body
-	CustomerCreditsClearCompensationsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	CustomerCreditsClearCompensations(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsClearCompensationsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CustomerCreditsClearCompensations request
+	CustomerCreditsClearCompensations(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CustomerCreditsConsumptionsList request
 	CustomerCreditsConsumptionsList(ctx context.Context, uuid openapi_types.UUID, params *CustomerCreditsConsumptionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -92924,10 +92878,8 @@ type ClientInterface interface {
 
 	MarketplaceSoftwareCatalogsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwareCatalogsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceSoftwareCatalogsUpdateCatalogWithBody request with any body
-	MarketplaceSoftwareCatalogsUpdateCatalogWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	MarketplaceSoftwareCatalogsUpdateCatalog(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwareCatalogsUpdateCatalogJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// MarketplaceSoftwareCatalogsUpdateCatalog request
+	MarketplaceSoftwareCatalogsUpdateCatalog(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceSoftwarePackagesList request
 	MarketplaceSoftwarePackagesList(ctx context.Context, params *MarketplaceSoftwarePackagesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -95524,10 +95476,8 @@ type ClientInterface interface {
 	// ProposalProtectedCallsComplianceOverviewRetrieve request
 	ProposalProtectedCallsComplianceOverviewRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ProposalProtectedCallsComputeAffinitiesWithBody request with any body
-	ProposalProtectedCallsComputeAffinitiesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	ProposalProtectedCallsComputeAffinities(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsComputeAffinitiesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ProposalProtectedCallsComputeAffinities request
+	ProposalProtectedCallsComputeAffinities(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProtectedCallsConflictSummaryRetrieve request
 	ProposalProtectedCallsConflictSummaryRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -95872,10 +95822,8 @@ type ClientInterface interface {
 
 	RancherCatalogsUpdate(ctx context.Context, uuid openapi_types.UUID, body RancherCatalogsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// RancherCatalogsRefreshWithBody request with any body
-	RancherCatalogsRefreshWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	RancherCatalogsRefresh(ctx context.Context, uuid openapi_types.UUID, body RancherCatalogsRefreshJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// RancherCatalogsRefresh request
+	RancherCatalogsRefresh(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RancherClusterSecurityGroupsList request
 	RancherClusterSecurityGroupsList(ctx context.Context, params *RancherClusterSecurityGroupsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -96895,10 +96843,8 @@ type ClientInterface interface {
 
 	SupportIssuesComment(ctx context.Context, uuid openapi_types.UUID, body SupportIssuesCommentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// SupportIssuesSyncWithBody request with any body
-	SupportIssuesSyncWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	SupportIssuesSync(ctx context.Context, uuid openapi_types.UUID, body SupportIssuesSyncJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// SupportIssuesSync request
+	SupportIssuesSync(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// SupportJiraWebhookWithBody request with any body
 	SupportJiraWebhookWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -103199,20 +103145,8 @@ func (c *Client) ChatThreadsRetrieve(ctx context.Context, uuid openapi_types.UUI
 	return c.Client.Do(req)
 }
 
-func (c *Client) ChatThreadsArchiveWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewChatThreadsArchiveRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ChatThreadsArchive(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsArchiveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewChatThreadsArchiveRequest(c.Server, uuid, body)
+func (c *Client) ChatThreadsArchive(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatThreadsArchiveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -103247,20 +103181,8 @@ func (c *Client) ChatThreadsCancel(ctx context.Context, uuid openapi_types.UUID,
 	return c.Client.Do(req)
 }
 
-func (c *Client) ChatThreadsUnarchiveWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewChatThreadsUnarchiveRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ChatThreadsUnarchive(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsUnarchiveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewChatThreadsUnarchiveRequest(c.Server, uuid, body)
+func (c *Client) ChatThreadsUnarchive(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatThreadsUnarchiveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -104315,8 +104237,8 @@ func (c *Client) CustomerCreditsUpdate(ctx context.Context, uuid openapi_types.U
 	return c.Client.Do(req)
 }
 
-func (c *Client) CustomerCreditsApplyCompensationsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCustomerCreditsApplyCompensationsRequestWithBody(c.Server, uuid, contentType, body)
+func (c *Client) CustomerCreditsApplyCompensations(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomerCreditsApplyCompensationsRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -104327,32 +104249,8 @@ func (c *Client) CustomerCreditsApplyCompensationsWithBody(ctx context.Context, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) CustomerCreditsApplyCompensations(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsApplyCompensationsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCustomerCreditsApplyCompensationsRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) CustomerCreditsClearCompensationsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCustomerCreditsClearCompensationsRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) CustomerCreditsClearCompensations(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsClearCompensationsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCustomerCreditsClearCompensationsRequest(c.Server, uuid, body)
+func (c *Client) CustomerCreditsClearCompensations(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomerCreditsClearCompensationsRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -118199,20 +118097,8 @@ func (c *Client) MarketplaceSoftwareCatalogsUpdate(ctx context.Context, uuid ope
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceSoftwareCatalogsUpdateCatalogWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceSoftwareCatalogsUpdateCatalogRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceSoftwareCatalogsUpdateCatalog(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwareCatalogsUpdateCatalogJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceSoftwareCatalogsUpdateCatalogRequest(c.Server, uuid, body)
+func (c *Client) MarketplaceSoftwareCatalogsUpdateCatalog(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareCatalogsUpdateCatalogRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -129503,20 +129389,8 @@ func (c *Client) ProposalProtectedCallsComplianceOverviewRetrieve(ctx context.Co
 	return c.Client.Do(req)
 }
 
-func (c *Client) ProposalProtectedCallsComputeAffinitiesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProposalProtectedCallsComputeAffinitiesRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ProposalProtectedCallsComputeAffinities(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsComputeAffinitiesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProposalProtectedCallsComputeAffinitiesRequest(c.Server, uuid, body)
+func (c *Client) ProposalProtectedCallsComputeAffinities(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsComputeAffinitiesRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -131039,20 +130913,8 @@ func (c *Client) RancherCatalogsUpdate(ctx context.Context, uuid openapi_types.U
 	return c.Client.Do(req)
 }
 
-func (c *Client) RancherCatalogsRefreshWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRancherCatalogsRefreshRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) RancherCatalogsRefresh(ctx context.Context, uuid openapi_types.UUID, body RancherCatalogsRefreshJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRancherCatalogsRefreshRequest(c.Server, uuid, body)
+func (c *Client) RancherCatalogsRefresh(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRancherCatalogsRefreshRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -135527,20 +135389,8 @@ func (c *Client) SupportIssuesComment(ctx context.Context, uuid openapi_types.UU
 	return c.Client.Do(req)
 }
 
-func (c *Client) SupportIssuesSyncWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewSupportIssuesSyncRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) SupportIssuesSync(ctx context.Context, uuid openapi_types.UUID, body SupportIssuesSyncJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewSupportIssuesSyncRequest(c.Server, uuid, body)
+func (c *Client) SupportIssuesSync(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportIssuesSyncRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -163531,19 +163381,8 @@ func NewChatThreadsRetrieveRequest(server string, uuid openapi_types.UUID, param
 	return req, nil
 }
 
-// NewChatThreadsArchiveRequest calls the generic ChatThreadsArchive builder with application/json body
-func NewChatThreadsArchiveRequest(server string, uuid openapi_types.UUID, body ChatThreadsArchiveJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewChatThreadsArchiveRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewChatThreadsArchiveRequestWithBody generates requests for ChatThreadsArchive with any type of body
-func NewChatThreadsArchiveRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewChatThreadsArchiveRequest generates requests for ChatThreadsArchive
+func NewChatThreadsArchiveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -163568,12 +163407,10 @@ func NewChatThreadsArchiveRequestWithBody(server string, uuid openapi_types.UUID
 		return nil, err
 	}
 
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -163625,19 +163462,8 @@ func NewChatThreadsCancelRequestWithBody(server string, uuid openapi_types.UUID,
 	return req, nil
 }
 
-// NewChatThreadsUnarchiveRequest calls the generic ChatThreadsUnarchive builder with application/json body
-func NewChatThreadsUnarchiveRequest(server string, uuid openapi_types.UUID, body ChatThreadsUnarchiveJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewChatThreadsUnarchiveRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewChatThreadsUnarchiveRequestWithBody generates requests for ChatThreadsUnarchive with any type of body
-func NewChatThreadsUnarchiveRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewChatThreadsUnarchiveRequest generates requests for ChatThreadsUnarchive
+func NewChatThreadsUnarchiveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -163662,12 +163488,10 @@ func NewChatThreadsUnarchiveRequestWithBody(server string, uuid openapi_types.UU
 		return nil, err
 	}
 
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -167541,19 +167365,8 @@ func NewCustomerCreditsUpdateRequestWithBody(server string, uuid openapi_types.U
 	return req, nil
 }
 
-// NewCustomerCreditsApplyCompensationsRequest calls the generic CustomerCreditsApplyCompensations builder with application/json body
-func NewCustomerCreditsApplyCompensationsRequest(server string, uuid openapi_types.UUID, body CustomerCreditsApplyCompensationsJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewCustomerCreditsApplyCompensationsRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewCustomerCreditsApplyCompensationsRequestWithBody generates requests for CustomerCreditsApplyCompensations with any type of body
-func NewCustomerCreditsApplyCompensationsRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewCustomerCreditsApplyCompensationsRequest generates requests for CustomerCreditsApplyCompensations
+func NewCustomerCreditsApplyCompensationsRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -167578,29 +167391,16 @@ func NewCustomerCreditsApplyCompensationsRequestWithBody(server string, uuid ope
 		return nil, err
 	}
 
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
 
-// NewCustomerCreditsClearCompensationsRequest calls the generic CustomerCreditsClearCompensations builder with application/json body
-func NewCustomerCreditsClearCompensationsRequest(server string, uuid openapi_types.UUID, body CustomerCreditsClearCompensationsJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewCustomerCreditsClearCompensationsRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewCustomerCreditsClearCompensationsRequestWithBody generates requests for CustomerCreditsClearCompensations with any type of body
-func NewCustomerCreditsClearCompensationsRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewCustomerCreditsClearCompensationsRequest generates requests for CustomerCreditsClearCompensations
+func NewCustomerCreditsClearCompensationsRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -167625,12 +167425,10 @@ func NewCustomerCreditsClearCompensationsRequestWithBody(server string, uuid ope
 		return nil, err
 	}
 
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -235740,19 +235538,8 @@ func NewMarketplaceSoftwareCatalogsUpdateRequestWithBody(server string, uuid ope
 	return req, nil
 }
 
-// NewMarketplaceSoftwareCatalogsUpdateCatalogRequest calls the generic MarketplaceSoftwareCatalogsUpdateCatalog builder with application/json body
-func NewMarketplaceSoftwareCatalogsUpdateCatalogRequest(server string, uuid openapi_types.UUID, body MarketplaceSoftwareCatalogsUpdateCatalogJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceSoftwareCatalogsUpdateCatalogRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewMarketplaceSoftwareCatalogsUpdateCatalogRequestWithBody generates requests for MarketplaceSoftwareCatalogsUpdateCatalog with any type of body
-func NewMarketplaceSoftwareCatalogsUpdateCatalogRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewMarketplaceSoftwareCatalogsUpdateCatalogRequest generates requests for MarketplaceSoftwareCatalogsUpdateCatalog
+func NewMarketplaceSoftwareCatalogsUpdateCatalogRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -235777,12 +235564,10 @@ func NewMarketplaceSoftwareCatalogsUpdateCatalogRequestWithBody(server string, u
 		return nil, err
 	}
 
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -289255,19 +289040,8 @@ func NewProposalProtectedCallsComplianceOverviewRetrieveRequest(server string, u
 	return req, nil
 }
 
-// NewProposalProtectedCallsComputeAffinitiesRequest calls the generic ProposalProtectedCallsComputeAffinities builder with application/json body
-func NewProposalProtectedCallsComputeAffinitiesRequest(server string, uuid openapi_types.UUID, body ProposalProtectedCallsComputeAffinitiesJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewProposalProtectedCallsComputeAffinitiesRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewProposalProtectedCallsComputeAffinitiesRequestWithBody generates requests for ProposalProtectedCallsComputeAffinities with any type of body
-func NewProposalProtectedCallsComputeAffinitiesRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewProposalProtectedCallsComputeAffinitiesRequest generates requests for ProposalProtectedCallsComputeAffinities
+func NewProposalProtectedCallsComputeAffinitiesRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -289292,12 +289066,10 @@ func NewProposalProtectedCallsComputeAffinitiesRequestWithBody(server string, uu
 		return nil, err
 	}
 
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -296293,19 +296065,8 @@ func NewRancherCatalogsUpdateRequestWithBody(server string, uuid openapi_types.U
 	return req, nil
 }
 
-// NewRancherCatalogsRefreshRequest calls the generic RancherCatalogsRefresh builder with application/json body
-func NewRancherCatalogsRefreshRequest(server string, uuid openapi_types.UUID, body RancherCatalogsRefreshJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewRancherCatalogsRefreshRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewRancherCatalogsRefreshRequestWithBody generates requests for RancherCatalogsRefresh with any type of body
-func NewRancherCatalogsRefreshRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewRancherCatalogsRefreshRequest generates requests for RancherCatalogsRefresh
+func NewRancherCatalogsRefreshRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -296330,12 +296091,10 @@ func NewRancherCatalogsRefreshRequestWithBody(server string, uuid openapi_types.
 		return nil, err
 	}
 
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -314906,19 +314665,8 @@ func NewSupportIssuesCommentRequestWithBody(server string, uuid openapi_types.UU
 	return req, nil
 }
 
-// NewSupportIssuesSyncRequest calls the generic SupportIssuesSync builder with application/json body
-func NewSupportIssuesSyncRequest(server string, uuid openapi_types.UUID, body SupportIssuesSyncJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewSupportIssuesSyncRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewSupportIssuesSyncRequestWithBody generates requests for SupportIssuesSync with any type of body
-func NewSupportIssuesSyncRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewSupportIssuesSyncRequest generates requests for SupportIssuesSync
+func NewSupportIssuesSyncRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -314943,12 +314691,10 @@ func NewSupportIssuesSyncRequestWithBody(server string, uuid openapi_types.UUID,
 		return nil, err
 	}
 
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -332704,20 +332450,16 @@ type ClientWithResponsesInterface interface {
 	// ChatThreadsRetrieveWithResponse request
 	ChatThreadsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ChatThreadsRetrieveParams, reqEditors ...RequestEditorFn) (*ChatThreadsRetrieveResponse, error)
 
-	// ChatThreadsArchiveWithBodyWithResponse request with any body
-	ChatThreadsArchiveWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatThreadsArchiveResponse, error)
-
-	ChatThreadsArchiveWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsArchiveJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatThreadsArchiveResponse, error)
+	// ChatThreadsArchiveWithResponse request
+	ChatThreadsArchiveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChatThreadsArchiveResponse, error)
 
 	// ChatThreadsCancelWithBodyWithResponse request with any body
 	ChatThreadsCancelWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatThreadsCancelResponse, error)
 
 	ChatThreadsCancelWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsCancelJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatThreadsCancelResponse, error)
 
-	// ChatThreadsUnarchiveWithBodyWithResponse request with any body
-	ChatThreadsUnarchiveWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatThreadsUnarchiveResponse, error)
-
-	ChatThreadsUnarchiveWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsUnarchiveJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatThreadsUnarchiveResponse, error)
+	// ChatThreadsUnarchiveWithResponse request
+	ChatThreadsUnarchiveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChatThreadsUnarchiveResponse, error)
 
 	// ChatToolsExecuteWithBodyWithResponse request with any body
 	ChatToolsExecuteWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatToolsExecuteResponse, error)
@@ -332954,15 +332696,11 @@ type ClientWithResponsesInterface interface {
 
 	CustomerCreditsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomerCreditsUpdateResponse, error)
 
-	// CustomerCreditsApplyCompensationsWithBodyWithResponse request with any body
-	CustomerCreditsApplyCompensationsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomerCreditsApplyCompensationsResponse, error)
+	// CustomerCreditsApplyCompensationsWithResponse request
+	CustomerCreditsApplyCompensationsWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomerCreditsApplyCompensationsResponse, error)
 
-	CustomerCreditsApplyCompensationsWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsApplyCompensationsJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomerCreditsApplyCompensationsResponse, error)
-
-	// CustomerCreditsClearCompensationsWithBodyWithResponse request with any body
-	CustomerCreditsClearCompensationsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomerCreditsClearCompensationsResponse, error)
-
-	CustomerCreditsClearCompensationsWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsClearCompensationsJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomerCreditsClearCompensationsResponse, error)
+	// CustomerCreditsClearCompensationsWithResponse request
+	CustomerCreditsClearCompensationsWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomerCreditsClearCompensationsResponse, error)
 
 	// CustomerCreditsConsumptionsListWithResponse request
 	CustomerCreditsConsumptionsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *CustomerCreditsConsumptionsListParams, reqEditors ...RequestEditorFn) (*CustomerCreditsConsumptionsListResponse, error)
@@ -336093,10 +335831,8 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceSoftwareCatalogsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwareCatalogsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsUpdateResponse, error)
 
-	// MarketplaceSoftwareCatalogsUpdateCatalogWithBodyWithResponse request with any body
-	MarketplaceSoftwareCatalogsUpdateCatalogWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsUpdateCatalogResponse, error)
-
-	MarketplaceSoftwareCatalogsUpdateCatalogWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwareCatalogsUpdateCatalogJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsUpdateCatalogResponse, error)
+	// MarketplaceSoftwareCatalogsUpdateCatalogWithResponse request
+	MarketplaceSoftwareCatalogsUpdateCatalogWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsUpdateCatalogResponse, error)
 
 	// MarketplaceSoftwarePackagesListWithResponse request
 	MarketplaceSoftwarePackagesListWithResponse(ctx context.Context, params *MarketplaceSoftwarePackagesListParams, reqEditors ...RequestEditorFn) (*MarketplaceSoftwarePackagesListResponse, error)
@@ -338693,10 +338429,8 @@ type ClientWithResponsesInterface interface {
 	// ProposalProtectedCallsComplianceOverviewRetrieveWithResponse request
 	ProposalProtectedCallsComplianceOverviewRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsComplianceOverviewRetrieveResponse, error)
 
-	// ProposalProtectedCallsComputeAffinitiesWithBodyWithResponse request with any body
-	ProposalProtectedCallsComputeAffinitiesWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsComputeAffinitiesResponse, error)
-
-	ProposalProtectedCallsComputeAffinitiesWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsComputeAffinitiesJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsComputeAffinitiesResponse, error)
+	// ProposalProtectedCallsComputeAffinitiesWithResponse request
+	ProposalProtectedCallsComputeAffinitiesWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsComputeAffinitiesResponse, error)
 
 	// ProposalProtectedCallsConflictSummaryRetrieveWithResponse request
 	ProposalProtectedCallsConflictSummaryRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsConflictSummaryRetrieveResponse, error)
@@ -339041,10 +338775,8 @@ type ClientWithResponsesInterface interface {
 
 	RancherCatalogsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body RancherCatalogsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*RancherCatalogsUpdateResponse, error)
 
-	// RancherCatalogsRefreshWithBodyWithResponse request with any body
-	RancherCatalogsRefreshWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RancherCatalogsRefreshResponse, error)
-
-	RancherCatalogsRefreshWithResponse(ctx context.Context, uuid openapi_types.UUID, body RancherCatalogsRefreshJSONRequestBody, reqEditors ...RequestEditorFn) (*RancherCatalogsRefreshResponse, error)
+	// RancherCatalogsRefreshWithResponse request
+	RancherCatalogsRefreshWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherCatalogsRefreshResponse, error)
 
 	// RancherClusterSecurityGroupsListWithResponse request
 	RancherClusterSecurityGroupsListWithResponse(ctx context.Context, params *RancherClusterSecurityGroupsListParams, reqEditors ...RequestEditorFn) (*RancherClusterSecurityGroupsListResponse, error)
@@ -340064,10 +339796,8 @@ type ClientWithResponsesInterface interface {
 
 	SupportIssuesCommentWithResponse(ctx context.Context, uuid openapi_types.UUID, body SupportIssuesCommentJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportIssuesCommentResponse, error)
 
-	// SupportIssuesSyncWithBodyWithResponse request with any body
-	SupportIssuesSyncWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportIssuesSyncResponse, error)
-
-	SupportIssuesSyncWithResponse(ctx context.Context, uuid openapi_types.UUID, body SupportIssuesSyncJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportIssuesSyncResponse, error)
+	// SupportIssuesSyncWithResponse request
+	SupportIssuesSyncWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SupportIssuesSyncResponse, error)
 
 	// SupportJiraWebhookWithBodyWithResponse request with any body
 	SupportJiraWebhookWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportJiraWebhookResponse, error)
@@ -345428,6 +345158,7 @@ func (r AwsInstancesResizeResponse) ContentType() string {
 type AwsInstancesRestartResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *AwsInstance
 }
 
 // Status returns HTTPResponse.Status
@@ -345517,6 +345248,7 @@ func (r AwsInstancesSetOkResponse) ContentType() string {
 type AwsInstancesStartResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *AwsInstance
 }
 
 // Status returns HTTPResponse.Status
@@ -345546,6 +345278,7 @@ func (r AwsInstancesStartResponse) ContentType() string {
 type AwsInstancesStopResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *AwsInstance
 }
 
 // Status returns HTTPResponse.Status
@@ -346020,6 +345753,7 @@ func (r AwsVolumesAttachResponse) ContentType() string {
 type AwsVolumesDetachResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *AwsVolume
 }
 
 // Status returns HTTPResponse.Status
@@ -347778,6 +347512,7 @@ func (r AzureVirtualmachinesPullResponse) ContentType() string {
 type AzureVirtualmachinesRestartResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *AzureVirtualMachine
 }
 
 // Status returns HTTPResponse.Status
@@ -347867,6 +347602,7 @@ func (r AzureVirtualmachinesSetOkResponse) ContentType() string {
 type AzureVirtualmachinesStartResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *AzureVirtualMachine
 }
 
 // Status returns HTTPResponse.Status
@@ -347896,6 +347632,7 @@ func (r AzureVirtualmachinesStartResponse) ContentType() string {
 type AzureVirtualmachinesStopResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *AzureVirtualMachine
 }
 
 // Status returns HTTPResponse.Status
@@ -348642,6 +348379,7 @@ func (r BookingResourcesRetrieveResponse) ContentType() string {
 type BookingResourcesAcceptResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *BookingResource
 }
 
 // Status returns HTTPResponse.Status
@@ -348671,6 +348409,7 @@ func (r BookingResourcesAcceptResponse) ContentType() string {
 type BookingResourcesRejectResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *BookingResource
 }
 
 // Status returns HTTPResponse.Status
@@ -354802,6 +354541,7 @@ func (r DigitaloceanDropletsResizeResponse) ContentType() string {
 type DigitaloceanDropletsRestartResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *DigitalOceanDroplet
 }
 
 // Status returns HTTPResponse.Status
@@ -354891,6 +354631,7 @@ func (r DigitaloceanDropletsSetOkResponse) ContentType() string {
 type DigitaloceanDropletsStartResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *DigitalOceanDroplet
 }
 
 // Status returns HTTPResponse.Status
@@ -354920,6 +354661,7 @@ func (r DigitaloceanDropletsStartResponse) ContentType() string {
 type DigitaloceanDropletsStopResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *DigitalOceanDroplet
 }
 
 // Status returns HTTPResponse.Status
@@ -358458,6 +358200,7 @@ func (r InvoicesPaidResponse) ContentType() string {
 type InvoicesSendNotificationResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *Invoice
 }
 
 // Status returns HTTPResponse.Status
@@ -392910,6 +392653,7 @@ func (r OpenstackSubnetsUpdateResponse) ContentType() string {
 type OpenstackSubnetsConnectResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *OpenStackSubNet
 }
 
 // Status returns HTTPResponse.Status
@@ -392939,6 +392683,7 @@ func (r OpenstackSubnetsConnectResponse) ContentType() string {
 type OpenstackSubnetsDisconnectResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *OpenStackSubNet
 }
 
 // Status returns HTTPResponse.Status
@@ -395254,6 +394999,7 @@ func (r PaymentProfilesUpdateResponse) ContentType() string {
 type PaymentProfilesEnableResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *PaymentProfile
 }
 
 // Status returns HTTPResponse.Status
@@ -395521,6 +395267,7 @@ func (r PaymentsLinkToInvoiceResponse) ContentType() string {
 type PaymentsUnlinkFromInvoiceResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *Payment
 }
 
 // Status returns HTTPResponse.Status
@@ -415464,6 +415211,7 @@ func (r VmwareVirtualMachinePullResponse) ContentType() string {
 type VmwareVirtualMachineRebootGuestResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *VmwareVirtualMachine
 }
 
 // Status returns HTTPResponse.Status
@@ -415493,6 +415241,7 @@ func (r VmwareVirtualMachineRebootGuestResponse) ContentType() string {
 type VmwareVirtualMachineResetResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *VmwareVirtualMachine
 }
 
 // Status returns HTTPResponse.Status
@@ -415582,6 +415331,7 @@ func (r VmwareVirtualMachineSetOkResponse) ContentType() string {
 type VmwareVirtualMachineShutdownGuestResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *VmwareVirtualMachine
 }
 
 // Status returns HTTPResponse.Status
@@ -415611,6 +415361,7 @@ func (r VmwareVirtualMachineShutdownGuestResponse) ContentType() string {
 type VmwareVirtualMachineStartResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *VmwareVirtualMachine
 }
 
 // Status returns HTTPResponse.Status
@@ -415640,6 +415391,7 @@ func (r VmwareVirtualMachineStartResponse) ContentType() string {
 type VmwareVirtualMachineStopResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *VmwareVirtualMachine
 }
 
 // Status returns HTTPResponse.Status
@@ -415669,6 +415421,7 @@ func (r VmwareVirtualMachineStopResponse) ContentType() string {
 type VmwareVirtualMachineSuspendResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *VmwareVirtualMachine
 }
 
 // Status returns HTTPResponse.Status
@@ -419820,17 +419573,9 @@ func (c *ClientWithResponses) ChatThreadsRetrieveWithResponse(ctx context.Contex
 	return ParseChatThreadsRetrieveResponse(rsp)
 }
 
-// ChatThreadsArchiveWithBodyWithResponse request with arbitrary body returning *ChatThreadsArchiveResponse
-func (c *ClientWithResponses) ChatThreadsArchiveWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatThreadsArchiveResponse, error) {
-	rsp, err := c.ChatThreadsArchiveWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseChatThreadsArchiveResponse(rsp)
-}
-
-func (c *ClientWithResponses) ChatThreadsArchiveWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsArchiveJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatThreadsArchiveResponse, error) {
-	rsp, err := c.ChatThreadsArchive(ctx, uuid, body, reqEditors...)
+// ChatThreadsArchiveWithResponse request returning *ChatThreadsArchiveResponse
+func (c *ClientWithResponses) ChatThreadsArchiveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChatThreadsArchiveResponse, error) {
+	rsp, err := c.ChatThreadsArchive(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -419854,17 +419599,9 @@ func (c *ClientWithResponses) ChatThreadsCancelWithResponse(ctx context.Context,
 	return ParseChatThreadsCancelResponse(rsp)
 }
 
-// ChatThreadsUnarchiveWithBodyWithResponse request with arbitrary body returning *ChatThreadsUnarchiveResponse
-func (c *ClientWithResponses) ChatThreadsUnarchiveWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatThreadsUnarchiveResponse, error) {
-	rsp, err := c.ChatThreadsUnarchiveWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseChatThreadsUnarchiveResponse(rsp)
-}
-
-func (c *ClientWithResponses) ChatThreadsUnarchiveWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChatThreadsUnarchiveJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatThreadsUnarchiveResponse, error) {
-	rsp, err := c.ChatThreadsUnarchive(ctx, uuid, body, reqEditors...)
+// ChatThreadsUnarchiveWithResponse request returning *ChatThreadsUnarchiveResponse
+func (c *ClientWithResponses) ChatThreadsUnarchiveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChatThreadsUnarchiveResponse, error) {
+	rsp, err := c.ChatThreadsUnarchive(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -420628,34 +420365,18 @@ func (c *ClientWithResponses) CustomerCreditsUpdateWithResponse(ctx context.Cont
 	return ParseCustomerCreditsUpdateResponse(rsp)
 }
 
-// CustomerCreditsApplyCompensationsWithBodyWithResponse request with arbitrary body returning *CustomerCreditsApplyCompensationsResponse
-func (c *ClientWithResponses) CustomerCreditsApplyCompensationsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomerCreditsApplyCompensationsResponse, error) {
-	rsp, err := c.CustomerCreditsApplyCompensationsWithBody(ctx, uuid, contentType, body, reqEditors...)
+// CustomerCreditsApplyCompensationsWithResponse request returning *CustomerCreditsApplyCompensationsResponse
+func (c *ClientWithResponses) CustomerCreditsApplyCompensationsWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomerCreditsApplyCompensationsResponse, error) {
+	rsp, err := c.CustomerCreditsApplyCompensations(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseCustomerCreditsApplyCompensationsResponse(rsp)
 }
 
-func (c *ClientWithResponses) CustomerCreditsApplyCompensationsWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsApplyCompensationsJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomerCreditsApplyCompensationsResponse, error) {
-	rsp, err := c.CustomerCreditsApplyCompensations(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseCustomerCreditsApplyCompensationsResponse(rsp)
-}
-
-// CustomerCreditsClearCompensationsWithBodyWithResponse request with arbitrary body returning *CustomerCreditsClearCompensationsResponse
-func (c *ClientWithResponses) CustomerCreditsClearCompensationsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomerCreditsClearCompensationsResponse, error) {
-	rsp, err := c.CustomerCreditsClearCompensationsWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseCustomerCreditsClearCompensationsResponse(rsp)
-}
-
-func (c *ClientWithResponses) CustomerCreditsClearCompensationsWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsClearCompensationsJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomerCreditsClearCompensationsResponse, error) {
-	rsp, err := c.CustomerCreditsClearCompensations(ctx, uuid, body, reqEditors...)
+// CustomerCreditsClearCompensationsWithResponse request returning *CustomerCreditsClearCompensationsResponse
+func (c *ClientWithResponses) CustomerCreditsClearCompensationsWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomerCreditsClearCompensationsResponse, error) {
+	rsp, err := c.CustomerCreditsClearCompensations(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -430709,17 +430430,9 @@ func (c *ClientWithResponses) MarketplaceSoftwareCatalogsUpdateWithResponse(ctx 
 	return ParseMarketplaceSoftwareCatalogsUpdateResponse(rsp)
 }
 
-// MarketplaceSoftwareCatalogsUpdateCatalogWithBodyWithResponse request with arbitrary body returning *MarketplaceSoftwareCatalogsUpdateCatalogResponse
-func (c *ClientWithResponses) MarketplaceSoftwareCatalogsUpdateCatalogWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsUpdateCatalogResponse, error) {
-	rsp, err := c.MarketplaceSoftwareCatalogsUpdateCatalogWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceSoftwareCatalogsUpdateCatalogResponse(rsp)
-}
-
-func (c *ClientWithResponses) MarketplaceSoftwareCatalogsUpdateCatalogWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwareCatalogsUpdateCatalogJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsUpdateCatalogResponse, error) {
-	rsp, err := c.MarketplaceSoftwareCatalogsUpdateCatalog(ctx, uuid, body, reqEditors...)
+// MarketplaceSoftwareCatalogsUpdateCatalogWithResponse request returning *MarketplaceSoftwareCatalogsUpdateCatalogResponse
+func (c *ClientWithResponses) MarketplaceSoftwareCatalogsUpdateCatalogWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsUpdateCatalogResponse, error) {
+	rsp, err := c.MarketplaceSoftwareCatalogsUpdateCatalog(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -438961,17 +438674,9 @@ func (c *ClientWithResponses) ProposalProtectedCallsComplianceOverviewRetrieveWi
 	return ParseProposalProtectedCallsComplianceOverviewRetrieveResponse(rsp)
 }
 
-// ProposalProtectedCallsComputeAffinitiesWithBodyWithResponse request with arbitrary body returning *ProposalProtectedCallsComputeAffinitiesResponse
-func (c *ClientWithResponses) ProposalProtectedCallsComputeAffinitiesWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsComputeAffinitiesResponse, error) {
-	rsp, err := c.ProposalProtectedCallsComputeAffinitiesWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseProposalProtectedCallsComputeAffinitiesResponse(rsp)
-}
-
-func (c *ClientWithResponses) ProposalProtectedCallsComputeAffinitiesWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsComputeAffinitiesJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsComputeAffinitiesResponse, error) {
-	rsp, err := c.ProposalProtectedCallsComputeAffinities(ctx, uuid, body, reqEditors...)
+// ProposalProtectedCallsComputeAffinitiesWithResponse request returning *ProposalProtectedCallsComputeAffinitiesResponse
+func (c *ClientWithResponses) ProposalProtectedCallsComputeAffinitiesWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsComputeAffinitiesResponse, error) {
+	rsp, err := c.ProposalProtectedCallsComputeAffinities(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -440077,17 +439782,9 @@ func (c *ClientWithResponses) RancherCatalogsUpdateWithResponse(ctx context.Cont
 	return ParseRancherCatalogsUpdateResponse(rsp)
 }
 
-// RancherCatalogsRefreshWithBodyWithResponse request with arbitrary body returning *RancherCatalogsRefreshResponse
-func (c *ClientWithResponses) RancherCatalogsRefreshWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RancherCatalogsRefreshResponse, error) {
-	rsp, err := c.RancherCatalogsRefreshWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseRancherCatalogsRefreshResponse(rsp)
-}
-
-func (c *ClientWithResponses) RancherCatalogsRefreshWithResponse(ctx context.Context, uuid openapi_types.UUID, body RancherCatalogsRefreshJSONRequestBody, reqEditors ...RequestEditorFn) (*RancherCatalogsRefreshResponse, error) {
-	rsp, err := c.RancherCatalogsRefresh(ctx, uuid, body, reqEditors...)
+// RancherCatalogsRefreshWithResponse request returning *RancherCatalogsRefreshResponse
+func (c *ClientWithResponses) RancherCatalogsRefreshWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherCatalogsRefreshResponse, error) {
+	rsp, err := c.RancherCatalogsRefresh(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -443344,17 +443041,9 @@ func (c *ClientWithResponses) SupportIssuesCommentWithResponse(ctx context.Conte
 	return ParseSupportIssuesCommentResponse(rsp)
 }
 
-// SupportIssuesSyncWithBodyWithResponse request with arbitrary body returning *SupportIssuesSyncResponse
-func (c *ClientWithResponses) SupportIssuesSyncWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportIssuesSyncResponse, error) {
-	rsp, err := c.SupportIssuesSyncWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseSupportIssuesSyncResponse(rsp)
-}
-
-func (c *ClientWithResponses) SupportIssuesSyncWithResponse(ctx context.Context, uuid openapi_types.UUID, body SupportIssuesSyncJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportIssuesSyncResponse, error) {
-	rsp, err := c.SupportIssuesSync(ctx, uuid, body, reqEditors...)
+// SupportIssuesSyncWithResponse request returning *SupportIssuesSyncResponse
+func (c *ClientWithResponses) SupportIssuesSyncWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SupportIssuesSyncResponse, error) {
+	rsp, err := c.SupportIssuesSync(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -449263,6 +448952,16 @@ func ParseAwsInstancesRestartResponse(rsp *http.Response) (*AwsInstancesRestartR
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AwsInstance
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -449331,6 +449030,16 @@ func ParseAwsInstancesStartResponse(rsp *http.Response) (*AwsInstancesStartRespo
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AwsInstance
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -449345,6 +449054,16 @@ func ParseAwsInstancesStopResponse(rsp *http.Response) (*AwsInstancesStopRespons
 	response := &AwsInstancesStopResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AwsInstance
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -449701,6 +449420,16 @@ func ParseAwsVolumesDetachResponse(rsp *http.Response) (*AwsVolumesDetachRespons
 	response := &AwsVolumesDetachResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AwsVolume
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -451102,6 +450831,16 @@ func ParseAzureVirtualmachinesRestartResponse(rsp *http.Response) (*AzureVirtual
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AzureVirtualMachine
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -451170,6 +450909,16 @@ func ParseAzureVirtualmachinesStartResponse(rsp *http.Response) (*AzureVirtualma
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AzureVirtualMachine
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -451184,6 +450933,16 @@ func ParseAzureVirtualmachinesStopResponse(rsp *http.Response) (*AzureVirtualmac
 	response := &AzureVirtualmachinesStopResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AzureVirtualMachine
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -451742,6 +451501,16 @@ func ParseBookingResourcesAcceptResponse(rsp *http.Response) (*BookingResourcesA
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest BookingResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -451756,6 +451525,16 @@ func ParseBookingResourcesRejectResponse(rsp *http.Response) (*BookingResourcesR
 	response := &BookingResourcesRejectResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest BookingResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -456606,6 +456385,16 @@ func ParseDigitaloceanDropletsRestartResponse(rsp *http.Response) (*Digitalocean
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DigitalOceanDroplet
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -456674,6 +456463,16 @@ func ParseDigitaloceanDropletsStartResponse(rsp *http.Response) (*DigitaloceanDr
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DigitalOceanDroplet
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -456688,6 +456487,16 @@ func ParseDigitaloceanDropletsStopResponse(rsp *http.Response) (*DigitaloceanDro
 	response := &DigitaloceanDropletsStopResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DigitalOceanDroplet
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -459399,6 +459208,16 @@ func ParseInvoicesSendNotificationResponse(rsp *http.Response) (*InvoicesSendNot
 	response := &InvoicesSendNotificationResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Invoice
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -485953,6 +485772,16 @@ func ParseOpenstackSubnetsConnectResponse(rsp *http.Response) (*OpenstackSubnets
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OpenStackSubNet
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -485967,6 +485796,16 @@ func ParseOpenstackSubnetsDisconnectResponse(rsp *http.Response) (*OpenstackSubn
 	response := &OpenstackSubnetsDisconnectResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OpenStackSubNet
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -487738,6 +487577,16 @@ func ParsePaymentProfilesEnableResponse(rsp *http.Response) (*PaymentProfilesEna
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PaymentProfile
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -487940,6 +487789,16 @@ func ParsePaymentsUnlinkFromInvoiceResponse(rsp *http.Response) (*PaymentsUnlink
 	response := &PaymentsUnlinkFromInvoiceResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Payment
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -503549,6 +503408,16 @@ func ParseVmwareVirtualMachineRebootGuestResponse(rsp *http.Response) (*VmwareVi
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest VmwareVirtualMachine
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -503563,6 +503432,16 @@ func ParseVmwareVirtualMachineResetResponse(rsp *http.Response) (*VmwareVirtualM
 	response := &VmwareVirtualMachineResetResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest VmwareVirtualMachine
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -503633,6 +503512,16 @@ func ParseVmwareVirtualMachineShutdownGuestResponse(rsp *http.Response) (*Vmware
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest VmwareVirtualMachine
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -503647,6 +503536,16 @@ func ParseVmwareVirtualMachineStartResponse(rsp *http.Response) (*VmwareVirtualM
 	response := &VmwareVirtualMachineStartResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest VmwareVirtualMachine
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -503665,6 +503564,16 @@ func ParseVmwareVirtualMachineStopResponse(rsp *http.Response) (*VmwareVirtualMa
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest VmwareVirtualMachine
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -503679,6 +503588,16 @@ func ParseVmwareVirtualMachineSuspendResponse(rsp *http.Response) (*VmwareVirtua
 	response := &VmwareVirtualMachineSuspendResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest VmwareVirtualMachine
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
