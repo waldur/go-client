@@ -34643,6 +34643,24 @@ type OfferingThumbnailRequestMultipart struct {
 // OfferingTypeEnum defines model for OfferingTypeEnum.
 type OfferingTypeEnum string
 
+// OfferingUsageByProject defines model for OfferingUsageByProject.
+type OfferingUsageByProject struct {
+	BillingType        *string              `json:"billing_type,omitempty"`
+	CurrentPeriodEnd   *openapi_types.Date  `json:"current_period_end,omitempty"`
+	CurrentPeriodLabel *string              `json:"current_period_label,omitempty"`
+	CurrentPeriodStart *openapi_types.Date  `json:"current_period_start,omitempty"`
+	Limit              *float64             `json:"limit,omitempty"`
+	LimitPeriod        *string              `json:"limit_period,omitempty"`
+	MeasuredUnit       *string              `json:"measured_unit,omitempty"`
+	Name               *string              `json:"name,omitempty"`
+	OfferingName       *string              `json:"offering_name,omitempty"`
+	OfferingUuid       *openapi_types.UUID  `json:"offering_uuid,omitempty"`
+	Projects           *[]ProjectUsageEntry `json:"projects,omitempty"`
+	Today              *openapi_types.Date  `json:"today,omitempty"`
+	TotalUsage         *float64             `json:"total_usage,omitempty"`
+	Type               *string              `json:"type,omitempty"`
+}
+
 // OfferingUsagePolicy defines model for OfferingUsagePolicy.
 type OfferingUsagePolicy struct {
 	Actions                string `json:"actions"`
@@ -34682,6 +34700,23 @@ type OfferingUsagePolicyRequest struct {
 	OrganizationGroups *[]string         `json:"organization_groups,omitempty"`
 	Period             *PolicyPeriodEnum `json:"period,omitempty"`
 	Scope              string            `json:"scope"`
+}
+
+// OfferingUsageTimeseries defines model for OfferingUsageTimeseries.
+type OfferingUsageTimeseries struct {
+	BillingType        *string                  `json:"billing_type,omitempty"`
+	Buckets            *[]UsageTimeseriesBucket `json:"buckets,omitempty"`
+	CurrentPeriodEnd   *openapi_types.Date      `json:"current_period_end,omitempty"`
+	CurrentPeriodLabel *string                  `json:"current_period_label,omitempty"`
+	CurrentPeriodStart *openapi_types.Date      `json:"current_period_start,omitempty"`
+	Limit              *float64                 `json:"limit,omitempty"`
+	LimitPeriod        *string                  `json:"limit_period,omitempty"`
+	MeasuredUnit       *string                  `json:"measured_unit,omitempty"`
+	Name               *string                  `json:"name,omitempty"`
+	OfferingName       *string                  `json:"offering_name,omitempty"`
+	OfferingUuid       *openapi_types.UUID      `json:"offering_uuid,omitempty"`
+	Today              *openapi_types.Date      `json:"today,omitempty"`
+	Type               *string                  `json:"type,omitempty"`
 }
 
 // OfferingUser defines model for OfferingUser.
@@ -41717,6 +41752,14 @@ type ProjectType struct {
 	Uuid        *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// ProjectUsageEntry defines model for ProjectUsageEntry.
+type ProjectUsageEntry struct {
+	Buckets     *[]UsageTimeseriesBucket `json:"buckets,omitempty"`
+	ProjectName *string                  `json:"project_name,omitempty"`
+	ProjectUuid *openapi_types.UUID      `json:"project_uuid,omitempty"`
+	Usage       *float64                 `json:"usage,omitempty"`
+}
+
 // ProjectUsageReport defines model for ProjectUsageReport.
 type ProjectUsageReport struct {
 	// Project ProjectIdentifier string e.g. "aiproject.brics"
@@ -48234,6 +48277,12 @@ type UrgencyEnum string
 // Usage defines model for Usage.
 type Usage struct {
 	Seconds int `json:"seconds"`
+}
+
+// UsageTimeseriesBucket defines model for UsageTimeseriesBucket.
+type UsageTimeseriesBucket struct {
+	BillingPeriod *openapi_types.Date `json:"billing_period,omitempty"`
+	Usage         *float64            `json:"usage,omitempty"`
 }
 
 // User defines model for User.
@@ -55493,6 +55542,20 @@ type MarketplaceCustomerServiceAccountsCountParams struct {
 	Username *string `form:"username,omitempty" json:"username,omitempty"`
 }
 
+// MarketplaceCustomerUsageComponentsUsageByProjectRetrieveParams defines parameters for MarketplaceCustomerUsageComponentsUsageByProjectRetrieve.
+type MarketplaceCustomerUsageComponentsUsageByProjectRetrieveParams struct {
+	ComponentType *string            `form:"component_type,omitempty" json:"component_type,omitempty"`
+	OfferingUuid  openapi_types.UUID `form:"offering_uuid" json:"offering_uuid"`
+	PeriodOffset  *int               `form:"period_offset,omitempty" json:"period_offset,omitempty"`
+}
+
+// MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveParams defines parameters for MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieve.
+type MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveParams struct {
+	ComponentType *string            `form:"component_type,omitempty" json:"component_type,omitempty"`
+	OfferingUuid  openapi_types.UUID `form:"offering_uuid" json:"offering_uuid"`
+	PeriodOffset  *int               `form:"period_offset,omitempty" json:"period_offset,omitempty"`
+}
+
 // MarketplaceDemoPresetsListListParams defines parameters for MarketplaceDemoPresetsListList.
 type MarketplaceDemoPresetsListListParams struct {
 	// Page A page number within the paginated result set.
@@ -56659,6 +56722,13 @@ type MarketplaceProjectUpdateRequestsCountParams struct {
 	ProjectUuid  *openapi_types.UUID                    `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 	ProviderUuid *openapi_types.UUID                    `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 	State        *[]RemoteProjectUpdateRequestStateEnum `form:"state,omitempty" json:"state,omitempty"`
+}
+
+// MarketplaceProjectUsageComponentsUsageTimeseriesRetrieveParams defines parameters for MarketplaceProjectUsageComponentsUsageTimeseriesRetrieve.
+type MarketplaceProjectUsageComponentsUsageTimeseriesRetrieveParams struct {
+	ComponentType *string            `form:"component_type,omitempty" json:"component_type,omitempty"`
+	OfferingUuid  openapi_types.UUID `form:"offering_uuid" json:"offering_uuid"`
+	PeriodOffset  *int               `form:"period_offset,omitempty" json:"period_offset,omitempty"`
 }
 
 // MarketplaceProviderOfferingsListParams defines parameters for MarketplaceProviderOfferingsList.
@@ -89829,9 +89899,6 @@ type ClientInterface interface {
 
 	CustomersAddUser(ctx context.Context, uuid openapi_types.UUID, body CustomersAddUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// CustomersComponentsUsageRetrieve request
-	CustomersComponentsUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// CustomersContactWithBody request with any body
 	CustomersContactWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -91045,6 +91112,15 @@ type ClientInterface interface {
 	// MarketplaceCustomerServiceAccountsRotateApiKey request
 	MarketplaceCustomerServiceAccountsRotateApiKey(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceCustomerUsageComponentsUsageByProjectRetrieve request
+	MarketplaceCustomerUsageComponentsUsageByProjectRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceCustomerUsageComponentsUsageByProjectRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieve request
+	MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceCustomerUsageComponentsUsageRetrieve request
+	MarketplaceCustomerUsageComponentsUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceDemoPresetsInfoRetrieve request
 	MarketplaceDemoPresetsInfoRetrieve(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -91644,6 +91720,12 @@ type ClientInterface interface {
 	MarketplaceProjectUpdateRequestsRejectWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceProjectUpdateRequestsReject(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectUpdateRequestsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProjectUsageComponentsUsageTimeseriesRetrieve request
+	MarketplaceProjectUsageComponentsUsageTimeseriesRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProjectUsageComponentsUsageTimeseriesRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProjectUsageComponentsUsageRetrieve request
+	MarketplaceProjectUsageComponentsUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsList request
 	MarketplaceProviderOfferingsList(ctx context.Context, params *MarketplaceProviderOfferingsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -93831,9 +93913,6 @@ type ClientInterface interface {
 	// OpenportalUnmanagedProjectsCompletionStatusRetrieve request
 	OpenportalUnmanagedProjectsCompletionStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// OpenportalUnmanagedProjectsComponentsUsageRetrieve request
-	OpenportalUnmanagedProjectsComponentsUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// OpenportalUnmanagedProjectsDeleteUserWithBody request with any body
 	OpenportalUnmanagedProjectsDeleteUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -95224,9 +95303,6 @@ type ClientInterface interface {
 
 	// ProjectsCompletionStatusRetrieve request
 	ProjectsCompletionStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ProjectsComponentsUsageRetrieve request
-	ProjectsComponentsUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProjectsDeleteUserWithBody request with any body
 	ProjectsDeleteUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -104609,18 +104685,6 @@ func (c *Client) CustomersAddUser(ctx context.Context, uuid openapi_types.UUID, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) CustomersComponentsUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCustomersComponentsUsageRetrieveRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) CustomersContactWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCustomersContactRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -109925,6 +109989,42 @@ func (c *Client) MarketplaceCustomerServiceAccountsRotateApiKey(ctx context.Cont
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceCustomerUsageComponentsUsageByProjectRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceCustomerUsageComponentsUsageByProjectRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerUsageComponentsUsageByProjectRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCustomerUsageComponentsUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerUsageComponentsUsageRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceDemoPresetsInfoRetrieve(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceDemoPresetsInfoRetrieveRequest(c.Server, name)
 	if err != nil {
@@ -112543,6 +112643,30 @@ func (c *Client) MarketplaceProjectUpdateRequestsRejectWithBody(ctx context.Cont
 
 func (c *Client) MarketplaceProjectUpdateRequestsReject(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectUpdateRequestsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProjectUpdateRequestsRejectRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProjectUsageComponentsUsageTimeseriesRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProjectUsageComponentsUsageTimeseriesRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectUsageComponentsUsageTimeseriesRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProjectUsageComponentsUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectUsageComponentsUsageRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -122153,18 +122277,6 @@ func (c *Client) OpenportalUnmanagedProjectsCompletionStatusRetrieve(ctx context
 	return c.Client.Do(req)
 }
 
-func (c *Client) OpenportalUnmanagedProjectsComponentsUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenportalUnmanagedProjectsComponentsUsageRetrieveRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) OpenportalUnmanagedProjectsDeleteUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalUnmanagedProjectsDeleteUserRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -128263,18 +128375,6 @@ func (c *Client) ProjectsChecklistRetrieve(ctx context.Context, uuid openapi_typ
 
 func (c *Client) ProjectsCompletionStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProjectsCompletionStatusRetrieveRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ProjectsComponentsUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProjectsComponentsUsageRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -170276,40 +170376,6 @@ func NewCustomersAddUserRequestWithBody(server string, uuid openapi_types.UUID, 
 	return req, nil
 }
 
-// NewCustomersComponentsUsageRetrieveRequest generates requests for CustomersComponentsUsageRetrieve
-func NewCustomersComponentsUsageRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/customers/%s/components-usage/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewCustomersContactRequest calls the generic CustomersContact builder with application/json body
 func NewCustomersContactRequest(server string, uuid openapi_types.UUID, body CustomersContactJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -194134,6 +194200,202 @@ func NewMarketplaceCustomerServiceAccountsRotateApiKeyRequest(server string, uui
 	return req, nil
 }
 
+// NewMarketplaceCustomerUsageComponentsUsageByProjectRetrieveRequest generates requests for MarketplaceCustomerUsageComponentsUsageByProjectRetrieve
+func NewMarketplaceCustomerUsageComponentsUsageByProjectRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceCustomerUsageComponentsUsageByProjectRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-customer-usage/%s/components-usage-by-project/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.ComponentType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "component_type", *params.ComponentType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if params.PeriodOffset != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "period_offset", *params.PeriodOffset, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveRequest generates requests for MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieve
+func NewMarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-customer-usage/%s/components-usage-timeseries/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.ComponentType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "component_type", *params.ComponentType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if params.PeriodOffset != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "period_offset", *params.PeriodOffset, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceCustomerUsageComponentsUsageRetrieveRequest generates requests for MarketplaceCustomerUsageComponentsUsageRetrieve
+func NewMarketplaceCustomerUsageComponentsUsageRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-customer-usage/%s/components-usage/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceDemoPresetsInfoRetrieveRequest generates requests for MarketplaceDemoPresetsInfoRetrieve
 func NewMarketplaceDemoPresetsInfoRetrieveRequest(server string, name string) (*http.Request, error) {
 	var err error
@@ -205333,6 +205595,121 @@ func NewMarketplaceProjectUpdateRequestsRejectRequestWithBody(server string, uui
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProjectUsageComponentsUsageTimeseriesRetrieveRequest generates requests for MarketplaceProjectUsageComponentsUsageTimeseriesRetrieve
+func NewMarketplaceProjectUsageComponentsUsageTimeseriesRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceProjectUsageComponentsUsageTimeseriesRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-project-usage/%s/components-usage-timeseries/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.ComponentType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "component_type", *params.ComponentType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if params.PeriodOffset != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "period_offset", *params.PeriodOffset, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceProjectUsageComponentsUsageRetrieveRequest generates requests for MarketplaceProjectUsageComponentsUsageRetrieve
+func NewMarketplaceProjectUsageComponentsUsageRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-project-usage/%s/components-usage/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -255264,40 +255641,6 @@ func NewOpenportalUnmanagedProjectsCompletionStatusRetrieveRequest(server string
 	return req, nil
 }
 
-// NewOpenportalUnmanagedProjectsComponentsUsageRetrieveRequest generates requests for OpenportalUnmanagedProjectsComponentsUsageRetrieve
-func NewOpenportalUnmanagedProjectsComponentsUsageRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/openportal-unmanaged-projects/%s/components-usage/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewOpenportalUnmanagedProjectsDeleteUserRequest calls the generic OpenportalUnmanagedProjectsDeleteUser builder with application/json body
 func NewOpenportalUnmanagedProjectsDeleteUserRequest(server string, uuid openapi_types.UUID, body OpenportalUnmanagedProjectsDeleteUserJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -284625,40 +284968,6 @@ func NewProjectsCompletionStatusRetrieveRequest(server string, uuid openapi_type
 	}
 
 	operationPath := fmt.Sprintf("/api/projects/%s/completion_status/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewProjectsComponentsUsageRetrieveRequest generates requests for ProjectsComponentsUsageRetrieve
-func NewProjectsComponentsUsageRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/projects/%s/components-usage/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -332782,9 +333091,6 @@ type ClientWithResponsesInterface interface {
 
 	CustomersAddUserWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomersAddUserJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomersAddUserResponse, error)
 
-	// CustomersComponentsUsageRetrieveWithResponse request
-	CustomersComponentsUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomersComponentsUsageRetrieveResponse, error)
-
 	// CustomersContactWithBodyWithResponse request with any body
 	CustomersContactWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomersContactResponse, error)
 
@@ -333998,6 +334304,15 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceCustomerServiceAccountsRotateApiKeyWithResponse request
 	MarketplaceCustomerServiceAccountsRotateApiKeyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCustomerServiceAccountsRotateApiKeyResponse, error)
 
+	// MarketplaceCustomerUsageComponentsUsageByProjectRetrieveWithResponse request
+	MarketplaceCustomerUsageComponentsUsageByProjectRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceCustomerUsageComponentsUsageByProjectRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceCustomerUsageComponentsUsageByProjectRetrieveResponse, error)
+
+	// MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveWithResponse request
+	MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveResponse, error)
+
+	// MarketplaceCustomerUsageComponentsUsageRetrieveWithResponse request
+	MarketplaceCustomerUsageComponentsUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCustomerUsageComponentsUsageRetrieveResponse, error)
+
 	// MarketplaceDemoPresetsInfoRetrieveWithResponse request
 	MarketplaceDemoPresetsInfoRetrieveWithResponse(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*MarketplaceDemoPresetsInfoRetrieveResponse, error)
 
@@ -334597,6 +334912,12 @@ type ClientWithResponsesInterface interface {
 	MarketplaceProjectUpdateRequestsRejectWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProjectUpdateRequestsRejectResponse, error)
 
 	MarketplaceProjectUpdateRequestsRejectWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectUpdateRequestsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProjectUpdateRequestsRejectResponse, error)
+
+	// MarketplaceProjectUsageComponentsUsageTimeseriesRetrieveWithResponse request
+	MarketplaceProjectUsageComponentsUsageTimeseriesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProjectUsageComponentsUsageTimeseriesRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProjectUsageComponentsUsageTimeseriesRetrieveResponse, error)
+
+	// MarketplaceProjectUsageComponentsUsageRetrieveWithResponse request
+	MarketplaceProjectUsageComponentsUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProjectUsageComponentsUsageRetrieveResponse, error)
 
 	// MarketplaceProviderOfferingsListWithResponse request
 	MarketplaceProviderOfferingsListWithResponse(ctx context.Context, params *MarketplaceProviderOfferingsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsListResponse, error)
@@ -336784,9 +337105,6 @@ type ClientWithResponsesInterface interface {
 	// OpenportalUnmanagedProjectsCompletionStatusRetrieveWithResponse request
 	OpenportalUnmanagedProjectsCompletionStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsCompletionStatusRetrieveResponse, error)
 
-	// OpenportalUnmanagedProjectsComponentsUsageRetrieveWithResponse request
-	OpenportalUnmanagedProjectsComponentsUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsComponentsUsageRetrieveResponse, error)
-
 	// OpenportalUnmanagedProjectsDeleteUserWithBodyWithResponse request with any body
 	OpenportalUnmanagedProjectsDeleteUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsDeleteUserResponse, error)
 
@@ -338177,9 +338495,6 @@ type ClientWithResponsesInterface interface {
 
 	// ProjectsCompletionStatusRetrieveWithResponse request
 	ProjectsCompletionStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectsCompletionStatusRetrieveResponse, error)
-
-	// ProjectsComponentsUsageRetrieveWithResponse request
-	ProjectsComponentsUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectsComponentsUsageRetrieveResponse, error)
 
 	// ProjectsDeleteUserWithBodyWithResponse request with any body
 	ProjectsDeleteUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectsDeleteUserResponse, error)
@@ -353430,36 +353745,6 @@ func (r CustomersAddUserResponse) ContentType() string {
 	return ""
 }
 
-type CustomersComponentsUsageRetrieveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *ComponentsUsageStatsPerOffering
-}
-
-// Status returns HTTPResponse.Status
-func (r CustomersComponentsUsageRetrieveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r CustomersComponentsUsageRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r CustomersComponentsUsageRetrieveResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
 type CustomersContactResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -363244,6 +363529,96 @@ func (r MarketplaceCustomerServiceAccountsRotateApiKeyResponse) ContentType() st
 	return ""
 }
 
+type MarketplaceCustomerUsageComponentsUsageByProjectRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OfferingUsageByProject
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCustomerUsageComponentsUsageByProjectRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCustomerUsageComponentsUsageByProjectRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceCustomerUsageComponentsUsageByProjectRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OfferingUsageTimeseries
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceCustomerUsageComponentsUsageRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ComponentsUsageStatsPerOffering
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCustomerUsageComponentsUsageRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCustomerUsageComponentsUsageRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceCustomerUsageComponentsUsageRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type MarketplaceDemoPresetsInfoRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -368048,6 +368423,66 @@ func (r MarketplaceProjectUpdateRequestsRejectResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceProjectUpdateRequestsRejectResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProjectUsageComponentsUsageTimeseriesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OfferingUsageTimeseries
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProjectUsageComponentsUsageTimeseriesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProjectUsageComponentsUsageTimeseriesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProjectUsageComponentsUsageTimeseriesRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProjectUsageComponentsUsageRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ComponentsUsageStatsPerOffering
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProjectUsageComponentsUsageRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProjectUsageComponentsUsageRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProjectUsageComponentsUsageRetrieveResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -385498,36 +385933,6 @@ func (r OpenportalUnmanagedProjectsCompletionStatusRetrieveResponse) ContentType
 	return ""
 }
 
-type OpenportalUnmanagedProjectsComponentsUsageRetrieveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *ComponentsUsageStatsPerOffering
-}
-
-// Status returns HTTPResponse.Status
-func (r OpenportalUnmanagedProjectsComponentsUsageRetrieveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OpenportalUnmanagedProjectsComponentsUsageRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r OpenportalUnmanagedProjectsComponentsUsageRetrieveResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
 type OpenportalUnmanagedProjectsDeleteUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -396598,36 +397003,6 @@ func (r ProjectsCompletionStatusRetrieveResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r ProjectsCompletionStatusRetrieveResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type ProjectsComponentsUsageRetrieveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *ComponentsUsageStatsPerOffering
-}
-
-// Status returns HTTPResponse.Status
-func (r ProjectsComponentsUsageRetrieveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ProjectsComponentsUsageRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r ProjectsComponentsUsageRetrieveResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -420637,15 +421012,6 @@ func (c *ClientWithResponses) CustomersAddUserWithResponse(ctx context.Context, 
 	return ParseCustomersAddUserResponse(rsp)
 }
 
-// CustomersComponentsUsageRetrieveWithResponse request returning *CustomersComponentsUsageRetrieveResponse
-func (c *ClientWithResponses) CustomersComponentsUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomersComponentsUsageRetrieveResponse, error) {
-	rsp, err := c.CustomersComponentsUsageRetrieve(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseCustomersComponentsUsageRetrieveResponse(rsp)
-}
-
 // CustomersContactWithBodyWithResponse request with arbitrary body returning *CustomersContactResponse
 func (c *ClientWithResponses) CustomersContactWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomersContactResponse, error) {
 	rsp, err := c.CustomersContactWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -424511,6 +424877,33 @@ func (c *ClientWithResponses) MarketplaceCustomerServiceAccountsRotateApiKeyWith
 	return ParseMarketplaceCustomerServiceAccountsRotateApiKeyResponse(rsp)
 }
 
+// MarketplaceCustomerUsageComponentsUsageByProjectRetrieveWithResponse request returning *MarketplaceCustomerUsageComponentsUsageByProjectRetrieveResponse
+func (c *ClientWithResponses) MarketplaceCustomerUsageComponentsUsageByProjectRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceCustomerUsageComponentsUsageByProjectRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceCustomerUsageComponentsUsageByProjectRetrieveResponse, error) {
+	rsp, err := c.MarketplaceCustomerUsageComponentsUsageByProjectRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerUsageComponentsUsageByProjectRetrieveResponse(rsp)
+}
+
+// MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveWithResponse request returning *MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveResponse
+func (c *ClientWithResponses) MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveResponse, error) {
+	rsp, err := c.MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveResponse(rsp)
+}
+
+// MarketplaceCustomerUsageComponentsUsageRetrieveWithResponse request returning *MarketplaceCustomerUsageComponentsUsageRetrieveResponse
+func (c *ClientWithResponses) MarketplaceCustomerUsageComponentsUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCustomerUsageComponentsUsageRetrieveResponse, error) {
+	rsp, err := c.MarketplaceCustomerUsageComponentsUsageRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerUsageComponentsUsageRetrieveResponse(rsp)
+}
+
 // MarketplaceDemoPresetsInfoRetrieveWithResponse request returning *MarketplaceDemoPresetsInfoRetrieveResponse
 func (c *ClientWithResponses) MarketplaceDemoPresetsInfoRetrieveWithResponse(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*MarketplaceDemoPresetsInfoRetrieveResponse, error) {
 	rsp, err := c.MarketplaceDemoPresetsInfoRetrieve(ctx, name, reqEditors...)
@@ -426423,6 +426816,24 @@ func (c *ClientWithResponses) MarketplaceProjectUpdateRequestsRejectWithResponse
 		return nil, err
 	}
 	return ParseMarketplaceProjectUpdateRequestsRejectResponse(rsp)
+}
+
+// MarketplaceProjectUsageComponentsUsageTimeseriesRetrieveWithResponse request returning *MarketplaceProjectUsageComponentsUsageTimeseriesRetrieveResponse
+func (c *ClientWithResponses) MarketplaceProjectUsageComponentsUsageTimeseriesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProjectUsageComponentsUsageTimeseriesRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProjectUsageComponentsUsageTimeseriesRetrieveResponse, error) {
+	rsp, err := c.MarketplaceProjectUsageComponentsUsageTimeseriesRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProjectUsageComponentsUsageTimeseriesRetrieveResponse(rsp)
+}
+
+// MarketplaceProjectUsageComponentsUsageRetrieveWithResponse request returning *MarketplaceProjectUsageComponentsUsageRetrieveResponse
+func (c *ClientWithResponses) MarketplaceProjectUsageComponentsUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProjectUsageComponentsUsageRetrieveResponse, error) {
+	rsp, err := c.MarketplaceProjectUsageComponentsUsageRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProjectUsageComponentsUsageRetrieveResponse(rsp)
 }
 
 // MarketplaceProviderOfferingsListWithResponse request returning *MarketplaceProviderOfferingsListResponse
@@ -433411,15 +433822,6 @@ func (c *ClientWithResponses) OpenportalUnmanagedProjectsCompletionStatusRetriev
 	return ParseOpenportalUnmanagedProjectsCompletionStatusRetrieveResponse(rsp)
 }
 
-// OpenportalUnmanagedProjectsComponentsUsageRetrieveWithResponse request returning *OpenportalUnmanagedProjectsComponentsUsageRetrieveResponse
-func (c *ClientWithResponses) OpenportalUnmanagedProjectsComponentsUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsComponentsUsageRetrieveResponse, error) {
-	rsp, err := c.OpenportalUnmanagedProjectsComponentsUsageRetrieve(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenportalUnmanagedProjectsComponentsUsageRetrieveResponse(rsp)
-}
-
 // OpenportalUnmanagedProjectsDeleteUserWithBodyWithResponse request with arbitrary body returning *OpenportalUnmanagedProjectsDeleteUserResponse
 func (c *ClientWithResponses) OpenportalUnmanagedProjectsDeleteUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsDeleteUserResponse, error) {
 	rsp, err := c.OpenportalUnmanagedProjectsDeleteUserWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -437863,15 +438265,6 @@ func (c *ClientWithResponses) ProjectsCompletionStatusRetrieveWithResponse(ctx c
 		return nil, err
 	}
 	return ParseProjectsCompletionStatusRetrieveResponse(rsp)
-}
-
-// ProjectsComponentsUsageRetrieveWithResponse request returning *ProjectsComponentsUsageRetrieveResponse
-func (c *ClientWithResponses) ProjectsComponentsUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectsComponentsUsageRetrieveResponse, error) {
-	rsp, err := c.ProjectsComponentsUsageRetrieve(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseProjectsComponentsUsageRetrieveResponse(rsp)
 }
 
 // ProjectsDeleteUserWithBodyWithResponse request with arbitrary body returning *ProjectsDeleteUserResponse
@@ -455445,32 +455838,6 @@ func ParseCustomersAddUserResponse(rsp *http.Response) (*CustomersAddUserRespons
 	return response, nil
 }
 
-// ParseCustomersComponentsUsageRetrieveResponse parses an HTTP response from a CustomersComponentsUsageRetrieveWithResponse call
-func ParseCustomersComponentsUsageRetrieveResponse(rsp *http.Response) (*CustomersComponentsUsageRetrieveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &CustomersComponentsUsageRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ComponentsUsageStatsPerOffering
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseCustomersContactResponse parses an HTTP response from a CustomersContactWithResponse call
 func ParseCustomersContactResponse(rsp *http.Response) (*CustomersContactResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -463081,6 +463448,84 @@ func ParseMarketplaceCustomerServiceAccountsRotateApiKeyResponse(rsp *http.Respo
 	return response, nil
 }
 
+// ParseMarketplaceCustomerUsageComponentsUsageByProjectRetrieveResponse parses an HTTP response from a MarketplaceCustomerUsageComponentsUsageByProjectRetrieveWithResponse call
+func ParseMarketplaceCustomerUsageComponentsUsageByProjectRetrieveResponse(rsp *http.Response) (*MarketplaceCustomerUsageComponentsUsageByProjectRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCustomerUsageComponentsUsageByProjectRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingUsageByProject
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveResponse parses an HTTP response from a MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveWithResponse call
+func ParseMarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveResponse(rsp *http.Response) (*MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingUsageTimeseries
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceCustomerUsageComponentsUsageRetrieveResponse parses an HTTP response from a MarketplaceCustomerUsageComponentsUsageRetrieveWithResponse call
+func ParseMarketplaceCustomerUsageComponentsUsageRetrieveResponse(rsp *http.Response) (*MarketplaceCustomerUsageComponentsUsageRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCustomerUsageComponentsUsageRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ComponentsUsageStatsPerOffering
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceDemoPresetsInfoRetrieveResponse parses an HTTP response from a MarketplaceDemoPresetsInfoRetrieveWithResponse call
 func ParseMarketplaceDemoPresetsInfoRetrieveResponse(rsp *http.Response) (*MarketplaceDemoPresetsInfoRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -466728,6 +467173,58 @@ func ParseMarketplaceProjectUpdateRequestsRejectResponse(rsp *http.Response) (*M
 	response := &MarketplaceProjectUpdateRequestsRejectResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProjectUsageComponentsUsageTimeseriesRetrieveResponse parses an HTTP response from a MarketplaceProjectUsageComponentsUsageTimeseriesRetrieveWithResponse call
+func ParseMarketplaceProjectUsageComponentsUsageTimeseriesRetrieveResponse(rsp *http.Response) (*MarketplaceProjectUsageComponentsUsageTimeseriesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProjectUsageComponentsUsageTimeseriesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingUsageTimeseries
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProjectUsageComponentsUsageRetrieveResponse parses an HTTP response from a MarketplaceProjectUsageComponentsUsageRetrieveWithResponse call
+func ParseMarketplaceProjectUsageComponentsUsageRetrieveResponse(rsp *http.Response) (*MarketplaceProjectUsageComponentsUsageRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProjectUsageComponentsUsageRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ComponentsUsageStatsPerOffering
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -480303,32 +480800,6 @@ func ParseOpenportalUnmanagedProjectsCompletionStatusRetrieveResponse(rsp *http.
 	return response, nil
 }
 
-// ParseOpenportalUnmanagedProjectsComponentsUsageRetrieveResponse parses an HTTP response from a OpenportalUnmanagedProjectsComponentsUsageRetrieveWithResponse call
-func ParseOpenportalUnmanagedProjectsComponentsUsageRetrieveResponse(rsp *http.Response) (*OpenportalUnmanagedProjectsComponentsUsageRetrieveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OpenportalUnmanagedProjectsComponentsUsageRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ComponentsUsageStatsPerOffering
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseOpenportalUnmanagedProjectsDeleteUserResponse parses an HTTP response from a OpenportalUnmanagedProjectsDeleteUserWithResponse call
 func ParseOpenportalUnmanagedProjectsDeleteUserResponse(rsp *http.Response) (*OpenportalUnmanagedProjectsDeleteUserResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -488824,32 +489295,6 @@ func ParseProjectsCompletionStatusRetrieveResponse(rsp *http.Response) (*Project
 			return nil, err
 		}
 		response.JSON404 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseProjectsComponentsUsageRetrieveResponse parses an HTTP response from a ProjectsComponentsUsageRetrieveWithResponse call
-func ParseProjectsComponentsUsageRetrieveResponse(rsp *http.Response) (*ProjectsComponentsUsageRetrieveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ProjectsComponentsUsageRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ComponentsUsageStatsPerOffering
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
 
 	}
 
