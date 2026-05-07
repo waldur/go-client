@@ -48971,12 +48971,12 @@ type UserChecklistCompletion struct {
 	CustomerProviderUuid *string    `json:"customer_provider_uuid,omitempty"`
 
 	// IsCompleted Whether all required questions have been answered
-	IsCompleted      *bool         `json:"is_completed,omitempty"`
-	Modified         *time.Time    `json:"modified,omitempty"`
-	OfferingName     *string       `json:"offering_name,omitempty"`
-	OfferingUser     *OfferingUser `json:"offering_user,omitempty"`
-	OfferingUserUuid *string       `json:"offering_user_uuid,omitempty"`
-	OfferingUuid     *string       `json:"offering_uuid,omitempty"`
+	IsCompleted      *bool                                `json:"is_completed,omitempty"`
+	Modified         *time.Time                           `json:"modified,omitempty"`
+	OfferingName     *string                              `json:"offering_name,omitempty"`
+	OfferingUser     *UserChecklistCompletionOfferingUser `json:"offering_user,omitempty"`
+	OfferingUserUuid *string                              `json:"offering_user_uuid,omitempty"`
+	OfferingUuid     *string                              `json:"offering_uuid,omitempty"`
 
 	// RequiresReview Whether any answers triggered review requirements
 	RequiresReview *bool `json:"requires_review,omitempty"`
@@ -48993,6 +48993,17 @@ type UserChecklistCompletion struct {
 
 // UserChecklistCompletionOEnum defines model for UserChecklistCompletionOEnum.
 type UserChecklistCompletionOEnum string
+
+// UserChecklistCompletionOfferingUser defines model for UserChecklistCompletionOfferingUser.
+type UserChecklistCompletionOfferingUser struct {
+	// IsRestricted Signal to service if the user account is restricted or not
+	IsRestricted *bool                `json:"is_restricted,omitempty"`
+	State        *string              `json:"state,omitempty"`
+	UserEmail    *openapi_types.Email `json:"user_email,omitempty"`
+	UserFullName *string              `json:"user_full_name,omitempty"`
+	Username     *string              `json:"username,omitempty"`
+	Uuid         *openapi_types.UUID  `json:"uuid,omitempty"`
+}
 
 // UserConsentInfo defines model for UserConsentInfo.
 type UserConsentInfo struct {
