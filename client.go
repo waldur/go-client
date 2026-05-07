@@ -4558,6 +4558,7 @@ const (
 	CustomerFieldEnumCreated                      CustomerFieldEnum = "created"
 	CustomerFieldEnumCustomerCredit               CustomerFieldEnum = "customer_credit"
 	CustomerFieldEnumCustomerUnallocatedCredit    CustomerFieldEnum = "customer_unallocated_credit"
+	CustomerFieldEnumDefaultAffiliations          CustomerFieldEnum = "default_affiliations"
 	CustomerFieldEnumDefaultTaxPercent            CustomerFieldEnum = "default_tax_percent"
 	CustomerFieldEnumDescription                  CustomerFieldEnum = "description"
 	CustomerFieldEnumDisplayBillingInfoInProjects CustomerFieldEnum = "display_billing_info_in_projects"
@@ -4642,6 +4643,8 @@ func (e CustomerFieldEnum) Valid() bool {
 	case CustomerFieldEnumCustomerCredit:
 		return true
 	case CustomerFieldEnumCustomerUnallocatedCredit:
+		return true
+	case CustomerFieldEnumDefaultAffiliations:
 		return true
 	case CustomerFieldEnumDefaultTaxPercent:
 		return true
@@ -15209,7 +15212,8 @@ func (e ProjectCreditOEnum) Valid() bool {
 
 // Defines values for ProjectFieldEnum.
 const (
-	ProjectFieldEnumAffiliatedOrganizations              ProjectFieldEnum = "affiliated_organizations"
+	ProjectFieldEnumAffiliation                          ProjectFieldEnum = "affiliation"
+	ProjectFieldEnumAffiliationUuid                      ProjectFieldEnum = "affiliation_uuid"
 	ProjectFieldEnumBackendId                            ProjectFieldEnum = "backend_id"
 	ProjectFieldEnumBillingPriceEstimate                 ProjectFieldEnum = "billing_price_estimate"
 	ProjectFieldEnumCreated                              ProjectFieldEnum = "created"
@@ -15262,7 +15266,9 @@ const (
 // Valid indicates whether the value is a known member of the ProjectFieldEnum enum.
 func (e ProjectFieldEnum) Valid() bool {
 	switch e {
-	case ProjectFieldEnumAffiliatedOrganizations:
+	case ProjectFieldEnumAffiliation:
+		return true
+	case ProjectFieldEnumAffiliationUuid:
 		return true
 	case ProjectFieldEnumBackendId:
 		return true
@@ -25811,6 +25817,7 @@ type ConsoleUrl struct {
 
 // ConstanceSettings defines model for ConstanceSettings.
 type ConstanceSettings struct {
+	AFFILIATIONREQUIREDATPROJECTCREATION             *bool                                                            `json:"AFFILIATION_REQUIRED_AT_PROJECT_CREATION,omitempty"`
 	AIASSISTANTAPITOKEN                              *string                                                          `json:"AI_ASSISTANT_API_TOKEN,omitempty"`
 	AIASSISTANTAPIURL                                *string                                                          `json:"AI_ASSISTANT_API_URL,omitempty"`
 	AIASSISTANTBACKENDTYPE                           *string                                                          `json:"AI_ASSISTANT_BACKEND_TYPE,omitempty"`
@@ -26139,6 +26146,7 @@ type ConstanceSettings_SSHKEYALLOWEDTYPES_Item struct {
 
 // ConstanceSettingsRequest defines model for ConstanceSettingsRequest.
 type ConstanceSettingsRequest struct {
+	AFFILIATIONREQUIREDATPROJECTCREATION             *bool                                                                   `json:"AFFILIATION_REQUIRED_AT_PROJECT_CREATION,omitempty"`
 	AIASSISTANTAPITOKEN                              *string                                                                 `json:"AI_ASSISTANT_API_TOKEN,omitempty"`
 	AIASSISTANTAPIURL                                *string                                                                 `json:"AI_ASSISTANT_API_URL,omitempty"`
 	AIASSISTANTBACKENDTYPE                           *string                                                                 `json:"AI_ASSISTANT_BACKEND_TYPE,omitempty"`
@@ -26467,6 +26475,7 @@ type ConstanceSettingsRequest_SSHKEYALLOWEDTYPES_Item struct {
 
 // ConstanceSettingsRequestForm defines model for ConstanceSettingsRequestForm.
 type ConstanceSettingsRequestForm struct {
+	AFFILIATIONREQUIREDATPROJECTCREATION             *bool                                                                       `json:"AFFILIATION_REQUIRED_AT_PROJECT_CREATION,omitempty"`
 	AIASSISTANTAPITOKEN                              *string                                                                     `json:"AI_ASSISTANT_API_TOKEN,omitempty"`
 	AIASSISTANTAPIURL                                *string                                                                     `json:"AI_ASSISTANT_API_URL,omitempty"`
 	AIASSISTANTBACKENDTYPE                           *string                                                                     `json:"AI_ASSISTANT_BACKEND_TYPE,omitempty"`
@@ -26795,6 +26804,7 @@ type ConstanceSettingsRequestForm_SSHKEYALLOWEDTYPES_Item struct {
 
 // ConstanceSettingsRequestMultipart defines model for ConstanceSettingsRequestMultipart.
 type ConstanceSettingsRequestMultipart struct {
+	AFFILIATIONREQUIREDATPROJECTCREATION             *bool                                                                            `json:"AFFILIATION_REQUIRED_AT_PROJECT_CREATION,omitempty"`
 	AIASSISTANTAPITOKEN                              *string                                                                          `json:"AI_ASSISTANT_API_TOKEN,omitempty"`
 	AIASSISTANTAPIURL                                *string                                                                          `json:"AI_ASSISTANT_API_URL,omitempty"`
 	AIASSISTANTBACKENDTYPE                           *string                                                                          `json:"AI_ASSISTANT_BACKEND_TYPE,omitempty"`
@@ -27616,13 +27626,16 @@ type Customer struct {
 	Country *Customer_Country `json:"country,omitempty"`
 
 	// CountryName Human-readable country name
-	CountryName                  *string    `json:"country_name,omitempty"`
-	Created                      *time.Time `json:"created,omitempty"`
-	CustomerCredit               *float64   `json:"customer_credit,omitempty"`
-	CustomerUnallocatedCredit    *float64   `json:"customer_unallocated_credit,omitempty"`
-	DefaultTaxPercent            *string    `json:"default_tax_percent,omitempty"`
-	Description                  *string    `json:"description,omitempty"`
-	DisplayBillingInfoInProjects *bool      `json:"display_billing_info_in_projects,omitempty"`
+	CountryName               *string    `json:"country_name,omitempty"`
+	Created                   *time.Time `json:"created,omitempty"`
+	CustomerCredit            *float64   `json:"customer_credit,omitempty"`
+	CustomerUnallocatedCredit *float64   `json:"customer_unallocated_credit,omitempty"`
+
+	// DefaultAffiliations Affiliations offered to project creators of this organization.
+	DefaultAffiliations          *[]AffiliatedOrganization `json:"default_affiliations,omitempty"`
+	DefaultTaxPercent            *string                   `json:"default_tax_percent,omitempty"`
+	Description                  *string                   `json:"description,omitempty"`
+	DisplayBillingInfoInProjects *bool                     `json:"display_billing_info_in_projects,omitempty"`
 
 	// DisplayName Display name of the organization (includes native name if available)
 	DisplayName *string              `json:"display_name,omitempty"`
@@ -27814,6 +27827,11 @@ type CustomerCreditConsumption struct {
 
 // CustomerCreditOEnum defines model for CustomerCreditOEnum.
 type CustomerCreditOEnum string
+
+// CustomerDefaultAffiliationsUpdateRequest defines model for CustomerDefaultAffiliationsUpdateRequest.
+type CustomerDefaultAffiliationsUpdateRequest struct {
+	DefaultAffiliations *[]openapi_types.UUID `json:"default_affiliations,omitempty"`
+}
 
 // CustomerDetails defines model for CustomerDetails.
 type CustomerDetails struct {
@@ -39536,8 +39554,9 @@ type PatchedProjectInfoRequest struct {
 
 // PatchedProjectRequest defines model for PatchedProjectRequest.
 type PatchedProjectRequest struct {
-	BackendId *string `json:"backend_id,omitempty"`
-	Customer  *string `json:"customer,omitempty"`
+	AffiliationUuid *openapi_types.UUID `json:"affiliation_uuid,omitempty"`
+	BackendId       *string             `json:"backend_id,omitempty"`
+	Customer        *string             `json:"customer,omitempty"`
 
 	// Description Project description (HTML content will be sanitized)
 	Description *string `json:"description,omitempty"`
@@ -39577,8 +39596,9 @@ type PatchedProjectRequest_OecdFos2007Code struct {
 
 // PatchedProjectRequestForm defines model for PatchedProjectRequestForm.
 type PatchedProjectRequestForm struct {
-	BackendId *string `json:"backend_id,omitempty"`
-	Customer  *string `json:"customer,omitempty"`
+	AffiliationUuid *openapi_types.UUID `json:"affiliation_uuid,omitempty"`
+	BackendId       *string             `json:"backend_id,omitempty"`
+	Customer        *string             `json:"customer,omitempty"`
 
 	// Description Project description (HTML content will be sanitized)
 	Description *string `json:"description,omitempty"`
@@ -39618,8 +39638,9 @@ type PatchedProjectRequestForm_OecdFos2007Code struct {
 
 // PatchedProjectRequestMultipart defines model for PatchedProjectRequestMultipart.
 type PatchedProjectRequestMultipart struct {
-	BackendId *string `json:"backend_id,omitempty"`
-	Customer  *string `json:"customer,omitempty"`
+	AffiliationUuid *openapi_types.UUID `json:"affiliation_uuid,omitempty"`
+	BackendId       *string             `json:"backend_id,omitempty"`
+	Customer        *string             `json:"customer,omitempty"`
 
 	// Description Project description (HTML content will be sanitized)
 	Description *string `json:"description,omitempty"`
@@ -41063,13 +41084,13 @@ type ProfileCompleteness struct {
 
 // Project defines model for Project.
 type Project struct {
-	AffiliatedOrganizations              *[]AffiliatedOrganization `json:"affiliated_organizations,omitempty"`
-	BackendId                            *string                   `json:"backend_id,omitempty"`
-	BillingPriceEstimate                 *NestedPriceEstimate      `json:"billing_price_estimate,omitempty"`
-	Created                              *time.Time                `json:"created,omitempty"`
-	Customer                             *string                   `json:"customer,omitempty"`
-	CustomerAbbreviation                 *string                   `json:"customer_abbreviation,omitempty"`
-	CustomerDisplayBillingInfoInProjects *bool                     `json:"customer_display_billing_info_in_projects,omitempty"`
+	Affiliation                          *AffiliatedOrganization `json:"affiliation,omitempty"`
+	BackendId                            *string                 `json:"backend_id,omitempty"`
+	BillingPriceEstimate                 *NestedPriceEstimate    `json:"billing_price_estimate,omitempty"`
+	Created                              *time.Time              `json:"created,omitempty"`
+	Customer                             *string                 `json:"customer,omitempty"`
+	CustomerAbbreviation                 *string                 `json:"customer_abbreviation,omitempty"`
+	CustomerDisplayBillingInfoInProjects *bool                   `json:"customer_display_billing_info_in_projects,omitempty"`
 
 	// CustomerGracePeriodDays Grace period days set at the customer (organization) level. Used as default when project-level is not set.
 	CustomerGracePeriodDays *int                `json:"customer_grace_period_days,omitempty"`
@@ -41165,9 +41186,9 @@ type ProjectAccountingSummary struct {
 	TotalSpend        *string             `json:"total_spend,omitempty"`
 }
 
-// ProjectAffiliatedOrganizationsUpdateRequest defines model for ProjectAffiliatedOrganizationsUpdateRequest.
-type ProjectAffiliatedOrganizationsUpdateRequest struct {
-	AffiliatedOrganizations *[]openapi_types.UUID `json:"affiliated_organizations,omitempty"`
+// ProjectAffiliationUpdateRequest defines model for ProjectAffiliationUpdateRequest.
+type ProjectAffiliationUpdateRequest struct {
+	Affiliation *openapi_types.UUID `json:"affiliation,omitempty"`
 }
 
 // ProjectAnswer defines model for ProjectAnswer.
@@ -41510,8 +41531,9 @@ type ProjectRecoveryRequest struct {
 
 // ProjectRequest defines model for ProjectRequest.
 type ProjectRequest struct {
-	BackendId *string `json:"backend_id,omitempty"`
-	Customer  string  `json:"customer"`
+	AffiliationUuid *openapi_types.UUID `json:"affiliation_uuid,omitempty"`
+	BackendId       *string             `json:"backend_id,omitempty"`
+	Customer        string              `json:"customer"`
 
 	// Description Project description (HTML content will be sanitized)
 	Description *string `json:"description,omitempty"`
@@ -41551,8 +41573,9 @@ type ProjectRequest_OecdFos2007Code struct {
 
 // ProjectRequestForm defines model for ProjectRequestForm.
 type ProjectRequestForm struct {
-	BackendId *string `json:"backend_id,omitempty"`
-	Customer  string  `json:"customer"`
+	AffiliationUuid *openapi_types.UUID `json:"affiliation_uuid,omitempty"`
+	BackendId       *string             `json:"backend_id,omitempty"`
+	Customer        string              `json:"customer"`
 
 	// Description Project description (HTML content will be sanitized)
 	Description *string `json:"description,omitempty"`
@@ -41592,8 +41615,9 @@ type ProjectRequestForm_OecdFos2007Code struct {
 
 // ProjectRequestMultipart defines model for ProjectRequestMultipart.
 type ProjectRequestMultipart struct {
-	BackendId *string `json:"backend_id,omitempty"`
-	Customer  string  `json:"customer"`
+	AffiliationUuid *openapi_types.UUID `json:"affiliation_uuid,omitempty"`
+	BackendId       *string             `json:"backend_id,omitempty"`
+	Customer        string              `json:"customer"`
 
 	// Description Project description (HTML content will be sanitized)
 	Description *string `json:"description,omitempty"`
@@ -50033,6 +50057,9 @@ type AffiliatedOrganizationsListParams struct {
 	// Country Country
 	Country *string `form:"country,omitempty" json:"country,omitempty"`
 
+	// DefaultForCustomer Limit to a customer's default affiliation list
+	DefaultForCustomer *openapi_types.UUID `form:"default_for_customer,omitempty" json:"default_for_customer,omitempty"`
+
 	// Name Name
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
 
@@ -50062,6 +50089,9 @@ type AffiliatedOrganizationsCountParams struct {
 
 	// Country Country
 	Country *string `form:"country,omitempty" json:"country,omitempty"`
+
+	// DefaultForCustomer Limit to a customer's default affiliation list
+	DefaultForCustomer *openapi_types.UUID `form:"default_for_customer,omitempty" json:"default_for_customer,omitempty"`
 
 	// Name Name
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
@@ -50093,6 +50123,9 @@ type AffiliatedOrganizationsReportListParams struct {
 	// Country Country
 	Country *string `form:"country,omitempty" json:"country,omitempty"`
 
+	// DefaultForCustomer Limit to a customer's default affiliation list
+	DefaultForCustomer *openapi_types.UUID `form:"default_for_customer,omitempty" json:"default_for_customer,omitempty"`
+
 	// Name Name
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
 
@@ -50122,6 +50155,9 @@ type AffiliatedOrganizationsReportCountParams struct {
 
 	// Country Country
 	Country *string `form:"country,omitempty" json:"country,omitempty"`
+
+	// DefaultForCustomer Limit to a customer's default affiliation list
+	DefaultForCustomer *openapi_types.UUID `form:"default_for_customer,omitempty" json:"default_for_customer,omitempty"`
 
 	// Name Name
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
@@ -60128,12 +60164,12 @@ type MarketplaceServiceProvidersCourseAccountsListParams struct {
 
 // MarketplaceServiceProvidersCustomerProjectsListParams defines parameters for MarketplaceServiceProvidersCustomerProjectsList.
 type MarketplaceServiceProvidersCustomerProjectsListParams struct {
-	// AffiliatedOrganizationName Affiliated organization name
-	AffiliatedOrganizationName *string `form:"affiliated_organization_name,omitempty" json:"affiliated_organization_name,omitempty"`
+	// AffiliationName Affiliation name
+	AffiliationName *string `form:"affiliation_name,omitempty" json:"affiliation_name,omitempty"`
 
-	// AffiliatedOrganizationUuid Affiliated organization UUID
-	AffiliatedOrganizationUuid *[]openapi_types.UUID `form:"affiliated_organization_uuid,omitempty" json:"affiliated_organization_uuid,omitempty"`
-	BackendId                  *string               `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	// AffiliationUuid Affiliation UUID
+	AffiliationUuid *[]openapi_types.UUID `form:"affiliation_uuid,omitempty" json:"affiliation_uuid,omitempty"`
+	BackendId       *string               `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanAdmin Return a list of projects where current user is admin.
 	CanAdmin *bool `form:"can_admin,omitempty" json:"can_admin,omitempty"`
@@ -60166,8 +60202,8 @@ type MarketplaceServiceProvidersCustomerProjectsListParams struct {
 	Description *string                                        `form:"description,omitempty" json:"description,omitempty"`
 	Field       *[]MarketplaceProviderCustomerProjectFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 
-	// HasAffiliatedOrganization Filter projects that have at least one affiliated organization.
-	HasAffiliatedOrganization *bool `form:"has_affiliated_organization,omitempty" json:"has_affiliated_organization,omitempty"`
+	// HasAffiliation Filter projects that have an affiliation.
+	HasAffiliation *bool `form:"has_affiliation,omitempty" json:"has_affiliation,omitempty"`
 
 	// IsRemoved Is removed
 	IsRemoved *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
@@ -60505,12 +60541,12 @@ type MarketplaceServiceProvidersProjectServiceAccountsListParams struct {
 
 // MarketplaceServiceProvidersProjectsListParams defines parameters for MarketplaceServiceProvidersProjectsList.
 type MarketplaceServiceProvidersProjectsListParams struct {
-	// AffiliatedOrganizationName Affiliated organization name
-	AffiliatedOrganizationName *string `form:"affiliated_organization_name,omitempty" json:"affiliated_organization_name,omitempty"`
+	// AffiliationName Affiliation name
+	AffiliationName *string `form:"affiliation_name,omitempty" json:"affiliation_name,omitempty"`
 
-	// AffiliatedOrganizationUuid Affiliated organization UUID
-	AffiliatedOrganizationUuid *[]openapi_types.UUID `form:"affiliated_organization_uuid,omitempty" json:"affiliated_organization_uuid,omitempty"`
-	BackendId                  *string               `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	// AffiliationUuid Affiliation UUID
+	AffiliationUuid *[]openapi_types.UUID `form:"affiliation_uuid,omitempty" json:"affiliation_uuid,omitempty"`
+	BackendId       *string               `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanAdmin Return a list of projects where current user is admin.
 	CanAdmin *bool `form:"can_admin,omitempty" json:"can_admin,omitempty"`
@@ -60543,8 +60579,8 @@ type MarketplaceServiceProvidersProjectsListParams struct {
 	Description *string             `form:"description,omitempty" json:"description,omitempty"`
 	Field       *[]ProjectFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 
-	// HasAffiliatedOrganization Filter projects that have at least one affiliated organization.
-	HasAffiliatedOrganization *bool `form:"has_affiliated_organization,omitempty" json:"has_affiliated_organization,omitempty"`
+	// HasAffiliation Filter projects that have an affiliation.
+	HasAffiliation *bool `form:"has_affiliation,omitempty" json:"has_affiliation,omitempty"`
 
 	// IsRemoved Is removed
 	IsRemoved *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
@@ -63224,12 +63260,12 @@ type OpenportalUnmanagedProjectsListParams struct {
 	// AccountingIsRunning Filter by whether accounting is running.
 	AccountingIsRunning *bool `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
 
-	// AffiliatedOrganizationName Affiliated organization name
-	AffiliatedOrganizationName *string `form:"affiliated_organization_name,omitempty" json:"affiliated_organization_name,omitempty"`
+	// AffiliationName Affiliation name
+	AffiliationName *string `form:"affiliation_name,omitempty" json:"affiliation_name,omitempty"`
 
-	// AffiliatedOrganizationUuid Affiliated organization UUID
-	AffiliatedOrganizationUuid *[]openapi_types.UUID `form:"affiliated_organization_uuid,omitempty" json:"affiliated_organization_uuid,omitempty"`
-	BackendId                  *string               `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	// AffiliationUuid Affiliation UUID
+	AffiliationUuid *[]openapi_types.UUID `form:"affiliation_uuid,omitempty" json:"affiliation_uuid,omitempty"`
+	BackendId       *string               `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanAdmin Return a list of projects where current user is admin.
 	CanAdmin *bool `form:"can_admin,omitempty" json:"can_admin,omitempty"`
@@ -63262,8 +63298,8 @@ type OpenportalUnmanagedProjectsListParams struct {
 	Description *string             `form:"description,omitempty" json:"description,omitempty"`
 	Field       *[]ProjectFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 
-	// HasAffiliatedOrganization Filter projects that have at least one affiliated organization.
-	HasAffiliatedOrganization *bool `form:"has_affiliated_organization,omitempty" json:"has_affiliated_organization,omitempty"`
+	// HasAffiliation Filter projects that have an affiliation.
+	HasAffiliation *bool `form:"has_affiliation,omitempty" json:"has_affiliation,omitempty"`
 
 	// IncludeTerminated Include soft-deleted (terminated) projects. Only available to staff and support users, or users with organizational roles who can see their terminated projects.
 	IncludeTerminated *bool `form:"include_terminated,omitempty" json:"include_terminated,omitempty"`
@@ -63317,12 +63353,12 @@ type OpenportalUnmanagedProjectsCountParams struct {
 	// AccountingIsRunning Filter by whether accounting is running.
 	AccountingIsRunning *bool `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
 
-	// AffiliatedOrganizationName Affiliated organization name
-	AffiliatedOrganizationName *string `form:"affiliated_organization_name,omitempty" json:"affiliated_organization_name,omitempty"`
+	// AffiliationName Affiliation name
+	AffiliationName *string `form:"affiliation_name,omitempty" json:"affiliation_name,omitempty"`
 
-	// AffiliatedOrganizationUuid Affiliated organization UUID
-	AffiliatedOrganizationUuid *[]openapi_types.UUID `form:"affiliated_organization_uuid,omitempty" json:"affiliated_organization_uuid,omitempty"`
-	BackendId                  *string               `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	// AffiliationUuid Affiliation UUID
+	AffiliationUuid *[]openapi_types.UUID `form:"affiliation_uuid,omitempty" json:"affiliation_uuid,omitempty"`
+	BackendId       *string               `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanAdmin Return a list of projects where current user is admin.
 	CanAdmin *bool `form:"can_admin,omitempty" json:"can_admin,omitempty"`
@@ -63354,8 +63390,8 @@ type OpenportalUnmanagedProjectsCountParams struct {
 	// Description Description
 	Description *string `form:"description,omitempty" json:"description,omitempty"`
 
-	// HasAffiliatedOrganization Filter projects that have at least one affiliated organization.
-	HasAffiliatedOrganization *bool `form:"has_affiliated_organization,omitempty" json:"has_affiliated_organization,omitempty"`
+	// HasAffiliation Filter projects that have an affiliation.
+	HasAffiliation *bool `form:"has_affiliation,omitempty" json:"has_affiliation,omitempty"`
 
 	// IncludeTerminated Include soft-deleted (terminated) projects. Only available to staff and support users, or users with organizational roles who can see their terminated projects.
 	IncludeTerminated *bool `form:"include_terminated,omitempty" json:"include_terminated,omitempty"`
@@ -66849,12 +66885,12 @@ type ProjectsListParams struct {
 	// AccountingIsRunning Filter by whether accounting is running.
 	AccountingIsRunning *bool `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
 
-	// AffiliatedOrganizationName Affiliated organization name
-	AffiliatedOrganizationName *string `form:"affiliated_organization_name,omitempty" json:"affiliated_organization_name,omitempty"`
+	// AffiliationName Affiliation name
+	AffiliationName *string `form:"affiliation_name,omitempty" json:"affiliation_name,omitempty"`
 
-	// AffiliatedOrganizationUuid Affiliated organization UUID
-	AffiliatedOrganizationUuid *[]openapi_types.UUID `form:"affiliated_organization_uuid,omitempty" json:"affiliated_organization_uuid,omitempty"`
-	BackendId                  *string               `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	// AffiliationUuid Affiliation UUID
+	AffiliationUuid *[]openapi_types.UUID `form:"affiliation_uuid,omitempty" json:"affiliation_uuid,omitempty"`
+	BackendId       *string               `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanAdmin Return a list of projects where current user is admin.
 	CanAdmin *bool `form:"can_admin,omitempty" json:"can_admin,omitempty"`
@@ -66887,8 +66923,8 @@ type ProjectsListParams struct {
 	Description *string             `form:"description,omitempty" json:"description,omitempty"`
 	Field       *[]ProjectFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 
-	// HasAffiliatedOrganization Filter projects that have at least one affiliated organization.
-	HasAffiliatedOrganization *bool `form:"has_affiliated_organization,omitempty" json:"has_affiliated_organization,omitempty"`
+	// HasAffiliation Filter projects that have an affiliation.
+	HasAffiliation *bool `form:"has_affiliation,omitempty" json:"has_affiliation,omitempty"`
 
 	// IncludeTerminated Include soft-deleted (terminated) projects. Only available to staff and support users, or users with organizational roles who can see their terminated projects.
 	IncludeTerminated *bool `form:"include_terminated,omitempty" json:"include_terminated,omitempty"`
@@ -66942,12 +66978,12 @@ type ProjectsCountParams struct {
 	// AccountingIsRunning Filter by whether accounting is running.
 	AccountingIsRunning *bool `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
 
-	// AffiliatedOrganizationName Affiliated organization name
-	AffiliatedOrganizationName *string `form:"affiliated_organization_name,omitempty" json:"affiliated_organization_name,omitempty"`
+	// AffiliationName Affiliation name
+	AffiliationName *string `form:"affiliation_name,omitempty" json:"affiliation_name,omitempty"`
 
-	// AffiliatedOrganizationUuid Affiliated organization UUID
-	AffiliatedOrganizationUuid *[]openapi_types.UUID `form:"affiliated_organization_uuid,omitempty" json:"affiliated_organization_uuid,omitempty"`
-	BackendId                  *string               `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	// AffiliationUuid Affiliation UUID
+	AffiliationUuid *[]openapi_types.UUID `form:"affiliation_uuid,omitempty" json:"affiliation_uuid,omitempty"`
+	BackendId       *string               `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanAdmin Return a list of projects where current user is admin.
 	CanAdmin *bool `form:"can_admin,omitempty" json:"can_admin,omitempty"`
@@ -66979,8 +67015,8 @@ type ProjectsCountParams struct {
 	// Description Description
 	Description *string `form:"description,omitempty" json:"description,omitempty"`
 
-	// HasAffiliatedOrganization Filter projects that have at least one affiliated organization.
-	HasAffiliatedOrganization *bool `form:"has_affiliated_organization,omitempty" json:"has_affiliated_organization,omitempty"`
+	// HasAffiliation Filter projects that have an affiliation.
+	HasAffiliation *bool `form:"has_affiliation,omitempty" json:"has_affiliation,omitempty"`
 
 	// IncludeTerminated Include soft-deleted (terminated) projects. Only available to staff and support users, or users with organizational roles who can see their terminated projects.
 	IncludeTerminated *bool `form:"include_terminated,omitempty" json:"include_terminated,omitempty"`
@@ -72463,6 +72499,9 @@ type CustomersUpdateProjectDigestConfigPartialUpdateJSONRequestBody = PatchedPro
 // CustomersUpdateProjectDigestConfigUpdateJSONRequestBody defines body for CustomersUpdateProjectDigestConfigUpdate for application/json ContentType.
 type CustomersUpdateProjectDigestConfigUpdateJSONRequestBody = ProjectDigestConfigRequest
 
+// CustomersUpdateDefaultAffiliationsJSONRequestBody defines body for CustomersUpdateDefaultAffiliations for application/json ContentType.
+type CustomersUpdateDefaultAffiliationsJSONRequestBody = CustomerDefaultAffiliationsUpdateRequest
+
 // CustomersUpdateOrganizationGroupsJSONRequestBody defines body for CustomersUpdateOrganizationGroups for application/json ContentType.
 type CustomersUpdateOrganizationGroupsJSONRequestBody = OrganizationGroupsRequest
 
@@ -73696,8 +73735,8 @@ type OpenportalUnmanagedProjectsRecoverJSONRequestBody = ProjectRecoveryRequest
 // OpenportalUnmanagedProjectsSubmitAnswersJSONRequestBody defines body for OpenportalUnmanagedProjectsSubmitAnswers for application/json ContentType.
 type OpenportalUnmanagedProjectsSubmitAnswersJSONRequestBody = OpenportalUnmanagedProjectsSubmitAnswersJSONBody
 
-// OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsJSONRequestBody defines body for OpenportalUnmanagedProjectsUpdateAffiliatedOrganizations for application/json ContentType.
-type OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsJSONRequestBody = ProjectAffiliatedOrganizationsUpdateRequest
+// OpenportalUnmanagedProjectsUpdateAffiliationJSONRequestBody defines body for OpenportalUnmanagedProjectsUpdateAffiliation for application/json ContentType.
+type OpenportalUnmanagedProjectsUpdateAffiliationJSONRequestBody = ProjectAffiliationUpdateRequest
 
 // OpenportalUnmanagedProjectsUpdateUserJSONRequestBody defines body for OpenportalUnmanagedProjectsUpdateUser for application/json ContentType.
 type OpenportalUnmanagedProjectsUpdateUserJSONRequestBody = UserRoleUpdateRequest
@@ -74125,8 +74164,8 @@ type ProjectsRecoverJSONRequestBody = ProjectRecoveryRequest
 // ProjectsSubmitAnswersJSONRequestBody defines body for ProjectsSubmitAnswers for application/json ContentType.
 type ProjectsSubmitAnswersJSONRequestBody = ProjectsSubmitAnswersJSONBody
 
-// ProjectsUpdateAffiliatedOrganizationsJSONRequestBody defines body for ProjectsUpdateAffiliatedOrganizations for application/json ContentType.
-type ProjectsUpdateAffiliatedOrganizationsJSONRequestBody = ProjectAffiliatedOrganizationsUpdateRequest
+// ProjectsUpdateAffiliationJSONRequestBody defines body for ProjectsUpdateAffiliation for application/json ContentType.
+type ProjectsUpdateAffiliationJSONRequestBody = ProjectAffiliationUpdateRequest
 
 // ProjectsUpdateUserJSONRequestBody defines body for ProjectsUpdateUser for application/json ContentType.
 type ProjectsUpdateUserJSONRequestBody = UserRoleUpdateRequest
@@ -89942,6 +89981,11 @@ type ClientInterface interface {
 
 	CustomersUpdateProjectDigestConfigUpdate(ctx context.Context, uuid openapi_types.UUID, body CustomersUpdateProjectDigestConfigUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// CustomersUpdateDefaultAffiliationsWithBody request with any body
+	CustomersUpdateDefaultAffiliationsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	CustomersUpdateDefaultAffiliations(ctx context.Context, uuid openapi_types.UUID, body CustomersUpdateDefaultAffiliationsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// CustomersUpdateOrganizationGroupsWithBody request with any body
 	CustomersUpdateOrganizationGroupsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -93939,10 +93983,10 @@ type ClientInterface interface {
 
 	OpenportalUnmanagedProjectsSubmitAnswers(ctx context.Context, uuid openapi_types.UUID, body OpenportalUnmanagedProjectsSubmitAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsWithBody request with any body
-	OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// OpenportalUnmanagedProjectsUpdateAffiliationWithBody request with any body
+	OpenportalUnmanagedProjectsUpdateAffiliationWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	OpenportalUnmanagedProjectsUpdateAffiliatedOrganizations(ctx context.Context, uuid openapi_types.UUID, body OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OpenportalUnmanagedProjectsUpdateAffiliation(ctx context.Context, uuid openapi_types.UUID, body OpenportalUnmanagedProjectsUpdateAffiliationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalUnmanagedProjectsUpdateUserWithBody request with any body
 	OpenportalUnmanagedProjectsUpdateUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -95333,10 +95377,10 @@ type ClientInterface interface {
 	// ProjectsSyncUserRoles request
 	ProjectsSyncUserRoles(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ProjectsUpdateAffiliatedOrganizationsWithBody request with any body
-	ProjectsUpdateAffiliatedOrganizationsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ProjectsUpdateAffiliationWithBody request with any body
+	ProjectsUpdateAffiliationWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	ProjectsUpdateAffiliatedOrganizations(ctx context.Context, uuid openapi_types.UUID, body ProjectsUpdateAffiliatedOrganizationsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ProjectsUpdateAffiliation(ctx context.Context, uuid openapi_types.UUID, body ProjectsUpdateAffiliationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProjectsUpdateUserWithBody request with any body
 	ProjectsUpdateUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -104867,6 +104911,30 @@ func (c *Client) CustomersUpdateProjectDigestConfigUpdateWithBody(ctx context.Co
 
 func (c *Client) CustomersUpdateProjectDigestConfigUpdate(ctx context.Context, uuid openapi_types.UUID, body CustomersUpdateProjectDigestConfigUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCustomersUpdateProjectDigestConfigUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomersUpdateDefaultAffiliationsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomersUpdateDefaultAffiliationsRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomersUpdateDefaultAffiliations(ctx context.Context, uuid openapi_types.UUID, body CustomersUpdateDefaultAffiliationsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomersUpdateDefaultAffiliationsRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -122397,8 +122465,8 @@ func (c *Client) OpenportalUnmanagedProjectsSubmitAnswers(ctx context.Context, u
 	return c.Client.Do(req)
 }
 
-func (c *Client) OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsRequestWithBody(c.Server, uuid, contentType, body)
+func (c *Client) OpenportalUnmanagedProjectsUpdateAffiliationWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalUnmanagedProjectsUpdateAffiliationRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -122409,8 +122477,8 @@ func (c *Client) OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsWithBod
 	return c.Client.Do(req)
 }
 
-func (c *Client) OpenportalUnmanagedProjectsUpdateAffiliatedOrganizations(ctx context.Context, uuid openapi_types.UUID, body OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsRequest(c.Server, uuid, body)
+func (c *Client) OpenportalUnmanagedProjectsUpdateAffiliation(ctx context.Context, uuid openapi_types.UUID, body OpenportalUnmanagedProjectsUpdateAffiliationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalUnmanagedProjectsUpdateAffiliationRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -128517,8 +128585,8 @@ func (c *Client) ProjectsSyncUserRoles(ctx context.Context, uuid string, reqEdit
 	return c.Client.Do(req)
 }
 
-func (c *Client) ProjectsUpdateAffiliatedOrganizationsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProjectsUpdateAffiliatedOrganizationsRequestWithBody(c.Server, uuid, contentType, body)
+func (c *Client) ProjectsUpdateAffiliationWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectsUpdateAffiliationRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -128529,8 +128597,8 @@ func (c *Client) ProjectsUpdateAffiliatedOrganizationsWithBody(ctx context.Conte
 	return c.Client.Do(req)
 }
 
-func (c *Client) ProjectsUpdateAffiliatedOrganizations(ctx context.Context, uuid openapi_types.UUID, body ProjectsUpdateAffiliatedOrganizationsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProjectsUpdateAffiliatedOrganizationsRequest(c.Server, uuid, body)
+func (c *Client) ProjectsUpdateAffiliation(ctx context.Context, uuid openapi_types.UUID, body ProjectsUpdateAffiliationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectsUpdateAffiliationRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -144328,6 +144396,18 @@ func NewAffiliatedOrganizationsListRequest(server string, params *AffiliatedOrga
 
 		}
 
+		if params.DefaultForCustomer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "default_for_customer", *params.DefaultForCustomer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.Name != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -144469,6 +144549,18 @@ func NewAffiliatedOrganizationsCountRequest(server string, params *AffiliatedOrg
 		if params.Country != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "country", *params.Country, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.DefaultForCustomer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "default_for_customer", *params.DefaultForCustomer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -144668,6 +144760,18 @@ func NewAffiliatedOrganizationsReportListRequest(server string, params *Affiliat
 
 		}
 
+		if params.DefaultForCustomer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "default_for_customer", *params.DefaultForCustomer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.Name != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -144809,6 +144913,18 @@ func NewAffiliatedOrganizationsReportCountRequest(server string, params *Affilia
 		if params.Country != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "country", *params.Country, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.DefaultForCustomer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "default_for_customer", *params.DefaultForCustomer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -171342,6 +171458,53 @@ func NewCustomersUpdateProjectDigestConfigUpdateRequestWithBody(server string, u
 	}
 
 	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewCustomersUpdateDefaultAffiliationsRequest calls the generic CustomersUpdateDefaultAffiliations builder with application/json body
+func NewCustomersUpdateDefaultAffiliationsRequest(server string, uuid openapi_types.UUID, body CustomersUpdateDefaultAffiliationsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCustomersUpdateDefaultAffiliationsRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewCustomersUpdateDefaultAffiliationsRequestWithBody generates requests for CustomersUpdateDefaultAffiliations with any type of body
+func NewCustomersUpdateDefaultAffiliationsRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/customers/%s/update_default_affiliations/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
@@ -228977,9 +229140,9 @@ func NewMarketplaceServiceProvidersCustomerProjectsListRequest(server string, se
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
-		if params.AffiliatedOrganizationName != nil {
+		if params.AffiliationName != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliated_organization_name", *params.AffiliatedOrganizationName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliation_name", *params.AffiliationName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -228989,9 +229152,9 @@ func NewMarketplaceServiceProvidersCustomerProjectsListRequest(server string, se
 
 		}
 
-		if params.AffiliatedOrganizationUuid != nil {
+		if params.AffiliationUuid != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliated_organization_uuid", *params.AffiliatedOrganizationUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliation_uuid", *params.AffiliationUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -229145,9 +229308,9 @@ func NewMarketplaceServiceProvidersCustomerProjectsListRequest(server string, se
 
 		}
 
-		if params.HasAffiliatedOrganization != nil {
+		if params.HasAffiliation != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_affiliated_organization", *params.HasAffiliatedOrganization, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_affiliation", *params.HasAffiliation, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -230839,9 +231002,9 @@ func NewMarketplaceServiceProvidersProjectsListRequest(server string, servicePro
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
-		if params.AffiliatedOrganizationName != nil {
+		if params.AffiliationName != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliated_organization_name", *params.AffiliatedOrganizationName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliation_name", *params.AffiliationName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -230851,9 +231014,9 @@ func NewMarketplaceServiceProvidersProjectsListRequest(server string, servicePro
 
 		}
 
-		if params.AffiliatedOrganizationUuid != nil {
+		if params.AffiliationUuid != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliated_organization_uuid", *params.AffiliatedOrganizationUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliation_uuid", *params.AffiliationUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -231007,9 +231170,9 @@ func NewMarketplaceServiceProvidersProjectsListRequest(server string, servicePro
 
 		}
 
-		if params.HasAffiliatedOrganization != nil {
+		if params.HasAffiliation != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_affiliated_organization", *params.HasAffiliatedOrganization, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_affiliation", *params.HasAffiliation, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -254361,9 +254524,9 @@ func NewOpenportalUnmanagedProjectsListRequest(server string, params *Openportal
 
 		}
 
-		if params.AffiliatedOrganizationName != nil {
+		if params.AffiliationName != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliated_organization_name", *params.AffiliatedOrganizationName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliation_name", *params.AffiliationName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -254373,9 +254536,9 @@ func NewOpenportalUnmanagedProjectsListRequest(server string, params *Openportal
 
 		}
 
-		if params.AffiliatedOrganizationUuid != nil {
+		if params.AffiliationUuid != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliated_organization_uuid", *params.AffiliatedOrganizationUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliation_uuid", *params.AffiliationUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -254529,9 +254692,9 @@ func NewOpenportalUnmanagedProjectsListRequest(server string, params *Openportal
 
 		}
 
-		if params.HasAffiliatedOrganization != nil {
+		if params.HasAffiliation != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_affiliated_organization", *params.HasAffiliatedOrganization, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_affiliation", *params.HasAffiliation, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -254775,9 +254938,9 @@ func NewOpenportalUnmanagedProjectsCountRequest(server string, params *Openporta
 
 		}
 
-		if params.AffiliatedOrganizationName != nil {
+		if params.AffiliationName != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliated_organization_name", *params.AffiliatedOrganizationName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliation_name", *params.AffiliationName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -254787,9 +254950,9 @@ func NewOpenportalUnmanagedProjectsCountRequest(server string, params *Openporta
 
 		}
 
-		if params.AffiliatedOrganizationUuid != nil {
+		if params.AffiliationUuid != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliated_organization_uuid", *params.AffiliatedOrganizationUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliation_uuid", *params.AffiliationUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -254931,9 +255094,9 @@ func NewOpenportalUnmanagedProjectsCountRequest(server string, params *Openporta
 
 		}
 
-		if params.HasAffiliatedOrganization != nil {
+		if params.HasAffiliation != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_affiliated_organization", *params.HasAffiliatedOrganization, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_affiliation", *params.HasAffiliation, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -256083,19 +256246,19 @@ func NewOpenportalUnmanagedProjectsSubmitAnswersRequestWithBody(server string, u
 	return req, nil
 }
 
-// NewOpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsRequest calls the generic OpenportalUnmanagedProjectsUpdateAffiliatedOrganizations builder with application/json body
-func NewOpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsRequest(server string, uuid openapi_types.UUID, body OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsJSONRequestBody) (*http.Request, error) {
+// NewOpenportalUnmanagedProjectsUpdateAffiliationRequest calls the generic OpenportalUnmanagedProjectsUpdateAffiliation builder with application/json body
+func NewOpenportalUnmanagedProjectsUpdateAffiliationRequest(server string, uuid openapi_types.UUID, body OpenportalUnmanagedProjectsUpdateAffiliationJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewOpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsRequestWithBody(server, uuid, "application/json", bodyReader)
+	return NewOpenportalUnmanagedProjectsUpdateAffiliationRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
-// NewOpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsRequestWithBody generates requests for OpenportalUnmanagedProjectsUpdateAffiliatedOrganizations with any type of body
-func NewOpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewOpenportalUnmanagedProjectsUpdateAffiliationRequestWithBody generates requests for OpenportalUnmanagedProjectsUpdateAffiliation with any type of body
+func NewOpenportalUnmanagedProjectsUpdateAffiliationRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -256110,7 +256273,7 @@ func NewOpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsRequestWithBody(
 		return nil, err
 	}
 
-	operationPath := fmt.Sprintf("/api/openportal-unmanaged-projects/%s/update_affiliated_organizations/", pathParam0)
+	operationPath := fmt.Sprintf("/api/openportal-unmanaged-projects/%s/update_affiliation/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -283440,9 +283603,9 @@ func NewProjectsListRequest(server string, params *ProjectsListParams) (*http.Re
 
 		}
 
-		if params.AffiliatedOrganizationName != nil {
+		if params.AffiliationName != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliated_organization_name", *params.AffiliatedOrganizationName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliation_name", *params.AffiliationName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -283452,9 +283615,9 @@ func NewProjectsListRequest(server string, params *ProjectsListParams) (*http.Re
 
 		}
 
-		if params.AffiliatedOrganizationUuid != nil {
+		if params.AffiliationUuid != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliated_organization_uuid", *params.AffiliatedOrganizationUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliation_uuid", *params.AffiliationUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -283608,9 +283771,9 @@ func NewProjectsListRequest(server string, params *ProjectsListParams) (*http.Re
 
 		}
 
-		if params.HasAffiliatedOrganization != nil {
+		if params.HasAffiliation != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_affiliated_organization", *params.HasAffiliatedOrganization, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_affiliation", *params.HasAffiliation, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -283854,9 +284017,9 @@ func NewProjectsCountRequest(server string, params *ProjectsCountParams) (*http.
 
 		}
 
-		if params.AffiliatedOrganizationName != nil {
+		if params.AffiliationName != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliated_organization_name", *params.AffiliatedOrganizationName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliation_name", *params.AffiliationName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -283866,9 +284029,9 @@ func NewProjectsCountRequest(server string, params *ProjectsCountParams) (*http.
 
 		}
 
-		if params.AffiliatedOrganizationUuid != nil {
+		if params.AffiliationUuid != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliated_organization_uuid", *params.AffiliatedOrganizationUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliation_uuid", *params.AffiliationUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -284010,9 +284173,9 @@ func NewProjectsCountRequest(server string, params *ProjectsCountParams) (*http.
 
 		}
 
-		if params.HasAffiliatedOrganization != nil {
+		if params.HasAffiliation != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_affiliated_organization", *params.HasAffiliatedOrganization, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_affiliation", *params.HasAffiliation, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -285461,19 +285624,19 @@ func NewProjectsSyncUserRolesRequest(server string, uuid string) (*http.Request,
 	return req, nil
 }
 
-// NewProjectsUpdateAffiliatedOrganizationsRequest calls the generic ProjectsUpdateAffiliatedOrganizations builder with application/json body
-func NewProjectsUpdateAffiliatedOrganizationsRequest(server string, uuid openapi_types.UUID, body ProjectsUpdateAffiliatedOrganizationsJSONRequestBody) (*http.Request, error) {
+// NewProjectsUpdateAffiliationRequest calls the generic ProjectsUpdateAffiliation builder with application/json body
+func NewProjectsUpdateAffiliationRequest(server string, uuid openapi_types.UUID, body ProjectsUpdateAffiliationJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewProjectsUpdateAffiliatedOrganizationsRequestWithBody(server, uuid, "application/json", bodyReader)
+	return NewProjectsUpdateAffiliationRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
-// NewProjectsUpdateAffiliatedOrganizationsRequestWithBody generates requests for ProjectsUpdateAffiliatedOrganizations with any type of body
-func NewProjectsUpdateAffiliatedOrganizationsRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewProjectsUpdateAffiliationRequestWithBody generates requests for ProjectsUpdateAffiliation with any type of body
+func NewProjectsUpdateAffiliationRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -285488,7 +285651,7 @@ func NewProjectsUpdateAffiliatedOrganizationsRequestWithBody(server string, uuid
 		return nil, err
 	}
 
-	operationPath := fmt.Sprintf("/api/projects/%s/update_affiliated_organizations/", pathParam0)
+	operationPath := fmt.Sprintf("/api/projects/%s/update_affiliation/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -333134,6 +333297,11 @@ type ClientWithResponsesInterface interface {
 
 	CustomersUpdateProjectDigestConfigUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomersUpdateProjectDigestConfigUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomersUpdateProjectDigestConfigUpdateResponse, error)
 
+	// CustomersUpdateDefaultAffiliationsWithBodyWithResponse request with any body
+	CustomersUpdateDefaultAffiliationsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomersUpdateDefaultAffiliationsResponse, error)
+
+	CustomersUpdateDefaultAffiliationsWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomersUpdateDefaultAffiliationsJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomersUpdateDefaultAffiliationsResponse, error)
+
 	// CustomersUpdateOrganizationGroupsWithBodyWithResponse request with any body
 	CustomersUpdateOrganizationGroupsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomersUpdateOrganizationGroupsResponse, error)
 
@@ -337131,10 +337299,10 @@ type ClientWithResponsesInterface interface {
 
 	OpenportalUnmanagedProjectsSubmitAnswersWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenportalUnmanagedProjectsSubmitAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsSubmitAnswersResponse, error)
 
-	// OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsWithBodyWithResponse request with any body
-	OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsResponse, error)
+	// OpenportalUnmanagedProjectsUpdateAffiliationWithBodyWithResponse request with any body
+	OpenportalUnmanagedProjectsUpdateAffiliationWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsUpdateAffiliationResponse, error)
 
-	OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsResponse, error)
+	OpenportalUnmanagedProjectsUpdateAffiliationWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenportalUnmanagedProjectsUpdateAffiliationJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsUpdateAffiliationResponse, error)
 
 	// OpenportalUnmanagedProjectsUpdateUserWithBodyWithResponse request with any body
 	OpenportalUnmanagedProjectsUpdateUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsUpdateUserResponse, error)
@@ -338525,10 +338693,10 @@ type ClientWithResponsesInterface interface {
 	// ProjectsSyncUserRolesWithResponse request
 	ProjectsSyncUserRolesWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*ProjectsSyncUserRolesResponse, error)
 
-	// ProjectsUpdateAffiliatedOrganizationsWithBodyWithResponse request with any body
-	ProjectsUpdateAffiliatedOrganizationsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectsUpdateAffiliatedOrganizationsResponse, error)
+	// ProjectsUpdateAffiliationWithBodyWithResponse request with any body
+	ProjectsUpdateAffiliationWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectsUpdateAffiliationResponse, error)
 
-	ProjectsUpdateAffiliatedOrganizationsWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectsUpdateAffiliatedOrganizationsJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectsUpdateAffiliatedOrganizationsResponse, error)
+	ProjectsUpdateAffiliationWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectsUpdateAffiliationJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectsUpdateAffiliationResponse, error)
 
 	// ProjectsUpdateUserWithBodyWithResponse request with any body
 	ProjectsUpdateUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectsUpdateUserResponse, error)
@@ -354069,6 +354237,35 @@ func (r CustomersUpdateProjectDigestConfigUpdateResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r CustomersUpdateProjectDigestConfigUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type CustomersUpdateDefaultAffiliationsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r CustomersUpdateDefaultAffiliationsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CustomersUpdateDefaultAffiliationsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r CustomersUpdateDefaultAffiliationsResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -386114,13 +386311,13 @@ func (r OpenportalUnmanagedProjectsSubmitAnswersResponse) ContentType() string {
 	return ""
 }
 
-type OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsResponse struct {
+type OpenportalUnmanagedProjectsUpdateAffiliationResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 }
 
 // Status returns HTTPResponse.Status
-func (r OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsResponse) Status() string {
+func (r OpenportalUnmanagedProjectsUpdateAffiliationResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -386128,7 +386325,7 @@ func (r OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsResponse) Status
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsResponse) StatusCode() int {
+func (r OpenportalUnmanagedProjectsUpdateAffiliationResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -386136,7 +386333,7 @@ func (r OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsResponse) Status
 }
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsResponse) ContentType() string {
+func (r OpenportalUnmanagedProjectsUpdateAffiliationResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -397219,13 +397416,13 @@ func (r ProjectsSyncUserRolesResponse) ContentType() string {
 	return ""
 }
 
-type ProjectsUpdateAffiliatedOrganizationsResponse struct {
+type ProjectsUpdateAffiliationResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 }
 
 // Status returns HTTPResponse.Status
-func (r ProjectsUpdateAffiliatedOrganizationsResponse) Status() string {
+func (r ProjectsUpdateAffiliationResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -397233,7 +397430,7 @@ func (r ProjectsUpdateAffiliatedOrganizationsResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r ProjectsUpdateAffiliatedOrganizationsResponse) StatusCode() int {
+func (r ProjectsUpdateAffiliationResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -397241,7 +397438,7 @@ func (r ProjectsUpdateAffiliatedOrganizationsResponse) StatusCode() int {
 }
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r ProjectsUpdateAffiliatedOrganizationsResponse) ContentType() string {
+func (r ProjectsUpdateAffiliationResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -421151,6 +421348,23 @@ func (c *ClientWithResponses) CustomersUpdateProjectDigestConfigUpdateWithRespon
 	return ParseCustomersUpdateProjectDigestConfigUpdateResponse(rsp)
 }
 
+// CustomersUpdateDefaultAffiliationsWithBodyWithResponse request with arbitrary body returning *CustomersUpdateDefaultAffiliationsResponse
+func (c *ClientWithResponses) CustomersUpdateDefaultAffiliationsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomersUpdateDefaultAffiliationsResponse, error) {
+	rsp, err := c.CustomersUpdateDefaultAffiliationsWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomersUpdateDefaultAffiliationsResponse(rsp)
+}
+
+func (c *ClientWithResponses) CustomersUpdateDefaultAffiliationsWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomersUpdateDefaultAffiliationsJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomersUpdateDefaultAffiliationsResponse, error) {
+	rsp, err := c.CustomersUpdateDefaultAffiliations(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomersUpdateDefaultAffiliationsResponse(rsp)
+}
+
 // CustomersUpdateOrganizationGroupsWithBodyWithResponse request with arbitrary body returning *CustomersUpdateOrganizationGroupsResponse
 func (c *ClientWithResponses) CustomersUpdateOrganizationGroupsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomersUpdateOrganizationGroupsResponse, error) {
 	rsp, err := c.CustomersUpdateOrganizationGroupsWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -433908,21 +434122,21 @@ func (c *ClientWithResponses) OpenportalUnmanagedProjectsSubmitAnswersWithRespon
 	return ParseOpenportalUnmanagedProjectsSubmitAnswersResponse(rsp)
 }
 
-// OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsWithBodyWithResponse request with arbitrary body returning *OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsResponse
-func (c *ClientWithResponses) OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsResponse, error) {
-	rsp, err := c.OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsWithBody(ctx, uuid, contentType, body, reqEditors...)
+// OpenportalUnmanagedProjectsUpdateAffiliationWithBodyWithResponse request with arbitrary body returning *OpenportalUnmanagedProjectsUpdateAffiliationResponse
+func (c *ClientWithResponses) OpenportalUnmanagedProjectsUpdateAffiliationWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsUpdateAffiliationResponse, error) {
+	rsp, err := c.OpenportalUnmanagedProjectsUpdateAffiliationWithBody(ctx, uuid, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseOpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsResponse(rsp)
+	return ParseOpenportalUnmanagedProjectsUpdateAffiliationResponse(rsp)
 }
 
-func (c *ClientWithResponses) OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsResponse, error) {
-	rsp, err := c.OpenportalUnmanagedProjectsUpdateAffiliatedOrganizations(ctx, uuid, body, reqEditors...)
+func (c *ClientWithResponses) OpenportalUnmanagedProjectsUpdateAffiliationWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenportalUnmanagedProjectsUpdateAffiliationJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsUpdateAffiliationResponse, error) {
+	rsp, err := c.OpenportalUnmanagedProjectsUpdateAffiliation(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseOpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsResponse(rsp)
+	return ParseOpenportalUnmanagedProjectsUpdateAffiliationResponse(rsp)
 }
 
 // OpenportalUnmanagedProjectsUpdateUserWithBodyWithResponse request with arbitrary body returning *OpenportalUnmanagedProjectsUpdateUserResponse
@@ -438362,21 +438576,21 @@ func (c *ClientWithResponses) ProjectsSyncUserRolesWithResponse(ctx context.Cont
 	return ParseProjectsSyncUserRolesResponse(rsp)
 }
 
-// ProjectsUpdateAffiliatedOrganizationsWithBodyWithResponse request with arbitrary body returning *ProjectsUpdateAffiliatedOrganizationsResponse
-func (c *ClientWithResponses) ProjectsUpdateAffiliatedOrganizationsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectsUpdateAffiliatedOrganizationsResponse, error) {
-	rsp, err := c.ProjectsUpdateAffiliatedOrganizationsWithBody(ctx, uuid, contentType, body, reqEditors...)
+// ProjectsUpdateAffiliationWithBodyWithResponse request with arbitrary body returning *ProjectsUpdateAffiliationResponse
+func (c *ClientWithResponses) ProjectsUpdateAffiliationWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectsUpdateAffiliationResponse, error) {
+	rsp, err := c.ProjectsUpdateAffiliationWithBody(ctx, uuid, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseProjectsUpdateAffiliatedOrganizationsResponse(rsp)
+	return ParseProjectsUpdateAffiliationResponse(rsp)
 }
 
-func (c *ClientWithResponses) ProjectsUpdateAffiliatedOrganizationsWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectsUpdateAffiliatedOrganizationsJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectsUpdateAffiliatedOrganizationsResponse, error) {
-	rsp, err := c.ProjectsUpdateAffiliatedOrganizations(ctx, uuid, body, reqEditors...)
+func (c *ClientWithResponses) ProjectsUpdateAffiliationWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectsUpdateAffiliationJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectsUpdateAffiliationResponse, error) {
+	rsp, err := c.ProjectsUpdateAffiliation(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseProjectsUpdateAffiliatedOrganizationsResponse(rsp)
+	return ParseProjectsUpdateAffiliationResponse(rsp)
 }
 
 // ProjectsUpdateUserWithBodyWithResponse request with arbitrary body returning *ProjectsUpdateUserResponse
@@ -456113,6 +456327,22 @@ func ParseCustomersUpdateProjectDigestConfigUpdateResponse(rsp *http.Response) (
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseCustomersUpdateDefaultAffiliationsResponse parses an HTTP response from a CustomersUpdateDefaultAffiliationsWithResponse call
+func ParseCustomersUpdateDefaultAffiliationsResponse(rsp *http.Response) (*CustomersUpdateDefaultAffiliationsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CustomersUpdateDefaultAffiliationsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
@@ -480960,15 +481190,15 @@ func ParseOpenportalUnmanagedProjectsSubmitAnswersResponse(rsp *http.Response) (
 	return response, nil
 }
 
-// ParseOpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsResponse parses an HTTP response from a OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsWithResponse call
-func ParseOpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsResponse(rsp *http.Response) (*OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsResponse, error) {
+// ParseOpenportalUnmanagedProjectsUpdateAffiliationResponse parses an HTTP response from a OpenportalUnmanagedProjectsUpdateAffiliationWithResponse call
+func ParseOpenportalUnmanagedProjectsUpdateAffiliationResponse(rsp *http.Response) (*OpenportalUnmanagedProjectsUpdateAffiliationResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &OpenportalUnmanagedProjectsUpdateAffiliatedOrganizationsResponse{
+	response := &OpenportalUnmanagedProjectsUpdateAffiliationResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -489477,15 +489707,15 @@ func ParseProjectsSyncUserRolesResponse(rsp *http.Response) (*ProjectsSyncUserRo
 	return response, nil
 }
 
-// ParseProjectsUpdateAffiliatedOrganizationsResponse parses an HTTP response from a ProjectsUpdateAffiliatedOrganizationsWithResponse call
-func ParseProjectsUpdateAffiliatedOrganizationsResponse(rsp *http.Response) (*ProjectsUpdateAffiliatedOrganizationsResponse, error) {
+// ParseProjectsUpdateAffiliationResponse parses an HTTP response from a ProjectsUpdateAffiliationWithResponse call
+func ParseProjectsUpdateAffiliationResponse(rsp *http.Response) (*ProjectsUpdateAffiliationResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &ProjectsUpdateAffiliatedOrganizationsResponse{
+	response := &ProjectsUpdateAffiliationResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
