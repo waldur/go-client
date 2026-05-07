@@ -249,6 +249,57 @@ func (e AdminAnnouncementTypeEnum) Valid() bool {
 	}
 }
 
+// Defines values for AffiliatedOrganizationFieldEnum.
+const (
+	AffiliatedOrganizationFieldEnumAbbreviation  AffiliatedOrganizationFieldEnum = "abbreviation"
+	AffiliatedOrganizationFieldEnumAddress       AffiliatedOrganizationFieldEnum = "address"
+	AffiliatedOrganizationFieldEnumCode          AffiliatedOrganizationFieldEnum = "code"
+	AffiliatedOrganizationFieldEnumCountry       AffiliatedOrganizationFieldEnum = "country"
+	AffiliatedOrganizationFieldEnumCreated       AffiliatedOrganizationFieldEnum = "created"
+	AffiliatedOrganizationFieldEnumDescription   AffiliatedOrganizationFieldEnum = "description"
+	AffiliatedOrganizationFieldEnumEmail         AffiliatedOrganizationFieldEnum = "email"
+	AffiliatedOrganizationFieldEnumHomepage      AffiliatedOrganizationFieldEnum = "homepage"
+	AffiliatedOrganizationFieldEnumModified      AffiliatedOrganizationFieldEnum = "modified"
+	AffiliatedOrganizationFieldEnumName          AffiliatedOrganizationFieldEnum = "name"
+	AffiliatedOrganizationFieldEnumProjectsCount AffiliatedOrganizationFieldEnum = "projects_count"
+	AffiliatedOrganizationFieldEnumUrl           AffiliatedOrganizationFieldEnum = "url"
+	AffiliatedOrganizationFieldEnumUuid          AffiliatedOrganizationFieldEnum = "uuid"
+)
+
+// Valid indicates whether the value is a known member of the AffiliatedOrganizationFieldEnum enum.
+func (e AffiliatedOrganizationFieldEnum) Valid() bool {
+	switch e {
+	case AffiliatedOrganizationFieldEnumAbbreviation:
+		return true
+	case AffiliatedOrganizationFieldEnumAddress:
+		return true
+	case AffiliatedOrganizationFieldEnumCode:
+		return true
+	case AffiliatedOrganizationFieldEnumCountry:
+		return true
+	case AffiliatedOrganizationFieldEnumCreated:
+		return true
+	case AffiliatedOrganizationFieldEnumDescription:
+		return true
+	case AffiliatedOrganizationFieldEnumEmail:
+		return true
+	case AffiliatedOrganizationFieldEnumHomepage:
+		return true
+	case AffiliatedOrganizationFieldEnumModified:
+		return true
+	case AffiliatedOrganizationFieldEnumName:
+		return true
+	case AffiliatedOrganizationFieldEnumProjectsCount:
+		return true
+	case AffiliatedOrganizationFieldEnumUrl:
+		return true
+	case AffiliatedOrganizationFieldEnumUuid:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for AffiliationTypeEnum.
 const (
 	AffiliationTypeEnumConsulting AffiliationTypeEnum = "consulting"
@@ -3065,6 +3116,7 @@ const (
 	ProjectCompliance  ChecklistTypeEnum = "project_compliance"
 	ProjectMetadata    ChecklistTypeEnum = "project_metadata"
 	ProposalCompliance ChecklistTypeEnum = "proposal_compliance"
+	WorkflowStep       ChecklistTypeEnum = "workflow_step"
 )
 
 // Valid indicates whether the value is a known member of the ChecklistTypeEnum enum.
@@ -3081,6 +3133,8 @@ func (e ChecklistTypeEnum) Valid() bool {
 	case ProjectMetadata:
 		return true
 	case ProposalCompliance:
+		return true
+	case WorkflowStep:
 		return true
 	default:
 		return false
@@ -11660,16 +11714,16 @@ func (e OpenStackInstanceFieldEnum) Valid() bool {
 
 // Defines values for OpenStackInstanceOEnum.
 const (
-	OpenStackInstanceOEnumMinusStartTime OpenStackInstanceOEnum = "-start_time"
-	OpenStackInstanceOEnumStartTime      OpenStackInstanceOEnum = "start_time"
+	MinusStartTime OpenStackInstanceOEnum = "-start_time"
+	StartTime      OpenStackInstanceOEnum = "start_time"
 )
 
 // Valid indicates whether the value is a known member of the OpenStackInstanceOEnum enum.
 func (e OpenStackInstanceOEnum) Valid() bool {
 	switch e {
-	case OpenStackInstanceOEnumMinusStartTime:
+	case MinusStartTime:
 		return true
-	case OpenStackInstanceOEnumStartTime:
+	case StartTime:
 		return true
 	default:
 		return false
@@ -14166,6 +14220,48 @@ func (e OrderState) Valid() bool {
 	}
 }
 
+// Defines values for OutcomeEnum.
+const (
+	OutcomeEnumAccepted   OutcomeEnum = "accepted"
+	OutcomeEnumApproved   OutcomeEnum = "approved"
+	OutcomeEnumDeclined   OutcomeEnum = "declined"
+	OutcomeEnumEligible   OutcomeEnum = "eligible"
+	OutcomeEnumExpired    OutcomeEnum = "expired"
+	OutcomeEnumFeasible   OutcomeEnum = "feasible"
+	OutcomeEnumIneligible OutcomeEnum = "ineligible"
+	OutcomeEnumInfeasible OutcomeEnum = "infeasible"
+	OutcomeEnumRejected   OutcomeEnum = "rejected"
+	OutcomeEnumReviewed   OutcomeEnum = "reviewed"
+)
+
+// Valid indicates whether the value is a known member of the OutcomeEnum enum.
+func (e OutcomeEnum) Valid() bool {
+	switch e {
+	case OutcomeEnumAccepted:
+		return true
+	case OutcomeEnumApproved:
+		return true
+	case OutcomeEnumDeclined:
+		return true
+	case OutcomeEnumEligible:
+		return true
+	case OutcomeEnumExpired:
+		return true
+	case OutcomeEnumFeasible:
+		return true
+	case OutcomeEnumIneligible:
+		return true
+	case OutcomeEnumInfeasible:
+		return true
+	case OutcomeEnumRejected:
+		return true
+	case OutcomeEnumReviewed:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for PaymentProfileOEnum.
 const (
 	PaymentProfileOEnumIsActive         PaymentProfileOEnum = "is_active"
@@ -15558,6 +15654,33 @@ func (e ProposalStates) Valid() bool {
 	case ProposalStatesRejected:
 		return true
 	case ProposalStatesSubmitted:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ProposalWorkflowStepInstanceStatusEnum.
+const (
+	ProposalWorkflowStepInstanceStatusEnumActive    ProposalWorkflowStepInstanceStatusEnum = "active"
+	ProposalWorkflowStepInstanceStatusEnumCompleted ProposalWorkflowStepInstanceStatusEnum = "completed"
+	ProposalWorkflowStepInstanceStatusEnumExpired   ProposalWorkflowStepInstanceStatusEnum = "expired"
+	ProposalWorkflowStepInstanceStatusEnumPending   ProposalWorkflowStepInstanceStatusEnum = "pending"
+	ProposalWorkflowStepInstanceStatusEnumSkipped   ProposalWorkflowStepInstanceStatusEnum = "skipped"
+)
+
+// Valid indicates whether the value is a known member of the ProposalWorkflowStepInstanceStatusEnum enum.
+func (e ProposalWorkflowStepInstanceStatusEnum) Valid() bool {
+	switch e {
+	case ProposalWorkflowStepInstanceStatusEnumActive:
+		return true
+	case ProposalWorkflowStepInstanceStatusEnumCompleted:
+		return true
+	case ProposalWorkflowStepInstanceStatusEnumExpired:
+		return true
+	case ProposalWorkflowStepInstanceStatusEnumPending:
+		return true
+	case ProposalWorkflowStepInstanceStatusEnumSkipped:
 		return true
 	default:
 		return false
@@ -18000,6 +18123,33 @@ func (e ResourceState) Valid() bool {
 	}
 }
 
+// Defines values for ResponsibleRoleEnum.
+const (
+	Applicant       ResponsibleRoleEnum = "applicant"
+	CallManager     ResponsibleRoleEnum = "call_manager"
+	OfferingManager ResponsibleRoleEnum = "offering_manager"
+	PanelMember     ResponsibleRoleEnum = "panel_member"
+	Reviewer        ResponsibleRoleEnum = "reviewer"
+)
+
+// Valid indicates whether the value is a known member of the ResponsibleRoleEnum enum.
+func (e ResponsibleRoleEnum) Valid() bool {
+	switch e {
+	case Applicant:
+		return true
+	case CallManager:
+		return true
+	case OfferingManager:
+		return true
+	case PanelMember:
+		return true
+	case Reviewer:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ReviewStrategyEnum.
 const (
 	AfterProposal ReviewStrategyEnum = "after_proposal"
@@ -18401,19 +18551,19 @@ func (e RoleType) Valid() bool {
 
 // Defines values for RoundStatus.
 const (
-	RoundStatusEnded     RoundStatus = "ended"
-	RoundStatusOpen      RoundStatus = "open"
-	RoundStatusScheduled RoundStatus = "scheduled"
+	Ended     RoundStatus = "ended"
+	Open      RoundStatus = "open"
+	Scheduled RoundStatus = "scheduled"
 )
 
 // Valid indicates whether the value is a known member of the RoundStatus enum.
 func (e RoundStatus) Valid() bool {
 	switch e {
-	case RoundStatusEnded:
+	case Ended:
 		return true
-	case RoundStatusOpen:
+	case Open:
 		return true
-	case RoundStatusScheduled:
+	case Scheduled:
 		return true
 	default:
 		return false
@@ -18764,34 +18914,34 @@ func (e ServiceSettingsFieldEnum) Valid() bool {
 
 // Defines values for ServiceSettingsStateEnum.
 const (
-	CREATING          ServiceSettingsStateEnum = "CREATING"
-	CREATIONSCHEDULED ServiceSettingsStateEnum = "CREATION_SCHEDULED"
-	DELETING          ServiceSettingsStateEnum = "DELETING"
-	DELETIONSCHEDULED ServiceSettingsStateEnum = "DELETION_SCHEDULED"
-	ERRED             ServiceSettingsStateEnum = "ERRED"
-	OK                ServiceSettingsStateEnum = "OK"
-	UPDATESCHEDULED   ServiceSettingsStateEnum = "UPDATE_SCHEDULED"
-	UPDATING          ServiceSettingsStateEnum = "UPDATING"
+	ServiceSettingsStateEnumCREATING          ServiceSettingsStateEnum = "CREATING"
+	ServiceSettingsStateEnumCREATIONSCHEDULED ServiceSettingsStateEnum = "CREATION_SCHEDULED"
+	ServiceSettingsStateEnumDELETING          ServiceSettingsStateEnum = "DELETING"
+	ServiceSettingsStateEnumDELETIONSCHEDULED ServiceSettingsStateEnum = "DELETION_SCHEDULED"
+	ServiceSettingsStateEnumERRED             ServiceSettingsStateEnum = "ERRED"
+	ServiceSettingsStateEnumOK                ServiceSettingsStateEnum = "OK"
+	ServiceSettingsStateEnumUPDATESCHEDULED   ServiceSettingsStateEnum = "UPDATE_SCHEDULED"
+	ServiceSettingsStateEnumUPDATING          ServiceSettingsStateEnum = "UPDATING"
 )
 
 // Valid indicates whether the value is a known member of the ServiceSettingsStateEnum enum.
 func (e ServiceSettingsStateEnum) Valid() bool {
 	switch e {
-	case CREATING:
+	case ServiceSettingsStateEnumCREATING:
 		return true
-	case CREATIONSCHEDULED:
+	case ServiceSettingsStateEnumCREATIONSCHEDULED:
 		return true
-	case DELETING:
+	case ServiceSettingsStateEnumDELETING:
 		return true
-	case DELETIONSCHEDULED:
+	case ServiceSettingsStateEnumDELETIONSCHEDULED:
 		return true
-	case ERRED:
+	case ServiceSettingsStateEnumERRED:
 		return true
-	case OK:
+	case ServiceSettingsStateEnumOK:
 		return true
-	case UPDATESCHEDULED:
+	case ServiceSettingsStateEnumUPDATESCHEDULED:
 		return true
-	case UPDATING:
+	case ServiceSettingsStateEnumUPDATING:
 		return true
 	default:
 		return false
@@ -19230,6 +19380,36 @@ func (e SshKeyOEnum) Valid() bool {
 	}
 }
 
+// Defines values for StepEnum.
+const (
+	AdministrativeCheck StepEnum = "administrative_check"
+	AllocationDecision  StepEnum = "allocation_decision"
+	AwardResponse       StepEnum = "award_response"
+	ExpertReview        StepEnum = "expert_review"
+	PanelReview         StepEnum = "panel_review"
+	TechnicalAssessment StepEnum = "technical_assessment"
+)
+
+// Valid indicates whether the value is a known member of the StepEnum enum.
+func (e StepEnum) Valid() bool {
+	switch e {
+	case AdministrativeCheck:
+		return true
+	case AllocationDecision:
+		return true
+	case AwardResponse:
+		return true
+	case ExpertReview:
+		return true
+	case PanelReview:
+		return true
+	case TechnicalAssessment:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for StorageModeEnum.
 const (
 	StorageModeEnumDynamic StorageModeEnum = "dynamic"
@@ -19461,6 +19641,21 @@ const (
 func (e ThreadSessionScopeEnum) Valid() bool {
 	switch e {
 	case Own:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for TransitionModeEnum.
+const (
+	AutomaticOnCompletion TransitionModeEnum = "automatic_on_completion"
+)
+
+// Valid indicates whether the value is a known member of the TransitionModeEnum enum.
+func (e TransitionModeEnum) Valid() bool {
+	switch e {
+	case AutomaticOnCompletion:
 		return true
 	default:
 		return false
@@ -21303,6 +21498,9 @@ type AffiliatedOrganization struct {
 	Url           *string             `json:"url,omitempty"`
 	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
 }
+
+// AffiliatedOrganizationFieldEnum defines model for AffiliatedOrganizationFieldEnum.
+type AffiliatedOrganizationFieldEnum string
 
 // AffiliatedOrganizationReportRow defines model for AffiliatedOrganizationReportRow.
 type AffiliatedOrganizationReportRow struct {
@@ -24589,6 +24787,100 @@ type CallRound struct {
 // CallStates defines model for CallStates.
 type CallStates string
 
+// CallWorkflowStep defines model for CallWorkflowStep.
+type CallWorkflowStep struct {
+	// ApplicantVisible Whether the applicant can see step details (not just status).
+	ApplicantVisible *bool `json:"applicant_visible,omitempty"`
+
+	// BlindReview Evaluators cannot see each other's assessments.
+	BlindReview   *bool                `json:"blind_review,omitempty"`
+	CallName      *string              `json:"call_name,omitempty"`
+	CallUuid      *openapi_types.UUID  `json:"call_uuid,omitempty"`
+	Checklist     *openapi_types.UUID  `json:"checklist,omitempty"`
+	ChecklistName *string              `json:"checklist_name,omitempty"`
+	Created       *time.Time           `json:"created,omitempty"`
+	Criteria      *[]WorkflowCriterion `json:"criteria,omitempty"`
+
+	// DisplayOrder Optional override of catalog ordering.
+	DisplayOrder *int `json:"display_order,omitempty"`
+
+	// DurationInDays Duration in days. Used to calculate deadlines.
+	DurationInDays *int `json:"duration_in_days,omitempty"`
+
+	// IncludeAwardResponse Allocation decision: require applicant award response after decision.
+	IncludeAwardResponse *bool `json:"include_award_response,omitempty"`
+
+	// IsEnabled Whether this step is enabled. Disabled steps are skipped.
+	IsEnabled *bool `json:"is_enabled,omitempty"`
+
+	// MinReviewers Minimum reviews required before step can complete.
+	MinReviewers *int `json:"min_reviewers,omitempty"`
+
+	// MinScoreThreshold Minimum average score to pass this step.
+	MinScoreThreshold *string    `json:"min_score_threshold,omitempty"`
+	Modified          *time.Time `json:"modified,omitempty"`
+
+	// RequiresCoiConfirmation Evaluator must confirm absence of conflict of interest.
+	RequiresCoiConfirmation *bool `json:"requires_coi_confirmation,omitempty"`
+
+	// ResponsibleRole Role expected to act on this step.
+	ResponsibleRole *CallWorkflowStep_ResponsibleRole `json:"responsible_role,omitempty"`
+	Step            StepEnum                          `json:"step"`
+
+	// TransitionMode How this step advances to the next.
+	TransitionMode *TransitionModeEnum `json:"transition_mode,omitempty"`
+	Uuid           *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// CallWorkflowStep_ResponsibleRole Role expected to act on this step.
+type CallWorkflowStep_ResponsibleRole struct {
+	union json.RawMessage
+}
+
+// CallWorkflowStepRequest defines model for CallWorkflowStepRequest.
+type CallWorkflowStepRequest struct {
+	// ApplicantVisible Whether the applicant can see step details (not just status).
+	ApplicantVisible *bool `json:"applicant_visible,omitempty"`
+
+	// BlindReview Evaluators cannot see each other's assessments.
+	BlindReview *bool                       `json:"blind_review,omitempty"`
+	Checklist   *openapi_types.UUID         `json:"checklist,omitempty"`
+	Criteria    *[]WorkflowCriterionRequest `json:"criteria,omitempty"`
+
+	// DisplayOrder Optional override of catalog ordering.
+	DisplayOrder *int `json:"display_order,omitempty"`
+
+	// DurationInDays Duration in days. Used to calculate deadlines.
+	DurationInDays *int `json:"duration_in_days,omitempty"`
+
+	// IncludeAwardResponse Allocation decision: require applicant award response after decision.
+	IncludeAwardResponse *bool `json:"include_award_response,omitempty"`
+
+	// IsEnabled Whether this step is enabled. Disabled steps are skipped.
+	IsEnabled *bool `json:"is_enabled,omitempty"`
+
+	// MinReviewers Minimum reviews required before step can complete.
+	MinReviewers *int `json:"min_reviewers,omitempty"`
+
+	// MinScoreThreshold Minimum average score to pass this step.
+	MinScoreThreshold *string `json:"min_score_threshold,omitempty"`
+
+	// RequiresCoiConfirmation Evaluator must confirm absence of conflict of interest.
+	RequiresCoiConfirmation *bool `json:"requires_coi_confirmation,omitempty"`
+
+	// ResponsibleRole Role expected to act on this step.
+	ResponsibleRole *CallWorkflowStepRequest_ResponsibleRole `json:"responsible_role,omitempty"`
+	Step            StepEnum                                 `json:"step"`
+
+	// TransitionMode How this step advances to the next.
+	TransitionMode *TransitionModeEnum `json:"transition_mode,omitempty"`
+}
+
+// CallWorkflowStepRequest_ResponsibleRole Role expected to act on this step.
+type CallWorkflowStepRequest_ResponsibleRole struct {
+	union json.RawMessage
+}
+
 // Campaign defines model for Campaign.
 type Campaign struct {
 	AutoApply *bool `json:"auto_apply,omitempty"`
@@ -25423,6 +25715,29 @@ type CommentOEnum string
 type CommentRequest struct {
 	Description string `json:"description"`
 	IsPublic    *bool  `json:"is_public,omitempty"`
+}
+
+// CompleteWorkflowStepRequest defines model for CompleteWorkflowStepRequest.
+type CompleteWorkflowStepRequest struct {
+	// Outcome Step outcome. Must be in the active step's allow-list. 'rejected' and 'expired' are reserved for system transitions.
+	Outcome OutcomeEnum `json:"outcome"`
+
+	// OutcomeReason Explanation for the outcome.
+	OutcomeReason *string `json:"outcome_reason,omitempty"`
+
+	// StepUuid UUID of the workflow step instance the client believes is active. Used to detect concurrent step transitions.
+	StepUuid openapi_types.UUID `json:"step_uuid"`
+}
+
+// CompleteWorkflowStepResponse defines model for CompleteWorkflowStepResponse.
+type CompleteWorkflowStepResponse struct {
+	Detail string `json:"detail"`
+
+	// NextStep Identifier of the step that just became active.
+	NextStep *string `json:"next_step,omitempty"`
+
+	// ProposalState New proposal state when the workflow terminates.
+	ProposalState *string `json:"proposal_state,omitempty"`
 }
 
 // ComplianceOverview defines model for ComplianceOverview.
@@ -38131,6 +38446,9 @@ type OrganizationalUser struct {
 	Username string             `json:"username"`
 }
 
+// OutcomeEnum defines model for OutcomeEnum.
+type OutcomeEnum string
+
 // PaidRequest defines model for PaidRequest.
 type PaidRequest struct {
 	Date  openapi_types.Date  `json:"date"`
@@ -38423,6 +38741,49 @@ type PatchedCallResourceTemplateRequest struct {
 type PatchedCallReviewerPoolUpdateRequest struct {
 	// MaxAssignments Maximum number of proposals that can be assigned to this reviewer
 	MaxAssignments *int `json:"max_assignments,omitempty"`
+}
+
+// PatchedCallWorkflowStepRequest defines model for PatchedCallWorkflowStepRequest.
+type PatchedCallWorkflowStepRequest struct {
+	// ApplicantVisible Whether the applicant can see step details (not just status).
+	ApplicantVisible *bool `json:"applicant_visible,omitempty"`
+
+	// BlindReview Evaluators cannot see each other's assessments.
+	BlindReview *bool                       `json:"blind_review,omitempty"`
+	Checklist   *openapi_types.UUID         `json:"checklist,omitempty"`
+	Criteria    *[]WorkflowCriterionRequest `json:"criteria,omitempty"`
+
+	// DisplayOrder Optional override of catalog ordering.
+	DisplayOrder *int `json:"display_order,omitempty"`
+
+	// DurationInDays Duration in days. Used to calculate deadlines.
+	DurationInDays *int `json:"duration_in_days,omitempty"`
+
+	// IncludeAwardResponse Allocation decision: require applicant award response after decision.
+	IncludeAwardResponse *bool `json:"include_award_response,omitempty"`
+
+	// IsEnabled Whether this step is enabled. Disabled steps are skipped.
+	IsEnabled *bool `json:"is_enabled,omitempty"`
+
+	// MinReviewers Minimum reviews required before step can complete.
+	MinReviewers *int `json:"min_reviewers,omitempty"`
+
+	// MinScoreThreshold Minimum average score to pass this step.
+	MinScoreThreshold *string `json:"min_score_threshold,omitempty"`
+
+	// RequiresCoiConfirmation Evaluator must confirm absence of conflict of interest.
+	RequiresCoiConfirmation *bool `json:"requires_coi_confirmation,omitempty"`
+
+	// ResponsibleRole Role expected to act on this step.
+	ResponsibleRole *PatchedCallWorkflowStepRequest_ResponsibleRole `json:"responsible_role,omitempty"`
+
+	// TransitionMode How this step advances to the next.
+	TransitionMode *TransitionModeEnum `json:"transition_mode,omitempty"`
+}
+
+// PatchedCallWorkflowStepRequest_ResponsibleRole Role expected to act on this step.
+type PatchedCallWorkflowStepRequest_ResponsibleRole struct {
+	union json.RawMessage
 }
 
 // PatchedCategoryColumnRequest defines model for PatchedCategoryColumnRequest.
@@ -42108,6 +42469,33 @@ type ProposalUpdateProjectDetailsRequest_OecdFos2007Code struct {
 	union json.RawMessage
 }
 
+// ProposalWorkflowStepInstance defines model for ProposalWorkflowStepInstance.
+type ProposalWorkflowStepInstance struct {
+	CompletedAt *time.Time          `json:"completed_at,omitempty"`
+	CompletedBy *openapi_types.UUID `json:"completed_by,omitempty"`
+
+	// Deadline Computed from started_at + step duration_in_days.
+	Deadline *time.Time `json:"deadline,omitempty"`
+
+	// Outcome Step-specific outcome (e.g., eligible, feasible, approved).
+	Outcome *string `json:"outcome,omitempty"`
+
+	// OutcomeReason Explanation for the outcome (e.g., rejection reason).
+	OutcomeReason   *string `json:"outcome_reason,omitempty"`
+	ResponsibleRole *string `json:"responsible_role,omitempty"`
+
+	// StartedAt When this step became active.
+	StartedAt       *time.Time                              `json:"started_at,omitempty"`
+	Status          *ProposalWorkflowStepInstanceStatusEnum `json:"status,omitempty"`
+	Step            *StepEnum                               `json:"step,omitempty"`
+	StepDescription *string                                 `json:"step_description,omitempty"`
+	StepName        *string                                 `json:"step_name,omitempty"`
+	Uuid            *openapi_types.UUID                     `json:"uuid,omitempty"`
+}
+
+// ProposalWorkflowStepInstanceStatusEnum defines model for ProposalWorkflowStepInstanceStatusEnum.
+type ProposalWorkflowStepInstanceStatusEnum string
+
 // ProposedAssignment defines model for ProposedAssignment.
 type ProposedAssignment struct {
 	AffinityScore  *float64            `json:"affinity_score,omitempty"`
@@ -44278,6 +44666,21 @@ type ReferenceNumberRequest struct {
 	ReferenceNumber *string `json:"reference_number,omitempty"`
 }
 
+// RejectWorkflowStepRequest defines model for RejectWorkflowStepRequest.
+type RejectWorkflowStepRequest struct {
+	// Reason Reason for rejecting the proposal at this step.
+	Reason string `json:"reason"`
+
+	// StepUuid UUID of the workflow step instance the client believes is active. Used to detect concurrent step transitions.
+	StepUuid openapi_types.UUID `json:"step_uuid"`
+}
+
+// RejectWorkflowStepResponse defines model for RejectWorkflowStepResponse.
+type RejectWorkflowStepResponse struct {
+	Detail        string `json:"detail"`
+	ProposalState string `json:"proposal_state"`
+}
+
 // RelationshipTypeEnum defines model for RelationshipTypeEnum.
 type RelationshipTypeEnum string
 
@@ -45345,6 +45748,9 @@ type ResourcesLimits struct {
 	// Value Limit value
 	Value *int `json:"value,omitempty"`
 }
+
+// ResponsibleRoleEnum defines model for ResponsibleRoleEnum.
+type ResponsibleRoleEnum string
 
 // ReviewCommentRequest defines model for ReviewCommentRequest.
 type ReviewCommentRequest struct {
@@ -47489,6 +47895,9 @@ type StateTransitionError struct {
 	Detail string `json:"detail"`
 }
 
+// StepEnum defines model for StepEnum.
+type StepEnum string
+
 // StorageDataType defines model for StorageDataType.
 type StorageDataType struct {
 	Key   string `json:"key"`
@@ -48124,6 +48533,9 @@ type TransactionStats struct {
 	// RolledBack Total rolled back transactions
 	RolledBack *int `json:"rolled_back,omitempty"`
 }
+
+// TransitionModeEnum defines model for TransitionModeEnum.
+type TransitionModeEnum string
 
 // TriggerCOIDetectionJobTypeEnum defines model for TriggerCOIDetectionJobTypeEnum.
 type TriggerCOIDetectionJobTypeEnum string
@@ -49632,6 +50044,19 @@ type WebHookRequest struct {
 // WidgetEnum defines model for WidgetEnum.
 type WidgetEnum string
 
+// WorkflowCriterion defines model for WorkflowCriterion.
+type WorkflowCriterion struct {
+	Name  string              `json:"name"`
+	Order *int                `json:"order,omitempty"`
+	Uuid  *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// WorkflowCriterionRequest defines model for WorkflowCriterionRequest.
+type WorkflowCriterionRequest struct {
+	Name  string `json:"name"`
+	Order *int   `json:"order,omitempty"`
+}
+
 // ZAMMADARTICLETYPEEnum defines model for ZAMMADARTICLETYPEEnum.
 type ZAMMADARTICLETYPEEnum string
 
@@ -50058,7 +50483,8 @@ type AffiliatedOrganizationsListParams struct {
 	Country *string `form:"country,omitempty" json:"country,omitempty"`
 
 	// DefaultForCustomer Limit to a customer's default affiliation list
-	DefaultForCustomer *openapi_types.UUID `form:"default_for_customer,omitempty" json:"default_for_customer,omitempty"`
+	DefaultForCustomer *openapi_types.UUID                `form:"default_for_customer,omitempty" json:"default_for_customer,omitempty"`
+	Field              *[]AffiliatedOrganizationFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 
 	// Name Name
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
@@ -50176,6 +50602,11 @@ type AffiliatedOrganizationsReportCountParams struct {
 
 	// Query Search
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
+}
+
+// AffiliatedOrganizationsRetrieveParams defines parameters for AffiliatedOrganizationsRetrieve.
+type AffiliatedOrganizationsRetrieveParams struct {
+	Field *[]AffiliatedOrganizationFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 }
 
 // AnonymousChatFeedbacksListParams defines parameters for AnonymousChatFeedbacksList.
@@ -67378,6 +67809,31 @@ type ProposalProposalsResourcesListParams struct {
 // ProposalProposalsSubmitAnswersJSONBody defines parameters for ProposalProposalsSubmitAnswers.
 type ProposalProposalsSubmitAnswersJSONBody = []AnswerSubmitRequest
 
+// ProposalProposalsWorkflowStatesListParams defines parameters for ProposalProposalsWorkflowStatesList.
+type ProposalProposalsWorkflowStatesListParams struct {
+	CallUuid      *openapi_types.UUID `form:"call_uuid,omitempty" json:"call_uuid,omitempty"`
+	CreatedByUuid *openapi_types.UUID `form:"created_by_uuid,omitempty" json:"created_by_uuid,omitempty"`
+	MyProposals   *bool               `form:"my_proposals,omitempty" json:"my_proposals,omitempty"`
+	Name          *string             `form:"name,omitempty" json:"name,omitempty"`
+
+	// O Ordering
+	//
+	O                *[]ProposalOEnum    `form:"o,omitempty" json:"o,omitempty"`
+	OrganizationUuid *openapi_types.UUID `form:"organization_uuid,omitempty" json:"organization_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize  *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Round     *openapi_types.UUID `form:"round,omitempty" json:"round,omitempty"`
+	RoundUuid *openapi_types.UUID `form:"round_uuid,omitempty" json:"round_uuid,omitempty"`
+
+	// Slug Slug
+	Slug  *string           `form:"slug,omitempty" json:"slug,omitempty"`
+	State *[]ProposalStates `form:"state,omitempty" json:"state,omitempty"`
+}
+
 // ProposalProtectedCallsListParams defines parameters for ProposalProtectedCallsList.
 type ProposalProtectedCallsListParams struct {
 	Customer        *string                   `form:"customer,omitempty" json:"customer,omitempty"`
@@ -67699,6 +68155,15 @@ type ProposalProtectedCallsSuggestionsListParams struct {
 	// Slug Slug
 	Slug  *string       `form:"slug,omitempty" json:"slug,omitempty"`
 	State *[]CallStates `form:"state,omitempty" json:"state,omitempty"`
+}
+
+// ProposalProtectedCallsWorkflowStepsListParams defines parameters for ProposalProtectedCallsWorkflowStepsList.
+type ProposalProtectedCallsWorkflowStepsListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
 // ProposalPublicCallsListParams defines parameters for ProposalPublicCallsList.
@@ -74194,6 +74659,9 @@ type ProposalProposalsAttachDocumentFormdataRequestBody = ProposalDocumentationR
 // ProposalProposalsAttachDocumentMultipartRequestBody defines body for ProposalProposalsAttachDocument for multipart/form-data ContentType.
 type ProposalProposalsAttachDocumentMultipartRequestBody = ProposalDocumentationRequestMultipart
 
+// ProposalProposalsCompleteWorkflowStepJSONRequestBody defines body for ProposalProposalsCompleteWorkflowStep for application/json ContentType.
+type ProposalProposalsCompleteWorkflowStepJSONRequestBody = CompleteWorkflowStepRequest
+
 // ProposalProposalsDeleteUserJSONRequestBody defines body for ProposalProposalsDeleteUser for application/json ContentType.
 type ProposalProposalsDeleteUserJSONRequestBody = UserRoleDeleteRequest
 
@@ -74202,6 +74670,9 @@ type ProposalProposalsDetachDocumentsJSONRequestBody = ProposalDetachDocumentsRe
 
 // ProposalProposalsRejectJSONRequestBody defines body for ProposalProposalsReject for application/json ContentType.
 type ProposalProposalsRejectJSONRequestBody = ProposalApproveRequest
+
+// ProposalProposalsRejectWorkflowStepJSONRequestBody defines body for ProposalProposalsRejectWorkflowStep for application/json ContentType.
+type ProposalProposalsRejectWorkflowStepJSONRequestBody = RejectWorkflowStepRequest
 
 // ProposalProposalsResourcesSetJSONRequestBody defines body for ProposalProposalsResourcesSet for application/json ContentType.
 type ProposalProposalsResourcesSetJSONRequestBody = RequestedResourceRequest
@@ -74304,6 +74775,15 @@ type ProposalProtectedCallsSendAllAssignmentsJSONRequestBody = SendAllAssignment
 
 // ProposalProtectedCallsUpdateUserJSONRequestBody defines body for ProposalProtectedCallsUpdateUser for application/json ContentType.
 type ProposalProtectedCallsUpdateUserJSONRequestBody = UserRoleUpdateRequest
+
+// ProposalProtectedCallsWorkflowStepsSetJSONRequestBody defines body for ProposalProtectedCallsWorkflowStepsSet for application/json ContentType.
+type ProposalProtectedCallsWorkflowStepsSetJSONRequestBody = CallWorkflowStepRequest
+
+// ProposalProtectedCallsWorkflowStepsPartialUpdateJSONRequestBody defines body for ProposalProtectedCallsWorkflowStepsPartialUpdate for application/json ContentType.
+type ProposalProtectedCallsWorkflowStepsPartialUpdateJSONRequestBody = PatchedCallWorkflowStepRequest
+
+// ProposalProtectedCallsWorkflowStepsUpdateJSONRequestBody defines body for ProposalProtectedCallsWorkflowStepsUpdate for application/json ContentType.
+type ProposalProtectedCallsWorkflowStepsUpdateJSONRequestBody = CallWorkflowStepRequest
 
 // ProposalReviewsCreateJSONRequestBody defines body for ProposalReviewsCreate for application/json ContentType.
 type ProposalReviewsCreateJSONRequestBody = ProposalReviewRequest
@@ -75703,6 +76183,182 @@ func (t AzureVirtualMachine_AccessUrl) MarshalJSON() ([]byte, error) {
 }
 
 func (t *AzureVirtualMachine_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsResponsibleRoleEnum returns the union data inside the CallWorkflowStep_ResponsibleRole as a ResponsibleRoleEnum
+func (t CallWorkflowStep_ResponsibleRole) AsResponsibleRoleEnum() (ResponsibleRoleEnum, error) {
+	var body ResponsibleRoleEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromResponsibleRoleEnum overwrites any union data inside the CallWorkflowStep_ResponsibleRole as the provided ResponsibleRoleEnum
+func (t *CallWorkflowStep_ResponsibleRole) FromResponsibleRoleEnum(v ResponsibleRoleEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeResponsibleRoleEnum performs a merge with any union data inside the CallWorkflowStep_ResponsibleRole, using the provided ResponsibleRoleEnum
+func (t *CallWorkflowStep_ResponsibleRole) MergeResponsibleRoleEnum(v ResponsibleRoleEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the CallWorkflowStep_ResponsibleRole as a BlankEnum
+func (t CallWorkflowStep_ResponsibleRole) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the CallWorkflowStep_ResponsibleRole as the provided BlankEnum
+func (t *CallWorkflowStep_ResponsibleRole) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the CallWorkflowStep_ResponsibleRole, using the provided BlankEnum
+func (t *CallWorkflowStep_ResponsibleRole) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the CallWorkflowStep_ResponsibleRole as a NullEnum
+func (t CallWorkflowStep_ResponsibleRole) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the CallWorkflowStep_ResponsibleRole as the provided NullEnum
+func (t *CallWorkflowStep_ResponsibleRole) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the CallWorkflowStep_ResponsibleRole, using the provided NullEnum
+func (t *CallWorkflowStep_ResponsibleRole) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t CallWorkflowStep_ResponsibleRole) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *CallWorkflowStep_ResponsibleRole) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsResponsibleRoleEnum returns the union data inside the CallWorkflowStepRequest_ResponsibleRole as a ResponsibleRoleEnum
+func (t CallWorkflowStepRequest_ResponsibleRole) AsResponsibleRoleEnum() (ResponsibleRoleEnum, error) {
+	var body ResponsibleRoleEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromResponsibleRoleEnum overwrites any union data inside the CallWorkflowStepRequest_ResponsibleRole as the provided ResponsibleRoleEnum
+func (t *CallWorkflowStepRequest_ResponsibleRole) FromResponsibleRoleEnum(v ResponsibleRoleEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeResponsibleRoleEnum performs a merge with any union data inside the CallWorkflowStepRequest_ResponsibleRole, using the provided ResponsibleRoleEnum
+func (t *CallWorkflowStepRequest_ResponsibleRole) MergeResponsibleRoleEnum(v ResponsibleRoleEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the CallWorkflowStepRequest_ResponsibleRole as a BlankEnum
+func (t CallWorkflowStepRequest_ResponsibleRole) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the CallWorkflowStepRequest_ResponsibleRole as the provided BlankEnum
+func (t *CallWorkflowStepRequest_ResponsibleRole) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the CallWorkflowStepRequest_ResponsibleRole, using the provided BlankEnum
+func (t *CallWorkflowStepRequest_ResponsibleRole) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the CallWorkflowStepRequest_ResponsibleRole as a NullEnum
+func (t CallWorkflowStepRequest_ResponsibleRole) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the CallWorkflowStepRequest_ResponsibleRole as the provided NullEnum
+func (t *CallWorkflowStepRequest_ResponsibleRole) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the CallWorkflowStepRequest_ResponsibleRole, using the provided NullEnum
+func (t *CallWorkflowStepRequest_ResponsibleRole) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t CallWorkflowStepRequest_ResponsibleRole) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *CallWorkflowStepRequest_ResponsibleRole) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -83671,6 +84327,94 @@ func (t *OrderCreateRequest_Attributes) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsResponsibleRoleEnum returns the union data inside the PatchedCallWorkflowStepRequest_ResponsibleRole as a ResponsibleRoleEnum
+func (t PatchedCallWorkflowStepRequest_ResponsibleRole) AsResponsibleRoleEnum() (ResponsibleRoleEnum, error) {
+	var body ResponsibleRoleEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromResponsibleRoleEnum overwrites any union data inside the PatchedCallWorkflowStepRequest_ResponsibleRole as the provided ResponsibleRoleEnum
+func (t *PatchedCallWorkflowStepRequest_ResponsibleRole) FromResponsibleRoleEnum(v ResponsibleRoleEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeResponsibleRoleEnum performs a merge with any union data inside the PatchedCallWorkflowStepRequest_ResponsibleRole, using the provided ResponsibleRoleEnum
+func (t *PatchedCallWorkflowStepRequest_ResponsibleRole) MergeResponsibleRoleEnum(v ResponsibleRoleEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the PatchedCallWorkflowStepRequest_ResponsibleRole as a BlankEnum
+func (t PatchedCallWorkflowStepRequest_ResponsibleRole) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the PatchedCallWorkflowStepRequest_ResponsibleRole as the provided BlankEnum
+func (t *PatchedCallWorkflowStepRequest_ResponsibleRole) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the PatchedCallWorkflowStepRequest_ResponsibleRole, using the provided BlankEnum
+func (t *PatchedCallWorkflowStepRequest_ResponsibleRole) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the PatchedCallWorkflowStepRequest_ResponsibleRole as a NullEnum
+func (t PatchedCallWorkflowStepRequest_ResponsibleRole) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the PatchedCallWorkflowStepRequest_ResponsibleRole as the provided NullEnum
+func (t *PatchedCallWorkflowStepRequest_ResponsibleRole) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the PatchedCallWorkflowStepRequest_ResponsibleRole, using the provided NullEnum
+func (t *PatchedCallWorkflowStepRequest_ResponsibleRole) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PatchedCallWorkflowStepRequest_ResponsibleRole) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PatchedCallWorkflowStepRequest_ResponsibleRole) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsWidgetEnum returns the union data inside the PatchedCategoryColumnRequest_Widget as a WidgetEnum
 func (t PatchedCategoryColumnRequest_Widget) AsWidgetEnum() (WidgetEnum, error) {
 	var body WidgetEnum
@@ -88697,7 +89441,7 @@ type ClientInterface interface {
 	AffiliatedOrganizationsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// AffiliatedOrganizationsRetrieve request
-	AffiliatedOrganizationsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	AffiliatedOrganizationsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *AffiliatedOrganizationsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// AffiliatedOrganizationsPartialUpdateWithBody request with any body
 	AffiliatedOrganizationsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -95467,6 +96211,11 @@ type ClientInterface interface {
 	// ProposalProposalsChecklistReviewRetrieve request
 	ProposalProposalsChecklistReviewRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ProposalProposalsCompleteWorkflowStepWithBody request with any body
+	ProposalProposalsCompleteWorkflowStepWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ProposalProposalsCompleteWorkflowStep(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsCompleteWorkflowStepJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ProposalProposalsCompletionReviewStatusRetrieve request
 	ProposalProposalsCompletionReviewStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -95490,6 +96239,11 @@ type ClientInterface interface {
 	ProposalProposalsRejectWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	ProposalProposalsReject(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProposalsRejectWorkflowStepWithBody request with any body
+	ProposalProposalsRejectWorkflowStepWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ProposalProposalsRejectWorkflowStep(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsRejectWorkflowStepJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProposalsResourcesList request
 	ProposalProposalsResourcesList(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsResourcesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -95532,6 +96286,9 @@ type ClientInterface interface {
 	ProposalProposalsUpdateUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	ProposalProposalsUpdateUser(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProposalsWorkflowStatesList request
+	ProposalProposalsWorkflowStatesList(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsWorkflowStatesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProtectedCallsList request
 	ProposalProtectedCallsList(ctx context.Context, params *ProposalProtectedCallsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -95762,6 +96519,30 @@ type ClientInterface interface {
 	ProposalProtectedCallsUpdateUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	ProposalProtectedCallsUpdateUser(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProtectedCallsWorkflowStepsList request
+	ProposalProtectedCallsWorkflowStepsList(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsWorkflowStepsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProtectedCallsWorkflowStepsSetWithBody request with any body
+	ProposalProtectedCallsWorkflowStepsSetWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ProposalProtectedCallsWorkflowStepsSet(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsWorkflowStepsSetJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProtectedCallsWorkflowStepsDestroy request
+	ProposalProtectedCallsWorkflowStepsDestroy(ctx context.Context, uuid string, objUuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProtectedCallsWorkflowStepsRetrieve request
+	ProposalProtectedCallsWorkflowStepsRetrieve(ctx context.Context, uuid string, objUuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProtectedCallsWorkflowStepsPartialUpdateWithBody request with any body
+	ProposalProtectedCallsWorkflowStepsPartialUpdateWithBody(ctx context.Context, uuid string, objUuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ProposalProtectedCallsWorkflowStepsPartialUpdate(ctx context.Context, uuid string, objUuid string, body ProposalProtectedCallsWorkflowStepsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProtectedCallsWorkflowStepsUpdateWithBody request with any body
+	ProposalProtectedCallsWorkflowStepsUpdateWithBody(ctx context.Context, uuid string, objUuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ProposalProtectedCallsWorkflowStepsUpdate(ctx context.Context, uuid string, objUuid string, body ProposalProtectedCallsWorkflowStepsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalPublicCallsList request
 	ProposalPublicCallsList(ctx context.Context, params *ProposalPublicCallsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -99305,8 +100086,8 @@ func (c *Client) AffiliatedOrganizationsDestroy(ctx context.Context, uuid openap
 	return c.Client.Do(req)
 }
 
-func (c *Client) AffiliatedOrganizationsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAffiliatedOrganizationsRetrieveRequest(c.Server, uuid)
+func (c *Client) AffiliatedOrganizationsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *AffiliatedOrganizationsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAffiliatedOrganizationsRetrieveRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -128981,6 +129762,30 @@ func (c *Client) ProposalProposalsChecklistReviewRetrieve(ctx context.Context, u
 	return c.Client.Do(req)
 }
 
+func (c *Client) ProposalProposalsCompleteWorkflowStepWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsCompleteWorkflowStepRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProposalsCompleteWorkflowStep(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsCompleteWorkflowStepJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsCompleteWorkflowStepRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ProposalProposalsCompletionReviewStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProposalsCompletionReviewStatusRetrieveRequest(c.Server, uuid)
 	if err != nil {
@@ -129079,6 +129884,30 @@ func (c *Client) ProposalProposalsRejectWithBody(ctx context.Context, uuid opena
 
 func (c *Client) ProposalProposalsReject(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProposalsRejectRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProposalsRejectWorkflowStepWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsRejectWorkflowStepRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProposalsRejectWorkflowStep(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsRejectWorkflowStepJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsRejectWorkflowStepRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -129271,6 +130100,18 @@ func (c *Client) ProposalProposalsUpdateUserWithBody(ctx context.Context, uuid o
 
 func (c *Client) ProposalProposalsUpdateUser(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProposalsUpdateUserRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProposalsWorkflowStatesList(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsWorkflowStatesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsWorkflowStatesListRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -130303,6 +131144,114 @@ func (c *Client) ProposalProtectedCallsUpdateUserWithBody(ctx context.Context, u
 
 func (c *Client) ProposalProtectedCallsUpdateUser(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProtectedCallsUpdateUserRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProtectedCallsWorkflowStepsList(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsWorkflowStepsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsWorkflowStepsListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProtectedCallsWorkflowStepsSetWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsWorkflowStepsSetRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProtectedCallsWorkflowStepsSet(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsWorkflowStepsSetJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsWorkflowStepsSetRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProtectedCallsWorkflowStepsDestroy(ctx context.Context, uuid string, objUuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsWorkflowStepsDestroyRequest(c.Server, uuid, objUuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProtectedCallsWorkflowStepsRetrieve(ctx context.Context, uuid string, objUuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsWorkflowStepsRetrieveRequest(c.Server, uuid, objUuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProtectedCallsWorkflowStepsPartialUpdateWithBody(ctx context.Context, uuid string, objUuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsWorkflowStepsPartialUpdateRequestWithBody(c.Server, uuid, objUuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProtectedCallsWorkflowStepsPartialUpdate(ctx context.Context, uuid string, objUuid string, body ProposalProtectedCallsWorkflowStepsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsWorkflowStepsPartialUpdateRequest(c.Server, uuid, objUuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProtectedCallsWorkflowStepsUpdateWithBody(ctx context.Context, uuid string, objUuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsWorkflowStepsUpdateRequestWithBody(c.Server, uuid, objUuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProtectedCallsWorkflowStepsUpdate(ctx context.Context, uuid string, objUuid string, body ProposalProtectedCallsWorkflowStepsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsWorkflowStepsUpdateRequest(c.Server, uuid, objUuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -144408,6 +145357,18 @@ func NewAffiliatedOrganizationsListRequest(server string, params *AffiliatedOrga
 
 		}
 
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.Name != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -145055,7 +146016,7 @@ func NewAffiliatedOrganizationsDestroyRequest(server string, uuid openapi_types.
 }
 
 // NewAffiliatedOrganizationsRetrieveRequest generates requests for AffiliatedOrganizationsRetrieve
-func NewAffiliatedOrganizationsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+func NewAffiliatedOrganizationsRetrieveRequest(server string, uuid openapi_types.UUID, params *AffiliatedOrganizationsRetrieveParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -145078,6 +146039,33 @@ func NewAffiliatedOrganizationsRetrieveRequest(server string, uuid openapi_types
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -287286,6 +288274,53 @@ func NewProposalProposalsChecklistReviewRetrieveRequest(server string, uuid open
 	return req, nil
 }
 
+// NewProposalProposalsCompleteWorkflowStepRequest calls the generic ProposalProposalsCompleteWorkflowStep builder with application/json body
+func NewProposalProposalsCompleteWorkflowStepRequest(server string, uuid openapi_types.UUID, body ProposalProposalsCompleteWorkflowStepJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewProposalProposalsCompleteWorkflowStepRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewProposalProposalsCompleteWorkflowStepRequestWithBody generates requests for ProposalProposalsCompleteWorkflowStep with any type of body
+func NewProposalProposalsCompleteWorkflowStepRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-proposals/%s/complete_workflow_step/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewProposalProposalsCompletionReviewStatusRetrieveRequest generates requests for ProposalProposalsCompletionReviewStatusRetrieve
 func NewProposalProposalsCompletionReviewStatusRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -287669,6 +288704,53 @@ func NewProposalProposalsRejectRequestWithBody(server string, uuid openapi_types
 	}
 
 	operationPath := fmt.Sprintf("/api/proposal-proposals/%s/reject/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewProposalProposalsRejectWorkflowStepRequest calls the generic ProposalProposalsRejectWorkflowStep builder with application/json body
+func NewProposalProposalsRejectWorkflowStepRequest(server string, uuid openapi_types.UUID, body ProposalProposalsRejectWorkflowStepJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewProposalProposalsRejectWorkflowStepRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewProposalProposalsRejectWorkflowStepRequestWithBody generates requests for ProposalProposalsRejectWorkflowStep with any type of body
+func NewProposalProposalsRejectWorkflowStepRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-proposals/%s/reject_workflow_step/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -288169,6 +289251,199 @@ func NewProposalProposalsUpdateUserRequestWithBody(server string, uuid openapi_t
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewProposalProposalsWorkflowStatesListRequest generates requests for ProposalProposalsWorkflowStatesList
+func NewProposalProposalsWorkflowStatesListRequest(server string, uuid openapi_types.UUID, params *ProposalProposalsWorkflowStatesListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-proposals/%s/workflow_states/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CallUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "call_uuid", *params.CallUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedByUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_by_uuid", *params.CreatedByUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.MyProposals != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "my_proposals", *params.MyProposals, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OrganizationUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "organization_uuid", *params.OrganizationUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Round != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "round", *params.Round, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RoundUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "round_uuid", *params.RoundUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Slug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -292403,6 +293678,316 @@ func NewProposalProtectedCallsUpdateUserRequestWithBody(server string, uuid open
 	}
 
 	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewProposalProtectedCallsWorkflowStepsListRequest generates requests for ProposalProtectedCallsWorkflowStepsList
+func NewProposalProtectedCallsWorkflowStepsListRequest(server string, uuid openapi_types.UUID, params *ProposalProtectedCallsWorkflowStepsListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-protected-calls/%s/workflow_steps/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProposalProtectedCallsWorkflowStepsSetRequest calls the generic ProposalProtectedCallsWorkflowStepsSet builder with application/json body
+func NewProposalProtectedCallsWorkflowStepsSetRequest(server string, uuid openapi_types.UUID, body ProposalProtectedCallsWorkflowStepsSetJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewProposalProtectedCallsWorkflowStepsSetRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewProposalProtectedCallsWorkflowStepsSetRequestWithBody generates requests for ProposalProtectedCallsWorkflowStepsSet with any type of body
+func NewProposalProtectedCallsWorkflowStepsSetRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-protected-calls/%s/workflow_steps/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewProposalProtectedCallsWorkflowStepsDestroyRequest generates requests for ProposalProtectedCallsWorkflowStepsDestroy
+func NewProposalProtectedCallsWorkflowStepsDestroyRequest(server string, uuid string, objUuid string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "obj_uuid", objUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-protected-calls/%s/workflow_steps/%s/", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProposalProtectedCallsWorkflowStepsRetrieveRequest generates requests for ProposalProtectedCallsWorkflowStepsRetrieve
+func NewProposalProtectedCallsWorkflowStepsRetrieveRequest(server string, uuid string, objUuid string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "obj_uuid", objUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-protected-calls/%s/workflow_steps/%s/", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProposalProtectedCallsWorkflowStepsPartialUpdateRequest calls the generic ProposalProtectedCallsWorkflowStepsPartialUpdate builder with application/json body
+func NewProposalProtectedCallsWorkflowStepsPartialUpdateRequest(server string, uuid string, objUuid string, body ProposalProtectedCallsWorkflowStepsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewProposalProtectedCallsWorkflowStepsPartialUpdateRequestWithBody(server, uuid, objUuid, "application/json", bodyReader)
+}
+
+// NewProposalProtectedCallsWorkflowStepsPartialUpdateRequestWithBody generates requests for ProposalProtectedCallsWorkflowStepsPartialUpdate with any type of body
+func NewProposalProtectedCallsWorkflowStepsPartialUpdateRequestWithBody(server string, uuid string, objUuid string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "obj_uuid", objUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-protected-calls/%s/workflow_steps/%s/", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewProposalProtectedCallsWorkflowStepsUpdateRequest calls the generic ProposalProtectedCallsWorkflowStepsUpdate builder with application/json body
+func NewProposalProtectedCallsWorkflowStepsUpdateRequest(server string, uuid string, objUuid string, body ProposalProtectedCallsWorkflowStepsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewProposalProtectedCallsWorkflowStepsUpdateRequestWithBody(server, uuid, objUuid, "application/json", bodyReader)
+}
+
+// NewProposalProtectedCallsWorkflowStepsUpdateRequestWithBody generates requests for ProposalProtectedCallsWorkflowStepsUpdate with any type of body
+func NewProposalProtectedCallsWorkflowStepsUpdateRequestWithBody(server string, uuid string, objUuid string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "obj_uuid", objUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-protected-calls/%s/workflow_steps/%s/", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
@@ -332013,7 +333598,7 @@ type ClientWithResponsesInterface interface {
 	AffiliatedOrganizationsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AffiliatedOrganizationsDestroyResponse, error)
 
 	// AffiliatedOrganizationsRetrieveWithResponse request
-	AffiliatedOrganizationsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AffiliatedOrganizationsRetrieveResponse, error)
+	AffiliatedOrganizationsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *AffiliatedOrganizationsRetrieveParams, reqEditors ...RequestEditorFn) (*AffiliatedOrganizationsRetrieveResponse, error)
 
 	// AffiliatedOrganizationsPartialUpdateWithBodyWithResponse request with any body
 	AffiliatedOrganizationsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AffiliatedOrganizationsPartialUpdateResponse, error)
@@ -338783,6 +340368,11 @@ type ClientWithResponsesInterface interface {
 	// ProposalProposalsChecklistReviewRetrieveWithResponse request
 	ProposalProposalsChecklistReviewRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsChecklistReviewRetrieveResponse, error)
 
+	// ProposalProposalsCompleteWorkflowStepWithBodyWithResponse request with any body
+	ProposalProposalsCompleteWorkflowStepWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsCompleteWorkflowStepResponse, error)
+
+	ProposalProposalsCompleteWorkflowStepWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsCompleteWorkflowStepJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsCompleteWorkflowStepResponse, error)
+
 	// ProposalProposalsCompletionReviewStatusRetrieveWithResponse request
 	ProposalProposalsCompletionReviewStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsCompletionReviewStatusRetrieveResponse, error)
 
@@ -338806,6 +340396,11 @@ type ClientWithResponsesInterface interface {
 	ProposalProposalsRejectWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsRejectResponse, error)
 
 	ProposalProposalsRejectWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsRejectResponse, error)
+
+	// ProposalProposalsRejectWorkflowStepWithBodyWithResponse request with any body
+	ProposalProposalsRejectWorkflowStepWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsRejectWorkflowStepResponse, error)
+
+	ProposalProposalsRejectWorkflowStepWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsRejectWorkflowStepJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsRejectWorkflowStepResponse, error)
 
 	// ProposalProposalsResourcesListWithResponse request
 	ProposalProposalsResourcesListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsResourcesListParams, reqEditors ...RequestEditorFn) (*ProposalProposalsResourcesListResponse, error)
@@ -338848,6 +340443,9 @@ type ClientWithResponsesInterface interface {
 	ProposalProposalsUpdateUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsUpdateUserResponse, error)
 
 	ProposalProposalsUpdateUserWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsUpdateUserResponse, error)
+
+	// ProposalProposalsWorkflowStatesListWithResponse request
+	ProposalProposalsWorkflowStatesListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsWorkflowStatesListParams, reqEditors ...RequestEditorFn) (*ProposalProposalsWorkflowStatesListResponse, error)
 
 	// ProposalProtectedCallsListWithResponse request
 	ProposalProtectedCallsListWithResponse(ctx context.Context, params *ProposalProtectedCallsListParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsListResponse, error)
@@ -339078,6 +340676,30 @@ type ClientWithResponsesInterface interface {
 	ProposalProtectedCallsUpdateUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsUpdateUserResponse, error)
 
 	ProposalProtectedCallsUpdateUserWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsUpdateUserResponse, error)
+
+	// ProposalProtectedCallsWorkflowStepsListWithResponse request
+	ProposalProtectedCallsWorkflowStepsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsWorkflowStepsListParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsWorkflowStepsListResponse, error)
+
+	// ProposalProtectedCallsWorkflowStepsSetWithBodyWithResponse request with any body
+	ProposalProtectedCallsWorkflowStepsSetWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsWorkflowStepsSetResponse, error)
+
+	ProposalProtectedCallsWorkflowStepsSetWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsWorkflowStepsSetJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsWorkflowStepsSetResponse, error)
+
+	// ProposalProtectedCallsWorkflowStepsDestroyWithResponse request
+	ProposalProtectedCallsWorkflowStepsDestroyWithResponse(ctx context.Context, uuid string, objUuid string, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsWorkflowStepsDestroyResponse, error)
+
+	// ProposalProtectedCallsWorkflowStepsRetrieveWithResponse request
+	ProposalProtectedCallsWorkflowStepsRetrieveWithResponse(ctx context.Context, uuid string, objUuid string, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsWorkflowStepsRetrieveResponse, error)
+
+	// ProposalProtectedCallsWorkflowStepsPartialUpdateWithBodyWithResponse request with any body
+	ProposalProtectedCallsWorkflowStepsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid string, objUuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsWorkflowStepsPartialUpdateResponse, error)
+
+	ProposalProtectedCallsWorkflowStepsPartialUpdateWithResponse(ctx context.Context, uuid string, objUuid string, body ProposalProtectedCallsWorkflowStepsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsWorkflowStepsPartialUpdateResponse, error)
+
+	// ProposalProtectedCallsWorkflowStepsUpdateWithBodyWithResponse request with any body
+	ProposalProtectedCallsWorkflowStepsUpdateWithBodyWithResponse(ctx context.Context, uuid string, objUuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsWorkflowStepsUpdateResponse, error)
+
+	ProposalProtectedCallsWorkflowStepsUpdateWithResponse(ctx context.Context, uuid string, objUuid string, body ProposalProtectedCallsWorkflowStepsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsWorkflowStepsUpdateResponse, error)
 
 	// ProposalPublicCallsListWithResponse request
 	ProposalPublicCallsListWithResponse(ctx context.Context, params *ProposalPublicCallsListParams, reqEditors ...RequestEditorFn) (*ProposalPublicCallsListResponse, error)
@@ -398132,6 +399754,36 @@ func (r ProposalProposalsChecklistReviewRetrieveResponse) ContentType() string {
 	return ""
 }
 
+type ProposalProposalsCompleteWorkflowStepResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CompleteWorkflowStepResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProposalsCompleteWorkflowStepResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProposalsCompleteWorkflowStepResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalProposalsCompleteWorkflowStepResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type ProposalProposalsCompletionReviewStatusRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -398307,6 +399959,36 @@ func (r ProposalProposalsRejectResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r ProposalProposalsRejectResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProposalProposalsRejectWorkflowStepResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RejectWorkflowStepResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProposalsRejectWorkflowStepResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProposalsRejectWorkflowStepResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalProposalsRejectWorkflowStepResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -398606,6 +400288,36 @@ func (r ProposalProposalsUpdateUserResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r ProposalProposalsUpdateUserResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProposalProposalsWorkflowStatesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ProposalWorkflowStepInstance
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProposalsWorkflowStatesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProposalsWorkflowStatesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalProposalsWorkflowStatesListResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -400337,6 +402049,185 @@ func (r ProposalProtectedCallsUpdateUserResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r ProposalProtectedCallsUpdateUserResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProposalProtectedCallsWorkflowStepsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]CallWorkflowStep
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProtectedCallsWorkflowStepsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProtectedCallsWorkflowStepsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalProtectedCallsWorkflowStepsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProposalProtectedCallsWorkflowStepsSetResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CallWorkflowStep
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProtectedCallsWorkflowStepsSetResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProtectedCallsWorkflowStepsSetResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalProtectedCallsWorkflowStepsSetResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProposalProtectedCallsWorkflowStepsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProtectedCallsWorkflowStepsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProtectedCallsWorkflowStepsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalProtectedCallsWorkflowStepsDestroyResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProposalProtectedCallsWorkflowStepsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CallWorkflowStep
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProtectedCallsWorkflowStepsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProtectedCallsWorkflowStepsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalProtectedCallsWorkflowStepsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProposalProtectedCallsWorkflowStepsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CallWorkflowStep
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProtectedCallsWorkflowStepsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProtectedCallsWorkflowStepsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalProtectedCallsWorkflowStepsPartialUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProposalProtectedCallsWorkflowStepsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CallWorkflowStep
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProtectedCallsWorkflowStepsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProtectedCallsWorkflowStepsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalProtectedCallsWorkflowStepsUpdateResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -417256,8 +419147,8 @@ func (c *ClientWithResponses) AffiliatedOrganizationsDestroyWithResponse(ctx con
 }
 
 // AffiliatedOrganizationsRetrieveWithResponse request returning *AffiliatedOrganizationsRetrieveResponse
-func (c *ClientWithResponses) AffiliatedOrganizationsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AffiliatedOrganizationsRetrieveResponse, error) {
-	rsp, err := c.AffiliatedOrganizationsRetrieve(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) AffiliatedOrganizationsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *AffiliatedOrganizationsRetrieveParams, reqEditors ...RequestEditorFn) (*AffiliatedOrganizationsRetrieveResponse, error) {
+	rsp, err := c.AffiliatedOrganizationsRetrieve(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -438864,6 +440755,23 @@ func (c *ClientWithResponses) ProposalProposalsChecklistReviewRetrieveWithRespon
 	return ParseProposalProposalsChecklistReviewRetrieveResponse(rsp)
 }
 
+// ProposalProposalsCompleteWorkflowStepWithBodyWithResponse request with arbitrary body returning *ProposalProposalsCompleteWorkflowStepResponse
+func (c *ClientWithResponses) ProposalProposalsCompleteWorkflowStepWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsCompleteWorkflowStepResponse, error) {
+	rsp, err := c.ProposalProposalsCompleteWorkflowStepWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProposalsCompleteWorkflowStepResponse(rsp)
+}
+
+func (c *ClientWithResponses) ProposalProposalsCompleteWorkflowStepWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsCompleteWorkflowStepJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsCompleteWorkflowStepResponse, error) {
+	rsp, err := c.ProposalProposalsCompleteWorkflowStep(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProposalsCompleteWorkflowStepResponse(rsp)
+}
+
 // ProposalProposalsCompletionReviewStatusRetrieveWithResponse request returning *ProposalProposalsCompletionReviewStatusRetrieveResponse
 func (c *ClientWithResponses) ProposalProposalsCompletionReviewStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsCompletionReviewStatusRetrieveResponse, error) {
 	rsp, err := c.ProposalProposalsCompletionReviewStatusRetrieve(ctx, uuid, reqEditors...)
@@ -438940,6 +440848,23 @@ func (c *ClientWithResponses) ProposalProposalsRejectWithResponse(ctx context.Co
 		return nil, err
 	}
 	return ParseProposalProposalsRejectResponse(rsp)
+}
+
+// ProposalProposalsRejectWorkflowStepWithBodyWithResponse request with arbitrary body returning *ProposalProposalsRejectWorkflowStepResponse
+func (c *ClientWithResponses) ProposalProposalsRejectWorkflowStepWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsRejectWorkflowStepResponse, error) {
+	rsp, err := c.ProposalProposalsRejectWorkflowStepWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProposalsRejectWorkflowStepResponse(rsp)
+}
+
+func (c *ClientWithResponses) ProposalProposalsRejectWorkflowStepWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsRejectWorkflowStepJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsRejectWorkflowStepResponse, error) {
+	rsp, err := c.ProposalProposalsRejectWorkflowStep(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProposalsRejectWorkflowStepResponse(rsp)
 }
 
 // ProposalProposalsResourcesListWithResponse request returning *ProposalProposalsResourcesListResponse
@@ -439078,6 +441003,15 @@ func (c *ClientWithResponses) ProposalProposalsUpdateUserWithResponse(ctx contex
 		return nil, err
 	}
 	return ParseProposalProposalsUpdateUserResponse(rsp)
+}
+
+// ProposalProposalsWorkflowStatesListWithResponse request returning *ProposalProposalsWorkflowStatesListResponse
+func (c *ClientWithResponses) ProposalProposalsWorkflowStatesListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsWorkflowStatesListParams, reqEditors ...RequestEditorFn) (*ProposalProposalsWorkflowStatesListResponse, error) {
+	rsp, err := c.ProposalProposalsWorkflowStatesList(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProposalsWorkflowStatesListResponse(rsp)
 }
 
 // ProposalProtectedCallsListWithResponse request returning *ProposalProtectedCallsListResponse
@@ -439824,6 +441758,84 @@ func (c *ClientWithResponses) ProposalProtectedCallsUpdateUserWithResponse(ctx c
 		return nil, err
 	}
 	return ParseProposalProtectedCallsUpdateUserResponse(rsp)
+}
+
+// ProposalProtectedCallsWorkflowStepsListWithResponse request returning *ProposalProtectedCallsWorkflowStepsListResponse
+func (c *ClientWithResponses) ProposalProtectedCallsWorkflowStepsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsWorkflowStepsListParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsWorkflowStepsListResponse, error) {
+	rsp, err := c.ProposalProtectedCallsWorkflowStepsList(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsWorkflowStepsListResponse(rsp)
+}
+
+// ProposalProtectedCallsWorkflowStepsSetWithBodyWithResponse request with arbitrary body returning *ProposalProtectedCallsWorkflowStepsSetResponse
+func (c *ClientWithResponses) ProposalProtectedCallsWorkflowStepsSetWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsWorkflowStepsSetResponse, error) {
+	rsp, err := c.ProposalProtectedCallsWorkflowStepsSetWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsWorkflowStepsSetResponse(rsp)
+}
+
+func (c *ClientWithResponses) ProposalProtectedCallsWorkflowStepsSetWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsWorkflowStepsSetJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsWorkflowStepsSetResponse, error) {
+	rsp, err := c.ProposalProtectedCallsWorkflowStepsSet(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsWorkflowStepsSetResponse(rsp)
+}
+
+// ProposalProtectedCallsWorkflowStepsDestroyWithResponse request returning *ProposalProtectedCallsWorkflowStepsDestroyResponse
+func (c *ClientWithResponses) ProposalProtectedCallsWorkflowStepsDestroyWithResponse(ctx context.Context, uuid string, objUuid string, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsWorkflowStepsDestroyResponse, error) {
+	rsp, err := c.ProposalProtectedCallsWorkflowStepsDestroy(ctx, uuid, objUuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsWorkflowStepsDestroyResponse(rsp)
+}
+
+// ProposalProtectedCallsWorkflowStepsRetrieveWithResponse request returning *ProposalProtectedCallsWorkflowStepsRetrieveResponse
+func (c *ClientWithResponses) ProposalProtectedCallsWorkflowStepsRetrieveWithResponse(ctx context.Context, uuid string, objUuid string, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsWorkflowStepsRetrieveResponse, error) {
+	rsp, err := c.ProposalProtectedCallsWorkflowStepsRetrieve(ctx, uuid, objUuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsWorkflowStepsRetrieveResponse(rsp)
+}
+
+// ProposalProtectedCallsWorkflowStepsPartialUpdateWithBodyWithResponse request with arbitrary body returning *ProposalProtectedCallsWorkflowStepsPartialUpdateResponse
+func (c *ClientWithResponses) ProposalProtectedCallsWorkflowStepsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid string, objUuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsWorkflowStepsPartialUpdateResponse, error) {
+	rsp, err := c.ProposalProtectedCallsWorkflowStepsPartialUpdateWithBody(ctx, uuid, objUuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsWorkflowStepsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ProposalProtectedCallsWorkflowStepsPartialUpdateWithResponse(ctx context.Context, uuid string, objUuid string, body ProposalProtectedCallsWorkflowStepsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsWorkflowStepsPartialUpdateResponse, error) {
+	rsp, err := c.ProposalProtectedCallsWorkflowStepsPartialUpdate(ctx, uuid, objUuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsWorkflowStepsPartialUpdateResponse(rsp)
+}
+
+// ProposalProtectedCallsWorkflowStepsUpdateWithBodyWithResponse request with arbitrary body returning *ProposalProtectedCallsWorkflowStepsUpdateResponse
+func (c *ClientWithResponses) ProposalProtectedCallsWorkflowStepsUpdateWithBodyWithResponse(ctx context.Context, uuid string, objUuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsWorkflowStepsUpdateResponse, error) {
+	rsp, err := c.ProposalProtectedCallsWorkflowStepsUpdateWithBody(ctx, uuid, objUuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsWorkflowStepsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ProposalProtectedCallsWorkflowStepsUpdateWithResponse(ctx context.Context, uuid string, objUuid string, body ProposalProtectedCallsWorkflowStepsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsWorkflowStepsUpdateResponse, error) {
+	rsp, err := c.ProposalProtectedCallsWorkflowStepsUpdate(ctx, uuid, objUuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsWorkflowStepsUpdateResponse(rsp)
 }
 
 // ProposalPublicCallsListWithResponse request returning *ProposalPublicCallsListResponse
@@ -490273,6 +492285,32 @@ func ParseProposalProposalsChecklistReviewRetrieveResponse(rsp *http.Response) (
 	return response, nil
 }
 
+// ParseProposalProposalsCompleteWorkflowStepResponse parses an HTTP response from a ProposalProposalsCompleteWorkflowStepWithResponse call
+func ParseProposalProposalsCompleteWorkflowStepResponse(rsp *http.Response) (*ProposalProposalsCompleteWorkflowStepResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProposalsCompleteWorkflowStepResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CompleteWorkflowStepResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseProposalProposalsCompletionReviewStatusRetrieveResponse parses an HTTP response from a ProposalProposalsCompletionReviewStatusRetrieveWithResponse call
 func ParseProposalProposalsCompletionReviewStatusRetrieveResponse(rsp *http.Response) (*ProposalProposalsCompletionReviewStatusRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -490422,6 +492460,32 @@ func ParseProposalProposalsRejectResponse(rsp *http.Response) (*ProposalProposal
 	response := &ProposalProposalsRejectResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseProposalProposalsRejectWorkflowStepResponse parses an HTTP response from a ProposalProposalsRejectWorkflowStepWithResponse call
+func ParseProposalProposalsRejectWorkflowStepResponse(rsp *http.Response) (*ProposalProposalsRejectWorkflowStepResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProposalsRejectWorkflowStepResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RejectWorkflowStepResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -490661,6 +492725,32 @@ func ParseProposalProposalsUpdateUserResponse(rsp *http.Response) (*ProposalProp
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest UserRoleExpirationTime
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProposalProposalsWorkflowStatesListResponse parses an HTTP response from a ProposalProposalsWorkflowStatesListWithResponse call
+func ParseProposalProposalsWorkflowStatesListResponse(rsp *http.Response) (*ProposalProposalsWorkflowStatesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProposalsWorkflowStatesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ProposalWorkflowStepInstance
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -492079,6 +494169,152 @@ func ParseProposalProtectedCallsUpdateUserResponse(rsp *http.Response) (*Proposa
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest UserRoleExpirationTime
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProposalProtectedCallsWorkflowStepsListResponse parses an HTTP response from a ProposalProtectedCallsWorkflowStepsListWithResponse call
+func ParseProposalProtectedCallsWorkflowStepsListResponse(rsp *http.Response) (*ProposalProtectedCallsWorkflowStepsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProtectedCallsWorkflowStepsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []CallWorkflowStep
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProposalProtectedCallsWorkflowStepsSetResponse parses an HTTP response from a ProposalProtectedCallsWorkflowStepsSetWithResponse call
+func ParseProposalProtectedCallsWorkflowStepsSetResponse(rsp *http.Response) (*ProposalProtectedCallsWorkflowStepsSetResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProtectedCallsWorkflowStepsSetResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CallWorkflowStep
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProposalProtectedCallsWorkflowStepsDestroyResponse parses an HTTP response from a ProposalProtectedCallsWorkflowStepsDestroyWithResponse call
+func ParseProposalProtectedCallsWorkflowStepsDestroyResponse(rsp *http.Response) (*ProposalProtectedCallsWorkflowStepsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProtectedCallsWorkflowStepsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseProposalProtectedCallsWorkflowStepsRetrieveResponse parses an HTTP response from a ProposalProtectedCallsWorkflowStepsRetrieveWithResponse call
+func ParseProposalProtectedCallsWorkflowStepsRetrieveResponse(rsp *http.Response) (*ProposalProtectedCallsWorkflowStepsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProtectedCallsWorkflowStepsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CallWorkflowStep
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProposalProtectedCallsWorkflowStepsPartialUpdateResponse parses an HTTP response from a ProposalProtectedCallsWorkflowStepsPartialUpdateWithResponse call
+func ParseProposalProtectedCallsWorkflowStepsPartialUpdateResponse(rsp *http.Response) (*ProposalProtectedCallsWorkflowStepsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProtectedCallsWorkflowStepsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CallWorkflowStep
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProposalProtectedCallsWorkflowStepsUpdateResponse parses an HTTP response from a ProposalProtectedCallsWorkflowStepsUpdateWithResponse call
+func ParseProposalProtectedCallsWorkflowStepsUpdateResponse(rsp *http.Response) (*ProposalProtectedCallsWorkflowStepsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProtectedCallsWorkflowStepsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CallWorkflowStep
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
