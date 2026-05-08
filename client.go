@@ -9144,6 +9144,33 @@ func (e LbAlgorithmEnum) Valid() bool {
 	}
 }
 
+// Defines values for LevelEnum.
+const (
+	LevelEnumCRITICAL LevelEnum = "CRITICAL"
+	LevelEnumDEBUG    LevelEnum = "DEBUG"
+	LevelEnumERROR    LevelEnum = "ERROR"
+	LevelEnumINFO     LevelEnum = "INFO"
+	LevelEnumWARNING  LevelEnum = "WARNING"
+)
+
+// Valid indicates whether the value is a known member of the LevelEnum enum.
+func (e LevelEnum) Valid() bool {
+	switch e {
+	case LevelEnumCRITICAL:
+		return true
+	case LevelEnumDEBUG:
+		return true
+	case LevelEnumERROR:
+		return true
+	case LevelEnumINFO:
+		return true
+	case LevelEnumWARNING:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for LimitPeriodEnum.
 const (
 	LimitPeriodEnumAnnual    LimitPeriodEnum = "annual"
@@ -15309,6 +15336,8 @@ func (e ProjectCreditOEnum) Valid() bool {
 // Defines values for ProjectFieldEnum.
 const (
 	ProjectFieldEnumAffiliation                          ProjectFieldEnum = "affiliation"
+	ProjectFieldEnumAffiliationCode                      ProjectFieldEnum = "affiliation_code"
+	ProjectFieldEnumAffiliationName                      ProjectFieldEnum = "affiliation_name"
 	ProjectFieldEnumAffiliationUuid                      ProjectFieldEnum = "affiliation_uuid"
 	ProjectFieldEnumBackendId                            ProjectFieldEnum = "backend_id"
 	ProjectFieldEnumBillingPriceEstimate                 ProjectFieldEnum = "billing_price_estimate"
@@ -15363,6 +15392,10 @@ const (
 func (e ProjectFieldEnum) Valid() bool {
 	switch e {
 	case ProjectFieldEnumAffiliation:
+		return true
+	case ProjectFieldEnumAffiliationCode:
+		return true
+	case ProjectFieldEnumAffiliationName:
 		return true
 	case ProjectFieldEnumAffiliationUuid:
 		return true
@@ -19451,22 +19484,22 @@ func (e SyncStatusEnum) Valid() bool {
 
 // Defines values for SystemLogLevelEnum.
 const (
-	CRITICAL SystemLogLevelEnum = "CRITICAL"
-	ERROR    SystemLogLevelEnum = "ERROR"
-	INFO     SystemLogLevelEnum = "INFO"
-	WARNING  SystemLogLevelEnum = "WARNING"
+	SystemLogLevelEnumCRITICAL SystemLogLevelEnum = "CRITICAL"
+	SystemLogLevelEnumERROR    SystemLogLevelEnum = "ERROR"
+	SystemLogLevelEnumINFO     SystemLogLevelEnum = "INFO"
+	SystemLogLevelEnumWARNING  SystemLogLevelEnum = "WARNING"
 )
 
 // Valid indicates whether the value is a known member of the SystemLogLevelEnum enum.
 func (e SystemLogLevelEnum) Valid() bool {
 	switch e {
-	case CRITICAL:
+	case SystemLogLevelEnumCRITICAL:
 		return true
-	case ERROR:
+	case SystemLogLevelEnumERROR:
 		return true
-	case INFO:
+	case SystemLogLevelEnumINFO:
 		return true
-	case WARNING:
+	case SystemLogLevelEnumWARNING:
 		return true
 	default:
 		return false
@@ -26335,6 +26368,7 @@ type ConstanceSettings struct {
 	SIDEBARLOGOMOBILE                                *string                                                          `json:"SIDEBAR_LOGO_MOBILE,omitempty"`
 	SIDEBARSTYLE                                     *SIDEBARSTYLEEnum                                                `json:"SIDEBAR_STYLE,omitempty"`
 	SITEADDRESS                                      *string                                                          `json:"SITE_ADDRESS,omitempty"`
+	SITEAGENTLOGMAXROWSPERIDENTITY                   *int                                                             `json:"SITE_AGENT_LOG_MAX_ROWS_PER_IDENTITY,omitempty"`
 	SITEDESCRIPTION                                  *string                                                          `json:"SITE_DESCRIPTION,omitempty"`
 	SITEEMAIL                                        *string                                                          `json:"SITE_EMAIL,omitempty"`
 	SITENAME                                         *string                                                          `json:"SITE_NAME,omitempty"`
@@ -26664,6 +26698,7 @@ type ConstanceSettingsRequest struct {
 	SIDEBARLOGOMOBILE                                *openapi_types.File                                                     `json:"SIDEBAR_LOGO_MOBILE,omitempty"`
 	SIDEBARSTYLE                                     *SIDEBARSTYLEEnum                                                       `json:"SIDEBAR_STYLE,omitempty"`
 	SITEADDRESS                                      *string                                                                 `json:"SITE_ADDRESS,omitempty"`
+	SITEAGENTLOGMAXROWSPERIDENTITY                   *int                                                                    `json:"SITE_AGENT_LOG_MAX_ROWS_PER_IDENTITY,omitempty"`
 	SITEDESCRIPTION                                  *string                                                                 `json:"SITE_DESCRIPTION,omitempty"`
 	SITEEMAIL                                        *string                                                                 `json:"SITE_EMAIL,omitempty"`
 	SITENAME                                         *string                                                                 `json:"SITE_NAME,omitempty"`
@@ -26993,6 +27028,7 @@ type ConstanceSettingsRequestForm struct {
 	SIDEBARLOGOMOBILE                                *openapi_types.File                                                         `json:"SIDEBAR_LOGO_MOBILE,omitempty"`
 	SIDEBARSTYLE                                     *SIDEBARSTYLEEnum                                                           `json:"SIDEBAR_STYLE,omitempty"`
 	SITEADDRESS                                      *string                                                                     `json:"SITE_ADDRESS,omitempty"`
+	SITEAGENTLOGMAXROWSPERIDENTITY                   *int                                                                        `json:"SITE_AGENT_LOG_MAX_ROWS_PER_IDENTITY,omitempty"`
 	SITEDESCRIPTION                                  *string                                                                     `json:"SITE_DESCRIPTION,omitempty"`
 	SITEEMAIL                                        *string                                                                     `json:"SITE_EMAIL,omitempty"`
 	SITENAME                                         *string                                                                     `json:"SITE_NAME,omitempty"`
@@ -27322,6 +27358,7 @@ type ConstanceSettingsRequestMultipart struct {
 	SIDEBARLOGOMOBILE                                *openapi_types.File                                                              `json:"SIDEBAR_LOGO_MOBILE,omitempty"`
 	SIDEBARSTYLE                                     *SIDEBARSTYLEEnum                                                                `json:"SIDEBAR_STYLE,omitempty"`
 	SITEADDRESS                                      *string                                                                          `json:"SITE_ADDRESS,omitempty"`
+	SITEAGENTLOGMAXROWSPERIDENTITY                   *int                                                                             `json:"SITE_AGENT_LOG_MAX_ROWS_PER_IDENTITY,omitempty"`
 	SITEDESCRIPTION                                  *string                                                                          `json:"SITE_DESCRIPTION,omitempty"`
 	SITEEMAIL                                        *string                                                                          `json:"SITE_EMAIL,omitempty"`
 	SITENAME                                         *string                                                                          `json:"SITE_NAME,omitempty"`
@@ -31653,6 +31690,9 @@ type LOGINPAGELAYOUTEnum string
 
 // LbAlgorithmEnum defines model for LbAlgorithmEnum.
 type LbAlgorithmEnum string
+
+// LevelEnum defines model for LevelEnum.
+type LevelEnum string
 
 // LexisLink defines model for LexisLink.
 type LexisLink struct {
@@ -41445,13 +41485,18 @@ type ProfileCompleteness struct {
 
 // Project defines model for Project.
 type Project struct {
-	Affiliation                          *AffiliatedOrganization `json:"affiliation,omitempty"`
-	BackendId                            *string                 `json:"backend_id,omitempty"`
-	BillingPriceEstimate                 *NestedPriceEstimate    `json:"billing_price_estimate,omitempty"`
-	Created                              *time.Time              `json:"created,omitempty"`
-	Customer                             *string                 `json:"customer,omitempty"`
-	CustomerAbbreviation                 *string                 `json:"customer_abbreviation,omitempty"`
-	CustomerDisplayBillingInfoInProjects *bool                   `json:"customer_display_billing_info_in_projects,omitempty"`
+	Affiliation *AffiliatedOrganization `json:"affiliation,omitempty"`
+
+	// AffiliationCode Unique short identifier, e.g. CERN, EMBL.
+	AffiliationCode                      *string              `json:"affiliation_code,omitempty"`
+	AffiliationName                      *string              `json:"affiliation_name,omitempty"`
+	AffiliationUuid                      *openapi_types.UUID  `json:"affiliation_uuid,omitempty"`
+	BackendId                            *string              `json:"backend_id,omitempty"`
+	BillingPriceEstimate                 *NestedPriceEstimate `json:"billing_price_estimate,omitempty"`
+	Created                              *time.Time           `json:"created,omitempty"`
+	Customer                             *string              `json:"customer,omitempty"`
+	CustomerAbbreviation                 *string              `json:"customer_abbreviation,omitempty"`
+	CustomerDisplayBillingInfoInProjects *bool                `json:"customer_display_billing_info_in_projects,omitempty"`
 
 	// CustomerGracePeriodDays Grace period days set at the customer (organization) level. Used as default when project-level is not set.
 	CustomerGracePeriodDays *int                `json:"customer_grace_period_days,omitempty"`
@@ -47229,6 +47274,30 @@ type SiteAgentConfigGenerationRequest struct {
 
 	// WaldurApiUrl Waldur API URL (defaults to current server URL)
 	WaldurApiUrl *string `json:"waldur_api_url,omitempty"`
+}
+
+// SiteAgentLog defines model for SiteAgentLog.
+type SiteAgentLog struct {
+	AgentIdentityUuid *openapi_types.UUID `json:"agent_identity_uuid,omitempty"`
+	Created           *time.Time          `json:"created,omitempty"`
+	Level             LevelEnum           `json:"level"`
+	Message           string              `json:"message"`
+	Module            string              `json:"module"`
+	Offering          *string             `json:"offering,omitempty"`
+	OfferingUuid      *openapi_types.UUID `json:"offering_uuid,omitempty"`
+
+	// Timestamp Unix timestamp of the log entry
+	Timestamp float64             `json:"timestamp"`
+	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// SiteAgentLogCreateRequest defines model for SiteAgentLogCreateRequest.
+type SiteAgentLogCreateRequest struct {
+	AgentIdentityUuid openapi_types.UUID `json:"agent_identity_uuid"`
+	Level             LevelEnum          `json:"level"`
+	Message           string             `json:"message"`
+	Module            string             `json:"module"`
+	Timestamp         float64            `json:"timestamp"`
 }
 
 // SlurmAllocation defines model for SlurmAllocation.
@@ -61303,6 +61372,54 @@ type MarketplaceSiteAgentIdentitiesCountParams struct {
 	Version  *string   `form:"version,omitempty" json:"version,omitempty"`
 }
 
+// MarketplaceSiteAgentLogsListParams defines parameters for MarketplaceSiteAgentLogsList.
+type MarketplaceSiteAgentLogsListParams struct {
+	AgentIdentityUuid *openapi_types.UUID `form:"agent_identity_uuid,omitempty" json:"agent_identity_uuid,omitempty"`
+	Level             *string             `form:"level,omitempty" json:"level,omitempty"`
+	OfferingUuid      *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize      *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	TimestampFrom *float32  `form:"timestamp_from,omitempty" json:"timestamp_from,omitempty"`
+	TimestampTo   *float32  `form:"timestamp_to,omitempty" json:"timestamp_to,omitempty"`
+}
+
+// MarketplaceSiteAgentLogsCountParams defines parameters for MarketplaceSiteAgentLogsCount.
+type MarketplaceSiteAgentLogsCountParams struct {
+	AgentIdentityUuid *openapi_types.UUID `form:"agent_identity_uuid,omitempty" json:"agent_identity_uuid,omitempty"`
+	Level             *string             `form:"level,omitempty" json:"level,omitempty"`
+	OfferingUuid      *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize      *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	TimestampFrom *float32  `form:"timestamp_from,omitempty" json:"timestamp_from,omitempty"`
+	TimestampTo   *float32  `form:"timestamp_to,omitempty" json:"timestamp_to,omitempty"`
+}
+
+// MarketplaceSiteAgentLogsCreateJSONBody defines parameters for MarketplaceSiteAgentLogsCreate.
+type MarketplaceSiteAgentLogsCreateJSONBody = []SiteAgentLogCreateRequest
+
+// MarketplaceSiteAgentLogsCreateParams defines parameters for MarketplaceSiteAgentLogsCreate.
+type MarketplaceSiteAgentLogsCreateParams struct {
+	AgentIdentityUuid *openapi_types.UUID `form:"agent_identity_uuid,omitempty" json:"agent_identity_uuid,omitempty"`
+	Level             *string             `form:"level,omitempty" json:"level,omitempty"`
+	OfferingUuid      *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize      *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	TimestampFrom *float32  `form:"timestamp_from,omitempty" json:"timestamp_from,omitempty"`
+	TimestampTo   *float32  `form:"timestamp_to,omitempty" json:"timestamp_to,omitempty"`
+}
+
 // MarketplaceSiteAgentProcessorsListParams defines parameters for MarketplaceSiteAgentProcessorsList.
 type MarketplaceSiteAgentProcessorsListParams struct {
 	BackendType    *string `form:"backend_type,omitempty" json:"backend_type,omitempty"`
@@ -73958,6 +74075,9 @@ type MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionJSONRequestBody = Ag
 
 // MarketplaceSiteAgentIdentitiesRegisterServiceJSONRequestBody defines body for MarketplaceSiteAgentIdentitiesRegisterService for application/json ContentType.
 type MarketplaceSiteAgentIdentitiesRegisterServiceJSONRequestBody = AgentServiceCreateRequest
+
+// MarketplaceSiteAgentLogsCreateJSONRequestBody defines body for MarketplaceSiteAgentLogsCreate for application/json ContentType.
+type MarketplaceSiteAgentLogsCreateJSONRequestBody = MarketplaceSiteAgentLogsCreateJSONBody
 
 // MarketplaceSiteAgentServicesCleanupStaleJSONRequestBody defines body for MarketplaceSiteAgentServicesCleanupStale for application/json ContentType.
 type MarketplaceSiteAgentServicesCleanupStaleJSONRequestBody = CleanupRequestRequest
@@ -93611,6 +93731,17 @@ type ClientInterface interface {
 	MarketplaceSiteAgentIdentitiesRegisterServiceWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceSiteAgentIdentitiesRegisterService(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesRegisterServiceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSiteAgentLogsList request
+	MarketplaceSiteAgentLogsList(ctx context.Context, params *MarketplaceSiteAgentLogsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSiteAgentLogsCount request
+	MarketplaceSiteAgentLogsCount(ctx context.Context, params *MarketplaceSiteAgentLogsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSiteAgentLogsCreateWithBody request with any body
+	MarketplaceSiteAgentLogsCreateWithBody(ctx context.Context, params *MarketplaceSiteAgentLogsCreateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceSiteAgentLogsCreate(ctx context.Context, params *MarketplaceSiteAgentLogsCreateParams, body MarketplaceSiteAgentLogsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceSiteAgentProcessorsList request
 	MarketplaceSiteAgentProcessorsList(ctx context.Context, params *MarketplaceSiteAgentProcessorsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -118423,6 +118554,54 @@ func (c *Client) MarketplaceSiteAgentIdentitiesRegisterServiceWithBody(ctx conte
 
 func (c *Client) MarketplaceSiteAgentIdentitiesRegisterService(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesRegisterServiceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceSiteAgentIdentitiesRegisterServiceRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentLogsList(ctx context.Context, params *MarketplaceSiteAgentLogsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentLogsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentLogsCount(ctx context.Context, params *MarketplaceSiteAgentLogsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentLogsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentLogsCreateWithBody(ctx context.Context, params *MarketplaceSiteAgentLogsCreateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentLogsCreateRequestWithBody(c.Server, params, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentLogsCreate(ctx context.Context, params *MarketplaceSiteAgentLogsCreateParams, body MarketplaceSiteAgentLogsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentLogsCreateRequest(c.Server, params, body)
 	if err != nil {
 		return nil, err
 	}
@@ -234549,6 +234728,397 @@ func NewMarketplaceSiteAgentIdentitiesRegisterServiceRequestWithBody(server stri
 	return req, nil
 }
 
+// NewMarketplaceSiteAgentLogsListRequest generates requests for MarketplaceSiteAgentLogsList
+func NewMarketplaceSiteAgentLogsListRequest(server string, params *MarketplaceSiteAgentLogsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-logs/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.AgentIdentityUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "agent_identity_uuid", *params.AgentIdentityUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Level != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "level", *params.Level, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.TimestampFrom != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "timestamp_from", *params.TimestampFrom, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "number", Format: "float"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.TimestampTo != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "timestamp_to", *params.TimestampTo, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "number", Format: "float"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSiteAgentLogsCountRequest generates requests for MarketplaceSiteAgentLogsCount
+func NewMarketplaceSiteAgentLogsCountRequest(server string, params *MarketplaceSiteAgentLogsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-logs/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.AgentIdentityUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "agent_identity_uuid", *params.AgentIdentityUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Level != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "level", *params.Level, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.TimestampFrom != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "timestamp_from", *params.TimestampFrom, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "number", Format: "float"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.TimestampTo != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "timestamp_to", *params.TimestampTo, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "number", Format: "float"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSiteAgentLogsCreateRequest calls the generic MarketplaceSiteAgentLogsCreate builder with application/json body
+func NewMarketplaceSiteAgentLogsCreateRequest(server string, params *MarketplaceSiteAgentLogsCreateParams, body MarketplaceSiteAgentLogsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceSiteAgentLogsCreateRequestWithBody(server, params, "application/json", bodyReader)
+}
+
+// NewMarketplaceSiteAgentLogsCreateRequestWithBody generates requests for MarketplaceSiteAgentLogsCreate with any type of body
+func NewMarketplaceSiteAgentLogsCreateRequestWithBody(server string, params *MarketplaceSiteAgentLogsCreateParams, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-logs/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.AgentIdentityUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "agent_identity_uuid", *params.AgentIdentityUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Level != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "level", *params.Level, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.TimestampFrom != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "timestamp_from", *params.TimestampFrom, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "number", Format: "float"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.TimestampTo != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "timestamp_to", *params.TimestampTo, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "number", Format: "float"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceSiteAgentProcessorsListRequest generates requests for MarketplaceSiteAgentProcessorsList
 func NewMarketplaceSiteAgentProcessorsListRequest(server string, params *MarketplaceSiteAgentProcessorsListParams) (*http.Request, error) {
 	var err error
@@ -337769,6 +338339,17 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceSiteAgentIdentitiesRegisterServiceWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesRegisterServiceJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesRegisterServiceResponse, error)
 
+	// MarketplaceSiteAgentLogsListWithResponse request
+	MarketplaceSiteAgentLogsListWithResponse(ctx context.Context, params *MarketplaceSiteAgentLogsListParams, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentLogsListResponse, error)
+
+	// MarketplaceSiteAgentLogsCountWithResponse request
+	MarketplaceSiteAgentLogsCountWithResponse(ctx context.Context, params *MarketplaceSiteAgentLogsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentLogsCountResponse, error)
+
+	// MarketplaceSiteAgentLogsCreateWithBodyWithResponse request with any body
+	MarketplaceSiteAgentLogsCreateWithBodyWithResponse(ctx context.Context, params *MarketplaceSiteAgentLogsCreateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentLogsCreateResponse, error)
+
+	MarketplaceSiteAgentLogsCreateWithResponse(ctx context.Context, params *MarketplaceSiteAgentLogsCreateParams, body MarketplaceSiteAgentLogsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentLogsCreateResponse, error)
+
 	// MarketplaceSiteAgentProcessorsListWithResponse request
 	MarketplaceSiteAgentProcessorsListWithResponse(ctx context.Context, params *MarketplaceSiteAgentProcessorsListParams, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentProcessorsListResponse, error)
 
@@ -378381,6 +378962,95 @@ func (r MarketplaceSiteAgentIdentitiesRegisterServiceResponse) StatusCode() int 
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceSiteAgentIdentitiesRegisterServiceResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceSiteAgentLogsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]SiteAgentLog
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentLogsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentLogsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceSiteAgentLogsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceSiteAgentLogsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentLogsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentLogsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceSiteAgentLogsCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceSiteAgentLogsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *[]SiteAgentLog
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentLogsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentLogsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceSiteAgentLogsCreateResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -432486,6 +433156,41 @@ func (c *ClientWithResponses) MarketplaceSiteAgentIdentitiesRegisterServiceWithR
 	return ParseMarketplaceSiteAgentIdentitiesRegisterServiceResponse(rsp)
 }
 
+// MarketplaceSiteAgentLogsListWithResponse request returning *MarketplaceSiteAgentLogsListResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentLogsListWithResponse(ctx context.Context, params *MarketplaceSiteAgentLogsListParams, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentLogsListResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentLogsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentLogsListResponse(rsp)
+}
+
+// MarketplaceSiteAgentLogsCountWithResponse request returning *MarketplaceSiteAgentLogsCountResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentLogsCountWithResponse(ctx context.Context, params *MarketplaceSiteAgentLogsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentLogsCountResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentLogsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentLogsCountResponse(rsp)
+}
+
+// MarketplaceSiteAgentLogsCreateWithBodyWithResponse request with arbitrary body returning *MarketplaceSiteAgentLogsCreateResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentLogsCreateWithBodyWithResponse(ctx context.Context, params *MarketplaceSiteAgentLogsCreateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentLogsCreateResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentLogsCreateWithBody(ctx, params, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentLogsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceSiteAgentLogsCreateWithResponse(ctx context.Context, params *MarketplaceSiteAgentLogsCreateParams, body MarketplaceSiteAgentLogsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentLogsCreateResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentLogsCreate(ctx, params, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentLogsCreateResponse(rsp)
+}
+
 // MarketplaceSiteAgentProcessorsListWithResponse request returning *MarketplaceSiteAgentProcessorsListResponse
 func (c *ClientWithResponses) MarketplaceSiteAgentProcessorsListWithResponse(ctx context.Context, params *MarketplaceSiteAgentProcessorsListParams, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentProcessorsListResponse, error) {
 	rsp, err := c.MarketplaceSiteAgentProcessorsList(ctx, params, reqEditors...)
@@ -475900,6 +476605,74 @@ func ParseMarketplaceSiteAgentIdentitiesRegisterServiceResponse(rsp *http.Respon
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
 		var dest AgentService
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSiteAgentLogsListResponse parses an HTTP response from a MarketplaceSiteAgentLogsListWithResponse call
+func ParseMarketplaceSiteAgentLogsListResponse(rsp *http.Response) (*MarketplaceSiteAgentLogsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentLogsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []SiteAgentLog
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSiteAgentLogsCountResponse parses an HTTP response from a MarketplaceSiteAgentLogsCountWithResponse call
+func ParseMarketplaceSiteAgentLogsCountResponse(rsp *http.Response) (*MarketplaceSiteAgentLogsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentLogsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSiteAgentLogsCreateResponse parses an HTTP response from a MarketplaceSiteAgentLogsCreateWithResponse call
+func ParseMarketplaceSiteAgentLogsCreateResponse(rsp *http.Response) (*MarketplaceSiteAgentLogsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentLogsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest []SiteAgentLog
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
