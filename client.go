@@ -21452,6 +21452,18 @@ type ActiveQuery struct {
 	WaitEventType *string `json:"wait_event_type,omitempty"`
 }
 
+// AdjustResourceDatesRequest defines model for AdjustResourceDatesRequest.
+type AdjustResourceDatesRequest struct {
+	// Comment Optional reason captured in the audit trail.
+	Comment *string `json:"comment,omitempty"`
+
+	// EndDate New end date of the resource.
+	EndDate openapi_types.Date `json:"end_date"`
+
+	// StartDate New start date of the originating order.
+	StartDate openapi_types.Date `json:"start_date"`
+}
+
 // AdminAnnouncement defines model for AdminAnnouncement.
 type AdminAnnouncement struct {
 	ActiveFrom                   *time.Time `json:"active_from,omitempty"`
@@ -73800,6 +73812,9 @@ type MarketplaceProviderResourcesUpdateJSONRequestBody = ResourceUpdateRequest
 // MarketplaceProviderResourcesAddUserJSONRequestBody defines body for MarketplaceProviderResourcesAddUser for application/json ContentType.
 type MarketplaceProviderResourcesAddUserJSONRequestBody = UserRoleCreateRequest
 
+// MarketplaceProviderResourcesAdjustDatesJSONRequestBody defines body for MarketplaceProviderResourcesAdjustDates for application/json ContentType.
+type MarketplaceProviderResourcesAdjustDatesJSONRequestBody = AdjustResourceDatesRequest
+
 // MarketplaceProviderResourcesDeleteUserJSONRequestBody defines body for MarketplaceProviderResourcesDeleteUser for application/json ContentType.
 type MarketplaceProviderResourcesDeleteUserJSONRequestBody = UserRoleDeleteRequest
 
@@ -73904,6 +73919,9 @@ type MarketplaceResourcesUpdateJSONRequestBody = ResourceUpdateRequest
 
 // MarketplaceResourcesAddUserJSONRequestBody defines body for MarketplaceResourcesAddUser for application/json ContentType.
 type MarketplaceResourcesAddUserJSONRequestBody = UserRoleCreateRequest
+
+// MarketplaceResourcesAdjustDatesJSONRequestBody defines body for MarketplaceResourcesAdjustDates for application/json ContentType.
+type MarketplaceResourcesAdjustDatesJSONRequestBody = AdjustResourceDatesRequest
 
 // MarketplaceResourcesDeleteUserJSONRequestBody defines body for MarketplaceResourcesDeleteUser for application/json ContentType.
 type MarketplaceResourcesDeleteUserJSONRequestBody = UserRoleDeleteRequest
@@ -93043,6 +93061,11 @@ type ClientInterface interface {
 
 	MarketplaceProviderResourcesAddUser(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesAddUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderResourcesAdjustDatesWithBody request with any body
+	MarketplaceProviderResourcesAdjustDatesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderResourcesAdjustDates(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesAdjustDatesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderResourcesDeleteUserWithBody request with any body
 	MarketplaceProviderResourcesDeleteUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -93319,6 +93342,11 @@ type ClientInterface interface {
 	MarketplaceResourcesAddUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceResourcesAddUser(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesAddUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourcesAdjustDatesWithBody request with any body
+	MarketplaceResourcesAdjustDatesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceResourcesAdjustDates(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesAdjustDatesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourcesDeleteUserWithBody request with any body
 	MarketplaceResourcesDeleteUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -115468,6 +115496,30 @@ func (c *Client) MarketplaceProviderResourcesAddUser(ctx context.Context, uuid o
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceProviderResourcesAdjustDatesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesAdjustDatesRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderResourcesAdjustDates(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesAdjustDatesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesAdjustDatesRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceProviderResourcesDeleteUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderResourcesDeleteUserRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -116706,6 +116758,30 @@ func (c *Client) MarketplaceResourcesAddUserWithBody(ctx context.Context, uuid o
 
 func (c *Client) MarketplaceResourcesAddUser(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesAddUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceResourcesAddUserRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourcesAdjustDatesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesAdjustDatesRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourcesAdjustDates(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesAdjustDatesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesAdjustDatesRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -218672,6 +218748,53 @@ func NewMarketplaceProviderResourcesAddUserRequestWithBody(server string, uuid o
 	return req, nil
 }
 
+// NewMarketplaceProviderResourcesAdjustDatesRequest calls the generic MarketplaceProviderResourcesAdjustDates builder with application/json body
+func NewMarketplaceProviderResourcesAdjustDatesRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderResourcesAdjustDatesJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderResourcesAdjustDatesRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderResourcesAdjustDatesRequestWithBody generates requests for MarketplaceProviderResourcesAdjustDates with any type of body
+func NewMarketplaceProviderResourcesAdjustDatesRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-resources/%s/adjust_dates/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceProviderResourcesDeleteUserRequest calls the generic MarketplaceProviderResourcesDeleteUser builder with application/json body
 func NewMarketplaceProviderResourcesDeleteUserRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderResourcesDeleteUserJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -224897,6 +225020,53 @@ func NewMarketplaceResourcesAddUserRequestWithBody(server string, uuid openapi_t
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-resources/%s/add_user/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceResourcesAdjustDatesRequest calls the generic MarketplaceResourcesAdjustDates builder with application/json body
+func NewMarketplaceResourcesAdjustDatesRequest(server string, uuid openapi_types.UUID, body MarketplaceResourcesAdjustDatesJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceResourcesAdjustDatesRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceResourcesAdjustDatesRequestWithBody generates requests for MarketplaceResourcesAdjustDates with any type of body
+func NewMarketplaceResourcesAdjustDatesRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resources/%s/adjust_dates/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -337650,6 +337820,11 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceProviderResourcesAddUserWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesAddUserJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesAddUserResponse, error)
 
+	// MarketplaceProviderResourcesAdjustDatesWithBodyWithResponse request with any body
+	MarketplaceProviderResourcesAdjustDatesWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesAdjustDatesResponse, error)
+
+	MarketplaceProviderResourcesAdjustDatesWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesAdjustDatesJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesAdjustDatesResponse, error)
+
 	// MarketplaceProviderResourcesDeleteUserWithBodyWithResponse request with any body
 	MarketplaceProviderResourcesDeleteUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesDeleteUserResponse, error)
 
@@ -337926,6 +338101,11 @@ type ClientWithResponsesInterface interface {
 	MarketplaceResourcesAddUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesAddUserResponse, error)
 
 	MarketplaceResourcesAddUserWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesAddUserJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesAddUserResponse, error)
+
+	// MarketplaceResourcesAdjustDatesWithBodyWithResponse request with any body
+	MarketplaceResourcesAdjustDatesWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesAdjustDatesResponse, error)
+
+	MarketplaceResourcesAdjustDatesWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesAdjustDatesJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesAdjustDatesResponse, error)
 
 	// MarketplaceResourcesDeleteUserWithBodyWithResponse request with any body
 	MarketplaceResourcesDeleteUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesDeleteUserResponse, error)
@@ -373779,6 +373959,36 @@ func (r MarketplaceProviderResourcesAddUserResponse) ContentType() string {
 	return ""
 }
 
+type MarketplaceProviderResourcesAdjustDatesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ResourceResponseStatus
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderResourcesAdjustDatesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderResourcesAdjustDatesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderResourcesAdjustDatesResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type MarketplaceProviderResourcesDeleteUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -375840,6 +376050,36 @@ func (r MarketplaceResourcesAddUserResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceResourcesAddUserResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceResourcesAdjustDatesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ResourceResponseStatus
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourcesAdjustDatesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourcesAdjustDatesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourcesAdjustDatesResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -430919,6 +431159,23 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesAddUserWithResponse(ct
 	return ParseMarketplaceProviderResourcesAddUserResponse(rsp)
 }
 
+// MarketplaceProviderResourcesAdjustDatesWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourcesAdjustDatesResponse
+func (c *ClientWithResponses) MarketplaceProviderResourcesAdjustDatesWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesAdjustDatesResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesAdjustDatesWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesAdjustDatesResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderResourcesAdjustDatesWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesAdjustDatesJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesAdjustDatesResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesAdjustDates(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesAdjustDatesResponse(rsp)
+}
+
 // MarketplaceProviderResourcesDeleteUserWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourcesDeleteUserResponse
 func (c *ClientWithResponses) MarketplaceProviderResourcesDeleteUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesDeleteUserResponse, error) {
 	rsp, err := c.MarketplaceProviderResourcesDeleteUserWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -431818,6 +432075,23 @@ func (c *ClientWithResponses) MarketplaceResourcesAddUserWithResponse(ctx contex
 		return nil, err
 	}
 	return ParseMarketplaceResourcesAddUserResponse(rsp)
+}
+
+// MarketplaceResourcesAdjustDatesWithBodyWithResponse request with arbitrary body returning *MarketplaceResourcesAdjustDatesResponse
+func (c *ClientWithResponses) MarketplaceResourcesAdjustDatesWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesAdjustDatesResponse, error) {
+	rsp, err := c.MarketplaceResourcesAdjustDatesWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesAdjustDatesResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceResourcesAdjustDatesWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesAdjustDatesJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesAdjustDatesResponse, error) {
+	rsp, err := c.MarketplaceResourcesAdjustDates(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesAdjustDatesResponse(rsp)
 }
 
 // MarketplaceResourcesDeleteUserWithBodyWithResponse request with arbitrary body returning *MarketplaceResourcesDeleteUserResponse
@@ -472367,6 +472641,32 @@ func ParseMarketplaceProviderResourcesAddUserResponse(rsp *http.Response) (*Mark
 	return response, nil
 }
 
+// ParseMarketplaceProviderResourcesAdjustDatesResponse parses an HTTP response from a MarketplaceProviderResourcesAdjustDatesWithResponse call
+func ParseMarketplaceProviderResourcesAdjustDatesResponse(rsp *http.Response) (*MarketplaceProviderResourcesAdjustDatesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderResourcesAdjustDatesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ResourceResponseStatus
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceProviderResourcesDeleteUserResponse parses an HTTP response from a MarketplaceProviderResourcesDeleteUserWithResponse call
 func ParseMarketplaceProviderResourcesDeleteUserResponse(rsp *http.Response) (*MarketplaceProviderResourcesDeleteUserResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -474008,6 +474308,32 @@ func ParseMarketplaceResourcesAddUserResponse(rsp *http.Response) (*MarketplaceR
 			return nil, err
 		}
 		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourcesAdjustDatesResponse parses an HTTP response from a MarketplaceResourcesAdjustDatesWithResponse call
+func ParseMarketplaceResourcesAdjustDatesResponse(rsp *http.Response) (*MarketplaceResourcesAdjustDatesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourcesAdjustDatesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ResourceResponseStatus
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
 
 	}
 
