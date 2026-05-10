@@ -45439,16 +45439,22 @@ type ResourceProject struct {
 	CurrentUsages interface{} `json:"current_usages,omitempty"`
 	Description   *string     `json:"description,omitempty"`
 	ErrorMessage  *string     `json:"error_message,omitempty"`
+	IsRemoved     *bool       `json:"is_removed,omitempty"`
 
 	// Limits Dictionary mapping component types to quota values. Same format as Resource.limits.
-	Limits       interface{}         `json:"limits,omitempty"`
-	Modified     *time.Time          `json:"modified,omitempty"`
-	Name         string              `json:"name"`
-	Resource     openapi_types.UUID  `json:"resource"`
-	ResourceName *string             `json:"resource_name,omitempty"`
-	ResourceUuid *openapi_types.UUID `json:"resource_uuid,omitempty"`
-	State        *string             `json:"state,omitempty"`
-	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+	Limits    interface{} `json:"limits,omitempty"`
+	Modified  *time.Time  `json:"modified,omitempty"`
+	Name      string      `json:"name"`
+	RemovedBy *int        `json:"removed_by,omitempty"`
+
+	// RemovedByUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
+	RemovedByUsername *string             `json:"removed_by_username,omitempty"`
+	RemovedDate       *time.Time          `json:"removed_date,omitempty"`
+	Resource          openapi_types.UUID  `json:"resource"`
+	ResourceName      *string             `json:"resource_name,omitempty"`
+	ResourceUuid      *openapi_types.UUID `json:"resource_uuid,omitempty"`
+	State             *string             `json:"state,omitempty"`
+	Uuid              *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // ResourceProjectBackendId defines model for ResourceProjectBackendId.
