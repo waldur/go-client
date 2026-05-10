@@ -45448,13 +45448,14 @@ type ResourceProject struct {
 	RemovedBy *int        `json:"removed_by,omitempty"`
 
 	// RemovedByUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
-	RemovedByUsername *string             `json:"removed_by_username,omitempty"`
-	RemovedDate       *time.Time          `json:"removed_date,omitempty"`
-	Resource          openapi_types.UUID  `json:"resource"`
-	ResourceName      *string             `json:"resource_name,omitempty"`
-	ResourceUuid      *openapi_types.UUID `json:"resource_uuid,omitempty"`
-	State             *string             `json:"state,omitempty"`
-	Uuid              *openapi_types.UUID `json:"uuid,omitempty"`
+	RemovedByUsername   *string             `json:"removed_by_username,omitempty"`
+	RemovedDate         *time.Time          `json:"removed_date,omitempty"`
+	Resource            openapi_types.UUID  `json:"resource"`
+	ResourceName        *string             `json:"resource_name,omitempty"`
+	ResourceUuid        *openapi_types.UUID `json:"resource_uuid,omitempty"`
+	State               *string             `json:"state,omitempty"`
+	TerminationMetadata interface{}         `json:"termination_metadata,omitempty"`
+	Uuid                *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // ResourceProjectBackendId defines model for ResourceProjectBackendId.
