@@ -32383,6 +32383,9 @@ type MergedPluginOptions struct {
 	// AutoApproveRemoteOrders If set to True, an order can be processed without approval
 	AutoApproveRemoteOrders *bool `json:"auto_approve_remote_orders,omitempty"`
 
+	// AutoOkResourceProjects If set to True, newly-created resource projects are immediately transitioned from CREATING to OK on save, bypassing the provider/site-agent reconciliation callback. Use for offerings that have no external backend to reconcile against.
+	AutoOkResourceProjects *bool `json:"auto_ok_resource_projects,omitempty"`
+
 	// BackendIdDisplayLabel Label used by UI for showing value of the backend_id
 	BackendIdDisplayLabel *string `json:"backend_id_display_label,omitempty"`
 
@@ -32612,6 +32615,9 @@ type MergedPluginOptionsRequest struct {
 
 	// AutoApproveRemoteOrders If set to True, an order can be processed without approval
 	AutoApproveRemoteOrders *bool `json:"auto_approve_remote_orders,omitempty"`
+
+	// AutoOkResourceProjects If set to True, newly-created resource projects are immediately transitioned from CREATING to OK on save, bypassing the provider/site-agent reconciliation callback. Use for offerings that have no external backend to reconcile against.
+	AutoOkResourceProjects *bool `json:"auto_ok_resource_projects,omitempty"`
 
 	// BackendIdDisplayLabel Label used by UI for showing value of the backend_id
 	BackendIdDisplayLabel *string `json:"backend_id_display_label,omitempty"`
@@ -45465,6 +45471,15 @@ type ResourceProjectErrorMessage struct {
 type ResourceProjectErrorMessageRequest struct {
 	// ErrorMessage Free-form description of why the project transitioned to Erred.
 	ErrorMessage *string `json:"error_message,omitempty"`
+}
+
+// ResourceProjectRecoveryRequest defines model for ResourceProjectRecoveryRequest.
+type ResourceProjectRecoveryRequest struct {
+	// RestoreTeamMembers Recreate the UserRole rows captured at soft-delete time. Requires termination_metadata to be present (set on soft-deletes performed after the recovery feature shipped).
+	RestoreTeamMembers *bool `json:"restore_team_members,omitempty"`
+
+	// SendInvitationsToPreviousMembers Send invitations to users who had access before soft-delete. Mutually exclusive with restore_team_members.
+	SendInvitationsToPreviousMembers *bool `json:"send_invitations_to_previous_members,omitempty"`
 }
 
 // ResourceProjectRequest defines model for ResourceProjectRequest.
@@ -59717,6 +59732,12 @@ type MarketplaceResourceProjectsCountParams struct {
 	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
 }
 
+// MarketplaceResourceProjectsDestroyParams defines parameters for MarketplaceResourceProjectsDestroy.
+type MarketplaceResourceProjectsDestroyParams struct {
+	// Force Staff-only: when true, hard-delete the resource project instead of soft-deleting it.
+	Force *bool `form:"force,omitempty" json:"force,omitempty"`
+}
+
 // MarketplaceResourceProjectsListUsersListParams defines parameters for MarketplaceResourceProjectsListUsersList.
 type MarketplaceResourceProjectsListUsersListParams struct {
 	// Field Fields to include in response
@@ -73904,6 +73925,9 @@ type MarketplaceResourceProjectsAddUserJSONRequestBody = UserRoleCreateRequest
 
 // MarketplaceResourceProjectsDeleteUserJSONRequestBody defines body for MarketplaceResourceProjectsDeleteUser for application/json ContentType.
 type MarketplaceResourceProjectsDeleteUserJSONRequestBody = UserRoleDeleteRequest
+
+// MarketplaceResourceProjectsRecoverJSONRequestBody defines body for MarketplaceResourceProjectsRecover for application/json ContentType.
+type MarketplaceResourceProjectsRecoverJSONRequestBody = ResourceProjectRecoveryRequest
 
 // MarketplaceResourceProjectsUpdateUserJSONRequestBody defines body for MarketplaceResourceProjectsUpdateUser for application/json ContentType.
 type MarketplaceResourceProjectsUpdateUserJSONRequestBody = UserRoleUpdateRequest
@@ -93281,7 +93305,7 @@ type ClientInterface interface {
 	MarketplaceResourceProjectsCreate(ctx context.Context, body MarketplaceResourceProjectsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourceProjectsDestroy request
-	MarketplaceResourceProjectsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	MarketplaceResourceProjectsDestroy(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourceProjectsDestroyParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourceProjectsRetrieve request
 	MarketplaceResourceProjectsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -93308,6 +93332,11 @@ type ClientInterface interface {
 
 	// MarketplaceResourceProjectsListUsersList request
 	MarketplaceResourceProjectsListUsersList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourceProjectsListUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourceProjectsRecoverWithBody request with any body
+	MarketplaceResourceProjectsRecoverWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceResourceProjectsRecover(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceProjectsRecoverJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourceProjectsUpdateUserWithBody request with any body
 	MarketplaceResourceProjectsUpdateUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -116480,8 +116509,8 @@ func (c *Client) MarketplaceResourceProjectsCreate(ctx context.Context, body Mar
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceResourceProjectsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceResourceProjectsDestroyRequest(c.Server, uuid)
+func (c *Client) MarketplaceResourceProjectsDestroy(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourceProjectsDestroyParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceProjectsDestroyRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -116602,6 +116631,30 @@ func (c *Client) MarketplaceResourceProjectsDeleteUser(ctx context.Context, uuid
 
 func (c *Client) MarketplaceResourceProjectsListUsersList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourceProjectsListUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceResourceProjectsListUsersListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourceProjectsRecoverWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceProjectsRecoverRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourceProjectsRecover(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceProjectsRecoverJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceProjectsRecoverRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -223102,7 +223155,7 @@ func NewMarketplaceResourceProjectsCreateRequestWithBody(server string, contentT
 }
 
 // NewMarketplaceResourceProjectsDestroyRequest generates requests for MarketplaceResourceProjectsDestroy
-func NewMarketplaceResourceProjectsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+func NewMarketplaceResourceProjectsDestroyRequest(server string, uuid openapi_types.UUID, params *MarketplaceResourceProjectsDestroyParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -223125,6 +223178,33 @@ func NewMarketplaceResourceProjectsDestroyRequest(server string, uuid openapi_ty
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Force != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "force", *params.Force, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
@@ -223546,6 +223626,53 @@ func NewMarketplaceResourceProjectsListUsersListRequest(server string, uuid open
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewMarketplaceResourceProjectsRecoverRequest calls the generic MarketplaceResourceProjectsRecover builder with application/json body
+func NewMarketplaceResourceProjectsRecoverRequest(server string, uuid openapi_types.UUID, body MarketplaceResourceProjectsRecoverJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceResourceProjectsRecoverRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceResourceProjectsRecoverRequestWithBody generates requests for MarketplaceResourceProjectsRecover with any type of body
+func NewMarketplaceResourceProjectsRecoverRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resource-projects/%s/recover/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -338040,7 +338167,7 @@ type ClientWithResponsesInterface interface {
 	MarketplaceResourceProjectsCreateWithResponse(ctx context.Context, body MarketplaceResourceProjectsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceProjectsCreateResponse, error)
 
 	// MarketplaceResourceProjectsDestroyWithResponse request
-	MarketplaceResourceProjectsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourceProjectsDestroyResponse, error)
+	MarketplaceResourceProjectsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourceProjectsDestroyParams, reqEditors ...RequestEditorFn) (*MarketplaceResourceProjectsDestroyResponse, error)
 
 	// MarketplaceResourceProjectsRetrieveWithResponse request
 	MarketplaceResourceProjectsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourceProjectsRetrieveResponse, error)
@@ -338067,6 +338194,11 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceResourceProjectsListUsersListWithResponse request
 	MarketplaceResourceProjectsListUsersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourceProjectsListUsersListParams, reqEditors ...RequestEditorFn) (*MarketplaceResourceProjectsListUsersListResponse, error)
+
+	// MarketplaceResourceProjectsRecoverWithBodyWithResponse request with any body
+	MarketplaceResourceProjectsRecoverWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourceProjectsRecoverResponse, error)
+
+	MarketplaceResourceProjectsRecoverWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceProjectsRecoverJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceProjectsRecoverResponse, error)
 
 	// MarketplaceResourceProjectsUpdateUserWithBodyWithResponse request with any body
 	MarketplaceResourceProjectsUpdateUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourceProjectsUpdateUserResponse, error)
@@ -375809,6 +375941,36 @@ func (r MarketplaceResourceProjectsListUsersListResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceResourceProjectsListUsersListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceResourceProjectsRecoverResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ResourceProject
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourceProjectsRecoverResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourceProjectsRecoverResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourceProjectsRecoverResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -431871,8 +432033,8 @@ func (c *ClientWithResponses) MarketplaceResourceProjectsCreateWithResponse(ctx 
 }
 
 // MarketplaceResourceProjectsDestroyWithResponse request returning *MarketplaceResourceProjectsDestroyResponse
-func (c *ClientWithResponses) MarketplaceResourceProjectsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourceProjectsDestroyResponse, error) {
-	rsp, err := c.MarketplaceResourceProjectsDestroy(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) MarketplaceResourceProjectsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourceProjectsDestroyParams, reqEditors ...RequestEditorFn) (*MarketplaceResourceProjectsDestroyResponse, error) {
+	rsp, err := c.MarketplaceResourceProjectsDestroy(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -431963,6 +432125,23 @@ func (c *ClientWithResponses) MarketplaceResourceProjectsListUsersListWithRespon
 		return nil, err
 	}
 	return ParseMarketplaceResourceProjectsListUsersListResponse(rsp)
+}
+
+// MarketplaceResourceProjectsRecoverWithBodyWithResponse request with arbitrary body returning *MarketplaceResourceProjectsRecoverResponse
+func (c *ClientWithResponses) MarketplaceResourceProjectsRecoverWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourceProjectsRecoverResponse, error) {
+	rsp, err := c.MarketplaceResourceProjectsRecoverWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceProjectsRecoverResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceResourceProjectsRecoverWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceProjectsRecoverJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceProjectsRecoverResponse, error) {
+	rsp, err := c.MarketplaceResourceProjectsRecover(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceProjectsRecoverResponse(rsp)
 }
 
 // MarketplaceResourceProjectsUpdateUserWithBodyWithResponse request with arbitrary body returning *MarketplaceResourceProjectsUpdateUserResponse
@@ -474104,6 +474283,32 @@ func ParseMarketplaceResourceProjectsListUsersListResponse(rsp *http.Response) (
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest []UserRoleDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourceProjectsRecoverResponse parses an HTTP response from a MarketplaceResourceProjectsRecoverWithResponse call
+func ParseMarketplaceResourceProjectsRecoverResponse(rsp *http.Response) (*MarketplaceResourceProjectsRecoverResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourceProjectsRecoverResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ResourceProject
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
