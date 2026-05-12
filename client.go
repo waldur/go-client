@@ -22058,6 +22058,19 @@ type AllocationUserUsage struct {
 	Year       int     `json:"year"`
 }
 
+// AllowedScopeInputRequest defines model for AllowedScopeInputRequest.
+type AllowedScopeInputRequest struct {
+	Type string             `json:"type"`
+	Uuid openapi_types.UUID `json:"uuid"`
+}
+
+// AllowedScopeOutput defines model for AllowedScopeOutput.
+type AllowedScopeOutput struct {
+	Name *string             `json:"name"`
+	Type string              `json:"type"`
+	Uuid *openapi_types.UUID `json:"uuid"`
+}
+
 // AmountRangeEnum defines model for AmountRangeEnum.
 type AmountRangeEnum string
 
@@ -23296,6 +23309,12 @@ type AvailableArrowCustomersResponse struct {
 	SettingsUuid    openapi_types.UUID          `json:"settings_uuid"`
 	Suggestions     []CustomerMappingSuggestion `json:"suggestions"`
 	WaldurCustomers []WaldurCustomerBrief       `json:"waldur_customers"`
+}
+
+// AvailableBindingTarget defines model for AvailableBindingTarget.
+type AvailableBindingTarget struct {
+	Permission string   `json:"permission"`
+	Types      []string `json:"types"`
 }
 
 // AvailableChecklist defines model for AvailableChecklist.
@@ -41477,10 +41496,11 @@ type PersonIdentifierFieldsResponse struct {
 
 // PersonalAccessToken defines model for PersonalAccessToken.
 type PersonalAccessToken struct {
-	Created    time.Time `json:"created"`
-	ExpiresAt  time.Time `json:"expires_at"`
-	IsActive   bool      `json:"is_active"`
-	LastUsedAt time.Time `json:"last_used_at"`
+	AllowedScopes *[]AllowedScopeOutput `json:"allowed_scopes,omitempty"`
+	Created       time.Time             `json:"created"`
+	ExpiresAt     time.Time             `json:"expires_at"`
+	IsActive      bool                  `json:"is_active"`
+	LastUsedAt    time.Time             `json:"last_used_at"`
 
 	// LastUsedIp An IPv4 or IPv6 address.
 	LastUsedIp  PersonalAccessToken_LastUsedIp `json:"last_used_ip"`
@@ -41504,17 +41524,20 @@ type PersonalAccessToken_LastUsedIp struct {
 
 // PersonalAccessTokenCreateRequest defines model for PersonalAccessTokenCreateRequest.
 type PersonalAccessTokenCreateRequest struct {
-	ExpiresAt time.Time `json:"expires_at"`
-	Name      string    `json:"name"`
-	Scopes    []string  `json:"scopes"`
+	// AllowedScopes Optional list of entity bindings restricting where this token can act. Empty list = no entity restriction.
+	AllowedScopes *[]AllowedScopeInputRequest `json:"allowed_scopes,omitempty"`
+	ExpiresAt     time.Time                   `json:"expires_at"`
+	Name          string                      `json:"name"`
+	Scopes        []string                    `json:"scopes"`
 }
 
 // PersonalAccessTokenCreated defines model for PersonalAccessTokenCreated.
 type PersonalAccessTokenCreated struct {
-	Created   time.Time `json:"created"`
-	ExpiresAt time.Time `json:"expires_at"`
-	Name      string    `json:"name"`
-	Scopes    []string  `json:"scopes"`
+	AllowedScopes []AllowedScopeOutput `json:"allowed_scopes"`
+	Created       time.Time            `json:"created"`
+	ExpiresAt     time.Time            `json:"expires_at"`
+	Name          string               `json:"name"`
+	Scopes        []string             `json:"scopes"`
 
 	// Token Plaintext token — shown only once.
 	Token string             `json:"token"`
@@ -67551,6 +67574,24 @@ type PersonalAccessTokensListParams struct {
 
 // PersonalAccessTokensCountParams defines parameters for PersonalAccessTokensCount.
 type PersonalAccessTokensCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// PersonalAccessTokensAvailableBindingTargetsListParams defines parameters for PersonalAccessTokensAvailableBindingTargetsList.
+type PersonalAccessTokensAvailableBindingTargetsListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// PersonalAccessTokensAvailableBindingTargetsCountParams defines parameters for PersonalAccessTokensAvailableBindingTargetsCount.
+type PersonalAccessTokensAvailableBindingTargetsCountParams struct {
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -96741,6 +96782,12 @@ type ClientInterface interface {
 	PersonalAccessTokensCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	PersonalAccessTokensCreate(ctx context.Context, body PersonalAccessTokensCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PersonalAccessTokensAvailableBindingTargetsList request
+	PersonalAccessTokensAvailableBindingTargetsList(ctx context.Context, params *PersonalAccessTokensAvailableBindingTargetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PersonalAccessTokensAvailableBindingTargetsCount request
+	PersonalAccessTokensAvailableBindingTargetsCount(ctx context.Context, params *PersonalAccessTokensAvailableBindingTargetsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PersonalAccessTokensAvailableScopesList request
 	PersonalAccessTokensAvailableScopesList(ctx context.Context, params *PersonalAccessTokensAvailableScopesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -129678,6 +129725,30 @@ func (c *Client) PersonalAccessTokensCreateWithBody(ctx context.Context, content
 
 func (c *Client) PersonalAccessTokensCreate(ctx context.Context, body PersonalAccessTokensCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewPersonalAccessTokensCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PersonalAccessTokensAvailableBindingTargetsList(ctx context.Context, params *PersonalAccessTokensAvailableBindingTargetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPersonalAccessTokensAvailableBindingTargetsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PersonalAccessTokensAvailableBindingTargetsCount(ctx context.Context, params *PersonalAccessTokensAvailableBindingTargetsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPersonalAccessTokensAvailableBindingTargetsCountRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -285037,6 +285108,138 @@ func NewPersonalAccessTokensCreateRequestWithBody(server string, contentType str
 	return req, nil
 }
 
+// NewPersonalAccessTokensAvailableBindingTargetsListRequest generates requests for PersonalAccessTokensAvailableBindingTargetsList
+func NewPersonalAccessTokensAvailableBindingTargetsListRequest(server string, params *PersonalAccessTokensAvailableBindingTargetsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/personal-access-tokens/available_binding_targets/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPersonalAccessTokensAvailableBindingTargetsCountRequest generates requests for PersonalAccessTokensAvailableBindingTargetsCount
+func NewPersonalAccessTokensAvailableBindingTargetsCountRequest(server string, params *PersonalAccessTokensAvailableBindingTargetsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/personal-access-tokens/available_binding_targets/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewPersonalAccessTokensAvailableScopesListRequest generates requests for PersonalAccessTokensAvailableScopesList
 func NewPersonalAccessTokensAvailableScopesListRequest(server string, params *PersonalAccessTokensAvailableScopesListParams) (*http.Request, error) {
 	var err error
@@ -342539,6 +342742,12 @@ type ClientWithResponsesInterface interface {
 	PersonalAccessTokensCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PersonalAccessTokensCreateResponse, error)
 
 	PersonalAccessTokensCreateWithResponse(ctx context.Context, body PersonalAccessTokensCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*PersonalAccessTokensCreateResponse, error)
+
+	// PersonalAccessTokensAvailableBindingTargetsListWithResponse request
+	PersonalAccessTokensAvailableBindingTargetsListWithResponse(ctx context.Context, params *PersonalAccessTokensAvailableBindingTargetsListParams, reqEditors ...RequestEditorFn) (*PersonalAccessTokensAvailableBindingTargetsListResponse, error)
+
+	// PersonalAccessTokensAvailableBindingTargetsCountWithResponse request
+	PersonalAccessTokensAvailableBindingTargetsCountWithResponse(ctx context.Context, params *PersonalAccessTokensAvailableBindingTargetsCountParams, reqEditors ...RequestEditorFn) (*PersonalAccessTokensAvailableBindingTargetsCountResponse, error)
 
 	// PersonalAccessTokensAvailableScopesListWithResponse request
 	PersonalAccessTokensAvailableScopesListWithResponse(ctx context.Context, params *PersonalAccessTokensAvailableScopesListParams, reqEditors ...RequestEditorFn) (*PersonalAccessTokensAvailableScopesListResponse, error)
@@ -400466,6 +400675,65 @@ func (r PersonalAccessTokensCreateResponse) ContentType() string {
 	return ""
 }
 
+type PersonalAccessTokensAvailableBindingTargetsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]AvailableBindingTarget
+}
+
+// Status returns HTTPResponse.Status
+func (r PersonalAccessTokensAvailableBindingTargetsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PersonalAccessTokensAvailableBindingTargetsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r PersonalAccessTokensAvailableBindingTargetsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type PersonalAccessTokensAvailableBindingTargetsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r PersonalAccessTokensAvailableBindingTargetsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PersonalAccessTokensAvailableBindingTargetsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r PersonalAccessTokensAvailableBindingTargetsCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type PersonalAccessTokensAvailableScopesListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -443000,6 +443268,24 @@ func (c *ClientWithResponses) PersonalAccessTokensCreateWithResponse(ctx context
 		return nil, err
 	}
 	return ParsePersonalAccessTokensCreateResponse(rsp)
+}
+
+// PersonalAccessTokensAvailableBindingTargetsListWithResponse request returning *PersonalAccessTokensAvailableBindingTargetsListResponse
+func (c *ClientWithResponses) PersonalAccessTokensAvailableBindingTargetsListWithResponse(ctx context.Context, params *PersonalAccessTokensAvailableBindingTargetsListParams, reqEditors ...RequestEditorFn) (*PersonalAccessTokensAvailableBindingTargetsListResponse, error) {
+	rsp, err := c.PersonalAccessTokensAvailableBindingTargetsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePersonalAccessTokensAvailableBindingTargetsListResponse(rsp)
+}
+
+// PersonalAccessTokensAvailableBindingTargetsCountWithResponse request returning *PersonalAccessTokensAvailableBindingTargetsCountResponse
+func (c *ClientWithResponses) PersonalAccessTokensAvailableBindingTargetsCountWithResponse(ctx context.Context, params *PersonalAccessTokensAvailableBindingTargetsCountParams, reqEditors ...RequestEditorFn) (*PersonalAccessTokensAvailableBindingTargetsCountResponse, error) {
+	rsp, err := c.PersonalAccessTokensAvailableBindingTargetsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePersonalAccessTokensAvailableBindingTargetsCountResponse(rsp)
 }
 
 // PersonalAccessTokensAvailableScopesListWithResponse request returning *PersonalAccessTokensAvailableScopesListResponse
@@ -494016,6 +494302,48 @@ func ParsePersonalAccessTokensCreateResponse(rsp *http.Response) (*PersonalAcces
 		}
 		response.JSON201 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParsePersonalAccessTokensAvailableBindingTargetsListResponse parses an HTTP response from a PersonalAccessTokensAvailableBindingTargetsListWithResponse call
+func ParsePersonalAccessTokensAvailableBindingTargetsListResponse(rsp *http.Response) (*PersonalAccessTokensAvailableBindingTargetsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PersonalAccessTokensAvailableBindingTargetsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AvailableBindingTarget
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePersonalAccessTokensAvailableBindingTargetsCountResponse parses an HTTP response from a PersonalAccessTokensAvailableBindingTargetsCountWithResponse call
+func ParsePersonalAccessTokensAvailableBindingTargetsCountResponse(rsp *http.Response) (*PersonalAccessTokensAvailableBindingTargetsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PersonalAccessTokensAvailableBindingTargetsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
