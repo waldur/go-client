@@ -10131,6 +10131,9 @@ const (
 	OfferingFieldEnumLatitude                  OfferingFieldEnum = "latitude"
 	OfferingFieldEnumLongitude                 OfferingFieldEnum = "longitude"
 	OfferingFieldEnumName                      OfferingFieldEnum = "name"
+	OfferingFieldEnumOfferingGroup             OfferingFieldEnum = "offering_group"
+	OfferingFieldEnumOfferingGroupTitle        OfferingFieldEnum = "offering_group_title"
+	OfferingFieldEnumOfferingGroupUuid         OfferingFieldEnum = "offering_group_uuid"
 	OfferingFieldEnumOptions                   OfferingFieldEnum = "options"
 	OfferingFieldEnumOrderCount                OfferingFieldEnum = "order_count"
 	OfferingFieldEnumOrganizationGroups        OfferingFieldEnum = "organization_groups"
@@ -10244,6 +10247,12 @@ func (e OfferingFieldEnum) Valid() bool {
 		return true
 	case OfferingFieldEnumName:
 		return true
+	case OfferingFieldEnumOfferingGroup:
+		return true
+	case OfferingFieldEnumOfferingGroupTitle:
+		return true
+	case OfferingFieldEnumOfferingGroupUuid:
+		return true
 	case OfferingFieldEnumOptions:
 		return true
 	case OfferingFieldEnumOrderCount:
@@ -10353,6 +10362,45 @@ func (e OfferingFileFieldEnum) Valid() bool {
 	case OfferingFileFieldEnumUrl:
 		return true
 	case OfferingFileFieldEnumUuid:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for OfferingGroupFieldEnum.
+const (
+	OfferingGroupFieldEnumCreated      OfferingGroupFieldEnum = "created"
+	OfferingGroupFieldEnumCustomer     OfferingGroupFieldEnum = "customer"
+	OfferingGroupFieldEnumCustomerName OfferingGroupFieldEnum = "customer_name"
+	OfferingGroupFieldEnumCustomerUuid OfferingGroupFieldEnum = "customer_uuid"
+	OfferingGroupFieldEnumDescription  OfferingGroupFieldEnum = "description"
+	OfferingGroupFieldEnumIcon         OfferingGroupFieldEnum = "icon"
+	OfferingGroupFieldEnumTitle        OfferingGroupFieldEnum = "title"
+	OfferingGroupFieldEnumUrl          OfferingGroupFieldEnum = "url"
+	OfferingGroupFieldEnumUuid         OfferingGroupFieldEnum = "uuid"
+)
+
+// Valid indicates whether the value is a known member of the OfferingGroupFieldEnum enum.
+func (e OfferingGroupFieldEnum) Valid() bool {
+	switch e {
+	case OfferingGroupFieldEnumCreated:
+		return true
+	case OfferingGroupFieldEnumCustomer:
+		return true
+	case OfferingGroupFieldEnumCustomerName:
+		return true
+	case OfferingGroupFieldEnumCustomerUuid:
+		return true
+	case OfferingGroupFieldEnumDescription:
+		return true
+	case OfferingGroupFieldEnumIcon:
+		return true
+	case OfferingGroupFieldEnumTitle:
+		return true
+	case OfferingGroupFieldEnumUrl:
+		return true
+	case OfferingGroupFieldEnumUuid:
 		return true
 	default:
 		return false
@@ -11741,16 +11789,16 @@ func (e OpenStackInstanceFieldEnum) Valid() bool {
 
 // Defines values for OpenStackInstanceOEnum.
 const (
-	MinusStartTime OpenStackInstanceOEnum = "-start_time"
-	StartTime      OpenStackInstanceOEnum = "start_time"
+	OpenStackInstanceOEnumMinusStartTime OpenStackInstanceOEnum = "-start_time"
+	OpenStackInstanceOEnumStartTime      OpenStackInstanceOEnum = "start_time"
 )
 
 // Valid indicates whether the value is a known member of the OpenStackInstanceOEnum enum.
 func (e OpenStackInstanceOEnum) Valid() bool {
 	switch e {
-	case MinusStartTime:
+	case OpenStackInstanceOEnumMinusStartTime:
 		return true
-	case StartTime:
+	case OpenStackInstanceOEnumStartTime:
 		return true
 	default:
 		return false
@@ -15935,6 +15983,9 @@ const (
 	ProviderOfferingDetailsFieldEnumLatitude                  ProviderOfferingDetailsFieldEnum = "latitude"
 	ProviderOfferingDetailsFieldEnumLongitude                 ProviderOfferingDetailsFieldEnum = "longitude"
 	ProviderOfferingDetailsFieldEnumName                      ProviderOfferingDetailsFieldEnum = "name"
+	ProviderOfferingDetailsFieldEnumOfferingGroup             ProviderOfferingDetailsFieldEnum = "offering_group"
+	ProviderOfferingDetailsFieldEnumOfferingGroupTitle        ProviderOfferingDetailsFieldEnum = "offering_group_title"
+	ProviderOfferingDetailsFieldEnumOfferingGroupUuid         ProviderOfferingDetailsFieldEnum = "offering_group_uuid"
 	ProviderOfferingDetailsFieldEnumOptions                   ProviderOfferingDetailsFieldEnum = "options"
 	ProviderOfferingDetailsFieldEnumOrderCount                ProviderOfferingDetailsFieldEnum = "order_count"
 	ProviderOfferingDetailsFieldEnumOrganizationGroups        ProviderOfferingDetailsFieldEnum = "organization_groups"
@@ -16050,6 +16101,12 @@ func (e ProviderOfferingDetailsFieldEnum) Valid() bool {
 	case ProviderOfferingDetailsFieldEnumLongitude:
 		return true
 	case ProviderOfferingDetailsFieldEnumName:
+		return true
+	case ProviderOfferingDetailsFieldEnumOfferingGroup:
+		return true
+	case ProviderOfferingDetailsFieldEnumOfferingGroupTitle:
+		return true
+	case ProviderOfferingDetailsFieldEnumOfferingGroupUuid:
 		return true
 	case ProviderOfferingDetailsFieldEnumOptions:
 		return true
@@ -16195,6 +16252,8 @@ const (
 	ProviderOfferingFieldEnumComponents           ProviderOfferingFieldEnum = "components"
 	ProviderOfferingFieldEnumCustomerUuid         ProviderOfferingFieldEnum = "customer_uuid"
 	ProviderOfferingFieldEnumName                 ProviderOfferingFieldEnum = "name"
+	ProviderOfferingFieldEnumOfferingGroupTitle   ProviderOfferingFieldEnum = "offering_group_title"
+	ProviderOfferingFieldEnumOfferingGroupUuid    ProviderOfferingFieldEnum = "offering_group_uuid"
 	ProviderOfferingFieldEnumOptions              ProviderOfferingFieldEnum = "options"
 	ProviderOfferingFieldEnumPlans                ProviderOfferingFieldEnum = "plans"
 	ProviderOfferingFieldEnumResourceOptions      ProviderOfferingFieldEnum = "resource_options"
@@ -16219,6 +16278,10 @@ func (e ProviderOfferingFieldEnum) Valid() bool {
 	case ProviderOfferingFieldEnumCustomerUuid:
 		return true
 	case ProviderOfferingFieldEnumName:
+		return true
+	case ProviderOfferingFieldEnumOfferingGroupTitle:
+		return true
+	case ProviderOfferingFieldEnumOfferingGroupUuid:
 		return true
 	case ProviderOfferingFieldEnumOptions:
 		return true
@@ -16456,6 +16519,9 @@ const (
 	PublicOfferingDetailsFieldEnumLatitude                  PublicOfferingDetailsFieldEnum = "latitude"
 	PublicOfferingDetailsFieldEnumLongitude                 PublicOfferingDetailsFieldEnum = "longitude"
 	PublicOfferingDetailsFieldEnumName                      PublicOfferingDetailsFieldEnum = "name"
+	PublicOfferingDetailsFieldEnumOfferingGroup             PublicOfferingDetailsFieldEnum = "offering_group"
+	PublicOfferingDetailsFieldEnumOfferingGroupTitle        PublicOfferingDetailsFieldEnum = "offering_group_title"
+	PublicOfferingDetailsFieldEnumOfferingGroupUuid         PublicOfferingDetailsFieldEnum = "offering_group_uuid"
 	PublicOfferingDetailsFieldEnumOptions                   PublicOfferingDetailsFieldEnum = "options"
 	PublicOfferingDetailsFieldEnumOrderCount                PublicOfferingDetailsFieldEnum = "order_count"
 	PublicOfferingDetailsFieldEnumOrganizationGroups        PublicOfferingDetailsFieldEnum = "organization_groups"
@@ -16571,6 +16637,12 @@ func (e PublicOfferingDetailsFieldEnum) Valid() bool {
 	case PublicOfferingDetailsFieldEnumLongitude:
 		return true
 	case PublicOfferingDetailsFieldEnumName:
+		return true
+	case PublicOfferingDetailsFieldEnumOfferingGroup:
+		return true
+	case PublicOfferingDetailsFieldEnumOfferingGroupTitle:
+		return true
+	case PublicOfferingDetailsFieldEnumOfferingGroupUuid:
 		return true
 	case PublicOfferingDetailsFieldEnumOptions:
 		return true
@@ -26369,7 +26441,13 @@ type ConstanceSettings struct {
 	REVIEWERPROFILESENABLED                          *bool                                                            `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
 	SCIMAPIKEY                                       *string                                                          `json:"SCIM_API_KEY,omitempty"`
 	SCIMAPIURL                                       *string                                                          `json:"SCIM_API_URL,omitempty"`
+	SCIMINBOUNDALLOWEDATTRIBUTES                     *[]ConstanceSettings_SCIMINBOUNDALLOWEDATTRIBUTES_Item           `json:"SCIM_INBOUND_ALLOWED_ATTRIBUTES,omitempty"`
+	SCIMINBOUNDENABLED                               *bool                                                            `json:"SCIM_INBOUND_ENABLED,omitempty"`
+	SCIMINBOUNDSOURCENAME                            *string                                                          `json:"SCIM_INBOUND_SOURCE_NAME,omitempty"`
 	SCIMMEMBERSHIPSYNCENABLED                        *bool                                                            `json:"SCIM_MEMBERSHIP_SYNC_ENABLED,omitempty"`
+	SCIMPULLAPIKEY                                   *string                                                          `json:"SCIM_PULL_API_KEY,omitempty"`
+	SCIMPULLAPIURL                                   *string                                                          `json:"SCIM_PULL_API_URL,omitempty"`
+	SCIMPULLSOURCENAME                               *string                                                          `json:"SCIM_PULL_SOURCE_NAME,omitempty"`
 	SCIMURNNAMESPACE                                 *string                                                          `json:"SCIM_URN_NAMESPACE,omitempty"`
 	SCRIPTRUNMODE                                    *SCRIPTRUNMODEEnum                                               `json:"SCRIPT_RUN_MODE,omitempty"`
 	SEMANTICSCHOLARAPIKEY                            *string                                                          `json:"SEMANTIC_SCHOLAR_API_KEY,omitempty"`
@@ -26497,6 +26575,11 @@ type ConstanceSettings_MANDATORYUSERATTRIBUTES_Item struct {
 
 // ConstanceSettings_ONBOARDINGVALIDATIONMETHODS_Item defines model for ConstanceSettings.ONBOARDING_VALIDATION_METHODS.Item.
 type ConstanceSettings_ONBOARDINGVALIDATIONMETHODS_Item struct {
+	union json.RawMessage
+}
+
+// ConstanceSettings_SCIMINBOUNDALLOWEDATTRIBUTES_Item defines model for ConstanceSettings.SCIM_INBOUND_ALLOWED_ATTRIBUTES.Item.
+type ConstanceSettings_SCIMINBOUNDALLOWEDATTRIBUTES_Item struct {
 	union json.RawMessage
 }
 
@@ -26699,7 +26782,13 @@ type ConstanceSettingsRequest struct {
 	REVIEWERPROFILESENABLED                          *bool                                                                   `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
 	SCIMAPIKEY                                       *string                                                                 `json:"SCIM_API_KEY,omitempty"`
 	SCIMAPIURL                                       *string                                                                 `json:"SCIM_API_URL,omitempty"`
+	SCIMINBOUNDALLOWEDATTRIBUTES                     *[]ConstanceSettingsRequest_SCIMINBOUNDALLOWEDATTRIBUTES_Item           `json:"SCIM_INBOUND_ALLOWED_ATTRIBUTES,omitempty"`
+	SCIMINBOUNDENABLED                               *bool                                                                   `json:"SCIM_INBOUND_ENABLED,omitempty"`
+	SCIMINBOUNDSOURCENAME                            *string                                                                 `json:"SCIM_INBOUND_SOURCE_NAME,omitempty"`
 	SCIMMEMBERSHIPSYNCENABLED                        *bool                                                                   `json:"SCIM_MEMBERSHIP_SYNC_ENABLED,omitempty"`
+	SCIMPULLAPIKEY                                   *string                                                                 `json:"SCIM_PULL_API_KEY,omitempty"`
+	SCIMPULLAPIURL                                   *string                                                                 `json:"SCIM_PULL_API_URL,omitempty"`
+	SCIMPULLSOURCENAME                               *string                                                                 `json:"SCIM_PULL_SOURCE_NAME,omitempty"`
 	SCIMURNNAMESPACE                                 *string                                                                 `json:"SCIM_URN_NAMESPACE,omitempty"`
 	SCRIPTRUNMODE                                    *SCRIPTRUNMODEEnum                                                      `json:"SCRIPT_RUN_MODE,omitempty"`
 	SEMANTICSCHOLARAPIKEY                            *string                                                                 `json:"SEMANTIC_SCHOLAR_API_KEY,omitempty"`
@@ -26827,6 +26916,11 @@ type ConstanceSettingsRequest_MANDATORYUSERATTRIBUTES_Item struct {
 
 // ConstanceSettingsRequest_ONBOARDINGVALIDATIONMETHODS_Item defines model for ConstanceSettingsRequest.ONBOARDING_VALIDATION_METHODS.Item.
 type ConstanceSettingsRequest_ONBOARDINGVALIDATIONMETHODS_Item struct {
+	union json.RawMessage
+}
+
+// ConstanceSettingsRequest_SCIMINBOUNDALLOWEDATTRIBUTES_Item defines model for ConstanceSettingsRequest.SCIM_INBOUND_ALLOWED_ATTRIBUTES.Item.
+type ConstanceSettingsRequest_SCIMINBOUNDALLOWEDATTRIBUTES_Item struct {
 	union json.RawMessage
 }
 
@@ -27029,7 +27123,13 @@ type ConstanceSettingsRequestForm struct {
 	REVIEWERPROFILESENABLED                          *bool                                                                       `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
 	SCIMAPIKEY                                       *string                                                                     `json:"SCIM_API_KEY,omitempty"`
 	SCIMAPIURL                                       *string                                                                     `json:"SCIM_API_URL,omitempty"`
+	SCIMINBOUNDALLOWEDATTRIBUTES                     *[]ConstanceSettingsRequestForm_SCIMINBOUNDALLOWEDATTRIBUTES_Item           `json:"SCIM_INBOUND_ALLOWED_ATTRIBUTES,omitempty"`
+	SCIMINBOUNDENABLED                               *bool                                                                       `json:"SCIM_INBOUND_ENABLED,omitempty"`
+	SCIMINBOUNDSOURCENAME                            *string                                                                     `json:"SCIM_INBOUND_SOURCE_NAME,omitempty"`
 	SCIMMEMBERSHIPSYNCENABLED                        *bool                                                                       `json:"SCIM_MEMBERSHIP_SYNC_ENABLED,omitempty"`
+	SCIMPULLAPIKEY                                   *string                                                                     `json:"SCIM_PULL_API_KEY,omitempty"`
+	SCIMPULLAPIURL                                   *string                                                                     `json:"SCIM_PULL_API_URL,omitempty"`
+	SCIMPULLSOURCENAME                               *string                                                                     `json:"SCIM_PULL_SOURCE_NAME,omitempty"`
 	SCIMURNNAMESPACE                                 *string                                                                     `json:"SCIM_URN_NAMESPACE,omitempty"`
 	SCRIPTRUNMODE                                    *SCRIPTRUNMODEEnum                                                          `json:"SCRIPT_RUN_MODE,omitempty"`
 	SEMANTICSCHOLARAPIKEY                            *string                                                                     `json:"SEMANTIC_SCHOLAR_API_KEY,omitempty"`
@@ -27157,6 +27257,11 @@ type ConstanceSettingsRequestForm_MANDATORYUSERATTRIBUTES_Item struct {
 
 // ConstanceSettingsRequestForm_ONBOARDINGVALIDATIONMETHODS_Item defines model for ConstanceSettingsRequestForm.ONBOARDING_VALIDATION_METHODS.Item.
 type ConstanceSettingsRequestForm_ONBOARDINGVALIDATIONMETHODS_Item struct {
+	union json.RawMessage
+}
+
+// ConstanceSettingsRequestForm_SCIMINBOUNDALLOWEDATTRIBUTES_Item defines model for ConstanceSettingsRequestForm.SCIM_INBOUND_ALLOWED_ATTRIBUTES.Item.
+type ConstanceSettingsRequestForm_SCIMINBOUNDALLOWEDATTRIBUTES_Item struct {
 	union json.RawMessage
 }
 
@@ -27359,7 +27464,13 @@ type ConstanceSettingsRequestMultipart struct {
 	REVIEWERPROFILESENABLED                          *bool                                                                            `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
 	SCIMAPIKEY                                       *string                                                                          `json:"SCIM_API_KEY,omitempty"`
 	SCIMAPIURL                                       *string                                                                          `json:"SCIM_API_URL,omitempty"`
+	SCIMINBOUNDALLOWEDATTRIBUTES                     *[]ConstanceSettingsRequestMultipart_SCIMINBOUNDALLOWEDATTRIBUTES_Item           `json:"SCIM_INBOUND_ALLOWED_ATTRIBUTES,omitempty"`
+	SCIMINBOUNDENABLED                               *bool                                                                            `json:"SCIM_INBOUND_ENABLED,omitempty"`
+	SCIMINBOUNDSOURCENAME                            *string                                                                          `json:"SCIM_INBOUND_SOURCE_NAME,omitempty"`
 	SCIMMEMBERSHIPSYNCENABLED                        *bool                                                                            `json:"SCIM_MEMBERSHIP_SYNC_ENABLED,omitempty"`
+	SCIMPULLAPIKEY                                   *string                                                                          `json:"SCIM_PULL_API_KEY,omitempty"`
+	SCIMPULLAPIURL                                   *string                                                                          `json:"SCIM_PULL_API_URL,omitempty"`
+	SCIMPULLSOURCENAME                               *string                                                                          `json:"SCIM_PULL_SOURCE_NAME,omitempty"`
 	SCIMURNNAMESPACE                                 *string                                                                          `json:"SCIM_URN_NAMESPACE,omitempty"`
 	SCRIPTRUNMODE                                    *SCRIPTRUNMODEEnum                                                               `json:"SCRIPT_RUN_MODE,omitempty"`
 	SEMANTICSCHOLARAPIKEY                            *string                                                                          `json:"SEMANTIC_SCHOLAR_API_KEY,omitempty"`
@@ -27487,6 +27598,11 @@ type ConstanceSettingsRequestMultipart_MANDATORYUSERATTRIBUTES_Item struct {
 
 // ConstanceSettingsRequestMultipart_ONBOARDINGVALIDATIONMETHODS_Item defines model for ConstanceSettingsRequestMultipart.ONBOARDING_VALIDATION_METHODS.Item.
 type ConstanceSettingsRequestMultipart_ONBOARDINGVALIDATIONMETHODS_Item struct {
+	union json.RawMessage
+}
+
+// ConstanceSettingsRequestMultipart_SCIMINBOUNDALLOWEDATTRIBUTES_Item defines model for ConstanceSettingsRequestMultipart.SCIM_INBOUND_ALLOWED_ATTRIBUTES.Item.
+type ConstanceSettingsRequestMultipart_SCIMINBOUNDALLOWEDATTRIBUTES_Item struct {
 	union json.RawMessage
 }
 
@@ -33913,6 +34029,9 @@ type Offering struct {
 	Latitude                  *float64              `json:"latitude,omitempty"`
 	Longitude                 *float64              `json:"longitude,omitempty"`
 	Name                      *string               `json:"name,omitempty"`
+	OfferingGroup             *string               `json:"offering_group,omitempty"`
+	OfferingGroupTitle        *string               `json:"offering_group_title,omitempty"`
+	OfferingGroupUuid         *openapi_types.UUID   `json:"offering_group_uuid,omitempty"`
 	Options                   *OfferingOptions      `json:"options,omitempty"`
 	OrderCount                *int                  `json:"order_count,omitempty"`
 	OrganizationGroups        *[]OrganizationGroup  `json:"organization_groups,omitempty"`
@@ -34170,6 +34289,7 @@ type OfferingCreateRequest struct {
 	Limits            *map[string]OfferingComponentLimitRequest `json:"limits,omitempty"`
 	Longitude         *float64                                  `json:"longitude,omitempty"`
 	Name              string                                    `json:"name"`
+	OfferingGroup     *openapi_types.UUID                       `json:"offering_group,omitempty"`
 	Options           *OfferingOptionsRequest                   `json:"options,omitempty"`
 	Plans             *[]BaseProviderPlanRequest                `json:"plans,omitempty"`
 	PluginOptions     *MergedPluginOptionsRequest               `json:"plugin_options,omitempty"`
@@ -34223,6 +34343,7 @@ type OfferingCreateRequestForm struct {
 	Limits            *map[string]OfferingComponentLimitRequest `json:"limits,omitempty"`
 	Longitude         *float64                                  `json:"longitude,omitempty"`
 	Name              string                                    `json:"name"`
+	OfferingGroup     *openapi_types.UUID                       `json:"offering_group,omitempty"`
 	Options           *OfferingOptionsRequest                   `json:"options,omitempty"`
 	Plans             *[]BaseProviderPlanRequest                `json:"plans,omitempty"`
 	PluginOptions     *MergedPluginOptionsRequest               `json:"plugin_options,omitempty"`
@@ -34276,6 +34397,7 @@ type OfferingCreateRequestMultipart struct {
 	Limits            *map[string]OfferingComponentLimitRequest `json:"limits,omitempty"`
 	Longitude         *float64                                  `json:"longitude,omitempty"`
 	Name              string                                    `json:"name"`
+	OfferingGroup     *openapi_types.UUID                       `json:"offering_group,omitempty"`
 	Options           *OfferingOptionsRequest                   `json:"options,omitempty"`
 	Plans             *[]BaseProviderPlanRequest                `json:"plans,omitempty"`
 	PluginOptions     *MergedPluginOptionsRequest               `json:"plugin_options,omitempty"`
@@ -34465,6 +34587,52 @@ type OfferingFileRequestMultipart struct {
 	File     openapi_types.File `json:"file"`
 	Name     string             `json:"name"`
 	Offering string             `json:"offering"`
+}
+
+// OfferingGroup defines model for OfferingGroup.
+type OfferingGroup struct {
+	Created      *time.Time          `json:"created,omitempty"`
+	Customer     *string             `json:"customer,omitempty"`
+	CustomerName *string             `json:"customer_name,omitempty"`
+	CustomerUuid *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Description  *string             `json:"description,omitempty"`
+	Icon         *string             `json:"icon,omitempty"`
+	Title        *string             `json:"title,omitempty"`
+	Url          *string             `json:"url,omitempty"`
+	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// OfferingGroupAssignRequest defines model for OfferingGroupAssignRequest.
+type OfferingGroupAssignRequest struct {
+	// OfferingGroup OfferingGroup UUID. Pass null to remove the assignment.
+	OfferingGroup *openapi_types.UUID `json:"offering_group"`
+}
+
+// OfferingGroupFieldEnum defines model for OfferingGroupFieldEnum.
+type OfferingGroupFieldEnum string
+
+// OfferingGroupRequest defines model for OfferingGroupRequest.
+type OfferingGroupRequest struct {
+	Customer    string              `json:"customer"`
+	Description *string             `json:"description,omitempty"`
+	Icon        *openapi_types.File `json:"icon,omitempty"`
+	Title       string              `json:"title"`
+}
+
+// OfferingGroupRequestForm defines model for OfferingGroupRequestForm.
+type OfferingGroupRequestForm struct {
+	Customer    string              `json:"customer"`
+	Description *string             `json:"description,omitempty"`
+	Icon        *openapi_types.File `json:"icon,omitempty"`
+	Title       string              `json:"title"`
+}
+
+// OfferingGroupRequestMultipart defines model for OfferingGroupRequestMultipart.
+type OfferingGroupRequestMultipart struct {
+	Customer    string              `json:"customer"`
+	Description *string             `json:"description,omitempty"`
+	Icon        *openapi_types.File `json:"icon,omitempty"`
+	Title       string              `json:"title"`
 }
 
 // OfferingGroups defines model for OfferingGroups.
@@ -39570,6 +39738,27 @@ type PatchedOfferingEstimatedCostPolicyRequest struct {
 	Scope              *string           `json:"scope,omitempty"`
 }
 
+// PatchedOfferingGroupRequest defines model for PatchedOfferingGroupRequest.
+type PatchedOfferingGroupRequest struct {
+	Description *string             `json:"description,omitempty"`
+	Icon        *openapi_types.File `json:"icon,omitempty"`
+	Title       *string             `json:"title,omitempty"`
+}
+
+// PatchedOfferingGroupRequestForm defines model for PatchedOfferingGroupRequestForm.
+type PatchedOfferingGroupRequestForm struct {
+	Description *string             `json:"description,omitempty"`
+	Icon        *openapi_types.File `json:"icon,omitempty"`
+	Title       *string             `json:"title,omitempty"`
+}
+
+// PatchedOfferingGroupRequestMultipart defines model for PatchedOfferingGroupRequestMultipart.
+type PatchedOfferingGroupRequestMultipart struct {
+	Description *string             `json:"description,omitempty"`
+	Icon        *openapi_types.File `json:"icon,omitempty"`
+	Title       *string             `json:"title,omitempty"`
+}
+
 // PatchedOfferingPartitionUpdateRequest defines model for PatchedOfferingPartitionUpdateRequest.
 type PatchedOfferingPartitionUpdateRequest struct {
 	// CpuArch CPU architecture of the partition (e.g., x86_64/amd/zen3)
@@ -42770,6 +42959,8 @@ type ProviderOffering struct {
 	Components           *[]OfferingComponent `json:"components,omitempty"`
 	CustomerUuid         *openapi_types.UUID  `json:"customer_uuid,omitempty"`
 	Name                 *string              `json:"name,omitempty"`
+	OfferingGroupTitle   *string              `json:"offering_group_title,omitempty"`
+	OfferingGroupUuid    *openapi_types.UUID  `json:"offering_group_uuid,omitempty"`
 
 	// Options Fields describing resource provision form.
 	Options interface{}         `json:"options,omitempty"`
@@ -42868,6 +43059,9 @@ type ProviderOfferingDetails struct {
 	Latitude                  *float64                            `json:"latitude,omitempty"`
 	Longitude                 *float64                            `json:"longitude,omitempty"`
 	Name                      *string                             `json:"name,omitempty"`
+	OfferingGroup             *string                             `json:"offering_group,omitempty"`
+	OfferingGroupTitle        *string                             `json:"offering_group_title,omitempty"`
+	OfferingGroupUuid         *openapi_types.UUID                 `json:"offering_group_uuid,omitempty"`
 	Options                   *OfferingOptions                    `json:"options,omitempty"`
 	OrderCount                *int                                `json:"order_count,omitempty"`
 	OrganizationGroups        *[]OrganizationGroup                `json:"organization_groups,omitempty"`
@@ -43219,6 +43413,9 @@ type PublicOfferingDetails struct {
 	Latitude                  *float64                          `json:"latitude,omitempty"`
 	Longitude                 *float64                          `json:"longitude,omitempty"`
 	Name                      *string                           `json:"name,omitempty"`
+	OfferingGroup             *string                           `json:"offering_group,omitempty"`
+	OfferingGroupTitle        *string                           `json:"offering_group_title,omitempty"`
+	OfferingGroupUuid         *openapi_types.UUID               `json:"offering_group_uuid,omitempty"`
 	Options                   *OfferingOptions                  `json:"options,omitempty"`
 	OrderCount                *int                              `json:"order_count,omitempty"`
 	OrganizationGroups        *[]OrganizationGroup              `json:"organization_groups,omitempty"`
@@ -46893,6 +47090,12 @@ type ScienceSubDomainRequest struct {
 	Code   *string `json:"code,omitempty"`
 	Domain string  `json:"domain"`
 	Name   string  `json:"name"`
+}
+
+// ScimPullAttributesResponse defines model for ScimPullAttributesResponse.
+type ScimPullAttributesResponse struct {
+	ChangedFields *[]string `json:"changed_fields,omitempty"`
+	Detail        string    `json:"detail"`
 }
 
 // ScimSyncAllResponse defines model for ScimSyncAllResponse.
@@ -56297,6 +56500,38 @@ type MarketplaceOfferingFilesRetrieveParams struct {
 	Field *[]OfferingFileFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 }
 
+// MarketplaceOfferingGroupsListParams defines parameters for MarketplaceOfferingGroupsList.
+type MarketplaceOfferingGroupsListParams struct {
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID       `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	Field        *[]OfferingGroupFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Title    *string   `form:"title,omitempty" json:"title,omitempty"`
+}
+
+// MarketplaceOfferingGroupsCountParams defines parameters for MarketplaceOfferingGroupsCount.
+type MarketplaceOfferingGroupsCountParams struct {
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Title    *string   `form:"title,omitempty" json:"title,omitempty"`
+}
+
+// MarketplaceOfferingGroupsRetrieveParams defines parameters for MarketplaceOfferingGroupsRetrieve.
+type MarketplaceOfferingGroupsRetrieveParams struct {
+	Field *[]OfferingGroupFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+}
+
 // MarketplaceOfferingPermissionsLogListParams defines parameters for MarketplaceOfferingPermissionsLogList.
 type MarketplaceOfferingPermissionsLogListParams struct {
 	// Created Created after
@@ -57377,6 +57612,9 @@ type MarketplaceProviderOfferingsListParams struct {
 	//
 	O *[]ProviderOfferingDetailsOEnum `form:"o,omitempty" json:"o,omitempty"`
 
+	// OfferingGroupUuid Offering group UUID
+	OfferingGroupUuid *openapi_types.UUID `form:"offering_group_uuid,omitempty" json:"offering_group_uuid,omitempty"`
+
 	// OrganizationGroupUuid Organization group UUID
 	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
@@ -57506,6 +57744,9 @@ type MarketplaceProviderOfferingsCountParams struct {
 	//
 	O *[]ProviderOfferingDetailsOEnum `form:"o,omitempty" json:"o,omitempty"`
 
+	// OfferingGroupUuid Offering group UUID
+	OfferingGroupUuid *openapi_types.UUID `form:"offering_group_uuid,omitempty" json:"offering_group_uuid,omitempty"`
+
 	// OrganizationGroupUuid Organization group UUID
 	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
@@ -57632,6 +57873,9 @@ type MarketplaceProviderOfferingsGroupsListParams struct {
 	//
 	O *[]ProviderOfferingDetailsOEnum `form:"o,omitempty" json:"o,omitempty"`
 
+	// OfferingGroupUuid Offering group UUID
+	OfferingGroupUuid *openapi_types.UUID `form:"offering_group_uuid,omitempty" json:"offering_group_uuid,omitempty"`
+
 	// OrganizationGroupUuid Organization group UUID
 	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
@@ -57757,6 +58001,9 @@ type MarketplaceProviderOfferingsGroupsCountParams struct {
 	// O Ordering
 	//
 	O *[]ProviderOfferingDetailsOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingGroupUuid Offering group UUID
+	OfferingGroupUuid *openapi_types.UUID `form:"offering_group_uuid,omitempty" json:"offering_group_uuid,omitempty"`
 
 	// OrganizationGroupUuid Organization group UUID
 	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
@@ -57895,6 +58142,9 @@ type MarketplaceProviderOfferingsComponentStatsListParams struct {
 	//
 	O *[]ProviderOfferingDetailsOEnum `form:"o,omitempty" json:"o,omitempty"`
 
+	// OfferingGroupUuid Offering group UUID
+	OfferingGroupUuid *openapi_types.UUID `form:"offering_group_uuid,omitempty" json:"offering_group_uuid,omitempty"`
+
 	// OrganizationGroupUuid Organization group UUID
 	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
@@ -58031,6 +58281,9 @@ type MarketplaceProviderOfferingsCostsListParams struct {
 	//
 	O *[]ProviderOfferingDetailsOEnum `form:"o,omitempty" json:"o,omitempty"`
 
+	// OfferingGroupUuid Offering group UUID
+	OfferingGroupUuid *openapi_types.UUID `form:"offering_group_uuid,omitempty" json:"offering_group_uuid,omitempty"`
+
 	// OrganizationGroupUuid Organization group UUID
 	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
@@ -58164,6 +58417,9 @@ type MarketplaceProviderOfferingsCustomersListParams struct {
 	//
 	O *[]ProviderOfferingDetailsOEnum `form:"o,omitempty" json:"o,omitempty"`
 
+	// OfferingGroupUuid Offering group UUID
+	OfferingGroupUuid *openapi_types.UUID `form:"offering_group_uuid,omitempty" json:"offering_group_uuid,omitempty"`
+
 	// OrganizationGroupUuid Organization group UUID
 	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
@@ -58295,6 +58551,9 @@ type MarketplaceProviderOfferingsHistoryListParams struct {
 	// O Ordering
 	//
 	O *[]ProviderOfferingDetailsOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingGroupUuid Offering group UUID
+	OfferingGroupUuid *openapi_types.UUID `form:"offering_group_uuid,omitempty" json:"offering_group_uuid,omitempty"`
 
 	// OrganizationGroupUuid Organization group UUID
 	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
@@ -58440,6 +58699,9 @@ type MarketplaceProviderOfferingsListCourseAccountsListParams struct {
 	//
 	O *[]ProviderOfferingDetailsOEnum `form:"o,omitempty" json:"o,omitempty"`
 
+	// OfferingGroupUuid Offering group UUID
+	OfferingGroupUuid *openapi_types.UUID `form:"offering_group_uuid,omitempty" json:"offering_group_uuid,omitempty"`
+
 	// OrganizationGroupUuid Organization group UUID
 	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
@@ -58580,6 +58842,9 @@ type MarketplaceProviderOfferingsListCustomerServiceAccountsListParams struct {
 	//
 	O *[]ProviderOfferingDetailsOEnum `form:"o,omitempty" json:"o,omitempty"`
 
+	// OfferingGroupUuid Offering group UUID
+	OfferingGroupUuid *openapi_types.UUID `form:"offering_group_uuid,omitempty" json:"offering_group_uuid,omitempty"`
+
 	// OrganizationGroupUuid Organization group UUID
 	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
@@ -58719,6 +58984,9 @@ type MarketplaceProviderOfferingsListProjectServiceAccountsListParams struct {
 	// O Ordering
 	//
 	O *[]ProviderOfferingDetailsOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingGroupUuid Offering group UUID
+	OfferingGroupUuid *openapi_types.UUID `form:"offering_group_uuid,omitempty" json:"offering_group_uuid,omitempty"`
 
 	// OrganizationGroupUuid Organization group UUID
 	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
@@ -59461,6 +59729,9 @@ type MarketplacePublicOfferingsListParams struct {
 	//
 	O *[]ProviderOfferingDetailsOEnum `form:"o,omitempty" json:"o,omitempty"`
 
+	// OfferingGroupUuid Offering group UUID
+	OfferingGroupUuid *openapi_types.UUID `form:"offering_group_uuid,omitempty" json:"offering_group_uuid,omitempty"`
+
 	// OrganizationGroupUuid Organization group UUID
 	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
@@ -59586,6 +59857,9 @@ type MarketplacePublicOfferingsCountParams struct {
 	// O Ordering
 	//
 	O *[]ProviderOfferingDetailsOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingGroupUuid Offering group UUID
+	OfferingGroupUuid *openapi_types.UUID `form:"offering_group_uuid,omitempty" json:"offering_group_uuid,omitempty"`
 
 	// OrganizationGroupUuid Organization group UUID
 	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
@@ -60947,6 +61221,9 @@ type MarketplaceServiceProvidersOfferingsListParams struct {
 	// O Ordering
 	//
 	O *[]ProviderOfferingDetailsOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingGroupUuid Offering group UUID
+	OfferingGroupUuid *openapi_types.UUID `form:"offering_group_uuid,omitempty" json:"offering_group_uuid,omitempty"`
 
 	// OrganizationGroupUuid Organization group UUID
 	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
@@ -73510,6 +73787,33 @@ type MarketplaceOfferingFilesCreateFormdataRequestBody = OfferingFileRequestForm
 // MarketplaceOfferingFilesCreateMultipartRequestBody defines body for MarketplaceOfferingFilesCreate for multipart/form-data ContentType.
 type MarketplaceOfferingFilesCreateMultipartRequestBody = OfferingFileRequestMultipart
 
+// MarketplaceOfferingGroupsCreateJSONRequestBody defines body for MarketplaceOfferingGroupsCreate for application/json ContentType.
+type MarketplaceOfferingGroupsCreateJSONRequestBody = OfferingGroupRequest
+
+// MarketplaceOfferingGroupsCreateFormdataRequestBody defines body for MarketplaceOfferingGroupsCreate for application/x-www-form-urlencoded ContentType.
+type MarketplaceOfferingGroupsCreateFormdataRequestBody = OfferingGroupRequestForm
+
+// MarketplaceOfferingGroupsCreateMultipartRequestBody defines body for MarketplaceOfferingGroupsCreate for multipart/form-data ContentType.
+type MarketplaceOfferingGroupsCreateMultipartRequestBody = OfferingGroupRequestMultipart
+
+// MarketplaceOfferingGroupsPartialUpdateJSONRequestBody defines body for MarketplaceOfferingGroupsPartialUpdate for application/json ContentType.
+type MarketplaceOfferingGroupsPartialUpdateJSONRequestBody = PatchedOfferingGroupRequest
+
+// MarketplaceOfferingGroupsPartialUpdateFormdataRequestBody defines body for MarketplaceOfferingGroupsPartialUpdate for application/x-www-form-urlencoded ContentType.
+type MarketplaceOfferingGroupsPartialUpdateFormdataRequestBody = PatchedOfferingGroupRequestForm
+
+// MarketplaceOfferingGroupsPartialUpdateMultipartRequestBody defines body for MarketplaceOfferingGroupsPartialUpdate for multipart/form-data ContentType.
+type MarketplaceOfferingGroupsPartialUpdateMultipartRequestBody = PatchedOfferingGroupRequestMultipart
+
+// MarketplaceOfferingGroupsUpdateJSONRequestBody defines body for MarketplaceOfferingGroupsUpdate for application/json ContentType.
+type MarketplaceOfferingGroupsUpdateJSONRequestBody = OfferingGroupRequest
+
+// MarketplaceOfferingGroupsUpdateFormdataRequestBody defines body for MarketplaceOfferingGroupsUpdate for application/x-www-form-urlencoded ContentType.
+type MarketplaceOfferingGroupsUpdateFormdataRequestBody = OfferingGroupRequestForm
+
+// MarketplaceOfferingGroupsUpdateMultipartRequestBody defines body for MarketplaceOfferingGroupsUpdate for multipart/form-data ContentType.
+type MarketplaceOfferingGroupsUpdateMultipartRequestBody = OfferingGroupRequestMultipart
+
 // MarketplaceOfferingProfilesCreateJSONRequestBody defines body for MarketplaceOfferingProfilesCreate for application/json ContentType.
 type MarketplaceOfferingProfilesCreateJSONRequestBody = OfferingProfileRequest
 
@@ -73731,6 +74035,9 @@ type MarketplaceProviderOfferingsRemoveSoftwareCatalogJSONRequestBody = RemoveSo
 
 // MarketplaceProviderOfferingsSetBackendMetadataJSONRequestBody defines body for MarketplaceProviderOfferingsSetBackendMetadata for application/json ContentType.
 type MarketplaceProviderOfferingsSetBackendMetadataJSONRequestBody = OfferingBackendMetadataRequest
+
+// MarketplaceProviderOfferingsSetOfferingGroupJSONRequestBody defines body for MarketplaceProviderOfferingsSetOfferingGroup for application/json ContentType.
+type MarketplaceProviderOfferingsSetOfferingGroupJSONRequestBody = OfferingGroupAssignRequest
 
 // MarketplaceProviderOfferingsSetProfileJSONRequestBody defines body for MarketplaceProviderOfferingsSetProfile for application/json ContentType.
 type MarketplaceProviderOfferingsSetProfileJSONRequestBody = OfferingProfileBindRequest
@@ -77463,6 +77770,68 @@ func (t *ConstanceSettings_ONBOARDINGVALIDATIONMETHODS_Item) UnmarshalJSON(b []b
 	return err
 }
 
+// AsUserAttributeEnum returns the union data inside the ConstanceSettings_SCIMINBOUNDALLOWEDATTRIBUTES_Item as a UserAttributeEnum
+func (t ConstanceSettings_SCIMINBOUNDALLOWEDATTRIBUTES_Item) AsUserAttributeEnum() (UserAttributeEnum, error) {
+	var body UserAttributeEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUserAttributeEnum overwrites any union data inside the ConstanceSettings_SCIMINBOUNDALLOWEDATTRIBUTES_Item as the provided UserAttributeEnum
+func (t *ConstanceSettings_SCIMINBOUNDALLOWEDATTRIBUTES_Item) FromUserAttributeEnum(v UserAttributeEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUserAttributeEnum performs a merge with any union data inside the ConstanceSettings_SCIMINBOUNDALLOWEDATTRIBUTES_Item, using the provided UserAttributeEnum
+func (t *ConstanceSettings_SCIMINBOUNDALLOWEDATTRIBUTES_Item) MergeUserAttributeEnum(v UserAttributeEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the ConstanceSettings_SCIMINBOUNDALLOWEDATTRIBUTES_Item as a BlankEnum
+func (t ConstanceSettings_SCIMINBOUNDALLOWEDATTRIBUTES_Item) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the ConstanceSettings_SCIMINBOUNDALLOWEDATTRIBUTES_Item as the provided BlankEnum
+func (t *ConstanceSettings_SCIMINBOUNDALLOWEDATTRIBUTES_Item) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the ConstanceSettings_SCIMINBOUNDALLOWEDATTRIBUTES_Item, using the provided BlankEnum
+func (t *ConstanceSettings_SCIMINBOUNDALLOWEDATTRIBUTES_Item) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ConstanceSettings_SCIMINBOUNDALLOWEDATTRIBUTES_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ConstanceSettings_SCIMINBOUNDALLOWEDATTRIBUTES_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsSSHKEYALLOWEDTYPESEnum returns the union data inside the ConstanceSettings_SSHKEYALLOWEDTYPES_Item as a SSHKEYALLOWEDTYPESEnum
 func (t ConstanceSettings_SSHKEYALLOWEDTYPES_Item) AsSSHKEYALLOWEDTYPESEnum() (SSHKEYALLOWEDTYPESEnum, error) {
 	var body SSHKEYALLOWEDTYPESEnum
@@ -78203,6 +78572,68 @@ func (t ConstanceSettingsRequest_ONBOARDINGVALIDATIONMETHODS_Item) MarshalJSON()
 }
 
 func (t *ConstanceSettingsRequest_ONBOARDINGVALIDATIONMETHODS_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsUserAttributeEnum returns the union data inside the ConstanceSettingsRequest_SCIMINBOUNDALLOWEDATTRIBUTES_Item as a UserAttributeEnum
+func (t ConstanceSettingsRequest_SCIMINBOUNDALLOWEDATTRIBUTES_Item) AsUserAttributeEnum() (UserAttributeEnum, error) {
+	var body UserAttributeEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUserAttributeEnum overwrites any union data inside the ConstanceSettingsRequest_SCIMINBOUNDALLOWEDATTRIBUTES_Item as the provided UserAttributeEnum
+func (t *ConstanceSettingsRequest_SCIMINBOUNDALLOWEDATTRIBUTES_Item) FromUserAttributeEnum(v UserAttributeEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUserAttributeEnum performs a merge with any union data inside the ConstanceSettingsRequest_SCIMINBOUNDALLOWEDATTRIBUTES_Item, using the provided UserAttributeEnum
+func (t *ConstanceSettingsRequest_SCIMINBOUNDALLOWEDATTRIBUTES_Item) MergeUserAttributeEnum(v UserAttributeEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the ConstanceSettingsRequest_SCIMINBOUNDALLOWEDATTRIBUTES_Item as a BlankEnum
+func (t ConstanceSettingsRequest_SCIMINBOUNDALLOWEDATTRIBUTES_Item) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the ConstanceSettingsRequest_SCIMINBOUNDALLOWEDATTRIBUTES_Item as the provided BlankEnum
+func (t *ConstanceSettingsRequest_SCIMINBOUNDALLOWEDATTRIBUTES_Item) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the ConstanceSettingsRequest_SCIMINBOUNDALLOWEDATTRIBUTES_Item, using the provided BlankEnum
+func (t *ConstanceSettingsRequest_SCIMINBOUNDALLOWEDATTRIBUTES_Item) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ConstanceSettingsRequest_SCIMINBOUNDALLOWEDATTRIBUTES_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ConstanceSettingsRequest_SCIMINBOUNDALLOWEDATTRIBUTES_Item) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -78951,6 +79382,68 @@ func (t *ConstanceSettingsRequestForm_ONBOARDINGVALIDATIONMETHODS_Item) Unmarsha
 	return err
 }
 
+// AsUserAttributeEnum returns the union data inside the ConstanceSettingsRequestForm_SCIMINBOUNDALLOWEDATTRIBUTES_Item as a UserAttributeEnum
+func (t ConstanceSettingsRequestForm_SCIMINBOUNDALLOWEDATTRIBUTES_Item) AsUserAttributeEnum() (UserAttributeEnum, error) {
+	var body UserAttributeEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUserAttributeEnum overwrites any union data inside the ConstanceSettingsRequestForm_SCIMINBOUNDALLOWEDATTRIBUTES_Item as the provided UserAttributeEnum
+func (t *ConstanceSettingsRequestForm_SCIMINBOUNDALLOWEDATTRIBUTES_Item) FromUserAttributeEnum(v UserAttributeEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUserAttributeEnum performs a merge with any union data inside the ConstanceSettingsRequestForm_SCIMINBOUNDALLOWEDATTRIBUTES_Item, using the provided UserAttributeEnum
+func (t *ConstanceSettingsRequestForm_SCIMINBOUNDALLOWEDATTRIBUTES_Item) MergeUserAttributeEnum(v UserAttributeEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the ConstanceSettingsRequestForm_SCIMINBOUNDALLOWEDATTRIBUTES_Item as a BlankEnum
+func (t ConstanceSettingsRequestForm_SCIMINBOUNDALLOWEDATTRIBUTES_Item) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the ConstanceSettingsRequestForm_SCIMINBOUNDALLOWEDATTRIBUTES_Item as the provided BlankEnum
+func (t *ConstanceSettingsRequestForm_SCIMINBOUNDALLOWEDATTRIBUTES_Item) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the ConstanceSettingsRequestForm_SCIMINBOUNDALLOWEDATTRIBUTES_Item, using the provided BlankEnum
+func (t *ConstanceSettingsRequestForm_SCIMINBOUNDALLOWEDATTRIBUTES_Item) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ConstanceSettingsRequestForm_SCIMINBOUNDALLOWEDATTRIBUTES_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ConstanceSettingsRequestForm_SCIMINBOUNDALLOWEDATTRIBUTES_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsSSHKEYALLOWEDTYPESEnum returns the union data inside the ConstanceSettingsRequestForm_SSHKEYALLOWEDTYPES_Item as a SSHKEYALLOWEDTYPESEnum
 func (t ConstanceSettingsRequestForm_SSHKEYALLOWEDTYPES_Item) AsSSHKEYALLOWEDTYPESEnum() (SSHKEYALLOWEDTYPESEnum, error) {
 	var body SSHKEYALLOWEDTYPESEnum
@@ -79691,6 +80184,68 @@ func (t ConstanceSettingsRequestMultipart_ONBOARDINGVALIDATIONMETHODS_Item) Mars
 }
 
 func (t *ConstanceSettingsRequestMultipart_ONBOARDINGVALIDATIONMETHODS_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsUserAttributeEnum returns the union data inside the ConstanceSettingsRequestMultipart_SCIMINBOUNDALLOWEDATTRIBUTES_Item as a UserAttributeEnum
+func (t ConstanceSettingsRequestMultipart_SCIMINBOUNDALLOWEDATTRIBUTES_Item) AsUserAttributeEnum() (UserAttributeEnum, error) {
+	var body UserAttributeEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUserAttributeEnum overwrites any union data inside the ConstanceSettingsRequestMultipart_SCIMINBOUNDALLOWEDATTRIBUTES_Item as the provided UserAttributeEnum
+func (t *ConstanceSettingsRequestMultipart_SCIMINBOUNDALLOWEDATTRIBUTES_Item) FromUserAttributeEnum(v UserAttributeEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUserAttributeEnum performs a merge with any union data inside the ConstanceSettingsRequestMultipart_SCIMINBOUNDALLOWEDATTRIBUTES_Item, using the provided UserAttributeEnum
+func (t *ConstanceSettingsRequestMultipart_SCIMINBOUNDALLOWEDATTRIBUTES_Item) MergeUserAttributeEnum(v UserAttributeEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the ConstanceSettingsRequestMultipart_SCIMINBOUNDALLOWEDATTRIBUTES_Item as a BlankEnum
+func (t ConstanceSettingsRequestMultipart_SCIMINBOUNDALLOWEDATTRIBUTES_Item) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the ConstanceSettingsRequestMultipart_SCIMINBOUNDALLOWEDATTRIBUTES_Item as the provided BlankEnum
+func (t *ConstanceSettingsRequestMultipart_SCIMINBOUNDALLOWEDATTRIBUTES_Item) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the ConstanceSettingsRequestMultipart_SCIMINBOUNDALLOWEDATTRIBUTES_Item, using the provided BlankEnum
+func (t *ConstanceSettingsRequestMultipart_SCIMINBOUNDALLOWEDATTRIBUTES_Item) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ConstanceSettingsRequestMultipart_SCIMINBOUNDALLOWEDATTRIBUTES_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ConstanceSettingsRequestMultipart_SCIMINBOUNDALLOWEDATTRIBUTES_Item) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -92170,6 +92725,39 @@ type ClientInterface interface {
 	// MarketplaceOfferingFilesRetrieve request
 	MarketplaceOfferingFilesRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOfferingFilesRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceOfferingGroupsList request
+	MarketplaceOfferingGroupsList(ctx context.Context, params *MarketplaceOfferingGroupsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingGroupsCount request
+	MarketplaceOfferingGroupsCount(ctx context.Context, params *MarketplaceOfferingGroupsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingGroupsCreateWithBody request with any body
+	MarketplaceOfferingGroupsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceOfferingGroupsCreate(ctx context.Context, body MarketplaceOfferingGroupsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceOfferingGroupsCreateWithFormdataBody(ctx context.Context, body MarketplaceOfferingGroupsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingGroupsDestroy request
+	MarketplaceOfferingGroupsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingGroupsRetrieve request
+	MarketplaceOfferingGroupsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOfferingGroupsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingGroupsPartialUpdateWithBody request with any body
+	MarketplaceOfferingGroupsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceOfferingGroupsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingGroupsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceOfferingGroupsPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingGroupsPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingGroupsUpdateWithBody request with any body
+	MarketplaceOfferingGroupsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceOfferingGroupsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingGroupsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceOfferingGroupsUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingGroupsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceOfferingPermissionsLogList request
 	MarketplaceOfferingPermissionsLogList(ctx context.Context, params *MarketplaceOfferingPermissionsLogListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -92882,6 +93470,11 @@ type ClientInterface interface {
 	MarketplaceProviderOfferingsSetBackendMetadataWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceProviderOfferingsSetBackendMetadata(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSetBackendMetadataJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsSetOfferingGroupWithBody request with any body
+	MarketplaceProviderOfferingsSetOfferingGroupWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderOfferingsSetOfferingGroup(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSetOfferingGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsSetProfileWithBody request with any body
 	MarketplaceProviderOfferingsSetProfileWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -98470,6 +99063,9 @@ type ClientInterface interface {
 
 	// UsersPullRemoteUser request
 	UsersPullRemoteUser(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UsersPullScimAttributes request
+	UsersPullScimAttributes(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UsersRefreshToken request
 	UsersRefreshToken(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -111428,6 +112024,162 @@ func (c *Client) MarketplaceOfferingFilesRetrieve(ctx context.Context, uuid open
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceOfferingGroupsList(ctx context.Context, params *MarketplaceOfferingGroupsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingGroupsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingGroupsCount(ctx context.Context, params *MarketplaceOfferingGroupsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingGroupsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingGroupsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingGroupsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingGroupsCreate(ctx context.Context, body MarketplaceOfferingGroupsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingGroupsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingGroupsCreateWithFormdataBody(ctx context.Context, body MarketplaceOfferingGroupsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingGroupsCreateRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingGroupsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingGroupsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingGroupsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOfferingGroupsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingGroupsRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingGroupsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingGroupsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingGroupsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingGroupsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingGroupsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingGroupsPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingGroupsPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingGroupsPartialUpdateRequestWithFormdataBody(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingGroupsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingGroupsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingGroupsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingGroupsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingGroupsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingGroupsUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingGroupsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingGroupsUpdateRequestWithFormdataBody(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceOfferingPermissionsLogList(ctx context.Context, params *MarketplaceOfferingPermissionsLogListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceOfferingPermissionsLogListRequest(c.Server, params)
 	if err != nil {
@@ -114550,6 +115302,30 @@ func (c *Client) MarketplaceProviderOfferingsSetBackendMetadataWithBody(ctx cont
 
 func (c *Client) MarketplaceProviderOfferingsSetBackendMetadata(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSetBackendMetadataJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsSetBackendMetadataRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsSetOfferingGroupWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsSetOfferingGroupRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsSetOfferingGroup(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSetOfferingGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsSetOfferingGroupRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -139090,6 +139866,18 @@ func (c *Client) UsersIdentityBridgeStatusRetrieve(ctx context.Context, uuid ope
 
 func (c *Client) UsersPullRemoteUser(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUsersPullRemoteUserRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UsersPullScimAttributes(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersPullScimAttributesRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -197390,6 +198178,460 @@ func NewMarketplaceOfferingFilesRetrieveRequest(server string, uuid openapi_type
 	return req, nil
 }
 
+// NewMarketplaceOfferingGroupsListRequest generates requests for MarketplaceOfferingGroupsList
+func NewMarketplaceOfferingGroupsListRequest(server string, params *MarketplaceOfferingGroupsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-groups/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Title != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "title", *params.Title, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingGroupsCountRequest generates requests for MarketplaceOfferingGroupsCount
+func NewMarketplaceOfferingGroupsCountRequest(server string, params *MarketplaceOfferingGroupsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-groups/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Title != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "title", *params.Title, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingGroupsCreateRequest calls the generic MarketplaceOfferingGroupsCreate builder with application/json body
+func NewMarketplaceOfferingGroupsCreateRequest(server string, body MarketplaceOfferingGroupsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceOfferingGroupsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceOfferingGroupsCreateRequestWithFormdataBody calls the generic MarketplaceOfferingGroupsCreate builder with application/x-www-form-urlencoded body
+func NewMarketplaceOfferingGroupsCreateRequestWithFormdataBody(server string, body MarketplaceOfferingGroupsCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewMarketplaceOfferingGroupsCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewMarketplaceOfferingGroupsCreateRequestWithBody generates requests for MarketplaceOfferingGroupsCreate with any type of body
+func NewMarketplaceOfferingGroupsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-groups/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingGroupsDestroyRequest generates requests for MarketplaceOfferingGroupsDestroy
+func NewMarketplaceOfferingGroupsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-groups/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingGroupsRetrieveRequest generates requests for MarketplaceOfferingGroupsRetrieve
+func NewMarketplaceOfferingGroupsRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceOfferingGroupsRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-groups/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingGroupsPartialUpdateRequest calls the generic MarketplaceOfferingGroupsPartialUpdate builder with application/json body
+func NewMarketplaceOfferingGroupsPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceOfferingGroupsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceOfferingGroupsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceOfferingGroupsPartialUpdateRequestWithFormdataBody calls the generic MarketplaceOfferingGroupsPartialUpdate builder with application/x-www-form-urlencoded body
+func NewMarketplaceOfferingGroupsPartialUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body MarketplaceOfferingGroupsPartialUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewMarketplaceOfferingGroupsPartialUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewMarketplaceOfferingGroupsPartialUpdateRequestWithBody generates requests for MarketplaceOfferingGroupsPartialUpdate with any type of body
+func NewMarketplaceOfferingGroupsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-groups/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingGroupsUpdateRequest calls the generic MarketplaceOfferingGroupsUpdate builder with application/json body
+func NewMarketplaceOfferingGroupsUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceOfferingGroupsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceOfferingGroupsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceOfferingGroupsUpdateRequestWithFormdataBody calls the generic MarketplaceOfferingGroupsUpdate builder with application/x-www-form-urlencoded body
+func NewMarketplaceOfferingGroupsUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body MarketplaceOfferingGroupsUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewMarketplaceOfferingGroupsUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewMarketplaceOfferingGroupsUpdateRequestWithBody generates requests for MarketplaceOfferingGroupsUpdate with any type of body
+func NewMarketplaceOfferingGroupsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-groups/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceOfferingPermissionsLogListRequest generates requests for MarketplaceOfferingPermissionsLogList
 func NewMarketplaceOfferingPermissionsLogListRequest(server string, params *MarketplaceOfferingPermissionsLogListParams) (*http.Request, error) {
 	var err error
@@ -207483,6 +208725,18 @@ func NewMarketplaceProviderOfferingsListRequest(server string, params *Marketpla
 
 		}
 
+		if params.OfferingGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_group_uuid", *params.OfferingGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.OrganizationGroupUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "organization_group_uuid", *params.OrganizationGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
@@ -208020,6 +209274,18 @@ func NewMarketplaceProviderOfferingsCountRequest(server string, params *Marketpl
 		if params.O != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_group_uuid", *params.OfferingGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -208614,6 +209880,18 @@ func NewMarketplaceProviderOfferingsGroupsListRequest(server string, params *Mar
 
 		}
 
+		if params.OfferingGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_group_uuid", *params.OfferingGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.OrganizationGroupUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "organization_group_uuid", *params.OrganizationGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
@@ -209139,6 +210417,18 @@ func NewMarketplaceProviderOfferingsGroupsCountRequest(server string, params *Ma
 		if params.O != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_group_uuid", *params.OfferingGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -210151,6 +211441,18 @@ func NewMarketplaceProviderOfferingsComponentStatsListRequest(server string, uui
 
 		}
 
+		if params.OfferingGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_group_uuid", *params.OfferingGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.OrganizationGroupUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "organization_group_uuid", *params.OrganizationGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
@@ -210731,6 +212033,18 @@ func NewMarketplaceProviderOfferingsCostsListRequest(server string, uuid openapi
 		if params.O != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_group_uuid", *params.OfferingGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -211355,6 +212669,18 @@ func NewMarketplaceProviderOfferingsCustomersListRequest(server string, uuid ope
 		if params.O != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_group_uuid", *params.OfferingGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -212308,6 +213634,18 @@ func NewMarketplaceProviderOfferingsHistoryListRequest(server string, uuid opena
 
 		}
 
+		if params.OfferingGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_group_uuid", *params.OfferingGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.OrganizationGroupUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "organization_group_uuid", *params.OrganizationGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
@@ -213038,6 +214376,18 @@ func NewMarketplaceProviderOfferingsListCourseAccountsListRequest(server string,
 
 		}
 
+		if params.OfferingGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_group_uuid", *params.OfferingGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.OrganizationGroupUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "organization_group_uuid", *params.OrganizationGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
@@ -213676,6 +215026,18 @@ func NewMarketplaceProviderOfferingsListCustomerServiceAccountsListRequest(serve
 
 		}
 
+		if params.OfferingGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_group_uuid", *params.OfferingGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.OrganizationGroupUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "organization_group_uuid", *params.OrganizationGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
@@ -214305,6 +215667,18 @@ func NewMarketplaceProviderOfferingsListProjectServiceAccountsListRequest(server
 		if params.O != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_group_uuid", *params.OfferingGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -215264,6 +216638,53 @@ func NewMarketplaceProviderOfferingsSetBackendMetadataRequestWithBody(server str
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/set_backend_metadata/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsSetOfferingGroupRequest calls the generic MarketplaceProviderOfferingsSetOfferingGroup builder with application/json body
+func NewMarketplaceProviderOfferingsSetOfferingGroupRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSetOfferingGroupJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderOfferingsSetOfferingGroupRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsSetOfferingGroupRequestWithBody generates requests for MarketplaceProviderOfferingsSetOfferingGroup with any type of body
+func NewMarketplaceProviderOfferingsSetOfferingGroupRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/set_offering_group/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -221419,6 +222840,18 @@ func NewMarketplacePublicOfferingsListRequest(server string, params *Marketplace
 
 		}
 
+		if params.OfferingGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_group_uuid", *params.OfferingGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.OrganizationGroupUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "organization_group_uuid", *params.OrganizationGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
@@ -221944,6 +223377,18 @@ func NewMarketplacePublicOfferingsCountRequest(server string, params *Marketplac
 		if params.O != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_group_uuid", *params.OfferingGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -231752,6 +233197,18 @@ func NewMarketplaceServiceProvidersOfferingsListRequest(server string, servicePr
 		if params.O != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_group_uuid", *params.OfferingGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -329296,6 +330753,40 @@ func NewUsersPullRemoteUserRequest(server string, uuid openapi_types.UUID) (*htt
 	return req, nil
 }
 
+// NewUsersPullScimAttributesRequest generates requests for UsersPullScimAttributes
+func NewUsersPullScimAttributesRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/users/%s/pull_scim_attributes/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewUsersRefreshTokenRequest generates requests for UsersRefreshToken
 func NewUsersRefreshTokenRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -337032,6 +338523,39 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceOfferingFilesRetrieveWithResponse request
 	MarketplaceOfferingFilesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOfferingFilesRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingFilesRetrieveResponse, error)
 
+	// MarketplaceOfferingGroupsListWithResponse request
+	MarketplaceOfferingGroupsListWithResponse(ctx context.Context, params *MarketplaceOfferingGroupsListParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingGroupsListResponse, error)
+
+	// MarketplaceOfferingGroupsCountWithResponse request
+	MarketplaceOfferingGroupsCountWithResponse(ctx context.Context, params *MarketplaceOfferingGroupsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingGroupsCountResponse, error)
+
+	// MarketplaceOfferingGroupsCreateWithBodyWithResponse request with any body
+	MarketplaceOfferingGroupsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingGroupsCreateResponse, error)
+
+	MarketplaceOfferingGroupsCreateWithResponse(ctx context.Context, body MarketplaceOfferingGroupsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingGroupsCreateResponse, error)
+
+	MarketplaceOfferingGroupsCreateWithFormdataBodyWithResponse(ctx context.Context, body MarketplaceOfferingGroupsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingGroupsCreateResponse, error)
+
+	// MarketplaceOfferingGroupsDestroyWithResponse request
+	MarketplaceOfferingGroupsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingGroupsDestroyResponse, error)
+
+	// MarketplaceOfferingGroupsRetrieveWithResponse request
+	MarketplaceOfferingGroupsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOfferingGroupsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingGroupsRetrieveResponse, error)
+
+	// MarketplaceOfferingGroupsPartialUpdateWithBodyWithResponse request with any body
+	MarketplaceOfferingGroupsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingGroupsPartialUpdateResponse, error)
+
+	MarketplaceOfferingGroupsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingGroupsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingGroupsPartialUpdateResponse, error)
+
+	MarketplaceOfferingGroupsPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingGroupsPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingGroupsPartialUpdateResponse, error)
+
+	// MarketplaceOfferingGroupsUpdateWithBodyWithResponse request with any body
+	MarketplaceOfferingGroupsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingGroupsUpdateResponse, error)
+
+	MarketplaceOfferingGroupsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingGroupsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingGroupsUpdateResponse, error)
+
+	MarketplaceOfferingGroupsUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingGroupsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingGroupsUpdateResponse, error)
+
 	// MarketplaceOfferingPermissionsLogListWithResponse request
 	MarketplaceOfferingPermissionsLogListWithResponse(ctx context.Context, params *MarketplaceOfferingPermissionsLogListParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingPermissionsLogListResponse, error)
 
@@ -337744,6 +339268,11 @@ type ClientWithResponsesInterface interface {
 	MarketplaceProviderOfferingsSetBackendMetadataWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSetBackendMetadataResponse, error)
 
 	MarketplaceProviderOfferingsSetBackendMetadataWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSetBackendMetadataJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSetBackendMetadataResponse, error)
+
+	// MarketplaceProviderOfferingsSetOfferingGroupWithBodyWithResponse request with any body
+	MarketplaceProviderOfferingsSetOfferingGroupWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSetOfferingGroupResponse, error)
+
+	MarketplaceProviderOfferingsSetOfferingGroupWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSetOfferingGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSetOfferingGroupResponse, error)
 
 	// MarketplaceProviderOfferingsSetProfileWithBodyWithResponse request with any body
 	MarketplaceProviderOfferingsSetProfileWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSetProfileResponse, error)
@@ -343332,6 +344861,9 @@ type ClientWithResponsesInterface interface {
 
 	// UsersPullRemoteUserWithResponse request
 	UsersPullRemoteUserWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UsersPullRemoteUserResponse, error)
+
+	// UsersPullScimAttributesWithResponse request
+	UsersPullScimAttributesWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UsersPullScimAttributesResponse, error)
 
 	// UsersRefreshTokenWithResponse request
 	UsersRefreshTokenWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UsersRefreshTokenResponse, error)
@@ -367031,6 +368563,214 @@ func (r MarketplaceOfferingFilesRetrieveResponse) ContentType() string {
 	return ""
 }
 
+type MarketplaceOfferingGroupsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OfferingGroup
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingGroupsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingGroupsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingGroupsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceOfferingGroupsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingGroupsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingGroupsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingGroupsCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceOfferingGroupsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *OfferingGroup
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingGroupsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingGroupsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingGroupsCreateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceOfferingGroupsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingGroupsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingGroupsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingGroupsDestroyResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceOfferingGroupsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OfferingGroup
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingGroupsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingGroupsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingGroupsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceOfferingGroupsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OfferingGroup
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingGroupsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingGroupsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingGroupsPartialUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceOfferingGroupsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OfferingGroup
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingGroupsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingGroupsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingGroupsUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type MarketplaceOfferingPermissionsLogListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -372699,6 +374439,35 @@ func (r MarketplaceProviderOfferingsSetBackendMetadataResponse) StatusCode() int
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceProviderOfferingsSetBackendMetadataResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProviderOfferingsSetOfferingGroupResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsSetOfferingGroupResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsSetOfferingGroupResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderOfferingsSetOfferingGroupResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -417272,6 +419041,36 @@ func (r UsersPullRemoteUserResponse) ContentType() string {
 	return ""
 }
 
+type UsersPullScimAttributesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ScimPullAttributesResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r UsersPullScimAttributesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UsersPullScimAttributesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r UsersPullScimAttributesResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type UsersRefreshTokenResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -428354,6 +430153,117 @@ func (c *ClientWithResponses) MarketplaceOfferingFilesRetrieveWithResponse(ctx c
 	return ParseMarketplaceOfferingFilesRetrieveResponse(rsp)
 }
 
+// MarketplaceOfferingGroupsListWithResponse request returning *MarketplaceOfferingGroupsListResponse
+func (c *ClientWithResponses) MarketplaceOfferingGroupsListWithResponse(ctx context.Context, params *MarketplaceOfferingGroupsListParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingGroupsListResponse, error) {
+	rsp, err := c.MarketplaceOfferingGroupsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingGroupsListResponse(rsp)
+}
+
+// MarketplaceOfferingGroupsCountWithResponse request returning *MarketplaceOfferingGroupsCountResponse
+func (c *ClientWithResponses) MarketplaceOfferingGroupsCountWithResponse(ctx context.Context, params *MarketplaceOfferingGroupsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingGroupsCountResponse, error) {
+	rsp, err := c.MarketplaceOfferingGroupsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingGroupsCountResponse(rsp)
+}
+
+// MarketplaceOfferingGroupsCreateWithBodyWithResponse request with arbitrary body returning *MarketplaceOfferingGroupsCreateResponse
+func (c *ClientWithResponses) MarketplaceOfferingGroupsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingGroupsCreateResponse, error) {
+	rsp, err := c.MarketplaceOfferingGroupsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingGroupsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceOfferingGroupsCreateWithResponse(ctx context.Context, body MarketplaceOfferingGroupsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingGroupsCreateResponse, error) {
+	rsp, err := c.MarketplaceOfferingGroupsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingGroupsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceOfferingGroupsCreateWithFormdataBodyWithResponse(ctx context.Context, body MarketplaceOfferingGroupsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingGroupsCreateResponse, error) {
+	rsp, err := c.MarketplaceOfferingGroupsCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingGroupsCreateResponse(rsp)
+}
+
+// MarketplaceOfferingGroupsDestroyWithResponse request returning *MarketplaceOfferingGroupsDestroyResponse
+func (c *ClientWithResponses) MarketplaceOfferingGroupsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingGroupsDestroyResponse, error) {
+	rsp, err := c.MarketplaceOfferingGroupsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingGroupsDestroyResponse(rsp)
+}
+
+// MarketplaceOfferingGroupsRetrieveWithResponse request returning *MarketplaceOfferingGroupsRetrieveResponse
+func (c *ClientWithResponses) MarketplaceOfferingGroupsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOfferingGroupsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingGroupsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceOfferingGroupsRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingGroupsRetrieveResponse(rsp)
+}
+
+// MarketplaceOfferingGroupsPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceOfferingGroupsPartialUpdateResponse
+func (c *ClientWithResponses) MarketplaceOfferingGroupsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingGroupsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceOfferingGroupsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingGroupsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceOfferingGroupsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingGroupsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingGroupsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceOfferingGroupsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingGroupsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceOfferingGroupsPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingGroupsPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingGroupsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceOfferingGroupsPartialUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingGroupsPartialUpdateResponse(rsp)
+}
+
+// MarketplaceOfferingGroupsUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceOfferingGroupsUpdateResponse
+func (c *ClientWithResponses) MarketplaceOfferingGroupsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingGroupsUpdateResponse, error) {
+	rsp, err := c.MarketplaceOfferingGroupsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingGroupsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceOfferingGroupsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingGroupsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingGroupsUpdateResponse, error) {
+	rsp, err := c.MarketplaceOfferingGroupsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingGroupsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceOfferingGroupsUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingGroupsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingGroupsUpdateResponse, error) {
+	rsp, err := c.MarketplaceOfferingGroupsUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingGroupsUpdateResponse(rsp)
+}
+
 // MarketplaceOfferingPermissionsLogListWithResponse request returning *MarketplaceOfferingPermissionsLogListResponse
 func (c *ClientWithResponses) MarketplaceOfferingPermissionsLogListWithResponse(ctx context.Context, params *MarketplaceOfferingPermissionsLogListParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingPermissionsLogListResponse, error) {
 	rsp, err := c.MarketplaceOfferingPermissionsLogList(ctx, params, reqEditors...)
@@ -430631,6 +432541,23 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsSetBackendMetadataWith
 		return nil, err
 	}
 	return ParseMarketplaceProviderOfferingsSetBackendMetadataResponse(rsp)
+}
+
+// MarketplaceProviderOfferingsSetOfferingGroupWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsSetOfferingGroupResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsSetOfferingGroupWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSetOfferingGroupResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsSetOfferingGroupWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsSetOfferingGroupResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderOfferingsSetOfferingGroupWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSetOfferingGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSetOfferingGroupResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsSetOfferingGroup(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsSetOfferingGroupResponse(rsp)
 }
 
 // MarketplaceProviderOfferingsSetProfileWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsSetProfileResponse
@@ -448489,6 +450416,15 @@ func (c *ClientWithResponses) UsersPullRemoteUserWithResponse(ctx context.Contex
 		return nil, err
 	}
 	return ParseUsersPullRemoteUserResponse(rsp)
+}
+
+// UsersPullScimAttributesWithResponse request returning *UsersPullScimAttributesResponse
+func (c *ClientWithResponses) UsersPullScimAttributesWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UsersPullScimAttributesResponse, error) {
+	rsp, err := c.UsersPullScimAttributes(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUsersPullScimAttributesResponse(rsp)
 }
 
 // UsersRefreshTokenWithResponse request returning *UsersRefreshTokenResponse
@@ -467462,6 +469398,168 @@ func ParseMarketplaceOfferingFilesRetrieveResponse(rsp *http.Response) (*Marketp
 	return response, nil
 }
 
+// ParseMarketplaceOfferingGroupsListResponse parses an HTTP response from a MarketplaceOfferingGroupsListWithResponse call
+func ParseMarketplaceOfferingGroupsListResponse(rsp *http.Response) (*MarketplaceOfferingGroupsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingGroupsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OfferingGroup
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingGroupsCountResponse parses an HTTP response from a MarketplaceOfferingGroupsCountWithResponse call
+func ParseMarketplaceOfferingGroupsCountResponse(rsp *http.Response) (*MarketplaceOfferingGroupsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingGroupsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingGroupsCreateResponse parses an HTTP response from a MarketplaceOfferingGroupsCreateWithResponse call
+func ParseMarketplaceOfferingGroupsCreateResponse(rsp *http.Response) (*MarketplaceOfferingGroupsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingGroupsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest OfferingGroup
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingGroupsDestroyResponse parses an HTTP response from a MarketplaceOfferingGroupsDestroyWithResponse call
+func ParseMarketplaceOfferingGroupsDestroyResponse(rsp *http.Response) (*MarketplaceOfferingGroupsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingGroupsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingGroupsRetrieveResponse parses an HTTP response from a MarketplaceOfferingGroupsRetrieveWithResponse call
+func ParseMarketplaceOfferingGroupsRetrieveResponse(rsp *http.Response) (*MarketplaceOfferingGroupsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingGroupsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingGroup
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingGroupsPartialUpdateResponse parses an HTTP response from a MarketplaceOfferingGroupsPartialUpdateWithResponse call
+func ParseMarketplaceOfferingGroupsPartialUpdateResponse(rsp *http.Response) (*MarketplaceOfferingGroupsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingGroupsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingGroup
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingGroupsUpdateResponse parses an HTTP response from a MarketplaceOfferingGroupsUpdateWithResponse call
+func ParseMarketplaceOfferingGroupsUpdateResponse(rsp *http.Response) (*MarketplaceOfferingGroupsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingGroupsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingGroup
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceOfferingPermissionsLogListResponse parses an HTTP response from a MarketplaceOfferingPermissionsLogListWithResponse call
 func ParseMarketplaceOfferingPermissionsLogListResponse(rsp *http.Response) (*MarketplaceOfferingPermissionsLogListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -471795,6 +473893,22 @@ func ParseMarketplaceProviderOfferingsSetBackendMetadataResponse(rsp *http.Respo
 	}
 
 	response := &MarketplaceProviderOfferingsSetBackendMetadataResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsSetOfferingGroupResponse parses an HTTP response from a MarketplaceProviderOfferingsSetOfferingGroupWithResponse call
+func ParseMarketplaceProviderOfferingsSetOfferingGroupResponse(rsp *http.Response) (*MarketplaceProviderOfferingsSetOfferingGroupResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsSetOfferingGroupResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -506442,6 +508556,32 @@ func ParseUsersPullRemoteUserResponse(rsp *http.Response) (*UsersPullRemoteUserR
 	response := &UsersPullRemoteUserResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseUsersPullScimAttributesResponse parses an HTTP response from a UsersPullScimAttributesWithResponse call
+func ParseUsersPullScimAttributesResponse(rsp *http.Response) (*UsersPullScimAttributesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UsersPullScimAttributesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ScimPullAttributesResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
