@@ -10596,6 +10596,24 @@ func (e OfferingTypeEnum) Valid() bool {
 	}
 }
 
+// Defines values for OfferingTypeUpdateTypeEnum.
+const (
+	OfferingTypeUpdateTypeEnumMarketplaceBasic OfferingTypeUpdateTypeEnum = "Marketplace.Basic"
+	OfferingTypeUpdateTypeEnumMarketplaceSlurm OfferingTypeUpdateTypeEnum = "Marketplace.Slurm"
+)
+
+// Valid indicates whether the value is a known member of the OfferingTypeUpdateTypeEnum enum.
+func (e OfferingTypeUpdateTypeEnum) Valid() bool {
+	switch e {
+	case OfferingTypeUpdateTypeEnumMarketplaceBasic:
+		return true
+	case OfferingTypeUpdateTypeEnumMarketplaceSlurm:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for OfferingUserFieldEnum.
 const (
 	OfferingUserFieldEnumConsentData                  OfferingUserFieldEnum = "consent_data"
@@ -35220,6 +35238,14 @@ type OfferingThumbnailRequestMultipart struct {
 
 // OfferingTypeEnum defines model for OfferingTypeEnum.
 type OfferingTypeEnum string
+
+// OfferingTypeUpdateRequest defines model for OfferingTypeUpdateRequest.
+type OfferingTypeUpdateRequest struct {
+	Type OfferingTypeUpdateTypeEnum `json:"type"`
+}
+
+// OfferingTypeUpdateTypeEnum defines model for OfferingTypeUpdateTypeEnum.
+type OfferingTypeUpdateTypeEnum string
 
 // OfferingUsageByProject defines model for OfferingUsageByProject.
 type OfferingUsageByProject struct {
@@ -74155,6 +74181,9 @@ type MarketplaceProviderOfferingsUpdateThumbnailFormdataRequestBody = OfferingTh
 // MarketplaceProviderOfferingsUpdateThumbnailMultipartRequestBody defines body for MarketplaceProviderOfferingsUpdateThumbnail for multipart/form-data ContentType.
 type MarketplaceProviderOfferingsUpdateThumbnailMultipartRequestBody = OfferingThumbnailRequestMultipart
 
+// MarketplaceProviderOfferingsUpdateTypeJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateType for application/json ContentType.
+type MarketplaceProviderOfferingsUpdateTypeJSONRequestBody = OfferingTypeUpdateRequest
+
 // MarketplaceProviderOfferingsUpdateUserJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateUser for application/json ContentType.
 type MarketplaceProviderOfferingsUpdateUserJSONRequestBody = UserRoleUpdateRequest
 
@@ -93640,6 +93669,11 @@ type ClientInterface interface {
 	MarketplaceProviderOfferingsUpdateThumbnail(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateThumbnailJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceProviderOfferingsUpdateThumbnailWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateThumbnailFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsUpdateTypeWithBody request with any body
+	MarketplaceProviderOfferingsUpdateTypeWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderOfferingsUpdateType(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateTypeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsUpdateUserWithBody request with any body
 	MarketplaceProviderOfferingsUpdateUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -115961,6 +115995,30 @@ func (c *Client) MarketplaceProviderOfferingsUpdateThumbnail(ctx context.Context
 
 func (c *Client) MarketplaceProviderOfferingsUpdateThumbnailWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateThumbnailFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsUpdateThumbnailRequestWithFormdataBody(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsUpdateTypeWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsUpdateTypeRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsUpdateType(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateTypeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsUpdateTypeRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -217935,6 +217993,53 @@ func NewMarketplaceProviderOfferingsUpdateThumbnailRequestWithBody(server string
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/update_thumbnail/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsUpdateTypeRequest calls the generic MarketplaceProviderOfferingsUpdateType builder with application/json body
+func NewMarketplaceProviderOfferingsUpdateTypeRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateTypeJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderOfferingsUpdateTypeRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsUpdateTypeRequestWithBody generates requests for MarketplaceProviderOfferingsUpdateType with any type of body
+func NewMarketplaceProviderOfferingsUpdateTypeRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/update_type/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -339601,6 +339706,11 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceProviderOfferingsUpdateThumbnailWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateThumbnailFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateThumbnailResponse, error)
 
+	// MarketplaceProviderOfferingsUpdateTypeWithBodyWithResponse request with any body
+	MarketplaceProviderOfferingsUpdateTypeWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateTypeResponse, error)
+
+	MarketplaceProviderOfferingsUpdateTypeWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateTypeJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateTypeResponse, error)
+
 	// MarketplaceProviderOfferingsUpdateUserWithBodyWithResponse request with any body
 	MarketplaceProviderOfferingsUpdateUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateUserResponse, error)
 
@@ -375443,6 +375553,35 @@ func (r MarketplaceProviderOfferingsUpdateThumbnailResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceProviderOfferingsUpdateThumbnailResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProviderOfferingsUpdateTypeResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsUpdateTypeResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsUpdateTypeResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderOfferingsUpdateTypeResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -433246,6 +433385,23 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateThumbnailWithFor
 	return ParseMarketplaceProviderOfferingsUpdateThumbnailResponse(rsp)
 }
 
+// MarketplaceProviderOfferingsUpdateTypeWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsUpdateTypeResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateTypeWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateTypeResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsUpdateTypeWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsUpdateTypeResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateTypeWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateTypeJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateTypeResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsUpdateType(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsUpdateTypeResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsUpdateUserWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsUpdateUserResponse
 func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateUserResponse, error) {
 	rsp, err := c.MarketplaceProviderOfferingsUpdateUserWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -474704,6 +474860,22 @@ func ParseMarketplaceProviderOfferingsUpdateThumbnailResponse(rsp *http.Response
 	}
 
 	response := &MarketplaceProviderOfferingsUpdateThumbnailResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsUpdateTypeResponse parses an HTTP response from a MarketplaceProviderOfferingsUpdateTypeWithResponse call
+func ParseMarketplaceProviderOfferingsUpdateTypeResponse(rsp *http.Response) (*MarketplaceProviderOfferingsUpdateTypeResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsUpdateTypeResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
