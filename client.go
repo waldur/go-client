@@ -20093,6 +20093,7 @@ const (
 	UserFieldEnumPreferredLanguage             UserFieldEnum = "preferred_language"
 	UserFieldEnumRegistrationMethod            UserFieldEnum = "registration_method"
 	UserFieldEnumRequestedEmail                UserFieldEnum = "requested_email"
+	UserFieldEnumShouldProtectUserDetails      UserFieldEnum = "should_protect_user_details"
 	UserFieldEnumSlug                          UserFieldEnum = "slug"
 	UserFieldEnumToken                         UserFieldEnum = "token"
 	UserFieldEnumTokenExpiresAt                UserFieldEnum = "token_expires_at"
@@ -20200,6 +20201,8 @@ func (e UserFieldEnum) Valid() bool {
 	case UserFieldEnumRegistrationMethod:
 		return true
 	case UserFieldEnumRequestedEmail:
+		return true
+	case UserFieldEnumShouldProtectUserDetails:
 		return true
 	case UserFieldEnumSlug:
 		return true
@@ -28378,6 +28381,14 @@ type CustomerBillingSummaryResponse struct {
 	WaldurCustomerUuid       openapi_types.UUID                        `json:"waldur_customer_uuid"`
 }
 
+// CustomerCandidate defines model for CustomerCandidate.
+type CustomerCandidate struct {
+	Abbreviation *string             `json:"abbreviation,omitempty"`
+	Name         string              `json:"name"`
+	Url          *string             `json:"url,omitempty"`
+	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
 // CustomerComponentUsagePolicy defines model for CustomerComponentUsagePolicy.
 type CustomerComponentUsagePolicy struct {
 	Actions                string                               `json:"actions"`
@@ -30265,6 +30276,16 @@ type FetchLicenseInfoRequestRequest struct {
 type FetchLicenseInfoResponse struct {
 	// Data Raw license data from Arrow API
 	Data map[string]interface{} `json:"data"`
+}
+
+// FilterCheckResult defines model for FilterCheckResult.
+type FilterCheckResult struct {
+	Configured bool        `json:"configured"`
+	Matched    bool        `json:"matched"`
+	Name       string      `json:"name"`
+	Reason     string      `json:"reason"`
+	RuleValue  interface{} `json:"rule_value,omitempty"`
+	UserValue  interface{} `json:"user_value,omitempty"`
 }
 
 // FinancialReport defines model for FinancialReport.
@@ -47117,6 +47138,30 @@ type RuleRequest struct {
 	UserEmailPatterns                 *[]string               `json:"user_email_patterns,omitempty"`
 }
 
+// RuleTestMatchRequestRequest defines model for RuleTestMatchRequestRequest.
+type RuleTestMatchRequestRequest struct {
+	// UserUuid UUID of the user to evaluate this rule against.
+	UserUuid openapi_types.UUID `json:"user_uuid"`
+}
+
+// RuleTestMatchResponse defines model for RuleTestMatchResponse.
+type RuleTestMatchResponse struct {
+	BlockReason             string              `json:"block_reason"`
+	CustomerCandidates      []CustomerCandidate `json:"customer_candidates"`
+	CustomerLookupAmbiguous bool                `json:"customer_lookup_ambiguous"`
+	CustomerLookupPerformed bool                `json:"customer_lookup_performed"`
+	FilterResults           []FilterCheckResult `json:"filter_results"`
+	ResolvedProjectName     *string             `json:"resolved_project_name"`
+	UserAffiliations        []string            `json:"user_affiliations"`
+	UserEmail               string              `json:"user_email"`
+	UserIdentitySource      string              `json:"user_identity_source"`
+	UserIsProtected         bool                `json:"user_is_protected"`
+	UserOrganization        string              `json:"user_organization"`
+	UserRegistrationMethod  string              `json:"user_registration_method"`
+	UserUsername            string              `json:"user_username"`
+	WouldProvision          bool                `json:"would_provision"`
+}
+
 // RuntimeStates defines model for RuntimeStates.
 type RuntimeStates struct {
 	// Label Human-readable label for the runtime state
@@ -49276,8 +49321,9 @@ type User struct {
 	PreferredLanguage *string `json:"preferred_language,omitempty"`
 
 	// RegistrationMethod Indicates what registration method was used.
-	RegistrationMethod *string `json:"registration_method,omitempty"`
-	RequestedEmail     *string `json:"requested_email,omitempty"`
+	RegistrationMethod       *string `json:"registration_method,omitempty"`
+	RequestedEmail           *string `json:"requested_email,omitempty"`
+	ShouldProtectUserDetails *bool   `json:"should_protect_user_details,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug           *string    `json:"slug,omitempty"`
@@ -73332,6 +73378,9 @@ type AutoprovisioningRulesPartialUpdateJSONRequestBody = PatchedRuleRequest
 // AutoprovisioningRulesUpdateJSONRequestBody defines body for AutoprovisioningRulesUpdate for application/json ContentType.
 type AutoprovisioningRulesUpdateJSONRequestBody = RuleRequest
 
+// AutoprovisioningRulesTestMatchJSONRequestBody defines body for AutoprovisioningRulesTestMatch for application/json ContentType.
+type AutoprovisioningRulesTestMatchJSONRequestBody = RuleTestMatchRequestRequest
+
 // AwsInstancesCreateJSONRequestBody defines body for AwsInstancesCreate for application/json ContentType.
 type AwsInstancesCreateJSONRequestBody = AwsInstanceRequest
 
@@ -90602,6 +90651,11 @@ type ClientInterface interface {
 
 	AutoprovisioningRulesUpdate(ctx context.Context, uuid openapi_types.UUID, body AutoprovisioningRulesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// AutoprovisioningRulesTestMatchWithBody request with any body
+	AutoprovisioningRulesTestMatchWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AutoprovisioningRulesTestMatch(ctx context.Context, uuid openapi_types.UUID, body AutoprovisioningRulesTestMatchJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// AwsImagesList request
 	AwsImagesList(ctx context.Context, params *AwsImagesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -101934,6 +101988,30 @@ func (c *Client) AutoprovisioningRulesUpdateWithBody(ctx context.Context, uuid o
 
 func (c *Client) AutoprovisioningRulesUpdate(ctx context.Context, uuid openapi_types.UUID, body AutoprovisioningRulesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewAutoprovisioningRulesUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AutoprovisioningRulesTestMatchWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAutoprovisioningRulesTestMatchRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AutoprovisioningRulesTestMatch(ctx context.Context, uuid openapi_types.UUID, body AutoprovisioningRulesTestMatchJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAutoprovisioningRulesTestMatchRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -150570,6 +150648,53 @@ func NewAutoprovisioningRulesUpdateRequestWithBody(server string, uuid openapi_t
 	}
 
 	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAutoprovisioningRulesTestMatchRequest calls the generic AutoprovisioningRulesTestMatch builder with application/json body
+func NewAutoprovisioningRulesTestMatchRequest(server string, uuid openapi_types.UUID, body AutoprovisioningRulesTestMatchJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAutoprovisioningRulesTestMatchRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewAutoprovisioningRulesTestMatchRequestWithBody generates requests for AutoprovisioningRulesTestMatch with any type of body
+func NewAutoprovisioningRulesTestMatchRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/autoprovisioning-rules/%s/test-match/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
@@ -336920,6 +337045,11 @@ type ClientWithResponsesInterface interface {
 
 	AutoprovisioningRulesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body AutoprovisioningRulesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*AutoprovisioningRulesUpdateResponse, error)
 
+	// AutoprovisioningRulesTestMatchWithBodyWithResponse request with any body
+	AutoprovisioningRulesTestMatchWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AutoprovisioningRulesTestMatchResponse, error)
+
+	AutoprovisioningRulesTestMatchWithResponse(ctx context.Context, uuid openapi_types.UUID, body AutoprovisioningRulesTestMatchJSONRequestBody, reqEditors ...RequestEditorFn) (*AutoprovisioningRulesTestMatchResponse, error)
+
 	// AwsImagesListWithResponse request
 	AwsImagesListWithResponse(ctx context.Context, params *AwsImagesListParams, reqEditors ...RequestEditorFn) (*AwsImagesListResponse, error)
 
@@ -350123,6 +350253,36 @@ func (r AutoprovisioningRulesUpdateResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r AutoprovisioningRulesUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type AutoprovisioningRulesTestMatchResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RuleTestMatchResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AutoprovisioningRulesTestMatchResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AutoprovisioningRulesTestMatchResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AutoprovisioningRulesTestMatchResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -423542,6 +423702,23 @@ func (c *ClientWithResponses) AutoprovisioningRulesUpdateWithResponse(ctx contex
 	return ParseAutoprovisioningRulesUpdateResponse(rsp)
 }
 
+// AutoprovisioningRulesTestMatchWithBodyWithResponse request with arbitrary body returning *AutoprovisioningRulesTestMatchResponse
+func (c *ClientWithResponses) AutoprovisioningRulesTestMatchWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AutoprovisioningRulesTestMatchResponse, error) {
+	rsp, err := c.AutoprovisioningRulesTestMatchWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAutoprovisioningRulesTestMatchResponse(rsp)
+}
+
+func (c *ClientWithResponses) AutoprovisioningRulesTestMatchWithResponse(ctx context.Context, uuid openapi_types.UUID, body AutoprovisioningRulesTestMatchJSONRequestBody, reqEditors ...RequestEditorFn) (*AutoprovisioningRulesTestMatchResponse, error) {
+	rsp, err := c.AutoprovisioningRulesTestMatch(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAutoprovisioningRulesTestMatchResponse(rsp)
+}
+
 // AwsImagesListWithResponse request returning *AwsImagesListResponse
 func (c *ClientWithResponses) AwsImagesListWithResponse(ctx context.Context, params *AwsImagesListParams, reqEditors ...RequestEditorFn) (*AwsImagesListResponse, error) {
 	rsp, err := c.AwsImagesList(ctx, params, reqEditors...)
@@ -455355,6 +455532,32 @@ func ParseAutoprovisioningRulesUpdateResponse(rsp *http.Response) (*Autoprovisio
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest Rule
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAutoprovisioningRulesTestMatchResponse parses an HTTP response from a AutoprovisioningRulesTestMatchWithResponse call
+func ParseAutoprovisioningRulesTestMatchResponse(rsp *http.Response) (*AutoprovisioningRulesTestMatchResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AutoprovisioningRulesTestMatchResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RuleTestMatchResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
