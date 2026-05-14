@@ -5752,17 +5752,35 @@ const (
 	EventMetadataResponseEventGroupsOpenstackFloatingIpDescriptionUpdated            EventMetadataResponseEventGroups = "openstack_floating_ip_description_updated"
 	EventMetadataResponseEventGroupsOpenstackFloatingIpDetached                      EventMetadataResponseEventGroups = "openstack_floating_ip_detached"
 	EventMetadataResponseEventGroupsOpenstackFloatingIpDisconnected                  EventMetadataResponseEventGroups = "openstack_floating_ip_disconnected"
+	EventMetadataResponseEventGroupsOpenstackInstanceSecurityGroupsChanged           EventMetadataResponseEventGroups = "openstack_instance_security_groups_changed"
+	EventMetadataResponseEventGroupsOpenstackListenerCreated                         EventMetadataResponseEventGroups = "openstack_listener_created"
+	EventMetadataResponseEventGroupsOpenstackListenerDeleted                         EventMetadataResponseEventGroups = "openstack_listener_deleted"
+	EventMetadataResponseEventGroupsOpenstackListenerUpdated                         EventMetadataResponseEventGroups = "openstack_listener_updated"
+	EventMetadataResponseEventGroupsOpenstackLoadBalancerCreated                     EventMetadataResponseEventGroups = "openstack_load_balancer_created"
+	EventMetadataResponseEventGroupsOpenstackLoadBalancerDeleted                     EventMetadataResponseEventGroups = "openstack_load_balancer_deleted"
+	EventMetadataResponseEventGroupsOpenstackLoadBalancerSecurityGroupsChanged       EventMetadataResponseEventGroups = "openstack_load_balancer_security_groups_changed"
+	EventMetadataResponseEventGroupsOpenstackLoadBalancerUpdated                     EventMetadataResponseEventGroups = "openstack_load_balancer_updated"
 	EventMetadataResponseEventGroupsOpenstackNetworkCleaned                          EventMetadataResponseEventGroups = "openstack_network_cleaned"
 	EventMetadataResponseEventGroupsOpenstackNetworkCreated                          EventMetadataResponseEventGroups = "openstack_network_created"
 	EventMetadataResponseEventGroupsOpenstackNetworkDeleted                          EventMetadataResponseEventGroups = "openstack_network_deleted"
 	EventMetadataResponseEventGroupsOpenstackNetworkImported                         EventMetadataResponseEventGroups = "openstack_network_imported"
 	EventMetadataResponseEventGroupsOpenstackNetworkPulled                           EventMetadataResponseEventGroups = "openstack_network_pulled"
 	EventMetadataResponseEventGroupsOpenstackNetworkUpdated                          EventMetadataResponseEventGroups = "openstack_network_updated"
+	EventMetadataResponseEventGroupsOpenstackPoolCreated                             EventMetadataResponseEventGroups = "openstack_pool_created"
+	EventMetadataResponseEventGroupsOpenstackPoolDeleted                             EventMetadataResponseEventGroups = "openstack_pool_deleted"
+	EventMetadataResponseEventGroupsOpenstackPoolMemberCreated                       EventMetadataResponseEventGroups = "openstack_pool_member_created"
+	EventMetadataResponseEventGroupsOpenstackPoolMemberDeleted                       EventMetadataResponseEventGroups = "openstack_pool_member_deleted"
+	EventMetadataResponseEventGroupsOpenstackPoolMemberUpdated                       EventMetadataResponseEventGroups = "openstack_pool_member_updated"
+	EventMetadataResponseEventGroupsOpenstackPoolUpdated                             EventMetadataResponseEventGroups = "openstack_pool_updated"
+	EventMetadataResponseEventGroupsOpenstackPortAllowedAddressPairsChanged          EventMetadataResponseEventGroups = "openstack_port_allowed_address_pairs_changed"
 	EventMetadataResponseEventGroupsOpenstackPortCleaned                             EventMetadataResponseEventGroups = "openstack_port_cleaned"
 	EventMetadataResponseEventGroupsOpenstackPortCreated                             EventMetadataResponseEventGroups = "openstack_port_created"
 	EventMetadataResponseEventGroupsOpenstackPortDeleted                             EventMetadataResponseEventGroups = "openstack_port_deleted"
 	EventMetadataResponseEventGroupsOpenstackPortImported                            EventMetadataResponseEventGroups = "openstack_port_imported"
 	EventMetadataResponseEventGroupsOpenstackPortPulled                              EventMetadataResponseEventGroups = "openstack_port_pulled"
+	EventMetadataResponseEventGroupsOpenstackPortSecurityDisabled                    EventMetadataResponseEventGroups = "openstack_port_security_disabled"
+	EventMetadataResponseEventGroupsOpenstackPortSecurityEnabled                     EventMetadataResponseEventGroups = "openstack_port_security_enabled"
+	EventMetadataResponseEventGroupsOpenstackPortSecurityGroupsChanged               EventMetadataResponseEventGroups = "openstack_port_security_groups_changed"
 	EventMetadataResponseEventGroupsOpenstackPortUpdated                             EventMetadataResponseEventGroups = "openstack_port_updated"
 	EventMetadataResponseEventGroupsOpenstackRouterUpdated                           EventMetadataResponseEventGroups = "openstack_router_updated"
 	EventMetadataResponseEventGroupsOpenstackSecurityGroupAddedLocally               EventMetadataResponseEventGroups = "openstack_security_group_added_locally"
@@ -5779,6 +5797,7 @@ const (
 	EventMetadataResponseEventGroupsOpenstackSecurityGroupRuleDeleted                EventMetadataResponseEventGroups = "openstack_security_group_rule_deleted"
 	EventMetadataResponseEventGroupsOpenstackSecurityGroupRuleImported               EventMetadataResponseEventGroups = "openstack_security_group_rule_imported"
 	EventMetadataResponseEventGroupsOpenstackSecurityGroupRuleUpdated                EventMetadataResponseEventGroups = "openstack_security_group_rule_updated"
+	EventMetadataResponseEventGroupsOpenstackSecurityGroupRulesChanged               EventMetadataResponseEventGroups = "openstack_security_group_rules_changed"
 	EventMetadataResponseEventGroupsOpenstackSecurityGroupUpdated                    EventMetadataResponseEventGroups = "openstack_security_group_updated"
 	EventMetadataResponseEventGroupsOpenstackServerGroupCleaned                      EventMetadataResponseEventGroups = "openstack_server_group_cleaned"
 	EventMetadataResponseEventGroupsOpenstackServerGroupCreated                      EventMetadataResponseEventGroups = "openstack_server_group_created"
@@ -6136,6 +6155,22 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 		return true
 	case EventMetadataResponseEventGroupsOpenstackFloatingIpDisconnected:
 		return true
+	case EventMetadataResponseEventGroupsOpenstackInstanceSecurityGroupsChanged:
+		return true
+	case EventMetadataResponseEventGroupsOpenstackListenerCreated:
+		return true
+	case EventMetadataResponseEventGroupsOpenstackListenerDeleted:
+		return true
+	case EventMetadataResponseEventGroupsOpenstackListenerUpdated:
+		return true
+	case EventMetadataResponseEventGroupsOpenstackLoadBalancerCreated:
+		return true
+	case EventMetadataResponseEventGroupsOpenstackLoadBalancerDeleted:
+		return true
+	case EventMetadataResponseEventGroupsOpenstackLoadBalancerSecurityGroupsChanged:
+		return true
+	case EventMetadataResponseEventGroupsOpenstackLoadBalancerUpdated:
+		return true
 	case EventMetadataResponseEventGroupsOpenstackNetworkCleaned:
 		return true
 	case EventMetadataResponseEventGroupsOpenstackNetworkCreated:
@@ -6148,6 +6183,20 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 		return true
 	case EventMetadataResponseEventGroupsOpenstackNetworkUpdated:
 		return true
+	case EventMetadataResponseEventGroupsOpenstackPoolCreated:
+		return true
+	case EventMetadataResponseEventGroupsOpenstackPoolDeleted:
+		return true
+	case EventMetadataResponseEventGroupsOpenstackPoolMemberCreated:
+		return true
+	case EventMetadataResponseEventGroupsOpenstackPoolMemberDeleted:
+		return true
+	case EventMetadataResponseEventGroupsOpenstackPoolMemberUpdated:
+		return true
+	case EventMetadataResponseEventGroupsOpenstackPoolUpdated:
+		return true
+	case EventMetadataResponseEventGroupsOpenstackPortAllowedAddressPairsChanged:
+		return true
 	case EventMetadataResponseEventGroupsOpenstackPortCleaned:
 		return true
 	case EventMetadataResponseEventGroupsOpenstackPortCreated:
@@ -6157,6 +6206,12 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 	case EventMetadataResponseEventGroupsOpenstackPortImported:
 		return true
 	case EventMetadataResponseEventGroupsOpenstackPortPulled:
+		return true
+	case EventMetadataResponseEventGroupsOpenstackPortSecurityDisabled:
+		return true
+	case EventMetadataResponseEventGroupsOpenstackPortSecurityEnabled:
+		return true
+	case EventMetadataResponseEventGroupsOpenstackPortSecurityGroupsChanged:
 		return true
 	case EventMetadataResponseEventGroupsOpenstackPortUpdated:
 		return true
@@ -6189,6 +6244,8 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 	case EventMetadataResponseEventGroupsOpenstackSecurityGroupRuleImported:
 		return true
 	case EventMetadataResponseEventGroupsOpenstackSecurityGroupRuleUpdated:
+		return true
+	case EventMetadataResponseEventGroupsOpenstackSecurityGroupRulesChanged:
 		return true
 	case EventMetadataResponseEventGroupsOpenstackSecurityGroupUpdated:
 		return true
@@ -6607,17 +6664,35 @@ const (
 	EventTypesEnumOpenstackFloatingIpDescriptionUpdated            EventTypesEnum = "openstack_floating_ip_description_updated"
 	EventTypesEnumOpenstackFloatingIpDetached                      EventTypesEnum = "openstack_floating_ip_detached"
 	EventTypesEnumOpenstackFloatingIpDisconnected                  EventTypesEnum = "openstack_floating_ip_disconnected"
+	EventTypesEnumOpenstackInstanceSecurityGroupsChanged           EventTypesEnum = "openstack_instance_security_groups_changed"
+	EventTypesEnumOpenstackListenerCreated                         EventTypesEnum = "openstack_listener_created"
+	EventTypesEnumOpenstackListenerDeleted                         EventTypesEnum = "openstack_listener_deleted"
+	EventTypesEnumOpenstackListenerUpdated                         EventTypesEnum = "openstack_listener_updated"
+	EventTypesEnumOpenstackLoadBalancerCreated                     EventTypesEnum = "openstack_load_balancer_created"
+	EventTypesEnumOpenstackLoadBalancerDeleted                     EventTypesEnum = "openstack_load_balancer_deleted"
+	EventTypesEnumOpenstackLoadBalancerSecurityGroupsChanged       EventTypesEnum = "openstack_load_balancer_security_groups_changed"
+	EventTypesEnumOpenstackLoadBalancerUpdated                     EventTypesEnum = "openstack_load_balancer_updated"
 	EventTypesEnumOpenstackNetworkCleaned                          EventTypesEnum = "openstack_network_cleaned"
 	EventTypesEnumOpenstackNetworkCreated                          EventTypesEnum = "openstack_network_created"
 	EventTypesEnumOpenstackNetworkDeleted                          EventTypesEnum = "openstack_network_deleted"
 	EventTypesEnumOpenstackNetworkImported                         EventTypesEnum = "openstack_network_imported"
 	EventTypesEnumOpenstackNetworkPulled                           EventTypesEnum = "openstack_network_pulled"
 	EventTypesEnumOpenstackNetworkUpdated                          EventTypesEnum = "openstack_network_updated"
+	EventTypesEnumOpenstackPoolCreated                             EventTypesEnum = "openstack_pool_created"
+	EventTypesEnumOpenstackPoolDeleted                             EventTypesEnum = "openstack_pool_deleted"
+	EventTypesEnumOpenstackPoolMemberCreated                       EventTypesEnum = "openstack_pool_member_created"
+	EventTypesEnumOpenstackPoolMemberDeleted                       EventTypesEnum = "openstack_pool_member_deleted"
+	EventTypesEnumOpenstackPoolMemberUpdated                       EventTypesEnum = "openstack_pool_member_updated"
+	EventTypesEnumOpenstackPoolUpdated                             EventTypesEnum = "openstack_pool_updated"
+	EventTypesEnumOpenstackPortAllowedAddressPairsChanged          EventTypesEnum = "openstack_port_allowed_address_pairs_changed"
 	EventTypesEnumOpenstackPortCleaned                             EventTypesEnum = "openstack_port_cleaned"
 	EventTypesEnumOpenstackPortCreated                             EventTypesEnum = "openstack_port_created"
 	EventTypesEnumOpenstackPortDeleted                             EventTypesEnum = "openstack_port_deleted"
 	EventTypesEnumOpenstackPortImported                            EventTypesEnum = "openstack_port_imported"
 	EventTypesEnumOpenstackPortPulled                              EventTypesEnum = "openstack_port_pulled"
+	EventTypesEnumOpenstackPortSecurityDisabled                    EventTypesEnum = "openstack_port_security_disabled"
+	EventTypesEnumOpenstackPortSecurityEnabled                     EventTypesEnum = "openstack_port_security_enabled"
+	EventTypesEnumOpenstackPortSecurityGroupsChanged               EventTypesEnum = "openstack_port_security_groups_changed"
 	EventTypesEnumOpenstackPortUpdated                             EventTypesEnum = "openstack_port_updated"
 	EventTypesEnumOpenstackRouterUpdated                           EventTypesEnum = "openstack_router_updated"
 	EventTypesEnumOpenstackSecurityGroupAddedLocally               EventTypesEnum = "openstack_security_group_added_locally"
@@ -6634,6 +6709,7 @@ const (
 	EventTypesEnumOpenstackSecurityGroupRuleDeleted                EventTypesEnum = "openstack_security_group_rule_deleted"
 	EventTypesEnumOpenstackSecurityGroupRuleImported               EventTypesEnum = "openstack_security_group_rule_imported"
 	EventTypesEnumOpenstackSecurityGroupRuleUpdated                EventTypesEnum = "openstack_security_group_rule_updated"
+	EventTypesEnumOpenstackSecurityGroupRulesChanged               EventTypesEnum = "openstack_security_group_rules_changed"
 	EventTypesEnumOpenstackSecurityGroupUpdated                    EventTypesEnum = "openstack_security_group_updated"
 	EventTypesEnumOpenstackServerGroupCleaned                      EventTypesEnum = "openstack_server_group_cleaned"
 	EventTypesEnumOpenstackServerGroupCreated                      EventTypesEnum = "openstack_server_group_created"
@@ -6991,6 +7067,22 @@ func (e EventTypesEnum) Valid() bool {
 		return true
 	case EventTypesEnumOpenstackFloatingIpDisconnected:
 		return true
+	case EventTypesEnumOpenstackInstanceSecurityGroupsChanged:
+		return true
+	case EventTypesEnumOpenstackListenerCreated:
+		return true
+	case EventTypesEnumOpenstackListenerDeleted:
+		return true
+	case EventTypesEnumOpenstackListenerUpdated:
+		return true
+	case EventTypesEnumOpenstackLoadBalancerCreated:
+		return true
+	case EventTypesEnumOpenstackLoadBalancerDeleted:
+		return true
+	case EventTypesEnumOpenstackLoadBalancerSecurityGroupsChanged:
+		return true
+	case EventTypesEnumOpenstackLoadBalancerUpdated:
+		return true
 	case EventTypesEnumOpenstackNetworkCleaned:
 		return true
 	case EventTypesEnumOpenstackNetworkCreated:
@@ -7003,6 +7095,20 @@ func (e EventTypesEnum) Valid() bool {
 		return true
 	case EventTypesEnumOpenstackNetworkUpdated:
 		return true
+	case EventTypesEnumOpenstackPoolCreated:
+		return true
+	case EventTypesEnumOpenstackPoolDeleted:
+		return true
+	case EventTypesEnumOpenstackPoolMemberCreated:
+		return true
+	case EventTypesEnumOpenstackPoolMemberDeleted:
+		return true
+	case EventTypesEnumOpenstackPoolMemberUpdated:
+		return true
+	case EventTypesEnumOpenstackPoolUpdated:
+		return true
+	case EventTypesEnumOpenstackPortAllowedAddressPairsChanged:
+		return true
 	case EventTypesEnumOpenstackPortCleaned:
 		return true
 	case EventTypesEnumOpenstackPortCreated:
@@ -7012,6 +7118,12 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumOpenstackPortImported:
 		return true
 	case EventTypesEnumOpenstackPortPulled:
+		return true
+	case EventTypesEnumOpenstackPortSecurityDisabled:
+		return true
+	case EventTypesEnumOpenstackPortSecurityEnabled:
+		return true
+	case EventTypesEnumOpenstackPortSecurityGroupsChanged:
 		return true
 	case EventTypesEnumOpenstackPortUpdated:
 		return true
@@ -7044,6 +7156,8 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumOpenstackSecurityGroupRuleImported:
 		return true
 	case EventTypesEnumOpenstackSecurityGroupRuleUpdated:
+		return true
+	case EventTypesEnumOpenstackSecurityGroupRulesChanged:
 		return true
 	case EventTypesEnumOpenstackSecurityGroupUpdated:
 		return true
