@@ -14082,6 +14082,9 @@ const (
 	OrderDetailsFieldEnumActivationPrice                   OrderDetailsFieldEnum = "activation_price"
 	OrderDetailsFieldEnumAttachment                        OrderDetailsFieldEnum = "attachment"
 	OrderDetailsFieldEnumAttributes                        OrderDetailsFieldEnum = "attributes"
+	OrderDetailsFieldEnumAutoApproved                      OrderDetailsFieldEnum = "auto_approved"
+	OrderDetailsFieldEnumAutoApprovedByRuleUuid            OrderDetailsFieldEnum = "auto_approved_by_rule_uuid"
+	OrderDetailsFieldEnumAutoApprovedCostLimitSnapshot     OrderDetailsFieldEnum = "auto_approved_cost_limit_snapshot"
 	OrderDetailsFieldEnumBackendId                         OrderDetailsFieldEnum = "backend_id"
 	OrderDetailsFieldEnumCallbackUrl                       OrderDetailsFieldEnum = "callback_url"
 	OrderDetailsFieldEnumCanTerminate                      OrderDetailsFieldEnum = "can_terminate"
@@ -14178,6 +14181,12 @@ func (e OrderDetailsFieldEnum) Valid() bool {
 	case OrderDetailsFieldEnumAttachment:
 		return true
 	case OrderDetailsFieldEnumAttributes:
+		return true
+	case OrderDetailsFieldEnumAutoApproved:
+		return true
+	case OrderDetailsFieldEnumAutoApprovedByRuleUuid:
+		return true
+	case OrderDetailsFieldEnumAutoApprovedCostLimitSnapshot:
 		return true
 	case OrderDetailsFieldEnumBackendId:
 		return true
@@ -38584,20 +38593,23 @@ type OrderCreateRequest_Attributes struct {
 
 // OrderDetails defines model for OrderDetails.
 type OrderDetails struct {
-	ActivationPrice           *float64            `json:"activation_price,omitempty"`
-	Attachment                *string             `json:"attachment,omitempty"`
-	Attributes                interface{}         `json:"attributes,omitempty"`
-	BackendId                 *string             `json:"backend_id,omitempty"`
-	CallbackUrl               *string             `json:"callback_url,omitempty"`
-	CanTerminate              *bool               `json:"can_terminate,omitempty"`
-	CategoryIcon              *string             `json:"category_icon,omitempty"`
-	CategoryTitle             *string             `json:"category_title,omitempty"`
-	CategoryUuid              *openapi_types.UUID `json:"category_uuid,omitempty"`
-	CompletedAt               *time.Time          `json:"completed_at,omitempty"`
-	ConsumerMessage           *string             `json:"consumer_message,omitempty"`
-	ConsumerMessageAttachment *string             `json:"consumer_message_attachment,omitempty"`
-	ConsumerRejectionComment  *string             `json:"consumer_rejection_comment,omitempty"`
-	ConsumerReviewedAt        *time.Time          `json:"consumer_reviewed_at,omitempty"`
+	ActivationPrice               *float64            `json:"activation_price,omitempty"`
+	Attachment                    *string             `json:"attachment,omitempty"`
+	Attributes                    interface{}         `json:"attributes,omitempty"`
+	AutoApproved                  *bool               `json:"auto_approved,omitempty"`
+	AutoApprovedByRuleUuid        *openapi_types.UUID `json:"auto_approved_by_rule_uuid,omitempty"`
+	AutoApprovedCostLimitSnapshot *string             `json:"auto_approved_cost_limit_snapshot,omitempty"`
+	BackendId                     *string             `json:"backend_id,omitempty"`
+	CallbackUrl                   *string             `json:"callback_url,omitempty"`
+	CanTerminate                  *bool               `json:"can_terminate,omitempty"`
+	CategoryIcon                  *string             `json:"category_icon,omitempty"`
+	CategoryTitle                 *string             `json:"category_title,omitempty"`
+	CategoryUuid                  *openapi_types.UUID `json:"category_uuid,omitempty"`
+	CompletedAt                   *time.Time          `json:"completed_at,omitempty"`
+	ConsumerMessage               *string             `json:"consumer_message,omitempty"`
+	ConsumerMessageAttachment     *string             `json:"consumer_message_attachment,omitempty"`
+	ConsumerRejectionComment      *string             `json:"consumer_rejection_comment,omitempty"`
+	ConsumerReviewedAt            *time.Time          `json:"consumer_reviewed_at,omitempty"`
 
 	// ConsumerReviewedBy Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	ConsumerReviewedBy         *string `json:"consumer_reviewed_by,omitempty"`
@@ -40338,6 +40350,13 @@ type PatchedProjectInfoRequest struct {
 
 	// Shortname A short, unique name for the project. It will be used to form the local username of any users in the project on any systems. Should only contain lower-case letters and digits and must start with a letter.
 	Shortname *string `json:"shortname,omitempty"`
+}
+
+// PatchedProjectOrderAutoApprovalRequest defines model for PatchedProjectOrderAutoApprovalRequest.
+type PatchedProjectOrderAutoApprovalRequest struct {
+	Enabled          *bool   `json:"enabled,omitempty"`
+	MonthlyCostLimit *string `json:"monthly_cost_limit,omitempty"`
+	Project          *string `json:"project,omitempty"`
 }
 
 // PatchedProjectRequest defines model for PatchedProjectRequest.
@@ -42260,6 +42279,38 @@ type ProjectMappingResponse struct {
 	CustomerUuid string `json:"customer_uuid"`
 	Name         string `json:"name"`
 	Uuid         string `json:"uuid"`
+}
+
+// ProjectOrderAutoApproval defines model for ProjectOrderAutoApproval.
+type ProjectOrderAutoApproval struct {
+	Created           *time.Time `json:"created,omitempty"`
+	CreatedByFullName *string    `json:"created_by_full_name,omitempty"`
+
+	// CreatedByUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
+	CreatedByUsername  *string             `json:"created_by_username,omitempty"`
+	CreatedByUuid      *openapi_types.UUID `json:"created_by_uuid,omitempty"`
+	CustomerName       *string             `json:"customer_name,omitempty"`
+	CustomerUuid       *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Enabled            *bool               `json:"enabled,omitempty"`
+	Modified           *time.Time          `json:"modified,omitempty"`
+	ModifiedByFullName *string             `json:"modified_by_full_name,omitempty"`
+
+	// ModifiedByUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
+	ModifiedByUsername *string             `json:"modified_by_username,omitempty"`
+	ModifiedByUuid     *openapi_types.UUID `json:"modified_by_uuid,omitempty"`
+	MonthlyCostLimit   string              `json:"monthly_cost_limit"`
+	Project            string              `json:"project"`
+	ProjectName        *string             `json:"project_name,omitempty"`
+	ProjectUuid        *openapi_types.UUID `json:"project_uuid,omitempty"`
+	Url                *string             `json:"url,omitempty"`
+	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ProjectOrderAutoApprovalRequest defines model for ProjectOrderAutoApprovalRequest.
+type ProjectOrderAutoApprovalRequest struct {
+	Enabled          *bool  `json:"enabled,omitempty"`
+	MonthlyCostLimit string `json:"monthly_cost_limit"`
+	Project          string `json:"project"`
 }
 
 // ProjectPermissionLog defines model for ProjectPermissionLog.
@@ -57410,6 +57461,9 @@ type MarketplaceOrdersListParams struct {
 	// Type Order type
 	//
 	Type *[]RequestTypes `form:"type,omitempty" json:"type,omitempty"`
+
+	// WasAutoApproved Auto-approved
+	WasAutoApproved *bool `form:"was_auto_approved,omitempty" json:"was_auto_approved,omitempty"`
 }
 
 // MarketplaceOrdersCountParams defines parameters for MarketplaceOrdersCount.
@@ -57490,6 +57544,9 @@ type MarketplaceOrdersCountParams struct {
 	// Type Order type
 	//
 	Type *[]RequestTypes `form:"type,omitempty" json:"type,omitempty"`
+
+	// WasAutoApproved Auto-approved
+	WasAutoApproved *bool `form:"was_auto_approved,omitempty" json:"was_auto_approved,omitempty"`
 }
 
 // MarketplaceOrdersRetrieveParams defines parameters for MarketplaceOrdersRetrieve.
@@ -57682,6 +57739,38 @@ type MarketplaceProjectEstimatedCostPoliciesCountParams struct {
 	Query       *string             `form:"query,omitempty" json:"query,omitempty"`
 	Scope       *string             `form:"scope,omitempty" json:"scope,omitempty"`
 	ScopeUuid   *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+}
+
+// MarketplaceProjectOrderAutoApprovalsListParams defines parameters for MarketplaceProjectOrderAutoApprovalsList.
+type MarketplaceProjectOrderAutoApprovalsListParams struct {
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	Enabled      *bool               `form:"enabled,omitempty" json:"enabled,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+}
+
+// MarketplaceProjectOrderAutoApprovalsCountParams defines parameters for MarketplaceProjectOrderAutoApprovalsCount.
+type MarketplaceProjectOrderAutoApprovalsCountParams struct {
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	Enabled      *bool               `form:"enabled,omitempty" json:"enabled,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 }
 
 // MarketplaceProjectServiceAccountsListParams defines parameters for MarketplaceProjectServiceAccountsList.
@@ -61420,6 +61509,135 @@ type MarketplaceServiceProvidersOfferingsListParams struct {
 	// Description Description contains
 	Description *string                      `form:"description,omitempty" json:"description,omitempty"`
 	Field       *[]ProviderOfferingFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+
+	// HasActiveTermsOfService Has Active Terms of Service
+	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
+
+	// HasTermsOfService Has Terms of Service
+	HasTermsOfService *bool `form:"has_terms_of_service,omitempty" json:"has_terms_of_service,omitempty"`
+
+	// Keyword Keyword
+	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
+
+	// Modified Modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// ModifiedBefore Modified before
+	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Ordering
+	//
+	O *[]ProviderOfferingDetailsOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingGroupUuid Offering group UUID
+	OfferingGroupUuid *openapi_types.UUID `form:"offering_group_uuid,omitempty" json:"offering_group_uuid,omitempty"`
+
+	// OrganizationGroupUuid Organization group UUID
+	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ParentUuid Parent offering UUID
+	ParentUuid *openapi_types.UUID `form:"parent_uuid,omitempty" json:"parent_uuid,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Search by offering name, slug or description
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ResourceCustomerUuid Resource customer UUID
+	ResourceCustomerUuid *openapi_types.UUID `form:"resource_customer_uuid,omitempty" json:"resource_customer_uuid,omitempty"`
+
+	// ResourceProjectUuid Resource project UUID
+	ResourceProjectUuid *openapi_types.UUID `form:"resource_project_uuid,omitempty" json:"resource_project_uuid,omitempty"`
+
+	// ScopeUuid Scope UUID
+	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+
+	// ServiceManagerUuid Service manager UUID
+	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+
+	// Shared Shared
+	Shared *bool `form:"shared,omitempty" json:"shared,omitempty"`
+
+	// Slug Slug
+	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// State Offering state
+	//
+	State *[]OfferingState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tag Tag UUID (OR logic)
+	Tag *[]openapi_types.UUID `form:"tag,omitempty" json:"tag,omitempty"`
+
+	// TagName Tag name (OR logic)
+	TagName *[]string `form:"tag_name,omitempty" json:"tag_name,omitempty"`
+
+	// TagNamesAnd Tag names with AND logic (comma-separated)
+	TagNamesAnd *string `form:"tag_names_and,omitempty" json:"tag_names_and,omitempty"`
+
+	// TagsAnd Tag UUIDs with AND logic (comma-separated)
+	TagsAnd *string `form:"tags_and,omitempty" json:"tags_and,omitempty"`
+
+	// Type Offering type
+	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
+
+	// UserHasConsent User Has Consent
+	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
+
+	// UserHasOfferingUser User Has Offering User
+	UserHasOfferingUser *bool `form:"user_has_offering_user,omitempty" json:"user_has_offering_user,omitempty"`
+
+	// UuidList Comma-separated offering UUIDs
+	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
+}
+
+// MarketplaceServiceProvidersOfferingsTypesListParams defines parameters for MarketplaceServiceProvidersOfferingsTypesList.
+type MarketplaceServiceProvidersOfferingsTypesListParams struct {
+	// AccessibleViaCalls Accessible via calls
+	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
+
+	// AllowedCustomerUuid Allowed customer UUID
+	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+
+	// Attributes Offering attributes (JSON)
+	Attributes *string `form:"attributes,omitempty" json:"attributes,omitempty"`
+
+	// Billable Billable
+	Billable              *bool `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+
+	// CategoryGroupUuid Category group UUID
+	CategoryGroupUuid *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+
+	// CategoryUuid Category UUID
+	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+
+	// Created Created after
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// CreatedBefore Created before
+	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
+
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description contains
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
 
 	// HasActiveTermsOfService Has Active Terms of Service
 	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
@@ -74253,6 +74471,15 @@ type MarketplaceProjectEstimatedCostPoliciesPartialUpdateJSONRequestBody = Patch
 
 // MarketplaceProjectEstimatedCostPoliciesUpdateJSONRequestBody defines body for MarketplaceProjectEstimatedCostPoliciesUpdate for application/json ContentType.
 type MarketplaceProjectEstimatedCostPoliciesUpdateJSONRequestBody = ProjectEstimatedCostPolicyRequest
+
+// MarketplaceProjectOrderAutoApprovalsCreateJSONRequestBody defines body for MarketplaceProjectOrderAutoApprovalsCreate for application/json ContentType.
+type MarketplaceProjectOrderAutoApprovalsCreateJSONRequestBody = ProjectOrderAutoApprovalRequest
+
+// MarketplaceProjectOrderAutoApprovalsPartialUpdateJSONRequestBody defines body for MarketplaceProjectOrderAutoApprovalsPartialUpdate for application/json ContentType.
+type MarketplaceProjectOrderAutoApprovalsPartialUpdateJSONRequestBody = PatchedProjectOrderAutoApprovalRequest
+
+// MarketplaceProjectOrderAutoApprovalsUpdateJSONRequestBody defines body for MarketplaceProjectOrderAutoApprovalsUpdate for application/json ContentType.
+type MarketplaceProjectOrderAutoApprovalsUpdateJSONRequestBody = ProjectOrderAutoApprovalRequest
 
 // MarketplaceProjectServiceAccountsCreateJSONRequestBody defines body for MarketplaceProjectServiceAccountsCreate for application/json ContentType.
 type MarketplaceProjectServiceAccountsCreateJSONRequestBody = ProjectServiceAccountRequest
@@ -93529,6 +93756,33 @@ type ClientInterface interface {
 
 	MarketplaceProjectEstimatedCostPoliciesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectEstimatedCostPoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProjectOrderAutoApprovalsList request
+	MarketplaceProjectOrderAutoApprovalsList(ctx context.Context, params *MarketplaceProjectOrderAutoApprovalsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProjectOrderAutoApprovalsCount request
+	MarketplaceProjectOrderAutoApprovalsCount(ctx context.Context, params *MarketplaceProjectOrderAutoApprovalsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProjectOrderAutoApprovalsCreateWithBody request with any body
+	MarketplaceProjectOrderAutoApprovalsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProjectOrderAutoApprovalsCreate(ctx context.Context, body MarketplaceProjectOrderAutoApprovalsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProjectOrderAutoApprovalsDestroy request
+	MarketplaceProjectOrderAutoApprovalsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProjectOrderAutoApprovalsRetrieve request
+	MarketplaceProjectOrderAutoApprovalsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProjectOrderAutoApprovalsPartialUpdateWithBody request with any body
+	MarketplaceProjectOrderAutoApprovalsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProjectOrderAutoApprovalsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectOrderAutoApprovalsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProjectOrderAutoApprovalsUpdateWithBody request with any body
+	MarketplaceProjectOrderAutoApprovalsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProjectOrderAutoApprovalsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectOrderAutoApprovalsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProjectServiceAccountsList request
 	MarketplaceProjectServiceAccountsList(ctx context.Context, params *MarketplaceProjectServiceAccountsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -94573,6 +94827,9 @@ type ClientInterface interface {
 
 	// MarketplaceServiceProvidersOfferingsList request
 	MarketplaceServiceProvidersOfferingsList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersOfferingsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceServiceProvidersOfferingsTypesList request
+	MarketplaceServiceProvidersOfferingsTypesList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersOfferingsTypesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceServiceProvidersProjectPermissionsList request
 	MarketplaceServiceProvidersProjectPermissionsList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectPermissionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -114586,6 +114843,126 @@ func (c *Client) MarketplaceProjectEstimatedCostPoliciesUpdate(ctx context.Conte
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceProjectOrderAutoApprovalsList(ctx context.Context, params *MarketplaceProjectOrderAutoApprovalsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectOrderAutoApprovalsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProjectOrderAutoApprovalsCount(ctx context.Context, params *MarketplaceProjectOrderAutoApprovalsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectOrderAutoApprovalsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProjectOrderAutoApprovalsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectOrderAutoApprovalsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProjectOrderAutoApprovalsCreate(ctx context.Context, body MarketplaceProjectOrderAutoApprovalsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectOrderAutoApprovalsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProjectOrderAutoApprovalsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectOrderAutoApprovalsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProjectOrderAutoApprovalsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectOrderAutoApprovalsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProjectOrderAutoApprovalsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectOrderAutoApprovalsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProjectOrderAutoApprovalsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectOrderAutoApprovalsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectOrderAutoApprovalsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProjectOrderAutoApprovalsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectOrderAutoApprovalsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProjectOrderAutoApprovalsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectOrderAutoApprovalsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectOrderAutoApprovalsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceProjectServiceAccountsList(ctx context.Context, params *MarketplaceProjectServiceAccountsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProjectServiceAccountsListRequest(c.Server, params)
 	if err != nil {
@@ -119292,6 +119669,18 @@ func (c *Client) MarketplaceServiceProvidersKeysList(ctx context.Context, servic
 
 func (c *Client) MarketplaceServiceProvidersOfferingsList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersOfferingsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceServiceProvidersOfferingsListRequest(c.Server, serviceProviderUuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceServiceProvidersOfferingsTypesList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersOfferingsTypesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceServiceProvidersOfferingsTypesListRequest(c.Server, serviceProviderUuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -204590,6 +204979,18 @@ func NewMarketplaceOrdersListRequest(server string, params *MarketplaceOrdersLis
 
 		}
 
+		if params.WasAutoApproved != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "was_auto_approved", *params.WasAutoApproved, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if encoded := queryValues.Encode(); encoded != "" {
 			rawQueryFragments = append(rawQueryFragments, encoded)
 		}
@@ -204935,6 +205336,18 @@ func NewMarketplaceOrdersCountRequest(server string, params *MarketplaceOrdersCo
 		if params.Type != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "type", *params.Type, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.WasAutoApproved != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "was_auto_approved", *params.WasAutoApproved, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -207892,6 +208305,412 @@ func NewMarketplaceProjectEstimatedCostPoliciesUpdateRequestWithBody(server stri
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-project-estimated-cost-policies/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProjectOrderAutoApprovalsListRequest generates requests for MarketplaceProjectOrderAutoApprovalsList
+func NewMarketplaceProjectOrderAutoApprovalsListRequest(server string, params *MarketplaceProjectOrderAutoApprovalsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-project-order-auto-approvals/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Enabled != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "enabled", *params.Enabled, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceProjectOrderAutoApprovalsCountRequest generates requests for MarketplaceProjectOrderAutoApprovalsCount
+func NewMarketplaceProjectOrderAutoApprovalsCountRequest(server string, params *MarketplaceProjectOrderAutoApprovalsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-project-order-auto-approvals/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Enabled != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "enabled", *params.Enabled, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceProjectOrderAutoApprovalsCreateRequest calls the generic MarketplaceProjectOrderAutoApprovalsCreate builder with application/json body
+func NewMarketplaceProjectOrderAutoApprovalsCreateRequest(server string, body MarketplaceProjectOrderAutoApprovalsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProjectOrderAutoApprovalsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceProjectOrderAutoApprovalsCreateRequestWithBody generates requests for MarketplaceProjectOrderAutoApprovalsCreate with any type of body
+func NewMarketplaceProjectOrderAutoApprovalsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-project-order-auto-approvals/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProjectOrderAutoApprovalsDestroyRequest generates requests for MarketplaceProjectOrderAutoApprovalsDestroy
+func NewMarketplaceProjectOrderAutoApprovalsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-project-order-auto-approvals/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceProjectOrderAutoApprovalsRetrieveRequest generates requests for MarketplaceProjectOrderAutoApprovalsRetrieve
+func NewMarketplaceProjectOrderAutoApprovalsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-project-order-auto-approvals/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceProjectOrderAutoApprovalsPartialUpdateRequest calls the generic MarketplaceProjectOrderAutoApprovalsPartialUpdate builder with application/json body
+func NewMarketplaceProjectOrderAutoApprovalsPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceProjectOrderAutoApprovalsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProjectOrderAutoApprovalsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProjectOrderAutoApprovalsPartialUpdateRequestWithBody generates requests for MarketplaceProjectOrderAutoApprovalsPartialUpdate with any type of body
+func NewMarketplaceProjectOrderAutoApprovalsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-project-order-auto-approvals/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProjectOrderAutoApprovalsUpdateRequest calls the generic MarketplaceProjectOrderAutoApprovalsUpdate builder with application/json body
+func NewMarketplaceProjectOrderAutoApprovalsUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceProjectOrderAutoApprovalsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProjectOrderAutoApprovalsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProjectOrderAutoApprovalsUpdateRequestWithBody generates requests for MarketplaceProjectOrderAutoApprovalsUpdate with any type of body
+func NewMarketplaceProjectOrderAutoApprovalsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-project-order-auto-approvals/%s/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -233609,6 +234428,559 @@ func NewMarketplaceServiceProvidersOfferingsListRequest(server string, servicePr
 		if params.Field != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasActiveTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_active_terms_of_service", *params.HasActiveTermsOfService, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_terms_of_service", *params.HasTermsOfService, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Keyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "keyword", *params.Keyword, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified", *params.Modified, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ModifiedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified_before", *params.ModifiedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_group_uuid", *params.OfferingGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OrganizationGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "organization_group_uuid", *params.OrganizationGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ParentUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "parent_uuid", *params.ParentUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResourceCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_customer_uuid", *params.ResourceCustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResourceProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_project_uuid", *params.ResourceProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ScopeUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "scope_uuid", *params.ScopeUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ServiceManagerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "service_manager_uuid", *params.ServiceManagerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Shared != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "shared", *params.Shared, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Slug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Tag != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tag", *params.Tag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.TagName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tag_name", *params.TagName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.TagNamesAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tag_names_and", *params.TagNamesAnd, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.TagsAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tags_and", *params.TagsAnd, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Type != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "type", *params.Type, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserHasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_has_consent", *params.UserHasConsent, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserHasOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_has_offering_user", *params.UserHasOfferingUser, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UuidList != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid_list", *params.UuidList, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceServiceProvidersOfferingsTypesListRequest generates requests for MarketplaceServiceProvidersOfferingsTypesList
+func NewMarketplaceServiceProvidersOfferingsTypesListRequest(server string, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersOfferingsTypesListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "service_provider_uuid", serviceProviderUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-service-providers/%s/offerings/types/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.AccessibleViaCalls != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible_via_calls", *params.AccessibleViaCalls, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.AllowedCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "allowed_customer_uuid", *params.AllowedCustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Attributes != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "attributes", *params.Attributes, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Billable != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "billable", *params.Billable, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CanCreateOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "can_create_offering_user", *params.CanCreateOfferingUser, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CategoryGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "category_group_uuid", *params.CategoryGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CategoryUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "category_uuid", *params.CategoryUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created", *params.Created, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_before", *params.CreatedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer", *params.Customer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "description", *params.Description, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -339923,6 +341295,33 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceProjectEstimatedCostPoliciesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectEstimatedCostPoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProjectEstimatedCostPoliciesUpdateResponse, error)
 
+	// MarketplaceProjectOrderAutoApprovalsListWithResponse request
+	MarketplaceProjectOrderAutoApprovalsListWithResponse(ctx context.Context, params *MarketplaceProjectOrderAutoApprovalsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProjectOrderAutoApprovalsListResponse, error)
+
+	// MarketplaceProjectOrderAutoApprovalsCountWithResponse request
+	MarketplaceProjectOrderAutoApprovalsCountWithResponse(ctx context.Context, params *MarketplaceProjectOrderAutoApprovalsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceProjectOrderAutoApprovalsCountResponse, error)
+
+	// MarketplaceProjectOrderAutoApprovalsCreateWithBodyWithResponse request with any body
+	MarketplaceProjectOrderAutoApprovalsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProjectOrderAutoApprovalsCreateResponse, error)
+
+	MarketplaceProjectOrderAutoApprovalsCreateWithResponse(ctx context.Context, body MarketplaceProjectOrderAutoApprovalsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProjectOrderAutoApprovalsCreateResponse, error)
+
+	// MarketplaceProjectOrderAutoApprovalsDestroyWithResponse request
+	MarketplaceProjectOrderAutoApprovalsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProjectOrderAutoApprovalsDestroyResponse, error)
+
+	// MarketplaceProjectOrderAutoApprovalsRetrieveWithResponse request
+	MarketplaceProjectOrderAutoApprovalsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProjectOrderAutoApprovalsRetrieveResponse, error)
+
+	// MarketplaceProjectOrderAutoApprovalsPartialUpdateWithBodyWithResponse request with any body
+	MarketplaceProjectOrderAutoApprovalsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProjectOrderAutoApprovalsPartialUpdateResponse, error)
+
+	MarketplaceProjectOrderAutoApprovalsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectOrderAutoApprovalsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProjectOrderAutoApprovalsPartialUpdateResponse, error)
+
+	// MarketplaceProjectOrderAutoApprovalsUpdateWithBodyWithResponse request with any body
+	MarketplaceProjectOrderAutoApprovalsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProjectOrderAutoApprovalsUpdateResponse, error)
+
+	MarketplaceProjectOrderAutoApprovalsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectOrderAutoApprovalsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProjectOrderAutoApprovalsUpdateResponse, error)
+
 	// MarketplaceProjectServiceAccountsListWithResponse request
 	MarketplaceProjectServiceAccountsListWithResponse(ctx context.Context, params *MarketplaceProjectServiceAccountsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProjectServiceAccountsListResponse, error)
 
@@ -340967,6 +342366,9 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceServiceProvidersOfferingsListWithResponse request
 	MarketplaceServiceProvidersOfferingsListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersOfferingsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersOfferingsListResponse, error)
+
+	// MarketplaceServiceProvidersOfferingsTypesListWithResponse request
+	MarketplaceServiceProvidersOfferingsTypesListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersOfferingsTypesListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersOfferingsTypesListResponse, error)
 
 	// MarketplaceServiceProvidersProjectPermissionsListWithResponse request
 	MarketplaceServiceProvidersProjectPermissionsListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectPermissionsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersProjectPermissionsListResponse, error)
@@ -373458,6 +374860,214 @@ func (r MarketplaceProjectEstimatedCostPoliciesUpdateResponse) ContentType() str
 	return ""
 }
 
+type MarketplaceProjectOrderAutoApprovalsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ProjectOrderAutoApproval
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProjectOrderAutoApprovalsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProjectOrderAutoApprovalsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProjectOrderAutoApprovalsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProjectOrderAutoApprovalsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProjectOrderAutoApprovalsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProjectOrderAutoApprovalsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProjectOrderAutoApprovalsCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProjectOrderAutoApprovalsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *ProjectOrderAutoApproval
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProjectOrderAutoApprovalsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProjectOrderAutoApprovalsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProjectOrderAutoApprovalsCreateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProjectOrderAutoApprovalsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProjectOrderAutoApprovalsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProjectOrderAutoApprovalsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProjectOrderAutoApprovalsDestroyResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProjectOrderAutoApprovalsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ProjectOrderAutoApproval
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProjectOrderAutoApprovalsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProjectOrderAutoApprovalsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProjectOrderAutoApprovalsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProjectOrderAutoApprovalsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ProjectOrderAutoApproval
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProjectOrderAutoApprovalsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProjectOrderAutoApprovalsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProjectOrderAutoApprovalsPartialUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProjectOrderAutoApprovalsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ProjectOrderAutoApproval
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProjectOrderAutoApprovalsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProjectOrderAutoApprovalsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProjectOrderAutoApprovalsUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type MarketplaceProjectServiceAccountsListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -381185,6 +382795,36 @@ func (r MarketplaceServiceProvidersOfferingsListResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceServiceProvidersOfferingsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceServiceProvidersOfferingsTypesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]string
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceServiceProvidersOfferingsTypesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceServiceProvidersOfferingsTypesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceServiceProvidersOfferingsTypesListResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -432874,6 +434514,93 @@ func (c *ClientWithResponses) MarketplaceProjectEstimatedCostPoliciesUpdateWithR
 	return ParseMarketplaceProjectEstimatedCostPoliciesUpdateResponse(rsp)
 }
 
+// MarketplaceProjectOrderAutoApprovalsListWithResponse request returning *MarketplaceProjectOrderAutoApprovalsListResponse
+func (c *ClientWithResponses) MarketplaceProjectOrderAutoApprovalsListWithResponse(ctx context.Context, params *MarketplaceProjectOrderAutoApprovalsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProjectOrderAutoApprovalsListResponse, error) {
+	rsp, err := c.MarketplaceProjectOrderAutoApprovalsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProjectOrderAutoApprovalsListResponse(rsp)
+}
+
+// MarketplaceProjectOrderAutoApprovalsCountWithResponse request returning *MarketplaceProjectOrderAutoApprovalsCountResponse
+func (c *ClientWithResponses) MarketplaceProjectOrderAutoApprovalsCountWithResponse(ctx context.Context, params *MarketplaceProjectOrderAutoApprovalsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceProjectOrderAutoApprovalsCountResponse, error) {
+	rsp, err := c.MarketplaceProjectOrderAutoApprovalsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProjectOrderAutoApprovalsCountResponse(rsp)
+}
+
+// MarketplaceProjectOrderAutoApprovalsCreateWithBodyWithResponse request with arbitrary body returning *MarketplaceProjectOrderAutoApprovalsCreateResponse
+func (c *ClientWithResponses) MarketplaceProjectOrderAutoApprovalsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProjectOrderAutoApprovalsCreateResponse, error) {
+	rsp, err := c.MarketplaceProjectOrderAutoApprovalsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProjectOrderAutoApprovalsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProjectOrderAutoApprovalsCreateWithResponse(ctx context.Context, body MarketplaceProjectOrderAutoApprovalsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProjectOrderAutoApprovalsCreateResponse, error) {
+	rsp, err := c.MarketplaceProjectOrderAutoApprovalsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProjectOrderAutoApprovalsCreateResponse(rsp)
+}
+
+// MarketplaceProjectOrderAutoApprovalsDestroyWithResponse request returning *MarketplaceProjectOrderAutoApprovalsDestroyResponse
+func (c *ClientWithResponses) MarketplaceProjectOrderAutoApprovalsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProjectOrderAutoApprovalsDestroyResponse, error) {
+	rsp, err := c.MarketplaceProjectOrderAutoApprovalsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProjectOrderAutoApprovalsDestroyResponse(rsp)
+}
+
+// MarketplaceProjectOrderAutoApprovalsRetrieveWithResponse request returning *MarketplaceProjectOrderAutoApprovalsRetrieveResponse
+func (c *ClientWithResponses) MarketplaceProjectOrderAutoApprovalsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProjectOrderAutoApprovalsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceProjectOrderAutoApprovalsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProjectOrderAutoApprovalsRetrieveResponse(rsp)
+}
+
+// MarketplaceProjectOrderAutoApprovalsPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceProjectOrderAutoApprovalsPartialUpdateResponse
+func (c *ClientWithResponses) MarketplaceProjectOrderAutoApprovalsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProjectOrderAutoApprovalsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceProjectOrderAutoApprovalsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProjectOrderAutoApprovalsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProjectOrderAutoApprovalsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectOrderAutoApprovalsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProjectOrderAutoApprovalsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceProjectOrderAutoApprovalsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProjectOrderAutoApprovalsPartialUpdateResponse(rsp)
+}
+
+// MarketplaceProjectOrderAutoApprovalsUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceProjectOrderAutoApprovalsUpdateResponse
+func (c *ClientWithResponses) MarketplaceProjectOrderAutoApprovalsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProjectOrderAutoApprovalsUpdateResponse, error) {
+	rsp, err := c.MarketplaceProjectOrderAutoApprovalsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProjectOrderAutoApprovalsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProjectOrderAutoApprovalsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectOrderAutoApprovalsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProjectOrderAutoApprovalsUpdateResponse, error) {
+	rsp, err := c.MarketplaceProjectOrderAutoApprovalsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProjectOrderAutoApprovalsUpdateResponse(rsp)
+}
+
 // MarketplaceProjectServiceAccountsListWithResponse request returning *MarketplaceProjectServiceAccountsListResponse
 func (c *ClientWithResponses) MarketplaceProjectServiceAccountsListWithResponse(ctx context.Context, params *MarketplaceProjectServiceAccountsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProjectServiceAccountsListResponse, error) {
 	rsp, err := c.MarketplaceProjectServiceAccountsList(ctx, params, reqEditors...)
@@ -436275,6 +438002,15 @@ func (c *ClientWithResponses) MarketplaceServiceProvidersOfferingsListWithRespon
 		return nil, err
 	}
 	return ParseMarketplaceServiceProvidersOfferingsListResponse(rsp)
+}
+
+// MarketplaceServiceProvidersOfferingsTypesListWithResponse request returning *MarketplaceServiceProvidersOfferingsTypesListResponse
+func (c *ClientWithResponses) MarketplaceServiceProvidersOfferingsTypesListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersOfferingsTypesListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersOfferingsTypesListResponse, error) {
+	rsp, err := c.MarketplaceServiceProvidersOfferingsTypesList(ctx, serviceProviderUuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceServiceProvidersOfferingsTypesListResponse(rsp)
 }
 
 // MarketplaceServiceProvidersProjectPermissionsListWithResponse request returning *MarketplaceServiceProvidersProjectPermissionsListResponse
@@ -473593,6 +475329,168 @@ func ParseMarketplaceProjectEstimatedCostPoliciesUpdateResponse(rsp *http.Respon
 	return response, nil
 }
 
+// ParseMarketplaceProjectOrderAutoApprovalsListResponse parses an HTTP response from a MarketplaceProjectOrderAutoApprovalsListWithResponse call
+func ParseMarketplaceProjectOrderAutoApprovalsListResponse(rsp *http.Response) (*MarketplaceProjectOrderAutoApprovalsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProjectOrderAutoApprovalsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ProjectOrderAutoApproval
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProjectOrderAutoApprovalsCountResponse parses an HTTP response from a MarketplaceProjectOrderAutoApprovalsCountWithResponse call
+func ParseMarketplaceProjectOrderAutoApprovalsCountResponse(rsp *http.Response) (*MarketplaceProjectOrderAutoApprovalsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProjectOrderAutoApprovalsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProjectOrderAutoApprovalsCreateResponse parses an HTTP response from a MarketplaceProjectOrderAutoApprovalsCreateWithResponse call
+func ParseMarketplaceProjectOrderAutoApprovalsCreateResponse(rsp *http.Response) (*MarketplaceProjectOrderAutoApprovalsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProjectOrderAutoApprovalsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest ProjectOrderAutoApproval
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProjectOrderAutoApprovalsDestroyResponse parses an HTTP response from a MarketplaceProjectOrderAutoApprovalsDestroyWithResponse call
+func ParseMarketplaceProjectOrderAutoApprovalsDestroyResponse(rsp *http.Response) (*MarketplaceProjectOrderAutoApprovalsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProjectOrderAutoApprovalsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProjectOrderAutoApprovalsRetrieveResponse parses an HTTP response from a MarketplaceProjectOrderAutoApprovalsRetrieveWithResponse call
+func ParseMarketplaceProjectOrderAutoApprovalsRetrieveResponse(rsp *http.Response) (*MarketplaceProjectOrderAutoApprovalsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProjectOrderAutoApprovalsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProjectOrderAutoApproval
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProjectOrderAutoApprovalsPartialUpdateResponse parses an HTTP response from a MarketplaceProjectOrderAutoApprovalsPartialUpdateWithResponse call
+func ParseMarketplaceProjectOrderAutoApprovalsPartialUpdateResponse(rsp *http.Response) (*MarketplaceProjectOrderAutoApprovalsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProjectOrderAutoApprovalsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProjectOrderAutoApproval
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProjectOrderAutoApprovalsUpdateResponse parses an HTTP response from a MarketplaceProjectOrderAutoApprovalsUpdateWithResponse call
+func ParseMarketplaceProjectOrderAutoApprovalsUpdateResponse(rsp *http.Response) (*MarketplaceProjectOrderAutoApprovalsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProjectOrderAutoApprovalsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProjectOrderAutoApproval
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceProjectServiceAccountsListResponse parses an HTTP response from a MarketplaceProjectServiceAccountsListWithResponse call
 func ParseMarketplaceProjectServiceAccountsListResponse(rsp *http.Response) (*MarketplaceProjectServiceAccountsListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -479683,6 +481581,32 @@ func ParseMarketplaceServiceProvidersOfferingsListResponse(rsp *http.Response) (
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest []ProviderOffering
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceServiceProvidersOfferingsTypesListResponse parses an HTTP response from a MarketplaceServiceProvidersOfferingsTypesListWithResponse call
+func ParseMarketplaceServiceProvidersOfferingsTypesListResponse(rsp *http.Response) (*MarketplaceServiceProvidersOfferingsTypesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceServiceProvidersOfferingsTypesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []string
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
