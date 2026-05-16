@@ -9285,6 +9285,27 @@ func (e LevelEnum) Valid() bool {
 	}
 }
 
+// Defines values for LikertScaleLengthEnum.
+const (
+	LikertScaleLengthEnumN3 LikertScaleLengthEnum = 3
+	LikertScaleLengthEnumN5 LikertScaleLengthEnum = 5
+	LikertScaleLengthEnumN7 LikertScaleLengthEnum = 7
+)
+
+// Valid indicates whether the value is a known member of the LikertScaleLengthEnum enum.
+func (e LikertScaleLengthEnum) Valid() bool {
+	switch e {
+	case LikertScaleLengthEnumN3:
+		return true
+	case LikertScaleLengthEnumN5:
+		return true
+	case LikertScaleLengthEnumN7:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for LimitPeriodEnum.
 const (
 	LimitPeriodEnumAnnual    LimitPeriodEnum = "annual"
@@ -16898,11 +16919,13 @@ const (
 	QuestionTypeEnumDatetime      QuestionTypeEnum = "datetime"
 	QuestionTypeEnumEmail         QuestionTypeEnum = "email"
 	QuestionTypeEnumFile          QuestionTypeEnum = "file"
+	QuestionTypeEnumLikert        QuestionTypeEnum = "likert"
 	QuestionTypeEnumMultiSelect   QuestionTypeEnum = "multi_select"
 	QuestionTypeEnumMultipleFiles QuestionTypeEnum = "multiple_files"
 	QuestionTypeEnumNumber        QuestionTypeEnum = "number"
 	QuestionTypeEnumPhoneNumber   QuestionTypeEnum = "phone_number"
 	QuestionTypeEnumRating        QuestionTypeEnum = "rating"
+	QuestionTypeEnumRichText      QuestionTypeEnum = "rich_text"
 	QuestionTypeEnumSingleSelect  QuestionTypeEnum = "single_select"
 	QuestionTypeEnumTextArea      QuestionTypeEnum = "text_area"
 	QuestionTypeEnumTextInput     QuestionTypeEnum = "text_input"
@@ -16925,6 +16948,8 @@ func (e QuestionTypeEnum) Valid() bool {
 		return true
 	case QuestionTypeEnumFile:
 		return true
+	case QuestionTypeEnumLikert:
+		return true
 	case QuestionTypeEnumMultiSelect:
 		return true
 	case QuestionTypeEnumMultipleFiles:
@@ -16934,6 +16959,8 @@ func (e QuestionTypeEnum) Valid() bool {
 	case QuestionTypeEnumPhoneNumber:
 		return true
 	case QuestionTypeEnumRating:
+		return true
+	case QuestionTypeEnumRichText:
 		return true
 	case QuestionTypeEnumSingleSelect:
 		return true
@@ -18528,6 +18555,27 @@ func (e ReviewerSuggestionStatusEnum) Valid() bool {
 	case ReviewerSuggestionStatusEnumPending:
 		return true
 	case ReviewerSuggestionStatusEnumRejected:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for RichTextToolbarLevelEnum.
+const (
+	RichTextToolbarLevelEnumExtended RichTextToolbarLevelEnum = "extended"
+	RichTextToolbarLevelEnumMinimal  RichTextToolbarLevelEnum = "minimal"
+	RichTextToolbarLevelEnumStandard RichTextToolbarLevelEnum = "standard"
+)
+
+// Valid indicates whether the value is a known member of the RichTextToolbarLevelEnum enum.
+func (e RichTextToolbarLevelEnum) Valid() bool {
+	switch e {
+	case RichTextToolbarLevelEnumExtended:
+		return true
+	case RichTextToolbarLevelEnumMinimal:
+		return true
+	case RichTextToolbarLevelEnumStandard:
 		return true
 	default:
 		return false
@@ -21389,19 +21437,19 @@ func (e VmwareVirtualMachineFieldEnum) Valid() bool {
 
 // Defines values for VolumeTypeEnum.
 const (
-	Gp2      VolumeTypeEnum = "gp2"
-	Io1      VolumeTypeEnum = "io1"
-	Standard VolumeTypeEnum = "standard"
+	VolumeTypeEnumGp2      VolumeTypeEnum = "gp2"
+	VolumeTypeEnumIo1      VolumeTypeEnum = "io1"
+	VolumeTypeEnumStandard VolumeTypeEnum = "standard"
 )
 
 // Valid indicates whether the value is a known member of the VolumeTypeEnum enum.
 func (e VolumeTypeEnum) Valid() bool {
 	switch e {
-	case Gp2:
+	case VolumeTypeEnumGp2:
 		return true
-	case Io1:
+	case VolumeTypeEnumIo1:
 		return true
-	case Standard:
+	case VolumeTypeEnumStandard:
 		return true
 	default:
 		return false
@@ -21449,16 +21497,16 @@ func (e WebHookContentTypeEnum) Valid() bool {
 
 // Defines values for WebHookContentTypeEnum1.
 const (
-	N1 WebHookContentTypeEnum1 = "1"
-	N2 WebHookContentTypeEnum1 = "2"
+	WebHookContentTypeEnum1N1 WebHookContentTypeEnum1 = "1"
+	WebHookContentTypeEnum1N2 WebHookContentTypeEnum1 = "2"
 )
 
 // Valid indicates whether the value is a known member of the WebHookContentTypeEnum1 enum.
 func (e WebHookContentTypeEnum1) Valid() bool {
 	switch e {
-	case N1:
+	case WebHookContentTypeEnum1N1:
 		return true
-	case N2:
+	case WebHookContentTypeEnum1N2:
 		return true
 	default:
 		return false
@@ -32045,6 +32093,9 @@ type LicenseSuggestion struct {
 	ResourceUuid     openapi_types.UUID `json:"resource_uuid"`
 }
 
+// LikertScaleLengthEnum defines model for LikertScaleLengthEnum.
+type LikertScaleLengthEnum int
+
 // LimitPeriodEnum defines model for LimitPeriodEnum.
 type LimitPeriodEnum string
 
@@ -40643,6 +40694,18 @@ type PatchedQuestionAdminRequest struct {
 	// GuidanceOperator Operator to use when comparing answer with guidance_answer_value
 	GuidanceOperator *PatchedQuestionAdminRequest_GuidanceOperator `json:"guidance_operator,omitempty"`
 
+	// LikertAllowNa Allow respondents to choose 'N/A' as an answer for LIKERT type questions.
+	LikertAllowNa *bool `json:"likert_allow_na,omitempty"`
+
+	// LikertHighLabel Label for the highest point on the Likert scale (e.g. 'Strongly agree'). Optional.
+	LikertHighLabel *string `json:"likert_high_label,omitempty"`
+
+	// LikertLowLabel Label for the lowest point on the Likert scale (e.g. 'Strongly disagree'). Optional.
+	LikertLowLabel *string `json:"likert_low_label,omitempty"`
+
+	// LikertScaleLength Number of points on the Likert scale (3, 5, or 7). Required for LIKERT type questions.
+	LikertScaleLength *PatchedQuestionAdminRequest_LikertScaleLength `json:"likert_scale_length,omitempty"`
+
 	// MaxFileSizeMb Maximum file size in megabytes. If not set, no size limit is enforced.
 	MaxFileSizeMb *int `json:"max_file_size_mb,omitempty"`
 
@@ -40664,6 +40727,12 @@ type PatchedQuestionAdminRequest struct {
 	// ReviewAnswerValue Answer value that trigger review.
 	ReviewAnswerValue interface{} `json:"review_answer_value,omitempty"`
 
+	// RichTextCharLimit Maximum number of characters allowed in RICH_TEXT type answers. If not set, no limit is enforced.
+	RichTextCharLimit *int `json:"rich_text_char_limit,omitempty"`
+
+	// RichTextToolbarLevel Toolbar level for the rich text editor: 'minimal', 'standard', or 'extended'.
+	RichTextToolbarLevel *PatchedQuestionAdminRequest_RichTextToolbarLevel `json:"rich_text_toolbar_level,omitempty"`
+
 	// UserGuidance Additional guidance text visible to users when answering and reviewing
 	UserGuidance *string `json:"user_guidance,omitempty"`
 }
@@ -40673,8 +40742,18 @@ type PatchedQuestionAdminRequest_GuidanceOperator struct {
 	union json.RawMessage
 }
 
+// PatchedQuestionAdminRequest_LikertScaleLength Number of points on the Likert scale (3, 5, or 7). Required for LIKERT type questions.
+type PatchedQuestionAdminRequest_LikertScaleLength struct {
+	union json.RawMessage
+}
+
 // PatchedQuestionAdminRequest_Operator defines model for PatchedQuestionAdminRequest.Operator.
 type PatchedQuestionAdminRequest_Operator struct {
+	union json.RawMessage
+}
+
+// PatchedQuestionAdminRequest_RichTextToolbarLevel Toolbar level for the rich text editor: 'minimal', 'standard', or 'extended'.
+type PatchedQuestionAdminRequest_RichTextToolbarLevel struct {
 	union json.RawMessage
 }
 
@@ -43851,6 +43930,18 @@ type Question struct {
 	// GuidanceOperator Operator to use when comparing answer with guidance_answer_value
 	GuidanceOperator *Question_GuidanceOperator `json:"guidance_operator,omitempty"`
 
+	// LikertAllowNa Allow respondents to choose 'N/A' as an answer for LIKERT type questions.
+	LikertAllowNa *bool `json:"likert_allow_na,omitempty"`
+
+	// LikertHighLabel Label for the highest point on the Likert scale (e.g. 'Strongly agree'). Optional.
+	LikertHighLabel *string `json:"likert_high_label,omitempty"`
+
+	// LikertLowLabel Label for the lowest point on the Likert scale (e.g. 'Strongly disagree'). Optional.
+	LikertLowLabel *string `json:"likert_low_label,omitempty"`
+
+	// LikertScaleLength Number of points on the Likert scale (3, 5, or 7). Required for LIKERT type questions.
+	LikertScaleLength *Question_LikertScaleLength `json:"likert_scale_length,omitempty"`
+
 	// MaxFileSizeMb Maximum file size in megabytes. If not set, no size limit is enforced.
 	MaxFileSizeMb *int `json:"max_file_size_mb,omitempty"`
 
@@ -43873,6 +43964,12 @@ type Question struct {
 	// ReviewAnswerValue Answer value that trigger review.
 	ReviewAnswerValue interface{} `json:"review_answer_value,omitempty"`
 
+	// RichTextCharLimit Maximum number of characters allowed in RICH_TEXT type answers. If not set, no limit is enforced.
+	RichTextCharLimit *int `json:"rich_text_char_limit,omitempty"`
+
+	// RichTextToolbarLevel Toolbar level for the rich text editor: 'minimal', 'standard', or 'extended'.
+	RichTextToolbarLevel *Question_RichTextToolbarLevel `json:"rich_text_toolbar_level,omitempty"`
+
 	// UserGuidance Additional guidance text visible to users when answering and reviewing
 	UserGuidance *string             `json:"user_guidance,omitempty"`
 	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
@@ -43883,8 +43980,18 @@ type Question_GuidanceOperator struct {
 	union json.RawMessage
 }
 
+// Question_LikertScaleLength Number of points on the Likert scale (3, 5, or 7). Required for LIKERT type questions.
+type Question_LikertScaleLength struct {
+	union json.RawMessage
+}
+
 // Question_Operator defines model for Question.Operator.
 type Question_Operator struct {
+	union json.RawMessage
+}
+
+// Question_RichTextToolbarLevel Toolbar level for the rich text editor: 'minimal', 'standard', or 'extended'.
+type Question_RichTextToolbarLevel struct {
 	union json.RawMessage
 }
 
@@ -43916,6 +44023,18 @@ type QuestionAdmin struct {
 	// GuidanceOperator Operator to use when comparing answer with guidance_answer_value
 	GuidanceOperator *QuestionAdmin_GuidanceOperator `json:"guidance_operator,omitempty"`
 
+	// LikertAllowNa Allow respondents to choose 'N/A' as an answer for LIKERT type questions.
+	LikertAllowNa *bool `json:"likert_allow_na,omitempty"`
+
+	// LikertHighLabel Label for the highest point on the Likert scale (e.g. 'Strongly agree'). Optional.
+	LikertHighLabel *string `json:"likert_high_label,omitempty"`
+
+	// LikertLowLabel Label for the lowest point on the Likert scale (e.g. 'Strongly disagree'). Optional.
+	LikertLowLabel *string `json:"likert_low_label,omitempty"`
+
+	// LikertScaleLength Number of points on the Likert scale (3, 5, or 7). Required for LIKERT type questions.
+	LikertScaleLength *QuestionAdmin_LikertScaleLength `json:"likert_scale_length,omitempty"`
+
 	// MaxFileSizeMb Maximum file size in megabytes. If not set, no size limit is enforced.
 	MaxFileSizeMb *int `json:"max_file_size_mb,omitempty"`
 
@@ -43937,7 +44056,13 @@ type QuestionAdmin struct {
 
 	// ReviewAnswerValue Answer value that trigger review.
 	ReviewAnswerValue interface{} `json:"review_answer_value,omitempty"`
-	Url               *string     `json:"url,omitempty"`
+
+	// RichTextCharLimit Maximum number of characters allowed in RICH_TEXT type answers. If not set, no limit is enforced.
+	RichTextCharLimit *int `json:"rich_text_char_limit,omitempty"`
+
+	// RichTextToolbarLevel Toolbar level for the rich text editor: 'minimal', 'standard', or 'extended'.
+	RichTextToolbarLevel *QuestionAdmin_RichTextToolbarLevel `json:"rich_text_toolbar_level,omitempty"`
+	Url                  *string                             `json:"url,omitempty"`
 
 	// UserGuidance Additional guidance text visible to users when answering and reviewing
 	UserGuidance *string             `json:"user_guidance,omitempty"`
@@ -43949,8 +44074,18 @@ type QuestionAdmin_GuidanceOperator struct {
 	union json.RawMessage
 }
 
+// QuestionAdmin_LikertScaleLength Number of points on the Likert scale (3, 5, or 7). Required for LIKERT type questions.
+type QuestionAdmin_LikertScaleLength struct {
+	union json.RawMessage
+}
+
 // QuestionAdmin_Operator defines model for QuestionAdmin.Operator.
 type QuestionAdmin_Operator struct {
+	union json.RawMessage
+}
+
+// QuestionAdmin_RichTextToolbarLevel Toolbar level for the rich text editor: 'minimal', 'standard', or 'extended'.
+type QuestionAdmin_RichTextToolbarLevel struct {
 	union json.RawMessage
 }
 
@@ -43979,6 +44114,18 @@ type QuestionAdminRequest struct {
 	// GuidanceOperator Operator to use when comparing answer with guidance_answer_value
 	GuidanceOperator *QuestionAdminRequest_GuidanceOperator `json:"guidance_operator,omitempty"`
 
+	// LikertAllowNa Allow respondents to choose 'N/A' as an answer for LIKERT type questions.
+	LikertAllowNa *bool `json:"likert_allow_na,omitempty"`
+
+	// LikertHighLabel Label for the highest point on the Likert scale (e.g. 'Strongly agree'). Optional.
+	LikertHighLabel *string `json:"likert_high_label,omitempty"`
+
+	// LikertLowLabel Label for the lowest point on the Likert scale (e.g. 'Strongly disagree'). Optional.
+	LikertLowLabel *string `json:"likert_low_label,omitempty"`
+
+	// LikertScaleLength Number of points on the Likert scale (3, 5, or 7). Required for LIKERT type questions.
+	LikertScaleLength *QuestionAdminRequest_LikertScaleLength `json:"likert_scale_length,omitempty"`
+
 	// MaxFileSizeMb Maximum file size in megabytes. If not set, no size limit is enforced.
 	MaxFileSizeMb *int `json:"max_file_size_mb,omitempty"`
 
@@ -44000,6 +44147,12 @@ type QuestionAdminRequest struct {
 	// ReviewAnswerValue Answer value that trigger review.
 	ReviewAnswerValue interface{} `json:"review_answer_value,omitempty"`
 
+	// RichTextCharLimit Maximum number of characters allowed in RICH_TEXT type answers. If not set, no limit is enforced.
+	RichTextCharLimit *int `json:"rich_text_char_limit,omitempty"`
+
+	// RichTextToolbarLevel Toolbar level for the rich text editor: 'minimal', 'standard', or 'extended'.
+	RichTextToolbarLevel *QuestionAdminRequest_RichTextToolbarLevel `json:"rich_text_toolbar_level,omitempty"`
+
 	// UserGuidance Additional guidance text visible to users when answering and reviewing
 	UserGuidance *string `json:"user_guidance,omitempty"`
 }
@@ -44009,8 +44162,18 @@ type QuestionAdminRequest_GuidanceOperator struct {
 	union json.RawMessage
 }
 
+// QuestionAdminRequest_LikertScaleLength Number of points on the Likert scale (3, 5, or 7). Required for LIKERT type questions.
+type QuestionAdminRequest_LikertScaleLength struct {
+	union json.RawMessage
+}
+
 // QuestionAdminRequest_Operator defines model for QuestionAdminRequest.Operator.
 type QuestionAdminRequest_Operator struct {
+	union json.RawMessage
+}
+
+// QuestionAdminRequest_RichTextToolbarLevel Toolbar level for the rich text editor: 'minimal', 'standard', or 'extended'.
+type QuestionAdminRequest_RichTextToolbarLevel struct {
 	union json.RawMessage
 }
 
@@ -44098,6 +44261,18 @@ type QuestionWithAnswer struct {
 	Description      *string                 `json:"description,omitempty"`
 	ExistingAnswer   *map[string]interface{} `json:"existing_answer,omitempty"`
 
+	// LikertAllowNa Allow respondents to choose 'N/A' as an answer for LIKERT type questions.
+	LikertAllowNa *bool `json:"likert_allow_na,omitempty"`
+
+	// LikertHighLabel Label for the highest point on the Likert scale (e.g. 'Strongly agree'). Optional.
+	LikertHighLabel *string `json:"likert_high_label,omitempty"`
+
+	// LikertLowLabel Label for the lowest point on the Likert scale (e.g. 'Strongly disagree'). Optional.
+	LikertLowLabel *string `json:"likert_low_label,omitempty"`
+
+	// LikertScaleLength Number of points on the Likert scale (3, 5, or 7). Required for LIKERT type questions.
+	LikertScaleLength *QuestionWithAnswer_LikertScaleLength `json:"likert_scale_length,omitempty"`
+
 	// MaxFileSizeMb Maximum file size in megabytes. If not set, no size limit is enforced.
 	MaxFileSizeMb *int `json:"max_file_size_mb,omitempty"`
 
@@ -44113,10 +44288,21 @@ type QuestionWithAnswer struct {
 	QuestionOptions *[]interface{} `json:"question_options,omitempty"`
 
 	// QuestionType Type of question and expected answer format
-	QuestionType *QuestionTypeEnum   `json:"question_type,omitempty"`
-	Required     *bool               `json:"required,omitempty"`
-	UserGuidance *string             `json:"user_guidance,omitempty"`
-	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+	QuestionType *QuestionTypeEnum `json:"question_type,omitempty"`
+	Required     *bool             `json:"required,omitempty"`
+
+	// RichTextCharLimit Maximum number of characters allowed in RICH_TEXT type answers. If not set, no limit is enforced.
+	RichTextCharLimit *int `json:"rich_text_char_limit,omitempty"`
+
+	// RichTextToolbarLevel Toolbar level for the rich text editor: 'minimal', 'standard', or 'extended'.
+	RichTextToolbarLevel *RichTextToolbarLevelEnum `json:"rich_text_toolbar_level,omitempty"`
+	UserGuidance         *string                   `json:"user_guidance,omitempty"`
+	Uuid                 *openapi_types.UUID       `json:"uuid,omitempty"`
+}
+
+// QuestionWithAnswer_LikertScaleLength Number of points on the Likert scale (3, 5, or 7). Required for LIKERT type questions.
+type QuestionWithAnswer_LikertScaleLength struct {
+	union json.RawMessage
 }
 
 // QuestionWithAnswerReviewer defines model for QuestionWithAnswerReviewer.
@@ -44132,6 +44318,18 @@ type QuestionWithAnswerReviewer struct {
 	DependenciesInfo     *map[string]interface{} `json:"dependencies_info,omitempty"`
 	Description          *string                 `json:"description,omitempty"`
 	ExistingAnswer       *map[string]interface{} `json:"existing_answer,omitempty"`
+
+	// LikertAllowNa Allow respondents to choose 'N/A' as an answer for LIKERT type questions.
+	LikertAllowNa *bool `json:"likert_allow_na,omitempty"`
+
+	// LikertHighLabel Label for the highest point on the Likert scale (e.g. 'Strongly agree'). Optional.
+	LikertHighLabel *string `json:"likert_high_label,omitempty"`
+
+	// LikertLowLabel Label for the lowest point on the Likert scale (e.g. 'Strongly disagree'). Optional.
+	LikertLowLabel *string `json:"likert_low_label,omitempty"`
+
+	// LikertScaleLength Number of points on the Likert scale (3, 5, or 7). Required for LIKERT type questions.
+	LikertScaleLength *QuestionWithAnswerReviewer_LikertScaleLength `json:"likert_scale_length,omitempty"`
 
 	// MaxFileSizeMb Maximum file size in megabytes. If not set, no size limit is enforced.
 	MaxFileSizeMb *int `json:"max_file_size_mb,omitempty"`
@@ -44153,9 +44351,20 @@ type QuestionWithAnswerReviewer struct {
 	Required     *bool             `json:"required,omitempty"`
 
 	// ReviewAnswerValue Answer value that trigger review.
-	ReviewAnswerValue interface{}         `json:"review_answer_value,omitempty"`
-	UserGuidance      *string             `json:"user_guidance,omitempty"`
-	Uuid              *openapi_types.UUID `json:"uuid,omitempty"`
+	ReviewAnswerValue interface{} `json:"review_answer_value,omitempty"`
+
+	// RichTextCharLimit Maximum number of characters allowed in RICH_TEXT type answers. If not set, no limit is enforced.
+	RichTextCharLimit *int `json:"rich_text_char_limit,omitempty"`
+
+	// RichTextToolbarLevel Toolbar level for the rich text editor: 'minimal', 'standard', or 'extended'.
+	RichTextToolbarLevel *RichTextToolbarLevelEnum `json:"rich_text_toolbar_level,omitempty"`
+	UserGuidance         *string                   `json:"user_guidance,omitempty"`
+	Uuid                 *openapi_types.UUID       `json:"uuid,omitempty"`
+}
+
+// QuestionWithAnswerReviewer_LikertScaleLength Number of points on the Likert scale (3, 5, or 7). Required for LIKERT type questions.
+type QuestionWithAnswerReviewer_LikertScaleLength struct {
+	union json.RawMessage
 }
 
 // QuestionWithAnswerReviewer_Operator defines model for QuestionWithAnswerReviewer.Operator.
@@ -46610,6 +46819,9 @@ type ReviewerSuggestionRequest struct {
 
 // ReviewerSuggestionStatusEnum defines model for ReviewerSuggestionStatusEnum.
 type ReviewerSuggestionStatusEnum string
+
+// RichTextToolbarLevelEnum defines model for RichTextToolbarLevelEnum.
+type RichTextToolbarLevelEnum string
 
 // RmqClientProperties defines model for RmqClientProperties.
 type RmqClientProperties struct {
@@ -86398,6 +86610,68 @@ func (t *PatchedQuestionAdminRequest_GuidanceOperator) UnmarshalJSON(b []byte) e
 	return err
 }
 
+// AsLikertScaleLengthEnum returns the union data inside the PatchedQuestionAdminRequest_LikertScaleLength as a LikertScaleLengthEnum
+func (t PatchedQuestionAdminRequest_LikertScaleLength) AsLikertScaleLengthEnum() (LikertScaleLengthEnum, error) {
+	var body LikertScaleLengthEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromLikertScaleLengthEnum overwrites any union data inside the PatchedQuestionAdminRequest_LikertScaleLength as the provided LikertScaleLengthEnum
+func (t *PatchedQuestionAdminRequest_LikertScaleLength) FromLikertScaleLengthEnum(v LikertScaleLengthEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeLikertScaleLengthEnum performs a merge with any union data inside the PatchedQuestionAdminRequest_LikertScaleLength, using the provided LikertScaleLengthEnum
+func (t *PatchedQuestionAdminRequest_LikertScaleLength) MergeLikertScaleLengthEnum(v LikertScaleLengthEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the PatchedQuestionAdminRequest_LikertScaleLength as a NullEnum
+func (t PatchedQuestionAdminRequest_LikertScaleLength) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the PatchedQuestionAdminRequest_LikertScaleLength as the provided NullEnum
+func (t *PatchedQuestionAdminRequest_LikertScaleLength) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the PatchedQuestionAdminRequest_LikertScaleLength, using the provided NullEnum
+func (t *PatchedQuestionAdminRequest_LikertScaleLength) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PatchedQuestionAdminRequest_LikertScaleLength) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PatchedQuestionAdminRequest_LikertScaleLength) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsChecklistOperators returns the union data inside the PatchedQuestionAdminRequest_Operator as a ChecklistOperators
 func (t PatchedQuestionAdminRequest_Operator) AsChecklistOperators() (ChecklistOperators, error) {
 	var body ChecklistOperators
@@ -86456,6 +86730,68 @@ func (t PatchedQuestionAdminRequest_Operator) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PatchedQuestionAdminRequest_Operator) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsRichTextToolbarLevelEnum returns the union data inside the PatchedQuestionAdminRequest_RichTextToolbarLevel as a RichTextToolbarLevelEnum
+func (t PatchedQuestionAdminRequest_RichTextToolbarLevel) AsRichTextToolbarLevelEnum() (RichTextToolbarLevelEnum, error) {
+	var body RichTextToolbarLevelEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRichTextToolbarLevelEnum overwrites any union data inside the PatchedQuestionAdminRequest_RichTextToolbarLevel as the provided RichTextToolbarLevelEnum
+func (t *PatchedQuestionAdminRequest_RichTextToolbarLevel) FromRichTextToolbarLevelEnum(v RichTextToolbarLevelEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRichTextToolbarLevelEnum performs a merge with any union data inside the PatchedQuestionAdminRequest_RichTextToolbarLevel, using the provided RichTextToolbarLevelEnum
+func (t *PatchedQuestionAdminRequest_RichTextToolbarLevel) MergeRichTextToolbarLevelEnum(v RichTextToolbarLevelEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the PatchedQuestionAdminRequest_RichTextToolbarLevel as a BlankEnum
+func (t PatchedQuestionAdminRequest_RichTextToolbarLevel) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the PatchedQuestionAdminRequest_RichTextToolbarLevel as the provided BlankEnum
+func (t *PatchedQuestionAdminRequest_RichTextToolbarLevel) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the PatchedQuestionAdminRequest_RichTextToolbarLevel, using the provided BlankEnum
+func (t *PatchedQuestionAdminRequest_RichTextToolbarLevel) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PatchedQuestionAdminRequest_RichTextToolbarLevel) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PatchedQuestionAdminRequest_RichTextToolbarLevel) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -87924,6 +88260,68 @@ func (t *Question_GuidanceOperator) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsLikertScaleLengthEnum returns the union data inside the Question_LikertScaleLength as a LikertScaleLengthEnum
+func (t Question_LikertScaleLength) AsLikertScaleLengthEnum() (LikertScaleLengthEnum, error) {
+	var body LikertScaleLengthEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromLikertScaleLengthEnum overwrites any union data inside the Question_LikertScaleLength as the provided LikertScaleLengthEnum
+func (t *Question_LikertScaleLength) FromLikertScaleLengthEnum(v LikertScaleLengthEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeLikertScaleLengthEnum performs a merge with any union data inside the Question_LikertScaleLength, using the provided LikertScaleLengthEnum
+func (t *Question_LikertScaleLength) MergeLikertScaleLengthEnum(v LikertScaleLengthEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the Question_LikertScaleLength as a NullEnum
+func (t Question_LikertScaleLength) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the Question_LikertScaleLength as the provided NullEnum
+func (t *Question_LikertScaleLength) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the Question_LikertScaleLength, using the provided NullEnum
+func (t *Question_LikertScaleLength) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t Question_LikertScaleLength) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *Question_LikertScaleLength) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsChecklistOperators returns the union data inside the Question_Operator as a ChecklistOperators
 func (t Question_Operator) AsChecklistOperators() (ChecklistOperators, error) {
 	var body ChecklistOperators
@@ -87982,6 +88380,68 @@ func (t Question_Operator) MarshalJSON() ([]byte, error) {
 }
 
 func (t *Question_Operator) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsRichTextToolbarLevelEnum returns the union data inside the Question_RichTextToolbarLevel as a RichTextToolbarLevelEnum
+func (t Question_RichTextToolbarLevel) AsRichTextToolbarLevelEnum() (RichTextToolbarLevelEnum, error) {
+	var body RichTextToolbarLevelEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRichTextToolbarLevelEnum overwrites any union data inside the Question_RichTextToolbarLevel as the provided RichTextToolbarLevelEnum
+func (t *Question_RichTextToolbarLevel) FromRichTextToolbarLevelEnum(v RichTextToolbarLevelEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRichTextToolbarLevelEnum performs a merge with any union data inside the Question_RichTextToolbarLevel, using the provided RichTextToolbarLevelEnum
+func (t *Question_RichTextToolbarLevel) MergeRichTextToolbarLevelEnum(v RichTextToolbarLevelEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the Question_RichTextToolbarLevel as a BlankEnum
+func (t Question_RichTextToolbarLevel) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the Question_RichTextToolbarLevel as the provided BlankEnum
+func (t *Question_RichTextToolbarLevel) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the Question_RichTextToolbarLevel, using the provided BlankEnum
+func (t *Question_RichTextToolbarLevel) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t Question_RichTextToolbarLevel) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *Question_RichTextToolbarLevel) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -88048,6 +88508,68 @@ func (t *QuestionAdmin_GuidanceOperator) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsLikertScaleLengthEnum returns the union data inside the QuestionAdmin_LikertScaleLength as a LikertScaleLengthEnum
+func (t QuestionAdmin_LikertScaleLength) AsLikertScaleLengthEnum() (LikertScaleLengthEnum, error) {
+	var body LikertScaleLengthEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromLikertScaleLengthEnum overwrites any union data inside the QuestionAdmin_LikertScaleLength as the provided LikertScaleLengthEnum
+func (t *QuestionAdmin_LikertScaleLength) FromLikertScaleLengthEnum(v LikertScaleLengthEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeLikertScaleLengthEnum performs a merge with any union data inside the QuestionAdmin_LikertScaleLength, using the provided LikertScaleLengthEnum
+func (t *QuestionAdmin_LikertScaleLength) MergeLikertScaleLengthEnum(v LikertScaleLengthEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the QuestionAdmin_LikertScaleLength as a NullEnum
+func (t QuestionAdmin_LikertScaleLength) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the QuestionAdmin_LikertScaleLength as the provided NullEnum
+func (t *QuestionAdmin_LikertScaleLength) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the QuestionAdmin_LikertScaleLength, using the provided NullEnum
+func (t *QuestionAdmin_LikertScaleLength) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t QuestionAdmin_LikertScaleLength) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *QuestionAdmin_LikertScaleLength) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsChecklistOperators returns the union data inside the QuestionAdmin_Operator as a ChecklistOperators
 func (t QuestionAdmin_Operator) AsChecklistOperators() (ChecklistOperators, error) {
 	var body ChecklistOperators
@@ -88106,6 +88628,68 @@ func (t QuestionAdmin_Operator) MarshalJSON() ([]byte, error) {
 }
 
 func (t *QuestionAdmin_Operator) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsRichTextToolbarLevelEnum returns the union data inside the QuestionAdmin_RichTextToolbarLevel as a RichTextToolbarLevelEnum
+func (t QuestionAdmin_RichTextToolbarLevel) AsRichTextToolbarLevelEnum() (RichTextToolbarLevelEnum, error) {
+	var body RichTextToolbarLevelEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRichTextToolbarLevelEnum overwrites any union data inside the QuestionAdmin_RichTextToolbarLevel as the provided RichTextToolbarLevelEnum
+func (t *QuestionAdmin_RichTextToolbarLevel) FromRichTextToolbarLevelEnum(v RichTextToolbarLevelEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRichTextToolbarLevelEnum performs a merge with any union data inside the QuestionAdmin_RichTextToolbarLevel, using the provided RichTextToolbarLevelEnum
+func (t *QuestionAdmin_RichTextToolbarLevel) MergeRichTextToolbarLevelEnum(v RichTextToolbarLevelEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the QuestionAdmin_RichTextToolbarLevel as a BlankEnum
+func (t QuestionAdmin_RichTextToolbarLevel) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the QuestionAdmin_RichTextToolbarLevel as the provided BlankEnum
+func (t *QuestionAdmin_RichTextToolbarLevel) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the QuestionAdmin_RichTextToolbarLevel, using the provided BlankEnum
+func (t *QuestionAdmin_RichTextToolbarLevel) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t QuestionAdmin_RichTextToolbarLevel) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *QuestionAdmin_RichTextToolbarLevel) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -88172,6 +88756,68 @@ func (t *QuestionAdminRequest_GuidanceOperator) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsLikertScaleLengthEnum returns the union data inside the QuestionAdminRequest_LikertScaleLength as a LikertScaleLengthEnum
+func (t QuestionAdminRequest_LikertScaleLength) AsLikertScaleLengthEnum() (LikertScaleLengthEnum, error) {
+	var body LikertScaleLengthEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromLikertScaleLengthEnum overwrites any union data inside the QuestionAdminRequest_LikertScaleLength as the provided LikertScaleLengthEnum
+func (t *QuestionAdminRequest_LikertScaleLength) FromLikertScaleLengthEnum(v LikertScaleLengthEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeLikertScaleLengthEnum performs a merge with any union data inside the QuestionAdminRequest_LikertScaleLength, using the provided LikertScaleLengthEnum
+func (t *QuestionAdminRequest_LikertScaleLength) MergeLikertScaleLengthEnum(v LikertScaleLengthEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the QuestionAdminRequest_LikertScaleLength as a NullEnum
+func (t QuestionAdminRequest_LikertScaleLength) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the QuestionAdminRequest_LikertScaleLength as the provided NullEnum
+func (t *QuestionAdminRequest_LikertScaleLength) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the QuestionAdminRequest_LikertScaleLength, using the provided NullEnum
+func (t *QuestionAdminRequest_LikertScaleLength) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t QuestionAdminRequest_LikertScaleLength) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *QuestionAdminRequest_LikertScaleLength) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsChecklistOperators returns the union data inside the QuestionAdminRequest_Operator as a ChecklistOperators
 func (t QuestionAdminRequest_Operator) AsChecklistOperators() (ChecklistOperators, error) {
 	var body ChecklistOperators
@@ -88230,6 +88876,192 @@ func (t QuestionAdminRequest_Operator) MarshalJSON() ([]byte, error) {
 }
 
 func (t *QuestionAdminRequest_Operator) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsRichTextToolbarLevelEnum returns the union data inside the QuestionAdminRequest_RichTextToolbarLevel as a RichTextToolbarLevelEnum
+func (t QuestionAdminRequest_RichTextToolbarLevel) AsRichTextToolbarLevelEnum() (RichTextToolbarLevelEnum, error) {
+	var body RichTextToolbarLevelEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRichTextToolbarLevelEnum overwrites any union data inside the QuestionAdminRequest_RichTextToolbarLevel as the provided RichTextToolbarLevelEnum
+func (t *QuestionAdminRequest_RichTextToolbarLevel) FromRichTextToolbarLevelEnum(v RichTextToolbarLevelEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRichTextToolbarLevelEnum performs a merge with any union data inside the QuestionAdminRequest_RichTextToolbarLevel, using the provided RichTextToolbarLevelEnum
+func (t *QuestionAdminRequest_RichTextToolbarLevel) MergeRichTextToolbarLevelEnum(v RichTextToolbarLevelEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the QuestionAdminRequest_RichTextToolbarLevel as a BlankEnum
+func (t QuestionAdminRequest_RichTextToolbarLevel) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the QuestionAdminRequest_RichTextToolbarLevel as the provided BlankEnum
+func (t *QuestionAdminRequest_RichTextToolbarLevel) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the QuestionAdminRequest_RichTextToolbarLevel, using the provided BlankEnum
+func (t *QuestionAdminRequest_RichTextToolbarLevel) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t QuestionAdminRequest_RichTextToolbarLevel) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *QuestionAdminRequest_RichTextToolbarLevel) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsLikertScaleLengthEnum returns the union data inside the QuestionWithAnswer_LikertScaleLength as a LikertScaleLengthEnum
+func (t QuestionWithAnswer_LikertScaleLength) AsLikertScaleLengthEnum() (LikertScaleLengthEnum, error) {
+	var body LikertScaleLengthEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromLikertScaleLengthEnum overwrites any union data inside the QuestionWithAnswer_LikertScaleLength as the provided LikertScaleLengthEnum
+func (t *QuestionWithAnswer_LikertScaleLength) FromLikertScaleLengthEnum(v LikertScaleLengthEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeLikertScaleLengthEnum performs a merge with any union data inside the QuestionWithAnswer_LikertScaleLength, using the provided LikertScaleLengthEnum
+func (t *QuestionWithAnswer_LikertScaleLength) MergeLikertScaleLengthEnum(v LikertScaleLengthEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the QuestionWithAnswer_LikertScaleLength as a NullEnum
+func (t QuestionWithAnswer_LikertScaleLength) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the QuestionWithAnswer_LikertScaleLength as the provided NullEnum
+func (t *QuestionWithAnswer_LikertScaleLength) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the QuestionWithAnswer_LikertScaleLength, using the provided NullEnum
+func (t *QuestionWithAnswer_LikertScaleLength) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t QuestionWithAnswer_LikertScaleLength) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *QuestionWithAnswer_LikertScaleLength) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsLikertScaleLengthEnum returns the union data inside the QuestionWithAnswerReviewer_LikertScaleLength as a LikertScaleLengthEnum
+func (t QuestionWithAnswerReviewer_LikertScaleLength) AsLikertScaleLengthEnum() (LikertScaleLengthEnum, error) {
+	var body LikertScaleLengthEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromLikertScaleLengthEnum overwrites any union data inside the QuestionWithAnswerReviewer_LikertScaleLength as the provided LikertScaleLengthEnum
+func (t *QuestionWithAnswerReviewer_LikertScaleLength) FromLikertScaleLengthEnum(v LikertScaleLengthEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeLikertScaleLengthEnum performs a merge with any union data inside the QuestionWithAnswerReviewer_LikertScaleLength, using the provided LikertScaleLengthEnum
+func (t *QuestionWithAnswerReviewer_LikertScaleLength) MergeLikertScaleLengthEnum(v LikertScaleLengthEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the QuestionWithAnswerReviewer_LikertScaleLength as a NullEnum
+func (t QuestionWithAnswerReviewer_LikertScaleLength) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the QuestionWithAnswerReviewer_LikertScaleLength as the provided NullEnum
+func (t *QuestionWithAnswerReviewer_LikertScaleLength) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the QuestionWithAnswerReviewer_LikertScaleLength, using the provided NullEnum
+func (t *QuestionWithAnswerReviewer_LikertScaleLength) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t QuestionWithAnswerReviewer_LikertScaleLength) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *QuestionWithAnswerReviewer_LikertScaleLength) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
