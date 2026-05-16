@@ -41596,6 +41596,7 @@ type Permission struct {
 	CustomerName      *string             `json:"customer_name,omitempty"`
 	CustomerUuid      *openapi_types.UUID `json:"customer_uuid,omitempty"`
 	ExpirationTime    *time.Time          `json:"expiration_time,omitempty"`
+	ProjectUuid       *openapi_types.UUID `json:"project_uuid,omitempty"`
 	ResourceUuid      *openapi_types.UUID `json:"resource_uuid,omitempty"`
 	RoleDescription   *string             `json:"role_description,omitempty"`
 	RoleName          *string             `json:"role_name,omitempty"`
