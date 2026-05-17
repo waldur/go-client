@@ -2790,6 +2790,33 @@ func (e COIStatusUpdateStatusEnum) Valid() bool {
 	}
 }
 
+// Defines values for CadenceEnum.
+const (
+	CadenceEnumBiannual  CadenceEnum = "biannual"
+	CadenceEnumCustom    CadenceEnum = "custom"
+	CadenceEnumMonthly   CadenceEnum = "monthly"
+	CadenceEnumQuarterly CadenceEnum = "quarterly"
+	CadenceEnumYearly    CadenceEnum = "yearly"
+)
+
+// Valid indicates whether the value is a known member of the CadenceEnum enum.
+func (e CadenceEnum) Valid() bool {
+	switch e {
+	case CadenceEnumBiannual:
+		return true
+	case CadenceEnumCustom:
+		return true
+	case CadenceEnumMonthly:
+		return true
+	case CadenceEnumQuarterly:
+		return true
+	case CadenceEnumYearly:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for CallManagingOrganisationOEnum.
 const (
 	CallManagingOrganisationOEnumCustomerName      CallManagingOrganisationOEnum = "customer_name"
@@ -7934,16 +7961,16 @@ func (e GoogleCredentialsFieldEnum) Valid() bool {
 
 // Defines values for GrowthPeriodEnum.
 const (
-	GrowthPeriodEnumMonthly GrowthPeriodEnum = "monthly"
-	GrowthPeriodEnumWeekly  GrowthPeriodEnum = "weekly"
+	Monthly GrowthPeriodEnum = "monthly"
+	Weekly  GrowthPeriodEnum = "weekly"
 )
 
 // Valid indicates whether the value is a known member of the GrowthPeriodEnum enum.
 func (e GrowthPeriodEnum) Valid() bool {
 	switch e {
-	case GrowthPeriodEnumMonthly:
+	case Monthly:
 		return true
-	case GrowthPeriodEnumWeekly:
+	case Weekly:
 		return true
 	default:
 		return false
@@ -24594,6 +24621,21 @@ type BroadcastMessageRequest struct {
 // BroadcastMessageStateEnum defines model for BroadcastMessageStateEnum.
 type BroadcastMessageStateEnum string
 
+// BulkRoundCreateRequestRequest defines model for BulkRoundCreateRequestRequest.
+type BulkRoundCreateRequestRequest struct {
+	AllocationTime           *AllocationTimeEnum `json:"allocation_time,omitempty"`
+	Cadence                  CadenceEnum         `json:"cadence"`
+	CustomIntervalMonths     *int                `json:"custom_interval_months,omitempty"`
+	DecidingEntity           *DecidingEntityEnum `json:"deciding_entity,omitempty"`
+	MinimalAverageScoring    *string             `json:"minimal_average_scoring,omitempty"`
+	MinimumNumberOfReviewers *int                `json:"minimum_number_of_reviewers,omitempty"`
+	NumberOfRounds           int                 `json:"number_of_rounds"`
+	ReviewDurationInDays     *int                `json:"review_duration_in_days,omitempty"`
+	ReviewStrategy           *ReviewStrategyEnum `json:"review_strategy,omitempty"`
+	StartTime                time.Time           `json:"start_time"`
+	SubmissionWindowDays     int                 `json:"submission_window_days"`
+}
+
 // BulkSilenceResponse defines model for BulkSilenceResponse.
 type BulkSilenceResponse struct {
 	Count        int    `json:"count"`
@@ -24741,6 +24783,9 @@ type CachedProjectUsageReport struct {
 	Resource          string             `json:"resource"`
 	Year              int                `json:"year"`
 }
+
+// CadenceEnum defines model for CadenceEnum.
+type CadenceEnum string
 
 // CallApplicantVisibilityConfig defines model for CallApplicantVisibilityConfig.
 type CallApplicantVisibilityConfig struct {
@@ -69304,6 +69349,31 @@ type ProposalProtectedCallsInviteReviewersParams struct {
 	State *[]CallStates `form:"state,omitempty" json:"state,omitempty"`
 }
 
+// ProposalProtectedCallsRoundsBulkSetParams defines parameters for ProposalProtectedCallsRoundsBulkSet.
+type ProposalProtectedCallsRoundsBulkSetParams struct {
+	Customer        *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerKeyword *string             `form:"customer_keyword,omitempty" json:"customer_keyword,omitempty"`
+	CustomerUuid    *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	HasActiveRound  *bool               `form:"has_active_round,omitempty" json:"has_active_round,omitempty"`
+	Name            *string             `form:"name,omitempty" json:"name,omitempty"`
+
+	// O Ordering
+	//
+	O                     *[]ProtectedCallOEnum `form:"o,omitempty" json:"o,omitempty"`
+	OfferingUuid          *openapi_types.UUID   `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	OfferingsProviderUuid *openapi_types.UUID   `form:"offerings_provider_uuid,omitempty" json:"offerings_provider_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Slug Slug
+	Slug  *string       `form:"slug,omitempty" json:"slug,omitempty"`
+	State *[]CallStates `form:"state,omitempty" json:"state,omitempty"`
+}
+
 // ProposalProtectedCallsRoundsListParams defines parameters for ProposalProtectedCallsRoundsList.
 type ProposalProtectedCallsRoundsListParams struct {
 	// Page A page number within the paginated result set.
@@ -75998,6 +76068,9 @@ type ProposalProtectedCallsReviewProposalComplianceJSONRequestBody = CallComplia
 
 // ProposalProtectedCallsInviteReviewersJSONRequestBody defines body for ProposalProtectedCallsInviteReviewers for application/json ContentType.
 type ProposalProtectedCallsInviteReviewersJSONRequestBody = ReviewerInvitationRequest
+
+// ProposalProtectedCallsRoundsBulkSetJSONRequestBody defines body for ProposalProtectedCallsRoundsBulkSet for application/json ContentType.
+type ProposalProtectedCallsRoundsBulkSetJSONRequestBody = BulkRoundCreateRequestRequest
 
 // ProposalProtectedCallsRoundsSetJSONRequestBody defines body for ProposalProtectedCallsRoundsSet for application/json ContentType.
 type ProposalProtectedCallsRoundsSetJSONRequestBody = ProtectedRoundRequest
@@ -98704,6 +98777,11 @@ type ClientInterface interface {
 	ProposalProtectedCallsInviteReviewersWithBody(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsInviteReviewersParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	ProposalProtectedCallsInviteReviewers(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsInviteReviewersParams, body ProposalProtectedCallsInviteReviewersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProtectedCallsRoundsBulkSetWithBody request with any body
+	ProposalProtectedCallsRoundsBulkSetWithBody(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsRoundsBulkSetParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ProposalProtectedCallsRoundsBulkSet(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsRoundsBulkSetParams, body ProposalProtectedCallsRoundsBulkSetJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProtectedCallsRoundsList request
 	ProposalProtectedCallsRoundsList(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsRoundsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -133725,6 +133803,30 @@ func (c *Client) ProposalProtectedCallsInviteReviewersWithBody(ctx context.Conte
 
 func (c *Client) ProposalProtectedCallsInviteReviewers(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsInviteReviewersParams, body ProposalProtectedCallsInviteReviewersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProtectedCallsInviteReviewersRequest(c.Server, uuid, params, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProtectedCallsRoundsBulkSetWithBody(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsRoundsBulkSetParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsRoundsBulkSetRequestWithBody(c.Server, uuid, params, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProtectedCallsRoundsBulkSet(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsRoundsBulkSetParams, body ProposalProtectedCallsRoundsBulkSetJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsRoundsBulkSetRequest(c.Server, uuid, params, body)
 	if err != nil {
 		return nil, err
 	}
@@ -298535,6 +298637,212 @@ func NewProposalProtectedCallsInviteReviewersRequestWithBody(server string, uuid
 	return req, nil
 }
 
+// NewProposalProtectedCallsRoundsBulkSetRequest calls the generic ProposalProtectedCallsRoundsBulkSet builder with application/json body
+func NewProposalProtectedCallsRoundsBulkSetRequest(server string, uuid openapi_types.UUID, params *ProposalProtectedCallsRoundsBulkSetParams, body ProposalProtectedCallsRoundsBulkSetJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewProposalProtectedCallsRoundsBulkSetRequestWithBody(server, uuid, params, "application/json", bodyReader)
+}
+
+// NewProposalProtectedCallsRoundsBulkSetRequestWithBody generates requests for ProposalProtectedCallsRoundsBulkSet with any type of body
+func NewProposalProtectedCallsRoundsBulkSetRequestWithBody(server string, uuid openapi_types.UUID, params *ProposalProtectedCallsRoundsBulkSetParams, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-protected-calls/%s/rounds-bulk-set/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer", *params.Customer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerKeyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_keyword", *params.CustomerKeyword, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasActiveRound != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_active_round", *params.HasActiveRound, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingsProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offerings_provider_uuid", *params.OfferingsProviderUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Slug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewProposalProtectedCallsRoundsListRequest generates requests for ProposalProtectedCallsRoundsList
 func NewProposalProtectedCallsRoundsListRequest(server string, uuid openapi_types.UUID, params *ProposalProtectedCallsRoundsListParams) (*http.Request, error) {
 	var err error
@@ -346319,6 +346627,11 @@ type ClientWithResponsesInterface interface {
 	ProposalProtectedCallsInviteReviewersWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsInviteReviewersParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsInviteReviewersResponse, error)
 
 	ProposalProtectedCallsInviteReviewersWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsInviteReviewersParams, body ProposalProtectedCallsInviteReviewersJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsInviteReviewersResponse, error)
+
+	// ProposalProtectedCallsRoundsBulkSetWithBodyWithResponse request with any body
+	ProposalProtectedCallsRoundsBulkSetWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsRoundsBulkSetParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsRoundsBulkSetResponse, error)
+
+	ProposalProtectedCallsRoundsBulkSetWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsRoundsBulkSetParams, body ProposalProtectedCallsRoundsBulkSetJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsRoundsBulkSetResponse, error)
 
 	// ProposalProtectedCallsRoundsListWithResponse request
 	ProposalProtectedCallsRoundsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsRoundsListParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsRoundsListResponse, error)
@@ -408278,6 +408591,36 @@ func (r ProposalProtectedCallsInviteReviewersResponse) ContentType() string {
 	return ""
 }
 
+type ProposalProtectedCallsRoundsBulkSetResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *[]ProtectedRound
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProtectedCallsRoundsBulkSetResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProtectedCallsRoundsBulkSetResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalProtectedCallsRoundsBulkSetResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type ProposalProtectedCallsRoundsListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -448590,6 +448933,23 @@ func (c *ClientWithResponses) ProposalProtectedCallsInviteReviewersWithResponse(
 		return nil, err
 	}
 	return ParseProposalProtectedCallsInviteReviewersResponse(rsp)
+}
+
+// ProposalProtectedCallsRoundsBulkSetWithBodyWithResponse request with arbitrary body returning *ProposalProtectedCallsRoundsBulkSetResponse
+func (c *ClientWithResponses) ProposalProtectedCallsRoundsBulkSetWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsRoundsBulkSetParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsRoundsBulkSetResponse, error) {
+	rsp, err := c.ProposalProtectedCallsRoundsBulkSetWithBody(ctx, uuid, params, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsRoundsBulkSetResponse(rsp)
+}
+
+func (c *ClientWithResponses) ProposalProtectedCallsRoundsBulkSetWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsRoundsBulkSetParams, body ProposalProtectedCallsRoundsBulkSetJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsRoundsBulkSetResponse, error) {
+	rsp, err := c.ProposalProtectedCallsRoundsBulkSet(ctx, uuid, params, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsRoundsBulkSetResponse(rsp)
 }
 
 // ProposalProtectedCallsRoundsListWithResponse request returning *ProposalProtectedCallsRoundsListResponse
@@ -501549,6 +501909,32 @@ func ParseProposalProtectedCallsInviteReviewersResponse(rsp *http.Response) (*Pr
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProposalProtectedCallsRoundsBulkSetResponse parses an HTTP response from a ProposalProtectedCallsRoundsBulkSetWithResponse call
+func ParseProposalProtectedCallsRoundsBulkSetResponse(rsp *http.Response) (*ProposalProtectedCallsRoundsBulkSetResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProtectedCallsRoundsBulkSetResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest []ProtectedRound
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
 
 	}
 
