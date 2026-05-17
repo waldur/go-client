@@ -49264,6 +49264,11 @@ type ToSConsentDashboard struct {
 	TotalUsersCount *int `json:"total_users_count,omitempty"`
 }
 
+// TokenExchangeRequest defines model for TokenExchangeRequest.
+type TokenExchangeRequest struct {
+	Code openapi_types.UUID `json:"code"`
+}
+
 // TokenQuotaUsageResponse defines model for TokenQuotaUsageResponse.
 type TokenQuotaUsageResponse struct {
 	// DailyLimit Daily token limit (non-negative integer). Null uses system default. -1 means unlimited.
@@ -73735,6 +73740,9 @@ type ApiAuthSaml2LoginCompleteJSONRequestBody = Saml2LoginCompleteRequest
 // ApiAuthSaml2LogoutCompleteJSONRequestBody defines body for ApiAuthSaml2LogoutComplete for application/json ContentType.
 type ApiAuthSaml2LogoutCompleteJSONRequestBody = Saml2LogoutCompleteRequest
 
+// ApiAuthTokenExchangeJSONRequestBody defines body for ApiAuthTokenExchange for application/json ContentType.
+type ApiAuthTokenExchangeJSONRequestBody = TokenExchangeRequest
+
 // AccessSubnetsCreateJSONRequestBody defines body for AccessSubnetsCreate for application/json ContentType.
 type AccessSubnetsCreateJSONRequestBody = AccessSubnetRequest
 
@@ -91306,6 +91314,11 @@ type ClientInterface interface {
 	// ApiAuthTaraInitRetrieve request
 	ApiAuthTaraInitRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ApiAuthTokenExchangeWithBody request with any body
+	ApiAuthTokenExchangeWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ApiAuthTokenExchange(ctx context.Context, body ApiAuthTokenExchangeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// AccessSubnetsList request
 	AccessSubnetsList(ctx context.Context, params *AccessSubnetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -100983,6 +100996,30 @@ func (c *Client) ApiAuthTaraCompleteRetrieve(ctx context.Context, params *ApiAut
 
 func (c *Client) ApiAuthTaraInitRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewApiAuthTaraInitRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiAuthTokenExchangeWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiAuthTokenExchangeRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ApiAuthTokenExchange(ctx context.Context, body ApiAuthTokenExchangeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApiAuthTokenExchangeRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -143107,6 +143144,46 @@ func NewApiAuthTaraInitRetrieveRequest(server string) (*http.Request, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewApiAuthTokenExchangeRequest calls the generic ApiAuthTokenExchange builder with application/json body
+func NewApiAuthTokenExchangeRequest(server string, body ApiAuthTokenExchangeJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewApiAuthTokenExchangeRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewApiAuthTokenExchangeRequestWithBody generates requests for ApiAuthTokenExchange with any type of body
+func NewApiAuthTokenExchangeRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api-auth/token-exchange/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -339156,6 +339233,11 @@ type ClientWithResponsesInterface interface {
 	// ApiAuthTaraInitRetrieveWithResponse request
 	ApiAuthTaraInitRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ApiAuthTaraInitRetrieveResponse, error)
 
+	// ApiAuthTokenExchangeWithBodyWithResponse request with any body
+	ApiAuthTokenExchangeWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiAuthTokenExchangeResponse, error)
+
+	ApiAuthTokenExchangeWithResponse(ctx context.Context, body ApiAuthTokenExchangeJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiAuthTokenExchangeResponse, error)
+
 	// AccessSubnetsListWithResponse request
 	AccessSubnetsListWithResponse(ctx context.Context, params *AccessSubnetsListParams, reqEditors ...RequestEditorFn) (*AccessSubnetsListResponse, error)
 
@@ -349034,6 +349116,37 @@ func (r ApiAuthTaraInitRetrieveResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r ApiAuthTaraInitRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ApiAuthTokenExchangeResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CoreAuthToken
+	JSON400      *map[string]interface{}
+}
+
+// Status returns HTTPResponse.Status
+func (r ApiAuthTokenExchangeResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ApiAuthTokenExchangeResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ApiAuthTokenExchangeResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -425053,6 +425166,23 @@ func (c *ClientWithResponses) ApiAuthTaraInitRetrieveWithResponse(ctx context.Co
 	return ParseApiAuthTaraInitRetrieveResponse(rsp)
 }
 
+// ApiAuthTokenExchangeWithBodyWithResponse request with arbitrary body returning *ApiAuthTokenExchangeResponse
+func (c *ClientWithResponses) ApiAuthTokenExchangeWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ApiAuthTokenExchangeResponse, error) {
+	rsp, err := c.ApiAuthTokenExchangeWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiAuthTokenExchangeResponse(rsp)
+}
+
+func (c *ClientWithResponses) ApiAuthTokenExchangeWithResponse(ctx context.Context, body ApiAuthTokenExchangeJSONRequestBody, reqEditors ...RequestEditorFn) (*ApiAuthTokenExchangeResponse, error) {
+	rsp, err := c.ApiAuthTokenExchange(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseApiAuthTokenExchangeResponse(rsp)
+}
+
 // AccessSubnetsListWithResponse request returning *AccessSubnetsListResponse
 func (c *ClientWithResponses) AccessSubnetsListWithResponse(ctx context.Context, params *AccessSubnetsListParams, reqEditors ...RequestEditorFn) (*AccessSubnetsListResponse, error) {
 	rsp, err := c.AccessSubnetsList(ctx, params, reqEditors...)
@@ -455572,6 +455702,39 @@ func ParseApiAuthTaraInitRetrieveResponse(rsp *http.Response) (*ApiAuthTaraInitR
 	response := &ApiAuthTaraInitRetrieveResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseApiAuthTokenExchangeResponse parses an HTTP response from a ApiAuthTokenExchangeWithResponse call
+func ParseApiAuthTokenExchangeResponse(rsp *http.Response) (*ApiAuthTokenExchangeResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ApiAuthTokenExchangeResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CoreAuthToken
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest map[string]interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	}
 
 	return response, nil
