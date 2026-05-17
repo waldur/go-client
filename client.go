@@ -29680,6 +29680,21 @@ type DryRunStateEnum int
 // DryRunTypeEnum defines model for DryRunTypeEnum.
 type DryRunTypeEnum string
 
+// DuplicateCallRequestRequest defines model for DuplicateCallRequestRequest.
+type DuplicateCallRequestRequest struct {
+	CopyApplicantVisibilityConfig *bool  `json:"copy_applicant_visibility_config,omitempty"`
+	CopyAssignmentConfiguration   *bool  `json:"copy_assignment_configuration,omitempty"`
+	CopyCoiConfiguration          *bool  `json:"copy_coi_configuration,omitempty"`
+	CopyDocuments                 *bool  `json:"copy_documents,omitempty"`
+	CopyMatchingConfiguration     *bool  `json:"copy_matching_configuration,omitempty"`
+	CopyOfferings                 *bool  `json:"copy_offerings,omitempty"`
+	CopyResourceTemplates         *bool  `json:"copy_resource_templates,omitempty"`
+	CopyRoleMappings              *bool  `json:"copy_role_mappings,omitempty"`
+	CopyRounds                    *bool  `json:"copy_rounds,omitempty"`
+	CopyWorkflowSteps             *bool  `json:"copy_workflow_steps,omitempty"`
+	Name                          string `json:"name"`
+}
+
 // ENABLEDREPORTINGSCREENSEnum defines model for ENABLEDREPORTINGSCREENSEnum.
 type ENABLEDREPORTINGSCREENSEnum string
 
@@ -75945,6 +75960,9 @@ type ProposalProtectedCallsDetachDocumentsJSONRequestBody = CallDetachDocumentsR
 // ProposalProtectedCallsDetectConflictsJSONRequestBody defines body for ProposalProtectedCallsDetectConflicts for application/json ContentType.
 type ProposalProtectedCallsDetectConflictsJSONRequestBody = TriggerCOIDetectionRequest
 
+// ProposalProtectedCallsDuplicateJSONRequestBody defines body for ProposalProtectedCallsDuplicate for application/json ContentType.
+type ProposalProtectedCallsDuplicateJSONRequestBody = DuplicateCallRequestRequest
+
 // ProposalProtectedCallsGenerateAssignmentsJSONRequestBody defines body for ProposalProtectedCallsGenerateAssignments for application/json ContentType.
 type ProposalProtectedCallsGenerateAssignmentsJSONRequestBody = GenerateAssignmentsRequest
 
@@ -98588,6 +98606,11 @@ type ClientInterface interface {
 	ProposalProtectedCallsDetectConflictsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	ProposalProtectedCallsDetectConflicts(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsDetectConflictsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProtectedCallsDuplicateWithBody request with any body
+	ProposalProtectedCallsDuplicateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ProposalProtectedCallsDuplicate(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsDuplicateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProtectedCallsGenerateAssignmentsWithBody request with any body
 	ProposalProtectedCallsGenerateAssignmentsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -133258,6 +133281,30 @@ func (c *Client) ProposalProtectedCallsDetectConflictsWithBody(ctx context.Conte
 
 func (c *Client) ProposalProtectedCallsDetectConflicts(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsDetectConflictsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProtectedCallsDetectConflictsRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProtectedCallsDuplicateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsDuplicateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProtectedCallsDuplicate(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsDuplicateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsDuplicateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -296675,6 +296722,53 @@ func NewProposalProtectedCallsDetectConflictsRequestWithBody(server string, uuid
 	return req, nil
 }
 
+// NewProposalProtectedCallsDuplicateRequest calls the generic ProposalProtectedCallsDuplicate builder with application/json body
+func NewProposalProtectedCallsDuplicateRequest(server string, uuid openapi_types.UUID, body ProposalProtectedCallsDuplicateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewProposalProtectedCallsDuplicateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewProposalProtectedCallsDuplicateRequestWithBody generates requests for ProposalProtectedCallsDuplicate with any type of body
+func NewProposalProtectedCallsDuplicateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-protected-calls/%s/duplicate/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewProposalProtectedCallsGenerateAssignmentsRequest calls the generic ProposalProtectedCallsGenerateAssignments builder with application/json body
 func NewProposalProtectedCallsGenerateAssignmentsRequest(server string, uuid openapi_types.UUID, body ProposalProtectedCallsGenerateAssignmentsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -346127,6 +346221,11 @@ type ClientWithResponsesInterface interface {
 	ProposalProtectedCallsDetectConflictsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsDetectConflictsResponse, error)
 
 	ProposalProtectedCallsDetectConflictsWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsDetectConflictsJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsDetectConflictsResponse, error)
+
+	// ProposalProtectedCallsDuplicateWithBodyWithResponse request with any body
+	ProposalProtectedCallsDuplicateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsDuplicateResponse, error)
+
+	ProposalProtectedCallsDuplicateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsDuplicateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsDuplicateResponse, error)
 
 	// ProposalProtectedCallsGenerateAssignmentsWithBodyWithResponse request with any body
 	ProposalProtectedCallsGenerateAssignmentsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsGenerateAssignmentsResponse, error)
@@ -407461,6 +407560,36 @@ func (r ProposalProtectedCallsDetectConflictsResponse) ContentType() string {
 	return ""
 }
 
+type ProposalProtectedCallsDuplicateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *ProtectedCall
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProtectedCallsDuplicateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProtectedCallsDuplicateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalProtectedCallsDuplicateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type ProposalProtectedCallsGenerateAssignmentsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -448141,6 +448270,23 @@ func (c *ClientWithResponses) ProposalProtectedCallsDetectConflictsWithResponse(
 		return nil, err
 	}
 	return ParseProposalProtectedCallsDetectConflictsResponse(rsp)
+}
+
+// ProposalProtectedCallsDuplicateWithBodyWithResponse request with arbitrary body returning *ProposalProtectedCallsDuplicateResponse
+func (c *ClientWithResponses) ProposalProtectedCallsDuplicateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsDuplicateResponse, error) {
+	rsp, err := c.ProposalProtectedCallsDuplicateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsDuplicateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ProposalProtectedCallsDuplicateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsDuplicateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsDuplicateResponse, error) {
+	rsp, err := c.ProposalProtectedCallsDuplicate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsDuplicateResponse(rsp)
 }
 
 // ProposalProtectedCallsGenerateAssignmentsWithBodyWithResponse request with arbitrary body returning *ProposalProtectedCallsGenerateAssignmentsResponse
@@ -500799,6 +500945,32 @@ func ParseProposalProtectedCallsDetectConflictsResponse(rsp *http.Response) (*Pr
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProposalProtectedCallsDuplicateResponse parses an HTTP response from a ProposalProtectedCallsDuplicateWithResponse call
+func ParseProposalProtectedCallsDuplicateResponse(rsp *http.Response) (*ProposalProtectedCallsDuplicateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProtectedCallsDuplicateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest ProtectedCall
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
 
 	}
 
