@@ -5756,6 +5756,9 @@ const (
 	EventMetadataResponseEventGroupsMarketplaceResourceCreateSucceeded               EventMetadataResponseEventGroups = "marketplace_resource_create_succeeded"
 	EventMetadataResponseEventGroupsMarketplaceResourceDownscaled                    EventMetadataResponseEventGroups = "marketplace_resource_downscaled"
 	EventMetadataResponseEventGroupsMarketplaceResourceErredOnBackend                EventMetadataResponseEventGroups = "marketplace_resource_erred_on_backend"
+	EventMetadataResponseEventGroupsMarketplaceResourceLimitChangeRequestApproved    EventMetadataResponseEventGroups = "marketplace_resource_limit_change_request_approved"
+	EventMetadataResponseEventGroupsMarketplaceResourceLimitChangeRequestCreated     EventMetadataResponseEventGroups = "marketplace_resource_limit_change_request_created"
+	EventMetadataResponseEventGroupsMarketplaceResourceLimitChangeRequestRejected    EventMetadataResponseEventGroups = "marketplace_resource_limit_change_request_rejected"
 	EventMetadataResponseEventGroupsMarketplaceResourcePaused                        EventMetadataResponseEventGroups = "marketplace_resource_paused"
 	EventMetadataResponseEventGroupsMarketplaceResourceTerminateCanceled             EventMetadataResponseEventGroups = "marketplace_resource_terminate_canceled"
 	EventMetadataResponseEventGroupsMarketplaceResourceTerminateFailed               EventMetadataResponseEventGroups = "marketplace_resource_terminate_failed"
@@ -6135,6 +6138,12 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 	case EventMetadataResponseEventGroupsMarketplaceResourceDownscaled:
 		return true
 	case EventMetadataResponseEventGroupsMarketplaceResourceErredOnBackend:
+		return true
+	case EventMetadataResponseEventGroupsMarketplaceResourceLimitChangeRequestApproved:
+		return true
+	case EventMetadataResponseEventGroupsMarketplaceResourceLimitChangeRequestCreated:
+		return true
+	case EventMetadataResponseEventGroupsMarketplaceResourceLimitChangeRequestRejected:
 		return true
 	case EventMetadataResponseEventGroupsMarketplaceResourcePaused:
 		return true
@@ -6668,6 +6677,9 @@ const (
 	EventTypesEnumMarketplaceResourceCreateSucceeded               EventTypesEnum = "marketplace_resource_create_succeeded"
 	EventTypesEnumMarketplaceResourceDownscaled                    EventTypesEnum = "marketplace_resource_downscaled"
 	EventTypesEnumMarketplaceResourceErredOnBackend                EventTypesEnum = "marketplace_resource_erred_on_backend"
+	EventTypesEnumMarketplaceResourceLimitChangeRequestApproved    EventTypesEnum = "marketplace_resource_limit_change_request_approved"
+	EventTypesEnumMarketplaceResourceLimitChangeRequestCreated     EventTypesEnum = "marketplace_resource_limit_change_request_created"
+	EventTypesEnumMarketplaceResourceLimitChangeRequestRejected    EventTypesEnum = "marketplace_resource_limit_change_request_rejected"
 	EventTypesEnumMarketplaceResourcePaused                        EventTypesEnum = "marketplace_resource_paused"
 	EventTypesEnumMarketplaceResourceTerminateCanceled             EventTypesEnum = "marketplace_resource_terminate_canceled"
 	EventTypesEnumMarketplaceResourceTerminateFailed               EventTypesEnum = "marketplace_resource_terminate_failed"
@@ -7047,6 +7059,12 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumMarketplaceResourceDownscaled:
 		return true
 	case EventTypesEnumMarketplaceResourceErredOnBackend:
+		return true
+	case EventTypesEnumMarketplaceResourceLimitChangeRequestApproved:
+		return true
+	case EventTypesEnumMarketplaceResourceLimitChangeRequestCreated:
+		return true
+	case EventTypesEnumMarketplaceResourceLimitChangeRequestRejected:
 		return true
 	case EventTypesEnumMarketplaceResourcePaused:
 		return true
@@ -46063,6 +46081,58 @@ type ResourceEndDateRequest struct {
 // ResourceFieldEnum defines model for ResourceFieldEnum.
 type ResourceFieldEnum string
 
+// ResourceLimitChangeRequest defines model for ResourceLimitChangeRequest.
+type ResourceLimitChangeRequest struct {
+	Created           *time.Time              `json:"created,omitempty"`
+	CreatedByFullName *string                 `json:"created_by_full_name,omitempty"`
+	CreatedByUuid     *openapi_types.UUID     `json:"created_by_uuid,omitempty"`
+	CurrentLimits     *map[string]interface{} `json:"current_limits,omitempty"`
+	CustomerName      *string                 `json:"customer_name,omitempty"`
+	CustomerUuid      *openapi_types.UUID     `json:"customer_uuid,omitempty"`
+	OfferingName      *string                 `json:"offering_name,omitempty"`
+	OfferingUuid      *openapi_types.UUID     `json:"offering_uuid,omitempty"`
+	ProjectName       *string                 `json:"project_name,omitempty"`
+	ProjectUuid       *openapi_types.UUID     `json:"project_uuid,omitempty"`
+	RequestedLimits   interface{}             `json:"requested_limits"`
+	Resource          string                  `json:"resource"`
+	ResourceName      *string                 `json:"resource_name,omitempty"`
+	ResourceUuid      *openapi_types.UUID     `json:"resource_uuid,omitempty"`
+
+	// ReviewComment Optional comment provided during review
+	ReviewComment *string `json:"review_comment,omitempty"`
+
+	// ReviewedAt Timestamp when the review was completed
+	ReviewedAt         *time.Time          `json:"reviewed_at,omitempty"`
+	ReviewedByFullName *string             `json:"reviewed_by_full_name,omitempty"`
+	ReviewedByUuid     *openapi_types.UUID `json:"reviewed_by_uuid,omitempty"`
+	State              *string             `json:"state,omitempty"`
+	Url                *string             `json:"url,omitempty"`
+	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ResourceLimitChangeRequestCreate defines model for ResourceLimitChangeRequestCreate.
+type ResourceLimitChangeRequestCreate struct {
+	RequestedLimits interface{}         `json:"requested_limits"`
+	Resource        openapi_types.UUID  `json:"resource"`
+	State           *string             `json:"state,omitempty"`
+	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ResourceLimitChangeRequestCreateRequest defines model for ResourceLimitChangeRequestCreateRequest.
+type ResourceLimitChangeRequestCreateRequest struct {
+	RequestedLimits interface{}        `json:"requested_limits"`
+	Resource        openapi_types.UUID `json:"resource"`
+}
+
+// ResourceLimitChangeRequestRequest defines model for ResourceLimitChangeRequestRequest.
+type ResourceLimitChangeRequestRequest struct {
+	RequestedLimits interface{} `json:"requested_limits"`
+	Resource        string      `json:"resource"`
+
+	// ReviewComment Optional comment provided during review
+	ReviewComment *string `json:"review_comment,omitempty"`
+}
+
 // ResourceLimitPeriod defines model for ResourceLimitPeriod.
 type ResourceLimitPeriod struct {
 	// BillingPeriods Number of billing periods
@@ -60553,6 +60623,50 @@ type MarketplaceRemoteSynchronisationsCountParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceResourceLimitChangeRequestsListParams defines parameters for MarketplaceResourceLimitChangeRequestsList.
+type MarketplaceResourceLimitChangeRequestsListParams struct {
+	// CreatedByUuid Created by UUID
+	CreatedByUuid *openapi_types.UUID `form:"created_by_uuid,omitempty" json:"created_by_uuid,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ResourceUuid Resource UUID
+	ResourceUuid *openapi_types.UUID                    `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+	State        *[]RemoteProjectUpdateRequestStateEnum `form:"state,omitempty" json:"state,omitempty"`
+}
+
+// MarketplaceResourceLimitChangeRequestsCountParams defines parameters for MarketplaceResourceLimitChangeRequestsCount.
+type MarketplaceResourceLimitChangeRequestsCountParams struct {
+	// CreatedByUuid Created by UUID
+	CreatedByUuid *openapi_types.UUID `form:"created_by_uuid,omitempty" json:"created_by_uuid,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ResourceUuid Resource UUID
+	ResourceUuid *openapi_types.UUID                    `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+	State        *[]RemoteProjectUpdateRequestStateEnum `form:"state,omitempty" json:"state,omitempty"`
 }
 
 // MarketplaceResourceOfferingsListParams defines parameters for MarketplaceResourceOfferingsList.
@@ -75053,6 +75167,18 @@ type MarketplaceRemoteSynchronisationsPartialUpdateJSONRequestBody = PatchedRemo
 
 // MarketplaceRemoteSynchronisationsUpdateJSONRequestBody defines body for MarketplaceRemoteSynchronisationsUpdate for application/json ContentType.
 type MarketplaceRemoteSynchronisationsUpdateJSONRequestBody = RemoteSynchronisationRequest
+
+// MarketplaceResourceLimitChangeRequestsCreateJSONRequestBody defines body for MarketplaceResourceLimitChangeRequestsCreate for application/json ContentType.
+type MarketplaceResourceLimitChangeRequestsCreateJSONRequestBody = ResourceLimitChangeRequestCreateRequest
+
+// MarketplaceResourceLimitChangeRequestsApproveJSONRequestBody defines body for MarketplaceResourceLimitChangeRequestsApprove for application/json ContentType.
+type MarketplaceResourceLimitChangeRequestsApproveJSONRequestBody = ReviewCommentRequest
+
+// MarketplaceResourceLimitChangeRequestsCancelJSONRequestBody defines body for MarketplaceResourceLimitChangeRequestsCancel for application/json ContentType.
+type MarketplaceResourceLimitChangeRequestsCancelJSONRequestBody = ResourceLimitChangeRequestRequest
+
+// MarketplaceResourceLimitChangeRequestsRejectJSONRequestBody defines body for MarketplaceResourceLimitChangeRequestsReject for application/json ContentType.
+type MarketplaceResourceLimitChangeRequestsRejectJSONRequestBody = ReviewCommentRequest
 
 // MarketplaceResourceProjectsCreateJSONRequestBody defines body for MarketplaceResourceProjectsCreate for application/json ContentType.
 type MarketplaceResourceProjectsCreateJSONRequestBody = ResourceProjectRequest
@@ -95386,6 +95512,35 @@ type ClientInterface interface {
 
 	// MarketplaceRemoteSynchronisationsRunSynchronisation request
 	MarketplaceRemoteSynchronisationsRunSynchronisation(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourceLimitChangeRequestsList request
+	MarketplaceResourceLimitChangeRequestsList(ctx context.Context, params *MarketplaceResourceLimitChangeRequestsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourceLimitChangeRequestsCount request
+	MarketplaceResourceLimitChangeRequestsCount(ctx context.Context, params *MarketplaceResourceLimitChangeRequestsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourceLimitChangeRequestsCreateWithBody request with any body
+	MarketplaceResourceLimitChangeRequestsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceResourceLimitChangeRequestsCreate(ctx context.Context, body MarketplaceResourceLimitChangeRequestsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourceLimitChangeRequestsRetrieve request
+	MarketplaceResourceLimitChangeRequestsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourceLimitChangeRequestsApproveWithBody request with any body
+	MarketplaceResourceLimitChangeRequestsApproveWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceResourceLimitChangeRequestsApprove(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceLimitChangeRequestsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourceLimitChangeRequestsCancelWithBody request with any body
+	MarketplaceResourceLimitChangeRequestsCancelWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceResourceLimitChangeRequestsCancel(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceLimitChangeRequestsCancelJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourceLimitChangeRequestsRejectWithBody request with any body
+	MarketplaceResourceLimitChangeRequestsRejectWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceResourceLimitChangeRequestsReject(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceLimitChangeRequestsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourceOfferingsList request
 	MarketplaceResourceOfferingsList(ctx context.Context, categoryUuid string, params *MarketplaceResourceOfferingsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -118936,6 +119091,138 @@ func (c *Client) MarketplaceRemoteSynchronisationsUpdate(ctx context.Context, uu
 
 func (c *Client) MarketplaceRemoteSynchronisationsRunSynchronisation(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceRemoteSynchronisationsRunSynchronisationRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourceLimitChangeRequestsList(ctx context.Context, params *MarketplaceResourceLimitChangeRequestsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceLimitChangeRequestsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourceLimitChangeRequestsCount(ctx context.Context, params *MarketplaceResourceLimitChangeRequestsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceLimitChangeRequestsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourceLimitChangeRequestsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceLimitChangeRequestsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourceLimitChangeRequestsCreate(ctx context.Context, body MarketplaceResourceLimitChangeRequestsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceLimitChangeRequestsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourceLimitChangeRequestsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceLimitChangeRequestsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourceLimitChangeRequestsApproveWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceLimitChangeRequestsApproveRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourceLimitChangeRequestsApprove(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceLimitChangeRequestsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceLimitChangeRequestsApproveRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourceLimitChangeRequestsCancelWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceLimitChangeRequestsCancelRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourceLimitChangeRequestsCancel(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceLimitChangeRequestsCancelJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceLimitChangeRequestsCancelRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourceLimitChangeRequestsRejectWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceLimitChangeRequestsRejectRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourceLimitChangeRequestsReject(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceLimitChangeRequestsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceLimitChangeRequestsRejectRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -226647,6 +226934,473 @@ func NewMarketplaceRemoteSynchronisationsRunSynchronisationRequest(server string
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewMarketplaceResourceLimitChangeRequestsListRequest generates requests for MarketplaceResourceLimitChangeRequestsList
+func NewMarketplaceResourceLimitChangeRequestsListRequest(server string, params *MarketplaceResourceLimitChangeRequestsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resource-limit-change-requests/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CreatedByUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_by_uuid", *params.CreatedByUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_uuid", *params.ResourceUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceResourceLimitChangeRequestsCountRequest generates requests for MarketplaceResourceLimitChangeRequestsCount
+func NewMarketplaceResourceLimitChangeRequestsCountRequest(server string, params *MarketplaceResourceLimitChangeRequestsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resource-limit-change-requests/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CreatedByUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_by_uuid", *params.CreatedByUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_uuid", *params.ResourceUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceResourceLimitChangeRequestsCreateRequest calls the generic MarketplaceResourceLimitChangeRequestsCreate builder with application/json body
+func NewMarketplaceResourceLimitChangeRequestsCreateRequest(server string, body MarketplaceResourceLimitChangeRequestsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceResourceLimitChangeRequestsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceResourceLimitChangeRequestsCreateRequestWithBody generates requests for MarketplaceResourceLimitChangeRequestsCreate with any type of body
+func NewMarketplaceResourceLimitChangeRequestsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resource-limit-change-requests/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceResourceLimitChangeRequestsRetrieveRequest generates requests for MarketplaceResourceLimitChangeRequestsRetrieve
+func NewMarketplaceResourceLimitChangeRequestsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resource-limit-change-requests/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceResourceLimitChangeRequestsApproveRequest calls the generic MarketplaceResourceLimitChangeRequestsApprove builder with application/json body
+func NewMarketplaceResourceLimitChangeRequestsApproveRequest(server string, uuid openapi_types.UUID, body MarketplaceResourceLimitChangeRequestsApproveJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceResourceLimitChangeRequestsApproveRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceResourceLimitChangeRequestsApproveRequestWithBody generates requests for MarketplaceResourceLimitChangeRequestsApprove with any type of body
+func NewMarketplaceResourceLimitChangeRequestsApproveRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resource-limit-change-requests/%s/approve/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceResourceLimitChangeRequestsCancelRequest calls the generic MarketplaceResourceLimitChangeRequestsCancel builder with application/json body
+func NewMarketplaceResourceLimitChangeRequestsCancelRequest(server string, uuid openapi_types.UUID, body MarketplaceResourceLimitChangeRequestsCancelJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceResourceLimitChangeRequestsCancelRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceResourceLimitChangeRequestsCancelRequestWithBody generates requests for MarketplaceResourceLimitChangeRequestsCancel with any type of body
+func NewMarketplaceResourceLimitChangeRequestsCancelRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resource-limit-change-requests/%s/cancel/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceResourceLimitChangeRequestsRejectRequest calls the generic MarketplaceResourceLimitChangeRequestsReject builder with application/json body
+func NewMarketplaceResourceLimitChangeRequestsRejectRequest(server string, uuid openapi_types.UUID, body MarketplaceResourceLimitChangeRequestsRejectJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceResourceLimitChangeRequestsRejectRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceResourceLimitChangeRequestsRejectRequestWithBody generates requests for MarketplaceResourceLimitChangeRequestsReject with any type of body
+func NewMarketplaceResourceLimitChangeRequestsRejectRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resource-limit-change-requests/%s/reject/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -343306,6 +344060,35 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceRemoteSynchronisationsRunSynchronisationWithResponse request
 	MarketplaceRemoteSynchronisationsRunSynchronisationWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceRemoteSynchronisationsRunSynchronisationResponse, error)
 
+	// MarketplaceResourceLimitChangeRequestsListWithResponse request
+	MarketplaceResourceLimitChangeRequestsListWithResponse(ctx context.Context, params *MarketplaceResourceLimitChangeRequestsListParams, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsListResponse, error)
+
+	// MarketplaceResourceLimitChangeRequestsCountWithResponse request
+	MarketplaceResourceLimitChangeRequestsCountWithResponse(ctx context.Context, params *MarketplaceResourceLimitChangeRequestsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsCountResponse, error)
+
+	// MarketplaceResourceLimitChangeRequestsCreateWithBodyWithResponse request with any body
+	MarketplaceResourceLimitChangeRequestsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsCreateResponse, error)
+
+	MarketplaceResourceLimitChangeRequestsCreateWithResponse(ctx context.Context, body MarketplaceResourceLimitChangeRequestsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsCreateResponse, error)
+
+	// MarketplaceResourceLimitChangeRequestsRetrieveWithResponse request
+	MarketplaceResourceLimitChangeRequestsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsRetrieveResponse, error)
+
+	// MarketplaceResourceLimitChangeRequestsApproveWithBodyWithResponse request with any body
+	MarketplaceResourceLimitChangeRequestsApproveWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsApproveResponse, error)
+
+	MarketplaceResourceLimitChangeRequestsApproveWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceLimitChangeRequestsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsApproveResponse, error)
+
+	// MarketplaceResourceLimitChangeRequestsCancelWithBodyWithResponse request with any body
+	MarketplaceResourceLimitChangeRequestsCancelWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsCancelResponse, error)
+
+	MarketplaceResourceLimitChangeRequestsCancelWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceLimitChangeRequestsCancelJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsCancelResponse, error)
+
+	// MarketplaceResourceLimitChangeRequestsRejectWithBodyWithResponse request with any body
+	MarketplaceResourceLimitChangeRequestsRejectWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsRejectResponse, error)
+
+	MarketplaceResourceLimitChangeRequestsRejectWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceLimitChangeRequestsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsRejectResponse, error)
+
 	// MarketplaceResourceOfferingsListWithResponse request
 	MarketplaceResourceOfferingsListWithResponse(ctx context.Context, categoryUuid string, params *MarketplaceResourceOfferingsListParams, reqEditors ...RequestEditorFn) (*MarketplaceResourceOfferingsListResponse, error)
 
@@ -381331,6 +382114,214 @@ func (r MarketplaceRemoteSynchronisationsRunSynchronisationResponse) StatusCode(
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceRemoteSynchronisationsRunSynchronisationResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceResourceLimitChangeRequestsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ResourceLimitChangeRequest
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourceLimitChangeRequestsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourceLimitChangeRequestsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourceLimitChangeRequestsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceResourceLimitChangeRequestsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourceLimitChangeRequestsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourceLimitChangeRequestsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourceLimitChangeRequestsCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceResourceLimitChangeRequestsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *ResourceLimitChangeRequestCreate
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourceLimitChangeRequestsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourceLimitChangeRequestsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourceLimitChangeRequestsCreateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceResourceLimitChangeRequestsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ResourceLimitChangeRequest
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourceLimitChangeRequestsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourceLimitChangeRequestsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourceLimitChangeRequestsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceResourceLimitChangeRequestsApproveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OrderUUID
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourceLimitChangeRequestsApproveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourceLimitChangeRequestsApproveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourceLimitChangeRequestsApproveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceResourceLimitChangeRequestsCancelResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OrderInfoResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourceLimitChangeRequestsCancelResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourceLimitChangeRequestsCancelResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourceLimitChangeRequestsCancelResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceResourceLimitChangeRequestsRejectResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourceLimitChangeRequestsRejectResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourceLimitChangeRequestsRejectResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourceLimitChangeRequestsRejectResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -438209,6 +439200,101 @@ func (c *ClientWithResponses) MarketplaceRemoteSynchronisationsRunSynchronisatio
 	return ParseMarketplaceRemoteSynchronisationsRunSynchronisationResponse(rsp)
 }
 
+// MarketplaceResourceLimitChangeRequestsListWithResponse request returning *MarketplaceResourceLimitChangeRequestsListResponse
+func (c *ClientWithResponses) MarketplaceResourceLimitChangeRequestsListWithResponse(ctx context.Context, params *MarketplaceResourceLimitChangeRequestsListParams, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsListResponse, error) {
+	rsp, err := c.MarketplaceResourceLimitChangeRequestsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceLimitChangeRequestsListResponse(rsp)
+}
+
+// MarketplaceResourceLimitChangeRequestsCountWithResponse request returning *MarketplaceResourceLimitChangeRequestsCountResponse
+func (c *ClientWithResponses) MarketplaceResourceLimitChangeRequestsCountWithResponse(ctx context.Context, params *MarketplaceResourceLimitChangeRequestsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsCountResponse, error) {
+	rsp, err := c.MarketplaceResourceLimitChangeRequestsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceLimitChangeRequestsCountResponse(rsp)
+}
+
+// MarketplaceResourceLimitChangeRequestsCreateWithBodyWithResponse request with arbitrary body returning *MarketplaceResourceLimitChangeRequestsCreateResponse
+func (c *ClientWithResponses) MarketplaceResourceLimitChangeRequestsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsCreateResponse, error) {
+	rsp, err := c.MarketplaceResourceLimitChangeRequestsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceLimitChangeRequestsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceResourceLimitChangeRequestsCreateWithResponse(ctx context.Context, body MarketplaceResourceLimitChangeRequestsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsCreateResponse, error) {
+	rsp, err := c.MarketplaceResourceLimitChangeRequestsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceLimitChangeRequestsCreateResponse(rsp)
+}
+
+// MarketplaceResourceLimitChangeRequestsRetrieveWithResponse request returning *MarketplaceResourceLimitChangeRequestsRetrieveResponse
+func (c *ClientWithResponses) MarketplaceResourceLimitChangeRequestsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceResourceLimitChangeRequestsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceLimitChangeRequestsRetrieveResponse(rsp)
+}
+
+// MarketplaceResourceLimitChangeRequestsApproveWithBodyWithResponse request with arbitrary body returning *MarketplaceResourceLimitChangeRequestsApproveResponse
+func (c *ClientWithResponses) MarketplaceResourceLimitChangeRequestsApproveWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsApproveResponse, error) {
+	rsp, err := c.MarketplaceResourceLimitChangeRequestsApproveWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceLimitChangeRequestsApproveResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceResourceLimitChangeRequestsApproveWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceLimitChangeRequestsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsApproveResponse, error) {
+	rsp, err := c.MarketplaceResourceLimitChangeRequestsApprove(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceLimitChangeRequestsApproveResponse(rsp)
+}
+
+// MarketplaceResourceLimitChangeRequestsCancelWithBodyWithResponse request with arbitrary body returning *MarketplaceResourceLimitChangeRequestsCancelResponse
+func (c *ClientWithResponses) MarketplaceResourceLimitChangeRequestsCancelWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsCancelResponse, error) {
+	rsp, err := c.MarketplaceResourceLimitChangeRequestsCancelWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceLimitChangeRequestsCancelResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceResourceLimitChangeRequestsCancelWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceLimitChangeRequestsCancelJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsCancelResponse, error) {
+	rsp, err := c.MarketplaceResourceLimitChangeRequestsCancel(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceLimitChangeRequestsCancelResponse(rsp)
+}
+
+// MarketplaceResourceLimitChangeRequestsRejectWithBodyWithResponse request with arbitrary body returning *MarketplaceResourceLimitChangeRequestsRejectResponse
+func (c *ClientWithResponses) MarketplaceResourceLimitChangeRequestsRejectWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsRejectResponse, error) {
+	rsp, err := c.MarketplaceResourceLimitChangeRequestsRejectWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceLimitChangeRequestsRejectResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceResourceLimitChangeRequestsRejectWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceLimitChangeRequestsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsRejectResponse, error) {
+	rsp, err := c.MarketplaceResourceLimitChangeRequestsReject(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceLimitChangeRequestsRejectResponse(rsp)
+}
+
 // MarketplaceResourceOfferingsListWithResponse request returning *MarketplaceResourceOfferingsListResponse
 func (c *ClientWithResponses) MarketplaceResourceOfferingsListWithResponse(ctx context.Context, categoryUuid string, params *MarketplaceResourceOfferingsListParams, reqEditors ...RequestEditorFn) (*MarketplaceResourceOfferingsListResponse, error) {
 	rsp, err := c.MarketplaceResourceOfferingsList(ctx, categoryUuid, params, reqEditors...)
@@ -480756,6 +481842,168 @@ func ParseMarketplaceRemoteSynchronisationsRunSynchronisationResponse(rsp *http.
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourceLimitChangeRequestsListResponse parses an HTTP response from a MarketplaceResourceLimitChangeRequestsListWithResponse call
+func ParseMarketplaceResourceLimitChangeRequestsListResponse(rsp *http.Response) (*MarketplaceResourceLimitChangeRequestsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourceLimitChangeRequestsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ResourceLimitChangeRequest
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourceLimitChangeRequestsCountResponse parses an HTTP response from a MarketplaceResourceLimitChangeRequestsCountWithResponse call
+func ParseMarketplaceResourceLimitChangeRequestsCountResponse(rsp *http.Response) (*MarketplaceResourceLimitChangeRequestsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourceLimitChangeRequestsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourceLimitChangeRequestsCreateResponse parses an HTTP response from a MarketplaceResourceLimitChangeRequestsCreateWithResponse call
+func ParseMarketplaceResourceLimitChangeRequestsCreateResponse(rsp *http.Response) (*MarketplaceResourceLimitChangeRequestsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourceLimitChangeRequestsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest ResourceLimitChangeRequestCreate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourceLimitChangeRequestsRetrieveResponse parses an HTTP response from a MarketplaceResourceLimitChangeRequestsRetrieveWithResponse call
+func ParseMarketplaceResourceLimitChangeRequestsRetrieveResponse(rsp *http.Response) (*MarketplaceResourceLimitChangeRequestsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourceLimitChangeRequestsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ResourceLimitChangeRequest
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourceLimitChangeRequestsApproveResponse parses an HTTP response from a MarketplaceResourceLimitChangeRequestsApproveWithResponse call
+func ParseMarketplaceResourceLimitChangeRequestsApproveResponse(rsp *http.Response) (*MarketplaceResourceLimitChangeRequestsApproveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourceLimitChangeRequestsApproveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OrderUUID
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourceLimitChangeRequestsCancelResponse parses an HTTP response from a MarketplaceResourceLimitChangeRequestsCancelWithResponse call
+func ParseMarketplaceResourceLimitChangeRequestsCancelResponse(rsp *http.Response) (*MarketplaceResourceLimitChangeRequestsCancelResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourceLimitChangeRequestsCancelResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OrderInfoResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourceLimitChangeRequestsRejectResponse parses an HTTP response from a MarketplaceResourceLimitChangeRequestsRejectWithResponse call
+func ParseMarketplaceResourceLimitChangeRequestsRejectResponse(rsp *http.Response) (*MarketplaceResourceLimitChangeRequestsRejectResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourceLimitChangeRequestsRejectResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
