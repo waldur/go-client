@@ -11774,6 +11774,7 @@ const (
 	OpenStackInstanceFieldEnumAvailabilityZone                 OpenStackInstanceFieldEnum = "availability_zone"
 	OpenStackInstanceFieldEnumAvailabilityZoneName             OpenStackInstanceFieldEnum = "availability_zone_name"
 	OpenStackInstanceFieldEnumBackendId                        OpenStackInstanceFieldEnum = "backend_id"
+	OpenStackInstanceFieldEnumConfigDrive                      OpenStackInstanceFieldEnum = "config_drive"
 	OpenStackInstanceFieldEnumConnectDirectlyToExternalNetwork OpenStackInstanceFieldEnum = "connect_directly_to_external_network"
 	OpenStackInstanceFieldEnumCores                            OpenStackInstanceFieldEnum = "cores"
 	OpenStackInstanceFieldEnumCreated                          OpenStackInstanceFieldEnum = "created"
@@ -11853,6 +11854,8 @@ func (e OpenStackInstanceFieldEnum) Valid() bool {
 	case OpenStackInstanceFieldEnumAvailabilityZoneName:
 		return true
 	case OpenStackInstanceFieldEnumBackendId:
+		return true
+	case OpenStackInstanceFieldEnumConfigDrive:
 		return true
 	case OpenStackInstanceFieldEnumConnectDirectlyToExternalNetwork:
 		return true
@@ -36561,6 +36564,9 @@ type OpenStackInstance struct {
 	// BackendId Instance ID in the OpenStack backend
 	BackendId *string `json:"backend_id,omitempty"`
 
+	// ConfigDrive Force config drive on or off for this instance. If null, the tenant-wide default from service settings is used.
+	ConfigDrive *bool `json:"config_drive,omitempty"`
+
 	// ConnectDirectlyToExternalNetwork If True, instance will be connected directly to external network
 	ConnectDirectlyToExternalNetwork *bool `json:"connect_directly_to_external_network,omitempty"`
 
@@ -36716,6 +36722,9 @@ type OpenStackInstanceAvailabilityZone struct {
 type OpenStackInstanceCreateOrderAttributes struct {
 	// AvailabilityZone Availability zone where this instance is located
 	AvailabilityZone *string `json:"availability_zone,omitempty"`
+
+	// ConfigDrive Force config drive on or off for this instance. If null, the tenant-wide default from service settings is used.
+	ConfigDrive *bool `json:"config_drive,omitempty"`
 
 	// ConnectDirectlyToExternalNetwork If True, instance will be connected directly to external network
 	ConnectDirectlyToExternalNetwork *bool `json:"connect_directly_to_external_network,omitempty"`
