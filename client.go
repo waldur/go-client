@@ -16706,6 +16706,7 @@ const (
 	PublicOfferingDetailsFieldEnumCitationCount             PublicOfferingDetailsFieldEnum = "citation_count"
 	PublicOfferingDetailsFieldEnumComplianceChecklist       PublicOfferingDetailsFieldEnum = "compliance_checklist"
 	PublicOfferingDetailsFieldEnumComponents                PublicOfferingDetailsFieldEnum = "components"
+	PublicOfferingDetailsFieldEnumConfigDriveDefault        PublicOfferingDetailsFieldEnum = "config_drive_default"
 	PublicOfferingDetailsFieldEnumCountry                   PublicOfferingDetailsFieldEnum = "country"
 	PublicOfferingDetailsFieldEnumCreated                   PublicOfferingDetailsFieldEnum = "created"
 	PublicOfferingDetailsFieldEnumCustomer                  PublicOfferingDetailsFieldEnum = "customer"
@@ -16801,6 +16802,8 @@ func (e PublicOfferingDetailsFieldEnum) Valid() bool {
 	case PublicOfferingDetailsFieldEnumComplianceChecklist:
 		return true
 	case PublicOfferingDetailsFieldEnumComponents:
+		return true
+	case PublicOfferingDetailsFieldEnumConfigDriveDefault:
 		return true
 	case PublicOfferingDetailsFieldEnumCountry:
 		return true
@@ -43788,6 +43791,7 @@ type PublicOfferingDetails struct {
 	CitationCount       *int                 `json:"citation_count,omitempty"`
 	ComplianceChecklist *string              `json:"compliance_checklist,omitempty"`
 	Components          *[]OfferingComponent `json:"components,omitempty"`
+	ConfigDriveDefault  *bool                `json:"config_drive_default,omitempty"`
 
 	// Country Country code (ISO 3166-1 alpha-2)
 	Country                  *PublicOfferingDetails_Country `json:"country,omitempty"`
