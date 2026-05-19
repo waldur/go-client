@@ -35079,6 +35079,7 @@ type OfferingOptionsUpdateRequest struct {
 type OfferingOverviewUpdateRequest struct {
 	// AccessUrl Publicly accessible offering access URL
 	AccessUrl         *string `json:"access_url,omitempty"`
+	BackendId         *string `json:"backend_id,omitempty"`
 	Description       *string `json:"description,omitempty"`
 	DocumentationUrl  *string `json:"documentation_url,omitempty"`
 	FullDescription   *string `json:"full_description,omitempty"`
