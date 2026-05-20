@@ -34186,8 +34186,11 @@ type NestedSoftwareTarget struct {
 
 // NestedSoftwareVersion defines model for NestedSoftwareVersion.
 type NestedSoftwareVersion struct {
-	Extensions                     *[]interface{}          `json:"extensions,omitempty"`
-	Module                         *map[string]interface{} `json:"module,omitempty"`
+	Extensions *[]interface{}          `json:"extensions,omitempty"`
+	Module     *map[string]interface{} `json:"module,omitempty"`
+
+	// ModuleVersion EESSI EasyBuild module version
+	ModuleVersion                  *string                 `json:"module_version,omitempty"`
 	ReleaseDate                    *openapi_types.Date     `json:"release_date,omitempty"`
 	RequiredModules                *[]interface{}          `json:"required_modules,omitempty"`
 	Targets                        *[]NestedSoftwareTarget `json:"targets,omitempty"`
@@ -48765,9 +48768,12 @@ type SoftwareVersion struct {
 	Extensions   *[]interface{} `json:"extensions,omitempty"`
 
 	// Metadata Version-specific metadata (toolchains, build info, modules, etc.)
-	Metadata                       interface{}             `json:"metadata,omitempty"`
-	Modified                       *time.Time              `json:"modified,omitempty"`
-	Module                         *map[string]interface{} `json:"module,omitempty"`
+	Metadata interface{}             `json:"metadata,omitempty"`
+	Modified *time.Time              `json:"modified,omitempty"`
+	Module   *map[string]interface{} `json:"module,omitempty"`
+
+	// ModuleVersion EESSI EasyBuild module version
+	ModuleVersion                  *string                 `json:"module_version,omitempty"`
 	PackageName                    *string                 `json:"package_name,omitempty"`
 	ReleaseDate                    *openapi_types.Date     `json:"release_date,omitempty"`
 	RequiredModules                *[]interface{}          `json:"required_modules,omitempty"`
