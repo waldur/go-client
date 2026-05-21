@@ -52954,8 +52954,14 @@ type BookingResourcesListParams struct {
 	Downscaled *bool                       `form:"downscaled,omitempty" json:"downscaled,omitempty"`
 	Field      *[]BookingResourceFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 
+	// FlavorName Flavor name
+	FlavorName *string `form:"flavor_name,omitempty" json:"flavor_name,omitempty"`
+
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
+
+	// ImageName Image name
+	ImageName *string `form:"image_name,omitempty" json:"image_name,omitempty"`
 
 	// IsAttached Filter by attached state
 	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
@@ -53092,8 +53098,14 @@ type BookingResourcesCountParams struct {
 	// Downscaled Downscaled
 	Downscaled *bool `form:"downscaled,omitempty" json:"downscaled,omitempty"`
 
+	// FlavorName Flavor name
+	FlavorName *string `form:"flavor_name,omitempty" json:"flavor_name,omitempty"`
+
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
+
+	// ImageName Image name
+	ImageName *string `form:"image_name,omitempty" json:"image_name,omitempty"`
 
 	// IsAttached Filter by attached state
 	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
@@ -59895,8 +59907,14 @@ type MarketplaceProviderResourcesListParams struct {
 	Downscaled *bool                `form:"downscaled,omitempty" json:"downscaled,omitempty"`
 	Field      *[]ResourceFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 
+	// FlavorName Flavor name
+	FlavorName *string `form:"flavor_name,omitempty" json:"flavor_name,omitempty"`
+
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
+
+	// ImageName Image name
+	ImageName *string `form:"image_name,omitempty" json:"image_name,omitempty"`
 
 	// IsAttached Filter by attached state
 	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
@@ -60035,8 +60053,14 @@ type MarketplaceProviderResourcesCountParams struct {
 	// Downscaled Downscaled
 	Downscaled *bool `form:"downscaled,omitempty" json:"downscaled,omitempty"`
 
+	// FlavorName Flavor name
+	FlavorName *string `form:"flavor_name,omitempty" json:"flavor_name,omitempty"`
+
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
+
+	// ImageName Image name
+	ImageName *string `form:"image_name,omitempty" json:"image_name,omitempty"`
 
 	// IsAttached Filter by attached state
 	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
@@ -60183,8 +60207,14 @@ type MarketplaceProviderResourcesHistoryListParams struct {
 	// Downscaled Downscaled
 	Downscaled *bool `form:"downscaled,omitempty" json:"downscaled,omitempty"`
 
+	// FlavorName Flavor name
+	FlavorName *string `form:"flavor_name,omitempty" json:"flavor_name,omitempty"`
+
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
+
+	// ImageName Image name
+	ImageName *string `form:"image_name,omitempty" json:"image_name,omitempty"`
 
 	// IsAttached Filter by attached state
 	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
@@ -60810,8 +60840,14 @@ type MarketplaceResourcesListParams struct {
 	Downscaled *bool                `form:"downscaled,omitempty" json:"downscaled,omitempty"`
 	Field      *[]ResourceFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 
+	// FlavorName Flavor name
+	FlavorName *string `form:"flavor_name,omitempty" json:"flavor_name,omitempty"`
+
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
+
+	// ImageName Image name
+	ImageName *string `form:"image_name,omitempty" json:"image_name,omitempty"`
 
 	// IsAttached Filter by attached state
 	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
@@ -60950,8 +60986,14 @@ type MarketplaceResourcesCountParams struct {
 	// Downscaled Downscaled
 	Downscaled *bool `form:"downscaled,omitempty" json:"downscaled,omitempty"`
 
+	// FlavorName Flavor name
+	FlavorName *string `form:"flavor_name,omitempty" json:"flavor_name,omitempty"`
+
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
+
+	// ImageName Image name
+	ImageName *string `form:"image_name,omitempty" json:"image_name,omitempty"`
 
 	// IsAttached Filter by attached state
 	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
@@ -61098,8 +61140,14 @@ type MarketplaceResourcesHistoryListParams struct {
 	// Downscaled Downscaled
 	Downscaled *bool `form:"downscaled,omitempty" json:"downscaled,omitempty"`
 
+	// FlavorName Flavor name
+	FlavorName *string `form:"flavor_name,omitempty" json:"flavor_name,omitempty"`
+
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
+
+	// ImageName Image name
+	ImageName *string `form:"image_name,omitempty" json:"image_name,omitempty"`
 
 	// IsAttached Filter by attached state
 	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
@@ -61289,8 +61337,14 @@ type MarketplaceResourcesTeamMembersListParams struct {
 	// Downscaled Downscaled
 	Downscaled *bool `form:"downscaled,omitempty" json:"downscaled,omitempty"`
 
+	// FlavorName Flavor name
+	FlavorName *string `form:"flavor_name,omitempty" json:"flavor_name,omitempty"`
+
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
+
+	// ImageName Image name
+	ImageName *string `form:"image_name,omitempty" json:"image_name,omitempty"`
 
 	// IsAttached Filter by attached state
 	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
@@ -161683,9 +161737,33 @@ func NewBookingResourcesListRequest(server string, params *BookingResourcesListP
 
 		}
 
+		if params.FlavorName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "flavor_name", *params.FlavorName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.HasTerminateDate != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_terminate_date", *params.HasTerminateDate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ImageName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "image_name", *params.ImageName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -162277,9 +162355,33 @@ func NewBookingResourcesCountRequest(server string, params *BookingResourcesCoun
 
 		}
 
+		if params.FlavorName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "flavor_name", *params.FlavorName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.HasTerminateDate != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_terminate_date", *params.HasTerminateDate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ImageName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "image_name", *params.ImageName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -221656,9 +221758,33 @@ func NewMarketplaceProviderResourcesListRequest(server string, params *Marketpla
 
 		}
 
+		if params.FlavorName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "flavor_name", *params.FlavorName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.HasTerminateDate != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_terminate_date", *params.HasTerminateDate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ImageName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "image_name", *params.ImageName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -222250,9 +222376,33 @@ func NewMarketplaceProviderResourcesCountRequest(server string, params *Marketpl
 
 		}
 
+		if params.FlavorName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "flavor_name", *params.FlavorName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.HasTerminateDate != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_terminate_date", *params.HasTerminateDate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ImageName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "image_name", *params.ImageName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -223227,9 +223377,33 @@ func NewMarketplaceProviderResourcesHistoryListRequest(server string, uuid opena
 
 		}
 
+		if params.FlavorName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "flavor_name", *params.FlavorName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.HasTerminateDate != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_terminate_date", *params.HasTerminateDate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ImageName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "image_name", *params.ImageName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -228472,9 +228646,33 @@ func NewMarketplaceResourcesListRequest(server string, params *MarketplaceResour
 
 		}
 
+		if params.FlavorName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "flavor_name", *params.FlavorName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.HasTerminateDate != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_terminate_date", *params.HasTerminateDate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ImageName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "image_name", *params.ImageName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -229066,9 +229264,33 @@ func NewMarketplaceResourcesCountRequest(server string, params *MarketplaceResou
 
 		}
 
+		if params.FlavorName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "flavor_name", *params.FlavorName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.HasTerminateDate != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_terminate_date", *params.HasTerminateDate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ImageName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "image_name", *params.ImageName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -230130,9 +230352,33 @@ func NewMarketplaceResourcesHistoryListRequest(server string, uuid openapi_types
 
 		}
 
+		if params.FlavorName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "flavor_name", *params.FlavorName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.HasTerminateDate != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_terminate_date", *params.HasTerminateDate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ImageName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "image_name", *params.ImageName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -231706,9 +231952,33 @@ func NewMarketplaceResourcesTeamMembersListRequest(server string, uuid openapi_t
 
 		}
 
+		if params.FlavorName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "flavor_name", *params.FlavorName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.HasTerminateDate != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_terminate_date", *params.HasTerminateDate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ImageName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "image_name", *params.ImageName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
