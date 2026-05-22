@@ -26627,6 +26627,7 @@ type ConstanceSettings struct {
 	ENABLEDREPORTINGSCREENS                          *[]ConstanceSettings_ENABLEDREPORTINGSCREENS_Item                `json:"ENABLED_REPORTING_SCREENS,omitempty"`
 	ENABLEDUSERPROFILEATTRIBUTES                     *[]ConstanceSettings_ENABLEDUSERPROFILEATTRIBUTES_Item           `json:"ENABLED_USER_PROFILE_ATTRIBUTES,omitempty"`
 	ENABLEISSUESFORUSERSSHKEYCHANGES                 *bool                                                            `json:"ENABLE_ISSUES_FOR_USER_SSH_KEY_CHANGES,omitempty"`
+	ENABLEMARKDOWNIMAGEUPLOAD                        *bool                                                            `json:"ENABLE_MARKDOWN_IMAGE_UPLOAD,omitempty"`
 	ENABLEMOCKCOURSEACCOUNTBACKEND                   *bool                                                            `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEMOCKSERVICEACCOUNTBACKEND                  *bool                                                            `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEORDERSTARTDATE                             *bool                                                            `json:"ENABLE_ORDER_START_DATE,omitempty"`
@@ -26672,6 +26673,7 @@ type ConstanceSettings struct {
 	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES       *int                                                             `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM              *[]ConstanceSettings_MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM_Item    `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
 	MANDATORYUSERATTRIBUTES                          *[]ConstanceSettings_MANDATORYUSERATTRIBUTES_Item                `json:"MANDATORY_USER_ATTRIBUTES,omitempty"`
+	MARKDOWNIMAGEMAXSIZEMB                           *int                                                             `json:"MARKDOWN_IMAGE_MAX_SIZE_MB,omitempty"`
 	MARKETPLACECARDSTYLE                             *MARKETPLACECARDSTYLEEnum                                        `json:"MARKETPLACE_CARD_STYLE,omitempty"`
 	MARKETPLACEHEROIMAGE                             *string                                                          `json:"MARKETPLACE_HERO_IMAGE,omitempty"`
 	MARKETPLACELANDINGPAGE                           *string                                                          `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
@@ -26968,6 +26970,7 @@ type ConstanceSettingsRequest struct {
 	ENABLEDREPORTINGSCREENS                          *[]ConstanceSettingsRequest_ENABLEDREPORTINGSCREENS_Item                `json:"ENABLED_REPORTING_SCREENS,omitempty"`
 	ENABLEDUSERPROFILEATTRIBUTES                     *[]ConstanceSettingsRequest_ENABLEDUSERPROFILEATTRIBUTES_Item           `json:"ENABLED_USER_PROFILE_ATTRIBUTES,omitempty"`
 	ENABLEISSUESFORUSERSSHKEYCHANGES                 *bool                                                                   `json:"ENABLE_ISSUES_FOR_USER_SSH_KEY_CHANGES,omitempty"`
+	ENABLEMARKDOWNIMAGEUPLOAD                        *bool                                                                   `json:"ENABLE_MARKDOWN_IMAGE_UPLOAD,omitempty"`
 	ENABLEMOCKCOURSEACCOUNTBACKEND                   *bool                                                                   `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEMOCKSERVICEACCOUNTBACKEND                  *bool                                                                   `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEORDERSTARTDATE                             *bool                                                                   `json:"ENABLE_ORDER_START_DATE,omitempty"`
@@ -27013,6 +27016,7 @@ type ConstanceSettingsRequest struct {
 	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES       *int                                                                    `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM              *[]ConstanceSettingsRequest_MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM_Item    `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
 	MANDATORYUSERATTRIBUTES                          *[]ConstanceSettingsRequest_MANDATORYUSERATTRIBUTES_Item                `json:"MANDATORY_USER_ATTRIBUTES,omitempty"`
+	MARKDOWNIMAGEMAXSIZEMB                           *int                                                                    `json:"MARKDOWN_IMAGE_MAX_SIZE_MB,omitempty"`
 	MARKETPLACECARDSTYLE                             *MARKETPLACECARDSTYLEEnum                                               `json:"MARKETPLACE_CARD_STYLE,omitempty"`
 	MARKETPLACEHEROIMAGE                             *openapi_types.File                                                     `json:"MARKETPLACE_HERO_IMAGE,omitempty"`
 	MARKETPLACELANDINGPAGE                           *string                                                                 `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
@@ -27309,6 +27313,7 @@ type ConstanceSettingsRequestForm struct {
 	ENABLEDREPORTINGSCREENS                          *[]ConstanceSettingsRequestForm_ENABLEDREPORTINGSCREENS_Item                `json:"ENABLED_REPORTING_SCREENS,omitempty"`
 	ENABLEDUSERPROFILEATTRIBUTES                     *[]ConstanceSettingsRequestForm_ENABLEDUSERPROFILEATTRIBUTES_Item           `json:"ENABLED_USER_PROFILE_ATTRIBUTES,omitempty"`
 	ENABLEISSUESFORUSERSSHKEYCHANGES                 *bool                                                                       `json:"ENABLE_ISSUES_FOR_USER_SSH_KEY_CHANGES,omitempty"`
+	ENABLEMARKDOWNIMAGEUPLOAD                        *bool                                                                       `json:"ENABLE_MARKDOWN_IMAGE_UPLOAD,omitempty"`
 	ENABLEMOCKCOURSEACCOUNTBACKEND                   *bool                                                                       `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEMOCKSERVICEACCOUNTBACKEND                  *bool                                                                       `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEORDERSTARTDATE                             *bool                                                                       `json:"ENABLE_ORDER_START_DATE,omitempty"`
@@ -27354,6 +27359,7 @@ type ConstanceSettingsRequestForm struct {
 	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES       *int                                                                        `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM              *[]ConstanceSettingsRequestForm_MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM_Item    `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
 	MANDATORYUSERATTRIBUTES                          *[]ConstanceSettingsRequestForm_MANDATORYUSERATTRIBUTES_Item                `json:"MANDATORY_USER_ATTRIBUTES,omitempty"`
+	MARKDOWNIMAGEMAXSIZEMB                           *int                                                                        `json:"MARKDOWN_IMAGE_MAX_SIZE_MB,omitempty"`
 	MARKETPLACECARDSTYLE                             *MARKETPLACECARDSTYLEEnum                                                   `json:"MARKETPLACE_CARD_STYLE,omitempty"`
 	MARKETPLACEHEROIMAGE                             *openapi_types.File                                                         `json:"MARKETPLACE_HERO_IMAGE,omitempty"`
 	MARKETPLACELANDINGPAGE                           *string                                                                     `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
@@ -27650,6 +27656,7 @@ type ConstanceSettingsRequestMultipart struct {
 	ENABLEDREPORTINGSCREENS                          *[]ConstanceSettingsRequestMultipart_ENABLEDREPORTINGSCREENS_Item                `json:"ENABLED_REPORTING_SCREENS,omitempty"`
 	ENABLEDUSERPROFILEATTRIBUTES                     *[]ConstanceSettingsRequestMultipart_ENABLEDUSERPROFILEATTRIBUTES_Item           `json:"ENABLED_USER_PROFILE_ATTRIBUTES,omitempty"`
 	ENABLEISSUESFORUSERSSHKEYCHANGES                 *bool                                                                            `json:"ENABLE_ISSUES_FOR_USER_SSH_KEY_CHANGES,omitempty"`
+	ENABLEMARKDOWNIMAGEUPLOAD                        *bool                                                                            `json:"ENABLE_MARKDOWN_IMAGE_UPLOAD,omitempty"`
 	ENABLEMOCKCOURSEACCOUNTBACKEND                   *bool                                                                            `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEMOCKSERVICEACCOUNTBACKEND                  *bool                                                                            `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEORDERSTARTDATE                             *bool                                                                            `json:"ENABLE_ORDER_START_DATE,omitempty"`
@@ -27695,6 +27702,7 @@ type ConstanceSettingsRequestMultipart struct {
 	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES       *int                                                                             `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM              *[]ConstanceSettingsRequestMultipart_MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM_Item    `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
 	MANDATORYUSERATTRIBUTES                          *[]ConstanceSettingsRequestMultipart_MANDATORYUSERATTRIBUTES_Item                `json:"MANDATORY_USER_ATTRIBUTES,omitempty"`
+	MARKDOWNIMAGEMAXSIZEMB                           *int                                                                             `json:"MARKDOWN_IMAGE_MAX_SIZE_MB,omitempty"`
 	MARKETPLACECARDSTYLE                             *MARKETPLACECARDSTYLEEnum                                                        `json:"MARKETPLACE_CARD_STYLE,omitempty"`
 	MARKETPLACEHEROIMAGE                             *openapi_types.File                                                              `json:"MARKETPLACE_HERO_IMAGE,omitempty"`
 	MARKETPLACELANDINGPAGE                           *string                                                                          `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
@@ -32565,6 +32573,27 @@ type MappingRequest struct {
 	Subnets              *[]SubNetMappingRequest     `json:"subnets,omitempty"`
 	SyncInstancePorts    *bool                       `json:"sync_instance_ports,omitempty"`
 	VolumeTypes          *[]VolumeTypeMappingRequest `json:"volume_types,omitempty"`
+}
+
+// MarkdownImageUploadRequest defines model for MarkdownImageUploadRequest.
+type MarkdownImageUploadRequest struct {
+	Image openapi_types.File `json:"image"`
+}
+
+// MarkdownImageUploadRequestForm defines model for MarkdownImageUploadRequestForm.
+type MarkdownImageUploadRequestForm struct {
+	Image openapi_types.File `json:"image"`
+}
+
+// MarkdownImageUploadRequestMultipart defines model for MarkdownImageUploadRequestMultipart.
+type MarkdownImageUploadRequestMultipart struct {
+	Image openapi_types.File `json:"image"`
+}
+
+// MarkdownImageUploadResponse defines model for MarkdownImageUploadResponse.
+type MarkdownImageUploadResponse struct {
+	// Url Absolute URL of the uploaded image for markdown embedding.
+	Url string `json:"url"`
 }
 
 // MarketplaceCategory defines model for MarketplaceCategory.
@@ -75134,6 +75163,15 @@ type MarketplaceProviderOfferingsUpdateTypeJSONRequestBody = OfferingTypeUpdateR
 // MarketplaceProviderOfferingsUpdateUserJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateUser for application/json ContentType.
 type MarketplaceProviderOfferingsUpdateUserJSONRequestBody = UserRoleUpdateRequest
 
+// MarketplaceProviderOfferingsUploadMarkdownImageJSONRequestBody defines body for MarketplaceProviderOfferingsUploadMarkdownImage for application/json ContentType.
+type MarketplaceProviderOfferingsUploadMarkdownImageJSONRequestBody = MarkdownImageUploadRequest
+
+// MarketplaceProviderOfferingsUploadMarkdownImageFormdataRequestBody defines body for MarketplaceProviderOfferingsUploadMarkdownImage for application/x-www-form-urlencoded ContentType.
+type MarketplaceProviderOfferingsUploadMarkdownImageFormdataRequestBody = MarkdownImageUploadRequestForm
+
+// MarketplaceProviderOfferingsUploadMarkdownImageMultipartRequestBody defines body for MarketplaceProviderOfferingsUploadMarkdownImage for multipart/form-data ContentType.
+type MarketplaceProviderOfferingsUploadMarkdownImageMultipartRequestBody = MarkdownImageUploadRequestMultipart
+
 // MarketplaceProviderResourceProjectsPartialUpdateJSONRequestBody defines body for MarketplaceProviderResourceProjectsPartialUpdate for application/json ContentType.
 type MarketplaceProviderResourceProjectsPartialUpdateJSONRequestBody = PatchedResourceProjectRequest
 
@@ -95301,6 +95339,13 @@ type ClientInterface interface {
 	MarketplaceProviderOfferingsUpdateUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceProviderOfferingsUpdateUser(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsUploadMarkdownImageWithBody request with any body
+	MarketplaceProviderOfferingsUploadMarkdownImageWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderOfferingsUploadMarkdownImage(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUploadMarkdownImageJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderOfferingsUploadMarkdownImageWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUploadMarkdownImageFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsUserAttributeConfigRetrieve request
 	MarketplaceProviderOfferingsUserAttributeConfigRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -117881,6 +117926,42 @@ func (c *Client) MarketplaceProviderOfferingsUpdateUserWithBody(ctx context.Cont
 
 func (c *Client) MarketplaceProviderOfferingsUpdateUser(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsUpdateUserRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsUploadMarkdownImageWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsUploadMarkdownImageRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsUploadMarkdownImage(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUploadMarkdownImageJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsUploadMarkdownImageRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsUploadMarkdownImageWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUploadMarkdownImageFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsUploadMarkdownImageRequestWithFormdataBody(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -220706,6 +220787,64 @@ func NewMarketplaceProviderOfferingsUpdateUserRequestWithBody(server string, uui
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/update_user/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsUploadMarkdownImageRequest calls the generic MarketplaceProviderOfferingsUploadMarkdownImage builder with application/json body
+func NewMarketplaceProviderOfferingsUploadMarkdownImageRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUploadMarkdownImageJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderOfferingsUploadMarkdownImageRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsUploadMarkdownImageRequestWithFormdataBody calls the generic MarketplaceProviderOfferingsUploadMarkdownImage builder with application/x-www-form-urlencoded body
+func NewMarketplaceProviderOfferingsUploadMarkdownImageRequestWithFormdataBody(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUploadMarkdownImageFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewMarketplaceProviderOfferingsUploadMarkdownImageRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsUploadMarkdownImageRequestWithBody generates requests for MarketplaceProviderOfferingsUploadMarkdownImage with any type of body
+func NewMarketplaceProviderOfferingsUploadMarkdownImageRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/upload_markdown_image/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -344065,6 +344204,13 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceProviderOfferingsUpdateUserWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateUserResponse, error)
 
+	// MarketplaceProviderOfferingsUploadMarkdownImageWithBodyWithResponse request with any body
+	MarketplaceProviderOfferingsUploadMarkdownImageWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUploadMarkdownImageResponse, error)
+
+	MarketplaceProviderOfferingsUploadMarkdownImageWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUploadMarkdownImageJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUploadMarkdownImageResponse, error)
+
+	MarketplaceProviderOfferingsUploadMarkdownImageWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUploadMarkdownImageFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUploadMarkdownImageResponse, error)
+
 	// MarketplaceProviderOfferingsUserAttributeConfigRetrieveWithResponse request
 	MarketplaceProviderOfferingsUserAttributeConfigRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUserAttributeConfigRetrieveResponse, error)
 
@@ -380278,6 +380424,36 @@ func (r MarketplaceProviderOfferingsUpdateUserResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceProviderOfferingsUpdateUserResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProviderOfferingsUploadMarkdownImageResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *MarkdownImageUploadResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsUploadMarkdownImageResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsUploadMarkdownImageResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderOfferingsUploadMarkdownImageResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -438563,6 +438739,31 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateUserWithResponse
 	return ParseMarketplaceProviderOfferingsUpdateUserResponse(rsp)
 }
 
+// MarketplaceProviderOfferingsUploadMarkdownImageWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsUploadMarkdownImageResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsUploadMarkdownImageWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUploadMarkdownImageResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsUploadMarkdownImageWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsUploadMarkdownImageResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderOfferingsUploadMarkdownImageWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUploadMarkdownImageJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUploadMarkdownImageResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsUploadMarkdownImage(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsUploadMarkdownImageResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderOfferingsUploadMarkdownImageWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUploadMarkdownImageFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUploadMarkdownImageResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsUploadMarkdownImageWithFormdataBody(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsUploadMarkdownImageResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsUserAttributeConfigRetrieveWithResponse request returning *MarketplaceProviderOfferingsUserAttributeConfigRetrieveResponse
 func (c *ClientWithResponses) MarketplaceProviderOfferingsUserAttributeConfigRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUserAttributeConfigRetrieveResponse, error) {
 	rsp, err := c.MarketplaceProviderOfferingsUserAttributeConfigRetrieve(ctx, uuid, reqEditors...)
@@ -480424,6 +480625,32 @@ func ParseMarketplaceProviderOfferingsUpdateUserResponse(rsp *http.Response) (*M
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsUploadMarkdownImageResponse parses an HTTP response from a MarketplaceProviderOfferingsUploadMarkdownImageWithResponse call
+func ParseMarketplaceProviderOfferingsUploadMarkdownImageResponse(rsp *http.Response) (*MarketplaceProviderOfferingsUploadMarkdownImageResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsUploadMarkdownImageResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest MarkdownImageUploadResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
 
 	}
 
