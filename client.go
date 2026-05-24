@@ -46126,6 +46126,21 @@ type ResourceEndDateRequest struct {
 	EndDate *openapi_types.Date `json:"end_date,omitempty"`
 }
 
+// ResourceEndpointRequest defines model for ResourceEndpointRequest.
+type ResourceEndpointRequest struct {
+	// Name Name of the access endpoint
+	Name string `json:"name"`
+
+	// Url URL of the access endpoint
+	Url string `json:"url"`
+}
+
+// ResourceEndpointsRequest defines model for ResourceEndpointsRequest.
+type ResourceEndpointsRequest struct {
+	// Endpoints Access endpoints to set on the resource
+	Endpoints []ResourceEndpointRequest `json:"endpoints"`
+}
+
 // ResourceFieldEnum defines model for ResourceFieldEnum.
 type ResourceFieldEnum string
 
@@ -75268,6 +75283,9 @@ type MarketplaceProviderResourcesSetEndDateByProviderJSONRequestBody = ResourceE
 // MarketplaceProviderResourcesSetEndDateByStaffJSONRequestBody defines body for MarketplaceProviderResourcesSetEndDateByStaff for application/json ContentType.
 type MarketplaceProviderResourcesSetEndDateByStaffJSONRequestBody = ResourceEndDateByProviderRequest
 
+// MarketplaceProviderResourcesSetEndpointsJSONRequestBody defines body for MarketplaceProviderResourcesSetEndpoints for application/json ContentType.
+type MarketplaceProviderResourcesSetEndpointsJSONRequestBody = ResourceEndpointsRequest
+
 // MarketplaceProviderResourcesSetLimitsJSONRequestBody defines body for MarketplaceProviderResourcesSetLimits for application/json ContentType.
 type MarketplaceProviderResourcesSetLimitsJSONRequestBody = ResourceSetLimitsRequest
 
@@ -95782,6 +95800,11 @@ type ClientInterface interface {
 	MarketplaceProviderResourcesSetEndDateByStaffWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceProviderResourcesSetEndDateByStaff(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetEndDateByStaffJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderResourcesSetEndpointsWithBody request with any body
+	MarketplaceProviderResourcesSetEndpointsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderResourcesSetEndpoints(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetEndpointsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderResourcesSetLimitsWithBody request with any body
 	MarketplaceProviderResourcesSetLimitsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -119008,6 +119031,30 @@ func (c *Client) MarketplaceProviderResourcesSetEndDateByStaffWithBody(ctx conte
 
 func (c *Client) MarketplaceProviderResourcesSetEndDateByStaff(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetEndDateByStaffJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderResourcesSetEndDateByStaffRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderResourcesSetEndpointsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesSetEndpointsRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderResourcesSetEndpoints(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetEndpointsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesSetEndpointsRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -225193,6 +225240,53 @@ func NewMarketplaceProviderResourcesSetEndDateByStaffRequestWithBody(server stri
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-provider-resources/%s/set_end_date_by_staff/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProviderResourcesSetEndpointsRequest calls the generic MarketplaceProviderResourcesSetEndpoints builder with application/json body
+func NewMarketplaceProviderResourcesSetEndpointsRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetEndpointsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderResourcesSetEndpointsRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderResourcesSetEndpointsRequestWithBody generates requests for MarketplaceProviderResourcesSetEndpoints with any type of body
+func NewMarketplaceProviderResourcesSetEndpointsRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-resources/%s/set_endpoints/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -344696,6 +344790,11 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceProviderResourcesSetEndDateByStaffWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetEndDateByStaffJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetEndDateByStaffResponse, error)
 
+	// MarketplaceProviderResourcesSetEndpointsWithBodyWithResponse request with any body
+	MarketplaceProviderResourcesSetEndpointsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetEndpointsResponse, error)
+
+	MarketplaceProviderResourcesSetEndpointsWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetEndpointsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetEndpointsResponse, error)
+
 	// MarketplaceProviderResourcesSetLimitsWithBodyWithResponse request with any body
 	MarketplaceProviderResourcesSetLimitsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetLimitsResponse, error)
 
@@ -382054,6 +382153,36 @@ func (r MarketplaceProviderResourcesSetEndDateByStaffResponse) StatusCode() int 
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceProviderResourcesSetEndDateByStaffResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProviderResourcesSetEndpointsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ResourceResponseStatus
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderResourcesSetEndpointsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderResourcesSetEndpointsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderResourcesSetEndpointsResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -439672,6 +439801,23 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesSetEndDateByStaffWithR
 	return ParseMarketplaceProviderResourcesSetEndDateByStaffResponse(rsp)
 }
 
+// MarketplaceProviderResourcesSetEndpointsWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourcesSetEndpointsResponse
+func (c *ClientWithResponses) MarketplaceProviderResourcesSetEndpointsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetEndpointsResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesSetEndpointsWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesSetEndpointsResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderResourcesSetEndpointsWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetEndpointsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetEndpointsResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesSetEndpoints(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesSetEndpointsResponse(rsp)
+}
+
 // MarketplaceProviderResourcesSetLimitsWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourcesSetLimitsResponse
 func (c *ClientWithResponses) MarketplaceProviderResourcesSetLimitsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetLimitsResponse, error) {
 	rsp, err := c.MarketplaceProviderResourcesSetLimitsWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -482032,6 +482178,32 @@ func ParseMarketplaceProviderResourcesSetEndDateByStaffResponse(rsp *http.Respon
 	response := &MarketplaceProviderResourcesSetEndDateByStaffResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderResourcesSetEndpointsResponse parses an HTTP response from a MarketplaceProviderResourcesSetEndpointsWithResponse call
+func ParseMarketplaceProviderResourcesSetEndpointsResponse(rsp *http.Response) (*MarketplaceProviderResourcesSetEndpointsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderResourcesSetEndpointsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ResourceResponseStatus
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
