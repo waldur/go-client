@@ -845,16 +845,16 @@ func (e AssignmentItemStatus) Valid() bool {
 
 // Defines values for AssignmentSource.
 const (
-	Algorithm AssignmentSource = "algorithm"
-	Manual    AssignmentSource = "manual"
+	AssignmentSourceAlgorithm AssignmentSource = "algorithm"
+	AssignmentSourceManual    AssignmentSource = "manual"
 )
 
 // Valid indicates whether the value is a known member of the AssignmentSource enum.
 func (e AssignmentSource) Valid() bool {
 	switch e {
-	case Algorithm:
+	case AssignmentSourceAlgorithm:
 		return true
-	case Manual:
+	case AssignmentSourceManual:
 		return true
 	default:
 		return false
@@ -5865,6 +5865,7 @@ const (
 	EventMetadataResponseEventGroupsProposalCanceled                                 EventMetadataResponseEventGroups = "proposal_canceled"
 	EventMetadataResponseEventGroupsProposalDocumentAdded                            EventMetadataResponseEventGroups = "proposal_document_added"
 	EventMetadataResponseEventGroupsProposalDocumentRemoved                          EventMetadataResponseEventGroups = "proposal_document_removed"
+	EventMetadataResponseEventGroupsProposalWorkflowAdvanced                         EventMetadataResponseEventGroups = "proposal_workflow_advanced"
 	EventMetadataResponseEventGroupsQueryExecuted                                    EventMetadataResponseEventGroups = "query_executed"
 	EventMetadataResponseEventGroupsReductionOfCustomerCredit                        EventMetadataResponseEventGroups = "reduction_of_customer_credit"
 	EventMetadataResponseEventGroupsReductionOfCustomerCreditDueToMinimalConsumption EventMetadataResponseEventGroups = "reduction_of_customer_credit_due_to_minimal_consumption"
@@ -6357,6 +6358,8 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 		return true
 	case EventMetadataResponseEventGroupsProposalDocumentRemoved:
 		return true
+	case EventMetadataResponseEventGroupsProposalWorkflowAdvanced:
+		return true
 	case EventMetadataResponseEventGroupsQueryExecuted:
 		return true
 	case EventMetadataResponseEventGroupsReductionOfCustomerCredit:
@@ -6786,6 +6789,7 @@ const (
 	EventTypesEnumProposalCanceled                                 EventTypesEnum = "proposal_canceled"
 	EventTypesEnumProposalDocumentAdded                            EventTypesEnum = "proposal_document_added"
 	EventTypesEnumProposalDocumentRemoved                          EventTypesEnum = "proposal_document_removed"
+	EventTypesEnumProposalWorkflowAdvanced                         EventTypesEnum = "proposal_workflow_advanced"
 	EventTypesEnumQueryExecuted                                    EventTypesEnum = "query_executed"
 	EventTypesEnumReductionOfCustomerCredit                        EventTypesEnum = "reduction_of_customer_credit"
 	EventTypesEnumReductionOfCustomerCreditDueToMinimalConsumption EventTypesEnum = "reduction_of_customer_credit_due_to_minimal_consumption"
@@ -7277,6 +7281,8 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumProposalDocumentAdded:
 		return true
 	case EventTypesEnumProposalDocumentRemoved:
+		return true
+	case EventTypesEnumProposalWorkflowAdvanced:
 		return true
 	case EventTypesEnumQueryExecuted:
 		return true
@@ -19994,13 +20000,16 @@ func (e ThreadSessionScopeEnum) Valid() bool {
 
 // Defines values for TransitionModeEnum.
 const (
-	AutomaticOnCompletion TransitionModeEnum = "automatic_on_completion"
+	TransitionModeEnumAutomaticOnCompletion TransitionModeEnum = "automatic_on_completion"
+	TransitionModeEnumManual                TransitionModeEnum = "manual"
 )
 
 // Valid indicates whether the value is a known member of the TransitionModeEnum enum.
 func (e TransitionModeEnum) Valid() bool {
 	switch e {
-	case AutomaticOnCompletion:
+	case TransitionModeEnumAutomaticOnCompletion:
+		return true
+	case TransitionModeEnumManual:
 		return true
 	default:
 		return false
@@ -38426,24 +38435,16 @@ type OpenStackTenantFieldEnum string
 
 // OpenStackTenantQuota defines model for OpenStackTenantQuota.
 type OpenStackTenantQuota struct {
+	FloatingIpCount        *int `json:"floating_ip_count,omitempty"`
 	Instances              *int `json:"instances,omitempty"`
+	NetworkCount           *int `json:"network_count,omitempty"`
+	PortCount              *int `json:"port_count,omitempty"`
 	Ram                    *int `json:"ram,omitempty"`
 	SecurityGroupCount     *int `json:"security_group_count,omitempty"`
 	SecurityGroupRuleCount *int `json:"security_group_rule_count,omitempty"`
 	Snapshots              *int `json:"snapshots,omitempty"`
 	Storage                *int `json:"storage,omitempty"`
-	Vcpu                   *int `json:"vcpu,omitempty"`
-	Volumes                *int `json:"volumes,omitempty"`
-}
-
-// OpenStackTenantQuotaRequest defines model for OpenStackTenantQuotaRequest.
-type OpenStackTenantQuotaRequest struct {
-	Instances              *int `json:"instances,omitempty"`
-	Ram                    *int `json:"ram,omitempty"`
-	SecurityGroupCount     *int `json:"security_group_count,omitempty"`
-	SecurityGroupRuleCount *int `json:"security_group_rule_count,omitempty"`
-	Snapshots              *int `json:"snapshots,omitempty"`
-	Storage                *int `json:"storage,omitempty"`
+	SubnetCount            *int `json:"subnet_count,omitempty"`
 	Vcpu                   *int `json:"vcpu,omitempty"`
 	Volumes                *int `json:"volumes,omitempty"`
 }
@@ -42944,6 +42945,7 @@ type Proposal struct {
 	// ApplicantUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	ApplicantUsername            *string                 `json:"applicant_username,omitempty"`
 	ApprovedBy                   *string                 `json:"approved_by,omitempty"`
+	AwaitingManualAdvance        *bool                   `json:"awaiting_manual_advance,omitempty"`
 	CallManagingOrganisationUuid *openapi_types.UUID     `json:"call_managing_organisation_uuid,omitempty"`
 	CallName                     *string                 `json:"call_name,omitempty"`
 	CallUuid                     *openapi_types.UUID     `json:"call_uuid,omitempty"`
@@ -68075,6 +68077,34 @@ type OpenstackTenantsBackendVolumesListParams struct {
 // OpenstackTenantsPushSecurityGroupsJSONBody defines parameters for OpenstackTenantsPushSecurityGroups.
 type OpenstackTenantsPushSecurityGroupsJSONBody = []TenantSecurityGroupUpdateRequest
 
+// OpenstackTenantsSetQuotasJSONBody defines parameters for OpenstackTenantsSetQuotas.
+type OpenstackTenantsSetQuotasJSONBody struct {
+	// FloatingIpCount Use 0 to deny, -1 for unlimited
+	FloatingIpCount *int `json:"floating_ip_count,omitempty"`
+	Instances       *int `json:"instances,omitempty"`
+
+	// NetworkCount Use 0 to deny, -1 for unlimited
+	NetworkCount *int `json:"network_count,omitempty"`
+
+	// PortCount Use 0 to deny, -1 for unlimited
+	PortCount *int `json:"port_count,omitempty"`
+
+	// Ram In MiB
+	Ram                    *int `json:"ram,omitempty"`
+	SecurityGroupCount     *int `json:"security_group_count,omitempty"`
+	SecurityGroupRuleCount *int `json:"security_group_rule_count,omitempty"`
+	Snapshots              *int `json:"snapshots,omitempty"`
+
+	// Storage In MiB
+	Storage *int `json:"storage,omitempty"`
+
+	// SubnetCount Use 0 to deny, -1 for unlimited
+	SubnetCount          *int           `json:"subnet_count,omitempty"`
+	Vcpu                 *int           `json:"vcpu,omitempty"`
+	Volumes              *int           `json:"volumes,omitempty"`
+	AdditionalProperties map[string]int `json:"-"`
+}
+
 // OpenstackVolumeAvailabilityZonesListParams defines parameters for OpenstackVolumeAvailabilityZonesList.
 type OpenstackVolumeAvailabilityZonesListParams struct {
 	// Name Name
@@ -76019,7 +76049,7 @@ type OpenstackTenantsPushSecurityGroupsJSONRequestBody = OpenstackTenantsPushSec
 type OpenstackTenantsSetErredJSONRequestBody = SetErredRequest
 
 // OpenstackTenantsSetQuotasJSONRequestBody defines body for OpenstackTenantsSetQuotas for application/json ContentType.
-type OpenstackTenantsSetQuotasJSONRequestBody = OpenStackTenantQuotaRequest
+type OpenstackTenantsSetQuotasJSONRequestBody OpenstackTenantsSetQuotasJSONBody
 
 // OpenstackVolumesPartialUpdateJSONRequestBody defines body for OpenstackVolumesPartialUpdate for application/json ContentType.
 type OpenstackVolumesPartialUpdateJSONRequestBody = PatchedOpenStackVolumeRequest
@@ -77028,6 +77058,239 @@ func (a Message_Blocks_Item) MarshalJSON() ([]byte, error) {
 	object["status"], err = json.Marshal(a.Status)
 	if err != nil {
 		return nil, fmt.Errorf("error marshaling 'status': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for OpenstackTenantsSetQuotasJSONBody. Returns the specified
+// element and whether it was found
+func (a OpenstackTenantsSetQuotasJSONBody) Get(fieldName string) (value int, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for OpenstackTenantsSetQuotasJSONBody
+func (a *OpenstackTenantsSetQuotasJSONBody) Set(fieldName string, value int) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]int)
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for OpenstackTenantsSetQuotasJSONBody to handle AdditionalProperties
+func (a *OpenstackTenantsSetQuotasJSONBody) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["floating_ip_count"]; found {
+		err = json.Unmarshal(raw, &a.FloatingIpCount)
+		if err != nil {
+			return fmt.Errorf("error reading 'floating_ip_count': %w", err)
+		}
+		delete(object, "floating_ip_count")
+	}
+
+	if raw, found := object["instances"]; found {
+		err = json.Unmarshal(raw, &a.Instances)
+		if err != nil {
+			return fmt.Errorf("error reading 'instances': %w", err)
+		}
+		delete(object, "instances")
+	}
+
+	if raw, found := object["network_count"]; found {
+		err = json.Unmarshal(raw, &a.NetworkCount)
+		if err != nil {
+			return fmt.Errorf("error reading 'network_count': %w", err)
+		}
+		delete(object, "network_count")
+	}
+
+	if raw, found := object["port_count"]; found {
+		err = json.Unmarshal(raw, &a.PortCount)
+		if err != nil {
+			return fmt.Errorf("error reading 'port_count': %w", err)
+		}
+		delete(object, "port_count")
+	}
+
+	if raw, found := object["ram"]; found {
+		err = json.Unmarshal(raw, &a.Ram)
+		if err != nil {
+			return fmt.Errorf("error reading 'ram': %w", err)
+		}
+		delete(object, "ram")
+	}
+
+	if raw, found := object["security_group_count"]; found {
+		err = json.Unmarshal(raw, &a.SecurityGroupCount)
+		if err != nil {
+			return fmt.Errorf("error reading 'security_group_count': %w", err)
+		}
+		delete(object, "security_group_count")
+	}
+
+	if raw, found := object["security_group_rule_count"]; found {
+		err = json.Unmarshal(raw, &a.SecurityGroupRuleCount)
+		if err != nil {
+			return fmt.Errorf("error reading 'security_group_rule_count': %w", err)
+		}
+		delete(object, "security_group_rule_count")
+	}
+
+	if raw, found := object["snapshots"]; found {
+		err = json.Unmarshal(raw, &a.Snapshots)
+		if err != nil {
+			return fmt.Errorf("error reading 'snapshots': %w", err)
+		}
+		delete(object, "snapshots")
+	}
+
+	if raw, found := object["storage"]; found {
+		err = json.Unmarshal(raw, &a.Storage)
+		if err != nil {
+			return fmt.Errorf("error reading 'storage': %w", err)
+		}
+		delete(object, "storage")
+	}
+
+	if raw, found := object["subnet_count"]; found {
+		err = json.Unmarshal(raw, &a.SubnetCount)
+		if err != nil {
+			return fmt.Errorf("error reading 'subnet_count': %w", err)
+		}
+		delete(object, "subnet_count")
+	}
+
+	if raw, found := object["vcpu"]; found {
+		err = json.Unmarshal(raw, &a.Vcpu)
+		if err != nil {
+			return fmt.Errorf("error reading 'vcpu': %w", err)
+		}
+		delete(object, "vcpu")
+	}
+
+	if raw, found := object["volumes"]; found {
+		err = json.Unmarshal(raw, &a.Volumes)
+		if err != nil {
+			return fmt.Errorf("error reading 'volumes': %w", err)
+		}
+		delete(object, "volumes")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]int)
+		for fieldName, fieldBuf := range object {
+			var fieldVal int
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for OpenstackTenantsSetQuotasJSONBody to handle AdditionalProperties
+func (a OpenstackTenantsSetQuotasJSONBody) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.FloatingIpCount != nil {
+		object["floating_ip_count"], err = json.Marshal(a.FloatingIpCount)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'floating_ip_count': %w", err)
+		}
+	}
+
+	if a.Instances != nil {
+		object["instances"], err = json.Marshal(a.Instances)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'instances': %w", err)
+		}
+	}
+
+	if a.NetworkCount != nil {
+		object["network_count"], err = json.Marshal(a.NetworkCount)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'network_count': %w", err)
+		}
+	}
+
+	if a.PortCount != nil {
+		object["port_count"], err = json.Marshal(a.PortCount)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'port_count': %w", err)
+		}
+	}
+
+	if a.Ram != nil {
+		object["ram"], err = json.Marshal(a.Ram)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'ram': %w", err)
+		}
+	}
+
+	if a.SecurityGroupCount != nil {
+		object["security_group_count"], err = json.Marshal(a.SecurityGroupCount)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'security_group_count': %w", err)
+		}
+	}
+
+	if a.SecurityGroupRuleCount != nil {
+		object["security_group_rule_count"], err = json.Marshal(a.SecurityGroupRuleCount)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'security_group_rule_count': %w", err)
+		}
+	}
+
+	if a.Snapshots != nil {
+		object["snapshots"], err = json.Marshal(a.Snapshots)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'snapshots': %w", err)
+		}
+	}
+
+	if a.Storage != nil {
+		object["storage"], err = json.Marshal(a.Storage)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'storage': %w", err)
+		}
+	}
+
+	if a.SubnetCount != nil {
+		object["subnet_count"], err = json.Marshal(a.SubnetCount)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'subnet_count': %w", err)
+		}
+	}
+
+	if a.Vcpu != nil {
+		object["vcpu"], err = json.Marshal(a.Vcpu)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'vcpu': %w", err)
+		}
+	}
+
+	if a.Volumes != nil {
+		object["volumes"], err = json.Marshal(a.Volumes)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'volumes': %w", err)
+		}
 	}
 
 	for fieldName, field := range a.AdditionalProperties {
@@ -98777,6 +99040,9 @@ type ClientInterface interface {
 	ProposalProposalsAddUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	ProposalProposalsAddUser(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsAddUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProposalsAdvanceWorkflowStep request
+	ProposalProposalsAdvanceWorkflowStep(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProposalsApproveWithBody request with any body
 	ProposalProposalsApproveWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -132986,6 +133252,18 @@ func (c *Client) ProposalProposalsAddUserWithBody(ctx context.Context, uuid open
 
 func (c *Client) ProposalProposalsAddUser(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsAddUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProposalsAddUserRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProposalsAdvanceWorkflowStep(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsAdvanceWorkflowStepRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -294922,6 +295200,40 @@ func NewProposalProposalsAddUserRequestWithBody(server string, uuid openapi_type
 	return req, nil
 }
 
+// NewProposalProposalsAdvanceWorkflowStepRequest generates requests for ProposalProposalsAdvanceWorkflowStep
+func NewProposalProposalsAdvanceWorkflowStepRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-proposals/%s/advance_workflow_step/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewProposalProposalsApproveRequest calls the generic ProposalProposalsApprove builder with application/json body
 func NewProposalProposalsApproveRequest(server string, uuid openapi_types.UUID, body ProposalProposalsApproveJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -347641,6 +347953,9 @@ type ClientWithResponsesInterface interface {
 	ProposalProposalsAddUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsAddUserResponse, error)
 
 	ProposalProposalsAddUserWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsAddUserJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsAddUserResponse, error)
+
+	// ProposalProposalsAdvanceWorkflowStepWithResponse request
+	ProposalProposalsAdvanceWorkflowStepWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsAdvanceWorkflowStepResponse, error)
 
 	// ProposalProposalsApproveWithBodyWithResponse request with any body
 	ProposalProposalsApproveWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsApproveResponse, error)
@@ -408037,6 +408352,36 @@ func (r ProposalProposalsAddUserResponse) ContentType() string {
 	return ""
 }
 
+type ProposalProposalsAdvanceWorkflowStepResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CompleteWorkflowStepResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProposalsAdvanceWorkflowStepResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProposalsAdvanceWorkflowStepResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalProposalsAdvanceWorkflowStepResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type ProposalProposalsApproveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -449705,6 +450050,15 @@ func (c *ClientWithResponses) ProposalProposalsAddUserWithResponse(ctx context.C
 		return nil, err
 	}
 	return ParseProposalProposalsAddUserResponse(rsp)
+}
+
+// ProposalProposalsAdvanceWorkflowStepWithResponse request returning *ProposalProposalsAdvanceWorkflowStepResponse
+func (c *ClientWithResponses) ProposalProposalsAdvanceWorkflowStepWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsAdvanceWorkflowStepResponse, error) {
+	rsp, err := c.ProposalProposalsAdvanceWorkflowStep(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProposalsAdvanceWorkflowStepResponse(rsp)
 }
 
 // ProposalProposalsApproveWithBodyWithResponse request with arbitrary body returning *ProposalProposalsApproveResponse
@@ -502081,6 +502435,32 @@ func ParseProposalProposalsAddUserResponse(rsp *http.Response) (*ProposalProposa
 			return nil, err
 		}
 		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProposalProposalsAdvanceWorkflowStepResponse parses an HTTP response from a ProposalProposalsAdvanceWorkflowStepWithResponse call
+func ParseProposalProposalsAdvanceWorkflowStepResponse(rsp *http.Response) (*ProposalProposalsAdvanceWorkflowStepResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProposalsAdvanceWorkflowStepResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CompleteWorkflowStepResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
 
 	}
 
