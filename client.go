@@ -24178,11 +24178,6 @@ type AwsInstanceRequest struct {
 	UserData *string `json:"user_data,omitempty"`
 }
 
-// AwsInstanceResize defines model for AwsInstanceResize.
-type AwsInstanceResize struct {
-	Size string `json:"size"`
-}
-
 // AwsInstanceResizeRequest defines model for AwsInstanceResizeRequest.
 type AwsInstanceResizeRequest struct {
 	Size string `json:"size"`
@@ -24268,13 +24263,6 @@ type AwsVolumeAccessUrl1 = string
 // AwsVolume_AccessUrl defines model for AwsVolume.AccessUrl.
 type AwsVolume_AccessUrl struct {
 	union json.RawMessage
-}
-
-// AwsVolumeAttach defines model for AwsVolumeAttach.
-type AwsVolumeAttach struct {
-	// Device The device name for attachment. For example, use /dev/sd[f-p] for Linux instances.
-	Device   string `json:"device"`
-	Instance string `json:"instance"`
 }
 
 // AwsVolumeAttachRequest defines model for AwsVolumeAttachRequest.
@@ -24518,16 +24506,16 @@ type AzureSqlDatabase_AccessUrl struct {
 	union json.RawMessage
 }
 
-// AzureSqlDatabaseCreate defines model for AzureSqlDatabaseCreate.
-type AzureSqlDatabaseCreate struct {
-	Description *string `json:"description,omitempty"`
-	Name        string  `json:"name"`
-}
-
 // AzureSqlDatabaseCreateRequest defines model for AzureSqlDatabaseCreateRequest.
 type AzureSqlDatabaseCreateRequest struct {
 	Description *string `json:"description,omitempty"`
 	Name        string  `json:"name"`
+}
+
+// AzureSqlDatabaseCreateResponse defines model for AzureSqlDatabaseCreateResponse.
+type AzureSqlDatabaseCreateResponse struct {
+	DatabaseUuid openapi_types.UUID `json:"database_uuid"`
+	Status       string             `json:"status"`
 }
 
 // AzureSqlDatabaseFieldEnum defines model for AzureSqlDatabaseFieldEnum.
@@ -24954,6 +24942,11 @@ type Booking struct {
 	CreatedByFullName *string   `json:"created_by_full_name,omitempty"`
 	End               time.Time `json:"end"`
 	Start             time.Time `json:"start"`
+}
+
+// BookingOrderUUID defines model for BookingOrderUUID.
+type BookingOrderUUID struct {
+	OrderUuid openapi_types.UUID `json:"order_uuid"`
 }
 
 // BookingResource defines model for BookingResource.
@@ -29135,6 +29128,12 @@ type CustomerCreditConsumption struct {
 	Price *string             `json:"price,omitempty"`
 }
 
+// CustomerCreditConsumptionByMonth defines model for CustomerCreditConsumptionByMonth.
+type CustomerCreditConsumptionByMonth struct {
+	Month *string `json:"month,omitempty"`
+	Price *string `json:"price,omitempty"`
+}
+
 // CustomerCreditOEnum defines model for CustomerCreditOEnum.
 type CustomerCreditOEnum string
 
@@ -29947,11 +29946,6 @@ type DigitalOceanDropletRequest struct {
 	UserData *string `json:"user_data,omitempty"`
 }
 
-// DigitalOceanDropletResize defines model for DigitalOceanDropletResize.
-type DigitalOceanDropletResize struct {
-	Disk bool `json:"disk"`
-}
-
 // DigitalOceanDropletResizeRequest defines model for DigitalOceanDropletResizeRequest.
 type DigitalOceanDropletResizeRequest struct {
 	Disk bool    `json:"disk"`
@@ -30399,6 +30393,11 @@ type Event struct {
 	EventType *string             `json:"event_type,omitempty"`
 	Message   *string             `json:"message,omitempty"`
 	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// EventCount defines model for EventCount.
+type EventCount struct {
+	Count int `json:"count"`
 }
 
 // EventFieldEnum defines model for EventFieldEnum.
@@ -31250,6 +31249,11 @@ type GlobalUserDataAccessLog_IpAddress struct {
 
 // GlobalUserDataAccessLogOEnum defines model for GlobalUserDataAccessLogOEnum.
 type GlobalUserDataAccessLogOEnum string
+
+// GoogleAuthUrl defines model for GoogleAuthUrl.
+type GoogleAuthUrl struct {
+	RequestUrl string `json:"request_url"`
+}
 
 // GoogleCalendar defines model for GoogleCalendar.
 type GoogleCalendar struct {
@@ -32246,12 +32250,6 @@ type InvoiceItem struct {
 	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
-// InvoiceItemCompensation defines model for InvoiceItemCompensation.
-type InvoiceItemCompensation struct {
-	// OfferingComponentName Name of the offering component for compensation
-	OfferingComponentName string `json:"offering_component_name"`
-}
-
 // InvoiceItemCompensationRequest defines model for InvoiceItemCompensationRequest.
 type InvoiceItemCompensationRequest struct {
 	// OfferingComponentName Name of the offering component for compensation
@@ -32332,11 +32330,6 @@ type InvoiceItemDetails struct {
 	ServiceProviderUuid *openapi_types.UUID `json:"service_provider_uuid,omitempty"`
 }
 
-// InvoiceItemMigrateTo defines model for InvoiceItemMigrateTo.
-type InvoiceItemMigrateTo struct {
-	Invoice string `json:"invoice"`
-}
-
 // InvoiceItemMigrateToRequest defines model for InvoiceItemMigrateToRequest.
 type InvoiceItemMigrateToRequest struct {
 	Invoice string `json:"invoice"`
@@ -32352,6 +32345,11 @@ type InvoiceItemOEnum1 string
 type InvoiceItemTotalPrice struct {
 	// TotalPrice Total price for the invoice item
 	TotalPrice string `json:"total_price"`
+}
+
+// InvoiceItemUUID defines model for InvoiceItemUUID.
+type InvoiceItemUUID struct {
+	InvoiceItemUuid openapi_types.UUID `json:"invoice_item_uuid"`
 }
 
 // InvoiceItemUpdate defines model for InvoiceItemUpdate.
@@ -32782,20 +32780,9 @@ type LinkResourceResponse struct {
 	Success           bool               `json:"success"`
 }
 
-// LinkToInvoice defines model for LinkToInvoice.
-type LinkToInvoice struct {
-	Invoice string `json:"invoice"`
-}
-
 // LinkToInvoiceRequest defines model for LinkToInvoiceRequest.
 type LinkToInvoiceRequest struct {
 	Invoice string `json:"invoice"`
-}
-
-// LoadBalancerAsyncOperationResponse defines model for LoadBalancerAsyncOperationResponse.
-type LoadBalancerAsyncOperationResponse struct {
-	// Status Message that execution of the operation was scheduled.
-	Status string `json:"status"`
 }
 
 // LoadBalancerAttachFloatingIPRequest defines model for LoadBalancerAttachFloatingIPRequest.
@@ -34210,12 +34197,6 @@ type MessageTemplateRequest struct {
 	Subject string `json:"subject"`
 }
 
-// MetricsReset defines model for MetricsReset.
-type MetricsReset struct {
-	// Status Operation status
-	Status *string `json:"status,omitempty"`
-}
-
 // MigrationCreate defines model for MigrationCreate.
 type MigrationCreate struct {
 	Mappings    *Mapping           `json:"mappings,omitempty"`
@@ -34847,6 +34828,26 @@ type Notification struct {
 	Templates *[]NotificationTemplateDetailSerializers `json:"templates,omitempty"`
 	Url       *string                                  `json:"url,omitempty"`
 	Uuid      *openapi_types.UUID                      `json:"uuid,omitempty"`
+}
+
+// NotificationRecipient defines model for NotificationRecipient.
+type NotificationRecipient struct {
+	Customers []NotificationRecipientCustomer `json:"customers"`
+	Email     openapi_types.Email             `json:"email"`
+	FullName  *string                         `json:"full_name,omitempty"`
+	Offerings []NotificationRecipientOffering `json:"offerings"`
+}
+
+// NotificationRecipientCustomer defines model for NotificationRecipientCustomer.
+type NotificationRecipientCustomer struct {
+	Name string             `json:"name"`
+	Uuid openapi_types.UUID `json:"uuid"`
+}
+
+// NotificationRecipientOffering defines model for NotificationRecipientOffering.
+type NotificationRecipientOffering struct {
+	Name string             `json:"name"`
+	Uuid openapi_types.UUID `json:"uuid"`
 }
 
 // NotificationRequest defines model for NotificationRequest.
@@ -35653,6 +35654,19 @@ type OfferingLocationUpdateRequest struct {
 	Longitude float64 `json:"longitude"`
 }
 
+// OfferingMapping defines model for OfferingMapping.
+type OfferingMapping struct {
+	Description string `json:"description"`
+	Name        string `json:"name"`
+	Slug        string `json:"slug"`
+	Uuid        string `json:"uuid"`
+}
+
+// OfferingMappingMap defines model for OfferingMappingMap.
+type OfferingMappingMap struct {
+	Asterisk *OfferingMapping `json:"*"`
+}
+
 // OfferingOptions defines model for OfferingOptions.
 type OfferingOptions struct {
 	Options *map[string]OptionField `json:"options,omitempty"`
@@ -35884,12 +35898,6 @@ type OfferingProfileBindRequest struct {
 type OfferingProfileRequest struct {
 	Description *string `json:"description,omitempty"`
 	Name        string  `json:"name"`
-}
-
-// OfferingProfileRoleAssign defines model for OfferingProfileRoleAssign.
-type OfferingProfileRoleAssign struct {
-	// Role Role UUID to add or remove.
-	Role openapi_types.UUID `json:"role"`
 }
 
 // OfferingProfileRoleAssignRequest defines model for OfferingProfileRoleAssignRequest.
@@ -39007,22 +39015,6 @@ type OpenStackTenantCreateOrderAttributes struct {
 // OpenStackTenantFieldEnum defines model for OpenStackTenantFieldEnum.
 type OpenStackTenantFieldEnum string
 
-// OpenStackTenantQuota defines model for OpenStackTenantQuota.
-type OpenStackTenantQuota struct {
-	FloatingIpCount        *int `json:"floating_ip_count,omitempty"`
-	Instances              *int `json:"instances,omitempty"`
-	NetworkCount           *int `json:"network_count,omitempty"`
-	PortCount              *int `json:"port_count,omitempty"`
-	Ram                    *int `json:"ram,omitempty"`
-	SecurityGroupCount     *int `json:"security_group_count,omitempty"`
-	SecurityGroupRuleCount *int `json:"security_group_rule_count,omitempty"`
-	Snapshots              *int `json:"snapshots,omitempty"`
-	Storage                *int `json:"storage,omitempty"`
-	SubnetCount            *int `json:"subnet_count,omitempty"`
-	Vcpu                   *int `json:"vcpu,omitempty"`
-	Volumes                *int `json:"volumes,omitempty"`
-}
-
 // OpenStackTenantRequest defines model for OpenStackTenantRequest.
 type OpenStackTenantRequest struct {
 	// AvailabilityZone Optional availability group. Will be used for all instances provisioned in this tenant
@@ -39042,6 +39034,13 @@ type OpenStackTenantSecurityGroupRequest struct {
 	Description *string                                    `json:"description,omitempty"`
 	Name        string                                     `json:"name"`
 	Rules       *[]OpenStackSecurityGroupRuleCreateRequest `json:"rules,omitempty"`
+}
+
+// OpenStackUsageStatsResponse defines model for OpenStackUsageStatsResponse.
+type OpenStackUsageStatsResponse struct {
+	CreatedInstancesCount *int    `json:"created_instances_count,omitempty"`
+	Name                  *string `json:"name,omitempty"`
+	RunningInstancesCount *int    `json:"running_instances_count,omitempty"`
 }
 
 // OpenStackVolume defines model for OpenStackVolume.
@@ -43076,6 +43075,19 @@ type ProjectInfoRequest struct {
 	Shortname *string `json:"shortname,omitempty"`
 }
 
+// ProjectMapping defines model for ProjectMapping.
+type ProjectMapping struct {
+	CustomerName string `json:"customer_name"`
+	CustomerUuid string `json:"customer_uuid"`
+	Name         string `json:"name"`
+	Uuid         string `json:"uuid"`
+}
+
+// ProjectMappingMap defines model for ProjectMappingMap.
+type ProjectMappingMap struct {
+	Asterisk *ProjectMapping `json:"*"`
+}
+
 // ProjectOrderAutoApproval defines model for ProjectOrderAutoApproval.
 type ProjectOrderAutoApproval struct {
 	Created           *time.Time `json:"created,omitempty"`
@@ -45508,6 +45520,11 @@ type RancherClusterTemplateNode struct {
 	SystemVolumeSize    int                 `json:"system_volume_size"`
 }
 
+// RancherCreateManagementSecurityGroupResponse defines model for RancherCreateManagementSecurityGroupResponse.
+type RancherCreateManagementSecurityGroupResponse struct {
+	SecurityGroupUuid string `json:"security_group_uuid"`
+}
+
 // RancherCreateNode defines model for RancherCreateNode.
 type RancherCreateNode struct {
 	Cluster string              `json:"cluster"`
@@ -45566,13 +45583,6 @@ type RancherHPARequest struct {
 	MinReplicas *int        `json:"min_replicas,omitempty"`
 	Name        string      `json:"name"`
 	Workload    *string     `json:"workload,omitempty"`
-}
-
-// RancherImportYaml defines model for RancherImportYaml.
-type RancherImportYaml struct {
-	DefaultNamespace *string `json:"default_namespace,omitempty"`
-	Namespace        *string `json:"namespace,omitempty"`
-	Yaml             string  `json:"yaml"`
 }
 
 // RancherImportYamlRequest defines model for RancherImportYamlRequest.
@@ -46973,20 +46983,9 @@ type ResourceProject struct {
 	Uuid                *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
-// ResourceProjectBackendId defines model for ResourceProjectBackendId.
-type ResourceProjectBackendId struct {
-	BackendId string `json:"backend_id"`
-}
-
 // ResourceProjectBackendIdRequest defines model for ResourceProjectBackendIdRequest.
 type ResourceProjectBackendIdRequest struct {
 	BackendId string `json:"backend_id"`
-}
-
-// ResourceProjectErrorMessage defines model for ResourceProjectErrorMessage.
-type ResourceProjectErrorMessage struct {
-	// ErrorMessage Free-form description of why the project transitioned to Erred.
-	ErrorMessage *string `json:"error_message,omitempty"`
 }
 
 // ResourceProjectErrorMessageRequest defines model for ResourceProjectErrorMessageRequest.
@@ -48230,16 +48229,6 @@ type RoundReviewer struct {
 // RoundStatus defines model for RoundStatus.
 type RoundStatus string
 
-// RouterSetErredResponse defines model for RouterSetErredResponse.
-type RouterSetErredResponse struct {
-	Detail string `json:"detail"`
-}
-
-// RouterSetOkResponse defines model for RouterSetOkResponse.
-type RouterSetOkResponse struct {
-	Detail string `json:"detail"`
-}
-
 // Rule defines model for Rule.
 type Rule struct {
 	CategoryTitle                     *string                 `json:"category_title,omitempty"`
@@ -48493,6 +48482,16 @@ type ScreenshotRequestMultipart struct {
 	Image       openapi_types.File `json:"image"`
 	Name        string             `json:"name"`
 	Offering    string             `json:"offering"`
+}
+
+// ScriptAsyncDryRunResponse defines model for ScriptAsyncDryRunResponse.
+type ScriptAsyncDryRunResponse struct {
+	Uuid openapi_types.UUID `json:"uuid"`
+}
+
+// ScriptDryRunResponse defines model for ScriptDryRunResponse.
+type ScriptDryRunResponse struct {
+	Output string `json:"output"`
 }
 
 // Secret defines model for Secret.
@@ -50284,11 +50283,6 @@ type TriggerSyncRequestRequest struct {
 	Year         int                 `json:"year"`
 }
 
-// UnsilenceActionResponse defines model for UnsilenceActionResponse.
-type UnsilenceActionResponse struct {
-	Status string `json:"status"`
-}
-
 // UpdateActionsRequest defines model for UpdateActionsRequest.
 type UpdateActionsRequest struct {
 	// ProviderActionType Optional provider action type to update. If not provided, updates all providers.
@@ -50792,6 +50786,11 @@ type UserEmailChangeRequest struct {
 // UserFieldEnum defines model for UserFieldEnum.
 type UserFieldEnum string
 
+// UserHasResourceAccess defines model for UserHasResourceAccess.
+type UserHasResourceAccess struct {
+	HasAccess *bool `json:"has_access,omitempty"`
+}
+
 // UserIdentitySourceCount defines model for UserIdentitySourceCount.
 type UserIdentitySourceCount struct {
 	// Count Number of users
@@ -50828,6 +50827,129 @@ type UserJobTitleCount struct {
 type UserLanguageCount struct {
 	Count    int    `json:"count"`
 	Language string `json:"language"`
+}
+
+// UserMapping defines model for UserMapping.
+type UserMapping struct {
+	Email    openapi_types.Email `json:"email"`
+	FullName string              `json:"full_name"`
+	Username string              `json:"username"`
+	Uuid     string              `json:"uuid"`
+}
+
+// UserMappingMap defines model for UserMappingMap.
+type UserMappingMap struct {
+	Asterisk *UserMapping `json:"*"`
+}
+
+// UserMe defines model for UserMe.
+type UserMe struct {
+	// ActiveIsds List of ISDs that have asserted this user exists. User is deactivated when this becomes empty.
+	ActiveIsds interface{} `json:"active_isds,omitempty"`
+	Address    *string     `json:"address,omitempty"`
+
+	// Affiliations Person's affiliation within organization such as student, faculty, staff.
+	Affiliations interface{} `json:"affiliations,omitempty"`
+
+	// AgreementDate Indicates when the user has agreed with the policy.
+	AgreementDate *time.Time `json:"agreement_date,omitempty"`
+
+	// AttributeSources Per-attribute source and freshness tracking. Format: {'field_name': {'source': 'isd:<name>', 'timestamp': 'ISO8601'}}.
+	AttributeSources   interface{}         `json:"attribute_sources,omitempty"`
+	BirthDate          *openapi_types.Date `json:"birth_date,omitempty"`
+	CivilNumber        *string             `json:"civil_number,omitempty"`
+	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
+	DateJoined         *time.Time          `json:"date_joined,omitempty"`
+
+	// DeactivationReason Reason why the user was deactivated. Visible to staff and support.
+	DeactivationReason *string `json:"deactivation_reason,omitempty"`
+	Description        *string `json:"description,omitempty"`
+
+	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
+	EdupersonAssurance interface{}         `json:"eduperson_assurance,omitempty"`
+	Email              openapi_types.Email `json:"email"`
+	FirstName          *string             `json:"first_name,omitempty"`
+	FullName           *string             `json:"full_name,omitempty"`
+
+	// Gender User's gender (male, female, or unknown)
+	Gender                        *UserMe_Gender `json:"gender,omitempty"`
+	HasActiveSession              *bool          `json:"has_active_session,omitempty"`
+	HasUsablePassword             *bool          `json:"has_usable_password,omitempty"`
+	IdentityProviderFields        *[]string      `json:"identity_provider_fields,omitempty"`
+	IdentityProviderLabel         *string        `json:"identity_provider_label,omitempty"`
+	IdentityProviderManagementUrl *string        `json:"identity_provider_management_url,omitempty"`
+	IdentityProviderName          *string        `json:"identity_provider_name,omitempty"`
+
+	// IdentitySource Indicates what identity provider was used.
+	IdentitySource *string `json:"identity_source,omitempty"`
+	Image          *string `json:"image,omitempty"`
+	IpAddress      *string `json:"ip_address,omitempty"`
+
+	// IsActive Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
+	IsActive *bool `json:"is_active,omitempty"`
+
+	// IsIdentityManager Designates whether the user is allowed to manage remote user identities.
+	IsIdentityManager *bool `json:"is_identity_manager,omitempty"`
+
+	// IsStaff Designates whether the user can log into this admin site.
+	IsStaff *bool `json:"is_staff,omitempty"`
+
+	// IsSupport Designates whether the user is a global support user.
+	IsSupport *bool   `json:"is_support,omitempty"`
+	JobTitle  *string `json:"job_title,omitempty"`
+	LastName  *string `json:"last_name,omitempty"`
+
+	// ManagedIsds List of ISD source identifiers this user can manage via Identity Bridge. E.g., ['isd:puhuri', 'isd:fenix']. Non-empty list implies identity manager role.
+	ManagedIsds interface{} `json:"managed_isds,omitempty"`
+
+	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
+	Nationalities interface{} `json:"nationalities,omitempty"`
+
+	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
+	Nationality *string `json:"nationality,omitempty"`
+	NativeName  *string `json:"native_name,omitempty"`
+
+	// NotificationsEnabled Designates whether the user is allowed to receive email notifications.
+	NotificationsEnabled *bool   `json:"notifications_enabled,omitempty"`
+	Organization         *string `json:"organization,omitempty"`
+	OrganizationCountry  *string `json:"organization_country,omitempty"`
+
+	// OrganizationRegistryCode Company registration code of the user's organization, if known
+	OrganizationRegistryCode *string `json:"organization_registry_code,omitempty"`
+
+	// OrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
+	OrganizationType *string       `json:"organization_type,omitempty"`
+	Permissions      *[]Permission `json:"permissions,omitempty"`
+
+	// PersonalTitle Honorific title (Mr, Ms, Dr, Prof, etc.)
+	PersonalTitle       *string              `json:"personal_title,omitempty"`
+	PhoneNumber         *string              `json:"phone_number,omitempty"`
+	PlaceOfBirth        *string              `json:"place_of_birth,omitempty"`
+	PreferredLanguage   *string              `json:"preferred_language,omitempty"`
+	ProfileCompleteness *ProfileCompleteness `json:"profile_completeness,omitempty"`
+
+	// RegistrationMethod Indicates what registration method was used.
+	RegistrationMethod       *string `json:"registration_method,omitempty"`
+	RequestedEmail           *string `json:"requested_email,omitempty"`
+	ShouldProtectUserDetails *bool   `json:"should_protect_user_details,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug           *string    `json:"slug,omitempty"`
+	Token          *string    `json:"token,omitempty"`
+	TokenExpiresAt *time.Time `json:"token_expires_at,omitempty"`
+
+	// TokenLifetime Token lifetime in seconds.
+	TokenLifetime *int    `json:"token_lifetime,omitempty"`
+	Url           *string `json:"url,omitempty"`
+
+	// Username Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
+	Username string              `json:"username"`
+	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// UserMe_Gender User's gender (male, female, or unknown)
+type UserMe_Gender struct {
+	union json.RawMessage
 }
 
 // UserNationalityStats defines model for UserNationalityStats.
@@ -51394,12 +51516,6 @@ type VmwareDiskAccessUrl1 = string
 // VmwareDisk_AccessUrl defines model for VmwareDisk.AccessUrl.
 type VmwareDisk_AccessUrl struct {
 	union json.RawMessage
-}
-
-// VmwareDiskExtend defines model for VmwareDiskExtend.
-type VmwareDiskExtend struct {
-	// Size Size in MiB
-	Size int `json:"size"`
 }
 
 // VmwareDiskExtendRequest defines model for VmwareDiskExtendRequest.
@@ -54058,11 +54174,6 @@ type BroadcastMessagesCountParams struct {
 	Subject  *string                    `form:"subject,omitempty" json:"subject,omitempty"`
 }
 
-// BroadcastMessagesRecipientsRetrieveParams defines parameters for BroadcastMessagesRecipientsRetrieve.
-type BroadcastMessagesRecipientsRetrieveParams struct {
-	Field *[]BroadcastMessageFieldEnum `form:"field,omitempty" json:"field,omitempty"`
-}
-
 // BroadcastMessagesRetrieveParams defines parameters for BroadcastMessagesRetrieve.
 type BroadcastMessagesRetrieveParams struct {
 	Field *[]BroadcastMessageFieldEnum `form:"field,omitempty" json:"field,omitempty"`
@@ -55865,21 +55976,6 @@ type EventsCountParams struct {
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
-// EventsCountRetrieveParams defines parameters for EventsCountRetrieve.
-type EventsCountRetrieveParams struct {
-	Field *[]EventFieldEnum `form:"field,omitempty" json:"field,omitempty"`
-}
-
-// EventsEventGroupsRetrieveParams defines parameters for EventsEventGroupsRetrieve.
-type EventsEventGroupsRetrieveParams struct {
-	Field *[]EventFieldEnum `form:"field,omitempty" json:"field,omitempty"`
-}
-
-// EventsScopeTypesRetrieveParams defines parameters for EventsScopeTypesRetrieve.
-type EventsScopeTypesRetrieveParams struct {
-	Field *[]EventFieldEnum `form:"field,omitempty" json:"field,omitempty"`
-}
-
 // EventsRetrieveParams defines parameters for EventsRetrieve.
 type EventsRetrieveParams struct {
 	Field *[]EventFieldEnum `form:"field,omitempty" json:"field,omitempty"`
@@ -56148,11 +56244,6 @@ type GoogleAuthCallbackCountParams struct {
 
 // GoogleAuthRetrieveParams defines parameters for GoogleAuthRetrieve.
 type GoogleAuthRetrieveParams struct {
-	Field *[]GoogleCredentialsFieldEnum `form:"field,omitempty" json:"field,omitempty"`
-}
-
-// GoogleAuthAuthorizeRetrieveParams defines parameters for GoogleAuthAuthorizeRetrieve.
-type GoogleAuthAuthorizeRetrieveParams struct {
 	Field *[]GoogleCredentialsFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 }
 
@@ -56435,6 +56526,29 @@ type InvoiceItemsTotalPriceCountParams struct {
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 	Month        *int                `form:"month,omitempty" json:"month,omitempty"`
 	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+
+	// StartMonth Start month
+	StartMonth *float32 `form:"start_month,omitempty" json:"start_month,omitempty"`
+
+	// StartYear Start year
+	StartYear *float32 `form:"start_year,omitempty" json:"start_year,omitempty"`
+	Year      *int     `form:"year,omitempty" json:"year,omitempty"`
+}
+
+// InvoiceItemsConsumptionsListParams defines parameters for InvoiceItemsConsumptionsList.
+type InvoiceItemsConsumptionsListParams struct {
+	CreditUuid   *openapi_types.UUID `form:"credit_uuid,omitempty" json:"credit_uuid,omitempty"`
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	Month        *int                `form:"month,omitempty" json:"month,omitempty"`
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
 
@@ -60585,8 +60699,6 @@ type MarketplaceProviderOfferingsUpdateAttributesJSONBody map[string]interface{}
 
 // MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParams defines parameters for MarketplaceProviderOfferingsUserHasResourceAccessRetrieve.
 type MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParams struct {
-	Field *[]ProviderOfferingDetailsFieldEnum `form:"field,omitempty" json:"field,omitempty"`
-
 	// Username Username of the user to check.
 	Username string `form:"username" json:"username"`
 }
@@ -66469,11 +66581,6 @@ type OpenstackFlavorsCountParams struct {
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
 }
 
-// OpenstackFlavorsUsageStatsRetrieveParams defines parameters for OpenstackFlavorsUsageStatsRetrieve.
-type OpenstackFlavorsUsageStatsRetrieveParams struct {
-	Field *[]OpenStackFlavorFieldEnum `form:"field,omitempty" json:"field,omitempty"`
-}
-
 // OpenstackFlavorsRetrieveParams defines parameters for OpenstackFlavorsRetrieve.
 type OpenstackFlavorsRetrieveParams struct {
 	Field *[]OpenStackFlavorFieldEnum `form:"field,omitempty" json:"field,omitempty"`
@@ -71277,11 +71384,6 @@ type RancherIngressesRetrieveParams struct {
 	Field *[]RancherIngressFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 }
 
-// RancherIngressesYamlRetrieveParams defines parameters for RancherIngressesYamlRetrieve.
-type RancherIngressesYamlRetrieveParams struct {
-	Field *[]RancherIngressFieldEnum `form:"field,omitempty" json:"field,omitempty"`
-}
-
 // RancherNamespacesListParams defines parameters for RancherNamespacesList.
 type RancherNamespacesListParams struct {
 	ClusterUuid *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
@@ -71585,11 +71687,6 @@ type RancherServicesCountParams struct {
 
 // RancherServicesRetrieveParams defines parameters for RancherServicesRetrieve.
 type RancherServicesRetrieveParams struct {
-	Field *[]RancherServiceFieldEnum `form:"field,omitempty" json:"field,omitempty"`
-}
-
-// RancherServicesYamlRetrieveParams defines parameters for RancherServicesYamlRetrieve.
-type RancherServicesYamlRetrieveParams struct {
 	Field *[]RancherServiceFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 }
 
@@ -73474,11 +73571,6 @@ type UsersCountParams struct {
 
 	// UsernameList Comma-separated usernames
 	UsernameList *string `form:"username_list,omitempty" json:"username_list,omitempty"`
-}
-
-// UsersMeRetrieveParams defines parameters for UsersMeRetrieve.
-type UsersMeRetrieveParams struct {
-	Field *[]UserFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 }
 
 // UsersUserActiveStatusCountListParams defines parameters for UsersUserActiveStatusCountList.
@@ -91759,6 +91851,94 @@ func (t *UserDataAccessLog_IpAddress) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsGenderEnum returns the union data inside the UserMe_Gender as a GenderEnum
+func (t UserMe_Gender) AsGenderEnum() (GenderEnum, error) {
+	var body GenderEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromGenderEnum overwrites any union data inside the UserMe_Gender as the provided GenderEnum
+func (t *UserMe_Gender) FromGenderEnum(v GenderEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeGenderEnum performs a merge with any union data inside the UserMe_Gender, using the provided GenderEnum
+func (t *UserMe_Gender) MergeGenderEnum(v GenderEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the UserMe_Gender as a BlankEnum
+func (t UserMe_Gender) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the UserMe_Gender as the provided BlankEnum
+func (t *UserMe_Gender) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the UserMe_Gender, using the provided BlankEnum
+func (t *UserMe_Gender) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the UserMe_Gender as a NullEnum
+func (t UserMe_Gender) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the UserMe_Gender as the provided NullEnum
+func (t *UserMe_Gender) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the UserMe_Gender, using the provided NullEnum
+func (t *UserMe_Gender) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t UserMe_Gender) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *UserMe_Gender) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsGenderEnum returns the union data inside the UserRequest_Gender as a GenderEnum
 func (t UserRequest_Gender) AsGenderEnum() (GenderEnum, error) {
 	var body GenderEnum
@@ -93551,7 +93731,7 @@ type ClientInterface interface {
 	BroadcastMessagesCreate(ctx context.Context, body BroadcastMessagesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// BroadcastMessagesRecipientsRetrieve request
-	BroadcastMessagesRecipientsRetrieve(ctx context.Context, params *BroadcastMessagesRecipientsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	BroadcastMessagesRecipientsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// BroadcastMessagesRecipientsCount request
 	BroadcastMessagesRecipientsCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -94386,19 +94566,19 @@ type ClientInterface interface {
 	EventsCount(ctx context.Context, params *EventsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// EventsCountRetrieve request
-	EventsCountRetrieve(ctx context.Context, params *EventsCountRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	EventsCountRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// EventsCountCount request
 	EventsCountCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// EventsEventGroupsRetrieve request
-	EventsEventGroupsRetrieve(ctx context.Context, params *EventsEventGroupsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	EventsEventGroupsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// EventsEventGroupsCount request
 	EventsEventGroupsCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// EventsScopeTypesRetrieve request
-	EventsScopeTypesRetrieve(ctx context.Context, params *EventsScopeTypesRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	EventsScopeTypesRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// EventsScopeTypesCount request
 	EventsScopeTypesCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -94503,7 +94683,7 @@ type ClientInterface interface {
 	GoogleAuthRetrieve(ctx context.Context, uuid openapi_types.UUID, params *GoogleAuthRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GoogleAuthAuthorizeRetrieve request
-	GoogleAuthAuthorizeRetrieve(ctx context.Context, uuid openapi_types.UUID, params *GoogleAuthAuthorizeRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GoogleAuthAuthorizeRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// HooksEmailList request
 	HooksEmailList(ctx context.Context, params *HooksEmailListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -94664,8 +94844,8 @@ type ClientInterface interface {
 
 	InvoiceItemsUpdate(ctx context.Context, uuid openapi_types.UUID, body InvoiceItemsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// InvoiceItemsConsumptionsRetrieve request
-	InvoiceItemsConsumptionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// InvoiceItemsConsumptionsList request
+	InvoiceItemsConsumptionsList(ctx context.Context, uuid openapi_types.UUID, params *InvoiceItemsConsumptionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// InvoiceItemsCreateCompensationWithBody request with any body
 	InvoiceItemsCreateCompensationWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -98456,7 +98636,7 @@ type ClientInterface interface {
 	OpenstackFlavorsCount(ctx context.Context, params *OpenstackFlavorsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackFlavorsUsageStatsRetrieve request
-	OpenstackFlavorsUsageStatsRetrieve(ctx context.Context, params *OpenstackFlavorsUsageStatsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OpenstackFlavorsUsageStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackFlavorsUsageStatsCount request
 	OpenstackFlavorsUsageStatsCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -100519,7 +100699,7 @@ type ClientInterface interface {
 	RancherIngressesUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RancherIngressesYamlRetrieve request
-	RancherIngressesYamlRetrieve(ctx context.Context, uuid openapi_types.UUID, params *RancherIngressesYamlRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	RancherIngressesYamlRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RancherIngressesYamlUpdateWithBody request with any body
 	RancherIngressesYamlUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -100643,7 +100823,7 @@ type ClientInterface interface {
 	RancherServicesUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RancherServicesYamlRetrieve request
-	RancherServicesYamlRetrieve(ctx context.Context, uuid openapi_types.UUID, params *RancherServicesYamlRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	RancherServicesYamlRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RancherServicesYamlUpdateWithBody request with any body
 	RancherServicesYamlUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -101813,7 +101993,7 @@ type ClientInterface interface {
 	UsersConfirmEmail(ctx context.Context, body UsersConfirmEmailJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UsersMeRetrieve request
-	UsersMeRetrieve(ctx context.Context, params *UsersMeRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UsersMeRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UsersMeCount request
 	UsersMeCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -106552,8 +106732,8 @@ func (c *Client) BroadcastMessagesCreate(ctx context.Context, body BroadcastMess
 	return c.Client.Do(req)
 }
 
-func (c *Client) BroadcastMessagesRecipientsRetrieve(ctx context.Context, params *BroadcastMessagesRecipientsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewBroadcastMessagesRecipientsRetrieveRequest(c.Server, params)
+func (c *Client) BroadcastMessagesRecipientsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewBroadcastMessagesRecipientsRetrieveRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -110200,8 +110380,8 @@ func (c *Client) EventsCount(ctx context.Context, params *EventsCountParams, req
 	return c.Client.Do(req)
 }
 
-func (c *Client) EventsCountRetrieve(ctx context.Context, params *EventsCountRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewEventsCountRetrieveRequest(c.Server, params)
+func (c *Client) EventsCountRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewEventsCountRetrieveRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -110224,8 +110404,8 @@ func (c *Client) EventsCountCount(ctx context.Context, reqEditors ...RequestEdit
 	return c.Client.Do(req)
 }
 
-func (c *Client) EventsEventGroupsRetrieve(ctx context.Context, params *EventsEventGroupsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewEventsEventGroupsRetrieveRequest(c.Server, params)
+func (c *Client) EventsEventGroupsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewEventsEventGroupsRetrieveRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -110248,8 +110428,8 @@ func (c *Client) EventsEventGroupsCount(ctx context.Context, reqEditors ...Reque
 	return c.Client.Do(req)
 }
 
-func (c *Client) EventsScopeTypesRetrieve(ctx context.Context, params *EventsScopeTypesRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewEventsScopeTypesRetrieveRequest(c.Server, params)
+func (c *Client) EventsScopeTypesRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewEventsScopeTypesRetrieveRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -110704,8 +110884,8 @@ func (c *Client) GoogleAuthRetrieve(ctx context.Context, uuid openapi_types.UUID
 	return c.Client.Do(req)
 }
 
-func (c *Client) GoogleAuthAuthorizeRetrieve(ctx context.Context, uuid openapi_types.UUID, params *GoogleAuthAuthorizeRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGoogleAuthAuthorizeRetrieveRequest(c.Server, uuid, params)
+func (c *Client) GoogleAuthAuthorizeRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGoogleAuthAuthorizeRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -111412,8 +111592,8 @@ func (c *Client) InvoiceItemsUpdate(ctx context.Context, uuid openapi_types.UUID
 	return c.Client.Do(req)
 }
 
-func (c *Client) InvoiceItemsConsumptionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewInvoiceItemsConsumptionsRetrieveRequest(c.Server, uuid)
+func (c *Client) InvoiceItemsConsumptionsList(ctx context.Context, uuid openapi_types.UUID, params *InvoiceItemsConsumptionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewInvoiceItemsConsumptionsListRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -128104,8 +128284,8 @@ func (c *Client) OpenstackFlavorsCount(ctx context.Context, params *OpenstackFla
 	return c.Client.Do(req)
 }
 
-func (c *Client) OpenstackFlavorsUsageStatsRetrieve(ctx context.Context, params *OpenstackFlavorsUsageStatsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackFlavorsUsageStatsRetrieveRequest(c.Server, params)
+func (c *Client) OpenstackFlavorsUsageStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackFlavorsUsageStatsRetrieveRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -137188,8 +137368,8 @@ func (c *Client) RancherIngressesUnlink(ctx context.Context, uuid openapi_types.
 	return c.Client.Do(req)
 }
 
-func (c *Client) RancherIngressesYamlRetrieve(ctx context.Context, uuid openapi_types.UUID, params *RancherIngressesYamlRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRancherIngressesYamlRetrieveRequest(c.Server, uuid, params)
+func (c *Client) RancherIngressesYamlRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRancherIngressesYamlRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -137716,8 +137896,8 @@ func (c *Client) RancherServicesUnlink(ctx context.Context, uuid openapi_types.U
 	return c.Client.Do(req)
 }
 
-func (c *Client) RancherServicesYamlRetrieve(ctx context.Context, uuid openapi_types.UUID, params *RancherServicesYamlRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRancherServicesYamlRetrieveRequest(c.Server, uuid, params)
+func (c *Client) RancherServicesYamlRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRancherServicesYamlRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -142852,8 +143032,8 @@ func (c *Client) UsersConfirmEmail(ctx context.Context, body UsersConfirmEmailJS
 	return c.Client.Do(req)
 }
 
-func (c *Client) UsersMeRetrieve(ctx context.Context, params *UsersMeRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUsersMeRetrieveRequest(c.Server, params)
+func (c *Client) UsersMeRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersMeRetrieveRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -164734,7 +164914,7 @@ func NewBroadcastMessagesCreateRequestWithBody(server string, contentType string
 }
 
 // NewBroadcastMessagesRecipientsRetrieveRequest generates requests for BroadcastMessagesRecipientsRetrieve
-func NewBroadcastMessagesRecipientsRetrieveRequest(server string, params *BroadcastMessagesRecipientsRetrieveParams) (*http.Request, error) {
+func NewBroadcastMessagesRecipientsRetrieveRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -164750,33 +164930,6 @@ func NewBroadcastMessagesRecipientsRetrieveRequest(server string, params *Broadc
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if params.Field != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -181277,7 +181430,7 @@ func NewEventsCountRequest(server string, params *EventsCountParams) (*http.Requ
 }
 
 // NewEventsCountRetrieveRequest generates requests for EventsCountRetrieve
-func NewEventsCountRetrieveRequest(server string, params *EventsCountRetrieveParams) (*http.Request, error) {
+func NewEventsCountRetrieveRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -181293,33 +181446,6 @@ func NewEventsCountRetrieveRequest(server string, params *EventsCountRetrievePar
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if params.Field != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -181358,7 +181484,7 @@ func NewEventsCountCountRequest(server string) (*http.Request, error) {
 }
 
 // NewEventsEventGroupsRetrieveRequest generates requests for EventsEventGroupsRetrieve
-func NewEventsEventGroupsRetrieveRequest(server string, params *EventsEventGroupsRetrieveParams) (*http.Request, error) {
+func NewEventsEventGroupsRetrieveRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -181374,33 +181500,6 @@ func NewEventsEventGroupsRetrieveRequest(server string, params *EventsEventGroup
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if params.Field != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -181439,7 +181538,7 @@ func NewEventsEventGroupsCountRequest(server string) (*http.Request, error) {
 }
 
 // NewEventsScopeTypesRetrieveRequest generates requests for EventsScopeTypesRetrieve
-func NewEventsScopeTypesRetrieveRequest(server string, params *EventsScopeTypesRetrieveParams) (*http.Request, error) {
+func NewEventsScopeTypesRetrieveRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -181455,33 +181554,6 @@ func NewEventsScopeTypesRetrieveRequest(server string, params *EventsScopeTypesR
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if params.Field != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -183682,7 +183754,7 @@ func NewGoogleAuthRetrieveRequest(server string, uuid openapi_types.UUID, params
 }
 
 // NewGoogleAuthAuthorizeRetrieveRequest generates requests for GoogleAuthAuthorizeRetrieve
-func NewGoogleAuthAuthorizeRetrieveRequest(server string, uuid openapi_types.UUID, params *GoogleAuthAuthorizeRetrieveParams) (*http.Request, error) {
+func NewGoogleAuthAuthorizeRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -183705,33 +183777,6 @@ func NewGoogleAuthAuthorizeRetrieveRequest(server string, uuid openapi_types.UUI
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if params.Field != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -186896,8 +186941,8 @@ func NewInvoiceItemsUpdateRequestWithBody(server string, uuid openapi_types.UUID
 	return req, nil
 }
 
-// NewInvoiceItemsConsumptionsRetrieveRequest generates requests for InvoiceItemsConsumptionsRetrieve
-func NewInvoiceItemsConsumptionsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+// NewInvoiceItemsConsumptionsListRequest generates requests for InvoiceItemsConsumptionsList
+func NewInvoiceItemsConsumptionsListRequest(server string, uuid openapi_types.UUID, params *InvoiceItemsConsumptionsListParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -186920,6 +186965,153 @@ func NewInvoiceItemsConsumptionsRetrieveRequest(server string, uuid openapi_type
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CreditUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "credit_uuid", *params.CreditUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Month != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "month", *params.Month, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_uuid", *params.ResourceUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.StartMonth != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start_month", *params.StartMonth, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "number", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.StartYear != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start_year", *params.StartYear, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "number", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Year != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "year", *params.Year, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -222004,18 +222196,6 @@ func NewMarketplaceProviderOfferingsUserHasResourceAccessRetrieveRequest(server 
 		// styled parameters, preserving literal commas as delimiters
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
-
-		if params.Field != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
 
 		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "username", params.Username, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 			return nil, err
@@ -267769,7 +267949,7 @@ func NewOpenstackFlavorsCountRequest(server string, params *OpenstackFlavorsCoun
 }
 
 // NewOpenstackFlavorsUsageStatsRetrieveRequest generates requests for OpenstackFlavorsUsageStatsRetrieve
-func NewOpenstackFlavorsUsageStatsRetrieveRequest(server string, params *OpenstackFlavorsUsageStatsRetrieveParams) (*http.Request, error) {
+func NewOpenstackFlavorsUsageStatsRetrieveRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -267785,33 +267965,6 @@ func NewOpenstackFlavorsUsageStatsRetrieveRequest(server string, params *Opensta
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if params.Field != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -309617,7 +309770,7 @@ func NewRancherIngressesUnlinkRequest(server string, uuid openapi_types.UUID) (*
 }
 
 // NewRancherIngressesYamlRetrieveRequest generates requests for RancherIngressesYamlRetrieve
-func NewRancherIngressesYamlRetrieveRequest(server string, uuid openapi_types.UUID, params *RancherIngressesYamlRetrieveParams) (*http.Request, error) {
+func NewRancherIngressesYamlRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -309640,33 +309793,6 @@ func NewRancherIngressesYamlRetrieveRequest(server string, uuid openapi_types.UU
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if params.Field != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -312271,7 +312397,7 @@ func NewRancherServicesUnlinkRequest(server string, uuid openapi_types.UUID) (*h
 }
 
 // NewRancherServicesYamlRetrieveRequest generates requests for RancherServicesYamlRetrieve
-func NewRancherServicesYamlRetrieveRequest(server string, uuid openapi_types.UUID, params *RancherServicesYamlRetrieveParams) (*http.Request, error) {
+func NewRancherServicesYamlRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -312294,33 +312420,6 @@ func NewRancherServicesYamlRetrieveRequest(server string, uuid openapi_types.UUI
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if params.Field != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -333139,7 +333238,7 @@ func NewUsersConfirmEmailRequestWithBody(server string, contentType string, body
 }
 
 // NewUsersMeRetrieveRequest generates requests for UsersMeRetrieve
-func NewUsersMeRetrieveRequest(server string, params *UsersMeRetrieveParams) (*http.Request, error) {
+func NewUsersMeRetrieveRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -333155,33 +333254,6 @@ func NewUsersMeRetrieveRequest(server string, params *UsersMeRetrieveParams) (*h
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if params.Field != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -342579,7 +342651,7 @@ type ClientWithResponsesInterface interface {
 	BroadcastMessagesCreateWithResponse(ctx context.Context, body BroadcastMessagesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*BroadcastMessagesCreateResponse, error)
 
 	// BroadcastMessagesRecipientsRetrieveWithResponse request
-	BroadcastMessagesRecipientsRetrieveWithResponse(ctx context.Context, params *BroadcastMessagesRecipientsRetrieveParams, reqEditors ...RequestEditorFn) (*BroadcastMessagesRecipientsRetrieveResponse, error)
+	BroadcastMessagesRecipientsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*BroadcastMessagesRecipientsRetrieveResponse, error)
 
 	// BroadcastMessagesRecipientsCountWithResponse request
 	BroadcastMessagesRecipientsCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*BroadcastMessagesRecipientsCountResponse, error)
@@ -343414,19 +343486,19 @@ type ClientWithResponsesInterface interface {
 	EventsCountWithResponse(ctx context.Context, params *EventsCountParams, reqEditors ...RequestEditorFn) (*EventsCountResponse, error)
 
 	// EventsCountRetrieveWithResponse request
-	EventsCountRetrieveWithResponse(ctx context.Context, params *EventsCountRetrieveParams, reqEditors ...RequestEditorFn) (*EventsCountRetrieveResponse, error)
+	EventsCountRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*EventsCountRetrieveResponse, error)
 
 	// EventsCountCountWithResponse request
 	EventsCountCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*EventsCountCountResponse, error)
 
 	// EventsEventGroupsRetrieveWithResponse request
-	EventsEventGroupsRetrieveWithResponse(ctx context.Context, params *EventsEventGroupsRetrieveParams, reqEditors ...RequestEditorFn) (*EventsEventGroupsRetrieveResponse, error)
+	EventsEventGroupsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*EventsEventGroupsRetrieveResponse, error)
 
 	// EventsEventGroupsCountWithResponse request
 	EventsEventGroupsCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*EventsEventGroupsCountResponse, error)
 
 	// EventsScopeTypesRetrieveWithResponse request
-	EventsScopeTypesRetrieveWithResponse(ctx context.Context, params *EventsScopeTypesRetrieveParams, reqEditors ...RequestEditorFn) (*EventsScopeTypesRetrieveResponse, error)
+	EventsScopeTypesRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*EventsScopeTypesRetrieveResponse, error)
 
 	// EventsScopeTypesCountWithResponse request
 	EventsScopeTypesCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*EventsScopeTypesCountResponse, error)
@@ -343531,7 +343603,7 @@ type ClientWithResponsesInterface interface {
 	GoogleAuthRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *GoogleAuthRetrieveParams, reqEditors ...RequestEditorFn) (*GoogleAuthRetrieveResponse, error)
 
 	// GoogleAuthAuthorizeRetrieveWithResponse request
-	GoogleAuthAuthorizeRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *GoogleAuthAuthorizeRetrieveParams, reqEditors ...RequestEditorFn) (*GoogleAuthAuthorizeRetrieveResponse, error)
+	GoogleAuthAuthorizeRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*GoogleAuthAuthorizeRetrieveResponse, error)
 
 	// HooksEmailListWithResponse request
 	HooksEmailListWithResponse(ctx context.Context, params *HooksEmailListParams, reqEditors ...RequestEditorFn) (*HooksEmailListResponse, error)
@@ -343692,8 +343764,8 @@ type ClientWithResponsesInterface interface {
 
 	InvoiceItemsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body InvoiceItemsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*InvoiceItemsUpdateResponse, error)
 
-	// InvoiceItemsConsumptionsRetrieveWithResponse request
-	InvoiceItemsConsumptionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*InvoiceItemsConsumptionsRetrieveResponse, error)
+	// InvoiceItemsConsumptionsListWithResponse request
+	InvoiceItemsConsumptionsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *InvoiceItemsConsumptionsListParams, reqEditors ...RequestEditorFn) (*InvoiceItemsConsumptionsListResponse, error)
 
 	// InvoiceItemsCreateCompensationWithBodyWithResponse request with any body
 	InvoiceItemsCreateCompensationWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*InvoiceItemsCreateCompensationResponse, error)
@@ -347484,7 +347556,7 @@ type ClientWithResponsesInterface interface {
 	OpenstackFlavorsCountWithResponse(ctx context.Context, params *OpenstackFlavorsCountParams, reqEditors ...RequestEditorFn) (*OpenstackFlavorsCountResponse, error)
 
 	// OpenstackFlavorsUsageStatsRetrieveWithResponse request
-	OpenstackFlavorsUsageStatsRetrieveWithResponse(ctx context.Context, params *OpenstackFlavorsUsageStatsRetrieveParams, reqEditors ...RequestEditorFn) (*OpenstackFlavorsUsageStatsRetrieveResponse, error)
+	OpenstackFlavorsUsageStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenstackFlavorsUsageStatsRetrieveResponse, error)
 
 	// OpenstackFlavorsUsageStatsCountWithResponse request
 	OpenstackFlavorsUsageStatsCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenstackFlavorsUsageStatsCountResponse, error)
@@ -349547,7 +349619,7 @@ type ClientWithResponsesInterface interface {
 	RancherIngressesUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherIngressesUnlinkResponse, error)
 
 	// RancherIngressesYamlRetrieveWithResponse request
-	RancherIngressesYamlRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *RancherIngressesYamlRetrieveParams, reqEditors ...RequestEditorFn) (*RancherIngressesYamlRetrieveResponse, error)
+	RancherIngressesYamlRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherIngressesYamlRetrieveResponse, error)
 
 	// RancherIngressesYamlUpdateWithBodyWithResponse request with any body
 	RancherIngressesYamlUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RancherIngressesYamlUpdateResponse, error)
@@ -349671,7 +349743,7 @@ type ClientWithResponsesInterface interface {
 	RancherServicesUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherServicesUnlinkResponse, error)
 
 	// RancherServicesYamlRetrieveWithResponse request
-	RancherServicesYamlRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *RancherServicesYamlRetrieveParams, reqEditors ...RequestEditorFn) (*RancherServicesYamlRetrieveResponse, error)
+	RancherServicesYamlRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherServicesYamlRetrieveResponse, error)
 
 	// RancherServicesYamlUpdateWithBodyWithResponse request with any body
 	RancherServicesYamlUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RancherServicesYamlUpdateResponse, error)
@@ -350841,7 +350913,7 @@ type ClientWithResponsesInterface interface {
 	UsersConfirmEmailWithResponse(ctx context.Context, body UsersConfirmEmailJSONRequestBody, reqEditors ...RequestEditorFn) (*UsersConfirmEmailResponse, error)
 
 	// UsersMeRetrieveWithResponse request
-	UsersMeRetrieveWithResponse(ctx context.Context, params *UsersMeRetrieveParams, reqEditors ...RequestEditorFn) (*UsersMeRetrieveResponse, error)
+	UsersMeRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*UsersMeRetrieveResponse, error)
 
 	// UsersMeCountWithResponse request
 	UsersMeCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*UsersMeCountResponse, error)
@@ -355799,7 +355871,7 @@ func (r AwsInstancesPullResponse) ContentType() string {
 type AwsInstancesResizeResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *AwsInstanceResize
+	JSON202      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -356394,7 +356466,6 @@ func (r AwsVolumesUpdateResponse) ContentType() string {
 type AwsVolumesAttachResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *AwsVolumeAttach
 }
 
 // Status returns HTTPResponse.Status
@@ -357794,7 +357865,7 @@ func (r AzureSqlServersUpdateResponse) ContentType() string {
 type AzureSqlServersCreateDatabaseResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *AzureSqlDatabaseCreate
+	JSON202      *AzureSqlDatabaseCreateResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -359044,7 +359115,7 @@ func (r BookingResourcesRetrieveResponse) ContentType() string {
 type BookingResourcesAcceptResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *BookingResource
+	JSON200      *BookingOrderUUID
 }
 
 // Status returns HTTPResponse.Status
@@ -359074,7 +359145,7 @@ func (r BookingResourcesAcceptResponse) ContentType() string {
 type BookingResourcesRejectResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *BookingResource
+	JSON200      *BookingOrderUUID
 }
 
 // Status returns HTTPResponse.Status
@@ -359401,7 +359472,7 @@ func (r BroadcastMessagesCreateResponse) ContentType() string {
 type BroadcastMessagesRecipientsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *BroadcastMessage
+	JSON200      *NotificationRecipient
 }
 
 // Status returns HTTPResponse.Status
@@ -363384,7 +363455,6 @@ func (r CustomerCreditsUpdateResponse) ContentType() string {
 type CustomerCreditsApplyCompensationsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *CustomerCredit
 }
 
 // Status returns HTTPResponse.Status
@@ -363414,7 +363484,6 @@ func (r CustomerCreditsApplyCompensationsResponse) ContentType() string {
 type CustomerCreditsClearCompensationsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *CustomerCredit
 }
 
 // Status returns HTTPResponse.Status
@@ -364845,7 +364914,7 @@ func (r DebugPubsubMetricsRetrieveResponse) ContentType() string {
 type DebugPubsubMetricsResetResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *MetricsReset
+	JSON200      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -365175,7 +365244,7 @@ func (r DigitaloceanDropletsPullResponse) ContentType() string {
 type DigitaloceanDropletsResizeResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *DigitalOceanDropletResize
+	JSON202      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -365205,7 +365274,7 @@ func (r DigitaloceanDropletsResizeResponse) ContentType() string {
 type DigitaloceanDropletsRestartResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *DigitalOceanDroplet
+	JSON202      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -365295,7 +365364,7 @@ func (r DigitaloceanDropletsSetOkResponse) ContentType() string {
 type DigitaloceanDropletsStartResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *DigitalOceanDroplet
+	JSON202      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -365325,7 +365394,7 @@ func (r DigitaloceanDropletsStartResponse) ContentType() string {
 type DigitaloceanDropletsStopResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *DigitalOceanDroplet
+	JSON202      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -366155,7 +366224,7 @@ func (r EventsCountResponse) ContentType() string {
 type EventsCountRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Event
+	JSON200      *EventCount
 }
 
 // Status returns HTTPResponse.Status
@@ -366214,7 +366283,7 @@ func (r EventsCountCountResponse) ContentType() string {
 type EventsEventGroupsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Event
+	JSON200      *map[string][]string
 }
 
 // Status returns HTTPResponse.Status
@@ -366273,7 +366342,7 @@ func (r EventsEventGroupsCountResponse) ContentType() string {
 type EventsScopeTypesRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Event
+	JSON200      *[]string
 }
 
 // Status returns HTTPResponse.Status
@@ -367045,6 +367114,7 @@ func (r GoogleAuthCountResponse) ContentType() string {
 type GoogleAuthCallbackRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *string
 }
 
 // Status returns HTTPResponse.Status
@@ -367133,7 +367203,7 @@ func (r GoogleAuthRetrieveResponse) ContentType() string {
 type GoogleAuthAuthorizeRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *GoogleCredentials
+	JSON200      *GoogleAuthUrl
 }
 
 // Status returns HTTPResponse.Status
@@ -368442,14 +368512,14 @@ func (r InvoiceItemsUpdateResponse) ContentType() string {
 	return ""
 }
 
-type InvoiceItemsConsumptionsRetrieveResponse struct {
+type InvoiceItemsConsumptionsListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *InvoiceItemDetail
+	JSON200      *[]CustomerCreditConsumptionByMonth
 }
 
 // Status returns HTTPResponse.Status
-func (r InvoiceItemsConsumptionsRetrieveResponse) Status() string {
+func (r InvoiceItemsConsumptionsListResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -368457,7 +368527,7 @@ func (r InvoiceItemsConsumptionsRetrieveResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r InvoiceItemsConsumptionsRetrieveResponse) StatusCode() int {
+func (r InvoiceItemsConsumptionsListResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -368465,7 +368535,7 @@ func (r InvoiceItemsConsumptionsRetrieveResponse) StatusCode() int {
 }
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r InvoiceItemsConsumptionsRetrieveResponse) ContentType() string {
+func (r InvoiceItemsConsumptionsListResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -368475,7 +368545,7 @@ func (r InvoiceItemsConsumptionsRetrieveResponse) ContentType() string {
 type InvoiceItemsCreateCompensationResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *InvoiceItemCompensation
+	JSON201      *InvoiceItemUUID
 }
 
 // Status returns HTTPResponse.Status
@@ -368505,7 +368575,7 @@ func (r InvoiceItemsCreateCompensationResponse) ContentType() string {
 type InvoiceItemsMigrateToResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *InvoiceItemMigrateTo
+	JSON200      *InvoiceItemUUID
 }
 
 // Status returns HTTPResponse.Status
@@ -368835,7 +368905,6 @@ func (r InvoicesItemsRetrieveResponse) ContentType() string {
 type InvoicesPaidResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Invoice
 }
 
 // Status returns HTTPResponse.Status
@@ -368865,7 +368934,7 @@ func (r InvoicesPaidResponse) ContentType() string {
 type InvoicesSendNotificationResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Invoice
+	JSON200      *Detail
 }
 
 // Status returns HTTPResponse.Status
@@ -373229,7 +373298,7 @@ func (r MarketplaceCustomerComponentUsagePoliciesCreateResponse) ContentType() s
 type MarketplaceCustomerComponentUsagePoliciesActionsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *CustomerComponentUsagePolicy
+	JSON200      *[]string
 }
 
 // Status returns HTTPResponse.Status
@@ -373496,7 +373565,7 @@ func (r MarketplaceCustomerEstimatedCostPoliciesCreateResponse) ContentType() st
 type MarketplaceCustomerEstimatedCostPoliciesActionsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *CustomerEstimatedCostPolicy
+	JSON200      *[]string
 }
 
 // Status returns HTTPResponse.Status
@@ -374358,7 +374427,7 @@ func (r MarketplaceOfferingEstimatedCostPoliciesCreateResponse) ContentType() st
 type MarketplaceOfferingEstimatedCostPoliciesActionsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OfferingEstimatedCostPolicy
+	JSON200      *[]string
 }
 
 // Status returns HTTPResponse.Status
@@ -375278,7 +375347,7 @@ func (r MarketplaceOfferingProfilesUpdateResponse) ContentType() string {
 type MarketplaceOfferingProfilesAddRoleResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OfferingProfileRoleAssign
+	JSON200      *OfferingProfile
 }
 
 // Status returns HTTPResponse.Status
@@ -375308,7 +375377,7 @@ func (r MarketplaceOfferingProfilesAddRoleResponse) ContentType() string {
 type MarketplaceOfferingProfilesRemoveRoleResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OfferingProfileRoleAssign
+	JSON200      *OfferingProfile
 }
 
 // Status returns HTTPResponse.Status
@@ -375932,7 +376001,7 @@ func (r MarketplaceOfferingUsagePoliciesCreateResponse) ContentType() string {
 type MarketplaceOfferingUsagePoliciesActionsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OfferingUsagePolicy
+	JSON200      *[]string
 }
 
 // Status returns HTTPResponse.Status
@@ -378455,7 +378524,7 @@ func (r MarketplaceProjectEstimatedCostPoliciesCreateResponse) ContentType() str
 type MarketplaceProjectEstimatedCostPoliciesActionsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ProjectEstimatedCostPolicy
+	JSON200      *[]string
 }
 
 // Status returns HTTPResponse.Status
@@ -381686,7 +381755,7 @@ func (r MarketplaceProviderOfferingsUserAttributeConfigRetrieveResponse) Content
 type MarketplaceProviderOfferingsUserHasResourceAccessRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ProviderOfferingDetails
+	JSON200      *UserHasResourceAccess
 }
 
 // Status returns HTTPResponse.Status
@@ -381954,7 +382023,7 @@ func (r MarketplaceProviderResourceProjectsListUsersListResponse) ContentType() 
 type MarketplaceProviderResourceProjectsSetBackendIdResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ResourceProjectBackendId
+	JSON200      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -381984,7 +382053,7 @@ func (r MarketplaceProviderResourceProjectsSetBackendIdResponse) ContentType() s
 type MarketplaceProviderResourceProjectsSetStateErredResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ResourceProjectErrorMessage
+	JSON200      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -382014,7 +382083,7 @@ func (r MarketplaceProviderResourceProjectsSetStateErredResponse) ContentType() 
 type MarketplaceProviderResourceProjectsSetStateOkResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *map[string]interface{}
+	JSON200      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -382644,7 +382713,7 @@ func (r MarketplaceProviderResourcesRefreshLastSyncResponse) ContentType() strin
 type MarketplaceProviderResourcesRestoreResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Resource
+	JSON200      *OrderUUID
 }
 
 // Status returns HTTPResponse.Status
@@ -385062,7 +385131,7 @@ func (r MarketplaceResourcesRenewResponse) ContentType() string {
 type MarketplaceResourcesRestoreResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Resource
+	JSON200      *OrderUUID
 }
 
 // Status returns HTTPResponse.Status
@@ -386200,7 +386269,7 @@ func (r MarketplaceScriptAsyncDryRunRetrieveResponse) ContentType() string {
 type MarketplaceScriptDryRunAsyncRunResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *PublicOfferingDetails
+	JSON202      *ScriptAsyncDryRunResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -386230,7 +386299,7 @@ func (r MarketplaceScriptDryRunAsyncRunResponse) ContentType() string {
 type MarketplaceScriptDryRunRunResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *PublicOfferingDetails
+	JSON200      *ScriptDryRunResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -388349,7 +388418,7 @@ func (r MarketplaceSlurmPeriodicUsagePoliciesCreateResponse) ContentType() strin
 type MarketplaceSlurmPeriodicUsagePoliciesActionsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *SlurmPeriodicUsagePolicy
+	JSON200      *[]string
 }
 
 // Status returns HTTPResponse.Status
@@ -397875,7 +397944,7 @@ func (r OpenportalAccessForEmailListResponse) ContentType() string {
 type OpenportalOfferingMappingRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *map[string]interface{}
+	JSON200      *OfferingMappingMap
 }
 
 // Status returns HTTPResponse.Status
@@ -397905,7 +397974,7 @@ func (r OpenportalOfferingMappingRetrieveResponse) ContentType() string {
 type OpenportalProjectMappingRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *map[string]interface{}
+	JSON200      *ProjectMappingMap
 }
 
 // Status returns HTTPResponse.Status
@@ -397935,7 +398004,7 @@ func (r OpenportalProjectMappingRetrieveResponse) ContentType() string {
 type OpenportalUserMappingRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *map[string]interface{}
+	JSON200      *UserMappingMap
 }
 
 // Status returns HTTPResponse.Status
@@ -398441,7 +398510,7 @@ func (r OpenstackFlavorsCountResponse) ContentType() string {
 type OpenstackFlavorsUsageStatsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OpenStackFlavor
+	JSON200      *map[string]interface{}
 }
 
 // Status returns HTTPResponse.Status
@@ -399450,7 +399519,7 @@ func (r OpenstackImagesCountResponse) ContentType() string {
 type OpenstackImagesUsageStatsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OpenStackImage
+	JSON200      *OpenStackUsageStatsResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -400822,7 +400891,7 @@ func (r OpenstackLoadbalancersUpdateResponse) ContentType() string {
 type OpenstackLoadbalancersAttachFloatingIpResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON202      *LoadBalancerAsyncOperationResponse
+	JSON202      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -400852,7 +400921,7 @@ func (r OpenstackLoadbalancersAttachFloatingIpResponse) ContentType() string {
 type OpenstackLoadbalancersDetachFloatingIpResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON202      *LoadBalancerAsyncOperationResponse
+	JSON202      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -400911,7 +400980,7 @@ func (r OpenstackLoadbalancersPullResponse) ContentType() string {
 type OpenstackLoadbalancersSetSecurityGroupsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON202      *LoadBalancerAsyncOperationResponse
+	JSON202      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -401713,7 +401782,7 @@ func (r OpenstackNetworksUpdateResponse) ContentType() string {
 type OpenstackNetworksCreateSubnetResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OpenStackSubNet
+	JSON201      *OpenStackSubNet
 }
 
 // Status returns HTTPResponse.Status
@@ -401863,7 +401932,7 @@ func (r OpenstackNetworksSetErredResponse) ContentType() string {
 type OpenstackNetworksSetMtuResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *SetMtu
+	JSON202      *SetMtu
 }
 
 // Status returns HTTPResponse.Status
@@ -403137,6 +403206,7 @@ func (r OpenstackRoutersAvailableExternalNetworksListResponse) ContentType() str
 type OpenstackRoutersRemoveExternalGatewayResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -403196,7 +403266,7 @@ func (r OpenstackRoutersRemoveRouterInterfaceResponse) ContentType() string {
 type OpenstackRoutersSetErredResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *RouterSetErredResponse
+	JSON200      *Detail
 }
 
 // Status returns HTTPResponse.Status
@@ -403226,6 +403296,7 @@ func (r OpenstackRoutersSetErredResponse) ContentType() string {
 type OpenstackRoutersSetExternalGatewayResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON202      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -403255,7 +403326,7 @@ func (r OpenstackRoutersSetExternalGatewayResponse) ContentType() string {
 type OpenstackRoutersSetOkResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *RouterSetOkResponse
+	JSON200      *Detail
 }
 
 // Status returns HTTPResponse.Status
@@ -404447,7 +404518,7 @@ func (r OpenstackSubnetsUpdateResponse) ContentType() string {
 type OpenstackSubnetsConnectResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OpenStackSubNet
+	JSON202      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -404477,7 +404548,7 @@ func (r OpenstackSubnetsConnectResponse) ContentType() string {
 type OpenstackSubnetsDisconnectResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OpenStackSubNet
+	JSON202      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -404896,7 +404967,7 @@ func (r OpenstackTenantsCreateFloatingIpResponse) ContentType() string {
 type OpenstackTenantsCreateNetworkResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OpenStackNetwork
+	JSON201      *OpenStackNetwork
 }
 
 // Status returns HTTPResponse.Status
@@ -404956,7 +405027,7 @@ func (r OpenstackTenantsCreateSecurityGroupResponse) ContentType() string {
 type OpenstackTenantsCreateServerGroupResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OpenStackServerGroup
+	JSON201      *OpenStackServerGroup
 }
 
 // Status returns HTTPResponse.Status
@@ -405076,7 +405147,7 @@ func (r OpenstackTenantsPullQuotasResponse) ContentType() string {
 type OpenstackTenantsPullSecurityGroupsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OpenStackTenant
+	JSON202      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -405106,7 +405177,7 @@ func (r OpenstackTenantsPullSecurityGroupsResponse) ContentType() string {
 type OpenstackTenantsPullServerGroupsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OpenStackTenant
+	JSON202      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -405226,7 +405297,7 @@ func (r OpenstackTenantsSetOkResponse) ContentType() string {
 type OpenstackTenantsSetQuotasResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OpenStackTenantQuota
+	JSON202      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -406800,7 +406871,7 @@ func (r PaymentProfilesUpdateResponse) ContentType() string {
 type PaymentProfilesEnableResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *PaymentProfile
+	JSON200      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -407038,7 +407109,7 @@ func (r PaymentsUpdateResponse) ContentType() string {
 type PaymentsLinkToInvoiceResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *LinkToInvoice
+	JSON200      *Detail
 }
 
 // Status returns HTTPResponse.Status
@@ -407068,7 +407139,7 @@ func (r PaymentsLinkToInvoiceResponse) ContentType() string {
 type PaymentsUnlinkFromInvoiceResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Payment
+	JSON200      *Detail
 }
 
 // Status returns HTTPResponse.Status
@@ -409724,6 +409795,7 @@ func (r ProposalProposalsResourcesSetResponse) ContentType() string {
 type ProposalProposalsResourcesDestroyResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *RequestedResource
 }
 
 // Status returns HTTPResponse.Status
@@ -410977,6 +411049,7 @@ func (r ProposalProtectedCallsOfferingsSetResponse) ContentType() string {
 type ProposalProtectedCallsOfferingsDestroyResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *RequestedOffering
 }
 
 // Status returns HTTPResponse.Status
@@ -411216,6 +411289,7 @@ func (r ProposalProtectedCallsResourceTemplatesSetResponse) ContentType() string
 type ProposalProtectedCallsResourceTemplatesDestroyResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *CallResourceTemplate
 }
 
 // Status returns HTTPResponse.Status
@@ -411515,6 +411589,7 @@ func (r ProposalProtectedCallsRoundsSetResponse) ContentType() string {
 type ProposalProtectedCallsRoundsDestroyResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *ProtectedRound
 }
 
 // Status returns HTTPResponse.Status
@@ -411634,7 +411709,7 @@ func (r ProposalProtectedCallsRoundsUpdateResponse) ContentType() string {
 type ProposalProtectedCallsRoundsCloseResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ProtectedCall
+	JSON200      *string
 }
 
 // Status returns HTTPResponse.Status
@@ -411844,6 +411919,7 @@ func (r ProposalProtectedCallsWorkflowStepsSetResponse) ContentType() string {
 type ProposalProtectedCallsWorkflowStepsDestroyResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *CallWorkflowStep
 }
 
 // Status returns HTTPResponse.Status
@@ -413483,7 +413559,6 @@ func (r RancherCatalogsUpdateResponse) ContentType() string {
 type RancherCatalogsRefreshResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *RancherCatalog
 }
 
 // Status returns HTTPResponse.Status
@@ -413900,7 +413975,7 @@ func (r RancherClustersUpdateResponse) ContentType() string {
 type RancherClustersCreateManagementSecurityGroupResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *RancherCluster
+	JSON201      *RancherCreateManagementSecurityGroupResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -413930,7 +414005,6 @@ func (r RancherClustersCreateManagementSecurityGroupResponse) ContentType() stri
 type RancherClustersImportYamlResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *RancherImportYaml
 }
 
 // Status returns HTTPResponse.Status
@@ -414408,7 +414482,7 @@ func (r RancherHpasUnlinkResponse) ContentType() string {
 type RancherHpasYamlRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *RancherHPA
+	JSON200      *Detail
 }
 
 // Status returns HTTPResponse.Status
@@ -414438,7 +414512,7 @@ func (r RancherHpasYamlRetrieveResponse) ContentType() string {
 type RancherHpasYamlUpdateResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *RancherHPA
+	JSON200      *Detail
 }
 
 // Status returns HTTPResponse.Status
@@ -414796,7 +414870,7 @@ func (r RancherIngressesUnlinkResponse) ContentType() string {
 type RancherIngressesYamlRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *RancherIngress
+	JSON200      *Detail
 }
 
 // Status returns HTTPResponse.Status
@@ -414826,7 +414900,7 @@ func (r RancherIngressesYamlRetrieveResponse) ContentType() string {
 type RancherIngressesYamlUpdateResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *RancherIngress
+	JSON200      *Detail
 }
 
 // Status returns HTTPResponse.Status
@@ -415867,7 +415941,7 @@ func (r RancherServicesUnlinkResponse) ContentType() string {
 type RancherServicesYamlRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *RancherService
+	JSON200      *Detail
 }
 
 // Status returns HTTPResponse.Status
@@ -415897,7 +415971,7 @@ func (r RancherServicesYamlRetrieveResponse) ContentType() string {
 type RancherServicesYamlUpdateResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *RancherService
+	JSON200      *Detail
 }
 
 // Status returns HTTPResponse.Status
@@ -416372,7 +416446,7 @@ func (r RancherWorkloadsRedeployResponse) ContentType() string {
 type RancherWorkloadsYamlRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *RancherWorkload
+	JSON200      *Detail
 }
 
 // Status returns HTTPResponse.Status
@@ -416402,7 +416476,7 @@ func (r RancherWorkloadsYamlRetrieveResponse) ContentType() string {
 type RancherWorkloadsYamlUpdateResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *RancherWorkload
+	JSON200      *Detail
 }
 
 // Status returns HTTPResponse.Status
@@ -421645,7 +421719,7 @@ func (r SupportIssuesUpdateResponse) ContentType() string {
 type SupportIssuesCommentResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Comment
+	JSON201      *Comment
 }
 
 // Status returns HTTPResponse.Status
@@ -421675,7 +421749,6 @@ func (r SupportIssuesCommentResponse) ContentType() string {
 type SupportIssuesSyncResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Issue
 }
 
 // Status returns HTTPResponse.Status
@@ -421913,7 +421986,7 @@ func (r SupportRequestTypesAdminCreateResponse) ContentType() string {
 type SupportRequestTypesAdminReorderResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *RequestTypeAdmin
+	JSON200      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -422062,7 +422135,7 @@ func (r SupportRequestTypesAdminUpdateResponse) ContentType() string {
 type SupportRequestTypesAdminActivateResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *RequestTypeAdmin
+	JSON200      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -422092,7 +422165,7 @@ func (r SupportRequestTypesAdminActivateResponse) ContentType() string {
 type SupportRequestTypesAdminDeactivateResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *RequestTypeAdmin
+	JSON200      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -423778,7 +423851,7 @@ func (r UserActionsSilenceResponse) ContentType() string {
 type UserActionsUnsilenceResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *UnsilenceActionResponse
+	JSON200      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -425199,7 +425272,7 @@ func (r UsersConfirmEmailResponse) ContentType() string {
 type UsersMeRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *User
+	JSON200      *UserMe
 }
 
 // Status returns HTTPResponse.Status
@@ -426416,7 +426489,7 @@ func (r VmwareDisksRetrieveResponse) ContentType() string {
 type VmwareDisksExtendResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *VmwareDiskExtend
+	JSON202      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -427339,7 +427412,7 @@ func (r VmwareVirtualMachineConsoleRetrieveResponse) ContentType() string {
 type VmwareVirtualMachineCreateDiskResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *VmwareDisk
+	JSON201      *VmwareDisk
 }
 
 // Status returns HTTPResponse.Status
@@ -427369,7 +427442,7 @@ func (r VmwareVirtualMachineCreateDiskResponse) ContentType() string {
 type VmwareVirtualMachineCreatePortResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *VmwarePort
+	JSON201      *VmwarePort
 }
 
 // Status returns HTTPResponse.Status
@@ -427430,7 +427503,7 @@ func (r VmwareVirtualMachinePullResponse) ContentType() string {
 type VmwareVirtualMachineRebootGuestResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *VmwareVirtualMachine
+	JSON202      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -427460,7 +427533,7 @@ func (r VmwareVirtualMachineRebootGuestResponse) ContentType() string {
 type VmwareVirtualMachineResetResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *VmwareVirtualMachine
+	JSON202      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -427550,7 +427623,7 @@ func (r VmwareVirtualMachineSetOkResponse) ContentType() string {
 type VmwareVirtualMachineShutdownGuestResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *VmwareVirtualMachine
+	JSON202      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -427580,7 +427653,7 @@ func (r VmwareVirtualMachineShutdownGuestResponse) ContentType() string {
 type VmwareVirtualMachineStartResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *VmwareVirtualMachine
+	JSON202      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -427610,7 +427683,7 @@ func (r VmwareVirtualMachineStartResponse) ContentType() string {
 type VmwareVirtualMachineStopResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *VmwareVirtualMachine
+	JSON202      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -427640,7 +427713,7 @@ func (r VmwareVirtualMachineStopResponse) ContentType() string {
 type VmwareVirtualMachineSuspendResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *VmwareVirtualMachine
+	JSON202      *Status
 }
 
 // Status returns HTTPResponse.Status
@@ -430973,8 +431046,8 @@ func (c *ClientWithResponses) BroadcastMessagesCreateWithResponse(ctx context.Co
 }
 
 // BroadcastMessagesRecipientsRetrieveWithResponse request returning *BroadcastMessagesRecipientsRetrieveResponse
-func (c *ClientWithResponses) BroadcastMessagesRecipientsRetrieveWithResponse(ctx context.Context, params *BroadcastMessagesRecipientsRetrieveParams, reqEditors ...RequestEditorFn) (*BroadcastMessagesRecipientsRetrieveResponse, error) {
-	rsp, err := c.BroadcastMessagesRecipientsRetrieve(ctx, params, reqEditors...)
+func (c *ClientWithResponses) BroadcastMessagesRecipientsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*BroadcastMessagesRecipientsRetrieveResponse, error) {
+	rsp, err := c.BroadcastMessagesRecipientsRetrieve(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -433632,8 +433705,8 @@ func (c *ClientWithResponses) EventsCountWithResponse(ctx context.Context, param
 }
 
 // EventsCountRetrieveWithResponse request returning *EventsCountRetrieveResponse
-func (c *ClientWithResponses) EventsCountRetrieveWithResponse(ctx context.Context, params *EventsCountRetrieveParams, reqEditors ...RequestEditorFn) (*EventsCountRetrieveResponse, error) {
-	rsp, err := c.EventsCountRetrieve(ctx, params, reqEditors...)
+func (c *ClientWithResponses) EventsCountRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*EventsCountRetrieveResponse, error) {
+	rsp, err := c.EventsCountRetrieve(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -433650,8 +433723,8 @@ func (c *ClientWithResponses) EventsCountCountWithResponse(ctx context.Context, 
 }
 
 // EventsEventGroupsRetrieveWithResponse request returning *EventsEventGroupsRetrieveResponse
-func (c *ClientWithResponses) EventsEventGroupsRetrieveWithResponse(ctx context.Context, params *EventsEventGroupsRetrieveParams, reqEditors ...RequestEditorFn) (*EventsEventGroupsRetrieveResponse, error) {
-	rsp, err := c.EventsEventGroupsRetrieve(ctx, params, reqEditors...)
+func (c *ClientWithResponses) EventsEventGroupsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*EventsEventGroupsRetrieveResponse, error) {
+	rsp, err := c.EventsEventGroupsRetrieve(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -433668,8 +433741,8 @@ func (c *ClientWithResponses) EventsEventGroupsCountWithResponse(ctx context.Con
 }
 
 // EventsScopeTypesRetrieveWithResponse request returning *EventsScopeTypesRetrieveResponse
-func (c *ClientWithResponses) EventsScopeTypesRetrieveWithResponse(ctx context.Context, params *EventsScopeTypesRetrieveParams, reqEditors ...RequestEditorFn) (*EventsScopeTypesRetrieveResponse, error) {
-	rsp, err := c.EventsScopeTypesRetrieve(ctx, params, reqEditors...)
+func (c *ClientWithResponses) EventsScopeTypesRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*EventsScopeTypesRetrieveResponse, error) {
+	rsp, err := c.EventsScopeTypesRetrieve(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -434001,8 +434074,8 @@ func (c *ClientWithResponses) GoogleAuthRetrieveWithResponse(ctx context.Context
 }
 
 // GoogleAuthAuthorizeRetrieveWithResponse request returning *GoogleAuthAuthorizeRetrieveResponse
-func (c *ClientWithResponses) GoogleAuthAuthorizeRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *GoogleAuthAuthorizeRetrieveParams, reqEditors ...RequestEditorFn) (*GoogleAuthAuthorizeRetrieveResponse, error) {
-	rsp, err := c.GoogleAuthAuthorizeRetrieve(ctx, uuid, params, reqEditors...)
+func (c *ClientWithResponses) GoogleAuthAuthorizeRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*GoogleAuthAuthorizeRetrieveResponse, error) {
+	rsp, err := c.GoogleAuthAuthorizeRetrieve(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -434516,13 +434589,13 @@ func (c *ClientWithResponses) InvoiceItemsUpdateWithResponse(ctx context.Context
 	return ParseInvoiceItemsUpdateResponse(rsp)
 }
 
-// InvoiceItemsConsumptionsRetrieveWithResponse request returning *InvoiceItemsConsumptionsRetrieveResponse
-func (c *ClientWithResponses) InvoiceItemsConsumptionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*InvoiceItemsConsumptionsRetrieveResponse, error) {
-	rsp, err := c.InvoiceItemsConsumptionsRetrieve(ctx, uuid, reqEditors...)
+// InvoiceItemsConsumptionsListWithResponse request returning *InvoiceItemsConsumptionsListResponse
+func (c *ClientWithResponses) InvoiceItemsConsumptionsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *InvoiceItemsConsumptionsListParams, reqEditors ...RequestEditorFn) (*InvoiceItemsConsumptionsListResponse, error) {
+	rsp, err := c.InvoiceItemsConsumptionsList(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseInvoiceItemsConsumptionsRetrieveResponse(rsp)
+	return ParseInvoiceItemsConsumptionsListResponse(rsp)
 }
 
 // InvoiceItemsCreateCompensationWithBodyWithResponse request with arbitrary body returning *InvoiceItemsCreateCompensationResponse
@@ -446654,8 +446727,8 @@ func (c *ClientWithResponses) OpenstackFlavorsCountWithResponse(ctx context.Cont
 }
 
 // OpenstackFlavorsUsageStatsRetrieveWithResponse request returning *OpenstackFlavorsUsageStatsRetrieveResponse
-func (c *ClientWithResponses) OpenstackFlavorsUsageStatsRetrieveWithResponse(ctx context.Context, params *OpenstackFlavorsUsageStatsRetrieveParams, reqEditors ...RequestEditorFn) (*OpenstackFlavorsUsageStatsRetrieveResponse, error) {
-	rsp, err := c.OpenstackFlavorsUsageStatsRetrieve(ctx, params, reqEditors...)
+func (c *ClientWithResponses) OpenstackFlavorsUsageStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenstackFlavorsUsageStatsRetrieveResponse, error) {
+	rsp, err := c.OpenstackFlavorsUsageStatsRetrieve(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -453259,8 +453332,8 @@ func (c *ClientWithResponses) RancherIngressesUnlinkWithResponse(ctx context.Con
 }
 
 // RancherIngressesYamlRetrieveWithResponse request returning *RancherIngressesYamlRetrieveResponse
-func (c *ClientWithResponses) RancherIngressesYamlRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *RancherIngressesYamlRetrieveParams, reqEditors ...RequestEditorFn) (*RancherIngressesYamlRetrieveResponse, error) {
-	rsp, err := c.RancherIngressesYamlRetrieve(ctx, uuid, params, reqEditors...)
+func (c *ClientWithResponses) RancherIngressesYamlRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherIngressesYamlRetrieveResponse, error) {
+	rsp, err := c.RancherIngressesYamlRetrieve(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -453647,8 +453720,8 @@ func (c *ClientWithResponses) RancherServicesUnlinkWithResponse(ctx context.Cont
 }
 
 // RancherServicesYamlRetrieveWithResponse request returning *RancherServicesYamlRetrieveResponse
-func (c *ClientWithResponses) RancherServicesYamlRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *RancherServicesYamlRetrieveParams, reqEditors ...RequestEditorFn) (*RancherServicesYamlRetrieveResponse, error) {
-	rsp, err := c.RancherServicesYamlRetrieve(ctx, uuid, params, reqEditors...)
+func (c *ClientWithResponses) RancherServicesYamlRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherServicesYamlRetrieveResponse, error) {
+	rsp, err := c.RancherServicesYamlRetrieve(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -457385,8 +457458,8 @@ func (c *ClientWithResponses) UsersConfirmEmailWithResponse(ctx context.Context,
 }
 
 // UsersMeRetrieveWithResponse request returning *UsersMeRetrieveResponse
-func (c *ClientWithResponses) UsersMeRetrieveWithResponse(ctx context.Context, params *UsersMeRetrieveParams, reqEditors ...RequestEditorFn) (*UsersMeRetrieveResponse, error) {
-	rsp, err := c.UsersMeRetrieve(ctx, params, reqEditors...)
+func (c *ClientWithResponses) UsersMeRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*UsersMeRetrieveResponse, error) {
+	rsp, err := c.UsersMeRetrieve(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -461947,12 +462020,12 @@ func ParseAwsInstancesResizeResponse(rsp *http.Response) (*AwsInstancesResizeRes
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest AwsInstanceResize
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON202 = &dest
 
 	}
 
@@ -462414,16 +462487,6 @@ func ParseAwsVolumesAttachResponse(rsp *http.Response) (*AwsVolumesAttachRespons
 	response := &AwsVolumesAttachResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest AwsVolumeAttach
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
 	}
 
 	return response, nil
@@ -463530,12 +463593,12 @@ func ParseAzureSqlServersCreateDatabaseResponse(rsp *http.Response) (*AzureSqlSe
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest AzureSqlDatabaseCreate
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest AzureSqlDatabaseCreateResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON202 = &dest
 
 	}
 
@@ -464517,7 +464580,7 @@ func ParseBookingResourcesAcceptResponse(rsp *http.Response) (*BookingResourcesA
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest BookingResource
+		var dest BookingOrderUUID
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -464543,7 +464606,7 @@ func ParseBookingResourcesRejectResponse(rsp *http.Response) (*BookingResourcesR
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest BookingResource
+		var dest BookingOrderUUID
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -464799,7 +464862,7 @@ func ParseBroadcastMessagesRecipientsRetrieveResponse(rsp *http.Response) (*Broa
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest BroadcastMessage
+		var dest NotificationRecipient
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -467908,16 +467971,6 @@ func ParseCustomerCreditsApplyCompensationsResponse(rsp *http.Response) (*Custom
 		HTTPResponse: rsp,
 	}
 
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest CustomerCredit
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
 	return response, nil
 }
 
@@ -467932,16 +467985,6 @@ func ParseCustomerCreditsClearCompensationsResponse(rsp *http.Response) (*Custom
 	response := &CustomerCreditsClearCompensationsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest CustomerCredit
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
 	}
 
 	return response, nil
@@ -469085,7 +469128,7 @@ func ParseDebugPubsubMetricsResetResponse(rsp *http.Response) (*DebugPubsubMetri
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest MetricsReset
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -469364,12 +469407,12 @@ func ParseDigitaloceanDropletsResizeResponse(rsp *http.Response) (*DigitaloceanD
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest DigitalOceanDropletResize
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON202 = &dest
 
 	}
 
@@ -469390,12 +469433,12 @@ func ParseDigitaloceanDropletsRestartResponse(rsp *http.Response) (*Digitalocean
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest DigitalOceanDroplet
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON202 = &dest
 
 	}
 
@@ -469468,12 +469511,12 @@ func ParseDigitaloceanDropletsStartResponse(rsp *http.Response) (*DigitaloceanDr
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest DigitalOceanDroplet
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON202 = &dest
 
 	}
 
@@ -469494,12 +469537,12 @@ func ParseDigitaloceanDropletsStopResponse(rsp *http.Response) (*DigitaloceanDro
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest DigitalOceanDroplet
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON202 = &dest
 
 	}
 
@@ -470120,7 +470163,7 @@ func ParseEventsCountRetrieveResponse(rsp *http.Response) (*EventsCountRetrieveR
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Event
+		var dest EventCount
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -470162,7 +470205,7 @@ func ParseEventsEventGroupsRetrieveResponse(rsp *http.Response) (*EventsEventGro
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Event
+		var dest map[string][]string
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -470204,7 +470247,7 @@ func ParseEventsScopeTypesRetrieveResponse(rsp *http.Response) (*EventsScopeType
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Event
+		var dest []string
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -470798,6 +470841,16 @@ func ParseGoogleAuthCallbackRetrieveResponse(rsp *http.Response) (*GoogleAuthCal
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest string
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -470858,7 +470911,7 @@ func ParseGoogleAuthAuthorizeRetrieveResponse(rsp *http.Response) (*GoogleAuthAu
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest GoogleCredentials
+		var dest GoogleAuthUrl
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -471853,22 +471906,22 @@ func ParseInvoiceItemsUpdateResponse(rsp *http.Response) (*InvoiceItemsUpdateRes
 	return response, nil
 }
 
-// ParseInvoiceItemsConsumptionsRetrieveResponse parses an HTTP response from a InvoiceItemsConsumptionsRetrieveWithResponse call
-func ParseInvoiceItemsConsumptionsRetrieveResponse(rsp *http.Response) (*InvoiceItemsConsumptionsRetrieveResponse, error) {
+// ParseInvoiceItemsConsumptionsListResponse parses an HTTP response from a InvoiceItemsConsumptionsListWithResponse call
+func ParseInvoiceItemsConsumptionsListResponse(rsp *http.Response) (*InvoiceItemsConsumptionsListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &InvoiceItemsConsumptionsRetrieveResponse{
+	response := &InvoiceItemsConsumptionsListResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest InvoiceItemDetail
+		var dest []CustomerCreditConsumptionByMonth
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -471893,12 +471946,12 @@ func ParseInvoiceItemsCreateCompensationResponse(rsp *http.Response) (*InvoiceIt
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest InvoiceItemCompensation
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest InvoiceItemUUID
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON201 = &dest
 
 	}
 
@@ -471920,7 +471973,7 @@ func ParseInvoiceItemsMigrateToResponse(rsp *http.Response) (*InvoiceItemsMigrat
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest InvoiceItemMigrateTo
+		var dest InvoiceItemUUID
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -472198,16 +472251,6 @@ func ParseInvoicesPaidResponse(rsp *http.Response) (*InvoicesPaidResponse, error
 		HTTPResponse: rsp,
 	}
 
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Invoice
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
 	return response, nil
 }
 
@@ -472226,7 +472269,7 @@ func ParseInvoicesSendNotificationResponse(rsp *http.Response) (*InvoicesSendNot
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Invoice
+		var dest Detail
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -475582,7 +475625,7 @@ func ParseMarketplaceCustomerComponentUsagePoliciesActionsRetrieveResponse(rsp *
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest CustomerComponentUsagePolicy
+		var dest []string
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -475786,7 +475829,7 @@ func ParseMarketplaceCustomerEstimatedCostPoliciesActionsRetrieveResponse(rsp *h
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest CustomerEstimatedCostPolicy
+		var dest []string
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -476460,7 +476503,7 @@ func ParseMarketplaceOfferingEstimatedCostPoliciesActionsRetrieveResponse(rsp *h
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OfferingEstimatedCostPolicy
+		var dest []string
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -477166,7 +477209,7 @@ func ParseMarketplaceOfferingProfilesAddRoleResponse(rsp *http.Response) (*Marke
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OfferingProfileRoleAssign
+		var dest OfferingProfile
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -477192,7 +477235,7 @@ func ParseMarketplaceOfferingProfilesRemoveRoleResponse(rsp *http.Response) (*Ma
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OfferingProfileRoleAssign
+		var dest OfferingProfile
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -477678,7 +477721,7 @@ func ParseMarketplaceOfferingUsagePoliciesActionsRetrieveResponse(rsp *http.Resp
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OfferingUsagePolicy
+		var dest []string
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -479576,7 +479619,7 @@ func ParseMarketplaceProjectEstimatedCostPoliciesActionsRetrieveResponse(rsp *ht
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ProjectEstimatedCostPolicy
+		var dest []string
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -481987,7 +482030,7 @@ func ParseMarketplaceProviderOfferingsUserHasResourceAccessRetrieveResponse(rsp 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ProviderOfferingDetails
+		var dest UserHasResourceAccess
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -482201,7 +482244,7 @@ func ParseMarketplaceProviderResourceProjectsSetBackendIdResponse(rsp *http.Resp
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ResourceProjectBackendId
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -482227,7 +482270,7 @@ func ParseMarketplaceProviderResourceProjectsSetStateErredResponse(rsp *http.Res
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ResourceProjectErrorMessage
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -482253,7 +482296,7 @@ func ParseMarketplaceProviderResourceProjectsSetStateOkResponse(rsp *http.Respon
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest map[string]interface{}
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -482775,7 +482818,7 @@ func ParseMarketplaceProviderResourcesRestoreResponse(rsp *http.Response) (*Mark
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Resource
+		var dest OrderUUID
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -484716,7 +484759,7 @@ func ParseMarketplaceResourcesRestoreResponse(rsp *http.Response) (*MarketplaceR
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Resource
+		var dest OrderUUID
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -485665,12 +485708,12 @@ func ParseMarketplaceScriptDryRunAsyncRunResponse(rsp *http.Response) (*Marketpl
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest PublicOfferingDetails
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest ScriptAsyncDryRunResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON202 = &dest
 
 	}
 
@@ -485692,7 +485735,7 @@ func ParseMarketplaceScriptDryRunRunResponse(rsp *http.Response) (*MarketplaceSc
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest PublicOfferingDetails
+		var dest ScriptDryRunResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -487416,7 +487459,7 @@ func ParseMarketplaceSlurmPeriodicUsagePoliciesActionsRetrieveResponse(rsp *http
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SlurmPeriodicUsagePolicy
+		var dest []string
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -494686,7 +494729,7 @@ func ParseOpenportalOfferingMappingRetrieveResponse(rsp *http.Response) (*Openpo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest map[string]interface{}
+		var dest OfferingMappingMap
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -494712,7 +494755,7 @@ func ParseOpenportalProjectMappingRetrieveResponse(rsp *http.Response) (*Openpor
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest map[string]interface{}
+		var dest ProjectMappingMap
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -494738,7 +494781,7 @@ func ParseOpenportalUserMappingRetrieveResponse(rsp *http.Response) (*Openportal
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest map[string]interface{}
+		var dest UserMappingMap
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -495137,7 +495180,7 @@ func ParseOpenstackFlavorsUsageStatsRetrieveResponse(rsp *http.Response) (*Opens
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OpenStackFlavor
+		var dest map[string]interface{}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -495908,7 +495951,7 @@ func ParseOpenstackImagesUsageStatsRetrieveResponse(rsp *http.Response) (*Openst
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OpenStackImage
+		var dest OpenStackUsageStatsResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -497021,7 +497064,7 @@ func ParseOpenstackLoadbalancersAttachFloatingIpResponse(rsp *http.Response) (*O
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
-		var dest LoadBalancerAsyncOperationResponse
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -497047,7 +497090,7 @@ func ParseOpenstackLoadbalancersDetachFloatingIpResponse(rsp *http.Response) (*O
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
-		var dest LoadBalancerAsyncOperationResponse
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -497089,7 +497132,7 @@ func ParseOpenstackLoadbalancersSetSecurityGroupsResponse(rsp *http.Response) (*
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
-		var dest LoadBalancerAsyncOperationResponse
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -497710,12 +497753,12 @@ func ParseOpenstackNetworksCreateSubnetResponse(rsp *http.Response) (*OpenstackN
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
 		var dest OpenStackSubNet
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON201 = &dest
 
 	}
 
@@ -497837,12 +497880,12 @@ func ParseOpenstackNetworksSetMtuResponse(rsp *http.Response) (*OpenstackNetwork
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
 		var dest SetMtu
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON202 = &dest
 
 	}
 
@@ -498791,6 +498834,16 @@ func ParseOpenstackRoutersRemoveExternalGatewayResponse(rsp *http.Response) (*Op
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest Status
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -498835,7 +498888,7 @@ func ParseOpenstackRoutersSetErredResponse(rsp *http.Response) (*OpenstackRouter
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RouterSetErredResponse
+		var dest Detail
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -498859,6 +498912,16 @@ func ParseOpenstackRoutersSetExternalGatewayResponse(rsp *http.Response) (*Opens
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest Status
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -498877,7 +498940,7 @@ func ParseOpenstackRoutersSetOkResponse(rsp *http.Response) (*OpenstackRoutersSe
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RouterSetOkResponse
+		var dest Detail
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -499827,12 +499890,12 @@ func ParseOpenstackSubnetsConnectResponse(rsp *http.Response) (*OpenstackSubnets
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OpenStackSubNet
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON202 = &dest
 
 	}
 
@@ -499853,12 +499916,12 @@ func ParseOpenstackSubnetsDisconnectResponse(rsp *http.Response) (*OpenstackSubn
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OpenStackSubNet
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON202 = &dest
 
 	}
 
@@ -500204,12 +500267,12 @@ func ParseOpenstackTenantsCreateNetworkResponse(rsp *http.Response) (*OpenstackT
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
 		var dest OpenStackNetwork
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON201 = &dest
 
 	}
 
@@ -500256,12 +500319,12 @@ func ParseOpenstackTenantsCreateServerGroupResponse(rsp *http.Response) (*Openst
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
 		var dest OpenStackServerGroup
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON201 = &dest
 
 	}
 
@@ -500357,12 +500420,12 @@ func ParseOpenstackTenantsPullSecurityGroupsResponse(rsp *http.Response) (*Opens
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OpenStackTenant
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON202 = &dest
 
 	}
 
@@ -500383,12 +500446,12 @@ func ParseOpenstackTenantsPullServerGroupsResponse(rsp *http.Response) (*Opensta
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OpenStackTenant
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON202 = &dest
 
 	}
 
@@ -500487,12 +500550,12 @@ func ParseOpenstackTenantsSetQuotasResponse(rsp *http.Response) (*OpenstackTenan
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OpenStackTenantQuota
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON202 = &dest
 
 	}
 
@@ -501703,7 +501766,7 @@ func ParsePaymentProfilesEnableResponse(rsp *http.Response) (*PaymentProfilesEna
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest PaymentProfile
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -501891,7 +501954,7 @@ func ParsePaymentsLinkToInvoiceResponse(rsp *http.Response) (*PaymentsLinkToInvo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest LinkToInvoice
+		var dest Detail
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -501917,7 +501980,7 @@ func ParsePaymentsUnlinkFromInvoiceResponse(rsp *http.Response) (*PaymentsUnlink
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Payment
+		var dest Detail
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -504035,6 +504098,16 @@ func ParseProposalProposalsResourcesDestroyResponse(rsp *http.Response) (*Propos
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RequestedResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -505051,6 +505124,16 @@ func ParseProposalProtectedCallsOfferingsDestroyResponse(rsp *http.Response) (*P
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RequestedOffering
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -505247,6 +505330,16 @@ func ParseProposalProtectedCallsResourceTemplatesDestroyResponse(rsp *http.Respo
 	response := &ProposalProtectedCallsResourceTemplatesDestroyResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CallResourceTemplate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -505499,6 +505592,16 @@ func ParseProposalProtectedCallsRoundsDestroyResponse(rsp *http.Response) (*Prop
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProtectedRound
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -505595,7 +505698,7 @@ func ParseProposalProtectedCallsRoundsCloseResponse(rsp *http.Response) (*Propos
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ProtectedCall
+		var dest string
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -505773,6 +505876,16 @@ func ParseProposalProtectedCallsWorkflowStepsDestroyResponse(rsp *http.Response)
 	response := &ProposalProtectedCallsWorkflowStepsDestroyResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CallWorkflowStep
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -507077,16 +507190,6 @@ func ParseRancherCatalogsRefreshResponse(rsp *http.Response) (*RancherCatalogsRe
 		HTTPResponse: rsp,
 	}
 
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RancherCatalog
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
 	return response, nil
 }
 
@@ -507412,12 +507515,12 @@ func ParseRancherClustersCreateManagementSecurityGroupResponse(rsp *http.Respons
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RancherCluster
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest RancherCreateManagementSecurityGroupResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON201 = &dest
 
 	}
 
@@ -507435,16 +507538,6 @@ func ParseRancherClustersImportYamlResponse(rsp *http.Response) (*RancherCluster
 	response := &RancherClustersImportYamlResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RancherImportYaml
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
 	}
 
 	return response, nil
@@ -507829,7 +507922,7 @@ func ParseRancherHpasYamlRetrieveResponse(rsp *http.Response) (*RancherHpasYamlR
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RancherHPA
+		var dest Detail
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -507855,7 +507948,7 @@ func ParseRancherHpasYamlUpdateResponse(rsp *http.Response) (*RancherHpasYamlUpd
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RancherHPA
+		var dest Detail
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -508144,7 +508237,7 @@ func ParseRancherIngressesYamlRetrieveResponse(rsp *http.Response) (*RancherIngr
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RancherIngress
+		var dest Detail
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -508170,7 +508263,7 @@ func ParseRancherIngressesYamlUpdateResponse(rsp *http.Response) (*RancherIngres
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RancherIngress
+		var dest Detail
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -508984,7 +509077,7 @@ func ParseRancherServicesYamlRetrieveResponse(rsp *http.Response) (*RancherServi
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RancherService
+		var dest Detail
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -509010,7 +509103,7 @@ func ParseRancherServicesYamlUpdateResponse(rsp *http.Response) (*RancherService
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RancherService
+		var dest Detail
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -509376,7 +509469,7 @@ func ParseRancherWorkloadsYamlRetrieveResponse(rsp *http.Response) (*RancherWork
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RancherWorkload
+		var dest Detail
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -509402,7 +509495,7 @@ func ParseRancherWorkloadsYamlUpdateResponse(rsp *http.Response) (*RancherWorklo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RancherWorkload
+		var dest Detail
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -513478,12 +513571,12 @@ func ParseSupportIssuesCommentResponse(rsp *http.Response) (*SupportIssuesCommen
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
 		var dest Comment
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON201 = &dest
 
 	}
 
@@ -513501,16 +513594,6 @@ func ParseSupportIssuesSyncResponse(rsp *http.Response) (*SupportIssuesSyncRespo
 	response := &SupportIssuesSyncResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Issue
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
 	}
 
 	return response, nil
@@ -513693,7 +513776,7 @@ func ParseSupportRequestTypesAdminReorderResponse(rsp *http.Response) (*SupportR
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RequestTypeAdmin
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -513813,7 +513896,7 @@ func ParseSupportRequestTypesAdminActivateResponse(rsp *http.Response) (*Support
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RequestTypeAdmin
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -513839,7 +513922,7 @@ func ParseSupportRequestTypesAdminDeactivateResponse(rsp *http.Response) (*Suppo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RequestTypeAdmin
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -515075,7 +515158,7 @@ func ParseUserActionsUnsilenceResponse(rsp *http.Response) (*UserActionsUnsilenc
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UnsilenceActionResponse
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -516133,7 +516216,7 @@ func ParseUsersMeRetrieveResponse(rsp *http.Response) (*UsersMeRetrieveResponse,
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest User
+		var dest UserMe
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -517062,12 +517145,12 @@ func ParseVmwareDisksExtendResponse(rsp *http.Response) (*VmwareDisksExtendRespo
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest VmwareDiskExtend
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON202 = &dest
 
 	}
 
@@ -517792,12 +517875,12 @@ func ParseVmwareVirtualMachineCreateDiskResponse(rsp *http.Response) (*VmwareVir
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
 		var dest VmwareDisk
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON201 = &dest
 
 	}
 
@@ -517818,12 +517901,12 @@ func ParseVmwareVirtualMachineCreatePortResponse(rsp *http.Response) (*VmwareVir
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
 		var dest VmwarePort
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON201 = &dest
 
 	}
 
@@ -517877,12 +517960,12 @@ func ParseVmwareVirtualMachineRebootGuestResponse(rsp *http.Response) (*VmwareVi
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest VmwareVirtualMachine
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON202 = &dest
 
 	}
 
@@ -517903,12 +517986,12 @@ func ParseVmwareVirtualMachineResetResponse(rsp *http.Response) (*VmwareVirtualM
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest VmwareVirtualMachine
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON202 = &dest
 
 	}
 
@@ -517981,12 +518064,12 @@ func ParseVmwareVirtualMachineShutdownGuestResponse(rsp *http.Response) (*Vmware
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest VmwareVirtualMachine
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON202 = &dest
 
 	}
 
@@ -518007,12 +518090,12 @@ func ParseVmwareVirtualMachineStartResponse(rsp *http.Response) (*VmwareVirtualM
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest VmwareVirtualMachine
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON202 = &dest
 
 	}
 
@@ -518033,12 +518116,12 @@ func ParseVmwareVirtualMachineStopResponse(rsp *http.Response) (*VmwareVirtualMa
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest VmwareVirtualMachine
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON202 = &dest
 
 	}
 
@@ -518059,12 +518142,12 @@ func ParseVmwareVirtualMachineSuspendResponse(rsp *http.Response) (*VmwareVirtua
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest VmwareVirtualMachine
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON202 = &dest
 
 	}
 
