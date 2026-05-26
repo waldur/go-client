@@ -20169,6 +20169,7 @@ const (
 	UserFieldEnumAgreementDate                 UserFieldEnum = "agreement_date"
 	UserFieldEnumAttributeSources              UserFieldEnum = "attribute_sources"
 	UserFieldEnumBirthDate                     UserFieldEnum = "birth_date"
+	UserFieldEnumCanUsePersonalAccessTokens    UserFieldEnum = "can_use_personal_access_tokens"
 	UserFieldEnumCivilNumber                   UserFieldEnum = "civil_number"
 	UserFieldEnumCountryOfResidence            UserFieldEnum = "country_of_residence"
 	UserFieldEnumDateJoined                    UserFieldEnum = "date_joined"
@@ -20236,6 +20237,8 @@ func (e UserFieldEnum) Valid() bool {
 	case UserFieldEnumAttributeSources:
 		return true
 	case UserFieldEnumBirthDate:
+		return true
+	case UserFieldEnumCanUsePersonalAccessTokens:
 		return true
 	case UserFieldEnumCivilNumber:
 		return true
@@ -42010,9 +42013,12 @@ type PatchedUserRequest struct {
 	Address *string `json:"address,omitempty"`
 
 	// AgreeWithPolicy User must agree with the policy to register.
-	AgreeWithPolicy    *bool               `json:"agree_with_policy,omitempty"`
-	BirthDate          *openapi_types.Date `json:"birth_date,omitempty"`
-	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
+	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
+	BirthDate       *openapi_types.Date `json:"birth_date,omitempty"`
+
+	// CanUsePersonalAccessTokens Designates whether the user is allowed to create and use personal access tokens.
+	CanUsePersonalAccessTokens *bool   `json:"can_use_personal_access_tokens,omitempty"`
+	CountryOfResidence         *string `json:"country_of_residence,omitempty"`
 
 	// DeactivationReason Reason why the user was deactivated. Visible to staff and support.
 	DeactivationReason *string `json:"deactivation_reason,omitempty"`
@@ -42087,9 +42093,12 @@ type PatchedUserRequestForm struct {
 	Address *string `json:"address,omitempty"`
 
 	// AgreeWithPolicy User must agree with the policy to register.
-	AgreeWithPolicy    *bool               `json:"agree_with_policy,omitempty"`
-	BirthDate          *openapi_types.Date `json:"birth_date,omitempty"`
-	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
+	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
+	BirthDate       *openapi_types.Date `json:"birth_date,omitempty"`
+
+	// CanUsePersonalAccessTokens Designates whether the user is allowed to create and use personal access tokens.
+	CanUsePersonalAccessTokens *bool   `json:"can_use_personal_access_tokens,omitempty"`
+	CountryOfResidence         *string `json:"country_of_residence,omitempty"`
 
 	// DeactivationReason Reason why the user was deactivated. Visible to staff and support.
 	DeactivationReason *string `json:"deactivation_reason,omitempty"`
@@ -42164,9 +42173,12 @@ type PatchedUserRequestMultipart struct {
 	Address *string `json:"address,omitempty"`
 
 	// AgreeWithPolicy User must agree with the policy to register.
-	AgreeWithPolicy    *bool               `json:"agree_with_policy,omitempty"`
-	BirthDate          *openapi_types.Date `json:"birth_date,omitempty"`
-	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
+	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
+	BirthDate       *openapi_types.Date `json:"birth_date,omitempty"`
+
+	// CanUsePersonalAccessTokens Designates whether the user is allowed to create and use personal access tokens.
+	CanUsePersonalAccessTokens *bool   `json:"can_use_personal_access_tokens,omitempty"`
+	CountryOfResidence         *string `json:"country_of_residence,omitempty"`
 
 	// DeactivationReason Reason why the user was deactivated. Visible to staff and support.
 	DeactivationReason *string `json:"deactivation_reason,omitempty"`
@@ -50447,11 +50459,14 @@ type User struct {
 	AgreementDate *time.Time `json:"agreement_date,omitempty"`
 
 	// AttributeSources Per-attribute source and freshness tracking. Format: {'field_name': {'source': 'isd:<name>', 'timestamp': 'ISO8601'}}.
-	AttributeSources   interface{}         `json:"attribute_sources,omitempty"`
-	BirthDate          *openapi_types.Date `json:"birth_date,omitempty"`
-	CivilNumber        *string             `json:"civil_number,omitempty"`
-	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
-	DateJoined         *time.Time          `json:"date_joined,omitempty"`
+	AttributeSources interface{}         `json:"attribute_sources,omitempty"`
+	BirthDate        *openapi_types.Date `json:"birth_date,omitempty"`
+
+	// CanUsePersonalAccessTokens Designates whether the user is allowed to create and use personal access tokens.
+	CanUsePersonalAccessTokens *bool      `json:"can_use_personal_access_tokens,omitempty"`
+	CivilNumber                *string    `json:"civil_number,omitempty"`
+	CountryOfResidence         *string    `json:"country_of_residence,omitempty"`
+	DateJoined                 *time.Time `json:"date_joined,omitempty"`
 
 	// DeactivationReason Reason why the user was deactivated. Visible to staff and support.
 	DeactivationReason *string `json:"deactivation_reason,omitempty"`
@@ -50855,11 +50870,14 @@ type UserMe struct {
 	AgreementDate *time.Time `json:"agreement_date,omitempty"`
 
 	// AttributeSources Per-attribute source and freshness tracking. Format: {'field_name': {'source': 'isd:<name>', 'timestamp': 'ISO8601'}}.
-	AttributeSources   interface{}         `json:"attribute_sources,omitempty"`
-	BirthDate          *openapi_types.Date `json:"birth_date,omitempty"`
-	CivilNumber        *string             `json:"civil_number,omitempty"`
-	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
-	DateJoined         *time.Time          `json:"date_joined,omitempty"`
+	AttributeSources interface{}         `json:"attribute_sources,omitempty"`
+	BirthDate        *openapi_types.Date `json:"birth_date,omitempty"`
+
+	// CanUsePersonalAccessTokens Designates whether the user is allowed to create and use personal access tokens.
+	CanUsePersonalAccessTokens *bool      `json:"can_use_personal_access_tokens,omitempty"`
+	CivilNumber                *string    `json:"civil_number,omitempty"`
+	CountryOfResidence         *string    `json:"country_of_residence,omitempty"`
+	DateJoined                 *time.Time `json:"date_joined,omitempty"`
 
 	// DeactivationReason Reason why the user was deactivated. Visible to staff and support.
 	DeactivationReason *string `json:"deactivation_reason,omitempty"`
@@ -51033,9 +51051,12 @@ type UserRequest struct {
 	Address *string `json:"address,omitempty"`
 
 	// AgreeWithPolicy User must agree with the policy to register.
-	AgreeWithPolicy    *bool               `json:"agree_with_policy,omitempty"`
-	BirthDate          *openapi_types.Date `json:"birth_date,omitempty"`
-	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
+	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
+	BirthDate       *openapi_types.Date `json:"birth_date,omitempty"`
+
+	// CanUsePersonalAccessTokens Designates whether the user is allowed to create and use personal access tokens.
+	CanUsePersonalAccessTokens *bool   `json:"can_use_personal_access_tokens,omitempty"`
+	CountryOfResidence         *string `json:"country_of_residence,omitempty"`
 
 	// DeactivationReason Reason why the user was deactivated. Visible to staff and support.
 	DeactivationReason *string `json:"deactivation_reason,omitempty"`
@@ -51111,9 +51132,12 @@ type UserRequestForm struct {
 	Address *string `json:"address,omitempty"`
 
 	// AgreeWithPolicy User must agree with the policy to register.
-	AgreeWithPolicy    *bool               `json:"agree_with_policy,omitempty"`
-	BirthDate          *openapi_types.Date `json:"birth_date,omitempty"`
-	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
+	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
+	BirthDate       *openapi_types.Date `json:"birth_date,omitempty"`
+
+	// CanUsePersonalAccessTokens Designates whether the user is allowed to create and use personal access tokens.
+	CanUsePersonalAccessTokens *bool   `json:"can_use_personal_access_tokens,omitempty"`
+	CountryOfResidence         *string `json:"country_of_residence,omitempty"`
 
 	// DeactivationReason Reason why the user was deactivated. Visible to staff and support.
 	DeactivationReason *string `json:"deactivation_reason,omitempty"`
@@ -51189,9 +51213,12 @@ type UserRequestMultipart struct {
 	Address *string `json:"address,omitempty"`
 
 	// AgreeWithPolicy User must agree with the policy to register.
-	AgreeWithPolicy    *bool               `json:"agree_with_policy,omitempty"`
-	BirthDate          *openapi_types.Date `json:"birth_date,omitempty"`
-	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
+	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
+	BirthDate       *openapi_types.Date `json:"birth_date,omitempty"`
+
+	// CanUsePersonalAccessTokens Designates whether the user is allowed to create and use personal access tokens.
+	CanUsePersonalAccessTokens *bool   `json:"can_use_personal_access_tokens,omitempty"`
+	CountryOfResidence         *string `json:"country_of_residence,omitempty"`
 
 	// DeactivationReason Reason why the user was deactivated. Visible to staff and support.
 	DeactivationReason *string `json:"deactivation_reason,omitempty"`
