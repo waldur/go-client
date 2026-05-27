@@ -26646,6 +26646,9 @@ type CommentRequest struct {
 
 // CompleteWorkflowStepRequest defines model for CompleteWorkflowStepRequest.
 type CompleteWorkflowStepRequest struct {
+	// InternalNotes Internal notes captured by the call-management team. Stored on the step instance and never returned to applicants.
+	InternalNotes *string `json:"internal_notes,omitempty"`
+
 	// Outcome Step outcome. Must be in the active step's allow-list. 'rejected' and 'expired' are reserved for system transitions.
 	Outcome OutcomeEnum `json:"outcome"`
 
@@ -43797,17 +43800,22 @@ type ProposalUpdateProjectDetailsRequest_OecdFos2007Code struct {
 
 // ProposalWorkflowStepInstance defines model for ProposalWorkflowStepInstance.
 type ProposalWorkflowStepInstance struct {
-	CompletedAt *time.Time          `json:"completed_at,omitempty"`
-	CompletedBy *openapi_types.UUID `json:"completed_by,omitempty"`
+	ApplicantVisible *bool               `json:"applicant_visible,omitempty"`
+	CompletedAt      *time.Time          `json:"completed_at,omitempty"`
+	CompletedBy      *openapi_types.UUID `json:"completed_by,omitempty"`
 
 	// Deadline Computed from started_at + step duration_in_days.
-	Deadline *time.Time `json:"deadline,omitempty"`
+	Deadline       *time.Time `json:"deadline,omitempty"`
+	DurationInDays *int       `json:"duration_in_days,omitempty"`
+	InternalNotes  *string    `json:"internal_notes,omitempty"`
+	IsRequired     *bool      `json:"is_required,omitempty"`
 
 	// Outcome Step-specific outcome (e.g., eligible, feasible, approved).
 	Outcome *string `json:"outcome,omitempty"`
 
 	// OutcomeReason Explanation for the outcome (e.g., rejection reason).
 	OutcomeReason   *string `json:"outcome_reason,omitempty"`
+	RejectionReason *string `json:"rejection_reason,omitempty"`
 	ResponsibleRole *string `json:"responsible_role,omitempty"`
 
 	// StartedAt When this step became active.
@@ -46194,6 +46202,9 @@ type ReferenceNumberRequest struct {
 
 // RejectWorkflowStepRequest defines model for RejectWorkflowStepRequest.
 type RejectWorkflowStepRequest struct {
+	// InternalNotes Internal notes captured by the call-management team alongside the rejection. Never returned to applicants.
+	InternalNotes *string `json:"internal_notes,omitempty"`
+
 	// Reason Reason for rejecting the proposal at this step.
 	Reason string `json:"reason"`
 
@@ -61297,7 +61308,7 @@ type MarketplaceProviderResourcesListUsersListParams struct {
 
 // MarketplaceProviderResourcesTeamListParams defines parameters for MarketplaceProviderResourcesTeamList.
 type MarketplaceProviderResourcesTeamListParams struct {
-	// HasConsent When true, return only users who have active consent for this offering.
+	// HasConsent When ENFORCE_USER_CONSENT_FOR_OFFERINGS is disabled, passing true returns only users who have active consent for this offering.
 	HasConsent *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
 }
 
