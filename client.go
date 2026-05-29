@@ -5514,6 +5514,27 @@ func (e ENABLEDREPORTINGSCREENSEnum) Valid() bool {
 	}
 }
 
+// Defines values for EffectiveRouteSourceEnum.
+const (
+	EffectiveRouteSourceEnumConnected EffectiveRouteSourceEnum = "connected"
+	EffectiveRouteSourceEnumDefault   EffectiveRouteSourceEnum = "default"
+	EffectiveRouteSourceEnumStatic    EffectiveRouteSourceEnum = "static"
+)
+
+// Valid indicates whether the value is a known member of the EffectiveRouteSourceEnum enum.
+func (e EffectiveRouteSourceEnum) Valid() bool {
+	switch e {
+	case EffectiveRouteSourceEnumConnected:
+		return true
+	case EffectiveRouteSourceEnumDefault:
+		return true
+	case EffectiveRouteSourceEnumStatic:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for EmailLogOEnum.
 const (
 	MinusSentAt  EmailLogOEnum = "-sent_at"
@@ -21410,16 +21431,16 @@ func (e VenueTypeEnum) Valid() bool {
 
 // Defines values for VisibilityEnum.
 const (
-	VisibilityEnumPrivate VisibilityEnum = "private"
-	VisibilityEnumPublic  VisibilityEnum = "public"
+	Private VisibilityEnum = "private"
+	Public  VisibilityEnum = "public"
 )
 
 // Valid indicates whether the value is a known member of the VisibilityEnum enum.
 func (e VisibilityEnum) Valid() bool {
 	switch e {
-	case VisibilityEnumPrivate:
+	case Private:
 		return true
-	case VisibilityEnumPublic:
+	case Public:
 		return true
 	default:
 		return false
@@ -30298,6 +30319,71 @@ type DuplicateCallRequestRequest struct {
 
 // ENABLEDREPORTINGSCREENSEnum defines model for ENABLEDREPORTINGSCREENSEnum.
 type ENABLEDREPORTINGSCREENSEnum string
+
+// EffectiveRoute defines model for EffectiveRoute.
+type EffectiveRoute struct {
+	Destination         string  `json:"destination"`
+	ExternalNetworkName *string `json:"external_network_name,omitempty"`
+	ExternalNetworkUuid *string `json:"external_network_uuid,omitempty"`
+
+	// GatewayIpOnRouter An IPv4 or IPv6 address.
+	GatewayIpOnRouter *EffectiveRoute_GatewayIpOnRouter `json:"gateway_ip_on_router,omitempty"`
+
+	// IpOnRouter An IPv4 or IPv6 address.
+	IpOnRouter *EffectiveRoute_IpOnRouter `json:"ip_on_router,omitempty"`
+
+	// Nexthop An IPv4 or IPv6 address.
+	Nexthop       *EffectiveRoute_Nexthop  `json:"nexthop"`
+	PortBackendId *string                  `json:"port_backend_id,omitempty"`
+	PortUuid      *string                  `json:"port_uuid,omitempty"`
+	Source        EffectiveRouteSourceEnum `json:"source"`
+	SubnetCidr    *string                  `json:"subnet_cidr,omitempty"`
+	SubnetName    *string                  `json:"subnet_name,omitempty"`
+	SubnetUuid    *string                  `json:"subnet_uuid,omitempty"`
+}
+
+// EffectiveRouteGatewayIpOnRouter0 defines model for .
+type EffectiveRouteGatewayIpOnRouter0 = string
+
+// EffectiveRouteGatewayIpOnRouter1 defines model for .
+type EffectiveRouteGatewayIpOnRouter1 = string
+
+// EffectiveRoute_GatewayIpOnRouter An IPv4 or IPv6 address.
+type EffectiveRoute_GatewayIpOnRouter struct {
+	union json.RawMessage
+}
+
+// EffectiveRouteIpOnRouter0 defines model for .
+type EffectiveRouteIpOnRouter0 = string
+
+// EffectiveRouteIpOnRouter1 defines model for .
+type EffectiveRouteIpOnRouter1 = string
+
+// EffectiveRoute_IpOnRouter An IPv4 or IPv6 address.
+type EffectiveRoute_IpOnRouter struct {
+	union json.RawMessage
+}
+
+// EffectiveRouteNexthop0 defines model for .
+type EffectiveRouteNexthop0 = string
+
+// EffectiveRouteNexthop1 defines model for .
+type EffectiveRouteNexthop1 = string
+
+// EffectiveRoute_Nexthop An IPv4 or IPv6 address.
+type EffectiveRoute_Nexthop struct {
+	union json.RawMessage
+}
+
+// EffectiveRouteSourceEnum defines model for EffectiveRouteSourceEnum.
+type EffectiveRouteSourceEnum string
+
+// EffectiveRoutesResponse defines model for EffectiveRoutesResponse.
+type EffectiveRoutesResponse struct {
+	HasExternalGateway bool             `json:"has_external_gateway"`
+	Routes             []EffectiveRoute `json:"routes"`
+	Snat               *bool            `json:"snat"`
+}
 
 // EligibilityCheck defines model for EligibilityCheck.
 type EligibilityCheck struct {
@@ -82918,6 +83004,192 @@ func (t *DigitalOceanDroplet_AccessUrl) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsEffectiveRouteGatewayIpOnRouter0 returns the union data inside the EffectiveRoute_GatewayIpOnRouter as a EffectiveRouteGatewayIpOnRouter0
+func (t EffectiveRoute_GatewayIpOnRouter) AsEffectiveRouteGatewayIpOnRouter0() (EffectiveRouteGatewayIpOnRouter0, error) {
+	var body EffectiveRouteGatewayIpOnRouter0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEffectiveRouteGatewayIpOnRouter0 overwrites any union data inside the EffectiveRoute_GatewayIpOnRouter as the provided EffectiveRouteGatewayIpOnRouter0
+func (t *EffectiveRoute_GatewayIpOnRouter) FromEffectiveRouteGatewayIpOnRouter0(v EffectiveRouteGatewayIpOnRouter0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeEffectiveRouteGatewayIpOnRouter0 performs a merge with any union data inside the EffectiveRoute_GatewayIpOnRouter, using the provided EffectiveRouteGatewayIpOnRouter0
+func (t *EffectiveRoute_GatewayIpOnRouter) MergeEffectiveRouteGatewayIpOnRouter0(v EffectiveRouteGatewayIpOnRouter0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsEffectiveRouteGatewayIpOnRouter1 returns the union data inside the EffectiveRoute_GatewayIpOnRouter as a EffectiveRouteGatewayIpOnRouter1
+func (t EffectiveRoute_GatewayIpOnRouter) AsEffectiveRouteGatewayIpOnRouter1() (EffectiveRouteGatewayIpOnRouter1, error) {
+	var body EffectiveRouteGatewayIpOnRouter1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEffectiveRouteGatewayIpOnRouter1 overwrites any union data inside the EffectiveRoute_GatewayIpOnRouter as the provided EffectiveRouteGatewayIpOnRouter1
+func (t *EffectiveRoute_GatewayIpOnRouter) FromEffectiveRouteGatewayIpOnRouter1(v EffectiveRouteGatewayIpOnRouter1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeEffectiveRouteGatewayIpOnRouter1 performs a merge with any union data inside the EffectiveRoute_GatewayIpOnRouter, using the provided EffectiveRouteGatewayIpOnRouter1
+func (t *EffectiveRoute_GatewayIpOnRouter) MergeEffectiveRouteGatewayIpOnRouter1(v EffectiveRouteGatewayIpOnRouter1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t EffectiveRoute_GatewayIpOnRouter) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *EffectiveRoute_GatewayIpOnRouter) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsEffectiveRouteIpOnRouter0 returns the union data inside the EffectiveRoute_IpOnRouter as a EffectiveRouteIpOnRouter0
+func (t EffectiveRoute_IpOnRouter) AsEffectiveRouteIpOnRouter0() (EffectiveRouteIpOnRouter0, error) {
+	var body EffectiveRouteIpOnRouter0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEffectiveRouteIpOnRouter0 overwrites any union data inside the EffectiveRoute_IpOnRouter as the provided EffectiveRouteIpOnRouter0
+func (t *EffectiveRoute_IpOnRouter) FromEffectiveRouteIpOnRouter0(v EffectiveRouteIpOnRouter0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeEffectiveRouteIpOnRouter0 performs a merge with any union data inside the EffectiveRoute_IpOnRouter, using the provided EffectiveRouteIpOnRouter0
+func (t *EffectiveRoute_IpOnRouter) MergeEffectiveRouteIpOnRouter0(v EffectiveRouteIpOnRouter0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsEffectiveRouteIpOnRouter1 returns the union data inside the EffectiveRoute_IpOnRouter as a EffectiveRouteIpOnRouter1
+func (t EffectiveRoute_IpOnRouter) AsEffectiveRouteIpOnRouter1() (EffectiveRouteIpOnRouter1, error) {
+	var body EffectiveRouteIpOnRouter1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEffectiveRouteIpOnRouter1 overwrites any union data inside the EffectiveRoute_IpOnRouter as the provided EffectiveRouteIpOnRouter1
+func (t *EffectiveRoute_IpOnRouter) FromEffectiveRouteIpOnRouter1(v EffectiveRouteIpOnRouter1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeEffectiveRouteIpOnRouter1 performs a merge with any union data inside the EffectiveRoute_IpOnRouter, using the provided EffectiveRouteIpOnRouter1
+func (t *EffectiveRoute_IpOnRouter) MergeEffectiveRouteIpOnRouter1(v EffectiveRouteIpOnRouter1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t EffectiveRoute_IpOnRouter) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *EffectiveRoute_IpOnRouter) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsEffectiveRouteNexthop0 returns the union data inside the EffectiveRoute_Nexthop as a EffectiveRouteNexthop0
+func (t EffectiveRoute_Nexthop) AsEffectiveRouteNexthop0() (EffectiveRouteNexthop0, error) {
+	var body EffectiveRouteNexthop0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEffectiveRouteNexthop0 overwrites any union data inside the EffectiveRoute_Nexthop as the provided EffectiveRouteNexthop0
+func (t *EffectiveRoute_Nexthop) FromEffectiveRouteNexthop0(v EffectiveRouteNexthop0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeEffectiveRouteNexthop0 performs a merge with any union data inside the EffectiveRoute_Nexthop, using the provided EffectiveRouteNexthop0
+func (t *EffectiveRoute_Nexthop) MergeEffectiveRouteNexthop0(v EffectiveRouteNexthop0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsEffectiveRouteNexthop1 returns the union data inside the EffectiveRoute_Nexthop as a EffectiveRouteNexthop1
+func (t EffectiveRoute_Nexthop) AsEffectiveRouteNexthop1() (EffectiveRouteNexthop1, error) {
+	var body EffectiveRouteNexthop1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEffectiveRouteNexthop1 overwrites any union data inside the EffectiveRoute_Nexthop as the provided EffectiveRouteNexthop1
+func (t *EffectiveRoute_Nexthop) FromEffectiveRouteNexthop1(v EffectiveRouteNexthop1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeEffectiveRouteNexthop1 performs a merge with any union data inside the EffectiveRoute_Nexthop, using the provided EffectiveRouteNexthop1
+func (t *EffectiveRoute_Nexthop) MergeEffectiveRouteNexthop1(v EffectiveRouteNexthop1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t EffectiveRoute_Nexthop) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *EffectiveRoute_Nexthop) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsEventSubscriptionSourceIp0 returns the union data inside the EventSubscription_SourceIp as a EventSubscriptionSourceIp0
 func (t EventSubscription_SourceIp) AsEventSubscriptionSourceIp0() (EventSubscriptionSourceIp0, error) {
 	var body EventSubscriptionSourceIp0
@@ -98757,6 +99029,9 @@ type ClientInterface interface {
 
 	// OpenstackRoutersAvailableExternalNetworksList request
 	OpenstackRoutersAvailableExternalNetworksList(ctx context.Context, uuid openapi_types.UUID, params *OpenstackRoutersAvailableExternalNetworksListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackRoutersEffectiveRoutesRetrieve request
+	OpenstackRoutersEffectiveRoutesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackRoutersRemoveExternalGateway request
 	OpenstackRoutersRemoveExternalGateway(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -130339,6 +130614,18 @@ func (c *Client) OpenstackRoutersAddRouterInterface(ctx context.Context, uuid op
 
 func (c *Client) OpenstackRoutersAvailableExternalNetworksList(ctx context.Context, uuid openapi_types.UUID, params *OpenstackRoutersAvailableExternalNetworksListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackRoutersAvailableExternalNetworksListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackRoutersEffectiveRoutesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackRoutersEffectiveRoutesRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -279492,6 +279779,40 @@ func NewOpenstackRoutersAvailableExternalNetworksListRequest(server string, uuid
 	return req, nil
 }
 
+// NewOpenstackRoutersEffectiveRoutesRetrieveRequest generates requests for OpenstackRoutersEffectiveRoutesRetrieve
+func NewOpenstackRoutersEffectiveRoutesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-routers/%s/effective_routes/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOpenstackRoutersRemoveExternalGatewayRequest generates requests for OpenstackRoutersRemoveExternalGateway
 func NewOpenstackRoutersRemoveExternalGatewayRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -347678,6 +347999,9 @@ type ClientWithResponsesInterface interface {
 	// OpenstackRoutersAvailableExternalNetworksListWithResponse request
 	OpenstackRoutersAvailableExternalNetworksListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackRoutersAvailableExternalNetworksListParams, reqEditors ...RequestEditorFn) (*OpenstackRoutersAvailableExternalNetworksListResponse, error)
 
+	// OpenstackRoutersEffectiveRoutesRetrieveWithResponse request
+	OpenstackRoutersEffectiveRoutesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackRoutersEffectiveRoutesRetrieveResponse, error)
+
 	// OpenstackRoutersRemoveExternalGatewayWithResponse request
 	OpenstackRoutersRemoveExternalGatewayWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackRoutersRemoveExternalGatewayResponse, error)
 
@@ -402748,6 +403072,36 @@ func (r OpenstackRoutersAvailableExternalNetworksListResponse) ContentType() str
 	return ""
 }
 
+type OpenstackRoutersEffectiveRoutesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *EffectiveRoutesResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackRoutersEffectiveRoutesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackRoutersEffectiveRoutesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenstackRoutersEffectiveRoutesRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type OpenstackRoutersRemoveExternalGatewayResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -448107,6 +448461,15 @@ func (c *ClientWithResponses) OpenstackRoutersAvailableExternalNetworksListWithR
 		return nil, err
 	}
 	return ParseOpenstackRoutersAvailableExternalNetworksListResponse(rsp)
+}
+
+// OpenstackRoutersEffectiveRoutesRetrieveWithResponse request returning *OpenstackRoutersEffectiveRoutesRetrieveResponse
+func (c *ClientWithResponses) OpenstackRoutersEffectiveRoutesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackRoutersEffectiveRoutesRetrieveResponse, error) {
+	rsp, err := c.OpenstackRoutersEffectiveRoutesRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackRoutersEffectiveRoutesRetrieveResponse(rsp)
 }
 
 // OpenstackRoutersRemoveExternalGatewayWithResponse request returning *OpenstackRoutersRemoveExternalGatewayResponse
@@ -498356,6 +498719,32 @@ func ParseOpenstackRoutersAvailableExternalNetworksListResponse(rsp *http.Respon
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest []AvailableExternalNetwork
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackRoutersEffectiveRoutesRetrieveResponse parses an HTTP response from a OpenstackRoutersEffectiveRoutesRetrieveWithResponse call
+func ParseOpenstackRoutersEffectiveRoutesRetrieveResponse(rsp *http.Response) (*OpenstackRoutersEffectiveRoutesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackRoutersEffectiveRoutesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest EffectiveRoutesResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
