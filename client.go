@@ -19062,27 +19062,6 @@ func (e ScienceSubDomainOEnum) Valid() bool {
 	}
 }
 
-// Defines values for SecurityGroupRuleProtocolEnum.
-const (
-	Icmp SecurityGroupRuleProtocolEnum = "icmp"
-	Tcp  SecurityGroupRuleProtocolEnum = "tcp"
-	Udp  SecurityGroupRuleProtocolEnum = "udp"
-)
-
-// Valid indicates whether the value is a known member of the SecurityGroupRuleProtocolEnum enum.
-func (e SecurityGroupRuleProtocolEnum) Valid() bool {
-	switch e {
-	case Icmp:
-		return true
-	case Tcp:
-		return true
-	case Udp:
-		return true
-	default:
-		return false
-	}
-}
-
 // Defines values for ServiceAccountState.
 const (
 	ServiceAccountStateClosed ServiceAccountState = "Closed"
@@ -34721,18 +34700,13 @@ type NestedSecurityGroupRule struct {
 	FromPort *int `json:"from_port,omitempty"`
 	Id       *int `json:"id,omitempty"`
 
-	// Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
-	Protocol        *NestedSecurityGroupRule_Protocol `json:"protocol,omitempty"`
-	RemoteGroupName *string                           `json:"remote_group_name,omitempty"`
-	RemoteGroupUuid *openapi_types.UUID               `json:"remote_group_uuid,omitempty"`
+	// Protocol Network protocol: 'tcp', 'udp', 'icmp', empty (any) or an IANA protocol number 0-255 (e.g. '112' for VRRP).
+	Protocol        *string             `json:"protocol,omitempty"`
+	RemoteGroupName *string             `json:"remote_group_name,omitempty"`
+	RemoteGroupUuid *openapi_types.UUID `json:"remote_group_uuid,omitempty"`
 
 	// ToPort Ending port number in the range (1-65535)
 	ToPort *int `json:"to_port,omitempty"`
-}
-
-// NestedSecurityGroupRule_Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
-type NestedSecurityGroupRule_Protocol struct {
-	union json.RawMessage
 }
 
 // NestedSoftwareCatalog defines model for NestedSoftwareCatalog.
@@ -38362,8 +38336,8 @@ type OpenStackSecurityGroupRuleCreate struct {
 	FromPort *int `json:"from_port,omitempty"`
 	Id       *int `json:"id,omitempty"`
 
-	// Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
-	Protocol *OpenStackSecurityGroupRuleCreate_Protocol `json:"protocol,omitempty"`
+	// Protocol Network protocol: 'tcp', 'udp', 'icmp', empty (any) or an IANA protocol number 0-255 (e.g. '112' for VRRP).
+	Protocol *string `json:"protocol,omitempty"`
 
 	// RemoteGroup Remote security group that this rule references, if any
 	RemoteGroup     *string             `json:"remote_group,omitempty"`
@@ -38372,11 +38346,6 @@ type OpenStackSecurityGroupRuleCreate struct {
 
 	// ToPort Ending port number in the range (1-65535)
 	ToPort *int `json:"to_port,omitempty"`
-}
-
-// OpenStackSecurityGroupRuleCreate_Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
-type OpenStackSecurityGroupRuleCreate_Protocol struct {
-	union json.RawMessage
 }
 
 // OpenStackSecurityGroupRuleCreateRequest defines model for OpenStackSecurityGroupRuleCreateRequest.
@@ -38394,19 +38363,14 @@ type OpenStackSecurityGroupRuleCreateRequest struct {
 	// FromPort Starting port number in the range (1-65535)
 	FromPort *int `json:"from_port,omitempty"`
 
-	// Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
-	Protocol *OpenStackSecurityGroupRuleCreateRequest_Protocol `json:"protocol,omitempty"`
+	// Protocol Network protocol: 'tcp', 'udp', 'icmp', empty (any) or an IANA protocol number 0-255 (e.g. '112' for VRRP).
+	Protocol *string `json:"protocol,omitempty"`
 
 	// RemoteGroup Remote security group that this rule references, if any
 	RemoteGroup *string `json:"remote_group,omitempty"`
 
 	// ToPort Ending port number in the range (1-65535)
 	ToPort *int `json:"to_port,omitempty"`
-}
-
-// OpenStackSecurityGroupRuleCreateRequest_Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
-type OpenStackSecurityGroupRuleCreateRequest_Protocol struct {
-	union json.RawMessage
 }
 
 // OpenStackSecurityGroupRuleUpdateByNameRequest defines model for OpenStackSecurityGroupRuleUpdateByNameRequest.
@@ -38424,18 +38388,13 @@ type OpenStackSecurityGroupRuleUpdateByNameRequest struct {
 	// FromPort Starting port number in the range (1-65535)
 	FromPort *int `json:"from_port,omitempty"`
 
-	// Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
-	Protocol        *OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol `json:"protocol,omitempty"`
-	RemoteGroup     *string                                                 `json:"remote_group,omitempty"`
-	RemoteGroupName *string                                                 `json:"remote_group_name,omitempty"`
+	// Protocol Network protocol: 'tcp', 'udp', 'icmp', empty (any) or an IANA protocol number 0-255 (e.g. '112' for VRRP).
+	Protocol        *string `json:"protocol,omitempty"`
+	RemoteGroup     *string `json:"remote_group,omitempty"`
+	RemoteGroupName *string `json:"remote_group_name,omitempty"`
 
 	// ToPort Ending port number in the range (1-65535)
 	ToPort *int `json:"to_port,omitempty"`
-}
-
-// OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
-type OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol struct {
-	union json.RawMessage
 }
 
 // OpenStackSecurityGroupRuleUpdateRequest defines model for OpenStackSecurityGroupRuleUpdateRequest.
@@ -38453,19 +38412,14 @@ type OpenStackSecurityGroupRuleUpdateRequest struct {
 	// FromPort Starting port number in the range (1-65535)
 	FromPort *int `json:"from_port,omitempty"`
 
-	// Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
-	Protocol *OpenStackSecurityGroupRuleUpdateRequest_Protocol `json:"protocol,omitempty"`
+	// Protocol Network protocol: 'tcp', 'udp', 'icmp', empty (any) or an IANA protocol number 0-255 (e.g. '112' for VRRP).
+	Protocol *string `json:"protocol,omitempty"`
 
 	// RemoteGroup Remote security group that this rule references, if any
 	RemoteGroup *string `json:"remote_group,omitempty"`
 
 	// ToPort Ending port number in the range (1-65535)
 	ToPort *int `json:"to_port,omitempty"`
-}
-
-// OpenStackSecurityGroupRuleUpdateRequest_Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
-type OpenStackSecurityGroupRuleUpdateRequest_Protocol struct {
-	union json.RawMessage
 }
 
 // OpenStackSecurityGroupUpdate defines model for OpenStackSecurityGroupUpdate.
@@ -45481,17 +45435,12 @@ type RancherClusterSecurityGroupRule struct {
 	// FromPort Starting port number in the range (1-65535)
 	FromPort *int `json:"from_port,omitempty"`
 
-	// Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
-	Protocol *RancherClusterSecurityGroupRule_Protocol `json:"protocol,omitempty"`
+	// Protocol Network protocol: 'tcp', 'udp', 'icmp', empty (any) or an IANA protocol number 0-255 (e.g. '112' for VRRP).
+	Protocol *string `json:"protocol,omitempty"`
 
 	// ToPort Ending port number in the range (1-65535)
 	ToPort *int                `json:"to_port,omitempty"`
 	Uuid   *openapi_types.UUID `json:"uuid,omitempty"`
-}
-
-// RancherClusterSecurityGroupRule_Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
-type RancherClusterSecurityGroupRule_Protocol struct {
-	union json.RawMessage
 }
 
 // RancherClusterSecurityGroupRuleRequest defines model for RancherClusterSecurityGroupRuleRequest.
@@ -45509,16 +45458,11 @@ type RancherClusterSecurityGroupRuleRequest struct {
 	// FromPort Starting port number in the range (1-65535)
 	FromPort *int `json:"from_port,omitempty"`
 
-	// Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
-	Protocol *RancherClusterSecurityGroupRuleRequest_Protocol `json:"protocol,omitempty"`
+	// Protocol Network protocol: 'tcp', 'udp', 'icmp', empty (any) or an IANA protocol number 0-255 (e.g. '112' for VRRP).
+	Protocol *string `json:"protocol,omitempty"`
 
 	// ToPort Ending port number in the range (1-65535)
 	ToPort *int `json:"to_port,omitempty"`
-}
-
-// RancherClusterSecurityGroupRuleRequest_Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
-type RancherClusterSecurityGroupRuleRequest_Protocol struct {
-	union json.RawMessage
 }
 
 // RancherClusterTemplate defines model for RancherClusterTemplate.
@@ -48545,9 +48489,6 @@ type SectionRequest struct {
 	Key          string `json:"key"`
 	Title        string `json:"title"`
 }
-
-// SecurityGroupRuleProtocolEnum defines model for SecurityGroupRuleProtocolEnum.
-type SecurityGroupRuleProtocolEnum string
 
 // SelfDeclaredConflictRequest defines model for SelfDeclaredConflictRequest.
 type SelfDeclaredConflictRequest struct {
@@ -83711,68 +83652,6 @@ func (t *NestedColumn_Widget) UnmarshalJSON(b []byte) error {
 	return err
 }
 
-// AsSecurityGroupRuleProtocolEnum returns the union data inside the NestedSecurityGroupRule_Protocol as a SecurityGroupRuleProtocolEnum
-func (t NestedSecurityGroupRule_Protocol) AsSecurityGroupRuleProtocolEnum() (SecurityGroupRuleProtocolEnum, error) {
-	var body SecurityGroupRuleProtocolEnum
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromSecurityGroupRuleProtocolEnum overwrites any union data inside the NestedSecurityGroupRule_Protocol as the provided SecurityGroupRuleProtocolEnum
-func (t *NestedSecurityGroupRule_Protocol) FromSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeSecurityGroupRuleProtocolEnum performs a merge with any union data inside the NestedSecurityGroupRule_Protocol, using the provided SecurityGroupRuleProtocolEnum
-func (t *NestedSecurityGroupRule_Protocol) MergeSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsBlankEnum returns the union data inside the NestedSecurityGroupRule_Protocol as a BlankEnum
-func (t NestedSecurityGroupRule_Protocol) AsBlankEnum() (BlankEnum, error) {
-	var body BlankEnum
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromBlankEnum overwrites any union data inside the NestedSecurityGroupRule_Protocol as the provided BlankEnum
-func (t *NestedSecurityGroupRule_Protocol) FromBlankEnum(v BlankEnum) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeBlankEnum performs a merge with any union data inside the NestedSecurityGroupRule_Protocol, using the provided BlankEnum
-func (t *NestedSecurityGroupRule_Protocol) MergeBlankEnum(v BlankEnum) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t NestedSecurityGroupRule_Protocol) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *NestedSecurityGroupRule_Protocol) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
 // AsCountryEnum returns the union data inside the Offering_Country as a CountryEnum
 func (t Offering_Country) AsCountryEnum() (CountryEnum, error) {
 	var body CountryEnum
@@ -85717,254 +85596,6 @@ func (t OpenStackSecurityGroup_AccessUrl) MarshalJSON() ([]byte, error) {
 }
 
 func (t *OpenStackSecurityGroup_AccessUrl) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsSecurityGroupRuleProtocolEnum returns the union data inside the OpenStackSecurityGroupRuleCreate_Protocol as a SecurityGroupRuleProtocolEnum
-func (t OpenStackSecurityGroupRuleCreate_Protocol) AsSecurityGroupRuleProtocolEnum() (SecurityGroupRuleProtocolEnum, error) {
-	var body SecurityGroupRuleProtocolEnum
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromSecurityGroupRuleProtocolEnum overwrites any union data inside the OpenStackSecurityGroupRuleCreate_Protocol as the provided SecurityGroupRuleProtocolEnum
-func (t *OpenStackSecurityGroupRuleCreate_Protocol) FromSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeSecurityGroupRuleProtocolEnum performs a merge with any union data inside the OpenStackSecurityGroupRuleCreate_Protocol, using the provided SecurityGroupRuleProtocolEnum
-func (t *OpenStackSecurityGroupRuleCreate_Protocol) MergeSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsBlankEnum returns the union data inside the OpenStackSecurityGroupRuleCreate_Protocol as a BlankEnum
-func (t OpenStackSecurityGroupRuleCreate_Protocol) AsBlankEnum() (BlankEnum, error) {
-	var body BlankEnum
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromBlankEnum overwrites any union data inside the OpenStackSecurityGroupRuleCreate_Protocol as the provided BlankEnum
-func (t *OpenStackSecurityGroupRuleCreate_Protocol) FromBlankEnum(v BlankEnum) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeBlankEnum performs a merge with any union data inside the OpenStackSecurityGroupRuleCreate_Protocol, using the provided BlankEnum
-func (t *OpenStackSecurityGroupRuleCreate_Protocol) MergeBlankEnum(v BlankEnum) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t OpenStackSecurityGroupRuleCreate_Protocol) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *OpenStackSecurityGroupRuleCreate_Protocol) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsSecurityGroupRuleProtocolEnum returns the union data inside the OpenStackSecurityGroupRuleCreateRequest_Protocol as a SecurityGroupRuleProtocolEnum
-func (t OpenStackSecurityGroupRuleCreateRequest_Protocol) AsSecurityGroupRuleProtocolEnum() (SecurityGroupRuleProtocolEnum, error) {
-	var body SecurityGroupRuleProtocolEnum
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromSecurityGroupRuleProtocolEnum overwrites any union data inside the OpenStackSecurityGroupRuleCreateRequest_Protocol as the provided SecurityGroupRuleProtocolEnum
-func (t *OpenStackSecurityGroupRuleCreateRequest_Protocol) FromSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeSecurityGroupRuleProtocolEnum performs a merge with any union data inside the OpenStackSecurityGroupRuleCreateRequest_Protocol, using the provided SecurityGroupRuleProtocolEnum
-func (t *OpenStackSecurityGroupRuleCreateRequest_Protocol) MergeSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsBlankEnum returns the union data inside the OpenStackSecurityGroupRuleCreateRequest_Protocol as a BlankEnum
-func (t OpenStackSecurityGroupRuleCreateRequest_Protocol) AsBlankEnum() (BlankEnum, error) {
-	var body BlankEnum
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromBlankEnum overwrites any union data inside the OpenStackSecurityGroupRuleCreateRequest_Protocol as the provided BlankEnum
-func (t *OpenStackSecurityGroupRuleCreateRequest_Protocol) FromBlankEnum(v BlankEnum) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeBlankEnum performs a merge with any union data inside the OpenStackSecurityGroupRuleCreateRequest_Protocol, using the provided BlankEnum
-func (t *OpenStackSecurityGroupRuleCreateRequest_Protocol) MergeBlankEnum(v BlankEnum) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t OpenStackSecurityGroupRuleCreateRequest_Protocol) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *OpenStackSecurityGroupRuleCreateRequest_Protocol) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsSecurityGroupRuleProtocolEnum returns the union data inside the OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol as a SecurityGroupRuleProtocolEnum
-func (t OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol) AsSecurityGroupRuleProtocolEnum() (SecurityGroupRuleProtocolEnum, error) {
-	var body SecurityGroupRuleProtocolEnum
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromSecurityGroupRuleProtocolEnum overwrites any union data inside the OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol as the provided SecurityGroupRuleProtocolEnum
-func (t *OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol) FromSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeSecurityGroupRuleProtocolEnum performs a merge with any union data inside the OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol, using the provided SecurityGroupRuleProtocolEnum
-func (t *OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol) MergeSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsBlankEnum returns the union data inside the OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol as a BlankEnum
-func (t OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol) AsBlankEnum() (BlankEnum, error) {
-	var body BlankEnum
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromBlankEnum overwrites any union data inside the OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol as the provided BlankEnum
-func (t *OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol) FromBlankEnum(v BlankEnum) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeBlankEnum performs a merge with any union data inside the OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol, using the provided BlankEnum
-func (t *OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol) MergeBlankEnum(v BlankEnum) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsSecurityGroupRuleProtocolEnum returns the union data inside the OpenStackSecurityGroupRuleUpdateRequest_Protocol as a SecurityGroupRuleProtocolEnum
-func (t OpenStackSecurityGroupRuleUpdateRequest_Protocol) AsSecurityGroupRuleProtocolEnum() (SecurityGroupRuleProtocolEnum, error) {
-	var body SecurityGroupRuleProtocolEnum
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromSecurityGroupRuleProtocolEnum overwrites any union data inside the OpenStackSecurityGroupRuleUpdateRequest_Protocol as the provided SecurityGroupRuleProtocolEnum
-func (t *OpenStackSecurityGroupRuleUpdateRequest_Protocol) FromSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeSecurityGroupRuleProtocolEnum performs a merge with any union data inside the OpenStackSecurityGroupRuleUpdateRequest_Protocol, using the provided SecurityGroupRuleProtocolEnum
-func (t *OpenStackSecurityGroupRuleUpdateRequest_Protocol) MergeSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsBlankEnum returns the union data inside the OpenStackSecurityGroupRuleUpdateRequest_Protocol as a BlankEnum
-func (t OpenStackSecurityGroupRuleUpdateRequest_Protocol) AsBlankEnum() (BlankEnum, error) {
-	var body BlankEnum
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromBlankEnum overwrites any union data inside the OpenStackSecurityGroupRuleUpdateRequest_Protocol as the provided BlankEnum
-func (t *OpenStackSecurityGroupRuleUpdateRequest_Protocol) FromBlankEnum(v BlankEnum) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeBlankEnum performs a merge with any union data inside the OpenStackSecurityGroupRuleUpdateRequest_Protocol, using the provided BlankEnum
-func (t *OpenStackSecurityGroupRuleUpdateRequest_Protocol) MergeBlankEnum(v BlankEnum) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t OpenStackSecurityGroupRuleUpdateRequest_Protocol) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *OpenStackSecurityGroupRuleUpdateRequest_Protocol) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -90743,130 +90374,6 @@ func (t RancherCluster_AccessUrl) MarshalJSON() ([]byte, error) {
 }
 
 func (t *RancherCluster_AccessUrl) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsSecurityGroupRuleProtocolEnum returns the union data inside the RancherClusterSecurityGroupRule_Protocol as a SecurityGroupRuleProtocolEnum
-func (t RancherClusterSecurityGroupRule_Protocol) AsSecurityGroupRuleProtocolEnum() (SecurityGroupRuleProtocolEnum, error) {
-	var body SecurityGroupRuleProtocolEnum
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromSecurityGroupRuleProtocolEnum overwrites any union data inside the RancherClusterSecurityGroupRule_Protocol as the provided SecurityGroupRuleProtocolEnum
-func (t *RancherClusterSecurityGroupRule_Protocol) FromSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeSecurityGroupRuleProtocolEnum performs a merge with any union data inside the RancherClusterSecurityGroupRule_Protocol, using the provided SecurityGroupRuleProtocolEnum
-func (t *RancherClusterSecurityGroupRule_Protocol) MergeSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsBlankEnum returns the union data inside the RancherClusterSecurityGroupRule_Protocol as a BlankEnum
-func (t RancherClusterSecurityGroupRule_Protocol) AsBlankEnum() (BlankEnum, error) {
-	var body BlankEnum
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromBlankEnum overwrites any union data inside the RancherClusterSecurityGroupRule_Protocol as the provided BlankEnum
-func (t *RancherClusterSecurityGroupRule_Protocol) FromBlankEnum(v BlankEnum) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeBlankEnum performs a merge with any union data inside the RancherClusterSecurityGroupRule_Protocol, using the provided BlankEnum
-func (t *RancherClusterSecurityGroupRule_Protocol) MergeBlankEnum(v BlankEnum) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t RancherClusterSecurityGroupRule_Protocol) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *RancherClusterSecurityGroupRule_Protocol) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsSecurityGroupRuleProtocolEnum returns the union data inside the RancherClusterSecurityGroupRuleRequest_Protocol as a SecurityGroupRuleProtocolEnum
-func (t RancherClusterSecurityGroupRuleRequest_Protocol) AsSecurityGroupRuleProtocolEnum() (SecurityGroupRuleProtocolEnum, error) {
-	var body SecurityGroupRuleProtocolEnum
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromSecurityGroupRuleProtocolEnum overwrites any union data inside the RancherClusterSecurityGroupRuleRequest_Protocol as the provided SecurityGroupRuleProtocolEnum
-func (t *RancherClusterSecurityGroupRuleRequest_Protocol) FromSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeSecurityGroupRuleProtocolEnum performs a merge with any union data inside the RancherClusterSecurityGroupRuleRequest_Protocol, using the provided SecurityGroupRuleProtocolEnum
-func (t *RancherClusterSecurityGroupRuleRequest_Protocol) MergeSecurityGroupRuleProtocolEnum(v SecurityGroupRuleProtocolEnum) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsBlankEnum returns the union data inside the RancherClusterSecurityGroupRuleRequest_Protocol as a BlankEnum
-func (t RancherClusterSecurityGroupRuleRequest_Protocol) AsBlankEnum() (BlankEnum, error) {
-	var body BlankEnum
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromBlankEnum overwrites any union data inside the RancherClusterSecurityGroupRuleRequest_Protocol as the provided BlankEnum
-func (t *RancherClusterSecurityGroupRuleRequest_Protocol) FromBlankEnum(v BlankEnum) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeBlankEnum performs a merge with any union data inside the RancherClusterSecurityGroupRuleRequest_Protocol, using the provided BlankEnum
-func (t *RancherClusterSecurityGroupRuleRequest_Protocol) MergeBlankEnum(v BlankEnum) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t RancherClusterSecurityGroupRuleRequest_Protocol) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *RancherClusterSecurityGroupRuleRequest_Protocol) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
