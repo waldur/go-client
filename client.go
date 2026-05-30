@@ -3092,25 +3092,25 @@ func (e ChatSessionFieldEnum) Valid() bool {
 
 // Defines values for ChecklistOperators.
 const (
-	Contains  ChecklistOperators = "contains"
-	Equals    ChecklistOperators = "equals"
-	In        ChecklistOperators = "in"
-	NotEquals ChecklistOperators = "not_equals"
-	NotIn     ChecklistOperators = "not_in"
+	ChecklistOperatorsContains  ChecklistOperators = "contains"
+	ChecklistOperatorsEquals    ChecklistOperators = "equals"
+	ChecklistOperatorsIn        ChecklistOperators = "in"
+	ChecklistOperatorsNotEquals ChecklistOperators = "not_equals"
+	ChecklistOperatorsNotIn     ChecklistOperators = "not_in"
 )
 
 // Valid indicates whether the value is a known member of the ChecklistOperators enum.
 func (e ChecklistOperators) Valid() bool {
 	switch e {
-	case Contains:
+	case ChecklistOperatorsContains:
 		return true
-	case Equals:
+	case ChecklistOperatorsEquals:
 		return true
-	case In:
+	case ChecklistOperatorsIn:
 		return true
-	case NotEquals:
+	case ChecklistOperatorsNotEquals:
 		return true
-	case NotIn:
+	case ChecklistOperatorsNotIn:
 		return true
 	default:
 		return false
@@ -9195,27 +9195,6 @@ func (e KeywordSearchModeEnum) Valid() bool {
 	case ExpertiseOnly:
 		return true
 	case FullText:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for KindEnum.
-const (
-	KindEnumCourse  KindEnum = "course"
-	KindEnumDefault KindEnum = "default"
-	KindEnumPublic  KindEnum = "public"
-)
-
-// Valid indicates whether the value is a known member of the KindEnum enum.
-func (e KindEnum) Valid() bool {
-	switch e {
-	case KindEnumCourse:
-		return true
-	case KindEnumDefault:
-		return true
-	case KindEnumPublic:
 		return true
 	default:
 		return false
@@ -15783,6 +15762,27 @@ func (e ProjectFieldEnum) Valid() bool {
 	}
 }
 
+// Defines values for ProjectKindEnum.
+const (
+	ProjectKindEnumCourse  ProjectKindEnum = "course"
+	ProjectKindEnumDefault ProjectKindEnum = "default"
+	ProjectKindEnumPublic  ProjectKindEnum = "public"
+)
+
+// Valid indicates whether the value is a known member of the ProjectKindEnum enum.
+func (e ProjectKindEnum) Valid() bool {
+	switch e {
+	case ProjectKindEnumCourse:
+		return true
+	case ProjectKindEnumDefault:
+		return true
+	case ProjectKindEnumPublic:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ProjectPermissionLogFieldEnum.
 const (
 	ProjectPermissionLogFieldEnumCreated           ProjectPermissionLogFieldEnum = "created"
@@ -19992,6 +19992,81 @@ const (
 func (e ThreadSessionScopeEnum) Valid() bool {
 	switch e {
 	case Own:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for TopologyEdgeKindEnum.
+const (
+	TopologyEdgeKindEnumAttachedTo   TopologyEdgeKindEnum = "attached_to"
+	TopologyEdgeKindEnumContains     TopologyEdgeKindEnum = "contains"
+	TopologyEdgeKindEnumFloatingFor  TopologyEdgeKindEnum = "floating_for"
+	TopologyEdgeKindEnumGateway      TopologyEdgeKindEnum = "gateway"
+	TopologyEdgeKindEnumHasInterface TopologyEdgeKindEnum = "has_interface"
+	TopologyEdgeKindEnumHasPort      TopologyEdgeKindEnum = "has_port"
+	TopologyEdgeKindEnumHasSubnet    TopologyEdgeKindEnum = "has_subnet"
+	TopologyEdgeKindEnumSharedWith   TopologyEdgeKindEnum = "shared_with"
+)
+
+// Valid indicates whether the value is a known member of the TopologyEdgeKindEnum enum.
+func (e TopologyEdgeKindEnum) Valid() bool {
+	switch e {
+	case TopologyEdgeKindEnumAttachedTo:
+		return true
+	case TopologyEdgeKindEnumContains:
+		return true
+	case TopologyEdgeKindEnumFloatingFor:
+		return true
+	case TopologyEdgeKindEnumGateway:
+		return true
+	case TopologyEdgeKindEnumHasInterface:
+		return true
+	case TopologyEdgeKindEnumHasPort:
+		return true
+	case TopologyEdgeKindEnumHasSubnet:
+		return true
+	case TopologyEdgeKindEnumSharedWith:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for TopologyNodeTypeEnum.
+const (
+	TopologyNodeTypeEnumExternalNetwork TopologyNodeTypeEnum = "external_network"
+	TopologyNodeTypeEnumFloatingIp      TopologyNodeTypeEnum = "floating_ip"
+	TopologyNodeTypeEnumInstance        TopologyNodeTypeEnum = "instance"
+	TopologyNodeTypeEnumNetwork         TopologyNodeTypeEnum = "network"
+	TopologyNodeTypeEnumPort            TopologyNodeTypeEnum = "port"
+	TopologyNodeTypeEnumRbacShare       TopologyNodeTypeEnum = "rbac_share"
+	TopologyNodeTypeEnumRouter          TopologyNodeTypeEnum = "router"
+	TopologyNodeTypeEnumSubnet          TopologyNodeTypeEnum = "subnet"
+	TopologyNodeTypeEnumTenant          TopologyNodeTypeEnum = "tenant"
+)
+
+// Valid indicates whether the value is a known member of the TopologyNodeTypeEnum enum.
+func (e TopologyNodeTypeEnum) Valid() bool {
+	switch e {
+	case TopologyNodeTypeEnumExternalNetwork:
+		return true
+	case TopologyNodeTypeEnumFloatingIp:
+		return true
+	case TopologyNodeTypeEnumInstance:
+		return true
+	case TopologyNodeTypeEnumNetwork:
+		return true
+	case TopologyNodeTypeEnumPort:
+		return true
+	case TopologyNodeTypeEnumRbacShare:
+		return true
+	case TopologyNodeTypeEnumRouter:
+		return true
+	case TopologyNodeTypeEnumSubnet:
+		return true
+	case TopologyNodeTypeEnumTenant:
 		return true
 	default:
 		return false
@@ -32765,9 +32840,6 @@ type KeycloakUserGroupMembershipState string
 // KeywordSearchModeEnum defines model for KeywordSearchModeEnum.
 type KeywordSearchModeEnum string
 
-// KindEnum defines model for KindEnum.
-type KindEnum string
-
 // LOGINPAGELAYOUTEnum defines model for LOGINPAGELAYOUTEnum.
 type LOGINPAGELAYOUTEnum string
 
@@ -41169,7 +41241,7 @@ type PatchedProjectRequest struct {
 	GracePeriodDays  *int                                   `json:"grace_period_days,omitempty"`
 	Image            *openapi_types.File                    `json:"image,omitempty"`
 	IsIndustry       *bool                                  `json:"is_industry,omitempty"`
-	Kind             *KindEnum                              `json:"kind,omitempty"`
+	Kind             *ProjectKindEnum                       `json:"kind,omitempty"`
 	Name             *string                                `json:"name,omitempty"`
 	OecdFos2007Code  *PatchedProjectRequest_OecdFos2007Code `json:"oecd_fos_2007_code,omitempty"`
 	ScienceSubDomain *openapi_types.UUID                    `json:"science_sub_domain,omitempty"`
@@ -41211,7 +41283,7 @@ type PatchedProjectRequestForm struct {
 	GracePeriodDays  *int                                       `json:"grace_period_days,omitempty"`
 	Image            *openapi_types.File                        `json:"image,omitempty"`
 	IsIndustry       *bool                                      `json:"is_industry,omitempty"`
-	Kind             *KindEnum                                  `json:"kind,omitempty"`
+	Kind             *ProjectKindEnum                           `json:"kind,omitempty"`
 	Name             *string                                    `json:"name,omitempty"`
 	OecdFos2007Code  *PatchedProjectRequestForm_OecdFos2007Code `json:"oecd_fos_2007_code,omitempty"`
 	ScienceSubDomain *openapi_types.UUID                        `json:"science_sub_domain,omitempty"`
@@ -41253,7 +41325,7 @@ type PatchedProjectRequestMultipart struct {
 	GracePeriodDays  *int                                            `json:"grace_period_days,omitempty"`
 	Image            *openapi_types.File                             `json:"image,omitempty"`
 	IsIndustry       *bool                                           `json:"is_industry,omitempty"`
-	Kind             *KindEnum                                       `json:"kind,omitempty"`
+	Kind             *ProjectKindEnum                                `json:"kind,omitempty"`
 	Name             *string                                         `json:"name,omitempty"`
 	OecdFos2007Code  *PatchedProjectRequestMultipart_OecdFos2007Code `json:"oecd_fos_2007_code,omitempty"`
 	ScienceSubDomain *openapi_types.UUID                             `json:"science_sub_domain,omitempty"`
@@ -42790,11 +42862,11 @@ type Project struct {
 	Image           *string `json:"image,omitempty"`
 
 	// IsInGracePeriod True if the project is past its end date but still within the grace period.
-	IsInGracePeriod          *bool           `json:"is_in_grace_period,omitempty"`
-	IsIndustry               *bool           `json:"is_industry,omitempty"`
-	IsRemoved                *bool           `json:"is_removed,omitempty"`
-	Kind                     *KindEnum       `json:"kind,omitempty"`
-	MarketplaceResourceCount *map[string]int `json:"marketplace_resource_count,omitempty"`
+	IsInGracePeriod          *bool            `json:"is_in_grace_period,omitempty"`
+	IsIndustry               *bool            `json:"is_industry,omitempty"`
+	IsRemoved                *bool            `json:"is_removed,omitempty"`
+	Kind                     *ProjectKindEnum `json:"kind,omitempty"`
+	MarketplaceResourceCount *map[string]int  `json:"marketplace_resource_count,omitempty"`
 
 	// MaxServiceAccounts Maximum number of service accounts allowed
 	MaxServiceAccounts *int                     `json:"max_service_accounts,omitempty"`
@@ -43130,6 +43202,9 @@ type ProjectInfoRequest struct {
 	Shortname *string `json:"shortname,omitempty"`
 }
 
+// ProjectKindEnum defines model for ProjectKindEnum.
+type ProjectKindEnum string
+
 // ProjectMapping defines model for ProjectMapping.
 type ProjectMapping struct {
 	CustomerName string `json:"customer_name"`
@@ -43255,7 +43330,7 @@ type ProjectRequest struct {
 	GracePeriodDays  *int                            `json:"grace_period_days,omitempty"`
 	Image            *openapi_types.File             `json:"image,omitempty"`
 	IsIndustry       *bool                           `json:"is_industry,omitempty"`
-	Kind             *KindEnum                       `json:"kind,omitempty"`
+	Kind             *ProjectKindEnum                `json:"kind,omitempty"`
 	Name             string                          `json:"name"`
 	OecdFos2007Code  *ProjectRequest_OecdFos2007Code `json:"oecd_fos_2007_code,omitempty"`
 	ScienceSubDomain *openapi_types.UUID             `json:"science_sub_domain,omitempty"`
@@ -43297,7 +43372,7 @@ type ProjectRequestForm struct {
 	GracePeriodDays  *int                                `json:"grace_period_days,omitempty"`
 	Image            *openapi_types.File                 `json:"image,omitempty"`
 	IsIndustry       *bool                               `json:"is_industry,omitempty"`
-	Kind             *KindEnum                           `json:"kind,omitempty"`
+	Kind             *ProjectKindEnum                    `json:"kind,omitempty"`
 	Name             string                              `json:"name"`
 	OecdFos2007Code  *ProjectRequestForm_OecdFos2007Code `json:"oecd_fos_2007_code,omitempty"`
 	ScienceSubDomain *openapi_types.UUID                 `json:"science_sub_domain,omitempty"`
@@ -43339,7 +43414,7 @@ type ProjectRequestMultipart struct {
 	GracePeriodDays  *int                                     `json:"grace_period_days,omitempty"`
 	Image            *openapi_types.File                      `json:"image,omitempty"`
 	IsIndustry       *bool                                    `json:"is_industry,omitempty"`
-	Kind             *KindEnum                                `json:"kind,omitempty"`
+	Kind             *ProjectKindEnum                         `json:"kind,omitempty"`
 	Name             string                                   `json:"name"`
 	OecdFos2007Code  *ProjectRequestMultipart_OecdFos2007Code `json:"oecd_fos_2007_code,omitempty"`
 	ScienceSubDomain *openapi_types.UUID                      `json:"science_sub_domain,omitempty"`
@@ -50118,6 +50193,12 @@ type TenantSecurityGroupUpdateRequest struct {
 	Uuid        *openapi_types.UUID                              `json:"uuid,omitempty"`
 }
 
+// TenantTopology defines model for TenantTopology.
+type TenantTopology struct {
+	Edges []TopologyEdge `json:"edges"`
+	Nodes []TopologyNode `json:"nodes"`
+}
+
 // ThreadSession defines model for ThreadSession.
 type ThreadSession struct {
 	ChatSession          *openapi_types.UUID    `json:"chat_session,omitempty"`
@@ -50280,6 +50361,28 @@ type TopServiceProviderByResources struct {
 	// ResourcesCount Number of active resources
 	ResourcesCount int `json:"resources_count"`
 }
+
+// TopologyEdge defines model for TopologyEdge.
+type TopologyEdge struct {
+	Kind   TopologyEdgeKindEnum `json:"kind"`
+	Source string               `json:"source"`
+	Target string               `json:"target"`
+}
+
+// TopologyEdgeKindEnum defines model for TopologyEdgeKindEnum.
+type TopologyEdgeKindEnum string
+
+// TopologyNode defines model for TopologyNode.
+type TopologyNode struct {
+	Attrs map[string]interface{} `json:"attrs"`
+	Id    string                 `json:"id"`
+	Name  string                 `json:"name"`
+	Type  TopologyNodeTypeEnum   `json:"type"`
+	Uuid  *string                `json:"uuid,omitempty"`
+}
+
+// TopologyNodeTypeEnum defines model for TopologyNodeTypeEnum.
+type TopologyNodeTypeEnum string
 
 // TotalCustomerCost defines model for TotalCustomerCost.
 type TotalCustomerCost struct {
@@ -99300,6 +99403,9 @@ type ClientInterface interface {
 
 	OpenstackTenantsSetQuotas(ctx context.Context, uuid openapi_types.UUID, body OpenstackTenantsSetQuotasJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenstackTenantsTopologyRetrieve request
+	OpenstackTenantsTopologyRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenstackTenantsUnlink request
 	OpenstackTenantsUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -131802,6 +131908,18 @@ func (c *Client) OpenstackTenantsSetQuotasWithBody(ctx context.Context, uuid ope
 
 func (c *Client) OpenstackTenantsSetQuotas(ctx context.Context, uuid openapi_types.UUID, body OpenstackTenantsSetQuotasJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackTenantsSetQuotasRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackTenantsTopologyRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackTenantsTopologyRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -286131,6 +286249,40 @@ func NewOpenstackTenantsSetQuotasRequestWithBody(server string, uuid openapi_typ
 	return req, nil
 }
 
+// NewOpenstackTenantsTopologyRetrieveRequest generates requests for OpenstackTenantsTopologyRetrieve
+func NewOpenstackTenantsTopologyRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-tenants/%s/topology/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOpenstackTenantsUnlinkRequest generates requests for OpenstackTenantsUnlink
 func NewOpenstackTenantsUnlinkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -348269,6 +348421,9 @@ type ClientWithResponsesInterface interface {
 
 	OpenstackTenantsSetQuotasWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackTenantsSetQuotasJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackTenantsSetQuotasResponse, error)
 
+	// OpenstackTenantsTopologyRetrieveWithResponse request
+	OpenstackTenantsTopologyRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackTenantsTopologyRetrieveResponse, error)
+
 	// OpenstackTenantsUnlinkWithResponse request
 	OpenstackTenantsUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackTenantsUnlinkResponse, error)
 
@@ -405223,6 +405378,36 @@ func (r OpenstackTenantsSetQuotasResponse) ContentType() string {
 	return ""
 }
 
+type OpenstackTenantsTopologyRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *TenantTopology
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackTenantsTopologyRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackTenantsTopologyRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenstackTenantsTopologyRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type OpenstackTenantsUnlinkResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -449325,6 +449510,15 @@ func (c *ClientWithResponses) OpenstackTenantsSetQuotasWithResponse(ctx context.
 		return nil, err
 	}
 	return ParseOpenstackTenantsSetQuotasResponse(rsp)
+}
+
+// OpenstackTenantsTopologyRetrieveWithResponse request returning *OpenstackTenantsTopologyRetrieveResponse
+func (c *ClientWithResponses) OpenstackTenantsTopologyRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackTenantsTopologyRetrieveResponse, error) {
+	rsp, err := c.OpenstackTenantsTopologyRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackTenantsTopologyRetrieveResponse(rsp)
 }
 
 // OpenstackTenantsUnlinkWithResponse request returning *OpenstackTenantsUnlinkResponse
@@ -500490,6 +500684,32 @@ func ParseOpenstackTenantsSetQuotasResponse(rsp *http.Response) (*OpenstackTenan
 			return nil, err
 		}
 		response.JSON202 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackTenantsTopologyRetrieveResponse parses an HTTP response from a OpenstackTenantsTopologyRetrieveWithResponse call
+func ParseOpenstackTenantsTopologyRetrieveResponse(rsp *http.Response) (*OpenstackTenantsTopologyRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackTenantsTopologyRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest TenantTopology
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
 
 	}
 
