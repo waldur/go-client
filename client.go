@@ -101,25 +101,25 @@ func (e AccessorTypeEnum) Valid() bool {
 
 // Defines values for ActionTakenEnum.
 const (
-	Allow  ActionTakenEnum = "allow"
-	Block  ActionTakenEnum = "block"
-	Flag   ActionTakenEnum = "flag"
-	Redact ActionTakenEnum = "redact"
-	Warn   ActionTakenEnum = "warn"
+	ActionTakenEnumAllow  ActionTakenEnum = "allow"
+	ActionTakenEnumBlock  ActionTakenEnum = "block"
+	ActionTakenEnumFlag   ActionTakenEnum = "flag"
+	ActionTakenEnumRedact ActionTakenEnum = "redact"
+	ActionTakenEnumWarn   ActionTakenEnum = "warn"
 )
 
 // Valid indicates whether the value is a known member of the ActionTakenEnum enum.
 func (e ActionTakenEnum) Valid() bool {
 	switch e {
-	case Allow:
+	case ActionTakenEnumAllow:
 		return true
-	case Block:
+	case ActionTakenEnumBlock:
 		return true
-	case Flag:
+	case ActionTakenEnumFlag:
 		return true
-	case Redact:
+	case ActionTakenEnumRedact:
 		return true
-	case Warn:
+	case ActionTakenEnumWarn:
 		return true
 	default:
 		return false
@@ -5064,6 +5064,30 @@ func (e DetectionMethodEnum) Valid() bool {
 	}
 }
 
+// Defines values for DiagnoseCheckStatusEnum.
+const (
+	DiagnoseCheckStatusEnumFail DiagnoseCheckStatusEnum = "fail"
+	DiagnoseCheckStatusEnumOk   DiagnoseCheckStatusEnum = "ok"
+	DiagnoseCheckStatusEnumSkip DiagnoseCheckStatusEnum = "skip"
+	DiagnoseCheckStatusEnumWarn DiagnoseCheckStatusEnum = "warn"
+)
+
+// Valid indicates whether the value is a known member of the DiagnoseCheckStatusEnum enum.
+func (e DiagnoseCheckStatusEnum) Valid() bool {
+	switch e {
+	case DiagnoseCheckStatusEnumFail:
+		return true
+	case DiagnoseCheckStatusEnumOk:
+		return true
+	case DiagnoseCheckStatusEnumSkip:
+		return true
+	case DiagnoseCheckStatusEnumWarn:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for DigitalOceanDropletFieldEnum.
 const (
 	DigitalOceanDropletFieldEnumAccessUrl                        DigitalOceanDropletFieldEnum = "access_url"
@@ -5262,24 +5286,6 @@ func (e DigitalOceanImageOEnum) Valid() bool {
 	case DigitalOceanImageOEnumMinusType:
 		return true
 	case DigitalOceanImageOEnumType:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for DirectionEnum.
-const (
-	Egress  DirectionEnum = "egress"
-	Ingress DirectionEnum = "ingress"
-)
-
-// Valid indicates whether the value is a known member of the DirectionEnum enum.
-func (e DirectionEnum) Valid() bool {
-	switch e {
-	case Egress:
-		return true
-	case Ingress:
 		return true
 	default:
 		return false
@@ -5633,25 +5639,32 @@ func (e EventFieldEnum) Valid() bool {
 
 // Defines values for EventGroupsEnum.
 const (
-	EventGroupsEnumAccessSubnets      EventGroupsEnum = "access_subnets"
-	EventGroupsEnumAuth               EventGroupsEnum = "auth"
-	EventGroupsEnumCall               EventGroupsEnum = "call"
-	EventGroupsEnumChat               EventGroupsEnum = "chat"
-	EventGroupsEnumCredits            EventGroupsEnum = "credits"
-	EventGroupsEnumCustomers          EventGroupsEnum = "customers"
-	EventGroupsEnumInvoices           EventGroupsEnum = "invoices"
-	EventGroupsEnumOfferingAccounting EventGroupsEnum = "offering_accounting"
-	EventGroupsEnumOnboarding         EventGroupsEnum = "onboarding"
-	EventGroupsEnumPermissions        EventGroupsEnum = "permissions"
-	EventGroupsEnumProjects           EventGroupsEnum = "projects"
-	EventGroupsEnumProposal           EventGroupsEnum = "proposal"
-	EventGroupsEnumProviders          EventGroupsEnum = "providers"
-	EventGroupsEnumResources          EventGroupsEnum = "resources"
-	EventGroupsEnumReview             EventGroupsEnum = "review"
-	EventGroupsEnumSsh                EventGroupsEnum = "ssh"
-	EventGroupsEnumSupport            EventGroupsEnum = "support"
-	EventGroupsEnumTermsOfService     EventGroupsEnum = "terms_of_service"
-	EventGroupsEnumUsers              EventGroupsEnum = "users"
+	EventGroupsEnumAccessSubnets          EventGroupsEnum = "access_subnets"
+	EventGroupsEnumAuth                   EventGroupsEnum = "auth"
+	EventGroupsEnumCall                   EventGroupsEnum = "call"
+	EventGroupsEnumChat                   EventGroupsEnum = "chat"
+	EventGroupsEnumCredits                EventGroupsEnum = "credits"
+	EventGroupsEnumCustomers              EventGroupsEnum = "customers"
+	EventGroupsEnumInvoices               EventGroupsEnum = "invoices"
+	EventGroupsEnumOfferingAccounting     EventGroupsEnum = "offering_accounting"
+	EventGroupsEnumOnboarding             EventGroupsEnum = "onboarding"
+	EventGroupsEnumOpenstackFloatingIp    EventGroupsEnum = "openstack_floating_ip"
+	EventGroupsEnumOpenstackNetwork       EventGroupsEnum = "openstack_network"
+	EventGroupsEnumOpenstackPort          EventGroupsEnum = "openstack_port"
+	EventGroupsEnumOpenstackRbac          EventGroupsEnum = "openstack_rbac"
+	EventGroupsEnumOpenstackRouter        EventGroupsEnum = "openstack_router"
+	EventGroupsEnumOpenstackSecurityGroup EventGroupsEnum = "openstack_security_group"
+	EventGroupsEnumOpenstackSubnet        EventGroupsEnum = "openstack_subnet"
+	EventGroupsEnumPermissions            EventGroupsEnum = "permissions"
+	EventGroupsEnumProjects               EventGroupsEnum = "projects"
+	EventGroupsEnumProposal               EventGroupsEnum = "proposal"
+	EventGroupsEnumProviders              EventGroupsEnum = "providers"
+	EventGroupsEnumResources              EventGroupsEnum = "resources"
+	EventGroupsEnumReview                 EventGroupsEnum = "review"
+	EventGroupsEnumSsh                    EventGroupsEnum = "ssh"
+	EventGroupsEnumSupport                EventGroupsEnum = "support"
+	EventGroupsEnumTermsOfService         EventGroupsEnum = "terms_of_service"
+	EventGroupsEnumUsers                  EventGroupsEnum = "users"
 )
 
 // Valid indicates whether the value is a known member of the EventGroupsEnum enum.
@@ -5674,6 +5687,20 @@ func (e EventGroupsEnum) Valid() bool {
 	case EventGroupsEnumOfferingAccounting:
 		return true
 	case EventGroupsEnumOnboarding:
+		return true
+	case EventGroupsEnumOpenstackFloatingIp:
+		return true
+	case EventGroupsEnumOpenstackNetwork:
+		return true
+	case EventGroupsEnumOpenstackPort:
+		return true
+	case EventGroupsEnumOpenstackRbac:
+		return true
+	case EventGroupsEnumOpenstackRouter:
+		return true
+	case EventGroupsEnumOpenstackSecurityGroup:
+		return true
+	case EventGroupsEnumOpenstackSubnet:
 		return true
 	case EventGroupsEnumPermissions:
 		return true
@@ -5833,6 +5860,10 @@ const (
 	EventMetadataResponseEventGroupsOpenstackPortSecurityEnabled                     EventMetadataResponseEventGroups = "openstack_port_security_enabled"
 	EventMetadataResponseEventGroupsOpenstackPortSecurityGroupsChanged               EventMetadataResponseEventGroups = "openstack_port_security_groups_changed"
 	EventMetadataResponseEventGroupsOpenstackPortUpdated                             EventMetadataResponseEventGroups = "openstack_port_updated"
+	EventMetadataResponseEventGroupsOpenstackRbacPolicyCreated                       EventMetadataResponseEventGroups = "openstack_rbac_policy_created"
+	EventMetadataResponseEventGroupsOpenstackRbacPolicyDeleted                       EventMetadataResponseEventGroups = "openstack_rbac_policy_deleted"
+	EventMetadataResponseEventGroupsOpenstackRouterInterfaceAdded                    EventMetadataResponseEventGroups = "openstack_router_interface_added"
+	EventMetadataResponseEventGroupsOpenstackRouterInterfaceRemoved                  EventMetadataResponseEventGroups = "openstack_router_interface_removed"
 	EventMetadataResponseEventGroupsOpenstackRouterUpdated                           EventMetadataResponseEventGroups = "openstack_router_updated"
 	EventMetadataResponseEventGroupsOpenstackSecurityGroupAddedLocally               EventMetadataResponseEventGroups = "openstack_security_group_added_locally"
 	EventMetadataResponseEventGroupsOpenstackSecurityGroupAddedRemotely              EventMetadataResponseEventGroups = "openstack_security_group_added_remotely"
@@ -5858,6 +5889,7 @@ const (
 	EventMetadataResponseEventGroupsOpenstackSubnetCleaned                           EventMetadataResponseEventGroups = "openstack_subnet_cleaned"
 	EventMetadataResponseEventGroupsOpenstackSubnetCreated                           EventMetadataResponseEventGroups = "openstack_subnet_created"
 	EventMetadataResponseEventGroupsOpenstackSubnetDeleted                           EventMetadataResponseEventGroups = "openstack_subnet_deleted"
+	EventMetadataResponseEventGroupsOpenstackSubnetHostRoutesChanged                 EventMetadataResponseEventGroups = "openstack_subnet_host_routes_changed"
 	EventMetadataResponseEventGroupsOpenstackSubnetImported                          EventMetadataResponseEventGroups = "openstack_subnet_imported"
 	EventMetadataResponseEventGroupsOpenstackSubnetPulled                            EventMetadataResponseEventGroups = "openstack_subnet_pulled"
 	EventMetadataResponseEventGroupsOpenstackSubnetUpdated                           EventMetadataResponseEventGroups = "openstack_subnet_updated"
@@ -6273,6 +6305,14 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 		return true
 	case EventMetadataResponseEventGroupsOpenstackPortUpdated:
 		return true
+	case EventMetadataResponseEventGroupsOpenstackRbacPolicyCreated:
+		return true
+	case EventMetadataResponseEventGroupsOpenstackRbacPolicyDeleted:
+		return true
+	case EventMetadataResponseEventGroupsOpenstackRouterInterfaceAdded:
+		return true
+	case EventMetadataResponseEventGroupsOpenstackRouterInterfaceRemoved:
+		return true
 	case EventMetadataResponseEventGroupsOpenstackRouterUpdated:
 		return true
 	case EventMetadataResponseEventGroupsOpenstackSecurityGroupAddedLocally:
@@ -6322,6 +6362,8 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 	case EventMetadataResponseEventGroupsOpenstackSubnetCreated:
 		return true
 	case EventMetadataResponseEventGroupsOpenstackSubnetDeleted:
+		return true
+	case EventMetadataResponseEventGroupsOpenstackSubnetHostRoutesChanged:
 		return true
 	case EventMetadataResponseEventGroupsOpenstackSubnetImported:
 		return true
@@ -6757,6 +6799,10 @@ const (
 	EventTypesEnumOpenstackPortSecurityEnabled                     EventTypesEnum = "openstack_port_security_enabled"
 	EventTypesEnumOpenstackPortSecurityGroupsChanged               EventTypesEnum = "openstack_port_security_groups_changed"
 	EventTypesEnumOpenstackPortUpdated                             EventTypesEnum = "openstack_port_updated"
+	EventTypesEnumOpenstackRbacPolicyCreated                       EventTypesEnum = "openstack_rbac_policy_created"
+	EventTypesEnumOpenstackRbacPolicyDeleted                       EventTypesEnum = "openstack_rbac_policy_deleted"
+	EventTypesEnumOpenstackRouterInterfaceAdded                    EventTypesEnum = "openstack_router_interface_added"
+	EventTypesEnumOpenstackRouterInterfaceRemoved                  EventTypesEnum = "openstack_router_interface_removed"
 	EventTypesEnumOpenstackRouterUpdated                           EventTypesEnum = "openstack_router_updated"
 	EventTypesEnumOpenstackSecurityGroupAddedLocally               EventTypesEnum = "openstack_security_group_added_locally"
 	EventTypesEnumOpenstackSecurityGroupAddedRemotely              EventTypesEnum = "openstack_security_group_added_remotely"
@@ -6782,6 +6828,7 @@ const (
 	EventTypesEnumOpenstackSubnetCleaned                           EventTypesEnum = "openstack_subnet_cleaned"
 	EventTypesEnumOpenstackSubnetCreated                           EventTypesEnum = "openstack_subnet_created"
 	EventTypesEnumOpenstackSubnetDeleted                           EventTypesEnum = "openstack_subnet_deleted"
+	EventTypesEnumOpenstackSubnetHostRoutesChanged                 EventTypesEnum = "openstack_subnet_host_routes_changed"
 	EventTypesEnumOpenstackSubnetImported                          EventTypesEnum = "openstack_subnet_imported"
 	EventTypesEnumOpenstackSubnetPulled                            EventTypesEnum = "openstack_subnet_pulled"
 	EventTypesEnumOpenstackSubnetUpdated                           EventTypesEnum = "openstack_subnet_updated"
@@ -7197,6 +7244,14 @@ func (e EventTypesEnum) Valid() bool {
 		return true
 	case EventTypesEnumOpenstackPortUpdated:
 		return true
+	case EventTypesEnumOpenstackRbacPolicyCreated:
+		return true
+	case EventTypesEnumOpenstackRbacPolicyDeleted:
+		return true
+	case EventTypesEnumOpenstackRouterInterfaceAdded:
+		return true
+	case EventTypesEnumOpenstackRouterInterfaceRemoved:
+		return true
 	case EventTypesEnumOpenstackRouterUpdated:
 		return true
 	case EventTypesEnumOpenstackSecurityGroupAddedLocally:
@@ -7246,6 +7301,8 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumOpenstackSubnetCreated:
 		return true
 	case EventTypesEnumOpenstackSubnetDeleted:
+		return true
+	case EventTypesEnumOpenstackSubnetHostRoutesChanged:
 		return true
 	case EventTypesEnumOpenstackSubnetImported:
 		return true
@@ -10062,6 +10119,27 @@ func (e NameEnum) Valid() bool {
 	case EESSI:
 		return true
 	case Spack:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for NetworkRBACPolicyDirectionEnum.
+const (
+	NetworkRBACPolicyDirectionEnumAll      NetworkRBACPolicyDirectionEnum = "all"
+	NetworkRBACPolicyDirectionEnumInbound  NetworkRBACPolicyDirectionEnum = "inbound"
+	NetworkRBACPolicyDirectionEnumOutbound NetworkRBACPolicyDirectionEnum = "outbound"
+)
+
+// Valid indicates whether the value is a known member of the NetworkRBACPolicyDirectionEnum enum.
+func (e NetworkRBACPolicyDirectionEnum) Valid() bool {
+	switch e {
+	case NetworkRBACPolicyDirectionEnumAll:
+		return true
+	case NetworkRBACPolicyDirectionEnumInbound:
+		return true
+	case NetworkRBACPolicyDirectionEnumOutbound:
 		return true
 	default:
 		return false
@@ -17838,6 +17916,24 @@ func (e RancherWorkloadOEnum) Valid() bool {
 	}
 }
 
+// Defines values for RbacPolicyDirectionEnum.
+const (
+	RbacPolicyDirectionEnumInbound  RbacPolicyDirectionEnum = "inbound"
+	RbacPolicyDirectionEnumOutbound RbacPolicyDirectionEnum = "outbound"
+)
+
+// Valid indicates whether the value is a known member of the RbacPolicyDirectionEnum enum.
+func (e RbacPolicyDirectionEnum) Valid() bool {
+	switch e {
+	case RbacPolicyDirectionEnumInbound:
+		return true
+	case RbacPolicyDirectionEnumOutbound:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for RelationshipTypeEnum.
 const (
 	RelationshipTypeEnumBoard      RelationshipTypeEnum = "board"
@@ -19077,6 +19173,24 @@ func (e ScienceSubDomainOEnum) Valid() bool {
 	case ScienceSubDomainOEnumName:
 		return true
 	case ScienceSubDomainOEnumProjectsCount:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for SecurityGroupRuleDirectionEnum.
+const (
+	Egress  SecurityGroupRuleDirectionEnum = "egress"
+	Ingress SecurityGroupRuleDirectionEnum = "ingress"
+)
+
+// Valid indicates whether the value is a known member of the SecurityGroupRuleDirectionEnum enum.
+func (e SecurityGroupRuleDirectionEnum) Valid() bool {
+	switch e {
+	case Egress:
+		return true
+	case Ingress:
 		return true
 	default:
 		return false
@@ -22831,6 +22945,12 @@ type AllocationUserUsage struct {
 	User       *string `json:"user,omitempty"`
 	Username   string  `json:"username"`
 	Year       int     `json:"year"`
+}
+
+// AllowedAddressPairEntryRequest defines model for AllowedAddressPairEntryRequest.
+type AllowedAddressPairEntryRequest struct {
+	IpAddress  string  `json:"ip_address"`
+	MacAddress *string `json:"mac_address,omitempty"`
 }
 
 // AllowedScopeInputRequest defines model for AllowedScopeInputRequest.
@@ -29896,13 +30016,17 @@ type DeploymentModeEnum string
 
 // DeprecatedNetworkRBACPolicy defines model for DeprecatedNetworkRBACPolicy.
 type DeprecatedNetworkRBACPolicy struct {
-	BackendId   *string    `json:"backend_id,omitempty"`
-	Created     *time.Time `json:"created,omitempty"`
-	Network     *string    `json:"network,omitempty"`
-	NetworkName *string    `json:"network_name,omitempty"`
+	BackendId   *string                  `json:"backend_id,omitempty"`
+	Created     *time.Time               `json:"created,omitempty"`
+	Direction   *RbacPolicyDirectionEnum `json:"direction,omitempty"`
+	Network     *string                  `json:"network,omitempty"`
+	NetworkName *string                  `json:"network_name,omitempty"`
 
 	// PolicyType Type of access granted - either shared access or external network access
 	PolicyType       *PolicyTypeEnum     `json:"policy_type,omitempty"`
+	SourceTenantName *string             `json:"source_tenant_name,omitempty"`
+	SourceTenantUuid *openapi_types.UUID `json:"source_tenant_uuid,omitempty"`
+	TargetLabel      *string             `json:"target_label,omitempty"`
 	TargetTenant     string              `json:"target_tenant"`
 	TargetTenantName *string             `json:"target_tenant_name,omitempty"`
 	Url              *string             `json:"url,omitempty"`
@@ -29929,6 +30053,31 @@ type DetailState struct {
 
 // DetectionMethodEnum defines model for DetectionMethodEnum.
 type DetectionMethodEnum string
+
+// DiagnoseCheck defines model for DiagnoseCheck.
+type DiagnoseCheck struct {
+	Check   string                  `json:"check"`
+	Detail  string                  `json:"detail"`
+	FixHint string                  `json:"fix_hint"`
+	Status  DiagnoseCheckStatusEnum `json:"status"`
+}
+
+// DiagnoseCheckStatusEnum defines model for DiagnoseCheckStatusEnum.
+type DiagnoseCheckStatusEnum string
+
+// DiagnoseConnectivityRequestRequest defines model for DiagnoseConnectivityRequestRequest.
+type DiagnoseConnectivityRequestRequest struct {
+	// Target Connectivity target. 'external' (default) checks outbound internet; 'internal:<ip>' checks east-west to another IP; 'fip:<address>' verifies a specific floating-IP mapping.
+	Target *string `json:"target,omitempty"`
+}
+
+// DiagnoseConnectivityResponse defines model for DiagnoseConnectivityResponse.
+type DiagnoseConnectivityResponse struct {
+	Checks        []DiagnoseCheck `json:"checks"`
+	RootCause     *string         `json:"root_cause"`
+	Target        string          `json:"target"`
+	TargetAddress *string         `json:"target_address"`
+}
 
 // DigitalOceanDroplet defines model for DigitalOceanDroplet.
 type DigitalOceanDroplet struct {
@@ -30078,9 +30227,6 @@ type DigitalOceanSize struct {
 	Url      *string             `json:"url,omitempty"`
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 }
-
-// DirectionEnum defines model for DirectionEnum.
-type DirectionEnum string
 
 // DiscountConfigRequest defines model for DiscountConfigRequest.
 type DiscountConfigRequest struct {
@@ -34849,7 +34995,7 @@ type NestedSecurityGroupRule struct {
 	Description *string `json:"description,omitempty"`
 
 	// Direction Traffic direction - either 'ingress' (incoming) or 'egress' (outgoing)
-	Direction *DirectionEnum `json:"direction,omitempty"`
+	Direction *SecurityGroupRuleDirectionEnum `json:"direction,omitempty"`
 
 	// Ethertype IP protocol version - either 'IPv4' or 'IPv6'
 	Ethertype *EthertypeEnum `json:"ethertype,omitempty"`
@@ -34927,18 +35073,25 @@ type NestedTag struct {
 
 // NetworkRBACPolicy defines model for NetworkRBACPolicy.
 type NetworkRBACPolicy struct {
-	BackendId   *string    `json:"backend_id,omitempty"`
-	Created     *time.Time `json:"created,omitempty"`
-	Network     *string    `json:"network,omitempty"`
-	NetworkName *string    `json:"network_name,omitempty"`
+	BackendId   *string                  `json:"backend_id,omitempty"`
+	Created     *time.Time               `json:"created,omitempty"`
+	Direction   *RbacPolicyDirectionEnum `json:"direction,omitempty"`
+	Network     *string                  `json:"network,omitempty"`
+	NetworkName *string                  `json:"network_name,omitempty"`
 
 	// PolicyType Type of access granted - either shared access or external network access
 	PolicyType       *PolicyTypeEnum     `json:"policy_type,omitempty"`
+	SourceTenantName *string             `json:"source_tenant_name,omitempty"`
+	SourceTenantUuid *openapi_types.UUID `json:"source_tenant_uuid,omitempty"`
+	TargetLabel      *string             `json:"target_label,omitempty"`
 	TargetTenant     *string             `json:"target_tenant,omitempty"`
 	TargetTenantName *string             `json:"target_tenant_name,omitempty"`
 	Url              *string             `json:"url,omitempty"`
 	Uuid             *openapi_types.UUID `json:"uuid,omitempty"`
 }
+
+// NetworkRBACPolicyDirectionEnum defines model for NetworkRBACPolicyDirectionEnum.
+type NetworkRBACPolicyDirectionEnum string
 
 // NetworkRBACPolicyRequest defines model for NetworkRBACPolicyRequest.
 type NetworkRBACPolicyRequest struct {
@@ -38485,7 +38638,7 @@ type OpenStackSecurityGroupRuleCreate struct {
 	Description *string `json:"description,omitempty"`
 
 	// Direction Traffic direction - either 'ingress' (incoming) or 'egress' (outgoing)
-	Direction *DirectionEnum `json:"direction,omitempty"`
+	Direction *SecurityGroupRuleDirectionEnum `json:"direction,omitempty"`
 
 	// Ethertype IP protocol version - either 'IPv4' or 'IPv6'
 	Ethertype *EthertypeEnum `json:"ethertype,omitempty"`
@@ -38513,7 +38666,7 @@ type OpenStackSecurityGroupRuleCreateRequest struct {
 	Description *string `json:"description,omitempty"`
 
 	// Direction Traffic direction - either 'ingress' (incoming) or 'egress' (outgoing)
-	Direction *DirectionEnum `json:"direction,omitempty"`
+	Direction *SecurityGroupRuleDirectionEnum `json:"direction,omitempty"`
 
 	// Ethertype IP protocol version - either 'IPv4' or 'IPv6'
 	Ethertype *EthertypeEnum `json:"ethertype,omitempty"`
@@ -38538,7 +38691,7 @@ type OpenStackSecurityGroupRuleUpdateByNameRequest struct {
 	Description *string `json:"description,omitempty"`
 
 	// Direction Traffic direction - either 'ingress' (incoming) or 'egress' (outgoing)
-	Direction *DirectionEnum `json:"direction,omitempty"`
+	Direction *SecurityGroupRuleDirectionEnum `json:"direction,omitempty"`
 
 	// Ethertype IP protocol version - either 'IPv4' or 'IPv6'
 	Ethertype *EthertypeEnum `json:"ethertype,omitempty"`
@@ -38562,7 +38715,7 @@ type OpenStackSecurityGroupRuleUpdateRequest struct {
 	Description *string `json:"description,omitempty"`
 
 	// Direction Traffic direction - either 'ingress' (incoming) or 'egress' (outgoing)
-	Direction *DirectionEnum `json:"direction,omitempty"`
+	Direction *SecurityGroupRuleDirectionEnum `json:"direction,omitempty"`
 
 	// Ethertype IP protocol version - either 'IPv4' or 'IPv6'
 	Ethertype *EthertypeEnum `json:"ethertype,omitempty"`
@@ -45588,7 +45741,7 @@ type RancherClusterSecurityGroupRule struct {
 	Description *string `json:"description,omitempty"`
 
 	// Direction Traffic direction - either 'ingress' (incoming) or 'egress' (outgoing)
-	Direction *DirectionEnum `json:"direction,omitempty"`
+	Direction *SecurityGroupRuleDirectionEnum `json:"direction,omitempty"`
 
 	// Ethertype IP protocol version - either 'IPv4' or 'IPv6'
 	Ethertype *EthertypeEnum `json:"ethertype,omitempty"`
@@ -45611,7 +45764,7 @@ type RancherClusterSecurityGroupRuleRequest struct {
 	Description *string `json:"description,omitempty"`
 
 	// Direction Traffic direction - either 'ingress' (incoming) or 'egress' (outgoing)
-	Direction *DirectionEnum `json:"direction,omitempty"`
+	Direction *SecurityGroupRuleDirectionEnum `json:"direction,omitempty"`
 
 	// Ethertype IP protocol version - either 'IPv4' or 'IPv6'
 	Ethertype *EthertypeEnum `json:"ethertype,omitempty"`
@@ -46273,6 +46426,9 @@ type RancherWorkloadRequest struct {
 	RuntimeState *string `json:"runtime_state,omitempty"`
 	Scale        int     `json:"scale"`
 }
+
+// RbacPolicyDirectionEnum defines model for RbacPolicyDirectionEnum.
+type RbacPolicyDirectionEnum string
 
 // ReassignItemRequest defines model for ReassignItemRequest.
 type ReassignItemRequest struct {
@@ -48651,6 +48807,9 @@ type SectionRequest struct {
 	Title        string `json:"title"`
 }
 
+// SecurityGroupRuleDirectionEnum defines model for SecurityGroupRuleDirectionEnum.
+type SecurityGroupRuleDirectionEnum string
+
 // SelfDeclaredConflictRequest defines model for SelfDeclaredConflictRequest.
 type SelfDeclaredConflictRequest struct {
 	CoiType      CoiTypeEnum        `json:"coi_type"`
@@ -48902,6 +49061,11 @@ type ServiceSettingsFieldEnum string
 
 // ServiceSettingsStateEnum defines model for ServiceSettingsStateEnum.
 type ServiceSettingsStateEnum string
+
+// SetAllowedAddressPairsRequest defines model for SetAllowedAddressPairsRequest.
+type SetAllowedAddressPairsRequest struct {
+	AllowedAddressPairs []AllowedAddressPairEntryRequest `json:"allowed_address_pairs"`
+}
 
 // SetErredRequest defines model for SetErredRequest.
 type SetErredRequest struct {
@@ -67684,6 +67848,10 @@ type OpenstackMigrationsCountParams struct {
 
 // OpenstackNetworkRbacPoliciesListParams defines parameters for OpenstackNetworkRbacPoliciesList.
 type OpenstackNetworkRbacPoliciesListParams struct {
+	// Direction Direction relative to the requesting user
+	//
+	Direction *NetworkRBACPolicyDirectionEnum `form:"direction,omitempty" json:"direction,omitempty"`
+
 	// Network Network URL
 	Network *string `form:"network,omitempty" json:"network,omitempty"`
 
@@ -67715,6 +67883,10 @@ type OpenstackNetworkRbacPoliciesListParams struct {
 
 // OpenstackNetworkRbacPoliciesCountParams defines parameters for OpenstackNetworkRbacPoliciesCount.
 type OpenstackNetworkRbacPoliciesCountParams struct {
+	// Direction Direction relative to the requesting user
+	//
+	Direction *NetworkRBACPolicyDirectionEnum `form:"direction,omitempty" json:"direction,omitempty"`
+
 	// Network Network URL
 	Network *string `form:"network,omitempty" json:"network,omitempty"`
 
@@ -76869,6 +77041,9 @@ type OpenstackInstancesBackupJSONRequestBody = OpenStackBackupRequest
 // OpenstackInstancesChangeFlavorJSONRequestBody defines body for OpenstackInstancesChangeFlavor for application/json ContentType.
 type OpenstackInstancesChangeFlavorJSONRequestBody = InstanceFlavorChangeRequest
 
+// OpenstackInstancesDiagnoseConnectivityJSONRequestBody defines body for OpenstackInstancesDiagnoseConnectivity for application/json ContentType.
+type OpenstackInstancesDiagnoseConnectivityJSONRequestBody = DiagnoseConnectivityRequestRequest
+
 // OpenstackInstancesRescueJSONRequestBody defines body for OpenstackInstancesRescue for application/json ContentType.
 type OpenstackInstancesRescueJSONRequestBody = InstanceRescueRequest
 
@@ -76979,6 +77154,9 @@ type OpenstackPortsPartialUpdateJSONRequestBody = PatchedOpenStackPortRequest
 
 // OpenstackPortsUpdateJSONRequestBody defines body for OpenstackPortsUpdate for application/json ContentType.
 type OpenstackPortsUpdateJSONRequestBody = OpenStackPortRequest
+
+// OpenstackPortsSetAllowedAddressPairsJSONRequestBody defines body for OpenstackPortsSetAllowedAddressPairs for application/json ContentType.
+type OpenstackPortsSetAllowedAddressPairsJSONRequestBody = SetAllowedAddressPairsRequest
 
 // OpenstackPortsSetErredJSONRequestBody defines body for OpenstackPortsSetErred for application/json ContentType.
 type OpenstackPortsSetErredJSONRequestBody = SetErredRequest
@@ -98722,6 +98900,11 @@ type ClientInterface interface {
 	// OpenstackInstancesConsoleLogRetrieve request
 	OpenstackInstancesConsoleLogRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenstackInstancesConsoleLogRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenstackInstancesDiagnoseConnectivityWithBody request with any body
+	OpenstackInstancesDiagnoseConnectivityWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackInstancesDiagnoseConnectivity(ctx context.Context, uuid openapi_types.UUID, body OpenstackInstancesDiagnoseConnectivityJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenstackInstancesFloatingIpsList request
 	OpenstackInstancesFloatingIpsList(ctx context.Context, uuid openapi_types.UUID, params *OpenstackInstancesFloatingIpsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -99086,6 +99269,11 @@ type ClientInterface interface {
 
 	// OpenstackPortsPull request
 	OpenstackPortsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackPortsSetAllowedAddressPairsWithBody request with any body
+	OpenstackPortsSetAllowedAddressPairsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackPortsSetAllowedAddressPairs(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsSetAllowedAddressPairsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackPortsSetErredWithBody request with any body
 	OpenstackPortsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -128918,6 +129106,30 @@ func (c *Client) OpenstackInstancesConsoleLogRetrieve(ctx context.Context, uuid 
 	return c.Client.Do(req)
 }
 
+func (c *Client) OpenstackInstancesDiagnoseConnectivityWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackInstancesDiagnoseConnectivityRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackInstancesDiagnoseConnectivity(ctx context.Context, uuid openapi_types.UUID, body OpenstackInstancesDiagnoseConnectivityJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackInstancesDiagnoseConnectivityRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OpenstackInstancesFloatingIpsList(ctx context.Context, uuid openapi_types.UUID, params *OpenstackInstancesFloatingIpsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackInstancesFloatingIpsListRequest(c.Server, uuid, params)
 	if err != nil {
@@ -130516,6 +130728,30 @@ func (c *Client) OpenstackPortsEnablePortSecurity(ctx context.Context, uuid open
 
 func (c *Client) OpenstackPortsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackPortsPullRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPortsSetAllowedAddressPairsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPortsSetAllowedAddressPairsRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPortsSetAllowedAddressPairs(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsSetAllowedAddressPairsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPortsSetAllowedAddressPairsRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -272278,6 +272514,53 @@ func NewOpenstackInstancesConsoleLogRetrieveRequest(server string, uuid openapi_
 	return req, nil
 }
 
+// NewOpenstackInstancesDiagnoseConnectivityRequest calls the generic OpenstackInstancesDiagnoseConnectivity builder with application/json body
+func NewOpenstackInstancesDiagnoseConnectivityRequest(server string, uuid openapi_types.UUID, body OpenstackInstancesDiagnoseConnectivityJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackInstancesDiagnoseConnectivityRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackInstancesDiagnoseConnectivityRequestWithBody generates requests for OpenstackInstancesDiagnoseConnectivity with any type of body
+func NewOpenstackInstancesDiagnoseConnectivityRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-instances/%s/diagnose_connectivity/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewOpenstackInstancesFloatingIpsListRequest generates requests for OpenstackInstancesFloatingIpsList
 func NewOpenstackInstancesFloatingIpsListRequest(server string, uuid openapi_types.UUID, params *OpenstackInstancesFloatingIpsListParams) (*http.Request, error) {
 	var err error
@@ -275342,6 +275625,18 @@ func NewOpenstackNetworkRbacPoliciesListRequest(server string, params *Openstack
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
+		if params.Direction != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "direction", *params.Direction, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.Network != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "network", *params.Network, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
@@ -275491,6 +275786,18 @@ func NewOpenstackNetworkRbacPoliciesCountRequest(server string, params *Openstac
 		// styled parameters, preserving literal commas as delimiters
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
+
+		if params.Direction != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "direction", *params.Direction, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
 
 		if params.Network != nil {
 
@@ -279105,6 +279412,53 @@ func NewOpenstackPortsPullRequest(server string, uuid openapi_types.UUID) (*http
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewOpenstackPortsSetAllowedAddressPairsRequest calls the generic OpenstackPortsSetAllowedAddressPairs builder with application/json body
+func NewOpenstackPortsSetAllowedAddressPairsRequest(server string, uuid openapi_types.UUID, body OpenstackPortsSetAllowedAddressPairsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackPortsSetAllowedAddressPairsRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackPortsSetAllowedAddressPairsRequestWithBody generates requests for OpenstackPortsSetAllowedAddressPairs with any type of body
+func NewOpenstackPortsSetAllowedAddressPairsRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-ports/%s/set_allowed_address_pairs/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -347740,6 +348094,11 @@ type ClientWithResponsesInterface interface {
 	// OpenstackInstancesConsoleLogRetrieveWithResponse request
 	OpenstackInstancesConsoleLogRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackInstancesConsoleLogRetrieveParams, reqEditors ...RequestEditorFn) (*OpenstackInstancesConsoleLogRetrieveResponse, error)
 
+	// OpenstackInstancesDiagnoseConnectivityWithBodyWithResponse request with any body
+	OpenstackInstancesDiagnoseConnectivityWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackInstancesDiagnoseConnectivityResponse, error)
+
+	OpenstackInstancesDiagnoseConnectivityWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackInstancesDiagnoseConnectivityJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackInstancesDiagnoseConnectivityResponse, error)
+
 	// OpenstackInstancesFloatingIpsListWithResponse request
 	OpenstackInstancesFloatingIpsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackInstancesFloatingIpsListParams, reqEditors ...RequestEditorFn) (*OpenstackInstancesFloatingIpsListResponse, error)
 
@@ -348104,6 +348463,11 @@ type ClientWithResponsesInterface interface {
 
 	// OpenstackPortsPullWithResponse request
 	OpenstackPortsPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPortsPullResponse, error)
+
+	// OpenstackPortsSetAllowedAddressPairsWithBodyWithResponse request with any body
+	OpenstackPortsSetAllowedAddressPairsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsSetAllowedAddressPairsResponse, error)
+
+	OpenstackPortsSetAllowedAddressPairsWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsSetAllowedAddressPairsJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsSetAllowedAddressPairsResponse, error)
 
 	// OpenstackPortsSetErredWithBodyWithResponse request with any body
 	OpenstackPortsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsSetErredResponse, error)
@@ -399987,6 +400351,36 @@ func (r OpenstackInstancesConsoleLogRetrieveResponse) ContentType() string {
 	return ""
 }
 
+type OpenstackInstancesDiagnoseConnectivityResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *DiagnoseConnectivityResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackInstancesDiagnoseConnectivityResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackInstancesDiagnoseConnectivityResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenstackInstancesDiagnoseConnectivityResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type OpenstackInstancesFloatingIpsListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -402865,6 +403259,36 @@ func (r OpenstackPortsPullResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r OpenstackPortsPullResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenstackPortsSetAllowedAddressPairsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OpenStackPort
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPortsSetAllowedAddressPairsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPortsSetAllowedAddressPairsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenstackPortsSetAllowedAddressPairsResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -447331,6 +447755,23 @@ func (c *ClientWithResponses) OpenstackInstancesConsoleLogRetrieveWithResponse(c
 	return ParseOpenstackInstancesConsoleLogRetrieveResponse(rsp)
 }
 
+// OpenstackInstancesDiagnoseConnectivityWithBodyWithResponse request with arbitrary body returning *OpenstackInstancesDiagnoseConnectivityResponse
+func (c *ClientWithResponses) OpenstackInstancesDiagnoseConnectivityWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackInstancesDiagnoseConnectivityResponse, error) {
+	rsp, err := c.OpenstackInstancesDiagnoseConnectivityWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackInstancesDiagnoseConnectivityResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackInstancesDiagnoseConnectivityWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackInstancesDiagnoseConnectivityJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackInstancesDiagnoseConnectivityResponse, error) {
+	rsp, err := c.OpenstackInstancesDiagnoseConnectivity(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackInstancesDiagnoseConnectivityResponse(rsp)
+}
+
 // OpenstackInstancesFloatingIpsListWithResponse request returning *OpenstackInstancesFloatingIpsListResponse
 func (c *ClientWithResponses) OpenstackInstancesFloatingIpsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackInstancesFloatingIpsListParams, reqEditors ...RequestEditorFn) (*OpenstackInstancesFloatingIpsListResponse, error) {
 	rsp, err := c.OpenstackInstancesFloatingIpsList(ctx, uuid, params, reqEditors...)
@@ -448498,6 +448939,23 @@ func (c *ClientWithResponses) OpenstackPortsPullWithResponse(ctx context.Context
 		return nil, err
 	}
 	return ParseOpenstackPortsPullResponse(rsp)
+}
+
+// OpenstackPortsSetAllowedAddressPairsWithBodyWithResponse request with arbitrary body returning *OpenstackPortsSetAllowedAddressPairsResponse
+func (c *ClientWithResponses) OpenstackPortsSetAllowedAddressPairsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsSetAllowedAddressPairsResponse, error) {
+	rsp, err := c.OpenstackPortsSetAllowedAddressPairsWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPortsSetAllowedAddressPairsResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackPortsSetAllowedAddressPairsWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsSetAllowedAddressPairsJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsSetAllowedAddressPairsResponse, error) {
+	rsp, err := c.OpenstackPortsSetAllowedAddressPairs(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPortsSetAllowedAddressPairsResponse(rsp)
 }
 
 // OpenstackPortsSetErredWithBodyWithResponse request with arbitrary body returning *OpenstackPortsSetErredResponse
@@ -496398,6 +496856,32 @@ func ParseOpenstackInstancesConsoleLogRetrieveResponse(rsp *http.Response) (*Ope
 	return response, nil
 }
 
+// ParseOpenstackInstancesDiagnoseConnectivityResponse parses an HTTP response from a OpenstackInstancesDiagnoseConnectivityWithResponse call
+func ParseOpenstackInstancesDiagnoseConnectivityResponse(rsp *http.Response) (*OpenstackInstancesDiagnoseConnectivityResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackInstancesDiagnoseConnectivityResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DiagnoseConnectivityResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseOpenstackInstancesFloatingIpsListResponse parses an HTTP response from a OpenstackInstancesFloatingIpsListWithResponse call
 func ParseOpenstackInstancesFloatingIpsListResponse(rsp *http.Response) (*OpenstackInstancesFloatingIpsListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -498645,6 +499129,32 @@ func ParseOpenstackPortsPullResponse(rsp *http.Response) (*OpenstackPortsPullRes
 			return nil, err
 		}
 		response.JSON409 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackPortsSetAllowedAddressPairsResponse parses an HTTP response from a OpenstackPortsSetAllowedAddressPairsWithResponse call
+func ParseOpenstackPortsSetAllowedAddressPairsResponse(rsp *http.Response) (*OpenstackPortsSetAllowedAddressPairsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPortsSetAllowedAddressPairsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OpenStackPort
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
 
 	}
 
