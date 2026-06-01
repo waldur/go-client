@@ -57557,6 +57557,9 @@ type MarketplaceCategoriesListParams struct {
 	// HasShared Has shared
 	HasShared *bool `form:"has_shared,omitempty" json:"has_shared,omitempty"`
 
+	// O Which field to use when ordering the results.
+	O *string `form:"o,omitempty" json:"o,omitempty"`
+
 	// OfferingName Offering name contains
 	OfferingName *string `form:"offering_name,omitempty" json:"offering_name,omitempty"`
 
@@ -57590,6 +57593,9 @@ type MarketplaceCategoriesCountParams struct {
 
 	// HasShared Has shared
 	HasShared *bool `form:"has_shared,omitempty" json:"has_shared,omitempty"`
+
+	// O Which field to use when ordering the results.
+	O *string `form:"o,omitempty" json:"o,omitempty"`
 
 	// OfferingName Offering name contains
 	OfferingName *string `form:"offering_name,omitempty" json:"offering_name,omitempty"`
@@ -194266,6 +194272,18 @@ func NewMarketplaceCategoriesListRequest(server string, params *MarketplaceCateg
 
 		}
 
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.OfferingName != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_name", *params.OfferingName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -194419,6 +194437,18 @@ func NewMarketplaceCategoriesCountRequest(server string, params *MarketplaceCate
 		if params.HasShared != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_shared", *params.HasShared, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
