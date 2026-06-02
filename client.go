@@ -31821,6 +31821,7 @@ type Hypervisor struct {
 
 	// Status Hypervisor status, e.g. enabled or disabled
 	Status *string             `json:"status,omitempty"`
+	Traits *[]string           `json:"traits,omitempty"`
 	Url    *string             `json:"url,omitempty"`
 	Uuid   *openapi_types.UUID `json:"uuid,omitempty"`
 
@@ -31994,15 +31995,15 @@ type IdentityProvider struct {
 	AuthUrl *string `json:"auth_url,omitempty"`
 
 	// ClientId ID of application used for OAuth authentication.
-	ClientId string `json:"client_id"`
+	ClientId *string `json:"client_id,omitempty"`
 
 	// ClientSecret Application secret key.
-	ClientSecret string `json:"client_secret"`
+	ClientSecret *string `json:"client_secret,omitempty"`
 
 	// DiscoveryUrl The endpoint for endpoint discovery.
-	DiscoveryUrl             string `json:"discovery_url"`
-	EnablePkce               *bool  `json:"enable_pkce,omitempty"`
-	EnablePostLogoutRedirect *bool  `json:"enable_post_logout_redirect,omitempty"`
+	DiscoveryUrl             *string `json:"discovery_url,omitempty"`
+	EnablePkce               *bool   `json:"enable_pkce,omitempty"`
+	EnablePostLogoutRedirect *bool   `json:"enable_post_logout_redirect,omitempty"`
 
 	// ExtraFields Space-separated list of extra fields to persist.
 	ExtraFields *string `json:"extra_fields,omitempty"`
@@ -67206,6 +67207,9 @@ type OpenstackHypervisorsListParams struct {
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 	State        *string             `form:"state,omitempty" json:"state,omitempty"`
 	Status       *string             `form:"status,omitempty" json:"status,omitempty"`
+
+	// Trait Trait names with AND logic (comma-separated)
+	Trait *string `form:"trait,omitempty" json:"trait,omitempty"`
 }
 
 // OpenstackHypervisorsCountParams defines parameters for OpenstackHypervisorsCount.
@@ -67231,6 +67235,9 @@ type OpenstackHypervisorsCountParams struct {
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 	State        *string             `form:"state,omitempty" json:"state,omitempty"`
 	Status       *string             `form:"status,omitempty" json:"status,omitempty"`
+
+	// Trait Trait names with AND logic (comma-separated)
+	Trait *string `form:"trait,omitempty" json:"trait,omitempty"`
 }
 
 // OpenstackHypervisorsAllocationCandidatesRetrieveParams defines parameters for OpenstackHypervisorsAllocationCandidatesRetrieve.
@@ -270284,6 +270291,18 @@ func NewOpenstackHypervisorsListRequest(server string, params *OpenstackHypervis
 
 		}
 
+		if params.Trait != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "trait", *params.Trait, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if encoded := queryValues.Encode(); encoded != "" {
 			rawQueryFragments = append(rawQueryFragments, encoded)
 		}
@@ -270425,6 +270444,18 @@ func NewOpenstackHypervisorsCountRequest(server string, params *OpenstackHypervi
 		if params.Status != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "status", *params.Status, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Trait != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "trait", *params.Trait, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
