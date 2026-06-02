@@ -5779,6 +5779,8 @@ const (
 	EventMetadataResponseEventGroupsMarketplaceOfferingComponentDeleted              EventMetadataResponseEventGroups = "marketplace_offering_component_deleted"
 	EventMetadataResponseEventGroupsMarketplaceOfferingComponentUpdated              EventMetadataResponseEventGroups = "marketplace_offering_component_updated"
 	EventMetadataResponseEventGroupsMarketplaceOfferingCreated                       EventMetadataResponseEventGroups = "marketplace_offering_created"
+	EventMetadataResponseEventGroupsMarketplaceOfferingOptionsUpdated                EventMetadataResponseEventGroups = "marketplace_offering_options_updated"
+	EventMetadataResponseEventGroupsMarketplaceOfferingResourceOptionsUpdated        EventMetadataResponseEventGroups = "marketplace_offering_resource_options_updated"
 	EventMetadataResponseEventGroupsMarketplaceOfferingUpdated                       EventMetadataResponseEventGroups = "marketplace_offering_updated"
 	EventMetadataResponseEventGroupsMarketplaceOfferingUserCreated                   EventMetadataResponseEventGroups = "marketplace_offering_user_created"
 	EventMetadataResponseEventGroupsMarketplaceOfferingUserDeleted                   EventMetadataResponseEventGroups = "marketplace_offering_user_deleted"
@@ -6142,6 +6144,10 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 	case EventMetadataResponseEventGroupsMarketplaceOfferingComponentUpdated:
 		return true
 	case EventMetadataResponseEventGroupsMarketplaceOfferingCreated:
+		return true
+	case EventMetadataResponseEventGroupsMarketplaceOfferingOptionsUpdated:
+		return true
+	case EventMetadataResponseEventGroupsMarketplaceOfferingResourceOptionsUpdated:
 		return true
 	case EventMetadataResponseEventGroupsMarketplaceOfferingUpdated:
 		return true
@@ -6718,6 +6724,8 @@ const (
 	EventTypesEnumMarketplaceOfferingComponentDeleted              EventTypesEnum = "marketplace_offering_component_deleted"
 	EventTypesEnumMarketplaceOfferingComponentUpdated              EventTypesEnum = "marketplace_offering_component_updated"
 	EventTypesEnumMarketplaceOfferingCreated                       EventTypesEnum = "marketplace_offering_created"
+	EventTypesEnumMarketplaceOfferingOptionsUpdated                EventTypesEnum = "marketplace_offering_options_updated"
+	EventTypesEnumMarketplaceOfferingResourceOptionsUpdated        EventTypesEnum = "marketplace_offering_resource_options_updated"
 	EventTypesEnumMarketplaceOfferingUpdated                       EventTypesEnum = "marketplace_offering_updated"
 	EventTypesEnumMarketplaceOfferingUserCreated                   EventTypesEnum = "marketplace_offering_user_created"
 	EventTypesEnumMarketplaceOfferingUserDeleted                   EventTypesEnum = "marketplace_offering_user_deleted"
@@ -7081,6 +7089,10 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumMarketplaceOfferingComponentUpdated:
 		return true
 	case EventTypesEnumMarketplaceOfferingCreated:
+		return true
+	case EventTypesEnumMarketplaceOfferingOptionsUpdated:
+		return true
+	case EventTypesEnumMarketplaceOfferingResourceOptionsUpdated:
 		return true
 	case EventTypesEnumMarketplaceOfferingUpdated:
 		return true
