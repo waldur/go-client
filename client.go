@@ -18582,6 +18582,48 @@ func (e ResourceState) Valid() bool {
 	}
 }
 
+// Defines values for ResourceTeamMemberFieldEnum.
+const (
+	ResourceTeamMemberFieldEnumEmail            ResourceTeamMemberFieldEnum = "email"
+	ResourceTeamMemberFieldEnumExpirationTime   ResourceTeamMemberFieldEnum = "expiration_time"
+	ResourceTeamMemberFieldEnumFullName         ResourceTeamMemberFieldEnum = "full_name"
+	ResourceTeamMemberFieldEnumImage            ResourceTeamMemberFieldEnum = "image"
+	ResourceTeamMemberFieldEnumResourceProjects ResourceTeamMemberFieldEnum = "resource_projects"
+	ResourceTeamMemberFieldEnumRoleName         ResourceTeamMemberFieldEnum = "role_name"
+	ResourceTeamMemberFieldEnumRoleUuid         ResourceTeamMemberFieldEnum = "role_uuid"
+	ResourceTeamMemberFieldEnumUrl              ResourceTeamMemberFieldEnum = "url"
+	ResourceTeamMemberFieldEnumUsername         ResourceTeamMemberFieldEnum = "username"
+	ResourceTeamMemberFieldEnumUuid             ResourceTeamMemberFieldEnum = "uuid"
+)
+
+// Valid indicates whether the value is a known member of the ResourceTeamMemberFieldEnum enum.
+func (e ResourceTeamMemberFieldEnum) Valid() bool {
+	switch e {
+	case ResourceTeamMemberFieldEnumEmail:
+		return true
+	case ResourceTeamMemberFieldEnumExpirationTime:
+		return true
+	case ResourceTeamMemberFieldEnumFullName:
+		return true
+	case ResourceTeamMemberFieldEnumImage:
+		return true
+	case ResourceTeamMemberFieldEnumResourceProjects:
+		return true
+	case ResourceTeamMemberFieldEnumRoleName:
+		return true
+	case ResourceTeamMemberFieldEnumRoleUuid:
+		return true
+	case ResourceTeamMemberFieldEnumUrl:
+		return true
+	case ResourceTeamMemberFieldEnumUsername:
+		return true
+	case ResourceTeamMemberFieldEnumUuid:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ResponsibleRoleEnum.
 const (
 	Applicant       ResponsibleRoleEnum = "applicant"
@@ -20538,6 +20580,192 @@ func (e UserFieldEnum) Valid() bool {
 	case UserFieldEnumUsername:
 		return true
 	case UserFieldEnumUuid:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for UserMeFieldEnum.
+const (
+	UserMeFieldEnumActiveIsds                    UserMeFieldEnum = "active_isds"
+	UserMeFieldEnumAddress                       UserMeFieldEnum = "address"
+	UserMeFieldEnumAffiliations                  UserMeFieldEnum = "affiliations"
+	UserMeFieldEnumAgreeWithPolicy               UserMeFieldEnum = "agree_with_policy"
+	UserMeFieldEnumAgreementDate                 UserMeFieldEnum = "agreement_date"
+	UserMeFieldEnumAttributeSources              UserMeFieldEnum = "attribute_sources"
+	UserMeFieldEnumBirthDate                     UserMeFieldEnum = "birth_date"
+	UserMeFieldEnumCanUsePersonalAccessTokens    UserMeFieldEnum = "can_use_personal_access_tokens"
+	UserMeFieldEnumCivilNumber                   UserMeFieldEnum = "civil_number"
+	UserMeFieldEnumCountryOfResidence            UserMeFieldEnum = "country_of_residence"
+	UserMeFieldEnumDateJoined                    UserMeFieldEnum = "date_joined"
+	UserMeFieldEnumDeactivationReason            UserMeFieldEnum = "deactivation_reason"
+	UserMeFieldEnumDescription                   UserMeFieldEnum = "description"
+	UserMeFieldEnumEdupersonAssurance            UserMeFieldEnum = "eduperson_assurance"
+	UserMeFieldEnumEmail                         UserMeFieldEnum = "email"
+	UserMeFieldEnumFirstName                     UserMeFieldEnum = "first_name"
+	UserMeFieldEnumFullName                      UserMeFieldEnum = "full_name"
+	UserMeFieldEnumGender                        UserMeFieldEnum = "gender"
+	UserMeFieldEnumHasActiveSession              UserMeFieldEnum = "has_active_session"
+	UserMeFieldEnumHasUsablePassword             UserMeFieldEnum = "has_usable_password"
+	UserMeFieldEnumIdentityProviderFields        UserMeFieldEnum = "identity_provider_fields"
+	UserMeFieldEnumIdentityProviderLabel         UserMeFieldEnum = "identity_provider_label"
+	UserMeFieldEnumIdentityProviderManagementUrl UserMeFieldEnum = "identity_provider_management_url"
+	UserMeFieldEnumIdentityProviderName          UserMeFieldEnum = "identity_provider_name"
+	UserMeFieldEnumIdentitySource                UserMeFieldEnum = "identity_source"
+	UserMeFieldEnumImage                         UserMeFieldEnum = "image"
+	UserMeFieldEnumIpAddress                     UserMeFieldEnum = "ip_address"
+	UserMeFieldEnumIsActive                      UserMeFieldEnum = "is_active"
+	UserMeFieldEnumIsIdentityManager             UserMeFieldEnum = "is_identity_manager"
+	UserMeFieldEnumIsStaff                       UserMeFieldEnum = "is_staff"
+	UserMeFieldEnumIsSupport                     UserMeFieldEnum = "is_support"
+	UserMeFieldEnumJobTitle                      UserMeFieldEnum = "job_title"
+	UserMeFieldEnumLastName                      UserMeFieldEnum = "last_name"
+	UserMeFieldEnumManagedIsds                   UserMeFieldEnum = "managed_isds"
+	UserMeFieldEnumNationalities                 UserMeFieldEnum = "nationalities"
+	UserMeFieldEnumNationality                   UserMeFieldEnum = "nationality"
+	UserMeFieldEnumNativeName                    UserMeFieldEnum = "native_name"
+	UserMeFieldEnumNotificationsEnabled          UserMeFieldEnum = "notifications_enabled"
+	UserMeFieldEnumOrganization                  UserMeFieldEnum = "organization"
+	UserMeFieldEnumOrganizationCountry           UserMeFieldEnum = "organization_country"
+	UserMeFieldEnumOrganizationRegistryCode      UserMeFieldEnum = "organization_registry_code"
+	UserMeFieldEnumOrganizationType              UserMeFieldEnum = "organization_type"
+	UserMeFieldEnumPermissions                   UserMeFieldEnum = "permissions"
+	UserMeFieldEnumPersonalTitle                 UserMeFieldEnum = "personal_title"
+	UserMeFieldEnumPhoneNumber                   UserMeFieldEnum = "phone_number"
+	UserMeFieldEnumPlaceOfBirth                  UserMeFieldEnum = "place_of_birth"
+	UserMeFieldEnumPreferredLanguage             UserMeFieldEnum = "preferred_language"
+	UserMeFieldEnumProfileCompleteness           UserMeFieldEnum = "profile_completeness"
+	UserMeFieldEnumRegistrationMethod            UserMeFieldEnum = "registration_method"
+	UserMeFieldEnumRequestedEmail                UserMeFieldEnum = "requested_email"
+	UserMeFieldEnumShouldProtectUserDetails      UserMeFieldEnum = "should_protect_user_details"
+	UserMeFieldEnumSlug                          UserMeFieldEnum = "slug"
+	UserMeFieldEnumToken                         UserMeFieldEnum = "token"
+	UserMeFieldEnumTokenExpiresAt                UserMeFieldEnum = "token_expires_at"
+	UserMeFieldEnumTokenLifetime                 UserMeFieldEnum = "token_lifetime"
+	UserMeFieldEnumUrl                           UserMeFieldEnum = "url"
+	UserMeFieldEnumUsername                      UserMeFieldEnum = "username"
+	UserMeFieldEnumUuid                          UserMeFieldEnum = "uuid"
+)
+
+// Valid indicates whether the value is a known member of the UserMeFieldEnum enum.
+func (e UserMeFieldEnum) Valid() bool {
+	switch e {
+	case UserMeFieldEnumActiveIsds:
+		return true
+	case UserMeFieldEnumAddress:
+		return true
+	case UserMeFieldEnumAffiliations:
+		return true
+	case UserMeFieldEnumAgreeWithPolicy:
+		return true
+	case UserMeFieldEnumAgreementDate:
+		return true
+	case UserMeFieldEnumAttributeSources:
+		return true
+	case UserMeFieldEnumBirthDate:
+		return true
+	case UserMeFieldEnumCanUsePersonalAccessTokens:
+		return true
+	case UserMeFieldEnumCivilNumber:
+		return true
+	case UserMeFieldEnumCountryOfResidence:
+		return true
+	case UserMeFieldEnumDateJoined:
+		return true
+	case UserMeFieldEnumDeactivationReason:
+		return true
+	case UserMeFieldEnumDescription:
+		return true
+	case UserMeFieldEnumEdupersonAssurance:
+		return true
+	case UserMeFieldEnumEmail:
+		return true
+	case UserMeFieldEnumFirstName:
+		return true
+	case UserMeFieldEnumFullName:
+		return true
+	case UserMeFieldEnumGender:
+		return true
+	case UserMeFieldEnumHasActiveSession:
+		return true
+	case UserMeFieldEnumHasUsablePassword:
+		return true
+	case UserMeFieldEnumIdentityProviderFields:
+		return true
+	case UserMeFieldEnumIdentityProviderLabel:
+		return true
+	case UserMeFieldEnumIdentityProviderManagementUrl:
+		return true
+	case UserMeFieldEnumIdentityProviderName:
+		return true
+	case UserMeFieldEnumIdentitySource:
+		return true
+	case UserMeFieldEnumImage:
+		return true
+	case UserMeFieldEnumIpAddress:
+		return true
+	case UserMeFieldEnumIsActive:
+		return true
+	case UserMeFieldEnumIsIdentityManager:
+		return true
+	case UserMeFieldEnumIsStaff:
+		return true
+	case UserMeFieldEnumIsSupport:
+		return true
+	case UserMeFieldEnumJobTitle:
+		return true
+	case UserMeFieldEnumLastName:
+		return true
+	case UserMeFieldEnumManagedIsds:
+		return true
+	case UserMeFieldEnumNationalities:
+		return true
+	case UserMeFieldEnumNationality:
+		return true
+	case UserMeFieldEnumNativeName:
+		return true
+	case UserMeFieldEnumNotificationsEnabled:
+		return true
+	case UserMeFieldEnumOrganization:
+		return true
+	case UserMeFieldEnumOrganizationCountry:
+		return true
+	case UserMeFieldEnumOrganizationRegistryCode:
+		return true
+	case UserMeFieldEnumOrganizationType:
+		return true
+	case UserMeFieldEnumPermissions:
+		return true
+	case UserMeFieldEnumPersonalTitle:
+		return true
+	case UserMeFieldEnumPhoneNumber:
+		return true
+	case UserMeFieldEnumPlaceOfBirth:
+		return true
+	case UserMeFieldEnumPreferredLanguage:
+		return true
+	case UserMeFieldEnumProfileCompleteness:
+		return true
+	case UserMeFieldEnumRegistrationMethod:
+		return true
+	case UserMeFieldEnumRequestedEmail:
+		return true
+	case UserMeFieldEnumShouldProtectUserDetails:
+		return true
+	case UserMeFieldEnumSlug:
+		return true
+	case UserMeFieldEnumToken:
+		return true
+	case UserMeFieldEnumTokenExpiresAt:
+		return true
+	case UserMeFieldEnumTokenLifetime:
+		return true
+	case UserMeFieldEnumUrl:
+		return true
+	case UserMeFieldEnumUsername:
+		return true
+	case UserMeFieldEnumUuid:
 		return true
 	default:
 		return false
@@ -42976,16 +43204,16 @@ type ProficiencyLevelEnum string
 // ProfileCompleteness defines model for ProfileCompleteness.
 type ProfileCompleteness struct {
 	// EnforcementEnabled Whether enforcement of mandatory attributes is enabled.
-	EnforcementEnabled bool `json:"enforcement_enabled"`
+	EnforcementEnabled *bool `json:"enforcement_enabled,omitempty"`
 
 	// IsComplete Whether all mandatory profile fields are filled.
-	IsComplete bool `json:"is_complete"`
+	IsComplete *bool `json:"is_complete,omitempty"`
 
 	// MandatoryFields List of all mandatory fields.
-	MandatoryFields []string `json:"mandatory_fields"`
+	MandatoryFields *[]string `json:"mandatory_fields,omitempty"`
 
 	// MissingFields List of mandatory fields that are missing.
-	MissingFields []string `json:"missing_fields"`
+	MissingFields *[]string `json:"missing_fields,omitempty"`
 }
 
 // Project defines model for Project.
@@ -47482,9 +47710,12 @@ type ResourceTeamMember struct {
 	Url              *string                            `json:"url,omitempty"`
 
 	// Username Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
-	Username string              `json:"username"`
+	Username *string             `json:"username,omitempty"`
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 }
+
+// ResourceTeamMemberFieldEnum defines model for ResourceTeamMemberFieldEnum.
+type ResourceTeamMemberFieldEnum string
 
 // ResourceTerminateRequest defines model for ResourceTerminateRequest.
 type ResourceTerminateRequest struct {
@@ -49985,6 +50216,12 @@ type SubmitRequestResponse struct {
 	// AutoApproved Whether the request was automatically approved
 	AutoApproved bool `json:"auto_approved"`
 
+	// ProjectCreated True if a new project was created for the user; false if an existing project with the same name was reused. Null when no project workflow ran.
+	ProjectCreated *bool `json:"project_created,omitempty"`
+
+	// ProjectUuid UUID of the project the user was added to. Present when the invitation has auto_approve and auto_create_project enabled. Null otherwise.
+	ProjectUuid *string `json:"project_uuid,omitempty"`
+
 	// ScopeName Name of the invitation scope
 	ScopeName string `json:"scope_name"`
 
@@ -51202,10 +51439,10 @@ type UserMe struct {
 	Description        *string `json:"description,omitempty"`
 
 	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
-	EdupersonAssurance interface{}         `json:"eduperson_assurance,omitempty"`
-	Email              openapi_types.Email `json:"email"`
-	FirstName          *string             `json:"first_name,omitempty"`
-	FullName           *string             `json:"full_name,omitempty"`
+	EdupersonAssurance interface{}          `json:"eduperson_assurance,omitempty"`
+	Email              *openapi_types.Email `json:"email,omitempty"`
+	FirstName          *string              `json:"first_name,omitempty"`
+	FullName           *string              `json:"full_name,omitempty"`
 
 	// Gender User's gender (male, female, or unknown)
 	Gender                        *UserMe_Gender `json:"gender,omitempty"`
@@ -51279,7 +51516,7 @@ type UserMe struct {
 	Url           *string `json:"url,omitempty"`
 
 	// Username Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
-	Username string              `json:"username"`
+	Username *string             `json:"username,omitempty"`
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
@@ -51287,6 +51524,9 @@ type UserMe struct {
 type UserMe_Gender struct {
 	union json.RawMessage
 }
+
+// UserMeFieldEnum defines model for UserMeFieldEnum.
+type UserMeFieldEnum string
 
 // UserNationalityStats defines model for UserNationalityStats.
 type UserNationalityStats struct {
@@ -54828,6 +55068,11 @@ type ChatSessionsListParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// ChatSessionsCurrentRetrieveParams defines parameters for ChatSessionsCurrentRetrieve.
+type ChatSessionsCurrentRetrieveParams struct {
+	Field *[]ChatSessionFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 }
 
 // ChatSessionsRetrieveParams defines parameters for ChatSessionsRetrieve.
@@ -59183,6 +59428,16 @@ type MarketplaceOrdersRetrieveParams struct {
 	Field *[]OrderDetailsFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 }
 
+// MarketplaceOrdersOfferingRetrieveParams defines parameters for MarketplaceOrdersOfferingRetrieve.
+type MarketplaceOrdersOfferingRetrieveParams struct {
+	Field *[]PublicOfferingDetailsFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+}
+
+// MarketplaceOrdersResourceRetrieveParams defines parameters for MarketplaceOrdersResourceRetrieve.
+type MarketplaceOrdersResourceRetrieveParams struct {
+	Field *[]ResourceFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+}
+
 // MarketplacePlanComponentsListParams defines parameters for MarketplacePlanComponentsList.
 type MarketplacePlanComponentsListParams struct {
 	// Archived Archived
@@ -61045,6 +61300,11 @@ type MarketplaceProviderOfferingsOrdersListParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
+// MarketplaceProviderOfferingsOrdersRetrieveParams defines parameters for MarketplaceProviderOfferingsOrdersRetrieve.
+type MarketplaceProviderOfferingsOrdersRetrieveParams struct {
+	Field *[]OrderDetailsFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+}
+
 // MarketplaceProviderOfferingsUpdateAttributesJSONBody defines parameters for MarketplaceProviderOfferingsUpdateAttributes.
 type MarketplaceProviderOfferingsUpdateAttributesJSONBody map[string]interface{}
 
@@ -61617,6 +61877,11 @@ type MarketplaceProviderResourcesListUsersListParams struct {
 
 	// Username User username
 	Username *string `form:"username,omitempty" json:"username,omitempty"`
+}
+
+// MarketplaceProviderResourcesOfferingRetrieveParams defines parameters for MarketplaceProviderResourcesOfferingRetrieve.
+type MarketplaceProviderResourcesOfferingRetrieveParams struct {
+	Field *[]PublicOfferingDetailsFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 }
 
 // MarketplaceProviderResourcesTeamListParams defines parameters for MarketplaceProviderResourcesTeamList.
@@ -62552,6 +62817,11 @@ type MarketplaceResourcesListUsersListParams struct {
 	Username *string `form:"username,omitempty" json:"username,omitempty"`
 }
 
+// MarketplaceResourcesOfferingRetrieveParams defines parameters for MarketplaceResourcesOfferingRetrieve.
+type MarketplaceResourcesOfferingRetrieveParams struct {
+	Field *[]PublicOfferingDetailsFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+}
+
 // MarketplaceResourcesTeamListParams defines parameters for MarketplaceResourcesTeamList.
 type MarketplaceResourcesTeamListParams struct {
 	// HasConsent When true, return only users who have active consent for this offering.
@@ -62582,7 +62852,8 @@ type MarketplaceResourcesTeamMembersListParams struct {
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 
 	// Downscaled Downscaled
-	Downscaled *bool `form:"downscaled,omitempty" json:"downscaled,omitempty"`
+	Downscaled *bool                          `form:"downscaled,omitempty" json:"downscaled,omitempty"`
+	Field      *[]ResourceTeamMemberFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 
 	// FlavorName Flavor name
 	FlavorName *string `form:"flavor_name,omitempty" json:"flavor_name,omitempty"`
@@ -73936,6 +74207,11 @@ type UsersCountParams struct {
 
 	// UsernameList Comma-separated usernames
 	UsernameList *string `form:"username_list,omitempty" json:"username_list,omitempty"`
+}
+
+// UsersMeRetrieveParams defines parameters for UsersMeRetrieve.
+type UsersMeRetrieveParams struct {
+	Field *[]UserMeFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 }
 
 // UsersUserActiveStatusCountListParams defines parameters for UsersUserActiveStatusCountList.
@@ -94071,7 +94347,7 @@ type ClientInterface interface {
 	ChatSessionsList(ctx context.Context, params *ChatSessionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ChatSessionsCurrentRetrieve request
-	ChatSessionsCurrentRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ChatSessionsCurrentRetrieve(ctx context.Context, params *ChatSessionsCurrentRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ChatSessionsRetrieve request
 	ChatSessionsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ChatSessionsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -96094,7 +96370,7 @@ type ClientInterface interface {
 	MarketplaceOrdersDeleteAttachment(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOrdersOfferingRetrieve request
-	MarketplaceOrdersOfferingRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	MarketplaceOrdersOfferingRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOrdersOfferingRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOrdersRejectByConsumerWithBody request with any body
 	MarketplaceOrdersRejectByConsumerWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -96107,7 +96383,7 @@ type ClientInterface interface {
 	MarketplaceOrdersRejectByProvider(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersRejectByProviderJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOrdersResourceRetrieve request
-	MarketplaceOrdersResourceRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	MarketplaceOrdersResourceRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOrdersResourceRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOrdersRetry request
 	MarketplaceOrdersRetry(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -96502,7 +96778,7 @@ type ClientInterface interface {
 	MarketplaceProviderOfferingsOrdersList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsOrdersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsOrdersRetrieve request
-	MarketplaceProviderOfferingsOrdersRetrieve(ctx context.Context, uuid string, orderUuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	MarketplaceProviderOfferingsOrdersRetrieve(ctx context.Context, uuid string, orderUuid string, params *MarketplaceProviderOfferingsOrdersRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsPauseWithBody request with any body
 	MarketplaceProviderOfferingsPauseWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -96789,7 +97065,7 @@ type ClientInterface interface {
 	MarketplaceProviderResourcesMoveResource(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesMoveResourceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderResourcesOfferingRetrieve request
-	MarketplaceProviderResourcesOfferingRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	MarketplaceProviderResourcesOfferingRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderResourcesOfferingRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderResourcesOfferingForSubresourcesList request
 	MarketplaceProviderResourcesOfferingForSubresourcesList(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -97115,7 +97391,7 @@ type ClientInterface interface {
 	MarketplaceResourcesMoveResource(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesMoveResourceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourcesOfferingRetrieve request
-	MarketplaceResourcesOfferingRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	MarketplaceResourcesOfferingRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourcesOfferingRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourcesOfferingForSubresourcesList request
 	MarketplaceResourcesOfferingForSubresourcesList(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -102132,7 +102408,7 @@ type ClientInterface interface {
 	UsersConfirmEmail(ctx context.Context, body UsersConfirmEmailJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UsersMeRetrieve request
-	UsersMeRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UsersMeRetrieve(ctx context.Context, params *UsersMeRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UsersMeCount request
 	UsersMeCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -107831,8 +108107,8 @@ func (c *Client) ChatSessionsList(ctx context.Context, params *ChatSessionsListP
 	return c.Client.Do(req)
 }
 
-func (c *Client) ChatSessionsCurrentRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewChatSessionsCurrentRetrieveRequest(c.Server)
+func (c *Client) ChatSessionsCurrentRetrieve(ctx context.Context, params *ChatSessionsCurrentRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatSessionsCurrentRetrieveRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -116687,8 +116963,8 @@ func (c *Client) MarketplaceOrdersDeleteAttachment(ctx context.Context, uuid ope
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceOrdersOfferingRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceOrdersOfferingRetrieveRequest(c.Server, uuid)
+func (c *Client) MarketplaceOrdersOfferingRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOrdersOfferingRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOrdersOfferingRetrieveRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -116747,8 +117023,8 @@ func (c *Client) MarketplaceOrdersRejectByProvider(ctx context.Context, uuid ope
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceOrdersResourceRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceOrdersResourceRetrieveRequest(c.Server, uuid)
+func (c *Client) MarketplaceOrdersResourceRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOrdersResourceRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOrdersResourceRetrieveRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -118487,8 +118763,8 @@ func (c *Client) MarketplaceProviderOfferingsOrdersList(ctx context.Context, uui
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceProviderOfferingsOrdersRetrieve(ctx context.Context, uuid string, orderUuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceProviderOfferingsOrdersRetrieveRequest(c.Server, uuid, orderUuid)
+func (c *Client) MarketplaceProviderOfferingsOrdersRetrieve(ctx context.Context, uuid string, orderUuid string, params *MarketplaceProviderOfferingsOrdersRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsOrdersRetrieveRequest(c.Server, uuid, orderUuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -119819,8 +120095,8 @@ func (c *Client) MarketplaceProviderResourcesMoveResource(ctx context.Context, u
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceProviderResourcesOfferingRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceProviderResourcesOfferingRetrieveRequest(c.Server, uuid)
+func (c *Client) MarketplaceProviderResourcesOfferingRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderResourcesOfferingRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesOfferingRetrieveRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -121295,8 +121571,8 @@ func (c *Client) MarketplaceResourcesMoveResource(ctx context.Context, uuid open
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceResourcesOfferingRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceResourcesOfferingRetrieveRequest(c.Server, uuid)
+func (c *Client) MarketplaceResourcesOfferingRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourcesOfferingRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesOfferingRetrieveRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -143243,8 +143519,8 @@ func (c *Client) UsersConfirmEmail(ctx context.Context, body UsersConfirmEmailJS
 	return c.Client.Do(req)
 }
 
-func (c *Client) UsersMeRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUsersMeRetrieveRequest(c.Server)
+func (c *Client) UsersMeRetrieve(ctx context.Context, params *UsersMeRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersMeRetrieveRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -168688,7 +168964,7 @@ func NewChatSessionsListRequest(server string, params *ChatSessionsListParams) (
 }
 
 // NewChatSessionsCurrentRetrieveRequest generates requests for ChatSessionsCurrentRetrieve
-func NewChatSessionsCurrentRetrieveRequest(server string) (*http.Request, error) {
+func NewChatSessionsCurrentRetrieveRequest(server string, params *ChatSessionsCurrentRetrieveParams) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -168704,6 +168980,33 @@ func NewChatSessionsCurrentRetrieveRequest(server string) (*http.Request, error)
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -208798,7 +209101,7 @@ func NewMarketplaceOrdersDeleteAttachmentRequest(server string, uuid openapi_typ
 }
 
 // NewMarketplaceOrdersOfferingRetrieveRequest generates requests for MarketplaceOrdersOfferingRetrieve
-func NewMarketplaceOrdersOfferingRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+func NewMarketplaceOrdersOfferingRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceOrdersOfferingRetrieveParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -208821,6 +209124,33 @@ func NewMarketplaceOrdersOfferingRetrieveRequest(server string, uuid openapi_typ
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -208926,7 +209256,7 @@ func NewMarketplaceOrdersRejectByProviderRequestWithBody(server string, uuid ope
 }
 
 // NewMarketplaceOrdersResourceRetrieveRequest generates requests for MarketplaceOrdersResourceRetrieve
-func NewMarketplaceOrdersResourceRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+func NewMarketplaceOrdersResourceRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceOrdersResourceRetrieveParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -208949,6 +209279,33 @@ func NewMarketplaceOrdersResourceRetrieveRequest(server string, uuid openapi_typ
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -220676,7 +221033,7 @@ func NewMarketplaceProviderOfferingsOrdersListRequest(server string, uuid openap
 }
 
 // NewMarketplaceProviderOfferingsOrdersRetrieveRequest generates requests for MarketplaceProviderOfferingsOrdersRetrieve
-func NewMarketplaceProviderOfferingsOrdersRetrieveRequest(server string, uuid string, orderUuid string) (*http.Request, error) {
+func NewMarketplaceProviderOfferingsOrdersRetrieveRequest(server string, uuid string, orderUuid string, params *MarketplaceProviderOfferingsOrdersRetrieveParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -220706,6 +221063,33 @@ func NewMarketplaceProviderOfferingsOrdersRetrieveRequest(server string, uuid st
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -225795,7 +226179,7 @@ func NewMarketplaceProviderResourcesMoveResourceRequestWithBody(server string, u
 }
 
 // NewMarketplaceProviderResourcesOfferingRetrieveRequest generates requests for MarketplaceProviderResourcesOfferingRetrieve
-func NewMarketplaceProviderResourcesOfferingRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+func NewMarketplaceProviderResourcesOfferingRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceProviderResourcesOfferingRetrieveParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -225818,6 +226202,33 @@ func NewMarketplaceProviderResourcesOfferingRetrieveRequest(server string, uuid 
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -232817,7 +233228,7 @@ func NewMarketplaceResourcesMoveResourceRequestWithBody(server string, uuid open
 }
 
 // NewMarketplaceResourcesOfferingRetrieveRequest generates requests for MarketplaceResourcesOfferingRetrieve
-func NewMarketplaceResourcesOfferingRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+func NewMarketplaceResourcesOfferingRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceResourcesOfferingRetrieveParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -232840,6 +233251,33 @@ func NewMarketplaceResourcesOfferingRetrieveRequest(server string, uuid openapi_
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -233616,6 +234054,18 @@ func NewMarketplaceResourcesTeamMembersListRequest(server string, uuid openapi_t
 		if params.Downscaled != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "downscaled", *params.Downscaled, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -333683,7 +334133,7 @@ func NewUsersConfirmEmailRequestWithBody(server string, contentType string, body
 }
 
 // NewUsersMeRetrieveRequest generates requests for UsersMeRetrieve
-func NewUsersMeRetrieveRequest(server string) (*http.Request, error) {
+func NewUsersMeRetrieveRequest(server string, params *UsersMeRetrieveParams) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -333699,6 +334149,33 @@ func NewUsersMeRetrieveRequest(server string) (*http.Request, error) {
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -343313,7 +343790,7 @@ type ClientWithResponsesInterface interface {
 	ChatSessionsListWithResponse(ctx context.Context, params *ChatSessionsListParams, reqEditors ...RequestEditorFn) (*ChatSessionsListResponse, error)
 
 	// ChatSessionsCurrentRetrieveWithResponse request
-	ChatSessionsCurrentRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ChatSessionsCurrentRetrieveResponse, error)
+	ChatSessionsCurrentRetrieveWithResponse(ctx context.Context, params *ChatSessionsCurrentRetrieveParams, reqEditors ...RequestEditorFn) (*ChatSessionsCurrentRetrieveResponse, error)
 
 	// ChatSessionsRetrieveWithResponse request
 	ChatSessionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ChatSessionsRetrieveParams, reqEditors ...RequestEditorFn) (*ChatSessionsRetrieveResponse, error)
@@ -345336,7 +345813,7 @@ type ClientWithResponsesInterface interface {
 	MarketplaceOrdersDeleteAttachmentWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersDeleteAttachmentResponse, error)
 
 	// MarketplaceOrdersOfferingRetrieveWithResponse request
-	MarketplaceOrdersOfferingRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersOfferingRetrieveResponse, error)
+	MarketplaceOrdersOfferingRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOrdersOfferingRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceOrdersOfferingRetrieveResponse, error)
 
 	// MarketplaceOrdersRejectByConsumerWithBodyWithResponse request with any body
 	MarketplaceOrdersRejectByConsumerWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOrdersRejectByConsumerResponse, error)
@@ -345349,7 +345826,7 @@ type ClientWithResponsesInterface interface {
 	MarketplaceOrdersRejectByProviderWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersRejectByProviderJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersRejectByProviderResponse, error)
 
 	// MarketplaceOrdersResourceRetrieveWithResponse request
-	MarketplaceOrdersResourceRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersResourceRetrieveResponse, error)
+	MarketplaceOrdersResourceRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOrdersResourceRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceOrdersResourceRetrieveResponse, error)
 
 	// MarketplaceOrdersRetryWithResponse request
 	MarketplaceOrdersRetryWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersRetryResponse, error)
@@ -345744,7 +346221,7 @@ type ClientWithResponsesInterface interface {
 	MarketplaceProviderOfferingsOrdersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsOrdersListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsOrdersListResponse, error)
 
 	// MarketplaceProviderOfferingsOrdersRetrieveWithResponse request
-	MarketplaceProviderOfferingsOrdersRetrieveWithResponse(ctx context.Context, uuid string, orderUuid string, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsOrdersRetrieveResponse, error)
+	MarketplaceProviderOfferingsOrdersRetrieveWithResponse(ctx context.Context, uuid string, orderUuid string, params *MarketplaceProviderOfferingsOrdersRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsOrdersRetrieveResponse, error)
 
 	// MarketplaceProviderOfferingsPauseWithBodyWithResponse request with any body
 	MarketplaceProviderOfferingsPauseWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsPauseResponse, error)
@@ -346031,7 +346508,7 @@ type ClientWithResponsesInterface interface {
 	MarketplaceProviderResourcesMoveResourceWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesMoveResourceJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesMoveResourceResponse, error)
 
 	// MarketplaceProviderResourcesOfferingRetrieveWithResponse request
-	MarketplaceProviderResourcesOfferingRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesOfferingRetrieveResponse, error)
+	MarketplaceProviderResourcesOfferingRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderResourcesOfferingRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesOfferingRetrieveResponse, error)
 
 	// MarketplaceProviderResourcesOfferingForSubresourcesListWithResponse request
 	MarketplaceProviderResourcesOfferingForSubresourcesListWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesOfferingForSubresourcesListResponse, error)
@@ -346357,7 +346834,7 @@ type ClientWithResponsesInterface interface {
 	MarketplaceResourcesMoveResourceWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesMoveResourceJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesMoveResourceResponse, error)
 
 	// MarketplaceResourcesOfferingRetrieveWithResponse request
-	MarketplaceResourcesOfferingRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesOfferingRetrieveResponse, error)
+	MarketplaceResourcesOfferingRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourcesOfferingRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceResourcesOfferingRetrieveResponse, error)
 
 	// MarketplaceResourcesOfferingForSubresourcesListWithResponse request
 	MarketplaceResourcesOfferingForSubresourcesListWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesOfferingForSubresourcesListResponse, error)
@@ -351374,7 +351851,7 @@ type ClientWithResponsesInterface interface {
 	UsersConfirmEmailWithResponse(ctx context.Context, body UsersConfirmEmailJSONRequestBody, reqEditors ...RequestEditorFn) (*UsersConfirmEmailResponse, error)
 
 	// UsersMeRetrieveWithResponse request
-	UsersMeRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*UsersMeRetrieveResponse, error)
+	UsersMeRetrieveWithResponse(ctx context.Context, params *UsersMeRetrieveParams, reqEditors ...RequestEditorFn) (*UsersMeRetrieveResponse, error)
 
 	// UsersMeCountWithResponse request
 	UsersMeCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*UsersMeCountResponse, error)
@@ -432324,8 +432801,8 @@ func (c *ClientWithResponses) ChatSessionsListWithResponse(ctx context.Context, 
 }
 
 // ChatSessionsCurrentRetrieveWithResponse request returning *ChatSessionsCurrentRetrieveResponse
-func (c *ClientWithResponses) ChatSessionsCurrentRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ChatSessionsCurrentRetrieveResponse, error) {
-	rsp, err := c.ChatSessionsCurrentRetrieve(ctx, reqEditors...)
+func (c *ClientWithResponses) ChatSessionsCurrentRetrieveWithResponse(ctx context.Context, params *ChatSessionsCurrentRetrieveParams, reqEditors ...RequestEditorFn) (*ChatSessionsCurrentRetrieveResponse, error) {
+	rsp, err := c.ChatSessionsCurrentRetrieve(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -438775,8 +439252,8 @@ func (c *ClientWithResponses) MarketplaceOrdersDeleteAttachmentWithResponse(ctx 
 }
 
 // MarketplaceOrdersOfferingRetrieveWithResponse request returning *MarketplaceOrdersOfferingRetrieveResponse
-func (c *ClientWithResponses) MarketplaceOrdersOfferingRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersOfferingRetrieveResponse, error) {
-	rsp, err := c.MarketplaceOrdersOfferingRetrieve(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) MarketplaceOrdersOfferingRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOrdersOfferingRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceOrdersOfferingRetrieveResponse, error) {
+	rsp, err := c.MarketplaceOrdersOfferingRetrieve(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -438818,8 +439295,8 @@ func (c *ClientWithResponses) MarketplaceOrdersRejectByProviderWithResponse(ctx 
 }
 
 // MarketplaceOrdersResourceRetrieveWithResponse request returning *MarketplaceOrdersResourceRetrieveResponse
-func (c *ClientWithResponses) MarketplaceOrdersResourceRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersResourceRetrieveResponse, error) {
-	rsp, err := c.MarketplaceOrdersResourceRetrieve(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) MarketplaceOrdersResourceRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOrdersResourceRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceOrdersResourceRetrieveResponse, error) {
+	rsp, err := c.MarketplaceOrdersResourceRetrieve(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -440083,8 +440560,8 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsOrdersListWithResponse
 }
 
 // MarketplaceProviderOfferingsOrdersRetrieveWithResponse request returning *MarketplaceProviderOfferingsOrdersRetrieveResponse
-func (c *ClientWithResponses) MarketplaceProviderOfferingsOrdersRetrieveWithResponse(ctx context.Context, uuid string, orderUuid string, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsOrdersRetrieveResponse, error) {
-	rsp, err := c.MarketplaceProviderOfferingsOrdersRetrieve(ctx, uuid, orderUuid, reqEditors...)
+func (c *ClientWithResponses) MarketplaceProviderOfferingsOrdersRetrieveWithResponse(ctx context.Context, uuid string, orderUuid string, params *MarketplaceProviderOfferingsOrdersRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsOrdersRetrieveResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsOrdersRetrieve(ctx, uuid, orderUuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -441036,8 +441513,8 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesMoveResourceWithRespon
 }
 
 // MarketplaceProviderResourcesOfferingRetrieveWithResponse request returning *MarketplaceProviderResourcesOfferingRetrieveResponse
-func (c *ClientWithResponses) MarketplaceProviderResourcesOfferingRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesOfferingRetrieveResponse, error) {
-	rsp, err := c.MarketplaceProviderResourcesOfferingRetrieve(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) MarketplaceProviderResourcesOfferingRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderResourcesOfferingRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesOfferingRetrieveResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesOfferingRetrieve(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -442100,8 +442577,8 @@ func (c *ClientWithResponses) MarketplaceResourcesMoveResourceWithResponse(ctx c
 }
 
 // MarketplaceResourcesOfferingRetrieveWithResponse request returning *MarketplaceResourcesOfferingRetrieveResponse
-func (c *ClientWithResponses) MarketplaceResourcesOfferingRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesOfferingRetrieveResponse, error) {
-	rsp, err := c.MarketplaceResourcesOfferingRetrieve(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) MarketplaceResourcesOfferingRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourcesOfferingRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceResourcesOfferingRetrieveResponse, error) {
+	rsp, err := c.MarketplaceResourcesOfferingRetrieve(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -458091,8 +458568,8 @@ func (c *ClientWithResponses) UsersConfirmEmailWithResponse(ctx context.Context,
 }
 
 // UsersMeRetrieveWithResponse request returning *UsersMeRetrieveResponse
-func (c *ClientWithResponses) UsersMeRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*UsersMeRetrieveResponse, error) {
-	rsp, err := c.UsersMeRetrieve(ctx, reqEditors...)
+func (c *ClientWithResponses) UsersMeRetrieveWithResponse(ctx context.Context, params *UsersMeRetrieveParams, reqEditors ...RequestEditorFn) (*UsersMeRetrieveResponse, error) {
+	rsp, err := c.UsersMeRetrieve(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
