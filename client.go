@@ -27626,6 +27626,7 @@ type ConstanceSettings struct {
 	HOMEPORTURL                                      *string                                                          `json:"HOMEPORT_URL,omitempty"`
 	INVITATIONALLOWEDFIELDS                          *[]ConstanceSettings_INVITATIONALLOWEDFIELDS_Item                `json:"INVITATION_ALLOWED_FIELDS,omitempty"`
 	INVITATIONDISABLEMULTIPLEROLES                   *bool                                                            `json:"INVITATION_DISABLE_MULTIPLE_ROLES,omitempty"`
+	JIRAWEBHOOKSHAREDSECRET                          *string                                                          `json:"JIRA_WEBHOOK_SHARED_SECRET,omitempty"`
 	K8SCONFIGPATH                                    *string                                                          `json:"K8S_CONFIG_PATH,omitempty"`
 	K8SJOBTIMEOUT                                    *int                                                             `json:"K8S_JOB_TIMEOUT,omitempty"`
 	K8SNAMESPACE                                     *string                                                          `json:"K8S_NAMESPACE,omitempty"`
@@ -27728,6 +27729,7 @@ type ConstanceSettings struct {
 	SMAXTENANTID                                     *string                                                          `json:"SMAX_TENANT_ID,omitempty"`
 	SMAXTIMESTOPULL                                  *int                                                             `json:"SMAX_TIMES_TO_PULL,omitempty"`
 	SMAXVERIFYSSL                                    *bool                                                            `json:"SMAX_VERIFY_SSL,omitempty"`
+	SMAXWEBHOOKSHAREDSECRET                          *string                                                          `json:"SMAX_WEBHOOK_SHARED_SECRET,omitempty"`
 	SOFTWARECATALOGCLEANUPENABLED                    *bool                                                            `json:"SOFTWARE_CATALOG_CLEANUP_ENABLED,omitempty"`
 	SOFTWARECATALOGEESSIAPIURL                       *string                                                          `json:"SOFTWARE_CATALOG_EESSI_API_URL,omitempty"`
 	SOFTWARECATALOGEESSIINCLUDEEXTENSIONS            *bool                                                            `json:"SOFTWARE_CATALOG_EESSI_INCLUDE_EXTENSIONS,omitempty"`
@@ -27773,6 +27775,7 @@ type ConstanceSettings struct {
 	ZAMMADCOMMENTPREFIX                              *string                                                          `json:"ZAMMAD_COMMENT_PREFIX,omitempty"`
 	ZAMMADGROUP                                      *string                                                          `json:"ZAMMAD_GROUP,omitempty"`
 	ZAMMADTOKEN                                      *string                                                          `json:"ZAMMAD_TOKEN,omitempty"`
+	ZAMMADWEBHOOKSHAREDSECRET                        *string                                                          `json:"ZAMMAD_WEBHOOK_SHARED_SECRET,omitempty"`
 }
 
 // ConstanceSettings_DEFAULTCALLUSERATTRIBUTES_Item defines model for ConstanceSettings.DEFAULT_CALL_USER_ATTRIBUTES.Item.
@@ -27971,6 +27974,7 @@ type ConstanceSettingsRequest struct {
 	HOMEPORTURL                                      *string                                                                 `json:"HOMEPORT_URL,omitempty"`
 	INVITATIONALLOWEDFIELDS                          *[]ConstanceSettingsRequest_INVITATIONALLOWEDFIELDS_Item                `json:"INVITATION_ALLOWED_FIELDS,omitempty"`
 	INVITATIONDISABLEMULTIPLEROLES                   *bool                                                                   `json:"INVITATION_DISABLE_MULTIPLE_ROLES,omitempty"`
+	JIRAWEBHOOKSHAREDSECRET                          *string                                                                 `json:"JIRA_WEBHOOK_SHARED_SECRET,omitempty"`
 	K8SCONFIGPATH                                    *string                                                                 `json:"K8S_CONFIG_PATH,omitempty"`
 	K8SJOBTIMEOUT                                    *int                                                                    `json:"K8S_JOB_TIMEOUT,omitempty"`
 	K8SNAMESPACE                                     *string                                                                 `json:"K8S_NAMESPACE,omitempty"`
@@ -28073,6 +28077,7 @@ type ConstanceSettingsRequest struct {
 	SMAXTENANTID                                     *string                                                                 `json:"SMAX_TENANT_ID,omitempty"`
 	SMAXTIMESTOPULL                                  *int                                                                    `json:"SMAX_TIMES_TO_PULL,omitempty"`
 	SMAXVERIFYSSL                                    *bool                                                                   `json:"SMAX_VERIFY_SSL,omitempty"`
+	SMAXWEBHOOKSHAREDSECRET                          *string                                                                 `json:"SMAX_WEBHOOK_SHARED_SECRET,omitempty"`
 	SOFTWARECATALOGCLEANUPENABLED                    *bool                                                                   `json:"SOFTWARE_CATALOG_CLEANUP_ENABLED,omitempty"`
 	SOFTWARECATALOGEESSIAPIURL                       *string                                                                 `json:"SOFTWARE_CATALOG_EESSI_API_URL,omitempty"`
 	SOFTWARECATALOGEESSIINCLUDEEXTENSIONS            *bool                                                                   `json:"SOFTWARE_CATALOG_EESSI_INCLUDE_EXTENSIONS,omitempty"`
@@ -28118,6 +28123,7 @@ type ConstanceSettingsRequest struct {
 	ZAMMADCOMMENTPREFIX                              *string                                                                 `json:"ZAMMAD_COMMENT_PREFIX,omitempty"`
 	ZAMMADGROUP                                      *string                                                                 `json:"ZAMMAD_GROUP,omitempty"`
 	ZAMMADTOKEN                                      *string                                                                 `json:"ZAMMAD_TOKEN,omitempty"`
+	ZAMMADWEBHOOKSHAREDSECRET                        *string                                                                 `json:"ZAMMAD_WEBHOOK_SHARED_SECRET,omitempty"`
 }
 
 // ConstanceSettingsRequest_DEFAULTCALLUSERATTRIBUTES_Item defines model for ConstanceSettingsRequest.DEFAULT_CALL_USER_ATTRIBUTES.Item.
@@ -28316,6 +28322,7 @@ type ConstanceSettingsRequestForm struct {
 	HOMEPORTURL                                      *string                                                                     `json:"HOMEPORT_URL,omitempty"`
 	INVITATIONALLOWEDFIELDS                          *[]ConstanceSettingsRequestForm_INVITATIONALLOWEDFIELDS_Item                `json:"INVITATION_ALLOWED_FIELDS,omitempty"`
 	INVITATIONDISABLEMULTIPLEROLES                   *bool                                                                       `json:"INVITATION_DISABLE_MULTIPLE_ROLES,omitempty"`
+	JIRAWEBHOOKSHAREDSECRET                          *string                                                                     `json:"JIRA_WEBHOOK_SHARED_SECRET,omitempty"`
 	K8SCONFIGPATH                                    *string                                                                     `json:"K8S_CONFIG_PATH,omitempty"`
 	K8SJOBTIMEOUT                                    *int                                                                        `json:"K8S_JOB_TIMEOUT,omitempty"`
 	K8SNAMESPACE                                     *string                                                                     `json:"K8S_NAMESPACE,omitempty"`
@@ -28418,6 +28425,7 @@ type ConstanceSettingsRequestForm struct {
 	SMAXTENANTID                                     *string                                                                     `json:"SMAX_TENANT_ID,omitempty"`
 	SMAXTIMESTOPULL                                  *int                                                                        `json:"SMAX_TIMES_TO_PULL,omitempty"`
 	SMAXVERIFYSSL                                    *bool                                                                       `json:"SMAX_VERIFY_SSL,omitempty"`
+	SMAXWEBHOOKSHAREDSECRET                          *string                                                                     `json:"SMAX_WEBHOOK_SHARED_SECRET,omitempty"`
 	SOFTWARECATALOGCLEANUPENABLED                    *bool                                                                       `json:"SOFTWARE_CATALOG_CLEANUP_ENABLED,omitempty"`
 	SOFTWARECATALOGEESSIAPIURL                       *string                                                                     `json:"SOFTWARE_CATALOG_EESSI_API_URL,omitempty"`
 	SOFTWARECATALOGEESSIINCLUDEEXTENSIONS            *bool                                                                       `json:"SOFTWARE_CATALOG_EESSI_INCLUDE_EXTENSIONS,omitempty"`
@@ -28463,6 +28471,7 @@ type ConstanceSettingsRequestForm struct {
 	ZAMMADCOMMENTPREFIX                              *string                                                                     `json:"ZAMMAD_COMMENT_PREFIX,omitempty"`
 	ZAMMADGROUP                                      *string                                                                     `json:"ZAMMAD_GROUP,omitempty"`
 	ZAMMADTOKEN                                      *string                                                                     `json:"ZAMMAD_TOKEN,omitempty"`
+	ZAMMADWEBHOOKSHAREDSECRET                        *string                                                                     `json:"ZAMMAD_WEBHOOK_SHARED_SECRET,omitempty"`
 }
 
 // ConstanceSettingsRequestForm_DEFAULTCALLUSERATTRIBUTES_Item defines model for ConstanceSettingsRequestForm.DEFAULT_CALL_USER_ATTRIBUTES.Item.
@@ -28661,6 +28670,7 @@ type ConstanceSettingsRequestMultipart struct {
 	HOMEPORTURL                                      *string                                                                          `json:"HOMEPORT_URL,omitempty"`
 	INVITATIONALLOWEDFIELDS                          *[]ConstanceSettingsRequestMultipart_INVITATIONALLOWEDFIELDS_Item                `json:"INVITATION_ALLOWED_FIELDS,omitempty"`
 	INVITATIONDISABLEMULTIPLEROLES                   *bool                                                                            `json:"INVITATION_DISABLE_MULTIPLE_ROLES,omitempty"`
+	JIRAWEBHOOKSHAREDSECRET                          *string                                                                          `json:"JIRA_WEBHOOK_SHARED_SECRET,omitempty"`
 	K8SCONFIGPATH                                    *string                                                                          `json:"K8S_CONFIG_PATH,omitempty"`
 	K8SJOBTIMEOUT                                    *int                                                                             `json:"K8S_JOB_TIMEOUT,omitempty"`
 	K8SNAMESPACE                                     *string                                                                          `json:"K8S_NAMESPACE,omitempty"`
@@ -28763,6 +28773,7 @@ type ConstanceSettingsRequestMultipart struct {
 	SMAXTENANTID                                     *string                                                                          `json:"SMAX_TENANT_ID,omitempty"`
 	SMAXTIMESTOPULL                                  *int                                                                             `json:"SMAX_TIMES_TO_PULL,omitempty"`
 	SMAXVERIFYSSL                                    *bool                                                                            `json:"SMAX_VERIFY_SSL,omitempty"`
+	SMAXWEBHOOKSHAREDSECRET                          *string                                                                          `json:"SMAX_WEBHOOK_SHARED_SECRET,omitempty"`
 	SOFTWARECATALOGCLEANUPENABLED                    *bool                                                                            `json:"SOFTWARE_CATALOG_CLEANUP_ENABLED,omitempty"`
 	SOFTWARECATALOGEESSIAPIURL                       *string                                                                          `json:"SOFTWARE_CATALOG_EESSI_API_URL,omitempty"`
 	SOFTWARECATALOGEESSIINCLUDEEXTENSIONS            *bool                                                                            `json:"SOFTWARE_CATALOG_EESSI_INCLUDE_EXTENSIONS,omitempty"`
@@ -28808,6 +28819,7 @@ type ConstanceSettingsRequestMultipart struct {
 	ZAMMADCOMMENTPREFIX                              *string                                                                          `json:"ZAMMAD_COMMENT_PREFIX,omitempty"`
 	ZAMMADGROUP                                      *string                                                                          `json:"ZAMMAD_GROUP,omitempty"`
 	ZAMMADTOKEN                                      *string                                                                          `json:"ZAMMAD_TOKEN,omitempty"`
+	ZAMMADWEBHOOKSHAREDSECRET                        *string                                                                          `json:"ZAMMAD_WEBHOOK_SHARED_SECRET,omitempty"`
 }
 
 // ConstanceSettingsRequestMultipart_DEFAULTCALLUSERATTRIBUTES_Item defines model for ConstanceSettingsRequestMultipart.DEFAULT_CALL_USER_ATTRIBUTES.Item.
