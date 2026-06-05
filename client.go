@@ -7689,6 +7689,27 @@ func (e ExpertiseCategoryOEnum) Valid() bool {
 	}
 }
 
+// Defines values for ExportTypeEnum.
+const (
+	ExportTypeEnumManual     ExportTypeEnum = "manual"
+	ExportTypeEnumOnDeletion ExportTypeEnum = "on_deletion"
+	ExportTypeEnumPeriodic   ExportTypeEnum = "periodic"
+)
+
+// Valid indicates whether the value is a known member of the ExportTypeEnum enum.
+func (e ExportTypeEnum) Valid() bool {
+	switch e {
+	case ExportTypeEnumManual:
+		return true
+	case ExportTypeEnumOnDeletion:
+		return true
+	case ExportTypeEnumPeriodic:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ExternalNetworkFieldEnum.
 const (
 	ExternalNetworkFieldEnumBackendId   ExternalNetworkFieldEnum = "backend_id"
@@ -10041,6 +10062,81 @@ func (e MatchingAlgorithm) Valid() bool {
 	case Hungarian:
 		return true
 	case Minmax:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MatrixHistoryExportStateEnum.
+const (
+	MatrixHistoryExportStateEnumCompleted MatrixHistoryExportStateEnum = "completed"
+	MatrixHistoryExportStateEnumExporting MatrixHistoryExportStateEnum = "exporting"
+	MatrixHistoryExportStateEnumFailed    MatrixHistoryExportStateEnum = "failed"
+	MatrixHistoryExportStateEnumPending   MatrixHistoryExportStateEnum = "pending"
+)
+
+// Valid indicates whether the value is a known member of the MatrixHistoryExportStateEnum enum.
+func (e MatrixHistoryExportStateEnum) Valid() bool {
+	switch e {
+	case MatrixHistoryExportStateEnumCompleted:
+		return true
+	case MatrixHistoryExportStateEnumExporting:
+		return true
+	case MatrixHistoryExportStateEnumFailed:
+		return true
+	case MatrixHistoryExportStateEnumPending:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MatrixRoomStateEnum.
+const (
+	MatrixRoomStateEnumActive    MatrixRoomStateEnum = "active"
+	MatrixRoomStateEnumArchived  MatrixRoomStateEnum = "archived"
+	MatrixRoomStateEnumCreating  MatrixRoomStateEnum = "creating"
+	MatrixRoomStateEnumDisabling MatrixRoomStateEnum = "disabling"
+	MatrixRoomStateEnumError     MatrixRoomStateEnum = "error"
+)
+
+// Valid indicates whether the value is a known member of the MatrixRoomStateEnum enum.
+func (e MatrixRoomStateEnum) Valid() bool {
+	switch e {
+	case MatrixRoomStateEnumActive:
+		return true
+	case MatrixRoomStateEnumArchived:
+		return true
+	case MatrixRoomStateEnumCreating:
+		return true
+	case MatrixRoomStateEnumDisabling:
+		return true
+	case MatrixRoomStateEnumError:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MembershipStateEnum.
+const (
+	MembershipStateEnumBanned  MembershipStateEnum = "banned"
+	MembershipStateEnumInvited MembershipStateEnum = "invited"
+	MembershipStateEnumJoined  MembershipStateEnum = "joined"
+	MembershipStateEnumLeft    MembershipStateEnum = "left"
+)
+
+// Valid indicates whether the value is a known member of the MembershipStateEnum enum.
+func (e MembershipStateEnum) Valid() bool {
+	switch e {
+	case MembershipStateEnumBanned:
+		return true
+	case MembershipStateEnumInvited:
+		return true
+	case MembershipStateEnumJoined:
+		return true
+	case MembershipStateEnumLeft:
 		return true
 	default:
 		return false
@@ -19433,34 +19529,34 @@ func (e ServiceSettingsFieldEnum) Valid() bool {
 
 // Defines values for ServiceSettingsStateEnum.
 const (
-	ServiceSettingsStateEnumCREATING          ServiceSettingsStateEnum = "CREATING"
-	ServiceSettingsStateEnumCREATIONSCHEDULED ServiceSettingsStateEnum = "CREATION_SCHEDULED"
-	ServiceSettingsStateEnumDELETING          ServiceSettingsStateEnum = "DELETING"
-	ServiceSettingsStateEnumDELETIONSCHEDULED ServiceSettingsStateEnum = "DELETION_SCHEDULED"
-	ServiceSettingsStateEnumERRED             ServiceSettingsStateEnum = "ERRED"
-	ServiceSettingsStateEnumOK                ServiceSettingsStateEnum = "OK"
-	ServiceSettingsStateEnumUPDATESCHEDULED   ServiceSettingsStateEnum = "UPDATE_SCHEDULED"
-	ServiceSettingsStateEnumUPDATING          ServiceSettingsStateEnum = "UPDATING"
+	CREATING          ServiceSettingsStateEnum = "CREATING"
+	CREATIONSCHEDULED ServiceSettingsStateEnum = "CREATION_SCHEDULED"
+	DELETING          ServiceSettingsStateEnum = "DELETING"
+	DELETIONSCHEDULED ServiceSettingsStateEnum = "DELETION_SCHEDULED"
+	ERRED             ServiceSettingsStateEnum = "ERRED"
+	OK                ServiceSettingsStateEnum = "OK"
+	UPDATESCHEDULED   ServiceSettingsStateEnum = "UPDATE_SCHEDULED"
+	UPDATING          ServiceSettingsStateEnum = "UPDATING"
 )
 
 // Valid indicates whether the value is a known member of the ServiceSettingsStateEnum enum.
 func (e ServiceSettingsStateEnum) Valid() bool {
 	switch e {
-	case ServiceSettingsStateEnumCREATING:
+	case CREATING:
 		return true
-	case ServiceSettingsStateEnumCREATIONSCHEDULED:
+	case CREATIONSCHEDULED:
 		return true
-	case ServiceSettingsStateEnumDELETING:
+	case DELETING:
 		return true
-	case ServiceSettingsStateEnumDELETIONSCHEDULED:
+	case DELETIONSCHEDULED:
 		return true
-	case ServiceSettingsStateEnumERRED:
+	case ERRED:
 		return true
-	case ServiceSettingsStateEnumOK:
+	case OK:
 		return true
-	case ServiceSettingsStateEnumUPDATESCHEDULED:
+	case UPDATESCHEDULED:
 		return true
-	case ServiceSettingsStateEnumUPDATING:
+	case UPDATING:
 		return true
 	default:
 		return false
@@ -20243,16 +20339,16 @@ func (e TopologyNodeTypeEnum) Valid() bool {
 
 // Defines values for TransitionModeEnum.
 const (
-	TransitionModeEnumAutomaticOnCompletion TransitionModeEnum = "automatic_on_completion"
-	TransitionModeEnumManual                TransitionModeEnum = "manual"
+	AutomaticOnCompletion TransitionModeEnum = "automatic_on_completion"
+	Manual                TransitionModeEnum = "manual"
 )
 
 // Valid indicates whether the value is a known member of the TransitionModeEnum enum.
 func (e TransitionModeEnum) Valid() bool {
 	switch e {
-	case TransitionModeEnumAutomaticOnCompletion:
+	case AutomaticOnCompletion:
 		return true
-	case TransitionModeEnumManual:
+	case Manual:
 		return true
 	default:
 		return false
@@ -21380,19 +21476,19 @@ func (e VMwareVirtualMachineCreateOrderAttributesGuestOs) Valid() bool {
 
 // Defines values for ValidationDecisionEnum.
 const (
-	ValidationDecisionEnumApproved ValidationDecisionEnum = "approved"
-	ValidationDecisionEnumPending  ValidationDecisionEnum = "pending"
-	ValidationDecisionEnumRejected ValidationDecisionEnum = "rejected"
+	Approved ValidationDecisionEnum = "approved"
+	Pending  ValidationDecisionEnum = "pending"
+	Rejected ValidationDecisionEnum = "rejected"
 )
 
 // Valid indicates whether the value is a known member of the ValidationDecisionEnum enum.
 func (e ValidationDecisionEnum) Valid() bool {
 	switch e {
-	case ValidationDecisionEnumApproved:
+	case Approved:
 		return true
-	case ValidationDecisionEnumPending:
+	case Pending:
 		return true
-	case ValidationDecisionEnumRejected:
+	case Rejected:
 		return true
 	default:
 		return false
@@ -22512,6 +22608,24 @@ func (e CustomersUsersListParamsProjectRole0) Valid() bool {
 	case PROJECTMANAGER:
 		return true
 	case PROJECTMEMBER:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for MatrixExportsDownloadRetrieveParamsKind.
+const (
+	Export MatrixExportsDownloadRetrieveParamsKind = "export"
+	Media  MatrixExportsDownloadRetrieveParamsKind = "media"
+)
+
+// Valid indicates whether the value is a known member of the MatrixExportsDownloadRetrieveParamsKind enum.
+func (e MatrixExportsDownloadRetrieveParamsKind) Valid() bool {
+	switch e {
+	case Export:
+		return true
+	case Media:
 		return true
 	default:
 		return false
@@ -27647,6 +27761,18 @@ type ConstanceSettings struct {
 	MARKETPLACEHEROIMAGE                             *string                                                          `json:"MARKETPLACE_HERO_IMAGE,omitempty"`
 	MARKETPLACELANDINGPAGE                           *string                                                          `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
 	MARKETPLACELAYOUTMODE                            *MARKETPLACELAYOUTMODEEnum                                       `json:"MARKETPLACE_LAYOUT_MODE,omitempty"`
+	MATRIXAPPSERVICEASTOKEN                          *string                                                          `json:"MATRIX_APPSERVICE_AS_TOKEN,omitempty"`
+	MATRIXAPPSERVICEHSTOKEN                          *string                                                          `json:"MATRIX_APPSERVICE_HS_TOKEN,omitempty"`
+	MATRIXAPPSERVICESENDERLOCALPART                  *string                                                          `json:"MATRIX_APPSERVICE_SENDER_LOCALPART,omitempty"`
+	MATRIXENABLED                                    *bool                                                            `json:"MATRIX_ENABLED,omitempty"`
+	MATRIXEXPORTMEDIA                                *bool                                                            `json:"MATRIX_EXPORT_MEDIA,omitempty"`
+	MATRIXHISTORYEXPORTENABLED                       *bool                                                            `json:"MATRIX_HISTORY_EXPORT_ENABLED,omitempty"`
+	MATRIXHOMESERVERDOMAIN                           *string                                                          `json:"MATRIX_HOMESERVER_DOMAIN,omitempty"`
+	MATRIXHOMESERVERURL                              *string                                                          `json:"MATRIX_HOMESERVER_URL,omitempty"`
+	MATRIXLOGINMETHOD                                *string                                                          `json:"MATRIX_LOGIN_METHOD,omitempty"`
+	MATRIXOIDCPROVIDERURL                            *string                                                          `json:"MATRIX_OIDC_PROVIDER_URL,omitempty"`
+	MATRIXUSERIDFORMAT                               *string                                                          `json:"MATRIX_USER_ID_FORMAT,omitempty"`
+	MATRIXUSERREGISTRATIONSECRET                     *string                                                          `json:"MATRIX_USER_REGISTRATION_SECRET,omitempty"`
 	NOTIFYABOUTRESOURCECHANGE                        *bool                                                            `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
 	NOTIFYSTAFFABOUTAPPROVALS                        *bool                                                            `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
 	OFFERINGLOGOPLACEHOLDER                          *string                                                          `json:"OFFERING_LOGO_PLACEHOLDER,omitempty"`
@@ -27995,6 +28121,18 @@ type ConstanceSettingsRequest struct {
 	MARKETPLACEHEROIMAGE                             *openapi_types.File                                                     `json:"MARKETPLACE_HERO_IMAGE,omitempty"`
 	MARKETPLACELANDINGPAGE                           *string                                                                 `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
 	MARKETPLACELAYOUTMODE                            *MARKETPLACELAYOUTMODEEnum                                              `json:"MARKETPLACE_LAYOUT_MODE,omitempty"`
+	MATRIXAPPSERVICEASTOKEN                          *string                                                                 `json:"MATRIX_APPSERVICE_AS_TOKEN,omitempty"`
+	MATRIXAPPSERVICEHSTOKEN                          *string                                                                 `json:"MATRIX_APPSERVICE_HS_TOKEN,omitempty"`
+	MATRIXAPPSERVICESENDERLOCALPART                  *string                                                                 `json:"MATRIX_APPSERVICE_SENDER_LOCALPART,omitempty"`
+	MATRIXENABLED                                    *bool                                                                   `json:"MATRIX_ENABLED,omitempty"`
+	MATRIXEXPORTMEDIA                                *bool                                                                   `json:"MATRIX_EXPORT_MEDIA,omitempty"`
+	MATRIXHISTORYEXPORTENABLED                       *bool                                                                   `json:"MATRIX_HISTORY_EXPORT_ENABLED,omitempty"`
+	MATRIXHOMESERVERDOMAIN                           *string                                                                 `json:"MATRIX_HOMESERVER_DOMAIN,omitempty"`
+	MATRIXHOMESERVERURL                              *string                                                                 `json:"MATRIX_HOMESERVER_URL,omitempty"`
+	MATRIXLOGINMETHOD                                *string                                                                 `json:"MATRIX_LOGIN_METHOD,omitempty"`
+	MATRIXOIDCPROVIDERURL                            *string                                                                 `json:"MATRIX_OIDC_PROVIDER_URL,omitempty"`
+	MATRIXUSERIDFORMAT                               *string                                                                 `json:"MATRIX_USER_ID_FORMAT,omitempty"`
+	MATRIXUSERREGISTRATIONSECRET                     *string                                                                 `json:"MATRIX_USER_REGISTRATION_SECRET,omitempty"`
 	NOTIFYABOUTRESOURCECHANGE                        *bool                                                                   `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
 	NOTIFYSTAFFABOUTAPPROVALS                        *bool                                                                   `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
 	OFFERINGLOGOPLACEHOLDER                          *openapi_types.File                                                     `json:"OFFERING_LOGO_PLACEHOLDER,omitempty"`
@@ -28343,6 +28481,18 @@ type ConstanceSettingsRequestForm struct {
 	MARKETPLACEHEROIMAGE                             *openapi_types.File                                                         `json:"MARKETPLACE_HERO_IMAGE,omitempty"`
 	MARKETPLACELANDINGPAGE                           *string                                                                     `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
 	MARKETPLACELAYOUTMODE                            *MARKETPLACELAYOUTMODEEnum                                                  `json:"MARKETPLACE_LAYOUT_MODE,omitempty"`
+	MATRIXAPPSERVICEASTOKEN                          *string                                                                     `json:"MATRIX_APPSERVICE_AS_TOKEN,omitempty"`
+	MATRIXAPPSERVICEHSTOKEN                          *string                                                                     `json:"MATRIX_APPSERVICE_HS_TOKEN,omitempty"`
+	MATRIXAPPSERVICESENDERLOCALPART                  *string                                                                     `json:"MATRIX_APPSERVICE_SENDER_LOCALPART,omitempty"`
+	MATRIXENABLED                                    *bool                                                                       `json:"MATRIX_ENABLED,omitempty"`
+	MATRIXEXPORTMEDIA                                *bool                                                                       `json:"MATRIX_EXPORT_MEDIA,omitempty"`
+	MATRIXHISTORYEXPORTENABLED                       *bool                                                                       `json:"MATRIX_HISTORY_EXPORT_ENABLED,omitempty"`
+	MATRIXHOMESERVERDOMAIN                           *string                                                                     `json:"MATRIX_HOMESERVER_DOMAIN,omitempty"`
+	MATRIXHOMESERVERURL                              *string                                                                     `json:"MATRIX_HOMESERVER_URL,omitempty"`
+	MATRIXLOGINMETHOD                                *string                                                                     `json:"MATRIX_LOGIN_METHOD,omitempty"`
+	MATRIXOIDCPROVIDERURL                            *string                                                                     `json:"MATRIX_OIDC_PROVIDER_URL,omitempty"`
+	MATRIXUSERIDFORMAT                               *string                                                                     `json:"MATRIX_USER_ID_FORMAT,omitempty"`
+	MATRIXUSERREGISTRATIONSECRET                     *string                                                                     `json:"MATRIX_USER_REGISTRATION_SECRET,omitempty"`
 	NOTIFYABOUTRESOURCECHANGE                        *bool                                                                       `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
 	NOTIFYSTAFFABOUTAPPROVALS                        *bool                                                                       `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
 	OFFERINGLOGOPLACEHOLDER                          *openapi_types.File                                                         `json:"OFFERING_LOGO_PLACEHOLDER,omitempty"`
@@ -28691,6 +28841,18 @@ type ConstanceSettingsRequestMultipart struct {
 	MARKETPLACEHEROIMAGE                             *openapi_types.File                                                              `json:"MARKETPLACE_HERO_IMAGE,omitempty"`
 	MARKETPLACELANDINGPAGE                           *string                                                                          `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
 	MARKETPLACELAYOUTMODE                            *MARKETPLACELAYOUTMODEEnum                                                       `json:"MARKETPLACE_LAYOUT_MODE,omitempty"`
+	MATRIXAPPSERVICEASTOKEN                          *string                                                                          `json:"MATRIX_APPSERVICE_AS_TOKEN,omitempty"`
+	MATRIXAPPSERVICEHSTOKEN                          *string                                                                          `json:"MATRIX_APPSERVICE_HS_TOKEN,omitempty"`
+	MATRIXAPPSERVICESENDERLOCALPART                  *string                                                                          `json:"MATRIX_APPSERVICE_SENDER_LOCALPART,omitempty"`
+	MATRIXENABLED                                    *bool                                                                            `json:"MATRIX_ENABLED,omitempty"`
+	MATRIXEXPORTMEDIA                                *bool                                                                            `json:"MATRIX_EXPORT_MEDIA,omitempty"`
+	MATRIXHISTORYEXPORTENABLED                       *bool                                                                            `json:"MATRIX_HISTORY_EXPORT_ENABLED,omitempty"`
+	MATRIXHOMESERVERDOMAIN                           *string                                                                          `json:"MATRIX_HOMESERVER_DOMAIN,omitempty"`
+	MATRIXHOMESERVERURL                              *string                                                                          `json:"MATRIX_HOMESERVER_URL,omitempty"`
+	MATRIXLOGINMETHOD                                *string                                                                          `json:"MATRIX_LOGIN_METHOD,omitempty"`
+	MATRIXOIDCPROVIDERURL                            *string                                                                          `json:"MATRIX_OIDC_PROVIDER_URL,omitempty"`
+	MATRIXUSERIDFORMAT                               *string                                                                          `json:"MATRIX_USER_ID_FORMAT,omitempty"`
+	MATRIXUSERREGISTRATIONSECRET                     *string                                                                          `json:"MATRIX_USER_REGISTRATION_SECRET,omitempty"`
 	NOTIFYABOUTRESOURCECHANGE                        *bool                                                                            `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
 	NOTIFYSTAFFABOUTAPPROVALS                        *bool                                                                            `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
 	OFFERINGLOGOPLACEHOLDER                          *openapi_types.File                                                              `json:"OFFERING_LOGO_PLACEHOLDER,omitempty"`
@@ -30872,6 +31034,14 @@ type EligibilityCheck struct {
 	Restrictions []string `json:"restrictions"`
 }
 
+// EligibleProject defines model for EligibleProject.
+type EligibleProject struct {
+	CustomerName string `json:"customer_name"`
+	CustomerUuid string `json:"customer_uuid"`
+	Name         string `json:"name"`
+	Uuid         string `json:"uuid"`
+}
+
 // EmailHook defines model for EmailHook.
 type EmailHook struct {
 	AuthorEmail    *string             `json:"author_email,omitempty"`
@@ -31302,6 +31472,9 @@ type ExportTypeCompatibility struct {
 	RequiredFieldsFound    int      `json:"required_fields_found"`
 	RequiredFieldsTotal    int      `json:"required_fields_total"`
 }
+
+// ExportTypeEnum defines model for ExportTypeEnum.
+type ExportTypeEnum string
 
 // ExtendDeadlineRequestRequest defines model for ExtendDeadlineRequestRequest.
 type ExtendDeadlineRequestRequest struct {
@@ -33931,6 +34104,160 @@ type MatchingConfiguration struct {
 	UseReviewerBids         *bool               `json:"use_reviewer_bids,omitempty"`
 	Uuid                    *openapi_types.UUID `json:"uuid,omitempty"`
 }
+
+// MatrixAppserviceSetupRequest defines model for MatrixAppserviceSetupRequest.
+type MatrixAppserviceSetupRequest struct {
+	// HomeserverDomain Matrix homeserver server_name domain. Only persisted if MATRIX_HOMESERVER_DOMAIN is not already configured.
+	HomeserverDomain *string `json:"homeserver_domain,omitempty"`
+
+	// HomeserverUrl Matrix homeserver base URL. Only persisted if MATRIX_HOMESERVER_URL is not already configured.
+	HomeserverUrl *string `json:"homeserver_url,omitempty"`
+
+	// SenderLocalpart Localpart for the appservice bot user, e.g. 'waldur-bot'
+	SenderLocalpart *string `json:"sender_localpart,omitempty"`
+
+	// Url Waldur URL reachable by the Matrix homeserver (for webhook callbacks)
+	Url *string `json:"url,omitempty"`
+
+	// UserRegistrationSecret Shared secret configured in the homeserver for user registration. Only persisted if MATRIX_USER_REGISTRATION_SECRET is not already configured.
+	UserRegistrationSecret *string `json:"user_registration_secret,omitempty"`
+}
+
+// MatrixAppserviceSetupResponse defines model for MatrixAppserviceSetupResponse.
+type MatrixAppserviceSetupResponse struct {
+	AsToken            string `json:"as_token"`
+	BotProvisionStatus string `json:"bot_provision_status"`
+	HsToken            string `json:"hs_token"`
+	RegistrationYaml   string `json:"registration_yaml"`
+	SenderLocalpart    string `json:"sender_localpart"`
+	WebhookUrl         string `json:"webhook_url"`
+}
+
+// MatrixAppserviceStatus defines model for MatrixAppserviceStatus.
+type MatrixAppserviceStatus struct {
+	AsTokenConfigured bool   `json:"as_token_configured"`
+	BotUserId         string `json:"bot_user_id"`
+	Enabled           bool   `json:"enabled"`
+	HomeserverDomain  string `json:"homeserver_domain"`
+	HomeserverUrl     string `json:"homeserver_url"`
+	HsTokenConfigured bool   `json:"hs_token_configured"`
+	SenderLocalpart   string `json:"sender_localpart"`
+	TransactionCount  int    `json:"transaction_count"`
+	WebhookPath       string `json:"webhook_path"`
+}
+
+// MatrixCredentials defines model for MatrixCredentials.
+type MatrixCredentials struct {
+	AccessToken     *string `json:"access_token,omitempty"`
+	HomeserverUrl   string  `json:"homeserver_url"`
+	LoginToken      *string `json:"login_token,omitempty"`
+	MatrixUserId    string  `json:"matrix_user_id"`
+	Method          string  `json:"method"`
+	OidcProviderUrl *string `json:"oidc_provider_url,omitempty"`
+	Password        *string `json:"password,omitempty"`
+	RoomId          *string `json:"room_id,omitempty"`
+}
+
+// MatrixDiagnosticCheck defines model for MatrixDiagnosticCheck.
+type MatrixDiagnosticCheck struct {
+	Detail string `json:"detail"`
+	Label  string `json:"label"`
+	Name   string `json:"name"`
+	Ok     bool   `json:"ok"`
+}
+
+// MatrixDiagnosticsResponse defines model for MatrixDiagnosticsResponse.
+type MatrixDiagnosticsResponse struct {
+	Checks []MatrixDiagnosticCheck `json:"checks"`
+	Ok     bool                    `json:"ok"`
+}
+
+// MatrixHistoryExport defines model for MatrixHistoryExport.
+type MatrixHistoryExport struct {
+	CompletedAt   *time.Time                    `json:"completed_at,omitempty"`
+	Created       *time.Time                    `json:"created,omitempty"`
+	ErrorMessage  *string                       `json:"error_message,omitempty"`
+	ExportFileUrl *string                       `json:"export_file_url,omitempty"`
+	ExportType    *ExportTypeEnum               `json:"export_type,omitempty"`
+	MediaCount    *int                          `json:"media_count,omitempty"`
+	MediaFileUrl  *string                       `json:"media_file_url,omitempty"`
+	MessageCount  *int                          `json:"message_count,omitempty"`
+	RoomName      *string                       `json:"room_name,omitempty"`
+	RoomUuid      *openapi_types.UUID           `json:"room_uuid,omitempty"`
+	StartedAt     *time.Time                    `json:"started_at,omitempty"`
+	State         *MatrixHistoryExportStateEnum `json:"state,omitempty"`
+	Url           *string                       `json:"url,omitempty"`
+	Uuid          *openapi_types.UUID           `json:"uuid,omitempty"`
+}
+
+// MatrixHistoryExportStateEnum defines model for MatrixHistoryExportStateEnum.
+type MatrixHistoryExportStateEnum string
+
+// MatrixReprovisionResponse defines model for MatrixReprovisionResponse.
+type MatrixReprovisionResponse struct {
+	RoomsReprovisioned int `json:"rooms_reprovisioned"`
+	UsersReset         int `json:"users_reset"`
+}
+
+// MatrixRoom defines model for MatrixRoom.
+type MatrixRoom struct {
+	Created                    *time.Time                 `json:"created,omitempty"`
+	CurrentUserMembershipState *string                    `json:"current_user_membership_state,omitempty"`
+	CustomerName               *string                    `json:"customer_name,omitempty"`
+	CustomerUuid               *string                    `json:"customer_uuid,omitempty"`
+	ErrorMessage               *string                    `json:"error_message,omitempty"`
+	Members                    *[]MatrixRoomMemberSummary `json:"members,omitempty"`
+	MembersCount               *int                       `json:"members_count,omitempty"`
+	Modified                   *time.Time                 `json:"modified,omitempty"`
+
+	// RoomAlias Matrix room alias, e.g. #project-name:domain
+	RoomAlias *string `json:"room_alias,omitempty"`
+
+	// RoomId Matrix room ID, e.g. !abc:domain
+	RoomId    *string              `json:"room_id,omitempty"`
+	RoomName  *string              `json:"room_name,omitempty"`
+	Scope     *string              `json:"scope,omitempty"`
+	ScopeName *string              `json:"scope_name,omitempty"`
+	ScopeUuid *string              `json:"scope_uuid,omitempty"`
+	State     *MatrixRoomStateEnum `json:"state,omitempty"`
+	Url       *string              `json:"url,omitempty"`
+	Uuid      *openapi_types.UUID  `json:"uuid,omitempty"`
+}
+
+// MatrixRoomCreateRequest defines model for MatrixRoomCreateRequest.
+type MatrixRoomCreateRequest struct {
+	Project openapi_types.UUID `json:"project"`
+}
+
+// MatrixRoomDisableRequest defines model for MatrixRoomDisableRequest.
+type MatrixRoomDisableRequest struct {
+	DeleteHistory *bool `json:"delete_history,omitempty"`
+}
+
+// MatrixRoomMember defines model for MatrixRoomMember.
+type MatrixRoomMember struct {
+	Created         *time.Time           `json:"created,omitempty"`
+	MatrixUserId    *string              `json:"matrix_user_id,omitempty"`
+	MembershipState *MembershipStateEnum `json:"membership_state,omitempty"`
+	Modified        *time.Time           `json:"modified,omitempty"`
+	PowerLevel      *int                 `json:"power_level,omitempty"`
+	UserFullName    *string              `json:"user_full_name,omitempty"`
+	UserUuid        *openapi_types.UUID  `json:"user_uuid,omitempty"`
+	Uuid            *openapi_types.UUID  `json:"uuid,omitempty"`
+}
+
+// MatrixRoomMemberSummary defines model for MatrixRoomMemberSummary.
+type MatrixRoomMemberSummary struct {
+	MatrixUserId    string `json:"matrix_user_id"`
+	MembershipState string `json:"membership_state"`
+	UserFullName    string `json:"user_full_name"`
+}
+
+// MatrixRoomStateEnum defines model for MatrixRoomStateEnum.
+type MatrixRoomStateEnum string
+
+// MembershipStateEnum defines model for MembershipStateEnum.
+type MembershipStateEnum string
 
 // MergedPluginOptions defines model for MergedPluginOptions.
 type MergedPluginOptions struct {
@@ -65817,6 +66144,125 @@ type MarketplaceUserOfferingConsentsCountParams struct {
 	Version *string `form:"version,omitempty" json:"version,omitempty"`
 }
 
+// MatrixExportsListParams defines parameters for MatrixExportsList.
+type MatrixExportsListParams struct {
+	ExportType *ExportTypeEnum `form:"export_type,omitempty" json:"export_type,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// RoomUuid Room UUID
+	RoomUuid *openapi_types.UUID           `form:"room_uuid,omitempty" json:"room_uuid,omitempty"`
+	State    *MatrixHistoryExportStateEnum `form:"state,omitempty" json:"state,omitempty"`
+}
+
+// MatrixExportsCountParams defines parameters for MatrixExportsCount.
+type MatrixExportsCountParams struct {
+	ExportType *ExportTypeEnum `form:"export_type,omitempty" json:"export_type,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// RoomUuid Room UUID
+	RoomUuid *openapi_types.UUID           `form:"room_uuid,omitempty" json:"room_uuid,omitempty"`
+	State    *MatrixHistoryExportStateEnum `form:"state,omitempty" json:"state,omitempty"`
+}
+
+// MatrixExportsDownloadRetrieveParamsKind defines parameters for MatrixExportsDownloadRetrieve.
+type MatrixExportsDownloadRetrieveParamsKind string
+
+// MatrixRoomsListParams defines parameters for MatrixRoomsList.
+type MatrixRoomsListParams struct {
+	// Member Only rooms the current user is a member of
+	Member *bool `form:"member,omitempty" json:"member,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID  `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	State       *MatrixRoomStateEnum `form:"state,omitempty" json:"state,omitempty"`
+}
+
+// MatrixRoomsCountParams defines parameters for MatrixRoomsCount.
+type MatrixRoomsCountParams struct {
+	// Member Only rooms the current user is a member of
+	Member *bool `form:"member,omitempty" json:"member,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID  `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	State       *MatrixRoomStateEnum `form:"state,omitempty" json:"state,omitempty"`
+}
+
+// MatrixRoomsEligibleProjectsListParams defines parameters for MatrixRoomsEligibleProjectsList.
+type MatrixRoomsEligibleProjectsListParams struct {
+	// CustomerUuid Limit results to projects under this customer.
+	CustomerUuid *string `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Member Only rooms the current user is a member of
+	Member *bool `form:"member,omitempty" json:"member,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID  `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	State       *MatrixRoomStateEnum `form:"state,omitempty" json:"state,omitempty"`
+}
+
+// MatrixRoomsEligibleProjectsCountParams defines parameters for MatrixRoomsEligibleProjectsCount.
+type MatrixRoomsEligibleProjectsCountParams struct {
+	// CustomerUuid Limit results to projects under this customer.
+	CustomerUuid *string `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Member Only rooms the current user is a member of
+	Member *bool `form:"member,omitempty" json:"member,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID  `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	State       *MatrixRoomStateEnum `form:"state,omitempty" json:"state,omitempty"`
+}
+
+// MatrixRoomsMembersListParams defines parameters for MatrixRoomsMembersList.
+type MatrixRoomsMembersListParams struct {
+	// Member Only rooms the current user is a member of
+	Member *bool `form:"member,omitempty" json:"member,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID  `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	State       *MatrixRoomStateEnum `form:"state,omitempty" json:"state,omitempty"`
+}
+
 // NotificationMessagesTemplatesListParams defines parameters for NotificationMessagesTemplatesList.
 type NotificationMessagesTemplatesListParams struct {
 	// IsOverridden Is overridden
@@ -75607,6 +76053,9 @@ type AdminArrowVendorOfferingMappingsPartialUpdateJSONRequestBody = PatchedArrow
 // AdminArrowVendorOfferingMappingsUpdateJSONRequestBody defines body for AdminArrowVendorOfferingMappingsUpdate for application/json ContentType.
 type AdminArrowVendorOfferingMappingsUpdateJSONRequestBody = ArrowVendorOfferingMappingRequest
 
+// AdminMatrixAppserviceSetupJSONRequestBody defines body for AdminMatrixAppserviceSetup for application/json ContentType.
+type AdminMatrixAppserviceSetupJSONRequestBody = MatrixAppserviceSetupRequest
+
 // AffiliatedOrganizationsCreateJSONRequestBody defines body for AffiliatedOrganizationsCreate for application/json ContentType.
 type AffiliatedOrganizationsCreateJSONRequestBody = AffiliatedOrganizationRequest
 
@@ -77121,6 +77570,12 @@ type MarketplaceUserOfferingConsentsPartialUpdateJSONRequestBody = PatchedUserOf
 
 // MarketplaceUserOfferingConsentsUpdateJSONRequestBody defines body for MarketplaceUserOfferingConsentsUpdate for application/json ContentType.
 type MarketplaceUserOfferingConsentsUpdateJSONRequestBody = UserOfferingConsentRequest
+
+// MatrixRoomsCreateJSONRequestBody defines body for MatrixRoomsCreate for application/json ContentType.
+type MatrixRoomsCreateJSONRequestBody = MatrixRoomCreateRequest
+
+// MatrixRoomsDisableJSONRequestBody defines body for MatrixRoomsDisable for application/json ContentType.
+type MatrixRoomsDisableJSONRequestBody = MatrixRoomDisableRequest
 
 // NotificationMessagesTemplatesCreateJSONRequestBody defines body for NotificationMessagesTemplatesCreate for application/json ContentType.
 type NotificationMessagesTemplatesCreateJSONRequestBody = NotificationTemplateDetailSerializersRequest
@@ -93129,6 +93584,9 @@ func WithRequestEditorFn(fn RequestEditorFn) ClientOption {
 
 // The interface specification for the client above.
 type ClientInterface interface {
+	// MatrixAppV1TransactionsUpdate request
+	MatrixAppV1TransactionsUpdate(ctx context.Context, txnId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ApiAuthEduteamsCompleteRetrieve request
 	ApiAuthEduteamsCompleteRetrieve(ctx context.Context, params *ApiAuthEduteamsCompleteRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -93479,6 +93937,20 @@ type ClientInterface interface {
 	AdminArrowVendorOfferingMappingsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	AdminArrowVendorOfferingMappingsUpdate(ctx context.Context, uuid openapi_types.UUID, body AdminArrowVendorOfferingMappingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminMatrixAppserviceSetupWithBody request with any body
+	AdminMatrixAppserviceSetupWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminMatrixAppserviceSetup(ctx context.Context, body AdminMatrixAppserviceSetupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminMatrixAppserviceStatusRetrieve request
+	AdminMatrixAppserviceStatusRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminMatrixDiagnosticsRetrieve request
+	AdminMatrixDiagnosticsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminMatrixReprovision request
+	AdminMatrixReprovision(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// AffiliatedOrganizationsList request
 	AffiliatedOrganizationsList(ctx context.Context, params *AffiliatedOrganizationsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -98382,6 +98854,70 @@ type ClientInterface interface {
 	// MarketplaceUserOfferingConsentsRevoke request
 	MarketplaceUserOfferingConsentsRevoke(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MatrixCredentialsRetrieve request
+	MatrixCredentialsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MatrixExportsList request
+	MatrixExportsList(ctx context.Context, params *MatrixExportsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MatrixExportsCount request
+	MatrixExportsCount(ctx context.Context, params *MatrixExportsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MatrixExportsRetrieve request
+	MatrixExportsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MatrixExportsDownloadRetrieve request
+	MatrixExportsDownloadRetrieve(ctx context.Context, uuid string, kind MatrixExportsDownloadRetrieveParamsKind, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MatrixRoomsList request
+	MatrixRoomsList(ctx context.Context, params *MatrixRoomsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MatrixRoomsCount request
+	MatrixRoomsCount(ctx context.Context, params *MatrixRoomsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MatrixRoomsCreateWithBody request with any body
+	MatrixRoomsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MatrixRoomsCreate(ctx context.Context, body MatrixRoomsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MatrixRoomsEligibleProjectsList request
+	MatrixRoomsEligibleProjectsList(ctx context.Context, params *MatrixRoomsEligibleProjectsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MatrixRoomsEligibleProjectsCount request
+	MatrixRoomsEligibleProjectsCount(ctx context.Context, params *MatrixRoomsEligibleProjectsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MatrixRoomsDestroy request
+	MatrixRoomsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MatrixRoomsRetrieve request
+	MatrixRoomsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MatrixRoomsDisableWithBody request with any body
+	MatrixRoomsDisableWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MatrixRoomsDisable(ctx context.Context, uuid openapi_types.UUID, body MatrixRoomsDisableJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MatrixRoomsExportHistory request
+	MatrixRoomsExportHistory(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MatrixRoomsJoin request
+	MatrixRoomsJoin(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MatrixRoomsLeave request
+	MatrixRoomsLeave(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MatrixRoomsMembersList request
+	MatrixRoomsMembersList(ctx context.Context, uuid openapi_types.UUID, params *MatrixRoomsMembersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MatrixRoomsReactivate request
+	MatrixRoomsReactivate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MatrixRoomsRetry request
+	MatrixRoomsRetry(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MatrixRoomsSyncMembers request
+	MatrixRoomsSyncMembers(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MediaRetrieve request
 	MediaRetrieve(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -102715,6 +103251,18 @@ type ClientInterface interface {
 	VmwareVirtualMachineWebConsoleRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
+func (c *Client) MatrixAppV1TransactionsUpdate(ctx context.Context, txnId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixAppV1TransactionsUpdateRequest(c.Server, txnId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ApiAuthEduteamsCompleteRetrieve(ctx context.Context, params *ApiAuthEduteamsCompleteRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewApiAuthEduteamsCompleteRetrieveRequest(c.Server, params)
 	if err != nil {
@@ -104265,6 +104813,66 @@ func (c *Client) AdminArrowVendorOfferingMappingsUpdateWithBody(ctx context.Cont
 
 func (c *Client) AdminArrowVendorOfferingMappingsUpdate(ctx context.Context, uuid openapi_types.UUID, body AdminArrowVendorOfferingMappingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewAdminArrowVendorOfferingMappingsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminMatrixAppserviceSetupWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminMatrixAppserviceSetupRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminMatrixAppserviceSetup(ctx context.Context, body AdminMatrixAppserviceSetupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminMatrixAppserviceSetupRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminMatrixAppserviceStatusRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminMatrixAppserviceStatusRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminMatrixDiagnosticsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminMatrixDiagnosticsRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminMatrixReprovision(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminMatrixReprovisionRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -125767,6 +126375,270 @@ func (c *Client) MarketplaceUserOfferingConsentsRevoke(ctx context.Context, uuid
 	return c.Client.Do(req)
 }
 
+func (c *Client) MatrixCredentialsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixCredentialsRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MatrixExportsList(ctx context.Context, params *MatrixExportsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixExportsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MatrixExportsCount(ctx context.Context, params *MatrixExportsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixExportsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MatrixExportsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixExportsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MatrixExportsDownloadRetrieve(ctx context.Context, uuid string, kind MatrixExportsDownloadRetrieveParamsKind, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixExportsDownloadRetrieveRequest(c.Server, uuid, kind)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MatrixRoomsList(ctx context.Context, params *MatrixRoomsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixRoomsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MatrixRoomsCount(ctx context.Context, params *MatrixRoomsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixRoomsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MatrixRoomsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixRoomsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MatrixRoomsCreate(ctx context.Context, body MatrixRoomsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixRoomsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MatrixRoomsEligibleProjectsList(ctx context.Context, params *MatrixRoomsEligibleProjectsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixRoomsEligibleProjectsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MatrixRoomsEligibleProjectsCount(ctx context.Context, params *MatrixRoomsEligibleProjectsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixRoomsEligibleProjectsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MatrixRoomsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixRoomsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MatrixRoomsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixRoomsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MatrixRoomsDisableWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixRoomsDisableRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MatrixRoomsDisable(ctx context.Context, uuid openapi_types.UUID, body MatrixRoomsDisableJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixRoomsDisableRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MatrixRoomsExportHistory(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixRoomsExportHistoryRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MatrixRoomsJoin(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixRoomsJoinRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MatrixRoomsLeave(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixRoomsLeaveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MatrixRoomsMembersList(ctx context.Context, uuid openapi_types.UUID, params *MatrixRoomsMembersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixRoomsMembersListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MatrixRoomsReactivate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixRoomsReactivateRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MatrixRoomsRetry(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixRoomsRetryRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MatrixRoomsSyncMembers(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixRoomsSyncMembersRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MediaRetrieve(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMediaRetrieveRequest(c.Server, uuid)
 	if err != nil {
@@ -144751,6 +145623,40 @@ func (c *Client) VmwareVirtualMachineWebConsoleRetrieve(ctx context.Context, uui
 	return c.Client.Do(req)
 }
 
+// NewMatrixAppV1TransactionsUpdateRequest generates requests for MatrixAppV1TransactionsUpdate
+func NewMatrixAppV1TransactionsUpdateRequest(server string, txnId string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "txn_id", txnId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/_matrix/app/v1/transactions/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPut, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewApiAuthEduteamsCompleteRetrieveRequest generates requests for ApiAuthEduteamsCompleteRetrieve
 func NewApiAuthEduteamsCompleteRetrieveRequest(server string, params *ApiAuthEduteamsCompleteRetrieveParams) (*http.Request, error) {
 	var err error
@@ -150454,6 +151360,127 @@ func NewAdminArrowVendorOfferingMappingsUpdateRequestWithBody(server string, uui
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminMatrixAppserviceSetupRequest calls the generic AdminMatrixAppserviceSetup builder with application/json body
+func NewAdminMatrixAppserviceSetupRequest(server string, body AdminMatrixAppserviceSetupJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminMatrixAppserviceSetupRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewAdminMatrixAppserviceSetupRequestWithBody generates requests for AdminMatrixAppserviceSetup with any type of body
+func NewAdminMatrixAppserviceSetupRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/matrix-appservice/setup/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminMatrixAppserviceStatusRetrieveRequest generates requests for AdminMatrixAppserviceStatusRetrieve
+func NewAdminMatrixAppserviceStatusRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/matrix-appservice/status/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminMatrixDiagnosticsRetrieveRequest generates requests for AdminMatrixDiagnosticsRetrieve
+func NewAdminMatrixDiagnosticsRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/matrix/diagnostics/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminMatrixReprovisionRequest generates requests for AdminMatrixReprovision
+func NewAdminMatrixReprovisionRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/matrix/reprovision/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -255538,6 +256565,1212 @@ func NewMarketplaceUserOfferingConsentsRevokeRequest(server string, uuid openapi
 	return req, nil
 }
 
+// NewMatrixCredentialsRetrieveRequest generates requests for MatrixCredentialsRetrieve
+func NewMatrixCredentialsRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/matrix/credentials/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMatrixExportsListRequest generates requests for MatrixExportsList
+func NewMatrixExportsListRequest(server string, params *MatrixExportsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/matrix/exports/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.ExportType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "export_type", *params.ExportType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RoomUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "room_uuid", *params.RoomUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMatrixExportsCountRequest generates requests for MatrixExportsCount
+func NewMatrixExportsCountRequest(server string, params *MatrixExportsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/matrix/exports/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.ExportType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "export_type", *params.ExportType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RoomUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "room_uuid", *params.RoomUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMatrixExportsRetrieveRequest generates requests for MatrixExportsRetrieve
+func NewMatrixExportsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/matrix/exports/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMatrixExportsDownloadRetrieveRequest generates requests for MatrixExportsDownloadRetrieve
+func NewMatrixExportsDownloadRetrieveRequest(server string, uuid string, kind MatrixExportsDownloadRetrieveParamsKind) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "kind", kind, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/matrix/exports/%s/download/%s/", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMatrixRoomsListRequest generates requests for MatrixRoomsList
+func NewMatrixRoomsListRequest(server string, params *MatrixRoomsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/matrix/rooms/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Member != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "member", *params.Member, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMatrixRoomsCountRequest generates requests for MatrixRoomsCount
+func NewMatrixRoomsCountRequest(server string, params *MatrixRoomsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/matrix/rooms/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Member != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "member", *params.Member, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMatrixRoomsCreateRequest calls the generic MatrixRoomsCreate builder with application/json body
+func NewMatrixRoomsCreateRequest(server string, body MatrixRoomsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMatrixRoomsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMatrixRoomsCreateRequestWithBody generates requests for MatrixRoomsCreate with any type of body
+func NewMatrixRoomsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/matrix/rooms/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMatrixRoomsEligibleProjectsListRequest generates requests for MatrixRoomsEligibleProjectsList
+func NewMatrixRoomsEligibleProjectsListRequest(server string, params *MatrixRoomsEligibleProjectsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/matrix/rooms/eligible_projects/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Member != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "member", *params.Member, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMatrixRoomsEligibleProjectsCountRequest generates requests for MatrixRoomsEligibleProjectsCount
+func NewMatrixRoomsEligibleProjectsCountRequest(server string, params *MatrixRoomsEligibleProjectsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/matrix/rooms/eligible_projects/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Member != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "member", *params.Member, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMatrixRoomsDestroyRequest generates requests for MatrixRoomsDestroy
+func NewMatrixRoomsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/matrix/rooms/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMatrixRoomsRetrieveRequest generates requests for MatrixRoomsRetrieve
+func NewMatrixRoomsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/matrix/rooms/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMatrixRoomsDisableRequest calls the generic MatrixRoomsDisable builder with application/json body
+func NewMatrixRoomsDisableRequest(server string, uuid openapi_types.UUID, body MatrixRoomsDisableJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMatrixRoomsDisableRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMatrixRoomsDisableRequestWithBody generates requests for MatrixRoomsDisable with any type of body
+func NewMatrixRoomsDisableRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/matrix/rooms/%s/disable/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMatrixRoomsExportHistoryRequest generates requests for MatrixRoomsExportHistory
+func NewMatrixRoomsExportHistoryRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/matrix/rooms/%s/export_history/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMatrixRoomsJoinRequest generates requests for MatrixRoomsJoin
+func NewMatrixRoomsJoinRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/matrix/rooms/%s/join/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMatrixRoomsLeaveRequest generates requests for MatrixRoomsLeave
+func NewMatrixRoomsLeaveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/matrix/rooms/%s/leave/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMatrixRoomsMembersListRequest generates requests for MatrixRoomsMembersList
+func NewMatrixRoomsMembersListRequest(server string, uuid openapi_types.UUID, params *MatrixRoomsMembersListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/matrix/rooms/%s/members/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Member != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "member", *params.Member, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMatrixRoomsReactivateRequest generates requests for MatrixRoomsReactivate
+func NewMatrixRoomsReactivateRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/matrix/rooms/%s/reactivate/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMatrixRoomsRetryRequest generates requests for MatrixRoomsRetry
+func NewMatrixRoomsRetryRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/matrix/rooms/%s/retry/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMatrixRoomsSyncMembersRequest generates requests for MatrixRoomsSyncMembers
+func NewMatrixRoomsSyncMembersRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/matrix/rooms/%s/sync_members/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMediaRetrieveRequest generates requests for MediaRetrieve
 func NewMediaRetrieveRequest(server string, uuid string) (*http.Request, error) {
 	var err error
@@ -342572,6 +344805,9 @@ func WithBaseURL(baseURL string) ClientOption {
 
 // ClientWithResponsesInterface is the interface specification for the client with responses above.
 type ClientWithResponsesInterface interface {
+	// MatrixAppV1TransactionsUpdateWithResponse request
+	MatrixAppV1TransactionsUpdateWithResponse(ctx context.Context, txnId string, reqEditors ...RequestEditorFn) (*MatrixAppV1TransactionsUpdateResponse, error)
+
 	// ApiAuthEduteamsCompleteRetrieveWithResponse request
 	ApiAuthEduteamsCompleteRetrieveWithResponse(ctx context.Context, params *ApiAuthEduteamsCompleteRetrieveParams, reqEditors ...RequestEditorFn) (*ApiAuthEduteamsCompleteRetrieveResponse, error)
 
@@ -342922,6 +345158,20 @@ type ClientWithResponsesInterface interface {
 	AdminArrowVendorOfferingMappingsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowVendorOfferingMappingsUpdateResponse, error)
 
 	AdminArrowVendorOfferingMappingsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body AdminArrowVendorOfferingMappingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowVendorOfferingMappingsUpdateResponse, error)
+
+	// AdminMatrixAppserviceSetupWithBodyWithResponse request with any body
+	AdminMatrixAppserviceSetupWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminMatrixAppserviceSetupResponse, error)
+
+	AdminMatrixAppserviceSetupWithResponse(ctx context.Context, body AdminMatrixAppserviceSetupJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminMatrixAppserviceSetupResponse, error)
+
+	// AdminMatrixAppserviceStatusRetrieveWithResponse request
+	AdminMatrixAppserviceStatusRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AdminMatrixAppserviceStatusRetrieveResponse, error)
+
+	// AdminMatrixDiagnosticsRetrieveWithResponse request
+	AdminMatrixDiagnosticsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AdminMatrixDiagnosticsRetrieveResponse, error)
+
+	// AdminMatrixReprovisionWithResponse request
+	AdminMatrixReprovisionWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AdminMatrixReprovisionResponse, error)
 
 	// AffiliatedOrganizationsListWithResponse request
 	AffiliatedOrganizationsListWithResponse(ctx context.Context, params *AffiliatedOrganizationsListParams, reqEditors ...RequestEditorFn) (*AffiliatedOrganizationsListResponse, error)
@@ -347825,6 +350075,70 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceUserOfferingConsentsRevokeWithResponse request
 	MarketplaceUserOfferingConsentsRevokeWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsRevokeResponse, error)
 
+	// MatrixCredentialsRetrieveWithResponse request
+	MatrixCredentialsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MatrixCredentialsRetrieveResponse, error)
+
+	// MatrixExportsListWithResponse request
+	MatrixExportsListWithResponse(ctx context.Context, params *MatrixExportsListParams, reqEditors ...RequestEditorFn) (*MatrixExportsListResponse, error)
+
+	// MatrixExportsCountWithResponse request
+	MatrixExportsCountWithResponse(ctx context.Context, params *MatrixExportsCountParams, reqEditors ...RequestEditorFn) (*MatrixExportsCountResponse, error)
+
+	// MatrixExportsRetrieveWithResponse request
+	MatrixExportsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MatrixExportsRetrieveResponse, error)
+
+	// MatrixExportsDownloadRetrieveWithResponse request
+	MatrixExportsDownloadRetrieveWithResponse(ctx context.Context, uuid string, kind MatrixExportsDownloadRetrieveParamsKind, reqEditors ...RequestEditorFn) (*MatrixExportsDownloadRetrieveResponse, error)
+
+	// MatrixRoomsListWithResponse request
+	MatrixRoomsListWithResponse(ctx context.Context, params *MatrixRoomsListParams, reqEditors ...RequestEditorFn) (*MatrixRoomsListResponse, error)
+
+	// MatrixRoomsCountWithResponse request
+	MatrixRoomsCountWithResponse(ctx context.Context, params *MatrixRoomsCountParams, reqEditors ...RequestEditorFn) (*MatrixRoomsCountResponse, error)
+
+	// MatrixRoomsCreateWithBodyWithResponse request with any body
+	MatrixRoomsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MatrixRoomsCreateResponse, error)
+
+	MatrixRoomsCreateWithResponse(ctx context.Context, body MatrixRoomsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MatrixRoomsCreateResponse, error)
+
+	// MatrixRoomsEligibleProjectsListWithResponse request
+	MatrixRoomsEligibleProjectsListWithResponse(ctx context.Context, params *MatrixRoomsEligibleProjectsListParams, reqEditors ...RequestEditorFn) (*MatrixRoomsEligibleProjectsListResponse, error)
+
+	// MatrixRoomsEligibleProjectsCountWithResponse request
+	MatrixRoomsEligibleProjectsCountWithResponse(ctx context.Context, params *MatrixRoomsEligibleProjectsCountParams, reqEditors ...RequestEditorFn) (*MatrixRoomsEligibleProjectsCountResponse, error)
+
+	// MatrixRoomsDestroyWithResponse request
+	MatrixRoomsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MatrixRoomsDestroyResponse, error)
+
+	// MatrixRoomsRetrieveWithResponse request
+	MatrixRoomsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MatrixRoomsRetrieveResponse, error)
+
+	// MatrixRoomsDisableWithBodyWithResponse request with any body
+	MatrixRoomsDisableWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MatrixRoomsDisableResponse, error)
+
+	MatrixRoomsDisableWithResponse(ctx context.Context, uuid openapi_types.UUID, body MatrixRoomsDisableJSONRequestBody, reqEditors ...RequestEditorFn) (*MatrixRoomsDisableResponse, error)
+
+	// MatrixRoomsExportHistoryWithResponse request
+	MatrixRoomsExportHistoryWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MatrixRoomsExportHistoryResponse, error)
+
+	// MatrixRoomsJoinWithResponse request
+	MatrixRoomsJoinWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MatrixRoomsJoinResponse, error)
+
+	// MatrixRoomsLeaveWithResponse request
+	MatrixRoomsLeaveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MatrixRoomsLeaveResponse, error)
+
+	// MatrixRoomsMembersListWithResponse request
+	MatrixRoomsMembersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MatrixRoomsMembersListParams, reqEditors ...RequestEditorFn) (*MatrixRoomsMembersListResponse, error)
+
+	// MatrixRoomsReactivateWithResponse request
+	MatrixRoomsReactivateWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MatrixRoomsReactivateResponse, error)
+
+	// MatrixRoomsRetryWithResponse request
+	MatrixRoomsRetryWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MatrixRoomsRetryResponse, error)
+
+	// MatrixRoomsSyncMembersWithResponse request
+	MatrixRoomsSyncMembersWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MatrixRoomsSyncMembersResponse, error)
+
 	// MediaRetrieveWithResponse request
 	MediaRetrieveWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*MediaRetrieveResponse, error)
 
@@ -352158,6 +354472,35 @@ type ClientWithResponsesInterface interface {
 	VmwareVirtualMachineWebConsoleRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*VmwareVirtualMachineWebConsoleRetrieveResponse, error)
 }
 
+type MatrixAppV1TransactionsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MatrixAppV1TransactionsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MatrixAppV1TransactionsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MatrixAppV1TransactionsUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type ApiAuthEduteamsCompleteRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -354853,6 +357196,126 @@ func (r AdminArrowVendorOfferingMappingsUpdateResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r AdminArrowVendorOfferingMappingsUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type AdminMatrixAppserviceSetupResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MatrixAppserviceSetupResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminMatrixAppserviceSetupResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminMatrixAppserviceSetupResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AdminMatrixAppserviceSetupResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type AdminMatrixAppserviceStatusRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MatrixAppserviceStatus
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminMatrixAppserviceStatusRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminMatrixAppserviceStatusRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AdminMatrixAppserviceStatusRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type AdminMatrixDiagnosticsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MatrixDiagnosticsResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminMatrixDiagnosticsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminMatrixDiagnosticsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AdminMatrixDiagnosticsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type AdminMatrixReprovisionResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON202      *MatrixReprovisionResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminMatrixReprovisionResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminMatrixReprovisionResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AdminMatrixReprovisionResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -394105,6 +396568,601 @@ func (r MarketplaceUserOfferingConsentsRevokeResponse) ContentType() string {
 	return ""
 }
 
+type MatrixCredentialsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MatrixCredentials
+}
+
+// Status returns HTTPResponse.Status
+func (r MatrixCredentialsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MatrixCredentialsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MatrixCredentialsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MatrixExportsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]MatrixHistoryExport
+}
+
+// Status returns HTTPResponse.Status
+func (r MatrixExportsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MatrixExportsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MatrixExportsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MatrixExportsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MatrixExportsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MatrixExportsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MatrixExportsCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MatrixExportsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MatrixHistoryExport
+}
+
+// Status returns HTTPResponse.Status
+func (r MatrixExportsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MatrixExportsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MatrixExportsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MatrixExportsDownloadRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *openapi_types.File
+}
+
+// Status returns HTTPResponse.Status
+func (r MatrixExportsDownloadRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MatrixExportsDownloadRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MatrixExportsDownloadRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MatrixRoomsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]MatrixRoom
+}
+
+// Status returns HTTPResponse.Status
+func (r MatrixRoomsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MatrixRoomsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MatrixRoomsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MatrixRoomsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MatrixRoomsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MatrixRoomsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MatrixRoomsCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MatrixRoomsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *MatrixRoom
+}
+
+// Status returns HTTPResponse.Status
+func (r MatrixRoomsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MatrixRoomsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MatrixRoomsCreateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MatrixRoomsEligibleProjectsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]EligibleProject
+}
+
+// Status returns HTTPResponse.Status
+func (r MatrixRoomsEligibleProjectsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MatrixRoomsEligibleProjectsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MatrixRoomsEligibleProjectsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MatrixRoomsEligibleProjectsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MatrixRoomsEligibleProjectsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MatrixRoomsEligibleProjectsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MatrixRoomsEligibleProjectsCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MatrixRoomsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MatrixRoomsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MatrixRoomsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MatrixRoomsDestroyResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MatrixRoomsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MatrixRoom
+}
+
+// Status returns HTTPResponse.Status
+func (r MatrixRoomsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MatrixRoomsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MatrixRoomsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MatrixRoomsDisableResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON202      *MatrixRoom
+}
+
+// Status returns HTTPResponse.Status
+func (r MatrixRoomsDisableResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MatrixRoomsDisableResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MatrixRoomsDisableResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MatrixRoomsExportHistoryResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON202      *MatrixHistoryExport
+}
+
+// Status returns HTTPResponse.Status
+func (r MatrixRoomsExportHistoryResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MatrixRoomsExportHistoryResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MatrixRoomsExportHistoryResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MatrixRoomsJoinResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON202      *MatrixRoom
+}
+
+// Status returns HTTPResponse.Status
+func (r MatrixRoomsJoinResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MatrixRoomsJoinResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MatrixRoomsJoinResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MatrixRoomsLeaveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON202      *MatrixRoom
+}
+
+// Status returns HTTPResponse.Status
+func (r MatrixRoomsLeaveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MatrixRoomsLeaveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MatrixRoomsLeaveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MatrixRoomsMembersListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]MatrixRoomMember
+}
+
+// Status returns HTTPResponse.Status
+func (r MatrixRoomsMembersListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MatrixRoomsMembersListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MatrixRoomsMembersListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MatrixRoomsReactivateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON202      *MatrixRoom
+}
+
+// Status returns HTTPResponse.Status
+func (r MatrixRoomsReactivateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MatrixRoomsReactivateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MatrixRoomsReactivateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MatrixRoomsRetryResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON202      *MatrixRoom
+}
+
+// Status returns HTTPResponse.Status
+func (r MatrixRoomsRetryResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MatrixRoomsRetryResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MatrixRoomsRetryResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MatrixRoomsSyncMembersResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MatrixRoomsSyncMembersResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MatrixRoomsSyncMembersResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MatrixRoomsSyncMembersResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type MediaRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -428877,6 +431935,15 @@ func (r VmwareVirtualMachineWebConsoleRetrieveResponse) ContentType() string {
 	return ""
 }
 
+// MatrixAppV1TransactionsUpdateWithResponse request returning *MatrixAppV1TransactionsUpdateResponse
+func (c *ClientWithResponses) MatrixAppV1TransactionsUpdateWithResponse(ctx context.Context, txnId string, reqEditors ...RequestEditorFn) (*MatrixAppV1TransactionsUpdateResponse, error) {
+	rsp, err := c.MatrixAppV1TransactionsUpdate(ctx, txnId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixAppV1TransactionsUpdateResponse(rsp)
+}
+
 // ApiAuthEduteamsCompleteRetrieveWithResponse request returning *ApiAuthEduteamsCompleteRetrieveResponse
 func (c *ClientWithResponses) ApiAuthEduteamsCompleteRetrieveWithResponse(ctx context.Context, params *ApiAuthEduteamsCompleteRetrieveParams, reqEditors ...RequestEditorFn) (*ApiAuthEduteamsCompleteRetrieveResponse, error) {
 	rsp, err := c.ApiAuthEduteamsCompleteRetrieve(ctx, params, reqEditors...)
@@ -430006,6 +433073,50 @@ func (c *ClientWithResponses) AdminArrowVendorOfferingMappingsUpdateWithResponse
 		return nil, err
 	}
 	return ParseAdminArrowVendorOfferingMappingsUpdateResponse(rsp)
+}
+
+// AdminMatrixAppserviceSetupWithBodyWithResponse request with arbitrary body returning *AdminMatrixAppserviceSetupResponse
+func (c *ClientWithResponses) AdminMatrixAppserviceSetupWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminMatrixAppserviceSetupResponse, error) {
+	rsp, err := c.AdminMatrixAppserviceSetupWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminMatrixAppserviceSetupResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminMatrixAppserviceSetupWithResponse(ctx context.Context, body AdminMatrixAppserviceSetupJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminMatrixAppserviceSetupResponse, error) {
+	rsp, err := c.AdminMatrixAppserviceSetup(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminMatrixAppserviceSetupResponse(rsp)
+}
+
+// AdminMatrixAppserviceStatusRetrieveWithResponse request returning *AdminMatrixAppserviceStatusRetrieveResponse
+func (c *ClientWithResponses) AdminMatrixAppserviceStatusRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AdminMatrixAppserviceStatusRetrieveResponse, error) {
+	rsp, err := c.AdminMatrixAppserviceStatusRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminMatrixAppserviceStatusRetrieveResponse(rsp)
+}
+
+// AdminMatrixDiagnosticsRetrieveWithResponse request returning *AdminMatrixDiagnosticsRetrieveResponse
+func (c *ClientWithResponses) AdminMatrixDiagnosticsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AdminMatrixDiagnosticsRetrieveResponse, error) {
+	rsp, err := c.AdminMatrixDiagnosticsRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminMatrixDiagnosticsRetrieveResponse(rsp)
+}
+
+// AdminMatrixReprovisionWithResponse request returning *AdminMatrixReprovisionResponse
+func (c *ClientWithResponses) AdminMatrixReprovisionWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AdminMatrixReprovisionResponse, error) {
+	rsp, err := c.AdminMatrixReprovision(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminMatrixReprovisionResponse(rsp)
 }
 
 // AffiliatedOrganizationsListWithResponse request returning *AffiliatedOrganizationsListResponse
@@ -445656,6 +448767,202 @@ func (c *ClientWithResponses) MarketplaceUserOfferingConsentsRevokeWithResponse(
 	return ParseMarketplaceUserOfferingConsentsRevokeResponse(rsp)
 }
 
+// MatrixCredentialsRetrieveWithResponse request returning *MatrixCredentialsRetrieveResponse
+func (c *ClientWithResponses) MatrixCredentialsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MatrixCredentialsRetrieveResponse, error) {
+	rsp, err := c.MatrixCredentialsRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixCredentialsRetrieveResponse(rsp)
+}
+
+// MatrixExportsListWithResponse request returning *MatrixExportsListResponse
+func (c *ClientWithResponses) MatrixExportsListWithResponse(ctx context.Context, params *MatrixExportsListParams, reqEditors ...RequestEditorFn) (*MatrixExportsListResponse, error) {
+	rsp, err := c.MatrixExportsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixExportsListResponse(rsp)
+}
+
+// MatrixExportsCountWithResponse request returning *MatrixExportsCountResponse
+func (c *ClientWithResponses) MatrixExportsCountWithResponse(ctx context.Context, params *MatrixExportsCountParams, reqEditors ...RequestEditorFn) (*MatrixExportsCountResponse, error) {
+	rsp, err := c.MatrixExportsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixExportsCountResponse(rsp)
+}
+
+// MatrixExportsRetrieveWithResponse request returning *MatrixExportsRetrieveResponse
+func (c *ClientWithResponses) MatrixExportsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MatrixExportsRetrieveResponse, error) {
+	rsp, err := c.MatrixExportsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixExportsRetrieveResponse(rsp)
+}
+
+// MatrixExportsDownloadRetrieveWithResponse request returning *MatrixExportsDownloadRetrieveResponse
+func (c *ClientWithResponses) MatrixExportsDownloadRetrieveWithResponse(ctx context.Context, uuid string, kind MatrixExportsDownloadRetrieveParamsKind, reqEditors ...RequestEditorFn) (*MatrixExportsDownloadRetrieveResponse, error) {
+	rsp, err := c.MatrixExportsDownloadRetrieve(ctx, uuid, kind, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixExportsDownloadRetrieveResponse(rsp)
+}
+
+// MatrixRoomsListWithResponse request returning *MatrixRoomsListResponse
+func (c *ClientWithResponses) MatrixRoomsListWithResponse(ctx context.Context, params *MatrixRoomsListParams, reqEditors ...RequestEditorFn) (*MatrixRoomsListResponse, error) {
+	rsp, err := c.MatrixRoomsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixRoomsListResponse(rsp)
+}
+
+// MatrixRoomsCountWithResponse request returning *MatrixRoomsCountResponse
+func (c *ClientWithResponses) MatrixRoomsCountWithResponse(ctx context.Context, params *MatrixRoomsCountParams, reqEditors ...RequestEditorFn) (*MatrixRoomsCountResponse, error) {
+	rsp, err := c.MatrixRoomsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixRoomsCountResponse(rsp)
+}
+
+// MatrixRoomsCreateWithBodyWithResponse request with arbitrary body returning *MatrixRoomsCreateResponse
+func (c *ClientWithResponses) MatrixRoomsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MatrixRoomsCreateResponse, error) {
+	rsp, err := c.MatrixRoomsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixRoomsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MatrixRoomsCreateWithResponse(ctx context.Context, body MatrixRoomsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MatrixRoomsCreateResponse, error) {
+	rsp, err := c.MatrixRoomsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixRoomsCreateResponse(rsp)
+}
+
+// MatrixRoomsEligibleProjectsListWithResponse request returning *MatrixRoomsEligibleProjectsListResponse
+func (c *ClientWithResponses) MatrixRoomsEligibleProjectsListWithResponse(ctx context.Context, params *MatrixRoomsEligibleProjectsListParams, reqEditors ...RequestEditorFn) (*MatrixRoomsEligibleProjectsListResponse, error) {
+	rsp, err := c.MatrixRoomsEligibleProjectsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixRoomsEligibleProjectsListResponse(rsp)
+}
+
+// MatrixRoomsEligibleProjectsCountWithResponse request returning *MatrixRoomsEligibleProjectsCountResponse
+func (c *ClientWithResponses) MatrixRoomsEligibleProjectsCountWithResponse(ctx context.Context, params *MatrixRoomsEligibleProjectsCountParams, reqEditors ...RequestEditorFn) (*MatrixRoomsEligibleProjectsCountResponse, error) {
+	rsp, err := c.MatrixRoomsEligibleProjectsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixRoomsEligibleProjectsCountResponse(rsp)
+}
+
+// MatrixRoomsDestroyWithResponse request returning *MatrixRoomsDestroyResponse
+func (c *ClientWithResponses) MatrixRoomsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MatrixRoomsDestroyResponse, error) {
+	rsp, err := c.MatrixRoomsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixRoomsDestroyResponse(rsp)
+}
+
+// MatrixRoomsRetrieveWithResponse request returning *MatrixRoomsRetrieveResponse
+func (c *ClientWithResponses) MatrixRoomsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MatrixRoomsRetrieveResponse, error) {
+	rsp, err := c.MatrixRoomsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixRoomsRetrieveResponse(rsp)
+}
+
+// MatrixRoomsDisableWithBodyWithResponse request with arbitrary body returning *MatrixRoomsDisableResponse
+func (c *ClientWithResponses) MatrixRoomsDisableWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MatrixRoomsDisableResponse, error) {
+	rsp, err := c.MatrixRoomsDisableWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixRoomsDisableResponse(rsp)
+}
+
+func (c *ClientWithResponses) MatrixRoomsDisableWithResponse(ctx context.Context, uuid openapi_types.UUID, body MatrixRoomsDisableJSONRequestBody, reqEditors ...RequestEditorFn) (*MatrixRoomsDisableResponse, error) {
+	rsp, err := c.MatrixRoomsDisable(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixRoomsDisableResponse(rsp)
+}
+
+// MatrixRoomsExportHistoryWithResponse request returning *MatrixRoomsExportHistoryResponse
+func (c *ClientWithResponses) MatrixRoomsExportHistoryWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MatrixRoomsExportHistoryResponse, error) {
+	rsp, err := c.MatrixRoomsExportHistory(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixRoomsExportHistoryResponse(rsp)
+}
+
+// MatrixRoomsJoinWithResponse request returning *MatrixRoomsJoinResponse
+func (c *ClientWithResponses) MatrixRoomsJoinWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MatrixRoomsJoinResponse, error) {
+	rsp, err := c.MatrixRoomsJoin(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixRoomsJoinResponse(rsp)
+}
+
+// MatrixRoomsLeaveWithResponse request returning *MatrixRoomsLeaveResponse
+func (c *ClientWithResponses) MatrixRoomsLeaveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MatrixRoomsLeaveResponse, error) {
+	rsp, err := c.MatrixRoomsLeave(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixRoomsLeaveResponse(rsp)
+}
+
+// MatrixRoomsMembersListWithResponse request returning *MatrixRoomsMembersListResponse
+func (c *ClientWithResponses) MatrixRoomsMembersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MatrixRoomsMembersListParams, reqEditors ...RequestEditorFn) (*MatrixRoomsMembersListResponse, error) {
+	rsp, err := c.MatrixRoomsMembersList(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixRoomsMembersListResponse(rsp)
+}
+
+// MatrixRoomsReactivateWithResponse request returning *MatrixRoomsReactivateResponse
+func (c *ClientWithResponses) MatrixRoomsReactivateWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MatrixRoomsReactivateResponse, error) {
+	rsp, err := c.MatrixRoomsReactivate(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixRoomsReactivateResponse(rsp)
+}
+
+// MatrixRoomsRetryWithResponse request returning *MatrixRoomsRetryResponse
+func (c *ClientWithResponses) MatrixRoomsRetryWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MatrixRoomsRetryResponse, error) {
+	rsp, err := c.MatrixRoomsRetry(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixRoomsRetryResponse(rsp)
+}
+
+// MatrixRoomsSyncMembersWithResponse request returning *MatrixRoomsSyncMembersResponse
+func (c *ClientWithResponses) MatrixRoomsSyncMembersWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MatrixRoomsSyncMembersResponse, error) {
+	rsp, err := c.MatrixRoomsSyncMembers(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixRoomsSyncMembersResponse(rsp)
+}
+
 // MediaRetrieveWithResponse request returning *MediaRetrieveResponse
 func (c *ClientWithResponses) MediaRetrieveWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*MediaRetrieveResponse, error) {
 	rsp, err := c.MediaRetrieve(ctx, uuid, reqEditors...)
@@ -459480,6 +462787,22 @@ func (c *ClientWithResponses) VmwareVirtualMachineWebConsoleRetrieveWithResponse
 	return ParseVmwareVirtualMachineWebConsoleRetrieveResponse(rsp)
 }
 
+// ParseMatrixAppV1TransactionsUpdateResponse parses an HTTP response from a MatrixAppV1TransactionsUpdateWithResponse call
+func ParseMatrixAppV1TransactionsUpdateResponse(rsp *http.Response) (*MatrixAppV1TransactionsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MatrixAppV1TransactionsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseApiAuthEduteamsCompleteRetrieveResponse parses an HTTP response from a ApiAuthEduteamsCompleteRetrieveWithResponse call
 func ParseApiAuthEduteamsCompleteRetrieveResponse(rsp *http.Response) (*ApiAuthEduteamsCompleteRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -461547,6 +464870,110 @@ func ParseAdminArrowVendorOfferingMappingsUpdateResponse(rsp *http.Response) (*A
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminMatrixAppserviceSetupResponse parses an HTTP response from a AdminMatrixAppserviceSetupWithResponse call
+func ParseAdminMatrixAppserviceSetupResponse(rsp *http.Response) (*AdminMatrixAppserviceSetupResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminMatrixAppserviceSetupResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MatrixAppserviceSetupResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminMatrixAppserviceStatusRetrieveResponse parses an HTTP response from a AdminMatrixAppserviceStatusRetrieveWithResponse call
+func ParseAdminMatrixAppserviceStatusRetrieveResponse(rsp *http.Response) (*AdminMatrixAppserviceStatusRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminMatrixAppserviceStatusRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MatrixAppserviceStatus
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminMatrixDiagnosticsRetrieveResponse parses an HTTP response from a AdminMatrixDiagnosticsRetrieveWithResponse call
+func ParseAdminMatrixDiagnosticsRetrieveResponse(rsp *http.Response) (*AdminMatrixDiagnosticsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminMatrixDiagnosticsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MatrixDiagnosticsResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminMatrixReprovisionResponse parses an HTTP response from a AdminMatrixReprovisionWithResponse call
+func ParseAdminMatrixReprovisionResponse(rsp *http.Response) (*AdminMatrixReprovisionResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminMatrixReprovisionResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest MatrixReprovisionResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
 
 	}
 
@@ -492049,6 +495476,476 @@ func ParseMarketplaceUserOfferingConsentsRevokeResponse(rsp *http.Response) (*Ma
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseMatrixCredentialsRetrieveResponse parses an HTTP response from a MatrixCredentialsRetrieveWithResponse call
+func ParseMatrixCredentialsRetrieveResponse(rsp *http.Response) (*MatrixCredentialsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MatrixCredentialsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MatrixCredentials
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMatrixExportsListResponse parses an HTTP response from a MatrixExportsListWithResponse call
+func ParseMatrixExportsListResponse(rsp *http.Response) (*MatrixExportsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MatrixExportsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []MatrixHistoryExport
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMatrixExportsCountResponse parses an HTTP response from a MatrixExportsCountWithResponse call
+func ParseMatrixExportsCountResponse(rsp *http.Response) (*MatrixExportsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MatrixExportsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMatrixExportsRetrieveResponse parses an HTTP response from a MatrixExportsRetrieveWithResponse call
+func ParseMatrixExportsRetrieveResponse(rsp *http.Response) (*MatrixExportsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MatrixExportsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MatrixHistoryExport
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMatrixExportsDownloadRetrieveResponse parses an HTTP response from a MatrixExportsDownloadRetrieveWithResponse call
+func ParseMatrixExportsDownloadRetrieveResponse(rsp *http.Response) (*MatrixExportsDownloadRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MatrixExportsDownloadRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest openapi_types.File
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMatrixRoomsListResponse parses an HTTP response from a MatrixRoomsListWithResponse call
+func ParseMatrixRoomsListResponse(rsp *http.Response) (*MatrixRoomsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MatrixRoomsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []MatrixRoom
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMatrixRoomsCountResponse parses an HTTP response from a MatrixRoomsCountWithResponse call
+func ParseMatrixRoomsCountResponse(rsp *http.Response) (*MatrixRoomsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MatrixRoomsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMatrixRoomsCreateResponse parses an HTTP response from a MatrixRoomsCreateWithResponse call
+func ParseMatrixRoomsCreateResponse(rsp *http.Response) (*MatrixRoomsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MatrixRoomsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest MatrixRoom
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMatrixRoomsEligibleProjectsListResponse parses an HTTP response from a MatrixRoomsEligibleProjectsListWithResponse call
+func ParseMatrixRoomsEligibleProjectsListResponse(rsp *http.Response) (*MatrixRoomsEligibleProjectsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MatrixRoomsEligibleProjectsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []EligibleProject
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMatrixRoomsEligibleProjectsCountResponse parses an HTTP response from a MatrixRoomsEligibleProjectsCountWithResponse call
+func ParseMatrixRoomsEligibleProjectsCountResponse(rsp *http.Response) (*MatrixRoomsEligibleProjectsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MatrixRoomsEligibleProjectsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMatrixRoomsDestroyResponse parses an HTTP response from a MatrixRoomsDestroyWithResponse call
+func ParseMatrixRoomsDestroyResponse(rsp *http.Response) (*MatrixRoomsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MatrixRoomsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMatrixRoomsRetrieveResponse parses an HTTP response from a MatrixRoomsRetrieveWithResponse call
+func ParseMatrixRoomsRetrieveResponse(rsp *http.Response) (*MatrixRoomsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MatrixRoomsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MatrixRoom
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMatrixRoomsDisableResponse parses an HTTP response from a MatrixRoomsDisableWithResponse call
+func ParseMatrixRoomsDisableResponse(rsp *http.Response) (*MatrixRoomsDisableResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MatrixRoomsDisableResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest MatrixRoom
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMatrixRoomsExportHistoryResponse parses an HTTP response from a MatrixRoomsExportHistoryWithResponse call
+func ParseMatrixRoomsExportHistoryResponse(rsp *http.Response) (*MatrixRoomsExportHistoryResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MatrixRoomsExportHistoryResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest MatrixHistoryExport
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMatrixRoomsJoinResponse parses an HTTP response from a MatrixRoomsJoinWithResponse call
+func ParseMatrixRoomsJoinResponse(rsp *http.Response) (*MatrixRoomsJoinResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MatrixRoomsJoinResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest MatrixRoom
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMatrixRoomsLeaveResponse parses an HTTP response from a MatrixRoomsLeaveWithResponse call
+func ParseMatrixRoomsLeaveResponse(rsp *http.Response) (*MatrixRoomsLeaveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MatrixRoomsLeaveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest MatrixRoom
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMatrixRoomsMembersListResponse parses an HTTP response from a MatrixRoomsMembersListWithResponse call
+func ParseMatrixRoomsMembersListResponse(rsp *http.Response) (*MatrixRoomsMembersListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MatrixRoomsMembersListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []MatrixRoomMember
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMatrixRoomsReactivateResponse parses an HTTP response from a MatrixRoomsReactivateWithResponse call
+func ParseMatrixRoomsReactivateResponse(rsp *http.Response) (*MatrixRoomsReactivateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MatrixRoomsReactivateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest MatrixRoom
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMatrixRoomsRetryResponse parses an HTTP response from a MatrixRoomsRetryWithResponse call
+func ParseMatrixRoomsRetryResponse(rsp *http.Response) (*MatrixRoomsRetryResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MatrixRoomsRetryResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest MatrixRoom
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMatrixRoomsSyncMembersResponse parses an HTTP response from a MatrixRoomsSyncMembersWithResponse call
+func ParseMatrixRoomsSyncMembersResponse(rsp *http.Response) (*MatrixRoomsSyncMembersResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MatrixRoomsSyncMembersResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
