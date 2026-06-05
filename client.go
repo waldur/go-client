@@ -5972,6 +5972,9 @@ const (
 	EventMetadataResponseEventGroupsResourcePullFailed                               EventMetadataResponseEventGroups = "resource_pull_failed"
 	EventMetadataResponseEventGroupsResourcePullScheduled                            EventMetadataResponseEventGroups = "resource_pull_scheduled"
 	EventMetadataResponseEventGroupsResourcePullSucceeded                            EventMetadataResponseEventGroups = "resource_pull_succeeded"
+	EventMetadataResponseEventGroupsResourceRescueFailed                             EventMetadataResponseEventGroups = "resource_rescue_failed"
+	EventMetadataResponseEventGroupsResourceRescueScheduled                          EventMetadataResponseEventGroups = "resource_rescue_scheduled"
+	EventMetadataResponseEventGroupsResourceRescueSucceeded                          EventMetadataResponseEventGroups = "resource_rescue_succeeded"
 	EventMetadataResponseEventGroupsResourceRestartFailed                            EventMetadataResponseEventGroups = "resource_restart_failed"
 	EventMetadataResponseEventGroupsResourceRestartScheduled                         EventMetadataResponseEventGroups = "resource_restart_scheduled"
 	EventMetadataResponseEventGroupsResourceRestartSucceeded                         EventMetadataResponseEventGroups = "resource_restart_succeeded"
@@ -5991,6 +5994,9 @@ const (
 	EventMetadataResponseEventGroupsResourceUnassignFloatingIpFailed                 EventMetadataResponseEventGroups = "resource_unassign_floating_ip_failed"
 	EventMetadataResponseEventGroupsResourceUnassignFloatingIpScheduled              EventMetadataResponseEventGroups = "resource_unassign_floating_ip_scheduled"
 	EventMetadataResponseEventGroupsResourceUnassignFloatingIpSucceeded              EventMetadataResponseEventGroups = "resource_unassign_floating_ip_succeeded"
+	EventMetadataResponseEventGroupsResourceUnrescueFailed                           EventMetadataResponseEventGroups = "resource_unrescue_failed"
+	EventMetadataResponseEventGroupsResourceUnrescueScheduled                        EventMetadataResponseEventGroups = "resource_unrescue_scheduled"
+	EventMetadataResponseEventGroupsResourceUnrescueSucceeded                        EventMetadataResponseEventGroups = "resource_unrescue_succeeded"
 	EventMetadataResponseEventGroupsResourceUpdateAllowedAddressPairsFailed          EventMetadataResponseEventGroups = "resource_update_allowed_address_pairs_failed"
 	EventMetadataResponseEventGroupsResourceUpdateAllowedAddressPairsScheduled       EventMetadataResponseEventGroups = "resource_update_allowed_address_pairs_scheduled"
 	EventMetadataResponseEventGroupsResourceUpdateAllowedAddressPairsSucceeded       EventMetadataResponseEventGroups = "resource_update_allowed_address_pairs_succeeded"
@@ -6531,6 +6537,12 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 		return true
 	case EventMetadataResponseEventGroupsResourcePullSucceeded:
 		return true
+	case EventMetadataResponseEventGroupsResourceRescueFailed:
+		return true
+	case EventMetadataResponseEventGroupsResourceRescueScheduled:
+		return true
+	case EventMetadataResponseEventGroupsResourceRescueSucceeded:
+		return true
 	case EventMetadataResponseEventGroupsResourceRestartFailed:
 		return true
 	case EventMetadataResponseEventGroupsResourceRestartScheduled:
@@ -6568,6 +6580,12 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 	case EventMetadataResponseEventGroupsResourceUnassignFloatingIpScheduled:
 		return true
 	case EventMetadataResponseEventGroupsResourceUnassignFloatingIpSucceeded:
+		return true
+	case EventMetadataResponseEventGroupsResourceUnrescueFailed:
+		return true
+	case EventMetadataResponseEventGroupsResourceUnrescueScheduled:
+		return true
+	case EventMetadataResponseEventGroupsResourceUnrescueSucceeded:
 		return true
 	case EventMetadataResponseEventGroupsResourceUpdateAllowedAddressPairsFailed:
 		return true
@@ -6917,6 +6935,9 @@ const (
 	EventTypesEnumResourcePullFailed                               EventTypesEnum = "resource_pull_failed"
 	EventTypesEnumResourcePullScheduled                            EventTypesEnum = "resource_pull_scheduled"
 	EventTypesEnumResourcePullSucceeded                            EventTypesEnum = "resource_pull_succeeded"
+	EventTypesEnumResourceRescueFailed                             EventTypesEnum = "resource_rescue_failed"
+	EventTypesEnumResourceRescueScheduled                          EventTypesEnum = "resource_rescue_scheduled"
+	EventTypesEnumResourceRescueSucceeded                          EventTypesEnum = "resource_rescue_succeeded"
 	EventTypesEnumResourceRestartFailed                            EventTypesEnum = "resource_restart_failed"
 	EventTypesEnumResourceRestartScheduled                         EventTypesEnum = "resource_restart_scheduled"
 	EventTypesEnumResourceRestartSucceeded                         EventTypesEnum = "resource_restart_succeeded"
@@ -6936,6 +6957,9 @@ const (
 	EventTypesEnumResourceUnassignFloatingIpFailed                 EventTypesEnum = "resource_unassign_floating_ip_failed"
 	EventTypesEnumResourceUnassignFloatingIpScheduled              EventTypesEnum = "resource_unassign_floating_ip_scheduled"
 	EventTypesEnumResourceUnassignFloatingIpSucceeded              EventTypesEnum = "resource_unassign_floating_ip_succeeded"
+	EventTypesEnumResourceUnrescueFailed                           EventTypesEnum = "resource_unrescue_failed"
+	EventTypesEnumResourceUnrescueScheduled                        EventTypesEnum = "resource_unrescue_scheduled"
+	EventTypesEnumResourceUnrescueSucceeded                        EventTypesEnum = "resource_unrescue_succeeded"
 	EventTypesEnumResourceUpdateAllowedAddressPairsFailed          EventTypesEnum = "resource_update_allowed_address_pairs_failed"
 	EventTypesEnumResourceUpdateAllowedAddressPairsScheduled       EventTypesEnum = "resource_update_allowed_address_pairs_scheduled"
 	EventTypesEnumResourceUpdateAllowedAddressPairsSucceeded       EventTypesEnum = "resource_update_allowed_address_pairs_succeeded"
@@ -7476,6 +7500,12 @@ func (e EventTypesEnum) Valid() bool {
 		return true
 	case EventTypesEnumResourcePullSucceeded:
 		return true
+	case EventTypesEnumResourceRescueFailed:
+		return true
+	case EventTypesEnumResourceRescueScheduled:
+		return true
+	case EventTypesEnumResourceRescueSucceeded:
+		return true
 	case EventTypesEnumResourceRestartFailed:
 		return true
 	case EventTypesEnumResourceRestartScheduled:
@@ -7513,6 +7543,12 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumResourceUnassignFloatingIpScheduled:
 		return true
 	case EventTypesEnumResourceUnassignFloatingIpSucceeded:
+		return true
+	case EventTypesEnumResourceUnrescueFailed:
+		return true
+	case EventTypesEnumResourceUnrescueScheduled:
+		return true
+	case EventTypesEnumResourceUnrescueSucceeded:
 		return true
 	case EventTypesEnumResourceUpdateAllowedAddressPairsFailed:
 		return true
