@@ -34438,6 +34438,9 @@ type MergedPluginOptions struct {
 	// ProjectPermanentDirectory HEAppE project permanent directory
 	ProjectPermanentDirectory *string `json:"project_permanent_directory,omitempty"`
 
+	// RequireEffectiveIdForHighlightedDisplay If set to True, highlighted backend ID display is only shown when the resource has an effective_id.
+	RequireEffectiveIdForHighlightedDisplay *bool `json:"require_effective_id_for_highlighted_display,omitempty"`
+
 	// RequirePurchaseOrderUpload If set to True, users will be required to upload purchase orders.
 	RequirePurchaseOrderUpload *bool `json:"require_purchase_order_upload,omitempty"`
 
@@ -34673,6 +34676,9 @@ type MergedPluginOptionsRequest struct {
 
 	// ProjectPermanentDirectory HEAppE project permanent directory
 	ProjectPermanentDirectory *string `json:"project_permanent_directory,omitempty"`
+
+	// RequireEffectiveIdForHighlightedDisplay If set to True, highlighted backend ID display is only shown when the resource has an effective_id.
+	RequireEffectiveIdForHighlightedDisplay *bool `json:"require_effective_id_for_highlighted_display,omitempty"`
 
 	// RequirePurchaseOrderUpload If set to True, users will be required to upload purchase orders.
 	RequirePurchaseOrderUpload *bool `json:"require_purchase_order_upload,omitempty"`
