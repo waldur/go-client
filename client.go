@@ -27804,6 +27804,7 @@ type ConstanceSettings struct {
 	MATRIXEXPORTMEDIA                                *bool                                                            `json:"MATRIX_EXPORT_MEDIA,omitempty"`
 	MATRIXHISTORYEXPORTENABLED                       *bool                                                            `json:"MATRIX_HISTORY_EXPORT_ENABLED,omitempty"`
 	MATRIXHOMESERVERDOMAIN                           *string                                                          `json:"MATRIX_HOMESERVER_DOMAIN,omitempty"`
+	MATRIXHOMESERVERPUBLICURL                        *string                                                          `json:"MATRIX_HOMESERVER_PUBLIC_URL,omitempty"`
 	MATRIXHOMESERVERURL                              *string                                                          `json:"MATRIX_HOMESERVER_URL,omitempty"`
 	MATRIXLOGINMETHOD                                *string                                                          `json:"MATRIX_LOGIN_METHOD,omitempty"`
 	MATRIXOIDCPROVIDERURL                            *string                                                          `json:"MATRIX_OIDC_PROVIDER_URL,omitempty"`
@@ -28164,6 +28165,7 @@ type ConstanceSettingsRequest struct {
 	MATRIXEXPORTMEDIA                                *bool                                                                   `json:"MATRIX_EXPORT_MEDIA,omitempty"`
 	MATRIXHISTORYEXPORTENABLED                       *bool                                                                   `json:"MATRIX_HISTORY_EXPORT_ENABLED,omitempty"`
 	MATRIXHOMESERVERDOMAIN                           *string                                                                 `json:"MATRIX_HOMESERVER_DOMAIN,omitempty"`
+	MATRIXHOMESERVERPUBLICURL                        *string                                                                 `json:"MATRIX_HOMESERVER_PUBLIC_URL,omitempty"`
 	MATRIXHOMESERVERURL                              *string                                                                 `json:"MATRIX_HOMESERVER_URL,omitempty"`
 	MATRIXLOGINMETHOD                                *string                                                                 `json:"MATRIX_LOGIN_METHOD,omitempty"`
 	MATRIXOIDCPROVIDERURL                            *string                                                                 `json:"MATRIX_OIDC_PROVIDER_URL,omitempty"`
@@ -28524,6 +28526,7 @@ type ConstanceSettingsRequestForm struct {
 	MATRIXEXPORTMEDIA                                *bool                                                                       `json:"MATRIX_EXPORT_MEDIA,omitempty"`
 	MATRIXHISTORYEXPORTENABLED                       *bool                                                                       `json:"MATRIX_HISTORY_EXPORT_ENABLED,omitempty"`
 	MATRIXHOMESERVERDOMAIN                           *string                                                                     `json:"MATRIX_HOMESERVER_DOMAIN,omitempty"`
+	MATRIXHOMESERVERPUBLICURL                        *string                                                                     `json:"MATRIX_HOMESERVER_PUBLIC_URL,omitempty"`
 	MATRIXHOMESERVERURL                              *string                                                                     `json:"MATRIX_HOMESERVER_URL,omitempty"`
 	MATRIXLOGINMETHOD                                *string                                                                     `json:"MATRIX_LOGIN_METHOD,omitempty"`
 	MATRIXOIDCPROVIDERURL                            *string                                                                     `json:"MATRIX_OIDC_PROVIDER_URL,omitempty"`
@@ -28884,6 +28887,7 @@ type ConstanceSettingsRequestMultipart struct {
 	MATRIXEXPORTMEDIA                                *bool                                                                            `json:"MATRIX_EXPORT_MEDIA,omitempty"`
 	MATRIXHISTORYEXPORTENABLED                       *bool                                                                            `json:"MATRIX_HISTORY_EXPORT_ENABLED,omitempty"`
 	MATRIXHOMESERVERDOMAIN                           *string                                                                          `json:"MATRIX_HOMESERVER_DOMAIN,omitempty"`
+	MATRIXHOMESERVERPUBLICURL                        *string                                                                          `json:"MATRIX_HOMESERVER_PUBLIC_URL,omitempty"`
 	MATRIXHOMESERVERURL                              *string                                                                          `json:"MATRIX_HOMESERVER_URL,omitempty"`
 	MATRIXLOGINMETHOD                                *string                                                                          `json:"MATRIX_LOGIN_METHOD,omitempty"`
 	MATRIXOIDCPROVIDERURL                            *string                                                                          `json:"MATRIX_OIDC_PROVIDER_URL,omitempty"`
@@ -34145,6 +34149,9 @@ type MatchingConfiguration struct {
 type MatrixAppserviceSetupRequest struct {
 	// HomeserverDomain Matrix homeserver server_name domain. Only persisted if MATRIX_HOMESERVER_DOMAIN is not already configured.
 	HomeserverDomain *string `json:"homeserver_domain,omitempty"`
+
+	// HomeserverPublicUrl Optional. Matrix homeserver URL used by browser clients. Leave blank when the homeserver URL above is reachable from both servers and browsers. Set this for deployments where the two differ (e.g. Docker-internal vs. Caddy-proxied). Only persisted if MATRIX_HOMESERVER_PUBLIC_URL is not already configured.
+	HomeserverPublicUrl *string `json:"homeserver_public_url,omitempty"`
 
 	// HomeserverUrl Matrix homeserver base URL. Only persisted if MATRIX_HOMESERVER_URL is not already configured.
 	HomeserverUrl *string `json:"homeserver_url,omitempty"`
