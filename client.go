@@ -11039,6 +11039,7 @@ const (
 	OfferingUserFieldEnumOfferingName                 OfferingUserFieldEnum = "offering_name"
 	OfferingUserFieldEnumOfferingUuid                 OfferingUserFieldEnum = "offering_uuid"
 	OfferingUserFieldEnumRequiresReconsent            OfferingUserFieldEnum = "requires_reconsent"
+	OfferingUserFieldEnumRuntimeState                 OfferingUserFieldEnum = "runtime_state"
 	OfferingUserFieldEnumServiceProviderComment       OfferingUserFieldEnum = "service_provider_comment"
 	OfferingUserFieldEnumServiceProviderCommentUrl    OfferingUserFieldEnum = "service_provider_comment_url"
 	OfferingUserFieldEnumState                        OfferingUserFieldEnum = "state"
@@ -11105,6 +11106,8 @@ func (e OfferingUserFieldEnum) Valid() bool {
 	case OfferingUserFieldEnumOfferingUuid:
 		return true
 	case OfferingUserFieldEnumRequiresReconsent:
+		return true
+	case OfferingUserFieldEnumRuntimeState:
 		return true
 	case OfferingUserFieldEnumServiceProviderComment:
 		return true
@@ -19218,6 +19221,27 @@ func (e RoundStatus) Valid() bool {
 	case Open:
 		return true
 	case Scheduled:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for RuntimeStateEnum.
+const (
+	Active                      RuntimeStateEnum = "Active"
+	PendingAccountLinking       RuntimeStateEnum = "Pending account linking"
+	PendingAdditionalValidation RuntimeStateEnum = "Pending additional validation"
+)
+
+// Valid indicates whether the value is a known member of the RuntimeStateEnum enum.
+func (e RuntimeStateEnum) Valid() bool {
+	switch e {
+	case Active:
+		return true
+	case PendingAccountLinking:
+		return true
+	case PendingAdditionalValidation:
 		return true
 	default:
 		return false
@@ -37159,7 +37183,8 @@ type OfferingUser struct {
 	OfferingUuid             *openapi_types.UUID `json:"offering_uuid,omitempty"`
 
 	// RequiresReconsent Check if the user needs to re-consent due to ToS changes.
-	RequiresReconsent *bool `json:"requires_reconsent,omitempty"`
+	RequiresReconsent *bool             `json:"requires_reconsent,omitempty"`
+	RuntimeState      *RuntimeStateEnum `json:"runtime_state,omitempty"`
 
 	// ServiceProviderComment Additional comment for pending states like validation or account linking
 	ServiceProviderComment *string `json:"service_provider_comment,omitempty"`
@@ -37328,6 +37353,12 @@ type OfferingUserStateTransitionRequest struct {
 type OfferingUserUpdateRestrictionRequest struct {
 	// IsRestricted Whether the offering user should be restricted from accessing resources
 	IsRestricted bool `json:"is_restricted"`
+}
+
+// OfferingUserUpdateRuntimeStateRequest defines model for OfferingUserUpdateRuntimeStateRequest.
+type OfferingUserUpdateRuntimeStateRequest struct {
+	// RuntimeState Operational/access state of the user account.
+	RuntimeState RuntimeStateEnum `json:"runtime_state"`
 }
 
 // OidcEndpoints defines model for OidcEndpoints.
@@ -49215,6 +49246,9 @@ type RuleTestMatchResponse struct {
 	WouldProvision          bool                `json:"would_provision"`
 }
 
+// RuntimeStateEnum defines model for RuntimeStateEnum.
+type RuntimeStateEnum string
+
 // RuntimeStates defines model for RuntimeStates.
 type RuntimeStates struct {
 	// Label Human-readable label for the runtime state
@@ -59554,6 +59588,10 @@ type MarketplaceOfferingUsersListParams struct {
 	// Query Search by offering name, username or user name
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
 
+	// RuntimeState Offering user runtime state
+	//
+	RuntimeState *[]RuntimeStateEnum `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+
 	// State Offering user state
 	//
 	State *[]OfferingUserState `form:"state,omitempty" json:"state,omitempty"`
@@ -59614,6 +59652,10 @@ type MarketplaceOfferingUsersCountParams struct {
 
 	// Query Search by offering name, username or user name
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// RuntimeState Offering user runtime state
+	//
+	RuntimeState *[]RuntimeStateEnum `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
 
 	// State Offering user state
 	//
@@ -76956,6 +76998,9 @@ type MarketplaceOfferingUsersUpdateCommentsPartialUpdateJSONRequestBody = Patche
 
 // MarketplaceOfferingUsersUpdateRestrictedJSONRequestBody defines body for MarketplaceOfferingUsersUpdateRestricted for application/json ContentType.
 type MarketplaceOfferingUsersUpdateRestrictedJSONRequestBody = OfferingUserUpdateRestrictionRequest
+
+// MarketplaceOfferingUsersUpdateRuntimeStateJSONRequestBody defines body for MarketplaceOfferingUsersUpdateRuntimeState for application/json ContentType.
+type MarketplaceOfferingUsersUpdateRuntimeStateJSONRequestBody = OfferingUserUpdateRuntimeStateRequest
 
 // MarketplaceOrdersCreateJSONRequestBody defines body for MarketplaceOrdersCreate for application/json ContentType.
 type MarketplaceOrdersCreateJSONRequestBody = OrderCreateRequest
@@ -96868,6 +96913,11 @@ type ClientInterface interface {
 	MarketplaceOfferingUsersUpdateRestrictedWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceOfferingUsersUpdateRestricted(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersUpdateRestrictedJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingUsersUpdateRuntimeStateWithBody request with any body
+	MarketplaceOfferingUsersUpdateRuntimeStateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceOfferingUsersUpdateRuntimeState(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersUpdateRuntimeStateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOrdersList request
 	MarketplaceOrdersList(ctx context.Context, params *MarketplaceOrdersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -117450,6 +117500,30 @@ func (c *Client) MarketplaceOfferingUsersUpdateRestrictedWithBody(ctx context.Co
 
 func (c *Client) MarketplaceOfferingUsersUpdateRestricted(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersUpdateRestrictedJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceOfferingUsersUpdateRestrictedRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingUsersUpdateRuntimeStateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersUpdateRuntimeStateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingUsersUpdateRuntimeState(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersUpdateRuntimeStateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersUpdateRuntimeStateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -207689,6 +207763,18 @@ func NewMarketplaceOfferingUsersListRequest(server string, params *MarketplaceOf
 
 		}
 
+		if params.RuntimeState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "runtime_state", *params.RuntimeState, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
@@ -207962,6 +208048,18 @@ func NewMarketplaceOfferingUsersCountRequest(server string, params *MarketplaceO
 		if params.Query != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RuntimeState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "runtime_state", *params.RuntimeState, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -209055,6 +209153,53 @@ func NewMarketplaceOfferingUsersUpdateRestrictedRequestWithBody(server string, u
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-offering-users/%s/update_restricted/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingUsersUpdateRuntimeStateRequest calls the generic MarketplaceOfferingUsersUpdateRuntimeState builder with application/json body
+func NewMarketplaceOfferingUsersUpdateRuntimeStateRequest(server string, uuid openapi_types.UUID, body MarketplaceOfferingUsersUpdateRuntimeStateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceOfferingUsersUpdateRuntimeStateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceOfferingUsersUpdateRuntimeStateRequestWithBody generates requests for MarketplaceOfferingUsersUpdateRuntimeState with any type of body
+func NewMarketplaceOfferingUsersUpdateRuntimeStateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-users/%s/update_runtime_state/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -348090,6 +348235,11 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceOfferingUsersUpdateRestrictedWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersUpdateRestrictedJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersUpdateRestrictedResponse, error)
 
+	// MarketplaceOfferingUsersUpdateRuntimeStateWithBodyWithResponse request with any body
+	MarketplaceOfferingUsersUpdateRuntimeStateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersUpdateRuntimeStateResponse, error)
+
+	MarketplaceOfferingUsersUpdateRuntimeStateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersUpdateRuntimeStateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersUpdateRuntimeStateResponse, error)
+
 	// MarketplaceOrdersListWithResponse request
 	MarketplaceOrdersListWithResponse(ctx context.Context, params *MarketplaceOrdersListParams, reqEditors ...RequestEditorFn) (*MarketplaceOrdersListResponse, error)
 
@@ -380565,6 +380715,35 @@ func (r MarketplaceOfferingUsersUpdateRestrictedResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceOfferingUsersUpdateRestrictedResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceOfferingUsersUpdateRuntimeStateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUsersUpdateRuntimeStateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUsersUpdateRuntimeStateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingUsersUpdateRuntimeStateResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -442300,6 +442479,23 @@ func (c *ClientWithResponses) MarketplaceOfferingUsersUpdateRestrictedWithRespon
 	return ParseMarketplaceOfferingUsersUpdateRestrictedResponse(rsp)
 }
 
+// MarketplaceOfferingUsersUpdateRuntimeStateWithBodyWithResponse request with arbitrary body returning *MarketplaceOfferingUsersUpdateRuntimeStateResponse
+func (c *ClientWithResponses) MarketplaceOfferingUsersUpdateRuntimeStateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersUpdateRuntimeStateResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersUpdateRuntimeStateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersUpdateRuntimeStateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceOfferingUsersUpdateRuntimeStateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersUpdateRuntimeStateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersUpdateRuntimeStateResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersUpdateRuntimeState(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersUpdateRuntimeStateResponse(rsp)
+}
+
 // MarketplaceOrdersListWithResponse request returning *MarketplaceOrdersListResponse
 func (c *ClientWithResponses) MarketplaceOrdersListWithResponse(ctx context.Context, params *MarketplaceOrdersListParams, reqEditors ...RequestEditorFn) (*MarketplaceOrdersListResponse, error) {
 	rsp, err := c.MarketplaceOrdersList(ctx, params, reqEditors...)
@@ -483161,6 +483357,22 @@ func ParseMarketplaceOfferingUsersUpdateRestrictedResponse(rsp *http.Response) (
 	}
 
 	response := &MarketplaceOfferingUsersUpdateRestrictedResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingUsersUpdateRuntimeStateResponse parses an HTTP response from a MarketplaceOfferingUsersUpdateRuntimeStateWithResponse call
+func ParseMarketplaceOfferingUsersUpdateRuntimeStateResponse(rsp *http.Response) (*MarketplaceOfferingUsersUpdateRuntimeStateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUsersUpdateRuntimeStateResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
