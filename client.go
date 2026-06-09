@@ -8022,6 +8022,48 @@ func (e GenerateSuggestionsRequestSourceEnum) Valid() bool {
 	}
 }
 
+// Defines values for GlauthGroupKind.
+const (
+	GlauthGroupKindProject             GlauthGroupKind = "project"
+	GlauthGroupKindResourceProjectRole GlauthGroupKind = "resource_project_role"
+	GlauthGroupKindResourceRole        GlauthGroupKind = "resource_role"
+)
+
+// Valid indicates whether the value is a known member of the GlauthGroupKind enum.
+func (e GlauthGroupKind) Valid() bool {
+	switch e {
+	case GlauthGroupKindProject:
+		return true
+	case GlauthGroupKindResourceProjectRole:
+		return true
+	case GlauthGroupKindResourceRole:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for GlauthTreeScopeTypeEnum.
+const (
+	GlauthTreeScopeTypeEnumProject         GlauthTreeScopeTypeEnum = "project"
+	GlauthTreeScopeTypeEnumResource        GlauthTreeScopeTypeEnum = "resource"
+	GlauthTreeScopeTypeEnumResourceProject GlauthTreeScopeTypeEnum = "resource_project"
+)
+
+// Valid indicates whether the value is a known member of the GlauthTreeScopeTypeEnum enum.
+func (e GlauthTreeScopeTypeEnum) Valid() bool {
+	switch e {
+	case GlauthTreeScopeTypeEnumProject:
+		return true
+	case GlauthTreeScopeTypeEnumResource:
+		return true
+	case GlauthTreeScopeTypeEnumResourceProject:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for GlobalUserDataAccessLogOEnum.
 const (
 	GlobalUserDataAccessLogOEnumAccessorType          GlobalUserDataAccessLogOEnum = "accessor_type"
@@ -12562,6 +12604,7 @@ const (
 	OpenStackNetworkFieldEnumModified                         OpenStackNetworkFieldEnum = "modified"
 	OpenStackNetworkFieldEnumMtu                              OpenStackNetworkFieldEnum = "mtu"
 	OpenStackNetworkFieldEnumName                             OpenStackNetworkFieldEnum = "name"
+	OpenStackNetworkFieldEnumPortSecurityEnabled              OpenStackNetworkFieldEnum = "port_security_enabled"
 	OpenStackNetworkFieldEnumProject                          OpenStackNetworkFieldEnum = "project"
 	OpenStackNetworkFieldEnumProjectName                      OpenStackNetworkFieldEnum = "project_name"
 	OpenStackNetworkFieldEnumProjectUuid                      OpenStackNetworkFieldEnum = "project_uuid"
@@ -12637,6 +12680,8 @@ func (e OpenStackNetworkFieldEnum) Valid() bool {
 	case OpenStackNetworkFieldEnumMtu:
 		return true
 	case OpenStackNetworkFieldEnumName:
+		return true
+	case OpenStackNetworkFieldEnumPortSecurityEnabled:
 		return true
 	case OpenStackNetworkFieldEnumProject:
 		return true
@@ -13828,6 +13873,7 @@ const (
 	OpenStackSubNetFieldEnumName                             OpenStackSubNetFieldEnum = "name"
 	OpenStackSubNetFieldEnumNetwork                          OpenStackSubNetFieldEnum = "network"
 	OpenStackSubNetFieldEnumNetworkName                      OpenStackSubNetFieldEnum = "network_name"
+	OpenStackSubNetFieldEnumPortSecurityEnabled              OpenStackSubNetFieldEnum = "port_security_enabled"
 	OpenStackSubNetFieldEnumProject                          OpenStackSubNetFieldEnum = "project"
 	OpenStackSubNetFieldEnumProjectName                      OpenStackSubNetFieldEnum = "project_name"
 	OpenStackSubNetFieldEnumProjectUuid                      OpenStackSubNetFieldEnum = "project_uuid"
@@ -13916,6 +13962,8 @@ func (e OpenStackSubNetFieldEnum) Valid() bool {
 	case OpenStackSubNetFieldEnumNetwork:
 		return true
 	case OpenStackSubNetFieldEnumNetworkName:
+		return true
+	case OpenStackSubNetFieldEnumPortSecurityEnabled:
 		return true
 	case OpenStackSubNetFieldEnumProject:
 		return true
@@ -32011,6 +32059,79 @@ type GenericOrderAttributes struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
+// GlauthGroupKind defines model for GlauthGroupKind.
+type GlauthGroupKind string
+
+// GlauthTree defines model for GlauthTree.
+type GlauthTree struct {
+	Groups        []GlauthTreeGroup        `json:"groups"`
+	Offering      GlauthTreeOffering       `json:"offering"`
+	RobotAccounts []GlauthTreeRobotAccount `json:"robot_accounts"`
+	Users         []GlauthTreeUser         `json:"users"`
+}
+
+// GlauthTreeGroup defines model for GlauthTreeGroup.
+type GlauthTreeGroup struct {
+	Gid     int             `json:"gid"`
+	Kind    GlauthGroupKind `json:"kind"`
+	Members []string        `json:"members"`
+	Name    string          `json:"name"`
+	Role    *string         `json:"role"`
+	Scope   GlauthTreeScope `json:"scope"`
+}
+
+// GlauthTreeMembership defines model for GlauthTreeMembership.
+type GlauthTreeMembership struct {
+	Gid       int             `json:"gid"`
+	GroupName string          `json:"group_name"`
+	Kind      GlauthGroupKind `json:"kind"`
+	Role      *string         `json:"role"`
+}
+
+// GlauthTreeOffering defines model for GlauthTreeOffering.
+type GlauthTreeOffering struct {
+	Name string  `json:"name"`
+	Slug *string `json:"slug"`
+	Uuid string  `json:"uuid"`
+}
+
+// GlauthTreeRobotAccount defines model for GlauthTreeRobotAccount.
+type GlauthTreeRobotAccount struct {
+	HomeDir       *string  `json:"home_dir"`
+	LoginShell    *string  `json:"login_shell"`
+	PersonalGroup *int     `json:"personal_group"`
+	SshKeys       []string `json:"ssh_keys"`
+	Uidnumber     *int     `json:"uidnumber"`
+	Username      string   `json:"username"`
+}
+
+// GlauthTreeScope defines model for GlauthTreeScope.
+type GlauthTreeScope struct {
+	Name         *string                 `json:"name"`
+	ResourceUuid *string                 `json:"resource_uuid,omitempty"`
+	Slug         *string                 `json:"slug,omitempty"`
+	Type         GlauthTreeScopeTypeEnum `json:"type"`
+	Uuid         string                  `json:"uuid"`
+}
+
+// GlauthTreeScopeTypeEnum defines model for GlauthTreeScopeTypeEnum.
+type GlauthTreeScopeTypeEnum string
+
+// GlauthTreeUser defines model for GlauthTreeUser.
+type GlauthTreeUser struct {
+	Disabled      bool                   `json:"disabled"`
+	Givenname     *string                `json:"givenname"`
+	HomeDir       *string                `json:"home_dir"`
+	LoginShell    *string                `json:"login_shell"`
+	Mail          *string                `json:"mail"`
+	Memberships   []GlauthTreeMembership `json:"memberships"`
+	PersonalGroup *int                   `json:"personal_group"`
+	Sn            *string                `json:"sn"`
+	SshKeys       []string               `json:"ssh_keys"`
+	Uidnumber     *int                   `json:"uidnumber"`
+	Username      string                 `json:"username"`
+}
+
 // GlobalUserDataAccessLog defines model for GlobalUserDataAccessLog.
 type GlobalUserDataAccessLog struct {
 	AccessedFields []string               `json:"accessed_fields"`
@@ -34415,6 +34536,9 @@ type MergedPluginOptions struct {
 	// InitialPrimarygroupNumber GLAuth initial primary group number
 	InitialPrimarygroupNumber *int `json:"initial_primarygroup_number,omitempty"`
 
+	// InitialRolegroupNumber GLAuth initial gid for role-aware groups (one per (resource|resource-project, role) tuple). Must leave at least 50000 gids of headroom above initial_usergroup_number to avoid collisions.
+	InitialRolegroupNumber *int `json:"initial_rolegroup_number,omitempty"`
+
 	// InitialUidnumber GLAuth initial uidnumber
 	InitialUidnumber *int `json:"initial_uidnumber,omitempty"`
 
@@ -34520,8 +34644,20 @@ type MergedPluginOptions struct {
 	// ResourceNamePattern Python format string for generating resource names. Available variables: {customer_name}, {customer_slug}, {project_name}, {project_slug}, {offering_name}, {offering_slug}, {plan_name}, {counter}, {attributes[KEY]}.
 	ResourceNamePattern *string `json:"resource_name_pattern,omitempty"`
 
+	// ResourceProjectRoleGroupTemplate string.Template for resource-project-scope role group names. Adds ${rp_uuid}, ${rp_uuid_short}, ${project_name} to the variables available for resource-scope templates.
+	ResourceProjectRoleGroupTemplate *string `json:"resource_project_role_group_template,omitempty"`
+
+	// ResourceProjectRoleMap Mapping of Waldur role names (on ResourceProject scope) to emitted role tokens. Same semantics as resource_role_map.
+	ResourceProjectRoleMap *map[string]string `json:"resource_project_role_map,omitempty"`
+
 	// ResourceProjectsLimitsRequired If set to True, every limit-billing component declared by the offering must have a value when creating or updating a resource project. Use this for backends that reject projects without resource quotas (e.g. the rancher-keycloak-operator's project-level resourceQuota.limit cap).
 	ResourceProjectsLimitsRequired *bool `json:"resource_projects_limits_required,omitempty"`
+
+	// ResourceRoleGroupTemplate string.Template for resource-scope role group names. Variables: ${role_name}, ${resource_slug}, ${customer_slug}, ${project_slug}.
+	ResourceRoleGroupTemplate *string `json:"resource_role_group_template,omitempty"`
+
+	// ResourceRoleMap Mapping of Waldur role names (on Resource scope) to emitted role tokens used in group name rendering. Roles outside the map are skipped. Example: {"PI": "admin", "Member": "member"}.
+	ResourceRoleMap *map[string]string `json:"resource_role_map,omitempty"`
 
 	// RestrictDeletionWithActiveResources If set to True, offering cannot be deleted while it has non-terminated resources.
 	RestrictDeletionWithActiveResources *bool `json:"restrict_deletion_with_active_resources,omitempty"`
@@ -34654,6 +34790,9 @@ type MergedPluginOptionsRequest struct {
 	// InitialPrimarygroupNumber GLAuth initial primary group number
 	InitialPrimarygroupNumber *int `json:"initial_primarygroup_number,omitempty"`
 
+	// InitialRolegroupNumber GLAuth initial gid for role-aware groups (one per (resource|resource-project, role) tuple). Must leave at least 50000 gids of headroom above initial_usergroup_number to avoid collisions.
+	InitialRolegroupNumber *int `json:"initial_rolegroup_number,omitempty"`
+
 	// InitialUidnumber GLAuth initial uidnumber
 	InitialUidnumber *int `json:"initial_uidnumber,omitempty"`
 
@@ -34759,8 +34898,20 @@ type MergedPluginOptionsRequest struct {
 	// ResourceNamePattern Python format string for generating resource names. Available variables: {customer_name}, {customer_slug}, {project_name}, {project_slug}, {offering_name}, {offering_slug}, {plan_name}, {counter}, {attributes[KEY]}.
 	ResourceNamePattern *string `json:"resource_name_pattern,omitempty"`
 
+	// ResourceProjectRoleGroupTemplate string.Template for resource-project-scope role group names. Adds ${rp_uuid}, ${rp_uuid_short}, ${project_name} to the variables available for resource-scope templates.
+	ResourceProjectRoleGroupTemplate *string `json:"resource_project_role_group_template,omitempty"`
+
+	// ResourceProjectRoleMap Mapping of Waldur role names (on ResourceProject scope) to emitted role tokens. Same semantics as resource_role_map.
+	ResourceProjectRoleMap *map[string]string `json:"resource_project_role_map,omitempty"`
+
 	// ResourceProjectsLimitsRequired If set to True, every limit-billing component declared by the offering must have a value when creating or updating a resource project. Use this for backends that reject projects without resource quotas (e.g. the rancher-keycloak-operator's project-level resourceQuota.limit cap).
 	ResourceProjectsLimitsRequired *bool `json:"resource_projects_limits_required,omitempty"`
+
+	// ResourceRoleGroupTemplate string.Template for resource-scope role group names. Variables: ${role_name}, ${resource_slug}, ${customer_slug}, ${project_slug}.
+	ResourceRoleGroupTemplate *string `json:"resource_role_group_template,omitempty"`
+
+	// ResourceRoleMap Mapping of Waldur role names (on Resource scope) to emitted role tokens used in group name rendering. Roles outside the map are skipped. Example: {"PI": "admin", "Member": "member"}.
+	ResourceRoleMap *map[string]string `json:"resource_role_map,omitempty"`
 
 	// RestrictDeletionWithActiveResources If set to True, offering cannot be deleted while it has non-terminated resources.
 	RestrictDeletionWithActiveResources *bool `json:"restrict_deletion_with_active_resources,omitempty"`
@@ -38730,9 +38881,10 @@ type OpenStackNestedSubNet struct {
 	GatewayIp *OpenStackNestedSubNet_GatewayIp `json:"gateway_ip,omitempty"`
 
 	// IpVersion IP protocol version (4 or 6)
-	IpVersion *int                `json:"ip_version,omitempty"`
-	Name      *string             `json:"name,omitempty"`
-	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
+	IpVersion           *int                `json:"ip_version,omitempty"`
+	Name                *string             `json:"name,omitempty"`
+	PortSecurityEnabled *bool               `json:"port_security_enabled,omitempty"`
+	Uuid                *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // OpenStackNestedSubNetGatewayIp0 defines model for .
@@ -38801,13 +38953,16 @@ type OpenStackNetwork struct {
 	Modified                         *time.Time              `json:"modified,omitempty"`
 
 	// Mtu The maximum transmission unit (MTU) value to address fragmentation.
-	Mtu          *int                 `json:"mtu,omitempty"`
-	Name         *string              `json:"name,omitempty"`
-	Project      *string              `json:"project,omitempty"`
-	ProjectName  *string              `json:"project_name,omitempty"`
-	ProjectUuid  *openapi_types.UUID  `json:"project_uuid,omitempty"`
-	RbacPolicies *[]NetworkRBACPolicy `json:"rbac_policies,omitempty"`
-	ResourceType *string              `json:"resource_type,omitempty"`
+	Mtu  *int    `json:"mtu,omitempty"`
+	Name *string `json:"name,omitempty"`
+
+	// PortSecurityEnabled Default port_security_enabled for ports on this network. When False, ports created on this network inherit disabled port security unless explicitly overridden.
+	PortSecurityEnabled *bool                `json:"port_security_enabled,omitempty"`
+	Project             *string              `json:"project,omitempty"`
+	ProjectName         *string              `json:"project_name,omitempty"`
+	ProjectUuid         *openapi_types.UUID  `json:"project_uuid,omitempty"`
+	RbacPolicies        *[]NetworkRBACPolicy `json:"rbac_policies,omitempty"`
+	ResourceType        *string              `json:"resource_type,omitempty"`
 
 	// SegmentationId VLAN ID for VLAN networks or tunnel ID for VXLAN/GRE networks
 	SegmentationId              *int                     `json:"segmentation_id,omitempty"`
@@ -39705,6 +39860,7 @@ type OpenStackSubNet struct {
 	// Network Network to which this subnet belongs
 	Network                     *string             `json:"network,omitempty"`
 	NetworkName                 *string             `json:"network_name,omitempty"`
+	PortSecurityEnabled         *bool               `json:"port_security_enabled,omitempty"`
 	Project                     *string             `json:"project,omitempty"`
 	ProjectName                 *string             `json:"project_name,omitempty"`
 	ProjectUuid                 *openapi_types.UUID `json:"project_uuid,omitempty"`
@@ -97319,6 +97475,9 @@ type ClientInterface interface {
 
 	MarketplaceProviderOfferingsExportOffering(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsExportOfferingJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderOfferingsGlauthTreeRetrieve request
+	MarketplaceProviderOfferingsGlauthTreeRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderOfferingsGlauthUsersConfigRetrieve request
 	MarketplaceProviderOfferingsGlauthUsersConfigRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -97637,6 +97796,9 @@ type ClientInterface interface {
 
 	// MarketplaceProviderResourcesDetailsRetrieve request
 	MarketplaceProviderResourcesDetailsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderResourcesGlauthTreeRetrieve request
+	MarketplaceProviderResourcesGlauthTreeRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderResourcesGlauthUsersConfigRetrieve request
 	MarketplaceProviderResourcesGlauthUsersConfigRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -97963,6 +98125,9 @@ type ClientInterface interface {
 	MarketplaceResourcesEstimateRenewalWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceResourcesEstimateRenewal(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesEstimateRenewalJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourcesGlauthTreeRetrieve request
+	MarketplaceResourcesGlauthTreeRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourcesGlauthUsersConfigRetrieve request
 	MarketplaceResourcesGlauthUsersConfigRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -119310,6 +119475,18 @@ func (c *Client) MarketplaceProviderOfferingsExportOffering(ctx context.Context,
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceProviderOfferingsGlauthTreeRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsGlauthTreeRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceProviderOfferingsGlauthUsersConfigRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsGlauthUsersConfigRetrieveRequest(c.Server, uuid)
 	if err != nil {
@@ -120764,6 +120941,18 @@ func (c *Client) MarketplaceProviderResourcesDeleteUser(ctx context.Context, uui
 
 func (c *Client) MarketplaceProviderResourcesDetailsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderResourcesDetailsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderResourcesGlauthTreeRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesGlauthTreeRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -122240,6 +122429,18 @@ func (c *Client) MarketplaceResourcesEstimateRenewalWithBody(ctx context.Context
 
 func (c *Client) MarketplaceResourcesEstimateRenewal(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesEstimateRenewalJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceResourcesEstimateRenewalRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourcesGlauthTreeRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesGlauthTreeRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -219227,6 +219428,40 @@ func NewMarketplaceProviderOfferingsExportOfferingRequestWithBody(server string,
 	return req, nil
 }
 
+// NewMarketplaceProviderOfferingsGlauthTreeRetrieveRequest generates requests for MarketplaceProviderOfferingsGlauthTreeRetrieve
+func NewMarketplaceProviderOfferingsGlauthTreeRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/glauth_tree/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceProviderOfferingsGlauthUsersConfigRetrieveRequest generates requests for MarketplaceProviderOfferingsGlauthUsersConfigRetrieve
 func NewMarketplaceProviderOfferingsGlauthUsersConfigRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -226451,6 +226686,40 @@ func NewMarketplaceProviderResourcesDetailsRetrieveRequest(server string, uuid o
 	return req, nil
 }
 
+// NewMarketplaceProviderResourcesGlauthTreeRetrieveRequest generates requests for MarketplaceProviderResourcesGlauthTreeRetrieve
+func NewMarketplaceProviderResourcesGlauthTreeRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-resources/%s/glauth_tree/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceProviderResourcesGlauthUsersConfigRetrieveRequest generates requests for MarketplaceProviderResourcesGlauthUsersConfigRetrieve
 func NewMarketplaceProviderResourcesGlauthUsersConfigRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -233496,6 +233765,40 @@ func NewMarketplaceResourcesEstimateRenewalRequestWithBody(server string, uuid o
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceResourcesGlauthTreeRetrieveRequest generates requests for MarketplaceResourcesGlauthTreeRetrieve
+func NewMarketplaceResourcesGlauthTreeRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resources/%s/glauth_tree/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -348640,6 +348943,9 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceProviderOfferingsExportOfferingWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsExportOfferingJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsExportOfferingResponse, error)
 
+	// MarketplaceProviderOfferingsGlauthTreeRetrieveWithResponse request
+	MarketplaceProviderOfferingsGlauthTreeRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsGlauthTreeRetrieveResponse, error)
+
 	// MarketplaceProviderOfferingsGlauthUsersConfigRetrieveWithResponse request
 	MarketplaceProviderOfferingsGlauthUsersConfigRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsGlauthUsersConfigRetrieveResponse, error)
 
@@ -348958,6 +349264,9 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceProviderResourcesDetailsRetrieveWithResponse request
 	MarketplaceProviderResourcesDetailsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesDetailsRetrieveResponse, error)
+
+	// MarketplaceProviderResourcesGlauthTreeRetrieveWithResponse request
+	MarketplaceProviderResourcesGlauthTreeRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesGlauthTreeRetrieveResponse, error)
 
 	// MarketplaceProviderResourcesGlauthUsersConfigRetrieveWithResponse request
 	MarketplaceProviderResourcesGlauthUsersConfigRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesGlauthUsersConfigRetrieveResponse, error)
@@ -349284,6 +349593,9 @@ type ClientWithResponsesInterface interface {
 	MarketplaceResourcesEstimateRenewalWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesEstimateRenewalResponse, error)
 
 	MarketplaceResourcesEstimateRenewalWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesEstimateRenewalJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesEstimateRenewalResponse, error)
+
+	// MarketplaceResourcesGlauthTreeRetrieveWithResponse request
+	MarketplaceResourcesGlauthTreeRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesGlauthTreeRetrieveResponse, error)
 
 	// MarketplaceResourcesGlauthUsersConfigRetrieveWithResponse request
 	MarketplaceResourcesGlauthUsersConfigRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesGlauthUsersConfigRetrieveResponse, error)
@@ -383830,6 +384142,36 @@ func (r MarketplaceProviderOfferingsExportOfferingResponse) ContentType() string
 	return ""
 }
 
+type MarketplaceProviderOfferingsGlauthTreeRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *GlauthTree
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsGlauthTreeRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsGlauthTreeRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderOfferingsGlauthTreeRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type MarketplaceProviderOfferingsGlauthUsersConfigRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -386051,6 +386393,36 @@ func (r MarketplaceProviderResourcesDetailsRetrieveResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceProviderResourcesDetailsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProviderResourcesGlauthTreeRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *GlauthTree
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderResourcesGlauthTreeRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderResourcesGlauthTreeRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderResourcesGlauthTreeRetrieveResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -388438,6 +388810,36 @@ func (r MarketplaceResourcesEstimateRenewalResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceResourcesEstimateRenewalResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceResourcesGlauthTreeRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *GlauthTree
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourcesGlauthTreeRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourcesGlauthTreeRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourcesGlauthTreeRetrieveResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -443784,6 +444186,15 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsExportOfferingWithResp
 	return ParseMarketplaceProviderOfferingsExportOfferingResponse(rsp)
 }
 
+// MarketplaceProviderOfferingsGlauthTreeRetrieveWithResponse request returning *MarketplaceProviderOfferingsGlauthTreeRetrieveResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsGlauthTreeRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsGlauthTreeRetrieveResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsGlauthTreeRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsGlauthTreeRetrieveResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsGlauthUsersConfigRetrieveWithResponse request returning *MarketplaceProviderOfferingsGlauthUsersConfigRetrieveResponse
 func (c *ClientWithResponses) MarketplaceProviderOfferingsGlauthUsersConfigRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsGlauthUsersConfigRetrieveResponse, error) {
 	rsp, err := c.MarketplaceProviderOfferingsGlauthUsersConfigRetrieve(ctx, uuid, reqEditors...)
@@ -444833,6 +445244,15 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesDetailsRetrieveWithRes
 		return nil, err
 	}
 	return ParseMarketplaceProviderResourcesDetailsRetrieveResponse(rsp)
+}
+
+// MarketplaceProviderResourcesGlauthTreeRetrieveWithResponse request returning *MarketplaceProviderResourcesGlauthTreeRetrieveResponse
+func (c *ClientWithResponses) MarketplaceProviderResourcesGlauthTreeRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesGlauthTreeRetrieveResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesGlauthTreeRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesGlauthTreeRetrieveResponse(rsp)
 }
 
 // MarketplaceProviderResourcesGlauthUsersConfigRetrieveWithResponse request returning *MarketplaceProviderResourcesGlauthUsersConfigRetrieveResponse
@@ -445897,6 +446317,15 @@ func (c *ClientWithResponses) MarketplaceResourcesEstimateRenewalWithResponse(ct
 		return nil, err
 	}
 	return ParseMarketplaceResourcesEstimateRenewalResponse(rsp)
+}
+
+// MarketplaceResourcesGlauthTreeRetrieveWithResponse request returning *MarketplaceResourcesGlauthTreeRetrieveResponse
+func (c *ClientWithResponses) MarketplaceResourcesGlauthTreeRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesGlauthTreeRetrieveResponse, error) {
+	rsp, err := c.MarketplaceResourcesGlauthTreeRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesGlauthTreeRetrieveResponse(rsp)
 }
 
 // MarketplaceResourcesGlauthUsersConfigRetrieveWithResponse request returning *MarketplaceResourcesGlauthUsersConfigRetrieveResponse
@@ -485678,6 +486107,32 @@ func ParseMarketplaceProviderOfferingsExportOfferingResponse(rsp *http.Response)
 	return response, nil
 }
 
+// ParseMarketplaceProviderOfferingsGlauthTreeRetrieveResponse parses an HTTP response from a MarketplaceProviderOfferingsGlauthTreeRetrieveWithResponse call
+func ParseMarketplaceProviderOfferingsGlauthTreeRetrieveResponse(rsp *http.Response) (*MarketplaceProviderOfferingsGlauthTreeRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsGlauthTreeRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest GlauthTree
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceProviderOfferingsGlauthUsersConfigRetrieveResponse parses an HTTP response from a MarketplaceProviderOfferingsGlauthUsersConfigRetrieveWithResponse call
 func ParseMarketplaceProviderOfferingsGlauthUsersConfigRetrieveResponse(rsp *http.Response) (*MarketplaceProviderOfferingsGlauthUsersConfigRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -487355,6 +487810,32 @@ func ParseMarketplaceProviderResourcesDetailsRetrieveResponse(rsp *http.Response
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest map[string]interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderResourcesGlauthTreeRetrieveResponse parses an HTTP response from a MarketplaceProviderResourcesGlauthTreeRetrieveWithResponse call
+func ParseMarketplaceProviderResourcesGlauthTreeRetrieveResponse(rsp *http.Response) (*MarketplaceProviderResourcesGlauthTreeRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderResourcesGlauthTreeRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest GlauthTree
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -489260,6 +489741,32 @@ func ParseMarketplaceResourcesEstimateRenewalResponse(rsp *http.Response) (*Mark
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest RenewalEstimateResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourcesGlauthTreeRetrieveResponse parses an HTTP response from a MarketplaceResourcesGlauthTreeRetrieveWithResponse call
+func ParseMarketplaceResourcesGlauthTreeRetrieveResponse(rsp *http.Response) (*MarketplaceResourcesGlauthTreeRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourcesGlauthTreeRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest GlauthTree
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
