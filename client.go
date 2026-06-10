@@ -27915,6 +27915,7 @@ type ConstanceSettings struct {
 	ONBOARDINGVERIFICATIONEXPIRYHOURS                *int                                                             `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	ONBOARDINGWICOAPIURL                             *string                                                          `json:"ONBOARDING_WICO_API_URL,omitempty"`
 	ONBOARDINGWICOTOKEN                              *string                                                          `json:"ONBOARDING_WICO_TOKEN,omitempty"`
+	ONLYONEPROJECTMANAGER                            *bool                                                            `json:"ONLY_ONE_PROJECT_MANAGER,omitempty"`
 	OPENSTACKLOGCALLSENABLED                         *bool                                                            `json:"OPENSTACK_LOG_CALLS_ENABLED,omitempty"`
 	OPENSTACKLOGCALLSTHRESHOLDMS                     *int                                                             `json:"OPENSTACK_LOG_CALLS_THRESHOLD_MS,omitempty"`
 	ORCIDAPIURL                                      *string                                                          `json:"ORCID_API_URL,omitempty"`
@@ -28276,6 +28277,7 @@ type ConstanceSettingsRequest struct {
 	ONBOARDINGVERIFICATIONEXPIRYHOURS                *int                                                                    `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	ONBOARDINGWICOAPIURL                             *string                                                                 `json:"ONBOARDING_WICO_API_URL,omitempty"`
 	ONBOARDINGWICOTOKEN                              *string                                                                 `json:"ONBOARDING_WICO_TOKEN,omitempty"`
+	ONLYONEPROJECTMANAGER                            *bool                                                                   `json:"ONLY_ONE_PROJECT_MANAGER,omitempty"`
 	OPENSTACKLOGCALLSENABLED                         *bool                                                                   `json:"OPENSTACK_LOG_CALLS_ENABLED,omitempty"`
 	OPENSTACKLOGCALLSTHRESHOLDMS                     *int                                                                    `json:"OPENSTACK_LOG_CALLS_THRESHOLD_MS,omitempty"`
 	ORCIDAPIURL                                      *string                                                                 `json:"ORCID_API_URL,omitempty"`
@@ -28637,6 +28639,7 @@ type ConstanceSettingsRequestForm struct {
 	ONBOARDINGVERIFICATIONEXPIRYHOURS                *int                                                                        `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	ONBOARDINGWICOAPIURL                             *string                                                                     `json:"ONBOARDING_WICO_API_URL,omitempty"`
 	ONBOARDINGWICOTOKEN                              *string                                                                     `json:"ONBOARDING_WICO_TOKEN,omitempty"`
+	ONLYONEPROJECTMANAGER                            *bool                                                                       `json:"ONLY_ONE_PROJECT_MANAGER,omitempty"`
 	OPENSTACKLOGCALLSENABLED                         *bool                                                                       `json:"OPENSTACK_LOG_CALLS_ENABLED,omitempty"`
 	OPENSTACKLOGCALLSTHRESHOLDMS                     *int                                                                        `json:"OPENSTACK_LOG_CALLS_THRESHOLD_MS,omitempty"`
 	ORCIDAPIURL                                      *string                                                                     `json:"ORCID_API_URL,omitempty"`
@@ -28998,6 +29001,7 @@ type ConstanceSettingsRequestMultipart struct {
 	ONBOARDINGVERIFICATIONEXPIRYHOURS                *int                                                                             `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	ONBOARDINGWICOAPIURL                             *string                                                                          `json:"ONBOARDING_WICO_API_URL,omitempty"`
 	ONBOARDINGWICOTOKEN                              *string                                                                          `json:"ONBOARDING_WICO_TOKEN,omitempty"`
+	ONLYONEPROJECTMANAGER                            *bool                                                                            `json:"ONLY_ONE_PROJECT_MANAGER,omitempty"`
 	OPENSTACKLOGCALLSENABLED                         *bool                                                                            `json:"OPENSTACK_LOG_CALLS_ENABLED,omitempty"`
 	OPENSTACKLOGCALLSTHRESHOLDMS                     *int                                                                             `json:"OPENSTACK_LOG_CALLS_THRESHOLD_MS,omitempty"`
 	ORCIDAPIURL                                      *string                                                                          `json:"ORCID_API_URL,omitempty"`
