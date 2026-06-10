@@ -20637,6 +20637,7 @@ const (
 	UserFieldEnumImage                         UserFieldEnum = "image"
 	UserFieldEnumIpAddress                     UserFieldEnum = "ip_address"
 	UserFieldEnumIsActive                      UserFieldEnum = "is_active"
+	UserFieldEnumIsAdminDeactivated            UserFieldEnum = "is_admin_deactivated"
 	UserFieldEnumIsIdentityManager             UserFieldEnum = "is_identity_manager"
 	UserFieldEnumIsStaff                       UserFieldEnum = "is_staff"
 	UserFieldEnumIsSupport                     UserFieldEnum = "is_support"
@@ -20726,6 +20727,8 @@ func (e UserFieldEnum) Valid() bool {
 	case UserFieldEnumIpAddress:
 		return true
 	case UserFieldEnumIsActive:
+		return true
+	case UserFieldEnumIsAdminDeactivated:
 		return true
 	case UserFieldEnumIsIdentityManager:
 		return true
@@ -20820,6 +20823,7 @@ const (
 	UserMeFieldEnumImage                         UserMeFieldEnum = "image"
 	UserMeFieldEnumIpAddress                     UserMeFieldEnum = "ip_address"
 	UserMeFieldEnumIsActive                      UserMeFieldEnum = "is_active"
+	UserMeFieldEnumIsAdminDeactivated            UserMeFieldEnum = "is_admin_deactivated"
 	UserMeFieldEnumIsIdentityManager             UserMeFieldEnum = "is_identity_manager"
 	UserMeFieldEnumIsStaff                       UserMeFieldEnum = "is_staff"
 	UserMeFieldEnumIsSupport                     UserMeFieldEnum = "is_support"
@@ -20910,6 +20914,8 @@ func (e UserMeFieldEnum) Valid() bool {
 	case UserMeFieldEnumIpAddress:
 		return true
 	case UserMeFieldEnumIsActive:
+		return true
+	case UserMeFieldEnumIsAdminDeactivated:
 		return true
 	case UserMeFieldEnumIsIdentityManager:
 		return true
@@ -51636,6 +51642,9 @@ type User struct {
 	// IsActive Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
 	IsActive *bool `json:"is_active,omitempty"`
 
+	// IsAdminDeactivated Designates that the user was deactivated by an administrator and must not be reactivated automatically by the role-sync task. Visible to staff and support.
+	IsAdminDeactivated *bool `json:"is_admin_deactivated,omitempty"`
+
 	// IsIdentityManager Designates whether the user is allowed to manage remote user identities.
 	IsIdentityManager *bool `json:"is_identity_manager,omitempty"`
 
@@ -52046,6 +52055,9 @@ type UserMe struct {
 
 	// IsActive Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
 	IsActive *bool `json:"is_active,omitempty"`
+
+	// IsAdminDeactivated Designates that the user was deactivated by an administrator and must not be reactivated automatically by the role-sync task. Visible to staff and support.
+	IsAdminDeactivated *bool `json:"is_admin_deactivated,omitempty"`
 
 	// IsIdentityManager Designates whether the user is allowed to manage remote user identities.
 	IsIdentityManager *bool `json:"is_identity_manager,omitempty"`
