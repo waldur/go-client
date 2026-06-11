@@ -2256,6 +2256,7 @@ const (
 	BookingResourceFieldEnumEffectiveId                BookingResourceFieldEnum = "effective_id"
 	BookingResourceFieldEnumEndDate                    BookingResourceFieldEnum = "end_date"
 	BookingResourceFieldEnumEndDateRequestedBy         BookingResourceFieldEnum = "end_date_requested_by"
+	BookingResourceFieldEnumEndDateUpdatedAt           BookingResourceFieldEnum = "end_date_updated_at"
 	BookingResourceFieldEnumEndpoints                  BookingResourceFieldEnum = "endpoints"
 	BookingResourceFieldEnumErrorMessage               BookingResourceFieldEnum = "error_message"
 	BookingResourceFieldEnumErrorTraceback             BookingResourceFieldEnum = "error_traceback"
@@ -2374,6 +2375,8 @@ func (e BookingResourceFieldEnum) Valid() bool {
 	case BookingResourceFieldEnumEndDate:
 		return true
 	case BookingResourceFieldEnumEndDateRequestedBy:
+		return true
+	case BookingResourceFieldEnumEndDateUpdatedAt:
 		return true
 	case BookingResourceFieldEnumEndpoints:
 		return true
@@ -18456,6 +18459,7 @@ const (
 	ResourceFieldEnumEffectiveId               ResourceFieldEnum = "effective_id"
 	ResourceFieldEnumEndDate                   ResourceFieldEnum = "end_date"
 	ResourceFieldEnumEndDateRequestedBy        ResourceFieldEnum = "end_date_requested_by"
+	ResourceFieldEnumEndDateUpdatedAt          ResourceFieldEnum = "end_date_updated_at"
 	ResourceFieldEnumEndpoints                 ResourceFieldEnum = "endpoints"
 	ResourceFieldEnumErrorMessage              ResourceFieldEnum = "error_message"
 	ResourceFieldEnumErrorTraceback            ResourceFieldEnum = "error_traceback"
@@ -18561,6 +18565,8 @@ func (e ResourceFieldEnum) Valid() bool {
 	case ResourceFieldEnumEndDate:
 		return true
 	case ResourceFieldEnumEndDateRequestedBy:
+		return true
+	case ResourceFieldEnumEndDateUpdatedAt:
 		return true
 	case ResourceFieldEnumEndpoints:
 		return true
@@ -25650,9 +25656,12 @@ type BookingResource struct {
 	// EndDate The date is inclusive. Once reached, a resource will be scheduled for termination.
 	EndDate            *openapi_types.Date `json:"end_date,omitempty"`
 	EndDateRequestedBy *string             `json:"end_date_requested_by,omitempty"`
-	Endpoints          *[]NestedEndpoint   `json:"endpoints,omitempty"`
-	ErrorMessage       *string             `json:"error_message,omitempty"`
-	ErrorTraceback     *string             `json:"error_traceback,omitempty"`
+
+	// EndDateUpdatedAt Timestamp of the last end_date change.
+	EndDateUpdatedAt *time.Time        `json:"end_date_updated_at,omitempty"`
+	Endpoints        *[]NestedEndpoint `json:"endpoints,omitempty"`
+	ErrorMessage     *string           `json:"error_message,omitempty"`
+	ErrorTraceback   *string           `json:"error_traceback,omitempty"`
 
 	// IsLimitBased Returns True if the resource has limit-based components with user-adjustable quotas.
 	IsLimitBased *bool `json:"is_limit_based,omitempty"`
@@ -47795,9 +47804,12 @@ type Resource struct {
 	// EndDate The date is inclusive. Once reached, a resource will be scheduled for termination.
 	EndDate            *openapi_types.Date `json:"end_date,omitempty"`
 	EndDateRequestedBy *string             `json:"end_date_requested_by,omitempty"`
-	Endpoints          *[]NestedEndpoint   `json:"endpoints,omitempty"`
-	ErrorMessage       *string             `json:"error_message,omitempty"`
-	ErrorTraceback     *string             `json:"error_traceback,omitempty"`
+
+	// EndDateUpdatedAt Timestamp of the last end_date change.
+	EndDateUpdatedAt *time.Time        `json:"end_date_updated_at,omitempty"`
+	Endpoints        *[]NestedEndpoint `json:"endpoints,omitempty"`
+	ErrorMessage     *string           `json:"error_message,omitempty"`
+	ErrorTraceback   *string           `json:"error_traceback,omitempty"`
 
 	// IsLimitBased Returns True if the resource has limit-based components with user-adjustable quotas.
 	IsLimitBased *bool `json:"is_limit_based,omitempty"`
