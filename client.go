@@ -25766,11 +25766,19 @@ type BroadcastMessage struct {
 	Body           *string                    `json:"body,omitempty"`
 	Created        *time.Time                 `json:"created,omitempty"`
 	Emails         *map[string]interface{}    `json:"emails,omitempty"`
-	Query          *map[string]interface{}    `json:"query,omitempty"`
+	Query          *QueryOutput               `json:"query,omitempty"`
 	SendAt         *openapi_types.Date        `json:"send_at,omitempty"`
 	State          *BroadcastMessageStateEnum `json:"state,omitempty"`
 	Subject        *string                    `json:"subject,omitempty"`
 	Uuid           *openapi_types.UUID        `json:"uuid,omitempty"`
+}
+
+// BroadcastMessageCreateRequest defines model for BroadcastMessageCreateRequest.
+type BroadcastMessageCreateRequest struct {
+	Body    string                        `json:"body"`
+	Query   *BroadcastMessageQueryRequest `json:"query,omitempty"`
+	SendAt  *openapi_types.Date           `json:"send_at,omitempty"`
+	Subject string                        `json:"subject"`
 }
 
 // BroadcastMessageFieldEnum defines model for BroadcastMessageFieldEnum.
@@ -25779,12 +25787,11 @@ type BroadcastMessageFieldEnum string
 // BroadcastMessageOEnum defines model for BroadcastMessageOEnum.
 type BroadcastMessageOEnum string
 
-// BroadcastMessageRequest defines model for BroadcastMessageRequest.
-type BroadcastMessageRequest struct {
-	Body    string                 `json:"body"`
-	Query   map[string]interface{} `json:"query"`
-	SendAt  *openapi_types.Date    `json:"send_at,omitempty"`
-	Subject string                 `json:"subject"`
+// BroadcastMessageQueryRequest defines model for BroadcastMessageQueryRequest.
+type BroadcastMessageQueryRequest struct {
+	AllUsers  *bool                 `json:"all_users,omitempty"`
+	Customers *[]openapi_types.UUID `json:"customers,omitempty"`
+	Offerings *[]openapi_types.UUID `json:"offerings,omitempty"`
 }
 
 // BroadcastMessageStateEnum defines model for BroadcastMessageStateEnum.
@@ -32288,14 +32295,12 @@ type GroupInvitation struct {
 	ScopeType *string `json:"scope_type,omitempty"`
 
 	// ScopeUuid UUID of the invitation scope (Customer or Project)
-	ScopeUuid         *openapi_types.UUID     `json:"scope_uuid,omitempty"`
-	Url               *string                 `json:"url,omitempty"`
-	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
-
-	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
-	Uuid                *openapi_types.UUID     `json:"uuid,omitempty"`
+	ScopeUuid           *openapi_types.UUID `json:"scope_uuid,omitempty"`
+	Url                 *string             `json:"url,omitempty"`
+	UserAffiliations    *[]string           `json:"user_affiliations,omitempty"`
+	UserEmailPatterns   *[]string           `json:"user_email_patterns,omitempty"`
+	UserIdentitySources *[]string           `json:"user_identity_sources,omitempty"`
+	Uuid                *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // GroupInvitationRequest defines model for GroupInvitationRequest.
@@ -32328,12 +32333,10 @@ type GroupInvitationRequest struct {
 	Role openapi_types.UUID `json:"role"`
 
 	// Scope URL of the scope (Customer or Project) for this invitation
-	Scope             *string                 `json:"scope,omitempty"`
-	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
-
-	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
+	Scope               *string   `json:"scope,omitempty"`
+	UserAffiliations    *[]string `json:"user_affiliations,omitempty"`
+	UserEmailPatterns   *[]string `json:"user_email_patterns,omitempty"`
+	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
 }
 
 // GroupInvitationUpdate defines model for GroupInvitationUpdate.
@@ -32366,12 +32369,10 @@ type GroupInvitationUpdate struct {
 	Role *openapi_types.UUID `json:"role,omitempty"`
 
 	// Scope URL of the scope (Customer or Project) for this invitation
-	Scope             *string                 `json:"scope,omitempty"`
-	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
-
-	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
+	Scope               *string   `json:"scope,omitempty"`
+	UserAffiliations    *[]string `json:"user_affiliations,omitempty"`
+	UserEmailPatterns   *[]string `json:"user_email_patterns,omitempty"`
+	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
 }
 
 // GroupInvitationUpdateRequest defines model for GroupInvitationUpdateRequest.
@@ -32404,12 +32405,10 @@ type GroupInvitationUpdateRequest struct {
 	Role *openapi_types.UUID `json:"role,omitempty"`
 
 	// Scope URL of the scope (Customer or Project) for this invitation
-	Scope             *string                 `json:"scope,omitempty"`
-	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
-
-	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
+	Scope               *string   `json:"scope,omitempty"`
+	UserAffiliations    *[]string `json:"user_affiliations,omitempty"`
+	UserEmailPatterns   *[]string `json:"user_email_patterns,omitempty"`
+	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
 }
 
 // GrowthPeriodEnum defines model for GrowthPeriodEnum.
@@ -32519,6 +32518,12 @@ type ISDUserCount struct {
 	UserCount      int     `json:"user_count"`
 }
 
+// IdNamePair defines model for IdNamePair.
+type IdNamePair struct {
+	Name *string             `json:"name,omitempty"`
+	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
 // IdentityBridgeAllowedFields defines model for IdentityBridgeAllowedFields.
 type IdentityBridgeAllowedFields struct {
 	AllowedFields []string `json:"allowed_fields"`
@@ -32614,8 +32619,7 @@ type IdentityManager struct {
 
 // IdentityProvider defines model for IdentityProvider.
 type IdentityProvider struct {
-	// AllowedRedirects List of allowed redirect URLs for OAuth authentication. URLs must be exact matches (origin only: scheme + domain + port). HTTPS required except for localhost. No wildcards, paths, query params, or fragments. Example: ["https://portal1.example.com", "https://portal2.example.com:8443"]. If empty, falls back to HOMEPORT_URL setting.
-	AllowedRedirects *map[string]interface{} `json:"allowed_redirects,omitempty"`
+	AllowedRedirects *[]string `json:"allowed_redirects,omitempty"`
 
 	// AttributeMapping A JSON object mapping Waldur User model fields to OIDC claims. Example: {"first_name": "given_name", "last_name": "family_name", "email": "email"}
 	AttributeMapping *map[string]interface{} `json:"attribute_mapping,omitempty"`
@@ -32648,9 +32652,9 @@ type IdentityProvider struct {
 	LogoutUrl *string `json:"logout_url,omitempty"`
 
 	// ManagementUrl The endpoint for user details management.
-	ManagementUrl   *string                 `json:"management_url,omitempty"`
-	ProtectedFields *map[string]interface{} `json:"protected_fields,omitempty"`
-	Provider        string                  `json:"provider"`
+	ManagementUrl   *string   `json:"management_url,omitempty"`
+	ProtectedFields *[]string `json:"protected_fields,omitempty"`
+	Provider        string    `json:"provider"`
 
 	// TokenUrl The endpoint for obtaining auth token.
 	TokenUrl *string `json:"token_url,omitempty"`
@@ -32668,8 +32672,7 @@ type IdentityProvider struct {
 
 // IdentityProviderRequest defines model for IdentityProviderRequest.
 type IdentityProviderRequest struct {
-	// AllowedRedirects List of allowed redirect URLs for OAuth authentication. URLs must be exact matches (origin only: scheme + domain + port). HTTPS required except for localhost. No wildcards, paths, query params, or fragments. Example: ["https://portal1.example.com", "https://portal2.example.com:8443"]. If empty, falls back to HOMEPORT_URL setting.
-	AllowedRedirects *map[string]interface{} `json:"allowed_redirects,omitempty"`
+	AllowedRedirects *[]string `json:"allowed_redirects,omitempty"`
 
 	// AttributeMapping A JSON object mapping Waldur User model fields to OIDC claims. Example: {"first_name": "given_name", "last_name": "family_name", "email": "email"}
 	AttributeMapping *map[string]interface{} `json:"attribute_mapping,omitempty"`
@@ -32696,9 +32699,9 @@ type IdentityProviderRequest struct {
 	Label string `json:"label"`
 
 	// ManagementUrl The endpoint for user details management.
-	ManagementUrl   *string                 `json:"management_url,omitempty"`
-	ProtectedFields *map[string]interface{} `json:"protected_fields,omitempty"`
-	Provider        string                  `json:"provider"`
+	ManagementUrl   *string   `json:"management_url,omitempty"`
+	ProtectedFields *[]string `json:"protected_fields,omitempty"`
+	Provider        string    `json:"provider"`
 
 	// UserClaim The OIDC claim from the userinfo endpoint to be used as the value for the lookup field.
 	UserClaim *string `json:"user_claim,omitempty"`
@@ -40937,10 +40940,9 @@ type PatchedAzureVirtualMachineRequest struct {
 
 // PatchedBroadcastMessageRequest defines model for PatchedBroadcastMessageRequest.
 type PatchedBroadcastMessageRequest struct {
-	Body    *string                 `json:"body,omitempty"`
-	Query   *map[string]interface{} `json:"query,omitempty"`
-	SendAt  *openapi_types.Date     `json:"send_at,omitempty"`
-	Subject *string                 `json:"subject,omitempty"`
+	Body    *string             `json:"body,omitempty"`
+	SendAt  *openapi_types.Date `json:"send_at,omitempty"`
+	Subject *string             `json:"subject,omitempty"`
 }
 
 // PatchedCallAssignmentConfigurationRequest defines model for PatchedCallAssignmentConfigurationRequest.
@@ -41524,18 +41526,15 @@ type PatchedGroupInvitationUpdateRequest struct {
 	Role *openapi_types.UUID `json:"role,omitempty"`
 
 	// Scope URL of the scope (Customer or Project) for this invitation
-	Scope             *string                 `json:"scope,omitempty"`
-	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
-
-	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
+	Scope               *string   `json:"scope,omitempty"`
+	UserAffiliations    *[]string `json:"user_affiliations,omitempty"`
+	UserEmailPatterns   *[]string `json:"user_email_patterns,omitempty"`
+	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
 }
 
 // PatchedIdentityProviderRequest defines model for PatchedIdentityProviderRequest.
 type PatchedIdentityProviderRequest struct {
-	// AllowedRedirects List of allowed redirect URLs for OAuth authentication. URLs must be exact matches (origin only: scheme + domain + port). HTTPS required except for localhost. No wildcards, paths, query params, or fragments. Example: ["https://portal1.example.com", "https://portal2.example.com:8443"]. If empty, falls back to HOMEPORT_URL setting.
-	AllowedRedirects *map[string]interface{} `json:"allowed_redirects,omitempty"`
+	AllowedRedirects *[]string `json:"allowed_redirects,omitempty"`
 
 	// AttributeMapping A JSON object mapping Waldur User model fields to OIDC claims. Example: {"first_name": "given_name", "last_name": "family_name", "email": "email"}
 	AttributeMapping *map[string]interface{} `json:"attribute_mapping,omitempty"`
@@ -41562,9 +41561,9 @@ type PatchedIdentityProviderRequest struct {
 	Label *string `json:"label,omitempty"`
 
 	// ManagementUrl The endpoint for user details management.
-	ManagementUrl   *string                 `json:"management_url,omitempty"`
-	ProtectedFields *map[string]interface{} `json:"protected_fields,omitempty"`
-	Provider        *string                 `json:"provider,omitempty"`
+	ManagementUrl   *string   `json:"management_url,omitempty"`
+	ProtectedFields *[]string `json:"protected_fields,omitempty"`
+	Provider        *string   `json:"provider,omitempty"`
 
 	// UserClaim The OIDC claim from the userinfo endpoint to be used as the value for the lookup field.
 	UserClaim *string `json:"user_claim,omitempty"`
@@ -42492,11 +42491,8 @@ type PatchedProviderPlanDetailsRequest struct {
 
 // PatchedQuestionAdminRequest defines model for PatchedQuestionAdminRequest.
 type PatchedQuestionAdminRequest struct {
-	// AllowedFileTypes List of allowed file extensions (e.g., ['.pdf', '.doc', '.docx']). If empty, all file types are allowed.
-	AllowedFileTypes *map[string]interface{} `json:"allowed_file_types,omitempty"`
-
-	// AllowedMimeTypes List of allowed MIME types (e.g., ['application/pdf', 'application/msword']). If empty, MIME type validation is not enforced. When both extensions and MIME types are specified, files must match both criteria for security.
-	AllowedMimeTypes *map[string]interface{} `json:"allowed_mime_types,omitempty"`
+	AllowedFileTypes *[]string `json:"allowed_file_types,omitempty"`
+	AllowedMimeTypes *[]string `json:"allowed_mime_types,omitempty"`
 
 	// AlwaysRequiresReview This question always requires review regardless of answer
 	AlwaysRequiresReview *bool `json:"always_requires_review,omitempty"`
@@ -42859,10 +42855,10 @@ type PatchedReviewerPublicationRequest struct {
 
 // PatchedRobotAccountRequest defines model for PatchedRobotAccountRequest.
 type PatchedRobotAccountRequest struct {
-	Description     *string                 `json:"description,omitempty"`
-	Keys            *map[string]interface{} `json:"keys,omitempty"`
-	Resource        *string                 `json:"resource,omitempty"`
-	ResponsibleUser *string                 `json:"responsible_user,omitempty"`
+	Description     *string   `json:"description,omitempty"`
+	Keys            *[]string `json:"keys,omitempty"`
+	Resource        *string   `json:"resource,omitempty"`
+	ResponsibleUser *string   `json:"responsible_user,omitempty"`
 
 	// Type Type of the robot account.
 	Type     *string `json:"type,omitempty"`
@@ -43131,7 +43127,9 @@ type PatchedUserOfferingConsentRequest struct {
 
 // PatchedUserRequest defines model for PatchedUserRequest.
 type PatchedUserRequest struct {
-	Address *string `json:"address,omitempty"`
+	ActiveIsds   *[]string `json:"active_isds,omitempty"`
+	Address      *string   `json:"address,omitempty"`
+	Affiliations *[]string `json:"affiliations,omitempty"`
 
 	// AgreeWithPolicy User must agree with the policy to register.
 	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
@@ -43142,12 +43140,10 @@ type PatchedUserRequest struct {
 	CountryOfResidence         *string `json:"country_of_residence,omitempty"`
 
 	// DeactivationReason Reason why the user was deactivated. Visible to staff and support.
-	DeactivationReason *string `json:"deactivation_reason,omitempty"`
-	Description        *string `json:"description,omitempty"`
-
-	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
-	EdupersonAssurance *map[string]interface{} `json:"eduperson_assurance,omitempty"`
-	FirstName          *string                 `json:"first_name,omitempty"`
+	DeactivationReason *string   `json:"deactivation_reason,omitempty"`
+	Description        *string   `json:"description,omitempty"`
+	EdupersonAssurance *[]string `json:"eduperson_assurance,omitempty"`
+	FirstName          *string   `json:"first_name,omitempty"`
 
 	// Gender User's gender (male, female, or unknown)
 	Gender *PatchedUserRequest_Gender `json:"gender,omitempty"`
@@ -43163,15 +43159,11 @@ type PatchedUserRequest struct {
 	IsStaff *bool `json:"is_staff,omitempty"`
 
 	// IsSupport Designates whether the user is a global support user.
-	IsSupport *bool   `json:"is_support,omitempty"`
-	JobTitle  *string `json:"job_title,omitempty"`
-	LastName  *string `json:"last_name,omitempty"`
-
-	// ManagedIsds List of ISD source identifiers this user can manage via Identity Bridge. E.g., ['isd:puhuri', 'isd:fenix']. Non-empty list implies identity manager role.
-	ManagedIsds *map[string]interface{} `json:"managed_isds,omitempty"`
-
-	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
-	Nationalities *map[string]interface{} `json:"nationalities,omitempty"`
+	IsSupport     *bool     `json:"is_support,omitempty"`
+	JobTitle      *string   `json:"job_title,omitempty"`
+	LastName      *string   `json:"last_name,omitempty"`
+	ManagedIsds   *[]string `json:"managed_isds,omitempty"`
+	Nationalities *[]string `json:"nationalities,omitempty"`
 
 	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
 	Nationality *string `json:"nationality,omitempty"`
@@ -43211,7 +43203,9 @@ type PatchedUserRequest_Gender struct {
 
 // PatchedUserRequestForm defines model for PatchedUserRequestForm.
 type PatchedUserRequestForm struct {
-	Address *string `json:"address,omitempty"`
+	ActiveIsds   *[]string `json:"active_isds,omitempty"`
+	Address      *string   `json:"address,omitempty"`
+	Affiliations *[]string `json:"affiliations,omitempty"`
 
 	// AgreeWithPolicy User must agree with the policy to register.
 	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
@@ -43222,12 +43216,10 @@ type PatchedUserRequestForm struct {
 	CountryOfResidence         *string `json:"country_of_residence,omitempty"`
 
 	// DeactivationReason Reason why the user was deactivated. Visible to staff and support.
-	DeactivationReason *string `json:"deactivation_reason,omitempty"`
-	Description        *string `json:"description,omitempty"`
-
-	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
-	EdupersonAssurance *map[string]interface{} `json:"eduperson_assurance,omitempty"`
-	FirstName          *string                 `json:"first_name,omitempty"`
+	DeactivationReason *string   `json:"deactivation_reason,omitempty"`
+	Description        *string   `json:"description,omitempty"`
+	EdupersonAssurance *[]string `json:"eduperson_assurance,omitempty"`
+	FirstName          *string   `json:"first_name,omitempty"`
 
 	// Gender User's gender (male, female, or unknown)
 	Gender *PatchedUserRequestForm_Gender `json:"gender,omitempty"`
@@ -43243,15 +43235,11 @@ type PatchedUserRequestForm struct {
 	IsStaff *bool `json:"is_staff,omitempty"`
 
 	// IsSupport Designates whether the user is a global support user.
-	IsSupport *bool   `json:"is_support,omitempty"`
-	JobTitle  *string `json:"job_title,omitempty"`
-	LastName  *string `json:"last_name,omitempty"`
-
-	// ManagedIsds List of ISD source identifiers this user can manage via Identity Bridge. E.g., ['isd:puhuri', 'isd:fenix']. Non-empty list implies identity manager role.
-	ManagedIsds *map[string]interface{} `json:"managed_isds,omitempty"`
-
-	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
-	Nationalities *map[string]interface{} `json:"nationalities,omitempty"`
+	IsSupport     *bool     `json:"is_support,omitempty"`
+	JobTitle      *string   `json:"job_title,omitempty"`
+	LastName      *string   `json:"last_name,omitempty"`
+	ManagedIsds   *[]string `json:"managed_isds,omitempty"`
+	Nationalities *[]string `json:"nationalities,omitempty"`
 
 	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
 	Nationality *string `json:"nationality,omitempty"`
@@ -43291,7 +43279,9 @@ type PatchedUserRequestForm_Gender struct {
 
 // PatchedUserRequestMultipart defines model for PatchedUserRequestMultipart.
 type PatchedUserRequestMultipart struct {
-	Address *string `json:"address,omitempty"`
+	ActiveIsds   *[]string `json:"active_isds,omitempty"`
+	Address      *string   `json:"address,omitempty"`
+	Affiliations *[]string `json:"affiliations,omitempty"`
 
 	// AgreeWithPolicy User must agree with the policy to register.
 	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
@@ -43302,12 +43292,10 @@ type PatchedUserRequestMultipart struct {
 	CountryOfResidence         *string `json:"country_of_residence,omitempty"`
 
 	// DeactivationReason Reason why the user was deactivated. Visible to staff and support.
-	DeactivationReason *string `json:"deactivation_reason,omitempty"`
-	Description        *string `json:"description,omitempty"`
-
-	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
-	EdupersonAssurance *map[string]interface{} `json:"eduperson_assurance,omitempty"`
-	FirstName          *string                 `json:"first_name,omitempty"`
+	DeactivationReason *string   `json:"deactivation_reason,omitempty"`
+	Description        *string   `json:"description,omitempty"`
+	EdupersonAssurance *[]string `json:"eduperson_assurance,omitempty"`
+	FirstName          *string   `json:"first_name,omitempty"`
 
 	// Gender User's gender (male, female, or unknown)
 	Gender *PatchedUserRequestMultipart_Gender `json:"gender,omitempty"`
@@ -43323,15 +43311,11 @@ type PatchedUserRequestMultipart struct {
 	IsStaff *bool `json:"is_staff,omitempty"`
 
 	// IsSupport Designates whether the user is a global support user.
-	IsSupport *bool   `json:"is_support,omitempty"`
-	JobTitle  *string `json:"job_title,omitempty"`
-	LastName  *string `json:"last_name,omitempty"`
-
-	// ManagedIsds List of ISD source identifiers this user can manage via Identity Bridge. E.g., ['isd:puhuri', 'isd:fenix']. Non-empty list implies identity manager role.
-	ManagedIsds *map[string]interface{} `json:"managed_isds,omitempty"`
-
-	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
-	Nationalities *map[string]interface{} `json:"nationalities,omitempty"`
+	IsSupport     *bool     `json:"is_support,omitempty"`
+	JobTitle      *string   `json:"job_title,omitempty"`
+	LastName      *string   `json:"last_name,omitempty"`
+	ManagedIsds   *[]string `json:"managed_isds,omitempty"`
+	Nationalities *[]string `json:"nationalities,omitempty"`
 
 	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
 	Nationality *string `json:"nationality,omitempty"`
@@ -45818,6 +45802,13 @@ type PullMarketplaceScriptResourceRequest struct {
 // QosStrategyEnum defines model for QosStrategyEnum.
 type QosStrategyEnum string
 
+// QueryOutput defines model for QueryOutput.
+type QueryOutput struct {
+	AllUsers  *bool         `json:"all_users,omitempty"`
+	Customers *[]IdNamePair `json:"customers,omitempty"`
+	Offerings *[]IdNamePair `json:"offerings,omitempty"`
+}
+
 // QueryPerformance defines model for QueryPerformance.
 type QueryPerformance struct {
 	// IndexScanCount Total index scans
@@ -45847,11 +45838,8 @@ type QueryRequest struct {
 
 // Question defines model for Question.
 type Question struct {
-	// AllowedFileTypes List of allowed file extensions (e.g., ['.pdf', '.doc', '.docx']). If empty, all file types are allowed.
-	AllowedFileTypes *map[string]interface{} `json:"allowed_file_types,omitempty"`
-
-	// AllowedMimeTypes List of allowed MIME types (e.g., ['application/pdf', 'application/msword']). If empty, MIME type validation is not enforced. When both extensions and MIME types are specified, files must match both criteria for security.
-	AllowedMimeTypes *map[string]interface{} `json:"allowed_mime_types,omitempty"`
+	AllowedFileTypes *[]string `json:"allowed_file_types,omitempty"`
+	AllowedMimeTypes *[]string `json:"allowed_mime_types,omitempty"`
 
 	// AlwaysRequiresReview This question always requires review regardless of answer
 	AlwaysRequiresReview *bool `json:"always_requires_review,omitempty"`
@@ -45936,11 +45924,8 @@ type Question_RichTextToolbarLevel struct {
 
 // QuestionAdmin defines model for QuestionAdmin.
 type QuestionAdmin struct {
-	// AllowedFileTypes List of allowed file extensions (e.g., ['.pdf', '.doc', '.docx']). If empty, all file types are allowed.
-	AllowedFileTypes *map[string]interface{} `json:"allowed_file_types,omitempty"`
-
-	// AllowedMimeTypes List of allowed MIME types (e.g., ['application/pdf', 'application/msword']). If empty, MIME type validation is not enforced. When both extensions and MIME types are specified, files must match both criteria for security.
-	AllowedMimeTypes *map[string]interface{} `json:"allowed_mime_types,omitempty"`
+	AllowedFileTypes *[]string `json:"allowed_file_types,omitempty"`
+	AllowedMimeTypes *[]string `json:"allowed_mime_types,omitempty"`
 
 	// AlwaysRequiresReview This question always requires review regardless of answer
 	AlwaysRequiresReview *bool `json:"always_requires_review,omitempty"`
@@ -46030,11 +46015,8 @@ type QuestionAdmin_RichTextToolbarLevel struct {
 
 // QuestionAdminRequest defines model for QuestionAdminRequest.
 type QuestionAdminRequest struct {
-	// AllowedFileTypes List of allowed file extensions (e.g., ['.pdf', '.doc', '.docx']). If empty, all file types are allowed.
-	AllowedFileTypes *map[string]interface{} `json:"allowed_file_types,omitempty"`
-
-	// AllowedMimeTypes List of allowed MIME types (e.g., ['application/pdf', 'application/msword']). If empty, MIME type validation is not enforced. When both extensions and MIME types are specified, files must match both criteria for security.
-	AllowedMimeTypes *map[string]interface{} `json:"allowed_mime_types,omitempty"`
+	AllowedFileTypes *[]string `json:"allowed_file_types,omitempty"`
+	AllowedMimeTypes *[]string `json:"allowed_mime_types,omitempty"`
 
 	// AlwaysRequiresReview This question always requires review regardless of answer
 	AlwaysRequiresReview *bool `json:"always_requires_review,omitempty"`
@@ -49156,17 +49138,17 @@ type RmqWaldurUser struct {
 
 // RobotAccount defines model for RobotAccount.
 type RobotAccount struct {
-	BackendId       *string                 `json:"backend_id,omitempty"`
-	Created         *time.Time              `json:"created,omitempty"`
-	Description     *string                 `json:"description,omitempty"`
-	ErrorMessage    *string                 `json:"error_message,omitempty"`
-	ErrorTraceback  *string                 `json:"error_traceback,omitempty"`
-	Fingerprints    *[]Fingerprint          `json:"fingerprints,omitempty"`
-	Keys            *map[string]interface{} `json:"keys,omitempty"`
-	Modified        *time.Time              `json:"modified,omitempty"`
-	Resource        string                  `json:"resource"`
-	ResponsibleUser *string                 `json:"responsible_user,omitempty"`
-	State           *RobotAccountStates     `json:"state,omitempty"`
+	BackendId       *string             `json:"backend_id,omitempty"`
+	Created         *time.Time          `json:"created,omitempty"`
+	Description     *string             `json:"description,omitempty"`
+	ErrorMessage    *string             `json:"error_message,omitempty"`
+	ErrorTraceback  *string             `json:"error_traceback,omitempty"`
+	Fingerprints    *[]Fingerprint      `json:"fingerprints,omitempty"`
+	Keys            *[]string           `json:"keys,omitempty"`
+	Modified        *time.Time          `json:"modified,omitempty"`
+	Resource        string              `json:"resource"`
+	ResponsibleUser *string             `json:"responsible_user,omitempty"`
+	State           *RobotAccountStates `json:"state,omitempty"`
 
 	// Type Type of the robot account.
 	Type     string  `json:"type"`
@@ -49180,26 +49162,26 @@ type RobotAccount struct {
 
 // RobotAccountDetails defines model for RobotAccountDetails.
 type RobotAccountDetails struct {
-	BackendId             *string                 `json:"backend_id,omitempty"`
-	Created               *time.Time              `json:"created,omitempty"`
-	CustomerName          *string                 `json:"customer_name,omitempty"`
-	CustomerUuid          *openapi_types.UUID     `json:"customer_uuid,omitempty"`
-	Description           *string                 `json:"description,omitempty"`
-	ErrorMessage          *string                 `json:"error_message,omitempty"`
-	ErrorTraceback        *string                 `json:"error_traceback,omitempty"`
-	Fingerprints          *[]Fingerprint          `json:"fingerprints,omitempty"`
-	Keys                  *map[string]interface{} `json:"keys,omitempty"`
-	Modified              *time.Time              `json:"modified,omitempty"`
-	OfferingPluginOptions *MergedPluginOptions    `json:"offering_plugin_options,omitempty"`
-	ProjectName           *string                 `json:"project_name,omitempty"`
-	ProjectUuid           *openapi_types.UUID     `json:"project_uuid,omitempty"`
-	ProviderName          *string                 `json:"provider_name,omitempty"`
-	ProviderUuid          *openapi_types.UUID     `json:"provider_uuid,omitempty"`
-	Resource              *string                 `json:"resource,omitempty"`
-	ResourceName          *string                 `json:"resource_name,omitempty"`
-	ResourceUuid          *openapi_types.UUID     `json:"resource_uuid,omitempty"`
-	ResponsibleUser       *BasicUser              `json:"responsible_user,omitempty"`
-	State                 *RobotAccountStates     `json:"state,omitempty"`
+	BackendId             *string              `json:"backend_id,omitempty"`
+	Created               *time.Time           `json:"created,omitempty"`
+	CustomerName          *string              `json:"customer_name,omitempty"`
+	CustomerUuid          *openapi_types.UUID  `json:"customer_uuid,omitempty"`
+	Description           *string              `json:"description,omitempty"`
+	ErrorMessage          *string              `json:"error_message,omitempty"`
+	ErrorTraceback        *string              `json:"error_traceback,omitempty"`
+	Fingerprints          *[]Fingerprint       `json:"fingerprints,omitempty"`
+	Keys                  *[]string            `json:"keys,omitempty"`
+	Modified              *time.Time           `json:"modified,omitempty"`
+	OfferingPluginOptions *MergedPluginOptions `json:"offering_plugin_options,omitempty"`
+	ProjectName           *string              `json:"project_name,omitempty"`
+	ProjectUuid           *openapi_types.UUID  `json:"project_uuid,omitempty"`
+	ProviderName          *string              `json:"provider_name,omitempty"`
+	ProviderUuid          *openapi_types.UUID  `json:"provider_uuid,omitempty"`
+	Resource              *string              `json:"resource,omitempty"`
+	ResourceName          *string              `json:"resource_name,omitempty"`
+	ResourceUuid          *openapi_types.UUID  `json:"resource_uuid,omitempty"`
+	ResponsibleUser       *BasicUser           `json:"responsible_user,omitempty"`
+	State                 *RobotAccountStates  `json:"state,omitempty"`
 
 	// Type Type of the robot account.
 	Type     *string             `json:"type,omitempty"`
@@ -49221,10 +49203,10 @@ type RobotAccountErrorRequest struct {
 
 // RobotAccountRequest defines model for RobotAccountRequest.
 type RobotAccountRequest struct {
-	Description     *string                 `json:"description,omitempty"`
-	Keys            *map[string]interface{} `json:"keys,omitempty"`
-	Resource        string                  `json:"resource"`
-	ResponsibleUser *string                 `json:"responsible_user,omitempty"`
+	Description     *string   `json:"description,omitempty"`
+	Keys            *[]string `json:"keys,omitempty"`
+	Resource        string    `json:"resource"`
+	ResponsibleUser *string   `json:"responsible_user,omitempty"`
 
 	// Type Type of the robot account.
 	Type     string  `json:"type"`
@@ -51621,12 +51603,9 @@ type UsageTimeseriesBucket struct {
 
 // User defines model for User.
 type User struct {
-	// ActiveIsds List of ISDs that have asserted this user exists. User is deactivated when this becomes empty.
-	ActiveIsds *map[string]interface{} `json:"active_isds,omitempty"`
-	Address    *string                 `json:"address,omitempty"`
-
-	// Affiliations Person's affiliation within organization such as student, faculty, staff.
-	Affiliations *map[string]interface{} `json:"affiliations,omitempty"`
+	ActiveIsds   *[]string `json:"active_isds,omitempty"`
+	Address      *string   `json:"address,omitempty"`
+	Affiliations *[]string `json:"affiliations,omitempty"`
 
 	// AgreementDate Indicates when the user has agreed with the policy.
 	AgreementDate *time.Time `json:"agreement_date,omitempty"`
@@ -51642,14 +51621,12 @@ type User struct {
 	DateJoined                 *time.Time `json:"date_joined,omitempty"`
 
 	// DeactivationReason Reason why the user was deactivated. Visible to staff and support.
-	DeactivationReason *string `json:"deactivation_reason,omitempty"`
-	Description        *string `json:"description,omitempty"`
-
-	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
-	EdupersonAssurance *map[string]interface{} `json:"eduperson_assurance,omitempty"`
-	Email              *openapi_types.Email    `json:"email,omitempty"`
-	FirstName          *string                 `json:"first_name,omitempty"`
-	FullName           *string                 `json:"full_name,omitempty"`
+	DeactivationReason *string              `json:"deactivation_reason,omitempty"`
+	Description        *string              `json:"description,omitempty"`
+	EdupersonAssurance *[]string            `json:"eduperson_assurance,omitempty"`
+	Email              *openapi_types.Email `json:"email,omitempty"`
+	FirstName          *string              `json:"first_name,omitempty"`
+	FullName           *string              `json:"full_name,omitempty"`
 
 	// Gender User's gender (male, female, or unknown)
 	Gender                        *User_Gender `json:"gender,omitempty"`
@@ -51678,15 +51655,11 @@ type User struct {
 	IsStaff *bool `json:"is_staff,omitempty"`
 
 	// IsSupport Designates whether the user is a global support user.
-	IsSupport *bool   `json:"is_support,omitempty"`
-	JobTitle  *string `json:"job_title,omitempty"`
-	LastName  *string `json:"last_name,omitempty"`
-
-	// ManagedIsds List of ISD source identifiers this user can manage via Identity Bridge. E.g., ['isd:puhuri', 'isd:fenix']. Non-empty list implies identity manager role.
-	ManagedIsds *map[string]interface{} `json:"managed_isds,omitempty"`
-
-	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
-	Nationalities *map[string]interface{} `json:"nationalities,omitempty"`
+	IsSupport     *bool     `json:"is_support,omitempty"`
+	JobTitle      *string   `json:"job_title,omitempty"`
+	LastName      *string   `json:"last_name,omitempty"`
+	ManagedIsds   *[]string `json:"managed_isds,omitempty"`
+	Nationalities *[]string `json:"nationalities,omitempty"`
 
 	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
 	Nationality *string `json:"nationality,omitempty"`
@@ -52035,12 +52008,9 @@ type UserMappingMap struct {
 
 // UserMe defines model for UserMe.
 type UserMe struct {
-	// ActiveIsds List of ISDs that have asserted this user exists. User is deactivated when this becomes empty.
-	ActiveIsds *map[string]interface{} `json:"active_isds,omitempty"`
-	Address    *string                 `json:"address,omitempty"`
-
-	// Affiliations Person's affiliation within organization such as student, faculty, staff.
-	Affiliations *map[string]interface{} `json:"affiliations,omitempty"`
+	ActiveIsds   *[]string `json:"active_isds,omitempty"`
+	Address      *string   `json:"address,omitempty"`
+	Affiliations *[]string `json:"affiliations,omitempty"`
 
 	// AgreementDate Indicates when the user has agreed with the policy.
 	AgreementDate *time.Time `json:"agreement_date,omitempty"`
@@ -52056,14 +52026,12 @@ type UserMe struct {
 	DateJoined                 *time.Time `json:"date_joined,omitempty"`
 
 	// DeactivationReason Reason why the user was deactivated. Visible to staff and support.
-	DeactivationReason *string `json:"deactivation_reason,omitempty"`
-	Description        *string `json:"description,omitempty"`
-
-	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
-	EdupersonAssurance *map[string]interface{} `json:"eduperson_assurance,omitempty"`
-	Email              *openapi_types.Email    `json:"email,omitempty"`
-	FirstName          *string                 `json:"first_name,omitempty"`
-	FullName           *string                 `json:"full_name,omitempty"`
+	DeactivationReason *string              `json:"deactivation_reason,omitempty"`
+	Description        *string              `json:"description,omitempty"`
+	EdupersonAssurance *[]string            `json:"eduperson_assurance,omitempty"`
+	Email              *openapi_types.Email `json:"email,omitempty"`
+	FirstName          *string              `json:"first_name,omitempty"`
+	FullName           *string              `json:"full_name,omitempty"`
 
 	// Gender User's gender (male, female, or unknown)
 	Gender                        *UserMe_Gender `json:"gender,omitempty"`
@@ -52092,15 +52060,11 @@ type UserMe struct {
 	IsStaff *bool `json:"is_staff,omitempty"`
 
 	// IsSupport Designates whether the user is a global support user.
-	IsSupport *bool   `json:"is_support,omitempty"`
-	JobTitle  *string `json:"job_title,omitempty"`
-	LastName  *string `json:"last_name,omitempty"`
-
-	// ManagedIsds List of ISD source identifiers this user can manage via Identity Bridge. E.g., ['isd:puhuri', 'isd:fenix']. Non-empty list implies identity manager role.
-	ManagedIsds *map[string]interface{} `json:"managed_isds,omitempty"`
-
-	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
-	Nationalities *map[string]interface{} `json:"nationalities,omitempty"`
+	IsSupport     *bool     `json:"is_support,omitempty"`
+	JobTitle      *string   `json:"job_title,omitempty"`
+	LastName      *string   `json:"last_name,omitempty"`
+	ManagedIsds   *[]string `json:"managed_isds,omitempty"`
+	Nationalities *[]string `json:"nationalities,omitempty"`
 
 	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
 	Nationality *string `json:"nationality,omitempty"`
@@ -52230,7 +52194,9 @@ type UserRegistrationTrend struct {
 
 // UserRequest defines model for UserRequest.
 type UserRequest struct {
-	Address *string `json:"address,omitempty"`
+	ActiveIsds   *[]string `json:"active_isds,omitempty"`
+	Address      *string   `json:"address,omitempty"`
+	Affiliations *[]string `json:"affiliations,omitempty"`
 
 	// AgreeWithPolicy User must agree with the policy to register.
 	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
@@ -52241,13 +52207,11 @@ type UserRequest struct {
 	CountryOfResidence         *string `json:"country_of_residence,omitempty"`
 
 	// DeactivationReason Reason why the user was deactivated. Visible to staff and support.
-	DeactivationReason *string `json:"deactivation_reason,omitempty"`
-	Description        *string `json:"description,omitempty"`
-
-	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
-	EdupersonAssurance *map[string]interface{} `json:"eduperson_assurance,omitempty"`
-	Email              openapi_types.Email     `json:"email"`
-	FirstName          *string                 `json:"first_name,omitempty"`
+	DeactivationReason *string             `json:"deactivation_reason,omitempty"`
+	Description        *string             `json:"description,omitempty"`
+	EdupersonAssurance *[]string           `json:"eduperson_assurance,omitempty"`
+	Email              openapi_types.Email `json:"email"`
+	FirstName          *string             `json:"first_name,omitempty"`
 
 	// Gender User's gender (male, female, or unknown)
 	Gender *UserRequest_Gender `json:"gender,omitempty"`
@@ -52263,15 +52227,11 @@ type UserRequest struct {
 	IsStaff *bool `json:"is_staff,omitempty"`
 
 	// IsSupport Designates whether the user is a global support user.
-	IsSupport *bool   `json:"is_support,omitempty"`
-	JobTitle  *string `json:"job_title,omitempty"`
-	LastName  *string `json:"last_name,omitempty"`
-
-	// ManagedIsds List of ISD source identifiers this user can manage via Identity Bridge. E.g., ['isd:puhuri', 'isd:fenix']. Non-empty list implies identity manager role.
-	ManagedIsds *map[string]interface{} `json:"managed_isds,omitempty"`
-
-	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
-	Nationalities *map[string]interface{} `json:"nationalities,omitempty"`
+	IsSupport     *bool     `json:"is_support,omitempty"`
+	JobTitle      *string   `json:"job_title,omitempty"`
+	LastName      *string   `json:"last_name,omitempty"`
+	ManagedIsds   *[]string `json:"managed_isds,omitempty"`
+	Nationalities *[]string `json:"nationalities,omitempty"`
 
 	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
 	Nationality *string `json:"nationality,omitempty"`
@@ -52311,7 +52271,9 @@ type UserRequest_Gender struct {
 
 // UserRequestForm defines model for UserRequestForm.
 type UserRequestForm struct {
-	Address *string `json:"address,omitempty"`
+	ActiveIsds   *[]string `json:"active_isds,omitempty"`
+	Address      *string   `json:"address,omitempty"`
+	Affiliations *[]string `json:"affiliations,omitempty"`
 
 	// AgreeWithPolicy User must agree with the policy to register.
 	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
@@ -52322,13 +52284,11 @@ type UserRequestForm struct {
 	CountryOfResidence         *string `json:"country_of_residence,omitempty"`
 
 	// DeactivationReason Reason why the user was deactivated. Visible to staff and support.
-	DeactivationReason *string `json:"deactivation_reason,omitempty"`
-	Description        *string `json:"description,omitempty"`
-
-	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
-	EdupersonAssurance *map[string]interface{} `json:"eduperson_assurance,omitempty"`
-	Email              openapi_types.Email     `json:"email"`
-	FirstName          *string                 `json:"first_name,omitempty"`
+	DeactivationReason *string             `json:"deactivation_reason,omitempty"`
+	Description        *string             `json:"description,omitempty"`
+	EdupersonAssurance *[]string           `json:"eduperson_assurance,omitempty"`
+	Email              openapi_types.Email `json:"email"`
+	FirstName          *string             `json:"first_name,omitempty"`
 
 	// Gender User's gender (male, female, or unknown)
 	Gender *UserRequestForm_Gender `json:"gender,omitempty"`
@@ -52344,15 +52304,11 @@ type UserRequestForm struct {
 	IsStaff *bool `json:"is_staff,omitempty"`
 
 	// IsSupport Designates whether the user is a global support user.
-	IsSupport *bool   `json:"is_support,omitempty"`
-	JobTitle  *string `json:"job_title,omitempty"`
-	LastName  *string `json:"last_name,omitempty"`
-
-	// ManagedIsds List of ISD source identifiers this user can manage via Identity Bridge. E.g., ['isd:puhuri', 'isd:fenix']. Non-empty list implies identity manager role.
-	ManagedIsds *map[string]interface{} `json:"managed_isds,omitempty"`
-
-	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
-	Nationalities *map[string]interface{} `json:"nationalities,omitempty"`
+	IsSupport     *bool     `json:"is_support,omitempty"`
+	JobTitle      *string   `json:"job_title,omitempty"`
+	LastName      *string   `json:"last_name,omitempty"`
+	ManagedIsds   *[]string `json:"managed_isds,omitempty"`
+	Nationalities *[]string `json:"nationalities,omitempty"`
 
 	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
 	Nationality *string `json:"nationality,omitempty"`
@@ -52392,7 +52348,9 @@ type UserRequestForm_Gender struct {
 
 // UserRequestMultipart defines model for UserRequestMultipart.
 type UserRequestMultipart struct {
-	Address *string `json:"address,omitempty"`
+	ActiveIsds   *[]string `json:"active_isds,omitempty"`
+	Address      *string   `json:"address,omitempty"`
+	Affiliations *[]string `json:"affiliations,omitempty"`
 
 	// AgreeWithPolicy User must agree with the policy to register.
 	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
@@ -52403,13 +52361,11 @@ type UserRequestMultipart struct {
 	CountryOfResidence         *string `json:"country_of_residence,omitempty"`
 
 	// DeactivationReason Reason why the user was deactivated. Visible to staff and support.
-	DeactivationReason *string `json:"deactivation_reason,omitempty"`
-	Description        *string `json:"description,omitempty"`
-
-	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
-	EdupersonAssurance *map[string]interface{} `json:"eduperson_assurance,omitempty"`
-	Email              openapi_types.Email     `json:"email"`
-	FirstName          *string                 `json:"first_name,omitempty"`
+	DeactivationReason *string             `json:"deactivation_reason,omitempty"`
+	Description        *string             `json:"description,omitempty"`
+	EdupersonAssurance *[]string           `json:"eduperson_assurance,omitempty"`
+	Email              openapi_types.Email `json:"email"`
+	FirstName          *string             `json:"first_name,omitempty"`
 
 	// Gender User's gender (male, female, or unknown)
 	Gender *UserRequestMultipart_Gender `json:"gender,omitempty"`
@@ -52425,15 +52381,11 @@ type UserRequestMultipart struct {
 	IsStaff *bool `json:"is_staff,omitempty"`
 
 	// IsSupport Designates whether the user is a global support user.
-	IsSupport *bool   `json:"is_support,omitempty"`
-	JobTitle  *string `json:"job_title,omitempty"`
-	LastName  *string `json:"last_name,omitempty"`
-
-	// ManagedIsds List of ISD source identifiers this user can manage via Identity Bridge. E.g., ['isd:puhuri', 'isd:fenix']. Non-empty list implies identity manager role.
-	ManagedIsds *map[string]interface{} `json:"managed_isds,omitempty"`
-
-	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
-	Nationalities *map[string]interface{} `json:"nationalities,omitempty"`
+	IsSupport     *bool     `json:"is_support,omitempty"`
+	JobTitle      *string   `json:"job_title,omitempty"`
+	LastName      *string   `json:"last_name,omitempty"`
+	ManagedIsds   *[]string `json:"managed_isds,omitempty"`
+	Nationalities *[]string `json:"nationalities,omitempty"`
 
 	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
 	Nationality *string `json:"nationality,omitempty"`
@@ -76501,13 +76453,13 @@ type BroadcastMessageTemplatesPartialUpdateJSONRequestBody = PatchedMessageTempl
 type BroadcastMessageTemplatesUpdateJSONRequestBody = MessageTemplateRequest
 
 // BroadcastMessagesCreateJSONRequestBody defines body for BroadcastMessagesCreate for application/json ContentType.
-type BroadcastMessagesCreateJSONRequestBody = BroadcastMessageRequest
+type BroadcastMessagesCreateJSONRequestBody = BroadcastMessageCreateRequest
 
 // BroadcastMessagesPartialUpdateJSONRequestBody defines body for BroadcastMessagesPartialUpdate for application/json ContentType.
 type BroadcastMessagesPartialUpdateJSONRequestBody = PatchedBroadcastMessageRequest
 
 // BroadcastMessagesUpdateJSONRequestBody defines body for BroadcastMessagesUpdate for application/json ContentType.
-type BroadcastMessagesUpdateJSONRequestBody = BroadcastMessageRequest
+type BroadcastMessagesUpdateJSONRequestBody = BroadcastMessageCreateRequest
 
 // CallAssignmentConfigurationsCreateJSONRequestBody defines body for CallAssignmentConfigurationsCreate for application/json ContentType.
 type CallAssignmentConfigurationsCreateJSONRequestBody = CallAssignmentConfigurationRequest
