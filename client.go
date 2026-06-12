@@ -23064,6 +23064,12 @@ type AgentConnectionSummary struct {
 	TotalQueuedMessages *int `json:"total_queued_messages,omitempty"`
 }
 
+// AgentDependency defines model for AgentDependency.
+type AgentDependency struct {
+	Package string `json:"package"`
+	Version string `json:"version"`
+}
+
 // AgentEventSubscriptionCreateRequest defines model for AgentEventSubscriptionCreateRequest.
 type AgentEventSubscriptionCreateRequest struct {
 	// Description Optional description for the event subscription
@@ -23093,13 +23099,13 @@ type AgentIdentity struct {
 	ConfigFileContent *string `json:"config_file_content,omitempty"`
 
 	// ConfigFilePath Example: '/etc/waldur/agent.yaml'
-	ConfigFilePath *string                 `json:"config_file_path,omitempty"`
-	Created        *time.Time              `json:"created,omitempty"`
-	CreatedBy      *openapi_types.UUID     `json:"created_by,omitempty"`
-	Dependencies   *map[string]interface{} `json:"dependencies,omitempty"`
-	LastRestarted  *time.Time              `json:"last_restarted,omitempty"`
-	Modified       *time.Time              `json:"modified,omitempty"`
-	Name           string                  `json:"name"`
+	ConfigFilePath *string             `json:"config_file_path,omitempty"`
+	Created        *time.Time          `json:"created,omitempty"`
+	CreatedBy      *openapi_types.UUID `json:"created_by,omitempty"`
+	Dependencies   *[]AgentDependency  `json:"dependencies,omitempty"`
+	LastRestarted  *time.Time          `json:"last_restarted,omitempty"`
+	Modified       *time.Time          `json:"modified,omitempty"`
+	Name           string              `json:"name"`
 
 	// Offering UUID of an offering with a site-agent compatible type.
 	Offering openapi_types.UUID    `json:"offering"`
@@ -23114,10 +23120,9 @@ type AgentIdentityRequest struct {
 	ConfigFileContent *string `json:"config_file_content,omitempty"`
 
 	// ConfigFilePath Example: '/etc/waldur/agent.yaml'
-	ConfigFilePath *string                 `json:"config_file_path,omitempty"`
-	Dependencies   *map[string]interface{} `json:"dependencies,omitempty"`
-	LastRestarted  *time.Time              `json:"last_restarted,omitempty"`
-	Name           string                  `json:"name"`
+	ConfigFilePath *string    `json:"config_file_path,omitempty"`
+	LastRestarted  *time.Time `json:"last_restarted,omitempty"`
+	Name           string     `json:"name"`
 
 	// Offering UUID of an offering with a site-agent compatible type.
 	Offering openapi_types.UUID `json:"offering"`
@@ -23634,8 +23639,8 @@ type Answer struct {
 
 // AnswerSubmitRequest defines model for AnswerSubmitRequest.
 type AnswerSubmitRequest struct {
-	AnswerData   *map[string]interface{} `json:"answer_data"`
-	QuestionUuid openapi_types.UUID      `json:"question_uuid"`
+	AnswerData   interface{}        `json:"answer_data"`
+	QuestionUuid openapi_types.UUID `json:"question_uuid"`
 }
 
 // AnswerSubmitResponse defines model for AnswerSubmitResponse.
@@ -26260,15 +26265,15 @@ type CallResourceTemplate struct {
 	Description   *string                 `json:"description,omitempty"`
 
 	// IsRequired If True, every proposal must include this resource type
-	IsRequired            *bool                   `json:"is_required,omitempty"`
-	Limits                *map[string]interface{} `json:"limits,omitempty"`
-	Name                  *string                 `json:"name,omitempty"`
-	RequestedOffering     *string                 `json:"requested_offering,omitempty"`
-	RequestedOfferingName *string                 `json:"requested_offering_name,omitempty"`
-	RequestedOfferingPlan *BasePublicPlan         `json:"requested_offering_plan,omitempty"`
-	RequestedOfferingUuid *openapi_types.UUID     `json:"requested_offering_uuid,omitempty"`
-	Url                   *string                 `json:"url,omitempty"`
-	Uuid                  *openapi_types.UUID     `json:"uuid,omitempty"`
+	IsRequired            *bool               `json:"is_required,omitempty"`
+	Limits                *map[string]int     `json:"limits,omitempty"`
+	Name                  *string             `json:"name,omitempty"`
+	RequestedOffering     *string             `json:"requested_offering,omitempty"`
+	RequestedOfferingName *string             `json:"requested_offering_name,omitempty"`
+	RequestedOfferingPlan *BasePublicPlan     `json:"requested_offering_plan,omitempty"`
+	RequestedOfferingUuid *openapi_types.UUID `json:"requested_offering_uuid,omitempty"`
+	Url                   *string             `json:"url,omitempty"`
+	Uuid                  *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // CallResourceTemplateRequest defines model for CallResourceTemplateRequest.
@@ -26277,10 +26282,10 @@ type CallResourceTemplateRequest struct {
 	Description *string                 `json:"description,omitempty"`
 
 	// IsRequired If True, every proposal must include this resource type
-	IsRequired        *bool                   `json:"is_required,omitempty"`
-	Limits            *map[string]interface{} `json:"limits,omitempty"`
-	Name              string                  `json:"name"`
-	RequestedOffering string                  `json:"requested_offering"`
+	IsRequired        *bool           `json:"is_required,omitempty"`
+	Limits            *map[string]int `json:"limits,omitempty"`
+	Name              string          `json:"name"`
+	RequestedOffering string          `json:"requested_offering"`
 }
 
 // CallReviewerPool defines model for CallReviewerPool.
@@ -31293,7 +31298,7 @@ type EventSubscription struct {
 	Modified    *time.Time `json:"modified,omitempty"`
 
 	// ObservableObjects List of objects to observe. Each item must have 'object_type' (one of: order, user_role, resource, offering_user, importable_resources, service_account, course_account, resource_periodic_limits) and optionally 'object_id' (integer). Example: [{"object_type": "resource"}, {"object_type": "order", "object_id": 123}]
-	ObservableObjects *map[string]interface{} `json:"observable_objects,omitempty"`
+	ObservableObjects *[]EventSubscriptionObservableObject `json:"observable_objects,omitempty"`
 
 	// SourceIp An IPv4 or IPv6 address.
 	SourceIp     *EventSubscription_SourceIp `json:"source_ip,omitempty"`
@@ -31316,6 +31321,20 @@ type EventSubscriptionSourceIp1 = string
 // EventSubscription_SourceIp An IPv4 or IPv6 address.
 type EventSubscription_SourceIp struct {
 	union json.RawMessage
+}
+
+// EventSubscriptionObservableObject defines model for EventSubscriptionObservableObject.
+type EventSubscriptionObservableObject struct {
+	ObjectId     *int                `json:"object_id,omitempty"`
+	ObjectType   string              `json:"object_type"`
+	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
+}
+
+// EventSubscriptionObservableObjectRequest defines model for EventSubscriptionObservableObjectRequest.
+type EventSubscriptionObservableObjectRequest struct {
+	ObjectId     *int                `json:"object_id,omitempty"`
+	ObjectType   string              `json:"object_type"`
+	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
 }
 
 // EventSubscriptionQueue defines model for EventSubscriptionQueue.
@@ -31362,7 +31381,7 @@ type EventSubscriptionRequest struct {
 	Description *string `json:"description,omitempty"`
 
 	// ObservableObjects List of objects to observe. Each item must have 'object_type' (one of: order, user_role, resource, offering_user, importable_resources, service_account, course_account, resource_periodic_limits) and optionally 'object_id' (integer). Example: [{"object_type": "resource"}, {"object_type": "order", "object_id": 123}]
-	ObservableObjects *map[string]interface{} `json:"observable_objects,omitempty"`
+	ObservableObjects *[]EventSubscriptionObservableObjectRequest `json:"observable_objects,omitempty"`
 }
 
 // EventTypesEnum defines model for EventTypesEnum.
@@ -34006,11 +34025,9 @@ type ManagedProject struct {
 	Created *time.Time `json:"created,omitempty"`
 
 	// Destination The destination used to send instructions from the remote portal.
-	Destination string `json:"destination"`
-
-	// Details Details of the project as provided by the remote OpenPortal.
-	Details    *map[string]interface{} `json:"details,omitempty"`
-	Identifier string                  `json:"identifier"`
+	Destination string                 `json:"destination"`
+	Details     *ManagedProjectDetails `json:"details,omitempty"`
+	Identifier  string                 `json:"identifier"`
 
 	// LocalIdentifier The local project identifier in this portal.
 	LocalIdentifier     *string          `json:"local_identifier,omitempty"`
@@ -34027,6 +34044,15 @@ type ManagedProject struct {
 	ReviewedByFullName *string             `json:"reviewed_by_full_name,omitempty"`
 	ReviewedByUuid     *openapi_types.UUID `json:"reviewed_by_uuid,omitempty"`
 	State              *string             `json:"state,omitempty"`
+}
+
+// ManagedProjectDetails defines model for ManagedProjectDetails.
+type ManagedProjectDetails struct {
+	Allocation  *string `json:"allocation,omitempty"`
+	Description *string `json:"description,omitempty"`
+	EndDate     *string `json:"end_date,omitempty"`
+	Name        *string `json:"name,omitempty"`
+	StartDate   *string `json:"start_date,omitempty"`
 }
 
 // ManagedRancherCreateNodeRequest defines model for ManagedRancherCreateNodeRequest.
@@ -35009,7 +35035,7 @@ type MergedSecretOptions struct {
 	DnsNameservers *[]string `json:"dns_nameservers,omitempty"`
 
 	// Environ Script environment variables
-	Environ *map[string]interface{} `json:"environ,omitempty"`
+	Environ *[]ScriptEnvVar `json:"environ,omitempty"`
 
 	// HeappeClusterPassword HEAppE cluster password
 	HeappeClusterPassword *string `json:"heappe_cluster_password,omitempty"`
@@ -35126,7 +35152,7 @@ type MergedSecretOptionsRequest struct {
 	DnsNameservers *[]string `json:"dns_nameservers,omitempty"`
 
 	// Environ Script environment variables
-	Environ *map[string]interface{} `json:"environ,omitempty"`
+	Environ *[]ScriptEnvVarRequest `json:"environ,omitempty"`
 
 	// HeappeClusterPassword HEAppE cluster password
 	HeappeClusterPassword *string `json:"heappe_cluster_password,omitempty"`
@@ -41023,10 +41049,10 @@ type PatchedCallResourceTemplateRequest struct {
 	Description *string                 `json:"description,omitempty"`
 
 	// IsRequired If True, every proposal must include this resource type
-	IsRequired        *bool                   `json:"is_required,omitempty"`
-	Limits            *map[string]interface{} `json:"limits,omitempty"`
-	Name              *string                 `json:"name,omitempty"`
-	RequestedOffering *string                 `json:"requested_offering,omitempty"`
+	IsRequired        *bool           `json:"is_required,omitempty"`
+	Limits            *map[string]int `json:"limits,omitempty"`
+	Name              *string         `json:"name,omitempty"`
+	RequestedOffering *string         `json:"requested_offering,omitempty"`
 }
 
 // PatchedCallReviewerPoolUpdateRequest defines model for PatchedCallReviewerPoolUpdateRequest.
@@ -42538,11 +42564,9 @@ type PatchedQuestionAdminRequest struct {
 	Order    *int                                  `json:"order,omitempty"`
 
 	// QuestionType Type of question and expected answer format
-	QuestionType *QuestionTypeEnum `json:"question_type,omitempty"`
-	Required     *bool             `json:"required,omitempty"`
-
-	// ReviewAnswerValue Answer value that trigger review.
-	ReviewAnswerValue *map[string]interface{} `json:"review_answer_value,omitempty"`
+	QuestionType      *QuestionTypeEnum `json:"question_type,omitempty"`
+	Required          *bool             `json:"required,omitempty"`
+	ReviewAnswerValue interface{}       `json:"review_answer_value,omitempty"`
 
 	// RichTextCharLimit Maximum number of characters allowed in RICH_TEXT type answers. If not set, no limit is enforced.
 	RichTextCharLimit *int `json:"rich_text_char_limit,omitempty"`
@@ -42576,12 +42600,10 @@ type PatchedQuestionAdminRequest_RichTextToolbarLevel struct {
 
 // PatchedQuestionDependencyRequest defines model for PatchedQuestionDependencyRequest.
 type PatchedQuestionDependencyRequest struct {
-	DependsOnQuestion *string             `json:"depends_on_question,omitempty"`
-	Operator          *ChecklistOperators `json:"operator,omitempty"`
-	Question          *string             `json:"question,omitempty"`
-
-	// RequiredAnswerValue The answer value(s) that make this question visible
-	RequiredAnswerValue *map[string]interface{} `json:"required_answer_value,omitempty"`
+	DependsOnQuestion   *string             `json:"depends_on_question,omitempty"`
+	Operator            *ChecklistOperators `json:"operator,omitempty"`
+	Question            *string             `json:"question,omitempty"`
+	RequiredAnswerValue interface{}         `json:"required_answer_value,omitempty"`
 }
 
 // PatchedQuestionOptionsAdminRequest defines model for PatchedQuestionOptionsAdminRequest.
@@ -42630,12 +42652,12 @@ type PatchedRancherClusterRequest struct {
 
 // PatchedRancherHPARequest defines model for PatchedRancherHPARequest.
 type PatchedRancherHPARequest struct {
-	Description *string                 `json:"description,omitempty"`
-	MaxReplicas *int                    `json:"max_replicas,omitempty"`
-	Metrics     *map[string]interface{} `json:"metrics,omitempty"`
-	MinReplicas *int                    `json:"min_replicas,omitempty"`
-	Name        *string                 `json:"name,omitempty"`
-	Workload    *string                 `json:"workload,omitempty"`
+	Description *string                    `json:"description,omitempty"`
+	MaxReplicas *int                       `json:"max_replicas,omitempty"`
+	Metrics     *[]RancherHPAMetricRequest `json:"metrics,omitempty"`
+	MinReplicas *int                       `json:"min_replicas,omitempty"`
+	Name        *string                    `json:"name,omitempty"`
+	Workload    *string                    `json:"workload,omitempty"`
 }
 
 // PatchedRancherIngressRequest defines model for PatchedRancherIngressRequest.
@@ -43031,22 +43053,13 @@ type PatchedSoftwareCatalogRequest struct {
 
 // PatchedSoftwarePackageRequest defines model for PatchedSoftwarePackageRequest.
 type PatchedSoftwarePackageRequest struct {
-	Catalog *string `json:"catalog,omitempty"`
-
-	// Categories Package categories (e.g., ['bio', 'hpc', 'build-tools'])
-	Categories  *map[string]interface{} `json:"categories,omitempty"`
-	Description *string                 `json:"description,omitempty"`
-	Homepage    *string                 `json:"homepage,omitempty"`
+	Catalog     *string `json:"catalog,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Homepage    *string `json:"homepage,omitempty"`
 
 	// IsExtension Whether this package is an extension of another package
-	IsExtension *bool `json:"is_extension,omitempty"`
-
-	// Licenses Software licenses (e.g., ['GPL-3.0', 'MIT'])
-	Licenses *map[string]interface{} `json:"licenses,omitempty"`
-
-	// Maintainers Package maintainers
-	Maintainers *map[string]interface{} `json:"maintainers,omitempty"`
-	Name        *string                 `json:"name,omitempty"`
+	IsExtension *bool   `json:"is_extension,omitempty"`
+	Name        *string `json:"name,omitempty"`
 }
 
 // PatchedSystemPromptRequest defines model for PatchedSystemPromptRequest.
@@ -45885,11 +45898,9 @@ type Question struct {
 	QuestionOptions *[]QuestionOptions `json:"question_options,omitempty"`
 
 	// QuestionType Type of question and expected answer format
-	QuestionType *QuestionTypeEnum `json:"question_type,omitempty"`
-	Required     *bool             `json:"required,omitempty"`
-
-	// ReviewAnswerValue Answer value that trigger review.
-	ReviewAnswerValue *map[string]interface{} `json:"review_answer_value,omitempty"`
+	QuestionType      *QuestionTypeEnum `json:"question_type,omitempty"`
+	Required          *bool             `json:"required,omitempty"`
+	ReviewAnswerValue interface{}       `json:"review_answer_value,omitempty"`
 
 	// RichTextCharLimit Maximum number of characters allowed in RICH_TEXT type answers. If not set, no limit is enforced.
 	RichTextCharLimit *int `json:"rich_text_char_limit,omitempty"`
@@ -45975,11 +45986,9 @@ type QuestionAdmin struct {
 	QuestionOptions *[]QuestionOptionsAdmin `json:"question_options,omitempty"`
 
 	// QuestionType Type of question and expected answer format
-	QuestionType *QuestionTypeEnum `json:"question_type,omitempty"`
-	Required     *bool             `json:"required,omitempty"`
-
-	// ReviewAnswerValue Answer value that trigger review.
-	ReviewAnswerValue *map[string]interface{} `json:"review_answer_value,omitempty"`
+	QuestionType      *QuestionTypeEnum `json:"question_type,omitempty"`
+	Required          *bool             `json:"required,omitempty"`
+	ReviewAnswerValue interface{}       `json:"review_answer_value,omitempty"`
 
 	// RichTextCharLimit Maximum number of characters allowed in RICH_TEXT type answers. If not set, no limit is enforced.
 	RichTextCharLimit *int `json:"rich_text_char_limit,omitempty"`
@@ -46062,11 +46071,9 @@ type QuestionAdminRequest struct {
 	Order    *int                           `json:"order,omitempty"`
 
 	// QuestionType Type of question and expected answer format
-	QuestionType *QuestionTypeEnum `json:"question_type,omitempty"`
-	Required     *bool             `json:"required,omitempty"`
-
-	// ReviewAnswerValue Answer value that trigger review.
-	ReviewAnswerValue *map[string]interface{} `json:"review_answer_value,omitempty"`
+	QuestionType      *QuestionTypeEnum `json:"question_type,omitempty"`
+	Required          *bool             `json:"required,omitempty"`
+	ReviewAnswerValue interface{}       `json:"review_answer_value,omitempty"`
 
 	// RichTextCharLimit Maximum number of characters allowed in RICH_TEXT type answers. If not set, no limit is enforced.
 	RichTextCharLimit *int `json:"rich_text_char_limit,omitempty"`
@@ -46134,11 +46141,9 @@ type QuestionDependency struct {
 	Operator              *ChecklistOperators `json:"operator,omitempty"`
 	Question              string              `json:"question"`
 	QuestionName          *string             `json:"question_name,omitempty"`
-
-	// RequiredAnswerValue The answer value(s) that make this question visible
-	RequiredAnswerValue map[string]interface{} `json:"required_answer_value"`
-	Url                 *string                `json:"url,omitempty"`
-	Uuid                *openapi_types.UUID    `json:"uuid,omitempty"`
+	RequiredAnswerValue   interface{}         `json:"required_answer_value,omitempty"`
+	Url                   *string             `json:"url,omitempty"`
+	Uuid                  *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // QuestionDependencyInfo defines model for QuestionDependencyInfo.
@@ -46149,12 +46154,10 @@ type QuestionDependencyInfo struct {
 
 // QuestionDependencyRequest defines model for QuestionDependencyRequest.
 type QuestionDependencyRequest struct {
-	DependsOnQuestion string              `json:"depends_on_question"`
-	Operator          *ChecklistOperators `json:"operator,omitempty"`
-	Question          string              `json:"question"`
-
-	// RequiredAnswerValue The answer value(s) that make this question visible
-	RequiredAnswerValue map[string]interface{} `json:"required_answer_value"`
+	DependsOnQuestion   string              `json:"depends_on_question"`
+	Operator            *ChecklistOperators `json:"operator,omitempty"`
+	Question            string              `json:"question"`
+	RequiredAnswerValue interface{}         `json:"required_answer_value,omitempty"`
 }
 
 // QuestionOptions defines model for QuestionOptions.
@@ -46281,11 +46284,9 @@ type QuestionWithAnswerReviewer struct {
 	QuestionOptions *[]interface{}                       `json:"question_options,omitempty"`
 
 	// QuestionType Type of question and expected answer format
-	QuestionType *QuestionTypeEnum `json:"question_type,omitempty"`
-	Required     *bool             `json:"required,omitempty"`
-
-	// ReviewAnswerValue Answer value that trigger review.
-	ReviewAnswerValue *map[string]interface{} `json:"review_answer_value,omitempty"`
+	QuestionType      *QuestionTypeEnum `json:"question_type,omitempty"`
+	Required          *bool             `json:"required,omitempty"`
+	ReviewAnswerValue interface{}       `json:"review_answer_value,omitempty"`
 
 	// RichTextCharLimit Maximum number of characters allowed in RICH_TEXT type answers. If not set, no limit is enforced.
 	RichTextCharLimit *int `json:"rich_text_char_limit,omitempty"`
@@ -46479,20 +46480,18 @@ type RancherCatalogUpdateRequest struct {
 
 // RancherCluster defines model for RancherCluster.
 type RancherCluster struct {
-	AccessUrl *RancherCluster_AccessUrl `json:"access_url,omitempty"`
-	BackendId *string                   `json:"backend_id,omitempty"`
-
-	// Capacity Cluster capacity in the format {'cpu': '10', 'ram': '49125240Ki', 'pods': '330'}
-	Capacity             *map[string]interface{} `json:"capacity,omitempty"`
-	Created              *time.Time              `json:"created,omitempty"`
-	Customer             *string                 `json:"customer,omitempty"`
-	CustomerAbbreviation *string                 `json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                 `json:"customer_name,omitempty"`
-	CustomerNativeName   *string                 `json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID     `json:"customer_uuid,omitempty"`
-	Description          *string                 `json:"description,omitempty"`
-	ErrorMessage         *string                 `json:"error_message,omitempty"`
-	ErrorTraceback       *string                 `json:"error_traceback,omitempty"`
+	AccessUrl            *RancherCluster_AccessUrl `json:"access_url,omitempty"`
+	BackendId            *string                   `json:"backend_id,omitempty"`
+	Capacity             *map[string]int           `json:"capacity,omitempty"`
+	Created              *time.Time                `json:"created,omitempty"`
+	Customer             *string                   `json:"customer,omitempty"`
+	CustomerAbbreviation *string                   `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string                   `json:"customer_name,omitempty"`
+	CustomerNativeName   *string                   `json:"customer_native_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID       `json:"customer_uuid,omitempty"`
+	Description          *string                   `json:"description,omitempty"`
+	ErrorMessage         *string                   `json:"error_message,omitempty"`
+	ErrorTraceback       *string                   `json:"error_traceback,omitempty"`
 
 	// InstallLonghorn Longhorn is a distributed block storage deployed on top of Kubernetes cluster
 	InstallLonghorn *bool `json:"install_longhorn,omitempty"`
@@ -46518,23 +46517,21 @@ type RancherCluster struct {
 	ProjectName                      *string                  `json:"project_name,omitempty"`
 	ProjectUuid                      *openapi_types.UUID      `json:"project_uuid,omitempty"`
 	PublicIps                        *[]RancherNestedPublicIP `json:"public_ips,omitempty"`
-
-	// Requested Cluster requested resources in the format {'cpu': '1450m', 'memory': '884Mi', 'pods': '13'}
-	Requested                   *map[string]interface{} `json:"requested,omitempty"`
-	ResourceType                *string                 `json:"resource_type,omitempty"`
-	RouterIps                   *[]interface{}          `json:"router_ips,omitempty"`
-	RuntimeState                *string                 `json:"runtime_state,omitempty"`
-	ServiceName                 *string                 `json:"service_name,omitempty"`
-	ServiceSettings             *string                 `json:"service_settings,omitempty"`
-	ServiceSettingsErrorMessage *string                 `json:"service_settings_error_message,omitempty"`
-	ServiceSettingsState        *string                 `json:"service_settings_state,omitempty"`
-	ServiceSettingsUuid         *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
-	State                       *CoreStates             `json:"state,omitempty"`
-	Tenant                      *string                 `json:"tenant,omitempty"`
-	TenantUuid                  *openapi_types.UUID     `json:"tenant_uuid,omitempty"`
-	Url                         *string                 `json:"url,omitempty"`
-	Uuid                        *openapi_types.UUID     `json:"uuid,omitempty"`
-	VmProject                   *string                 `json:"vm_project,omitempty"`
+	Requested                        *map[string]int          `json:"requested,omitempty"`
+	ResourceType                     *string                  `json:"resource_type,omitempty"`
+	RouterIps                        *[]interface{}           `json:"router_ips,omitempty"`
+	RuntimeState                     *string                  `json:"runtime_state,omitempty"`
+	ServiceName                      *string                  `json:"service_name,omitempty"`
+	ServiceSettings                  *string                  `json:"service_settings,omitempty"`
+	ServiceSettingsErrorMessage      *string                  `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState             *string                  `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid              *openapi_types.UUID      `json:"service_settings_uuid,omitempty"`
+	State                            *CoreStates              `json:"state,omitempty"`
+	Tenant                           *string                  `json:"tenant,omitempty"`
+	TenantUuid                       *openapi_types.UUID      `json:"tenant_uuid,omitempty"`
+	Url                              *string                  `json:"url,omitempty"`
+	Uuid                             *openapi_types.UUID      `json:"uuid,omitempty"`
+	VmProject                        *string                  `json:"vm_project,omitempty"`
 }
 
 // RancherClusterAccessUrl0 defines model for .
@@ -46662,40 +46659,68 @@ type RancherCreateNodeRequest struct {
 
 // RancherHPA defines model for RancherHPA.
 type RancherHPA struct {
-	Cluster         *string                `json:"cluster,omitempty"`
-	ClusterName     *string                `json:"cluster_name,omitempty"`
-	ClusterUuid     *openapi_types.UUID    `json:"cluster_uuid,omitempty"`
-	Created         *time.Time             `json:"created,omitempty"`
-	CurrentReplicas *int                   `json:"current_replicas,omitempty"`
-	Description     *string                `json:"description,omitempty"`
-	DesiredReplicas *int                   `json:"desired_replicas,omitempty"`
-	MaxReplicas     *int                   `json:"max_replicas,omitempty"`
-	Metrics         map[string]interface{} `json:"metrics"`
-	MinReplicas     *int                   `json:"min_replicas,omitempty"`
-	Modified        *time.Time             `json:"modified,omitempty"`
-	Name            string                 `json:"name"`
-	Namespace       *string                `json:"namespace,omitempty"`
-	NamespaceName   *string                `json:"namespace_name,omitempty"`
-	NamespaceUuid   *openapi_types.UUID    `json:"namespace_uuid,omitempty"`
-	Project         *string                `json:"project,omitempty"`
-	ProjectName     *string                `json:"project_name,omitempty"`
-	ProjectUuid     *openapi_types.UUID    `json:"project_uuid,omitempty"`
-	RuntimeState    *string                `json:"runtime_state,omitempty"`
-	Url             *string                `json:"url,omitempty"`
-	Uuid            *openapi_types.UUID    `json:"uuid,omitempty"`
-	Workload        *string                `json:"workload,omitempty"`
-	WorkloadName    *string                `json:"workload_name,omitempty"`
-	WorkloadUuid    *openapi_types.UUID    `json:"workload_uuid,omitempty"`
+	Cluster         *string             `json:"cluster,omitempty"`
+	ClusterName     *string             `json:"cluster_name,omitempty"`
+	ClusterUuid     *openapi_types.UUID `json:"cluster_uuid,omitempty"`
+	Created         *time.Time          `json:"created,omitempty"`
+	CurrentReplicas *int                `json:"current_replicas,omitempty"`
+	Description     *string             `json:"description,omitempty"`
+	DesiredReplicas *int                `json:"desired_replicas,omitempty"`
+	MaxReplicas     *int                `json:"max_replicas,omitempty"`
+	Metrics         []RancherHPAMetric  `json:"metrics"`
+	MinReplicas     *int                `json:"min_replicas,omitempty"`
+	Modified        *time.Time          `json:"modified,omitempty"`
+	Name            string              `json:"name"`
+	Namespace       *string             `json:"namespace,omitempty"`
+	NamespaceName   *string             `json:"namespace_name,omitempty"`
+	NamespaceUuid   *openapi_types.UUID `json:"namespace_uuid,omitempty"`
+	Project         *string             `json:"project,omitempty"`
+	ProjectName     *string             `json:"project_name,omitempty"`
+	ProjectUuid     *openapi_types.UUID `json:"project_uuid,omitempty"`
+	RuntimeState    *string             `json:"runtime_state,omitempty"`
+	Url             *string             `json:"url,omitempty"`
+	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
+	Workload        *string             `json:"workload,omitempty"`
+	WorkloadName    *string             `json:"workload_name,omitempty"`
+	WorkloadUuid    *openapi_types.UUID `json:"workload_uuid,omitempty"`
+}
+
+// RancherHPAMetric defines model for RancherHPAMetric.
+type RancherHPAMetric struct {
+	Name   string                 `json:"name"`
+	Target RancherHPAMetricTarget `json:"target"`
+	Type   string                 `json:"type"`
+}
+
+// RancherHPAMetricRequest defines model for RancherHPAMetricRequest.
+type RancherHPAMetricRequest struct {
+	Name   string                        `json:"name"`
+	Target RancherHPAMetricTargetRequest `json:"target"`
+	Type   string                        `json:"type"`
+}
+
+// RancherHPAMetricTarget defines model for RancherHPAMetricTarget.
+type RancherHPAMetricTarget struct {
+	AverageValue *string `json:"averageValue,omitempty"`
+	Type         string  `json:"type"`
+	Utilization  *int    `json:"utilization,omitempty"`
+}
+
+// RancherHPAMetricTargetRequest defines model for RancherHPAMetricTargetRequest.
+type RancherHPAMetricTargetRequest struct {
+	AverageValue *string `json:"averageValue,omitempty"`
+	Type         string  `json:"type"`
+	Utilization  *int    `json:"utilization,omitempty"`
 }
 
 // RancherHPARequest defines model for RancherHPARequest.
 type RancherHPARequest struct {
-	Description *string                `json:"description,omitempty"`
-	MaxReplicas *int                   `json:"max_replicas,omitempty"`
-	Metrics     map[string]interface{} `json:"metrics"`
-	MinReplicas *int                   `json:"min_replicas,omitempty"`
-	Name        string                 `json:"name"`
-	Workload    *string                `json:"workload,omitempty"`
+	Description *string                   `json:"description,omitempty"`
+	MaxReplicas *int                      `json:"max_replicas,omitempty"`
+	Metrics     []RancherHPAMetricRequest `json:"metrics"`
+	MinReplicas *int                      `json:"min_replicas,omitempty"`
+	Name        string                    `json:"name"`
+	Workload    *string                   `json:"workload,omitempty"`
 }
 
 // RancherImportYamlRequest defines model for RancherImportYamlRequest.
@@ -48768,15 +48793,13 @@ type ReviewerSuggestion struct {
 	Created       *time.Time          `json:"created,omitempty"`
 
 	// KeywordScore Keyword matching score
-	KeywordScore *float64 `json:"keyword_score,omitempty"`
-
-	// MatchedKeywords Keywords from reviewer's expertise that matched the source text
-	MatchedKeywords *map[string]interface{} `json:"matched_keywords,omitempty"`
-	RejectionReason *string                 `json:"rejection_reason,omitempty"`
-	ReviewedAt      *time.Time              `json:"reviewed_at,omitempty"`
-	ReviewedBy      *string                 `json:"reviewed_by,omitempty"`
-	ReviewedByName  *string                 `json:"reviewed_by_name,omitempty"`
-	Reviewer        *string                 `json:"reviewer,omitempty"`
+	KeywordScore    *float64   `json:"keyword_score,omitempty"`
+	MatchedKeywords *[]string  `json:"matched_keywords,omitempty"`
+	RejectionReason *string    `json:"rejection_reason,omitempty"`
+	ReviewedAt      *time.Time `json:"reviewed_at,omitempty"`
+	ReviewedBy      *string    `json:"reviewed_by,omitempty"`
+	ReviewedByName  *string    `json:"reviewed_by_name,omitempty"`
+	Reviewer        *string    `json:"reviewer,omitempty"`
 
 	// ReviewerBiography Professional biography / summary
 	ReviewerBiography *string              `json:"reviewer_biography,omitempty"`
@@ -48791,12 +48814,10 @@ type ReviewerSuggestion struct {
 	StatusDisplay     *string                       `json:"status_display,omitempty"`
 
 	// TextScore TF-IDF text similarity score
-	TextScore *float64 `json:"text_score,omitempty"`
-
-	// TopMatchingProposals Top proposals with highest affinity: [{uuid, name, slug, affinity}, ...]
-	TopMatchingProposals *map[string]interface{} `json:"top_matching_proposals,omitempty"`
-	Url                  *string                 `json:"url,omitempty"`
-	Uuid                 *openapi_types.UUID     `json:"uuid,omitempty"`
+	TextScore            *float64                                 `json:"text_score,omitempty"`
+	TopMatchingProposals *[]ReviewerSuggestionTopMatchingProposal `json:"top_matching_proposals,omitempty"`
+	Url                  *string                                  `json:"url,omitempty"`
+	Uuid                 *openapi_types.UUID                      `json:"uuid,omitempty"`
 }
 
 // ReviewerSuggestionItem defines model for ReviewerSuggestionItem.
@@ -48819,6 +48840,19 @@ type ReviewerSuggestionRequest struct {
 
 // ReviewerSuggestionStatusEnum defines model for ReviewerSuggestionStatusEnum.
 type ReviewerSuggestionStatusEnum string
+
+// ReviewerSuggestionTopMatchingProposal defines model for ReviewerSuggestionTopMatchingProposal.
+type ReviewerSuggestionTopMatchingProposal struct {
+	Affinity     float64            `json:"affinity"`
+	CoiSeverity  *string            `json:"coi_severity,omitempty"`
+	CoiType      *string            `json:"coi_type,omitempty"`
+	HasCoi       *bool              `json:"has_coi,omitempty"`
+	KeywordScore *float64           `json:"keyword_score,omitempty"`
+	Name         *string            `json:"name,omitempty"`
+	Slug         *string            `json:"slug,omitempty"`
+	TextScore    *float64           `json:"text_score,omitempty"`
+	Uuid         openapi_types.UUID `json:"uuid"`
+}
 
 // RichTextToolbarLevelEnum defines model for RichTextToolbarLevelEnum.
 type RichTextToolbarLevelEnum string
@@ -49622,6 +49656,18 @@ type ScriptDryRunResponse struct {
 	Output string `json:"output"`
 }
 
+// ScriptEnvVar defines model for ScriptEnvVar.
+type ScriptEnvVar struct {
+	Name  *string `json:"name,omitempty"`
+	Value *string `json:"value,omitempty"`
+}
+
+// ScriptEnvVarRequest defines model for ScriptEnvVarRequest.
+type ScriptEnvVarRequest struct {
+	Name  string `json:"name"`
+	Value string `json:"value"`
+}
+
 // Secret defines model for Secret.
 type Secret struct {
 	Id   string `json:"id"`
@@ -50400,8 +50446,7 @@ type SlurmPolicyEvaluateResponse struct {
 
 // SlurmPolicyEvaluationLog defines model for SlurmPolicyEvaluationLog.
 type SlurmPolicyEvaluationLog struct {
-	// ActionsTaken List of actions taken during this evaluation (e.g. ['pause', 'notify'])
-	ActionsTaken *map[string]interface{} `json:"actions_taken,omitempty"`
+	ActionsTaken *[]string `json:"actions_taken,omitempty"`
 
 	// BillingPeriod Billing period identifier, e.g. '2026-Q1'
 	BillingPeriod string `json:"billing_period"`
@@ -50589,28 +50634,22 @@ type SoftwareModule struct {
 
 // SoftwarePackage defines model for SoftwarePackage.
 type SoftwarePackage struct {
-	Catalog            string  `json:"catalog"`
-	CatalogName        *string `json:"catalog_name,omitempty"`
-	CatalogType        *string `json:"catalog_type,omitempty"`
-	CatalogTypeDisplay *string `json:"catalog_type_display,omitempty"`
-	CatalogVersion     *string `json:"catalog_version,omitempty"`
-
-	// Categories Package categories (e.g., ['bio', 'hpc', 'build-tools'])
-	Categories     *map[string]interface{} `json:"categories,omitempty"`
-	Created        *time.Time              `json:"created,omitempty"`
-	Description    *string                 `json:"description,omitempty"`
-	ExtensionCount *int                    `json:"extension_count,omitempty"`
-	Extensions     *[]NestedParentSoftware `json:"extensions,omitempty"`
-	Homepage       *string                 `json:"homepage,omitempty"`
+	Catalog            string                  `json:"catalog"`
+	CatalogName        *string                 `json:"catalog_name,omitempty"`
+	CatalogType        *string                 `json:"catalog_type,omitempty"`
+	CatalogTypeDisplay *string                 `json:"catalog_type_display,omitempty"`
+	CatalogVersion     *string                 `json:"catalog_version,omitempty"`
+	Categories         *[]string               `json:"categories,omitempty"`
+	Created            *time.Time              `json:"created,omitempty"`
+	Description        *string                 `json:"description,omitempty"`
+	ExtensionCount     *int                    `json:"extension_count,omitempty"`
+	Extensions         *[]NestedParentSoftware `json:"extensions,omitempty"`
+	Homepage           *string                 `json:"homepage,omitempty"`
 
 	// IsExtension Whether this package is an extension of another package
-	IsExtension *bool `json:"is_extension,omitempty"`
-
-	// Licenses Software licenses (e.g., ['GPL-3.0', 'MIT'])
-	Licenses *map[string]interface{} `json:"licenses,omitempty"`
-
-	// Maintainers Package maintainers
-	Maintainers     *map[string]interface{}  `json:"maintainers,omitempty"`
+	IsExtension     *bool                    `json:"is_extension,omitempty"`
+	Licenses        *[]string                `json:"licenses,omitempty"`
+	Maintainers     *[]string                `json:"maintainers,omitempty"`
 	Modified        *time.Time               `json:"modified,omitempty"`
 	Name            string                   `json:"name"`
 	ParentSoftwares *[]NestedParentSoftware  `json:"parent_softwares,omitempty"`
@@ -50625,22 +50664,13 @@ type SoftwarePackageOEnum string
 
 // SoftwarePackageRequest defines model for SoftwarePackageRequest.
 type SoftwarePackageRequest struct {
-	Catalog string `json:"catalog"`
-
-	// Categories Package categories (e.g., ['bio', 'hpc', 'build-tools'])
-	Categories  *map[string]interface{} `json:"categories,omitempty"`
-	Description *string                 `json:"description,omitempty"`
-	Homepage    *string                 `json:"homepage,omitempty"`
+	Catalog     string  `json:"catalog"`
+	Description *string `json:"description,omitempty"`
+	Homepage    *string `json:"homepage,omitempty"`
 
 	// IsExtension Whether this package is an extension of another package
-	IsExtension *bool `json:"is_extension,omitempty"`
-
-	// Licenses Software licenses (e.g., ['GPL-3.0', 'MIT'])
-	Licenses *map[string]interface{} `json:"licenses,omitempty"`
-
-	// Maintainers Package maintainers
-	Maintainers *map[string]interface{} `json:"maintainers,omitempty"`
-	Name        string                  `json:"name"`
+	IsExtension *bool  `json:"is_extension,omitempty"`
+	Name        string `json:"name"`
 }
 
 // SoftwareTarget defines model for SoftwareTarget.
