@@ -23079,7 +23079,7 @@ type AgentEventSubscriptionWithConnection struct {
 	Created *time.Time `json:"created,omitempty"`
 
 	// ObservableObjects List of observable object configurations
-	ObservableObjects interface{} `json:"observable_objects,omitempty"`
+	ObservableObjects *map[string]interface{} `json:"observable_objects,omitempty"`
 
 	// RmqConnection RabbitMQ connection status for this subscription
 	RmqConnection *AgentRmqConnection `json:"rmq_connection,omitempty"`
@@ -23093,13 +23093,13 @@ type AgentIdentity struct {
 	ConfigFileContent *string `json:"config_file_content,omitempty"`
 
 	// ConfigFilePath Example: '/etc/waldur/agent.yaml'
-	ConfigFilePath *string             `json:"config_file_path,omitempty"`
-	Created        *time.Time          `json:"created,omitempty"`
-	CreatedBy      *openapi_types.UUID `json:"created_by,omitempty"`
-	Dependencies   interface{}         `json:"dependencies,omitempty"`
-	LastRestarted  *time.Time          `json:"last_restarted,omitempty"`
-	Modified       *time.Time          `json:"modified,omitempty"`
-	Name           string              `json:"name"`
+	ConfigFilePath *string                 `json:"config_file_path,omitempty"`
+	Created        *time.Time              `json:"created,omitempty"`
+	CreatedBy      *openapi_types.UUID     `json:"created_by,omitempty"`
+	Dependencies   *map[string]interface{} `json:"dependencies,omitempty"`
+	LastRestarted  *time.Time              `json:"last_restarted,omitempty"`
+	Modified       *time.Time              `json:"modified,omitempty"`
+	Name           string                  `json:"name"`
 
 	// Offering UUID of an offering with a site-agent compatible type.
 	Offering openapi_types.UUID    `json:"offering"`
@@ -23114,10 +23114,10 @@ type AgentIdentityRequest struct {
 	ConfigFileContent *string `json:"config_file_content,omitempty"`
 
 	// ConfigFilePath Example: '/etc/waldur/agent.yaml'
-	ConfigFilePath *string     `json:"config_file_path,omitempty"`
-	Dependencies   interface{} `json:"dependencies,omitempty"`
-	LastRestarted  *time.Time  `json:"last_restarted,omitempty"`
-	Name           string      `json:"name"`
+	ConfigFilePath *string                 `json:"config_file_path,omitempty"`
+	Dependencies   *map[string]interface{} `json:"dependencies,omitempty"`
+	LastRestarted  *time.Time              `json:"last_restarted,omitempty"`
+	Name           string                  `json:"name"`
 
 	// Offering UUID of an offering with a site-agent compatible type.
 	Offering openapi_types.UUID `json:"offering"`
@@ -23193,7 +23193,7 @@ type AgentService struct {
 	Name         string                  `json:"name"`
 	Processors   *[]NestedAgentProcessor `json:"processors,omitempty"`
 	State        *AgentServiceState      `json:"state,omitempty"`
-	Statistics   interface{}             `json:"statistics,omitempty"`
+	Statistics   *map[string]interface{} `json:"statistics,omitempty"`
 	Url          *string                 `json:"url,omitempty"`
 	Uuid         *openapi_types.UUID     `json:"uuid,omitempty"`
 }
@@ -23213,7 +23213,7 @@ type AgentServiceStateEnum string
 // AgentServiceStatisticsRequest defines model for AgentServiceStatisticsRequest.
 type AgentServiceStatisticsRequest struct {
 	// Statistics Statistics data to be stored for the service
-	Statistics interface{} `json:"statistics"`
+	Statistics map[string]interface{} `json:"statistics"`
 }
 
 // AgentServiceStatus defines model for AgentServiceStatus.
@@ -23523,18 +23523,18 @@ type AnonymousChatFeedbackRequestRequest_Category struct {
 
 // AnonymousChatInteraction defines model for AnonymousChatInteraction.
 type AnonymousChatInteraction struct {
-	ActionTaken         *string                `json:"action_taken,omitempty"`
-	AssistantBlocks     interface{}            `json:"assistant_blocks,omitempty"`
-	Created             *time.Time             `json:"created,omitempty"`
-	Feedback            *AnonymousChatFeedback `json:"feedback,omitempty"`
-	InjectionCategories interface{}            `json:"injection_categories,omitempty"`
+	ActionTaken         *string                 `json:"action_taken,omitempty"`
+	AssistantBlocks     *map[string]interface{} `json:"assistant_blocks,omitempty"`
+	Created             *time.Time              `json:"created,omitempty"`
+	Feedback            *AnonymousChatFeedback  `json:"feedback,omitempty"`
+	InjectionCategories *map[string]interface{} `json:"injection_categories,omitempty"`
 
 	// IpAddress An IPv4 or IPv6 address.
 	IpAddress     *AnonymousChatInteraction_IpAddress `json:"ip_address,omitempty"`
 	IsFlagged     *bool                               `json:"is_flagged,omitempty"`
 	LastActiveAt  *time.Time                          `json:"last_active_at,omitempty"`
-	OfferingUuids interface{}                         `json:"offering_uuids,omitempty"`
-	PiiCategories interface{}                         `json:"pii_categories,omitempty"`
+	OfferingUuids *map[string]interface{}             `json:"offering_uuids,omitempty"`
+	PiiCategories *map[string]interface{}             `json:"pii_categories,omitempty"`
 	ResultCount   *int                                `json:"result_count,omitempty"`
 	SessionId     *string                             `json:"session_id,omitempty"`
 	Severity      *string                             `json:"severity,omitempty"`
@@ -23618,12 +23618,12 @@ type AnonymousChatUserAggregate struct {
 // Answer defines model for Answer.
 type Answer struct {
 	// AnswerData Flexible answer storage for different question types
-	AnswerData          interface{} `json:"answer_data,omitempty"`
-	Created             *time.Time  `json:"created,omitempty"`
-	Modified            *time.Time  `json:"modified,omitempty"`
-	QuestionDescription *string     `json:"question_description,omitempty"`
-	QuestionRequired    *bool       `json:"question_required,omitempty"`
-	QuestionType        *string     `json:"question_type,omitempty"`
+	AnswerData          *map[string]interface{} `json:"answer_data,omitempty"`
+	Created             *time.Time              `json:"created,omitempty"`
+	Modified            *time.Time              `json:"modified,omitempty"`
+	QuestionDescription *string                 `json:"question_description,omitempty"`
+	QuestionRequired    *bool                   `json:"question_required,omitempty"`
+	QuestionType        *string                 `json:"question_type,omitempty"`
 
 	// RequiresReview Internal flag - this answer requires additional review
 	RequiresReview *bool               `json:"requires_review,omitempty"`
@@ -23634,8 +23634,8 @@ type Answer struct {
 
 // AnswerSubmitRequest defines model for AnswerSubmitRequest.
 type AnswerSubmitRequest struct {
-	AnswerData   interface{}        `json:"answer_data"`
-	QuestionUuid openapi_types.UUID `json:"question_uuid"`
+	AnswerData   *map[string]interface{} `json:"answer_data"`
+	QuestionUuid openapi_types.UUID      `json:"question_uuid"`
 }
 
 // AnswerSubmitResponse defines model for AnswerSubmitResponse.
@@ -23829,7 +23829,7 @@ type ArrowConsumptionRecord struct {
 	ProjectUuid      *openapi_types.UUID `json:"project_uuid,omitempty"`
 
 	// RawData Raw consumption data for debugging
-	RawData interface{} `json:"raw_data,omitempty"`
+	RawData *map[string]interface{} `json:"raw_data,omitempty"`
 
 	// ReconciledAt When reconciliation was applied
 	ReconciledAt *time.Time          `json:"reconciled_at,omitempty"`
@@ -24566,9 +24566,9 @@ type AttachmentRequestMultipart struct {
 
 // Attribute defines model for Attribute.
 type Attribute struct {
-	Created *time.Time  `json:"created,omitempty"`
-	Default interface{} `json:"default,omitempty"`
-	Key     string      `json:"key"`
+	Created *time.Time              `json:"created,omitempty"`
+	Default *map[string]interface{} `json:"default,omitempty"`
+	Key     string                  `json:"key"`
 
 	// Required A value must be provided for the attribute.
 	Required     *bool               `json:"required,omitempty"`
@@ -24603,8 +24603,8 @@ type AttributeOptionRequest struct {
 
 // AttributeRequest defines model for AttributeRequest.
 type AttributeRequest struct {
-	Default interface{} `json:"default,omitempty"`
-	Key     string      `json:"key"`
+	Default *map[string]interface{} `json:"default,omitempty"`
+	Key     string                  `json:"key"`
 
 	// Required A value must be provided for the attribute.
 	Required *bool             `json:"required,omitempty"`
@@ -25410,19 +25410,19 @@ type BackendMetadata struct {
 
 // BackendResource defines model for BackendResource.
 type BackendResource struct {
-	BackendId       *string             `json:"backend_id,omitempty"`
-	BackendMetadata interface{}         `json:"backend_metadata,omitempty"`
-	Created         *time.Time          `json:"created,omitempty"`
-	Modified        *time.Time          `json:"modified,omitempty"`
-	Name            string              `json:"name"`
-	Offering        openapi_types.UUID  `json:"offering"`
-	OfferingName    *string             `json:"offering_name,omitempty"`
-	OfferingUrl     *string             `json:"offering_url,omitempty"`
-	Project         openapi_types.UUID  `json:"project"`
-	ProjectName     *string             `json:"project_name,omitempty"`
-	ProjectUrl      *string             `json:"project_url,omitempty"`
-	Url             *string             `json:"url,omitempty"`
-	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
+	BackendId       *string                 `json:"backend_id,omitempty"`
+	BackendMetadata *map[string]interface{} `json:"backend_metadata,omitempty"`
+	Created         *time.Time              `json:"created,omitempty"`
+	Modified        *time.Time              `json:"modified,omitempty"`
+	Name            string                  `json:"name"`
+	Offering        openapi_types.UUID      `json:"offering"`
+	OfferingName    *string                 `json:"offering_name,omitempty"`
+	OfferingUrl     *string                 `json:"offering_url,omitempty"`
+	Project         openapi_types.UUID      `json:"project"`
+	ProjectName     *string                 `json:"project_name,omitempty"`
+	ProjectUrl      *string                 `json:"project_url,omitempty"`
+	Url             *string                 `json:"url,omitempty"`
+	Uuid            *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // BackendResourceImportRequest defines model for BackendResourceImportRequest.
@@ -25463,11 +25463,11 @@ type BackendResourceReqStateEnum string
 
 // BackendResourceRequest defines model for BackendResourceRequest.
 type BackendResourceRequest struct {
-	BackendId       *string            `json:"backend_id,omitempty"`
-	BackendMetadata interface{}        `json:"backend_metadata,omitempty"`
-	Name            string             `json:"name"`
-	Offering        openapi_types.UUID `json:"offering"`
-	Project         openapi_types.UUID `json:"project"`
+	BackendId       *string                 `json:"backend_id,omitempty"`
+	BackendMetadata *map[string]interface{} `json:"backend_metadata,omitempty"`
+	Name            string                  `json:"name"`
+	Offering        openapi_types.UUID      `json:"offering"`
+	Project         openapi_types.UUID      `json:"project"`
 }
 
 // BackendResourceRequestSetErredRequest defines model for BackendResourceRequestSetErredRequest.
@@ -25686,30 +25686,30 @@ type BookingResource struct {
 	OfferingName        *string              `json:"offering_name,omitempty"`
 
 	// OfferingPluginOptions Public data used by specific plugin, such as storage mode for OpenStack.
-	OfferingPluginOptions interface{} `json:"offering_plugin_options,omitempty"`
+	OfferingPluginOptions *map[string]interface{} `json:"offering_plugin_options,omitempty"`
 
 	// OfferingShared Accessible to all customers.
-	OfferingShared     *bool               `json:"offering_shared,omitempty"`
-	OfferingSlug       *string             `json:"offering_slug,omitempty"`
-	OfferingState      *OfferingState      `json:"offering_state,omitempty"`
-	OfferingThumbnail  *string             `json:"offering_thumbnail,omitempty"`
-	OfferingType       *string             `json:"offering_type,omitempty"`
-	OfferingUuid       *openapi_types.UUID `json:"offering_uuid,omitempty"`
-	Options            interface{}         `json:"options,omitempty"`
-	OrderInProgress    *OrderDetails       `json:"order_in_progress,omitempty"`
-	ParentName         *string             `json:"parent_name,omitempty"`
-	ParentOfferingName *string             `json:"parent_offering_name,omitempty"`
-	ParentOfferingSlug *string             `json:"parent_offering_slug,omitempty"`
-	ParentOfferingUuid *openapi_types.UUID `json:"parent_offering_uuid,omitempty"`
-	ParentUuid         *openapi_types.UUID `json:"parent_uuid,omitempty"`
-	Paused             *bool               `json:"paused,omitempty"`
-	Plan               *string             `json:"plan,omitempty"`
-	PlanDescription    *string             `json:"plan_description,omitempty"`
-	PlanName           *string             `json:"plan_name,omitempty"`
-	PlanUnit           *BillingUnit        `json:"plan_unit,omitempty"`
-	PlanUuid           *openapi_types.UUID `json:"plan_uuid,omitempty"`
-	Project            *string             `json:"project,omitempty"`
-	ProjectDescription *string             `json:"project_description,omitempty"`
+	OfferingShared     *bool                   `json:"offering_shared,omitempty"`
+	OfferingSlug       *string                 `json:"offering_slug,omitempty"`
+	OfferingState      *OfferingState          `json:"offering_state,omitempty"`
+	OfferingThumbnail  *string                 `json:"offering_thumbnail,omitempty"`
+	OfferingType       *string                 `json:"offering_type,omitempty"`
+	OfferingUuid       *openapi_types.UUID     `json:"offering_uuid,omitempty"`
+	Options            *map[string]interface{} `json:"options,omitempty"`
+	OrderInProgress    *OrderDetails           `json:"order_in_progress,omitempty"`
+	ParentName         *string                 `json:"parent_name,omitempty"`
+	ParentOfferingName *string                 `json:"parent_offering_name,omitempty"`
+	ParentOfferingSlug *string                 `json:"parent_offering_slug,omitempty"`
+	ParentOfferingUuid *openapi_types.UUID     `json:"parent_offering_uuid,omitempty"`
+	ParentUuid         *openapi_types.UUID     `json:"parent_uuid,omitempty"`
+	Paused             *bool                   `json:"paused,omitempty"`
+	Plan               *string                 `json:"plan,omitempty"`
+	PlanDescription    *string                 `json:"plan_description,omitempty"`
+	PlanName           *string                 `json:"plan_name,omitempty"`
+	PlanUnit           *BillingUnit            `json:"plan_unit,omitempty"`
+	PlanUuid           *openapi_types.UUID     `json:"plan_uuid,omitempty"`
+	Project            *string                 `json:"project,omitempty"`
+	ProjectDescription *string                 `json:"project_description,omitempty"`
 
 	// ProjectEffectiveEndDate Effective project end date including grace period. After this date, resources will be terminated.
 	ProjectEffectiveEndDate *openapi_types.Date `json:"project_effective_end_date,omitempty"`
@@ -25765,8 +25765,8 @@ type BroadcastMessage struct {
 	AuthorFullName *string                    `json:"author_full_name,omitempty"`
 	Body           *string                    `json:"body,omitempty"`
 	Created        *time.Time                 `json:"created,omitempty"`
-	Emails         interface{}                `json:"emails,omitempty"`
-	Query          interface{}                `json:"query,omitempty"`
+	Emails         *map[string]interface{}    `json:"emails,omitempty"`
+	Query          *map[string]interface{}    `json:"query,omitempty"`
 	SendAt         *openapi_types.Date        `json:"send_at,omitempty"`
 	State          *BroadcastMessageStateEnum `json:"state,omitempty"`
 	Subject        *string                    `json:"subject,omitempty"`
@@ -25781,10 +25781,10 @@ type BroadcastMessageOEnum string
 
 // BroadcastMessageRequest defines model for BroadcastMessageRequest.
 type BroadcastMessageRequest struct {
-	Body    string              `json:"body"`
-	Query   interface{}         `json:"query"`
-	SendAt  *openapi_types.Date `json:"send_at,omitempty"`
-	Subject string              `json:"subject"`
+	Body    string                 `json:"body"`
+	Query   map[string]interface{} `json:"query"`
+	SendAt  *openapi_types.Date    `json:"send_at,omitempty"`
+	Subject string                 `json:"subject"`
 }
 
 // BroadcastMessageStateEnum defines model for BroadcastMessageStateEnum.
@@ -25871,7 +25871,7 @@ type COIDisclosureForm struct {
 	HasPersonalRelationships  *bool                             `json:"has_personal_relationships,omitempty"`
 	IsCurrent                 *bool                             `json:"is_current,omitempty"`
 	OtherConflictsDescription *string                           `json:"other_conflicts_description,omitempty"`
-	PersonalRelationships     interface{}                       `json:"personal_relationships,omitempty"`
+	PersonalRelationships     *map[string]interface{}           `json:"personal_relationships,omitempty"`
 	Reviewer                  *string                           `json:"reviewer,omitempty"`
 	ReviewerName              *string                           `json:"reviewer_name,omitempty"`
 	ReviewerUuid              *openapi_types.UUID               `json:"reviewer_uuid,omitempty"`
@@ -25891,13 +25891,13 @@ type COIDisclosureFormRequest struct {
 	Call *string `json:"call,omitempty"`
 
 	// CertificationStatement Legal text they agreed to
-	CertificationStatement    *string     `json:"certification_statement,omitempty"`
-	Certified                 *bool       `json:"certified,omitempty"`
-	HasFinancialInterests     *bool       `json:"has_financial_interests,omitempty"`
-	HasOtherConflicts         *bool       `json:"has_other_conflicts,omitempty"`
-	HasPersonalRelationships  *bool       `json:"has_personal_relationships,omitempty"`
-	OtherConflictsDescription *string     `json:"other_conflicts_description,omitempty"`
-	PersonalRelationships     interface{} `json:"personal_relationships,omitempty"`
+	CertificationStatement    *string                 `json:"certification_statement,omitempty"`
+	Certified                 *bool                   `json:"certified,omitempty"`
+	HasFinancialInterests     *bool                   `json:"has_financial_interests,omitempty"`
+	HasOtherConflicts         *bool                   `json:"has_other_conflicts,omitempty"`
+	HasPersonalRelationships  *bool                   `json:"has_personal_relationships,omitempty"`
+	OtherConflictsDescription *string                 `json:"other_conflicts_description,omitempty"`
+	PersonalRelationships     *map[string]interface{} `json:"personal_relationships,omitempty"`
 
 	// ValidUntil Typically 1 year from certification
 	ValidUntil openapi_types.Date `json:"valid_until"`
@@ -26142,10 +26142,10 @@ type CallComplianceOverviewProposalCompliance struct {
 
 // CallComplianceOverviewProposalReviewTrigger defines model for CallComplianceOverviewProposalReviewTrigger.
 type CallComplianceOverviewProposalReviewTrigger struct {
-	Answer       interface{} `json:"answer"`
-	Operator     string      `json:"operator"`
-	Question     string      `json:"question"`
-	TriggerValue interface{} `json:"trigger_value"`
+	Answer       map[string]interface{} `json:"answer"`
+	Operator     string                 `json:"operator"`
+	Question     string                 `json:"question"`
+	TriggerValue map[string]interface{} `json:"trigger_value"`
 }
 
 // CallComplianceReviewRequest defines model for CallComplianceReviewRequest.
@@ -26246,34 +26246,34 @@ type CallPerformanceStat struct {
 
 // CallResourceTemplate defines model for CallResourceTemplate.
 type CallResourceTemplate struct {
-	Attributes    interface{} `json:"attributes,omitempty"`
-	Created       *time.Time  `json:"created,omitempty"`
-	CreatedBy     *string     `json:"created_by,omitempty"`
-	CreatedByName *string     `json:"created_by_name,omitempty"`
-	Description   *string     `json:"description,omitempty"`
+	Attributes    *map[string]interface{} `json:"attributes,omitempty"`
+	Created       *time.Time              `json:"created,omitempty"`
+	CreatedBy     *string                 `json:"created_by,omitempty"`
+	CreatedByName *string                 `json:"created_by_name,omitempty"`
+	Description   *string                 `json:"description,omitempty"`
 
 	// IsRequired If True, every proposal must include this resource type
-	IsRequired            *bool               `json:"is_required,omitempty"`
-	Limits                interface{}         `json:"limits,omitempty"`
-	Name                  *string             `json:"name,omitempty"`
-	RequestedOffering     *string             `json:"requested_offering,omitempty"`
-	RequestedOfferingName *string             `json:"requested_offering_name,omitempty"`
-	RequestedOfferingPlan *BasePublicPlan     `json:"requested_offering_plan,omitempty"`
-	RequestedOfferingUuid *openapi_types.UUID `json:"requested_offering_uuid,omitempty"`
-	Url                   *string             `json:"url,omitempty"`
-	Uuid                  *openapi_types.UUID `json:"uuid,omitempty"`
+	IsRequired            *bool                   `json:"is_required,omitempty"`
+	Limits                *map[string]interface{} `json:"limits,omitempty"`
+	Name                  *string                 `json:"name,omitempty"`
+	RequestedOffering     *string                 `json:"requested_offering,omitempty"`
+	RequestedOfferingName *string                 `json:"requested_offering_name,omitempty"`
+	RequestedOfferingPlan *BasePublicPlan         `json:"requested_offering_plan,omitempty"`
+	RequestedOfferingUuid *openapi_types.UUID     `json:"requested_offering_uuid,omitempty"`
+	Url                   *string                 `json:"url,omitempty"`
+	Uuid                  *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // CallResourceTemplateRequest defines model for CallResourceTemplateRequest.
 type CallResourceTemplateRequest struct {
-	Attributes  interface{} `json:"attributes,omitempty"`
-	Description *string     `json:"description,omitempty"`
+	Attributes  *map[string]interface{} `json:"attributes,omitempty"`
+	Description *string                 `json:"description,omitempty"`
 
 	// IsRequired If True, every proposal must include this resource type
-	IsRequired        *bool       `json:"is_required,omitempty"`
-	Limits            interface{} `json:"limits,omitempty"`
-	Name              string      `json:"name"`
-	RequestedOffering string      `json:"requested_offering"`
+	IsRequired        *bool                   `json:"is_required,omitempty"`
+	Limits            *map[string]interface{} `json:"limits,omitempty"`
+	Name              string                  `json:"name"`
+	RequestedOffering string                  `json:"requested_offering"`
 }
 
 // CallReviewerPool defines model for CallReviewerPool.
@@ -26550,22 +26550,22 @@ type CascadeConfigRequest struct {
 
 // CascadeStep defines model for CascadeStep.
 type CascadeStep struct {
-	Choices    interface{}         `json:"choices,omitempty"`
-	ChoicesMap interface{}         `json:"choices_map,omitempty"`
-	DependsOn  *string             `json:"depends_on,omitempty"`
-	Label      string              `json:"label"`
-	Name       string              `json:"name"`
-	Type       CascadeStepTypeEnum `json:"type"`
+	Choices    *map[string]interface{} `json:"choices,omitempty"`
+	ChoicesMap *map[string]interface{} `json:"choices_map,omitempty"`
+	DependsOn  *string                 `json:"depends_on,omitempty"`
+	Label      string                  `json:"label"`
+	Name       string                  `json:"name"`
+	Type       CascadeStepTypeEnum     `json:"type"`
 }
 
 // CascadeStepRequest defines model for CascadeStepRequest.
 type CascadeStepRequest struct {
-	Choices    interface{}         `json:"choices,omitempty"`
-	ChoicesMap interface{}         `json:"choices_map,omitempty"`
-	DependsOn  *string             `json:"depends_on,omitempty"`
-	Label      string              `json:"label"`
-	Name       string              `json:"name"`
-	Type       CascadeStepTypeEnum `json:"type"`
+	Choices    *map[string]interface{} `json:"choices,omitempty"`
+	ChoicesMap *map[string]interface{} `json:"choices_map,omitempty"`
+	DependsOn  *string                 `json:"depends_on,omitempty"`
+	Label      string                  `json:"label"`
+	Name       string                  `json:"name"`
+	Type       CascadeStepTypeEnum     `json:"type"`
 }
 
 // CascadeStepTypeEnum defines model for CascadeStepTypeEnum.
@@ -26836,7 +26836,7 @@ type CeleryTask struct {
 	Acknowledged *bool `json:"acknowledged,omitempty"`
 
 	// Args Positional arguments passed to the task
-	Args *[]interface{} `json:"args,omitempty"`
+	Args *[]map[string]interface{} `json:"args,omitempty"`
 
 	// DeliveryInfo Message delivery information
 	DeliveryInfo *map[string]interface{} `json:"delivery_info,omitempty"`
@@ -27659,8 +27659,8 @@ type ConflictOfInterest struct {
 	DetectionMethod     *DetectionMethodEnum `json:"detection_method,omitempty"`
 
 	// EvidenceData Structured evidence: {"papers": [...], "affiliation_overlap": {...}}
-	EvidenceData        interface{} `json:"evidence_data,omitempty"`
-	EvidenceDescription *string     `json:"evidence_description,omitempty"`
+	EvidenceData        *map[string]interface{} `json:"evidence_data,omitempty"`
+	EvidenceDescription *string                 `json:"evidence_description,omitempty"`
 
 	// ManagementPlan If waived, how is it managed
 	ManagementPlan  *string                       `json:"management_plan,omitempty"`
@@ -27970,6 +27970,7 @@ type ConstanceSettings struct {
 	SLURMPOLICYEVALUATIONLOGRETENTIONDAYS            *int                                                             `json:"SLURM_POLICY_EVALUATION_LOG_RETENTION_DAYS,omitempty"`
 	SMAXAFFECTEDRESOURCEFIELD                        *string                                                          `json:"SMAX_AFFECTED_RESOURCE_FIELD,omitempty"`
 	SMAXAPIURL                                       *string                                                          `json:"SMAX_API_URL,omitempty"`
+	SMAXCERTIFICATE                                  *string                                                          `json:"SMAX_CERTIFICATE,omitempty"`
 	SMAXCREATIONSOURCENAME                           *string                                                          `json:"SMAX_CREATION_SOURCE_NAME,omitempty"`
 	SMAXLOGIN                                        *string                                                          `json:"SMAX_LOGIN,omitempty"`
 	SMAXORGANISATIONFIELD                            *string                                                          `json:"SMAX_ORGANISATION_FIELD,omitempty"`
@@ -28332,6 +28333,7 @@ type ConstanceSettingsRequest struct {
 	SLURMPOLICYEVALUATIONLOGRETENTIONDAYS            *int                                                                    `json:"SLURM_POLICY_EVALUATION_LOG_RETENTION_DAYS,omitempty"`
 	SMAXAFFECTEDRESOURCEFIELD                        *string                                                                 `json:"SMAX_AFFECTED_RESOURCE_FIELD,omitempty"`
 	SMAXAPIURL                                       *string                                                                 `json:"SMAX_API_URL,omitempty"`
+	SMAXCERTIFICATE                                  *string                                                                 `json:"SMAX_CERTIFICATE,omitempty"`
 	SMAXCREATIONSOURCENAME                           *string                                                                 `json:"SMAX_CREATION_SOURCE_NAME,omitempty"`
 	SMAXLOGIN                                        *string                                                                 `json:"SMAX_LOGIN,omitempty"`
 	SMAXORGANISATIONFIELD                            *string                                                                 `json:"SMAX_ORGANISATION_FIELD,omitempty"`
@@ -28694,6 +28696,7 @@ type ConstanceSettingsRequestForm struct {
 	SLURMPOLICYEVALUATIONLOGRETENTIONDAYS            *int                                                                        `json:"SLURM_POLICY_EVALUATION_LOG_RETENTION_DAYS,omitempty"`
 	SMAXAFFECTEDRESOURCEFIELD                        *string                                                                     `json:"SMAX_AFFECTED_RESOURCE_FIELD,omitempty"`
 	SMAXAPIURL                                       *string                                                                     `json:"SMAX_API_URL,omitempty"`
+	SMAXCERTIFICATE                                  *string                                                                     `json:"SMAX_CERTIFICATE,omitempty"`
 	SMAXCREATIONSOURCENAME                           *string                                                                     `json:"SMAX_CREATION_SOURCE_NAME,omitempty"`
 	SMAXLOGIN                                        *string                                                                     `json:"SMAX_LOGIN,omitempty"`
 	SMAXORGANISATIONFIELD                            *string                                                                     `json:"SMAX_ORGANISATION_FIELD,omitempty"`
@@ -29056,6 +29059,7 @@ type ConstanceSettingsRequestMultipart struct {
 	SLURMPOLICYEVALUATIONLOGRETENTIONDAYS            *int                                                                             `json:"SLURM_POLICY_EVALUATION_LOG_RETENTION_DAYS,omitempty"`
 	SMAXAFFECTEDRESOURCEFIELD                        *string                                                                          `json:"SMAX_AFFECTED_RESOURCE_FIELD,omitempty"`
 	SMAXAPIURL                                       *string                                                                          `json:"SMAX_API_URL,omitempty"`
+	SMAXCERTIFICATE                                  *string                                                                          `json:"SMAX_CERTIFICATE,omitempty"`
 	SMAXCREATIONSOURCENAME                           *string                                                                          `json:"SMAX_CREATION_SOURCE_NAME,omitempty"`
 	SMAXLOGIN                                        *string                                                                          `json:"SMAX_LOGIN,omitempty"`
 	SMAXORGANISATIONFIELD                            *string                                                                          `json:"SMAX_ORGANISATION_FIELD,omitempty"`
@@ -29732,15 +29736,15 @@ type Customer struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber     *int        `json:"sponsor_number,omitempty"`
-	State             *string     `json:"state,omitempty"`
-	Street            *string     `json:"street,omitempty"`
-	Url               *string     `json:"url,omitempty"`
-	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+	SponsorNumber     *int                    `json:"sponsor_number,omitempty"`
+	State             *string                 `json:"state,omitempty"`
+	Street            *string                 `json:"street,omitempty"`
+	Url               *string                 `json:"url,omitempty"`
+	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
 
 	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
+	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
 
 	// UsersCount Number of users with access to this organization
 	UsersCount *int                `json:"users_count,omitempty"`
@@ -29816,12 +29820,12 @@ type CustomerComponentUsagePolicy struct {
 	HasFired               *bool                                `json:"has_fired,omitempty"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options   interface{}         `json:"options,omitempty"`
-	Scope     string              `json:"scope"`
-	ScopeName *string             `json:"scope_name,omitempty"`
-	ScopeUuid *openapi_types.UUID `json:"scope_uuid,omitempty"`
-	Url       *string             `json:"url,omitempty"`
-	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
+	Options   *map[string]interface{} `json:"options,omitempty"`
+	Scope     string                  `json:"scope"`
+	ScopeName *string                 `json:"scope_name,omitempty"`
+	ScopeUuid *openapi_types.UUID     `json:"scope_uuid,omitempty"`
+	Url       *string                 `json:"url,omitempty"`
+	Uuid      *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // CustomerComponentUsagePolicyRequest defines model for CustomerComponentUsagePolicyRequest.
@@ -29830,8 +29834,8 @@ type CustomerComponentUsagePolicyRequest struct {
 	ComponentLimitsSet []NestedCustomerUsagePolicyComponentRequest `json:"component_limits_set"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options interface{} `json:"options,omitempty"`
-	Scope   string      `json:"scope"`
+	Options *map[string]interface{} `json:"options,omitempty"`
+	Scope   string                  `json:"scope"`
 }
 
 // CustomerContactUpdate defines model for CustomerContactUpdate.
@@ -29926,14 +29930,14 @@ type CustomerEstimatedCostPolicy struct {
 	LimitCost              int                  `json:"limit_cost"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options    interface{}         `json:"options,omitempty"`
-	Period     *PolicyPeriodEnum   `json:"period,omitempty"`
-	PeriodName *string             `json:"period_name,omitempty"`
-	Scope      string              `json:"scope"`
-	ScopeName  *string             `json:"scope_name,omitempty"`
-	ScopeUuid  *openapi_types.UUID `json:"scope_uuid,omitempty"`
-	Url        *string             `json:"url,omitempty"`
-	Uuid       *openapi_types.UUID `json:"uuid,omitempty"`
+	Options    *map[string]interface{} `json:"options,omitempty"`
+	Period     *PolicyPeriodEnum       `json:"period,omitempty"`
+	PeriodName *string                 `json:"period_name,omitempty"`
+	Scope      string                  `json:"scope"`
+	ScopeName  *string                 `json:"scope_name,omitempty"`
+	ScopeUuid  *openapi_types.UUID     `json:"scope_uuid,omitempty"`
+	Url        *string                 `json:"url,omitempty"`
+	Uuid       *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // CustomerEstimatedCostPolicyRequest defines model for CustomerEstimatedCostPolicyRequest.
@@ -29942,9 +29946,9 @@ type CustomerEstimatedCostPolicyRequest struct {
 	LimitCost int    `json:"limit_cost"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options interface{}       `json:"options,omitempty"`
-	Period  *PolicyPeriodEnum `json:"period,omitempty"`
-	Scope   string            `json:"scope"`
+	Options *map[string]interface{} `json:"options,omitempty"`
+	Period  *PolicyPeriodEnum       `json:"period,omitempty"`
+	Scope   string                  `json:"scope"`
 }
 
 // CustomerFieldEnum defines model for CustomerFieldEnum.
@@ -30116,14 +30120,14 @@ type CustomerRequest struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber     *int        `json:"sponsor_number,omitempty"`
-	State             *string     `json:"state,omitempty"`
-	Street            *string     `json:"street,omitempty"`
-	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+	SponsorNumber     *int                    `json:"sponsor_number,omitempty"`
+	State             *string                 `json:"state,omitempty"`
+	Street            *string                 `json:"street,omitempty"`
+	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
 
 	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
+	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -30193,14 +30197,14 @@ type CustomerRequestForm struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber     *int        `json:"sponsor_number,omitempty"`
-	State             *string     `json:"state,omitempty"`
-	Street            *string     `json:"street,omitempty"`
-	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+	SponsorNumber     *int                    `json:"sponsor_number,omitempty"`
+	State             *string                 `json:"state,omitempty"`
+	Street            *string                 `json:"street,omitempty"`
+	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
 
 	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
+	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -30270,14 +30274,14 @@ type CustomerRequestMultipart struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber     *int        `json:"sponsor_number,omitempty"`
-	State             *string     `json:"state,omitempty"`
-	Street            *string     `json:"street,omitempty"`
-	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+	SponsorNumber     *int                    `json:"sponsor_number,omitempty"`
+	State             *string                 `json:"state,omitempty"`
+	Street            *string                 `json:"street,omitempty"`
+	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
 
 	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
+	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -31051,23 +31055,23 @@ type DiskFormatEnum string
 
 // DryRun defines model for DryRun.
 type DryRun struct {
-	Created         *time.Time          `json:"created,omitempty"`
-	GetStateDisplay *string             `json:"get_state_display,omitempty"`
-	OrderAttributes interface{}         `json:"order_attributes,omitempty"`
-	OrderOffering   *string             `json:"order_offering,omitempty"`
-	OrderType       *string             `json:"order_type,omitempty"`
-	Output          *string             `json:"output,omitempty"`
-	State           *DryRunStateEnum    `json:"state,omitempty"`
-	Url             *string             `json:"url,omitempty"`
-	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
+	Created         *time.Time              `json:"created,omitempty"`
+	GetStateDisplay *string                 `json:"get_state_display,omitempty"`
+	OrderAttributes *map[string]interface{} `json:"order_attributes,omitempty"`
+	OrderOffering   *string                 `json:"order_offering,omitempty"`
+	OrderType       *string                 `json:"order_type,omitempty"`
+	Output          *string                 `json:"output,omitempty"`
+	State           *DryRunStateEnum        `json:"state,omitempty"`
+	Url             *string                 `json:"url,omitempty"`
+	Uuid            *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // DryRunRequest defines model for DryRunRequest.
 type DryRunRequest struct {
-	Attributes    interface{}     `json:"attributes,omitempty"`
-	OrderOffering *string         `json:"order_offering,omitempty"`
-	Plan          *string         `json:"plan,omitempty"`
-	Type          *DryRunTypeEnum `json:"type,omitempty"`
+	Attributes    *map[string]interface{} `json:"attributes,omitempty"`
+	OrderOffering *string                 `json:"order_offering,omitempty"`
+	Plan          *string                 `json:"plan,omitempty"`
+	Type          *DryRunTypeEnum         `json:"type,omitempty"`
 }
 
 // DryRunStateEnum defines model for DryRunStateEnum.
@@ -31241,11 +31245,11 @@ type EthertypeEnum string
 
 // Event defines model for Event.
 type Event struct {
-	Context   interface{}         `json:"context,omitempty"`
-	Created   *time.Time          `json:"created,omitempty"`
-	EventType *string             `json:"event_type,omitempty"`
-	Message   *string             `json:"message,omitempty"`
-	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
+	Context   *map[string]interface{} `json:"context,omitempty"`
+	Created   *time.Time              `json:"created,omitempty"`
+	EventType *string                 `json:"event_type,omitempty"`
+	Message   *string                 `json:"message,omitempty"`
+	Uuid      *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // EventCount defines model for EventCount.
@@ -31282,7 +31286,7 @@ type EventSubscription struct {
 	Modified    *time.Time `json:"modified,omitempty"`
 
 	// ObservableObjects List of objects to observe. Each item must have 'object_type' (one of: order, user_role, resource, offering_user, importable_resources, service_account, course_account, resource_periodic_limits) and optionally 'object_id' (integer). Example: [{"object_type": "resource"}, {"object_type": "order", "object_id": 123}]
-	ObservableObjects interface{} `json:"observable_objects,omitempty"`
+	ObservableObjects *map[string]interface{} `json:"observable_objects,omitempty"`
 
 	// SourceIp An IPv4 or IPv6 address.
 	SourceIp     *EventSubscription_SourceIp `json:"source_ip,omitempty"`
@@ -31351,7 +31355,7 @@ type EventSubscriptionRequest struct {
 	Description *string `json:"description,omitempty"`
 
 	// ObservableObjects List of objects to observe. Each item must have 'object_type' (one of: order, user_role, resource, offering_user, importable_resources, service_account, course_account, resource_periodic_limits) and optionally 'object_id' (integer). Example: [{"object_type": "resource"}, {"object_type": "order", "object_id": 123}]
-	ObservableObjects interface{} `json:"observable_objects,omitempty"`
+	ObservableObjects *map[string]interface{} `json:"observable_objects,omitempty"`
 }
 
 // EventTypesEnum defines model for EventTypesEnum.
@@ -31456,46 +31460,46 @@ type ExportFileDataRequest struct {
 
 // ExportOfferingData defines model for ExportOfferingData.
 type ExportOfferingData struct {
-	AccessUrl        string      `json:"access_url"`
-	Attributes       interface{} `json:"attributes,omitempty"`
-	Billable         bool        `json:"billable"`
-	CategoryName     *string     `json:"category_name"`
-	Country          string      `json:"country"`
-	Description      string      `json:"description"`
-	FullDescription  string      `json:"full_description"`
-	GettingStarted   string      `json:"getting_started"`
-	IntegrationGuide string      `json:"integration_guide"`
-	Latitude         *float64    `json:"latitude"`
-	Longitude        *float64    `json:"longitude"`
-	Name             string      `json:"name"`
-	Options          interface{} `json:"options,omitempty"`
-	PausedReason     string      `json:"paused_reason"`
-	Shared           bool        `json:"shared"`
-	State            string      `json:"state"`
-	Type             string      `json:"type"`
-	VendorDetails    string      `json:"vendor_details"`
+	AccessUrl        string                  `json:"access_url"`
+	Attributes       *map[string]interface{} `json:"attributes,omitempty"`
+	Billable         bool                    `json:"billable"`
+	CategoryName     *string                 `json:"category_name"`
+	Country          string                  `json:"country"`
+	Description      string                  `json:"description"`
+	FullDescription  string                  `json:"full_description"`
+	GettingStarted   string                  `json:"getting_started"`
+	IntegrationGuide string                  `json:"integration_guide"`
+	Latitude         *float64                `json:"latitude"`
+	Longitude        *float64                `json:"longitude"`
+	Name             string                  `json:"name"`
+	Options          *map[string]interface{} `json:"options,omitempty"`
+	PausedReason     string                  `json:"paused_reason"`
+	Shared           bool                    `json:"shared"`
+	State            string                  `json:"state"`
+	Type             string                  `json:"type"`
+	VendorDetails    string                  `json:"vendor_details"`
 }
 
 // ExportOfferingDataRequest defines model for ExportOfferingDataRequest.
 type ExportOfferingDataRequest struct {
-	AccessUrl        string      `json:"access_url"`
-	Attributes       interface{} `json:"attributes,omitempty"`
-	Billable         bool        `json:"billable"`
-	CategoryName     *string     `json:"category_name"`
-	Country          string      `json:"country"`
-	Description      string      `json:"description"`
-	FullDescription  string      `json:"full_description"`
-	GettingStarted   string      `json:"getting_started"`
-	IntegrationGuide string      `json:"integration_guide"`
-	Latitude         *float64    `json:"latitude"`
-	Longitude        *float64    `json:"longitude"`
-	Name             string      `json:"name"`
-	Options          interface{} `json:"options,omitempty"`
-	PausedReason     string      `json:"paused_reason"`
-	Shared           bool        `json:"shared"`
-	State            string      `json:"state"`
-	Type             string      `json:"type"`
-	VendorDetails    string      `json:"vendor_details"`
+	AccessUrl        string                  `json:"access_url"`
+	Attributes       *map[string]interface{} `json:"attributes,omitempty"`
+	Billable         bool                    `json:"billable"`
+	CategoryName     *string                 `json:"category_name"`
+	Country          string                  `json:"country"`
+	Description      string                  `json:"description"`
+	FullDescription  string                  `json:"full_description"`
+	GettingStarted   string                  `json:"getting_started"`
+	IntegrationGuide string                  `json:"integration_guide"`
+	Latitude         *float64                `json:"latitude"`
+	Longitude        *float64                `json:"longitude"`
+	Name             string                  `json:"name"`
+	Options          *map[string]interface{} `json:"options,omitempty"`
+	PausedReason     string                  `json:"paused_reason"`
+	Shared           bool                    `json:"shared"`
+	State            string                  `json:"state"`
+	Type             string                  `json:"type"`
+	VendorDetails    string                  `json:"vendor_details"`
 }
 
 // ExportOrganizationGroupData defines model for ExportOrganizationGroupData.
@@ -31694,12 +31698,12 @@ type ExternalNetworkSubnetResponse struct {
 
 // ExternalSubnet defines model for ExternalSubnet.
 type ExternalSubnet struct {
-	AllocationPools interface{} `json:"allocation_pools,omitempty"`
-	BackendId       *string     `json:"backend_id,omitempty"`
-	Cidr            *string     `json:"cidr,omitempty"`
-	Description     *string     `json:"description,omitempty"`
-	DnsNameservers  interface{} `json:"dns_nameservers,omitempty"`
-	EnableDhcp      *bool       `json:"enable_dhcp,omitempty"`
+	AllocationPools *map[string]interface{} `json:"allocation_pools,omitempty"`
+	BackendId       *string                 `json:"backend_id,omitempty"`
+	Cidr            *string                 `json:"cidr,omitempty"`
+	Description     *string                 `json:"description,omitempty"`
+	DnsNameservers  *map[string]interface{} `json:"dns_nameservers,omitempty"`
+	EnableDhcp      *bool                   `json:"enable_dhcp,omitempty"`
 
 	// GatewayIp An IPv4 or IPv6 address.
 	GatewayIp *ExternalSubnet_GatewayIp `json:"gateway_ip,omitempty"`
@@ -31843,12 +31847,12 @@ type FetchLicenseInfoResponse struct {
 
 // FilterCheckResult defines model for FilterCheckResult.
 type FilterCheckResult struct {
-	Configured bool        `json:"configured"`
-	Matched    bool        `json:"matched"`
-	Name       string      `json:"name"`
-	Reason     string      `json:"reason"`
-	RuleValue  interface{} `json:"rule_value,omitempty"`
-	UserValue  interface{} `json:"user_value,omitempty"`
+	Configured bool                    `json:"configured"`
+	Matched    bool                    `json:"matched"`
+	Name       string                  `json:"name"`
+	Reason     string                  `json:"reason"`
+	RuleValue  *map[string]interface{} `json:"rule_value,omitempty"`
+	UserValue  *map[string]interface{} `json:"user_value,omitempty"`
 }
 
 // FinancialReport defines model for FinancialReport.
@@ -31902,7 +31906,7 @@ type FirecrestJob struct {
 	Project                     *string                 `json:"project,omitempty"`
 	ProjectName                 *string                 `json:"project_name,omitempty"`
 	ProjectUuid                 *openapi_types.UUID     `json:"project_uuid,omitempty"`
-	Report                      interface{}             `json:"report,omitempty"`
+	Report                      *map[string]interface{} `json:"report,omitempty"`
 	ResourceType                *string                 `json:"resource_type,omitempty"`
 	RuntimeState                *string                 `json:"runtime_state,omitempty"`
 	ServiceName                 *string                 `json:"service_name,omitempty"`
@@ -32194,26 +32198,26 @@ type GoogleCalendar struct {
 // GoogleCredentials defines model for GoogleCredentials.
 type GoogleCredentials struct {
 	// AllowedDomains List of allowed domains for offering endpoints. Only staff can modify this field.
-	AllowedDomains       interface{}          `json:"allowed_domains,omitempty"`
-	CalendarRefreshToken *string              `json:"calendar_refresh_token,omitempty"`
-	CalendarToken        *string              `json:"calendar_token,omitempty"`
-	Created              *time.Time           `json:"created,omitempty"`
-	Customer             *string              `json:"customer,omitempty"`
-	CustomerAbbreviation *string              `json:"customer_abbreviation,omitempty"`
-	CustomerCountry      *string              `json:"customer_country,omitempty"`
-	CustomerImage        *string              `json:"customer_image,omitempty"`
-	CustomerName         *string              `json:"customer_name,omitempty"`
-	CustomerNativeName   *string              `json:"customer_native_name,omitempty"`
-	CustomerSlug         *string              `json:"customer_slug,omitempty"`
-	CustomerUuid         *openapi_types.UUID  `json:"customer_uuid,omitempty"`
-	Description          *string              `json:"description,omitempty"`
-	EnableNotifications  *bool                `json:"enable_notifications,omitempty"`
-	GoogleAuthUrl        *string              `json:"google_auth_url,omitempty"`
-	Image                *string              `json:"image,omitempty"`
-	OfferingCount        *int                 `json:"offering_count,omitempty"`
-	OrganizationGroups   *[]OrganizationGroup `json:"organization_groups,omitempty"`
-	Url                  *string              `json:"url,omitempty"`
-	Uuid                 *openapi_types.UUID  `json:"uuid,omitempty"`
+	AllowedDomains       *map[string]interface{} `json:"allowed_domains,omitempty"`
+	CalendarRefreshToken *string                 `json:"calendar_refresh_token,omitempty"`
+	CalendarToken        *string                 `json:"calendar_token,omitempty"`
+	Created              *time.Time              `json:"created,omitempty"`
+	Customer             *string                 `json:"customer,omitempty"`
+	CustomerAbbreviation *string                 `json:"customer_abbreviation,omitempty"`
+	CustomerCountry      *string                 `json:"customer_country,omitempty"`
+	CustomerImage        *string                 `json:"customer_image,omitempty"`
+	CustomerName         *string                 `json:"customer_name,omitempty"`
+	CustomerNativeName   *string                 `json:"customer_native_name,omitempty"`
+	CustomerSlug         *string                 `json:"customer_slug,omitempty"`
+	CustomerUuid         *openapi_types.UUID     `json:"customer_uuid,omitempty"`
+	Description          *string                 `json:"description,omitempty"`
+	EnableNotifications  *bool                   `json:"enable_notifications,omitempty"`
+	GoogleAuthUrl        *string                 `json:"google_auth_url,omitempty"`
+	Image                *string                 `json:"image,omitempty"`
+	OfferingCount        *int                    `json:"offering_count,omitempty"`
+	OrganizationGroups   *[]OrganizationGroup    `json:"organization_groups,omitempty"`
+	Url                  *string                 `json:"url,omitempty"`
+	Uuid                 *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // GoogleCredentialsFieldEnum defines model for GoogleCredentialsFieldEnum.
@@ -32284,14 +32288,14 @@ type GroupInvitation struct {
 	ScopeType *string `json:"scope_type,omitempty"`
 
 	// ScopeUuid UUID of the invitation scope (Customer or Project)
-	ScopeUuid         *openapi_types.UUID `json:"scope_uuid,omitempty"`
-	Url               *string             `json:"url,omitempty"`
-	UserAffiliations  interface{}         `json:"user_affiliations,omitempty"`
-	UserEmailPatterns interface{}         `json:"user_email_patterns,omitempty"`
+	ScopeUuid         *openapi_types.UUID     `json:"scope_uuid,omitempty"`
+	Url               *string                 `json:"url,omitempty"`
+	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
 
 	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources interface{}         `json:"user_identity_sources,omitempty"`
-	Uuid                *openapi_types.UUID `json:"uuid,omitempty"`
+	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
+	Uuid                *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // GroupInvitationRequest defines model for GroupInvitationRequest.
@@ -32324,12 +32328,12 @@ type GroupInvitationRequest struct {
 	Role openapi_types.UUID `json:"role"`
 
 	// Scope URL of the scope (Customer or Project) for this invitation
-	Scope             *string     `json:"scope,omitempty"`
-	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+	Scope             *string                 `json:"scope,omitempty"`
+	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
 
 	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
+	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
 }
 
 // GroupInvitationUpdate defines model for GroupInvitationUpdate.
@@ -32362,12 +32366,12 @@ type GroupInvitationUpdate struct {
 	Role *openapi_types.UUID `json:"role,omitempty"`
 
 	// Scope URL of the scope (Customer or Project) for this invitation
-	Scope             *string     `json:"scope,omitempty"`
-	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+	Scope             *string                 `json:"scope,omitempty"`
+	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
 
 	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
+	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
 }
 
 // GroupInvitationUpdateRequest defines model for GroupInvitationUpdateRequest.
@@ -32400,12 +32404,12 @@ type GroupInvitationUpdateRequest struct {
 	Role *openapi_types.UUID `json:"role,omitempty"`
 
 	// Scope URL of the scope (Customer or Project) for this invitation
-	Scope             *string     `json:"scope,omitempty"`
-	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+	Scope             *string                 `json:"scope,omitempty"`
+	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
 
 	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
+	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
 }
 
 // GrowthPeriodEnum defines model for GrowthPeriodEnum.
@@ -32611,10 +32615,10 @@ type IdentityManager struct {
 // IdentityProvider defines model for IdentityProvider.
 type IdentityProvider struct {
 	// AllowedRedirects List of allowed redirect URLs for OAuth authentication. URLs must be exact matches (origin only: scheme + domain + port). HTTPS required except for localhost. No wildcards, paths, query params, or fragments. Example: ["https://portal1.example.com", "https://portal2.example.com:8443"]. If empty, falls back to HOMEPORT_URL setting.
-	AllowedRedirects interface{} `json:"allowed_redirects,omitempty"`
+	AllowedRedirects *map[string]interface{} `json:"allowed_redirects,omitempty"`
 
 	// AttributeMapping A JSON object mapping Waldur User model fields to OIDC claims. Example: {"first_name": "given_name", "last_name": "family_name", "email": "email"}
-	AttributeMapping interface{} `json:"attribute_mapping,omitempty"`
+	AttributeMapping *map[string]interface{} `json:"attribute_mapping,omitempty"`
 
 	// AuthUrl The endpoint for authorization request flow.
 	AuthUrl *string `json:"auth_url,omitempty"`
@@ -32644,9 +32648,9 @@ type IdentityProvider struct {
 	LogoutUrl *string `json:"logout_url,omitempty"`
 
 	// ManagementUrl The endpoint for user details management.
-	ManagementUrl   *string     `json:"management_url,omitempty"`
-	ProtectedFields interface{} `json:"protected_fields,omitempty"`
-	Provider        string      `json:"provider"`
+	ManagementUrl   *string                 `json:"management_url,omitempty"`
+	ProtectedFields *map[string]interface{} `json:"protected_fields,omitempty"`
+	Provider        string                  `json:"provider"`
 
 	// TokenUrl The endpoint for obtaining auth token.
 	TokenUrl *string `json:"token_url,omitempty"`
@@ -32665,10 +32669,10 @@ type IdentityProvider struct {
 // IdentityProviderRequest defines model for IdentityProviderRequest.
 type IdentityProviderRequest struct {
 	// AllowedRedirects List of allowed redirect URLs for OAuth authentication. URLs must be exact matches (origin only: scheme + domain + port). HTTPS required except for localhost. No wildcards, paths, query params, or fragments. Example: ["https://portal1.example.com", "https://portal2.example.com:8443"]. If empty, falls back to HOMEPORT_URL setting.
-	AllowedRedirects interface{} `json:"allowed_redirects,omitempty"`
+	AllowedRedirects *map[string]interface{} `json:"allowed_redirects,omitempty"`
 
 	// AttributeMapping A JSON object mapping Waldur User model fields to OIDC claims. Example: {"first_name": "given_name", "last_name": "family_name", "email": "email"}
-	AttributeMapping interface{} `json:"attribute_mapping,omitempty"`
+	AttributeMapping *map[string]interface{} `json:"attribute_mapping,omitempty"`
 
 	// ClientId ID of application used for OAuth authentication.
 	ClientId string `json:"client_id"`
@@ -32692,9 +32696,9 @@ type IdentityProviderRequest struct {
 	Label string `json:"label"`
 
 	// ManagementUrl The endpoint for user details management.
-	ManagementUrl   *string     `json:"management_url,omitempty"`
-	ProtectedFields interface{} `json:"protected_fields,omitempty"`
-	Provider        string      `json:"provider"`
+	ManagementUrl   *string                 `json:"management_url,omitempty"`
+	ProtectedFields *map[string]interface{} `json:"protected_fields,omitempty"`
+	Provider        string                  `json:"provider"`
 
 	// UserClaim The OIDC claim from the userinfo endpoint to be used as the value for the lookup field.
 	UserClaim *string `json:"user_claim,omitempty"`
@@ -32773,7 +32777,7 @@ type ImportPublicationsSourceEnum string
 
 // ImportResourceRequest defines model for ImportResourceRequest.
 type ImportResourceRequest struct {
-	AdditionalDetails interface{} `json:"additional_details,omitempty"`
+	AdditionalDetails *map[string]interface{} `json:"additional_details,omitempty"`
 
 	// BackendId Backend identifier of the resource
 	BackendId string              `json:"backend_id"`
@@ -33193,7 +33197,7 @@ type InvoiceItemDetail struct {
 	CustomerUuid *openapi_types.UUID `json:"customer_uuid,omitempty"`
 
 	// Details Stores data about scope
-	Details interface{} `json:"details,omitempty"`
+	Details *map[string]interface{} `json:"details,omitempty"`
 
 	// End Date and time when item usage has ended.
 	End     *time.Time `json:"end,omitempty"`
@@ -33367,26 +33371,26 @@ type Issue struct {
 	Priority  *string `json:"priority,omitempty"`
 
 	// ProcessingLog Internal processing log for debugging order lifecycle events. Visible only to staff.
-	ProcessingLog     interface{}         `json:"processing_log,omitempty"`
-	Project           *string             `json:"project,omitempty"`
-	ProjectName       *string             `json:"project_name,omitempty"`
-	ProjectUuid       *openapi_types.UUID `json:"project_uuid,omitempty"`
-	RemoteId          *string             `json:"remote_id,omitempty"`
-	Reporter          *string             `json:"reporter,omitempty"`
-	ReporterName      *string             `json:"reporter_name,omitempty"`
-	ReporterUuid      *openapi_types.UUID `json:"reporter_uuid,omitempty"`
-	Resolution        *string             `json:"resolution,omitempty"`
-	Resolved          *bool               `json:"resolved,omitempty"`
-	Resource          *string             `json:"resource,omitempty"`
-	ResourceName      *string             `json:"resource_name,omitempty"`
-	ResourceType      *string             `json:"resource_type,omitempty"`
-	Status            *string             `json:"status,omitempty"`
-	Summary           string              `json:"summary"`
-	Template          *string             `json:"template,omitempty"`
-	Type              string              `json:"type"`
-	UpdateIsAvailable *bool               `json:"update_is_available,omitempty"`
-	Url               *string             `json:"url,omitempty"`
-	Uuid              *openapi_types.UUID `json:"uuid,omitempty"`
+	ProcessingLog     *map[string]interface{} `json:"processing_log,omitempty"`
+	Project           *string                 `json:"project,omitempty"`
+	ProjectName       *string                 `json:"project_name,omitempty"`
+	ProjectUuid       *openapi_types.UUID     `json:"project_uuid,omitempty"`
+	RemoteId          *string                 `json:"remote_id,omitempty"`
+	Reporter          *string                 `json:"reporter,omitempty"`
+	ReporterName      *string                 `json:"reporter_name,omitempty"`
+	ReporterUuid      *openapi_types.UUID     `json:"reporter_uuid,omitempty"`
+	Resolution        *string                 `json:"resolution,omitempty"`
+	Resolved          *bool                   `json:"resolved,omitempty"`
+	Resource          *string                 `json:"resource,omitempty"`
+	ResourceName      *string                 `json:"resource_name,omitempty"`
+	ResourceType      *string                 `json:"resource_type,omitempty"`
+	Status            *string                 `json:"status,omitempty"`
+	Summary           string                  `json:"summary"`
+	Template          *string                 `json:"template,omitempty"`
+	Type              string                  `json:"type"`
+	UpdateIsAvailable *bool                   `json:"update_is_available,omitempty"`
+	Url               *string                 `json:"url,omitempty"`
+	Uuid              *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // IssueOEnum defines model for IssueOEnum.
@@ -34002,8 +34006,8 @@ type ManagedProject struct {
 	Destination string `json:"destination"`
 
 	// Details Details of the project as provided by the remote OpenPortal.
-	Details    interface{} `json:"details,omitempty"`
-	Identifier string      `json:"identifier"`
+	Details    *map[string]interface{} `json:"details,omitempty"`
+	Identifier string                  `json:"identifier"`
 
 	// LocalIdentifier The local project identifier in this portal.
 	LocalIdentifier     *string          `json:"local_identifier,omitempty"`
@@ -34219,20 +34223,20 @@ type MarketplaceProviderCustomerProjectOEnum string
 // MarketplaceServiceProviderUser defines model for MarketplaceServiceProviderUser.
 type MarketplaceServiceProviderUser struct {
 	// ActiveIsds List of ISDs that have asserted this user exists. User is deactivated when this becomes empty.
-	ActiveIsds interface{} `json:"active_isds,omitempty"`
-	Address    *string     `json:"address,omitempty"`
+	ActiveIsds *map[string]interface{} `json:"active_isds,omitempty"`
+	Address    *string                 `json:"address,omitempty"`
 
 	// Affiliations Person's affiliation within organization such as student, faculty, staff.
-	Affiliations       interface{}         `json:"affiliations,omitempty"`
-	BirthDate          *openapi_types.Date `json:"birth_date,omitempty"`
-	CivilNumber        *string             `json:"civil_number,omitempty"`
-	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
+	Affiliations       *map[string]interface{} `json:"affiliations,omitempty"`
+	BirthDate          *openapi_types.Date     `json:"birth_date,omitempty"`
+	CivilNumber        *string                 `json:"civil_number,omitempty"`
+	CountryOfResidence *string                 `json:"country_of_residence,omitempty"`
 
 	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
-	EdupersonAssurance interface{}          `json:"eduperson_assurance,omitempty"`
-	Email              *openapi_types.Email `json:"email,omitempty"`
-	FirstName          *string              `json:"first_name,omitempty"`
-	FullName           *string              `json:"full_name,omitempty"`
+	EdupersonAssurance *map[string]interface{} `json:"eduperson_assurance,omitempty"`
+	Email              *openapi_types.Email    `json:"email,omitempty"`
+	FirstName          *string                 `json:"first_name,omitempty"`
+	FullName           *string                 `json:"full_name,omitempty"`
 
 	// Gender User's gender (male, female, or unknown)
 	Gender *MarketplaceServiceProviderUser_Gender `json:"gender,omitempty"`
@@ -34246,7 +34250,7 @@ type MarketplaceServiceProviderUser struct {
 	LastName *string `json:"last_name,omitempty"`
 
 	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
-	Nationalities interface{} `json:"nationalities,omitempty"`
+	Nationalities *map[string]interface{} `json:"nationalities,omitempty"`
 
 	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
 	Nationality         *string `json:"nationality,omitempty"`
@@ -35002,7 +35006,7 @@ type MergedSecretOptions struct {
 	DnsNameservers *[]string `json:"dns_nameservers,omitempty"`
 
 	// Environ Script environment variables
-	Environ interface{} `json:"environ,omitempty"`
+	Environ *map[string]interface{} `json:"environ,omitempty"`
 
 	// HeappeClusterPassword HEAppE cluster password
 	HeappeClusterPassword *string `json:"heappe_cluster_password,omitempty"`
@@ -35119,7 +35123,7 @@ type MergedSecretOptionsRequest struct {
 	DnsNameservers *[]string `json:"dns_nameservers,omitempty"`
 
 	// Environ Script environment variables
-	Environ interface{} `json:"environ,omitempty"`
+	Environ *map[string]interface{} `json:"environ,omitempty"`
 
 	// HeappeClusterPassword HEAppE cluster password
 	HeappeClusterPassword *string `json:"heappe_cluster_password,omitempty"`
@@ -35224,19 +35228,19 @@ type Message struct {
 	FeedbackScore *bool `json:"feedback_score,omitempty"`
 
 	// FeedbackSubmittedAt Timestamp of the most recent feedback submission; overwritten on resubmit.
-	FeedbackSubmittedAt *time.Time             `json:"feedback_submitted_at,omitempty"`
-	InjectionCategories interface{}            `json:"injection_categories,omitempty"`
-	InputTokens         *int                   `json:"input_tokens,omitempty"`
-	IsFlagged           *bool                  `json:"is_flagged,omitempty"`
-	OutputTokens        *int                   `json:"output_tokens,omitempty"`
-	PiiCategories       interface{}            `json:"pii_categories,omitempty"`
-	Replaces            *openapi_types.UUID    `json:"replaces,omitempty"`
-	Role                *MessageRoleEnum       `json:"role,omitempty"`
-	SequenceIndex       *int                   `json:"sequence_index,omitempty"`
-	Severity            *InjectionSeverityEnum `json:"severity,omitempty"`
-	Thread              *openapi_types.UUID    `json:"thread,omitempty"`
-	Uuid                *openapi_types.UUID    `json:"uuid,omitempty"`
-	Warning             *string                `json:"warning,omitempty"`
+	FeedbackSubmittedAt *time.Time              `json:"feedback_submitted_at,omitempty"`
+	InjectionCategories *map[string]interface{} `json:"injection_categories,omitempty"`
+	InputTokens         *int                    `json:"input_tokens,omitempty"`
+	IsFlagged           *bool                   `json:"is_flagged,omitempty"`
+	OutputTokens        *int                    `json:"output_tokens,omitempty"`
+	PiiCategories       *map[string]interface{} `json:"pii_categories,omitempty"`
+	Replaces            *openapi_types.UUID     `json:"replaces,omitempty"`
+	Role                *MessageRoleEnum        `json:"role,omitempty"`
+	SequenceIndex       *int                    `json:"sequence_index,omitempty"`
+	Severity            *InjectionSeverityEnum  `json:"severity,omitempty"`
+	Thread              *openapi_types.UUID     `json:"thread,omitempty"`
+	Uuid                *openapi_types.UUID     `json:"uuid,omitempty"`
+	Warning             *string                 `json:"warning,omitempty"`
 }
 
 // MessageBlocksKey defines model for Message.Blocks.Key.
@@ -35457,19 +35461,19 @@ type NestedAgentProcessor struct {
 
 // NestedAgentService defines model for NestedAgentService.
 type NestedAgentService struct {
-	Created    *time.Time          `json:"created,omitempty"`
-	Mode       *string             `json:"mode,omitempty"`
-	Modified   *time.Time          `json:"modified,omitempty"`
-	Name       string              `json:"name"`
-	State      *AgentServiceState  `json:"state,omitempty"`
-	Statistics interface{}         `json:"statistics,omitempty"`
-	Url        *string             `json:"url,omitempty"`
-	Uuid       *openapi_types.UUID `json:"uuid,omitempty"`
+	Created    *time.Time              `json:"created,omitempty"`
+	Mode       *string                 `json:"mode,omitempty"`
+	Modified   *time.Time              `json:"modified,omitempty"`
+	Name       string                  `json:"name"`
+	State      *AgentServiceState      `json:"state,omitempty"`
+	Statistics *map[string]interface{} `json:"statistics,omitempty"`
+	Url        *string                 `json:"url,omitempty"`
+	Uuid       *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // NestedAttribute defines model for NestedAttribute.
 type NestedAttribute struct {
-	Default interface{}              `json:"default,omitempty"`
+	Default *map[string]interface{}  `json:"default,omitempty"`
 	Key     *string                  `json:"key,omitempty"`
 	Options *[]NestedAttributeOption `json:"options,omitempty"`
 
@@ -35755,7 +35759,7 @@ type NestedRemoteLocalCategoryRequest struct {
 
 // NestedRequestedOffering defines model for NestedRequestedOffering.
 type NestedRequestedOffering struct {
-	Attributes               interface{}              `json:"attributes,omitempty"`
+	Attributes               *map[string]interface{}  `json:"attributes,omitempty"`
 	CallManagingOrganisation *string                  `json:"call_managing_organisation,omitempty"`
 	CategoryName             *string                  `json:"category_name,omitempty"`
 	CategoryUuid             *openapi_types.UUID      `json:"category_uuid,omitempty"`
@@ -35849,25 +35853,25 @@ type NestedSoftwareCatalog struct {
 	Catalog *CatalogSummary `json:"catalog,omitempty"`
 
 	// EnabledCpuFamily List of enabled CPU families: ['x86_64', 'aarch64']
-	EnabledCpuFamily interface{} `json:"enabled_cpu_family,omitempty"`
+	EnabledCpuFamily *map[string]interface{} `json:"enabled_cpu_family,omitempty"`
 
 	// EnabledCpuMicroarchitectures List of enabled CPU microarchitectures: ['generic', 'zen3']
-	EnabledCpuMicroarchitectures interface{}         `json:"enabled_cpu_microarchitectures,omitempty"`
-	PackageCount                 *int                `json:"package_count,omitempty"`
-	Partition                    *PartitionSummary   `json:"partition,omitempty"`
-	Uuid                         *openapi_types.UUID `json:"uuid,omitempty"`
+	EnabledCpuMicroarchitectures *map[string]interface{} `json:"enabled_cpu_microarchitectures,omitempty"`
+	PackageCount                 *int                    `json:"package_count,omitempty"`
+	Partition                    *PartitionSummary       `json:"partition,omitempty"`
+	Uuid                         *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // NestedSoftwareTarget defines model for NestedSoftwareTarget.
 type NestedSoftwareTarget struct {
 	// GpuArchitectures List of GPU architectures this target supports (e.g., ['nvidia/cc70', 'nvidia/cc90'])
-	GpuArchitectures interface{} `json:"gpu_architectures,omitempty"`
+	GpuArchitectures *map[string]interface{} `json:"gpu_architectures,omitempty"`
 
 	// Location Target location (CVMFS path, download URL, etc.)
 	Location *string `json:"location,omitempty"`
 
 	// Metadata Target-specific metadata (build options, system requirements, etc.)
-	Metadata interface{} `json:"metadata,omitempty"`
+	Metadata *map[string]interface{} `json:"metadata,omitempty"`
 
 	// TargetName Target identifier (x86_64/generic, linux, variant_name, etc.)
 	TargetName *string `json:"target_name,omitempty"`
@@ -36031,7 +36035,7 @@ type Offering struct {
 	AccessUrl       *string                 `json:"access_url,omitempty"`
 	Attributes      *map[string]interface{} `json:"attributes,omitempty"`
 	BackendId       *string                 `json:"backend_id,omitempty"`
-	BackendMetadata interface{}             `json:"backend_metadata,omitempty"`
+	BackendMetadata *map[string]interface{} `json:"backend_metadata,omitempty"`
 
 	// Billable Purchase and usage is invoiced.
 	Billable *bool `json:"billable,omitempty"`
@@ -36131,12 +36135,12 @@ type Offering_ScopeState struct {
 // OfferingBackendIdRulesUpdateRequest defines model for OfferingBackendIdRulesUpdateRequest.
 type OfferingBackendIdRulesUpdateRequest struct {
 	// BackendIdRules Validation rules for resource backend_id: format regex and uniqueness scope.
-	BackendIdRules interface{} `json:"backend_id_rules,omitempty"`
+	BackendIdRules *map[string]interface{} `json:"backend_id_rules,omitempty"`
 }
 
 // OfferingBackendMetadataRequest defines model for OfferingBackendMetadataRequest.
 type OfferingBackendMetadataRequest struct {
-	BackendMetadata interface{} `json:"backend_metadata,omitempty"`
+	BackendMetadata *map[string]interface{} `json:"backend_metadata,omitempty"`
 }
 
 // OfferingComplianceChecklistUpdateRequest defines model for OfferingComplianceChecklistUpdateRequest.
@@ -36302,13 +36306,13 @@ type OfferingCountryStats struct {
 // OfferingCreateRequest defines model for OfferingCreateRequest.
 type OfferingCreateRequest struct {
 	// AccessUrl Publicly accessible offering access URL
-	AccessUrl  *string     `json:"access_url,omitempty"`
-	Attributes interface{} `json:"attributes,omitempty"`
-	BackendId  *string     `json:"backend_id,omitempty"`
+	AccessUrl  *string                 `json:"access_url,omitempty"`
+	Attributes *map[string]interface{} `json:"attributes,omitempty"`
+	BackendId  *string                 `json:"backend_id,omitempty"`
 
 	// BackendIdRules Validation rules for resource backend_id: format regex and uniqueness scope.
-	BackendIdRules  interface{} `json:"backend_id_rules,omitempty"`
-	BackendMetadata interface{} `json:"backend_metadata,omitempty"`
+	BackendIdRules  *map[string]interface{} `json:"backend_id_rules,omitempty"`
+	BackendMetadata *map[string]interface{} `json:"backend_metadata,omitempty"`
 
 	// Billable Purchase and usage is invoiced.
 	Billable            *bool                       `json:"billable,omitempty"`
@@ -36356,13 +36360,13 @@ type OfferingCreateRequest_Country struct {
 // OfferingCreateRequestForm defines model for OfferingCreateRequestForm.
 type OfferingCreateRequestForm struct {
 	// AccessUrl Publicly accessible offering access URL
-	AccessUrl  *string     `json:"access_url,omitempty"`
-	Attributes interface{} `json:"attributes,omitempty"`
-	BackendId  *string     `json:"backend_id,omitempty"`
+	AccessUrl  *string                 `json:"access_url,omitempty"`
+	Attributes *map[string]interface{} `json:"attributes,omitempty"`
+	BackendId  *string                 `json:"backend_id,omitempty"`
 
 	// BackendIdRules Validation rules for resource backend_id: format regex and uniqueness scope.
-	BackendIdRules  interface{} `json:"backend_id_rules,omitempty"`
-	BackendMetadata interface{} `json:"backend_metadata,omitempty"`
+	BackendIdRules  *map[string]interface{} `json:"backend_id_rules,omitempty"`
+	BackendMetadata *map[string]interface{} `json:"backend_metadata,omitempty"`
 
 	// Billable Purchase and usage is invoiced.
 	Billable            *bool                       `json:"billable,omitempty"`
@@ -36410,13 +36414,13 @@ type OfferingCreateRequestForm_Country struct {
 // OfferingCreateRequestMultipart defines model for OfferingCreateRequestMultipart.
 type OfferingCreateRequestMultipart struct {
 	// AccessUrl Publicly accessible offering access URL
-	AccessUrl  *string     `json:"access_url,omitempty"`
-	Attributes interface{} `json:"attributes,omitempty"`
-	BackendId  *string     `json:"backend_id,omitempty"`
+	AccessUrl  *string                 `json:"access_url,omitempty"`
+	Attributes *map[string]interface{} `json:"attributes,omitempty"`
+	BackendId  *string                 `json:"backend_id,omitempty"`
 
 	// BackendIdRules Validation rules for resource backend_id: format regex and uniqueness scope.
-	BackendIdRules  interface{} `json:"backend_id_rules,omitempty"`
-	BackendMetadata interface{} `json:"backend_metadata,omitempty"`
+	BackendIdRules  *map[string]interface{} `json:"backend_id_rules,omitempty"`
+	BackendMetadata *map[string]interface{} `json:"backend_metadata,omitempty"`
 
 	// Billable Purchase and usage is invoiced.
 	Billable            *bool                       `json:"billable,omitempty"`
@@ -36481,15 +36485,15 @@ type OfferingEstimatedCostPolicy struct {
 	LimitCost         int        `json:"limit_cost"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options            interface{}         `json:"options,omitempty"`
-	OrganizationGroups *[]string           `json:"organization_groups,omitempty"`
-	Period             *PolicyPeriodEnum   `json:"period,omitempty"`
-	PeriodName         *string             `json:"period_name,omitempty"`
-	Scope              string              `json:"scope"`
-	ScopeName          *string             `json:"scope_name,omitempty"`
-	ScopeUuid          *openapi_types.UUID `json:"scope_uuid,omitempty"`
-	Url                *string             `json:"url,omitempty"`
-	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
+	Options            *map[string]interface{} `json:"options,omitempty"`
+	OrganizationGroups *[]string               `json:"organization_groups,omitempty"`
+	Period             *PolicyPeriodEnum       `json:"period,omitempty"`
+	PeriodName         *string                 `json:"period_name,omitempty"`
+	Scope              string                  `json:"scope"`
+	ScopeName          *string                 `json:"scope_name,omitempty"`
+	ScopeUuid          *openapi_types.UUID     `json:"scope_uuid,omitempty"`
+	Url                *string                 `json:"url,omitempty"`
+	Uuid               *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // OfferingEstimatedCostPolicyRequest defines model for OfferingEstimatedCostPolicyRequest.
@@ -36501,10 +36505,10 @@ type OfferingEstimatedCostPolicyRequest struct {
 	LimitCost  int   `json:"limit_cost"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options            interface{}       `json:"options,omitempty"`
-	OrganizationGroups *[]string         `json:"organization_groups,omitempty"`
-	Period             *PolicyPeriodEnum `json:"period,omitempty"`
-	Scope              string            `json:"scope"`
+	Options            *map[string]interface{} `json:"options,omitempty"`
+	OrganizationGroups *[]string               `json:"organization_groups,omitempty"`
+	Period             *PolicyPeriodEnum       `json:"period,omitempty"`
+	Scope              string                  `json:"scope"`
 }
 
 // OfferingExportData defines model for OfferingExportData.
@@ -36515,10 +36519,10 @@ type OfferingExportData struct {
 	Offering           ExportOfferingData             `json:"offering"`
 	OrganizationGroups *[]ExportOrganizationGroupData `json:"organization_groups,omitempty"`
 	Plans              *[]ExportPlanData              `json:"plans,omitempty"`
-	PluginOptions      interface{}                    `json:"plugin_options,omitempty"`
-	ResourceOptions    interface{}                    `json:"resource_options,omitempty"`
+	PluginOptions      *map[string]interface{}        `json:"plugin_options,omitempty"`
+	ResourceOptions    *map[string]interface{}        `json:"resource_options,omitempty"`
 	Screenshots        *[]ExportScreenshotData        `json:"screenshots,omitempty"`
-	SecretOptions      interface{}                    `json:"secret_options,omitempty"`
+	SecretOptions      *map[string]interface{}        `json:"secret_options,omitempty"`
 	TermsOfService     *[]ExportTermsOfServiceData    `json:"terms_of_service,omitempty"`
 }
 
@@ -36530,10 +36534,10 @@ type OfferingExportDataRequest struct {
 	Offering           ExportOfferingDataRequest             `json:"offering"`
 	OrganizationGroups *[]ExportOrganizationGroupDataRequest `json:"organization_groups,omitempty"`
 	Plans              *[]ExportPlanDataRequest              `json:"plans,omitempty"`
-	PluginOptions      interface{}                           `json:"plugin_options,omitempty"`
-	ResourceOptions    interface{}                           `json:"resource_options,omitempty"`
+	PluginOptions      *map[string]interface{}               `json:"plugin_options,omitempty"`
+	ResourceOptions    *map[string]interface{}               `json:"resource_options,omitempty"`
 	Screenshots        *[]ExportScreenshotDataRequest        `json:"screenshots,omitempty"`
-	SecretOptions      interface{}                           `json:"secret_options,omitempty"`
+	SecretOptions      *map[string]interface{}               `json:"secret_options,omitempty"`
 	TermsOfService     *[]ExportTermsOfServiceDataRequest    `json:"terms_of_service,omitempty"`
 }
 
@@ -36767,7 +36771,7 @@ type OfferingIntegrationUpdateRequest struct {
 	BackendId         *string                     `json:"backend_id,omitempty"`
 	PluginOptions     *MergedPluginOptionsRequest `json:"plugin_options,omitempty"`
 	SecretOptions     *MergedSecretOptionsRequest `json:"secret_options,omitempty"`
-	ServiceAttributes interface{}                 `json:"service_attributes,omitempty"`
+	ServiceAttributes *map[string]interface{}     `json:"service_attributes,omitempty"`
 }
 
 // OfferingLocationUpdateRequest defines model for OfferingLocationUpdateRequest.
@@ -37092,16 +37096,16 @@ type OfferingSoftwareCatalog struct {
 	Created        *time.Time         `json:"created,omitempty"`
 
 	// EnabledCpuFamily List of enabled CPU families: ['x86_64', 'aarch64']
-	EnabledCpuFamily interface{} `json:"enabled_cpu_family,omitempty"`
+	EnabledCpuFamily *map[string]interface{} `json:"enabled_cpu_family,omitempty"`
 
 	// EnabledCpuMicroarchitectures List of enabled CPU microarchitectures: ['generic', 'zen3']
-	EnabledCpuMicroarchitectures interface{}         `json:"enabled_cpu_microarchitectures,omitempty"`
-	Modified                     *time.Time          `json:"modified,omitempty"`
-	Offering                     openapi_types.UUID  `json:"offering"`
-	OfferingName                 *string             `json:"offering_name,omitempty"`
-	Partition                    *openapi_types.UUID `json:"partition,omitempty"`
-	PartitionName                *string             `json:"partition_name,omitempty"`
-	Uuid                         *openapi_types.UUID `json:"uuid,omitempty"`
+	EnabledCpuMicroarchitectures *map[string]interface{} `json:"enabled_cpu_microarchitectures,omitempty"`
+	Modified                     *time.Time              `json:"modified,omitempty"`
+	Offering                     openapi_types.UUID      `json:"offering"`
+	OfferingName                 *string                 `json:"offering_name,omitempty"`
+	Partition                    *openapi_types.UUID     `json:"partition,omitempty"`
+	PartitionName                *string                 `json:"partition_name,omitempty"`
+	Uuid                         *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // OfferingSoftwareCatalogRequest defines model for OfferingSoftwareCatalogRequest.
@@ -37109,12 +37113,12 @@ type OfferingSoftwareCatalogRequest struct {
 	Catalog openapi_types.UUID `json:"catalog"`
 
 	// EnabledCpuFamily List of enabled CPU families: ['x86_64', 'aarch64']
-	EnabledCpuFamily interface{} `json:"enabled_cpu_family,omitempty"`
+	EnabledCpuFamily *map[string]interface{} `json:"enabled_cpu_family,omitempty"`
 
 	// EnabledCpuMicroarchitectures List of enabled CPU microarchitectures: ['generic', 'zen3']
-	EnabledCpuMicroarchitectures interface{}         `json:"enabled_cpu_microarchitectures,omitempty"`
-	Offering                     openapi_types.UUID  `json:"offering"`
-	Partition                    *openapi_types.UUID `json:"partition,omitempty"`
+	EnabledCpuMicroarchitectures *map[string]interface{} `json:"enabled_cpu_microarchitectures,omitempty"`
+	Offering                     openapi_types.UUID      `json:"offering"`
+	Partition                    *openapi_types.UUID     `json:"partition,omitempty"`
 }
 
 // OfferingState defines model for OfferingState.
@@ -37285,15 +37289,15 @@ type OfferingUsagePolicy struct {
 	HasFired           *bool                          `json:"has_fired,omitempty"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options            interface{}         `json:"options,omitempty"`
-	OrganizationGroups *[]string           `json:"organization_groups,omitempty"`
-	Period             *PolicyPeriodEnum   `json:"period,omitempty"`
-	PeriodName         *string             `json:"period_name,omitempty"`
-	Scope              string              `json:"scope"`
-	ScopeName          *string             `json:"scope_name,omitempty"`
-	ScopeUuid          *openapi_types.UUID `json:"scope_uuid,omitempty"`
-	Url                *string             `json:"url,omitempty"`
-	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
+	Options            *map[string]interface{} `json:"options,omitempty"`
+	OrganizationGroups *[]string               `json:"organization_groups,omitempty"`
+	Period             *PolicyPeriodEnum       `json:"period,omitempty"`
+	PeriodName         *string                 `json:"period_name,omitempty"`
+	Scope              string                  `json:"scope"`
+	ScopeName          *string                 `json:"scope_name,omitempty"`
+	ScopeUuid          *openapi_types.UUID     `json:"scope_uuid,omitempty"`
+	Url                *string                 `json:"url,omitempty"`
+	Uuid               *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // OfferingUsagePolicyRequest defines model for OfferingUsagePolicyRequest.
@@ -37305,10 +37309,10 @@ type OfferingUsagePolicyRequest struct {
 	ComponentLimitsSet []NestedOfferingComponentLimitRequest `json:"component_limits_set"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options            interface{}       `json:"options,omitempty"`
-	OrganizationGroups *[]string         `json:"organization_groups,omitempty"`
-	Period             *PolicyPeriodEnum `json:"period,omitempty"`
-	Scope              string            `json:"scope"`
+	Options            *map[string]interface{} `json:"options,omitempty"`
+	OrganizationGroups *[]string               `json:"organization_groups,omitempty"`
+	Period             *PolicyPeriodEnum       `json:"period,omitempty"`
+	Scope              string                  `json:"scope"`
 }
 
 // OfferingUsageTimeseries defines model for OfferingUsageTimeseries.
@@ -37366,20 +37370,20 @@ type OfferingUser struct {
 	User                      *string            `json:"user,omitempty"`
 
 	// UserActiveIsds List of ISDs that have asserted this user exists. User is deactivated when this becomes empty.
-	UserActiveIsds interface{} `json:"user_active_isds,omitempty"`
-	UserAddress    *string     `json:"user_address,omitempty"`
+	UserActiveIsds *map[string]interface{} `json:"user_active_isds,omitempty"`
+	UserAddress    *string                 `json:"user_address,omitempty"`
 
 	// UserAffiliations Person's affiliation within organization such as student, faculty, staff.
-	UserAffiliations       interface{}         `json:"user_affiliations,omitempty"`
-	UserBirthDate          *openapi_types.Date `json:"user_birth_date,omitempty"`
-	UserCivilNumber        *string             `json:"user_civil_number,omitempty"`
-	UserCountryOfResidence *string             `json:"user_country_of_residence,omitempty"`
+	UserAffiliations       *map[string]interface{} `json:"user_affiliations,omitempty"`
+	UserBirthDate          *openapi_types.Date     `json:"user_birth_date,omitempty"`
+	UserCivilNumber        *string                 `json:"user_civil_number,omitempty"`
+	UserCountryOfResidence *string                 `json:"user_country_of_residence,omitempty"`
 
 	// UserEdupersonAssurance REFEDS assurance profile URIs from identity provider
-	UserEdupersonAssurance interface{}          `json:"user_eduperson_assurance,omitempty"`
-	UserEmail              *openapi_types.Email `json:"user_email,omitempty"`
-	UserFirstName          *string              `json:"user_first_name,omitempty"`
-	UserFullName           *string              `json:"user_full_name,omitempty"`
+	UserEdupersonAssurance *map[string]interface{} `json:"user_eduperson_assurance,omitempty"`
+	UserEmail              *openapi_types.Email    `json:"user_email,omitempty"`
+	UserFirstName          *string                 `json:"user_first_name,omitempty"`
+	UserFullName           *string                 `json:"user_full_name,omitempty"`
 
 	// UserGender User's gender (male, female, or unknown)
 	UserGender *OfferingUser_UserGender `json:"user_gender,omitempty"`
@@ -37390,7 +37394,7 @@ type OfferingUser struct {
 	UserLastName       *string `json:"user_last_name,omitempty"`
 
 	// UserNationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
-	UserNationalities interface{} `json:"user_nationalities,omitempty"`
+	UserNationalities *map[string]interface{} `json:"user_nationalities,omitempty"`
 
 	// UserNationality Primary citizenship (ISO 3166-1 alpha-2 code)
 	UserNationality         *string `json:"user_nationality,omitempty"`
@@ -37742,7 +37746,7 @@ type OnboardingVerification struct {
 	OnboardingMetadata *map[string]interface{} `json:"onboarding_metadata,omitempty"`
 
 	// RawResponse Raw API response for debugging and auditing
-	RawResponse interface{}                       `json:"raw_response,omitempty"`
+	RawResponse *map[string]interface{}           `json:"raw_response,omitempty"`
 	Status      *OnboardingVerificationStatusEnum `json:"status,omitempty"`
 
 	// User User requesting company onboarding
@@ -37760,10 +37764,10 @@ type OnboardingVerification struct {
 	ValidationMethod *ValidationMethodEnum `json:"validation_method,omitempty"`
 
 	// VerifiedCompanyData Company information retrieved during validation
-	VerifiedCompanyData interface{} `json:"verified_company_data,omitempty"`
+	VerifiedCompanyData *map[string]interface{} `json:"verified_company_data,omitempty"`
 
 	// VerifiedUserRoles Roles the user has in the company
-	VerifiedUserRoles interface{} `json:"verified_user_roles,omitempty"`
+	VerifiedUserRoles *map[string]interface{} `json:"verified_user_roles,omitempty"`
 }
 
 // OnboardingVerificationOEnum defines model for OnboardingVerificationOEnum.
@@ -37887,7 +37891,7 @@ type OpenStackBackup struct {
 	MarketplacePlanUuid              *string                       `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                       `json:"marketplace_resource_state,omitempty"`
 	MarketplaceResourceUuid          *string                       `json:"marketplace_resource_uuid,omitempty"`
-	Metadata                         interface{}                   `json:"metadata,omitempty"`
+	Metadata                         *map[string]interface{}       `json:"metadata,omitempty"`
 	Modified                         *time.Time                    `json:"modified,omitempty"`
 	Name                             *string                       `json:"name,omitempty"`
 	Project                          *string                       `json:"project,omitempty"`
@@ -38313,7 +38317,7 @@ type OpenStackInstance struct {
 	Action    *string                      `json:"action,omitempty"`
 
 	// ActionDetails Details about ongoing or completed actions
-	ActionDetails interface{} `json:"action_details,omitempty"`
+	ActionDetails *map[string]interface{} `json:"action_details,omitempty"`
 
 	// AvailabilityZone Availability zone where this instance is located
 	AvailabilityZone *string `json:"availability_zone,omitempty"`
@@ -39335,10 +39339,10 @@ type OpenStackRouter struct {
 	Description          *string             `json:"description,omitempty"`
 
 	// EnableSnat Whether SNAT is enabled on the external gateway. None means OpenStack default (True).
-	EnableSnat       *bool       `json:"enable_snat,omitempty"`
-	ErrorMessage     *string     `json:"error_message,omitempty"`
-	ErrorTraceback   *string     `json:"error_traceback,omitempty"`
-	ExternalFixedIps interface{} `json:"external_fixed_ips,omitempty"`
+	EnableSnat       *bool                   `json:"enable_snat,omitempty"`
+	ErrorMessage     *string                 `json:"error_message,omitempty"`
+	ErrorTraceback   *string                 `json:"error_traceback,omitempty"`
+	ExternalFixedIps *map[string]interface{} `json:"external_fixed_ips,omitempty"`
 
 	// ExternalNetworkId Backend ID of the external network used as gateway
 	ExternalNetworkId                *string                 `json:"external_network_id,omitempty"`
@@ -39683,7 +39687,7 @@ type OpenStackServerGroupRequest_Policy struct {
 type OpenStackSnapshot struct {
 	AccessUrl     *OpenStackSnapshot_AccessUrl `json:"access_url,omitempty"`
 	Action        *string                      `json:"action,omitempty"`
-	ActionDetails interface{}                  `json:"action_details,omitempty"`
+	ActionDetails *map[string]interface{}      `json:"action_details,omitempty"`
 
 	// BackendId Snapshot ID in the OpenStack backend
 	BackendId            *string                    `json:"backend_id,omitempty"`
@@ -39711,7 +39715,7 @@ type OpenStackSnapshot struct {
 	MarketplacePlanUuid              *string                         `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                         `json:"marketplace_resource_state,omitempty"`
 	MarketplaceResourceUuid          *string                         `json:"marketplace_resource_uuid,omitempty"`
-	Metadata                         interface{}                     `json:"metadata,omitempty"`
+	Metadata                         *map[string]interface{}         `json:"metadata,omitempty"`
 	Modified                         *time.Time                      `json:"modified,omitempty"`
 	Name                             *string                         `json:"name,omitempty"`
 	Project                          *string                         `json:"project,omitempty"`
@@ -39763,9 +39767,9 @@ type OpenStackSnapshotRequest struct {
 	Description *string `json:"description,omitempty"`
 
 	// KeptUntil Guaranteed time of snapshot retention. If null - keep forever.
-	KeptUntil *time.Time  `json:"kept_until,omitempty"`
-	Metadata  interface{} `json:"metadata,omitempty"`
-	Name      string      `json:"name"`
+	KeptUntil *time.Time              `json:"kept_until,omitempty"`
+	Metadata  *map[string]interface{} `json:"metadata,omitempty"`
+	Name      string                  `json:"name"`
 }
 
 // OpenStackSnapshotRestoration defines model for OpenStackSnapshotRestoration.
@@ -40167,7 +40171,7 @@ type OpenStackUsageStatsResponse struct {
 type OpenStackVolume struct {
 	AccessUrl     *OpenStackVolume_AccessUrl `json:"access_url,omitempty"`
 	Action        *string                    `json:"action,omitempty"`
-	ActionDetails interface{}                `json:"action_details,omitempty"`
+	ActionDetails *map[string]interface{}    `json:"action_details,omitempty"`
 
 	// AvailabilityZone Availability zone where this volume is located
 	AvailabilityZone     *string `json:"availability_zone,omitempty"`
@@ -40216,7 +40220,7 @@ type OpenStackVolume struct {
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
 	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
-	Metadata                         interface{}             `json:"metadata,omitempty"`
+	Metadata                         *map[string]interface{} `json:"metadata,omitempty"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
 	Name                             *string                 `json:"name,omitempty"`
 	Project                          *string                 `json:"project,omitempty"`
@@ -40387,7 +40391,7 @@ type OrcidSyncResponse struct {
 
 // OrderApproveByProviderRequest defines model for OrderApproveByProviderRequest.
 type OrderApproveByProviderRequest struct {
-	Attributes interface{} `json:"attributes,omitempty"`
+	Attributes *map[string]interface{} `json:"attributes,omitempty"`
 }
 
 // OrderAttachment defines model for OrderAttachment.
@@ -40461,23 +40465,23 @@ type OrderCreateRequest_Attributes struct {
 
 // OrderDetails defines model for OrderDetails.
 type OrderDetails struct {
-	ActivationPrice               *float64            `json:"activation_price,omitempty"`
-	Attachment                    *string             `json:"attachment,omitempty"`
-	Attributes                    interface{}         `json:"attributes,omitempty"`
-	AutoApproved                  *bool               `json:"auto_approved,omitempty"`
-	AutoApprovedByRuleUuid        *openapi_types.UUID `json:"auto_approved_by_rule_uuid,omitempty"`
-	AutoApprovedCostLimitSnapshot *string             `json:"auto_approved_cost_limit_snapshot,omitempty"`
-	BackendId                     *string             `json:"backend_id,omitempty"`
-	CallbackUrl                   *string             `json:"callback_url,omitempty"`
-	CanTerminate                  *bool               `json:"can_terminate,omitempty"`
-	CategoryIcon                  *string             `json:"category_icon,omitempty"`
-	CategoryTitle                 *string             `json:"category_title,omitempty"`
-	CategoryUuid                  *openapi_types.UUID `json:"category_uuid,omitempty"`
-	CompletedAt                   *time.Time          `json:"completed_at,omitempty"`
-	ConsumerMessage               *string             `json:"consumer_message,omitempty"`
-	ConsumerMessageAttachment     *string             `json:"consumer_message_attachment,omitempty"`
-	ConsumerRejectionComment      *string             `json:"consumer_rejection_comment,omitempty"`
-	ConsumerReviewedAt            *time.Time          `json:"consumer_reviewed_at,omitempty"`
+	ActivationPrice               *float64                `json:"activation_price,omitempty"`
+	Attachment                    *string                 `json:"attachment,omitempty"`
+	Attributes                    *map[string]interface{} `json:"attributes,omitempty"`
+	AutoApproved                  *bool                   `json:"auto_approved,omitempty"`
+	AutoApprovedByRuleUuid        *openapi_types.UUID     `json:"auto_approved_by_rule_uuid,omitempty"`
+	AutoApprovedCostLimitSnapshot *string                 `json:"auto_approved_cost_limit_snapshot,omitempty"`
+	BackendId                     *string                 `json:"backend_id,omitempty"`
+	CallbackUrl                   *string                 `json:"callback_url,omitempty"`
+	CanTerminate                  *bool                   `json:"can_terminate,omitempty"`
+	CategoryIcon                  *string                 `json:"category_icon,omitempty"`
+	CategoryTitle                 *string                 `json:"category_title,omitempty"`
+	CategoryUuid                  *openapi_types.UUID     `json:"category_uuid,omitempty"`
+	CompletedAt                   *time.Time              `json:"completed_at,omitempty"`
+	ConsumerMessage               *string                 `json:"consumer_message,omitempty"`
+	ConsumerMessageAttachment     *string                 `json:"consumer_message_attachment,omitempty"`
+	ConsumerRejectionComment      *string                 `json:"consumer_rejection_comment,omitempty"`
+	ConsumerReviewedAt            *time.Time              `json:"consumer_reviewed_at,omitempty"`
 
 	// ConsumerReviewedBy Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	ConsumerReviewedBy         *string `json:"consumer_reviewed_by,omitempty"`
@@ -40520,7 +40524,7 @@ type OrderDetails struct {
 	OfferingName        *string `json:"offering_name,omitempty"`
 
 	// OfferingPluginOptions Public data used by specific plugin, such as storage mode for OpenStack.
-	OfferingPluginOptions interface{} `json:"offering_plugin_options,omitempty"`
+	OfferingPluginOptions *map[string]interface{} `json:"offering_plugin_options,omitempty"`
 
 	// OfferingShared Accessible to all customers.
 	OfferingShared            *bool               `json:"offering_shared,omitempty"`
@@ -40673,8 +40677,8 @@ type OrderUUID struct {
 
 // OrderUpdate defines model for OrderUpdate.
 type OrderUpdate struct {
-	Attributes interface{}     `json:"attributes,omitempty"`
-	Limits     *map[string]int `json:"limits,omitempty"`
+	Attributes *map[string]interface{} `json:"attributes,omitempty"`
+	Limits     *map[string]int         `json:"limits,omitempty"`
 
 	// StartDate Enables delayed processing of resource provisioning order.
 	StartDate *openapi_types.Date `json:"start_date,omitempty"`
@@ -40682,8 +40686,8 @@ type OrderUpdate struct {
 
 // OrderUpdateRequest defines model for OrderUpdateRequest.
 type OrderUpdateRequest struct {
-	Attributes interface{}     `json:"attributes,omitempty"`
-	Limits     *map[string]int `json:"limits,omitempty"`
+	Attributes *map[string]interface{} `json:"attributes,omitempty"`
+	Limits     *map[string]int         `json:"limits,omitempty"`
 
 	// StartDate Enables delayed processing of resource provisioning order.
 	StartDate *openapi_types.Date `json:"start_date,omitempty"`
@@ -40887,8 +40891,8 @@ type PatchedAttributeOptionRequest struct {
 
 // PatchedAttributeRequest defines model for PatchedAttributeRequest.
 type PatchedAttributeRequest struct {
-	Default interface{} `json:"default,omitempty"`
-	Key     *string     `json:"key,omitempty"`
+	Default *map[string]interface{} `json:"default,omitempty"`
+	Key     *string                 `json:"key,omitempty"`
 
 	// Required A value must be provided for the attribute.
 	Required *bool              `json:"required,omitempty"`
@@ -40933,10 +40937,10 @@ type PatchedAzureVirtualMachineRequest struct {
 
 // PatchedBroadcastMessageRequest defines model for PatchedBroadcastMessageRequest.
 type PatchedBroadcastMessageRequest struct {
-	Body    *string             `json:"body,omitempty"`
-	Query   interface{}         `json:"query,omitempty"`
-	SendAt  *openapi_types.Date `json:"send_at,omitempty"`
-	Subject *string             `json:"subject,omitempty"`
+	Body    *string                 `json:"body,omitempty"`
+	Query   *map[string]interface{} `json:"query,omitempty"`
+	SendAt  *openapi_types.Date     `json:"send_at,omitempty"`
+	Subject *string                 `json:"subject,omitempty"`
 }
 
 // PatchedCallAssignmentConfigurationRequest defines model for PatchedCallAssignmentConfigurationRequest.
@@ -41013,14 +41017,14 @@ type PatchedCallManagingOrganisationRequestMultipart struct {
 
 // PatchedCallResourceTemplateRequest defines model for PatchedCallResourceTemplateRequest.
 type PatchedCallResourceTemplateRequest struct {
-	Attributes  interface{} `json:"attributes,omitempty"`
-	Description *string     `json:"description,omitempty"`
+	Attributes  *map[string]interface{} `json:"attributes,omitempty"`
+	Description *string                 `json:"description,omitempty"`
 
 	// IsRequired If True, every proposal must include this resource type
-	IsRequired        *bool       `json:"is_required,omitempty"`
-	Limits            interface{} `json:"limits,omitempty"`
-	Name              *string     `json:"name,omitempty"`
-	RequestedOffering *string     `json:"requested_offering,omitempty"`
+	IsRequired        *bool                   `json:"is_required,omitempty"`
+	Limits            *map[string]interface{} `json:"limits,omitempty"`
+	Name              *string                 `json:"name,omitempty"`
+	RequestedOffering *string                 `json:"requested_offering,omitempty"`
 }
 
 // PatchedCallReviewerPoolUpdateRequest defines model for PatchedCallReviewerPoolUpdateRequest.
@@ -41189,8 +41193,8 @@ type PatchedCustomerComponentUsagePolicyRequest struct {
 	ComponentLimitsSet *[]NestedCustomerUsagePolicyComponentRequest `json:"component_limits_set,omitempty"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options interface{} `json:"options,omitempty"`
-	Scope   *string     `json:"scope,omitempty"`
+	Options *map[string]interface{} `json:"options,omitempty"`
+	Scope   *string                 `json:"scope,omitempty"`
 }
 
 // PatchedCustomerEstimatedCostPolicyRequest defines model for PatchedCustomerEstimatedCostPolicyRequest.
@@ -41199,9 +41203,9 @@ type PatchedCustomerEstimatedCostPolicyRequest struct {
 	LimitCost *int    `json:"limit_cost,omitempty"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options interface{}       `json:"options,omitempty"`
-	Period  *PolicyPeriodEnum `json:"period,omitempty"`
-	Scope   *string           `json:"scope,omitempty"`
+	Options *map[string]interface{} `json:"options,omitempty"`
+	Period  *PolicyPeriodEnum       `json:"period,omitempty"`
+	Scope   *string                 `json:"scope,omitempty"`
 }
 
 // PatchedCustomerRequest defines model for PatchedCustomerRequest.
@@ -41263,14 +41267,14 @@ type PatchedCustomerRequest struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber     *int        `json:"sponsor_number,omitempty"`
-	State             *string     `json:"state,omitempty"`
-	Street            *string     `json:"street,omitempty"`
-	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+	SponsorNumber     *int                    `json:"sponsor_number,omitempty"`
+	State             *string                 `json:"state,omitempty"`
+	Street            *string                 `json:"street,omitempty"`
+	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
 
 	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
+	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -41340,14 +41344,14 @@ type PatchedCustomerRequestForm struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber     *int        `json:"sponsor_number,omitempty"`
-	State             *string     `json:"state,omitempty"`
-	Street            *string     `json:"street,omitempty"`
-	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+	SponsorNumber     *int                    `json:"sponsor_number,omitempty"`
+	State             *string                 `json:"state,omitempty"`
+	Street            *string                 `json:"street,omitempty"`
+	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
 
 	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
+	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -41417,14 +41421,14 @@ type PatchedCustomerRequestMultipart struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber     *int        `json:"sponsor_number,omitempty"`
-	State             *string     `json:"state,omitempty"`
-	Street            *string     `json:"street,omitempty"`
-	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+	SponsorNumber     *int                    `json:"sponsor_number,omitempty"`
+	State             *string                 `json:"state,omitempty"`
+	Street            *string                 `json:"street,omitempty"`
+	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
 
 	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
+	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -41520,21 +41524,21 @@ type PatchedGroupInvitationUpdateRequest struct {
 	Role *openapi_types.UUID `json:"role,omitempty"`
 
 	// Scope URL of the scope (Customer or Project) for this invitation
-	Scope             *string     `json:"scope,omitempty"`
-	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+	Scope             *string                 `json:"scope,omitempty"`
+	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
 
 	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
+	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
 }
 
 // PatchedIdentityProviderRequest defines model for PatchedIdentityProviderRequest.
 type PatchedIdentityProviderRequest struct {
 	// AllowedRedirects List of allowed redirect URLs for OAuth authentication. URLs must be exact matches (origin only: scheme + domain + port). HTTPS required except for localhost. No wildcards, paths, query params, or fragments. Example: ["https://portal1.example.com", "https://portal2.example.com:8443"]. If empty, falls back to HOMEPORT_URL setting.
-	AllowedRedirects interface{} `json:"allowed_redirects,omitempty"`
+	AllowedRedirects *map[string]interface{} `json:"allowed_redirects,omitempty"`
 
 	// AttributeMapping A JSON object mapping Waldur User model fields to OIDC claims. Example: {"first_name": "given_name", "last_name": "family_name", "email": "email"}
-	AttributeMapping interface{} `json:"attribute_mapping,omitempty"`
+	AttributeMapping *map[string]interface{} `json:"attribute_mapping,omitempty"`
 
 	// ClientId ID of application used for OAuth authentication.
 	ClientId *string `json:"client_id,omitempty"`
@@ -41558,9 +41562,9 @@ type PatchedIdentityProviderRequest struct {
 	Label *string `json:"label,omitempty"`
 
 	// ManagementUrl The endpoint for user details management.
-	ManagementUrl   *string     `json:"management_url,omitempty"`
-	ProtectedFields interface{} `json:"protected_fields,omitempty"`
-	Provider        *string     `json:"provider,omitempty"`
+	ManagementUrl   *string                 `json:"management_url,omitempty"`
+	ProtectedFields *map[string]interface{} `json:"protected_fields,omitempty"`
+	Provider        *string                 `json:"provider,omitempty"`
 
 	// UserClaim The OIDC claim from the userinfo endpoint to be used as the value for the lookup field.
 	UserClaim *string `json:"user_claim,omitempty"`
@@ -41792,10 +41796,10 @@ type PatchedOfferingEstimatedCostPolicyRequest struct {
 	LimitCost  *int  `json:"limit_cost,omitempty"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options            interface{}       `json:"options,omitempty"`
-	OrganizationGroups *[]string         `json:"organization_groups,omitempty"`
-	Period             *PolicyPeriodEnum `json:"period,omitempty"`
-	Scope              *string           `json:"scope,omitempty"`
+	Options            *map[string]interface{} `json:"options,omitempty"`
+	OrganizationGroups *[]string               `json:"organization_groups,omitempty"`
+	Period             *PolicyPeriodEnum       `json:"period,omitempty"`
+	Scope              *string                 `json:"scope,omitempty"`
 }
 
 // PatchedOfferingGroupRequest defines model for PatchedOfferingGroupRequest.
@@ -41911,12 +41915,12 @@ type PatchedOfferingSoftwareCatalogUpdateRequest struct {
 	Catalog *openapi_types.UUID `json:"catalog,omitempty"`
 
 	// EnabledCpuFamily List of enabled CPU families: ['x86_64', 'aarch64']
-	EnabledCpuFamily interface{} `json:"enabled_cpu_family,omitempty"`
+	EnabledCpuFamily *map[string]interface{} `json:"enabled_cpu_family,omitempty"`
 
 	// EnabledCpuMicroarchitectures List of enabled CPU microarchitectures: ['generic', 'zen3']
-	EnabledCpuMicroarchitectures interface{}         `json:"enabled_cpu_microarchitectures,omitempty"`
-	OfferingCatalogUuid          *openapi_types.UUID `json:"offering_catalog_uuid,omitempty"`
-	Partition                    *openapi_types.UUID `json:"partition,omitempty"`
+	EnabledCpuMicroarchitectures *map[string]interface{} `json:"enabled_cpu_microarchitectures,omitempty"`
+	OfferingCatalogUuid          *openapi_types.UUID     `json:"offering_catalog_uuid,omitempty"`
+	Partition                    *openapi_types.UUID     `json:"partition,omitempty"`
 }
 
 // PatchedOfferingTermsOfServiceRequest defines model for PatchedOfferingTermsOfServiceRequest.
@@ -41937,10 +41941,10 @@ type PatchedOfferingUsagePolicyRequest struct {
 	ComponentLimitsSet *[]NestedOfferingComponentLimitRequest `json:"component_limits_set,omitempty"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options            interface{}       `json:"options,omitempty"`
-	OrganizationGroups *[]string         `json:"organization_groups,omitempty"`
-	Period             *PolicyPeriodEnum `json:"period,omitempty"`
-	Scope              *string           `json:"scope,omitempty"`
+	Options            *map[string]interface{} `json:"options,omitempty"`
+	OrganizationGroups *[]string               `json:"organization_groups,omitempty"`
+	Period             *PolicyPeriodEnum       `json:"period,omitempty"`
+	Scope              *string                 `json:"scope,omitempty"`
 }
 
 // PatchedOfferingUserAttributeConfigRequest defines model for PatchedOfferingUserAttributeConfigRequest.
@@ -42062,9 +42066,9 @@ type PatchedOpenStackSnapshotRequest struct {
 	Description *string `json:"description,omitempty"`
 
 	// KeptUntil Guaranteed time of snapshot retention. If null - keep forever.
-	KeptUntil *time.Time  `json:"kept_until,omitempty"`
-	Metadata  interface{} `json:"metadata,omitempty"`
-	Name      *string     `json:"name,omitempty"`
+	KeptUntil *time.Time              `json:"kept_until,omitempty"`
+	Metadata  *map[string]interface{} `json:"metadata,omitempty"`
+	Name      *string                 `json:"name,omitempty"`
 }
 
 // PatchedOpenStackSubNetRequest defines model for PatchedOpenStackSubNetRequest.
@@ -42129,8 +42133,8 @@ type PatchedOpenStackVolumeRequest struct {
 
 // PatchedOrderUpdateRequest defines model for PatchedOrderUpdateRequest.
 type PatchedOrderUpdateRequest struct {
-	Attributes interface{}     `json:"attributes,omitempty"`
-	Limits     *map[string]int `json:"limits,omitempty"`
+	Attributes *map[string]interface{} `json:"attributes,omitempty"`
+	Limits     *map[string]int         `json:"limits,omitempty"`
 
 	// StartDate Enables delayed processing of resource provisioning order.
 	StartDate *openapi_types.Date `json:"start_date,omitempty"`
@@ -42205,9 +42209,9 @@ type PatchedProjectEstimatedCostPolicyRequest struct {
 	LimitCost *int    `json:"limit_cost,omitempty"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options interface{}       `json:"options,omitempty"`
-	Period  *PolicyPeriodEnum `json:"period,omitempty"`
-	Scope   *string           `json:"scope,omitempty"`
+	Options *map[string]interface{} `json:"options,omitempty"`
+	Period  *PolicyPeriodEnum       `json:"period,omitempty"`
+	Scope   *string                 `json:"scope,omitempty"`
 }
 
 // PatchedProjectInfoRequest defines model for PatchedProjectInfoRequest.
@@ -42255,13 +42259,13 @@ type PatchedProjectRequest struct {
 	StaffNotes *string `json:"staff_notes,omitempty"`
 
 	// StartDate Project start date. Cannot be edited after the start date has arrived.
-	StartDate         *openapi_types.Date `json:"start_date,omitempty"`
-	Type              *string             `json:"type,omitempty"`
-	UserAffiliations  interface{}         `json:"user_affiliations,omitempty"`
-	UserEmailPatterns interface{}         `json:"user_email_patterns,omitempty"`
+	StartDate         *openapi_types.Date     `json:"start_date,omitempty"`
+	Type              *string                 `json:"type,omitempty"`
+	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
 
 	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
+	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
 }
 
 // PatchedProjectRequest_OecdFos2007Code defines model for PatchedProjectRequest.OecdFos2007Code.
@@ -42297,13 +42301,13 @@ type PatchedProjectRequestForm struct {
 	StaffNotes *string `json:"staff_notes,omitempty"`
 
 	// StartDate Project start date. Cannot be edited after the start date has arrived.
-	StartDate         *openapi_types.Date `json:"start_date,omitempty"`
-	Type              *string             `json:"type,omitempty"`
-	UserAffiliations  interface{}         `json:"user_affiliations,omitempty"`
-	UserEmailPatterns interface{}         `json:"user_email_patterns,omitempty"`
+	StartDate         *openapi_types.Date     `json:"start_date,omitempty"`
+	Type              *string                 `json:"type,omitempty"`
+	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
 
 	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
+	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
 }
 
 // PatchedProjectRequestForm_OecdFos2007Code defines model for PatchedProjectRequestForm.OecdFos2007Code.
@@ -42339,13 +42343,13 @@ type PatchedProjectRequestMultipart struct {
 	StaffNotes *string `json:"staff_notes,omitempty"`
 
 	// StartDate Project start date. Cannot be edited after the start date has arrived.
-	StartDate         *openapi_types.Date `json:"start_date,omitempty"`
-	Type              *string             `json:"type,omitempty"`
-	UserAffiliations  interface{}         `json:"user_affiliations,omitempty"`
-	UserEmailPatterns interface{}         `json:"user_email_patterns,omitempty"`
+	StartDate         *openapi_types.Date     `json:"start_date,omitempty"`
+	Type              *string                 `json:"type,omitempty"`
+	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
 
 	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
+	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
 }
 
 // PatchedProjectRequestMultipart_OecdFos2007Code defines model for PatchedProjectRequestMultipart.OecdFos2007Code.
@@ -42366,7 +42370,7 @@ type PatchedProjectServiceAccountRequest struct {
 // PatchedProjectTemplateRequest defines model for PatchedProjectTemplateRequest.
 type PatchedProjectTemplateRequest struct {
 	// AllocationUnitsMapping The mapping of credits to allocation units, i.e. how many allocation units to award per credit allocated.
-	AllocationUnitsMapping interface{} `json:"allocation_units_mapping,omitempty"`
+	AllocationUnitsMapping *map[string]interface{} `json:"allocation_units_mapping,omitempty"`
 
 	// ApprovalLimit The credit limit beyond which requests need to be approved by a local admin. If this is None, then no local approval is required. If this is set to 0, then all requests (including creating the project) need to be approved.
 	ApprovalLimit *string `json:"approval_limit,omitempty"`
@@ -42386,8 +42390,8 @@ type PatchedProjectTemplateRequest struct {
 	Provider  *string   `json:"provider,omitempty"`
 
 	// RoleMapping The mapping of role names from the remote portal to role information in this portal for users in projects created in this class.
-	RoleMapping interface{} `json:"role_mapping,omitempty"`
-	Shortname   *string     `json:"shortname,omitempty"`
+	RoleMapping *map[string]interface{} `json:"role_mapping,omitempty"`
+	Shortname   *string                 `json:"shortname,omitempty"`
 }
 
 // PatchedProposalProjectRoleMappingRequest defines model for PatchedProposalProjectRoleMappingRequest.
@@ -42440,22 +42444,22 @@ type PatchedProtectedCallRequest struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// UserAffiliations List of allowed affiliations. User must have one.
-	UserAffiliations interface{} `json:"user_affiliations,omitempty"`
+	UserAffiliations *map[string]interface{} `json:"user_affiliations,omitempty"`
 
 	// UserAssuranceLevels List of required assurance URIs (REFEDS). User must have ALL of these.
-	UserAssuranceLevels interface{} `json:"user_assurance_levels,omitempty"`
+	UserAssuranceLevels *map[string]interface{} `json:"user_assurance_levels,omitempty"`
 
 	// UserEmailPatterns List of email regex patterns. User must match one.
-	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
 
 	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
+	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
 
 	// UserNationalities List of allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
-	UserNationalities interface{} `json:"user_nationalities,omitempty"`
+	UserNationalities *map[string]interface{} `json:"user_nationalities,omitempty"`
 
 	// UserOrganizationTypes List of allowed organization type URNs (SCHAC). User must match one.
-	UserOrganizationTypes interface{} `json:"user_organization_types,omitempty"`
+	UserOrganizationTypes *map[string]interface{} `json:"user_organization_types,omitempty"`
 }
 
 // PatchedProtectedRoundRequest defines model for PatchedProtectedRoundRequest.
@@ -42489,10 +42493,10 @@ type PatchedProviderPlanDetailsRequest struct {
 // PatchedQuestionAdminRequest defines model for PatchedQuestionAdminRequest.
 type PatchedQuestionAdminRequest struct {
 	// AllowedFileTypes List of allowed file extensions (e.g., ['.pdf', '.doc', '.docx']). If empty, all file types are allowed.
-	AllowedFileTypes interface{} `json:"allowed_file_types,omitempty"`
+	AllowedFileTypes *map[string]interface{} `json:"allowed_file_types,omitempty"`
 
 	// AllowedMimeTypes List of allowed MIME types (e.g., ['application/pdf', 'application/msword']). If empty, MIME type validation is not enforced. When both extensions and MIME types are specified, files must match both criteria for security.
-	AllowedMimeTypes interface{} `json:"allowed_mime_types,omitempty"`
+	AllowedMimeTypes *map[string]interface{} `json:"allowed_mime_types,omitempty"`
 
 	// AlwaysRequiresReview This question always requires review regardless of answer
 	AlwaysRequiresReview *bool `json:"always_requires_review,omitempty"`
@@ -42506,7 +42510,7 @@ type PatchedQuestionAdminRequest struct {
 	Description             *string                      `json:"description,omitempty"`
 
 	// GuidanceAnswerValue Answer value that triggers display of user guidance.
-	GuidanceAnswerValue interface{} `json:"guidance_answer_value,omitempty"`
+	GuidanceAnswerValue *map[string]interface{} `json:"guidance_answer_value,omitempty"`
 
 	// GuidanceOperator Operator to use when comparing answer with guidance_answer_value
 	GuidanceOperator *PatchedQuestionAdminRequest_GuidanceOperator `json:"guidance_operator,omitempty"`
@@ -42542,7 +42546,7 @@ type PatchedQuestionAdminRequest struct {
 	Required     *bool             `json:"required,omitempty"`
 
 	// ReviewAnswerValue Answer value that trigger review.
-	ReviewAnswerValue interface{} `json:"review_answer_value,omitempty"`
+	ReviewAnswerValue *map[string]interface{} `json:"review_answer_value,omitempty"`
 
 	// RichTextCharLimit Maximum number of characters allowed in RICH_TEXT type answers. If not set, no limit is enforced.
 	RichTextCharLimit *int `json:"rich_text_char_limit,omitempty"`
@@ -42581,7 +42585,7 @@ type PatchedQuestionDependencyRequest struct {
 	Question          *string             `json:"question,omitempty"`
 
 	// RequiredAnswerValue The answer value(s) that make this question visible
-	RequiredAnswerValue interface{} `json:"required_answer_value,omitempty"`
+	RequiredAnswerValue *map[string]interface{} `json:"required_answer_value,omitempty"`
 }
 
 // PatchedQuestionOptionsAdminRequest defines model for PatchedQuestionOptionsAdminRequest.
@@ -42630,27 +42634,27 @@ type PatchedRancherClusterRequest struct {
 
 // PatchedRancherHPARequest defines model for PatchedRancherHPARequest.
 type PatchedRancherHPARequest struct {
-	Description *string     `json:"description,omitempty"`
-	MaxReplicas *int        `json:"max_replicas,omitempty"`
-	Metrics     interface{} `json:"metrics,omitempty"`
-	MinReplicas *int        `json:"min_replicas,omitempty"`
-	Name        *string     `json:"name,omitempty"`
-	Workload    *string     `json:"workload,omitempty"`
+	Description *string                 `json:"description,omitempty"`
+	MaxReplicas *int                    `json:"max_replicas,omitempty"`
+	Metrics     *map[string]interface{} `json:"metrics,omitempty"`
+	MinReplicas *int                    `json:"min_replicas,omitempty"`
+	Name        *string                 `json:"name,omitempty"`
+	Workload    *string                 `json:"workload,omitempty"`
 }
 
 // PatchedRancherIngressRequest defines model for PatchedRancherIngressRequest.
 type PatchedRancherIngressRequest struct {
-	BackendId       *string     `json:"backend_id,omitempty"`
-	Description     *string     `json:"description,omitempty"`
-	ErrorMessage    *string     `json:"error_message,omitempty"`
-	ErrorTraceback  *string     `json:"error_traceback,omitempty"`
-	Name            *string     `json:"name,omitempty"`
-	Namespace       *string     `json:"namespace,omitempty"`
-	Project         *string     `json:"project,omitempty"`
-	RancherProject  *string     `json:"rancher_project,omitempty"`
-	Rules           interface{} `json:"rules,omitempty"`
-	RuntimeState    *string     `json:"runtime_state,omitempty"`
-	ServiceSettings *string     `json:"service_settings,omitempty"`
+	BackendId       *string                 `json:"backend_id,omitempty"`
+	Description     *string                 `json:"description,omitempty"`
+	ErrorMessage    *string                 `json:"error_message,omitempty"`
+	ErrorTraceback  *string                 `json:"error_traceback,omitempty"`
+	Name            *string                 `json:"name,omitempty"`
+	Namespace       *string                 `json:"namespace,omitempty"`
+	Project         *string                 `json:"project,omitempty"`
+	RancherProject  *string                 `json:"rancher_project,omitempty"`
+	Rules           *map[string]interface{} `json:"rules,omitempty"`
+	RuntimeState    *string                 `json:"runtime_state,omitempty"`
+	ServiceSettings *string                 `json:"service_settings,omitempty"`
 }
 
 // PatchedRancherServiceRequest defines model for PatchedRancherServiceRequest.
@@ -42666,7 +42670,7 @@ type PatchedRancherServiceRequest struct {
 	Namespace       *string                                 `json:"namespace,omitempty"`
 	Project         *string                                 `json:"project,omitempty"`
 	RuntimeState    *string                                 `json:"runtime_state,omitempty"`
-	Selector        interface{}                             `json:"selector,omitempty"`
+	Selector        *map[string]interface{}                 `json:"selector,omitempty"`
 	ServiceSettings *string                                 `json:"service_settings,omitempty"`
 	TargetWorkloads *[]RancherNestedWorkloadRequest         `json:"target_workloads,omitempty"`
 }
@@ -42725,18 +42729,18 @@ type PatchedRequestTypeAdminRequest struct {
 
 // PatchedRequestedOfferingRequest defines model for PatchedRequestedOfferingRequest.
 type PatchedRequestedOfferingRequest struct {
-	Attributes  interface{} `json:"attributes,omitempty"`
-	Description *string     `json:"description,omitempty"`
-	Plan        *string     `json:"plan,omitempty"`
+	Attributes  *map[string]interface{} `json:"attributes,omitempty"`
+	Description *string                 `json:"description,omitempty"`
+	Plan        *string                 `json:"plan,omitempty"`
 }
 
 // PatchedRequestedResourceRequest defines model for PatchedRequestedResourceRequest.
 type PatchedRequestedResourceRequest struct {
-	Attributes               interface{}         `json:"attributes,omitempty"`
-	CallResourceTemplateUuid *openapi_types.UUID `json:"call_resource_template_uuid,omitempty"`
-	Description              *string             `json:"description,omitempty"`
-	Limits                   interface{}         `json:"limits,omitempty"`
-	RequestedOfferingUuid    *openapi_types.UUID `json:"requested_offering_uuid,omitempty"`
+	Attributes               *map[string]interface{} `json:"attributes,omitempty"`
+	CallResourceTemplateUuid *openapi_types.UUID     `json:"call_resource_template_uuid,omitempty"`
+	Description              *string                 `json:"description,omitempty"`
+	Limits                   *map[string]interface{} `json:"limits,omitempty"`
+	RequestedOfferingUuid    *openapi_types.UUID     `json:"requested_offering_uuid,omitempty"`
 }
 
 // PatchedResourceProjectRequest defines model for PatchedResourceProjectRequest.
@@ -42744,9 +42748,9 @@ type PatchedResourceProjectRequest struct {
 	Description *string `json:"description,omitempty"`
 
 	// Limits Dictionary mapping component types to quota values. Same format as Resource.limits.
-	Limits   interface{}         `json:"limits,omitempty"`
-	Name     *string             `json:"name,omitempty"`
-	Resource *openapi_types.UUID `json:"resource,omitempty"`
+	Limits   *map[string]interface{} `json:"limits,omitempty"`
+	Name     *string                 `json:"name,omitempty"`
+	Resource *openapi_types.UUID     `json:"resource,omitempty"`
 }
 
 // PatchedResourceUpdateRequest defines model for PatchedResourceUpdateRequest.
@@ -42803,7 +42807,7 @@ type PatchedReviewerExpertiseRequest struct {
 // PatchedReviewerProfileCreateRequest defines model for PatchedReviewerProfileCreateRequest.
 type PatchedReviewerProfileCreateRequest struct {
 	// AlternativeNames List of name variants used in publications
-	AlternativeNames interface{} `json:"alternative_names,omitempty"`
+	AlternativeNames *map[string]interface{} `json:"alternative_names,omitempty"`
 
 	// AvailableForReviews Whether reviewer is currently accepting review requests
 	AvailableForReviews *bool `json:"available_for_reviews,omitempty"`
@@ -42818,7 +42822,7 @@ type PatchedReviewerProfileCreateRequest struct {
 // PatchedReviewerProfileRequest defines model for PatchedReviewerProfileRequest.
 type PatchedReviewerProfileRequest struct {
 	// AlternativeNames List of name variants used in publications
-	AlternativeNames interface{} `json:"alternative_names,omitempty"`
+	AlternativeNames *map[string]interface{} `json:"alternative_names,omitempty"`
 
 	// AvailableForReviews Whether reviewer is currently accepting review requests
 	AvailableForReviews *bool `json:"available_for_reviews,omitempty"`
@@ -42835,13 +42839,13 @@ type PatchedReviewerPublicationRequest struct {
 	Abstract *string `json:"abstract,omitempty"`
 
 	// Coauthors List of co-author names and identifiers
-	Coauthors interface{} `json:"coauthors,omitempty"`
+	Coauthors *map[string]interface{} `json:"coauthors,omitempty"`
 
 	// Doi Digital Object Identifier
 	Doi *string `json:"doi,omitempty"`
 
 	// ExternalIds External identifiers: {"semantic_scholar": "...", "pubmed": "..."}
-	ExternalIds interface{} `json:"external_ids,omitempty"`
+	ExternalIds *map[string]interface{} `json:"external_ids,omitempty"`
 
 	// IsExcludedFromMatching User can exclude old papers from expertise matching
 	IsExcludedFromMatching *bool   `json:"is_excluded_from_matching,omitempty"`
@@ -42855,10 +42859,10 @@ type PatchedReviewerPublicationRequest struct {
 
 // PatchedRobotAccountRequest defines model for PatchedRobotAccountRequest.
 type PatchedRobotAccountRequest struct {
-	Description     *string     `json:"description,omitempty"`
-	Keys            interface{} `json:"keys,omitempty"`
-	Resource        *string     `json:"resource,omitempty"`
-	ResponsibleUser *string     `json:"responsible_user,omitempty"`
+	Description     *string                 `json:"description,omitempty"`
+	Keys            *map[string]interface{} `json:"keys,omitempty"`
+	Resource        *string                 `json:"resource,omitempty"`
+	ResponsibleUser *string                 `json:"responsible_user,omitempty"`
 
 	// Type Type of the robot account.
 	Type     *string `json:"type,omitempty"`
@@ -42937,28 +42941,28 @@ type PatchedSectionRequest struct {
 // PatchedServiceProviderRequest defines model for PatchedServiceProviderRequest.
 type PatchedServiceProviderRequest struct {
 	// AllowedDomains List of allowed domains for offering endpoints. Only staff can modify this field.
-	AllowedDomains      interface{}         `json:"allowed_domains,omitempty"`
-	Description         *string             `json:"description,omitempty"`
-	EnableNotifications *bool               `json:"enable_notifications,omitempty"`
-	Image               *openapi_types.File `json:"image,omitempty"`
+	AllowedDomains      *map[string]interface{} `json:"allowed_domains,omitempty"`
+	Description         *string                 `json:"description,omitempty"`
+	EnableNotifications *bool                   `json:"enable_notifications,omitempty"`
+	Image               *openapi_types.File     `json:"image,omitempty"`
 }
 
 // PatchedServiceProviderRequestForm defines model for PatchedServiceProviderRequestForm.
 type PatchedServiceProviderRequestForm struct {
 	// AllowedDomains List of allowed domains for offering endpoints. Only staff can modify this field.
-	AllowedDomains      interface{}         `json:"allowed_domains,omitempty"`
-	Description         *string             `json:"description,omitempty"`
-	EnableNotifications *bool               `json:"enable_notifications,omitempty"`
-	Image               *openapi_types.File `json:"image,omitempty"`
+	AllowedDomains      *map[string]interface{} `json:"allowed_domains,omitempty"`
+	Description         *string                 `json:"description,omitempty"`
+	EnableNotifications *bool                   `json:"enable_notifications,omitempty"`
+	Image               *openapi_types.File     `json:"image,omitempty"`
 }
 
 // PatchedServiceProviderRequestMultipart defines model for PatchedServiceProviderRequestMultipart.
 type PatchedServiceProviderRequestMultipart struct {
 	// AllowedDomains List of allowed domains for offering endpoints. Only staff can modify this field.
-	AllowedDomains      interface{}         `json:"allowed_domains,omitempty"`
-	Description         *string             `json:"description,omitempty"`
-	EnableNotifications *bool               `json:"enable_notifications,omitempty"`
-	Image               *openapi_types.File `json:"image,omitempty"`
+	AllowedDomains      *map[string]interface{} `json:"allowed_domains,omitempty"`
+	Description         *string                 `json:"description,omitempty"`
+	EnableNotifications *bool                   `json:"enable_notifications,omitempty"`
+	Image               *openapi_types.File     `json:"image,omitempty"`
 }
 
 // PatchedSlurmAllocationRequest defines model for PatchedSlurmAllocationRequest.
@@ -42988,9 +42992,9 @@ type PatchedSlurmPeriodicUsagePolicyRequest struct {
 	LimitType *LimitTypeEnum `json:"limit_type,omitempty"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options            interface{}       `json:"options,omitempty"`
-	OrganizationGroups *[]string         `json:"organization_groups,omitempty"`
-	Period             *PolicyPeriodEnum `json:"period,omitempty"`
+	Options            *map[string]interface{} `json:"options,omitempty"`
+	OrganizationGroups *[]string               `json:"organization_groups,omitempty"`
+	Period             *PolicyPeriodEnum       `json:"period,omitempty"`
 
 	// QosStrategy QoS management strategy
 	QosStrategy *QosStrategyEnum `json:"qos_strategy,omitempty"`
@@ -43003,7 +43007,7 @@ type PatchedSlurmPeriodicUsagePolicyRequest struct {
 	TresBillingEnabled *bool `json:"tres_billing_enabled,omitempty"`
 
 	// TresBillingWeights TRES billing weights (e.g., {"CPU": 0.015625, "Mem": 0.001953125, "GRES/gpu": 0.25})
-	TresBillingWeights interface{} `json:"tres_billing_weights,omitempty"`
+	TresBillingWeights *map[string]interface{} `json:"tres_billing_weights,omitempty"`
 }
 
 // PatchedSoftwareCatalogRequest defines model for PatchedSoftwareCatalogRequest.
@@ -43016,7 +43020,7 @@ type PatchedSoftwareCatalogRequest struct {
 	Description *string          `json:"description,omitempty"`
 
 	// Metadata Catalog-specific metadata (architecture maps, API endpoints, etc.)
-	Metadata interface{} `json:"metadata,omitempty"`
+	Metadata *map[string]interface{} `json:"metadata,omitempty"`
 
 	// Name Catalog name (e.g., EESSI, Spack)
 	Name *string `json:"name,omitempty"`
@@ -43034,19 +43038,19 @@ type PatchedSoftwarePackageRequest struct {
 	Catalog *string `json:"catalog,omitempty"`
 
 	// Categories Package categories (e.g., ['bio', 'hpc', 'build-tools'])
-	Categories  interface{} `json:"categories,omitempty"`
-	Description *string     `json:"description,omitempty"`
-	Homepage    *string     `json:"homepage,omitempty"`
+	Categories  *map[string]interface{} `json:"categories,omitempty"`
+	Description *string                 `json:"description,omitempty"`
+	Homepage    *string                 `json:"homepage,omitempty"`
 
 	// IsExtension Whether this package is an extension of another package
 	IsExtension *bool `json:"is_extension,omitempty"`
 
 	// Licenses Software licenses (e.g., ['GPL-3.0', 'MIT'])
-	Licenses interface{} `json:"licenses,omitempty"`
+	Licenses *map[string]interface{} `json:"licenses,omitempty"`
 
 	// Maintainers Package maintainers
-	Maintainers interface{} `json:"maintainers,omitempty"`
-	Name        *string     `json:"name,omitempty"`
+	Maintainers *map[string]interface{} `json:"maintainers,omitempty"`
+	Name        *string                 `json:"name,omitempty"`
 }
 
 // PatchedSystemPromptRequest defines model for PatchedSystemPromptRequest.
@@ -43142,8 +43146,8 @@ type PatchedUserRequest struct {
 	Description        *string `json:"description,omitempty"`
 
 	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
-	EdupersonAssurance interface{} `json:"eduperson_assurance,omitempty"`
-	FirstName          *string     `json:"first_name,omitempty"`
+	EdupersonAssurance *map[string]interface{} `json:"eduperson_assurance,omitempty"`
+	FirstName          *string                 `json:"first_name,omitempty"`
 
 	// Gender User's gender (male, female, or unknown)
 	Gender *PatchedUserRequest_Gender `json:"gender,omitempty"`
@@ -43164,10 +43168,10 @@ type PatchedUserRequest struct {
 	LastName  *string `json:"last_name,omitempty"`
 
 	// ManagedIsds List of ISD source identifiers this user can manage via Identity Bridge. E.g., ['isd:puhuri', 'isd:fenix']. Non-empty list implies identity manager role.
-	ManagedIsds interface{} `json:"managed_isds,omitempty"`
+	ManagedIsds *map[string]interface{} `json:"managed_isds,omitempty"`
 
 	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
-	Nationalities interface{} `json:"nationalities,omitempty"`
+	Nationalities *map[string]interface{} `json:"nationalities,omitempty"`
 
 	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
 	Nationality *string `json:"nationality,omitempty"`
@@ -43222,8 +43226,8 @@ type PatchedUserRequestForm struct {
 	Description        *string `json:"description,omitempty"`
 
 	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
-	EdupersonAssurance interface{} `json:"eduperson_assurance,omitempty"`
-	FirstName          *string     `json:"first_name,omitempty"`
+	EdupersonAssurance *map[string]interface{} `json:"eduperson_assurance,omitempty"`
+	FirstName          *string                 `json:"first_name,omitempty"`
 
 	// Gender User's gender (male, female, or unknown)
 	Gender *PatchedUserRequestForm_Gender `json:"gender,omitempty"`
@@ -43244,10 +43248,10 @@ type PatchedUserRequestForm struct {
 	LastName  *string `json:"last_name,omitempty"`
 
 	// ManagedIsds List of ISD source identifiers this user can manage via Identity Bridge. E.g., ['isd:puhuri', 'isd:fenix']. Non-empty list implies identity manager role.
-	ManagedIsds interface{} `json:"managed_isds,omitempty"`
+	ManagedIsds *map[string]interface{} `json:"managed_isds,omitempty"`
 
 	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
-	Nationalities interface{} `json:"nationalities,omitempty"`
+	Nationalities *map[string]interface{} `json:"nationalities,omitempty"`
 
 	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
 	Nationality *string `json:"nationality,omitempty"`
@@ -43302,8 +43306,8 @@ type PatchedUserRequestMultipart struct {
 	Description        *string `json:"description,omitempty"`
 
 	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
-	EdupersonAssurance interface{} `json:"eduperson_assurance,omitempty"`
-	FirstName          *string     `json:"first_name,omitempty"`
+	EdupersonAssurance *map[string]interface{} `json:"eduperson_assurance,omitempty"`
+	FirstName          *string                 `json:"first_name,omitempty"`
 
 	// Gender User's gender (male, female, or unknown)
 	Gender *PatchedUserRequestMultipart_Gender `json:"gender,omitempty"`
@@ -43324,10 +43328,10 @@ type PatchedUserRequestMultipart struct {
 	LastName  *string `json:"last_name,omitempty"`
 
 	// ManagedIsds List of ISD source identifiers this user can manage via Identity Bridge. E.g., ['isd:puhuri', 'isd:fenix']. Non-empty list implies identity manager role.
-	ManagedIsds interface{} `json:"managed_isds,omitempty"`
+	ManagedIsds *map[string]interface{} `json:"managed_isds,omitempty"`
 
 	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
-	Nationalities interface{} `json:"nationalities,omitempty"`
+	Nationalities *map[string]interface{} `json:"nationalities,omitempty"`
 
 	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
 	Nationality *string `json:"nationality,omitempty"`
@@ -43902,17 +43906,17 @@ type Project struct {
 	StartDate *openapi_types.Date `json:"start_date,omitempty"`
 
 	// TerminationMetadata Metadata about project termination (read-only)
-	TerminationMetadata interface{}         `json:"termination_metadata,omitempty"`
-	Type                *string             `json:"type,omitempty"`
-	TypeName            *string             `json:"type_name,omitempty"`
-	TypeUuid            *openapi_types.UUID `json:"type_uuid,omitempty"`
-	Url                 *string             `json:"url,omitempty"`
-	UserAffiliations    interface{}         `json:"user_affiliations,omitempty"`
-	UserEmailPatterns   interface{}         `json:"user_email_patterns,omitempty"`
+	TerminationMetadata *map[string]interface{} `json:"termination_metadata,omitempty"`
+	Type                *string                 `json:"type,omitempty"`
+	TypeName            *string                 `json:"type_name,omitempty"`
+	TypeUuid            *openapi_types.UUID     `json:"type_uuid,omitempty"`
+	Url                 *string                 `json:"url,omitempty"`
+	UserAffiliations    *map[string]interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns   *map[string]interface{} `json:"user_email_patterns,omitempty"`
 
 	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources interface{}         `json:"user_identity_sources,omitempty"`
-	Uuid                *openapi_types.UUID `json:"uuid,omitempty"`
+	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
+	Uuid                *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // Project_OecdFos2007Code defines model for Project.OecdFos2007Code.
@@ -44154,15 +44158,15 @@ type ProjectEstimatedCostPolicy struct {
 	LimitCost              int                  `json:"limit_cost"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options       interface{}         `json:"options,omitempty"`
-	Period        *PolicyPeriodEnum   `json:"period,omitempty"`
-	PeriodName    *string             `json:"period_name,omitempty"`
-	ProjectCredit *string             `json:"project_credit,omitempty"`
-	Scope         string              `json:"scope"`
-	ScopeName     *string             `json:"scope_name,omitempty"`
-	ScopeUuid     *openapi_types.UUID `json:"scope_uuid,omitempty"`
-	Url           *string             `json:"url,omitempty"`
-	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
+	Options       *map[string]interface{} `json:"options,omitempty"`
+	Period        *PolicyPeriodEnum       `json:"period,omitempty"`
+	PeriodName    *string                 `json:"period_name,omitempty"`
+	ProjectCredit *string                 `json:"project_credit,omitempty"`
+	Scope         string                  `json:"scope"`
+	ScopeName     *string                 `json:"scope_name,omitempty"`
+	ScopeUuid     *openapi_types.UUID     `json:"scope_uuid,omitempty"`
+	Url           *string                 `json:"url,omitempty"`
+	Uuid          *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // ProjectEstimatedCostPolicyRequest defines model for ProjectEstimatedCostPolicyRequest.
@@ -44171,9 +44175,9 @@ type ProjectEstimatedCostPolicyRequest struct {
 	LimitCost int    `json:"limit_cost"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options interface{}       `json:"options,omitempty"`
-	Period  *PolicyPeriodEnum `json:"period,omitempty"`
-	Scope   string            `json:"scope"`
+	Options *map[string]interface{} `json:"options,omitempty"`
+	Period  *PolicyPeriodEnum       `json:"period,omitempty"`
+	Scope   string                  `json:"scope"`
 }
 
 // ProjectFieldEnum defines model for ProjectFieldEnum.
@@ -44344,13 +44348,13 @@ type ProjectRequest struct {
 	StaffNotes *string `json:"staff_notes,omitempty"`
 
 	// StartDate Project start date. Cannot be edited after the start date has arrived.
-	StartDate         *openapi_types.Date `json:"start_date,omitempty"`
-	Type              *string             `json:"type,omitempty"`
-	UserAffiliations  interface{}         `json:"user_affiliations,omitempty"`
-	UserEmailPatterns interface{}         `json:"user_email_patterns,omitempty"`
+	StartDate         *openapi_types.Date     `json:"start_date,omitempty"`
+	Type              *string                 `json:"type,omitempty"`
+	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
 
 	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
+	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
 }
 
 // ProjectRequest_OecdFos2007Code defines model for ProjectRequest.OecdFos2007Code.
@@ -44386,13 +44390,13 @@ type ProjectRequestForm struct {
 	StaffNotes *string `json:"staff_notes,omitempty"`
 
 	// StartDate Project start date. Cannot be edited after the start date has arrived.
-	StartDate         *openapi_types.Date `json:"start_date,omitempty"`
-	Type              *string             `json:"type,omitempty"`
-	UserAffiliations  interface{}         `json:"user_affiliations,omitempty"`
-	UserEmailPatterns interface{}         `json:"user_email_patterns,omitempty"`
+	StartDate         *openapi_types.Date     `json:"start_date,omitempty"`
+	Type              *string                 `json:"type,omitempty"`
+	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
 
 	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
+	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
 }
 
 // ProjectRequestForm_OecdFos2007Code defines model for ProjectRequestForm.OecdFos2007Code.
@@ -44428,13 +44432,13 @@ type ProjectRequestMultipart struct {
 	StaffNotes *string `json:"staff_notes,omitempty"`
 
 	// StartDate Project start date. Cannot be edited after the start date has arrived.
-	StartDate         *openapi_types.Date `json:"start_date,omitempty"`
-	Type              *string             `json:"type,omitempty"`
-	UserAffiliations  interface{}         `json:"user_affiliations,omitempty"`
-	UserEmailPatterns interface{}         `json:"user_email_patterns,omitempty"`
+	StartDate         *openapi_types.Date     `json:"start_date,omitempty"`
+	Type              *string                 `json:"type,omitempty"`
+	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
 
 	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
+	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
 }
 
 // ProjectRequestMultipart_OecdFos2007Code defines model for ProjectRequestMultipart.OecdFos2007Code.
@@ -44497,7 +44501,7 @@ type ProjectStorageReport struct {
 // ProjectTemplate defines model for ProjectTemplate.
 type ProjectTemplate struct {
 	// AllocationUnitsMapping The mapping of credits to allocation units, i.e. how many allocation units to award per credit allocated.
-	AllocationUnitsMapping interface{} `json:"allocation_units_mapping,omitempty"`
+	AllocationUnitsMapping *map[string]interface{} `json:"allocation_units_mapping,omitempty"`
 
 	// ApprovalLimit The credit limit beyond which requests need to be approved by a local admin. If this is None, then no local approval is required. If this is set to 0, then all requests (including creating the project) need to be approved.
 	ApprovalLimit *string        `json:"approval_limit,omitempty"`
@@ -44520,7 +44524,7 @@ type ProjectTemplate struct {
 	ProviderData  *BasicCustomer      `json:"provider_data,omitempty"`
 
 	// RoleMapping The mapping of role names from the remote portal to role information in this portal for users in projects created in this class.
-	RoleMapping interface{} `json:"role_mapping,omitempty"`
+	RoleMapping *map[string]interface{} `json:"role_mapping,omitempty"`
 
 	// RoleMappingData Serialize the role mapping dictionary returned by get_role_mapping()
 	RoleMappingData *map[string]map[string]string `json:"role_mapping_data,omitempty"`
@@ -44531,7 +44535,7 @@ type ProjectTemplate struct {
 // ProjectTemplateRequest defines model for ProjectTemplateRequest.
 type ProjectTemplateRequest struct {
 	// AllocationUnitsMapping The mapping of credits to allocation units, i.e. how many allocation units to award per credit allocated.
-	AllocationUnitsMapping interface{} `json:"allocation_units_mapping,omitempty"`
+	AllocationUnitsMapping *map[string]interface{} `json:"allocation_units_mapping,omitempty"`
 
 	// ApprovalLimit The credit limit beyond which requests need to be approved by a local admin. If this is None, then no local approval is required. If this is set to 0, then all requests (including creating the project) need to be approved.
 	ApprovalLimit *string `json:"approval_limit,omitempty"`
@@ -44551,8 +44555,8 @@ type ProjectTemplateRequest struct {
 	Provider  string   `json:"provider"`
 
 	// RoleMapping The mapping of role names from the remote portal to role information in this portal for users in projects created in this class.
-	RoleMapping interface{} `json:"role_mapping,omitempty"`
-	Shortname   *string     `json:"shortname,omitempty"`
+	RoleMapping *map[string]interface{} `json:"role_mapping,omitempty"`
+	Shortname   *string                 `json:"shortname,omitempty"`
 }
 
 // ProjectType defines model for ProjectType.
@@ -44632,20 +44636,20 @@ type Proposal struct {
 	AllocationComment *string `json:"allocation_comment,omitempty"`
 
 	// ApplicantActiveIsds List of ISDs that have asserted this user exists. User is deactivated when this becomes empty.
-	ApplicantActiveIsds interface{} `json:"applicant_active_isds,omitempty"`
-	ApplicantAddress    *string     `json:"applicant_address,omitempty"`
+	ApplicantActiveIsds *map[string]interface{} `json:"applicant_active_isds,omitempty"`
+	ApplicantAddress    *string                 `json:"applicant_address,omitempty"`
 
 	// ApplicantAffiliations Person's affiliation within organization such as student, faculty, staff.
-	ApplicantAffiliations       interface{}         `json:"applicant_affiliations,omitempty"`
-	ApplicantBirthDate          *openapi_types.Date `json:"applicant_birth_date,omitempty"`
-	ApplicantCivilNumber        *string             `json:"applicant_civil_number,omitempty"`
-	ApplicantCountryOfResidence *string             `json:"applicant_country_of_residence,omitempty"`
+	ApplicantAffiliations       *map[string]interface{} `json:"applicant_affiliations,omitempty"`
+	ApplicantBirthDate          *openapi_types.Date     `json:"applicant_birth_date,omitempty"`
+	ApplicantCivilNumber        *string                 `json:"applicant_civil_number,omitempty"`
+	ApplicantCountryOfResidence *string                 `json:"applicant_country_of_residence,omitempty"`
 
 	// ApplicantEdupersonAssurance REFEDS assurance profile URIs from identity provider
-	ApplicantEdupersonAssurance interface{}          `json:"applicant_eduperson_assurance,omitempty"`
-	ApplicantEmail              *openapi_types.Email `json:"applicant_email,omitempty"`
-	ApplicantFirstName          *string              `json:"applicant_first_name,omitempty"`
-	ApplicantFullName           *string              `json:"applicant_full_name,omitempty"`
+	ApplicantEdupersonAssurance *map[string]interface{} `json:"applicant_eduperson_assurance,omitempty"`
+	ApplicantEmail              *openapi_types.Email    `json:"applicant_email,omitempty"`
+	ApplicantFirstName          *string                 `json:"applicant_first_name,omitempty"`
+	ApplicantFullName           *string                 `json:"applicant_full_name,omitempty"`
 
 	// ApplicantGender User's gender (male, female, or unknown)
 	ApplicantGender *Proposal_ApplicantGender `json:"applicant_gender,omitempty"`
@@ -44656,7 +44660,7 @@ type Proposal struct {
 	ApplicantLastName       *string `json:"applicant_last_name,omitempty"`
 
 	// ApplicantNationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
-	ApplicantNationalities interface{} `json:"applicant_nationalities,omitempty"`
+	ApplicantNationalities *map[string]interface{} `json:"applicant_nationalities,omitempty"`
 
 	// ApplicantNationality Primary citizenship (ISO 3166-1 alpha-2 code)
 	ApplicantNationality         *string `json:"applicant_nationality,omitempty"`
@@ -45014,23 +45018,23 @@ type ProtectedCall struct {
 	Url       *string     `json:"url,omitempty"`
 
 	// UserAffiliations List of allowed affiliations. User must have one.
-	UserAffiliations interface{} `json:"user_affiliations,omitempty"`
+	UserAffiliations *map[string]interface{} `json:"user_affiliations,omitempty"`
 
 	// UserAssuranceLevels List of required assurance URIs (REFEDS). User must have ALL of these.
-	UserAssuranceLevels interface{} `json:"user_assurance_levels,omitempty"`
+	UserAssuranceLevels *map[string]interface{} `json:"user_assurance_levels,omitempty"`
 
 	// UserEmailPatterns List of email regex patterns. User must match one.
-	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
 
 	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
+	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
 
 	// UserNationalities List of allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
-	UserNationalities interface{} `json:"user_nationalities,omitempty"`
+	UserNationalities *map[string]interface{} `json:"user_nationalities,omitempty"`
 
 	// UserOrganizationTypes List of allowed organization type URNs (SCHAC). User must match one.
-	UserOrganizationTypes interface{}         `json:"user_organization_types,omitempty"`
-	Uuid                  *openapi_types.UUID `json:"uuid,omitempty"`
+	UserOrganizationTypes *map[string]interface{} `json:"user_organization_types,omitempty"`
+	Uuid                  *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // ProtectedCallFieldEnum defines model for ProtectedCallFieldEnum.
@@ -45067,22 +45071,22 @@ type ProtectedCallRequest struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// UserAffiliations List of allowed affiliations. User must have one.
-	UserAffiliations interface{} `json:"user_affiliations,omitempty"`
+	UserAffiliations *map[string]interface{} `json:"user_affiliations,omitempty"`
 
 	// UserAssuranceLevels List of required assurance URIs (REFEDS). User must have ALL of these.
-	UserAssuranceLevels interface{} `json:"user_assurance_levels,omitempty"`
+	UserAssuranceLevels *map[string]interface{} `json:"user_assurance_levels,omitempty"`
 
 	// UserEmailPatterns List of email regex patterns. User must match one.
-	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
 
 	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
+	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
 
 	// UserNationalities List of allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
-	UserNationalities interface{} `json:"user_nationalities,omitempty"`
+	UserNationalities *map[string]interface{} `json:"user_nationalities,omitempty"`
 
 	// UserOrganizationTypes List of allowed organization type URNs (SCHAC). User must match one.
-	UserOrganizationTypes interface{} `json:"user_organization_types,omitempty"`
+	UserOrganizationTypes *map[string]interface{} `json:"user_organization_types,omitempty"`
 }
 
 // ProtectedProposalList defines model for ProtectedProposalList.
@@ -45182,13 +45186,13 @@ type ProviderOffering struct {
 	OfferingGroupUuid    *openapi_types.UUID  `json:"offering_group_uuid,omitempty"`
 
 	// Options Fields describing resource provision form.
-	Options interface{}         `json:"options,omitempty"`
-	Plans   *[]BaseProviderPlan `json:"plans,omitempty"`
+	Options *map[string]interface{} `json:"options,omitempty"`
+	Plans   *[]BaseProviderPlan     `json:"plans,omitempty"`
 
 	// ResourceOptions Fields describing resource report form.
-	ResourceOptions interface{}          `json:"resource_options,omitempty"`
-	ResourcesCount  *int                 `json:"resources_count,omitempty"`
-	SecretOptions   *MergedSecretOptions `json:"secret_options,omitempty"`
+	ResourceOptions *map[string]interface{} `json:"resource_options,omitempty"`
+	ResourcesCount  *int                    `json:"resources_count,omitempty"`
+	SecretOptions   *MergedSecretOptions    `json:"secret_options,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug      *string             `json:"slug,omitempty"`
@@ -45234,8 +45238,8 @@ type ProviderOfferingDetails struct {
 	BackendId  *string                 `json:"backend_id,omitempty"`
 
 	// BackendIdRules Validation rules for resource backend_id: format regex and uniqueness scope.
-	BackendIdRules  interface{} `json:"backend_id_rules,omitempty"`
-	BackendMetadata interface{} `json:"backend_metadata,omitempty"`
+	BackendIdRules  *map[string]interface{} `json:"backend_id_rules,omitempty"`
+	BackendMetadata *map[string]interface{} `json:"backend_metadata,omitempty"`
 
 	// Billable Purchase and usage is invoiced.
 	Billable *bool `json:"billable,omitempty"`
@@ -45426,7 +45430,7 @@ type ProviderProject struct {
 
 // ProviderRequestedOffering defines model for ProviderRequestedOffering.
 type ProviderRequestedOffering struct {
-	Attributes               interface{}              `json:"attributes,omitempty"`
+	Attributes               *map[string]interface{}  `json:"attributes,omitempty"`
 	Call                     string                   `json:"call"`
 	CallManagingOrganisation *string                  `json:"call_managing_organisation,omitempty"`
 	CallName                 *string                  `json:"call_name,omitempty"`
@@ -45454,13 +45458,13 @@ type ProviderRequestedOfferingOEnum string
 
 // ProviderRequestedResource defines model for ProviderRequestedResource.
 type ProviderRequestedResource struct {
-	Attributes               interface{}              `json:"attributes,omitempty"`
+	Attributes               *map[string]interface{}  `json:"attributes,omitempty"`
 	CallResourceTemplate     *string                  `json:"call_resource_template,omitempty"`
 	CallResourceTemplateName *string                  `json:"call_resource_template_name,omitempty"`
 	CreatedBy                *string                  `json:"created_by,omitempty"`
 	CreatedByName            *string                  `json:"created_by_name,omitempty"`
 	Description              *string                  `json:"description,omitempty"`
-	Limits                   interface{}              `json:"limits,omitempty"`
+	Limits                   *map[string]interface{}  `json:"limits,omitempty"`
 	Proposal                 string                   `json:"proposal"`
 	ProposalName             *string                  `json:"proposal_name,omitempty"`
 	RequestedOffering        *NestedRequestedOffering `json:"requested_offering,omitempty"`
@@ -45629,7 +45633,7 @@ type PublicOfferingDetails struct {
 	AccessUrl       *string                 `json:"access_url,omitempty"`
 	Attributes      *map[string]interface{} `json:"attributes,omitempty"`
 	BackendId       *string                 `json:"backend_id,omitempty"`
-	BackendMetadata interface{}             `json:"backend_metadata,omitempty"`
+	BackendMetadata *map[string]interface{} `json:"backend_metadata,omitempty"`
 
 	// Billable Purchase and usage is invoiced.
 	Billable *bool `json:"billable,omitempty"`
@@ -45844,10 +45848,10 @@ type QueryRequest struct {
 // Question defines model for Question.
 type Question struct {
 	// AllowedFileTypes List of allowed file extensions (e.g., ['.pdf', '.doc', '.docx']). If empty, all file types are allowed.
-	AllowedFileTypes interface{} `json:"allowed_file_types,omitempty"`
+	AllowedFileTypes *map[string]interface{} `json:"allowed_file_types,omitempty"`
 
 	// AllowedMimeTypes List of allowed MIME types (e.g., ['application/pdf', 'application/msword']). If empty, MIME type validation is not enforced. When both extensions and MIME types are specified, files must match both criteria for security.
-	AllowedMimeTypes interface{} `json:"allowed_mime_types,omitempty"`
+	AllowedMimeTypes *map[string]interface{} `json:"allowed_mime_types,omitempty"`
 
 	// AlwaysRequiresReview This question always requires review regardless of answer
 	AlwaysRequiresReview *bool `json:"always_requires_review,omitempty"`
@@ -45860,7 +45864,7 @@ type Question struct {
 	Description             *string                      `json:"description,omitempty"`
 
 	// GuidanceAnswerValue Answer value that triggers display of user guidance.
-	GuidanceAnswerValue interface{} `json:"guidance_answer_value,omitempty"`
+	GuidanceAnswerValue *map[string]interface{} `json:"guidance_answer_value,omitempty"`
 
 	// GuidanceOperator Operator to use when comparing answer with guidance_answer_value
 	GuidanceOperator *Question_GuidanceOperator `json:"guidance_operator,omitempty"`
@@ -45897,7 +45901,7 @@ type Question struct {
 	Required     *bool             `json:"required,omitempty"`
 
 	// ReviewAnswerValue Answer value that trigger review.
-	ReviewAnswerValue interface{} `json:"review_answer_value,omitempty"`
+	ReviewAnswerValue *map[string]interface{} `json:"review_answer_value,omitempty"`
 
 	// RichTextCharLimit Maximum number of characters allowed in RICH_TEXT type answers. If not set, no limit is enforced.
 	RichTextCharLimit *int `json:"rich_text_char_limit,omitempty"`
@@ -45933,10 +45937,10 @@ type Question_RichTextToolbarLevel struct {
 // QuestionAdmin defines model for QuestionAdmin.
 type QuestionAdmin struct {
 	// AllowedFileTypes List of allowed file extensions (e.g., ['.pdf', '.doc', '.docx']). If empty, all file types are allowed.
-	AllowedFileTypes interface{} `json:"allowed_file_types,omitempty"`
+	AllowedFileTypes *map[string]interface{} `json:"allowed_file_types,omitempty"`
 
 	// AllowedMimeTypes List of allowed MIME types (e.g., ['application/pdf', 'application/msword']). If empty, MIME type validation is not enforced. When both extensions and MIME types are specified, files must match both criteria for security.
-	AllowedMimeTypes interface{} `json:"allowed_mime_types,omitempty"`
+	AllowedMimeTypes *map[string]interface{} `json:"allowed_mime_types,omitempty"`
 
 	// AlwaysRequiresReview This question always requires review regardless of answer
 	AlwaysRequiresReview *bool `json:"always_requires_review,omitempty"`
@@ -45953,7 +45957,7 @@ type QuestionAdmin struct {
 	Description             *string                      `json:"description,omitempty"`
 
 	// GuidanceAnswerValue Answer value that triggers display of user guidance.
-	GuidanceAnswerValue interface{} `json:"guidance_answer_value,omitempty"`
+	GuidanceAnswerValue *map[string]interface{} `json:"guidance_answer_value,omitempty"`
 
 	// GuidanceOperator Operator to use when comparing answer with guidance_answer_value
 	GuidanceOperator *QuestionAdmin_GuidanceOperator `json:"guidance_operator,omitempty"`
@@ -45990,7 +45994,7 @@ type QuestionAdmin struct {
 	Required     *bool             `json:"required,omitempty"`
 
 	// ReviewAnswerValue Answer value that trigger review.
-	ReviewAnswerValue interface{} `json:"review_answer_value,omitempty"`
+	ReviewAnswerValue *map[string]interface{} `json:"review_answer_value,omitempty"`
 
 	// RichTextCharLimit Maximum number of characters allowed in RICH_TEXT type answers. If not set, no limit is enforced.
 	RichTextCharLimit *int `json:"rich_text_char_limit,omitempty"`
@@ -46027,10 +46031,10 @@ type QuestionAdmin_RichTextToolbarLevel struct {
 // QuestionAdminRequest defines model for QuestionAdminRequest.
 type QuestionAdminRequest struct {
 	// AllowedFileTypes List of allowed file extensions (e.g., ['.pdf', '.doc', '.docx']). If empty, all file types are allowed.
-	AllowedFileTypes interface{} `json:"allowed_file_types,omitempty"`
+	AllowedFileTypes *map[string]interface{} `json:"allowed_file_types,omitempty"`
 
 	// AllowedMimeTypes List of allowed MIME types (e.g., ['application/pdf', 'application/msword']). If empty, MIME type validation is not enforced. When both extensions and MIME types are specified, files must match both criteria for security.
-	AllowedMimeTypes interface{} `json:"allowed_mime_types,omitempty"`
+	AllowedMimeTypes *map[string]interface{} `json:"allowed_mime_types,omitempty"`
 
 	// AlwaysRequiresReview This question always requires review regardless of answer
 	AlwaysRequiresReview *bool `json:"always_requires_review,omitempty"`
@@ -46044,7 +46048,7 @@ type QuestionAdminRequest struct {
 	Description             *string                      `json:"description,omitempty"`
 
 	// GuidanceAnswerValue Answer value that triggers display of user guidance.
-	GuidanceAnswerValue interface{} `json:"guidance_answer_value,omitempty"`
+	GuidanceAnswerValue *map[string]interface{} `json:"guidance_answer_value,omitempty"`
 
 	// GuidanceOperator Operator to use when comparing answer with guidance_answer_value
 	GuidanceOperator *QuestionAdminRequest_GuidanceOperator `json:"guidance_operator,omitempty"`
@@ -46080,7 +46084,7 @@ type QuestionAdminRequest struct {
 	Required     *bool             `json:"required,omitempty"`
 
 	// ReviewAnswerValue Answer value that trigger review.
-	ReviewAnswerValue interface{} `json:"review_answer_value,omitempty"`
+	ReviewAnswerValue *map[string]interface{} `json:"review_answer_value,omitempty"`
 
 	// RichTextCharLimit Maximum number of characters allowed in RICH_TEXT type answers. If not set, no limit is enforced.
 	RichTextCharLimit *int `json:"rich_text_char_limit,omitempty"`
@@ -46136,9 +46140,9 @@ type QuestionAnswer struct {
 
 // QuestionCondition defines model for QuestionCondition.
 type QuestionCondition struct {
-	Operator            string      `json:"operator"`
-	QuestionDescription string      `json:"question_description"`
-	RequiredValue       interface{} `json:"required_value"`
+	Operator            string                 `json:"operator"`
+	QuestionDescription string                 `json:"question_description"`
+	RequiredValue       map[string]interface{} `json:"required_value"`
 }
 
 // QuestionDependency defines model for QuestionDependency.
@@ -46150,9 +46154,9 @@ type QuestionDependency struct {
 	QuestionName          *string             `json:"question_name,omitempty"`
 
 	// RequiredAnswerValue The answer value(s) that make this question visible
-	RequiredAnswerValue interface{}         `json:"required_answer_value"`
-	Url                 *string             `json:"url,omitempty"`
-	Uuid                *openapi_types.UUID `json:"uuid,omitempty"`
+	RequiredAnswerValue map[string]interface{} `json:"required_answer_value"`
+	Url                 *string                `json:"url,omitempty"`
+	Uuid                *openapi_types.UUID    `json:"uuid,omitempty"`
 }
 
 // QuestionDependencyInfo defines model for QuestionDependencyInfo.
@@ -46168,7 +46172,7 @@ type QuestionDependencyRequest struct {
 	Question          string              `json:"question"`
 
 	// RequiredAnswerValue The answer value(s) that make this question visible
-	RequiredAnswerValue interface{} `json:"required_answer_value"`
+	RequiredAnswerValue map[string]interface{} `json:"required_answer_value"`
 }
 
 // QuestionOptions defines model for QuestionOptions.
@@ -46201,10 +46205,10 @@ type QuestionTypeEnum string
 // QuestionWithAnswer defines model for QuestionWithAnswer.
 type QuestionWithAnswer struct {
 	// AllowedFileTypes List of allowed file extensions (e.g., ['.pdf', '.doc', '.docx']). If empty, all file types are allowed.
-	AllowedFileTypes interface{} `json:"allowed_file_types,omitempty"`
+	AllowedFileTypes *map[string]interface{} `json:"allowed_file_types,omitempty"`
 
 	// AllowedMimeTypes List of allowed MIME types (e.g., ['application/pdf', 'application/msword']). If empty, MIME type validation is not enforced. When both extensions and MIME types are specified, files must match both criteria for security.
-	AllowedMimeTypes interface{}             `json:"allowed_mime_types,omitempty"`
+	AllowedMimeTypes *map[string]interface{} `json:"allowed_mime_types,omitempty"`
 	DependenciesInfo *QuestionDependencyInfo `json:"dependencies_info,omitempty"`
 	Description      *string                 `json:"description,omitempty"`
 	ExistingAnswer   *Answer                 `json:"existing_answer,omitempty"`
@@ -46256,10 +46260,10 @@ type QuestionWithAnswer_LikertScaleLength struct {
 // QuestionWithAnswerReviewer defines model for QuestionWithAnswerReviewer.
 type QuestionWithAnswerReviewer struct {
 	// AllowedFileTypes List of allowed file extensions (e.g., ['.pdf', '.doc', '.docx']). If empty, all file types are allowed.
-	AllowedFileTypes interface{} `json:"allowed_file_types,omitempty"`
+	AllowedFileTypes *map[string]interface{} `json:"allowed_file_types,omitempty"`
 
 	// AllowedMimeTypes List of allowed MIME types (e.g., ['application/pdf', 'application/msword']). If empty, MIME type validation is not enforced. When both extensions and MIME types are specified, files must match both criteria for security.
-	AllowedMimeTypes interface{} `json:"allowed_mime_types,omitempty"`
+	AllowedMimeTypes *map[string]interface{} `json:"allowed_mime_types,omitempty"`
 
 	// AlwaysRequiresReview This question always requires review regardless of answer
 	AlwaysRequiresReview *bool                   `json:"always_requires_review,omitempty"`
@@ -46299,7 +46303,7 @@ type QuestionWithAnswerReviewer struct {
 	Required     *bool             `json:"required,omitempty"`
 
 	// ReviewAnswerValue Answer value that trigger review.
-	ReviewAnswerValue interface{} `json:"review_answer_value,omitempty"`
+	ReviewAnswerValue *map[string]interface{} `json:"review_answer_value,omitempty"`
 
 	// RichTextCharLimit Maximum number of characters allowed in RICH_TEXT type answers. If not set, no limit is enforced.
 	RichTextCharLimit *int `json:"rich_text_char_limit,omitempty"`
@@ -46497,16 +46501,16 @@ type RancherCluster struct {
 	BackendId *string                   `json:"backend_id,omitempty"`
 
 	// Capacity Cluster capacity in the format {'cpu': '10', 'ram': '49125240Ki', 'pods': '330'}
-	Capacity             interface{}         `json:"capacity,omitempty"`
-	Created              *time.Time          `json:"created,omitempty"`
-	Customer             *string             `json:"customer,omitempty"`
-	CustomerAbbreviation *string             `json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `json:"customer_uuid,omitempty"`
-	Description          *string             `json:"description,omitempty"`
-	ErrorMessage         *string             `json:"error_message,omitempty"`
-	ErrorTraceback       *string             `json:"error_traceback,omitempty"`
+	Capacity             *map[string]interface{} `json:"capacity,omitempty"`
+	Created              *time.Time              `json:"created,omitempty"`
+	Customer             *string                 `json:"customer,omitempty"`
+	CustomerAbbreviation *string                 `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string                 `json:"customer_name,omitempty"`
+	CustomerNativeName   *string                 `json:"customer_native_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID     `json:"customer_uuid,omitempty"`
+	Description          *string                 `json:"description,omitempty"`
+	ErrorMessage         *string                 `json:"error_message,omitempty"`
+	ErrorTraceback       *string                 `json:"error_traceback,omitempty"`
 
 	// InstallLonghorn Longhorn is a distributed block storage deployed on top of Kubernetes cluster
 	InstallLonghorn *bool `json:"install_longhorn,omitempty"`
@@ -46534,21 +46538,21 @@ type RancherCluster struct {
 	PublicIps                        *[]RancherNestedPublicIP `json:"public_ips,omitempty"`
 
 	// Requested Cluster requested resources in the format {'cpu': '1450m', 'memory': '884Mi', 'pods': '13'}
-	Requested                   interface{}         `json:"requested,omitempty"`
-	ResourceType                *string             `json:"resource_type,omitempty"`
-	RouterIps                   *[]interface{}      `json:"router_ips,omitempty"`
-	RuntimeState                *string             `json:"runtime_state,omitempty"`
-	ServiceName                 *string             `json:"service_name,omitempty"`
-	ServiceSettings             *string             `json:"service_settings,omitempty"`
-	ServiceSettingsErrorMessage *string             `json:"service_settings_error_message,omitempty"`
-	ServiceSettingsState        *string             `json:"service_settings_state,omitempty"`
-	ServiceSettingsUuid         *openapi_types.UUID `json:"service_settings_uuid,omitempty"`
-	State                       *CoreStates         `json:"state,omitempty"`
-	Tenant                      *string             `json:"tenant,omitempty"`
-	TenantUuid                  *openapi_types.UUID `json:"tenant_uuid,omitempty"`
-	Url                         *string             `json:"url,omitempty"`
-	Uuid                        *openapi_types.UUID `json:"uuid,omitempty"`
-	VmProject                   *string             `json:"vm_project,omitempty"`
+	Requested                   *map[string]interface{} `json:"requested,omitempty"`
+	ResourceType                *string                 `json:"resource_type,omitempty"`
+	RouterIps                   *[]interface{}          `json:"router_ips,omitempty"`
+	RuntimeState                *string                 `json:"runtime_state,omitempty"`
+	ServiceName                 *string                 `json:"service_name,omitempty"`
+	ServiceSettings             *string                 `json:"service_settings,omitempty"`
+	ServiceSettingsErrorMessage *string                 `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState        *string                 `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid         *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
+	State                       *CoreStates             `json:"state,omitempty"`
+	Tenant                      *string                 `json:"tenant,omitempty"`
+	TenantUuid                  *openapi_types.UUID     `json:"tenant_uuid,omitempty"`
+	Url                         *string                 `json:"url,omitempty"`
+	Uuid                        *openapi_types.UUID     `json:"uuid,omitempty"`
+	VmProject                   *string                 `json:"vm_project,omitempty"`
 }
 
 // RancherClusterAccessUrl0 defines model for .
@@ -46676,40 +46680,40 @@ type RancherCreateNodeRequest struct {
 
 // RancherHPA defines model for RancherHPA.
 type RancherHPA struct {
-	Cluster         *string             `json:"cluster,omitempty"`
-	ClusterName     *string             `json:"cluster_name,omitempty"`
-	ClusterUuid     *openapi_types.UUID `json:"cluster_uuid,omitempty"`
-	Created         *time.Time          `json:"created,omitempty"`
-	CurrentReplicas *int                `json:"current_replicas,omitempty"`
-	Description     *string             `json:"description,omitempty"`
-	DesiredReplicas *int                `json:"desired_replicas,omitempty"`
-	MaxReplicas     *int                `json:"max_replicas,omitempty"`
-	Metrics         interface{}         `json:"metrics"`
-	MinReplicas     *int                `json:"min_replicas,omitempty"`
-	Modified        *time.Time          `json:"modified,omitempty"`
-	Name            string              `json:"name"`
-	Namespace       *string             `json:"namespace,omitempty"`
-	NamespaceName   *string             `json:"namespace_name,omitempty"`
-	NamespaceUuid   *openapi_types.UUID `json:"namespace_uuid,omitempty"`
-	Project         *string             `json:"project,omitempty"`
-	ProjectName     *string             `json:"project_name,omitempty"`
-	ProjectUuid     *openapi_types.UUID `json:"project_uuid,omitempty"`
-	RuntimeState    *string             `json:"runtime_state,omitempty"`
-	Url             *string             `json:"url,omitempty"`
-	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
-	Workload        *string             `json:"workload,omitempty"`
-	WorkloadName    *string             `json:"workload_name,omitempty"`
-	WorkloadUuid    *openapi_types.UUID `json:"workload_uuid,omitempty"`
+	Cluster         *string                `json:"cluster,omitempty"`
+	ClusterName     *string                `json:"cluster_name,omitempty"`
+	ClusterUuid     *openapi_types.UUID    `json:"cluster_uuid,omitempty"`
+	Created         *time.Time             `json:"created,omitempty"`
+	CurrentReplicas *int                   `json:"current_replicas,omitempty"`
+	Description     *string                `json:"description,omitempty"`
+	DesiredReplicas *int                   `json:"desired_replicas,omitempty"`
+	MaxReplicas     *int                   `json:"max_replicas,omitempty"`
+	Metrics         map[string]interface{} `json:"metrics"`
+	MinReplicas     *int                   `json:"min_replicas,omitempty"`
+	Modified        *time.Time             `json:"modified,omitempty"`
+	Name            string                 `json:"name"`
+	Namespace       *string                `json:"namespace,omitempty"`
+	NamespaceName   *string                `json:"namespace_name,omitempty"`
+	NamespaceUuid   *openapi_types.UUID    `json:"namespace_uuid,omitempty"`
+	Project         *string                `json:"project,omitempty"`
+	ProjectName     *string                `json:"project_name,omitempty"`
+	ProjectUuid     *openapi_types.UUID    `json:"project_uuid,omitempty"`
+	RuntimeState    *string                `json:"runtime_state,omitempty"`
+	Url             *string                `json:"url,omitempty"`
+	Uuid            *openapi_types.UUID    `json:"uuid,omitempty"`
+	Workload        *string                `json:"workload,omitempty"`
+	WorkloadName    *string                `json:"workload_name,omitempty"`
+	WorkloadUuid    *openapi_types.UUID    `json:"workload_uuid,omitempty"`
 }
 
 // RancherHPARequest defines model for RancherHPARequest.
 type RancherHPARequest struct {
-	Description *string     `json:"description,omitempty"`
-	MaxReplicas *int        `json:"max_replicas,omitempty"`
-	Metrics     interface{} `json:"metrics"`
-	MinReplicas *int        `json:"min_replicas,omitempty"`
-	Name        string      `json:"name"`
-	Workload    *string     `json:"workload,omitempty"`
+	Description *string                `json:"description,omitempty"`
+	MaxReplicas *int                   `json:"max_replicas,omitempty"`
+	Metrics     map[string]interface{} `json:"metrics"`
+	MinReplicas *int                   `json:"min_replicas,omitempty"`
+	Name        string                 `json:"name"`
+	Workload    *string                `json:"workload,omitempty"`
 }
 
 // RancherImportYamlRequest defines model for RancherImportYamlRequest.
@@ -46753,7 +46757,7 @@ type RancherIngress struct {
 	RancherProject                   *string                   `json:"rancher_project,omitempty"`
 	RancherProjectName               *string                   `json:"rancher_project_name,omitempty"`
 	ResourceType                     *string                   `json:"resource_type,omitempty"`
-	Rules                            interface{}               `json:"rules,omitempty"`
+	Rules                            *map[string]interface{}   `json:"rules,omitempty"`
 	RuntimeState                     *string                   `json:"runtime_state,omitempty"`
 	ServiceName                      *string                   `json:"service_name,omitempty"`
 	ServiceSettings                  *string                   `json:"service_settings,omitempty"`
@@ -46781,17 +46785,17 @@ type RancherIngressFieldEnum string
 
 // RancherIngressRequest defines model for RancherIngressRequest.
 type RancherIngressRequest struct {
-	BackendId       *string     `json:"backend_id,omitempty"`
-	Description     *string     `json:"description,omitempty"`
-	ErrorMessage    *string     `json:"error_message,omitempty"`
-	ErrorTraceback  *string     `json:"error_traceback,omitempty"`
-	Name            string      `json:"name"`
-	Namespace       *string     `json:"namespace,omitempty"`
-	Project         string      `json:"project"`
-	RancherProject  string      `json:"rancher_project"`
-	Rules           interface{} `json:"rules,omitempty"`
-	RuntimeState    *string     `json:"runtime_state,omitempty"`
-	ServiceSettings string      `json:"service_settings"`
+	BackendId       *string                 `json:"backend_id,omitempty"`
+	Description     *string                 `json:"description,omitempty"`
+	ErrorMessage    *string                 `json:"error_message,omitempty"`
+	ErrorTraceback  *string                 `json:"error_traceback,omitempty"`
+	Name            string                  `json:"name"`
+	Namespace       *string                 `json:"namespace,omitempty"`
+	Project         string                  `json:"project"`
+	RancherProject  string                  `json:"rancher_project"`
+	Rules           *map[string]interface{} `json:"rules,omitempty"`
+	RuntimeState    *string                 `json:"runtime_state,omitempty"`
+	ServiceSettings string                  `json:"service_settings"`
 }
 
 // RancherNamespace defines model for RancherNamespace.
@@ -46817,23 +46821,23 @@ type RancherNestedNamespace struct {
 
 // RancherNestedNode defines model for RancherNestedNode.
 type RancherNestedNode struct {
-	Annotations    interface{} `json:"annotations,omitempty"`
-	BackendId      *string     `json:"backend_id,omitempty"`
-	CpuAllocated   *float64    `json:"cpu_allocated,omitempty"`
-	CpuTotal       *int        `json:"cpu_total,omitempty"`
-	Created        *time.Time  `json:"created,omitempty"`
-	DockerVersion  *string     `json:"docker_version,omitempty"`
-	ErrorMessage   *string     `json:"error_message,omitempty"`
-	ErrorTraceback *string     `json:"error_traceback,omitempty"`
+	Annotations    *map[string]interface{} `json:"annotations,omitempty"`
+	BackendId      *string                 `json:"backend_id,omitempty"`
+	CpuAllocated   *float64                `json:"cpu_allocated,omitempty"`
+	CpuTotal       *int                    `json:"cpu_total,omitempty"`
+	Created        *time.Time              `json:"created,omitempty"`
+	DockerVersion  *string                 `json:"docker_version,omitempty"`
+	ErrorMessage   *string                 `json:"error_message,omitempty"`
+	ErrorTraceback *string                 `json:"error_traceback,omitempty"`
 
 	// InitialData Initial data for instance creating.
-	InitialData   interface{} `json:"initial_data,omitempty"`
-	Instance      *string     `json:"instance,omitempty"`
-	K8sVersion    *string     `json:"k8s_version,omitempty"`
-	Labels        interface{} `json:"labels,omitempty"`
-	Modified      *time.Time  `json:"modified,omitempty"`
-	PodsAllocated *int        `json:"pods_allocated,omitempty"`
-	PodsTotal     *int        `json:"pods_total,omitempty"`
+	InitialData   *map[string]interface{} `json:"initial_data,omitempty"`
+	Instance      *string                 `json:"instance,omitempty"`
+	K8sVersion    *string                 `json:"k8s_version,omitempty"`
+	Labels        *map[string]interface{} `json:"labels,omitempty"`
+	Modified      *time.Time              `json:"modified,omitempty"`
+	PodsAllocated *int                    `json:"pods_allocated,omitempty"`
+	PodsTotal     *int                    `json:"pods_total,omitempty"`
 
 	// RamAllocated Allocated RAM in Mi.
 	RamAllocated *int `json:"ram_allocated,omitempty"`
@@ -46893,26 +46897,26 @@ type RancherNestedWorkloadRequest struct {
 
 // RancherNode defines model for RancherNode.
 type RancherNode struct {
-	Annotations             interface{}         `json:"annotations,omitempty"`
-	BackendId               *string             `json:"backend_id,omitempty"`
-	Cluster                 string              `json:"cluster"`
-	ClusterName             *string             `json:"cluster_name,omitempty"`
-	ClusterUuid             *openapi_types.UUID `json:"cluster_uuid,omitempty"`
-	CpuAllocated            *float64            `json:"cpu_allocated,omitempty"`
-	CpuTotal                *int                `json:"cpu_total,omitempty"`
-	Created                 *time.Time          `json:"created,omitempty"`
-	DockerVersion           *string             `json:"docker_version,omitempty"`
-	Instance                string              `json:"instance"`
-	InstanceMarketplaceUuid *openapi_types.UUID `json:"instance_marketplace_uuid,omitempty"`
-	InstanceName            *string             `json:"instance_name,omitempty"`
-	InstanceUuid            *openapi_types.UUID `json:"instance_uuid,omitempty"`
-	K8sVersion              *string             `json:"k8s_version,omitempty"`
-	Labels                  interface{}         `json:"labels,omitempty"`
-	Modified                *time.Time          `json:"modified,omitempty"`
-	Name                    string              `json:"name"`
-	PodsAllocated           *int                `json:"pods_allocated,omitempty"`
-	PodsTotal               *int                `json:"pods_total,omitempty"`
-	ProjectUuid             *openapi_types.UUID `json:"project_uuid,omitempty"`
+	Annotations             *map[string]interface{} `json:"annotations,omitempty"`
+	BackendId               *string                 `json:"backend_id,omitempty"`
+	Cluster                 string                  `json:"cluster"`
+	ClusterName             *string                 `json:"cluster_name,omitempty"`
+	ClusterUuid             *openapi_types.UUID     `json:"cluster_uuid,omitempty"`
+	CpuAllocated            *float64                `json:"cpu_allocated,omitempty"`
+	CpuTotal                *int                    `json:"cpu_total,omitempty"`
+	Created                 *time.Time              `json:"created,omitempty"`
+	DockerVersion           *string                 `json:"docker_version,omitempty"`
+	Instance                string                  `json:"instance"`
+	InstanceMarketplaceUuid *openapi_types.UUID     `json:"instance_marketplace_uuid,omitempty"`
+	InstanceName            *string                 `json:"instance_name,omitempty"`
+	InstanceUuid            *openapi_types.UUID     `json:"instance_uuid,omitempty"`
+	K8sVersion              *string                 `json:"k8s_version,omitempty"`
+	Labels                  *map[string]interface{} `json:"labels,omitempty"`
+	Modified                *time.Time              `json:"modified,omitempty"`
+	Name                    string                  `json:"name"`
+	PodsAllocated           *int                    `json:"pods_allocated,omitempty"`
+	PodsTotal               *int                    `json:"pods_total,omitempty"`
+	ProjectUuid             *openapi_types.UUID     `json:"project_uuid,omitempty"`
 
 	// RamAllocated Allocated RAM in Mi.
 	RamAllocated *int `json:"ram_allocated,omitempty"`
@@ -46984,7 +46988,7 @@ type RancherService struct {
 	ProjectUuid                      *openapi_types.UUID       `json:"project_uuid,omitempty"`
 	ResourceType                     *string                   `json:"resource_type,omitempty"`
 	RuntimeState                     *string                   `json:"runtime_state,omitempty"`
-	Selector                         interface{}               `json:"selector,omitempty"`
+	Selector                         *map[string]interface{}   `json:"selector,omitempty"`
 	ServiceName                      *string                   `json:"service_name,omitempty"`
 	ServiceSettings                  *string                   `json:"service_settings,omitempty"`
 	ServiceSettingsErrorMessage      *string                   `json:"service_settings_error_message,omitempty"`
@@ -47054,7 +47058,7 @@ type RancherServiceCreate struct {
 	ProjectUuid                      *openapi_types.UUID             `json:"project_uuid,omitempty"`
 	ResourceType                     *string                         `json:"resource_type,omitempty"`
 	RuntimeState                     *string                         `json:"runtime_state,omitempty"`
-	Selector                         interface{}                     `json:"selector,omitempty"`
+	Selector                         *map[string]interface{}         `json:"selector,omitempty"`
 	ServiceName                      *string                         `json:"service_name,omitempty"`
 	ServiceSettings                  string                          `json:"service_settings"`
 	ServiceSettingsErrorMessage      *string                         `json:"service_settings_error_message,omitempty"`
@@ -47101,7 +47105,7 @@ type RancherServiceCreateRequest struct {
 	Namespace       *string                                `json:"namespace,omitempty"`
 	Project         string                                 `json:"project"`
 	RuntimeState    *string                                `json:"runtime_state,omitempty"`
-	Selector        interface{}                            `json:"selector,omitempty"`
+	Selector        *map[string]interface{}                `json:"selector,omitempty"`
 	ServiceSettings string                                 `json:"service_settings"`
 	TargetWorkloads *[]RancherWorkloadCreateRequest        `json:"target_workloads,omitempty"`
 }
@@ -47133,7 +47137,7 @@ type RancherServiceRequest struct {
 	Namespace       *string                          `json:"namespace,omitempty"`
 	Project         string                           `json:"project"`
 	RuntimeState    *string                          `json:"runtime_state,omitempty"`
-	Selector        interface{}                      `json:"selector,omitempty"`
+	Selector        *map[string]interface{}          `json:"selector,omitempty"`
 	ServiceSettings string                           `json:"service_settings"`
 	TargetWorkloads []RancherNestedWorkloadRequest   `json:"target_workloads"`
 }
@@ -47177,7 +47181,7 @@ type RancherTemplateBaseQuestion struct {
 	Required    *bool                       `json:"required,omitempty"`
 	ShowIf      *string                     `json:"showIf,omitempty"`
 	Type        RancherTemplateQuestionType `json:"type"`
-	Validate    interface{}                 `json:"validate_,omitempty"`
+	Validate    *map[string]interface{}     `json:"validate_,omitempty"`
 	Variable    string                      `json:"variable"`
 }
 
@@ -47195,7 +47199,7 @@ type RancherTemplateQuestion struct {
 	ShowSubquestionIf *string                        `json:"showSubquestionIf,omitempty"`
 	Subquestions      *[]RancherTemplateBaseQuestion `json:"subquestions,omitempty"`
 	Type              RancherTemplateQuestionType    `json:"type"`
-	Validate          interface{}                    `json:"validate_,omitempty"`
+	Validate          *map[string]interface{}        `json:"validate_,omitempty"`
 	Variable          string                         `json:"variable"`
 }
 
@@ -47722,7 +47726,7 @@ type RequestTypes string
 type RequestedOffering struct {
 	ApprovedBy               *string                  `json:"approved_by,omitempty"`
 	ApprovedByName           *string                  `json:"approved_by_name,omitempty"`
-	Attributes               interface{}              `json:"attributes,omitempty"`
+	Attributes               *map[string]interface{}  `json:"attributes,omitempty"`
 	CallManagingOrganisation *string                  `json:"call_managing_organisation,omitempty"`
 	CategoryName             *string                  `json:"category_name,omitempty"`
 	CategoryUuid             *openapi_types.UUID      `json:"category_uuid,omitempty"`
@@ -47745,10 +47749,10 @@ type RequestedOffering struct {
 
 // RequestedOfferingRequest defines model for RequestedOfferingRequest.
 type RequestedOfferingRequest struct {
-	Attributes  interface{} `json:"attributes,omitempty"`
-	Description *string     `json:"description,omitempty"`
-	Offering    string      `json:"offering"`
-	Plan        *string     `json:"plan,omitempty"`
+	Attributes  *map[string]interface{} `json:"attributes,omitempty"`
+	Description *string                 `json:"description,omitempty"`
+	Offering    string                  `json:"offering"`
+	Plan        *string                 `json:"plan,omitempty"`
 }
 
 // RequestedOfferingStates defines model for RequestedOfferingStates.
@@ -47756,13 +47760,13 @@ type RequestedOfferingStates string
 
 // RequestedResource defines model for RequestedResource.
 type RequestedResource struct {
-	Attributes               interface{}              `json:"attributes,omitempty"`
+	Attributes               *map[string]interface{}  `json:"attributes,omitempty"`
 	CallResourceTemplate     *string                  `json:"call_resource_template,omitempty"`
 	CallResourceTemplateName *string                  `json:"call_resource_template_name,omitempty"`
 	CreatedBy                *string                  `json:"created_by,omitempty"`
 	CreatedByName            *string                  `json:"created_by_name,omitempty"`
 	Description              *string                  `json:"description,omitempty"`
-	Limits                   interface{}              `json:"limits,omitempty"`
+	Limits                   *map[string]interface{}  `json:"limits,omitempty"`
 	RequestedOffering        *NestedRequestedOffering `json:"requested_offering,omitempty"`
 	Resource                 *string                  `json:"resource,omitempty"`
 	ResourceName             *string                  `json:"resource_name,omitempty"`
@@ -47772,11 +47776,11 @@ type RequestedResource struct {
 
 // RequestedResourceRequest defines model for RequestedResourceRequest.
 type RequestedResourceRequest struct {
-	Attributes               interface{}         `json:"attributes,omitempty"`
-	CallResourceTemplateUuid *openapi_types.UUID `json:"call_resource_template_uuid,omitempty"`
-	Description              *string             `json:"description,omitempty"`
-	Limits                   interface{}         `json:"limits,omitempty"`
-	RequestedOfferingUuid    *openapi_types.UUID `json:"requested_offering_uuid,omitempty"`
+	Attributes               *map[string]interface{} `json:"attributes,omitempty"`
+	CallResourceTemplateUuid *openapi_types.UUID     `json:"call_resource_template_uuid,omitempty"`
+	Description              *string                 `json:"description,omitempty"`
+	Limits                   *map[string]interface{} `json:"limits,omitempty"`
+	RequestedOfferingUuid    *openapi_types.UUID     `json:"requested_offering_uuid,omitempty"`
 }
 
 // ReservedAgentTask defines model for ReservedAgentTask.
@@ -47840,30 +47844,30 @@ type Resource struct {
 	OfferingName        *string              `json:"offering_name,omitempty"`
 
 	// OfferingPluginOptions Public data used by specific plugin, such as storage mode for OpenStack.
-	OfferingPluginOptions interface{} `json:"offering_plugin_options,omitempty"`
+	OfferingPluginOptions *map[string]interface{} `json:"offering_plugin_options,omitempty"`
 
 	// OfferingShared Accessible to all customers.
-	OfferingShared     *bool               `json:"offering_shared,omitempty"`
-	OfferingSlug       *string             `json:"offering_slug,omitempty"`
-	OfferingState      *OfferingState      `json:"offering_state,omitempty"`
-	OfferingThumbnail  *string             `json:"offering_thumbnail,omitempty"`
-	OfferingType       *string             `json:"offering_type,omitempty"`
-	OfferingUuid       *openapi_types.UUID `json:"offering_uuid,omitempty"`
-	Options            interface{}         `json:"options,omitempty"`
-	OrderInProgress    *OrderDetails       `json:"order_in_progress,omitempty"`
-	ParentName         *string             `json:"parent_name,omitempty"`
-	ParentOfferingName *string             `json:"parent_offering_name,omitempty"`
-	ParentOfferingSlug *string             `json:"parent_offering_slug,omitempty"`
-	ParentOfferingUuid *openapi_types.UUID `json:"parent_offering_uuid,omitempty"`
-	ParentUuid         *openapi_types.UUID `json:"parent_uuid,omitempty"`
-	Paused             *bool               `json:"paused,omitempty"`
-	Plan               *string             `json:"plan,omitempty"`
-	PlanDescription    *string             `json:"plan_description,omitempty"`
-	PlanName           *string             `json:"plan_name,omitempty"`
-	PlanUnit           *BillingUnit        `json:"plan_unit,omitempty"`
-	PlanUuid           *openapi_types.UUID `json:"plan_uuid,omitempty"`
-	Project            *string             `json:"project,omitempty"`
-	ProjectDescription *string             `json:"project_description,omitempty"`
+	OfferingShared     *bool                   `json:"offering_shared,omitempty"`
+	OfferingSlug       *string                 `json:"offering_slug,omitempty"`
+	OfferingState      *OfferingState          `json:"offering_state,omitempty"`
+	OfferingThumbnail  *string                 `json:"offering_thumbnail,omitempty"`
+	OfferingType       *string                 `json:"offering_type,omitempty"`
+	OfferingUuid       *openapi_types.UUID     `json:"offering_uuid,omitempty"`
+	Options            *map[string]interface{} `json:"options,omitempty"`
+	OrderInProgress    *OrderDetails           `json:"order_in_progress,omitempty"`
+	ParentName         *string                 `json:"parent_name,omitempty"`
+	ParentOfferingName *string                 `json:"parent_offering_name,omitempty"`
+	ParentOfferingSlug *string                 `json:"parent_offering_slug,omitempty"`
+	ParentOfferingUuid *openapi_types.UUID     `json:"parent_offering_uuid,omitempty"`
+	ParentUuid         *openapi_types.UUID     `json:"parent_uuid,omitempty"`
+	Paused             *bool                   `json:"paused,omitempty"`
+	Plan               *string                 `json:"plan,omitempty"`
+	PlanDescription    *string                 `json:"plan_description,omitempty"`
+	PlanName           *string                 `json:"plan_name,omitempty"`
+	PlanUnit           *BillingUnit            `json:"plan_unit,omitempty"`
+	PlanUuid           *openapi_types.UUID     `json:"plan_uuid,omitempty"`
+	Project            *string                 `json:"project,omitempty"`
+	ProjectDescription *string                 `json:"project_description,omitempty"`
 
 	// ProjectEffectiveEndDate Effective project end date including grace period. After this date, resources will be terminated.
 	ProjectEffectiveEndDate *openapi_types.Date `json:"project_effective_end_date,omitempty"`
@@ -47907,7 +47911,7 @@ type ResourceBackendIDRequest struct {
 
 // ResourceBackendMetadataRequest defines model for ResourceBackendMetadataRequest.
 type ResourceBackendMetadataRequest struct {
-	BackendMetadata interface{} `json:"backend_metadata"`
+	BackendMetadata map[string]interface{} `json:"backend_metadata"`
 }
 
 // ResourceClassSummary defines model for ResourceClassSummary.
@@ -47982,7 +47986,7 @@ type ResourceLimitChangeRequest struct {
 	OfferingUuid      *openapi_types.UUID     `json:"offering_uuid,omitempty"`
 	ProjectName       *string                 `json:"project_name,omitempty"`
 	ProjectUuid       *openapi_types.UUID     `json:"project_uuid,omitempty"`
-	RequestedLimits   interface{}             `json:"requested_limits"`
+	RequestedLimits   map[string]interface{}  `json:"requested_limits"`
 	Resource          string                  `json:"resource"`
 	ResourceName      *string                 `json:"resource_name,omitempty"`
 	ResourceUuid      *openapi_types.UUID     `json:"resource_uuid,omitempty"`
@@ -48001,22 +48005,22 @@ type ResourceLimitChangeRequest struct {
 
 // ResourceLimitChangeRequestCreate defines model for ResourceLimitChangeRequestCreate.
 type ResourceLimitChangeRequestCreate struct {
-	RequestedLimits interface{}         `json:"requested_limits"`
-	Resource        openapi_types.UUID  `json:"resource"`
-	State           *string             `json:"state,omitempty"`
-	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
+	RequestedLimits map[string]interface{} `json:"requested_limits"`
+	Resource        openapi_types.UUID     `json:"resource"`
+	State           *string                `json:"state,omitempty"`
+	Uuid            *openapi_types.UUID    `json:"uuid,omitempty"`
 }
 
 // ResourceLimitChangeRequestCreateRequest defines model for ResourceLimitChangeRequestCreateRequest.
 type ResourceLimitChangeRequestCreateRequest struct {
-	RequestedLimits interface{}        `json:"requested_limits"`
-	Resource        openapi_types.UUID `json:"resource"`
+	RequestedLimits map[string]interface{} `json:"requested_limits"`
+	Resource        openapi_types.UUID     `json:"resource"`
 }
 
 // ResourceLimitChangeRequestRequest defines model for ResourceLimitChangeRequestRequest.
 type ResourceLimitChangeRequestRequest struct {
-	RequestedLimits interface{} `json:"requested_limits"`
-	Resource        string      `json:"resource"`
+	RequestedLimits map[string]interface{} `json:"requested_limits"`
+	Resource        string                 `json:"resource"`
 
 	// ReviewComment Optional comment provided during review
 	ReviewComment *string `json:"review_comment,omitempty"`
@@ -48073,7 +48077,7 @@ type ResourceOffering struct {
 
 // ResourceOptionsRequest defines model for ResourceOptionsRequest.
 type ResourceOptionsRequest struct {
-	Options interface{} `json:"options,omitempty"`
+	Options *map[string]interface{} `json:"options,omitempty"`
 }
 
 // ResourcePausedRequest defines model for ResourcePausedRequest.
@@ -48097,26 +48101,26 @@ type ResourceProject struct {
 	Created   *time.Time `json:"created,omitempty"`
 
 	// CurrentUsages Dictionary mapping component types to current usage amounts. Populated by backend synchronization.
-	CurrentUsages interface{} `json:"current_usages,omitempty"`
-	Description   *string     `json:"description,omitempty"`
-	ErrorMessage  *string     `json:"error_message,omitempty"`
-	IsRemoved     *bool       `json:"is_removed,omitempty"`
+	CurrentUsages *map[string]interface{} `json:"current_usages,omitempty"`
+	Description   *string                 `json:"description,omitempty"`
+	ErrorMessage  *string                 `json:"error_message,omitempty"`
+	IsRemoved     *bool                   `json:"is_removed,omitempty"`
 
 	// Limits Dictionary mapping component types to quota values. Same format as Resource.limits.
-	Limits    interface{} `json:"limits,omitempty"`
-	Modified  *time.Time  `json:"modified,omitempty"`
-	Name      string      `json:"name"`
-	RemovedBy *int        `json:"removed_by,omitempty"`
+	Limits    *map[string]interface{} `json:"limits,omitempty"`
+	Modified  *time.Time              `json:"modified,omitempty"`
+	Name      string                  `json:"name"`
+	RemovedBy *int                    `json:"removed_by,omitempty"`
 
 	// RemovedByUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
-	RemovedByUsername   *string             `json:"removed_by_username,omitempty"`
-	RemovedDate         *time.Time          `json:"removed_date,omitempty"`
-	Resource            openapi_types.UUID  `json:"resource"`
-	ResourceName        *string             `json:"resource_name,omitempty"`
-	ResourceUuid        *openapi_types.UUID `json:"resource_uuid,omitempty"`
-	State               *string             `json:"state,omitempty"`
-	TerminationMetadata interface{}         `json:"termination_metadata,omitempty"`
-	Uuid                *openapi_types.UUID `json:"uuid,omitempty"`
+	RemovedByUsername   *string                 `json:"removed_by_username,omitempty"`
+	RemovedDate         *time.Time              `json:"removed_date,omitempty"`
+	Resource            openapi_types.UUID      `json:"resource"`
+	ResourceName        *string                 `json:"resource_name,omitempty"`
+	ResourceUuid        *openapi_types.UUID     `json:"resource_uuid,omitempty"`
+	State               *string                 `json:"state,omitempty"`
+	TerminationMetadata *map[string]interface{} `json:"termination_metadata,omitempty"`
+	Uuid                *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // ResourceProjectBackendIdRequest defines model for ResourceProjectBackendIdRequest.
@@ -48144,9 +48148,9 @@ type ResourceProjectRequest struct {
 	Description *string `json:"description,omitempty"`
 
 	// Limits Dictionary mapping component types to quota values. Same format as Resource.limits.
-	Limits   interface{}        `json:"limits,omitempty"`
-	Name     string             `json:"name"`
-	Resource openapi_types.UUID `json:"resource"`
+	Limits   *map[string]interface{} `json:"limits,omitempty"`
+	Name     string                  `json:"name"`
+	Resource openapi_types.UUID      `json:"resource"`
 }
 
 // ResourceProvisioningStats defines model for ResourceProvisioningStats.
@@ -48279,7 +48283,7 @@ type ResourceRestrictMemberAccessRequest struct {
 // ResourceSetLimitsRequest defines model for ResourceSetLimitsRequest.
 type ResourceSetLimitsRequest struct {
 	// Limits Dictionary mapping component types to their new limit values
-	Limits interface{} `json:"limits"`
+	Limits map[string]interface{} `json:"limits"`
 }
 
 // ResourceSetStateErredRequest defines model for ResourceSetStateErredRequest.
@@ -48298,10 +48302,10 @@ type ResourceState string
 
 // ResourceSuggestNameRequest defines model for ResourceSuggestNameRequest.
 type ResourceSuggestNameRequest struct {
-	Attributes interface{}         `json:"attributes,omitempty"`
-	Offering   openapi_types.UUID  `json:"offering"`
-	Plan       *openapi_types.UUID `json:"plan,omitempty"`
-	Project    openapi_types.UUID  `json:"project"`
+	Attributes *map[string]interface{} `json:"attributes,omitempty"`
+	Offering   openapi_types.UUID      `json:"offering"`
+	Plan       *openapi_types.UUID     `json:"plan,omitempty"`
+	Project    openapi_types.UUID      `json:"project"`
 }
 
 // ResourceSwitchPlanRequest defines model for ResourceSwitchPlanRequest.
@@ -48331,7 +48335,7 @@ type ResourceTeamMemberFieldEnum string
 // ResourceTerminateRequest defines model for ResourceTerminateRequest.
 type ResourceTerminateRequest struct {
 	// Attributes Optional attributes/parameters to pass to the termination operation
-	Attributes interface{} `json:"attributes,omitempty"`
+	Attributes *map[string]interface{} `json:"attributes,omitempty"`
 }
 
 // ResourceUpdate defines model for ResourceUpdate.
@@ -48642,7 +48646,7 @@ type ReviewerProfile struct {
 	Affiliations *[]ReviewerAffiliation `json:"affiliations,omitempty"`
 
 	// AlternativeNames List of name variants used in publications
-	AlternativeNames interface{} `json:"alternative_names,omitempty"`
+	AlternativeNames *map[string]interface{} `json:"alternative_names,omitempty"`
 
 	// AvailableForReviews Whether reviewer is currently accepting review requests
 	AvailableForReviews *bool `json:"available_for_reviews,omitempty"`
@@ -48681,7 +48685,7 @@ type ReviewerProfile struct {
 // ReviewerProfileCreateRequest defines model for ReviewerProfileCreateRequest.
 type ReviewerProfileCreateRequest struct {
 	// AlternativeNames List of name variants used in publications
-	AlternativeNames interface{} `json:"alternative_names,omitempty"`
+	AlternativeNames *map[string]interface{} `json:"alternative_names,omitempty"`
 
 	// AvailableForReviews Whether reviewer is currently accepting review requests
 	AvailableForReviews *bool `json:"available_for_reviews,omitempty"`
@@ -48699,7 +48703,7 @@ type ReviewerProfileOEnum string
 // ReviewerProfileRequest defines model for ReviewerProfileRequest.
 type ReviewerProfileRequest struct {
 	// AlternativeNames List of name variants used in publications
-	AlternativeNames interface{} `json:"alternative_names,omitempty"`
+	AlternativeNames *map[string]interface{} `json:"alternative_names,omitempty"`
 
 	// AvailableForReviews Whether reviewer is currently accepting review requests
 	AvailableForReviews *bool `json:"available_for_reviews,omitempty"`
@@ -48716,14 +48720,14 @@ type ReviewerPublication struct {
 	Abstract *string `json:"abstract,omitempty"`
 
 	// Coauthors List of co-author names and identifiers
-	Coauthors interface{} `json:"coauthors,omitempty"`
-	Created   *time.Time  `json:"created,omitempty"`
+	Coauthors *map[string]interface{} `json:"coauthors,omitempty"`
+	Created   *time.Time              `json:"created,omitempty"`
 
 	// Doi Digital Object Identifier
 	Doi *string `json:"doi,omitempty"`
 
 	// ExternalIds External identifiers: {"semantic_scholar": "...", "pubmed": "..."}
-	ExternalIds interface{} `json:"external_ids,omitempty"`
+	ExternalIds *map[string]interface{} `json:"external_ids,omitempty"`
 
 	// IsExcludedFromMatching User can exclude old papers from expertise matching
 	IsExcludedFromMatching *bool               `json:"is_excluded_from_matching,omitempty"`
@@ -48741,13 +48745,13 @@ type ReviewerPublicationRequest struct {
 	Abstract *string `json:"abstract,omitempty"`
 
 	// Coauthors List of co-author names and identifiers
-	Coauthors interface{} `json:"coauthors,omitempty"`
+	Coauthors *map[string]interface{} `json:"coauthors,omitempty"`
 
 	// Doi Digital Object Identifier
 	Doi *string `json:"doi,omitempty"`
 
 	// ExternalIds External identifiers: {"semantic_scholar": "...", "pubmed": "..."}
-	ExternalIds interface{} `json:"external_ids,omitempty"`
+	ExternalIds *map[string]interface{} `json:"external_ids,omitempty"`
 
 	// IsExcludedFromMatching User can exclude old papers from expertise matching
 	IsExcludedFromMatching *bool  `json:"is_excluded_from_matching,omitempty"`
@@ -48785,12 +48789,12 @@ type ReviewerSuggestion struct {
 	KeywordScore *float64 `json:"keyword_score,omitempty"`
 
 	// MatchedKeywords Keywords from reviewer's expertise that matched the source text
-	MatchedKeywords interface{} `json:"matched_keywords,omitempty"`
-	RejectionReason *string     `json:"rejection_reason,omitempty"`
-	ReviewedAt      *time.Time  `json:"reviewed_at,omitempty"`
-	ReviewedBy      *string     `json:"reviewed_by,omitempty"`
-	ReviewedByName  *string     `json:"reviewed_by_name,omitempty"`
-	Reviewer        *string     `json:"reviewer,omitempty"`
+	MatchedKeywords *map[string]interface{} `json:"matched_keywords,omitempty"`
+	RejectionReason *string                 `json:"rejection_reason,omitempty"`
+	ReviewedAt      *time.Time              `json:"reviewed_at,omitempty"`
+	ReviewedBy      *string                 `json:"reviewed_by,omitempty"`
+	ReviewedByName  *string                 `json:"reviewed_by_name,omitempty"`
+	Reviewer        *string                 `json:"reviewer,omitempty"`
 
 	// ReviewerBiography Professional biography / summary
 	ReviewerBiography *string              `json:"reviewer_biography,omitempty"`
@@ -48808,9 +48812,9 @@ type ReviewerSuggestion struct {
 	TextScore *float64 `json:"text_score,omitempty"`
 
 	// TopMatchingProposals Top proposals with highest affinity: [{uuid, name, slug, affinity}, ...]
-	TopMatchingProposals interface{}         `json:"top_matching_proposals,omitempty"`
-	Url                  *string             `json:"url,omitempty"`
-	Uuid                 *openapi_types.UUID `json:"uuid,omitempty"`
+	TopMatchingProposals *map[string]interface{} `json:"top_matching_proposals,omitempty"`
+	Url                  *string                 `json:"url,omitempty"`
+	Uuid                 *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // ReviewerSuggestionItem defines model for ReviewerSuggestionItem.
@@ -49152,17 +49156,17 @@ type RmqWaldurUser struct {
 
 // RobotAccount defines model for RobotAccount.
 type RobotAccount struct {
-	BackendId       *string             `json:"backend_id,omitempty"`
-	Created         *time.Time          `json:"created,omitempty"`
-	Description     *string             `json:"description,omitempty"`
-	ErrorMessage    *string             `json:"error_message,omitempty"`
-	ErrorTraceback  *string             `json:"error_traceback,omitempty"`
-	Fingerprints    *[]Fingerprint      `json:"fingerprints,omitempty"`
-	Keys            interface{}         `json:"keys,omitempty"`
-	Modified        *time.Time          `json:"modified,omitempty"`
-	Resource        string              `json:"resource"`
-	ResponsibleUser *string             `json:"responsible_user,omitempty"`
-	State           *RobotAccountStates `json:"state,omitempty"`
+	BackendId       *string                 `json:"backend_id,omitempty"`
+	Created         *time.Time              `json:"created,omitempty"`
+	Description     *string                 `json:"description,omitempty"`
+	ErrorMessage    *string                 `json:"error_message,omitempty"`
+	ErrorTraceback  *string                 `json:"error_traceback,omitempty"`
+	Fingerprints    *[]Fingerprint          `json:"fingerprints,omitempty"`
+	Keys            *map[string]interface{} `json:"keys,omitempty"`
+	Modified        *time.Time              `json:"modified,omitempty"`
+	Resource        string                  `json:"resource"`
+	ResponsibleUser *string                 `json:"responsible_user,omitempty"`
+	State           *RobotAccountStates     `json:"state,omitempty"`
 
 	// Type Type of the robot account.
 	Type     string  `json:"type"`
@@ -49176,26 +49180,26 @@ type RobotAccount struct {
 
 // RobotAccountDetails defines model for RobotAccountDetails.
 type RobotAccountDetails struct {
-	BackendId             *string              `json:"backend_id,omitempty"`
-	Created               *time.Time           `json:"created,omitempty"`
-	CustomerName          *string              `json:"customer_name,omitempty"`
-	CustomerUuid          *openapi_types.UUID  `json:"customer_uuid,omitempty"`
-	Description           *string              `json:"description,omitempty"`
-	ErrorMessage          *string              `json:"error_message,omitempty"`
-	ErrorTraceback        *string              `json:"error_traceback,omitempty"`
-	Fingerprints          *[]Fingerprint       `json:"fingerprints,omitempty"`
-	Keys                  interface{}          `json:"keys,omitempty"`
-	Modified              *time.Time           `json:"modified,omitempty"`
-	OfferingPluginOptions *MergedPluginOptions `json:"offering_plugin_options,omitempty"`
-	ProjectName           *string              `json:"project_name,omitempty"`
-	ProjectUuid           *openapi_types.UUID  `json:"project_uuid,omitempty"`
-	ProviderName          *string              `json:"provider_name,omitempty"`
-	ProviderUuid          *openapi_types.UUID  `json:"provider_uuid,omitempty"`
-	Resource              *string              `json:"resource,omitempty"`
-	ResourceName          *string              `json:"resource_name,omitempty"`
-	ResourceUuid          *openapi_types.UUID  `json:"resource_uuid,omitempty"`
-	ResponsibleUser       *BasicUser           `json:"responsible_user,omitempty"`
-	State                 *RobotAccountStates  `json:"state,omitempty"`
+	BackendId             *string                 `json:"backend_id,omitempty"`
+	Created               *time.Time              `json:"created,omitempty"`
+	CustomerName          *string                 `json:"customer_name,omitempty"`
+	CustomerUuid          *openapi_types.UUID     `json:"customer_uuid,omitempty"`
+	Description           *string                 `json:"description,omitempty"`
+	ErrorMessage          *string                 `json:"error_message,omitempty"`
+	ErrorTraceback        *string                 `json:"error_traceback,omitempty"`
+	Fingerprints          *[]Fingerprint          `json:"fingerprints,omitempty"`
+	Keys                  *map[string]interface{} `json:"keys,omitempty"`
+	Modified              *time.Time              `json:"modified,omitempty"`
+	OfferingPluginOptions *MergedPluginOptions    `json:"offering_plugin_options,omitempty"`
+	ProjectName           *string                 `json:"project_name,omitempty"`
+	ProjectUuid           *openapi_types.UUID     `json:"project_uuid,omitempty"`
+	ProviderName          *string                 `json:"provider_name,omitempty"`
+	ProviderUuid          *openapi_types.UUID     `json:"provider_uuid,omitempty"`
+	Resource              *string                 `json:"resource,omitempty"`
+	ResourceName          *string                 `json:"resource_name,omitempty"`
+	ResourceUuid          *openapi_types.UUID     `json:"resource_uuid,omitempty"`
+	ResponsibleUser       *BasicUser              `json:"responsible_user,omitempty"`
+	State                 *RobotAccountStates     `json:"state,omitempty"`
 
 	// Type Type of the robot account.
 	Type     *string             `json:"type,omitempty"`
@@ -49217,10 +49221,10 @@ type RobotAccountErrorRequest struct {
 
 // RobotAccountRequest defines model for RobotAccountRequest.
 type RobotAccountRequest struct {
-	Description     *string     `json:"description,omitempty"`
-	Keys            interface{} `json:"keys,omitempty"`
-	Resource        string      `json:"resource"`
-	ResponsibleUser *string     `json:"responsible_user,omitempty"`
+	Description     *string                 `json:"description,omitempty"`
+	Keys            *map[string]interface{} `json:"keys,omitempty"`
+	Resource        string                  `json:"resource"`
+	ResponsibleUser *string                 `json:"responsible_user,omitempty"`
 
 	// Type Type of the robot account.
 	Type     string  `json:"type"`
@@ -49316,25 +49320,25 @@ type RoleDetailsFieldEnum string
 
 // RoleModifyRequest defines model for RoleModifyRequest.
 type RoleModifyRequest struct {
-	ContentType   string      `json:"content_type"`
-	Description   *string     `json:"description,omitempty"`
-	DescriptionAr *string     `json:"description_ar,omitempty"`
-	DescriptionCs *string     `json:"description_cs,omitempty"`
-	DescriptionDa *string     `json:"description_da,omitempty"`
-	DescriptionDe *string     `json:"description_de,omitempty"`
-	DescriptionEn *string     `json:"description_en,omitempty"`
-	DescriptionEs *string     `json:"description_es,omitempty"`
-	DescriptionEt *string     `json:"description_et,omitempty"`
-	DescriptionFr *string     `json:"description_fr,omitempty"`
-	DescriptionIt *string     `json:"description_it,omitempty"`
-	DescriptionLt *string     `json:"description_lt,omitempty"`
-	DescriptionLv *string     `json:"description_lv,omitempty"`
-	DescriptionNb *string     `json:"description_nb,omitempty"`
-	DescriptionRu *string     `json:"description_ru,omitempty"`
-	DescriptionSv *string     `json:"description_sv,omitempty"`
-	IsActive      *bool       `json:"is_active,omitempty"`
-	Name          string      `json:"name"`
-	Permissions   interface{} `json:"permissions"`
+	ContentType   string                 `json:"content_type"`
+	Description   *string                `json:"description,omitempty"`
+	DescriptionAr *string                `json:"description_ar,omitempty"`
+	DescriptionCs *string                `json:"description_cs,omitempty"`
+	DescriptionDa *string                `json:"description_da,omitempty"`
+	DescriptionDe *string                `json:"description_de,omitempty"`
+	DescriptionEn *string                `json:"description_en,omitempty"`
+	DescriptionEs *string                `json:"description_es,omitempty"`
+	DescriptionEt *string                `json:"description_et,omitempty"`
+	DescriptionFr *string                `json:"description_fr,omitempty"`
+	DescriptionIt *string                `json:"description_it,omitempty"`
+	DescriptionLt *string                `json:"description_lt,omitempty"`
+	DescriptionLv *string                `json:"description_lv,omitempty"`
+	DescriptionNb *string                `json:"description_nb,omitempty"`
+	DescriptionRu *string                `json:"description_ru,omitempty"`
+	DescriptionSv *string                `json:"description_sv,omitempty"`
+	IsActive      *bool                  `json:"is_active,omitempty"`
+	Name          string                 `json:"name"`
+	Permissions   map[string]interface{} `json:"permissions"`
 }
 
 // RoleTemplate defines model for RoleTemplate.
@@ -49732,23 +49736,23 @@ type ServiceAttributesPreview struct {
 // ServiceProvider defines model for ServiceProvider.
 type ServiceProvider struct {
 	// AllowedDomains List of allowed domains for offering endpoints. Only staff can modify this field.
-	AllowedDomains       interface{}          `json:"allowed_domains,omitempty"`
-	Created              *time.Time           `json:"created,omitempty"`
-	Customer             *string              `json:"customer,omitempty"`
-	CustomerAbbreviation *string              `json:"customer_abbreviation,omitempty"`
-	CustomerCountry      *string              `json:"customer_country,omitempty"`
-	CustomerImage        *string              `json:"customer_image,omitempty"`
-	CustomerName         *string              `json:"customer_name,omitempty"`
-	CustomerNativeName   *string              `json:"customer_native_name,omitempty"`
-	CustomerSlug         *string              `json:"customer_slug,omitempty"`
-	CustomerUuid         *openapi_types.UUID  `json:"customer_uuid,omitempty"`
-	Description          *string              `json:"description,omitempty"`
-	EnableNotifications  *bool                `json:"enable_notifications,omitempty"`
-	Image                *string              `json:"image,omitempty"`
-	OfferingCount        *int                 `json:"offering_count,omitempty"`
-	OrganizationGroups   *[]OrganizationGroup `json:"organization_groups,omitempty"`
-	Url                  *string              `json:"url,omitempty"`
-	Uuid                 *openapi_types.UUID  `json:"uuid,omitempty"`
+	AllowedDomains       *map[string]interface{} `json:"allowed_domains,omitempty"`
+	Created              *time.Time              `json:"created,omitempty"`
+	Customer             *string                 `json:"customer,omitempty"`
+	CustomerAbbreviation *string                 `json:"customer_abbreviation,omitempty"`
+	CustomerCountry      *string                 `json:"customer_country,omitempty"`
+	CustomerImage        *string                 `json:"customer_image,omitempty"`
+	CustomerName         *string                 `json:"customer_name,omitempty"`
+	CustomerNativeName   *string                 `json:"customer_native_name,omitempty"`
+	CustomerSlug         *string                 `json:"customer_slug,omitempty"`
+	CustomerUuid         *openapi_types.UUID     `json:"customer_uuid,omitempty"`
+	Description          *string                 `json:"description,omitempty"`
+	EnableNotifications  *bool                   `json:"enable_notifications,omitempty"`
+	Image                *string                 `json:"image,omitempty"`
+	OfferingCount        *int                    `json:"offering_count,omitempty"`
+	OrganizationGroups   *[]OrganizationGroup    `json:"organization_groups,omitempty"`
+	Url                  *string                 `json:"url,omitempty"`
+	Uuid                 *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // ServiceProviderAccess defines model for ServiceProviderAccess.
@@ -49813,31 +49817,31 @@ type ServiceProviderOfferingUserComplianceStateEnum int
 // ServiceProviderRequest defines model for ServiceProviderRequest.
 type ServiceProviderRequest struct {
 	// AllowedDomains List of allowed domains for offering endpoints. Only staff can modify this field.
-	AllowedDomains      interface{}         `json:"allowed_domains,omitempty"`
-	Customer            string              `json:"customer"`
-	Description         *string             `json:"description,omitempty"`
-	EnableNotifications *bool               `json:"enable_notifications,omitempty"`
-	Image               *openapi_types.File `json:"image,omitempty"`
+	AllowedDomains      *map[string]interface{} `json:"allowed_domains,omitempty"`
+	Customer            string                  `json:"customer"`
+	Description         *string                 `json:"description,omitempty"`
+	EnableNotifications *bool                   `json:"enable_notifications,omitempty"`
+	Image               *openapi_types.File     `json:"image,omitempty"`
 }
 
 // ServiceProviderRequestForm defines model for ServiceProviderRequestForm.
 type ServiceProviderRequestForm struct {
 	// AllowedDomains List of allowed domains for offering endpoints. Only staff can modify this field.
-	AllowedDomains      interface{}         `json:"allowed_domains,omitempty"`
-	Customer            string              `json:"customer"`
-	Description         *string             `json:"description,omitempty"`
-	EnableNotifications *bool               `json:"enable_notifications,omitempty"`
-	Image               *openapi_types.File `json:"image,omitempty"`
+	AllowedDomains      *map[string]interface{} `json:"allowed_domains,omitempty"`
+	Customer            string                  `json:"customer"`
+	Description         *string                 `json:"description,omitempty"`
+	EnableNotifications *bool                   `json:"enable_notifications,omitempty"`
+	Image               *openapi_types.File     `json:"image,omitempty"`
 }
 
 // ServiceProviderRequestMultipart defines model for ServiceProviderRequestMultipart.
 type ServiceProviderRequestMultipart struct {
 	// AllowedDomains List of allowed domains for offering endpoints. Only staff can modify this field.
-	AllowedDomains      interface{}         `json:"allowed_domains,omitempty"`
-	Customer            string              `json:"customer"`
-	Description         *string             `json:"description,omitempty"`
-	EnableNotifications *bool               `json:"enable_notifications,omitempty"`
-	Image               *openapi_types.File `json:"image,omitempty"`
+	AllowedDomains      *map[string]interface{} `json:"allowed_domains,omitempty"`
+	Customer            string                  `json:"customer"`
+	Description         *string                 `json:"description,omitempty"`
+	EnableNotifications *bool                   `json:"enable_notifications,omitempty"`
+	Image               *openapi_types.File     `json:"image,omitempty"`
 }
 
 // ServiceProviderRevenues defines model for ServiceProviderRevenues.
@@ -49988,11 +49992,11 @@ type SetTokenQuotaRequest struct {
 
 // SettingsItem defines model for SettingsItem.
 type SettingsItem struct {
-	Default     interface{}           `json:"default,omitempty"`
-	Description string                `json:"description"`
-	Key         string                `json:"key"`
-	Options     *[]SettingsItemOption `json:"options,omitempty"`
-	Type        string                `json:"type"`
+	Default     *map[string]interface{} `json:"default,omitempty"`
+	Description string                  `json:"description"`
+	Key         string                  `json:"key"`
+	Options     *[]SettingsItemOption   `json:"options,omitempty"`
+	Type        string                  `json:"type"`
 }
 
 // SettingsItemOption defines model for SettingsItemOption.
@@ -50214,7 +50218,7 @@ type SlurmCommandHistory struct {
 	ExecutionMode *ExecutionModeEnum `json:"execution_mode,omitempty"`
 
 	// Parameters Command parameters as key-value pairs
-	Parameters interface{} `json:"parameters,omitempty"`
+	Parameters *map[string]interface{} `json:"parameters,omitempty"`
 
 	// ShellCommand Actual shell command that was/would be executed
 	ShellCommand string `json:"shell_command"`
@@ -50278,10 +50282,10 @@ type SlurmPeriodicUsagePolicy struct {
 	LimitType *LimitTypeEnum `json:"limit_type,omitempty"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options            interface{}       `json:"options,omitempty"`
-	OrganizationGroups *[]string         `json:"organization_groups,omitempty"`
-	Period             *PolicyPeriodEnum `json:"period,omitempty"`
-	PeriodName         *string           `json:"period_name,omitempty"`
+	Options            *map[string]interface{} `json:"options,omitempty"`
+	OrganizationGroups *[]string               `json:"organization_groups,omitempty"`
+	Period             *PolicyPeriodEnum       `json:"period,omitempty"`
+	PeriodName         *string                 `json:"period_name,omitempty"`
 
 	// QosStrategy QoS management strategy
 	QosStrategy *QosStrategyEnum `json:"qos_strategy,omitempty"`
@@ -50296,9 +50300,9 @@ type SlurmPeriodicUsagePolicy struct {
 	TresBillingEnabled *bool `json:"tres_billing_enabled,omitempty"`
 
 	// TresBillingWeights TRES billing weights (e.g., {"CPU": 0.015625, "Mem": 0.001953125, "GRES/gpu": 0.25})
-	TresBillingWeights interface{}         `json:"tres_billing_weights,omitempty"`
-	Url                *string             `json:"url,omitempty"`
-	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
+	TresBillingWeights *map[string]interface{} `json:"tres_billing_weights,omitempty"`
+	Url                *string                 `json:"url,omitempty"`
+	Uuid               *openapi_types.UUID     `json:"uuid,omitempty"`
 
 	// Warnings Warnings about misconfiguration, e.g. missing site agent queue registration.
 	Warnings *[]string `json:"warnings,omitempty"`
@@ -50325,9 +50329,9 @@ type SlurmPeriodicUsagePolicyRequest struct {
 	LimitType *LimitTypeEnum `json:"limit_type,omitempty"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options            interface{}       `json:"options,omitempty"`
-	OrganizationGroups *[]string         `json:"organization_groups,omitempty"`
-	Period             *PolicyPeriodEnum `json:"period,omitempty"`
+	Options            *map[string]interface{} `json:"options,omitempty"`
+	OrganizationGroups *[]string               `json:"organization_groups,omitempty"`
+	Period             *PolicyPeriodEnum       `json:"period,omitempty"`
 
 	// QosStrategy QoS management strategy
 	QosStrategy *QosStrategyEnum `json:"qos_strategy,omitempty"`
@@ -50340,7 +50344,7 @@ type SlurmPeriodicUsagePolicyRequest struct {
 	TresBillingEnabled *bool `json:"tres_billing_enabled,omitempty"`
 
 	// TresBillingWeights TRES billing weights (e.g., {"CPU": 0.015625, "Mem": 0.001953125, "GRES/gpu": 0.25})
-	TresBillingWeights interface{} `json:"tres_billing_weights,omitempty"`
+	TresBillingWeights *map[string]interface{} `json:"tres_billing_weights,omitempty"`
 }
 
 // SlurmPolicyCarryover defines model for SlurmPolicyCarryover.
@@ -50415,7 +50419,7 @@ type SlurmPolicyEvaluateResponse struct {
 // SlurmPolicyEvaluationLog defines model for SlurmPolicyEvaluationLog.
 type SlurmPolicyEvaluationLog struct {
 	// ActionsTaken List of actions taken during this evaluation (e.g. ['pause', 'notify'])
-	ActionsTaken interface{} `json:"actions_taken,omitempty"`
+	ActionsTaken *map[string]interface{} `json:"actions_taken,omitempty"`
 
 	// BillingPeriod Billing period identifier, e.g. '2026-Q1'
 	BillingPeriod string `json:"billing_period"`
@@ -50427,18 +50431,18 @@ type SlurmPolicyEvaluationLog struct {
 	GraceLimitPercentage float64 `json:"grace_limit_percentage"`
 
 	// NewState Resource state after evaluation: {paused: bool, downscaled: bool}
-	NewState interface{} `json:"new_state,omitempty"`
+	NewState *map[string]interface{} `json:"new_state,omitempty"`
 
 	// PreviousState Resource state before evaluation: {paused: bool, downscaled: bool}
-	PreviousState interface{}         `json:"previous_state,omitempty"`
-	ResourceName  *string             `json:"resource_name,omitempty"`
-	ResourceUuid  *openapi_types.UUID `json:"resource_uuid,omitempty"`
+	PreviousState *map[string]interface{} `json:"previous_state,omitempty"`
+	ResourceName  *string                 `json:"resource_name,omitempty"`
+	ResourceUuid  *openapi_types.UUID     `json:"resource_uuid,omitempty"`
 
 	// SiteAgentConfirmed Whether the site agent confirmed command execution (null = no response yet)
 	SiteAgentConfirmed *bool `json:"site_agent_confirmed,omitempty"`
 
 	// SiteAgentResponse Response payload from the site agent
-	SiteAgentResponse interface{} `json:"site_agent_response,omitempty"`
+	SiteAgentResponse *map[string]interface{} `json:"site_agent_response,omitempty"`
 
 	// StompMessageSent Whether a STOMP message was sent to the site agent
 	StompMessageSent *bool `json:"stomp_message_sent,omitempty"`
@@ -50529,8 +50533,8 @@ type SoftwareCatalog struct {
 	LastUpdateAttempt    *time.Time       `json:"last_update_attempt,omitempty"`
 
 	// Metadata Catalog-specific metadata (architecture maps, API endpoints, etc.)
-	Metadata interface{} `json:"metadata,omitempty"`
-	Modified *time.Time  `json:"modified,omitempty"`
+	Metadata *map[string]interface{} `json:"metadata,omitempty"`
+	Modified *time.Time              `json:"modified,omitempty"`
 
 	// Name Catalog name (e.g., EESSI, Spack)
 	Name         string `json:"name"`
@@ -50576,7 +50580,7 @@ type SoftwareCatalogRequest struct {
 	Description *string          `json:"description,omitempty"`
 
 	// Metadata Catalog-specific metadata (architecture maps, API endpoints, etc.)
-	Metadata interface{} `json:"metadata,omitempty"`
+	Metadata *map[string]interface{} `json:"metadata,omitempty"`
 
 	// Name Catalog name (e.g., EESSI, Spack)
 	Name string `json:"name"`
@@ -50610,7 +50614,7 @@ type SoftwarePackage struct {
 	CatalogVersion     *string `json:"catalog_version,omitempty"`
 
 	// Categories Package categories (e.g., ['bio', 'hpc', 'build-tools'])
-	Categories     interface{}             `json:"categories,omitempty"`
+	Categories     *map[string]interface{} `json:"categories,omitempty"`
 	Created        *time.Time              `json:"created,omitempty"`
 	Description    *string                 `json:"description,omitempty"`
 	ExtensionCount *int                    `json:"extension_count,omitempty"`
@@ -50621,10 +50625,10 @@ type SoftwarePackage struct {
 	IsExtension *bool `json:"is_extension,omitempty"`
 
 	// Licenses Software licenses (e.g., ['GPL-3.0', 'MIT'])
-	Licenses interface{} `json:"licenses,omitempty"`
+	Licenses *map[string]interface{} `json:"licenses,omitempty"`
 
 	// Maintainers Package maintainers
-	Maintainers     interface{}              `json:"maintainers,omitempty"`
+	Maintainers     *map[string]interface{}  `json:"maintainers,omitempty"`
 	Modified        *time.Time               `json:"modified,omitempty"`
 	Name            string                   `json:"name"`
 	ParentSoftwares *[]NestedParentSoftware  `json:"parent_softwares,omitempty"`
@@ -50642,19 +50646,19 @@ type SoftwarePackageRequest struct {
 	Catalog string `json:"catalog"`
 
 	// Categories Package categories (e.g., ['bio', 'hpc', 'build-tools'])
-	Categories  interface{} `json:"categories,omitempty"`
-	Description *string     `json:"description,omitempty"`
-	Homepage    *string     `json:"homepage,omitempty"`
+	Categories  *map[string]interface{} `json:"categories,omitempty"`
+	Description *string                 `json:"description,omitempty"`
+	Homepage    *string                 `json:"homepage,omitempty"`
 
 	// IsExtension Whether this package is an extension of another package
 	IsExtension *bool `json:"is_extension,omitempty"`
 
 	// Licenses Software licenses (e.g., ['GPL-3.0', 'MIT'])
-	Licenses interface{} `json:"licenses,omitempty"`
+	Licenses *map[string]interface{} `json:"licenses,omitempty"`
 
 	// Maintainers Package maintainers
-	Maintainers interface{} `json:"maintainers,omitempty"`
-	Name        string      `json:"name"`
+	Maintainers *map[string]interface{} `json:"maintainers,omitempty"`
+	Name        string                  `json:"name"`
 }
 
 // SoftwareTarget defines model for SoftwareTarget.
@@ -50662,14 +50666,14 @@ type SoftwareTarget struct {
 	Created *time.Time `json:"created,omitempty"`
 
 	// GpuArchitectures List of GPU architectures this target supports (e.g., ['nvidia/cc70', 'nvidia/cc90'])
-	GpuArchitectures interface{} `json:"gpu_architectures,omitempty"`
+	GpuArchitectures *map[string]interface{} `json:"gpu_architectures,omitempty"`
 
 	// Location Target location (CVMFS path, download URL, etc.)
 	Location *string `json:"location,omitempty"`
 
 	// Metadata Target-specific metadata (build options, system requirements, etc.)
-	Metadata interface{} `json:"metadata,omitempty"`
-	Modified *time.Time  `json:"modified,omitempty"`
+	Metadata *map[string]interface{} `json:"metadata,omitempty"`
+	Modified *time.Time              `json:"modified,omitempty"`
 
 	// TargetName Target identifier (x86_64/generic, linux, variant_name, etc.)
 	TargetName *string `json:"target_name,omitempty"`
@@ -50698,13 +50702,13 @@ type SoftwareVersion struct {
 	Created     *time.Time `json:"created,omitempty"`
 
 	// Dependencies Package dependencies (format varies by catalog type)
-	Dependencies interface{}    `json:"dependencies,omitempty"`
-	Extensions   *[]interface{} `json:"extensions,omitempty"`
+	Dependencies *map[string]interface{} `json:"dependencies,omitempty"`
+	Extensions   *[]interface{}          `json:"extensions,omitempty"`
 
 	// Metadata Version-specific metadata (toolchains, build info, modules, etc.)
-	Metadata interface{}     `json:"metadata,omitempty"`
-	Modified *time.Time      `json:"modified,omitempty"`
-	Module   *SoftwareModule `json:"module,omitempty"`
+	Metadata *map[string]interface{} `json:"metadata,omitempty"`
+	Modified *time.Time              `json:"modified,omitempty"`
+	Module   *SoftwareModule         `json:"module,omitempty"`
 
 	// ModuleVersion EESSI EasyBuild module version
 	ModuleVersion                  *string             `json:"module_version,omitempty"`
@@ -50976,9 +50980,9 @@ type SyncStatusEnum string
 
 // SystemLog defines model for SystemLog.
 type SystemLog struct {
-	Context interface{} `json:"context,omitempty"`
-	Created *time.Time  `json:"created,omitempty"`
-	Id      *int        `json:"id,omitempty"`
+	Context *map[string]interface{} `json:"context,omitempty"`
+	Created *time.Time              `json:"created,omitempty"`
+	Id      *int                    `json:"id,omitempty"`
 
 	// Instance Pod name (K8s) or container name (Docker)
 	Instance    *string              `json:"instance,omitempty"`
@@ -51229,24 +51233,24 @@ type TenantTopology struct {
 
 // ThreadSession defines model for ThreadSession.
 type ThreadSession struct {
-	ChatSession          *openapi_types.UUID    `json:"chat_session,omitempty"`
-	Created              *time.Time             `json:"created,omitempty"`
-	Flags                interface{}            `json:"flags,omitempty"`
-	HasFeedback          *bool                  `json:"has_feedback,omitempty"`
-	InputTokens          *int                   `json:"input_tokens,omitempty"`
-	IsArchived           *bool                  `json:"is_archived,omitempty"`
-	IsFlagged            *bool                  `json:"is_flagged,omitempty"`
-	MaxSeverity          *InjectionSeverityEnum `json:"max_severity,omitempty"`
-	MessageCount         *int                   `json:"message_count,omitempty"`
-	Modified             *time.Time             `json:"modified,omitempty"`
-	Name                 *string                `json:"name,omitempty"`
-	OutputTokens         *int                   `json:"output_tokens,omitempty"`
-	TitleGenInputTokens  *int                   `json:"title_gen_input_tokens,omitempty"`
-	TitleGenOutputTokens *int                   `json:"title_gen_output_tokens,omitempty"`
-	TotalTokens          *int                   `json:"total_tokens,omitempty"`
-	UserFullName         *string                `json:"user_full_name,omitempty"`
-	UserUsername         *string                `json:"user_username,omitempty"`
-	Uuid                 *openapi_types.UUID    `json:"uuid,omitempty"`
+	ChatSession          *openapi_types.UUID     `json:"chat_session,omitempty"`
+	Created              *time.Time              `json:"created,omitempty"`
+	Flags                *map[string]interface{} `json:"flags,omitempty"`
+	HasFeedback          *bool                   `json:"has_feedback,omitempty"`
+	InputTokens          *int                    `json:"input_tokens,omitempty"`
+	IsArchived           *bool                   `json:"is_archived,omitempty"`
+	IsFlagged            *bool                   `json:"is_flagged,omitempty"`
+	MaxSeverity          *InjectionSeverityEnum  `json:"max_severity,omitempty"`
+	MessageCount         *int                    `json:"message_count,omitempty"`
+	Modified             *time.Time              `json:"modified,omitempty"`
+	Name                 *string                 `json:"name,omitempty"`
+	OutputTokens         *int                    `json:"output_tokens,omitempty"`
+	TitleGenInputTokens  *int                    `json:"title_gen_input_tokens,omitempty"`
+	TitleGenOutputTokens *int                    `json:"title_gen_output_tokens,omitempty"`
+	TotalTokens          *int                    `json:"total_tokens,omitempty"`
+	UserFullName         *string                 `json:"user_full_name,omitempty"`
+	UserUsername         *string                 `json:"user_username,omitempty"`
+	Uuid                 *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // ThreadSessionFieldEnum defines model for ThreadSessionFieldEnum.
@@ -51354,7 +51358,7 @@ type TokenRequest struct {
 // ToolExecuteRequest defines model for ToolExecuteRequest.
 type ToolExecuteRequest struct {
 	// Arguments Tool arguments.
-	Arguments interface{} `json:"arguments,omitempty"`
+	Arguments *map[string]interface{} `json:"arguments,omitempty"`
 
 	// Tool Name of the tool to execute.
 	Tool string `json:"tool"`
@@ -51402,11 +51406,11 @@ type TopologyEdgeKindEnum string
 
 // TopologyNode defines model for TopologyNode.
 type TopologyNode struct {
-	Attrs map[string]interface{} `json:"attrs"`
-	Id    string                 `json:"id"`
-	Name  string                 `json:"name"`
-	Type  TopologyNodeTypeEnum   `json:"type"`
-	Uuid  *string                `json:"uuid,omitempty"`
+	Attrs map[string]map[string]interface{} `json:"attrs"`
+	Id    string                            `json:"id"`
+	Name  string                            `json:"name"`
+	Type  TopologyNodeTypeEnum              `json:"type"`
+	Uuid  *string                           `json:"uuid,omitempty"`
 }
 
 // TopologyNodeTypeEnum defines model for TopologyNodeTypeEnum.
@@ -51618,18 +51622,18 @@ type UsageTimeseriesBucket struct {
 // User defines model for User.
 type User struct {
 	// ActiveIsds List of ISDs that have asserted this user exists. User is deactivated when this becomes empty.
-	ActiveIsds interface{} `json:"active_isds,omitempty"`
-	Address    *string     `json:"address,omitempty"`
+	ActiveIsds *map[string]interface{} `json:"active_isds,omitempty"`
+	Address    *string                 `json:"address,omitempty"`
 
 	// Affiliations Person's affiliation within organization such as student, faculty, staff.
-	Affiliations interface{} `json:"affiliations,omitempty"`
+	Affiliations *map[string]interface{} `json:"affiliations,omitempty"`
 
 	// AgreementDate Indicates when the user has agreed with the policy.
 	AgreementDate *time.Time `json:"agreement_date,omitempty"`
 
 	// AttributeSources Per-attribute source and freshness tracking. Format: {'field_name': {'source': 'isd:<name>', 'timestamp': 'ISO8601'}}.
-	AttributeSources interface{}         `json:"attribute_sources,omitempty"`
-	BirthDate        *openapi_types.Date `json:"birth_date,omitempty"`
+	AttributeSources *map[string]interface{} `json:"attribute_sources,omitempty"`
+	BirthDate        *openapi_types.Date     `json:"birth_date,omitempty"`
 
 	// CanUsePersonalAccessTokens Designates whether the user is allowed to create and use personal access tokens.
 	CanUsePersonalAccessTokens *bool      `json:"can_use_personal_access_tokens,omitempty"`
@@ -51642,10 +51646,10 @@ type User struct {
 	Description        *string `json:"description,omitempty"`
 
 	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
-	EdupersonAssurance interface{}          `json:"eduperson_assurance,omitempty"`
-	Email              *openapi_types.Email `json:"email,omitempty"`
-	FirstName          *string              `json:"first_name,omitempty"`
-	FullName           *string              `json:"full_name,omitempty"`
+	EdupersonAssurance *map[string]interface{} `json:"eduperson_assurance,omitempty"`
+	Email              *openapi_types.Email    `json:"email,omitempty"`
+	FirstName          *string                 `json:"first_name,omitempty"`
+	FullName           *string                 `json:"full_name,omitempty"`
 
 	// Gender User's gender (male, female, or unknown)
 	Gender                        *User_Gender `json:"gender,omitempty"`
@@ -51679,10 +51683,10 @@ type User struct {
 	LastName  *string `json:"last_name,omitempty"`
 
 	// ManagedIsds List of ISD source identifiers this user can manage via Identity Bridge. E.g., ['isd:puhuri', 'isd:fenix']. Non-empty list implies identity manager role.
-	ManagedIsds interface{} `json:"managed_isds,omitempty"`
+	ManagedIsds *map[string]interface{} `json:"managed_isds,omitempty"`
 
 	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
-	Nationalities interface{} `json:"nationalities,omitempty"`
+	Nationalities *map[string]interface{} `json:"nationalities,omitempty"`
 
 	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
 	Nationality *string `json:"nationality,omitempty"`
@@ -52032,18 +52036,18 @@ type UserMappingMap struct {
 // UserMe defines model for UserMe.
 type UserMe struct {
 	// ActiveIsds List of ISDs that have asserted this user exists. User is deactivated when this becomes empty.
-	ActiveIsds interface{} `json:"active_isds,omitempty"`
-	Address    *string     `json:"address,omitempty"`
+	ActiveIsds *map[string]interface{} `json:"active_isds,omitempty"`
+	Address    *string                 `json:"address,omitempty"`
 
 	// Affiliations Person's affiliation within organization such as student, faculty, staff.
-	Affiliations interface{} `json:"affiliations,omitempty"`
+	Affiliations *map[string]interface{} `json:"affiliations,omitempty"`
 
 	// AgreementDate Indicates when the user has agreed with the policy.
 	AgreementDate *time.Time `json:"agreement_date,omitempty"`
 
 	// AttributeSources Per-attribute source and freshness tracking. Format: {'field_name': {'source': 'isd:<name>', 'timestamp': 'ISO8601'}}.
-	AttributeSources interface{}         `json:"attribute_sources,omitempty"`
-	BirthDate        *openapi_types.Date `json:"birth_date,omitempty"`
+	AttributeSources *map[string]interface{} `json:"attribute_sources,omitempty"`
+	BirthDate        *openapi_types.Date     `json:"birth_date,omitempty"`
 
 	// CanUsePersonalAccessTokens Designates whether the user is allowed to create and use personal access tokens.
 	CanUsePersonalAccessTokens *bool      `json:"can_use_personal_access_tokens,omitempty"`
@@ -52056,10 +52060,10 @@ type UserMe struct {
 	Description        *string `json:"description,omitempty"`
 
 	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
-	EdupersonAssurance interface{}          `json:"eduperson_assurance,omitempty"`
-	Email              *openapi_types.Email `json:"email,omitempty"`
-	FirstName          *string              `json:"first_name,omitempty"`
-	FullName           *string              `json:"full_name,omitempty"`
+	EdupersonAssurance *map[string]interface{} `json:"eduperson_assurance,omitempty"`
+	Email              *openapi_types.Email    `json:"email,omitempty"`
+	FirstName          *string                 `json:"first_name,omitempty"`
+	FullName           *string                 `json:"full_name,omitempty"`
 
 	// Gender User's gender (male, female, or unknown)
 	Gender                        *UserMe_Gender `json:"gender,omitempty"`
@@ -52093,10 +52097,10 @@ type UserMe struct {
 	LastName  *string `json:"last_name,omitempty"`
 
 	// ManagedIsds List of ISD source identifiers this user can manage via Identity Bridge. E.g., ['isd:puhuri', 'isd:fenix']. Non-empty list implies identity manager role.
-	ManagedIsds interface{} `json:"managed_isds,omitempty"`
+	ManagedIsds *map[string]interface{} `json:"managed_isds,omitempty"`
 
 	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
-	Nationalities interface{} `json:"nationalities,omitempty"`
+	Nationalities *map[string]interface{} `json:"nationalities,omitempty"`
 
 	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
 	Nationality *string `json:"nationality,omitempty"`
@@ -52241,9 +52245,9 @@ type UserRequest struct {
 	Description        *string `json:"description,omitempty"`
 
 	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
-	EdupersonAssurance interface{}         `json:"eduperson_assurance,omitempty"`
-	Email              openapi_types.Email `json:"email"`
-	FirstName          *string             `json:"first_name,omitempty"`
+	EdupersonAssurance *map[string]interface{} `json:"eduperson_assurance,omitempty"`
+	Email              openapi_types.Email     `json:"email"`
+	FirstName          *string                 `json:"first_name,omitempty"`
 
 	// Gender User's gender (male, female, or unknown)
 	Gender *UserRequest_Gender `json:"gender,omitempty"`
@@ -52264,10 +52268,10 @@ type UserRequest struct {
 	LastName  *string `json:"last_name,omitempty"`
 
 	// ManagedIsds List of ISD source identifiers this user can manage via Identity Bridge. E.g., ['isd:puhuri', 'isd:fenix']. Non-empty list implies identity manager role.
-	ManagedIsds interface{} `json:"managed_isds,omitempty"`
+	ManagedIsds *map[string]interface{} `json:"managed_isds,omitempty"`
 
 	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
-	Nationalities interface{} `json:"nationalities,omitempty"`
+	Nationalities *map[string]interface{} `json:"nationalities,omitempty"`
 
 	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
 	Nationality *string `json:"nationality,omitempty"`
@@ -52322,9 +52326,9 @@ type UserRequestForm struct {
 	Description        *string `json:"description,omitempty"`
 
 	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
-	EdupersonAssurance interface{}         `json:"eduperson_assurance,omitempty"`
-	Email              openapi_types.Email `json:"email"`
-	FirstName          *string             `json:"first_name,omitempty"`
+	EdupersonAssurance *map[string]interface{} `json:"eduperson_assurance,omitempty"`
+	Email              openapi_types.Email     `json:"email"`
+	FirstName          *string                 `json:"first_name,omitempty"`
 
 	// Gender User's gender (male, female, or unknown)
 	Gender *UserRequestForm_Gender `json:"gender,omitempty"`
@@ -52345,10 +52349,10 @@ type UserRequestForm struct {
 	LastName  *string `json:"last_name,omitempty"`
 
 	// ManagedIsds List of ISD source identifiers this user can manage via Identity Bridge. E.g., ['isd:puhuri', 'isd:fenix']. Non-empty list implies identity manager role.
-	ManagedIsds interface{} `json:"managed_isds,omitempty"`
+	ManagedIsds *map[string]interface{} `json:"managed_isds,omitempty"`
 
 	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
-	Nationalities interface{} `json:"nationalities,omitempty"`
+	Nationalities *map[string]interface{} `json:"nationalities,omitempty"`
 
 	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
 	Nationality *string `json:"nationality,omitempty"`
@@ -52403,9 +52407,9 @@ type UserRequestMultipart struct {
 	Description        *string `json:"description,omitempty"`
 
 	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
-	EdupersonAssurance interface{}         `json:"eduperson_assurance,omitempty"`
-	Email              openapi_types.Email `json:"email"`
-	FirstName          *string             `json:"first_name,omitempty"`
+	EdupersonAssurance *map[string]interface{} `json:"eduperson_assurance,omitempty"`
+	Email              openapi_types.Email     `json:"email"`
+	FirstName          *string                 `json:"first_name,omitempty"`
 
 	// Gender User's gender (male, female, or unknown)
 	Gender *UserRequestMultipart_Gender `json:"gender,omitempty"`
@@ -52426,10 +52430,10 @@ type UserRequestMultipart struct {
 	LastName  *string `json:"last_name,omitempty"`
 
 	// ManagedIsds List of ISD source identifiers this user can manage via Identity Bridge. E.g., ['isd:puhuri', 'isd:fenix']. Non-empty list implies identity manager role.
-	ManagedIsds interface{} `json:"managed_isds,omitempty"`
+	ManagedIsds *map[string]interface{} `json:"managed_isds,omitempty"`
 
 	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
-	Nationalities interface{} `json:"nationalities,omitempty"`
+	Nationalities *map[string]interface{} `json:"nationalities,omitempty"`
 
 	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
 	Nationality *string `json:"nationality,omitempty"`
