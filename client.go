@@ -37529,6 +37529,12 @@ type OfferingUserUpdateRestrictionRequest struct {
 type OfferingUserUpdateRuntimeStateRequest struct {
 	// RuntimeState Operational/access state of the user account.
 	RuntimeState RuntimeStateEnum `json:"runtime_state"`
+
+	// ServiceProviderComment Optional comment explaining the runtime state change.
+	ServiceProviderComment *string `json:"service_provider_comment,omitempty"`
+
+	// ServiceProviderCommentUrl Optional URL with additional information for the user.
+	ServiceProviderCommentUrl *string `json:"service_provider_comment_url,omitempty"`
 }
 
 // OidcEndpoints defines model for OidcEndpoints.
