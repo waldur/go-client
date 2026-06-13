@@ -10375,6 +10375,7 @@ func (e NotifySystemEnum) Valid() bool {
 const (
 	ObservableObjectTypeEnumCourseAccount          ObservableObjectTypeEnum = "course_account"
 	ObservableObjectTypeEnumImportableResources    ObservableObjectTypeEnum = "importable_resources"
+	ObservableObjectTypeEnumOfferingResourcesSync  ObservableObjectTypeEnum = "offering_resources_sync"
 	ObservableObjectTypeEnumOfferingUser           ObservableObjectTypeEnum = "offering_user"
 	ObservableObjectTypeEnumOrder                  ObservableObjectTypeEnum = "order"
 	ObservableObjectTypeEnumResource               ObservableObjectTypeEnum = "resource"
@@ -10389,6 +10390,8 @@ func (e ObservableObjectTypeEnum) Valid() bool {
 	case ObservableObjectTypeEnumCourseAccount:
 		return true
 	case ObservableObjectTypeEnumImportableResources:
+		return true
+	case ObservableObjectTypeEnumOfferingResourcesSync:
 		return true
 	case ObservableObjectTypeEnumOfferingUser:
 		return true
@@ -97602,6 +97605,9 @@ type ClientInterface interface {
 	// MarketplaceProviderOfferingsSync request
 	MarketplaceProviderOfferingsSync(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderOfferingsSyncResources request
+	MarketplaceProviderOfferingsSyncResources(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderOfferingsTosStatsRetrieve request
 	MarketplaceProviderOfferingsTosStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -119953,6 +119959,18 @@ func (c *Client) MarketplaceProviderOfferingsSwitchBillingMode(ctx context.Conte
 
 func (c *Client) MarketplaceProviderOfferingsSync(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsSyncRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsSyncResources(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsSyncResourcesRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -223091,6 +223109,40 @@ func NewMarketplaceProviderOfferingsSyncRequest(server string, uuid openapi_type
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/sync/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsSyncResourcesRequest generates requests for MarketplaceProviderOfferingsSyncResources
+func NewMarketplaceProviderOfferingsSyncResourcesRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/sync_resources/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -349070,6 +349122,9 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceProviderOfferingsSyncWithResponse request
 	MarketplaceProviderOfferingsSyncWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSyncResponse, error)
 
+	// MarketplaceProviderOfferingsSyncResourcesWithResponse request
+	MarketplaceProviderOfferingsSyncResourcesWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSyncResourcesResponse, error)
+
 	// MarketplaceProviderOfferingsTosStatsRetrieveWithResponse request
 	MarketplaceProviderOfferingsTosStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsTosStatsRetrieveResponse, error)
 
@@ -385022,6 +385077,36 @@ func (r MarketplaceProviderOfferingsSyncResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceProviderOfferingsSyncResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProviderOfferingsSyncResourcesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON202      *Status
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsSyncResourcesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsSyncResourcesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderOfferingsSyncResourcesResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -444547,6 +444632,15 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsSyncWithResponse(ctx c
 	return ParseMarketplaceProviderOfferingsSyncResponse(rsp)
 }
 
+// MarketplaceProviderOfferingsSyncResourcesWithResponse request returning *MarketplaceProviderOfferingsSyncResourcesResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsSyncResourcesWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSyncResourcesResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsSyncResources(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsSyncResourcesResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsTosStatsRetrieveWithResponse request returning *MarketplaceProviderOfferingsTosStatsRetrieveResponse
 func (c *ClientWithResponses) MarketplaceProviderOfferingsTosStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsTosStatsRetrieveResponse, error) {
 	rsp, err := c.MarketplaceProviderOfferingsTosStatsRetrieve(ctx, uuid, reqEditors...)
@@ -486803,6 +486897,32 @@ func ParseMarketplaceProviderOfferingsSyncResponse(rsp *http.Response) (*Marketp
 	response := &MarketplaceProviderOfferingsSyncResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsSyncResourcesResponse parses an HTTP response from a MarketplaceProviderOfferingsSyncResourcesWithResponse call
+func ParseMarketplaceProviderOfferingsSyncResourcesResponse(rsp *http.Response) (*MarketplaceProviderOfferingsSyncResourcesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsSyncResourcesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest Status
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
 	}
 
 	return response, nil
