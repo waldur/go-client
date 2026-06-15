@@ -34714,6 +34714,12 @@ type MergedPluginOptions struct {
 	// ResourceRoleMap Mapping of Waldur role names (on Resource scope) to emitted role tokens used in group name rendering. Roles outside the map are skipped. Example: {"PI": "admin", "Member": "member"}.
 	ResourceRoleMap *map[string]string `json:"resource_role_map,omitempty"`
 
+	// ResourceSlugMaxLength Maximum length of auto-generated resource slugs derived from the resource name, overriding the default of 10 characters (up to 40). Ignored when a resource slug template is set.
+	ResourceSlugMaxLength *int `json:"resource_slug_max_length,omitempty"`
+
+	// ResourceSlugTemplate Template for resource slugs, overriding the default 10-character slugified name. Available variables: {customer_slug}, {project_slug}, {project_name}, {offering_slug}, {year}, {month}, {counter}, {counter_padded}. Default: slugified resource name (max 10 characters).
+	ResourceSlugTemplate *string `json:"resource_slug_template,omitempty"`
+
 	// RestrictDeletionWithActiveResources If set to True, offering cannot be deleted while it has non-terminated resources.
 	RestrictDeletionWithActiveResources *bool `json:"restrict_deletion_with_active_resources,omitempty"`
 
@@ -34967,6 +34973,12 @@ type MergedPluginOptionsRequest struct {
 
 	// ResourceRoleMap Mapping of Waldur role names (on Resource scope) to emitted role tokens used in group name rendering. Roles outside the map are skipped. Example: {"PI": "admin", "Member": "member"}.
 	ResourceRoleMap *map[string]string `json:"resource_role_map,omitempty"`
+
+	// ResourceSlugMaxLength Maximum length of auto-generated resource slugs derived from the resource name, overriding the default of 10 characters (up to 40). Ignored when a resource slug template is set.
+	ResourceSlugMaxLength *int `json:"resource_slug_max_length,omitempty"`
+
+	// ResourceSlugTemplate Template for resource slugs, overriding the default 10-character slugified name. Available variables: {customer_slug}, {project_slug}, {project_name}, {offering_slug}, {year}, {month}, {counter}, {counter_padded}. Default: slugified resource name (max 10 characters).
+	ResourceSlugTemplate *string `json:"resource_slug_template,omitempty"`
 
 	// RestrictDeletionWithActiveResources If set to True, offering cannot be deleted while it has non-terminated resources.
 	RestrictDeletionWithActiveResources *bool `json:"restrict_deletion_with_active_resources,omitempty"`
