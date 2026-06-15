@@ -230,19 +230,19 @@ func (e AdminAnnouncementOEnum) Valid() bool {
 
 // Defines values for AdminAnnouncementTypeEnum.
 const (
-	Danger      AdminAnnouncementTypeEnum = "danger"
-	Information AdminAnnouncementTypeEnum = "information"
-	Warning     AdminAnnouncementTypeEnum = "warning"
+	AdminAnnouncementTypeEnumDanger      AdminAnnouncementTypeEnum = "danger"
+	AdminAnnouncementTypeEnumInformation AdminAnnouncementTypeEnum = "information"
+	AdminAnnouncementTypeEnumWarning     AdminAnnouncementTypeEnum = "warning"
 )
 
 // Valid indicates whether the value is a known member of the AdminAnnouncementTypeEnum enum.
 func (e AdminAnnouncementTypeEnum) Valid() bool {
 	switch e {
-	case Danger:
+	case AdminAnnouncementTypeEnumDanger:
 		return true
-	case Information:
+	case AdminAnnouncementTypeEnumInformation:
 		return true
-	case Warning:
+	case AdminAnnouncementTypeEnumWarning:
 		return true
 	default:
 		return false
@@ -16992,6 +16992,24 @@ func (e PublicMaintenanceAnnouncementStateEnum) Valid() bool {
 	case PublicMaintenanceAnnouncementStateEnumInProgress:
 		return true
 	case PublicMaintenanceAnnouncementStateEnumScheduled:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for PublicMaintenanceAnnouncementTypeEnum.
+const (
+	PublicMaintenanceAnnouncementTypeEnumDanger  PublicMaintenanceAnnouncementTypeEnum = "danger"
+	PublicMaintenanceAnnouncementTypeEnumWarning PublicMaintenanceAnnouncementTypeEnum = "warning"
+)
+
+// Valid indicates whether the value is a known member of the PublicMaintenanceAnnouncementTypeEnum enum.
+func (e PublicMaintenanceAnnouncementTypeEnum) Valid() bool {
+	switch e {
+	case PublicMaintenanceAnnouncementTypeEnumDanger:
+		return true
+	case PublicMaintenanceAnnouncementTypeEnumWarning:
 		return true
 	default:
 		return false
@@ -45603,13 +45621,26 @@ type PublicMaintenanceAnnouncement struct {
 	// ActualStart When the maintenance actually began
 	ActualStart       *time.Time                         `json:"actual_start,omitempty"`
 	AffectedOfferings *[]MaintenanceAnnouncementOffering `json:"affected_offerings,omitempty"`
+	Description       *string                            `json:"description,omitempty"`
 
 	// ExternalReferenceUrl Optional reference to an external maintenance tracker
-	ExternalReferenceUrl *string `json:"external_reference_url,omitempty"`
+	ExternalReferenceUrl         *string `json:"external_reference_url,omitempty"`
+	MaintenanceAffectedOfferings *[]struct {
+		ImpactDescription  *string             `json:"impact_description,omitempty"`
+		ImpactLevel        *string             `json:"impact_level,omitempty"`
+		ImpactLevelDisplay *string             `json:"impact_level_display,omitempty"`
+		Name               *string             `json:"name,omitempty"`
+		Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
+	} `json:"maintenance_affected_offerings,omitempty"`
+	MaintenanceName            *string    `json:"maintenance_name,omitempty"`
+	MaintenanceScheduledEnd    *time.Time `json:"maintenance_scheduled_end,omitempty"`
+	MaintenanceScheduledStart  *time.Time `json:"maintenance_scheduled_start,omitempty"`
+	MaintenanceServiceProvider *string    `json:"maintenance_service_provider,omitempty"`
 
 	// MaintenanceType Type of maintenance being performed
 	MaintenanceType        *MaintenanceTypeEnum `json:"maintenance_type,omitempty"`
 	MaintenanceTypeDisplay *string              `json:"maintenance_type_display,omitempty"`
+	MaintenanceUuid        *openapi_types.UUID  `json:"maintenance_uuid,omitempty"`
 	Message                *string              `json:"message,omitempty"`
 	Name                   *string              `json:"name,omitempty"`
 
@@ -45620,12 +45651,16 @@ type PublicMaintenanceAnnouncement struct {
 	ScheduledStart      *time.Time                              `json:"scheduled_start,omitempty"`
 	ServiceProviderName *string                                 `json:"service_provider_name,omitempty"`
 	State               *PublicMaintenanceAnnouncementStateEnum `json:"state,omitempty"`
+	Type                *PublicMaintenanceAnnouncementTypeEnum  `json:"type,omitempty"`
 	Url                 *string                                 `json:"url,omitempty"`
 	Uuid                *openapi_types.UUID                     `json:"uuid,omitempty"`
 }
 
 // PublicMaintenanceAnnouncementStateEnum defines model for PublicMaintenanceAnnouncementStateEnum.
 type PublicMaintenanceAnnouncementStateEnum string
+
+// PublicMaintenanceAnnouncementTypeEnum defines model for PublicMaintenanceAnnouncementTypeEnum.
+type PublicMaintenanceAnnouncementTypeEnum string
 
 // PublicOfferingDetails defines model for PublicOfferingDetails.
 type PublicOfferingDetails struct {
