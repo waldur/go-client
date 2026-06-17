@@ -23073,6 +23073,12 @@ type AgentDependency struct {
 	Version string `json:"version"`
 }
 
+// AgentDependencyRequest defines model for AgentDependencyRequest.
+type AgentDependencyRequest struct {
+	Package string `json:"package"`
+	Version string `json:"version"`
+}
+
 // AgentEventSubscriptionCreateRequest defines model for AgentEventSubscriptionCreateRequest.
 type AgentEventSubscriptionCreateRequest struct {
 	// Description Optional description for the event subscription
@@ -23123,9 +23129,10 @@ type AgentIdentityRequest struct {
 	ConfigFileContent *string `json:"config_file_content,omitempty"`
 
 	// ConfigFilePath Example: '/etc/waldur/agent.yaml'
-	ConfigFilePath *string    `json:"config_file_path,omitempty"`
-	LastRestarted  *time.Time `json:"last_restarted,omitempty"`
-	Name           string     `json:"name"`
+	ConfigFilePath *string                   `json:"config_file_path,omitempty"`
+	Dependencies   *[]AgentDependencyRequest `json:"dependencies,omitempty"`
+	LastRestarted  *time.Time                `json:"last_restarted,omitempty"`
+	Name           string                    `json:"name"`
 
 	// Offering UUID of an offering with a site-agent compatible type.
 	Offering openapi_types.UUID `json:"offering"`
