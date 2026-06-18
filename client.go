@@ -37421,20 +37421,20 @@ type OfferingUser struct {
 	User                      *string            `json:"user,omitempty"`
 
 	// UserActiveIsds List of ISDs that have asserted this user exists. User is deactivated when this becomes empty.
-	UserActiveIsds *map[string]interface{} `json:"user_active_isds,omitempty"`
-	UserAddress    *string                 `json:"user_address,omitempty"`
+	UserActiveIsds *[]string `json:"user_active_isds,omitempty"`
+	UserAddress    *string   `json:"user_address,omitempty"`
 
 	// UserAffiliations Person's affiliation within organization such as student, faculty, staff.
-	UserAffiliations       *map[string]interface{} `json:"user_affiliations,omitempty"`
-	UserBirthDate          *openapi_types.Date     `json:"user_birth_date,omitempty"`
-	UserCivilNumber        *string                 `json:"user_civil_number,omitempty"`
-	UserCountryOfResidence *string                 `json:"user_country_of_residence,omitempty"`
+	UserAffiliations       *[]string           `json:"user_affiliations,omitempty"`
+	UserBirthDate          *openapi_types.Date `json:"user_birth_date,omitempty"`
+	UserCivilNumber        *string             `json:"user_civil_number,omitempty"`
+	UserCountryOfResidence *string             `json:"user_country_of_residence,omitempty"`
 
 	// UserEdupersonAssurance REFEDS assurance profile URIs from identity provider
-	UserEdupersonAssurance *map[string]interface{} `json:"user_eduperson_assurance,omitempty"`
-	UserEmail              *openapi_types.Email    `json:"user_email,omitempty"`
-	UserFirstName          *string                 `json:"user_first_name,omitempty"`
-	UserFullName           *string                 `json:"user_full_name,omitempty"`
+	UserEdupersonAssurance *[]string            `json:"user_eduperson_assurance,omitempty"`
+	UserEmail              *openapi_types.Email `json:"user_email,omitempty"`
+	UserFirstName          *string              `json:"user_first_name,omitempty"`
+	UserFullName           *string              `json:"user_full_name,omitempty"`
 
 	// UserGender User's gender (male, female, or unknown)
 	UserGender *OfferingUser_UserGender `json:"user_gender,omitempty"`
@@ -37445,7 +37445,7 @@ type OfferingUser struct {
 	UserLastName       *string `json:"user_last_name,omitempty"`
 
 	// UserNationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
-	UserNationalities *map[string]interface{} `json:"user_nationalities,omitempty"`
+	UserNationalities *[]string `json:"user_nationalities,omitempty"`
 
 	// UserNationality Primary citizenship (ISO 3166-1 alpha-2 code)
 	UserNationality         *string `json:"user_nationality,omitempty"`
