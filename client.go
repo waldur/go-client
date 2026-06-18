@@ -27915,6 +27915,9 @@ type ConstanceSettings struct {
 	MATRIXHOMESERVERDOMAIN                           *string                                                          `json:"MATRIX_HOMESERVER_DOMAIN,omitempty"`
 	MATRIXHOMESERVERPUBLICURL                        *string                                                          `json:"MATRIX_HOMESERVER_PUBLIC_URL,omitempty"`
 	MATRIXHOMESERVERURL                              *string                                                          `json:"MATRIX_HOMESERVER_URL,omitempty"`
+	MATRIXLIVEKITKEY                                 *string                                                          `json:"MATRIX_LIVEKIT_KEY,omitempty"`
+	MATRIXLIVEKITSECRET                              *string                                                          `json:"MATRIX_LIVEKIT_SECRET,omitempty"`
+	MATRIXLIVEKITURL                                 *string                                                          `json:"MATRIX_LIVEKIT_URL,omitempty"`
 	MATRIXLOGINMETHOD                                *string                                                          `json:"MATRIX_LOGIN_METHOD,omitempty"`
 	MATRIXOIDCPROVIDERURL                            *string                                                          `json:"MATRIX_OIDC_PROVIDER_URL,omitempty"`
 	MATRIXUSERIDFORMAT                               *string                                                          `json:"MATRIX_USER_ID_FORMAT,omitempty"`
@@ -28278,6 +28281,9 @@ type ConstanceSettingsRequest struct {
 	MATRIXHOMESERVERDOMAIN                           *string                                                                 `json:"MATRIX_HOMESERVER_DOMAIN,omitempty"`
 	MATRIXHOMESERVERPUBLICURL                        *string                                                                 `json:"MATRIX_HOMESERVER_PUBLIC_URL,omitempty"`
 	MATRIXHOMESERVERURL                              *string                                                                 `json:"MATRIX_HOMESERVER_URL,omitempty"`
+	MATRIXLIVEKITKEY                                 *string                                                                 `json:"MATRIX_LIVEKIT_KEY,omitempty"`
+	MATRIXLIVEKITSECRET                              *string                                                                 `json:"MATRIX_LIVEKIT_SECRET,omitempty"`
+	MATRIXLIVEKITURL                                 *string                                                                 `json:"MATRIX_LIVEKIT_URL,omitempty"`
 	MATRIXLOGINMETHOD                                *string                                                                 `json:"MATRIX_LOGIN_METHOD,omitempty"`
 	MATRIXOIDCPROVIDERURL                            *string                                                                 `json:"MATRIX_OIDC_PROVIDER_URL,omitempty"`
 	MATRIXUSERIDFORMAT                               *string                                                                 `json:"MATRIX_USER_ID_FORMAT,omitempty"`
@@ -28641,6 +28647,9 @@ type ConstanceSettingsRequestForm struct {
 	MATRIXHOMESERVERDOMAIN                           *string                                                                     `json:"MATRIX_HOMESERVER_DOMAIN,omitempty"`
 	MATRIXHOMESERVERPUBLICURL                        *string                                                                     `json:"MATRIX_HOMESERVER_PUBLIC_URL,omitempty"`
 	MATRIXHOMESERVERURL                              *string                                                                     `json:"MATRIX_HOMESERVER_URL,omitempty"`
+	MATRIXLIVEKITKEY                                 *string                                                                     `json:"MATRIX_LIVEKIT_KEY,omitempty"`
+	MATRIXLIVEKITSECRET                              *string                                                                     `json:"MATRIX_LIVEKIT_SECRET,omitempty"`
+	MATRIXLIVEKITURL                                 *string                                                                     `json:"MATRIX_LIVEKIT_URL,omitempty"`
 	MATRIXLOGINMETHOD                                *string                                                                     `json:"MATRIX_LOGIN_METHOD,omitempty"`
 	MATRIXOIDCPROVIDERURL                            *string                                                                     `json:"MATRIX_OIDC_PROVIDER_URL,omitempty"`
 	MATRIXUSERIDFORMAT                               *string                                                                     `json:"MATRIX_USER_ID_FORMAT,omitempty"`
@@ -29004,6 +29013,9 @@ type ConstanceSettingsRequestMultipart struct {
 	MATRIXHOMESERVERDOMAIN                           *string                                                                          `json:"MATRIX_HOMESERVER_DOMAIN,omitempty"`
 	MATRIXHOMESERVERPUBLICURL                        *string                                                                          `json:"MATRIX_HOMESERVER_PUBLIC_URL,omitempty"`
 	MATRIXHOMESERVERURL                              *string                                                                          `json:"MATRIX_HOMESERVER_URL,omitempty"`
+	MATRIXLIVEKITKEY                                 *string                                                                          `json:"MATRIX_LIVEKIT_KEY,omitempty"`
+	MATRIXLIVEKITSECRET                              *string                                                                          `json:"MATRIX_LIVEKIT_SECRET,omitempty"`
+	MATRIXLIVEKITURL                                 *string                                                                          `json:"MATRIX_LIVEKIT_URL,omitempty"`
 	MATRIXLOGINMETHOD                                *string                                                                          `json:"MATRIX_LOGIN_METHOD,omitempty"`
 	MATRIXOIDCPROVIDERURL                            *string                                                                          `json:"MATRIX_OIDC_PROVIDER_URL,omitempty"`
 	MATRIXUSERIDFORMAT                               *string                                                                          `json:"MATRIX_USER_ID_FORMAT,omitempty"`
@@ -33746,6 +33758,51 @@ type LinkResourceResponse struct {
 // LinkToInvoiceRequest defines model for LinkToInvoiceRequest.
 type LinkToInvoiceRequest struct {
 	Invoice string `json:"invoice"`
+}
+
+// LiveKitOverviewResponse defines model for LiveKitOverviewResponse.
+type LiveKitOverviewResponse struct {
+	LivekitUrl string               `json:"livekit_url"`
+	Rooms      []LiveKitRoomSummary `json:"rooms"`
+	Totals     LiveKitTotals        `json:"totals"`
+}
+
+// LiveKitParticipant defines model for LiveKitParticipant.
+type LiveKitParticipant struct {
+	Identity    string         `json:"identity"`
+	IsPublisher bool           `json:"is_publisher"`
+	JoinedAt    int            `json:"joined_at"`
+	Sid         string         `json:"sid"`
+	State       string         `json:"state"`
+	Tracks      []LiveKitTrack `json:"tracks"`
+}
+
+// LiveKitRoomSummary defines model for LiveKitRoomSummary.
+type LiveKitRoomSummary struct {
+	CreationTime    int    `json:"creation_time"`
+	MaxParticipants int    `json:"max_participants"`
+	Metadata        string `json:"metadata"`
+	Name            string `json:"name"`
+	NumParticipants int    `json:"num_participants"`
+	NumPublishers   int    `json:"num_publishers"`
+	Sid             string `json:"sid"`
+}
+
+// LiveKitTotals defines model for LiveKitTotals.
+type LiveKitTotals struct {
+	ParticipantCount int `json:"participant_count"`
+	PublisherCount   int `json:"publisher_count"`
+	RoomCount        int `json:"room_count"`
+}
+
+// LiveKitTrack defines model for LiveKitTrack.
+type LiveKitTrack struct {
+	Height int    `json:"height"`
+	Muted  bool   `json:"muted"`
+	Name   string `json:"name"`
+	Sid    string `json:"sid"`
+	Type   string `json:"type"`
+	Width  int    `json:"width"`
 }
 
 // LoadBalancerAttachFloatingIPRequest defines model for LoadBalancerAttachFloatingIPRequest.
@@ -53542,6 +53599,12 @@ type AdminArrowVendorOfferingMappingsVendorChoicesCountParams struct {
 	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
+}
+
+// AdminMatrixLivekitParticipantsListParams defines parameters for AdminMatrixLivekitParticipantsList.
+type AdminMatrixLivekitParticipantsListParams struct {
+	// Room LiveKit room name. A query parameter rather than a path segment because Element Call room names are base64 and routinely contain '/'.
+	Room string `form:"room" json:"room"`
 }
 
 // AffiliatedOrganizationsListParams defines parameters for AffiliatedOrganizationsList.
@@ -94241,6 +94304,12 @@ type ClientInterface interface {
 	// AdminMatrixDiagnosticsRetrieve request
 	AdminMatrixDiagnosticsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// AdminMatrixLivekitOverviewRetrieve request
+	AdminMatrixLivekitOverviewRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminMatrixLivekitParticipantsList request
+	AdminMatrixLivekitParticipantsList(ctx context.Context, params *AdminMatrixLivekitParticipantsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// AdminMatrixReprovision request
 	AdminMatrixReprovision(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -105170,6 +105239,30 @@ func (c *Client) AdminMatrixAppserviceStatusRetrieve(ctx context.Context, reqEdi
 
 func (c *Client) AdminMatrixDiagnosticsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewAdminMatrixDiagnosticsRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminMatrixLivekitOverviewRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminMatrixLivekitOverviewRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminMatrixLivekitParticipantsList(ctx context.Context, params *AdminMatrixLivekitParticipantsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminMatrixLivekitParticipantsListRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -151829,6 +151922,83 @@ func NewAdminMatrixDiagnosticsRetrieveRequest(server string) (*http.Request, err
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminMatrixLivekitOverviewRetrieveRequest generates requests for AdminMatrixLivekitOverviewRetrieve
+func NewAdminMatrixLivekitOverviewRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/matrix/livekit/overview/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminMatrixLivekitParticipantsListRequest generates requests for AdminMatrixLivekitParticipantsList
+func NewAdminMatrixLivekitParticipantsListRequest(server string, params *AdminMatrixLivekitParticipantsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/matrix/livekit/participants/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "room", params.Room, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -345758,6 +345928,12 @@ type ClientWithResponsesInterface interface {
 	// AdminMatrixDiagnosticsRetrieveWithResponse request
 	AdminMatrixDiagnosticsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AdminMatrixDiagnosticsRetrieveResponse, error)
 
+	// AdminMatrixLivekitOverviewRetrieveWithResponse request
+	AdminMatrixLivekitOverviewRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AdminMatrixLivekitOverviewRetrieveResponse, error)
+
+	// AdminMatrixLivekitParticipantsListWithResponse request
+	AdminMatrixLivekitParticipantsListWithResponse(ctx context.Context, params *AdminMatrixLivekitParticipantsListParams, reqEditors ...RequestEditorFn) (*AdminMatrixLivekitParticipantsListResponse, error)
+
 	// AdminMatrixReprovisionWithResponse request
 	AdminMatrixReprovisionWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AdminMatrixReprovisionResponse, error)
 
@@ -357891,6 +358067,66 @@ func (r AdminMatrixDiagnosticsRetrieveResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r AdminMatrixDiagnosticsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type AdminMatrixLivekitOverviewRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *LiveKitOverviewResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminMatrixLivekitOverviewRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminMatrixLivekitOverviewRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AdminMatrixLivekitOverviewRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type AdminMatrixLivekitParticipantsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]LiveKitParticipant
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminMatrixLivekitParticipantsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminMatrixLivekitParticipantsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AdminMatrixLivekitParticipantsListResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -433864,6 +434100,24 @@ func (c *ClientWithResponses) AdminMatrixDiagnosticsRetrieveWithResponse(ctx con
 	return ParseAdminMatrixDiagnosticsRetrieveResponse(rsp)
 }
 
+// AdminMatrixLivekitOverviewRetrieveWithResponse request returning *AdminMatrixLivekitOverviewRetrieveResponse
+func (c *ClientWithResponses) AdminMatrixLivekitOverviewRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AdminMatrixLivekitOverviewRetrieveResponse, error) {
+	rsp, err := c.AdminMatrixLivekitOverviewRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminMatrixLivekitOverviewRetrieveResponse(rsp)
+}
+
+// AdminMatrixLivekitParticipantsListWithResponse request returning *AdminMatrixLivekitParticipantsListResponse
+func (c *ClientWithResponses) AdminMatrixLivekitParticipantsListWithResponse(ctx context.Context, params *AdminMatrixLivekitParticipantsListParams, reqEditors ...RequestEditorFn) (*AdminMatrixLivekitParticipantsListResponse, error) {
+	rsp, err := c.AdminMatrixLivekitParticipantsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminMatrixLivekitParticipantsListResponse(rsp)
+}
+
 // AdminMatrixReprovisionWithResponse request returning *AdminMatrixReprovisionResponse
 func (c *ClientWithResponses) AdminMatrixReprovisionWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AdminMatrixReprovisionResponse, error) {
 	rsp, err := c.AdminMatrixReprovision(ctx, reqEditors...)
@@ -465751,6 +466005,58 @@ func ParseAdminMatrixDiagnosticsRetrieveResponse(rsp *http.Response) (*AdminMatr
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest MatrixDiagnosticsResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminMatrixLivekitOverviewRetrieveResponse parses an HTTP response from a AdminMatrixLivekitOverviewRetrieveWithResponse call
+func ParseAdminMatrixLivekitOverviewRetrieveResponse(rsp *http.Response) (*AdminMatrixLivekitOverviewRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminMatrixLivekitOverviewRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest LiveKitOverviewResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminMatrixLivekitParticipantsListResponse parses an HTTP response from a AdminMatrixLivekitParticipantsListWithResponse call
+func ParseAdminMatrixLivekitParticipantsListResponse(rsp *http.Response) (*AdminMatrixLivekitParticipantsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminMatrixLivekitParticipantsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []LiveKitParticipant
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
