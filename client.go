@@ -3140,31 +3140,31 @@ func (e ChecklistResponseChecklistTypeEnum) Valid() bool {
 
 // Defines values for ChecklistTypeEnum.
 const (
-	OfferingCompliance ChecklistTypeEnum = "offering_compliance"
-	OnboardingCustomer ChecklistTypeEnum = "onboarding_customer"
-	OnboardingIntent   ChecklistTypeEnum = "onboarding_intent"
-	ProjectCompliance  ChecklistTypeEnum = "project_compliance"
-	ProjectMetadata    ChecklistTypeEnum = "project_metadata"
-	ProposalCompliance ChecklistTypeEnum = "proposal_compliance"
-	WorkflowStep       ChecklistTypeEnum = "workflow_step"
+	ChecklistTypeEnumOfferingCompliance ChecklistTypeEnum = "offering_compliance"
+	ChecklistTypeEnumOnboardingCustomer ChecklistTypeEnum = "onboarding_customer"
+	ChecklistTypeEnumOnboardingIntent   ChecklistTypeEnum = "onboarding_intent"
+	ChecklistTypeEnumProjectCompliance  ChecklistTypeEnum = "project_compliance"
+	ChecklistTypeEnumProjectMetadata    ChecklistTypeEnum = "project_metadata"
+	ChecklistTypeEnumProposalCompliance ChecklistTypeEnum = "proposal_compliance"
+	ChecklistTypeEnumWorkflowStep       ChecklistTypeEnum = "workflow_step"
 )
 
 // Valid indicates whether the value is a known member of the ChecklistTypeEnum enum.
 func (e ChecklistTypeEnum) Valid() bool {
 	switch e {
-	case OfferingCompliance:
+	case ChecklistTypeEnumOfferingCompliance:
 		return true
-	case OnboardingCustomer:
+	case ChecklistTypeEnumOnboardingCustomer:
 		return true
-	case OnboardingIntent:
+	case ChecklistTypeEnumOnboardingIntent:
 		return true
-	case ProjectCompliance:
+	case ChecklistTypeEnumProjectCompliance:
 		return true
-	case ProjectMetadata:
+	case ChecklistTypeEnumProjectMetadata:
 		return true
-	case ProposalCompliance:
+	case ChecklistTypeEnumProposalCompliance:
 		return true
-	case WorkflowStep:
+	case ChecklistTypeEnumWorkflowStep:
 		return true
 	default:
 		return false
@@ -15910,6 +15910,7 @@ const (
 	ProjectFieldEnumOecdFos2007Code                      ProjectFieldEnum = "oecd_fos_2007_code"
 	ProjectFieldEnumOecdFos2007Label                     ProjectFieldEnum = "oecd_fos_2007_label"
 	ProjectFieldEnumProjectCredit                        ProjectFieldEnum = "project_credit"
+	ProjectFieldEnumProjectMetadata                      ProjectFieldEnum = "project_metadata"
 	ProjectFieldEnumResourcesCount                       ProjectFieldEnum = "resources_count"
 	ProjectFieldEnumScienceDomainCode                    ProjectFieldEnum = "science_domain_code"
 	ProjectFieldEnumScienceDomainName                    ProjectFieldEnum = "science_domain_name"
@@ -15997,6 +15998,8 @@ func (e ProjectFieldEnum) Valid() bool {
 	case ProjectFieldEnumOecdFos2007Label:
 		return true
 	case ProjectFieldEnumProjectCredit:
+		return true
+	case ProjectFieldEnumProjectMetadata:
 		return true
 	case ProjectFieldEnumResourcesCount:
 		return true
@@ -27313,6 +27316,7 @@ type CoiTypeEnum string
 // Comment defines model for Comment.
 type Comment struct {
 	AuthorEmail        *openapi_types.Email `json:"author_email,omitempty"`
+	AuthorImage        *string              `json:"author_image,omitempty"`
 	AuthorName         *string              `json:"author_name,omitempty"`
 	AuthorUser         *string              `json:"author_user,omitempty"`
 	AuthorUuid         *openapi_types.UUID  `json:"author_uuid,omitempty"`
@@ -27900,6 +27904,7 @@ type ConstanceSettings struct {
 	LOGINPAGEVIDEOURL                                *string                                                          `json:"LOGIN_PAGE_VIDEO_URL,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES       *int                                                             `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM              *[]ConstanceSettings_MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM_Item    `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
+	MAINTENANCEANNOUNCEMENTTRAILINGBUFFERMINUTES     *int                                                             `json:"MAINTENANCE_ANNOUNCEMENT_TRAILING_BUFFER_MINUTES,omitempty"`
 	MANDATORYUSERATTRIBUTES                          *[]ConstanceSettings_MANDATORYUSERATTRIBUTES_Item                `json:"MANDATORY_USER_ATTRIBUTES,omitempty"`
 	MARKDOWNIMAGEMAXSIZEMB                           *int                                                             `json:"MARKDOWN_IMAGE_MAX_SIZE_MB,omitempty"`
 	MARKETPLACECARDSTYLE                             *MARKETPLACECARDSTYLEEnum                                        `json:"MARKETPLACE_CARD_STYLE,omitempty"`
@@ -28266,6 +28271,7 @@ type ConstanceSettingsRequest struct {
 	LOGINPAGEVIDEOURL                                *string                                                                 `json:"LOGIN_PAGE_VIDEO_URL,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES       *int                                                                    `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM              *[]ConstanceSettingsRequest_MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM_Item    `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
+	MAINTENANCEANNOUNCEMENTTRAILINGBUFFERMINUTES     *int                                                                    `json:"MAINTENANCE_ANNOUNCEMENT_TRAILING_BUFFER_MINUTES,omitempty"`
 	MANDATORYUSERATTRIBUTES                          *[]ConstanceSettingsRequest_MANDATORYUSERATTRIBUTES_Item                `json:"MANDATORY_USER_ATTRIBUTES,omitempty"`
 	MARKDOWNIMAGEMAXSIZEMB                           *int                                                                    `json:"MARKDOWN_IMAGE_MAX_SIZE_MB,omitempty"`
 	MARKETPLACECARDSTYLE                             *MARKETPLACECARDSTYLEEnum                                               `json:"MARKETPLACE_CARD_STYLE,omitempty"`
@@ -28632,6 +28638,7 @@ type ConstanceSettingsRequestForm struct {
 	LOGINPAGEVIDEOURL                                *string                                                                     `json:"LOGIN_PAGE_VIDEO_URL,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES       *int                                                                        `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM              *[]ConstanceSettingsRequestForm_MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM_Item    `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
+	MAINTENANCEANNOUNCEMENTTRAILINGBUFFERMINUTES     *int                                                                        `json:"MAINTENANCE_ANNOUNCEMENT_TRAILING_BUFFER_MINUTES,omitempty"`
 	MANDATORYUSERATTRIBUTES                          *[]ConstanceSettingsRequestForm_MANDATORYUSERATTRIBUTES_Item                `json:"MANDATORY_USER_ATTRIBUTES,omitempty"`
 	MARKDOWNIMAGEMAXSIZEMB                           *int                                                                        `json:"MARKDOWN_IMAGE_MAX_SIZE_MB,omitempty"`
 	MARKETPLACECARDSTYLE                             *MARKETPLACECARDSTYLEEnum                                                   `json:"MARKETPLACE_CARD_STYLE,omitempty"`
@@ -28998,6 +29005,7 @@ type ConstanceSettingsRequestMultipart struct {
 	LOGINPAGEVIDEOURL                                *string                                                                          `json:"LOGIN_PAGE_VIDEO_URL,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES       *int                                                                             `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM              *[]ConstanceSettingsRequestMultipart_MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM_Item    `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
+	MAINTENANCEANNOUNCEMENTTRAILINGBUFFERMINUTES     *int                                                                             `json:"MAINTENANCE_ANNOUNCEMENT_TRAILING_BUFFER_MINUTES,omitempty"`
 	MANDATORYUSERATTRIBUTES                          *[]ConstanceSettingsRequestMultipart_MANDATORYUSERATTRIBUTES_Item                `json:"MANDATORY_USER_ATTRIBUTES,omitempty"`
 	MARKDOWNIMAGEMAXSIZEMB                           *int                                                                             `json:"MARKDOWN_IMAGE_MAX_SIZE_MB,omitempty"`
 	MARKETPLACECARDSTYLE                             *MARKETPLACECARDSTYLEEnum                                                        `json:"MARKETPLACE_CARD_STYLE,omitempty"`
@@ -34549,6 +34557,7 @@ type MatrixRoomMember struct {
 	Modified        *time.Time           `json:"modified,omitempty"`
 	PowerLevel      *int                 `json:"power_level,omitempty"`
 	UserFullName    *string              `json:"user_full_name,omitempty"`
+	UserImage       *string              `json:"user_image,omitempty"`
 	UserUuid        *openapi_types.UUID  `json:"user_uuid,omitempty"`
 	Uuid            *openapi_types.UUID  `json:"uuid,omitempty"`
 }
@@ -43959,6 +43968,9 @@ type Project struct {
 	OecdFos2007Label *string  `json:"oecd_fos_2007_label,omitempty"`
 	ProjectCredit    *float64 `json:"project_credit,omitempty"`
 
+	// ProjectMetadata Answers to the customer's project-metadata checklist (read-only).
+	ProjectMetadata *[]ProjectMetadataAnswer `json:"project_metadata,omitempty"`
+
 	// ResourcesCount Number of active resources in this project
 	ResourcesCount *int `json:"resources_count,omitempty"`
 
@@ -44298,6 +44310,17 @@ type ProjectMapping struct {
 // ProjectMappingMap defines model for ProjectMappingMap.
 type ProjectMappingMap struct {
 	Asterisk *ProjectMapping `json:"*"`
+}
+
+// ProjectMetadataAnswer defines model for ProjectMetadataAnswer.
+type ProjectMetadataAnswer struct {
+	// Answer Human-readable answer value; select-type option UUIDs are resolved to their labels.
+	Answer *map[string]interface{} `json:"answer,omitempty"`
+
+	// Question Question description.
+	Question     *string `json:"question,omitempty"`
+	QuestionType *string `json:"question_type,omitempty"`
+	QuestionUuid *string `json:"question_uuid,omitempty"`
 }
 
 // ProjectOrderAutoApproval defines model for ProjectOrderAutoApproval.
@@ -44936,6 +44959,7 @@ type ProposalReview struct {
 	ReviewEndDate                         *time.Time               `json:"review_end_date,omitempty"`
 	Reviewer                              *string                  `json:"reviewer,omitempty"`
 	ReviewerFullName                      *string                  `json:"reviewer_full_name,omitempty"`
+	ReviewerImage                         *string                  `json:"reviewer_image,omitempty"`
 	ReviewerUuid                          *openapi_types.UUID      `json:"reviewer_uuid,omitempty"`
 	RoundCutoffTime                       *time.Time               `json:"round_cutoff_time,omitempty"`
 	RoundName                             *string                  `json:"round_name,omitempty"`
