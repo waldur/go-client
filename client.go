@@ -11113,6 +11113,7 @@ const (
 	OfferingUserFieldEnumUserOrganizationCountry      OfferingUserFieldEnum = "user_organization_country"
 	OfferingUserFieldEnumUserOrganizationRegistryCode OfferingUserFieldEnum = "user_organization_registry_code"
 	OfferingUserFieldEnumUserOrganizationType         OfferingUserFieldEnum = "user_organization_type"
+	OfferingUserFieldEnumUserOrganizationVatCode      OfferingUserFieldEnum = "user_organization_vat_code"
 	OfferingUserFieldEnumUserPersonalTitle            OfferingUserFieldEnum = "user_personal_title"
 	OfferingUserFieldEnumUserPhoneNumber              OfferingUserFieldEnum = "user_phone_number"
 	OfferingUserFieldEnumUserPlaceOfBirth             OfferingUserFieldEnum = "user_place_of_birth"
@@ -11206,6 +11207,8 @@ func (e OfferingUserFieldEnum) Valid() bool {
 	case OfferingUserFieldEnumUserOrganizationRegistryCode:
 		return true
 	case OfferingUserFieldEnumUserOrganizationType:
+		return true
+	case OfferingUserFieldEnumUserOrganizationVatCode:
 		return true
 	case OfferingUserFieldEnumUserPersonalTitle:
 		return true
@@ -14459,7 +14462,9 @@ const (
 	OrderDetailsFieldEnumCreatedByEmail                    OrderDetailsFieldEnum = "created_by_email"
 	OrderDetailsFieldEnumCreatedByFullName                 OrderDetailsFieldEnum = "created_by_full_name"
 	OrderDetailsFieldEnumCreatedByOrganization             OrderDetailsFieldEnum = "created_by_organization"
+	OrderDetailsFieldEnumCreatedByOrganizationCountry      OrderDetailsFieldEnum = "created_by_organization_country"
 	OrderDetailsFieldEnumCreatedByOrganizationRegistryCode OrderDetailsFieldEnum = "created_by_organization_registry_code"
+	OrderDetailsFieldEnumCreatedByOrganizationVatCode      OrderDetailsFieldEnum = "created_by_organization_vat_code"
 	OrderDetailsFieldEnumCreatedByUsername                 OrderDetailsFieldEnum = "created_by_username"
 	OrderDetailsFieldEnumCustomerName                      OrderDetailsFieldEnum = "customer_name"
 	OrderDetailsFieldEnumCustomerSlug                      OrderDetailsFieldEnum = "customer_slug"
@@ -14582,7 +14587,11 @@ func (e OrderDetailsFieldEnum) Valid() bool {
 		return true
 	case OrderDetailsFieldEnumCreatedByOrganization:
 		return true
+	case OrderDetailsFieldEnumCreatedByOrganizationCountry:
+		return true
 	case OrderDetailsFieldEnumCreatedByOrganizationRegistryCode:
+		return true
+	case OrderDetailsFieldEnumCreatedByOrganizationVatCode:
 		return true
 	case OrderDetailsFieldEnumCreatedByUsername:
 		return true
@@ -20534,6 +20543,7 @@ const (
 	UserAttributeEnumOrganizationCountry      UserAttributeEnum = "organization_country"
 	UserAttributeEnumOrganizationRegistryCode UserAttributeEnum = "organization_registry_code"
 	UserAttributeEnumOrganizationType         UserAttributeEnum = "organization_type"
+	UserAttributeEnumOrganizationVatCode      UserAttributeEnum = "organization_vat_code"
 	UserAttributeEnumPersonalTitle            UserAttributeEnum = "personal_title"
 	UserAttributeEnumPhoneNumber              UserAttributeEnum = "phone_number"
 	UserAttributeEnumPlaceOfBirth             UserAttributeEnum = "place_of_birth"
@@ -20579,6 +20589,8 @@ func (e UserAttributeEnum) Valid() bool {
 	case UserAttributeEnumOrganizationRegistryCode:
 		return true
 	case UserAttributeEnumOrganizationType:
+		return true
+	case UserAttributeEnumOrganizationVatCode:
 		return true
 	case UserAttributeEnumPersonalTitle:
 		return true
@@ -20664,6 +20676,7 @@ const (
 	UserFieldEnumOrganizationCountry           UserFieldEnum = "organization_country"
 	UserFieldEnumOrganizationRegistryCode      UserFieldEnum = "organization_registry_code"
 	UserFieldEnumOrganizationType              UserFieldEnum = "organization_type"
+	UserFieldEnumOrganizationVatCode           UserFieldEnum = "organization_vat_code"
 	UserFieldEnumPermissions                   UserFieldEnum = "permissions"
 	UserFieldEnumPersonalTitle                 UserFieldEnum = "personal_title"
 	UserFieldEnumPhoneNumber                   UserFieldEnum = "phone_number"
@@ -20770,6 +20783,8 @@ func (e UserFieldEnum) Valid() bool {
 		return true
 	case UserFieldEnumOrganizationType:
 		return true
+	case UserFieldEnumOrganizationVatCode:
+		return true
 	case UserFieldEnumPermissions:
 		return true
 	case UserFieldEnumPersonalTitle:
@@ -20850,6 +20865,7 @@ const (
 	UserMeFieldEnumOrganizationCountry           UserMeFieldEnum = "organization_country"
 	UserMeFieldEnumOrganizationRegistryCode      UserMeFieldEnum = "organization_registry_code"
 	UserMeFieldEnumOrganizationType              UserMeFieldEnum = "organization_type"
+	UserMeFieldEnumOrganizationVatCode           UserMeFieldEnum = "organization_vat_code"
 	UserMeFieldEnumPermissions                   UserMeFieldEnum = "permissions"
 	UserMeFieldEnumPersonalTitle                 UserMeFieldEnum = "personal_title"
 	UserMeFieldEnumPhoneNumber                   UserMeFieldEnum = "phone_number"
@@ -20956,6 +20972,8 @@ func (e UserMeFieldEnum) Valid() bool {
 	case UserMeFieldEnumOrganizationRegistryCode:
 		return true
 	case UserMeFieldEnumOrganizationType:
+		return true
+	case UserMeFieldEnumOrganizationVatCode:
 		return true
 	case UserMeFieldEnumPermissions:
 		return true
@@ -26002,6 +26020,7 @@ type CallApplicantVisibilityConfig struct {
 	ExposeOrganizationCountry      *bool      `json:"expose_organization_country,omitempty"`
 	ExposeOrganizationRegistryCode *bool      `json:"expose_organization_registry_code,omitempty"`
 	ExposeOrganizationType         *bool      `json:"expose_organization_type,omitempty"`
+	ExposeOrganizationVatCode      *bool      `json:"expose_organization_vat_code,omitempty"`
 	ExposePersonalTitle            *bool      `json:"expose_personal_title,omitempty"`
 	ExposePhoneNumber              *bool      `json:"expose_phone_number,omitempty"`
 	ExposePlaceOfBirth             *bool      `json:"expose_place_of_birth,omitempty"`
@@ -26035,6 +26054,7 @@ type CallApplicantVisibilityConfigRequest struct {
 	ExposeOrganizationCountry      *bool `json:"expose_organization_country,omitempty"`
 	ExposeOrganizationRegistryCode *bool `json:"expose_organization_registry_code,omitempty"`
 	ExposeOrganizationType         *bool `json:"expose_organization_type,omitempty"`
+	ExposeOrganizationVatCode      *bool `json:"expose_organization_vat_code,omitempty"`
 	ExposePersonalTitle            *bool `json:"expose_personal_title,omitempty"`
 	ExposePhoneNumber              *bool `json:"expose_phone_number,omitempty"`
 	ExposePlaceOfBirth             *bool `json:"expose_place_of_birth,omitempty"`
@@ -37524,6 +37544,9 @@ type OfferingUser struct {
 	// UserOrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
 	UserOrganizationType *string `json:"user_organization_type,omitempty"`
 
+	// UserOrganizationVatCode VAT code of the user's organization
+	UserOrganizationVatCode *string `json:"user_organization_vat_code,omitempty"`
+
 	// UserPersonalTitle Honorific title (Mr, Ms, Dr, Prof, etc.)
 	UserPersonalTitle *string `json:"user_personal_title,omitempty"`
 	UserPhoneNumber   *string `json:"user_phone_number,omitempty"`
@@ -37562,6 +37585,7 @@ type OfferingUserAttributeConfig struct {
 	ExposeOrganizationCountry      *bool      `json:"expose_organization_country,omitempty"`
 	ExposeOrganizationRegistryCode *bool      `json:"expose_organization_registry_code,omitempty"`
 	ExposeOrganizationType         *bool      `json:"expose_organization_type,omitempty"`
+	ExposeOrganizationVatCode      *bool      `json:"expose_organization_vat_code,omitempty"`
 	ExposePersonalTitle            *bool      `json:"expose_personal_title,omitempty"`
 	ExposePhoneNumber              *bool      `json:"expose_phone_number,omitempty"`
 	ExposePlaceOfBirth             *bool      `json:"expose_place_of_birth,omitempty"`
@@ -37597,6 +37621,7 @@ type OfferingUserAttributeConfigRequest struct {
 	ExposeOrganizationCountry      *bool               `json:"expose_organization_country,omitempty"`
 	ExposeOrganizationRegistryCode *bool               `json:"expose_organization_registry_code,omitempty"`
 	ExposeOrganizationType         *bool               `json:"expose_organization_type,omitempty"`
+	ExposeOrganizationVatCode      *bool               `json:"expose_organization_vat_code,omitempty"`
 	ExposePersonalTitle            *bool               `json:"expose_personal_title,omitempty"`
 	ExposePhoneNumber              *bool               `json:"expose_phone_number,omitempty"`
 	ExposePlaceOfBirth             *bool               `json:"expose_place_of_birth,omitempty"`
@@ -40605,16 +40630,20 @@ type OrderDetails struct {
 	ConsumerReviewedByFullName *string `json:"consumer_reviewed_by_full_name,omitempty"`
 
 	// ConsumerReviewedByUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
-	ConsumerReviewedByUsername *string              `json:"consumer_reviewed_by_username,omitempty"`
-	Cost                       *string              `json:"cost,omitempty"`
-	Created                    *time.Time           `json:"created,omitempty"`
-	CreatedByCivilNumber       *string              `json:"created_by_civil_number,omitempty"`
-	CreatedByEmail             *openapi_types.Email `json:"created_by_email,omitempty"`
-	CreatedByFullName          *string              `json:"created_by_full_name,omitempty"`
-	CreatedByOrganization      *string              `json:"created_by_organization,omitempty"`
+	ConsumerReviewedByUsername   *string              `json:"consumer_reviewed_by_username,omitempty"`
+	Cost                         *string              `json:"cost,omitempty"`
+	Created                      *time.Time           `json:"created,omitempty"`
+	CreatedByCivilNumber         *string              `json:"created_by_civil_number,omitempty"`
+	CreatedByEmail               *openapi_types.Email `json:"created_by_email,omitempty"`
+	CreatedByFullName            *string              `json:"created_by_full_name,omitempty"`
+	CreatedByOrganization        *string              `json:"created_by_organization,omitempty"`
+	CreatedByOrganizationCountry *string              `json:"created_by_organization_country,omitempty"`
 
 	// CreatedByOrganizationRegistryCode Company registration code of the user's organization, if known
 	CreatedByOrganizationRegistryCode *string `json:"created_by_organization_registry_code,omitempty"`
+
+	// CreatedByOrganizationVatCode VAT code of the user's organization
+	CreatedByOrganizationVatCode *string `json:"created_by_organization_vat_code,omitempty"`
 
 	// CreatedByUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	CreatedByUsername       *string             `json:"created_by_username,omitempty"`
@@ -42080,6 +42109,7 @@ type PatchedOfferingUserAttributeConfigRequest struct {
 	ExposeOrganizationCountry      *bool               `json:"expose_organization_country,omitempty"`
 	ExposeOrganizationRegistryCode *bool               `json:"expose_organization_registry_code,omitempty"`
 	ExposeOrganizationType         *bool               `json:"expose_organization_type,omitempty"`
+	ExposeOrganizationVatCode      *bool               `json:"expose_organization_vat_code,omitempty"`
 	ExposePersonalTitle            *bool               `json:"expose_personal_title,omitempty"`
 	ExposePhoneNumber              *bool               `json:"expose_phone_number,omitempty"`
 	ExposePlaceOfBirth             *bool               `json:"expose_place_of_birth,omitempty"`
@@ -43281,6 +43311,9 @@ type PatchedUserRequest struct {
 	// OrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
 	OrganizationType *string `json:"organization_type,omitempty"`
 
+	// OrganizationVatCode VAT code of the user's organization
+	OrganizationVatCode *string `json:"organization_vat_code,omitempty"`
+
 	// PersonalTitle Honorific title (Mr, Ms, Dr, Prof, etc.)
 	PersonalTitle     *string `json:"personal_title,omitempty"`
 	PhoneNumber       *string `json:"phone_number,omitempty"`
@@ -43357,6 +43390,9 @@ type PatchedUserRequestForm struct {
 	// OrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
 	OrganizationType *string `json:"organization_type,omitempty"`
 
+	// OrganizationVatCode VAT code of the user's organization
+	OrganizationVatCode *string `json:"organization_vat_code,omitempty"`
+
 	// PersonalTitle Honorific title (Mr, Ms, Dr, Prof, etc.)
 	PersonalTitle     *string `json:"personal_title,omitempty"`
 	PhoneNumber       *string `json:"phone_number,omitempty"`
@@ -43432,6 +43468,9 @@ type PatchedUserRequestMultipart struct {
 
 	// OrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
 	OrganizationType *string `json:"organization_type,omitempty"`
+
+	// OrganizationVatCode VAT code of the user's organization
+	OrganizationVatCode *string `json:"organization_vat_code,omitempty"`
 
 	// PersonalTitle Honorific title (Mr, Ms, Dr, Prof, etc.)
 	PersonalTitle     *string `json:"personal_title,omitempty"`
@@ -44771,6 +44810,9 @@ type Proposal struct {
 
 	// ApplicantOrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
 	ApplicantOrganizationType *string `json:"applicant_organization_type,omitempty"`
+
+	// ApplicantOrganizationVatCode VAT code of the user's organization
+	ApplicantOrganizationVatCode *string `json:"applicant_organization_vat_code,omitempty"`
 
 	// ApplicantPersonalTitle Honorific title (Mr, Ms, Dr, Prof, etc.)
 	ApplicantPersonalTitle *string `json:"applicant_personal_title,omitempty"`
@@ -51807,8 +51849,11 @@ type User struct {
 	OrganizationRegistryCode *string `json:"organization_registry_code,omitempty"`
 
 	// OrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
-	OrganizationType *string       `json:"organization_type,omitempty"`
-	Permissions      *[]Permission `json:"permissions,omitempty"`
+	OrganizationType *string `json:"organization_type,omitempty"`
+
+	// OrganizationVatCode VAT code of the user's organization
+	OrganizationVatCode *string       `json:"organization_vat_code,omitempty"`
+	Permissions         *[]Permission `json:"permissions,omitempty"`
 
 	// PersonalTitle Honorific title (Mr, Ms, Dr, Prof, etc.)
 	PersonalTitle     *string `json:"personal_title,omitempty"`
@@ -52212,8 +52257,11 @@ type UserMe struct {
 	OrganizationRegistryCode *string `json:"organization_registry_code,omitempty"`
 
 	// OrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
-	OrganizationType *string       `json:"organization_type,omitempty"`
-	Permissions      *[]Permission `json:"permissions,omitempty"`
+	OrganizationType *string `json:"organization_type,omitempty"`
+
+	// OrganizationVatCode VAT code of the user's organization
+	OrganizationVatCode *string       `json:"organization_vat_code,omitempty"`
+	Permissions         *[]Permission `json:"permissions,omitempty"`
 
 	// PersonalTitle Honorific title (Mr, Ms, Dr, Prof, etc.)
 	PersonalTitle       *string              `json:"personal_title,omitempty"`
@@ -52381,6 +52429,9 @@ type UserRequest struct {
 	// OrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
 	OrganizationType *string `json:"organization_type,omitempty"`
 
+	// OrganizationVatCode VAT code of the user's organization
+	OrganizationVatCode *string `json:"organization_vat_code,omitempty"`
+
 	// PersonalTitle Honorific title (Mr, Ms, Dr, Prof, etc.)
 	PersonalTitle     *string `json:"personal_title,omitempty"`
 	PhoneNumber       *string `json:"phone_number,omitempty"`
@@ -52458,6 +52509,9 @@ type UserRequestForm struct {
 	// OrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
 	OrganizationType *string `json:"organization_type,omitempty"`
 
+	// OrganizationVatCode VAT code of the user's organization
+	OrganizationVatCode *string `json:"organization_vat_code,omitempty"`
+
 	// PersonalTitle Honorific title (Mr, Ms, Dr, Prof, etc.)
 	PersonalTitle     *string `json:"personal_title,omitempty"`
 	PhoneNumber       *string `json:"phone_number,omitempty"`
@@ -52534,6 +52588,9 @@ type UserRequestMultipart struct {
 
 	// OrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
 	OrganizationType *string `json:"organization_type,omitempty"`
+
+	// OrganizationVatCode VAT code of the user's organization
+	OrganizationVatCode *string `json:"organization_vat_code,omitempty"`
 
 	// PersonalTitle Honorific title (Mr, Ms, Dr, Prof, etc.)
 	PersonalTitle     *string `json:"personal_title,omitempty"`
