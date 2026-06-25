@@ -9968,6 +9968,7 @@ const (
 	MarketplaceServiceProviderUserFieldEnumNationalities            MarketplaceServiceProviderUserFieldEnum = "nationalities"
 	MarketplaceServiceProviderUserFieldEnumNationality              MarketplaceServiceProviderUserFieldEnum = "nationality"
 	MarketplaceServiceProviderUserFieldEnumOrganization             MarketplaceServiceProviderUserFieldEnum = "organization"
+	MarketplaceServiceProviderUserFieldEnumOrganizationAddress      MarketplaceServiceProviderUserFieldEnum = "organization_address"
 	MarketplaceServiceProviderUserFieldEnumOrganizationCountry      MarketplaceServiceProviderUserFieldEnum = "organization_country"
 	MarketplaceServiceProviderUserFieldEnumOrganizationRegistryCode MarketplaceServiceProviderUserFieldEnum = "organization_registry_code"
 	MarketplaceServiceProviderUserFieldEnumOrganizationType         MarketplaceServiceProviderUserFieldEnum = "organization_type"
@@ -10019,6 +10020,8 @@ func (e MarketplaceServiceProviderUserFieldEnum) Valid() bool {
 	case MarketplaceServiceProviderUserFieldEnumNationality:
 		return true
 	case MarketplaceServiceProviderUserFieldEnumOrganization:
+		return true
+	case MarketplaceServiceProviderUserFieldEnumOrganizationAddress:
 		return true
 	case MarketplaceServiceProviderUserFieldEnumOrganizationCountry:
 		return true
@@ -11113,6 +11116,7 @@ const (
 	OfferingUserFieldEnumUserNationalities            OfferingUserFieldEnum = "user_nationalities"
 	OfferingUserFieldEnumUserNationality              OfferingUserFieldEnum = "user_nationality"
 	OfferingUserFieldEnumUserOrganization             OfferingUserFieldEnum = "user_organization"
+	OfferingUserFieldEnumUserOrganizationAddress      OfferingUserFieldEnum = "user_organization_address"
 	OfferingUserFieldEnumUserOrganizationCountry      OfferingUserFieldEnum = "user_organization_country"
 	OfferingUserFieldEnumUserOrganizationRegistryCode OfferingUserFieldEnum = "user_organization_registry_code"
 	OfferingUserFieldEnumUserOrganizationType         OfferingUserFieldEnum = "user_organization_type"
@@ -11204,6 +11208,8 @@ func (e OfferingUserFieldEnum) Valid() bool {
 	case OfferingUserFieldEnumUserNationality:
 		return true
 	case OfferingUserFieldEnumUserOrganization:
+		return true
+	case OfferingUserFieldEnumUserOrganizationAddress:
 		return true
 	case OfferingUserFieldEnumUserOrganizationCountry:
 		return true
@@ -14465,6 +14471,7 @@ const (
 	OrderDetailsFieldEnumCreatedByEmail                    OrderDetailsFieldEnum = "created_by_email"
 	OrderDetailsFieldEnumCreatedByFullName                 OrderDetailsFieldEnum = "created_by_full_name"
 	OrderDetailsFieldEnumCreatedByOrganization             OrderDetailsFieldEnum = "created_by_organization"
+	OrderDetailsFieldEnumCreatedByOrganizationAddress      OrderDetailsFieldEnum = "created_by_organization_address"
 	OrderDetailsFieldEnumCreatedByOrganizationCountry      OrderDetailsFieldEnum = "created_by_organization_country"
 	OrderDetailsFieldEnumCreatedByOrganizationRegistryCode OrderDetailsFieldEnum = "created_by_organization_registry_code"
 	OrderDetailsFieldEnumCreatedByOrganizationVatCode      OrderDetailsFieldEnum = "created_by_organization_vat_code"
@@ -14589,6 +14596,8 @@ func (e OrderDetailsFieldEnum) Valid() bool {
 	case OrderDetailsFieldEnumCreatedByFullName:
 		return true
 	case OrderDetailsFieldEnumCreatedByOrganization:
+		return true
+	case OrderDetailsFieldEnumCreatedByOrganizationAddress:
 		return true
 	case OrderDetailsFieldEnumCreatedByOrganizationCountry:
 		return true
@@ -20543,6 +20552,7 @@ const (
 	UserAttributeEnumNationalities            UserAttributeEnum = "nationalities"
 	UserAttributeEnumNationality              UserAttributeEnum = "nationality"
 	UserAttributeEnumOrganization             UserAttributeEnum = "organization"
+	UserAttributeEnumOrganizationAddress      UserAttributeEnum = "organization_address"
 	UserAttributeEnumOrganizationCountry      UserAttributeEnum = "organization_country"
 	UserAttributeEnumOrganizationRegistryCode UserAttributeEnum = "organization_registry_code"
 	UserAttributeEnumOrganizationType         UserAttributeEnum = "organization_type"
@@ -20586,6 +20596,8 @@ func (e UserAttributeEnum) Valid() bool {
 	case UserAttributeEnumNationality:
 		return true
 	case UserAttributeEnumOrganization:
+		return true
+	case UserAttributeEnumOrganizationAddress:
 		return true
 	case UserAttributeEnumOrganizationCountry:
 		return true
@@ -20676,6 +20688,7 @@ const (
 	UserFieldEnumNativeName                    UserFieldEnum = "native_name"
 	UserFieldEnumNotificationsEnabled          UserFieldEnum = "notifications_enabled"
 	UserFieldEnumOrganization                  UserFieldEnum = "organization"
+	UserFieldEnumOrganizationAddress           UserFieldEnum = "organization_address"
 	UserFieldEnumOrganizationCountry           UserFieldEnum = "organization_country"
 	UserFieldEnumOrganizationRegistryCode      UserFieldEnum = "organization_registry_code"
 	UserFieldEnumOrganizationType              UserFieldEnum = "organization_type"
@@ -20780,6 +20793,8 @@ func (e UserFieldEnum) Valid() bool {
 		return true
 	case UserFieldEnumOrganization:
 		return true
+	case UserFieldEnumOrganizationAddress:
+		return true
 	case UserFieldEnumOrganizationCountry:
 		return true
 	case UserFieldEnumOrganizationRegistryCode:
@@ -20865,6 +20880,7 @@ const (
 	UserMeFieldEnumNativeName                    UserMeFieldEnum = "native_name"
 	UserMeFieldEnumNotificationsEnabled          UserMeFieldEnum = "notifications_enabled"
 	UserMeFieldEnumOrganization                  UserMeFieldEnum = "organization"
+	UserMeFieldEnumOrganizationAddress           UserMeFieldEnum = "organization_address"
 	UserMeFieldEnumOrganizationCountry           UserMeFieldEnum = "organization_country"
 	UserMeFieldEnumOrganizationRegistryCode      UserMeFieldEnum = "organization_registry_code"
 	UserMeFieldEnumOrganizationType              UserMeFieldEnum = "organization_type"
@@ -20969,6 +20985,8 @@ func (e UserMeFieldEnum) Valid() bool {
 	case UserMeFieldEnumNotificationsEnabled:
 		return true
 	case UserMeFieldEnumOrganization:
+		return true
+	case UserMeFieldEnumOrganizationAddress:
 		return true
 	case UserMeFieldEnumOrganizationCountry:
 		return true
@@ -26020,6 +26038,7 @@ type CallApplicantVisibilityConfig struct {
 	ExposeNationalities            *bool      `json:"expose_nationalities,omitempty"`
 	ExposeNationality              *bool      `json:"expose_nationality,omitempty"`
 	ExposeOrganization             *bool      `json:"expose_organization,omitempty"`
+	ExposeOrganizationAddress      *bool      `json:"expose_organization_address,omitempty"`
 	ExposeOrganizationCountry      *bool      `json:"expose_organization_country,omitempty"`
 	ExposeOrganizationRegistryCode *bool      `json:"expose_organization_registry_code,omitempty"`
 	ExposeOrganizationType         *bool      `json:"expose_organization_type,omitempty"`
@@ -26054,6 +26073,7 @@ type CallApplicantVisibilityConfigRequest struct {
 	ExposeNationalities            *bool `json:"expose_nationalities,omitempty"`
 	ExposeNationality              *bool `json:"expose_nationality,omitempty"`
 	ExposeOrganization             *bool `json:"expose_organization,omitempty"`
+	ExposeOrganizationAddress      *bool `json:"expose_organization_address,omitempty"`
 	ExposeOrganizationCountry      *bool `json:"expose_organization_country,omitempty"`
 	ExposeOrganizationRegistryCode *bool `json:"expose_organization_registry_code,omitempty"`
 	ExposeOrganizationType         *bool `json:"expose_organization_type,omitempty"`
@@ -34380,8 +34400,11 @@ type MarketplaceServiceProviderUser struct {
 	Nationalities *map[string]interface{} `json:"nationalities,omitempty"`
 
 	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
-	Nationality         *string `json:"nationality,omitempty"`
-	Organization        *string `json:"organization,omitempty"`
+	Nationality  *string `json:"nationality,omitempty"`
+	Organization *string `json:"organization,omitempty"`
+
+	// OrganizationAddress Postal address of the user's organization
+	OrganizationAddress *string `json:"organization_address,omitempty"`
 	OrganizationCountry *string `json:"organization_country,omitempty"`
 
 	// OrganizationRegistryCode Company registration code of the user's organization, if known
@@ -37540,8 +37563,11 @@ type OfferingUser struct {
 	UserNationalities *[]string `json:"user_nationalities,omitempty"`
 
 	// UserNationality Primary citizenship (ISO 3166-1 alpha-2 code)
-	UserNationality         *string `json:"user_nationality,omitempty"`
-	UserOrganization        *string `json:"user_organization,omitempty"`
+	UserNationality  *string `json:"user_nationality,omitempty"`
+	UserOrganization *string `json:"user_organization,omitempty"`
+
+	// UserOrganizationAddress Postal address of the user's organization
+	UserOrganizationAddress *string `json:"user_organization_address,omitempty"`
 	UserOrganizationCountry *string `json:"user_organization_country,omitempty"`
 
 	// UserOrganizationRegistryCode Company registration code of the user's organization, if known
@@ -37588,6 +37614,7 @@ type OfferingUserAttributeConfig struct {
 	ExposeNationalities            *bool      `json:"expose_nationalities,omitempty"`
 	ExposeNationality              *bool      `json:"expose_nationality,omitempty"`
 	ExposeOrganization             *bool      `json:"expose_organization,omitempty"`
+	ExposeOrganizationAddress      *bool      `json:"expose_organization_address,omitempty"`
 	ExposeOrganizationCountry      *bool      `json:"expose_organization_country,omitempty"`
 	ExposeOrganizationRegistryCode *bool      `json:"expose_organization_registry_code,omitempty"`
 	ExposeOrganizationType         *bool      `json:"expose_organization_type,omitempty"`
@@ -37624,6 +37651,7 @@ type OfferingUserAttributeConfigRequest struct {
 	ExposeNationalities            *bool               `json:"expose_nationalities,omitempty"`
 	ExposeNationality              *bool               `json:"expose_nationality,omitempty"`
 	ExposeOrganization             *bool               `json:"expose_organization,omitempty"`
+	ExposeOrganizationAddress      *bool               `json:"expose_organization_address,omitempty"`
 	ExposeOrganizationCountry      *bool               `json:"expose_organization_country,omitempty"`
 	ExposeOrganizationRegistryCode *bool               `json:"expose_organization_registry_code,omitempty"`
 	ExposeOrganizationType         *bool               `json:"expose_organization_type,omitempty"`
@@ -40636,14 +40664,17 @@ type OrderDetails struct {
 	ConsumerReviewedByFullName *string `json:"consumer_reviewed_by_full_name,omitempty"`
 
 	// ConsumerReviewedByUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
-	ConsumerReviewedByUsername   *string              `json:"consumer_reviewed_by_username,omitempty"`
-	Cost                         *string              `json:"cost,omitempty"`
-	Created                      *time.Time           `json:"created,omitempty"`
-	CreatedByCivilNumber         *string              `json:"created_by_civil_number,omitempty"`
-	CreatedByEmail               *openapi_types.Email `json:"created_by_email,omitempty"`
-	CreatedByFullName            *string              `json:"created_by_full_name,omitempty"`
-	CreatedByOrganization        *string              `json:"created_by_organization,omitempty"`
-	CreatedByOrganizationCountry *string              `json:"created_by_organization_country,omitempty"`
+	ConsumerReviewedByUsername *string              `json:"consumer_reviewed_by_username,omitempty"`
+	Cost                       *string              `json:"cost,omitempty"`
+	Created                    *time.Time           `json:"created,omitempty"`
+	CreatedByCivilNumber       *string              `json:"created_by_civil_number,omitempty"`
+	CreatedByEmail             *openapi_types.Email `json:"created_by_email,omitempty"`
+	CreatedByFullName          *string              `json:"created_by_full_name,omitempty"`
+	CreatedByOrganization      *string              `json:"created_by_organization,omitempty"`
+
+	// CreatedByOrganizationAddress Postal address of the user's organization
+	CreatedByOrganizationAddress *string `json:"created_by_organization_address,omitempty"`
+	CreatedByOrganizationCountry *string `json:"created_by_organization_country,omitempty"`
 
 	// CreatedByOrganizationRegistryCode Company registration code of the user's organization, if known
 	CreatedByOrganizationRegistryCode *string `json:"created_by_organization_registry_code,omitempty"`
@@ -42112,6 +42143,7 @@ type PatchedOfferingUserAttributeConfigRequest struct {
 	ExposeNationalities            *bool               `json:"expose_nationalities,omitempty"`
 	ExposeNationality              *bool               `json:"expose_nationality,omitempty"`
 	ExposeOrganization             *bool               `json:"expose_organization,omitempty"`
+	ExposeOrganizationAddress      *bool               `json:"expose_organization_address,omitempty"`
 	ExposeOrganizationCountry      *bool               `json:"expose_organization_country,omitempty"`
 	ExposeOrganizationRegistryCode *bool               `json:"expose_organization_registry_code,omitempty"`
 	ExposeOrganizationType         *bool               `json:"expose_organization_type,omitempty"`
@@ -43309,7 +43341,10 @@ type PatchedUserRequest struct {
 	// NotificationsEnabled Designates whether the user is allowed to receive email notifications.
 	NotificationsEnabled *bool   `json:"notifications_enabled,omitempty"`
 	Organization         *string `json:"organization,omitempty"`
-	OrganizationCountry  *string `json:"organization_country,omitempty"`
+
+	// OrganizationAddress Postal address of the user's organization
+	OrganizationAddress *string `json:"organization_address,omitempty"`
+	OrganizationCountry *string `json:"organization_country,omitempty"`
 
 	// OrganizationRegistryCode Company registration code of the user's organization, if known
 	OrganizationRegistryCode *string `json:"organization_registry_code,omitempty"`
@@ -43388,7 +43423,10 @@ type PatchedUserRequestForm struct {
 	// NotificationsEnabled Designates whether the user is allowed to receive email notifications.
 	NotificationsEnabled *bool   `json:"notifications_enabled,omitempty"`
 	Organization         *string `json:"organization,omitempty"`
-	OrganizationCountry  *string `json:"organization_country,omitempty"`
+
+	// OrganizationAddress Postal address of the user's organization
+	OrganizationAddress *string `json:"organization_address,omitempty"`
+	OrganizationCountry *string `json:"organization_country,omitempty"`
 
 	// OrganizationRegistryCode Company registration code of the user's organization, if known
 	OrganizationRegistryCode *string `json:"organization_registry_code,omitempty"`
@@ -43467,7 +43505,10 @@ type PatchedUserRequestMultipart struct {
 	// NotificationsEnabled Designates whether the user is allowed to receive email notifications.
 	NotificationsEnabled *bool   `json:"notifications_enabled,omitempty"`
 	Organization         *string `json:"organization,omitempty"`
-	OrganizationCountry  *string `json:"organization_country,omitempty"`
+
+	// OrganizationAddress Postal address of the user's organization
+	OrganizationAddress *string `json:"organization_address,omitempty"`
+	OrganizationCountry *string `json:"organization_country,omitempty"`
 
 	// OrganizationRegistryCode Company registration code of the user's organization, if known
 	OrganizationRegistryCode *string `json:"organization_registry_code,omitempty"`
@@ -44807,8 +44848,11 @@ type Proposal struct {
 	ApplicantNationalities *map[string]interface{} `json:"applicant_nationalities,omitempty"`
 
 	// ApplicantNationality Primary citizenship (ISO 3166-1 alpha-2 code)
-	ApplicantNationality         *string `json:"applicant_nationality,omitempty"`
-	ApplicantOrganization        *string `json:"applicant_organization,omitempty"`
+	ApplicantNationality  *string `json:"applicant_nationality,omitempty"`
+	ApplicantOrganization *string `json:"applicant_organization,omitempty"`
+
+	// ApplicantOrganizationAddress Postal address of the user's organization
+	ApplicantOrganizationAddress *string `json:"applicant_organization_address,omitempty"`
 	ApplicantOrganizationCountry *string `json:"applicant_organization_country,omitempty"`
 
 	// ApplicantOrganizationRegistryCode Company registration code of the user's organization, if known
@@ -51849,7 +51893,10 @@ type User struct {
 	// NotificationsEnabled Designates whether the user is allowed to receive email notifications.
 	NotificationsEnabled *bool   `json:"notifications_enabled,omitempty"`
 	Organization         *string `json:"organization,omitempty"`
-	OrganizationCountry  *string `json:"organization_country,omitempty"`
+
+	// OrganizationAddress Postal address of the user's organization
+	OrganizationAddress *string `json:"organization_address,omitempty"`
+	OrganizationCountry *string `json:"organization_country,omitempty"`
 
 	// OrganizationRegistryCode Company registration code of the user's organization, if known
 	OrganizationRegistryCode *string `json:"organization_registry_code,omitempty"`
@@ -52257,7 +52304,10 @@ type UserMe struct {
 	// NotificationsEnabled Designates whether the user is allowed to receive email notifications.
 	NotificationsEnabled *bool   `json:"notifications_enabled,omitempty"`
 	Organization         *string `json:"organization,omitempty"`
-	OrganizationCountry  *string `json:"organization_country,omitempty"`
+
+	// OrganizationAddress Postal address of the user's organization
+	OrganizationAddress *string `json:"organization_address,omitempty"`
+	OrganizationCountry *string `json:"organization_country,omitempty"`
 
 	// OrganizationRegistryCode Company registration code of the user's organization, if known
 	OrganizationRegistryCode *string `json:"organization_registry_code,omitempty"`
@@ -52427,7 +52477,10 @@ type UserRequest struct {
 	// NotificationsEnabled Designates whether the user is allowed to receive email notifications.
 	NotificationsEnabled *bool   `json:"notifications_enabled,omitempty"`
 	Organization         *string `json:"organization,omitempty"`
-	OrganizationCountry  *string `json:"organization_country,omitempty"`
+
+	// OrganizationAddress Postal address of the user's organization
+	OrganizationAddress *string `json:"organization_address,omitempty"`
+	OrganizationCountry *string `json:"organization_country,omitempty"`
 
 	// OrganizationRegistryCode Company registration code of the user's organization, if known
 	OrganizationRegistryCode *string `json:"organization_registry_code,omitempty"`
@@ -52507,7 +52560,10 @@ type UserRequestForm struct {
 	// NotificationsEnabled Designates whether the user is allowed to receive email notifications.
 	NotificationsEnabled *bool   `json:"notifications_enabled,omitempty"`
 	Organization         *string `json:"organization,omitempty"`
-	OrganizationCountry  *string `json:"organization_country,omitempty"`
+
+	// OrganizationAddress Postal address of the user's organization
+	OrganizationAddress *string `json:"organization_address,omitempty"`
+	OrganizationCountry *string `json:"organization_country,omitempty"`
 
 	// OrganizationRegistryCode Company registration code of the user's organization, if known
 	OrganizationRegistryCode *string `json:"organization_registry_code,omitempty"`
@@ -52587,7 +52643,10 @@ type UserRequestMultipart struct {
 	// NotificationsEnabled Designates whether the user is allowed to receive email notifications.
 	NotificationsEnabled *bool   `json:"notifications_enabled,omitempty"`
 	Organization         *string `json:"organization,omitempty"`
-	OrganizationCountry  *string `json:"organization_country,omitempty"`
+
+	// OrganizationAddress Postal address of the user's organization
+	OrganizationAddress *string `json:"organization_address,omitempty"`
+	OrganizationCountry *string `json:"organization_country,omitempty"`
 
 	// OrganizationRegistryCode Company registration code of the user's organization, if known
 	OrganizationRegistryCode *string `json:"organization_registry_code,omitempty"`
