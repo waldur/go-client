@@ -9971,6 +9971,7 @@ const (
 	MarketplaceServiceProviderUserFieldEnumOrganizationCountry      MarketplaceServiceProviderUserFieldEnum = "organization_country"
 	MarketplaceServiceProviderUserFieldEnumOrganizationRegistryCode MarketplaceServiceProviderUserFieldEnum = "organization_registry_code"
 	MarketplaceServiceProviderUserFieldEnumOrganizationType         MarketplaceServiceProviderUserFieldEnum = "organization_type"
+	MarketplaceServiceProviderUserFieldEnumOrganizationVatCode      MarketplaceServiceProviderUserFieldEnum = "organization_vat_code"
 	MarketplaceServiceProviderUserFieldEnumPersonalTitle            MarketplaceServiceProviderUserFieldEnum = "personal_title"
 	MarketplaceServiceProviderUserFieldEnumPhoneNumber              MarketplaceServiceProviderUserFieldEnum = "phone_number"
 	MarketplaceServiceProviderUserFieldEnumPlaceOfBirth             MarketplaceServiceProviderUserFieldEnum = "place_of_birth"
@@ -10024,6 +10025,8 @@ func (e MarketplaceServiceProviderUserFieldEnum) Valid() bool {
 	case MarketplaceServiceProviderUserFieldEnumOrganizationRegistryCode:
 		return true
 	case MarketplaceServiceProviderUserFieldEnumOrganizationType:
+		return true
+	case MarketplaceServiceProviderUserFieldEnumOrganizationVatCode:
 		return true
 	case MarketplaceServiceProviderUserFieldEnumPersonalTitle:
 		return true
@@ -34386,6 +34389,9 @@ type MarketplaceServiceProviderUser struct {
 
 	// OrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
 	OrganizationType *string `json:"organization_type,omitempty"`
+
+	// OrganizationVatCode VAT code of the user's organization
+	OrganizationVatCode *string `json:"organization_vat_code,omitempty"`
 
 	// PersonalTitle Honorific title (Mr, Ms, Dr, Prof, etc.)
 	PersonalTitle *string `json:"personal_title,omitempty"`
