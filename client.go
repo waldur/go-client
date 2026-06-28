@@ -34845,6 +34845,9 @@ type MergedPluginOptions struct {
 	// RestrictDeletionWithActiveResources If set to True, offering cannot be deleted while it has non-terminated resources.
 	RestrictDeletionWithActiveResources *bool `json:"restrict_deletion_with_active_resources,omitempty"`
 
+	// RestrictedToRoles List of project or organization role names (e.g. 'PROJECT.MANAGER') allowed to view and order this offering. When set, the offering is hidden from the catalog for other users and they cannot create orders for it. Whether their orders skip consumer review still depends on the role having the order-approval permission.
+	RestrictedToRoles *[]string `json:"restricted_to_roles,omitempty"`
+
 	// ScratchProjectDirectory HEAppE scratch project directory
 	ScratchProjectDirectory *string `json:"scratch_project_directory,omitempty"`
 
@@ -35104,6 +35107,9 @@ type MergedPluginOptionsRequest struct {
 
 	// RestrictDeletionWithActiveResources If set to True, offering cannot be deleted while it has non-terminated resources.
 	RestrictDeletionWithActiveResources *bool `json:"restrict_deletion_with_active_resources,omitempty"`
+
+	// RestrictedToRoles List of project or organization role names (e.g. 'PROJECT.MANAGER') allowed to view and order this offering. When set, the offering is hidden from the catalog for other users and they cannot create orders for it. Whether their orders skip consumer review still depends on the role having the order-approval permission.
+	RestrictedToRoles *[]string `json:"restricted_to_roles,omitempty"`
 
 	// ScratchProjectDirectory HEAppE scratch project directory
 	ScratchProjectDirectory *string `json:"scratch_project_directory,omitempty"`
@@ -56404,8 +56410,11 @@ type CustomersListParams struct {
 	ContactDetails *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
 
 	// CurrentUserHasProjectCreatePermission Return a list of customers where current user has project create permission.
-	CurrentUserHasProjectCreatePermission *bool                `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
-	Field                                 *[]CustomerFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+	CurrentUserHasProjectCreatePermission *bool `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
+
+	// CurrentUserHasRole Multiple values may be separated by commas.
+	CurrentUserHasRole *[]string            `form:"current_user_has_role,omitempty" json:"current_user_has_role,omitempty"`
+	Field              *[]CustomerFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 
 	// HasResources Filter by customers with resources.
 	HasResources *string `form:"has_resources,omitempty" json:"has_resources,omitempty"`
@@ -56474,6 +56483,9 @@ type CustomersCountParams struct {
 	// CurrentUserHasProjectCreatePermission Return a list of customers where current user has project create permission.
 	CurrentUserHasProjectCreatePermission *bool `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
 
+	// CurrentUserHasRole Multiple values may be separated by commas.
+	CurrentUserHasRole *[]string `form:"current_user_has_role,omitempty" json:"current_user_has_role,omitempty"`
+
 	// HasResources Filter by customers with resources.
 	HasResources *string `form:"has_resources,omitempty" json:"has_resources,omitempty"`
 
@@ -56541,6 +56553,9 @@ type CustomersCountriesListParams struct {
 	// CurrentUserHasProjectCreatePermission Return a list of customers where current user has project create permission.
 	CurrentUserHasProjectCreatePermission *bool `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
 
+	// CurrentUserHasRole Multiple values may be separated by commas.
+	CurrentUserHasRole *[]string `form:"current_user_has_role,omitempty" json:"current_user_has_role,omitempty"`
+
 	// HasResources Filter by customers with resources.
 	HasResources *string `form:"has_resources,omitempty" json:"has_resources,omitempty"`
 
@@ -56607,6 +56622,9 @@ type CustomersCountriesCountParams struct {
 
 	// CurrentUserHasProjectCreatePermission Return a list of customers where current user has project create permission.
 	CurrentUserHasProjectCreatePermission *bool `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
+
+	// CurrentUserHasRole Multiple values may be separated by commas.
+	CurrentUserHasRole *[]string `form:"current_user_has_role,omitempty" json:"current_user_has_role,omitempty"`
 
 	// HasResources Filter by customers with resources.
 	HasResources *string `form:"has_resources,omitempty" json:"has_resources,omitempty"`
@@ -56799,6 +56817,9 @@ type CustomersHistoryListParams struct {
 
 	// CurrentUserHasProjectCreatePermission Return a list of customers where current user has project create permission.
 	CurrentUserHasProjectCreatePermission *bool `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
+
+	// CurrentUserHasRole Multiple values may be separated by commas.
+	CurrentUserHasRole *[]string `form:"current_user_has_role,omitempty" json:"current_user_has_role,omitempty"`
 
 	// HasResources Filter by customers with resources.
 	HasResources *string `form:"has_resources,omitempty" json:"has_resources,omitempty"`
@@ -57494,6 +57515,9 @@ type FinancialReportsListParams struct {
 	// CurrentUserHasProjectCreatePermission Return a list of customers where current user has project create permission.
 	CurrentUserHasProjectCreatePermission *bool `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
 
+	// CurrentUserHasRole Multiple values may be separated by commas.
+	CurrentUserHasRole *[]string `form:"current_user_has_role,omitempty" json:"current_user_has_role,omitempty"`
+
 	// CustomerUuid Filter by customer UUID.
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 
@@ -57554,6 +57578,9 @@ type FinancialReportsCountParams struct {
 
 	// CurrentUserHasProjectCreatePermission Return a list of customers where current user has project create permission.
 	CurrentUserHasProjectCreatePermission *bool `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
+
+	// CurrentUserHasRole Multiple values may be separated by commas.
+	CurrentUserHasRole *[]string `form:"current_user_has_role,omitempty" json:"current_user_has_role,omitempty"`
 
 	// CustomerUuid Filter by customer UUID.
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
@@ -64153,6 +64180,9 @@ type MarketplaceServiceProvidersCustomerProjectsListParams struct {
 	// CreatedBefore Created before
 	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
 
+	// CurrentUserHasRole Multiple values may be separated by commas.
+	CurrentUserHasRole *[]string `form:"current_user_has_role,omitempty" json:"current_user_has_role,omitempty"`
+
 	// Customer Multiple values may be separated by commas.
 	Customer *[]openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
 
@@ -64228,8 +64258,11 @@ type MarketplaceServiceProvidersCustomersListParams struct {
 	ContactDetails *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
 
 	// CurrentUserHasProjectCreatePermission Return a list of customers where current user has project create permission.
-	CurrentUserHasProjectCreatePermission *bool                                   `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
-	Field                                 *[]MarketplaceProviderCustomerFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+	CurrentUserHasProjectCreatePermission *bool `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
+
+	// CurrentUserHasRole Multiple values may be separated by commas.
+	CurrentUserHasRole *[]string                               `form:"current_user_has_role,omitempty" json:"current_user_has_role,omitempty"`
+	Field              *[]MarketplaceProviderCustomerFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 
 	// Name Name
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
@@ -64662,6 +64695,9 @@ type MarketplaceServiceProvidersProjectsListParams struct {
 	// CreatedBefore Created before
 	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
 
+	// CurrentUserHasRole Multiple values may be separated by commas.
+	CurrentUserHasRole *[]string `form:"current_user_has_role,omitempty" json:"current_user_has_role,omitempty"`
+
 	// Customer Multiple values may be separated by commas.
 	Customer *[]openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
 
@@ -64734,8 +64770,11 @@ type MarketplaceServiceProvidersUserCustomersListParams struct {
 	ContactDetails *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
 
 	// CurrentUserHasProjectCreatePermission Return a list of customers where current user has project create permission.
-	CurrentUserHasProjectCreatePermission *bool                                   `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
-	Field                                 *[]MarketplaceProviderCustomerFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+	CurrentUserHasProjectCreatePermission *bool `form:"current_user_has_project_create_permission,omitempty" json:"current_user_has_project_create_permission,omitempty"`
+
+	// CurrentUserHasRole Multiple values may be separated by commas.
+	CurrentUserHasRole *[]string                               `form:"current_user_has_role,omitempty" json:"current_user_has_role,omitempty"`
+	Field              *[]MarketplaceProviderCustomerFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 
 	// Name Name
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
@@ -67596,6 +67635,9 @@ type OpenportalUnmanagedProjectsListParams struct {
 	// CreatedBefore Created before
 	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
 
+	// CurrentUserHasRole Multiple values may be separated by commas.
+	CurrentUserHasRole *[]string `form:"current_user_has_role,omitempty" json:"current_user_has_role,omitempty"`
+
 	// Customer Multiple values may be separated by commas.
 	Customer *[]openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
 
@@ -67688,6 +67730,9 @@ type OpenportalUnmanagedProjectsCountParams struct {
 
 	// CreatedBefore Created before
 	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
+
+	// CurrentUserHasRole Multiple values may be separated by commas.
+	CurrentUserHasRole *[]string `form:"current_user_has_role,omitempty" json:"current_user_has_role,omitempty"`
 
 	// Customer Multiple values may be separated by commas.
 	Customer *[]openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
@@ -71276,6 +71321,9 @@ type ProjectsListParams struct {
 	// CreatedBefore Created before
 	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
 
+	// CurrentUserHasRole Multiple values may be separated by commas.
+	CurrentUserHasRole *[]string `form:"current_user_has_role,omitempty" json:"current_user_has_role,omitempty"`
+
 	// Customer Multiple values may be separated by commas.
 	Customer *[]openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
 
@@ -71368,6 +71416,9 @@ type ProjectsCountParams struct {
 
 	// CreatedBefore Created before
 	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
+
+	// CurrentUserHasRole Multiple values may be separated by commas.
+	CurrentUserHasRole *[]string `form:"current_user_has_role,omitempty" json:"current_user_has_role,omitempty"`
 
 	// Customer Multiple values may be separated by commas.
 	Customer *[]openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
@@ -176354,6 +176405,18 @@ func NewCustomersListRequest(server string, params *CustomersListParams) (*http.
 
 		}
 
+		if params.CurrentUserHasRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "current_user_has_role", *params.CurrentUserHasRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.Field != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
@@ -176687,6 +176750,18 @@ func NewCustomersCountRequest(server string, params *CustomersCountParams) (*htt
 		if params.CurrentUserHasProjectCreatePermission != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "current_user_has_project_create_permission", *params.CurrentUserHasProjectCreatePermission, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CurrentUserHasRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "current_user_has_role", *params.CurrentUserHasRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -177077,6 +177152,18 @@ func NewCustomersCountriesListRequest(server string, params *CustomersCountriesL
 
 		}
 
+		if params.CurrentUserHasRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "current_user_has_role", *params.CurrentUserHasRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.HasResources != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_resources", *params.HasResources, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -177398,6 +177485,18 @@ func NewCustomersCountriesCountRequest(server string, params *CustomersCountries
 		if params.CurrentUserHasProjectCreatePermission != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "current_user_has_project_create_permission", *params.CurrentUserHasProjectCreatePermission, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CurrentUserHasRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "current_user_has_role", *params.CurrentUserHasRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -178704,6 +178803,18 @@ func NewCustomersHistoryListRequest(server string, uuid openapi_types.UUID, para
 		if params.CurrentUserHasProjectCreatePermission != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "current_user_has_project_create_permission", *params.CurrentUserHasProjectCreatePermission, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CurrentUserHasRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "current_user_has_role", *params.CurrentUserHasRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -184763,6 +184874,18 @@ func NewFinancialReportsListRequest(server string, params *FinancialReportsListP
 
 		}
 
+		if params.CurrentUserHasRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "current_user_has_role", *params.CurrentUserHasRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.CustomerUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
@@ -185060,6 +185183,18 @@ func NewFinancialReportsCountRequest(server string, params *FinancialReportsCoun
 		if params.CurrentUserHasProjectCreatePermission != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "current_user_has_project_create_permission", *params.CurrentUserHasProjectCreatePermission, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CurrentUserHasRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "current_user_has_role", *params.CurrentUserHasRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -239667,6 +239802,18 @@ func NewMarketplaceServiceProvidersCustomerProjectsListRequest(server string, se
 
 		}
 
+		if params.CurrentUserHasRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "current_user_has_role", *params.CurrentUserHasRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.Customer != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "customer", *params.Customer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
@@ -240027,6 +240174,18 @@ func NewMarketplaceServiceProvidersCustomersListRequest(server string, servicePr
 		if params.CurrentUserHasProjectCreatePermission != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "current_user_has_project_create_permission", *params.CurrentUserHasProjectCreatePermission, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CurrentUserHasRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "current_user_has_role", *params.CurrentUserHasRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -242094,6 +242253,18 @@ func NewMarketplaceServiceProvidersProjectsListRequest(server string, servicePro
 
 		}
 
+		if params.CurrentUserHasRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "current_user_has_role", *params.CurrentUserHasRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.Customer != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "customer", *params.Customer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
@@ -242446,6 +242617,18 @@ func NewMarketplaceServiceProvidersUserCustomersListRequest(server string, servi
 		if params.CurrentUserHasProjectCreatePermission != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "current_user_has_project_create_permission", *params.CurrentUserHasProjectCreatePermission, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CurrentUserHasRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "current_user_has_role", *params.CurrentUserHasRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -267465,6 +267648,18 @@ func NewOpenportalUnmanagedProjectsListRequest(server string, params *Openportal
 
 		}
 
+		if params.CurrentUserHasRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "current_user_has_role", *params.CurrentUserHasRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.Customer != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "customer", *params.Customer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
@@ -267870,6 +268065,18 @@ func NewOpenportalUnmanagedProjectsCountRequest(server string, params *Openporta
 		if params.CreatedBefore != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_before", *params.CreatedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CurrentUserHasRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "current_user_has_role", *params.CurrentUserHasRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -296859,6 +297066,18 @@ func NewProjectsListRequest(server string, params *ProjectsListParams) (*http.Re
 
 		}
 
+		if params.CurrentUserHasRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "current_user_has_role", *params.CurrentUserHasRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.Customer != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "customer", *params.Customer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
@@ -297264,6 +297483,18 @@ func NewProjectsCountRequest(server string, params *ProjectsCountParams) (*http.
 		if params.CreatedBefore != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_before", *params.CreatedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CurrentUserHasRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "current_user_has_role", *params.CurrentUserHasRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
