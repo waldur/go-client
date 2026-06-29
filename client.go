@@ -37990,6 +37990,7 @@ type OpenPortalQuota struct {
 
 // OpenStackAllowedAddressPair defines model for OpenStackAllowedAddressPair.
 type OpenStackAllowedAddressPair struct {
+	IpAddress  *string `json:"ip_address,omitempty"`
 	MacAddress *string `json:"mac_address,omitempty"`
 }
 
