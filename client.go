@@ -43683,17 +43683,23 @@ type Permission struct {
 	CustomerName      *string             `json:"customer_name,omitempty"`
 	CustomerUuid      *openapi_types.UUID `json:"customer_uuid,omitempty"`
 	ExpirationTime    *time.Time          `json:"expiration_time,omitempty"`
+	IsActive          *bool               `json:"is_active,omitempty"`
 	ProjectUuid       *openapi_types.UUID `json:"project_uuid,omitempty"`
 	ResourceUuid      *openapi_types.UUID `json:"resource_uuid,omitempty"`
+	RevokeReason      *string             `json:"revoke_reason,omitempty"`
+	RevokedByFullName *string             `json:"revoked_by_full_name,omitempty"`
+	RevokedByUsername *string             `json:"revoked_by_username,omitempty"`
 	RoleDescription   *string             `json:"role_description,omitempty"`
 	RoleName          *string             `json:"role_name,omitempty"`
 	RoleUuid          *openapi_types.UUID `json:"role_uuid,omitempty"`
+	ScopeIsRemoved    *bool               `json:"scope_is_removed,omitempty"`
 	ScopeName         *string             `json:"scope_name,omitempty"`
 	ScopeType         *string             `json:"scope_type,omitempty"`
 	ScopeUuid         *openapi_types.UUID `json:"scope_uuid,omitempty"`
 	UserName          *string             `json:"user_name,omitempty"`
 	UserSlug          *string             `json:"user_slug,omitempty"`
 	UserUuid          *openapi_types.UUID `json:"user_uuid,omitempty"`
+	Uuid              *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // PermissionDescription defines model for PermissionDescription.
@@ -52737,6 +52743,11 @@ type UserRoleExpirationTime struct {
 	ExpirationTime *time.Time `json:"expiration_time"`
 }
 
+// UserRolePermissionActionRequest defines model for UserRolePermissionActionRequest.
+type UserRolePermissionActionRequest struct {
+	Reason *string `json:"reason,omitempty"`
+}
+
 // UserRoleUpdateRequest defines model for UserRoleUpdateRequest.
 type UserRoleUpdateRequest struct {
 	ExpirationTime *time.Time         `json:"expiration_time,omitempty"`
@@ -59557,6 +59568,7 @@ type MarketplaceOfferingPermissionsLogListParams struct {
 
 	// FullName User full name contains
 	FullName *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+	IsActive *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
 
 	// Modified Modified after
 	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -59609,6 +59621,7 @@ type MarketplaceOfferingPermissionsLogCountParams struct {
 
 	// FullName User full name contains
 	FullName *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+	IsActive *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
 
 	// Modified Modified after
 	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -59661,6 +59674,7 @@ type MarketplaceOfferingPermissionsListParams struct {
 
 	// FullName User full name contains
 	FullName *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+	IsActive *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
 
 	// Modified Modified after
 	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -59713,6 +59727,7 @@ type MarketplaceOfferingPermissionsCountParams struct {
 
 	// FullName User full name contains
 	FullName *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+	IsActive *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
 
 	// Modified Modified after
 	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -64607,6 +64622,7 @@ type MarketplaceServiceProvidersProjectPermissionsListParams struct {
 
 	// FullName User full name contains
 	FullName *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+	IsActive *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
 
 	// Modified Modified after
 	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -74985,6 +75001,7 @@ type UserPermissionsListParams struct {
 
 	// FullName User full name contains
 	FullName *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+	IsActive *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
 
 	// Modified Modified after
 	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -75016,8 +75033,11 @@ type UserPermissionsListParams struct {
 	ScopeType *string `form:"scope_type,omitempty" json:"scope_type,omitempty"`
 
 	// ScopeUuid Scope UUID
-	ScopeUuid *string             `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
-	User      *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
+	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+
+	// ShowInactive Staff/support only. Include revoked (inactive) role grants in addition to active ones. Ignored for other users, who only ever see their own active roles.
+	ShowInactive *bool               `form:"show_inactive,omitempty" json:"show_inactive,omitempty"`
+	User         *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
 
 	// UserSlug User slug contains
 	UserSlug *string `form:"user_slug,omitempty" json:"user_slug,omitempty"`
@@ -75036,6 +75056,7 @@ type UserPermissionsCountParams struct {
 
 	// FullName User full name contains
 	FullName *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+	IsActive *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
 
 	// Modified Modified after
 	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -75067,8 +75088,11 @@ type UserPermissionsCountParams struct {
 	ScopeType *string `form:"scope_type,omitempty" json:"scope_type,omitempty"`
 
 	// ScopeUuid Scope UUID
-	ScopeUuid *string             `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
-	User      *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
+	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+
+	// ShowInactive Staff/support only. Include revoked (inactive) role grants in addition to active ones. Ignored for other users, who only ever see their own active roles.
+	ShowInactive *bool               `form:"show_inactive,omitempty" json:"show_inactive,omitempty"`
+	User         *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
 
 	// UserSlug User slug contains
 	UserSlug *string `form:"user_slug,omitempty" json:"user_slug,omitempty"`
@@ -79359,6 +79383,12 @@ type UserPermissionRequestsApproveJSONRequestBody = ReviewCommentRequest
 
 // UserPermissionRequestsRejectJSONRequestBody defines body for UserPermissionRequestsReject for application/json ContentType.
 type UserPermissionRequestsRejectJSONRequestBody = ReviewCommentRequest
+
+// UserPermissionsRestoreJSONRequestBody defines body for UserPermissionsRestore for application/json ContentType.
+type UserPermissionsRestoreJSONRequestBody = UserRolePermissionActionRequest
+
+// UserPermissionsRevokeJSONRequestBody defines body for UserPermissionsRevoke for application/json ContentType.
+type UserPermissionsRevokeJSONRequestBody = UserRolePermissionActionRequest
 
 // UsersCreateJSONRequestBody defines body for UsersCreate for application/json ContentType.
 type UsersCreateJSONRequestBody = UserRequest
@@ -103520,6 +103550,16 @@ type ClientInterface interface {
 
 	// UserPermissionsRetrieve request
 	UserPermissionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UserPermissionsRestoreWithBody request with any body
+	UserPermissionsRestoreWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	UserPermissionsRestore(ctx context.Context, uuid openapi_types.UUID, body UserPermissionsRestoreJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UserPermissionsRevokeWithBody request with any body
+	UserPermissionsRevokeWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	UserPermissionsRevoke(ctx context.Context, uuid openapi_types.UUID, body UserPermissionsRevokeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UsersList request
 	UsersList(ctx context.Context, params *UsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -144989,6 +145029,54 @@ func (c *Client) UserPermissionsCount(ctx context.Context, params *UserPermissio
 
 func (c *Client) UserPermissionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUserPermissionsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserPermissionsRestoreWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserPermissionsRestoreRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserPermissionsRestore(ctx context.Context, uuid openapi_types.UUID, body UserPermissionsRestoreJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserPermissionsRestoreRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserPermissionsRevokeWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserPermissionsRevokeRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserPermissionsRevoke(ctx context.Context, uuid openapi_types.UUID, body UserPermissionsRevokeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserPermissionsRevokeRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -204789,6 +204877,18 @@ func NewMarketplaceOfferingPermissionsLogListRequest(server string, params *Mark
 
 		}
 
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_active", *params.IsActive, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.Modified != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified", *params.Modified, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
@@ -205062,6 +205162,18 @@ func NewMarketplaceOfferingPermissionsLogCountRequest(server string, params *Mar
 		if params.FullName != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "full_name", *params.FullName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_active", *params.IsActive, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -205387,6 +205499,18 @@ func NewMarketplaceOfferingPermissionsListRequest(server string, params *Marketp
 
 		}
 
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_active", *params.IsActive, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.Modified != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified", *params.Modified, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
@@ -205660,6 +205784,18 @@ func NewMarketplaceOfferingPermissionsCountRequest(server string, params *Market
 		if params.FullName != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "full_name", *params.FullName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_active", *params.IsActive, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -241787,6 +241923,18 @@ func NewMarketplaceServiceProvidersProjectPermissionsListRequest(server string, 
 		if params.FullName != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "full_name", *params.FullName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_active", *params.IsActive, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -336212,6 +336360,18 @@ func NewUserPermissionsListRequest(server string, params *UserPermissionsListPar
 
 		}
 
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_active", *params.IsActive, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.Modified != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified", *params.Modified, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
@@ -336335,6 +336495,18 @@ func NewUserPermissionsListRequest(server string, params *UserPermissionsListPar
 		if params.ScopeUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "scope_uuid", *params.ScopeUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ShowInactive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "show_inactive", *params.ShowInactive, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -336482,6 +336654,18 @@ func NewUserPermissionsCountRequest(server string, params *UserPermissionsCountP
 
 		}
 
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_active", *params.IsActive, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.Modified != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified", *params.Modified, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
@@ -336614,6 +336798,18 @@ func NewUserPermissionsCountRequest(server string, params *UserPermissionsCountP
 
 		}
 
+		if params.ShowInactive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "show_inactive", *params.ShowInactive, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.User != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user", *params.User, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
@@ -336706,6 +336902,100 @@ func NewUserPermissionsRetrieveRequest(server string, uuid openapi_types.UUID) (
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewUserPermissionsRestoreRequest calls the generic UserPermissionsRestore builder with application/json body
+func NewUserPermissionsRestoreRequest(server string, uuid openapi_types.UUID, body UserPermissionsRestoreJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewUserPermissionsRestoreRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewUserPermissionsRestoreRequestWithBody generates requests for UserPermissionsRestore with any type of body
+func NewUserPermissionsRestoreRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-permissions/%s/restore/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewUserPermissionsRevokeRequest calls the generic UserPermissionsRevoke builder with application/json body
+func NewUserPermissionsRevokeRequest(server string, uuid openapi_types.UUID, body UserPermissionsRevokeJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewUserPermissionsRevokeRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewUserPermissionsRevokeRequestWithBody generates requests for UserPermissionsRevoke with any type of body
+func NewUserPermissionsRevokeRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-permissions/%s/revoke/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -355324,6 +355614,16 @@ type ClientWithResponsesInterface interface {
 
 	// UserPermissionsRetrieveWithResponse request
 	UserPermissionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UserPermissionsRetrieveResponse, error)
+
+	// UserPermissionsRestoreWithBodyWithResponse request with any body
+	UserPermissionsRestoreWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserPermissionsRestoreResponse, error)
+
+	UserPermissionsRestoreWithResponse(ctx context.Context, uuid openapi_types.UUID, body UserPermissionsRestoreJSONRequestBody, reqEditors ...RequestEditorFn) (*UserPermissionsRestoreResponse, error)
+
+	// UserPermissionsRevokeWithBodyWithResponse request with any body
+	UserPermissionsRevokeWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserPermissionsRevokeResponse, error)
+
+	UserPermissionsRevokeWithResponse(ctx context.Context, uuid openapi_types.UUID, body UserPermissionsRevokeJSONRequestBody, reqEditors ...RequestEditorFn) (*UserPermissionsRevokeResponse, error)
 
 	// UsersListWithResponse request
 	UsersListWithResponse(ctx context.Context, params *UsersListParams, reqEditors ...RequestEditorFn) (*UsersListResponse, error)
@@ -430655,6 +430955,64 @@ func (r UserPermissionsRetrieveResponse) ContentType() string {
 	return ""
 }
 
+type UserPermissionsRestoreResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r UserPermissionsRestoreResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserPermissionsRestoreResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r UserPermissionsRestoreResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type UserPermissionsRevokeResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r UserPermissionsRevokeResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserPermissionsRevokeResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r UserPermissionsRevokeResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type UsersListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -463271,6 +463629,40 @@ func (c *ClientWithResponses) UserPermissionsRetrieveWithResponse(ctx context.Co
 		return nil, err
 	}
 	return ParseUserPermissionsRetrieveResponse(rsp)
+}
+
+// UserPermissionsRestoreWithBodyWithResponse request with arbitrary body returning *UserPermissionsRestoreResponse
+func (c *ClientWithResponses) UserPermissionsRestoreWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserPermissionsRestoreResponse, error) {
+	rsp, err := c.UserPermissionsRestoreWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserPermissionsRestoreResponse(rsp)
+}
+
+func (c *ClientWithResponses) UserPermissionsRestoreWithResponse(ctx context.Context, uuid openapi_types.UUID, body UserPermissionsRestoreJSONRequestBody, reqEditors ...RequestEditorFn) (*UserPermissionsRestoreResponse, error) {
+	rsp, err := c.UserPermissionsRestore(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserPermissionsRestoreResponse(rsp)
+}
+
+// UserPermissionsRevokeWithBodyWithResponse request with arbitrary body returning *UserPermissionsRevokeResponse
+func (c *ClientWithResponses) UserPermissionsRevokeWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserPermissionsRevokeResponse, error) {
+	rsp, err := c.UserPermissionsRevokeWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserPermissionsRevokeResponse(rsp)
+}
+
+func (c *ClientWithResponses) UserPermissionsRevokeWithResponse(ctx context.Context, uuid openapi_types.UUID, body UserPermissionsRevokeJSONRequestBody, reqEditors ...RequestEditorFn) (*UserPermissionsRevokeResponse, error) {
+	rsp, err := c.UserPermissionsRevoke(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserPermissionsRevokeResponse(rsp)
 }
 
 // UsersListWithResponse request returning *UsersListResponse
@@ -522854,6 +523246,38 @@ func ParseUserPermissionsRetrieveResponse(rsp *http.Response) (*UserPermissionsR
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseUserPermissionsRestoreResponse parses an HTTP response from a UserPermissionsRestoreWithResponse call
+func ParseUserPermissionsRestoreResponse(rsp *http.Response) (*UserPermissionsRestoreResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserPermissionsRestoreResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseUserPermissionsRevokeResponse parses an HTTP response from a UserPermissionsRevokeWithResponse call
+func ParseUserPermissionsRevokeResponse(rsp *http.Response) (*UserPermissionsRevokeResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserPermissionsRevokeResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
