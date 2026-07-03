@@ -34629,6 +34629,9 @@ type MergedPluginOptions struct {
 	// AccountNameGenerationPolicy Slurm account name generation policy
 	AccountNameGenerationPolicy *MergedPluginOptions_AccountNameGenerationPolicy `json:"account_name_generation_policy,omitempty"`
 
+	// AutoApproveForRoles List of project or organization role names (e.g. 'PROJECT.MANAGER') whose orders skip consumer review for this offering. The creator must hold the role on the target project or its organization. Independent of restricted_to_roles (which governs visibility/ordering) and of the ORDER.APPROVE permission. Provider review and purchase-order requirements still apply. Only staff can change this option.
+	AutoApproveForRoles *[]string `json:"auto_approve_for_roles,omitempty"`
+
 	// AutoApproveInServiceProviderProjects Skip approval of public offering belonging to the same organization under which the request is done
 	AutoApproveInServiceProviderProjects *bool `json:"auto_approve_in_service_provider_projects,omitempty"`
 
@@ -34891,6 +34894,9 @@ type MergedPluginOptions_AccountNameGenerationPolicy struct {
 type MergedPluginOptionsRequest struct {
 	// AccountNameGenerationPolicy Slurm account name generation policy
 	AccountNameGenerationPolicy *MergedPluginOptionsRequest_AccountNameGenerationPolicy `json:"account_name_generation_policy,omitempty"`
+
+	// AutoApproveForRoles List of project or organization role names (e.g. 'PROJECT.MANAGER') whose orders skip consumer review for this offering. The creator must hold the role on the target project or its organization. Independent of restricted_to_roles (which governs visibility/ordering) and of the ORDER.APPROVE permission. Provider review and purchase-order requirements still apply. Only staff can change this option.
+	AutoApproveForRoles *[]string `json:"auto_approve_for_roles,omitempty"`
 
 	// AutoApproveInServiceProviderProjects Skip approval of public offering belonging to the same organization under which the request is done
 	AutoApproveInServiceProviderProjects *bool `json:"auto_approve_in_service_provider_projects,omitempty"`
