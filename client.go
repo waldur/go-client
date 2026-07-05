@@ -4584,6 +4584,36 @@ func (e CurrentQosStatusEnum) Valid() bool {
 	}
 }
 
+// Defines values for CustomerAffiliateOEnum.
+const (
+	CustomerAffiliateOEnumAffiliateName      CustomerAffiliateOEnum = "affiliate_name"
+	CustomerAffiliateOEnumCreated            CustomerAffiliateOEnum = "created"
+	CustomerAffiliateOEnumCustomerName       CustomerAffiliateOEnum = "customer_name"
+	CustomerAffiliateOEnumMinusAffiliateName CustomerAffiliateOEnum = "-affiliate_name"
+	CustomerAffiliateOEnumMinusCreated       CustomerAffiliateOEnum = "-created"
+	CustomerAffiliateOEnumMinusCustomerName  CustomerAffiliateOEnum = "-customer_name"
+)
+
+// Valid indicates whether the value is a known member of the CustomerAffiliateOEnum enum.
+func (e CustomerAffiliateOEnum) Valid() bool {
+	switch e {
+	case CustomerAffiliateOEnumAffiliateName:
+		return true
+	case CustomerAffiliateOEnumCreated:
+		return true
+	case CustomerAffiliateOEnumCustomerName:
+		return true
+	case CustomerAffiliateOEnumMinusAffiliateName:
+		return true
+	case CustomerAffiliateOEnumMinusCreated:
+		return true
+	case CustomerAffiliateOEnumMinusCustomerName:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for CustomerCreditOEnum.
 const (
 	CustomerCreditOEnumCustomerName             CustomerCreditOEnum = "customer_name"
@@ -4650,6 +4680,7 @@ const (
 	CustomerFieldEnumDomain                       CustomerFieldEnum = "domain"
 	CustomerFieldEnumEmail                        CustomerFieldEnum = "email"
 	CustomerFieldEnumGracePeriodDays              CustomerFieldEnum = "grace_period_days"
+	CustomerFieldEnumHasAffiliateLinks            CustomerFieldEnum = "has_affiliate_links"
 	CustomerFieldEnumHomepage                     CustomerFieldEnum = "homepage"
 	CustomerFieldEnumHouseNr                      CustomerFieldEnum = "house_nr"
 	CustomerFieldEnumHousehold                    CustomerFieldEnum = "household"
@@ -4743,6 +4774,8 @@ func (e CustomerFieldEnum) Valid() bool {
 	case CustomerFieldEnumEmail:
 		return true
 	case CustomerFieldEnumGracePeriodDays:
+		return true
+	case CustomerFieldEnumHasAffiliateLinks:
 		return true
 	case CustomerFieldEnumHomepage:
 		return true
@@ -5295,6 +5328,24 @@ func (e DigitalOceanImageOEnum) Valid() bool {
 	}
 }
 
+// Defines values for DiscountAggregationEnum.
+const (
+	DiscountAggregationEnumCustomer DiscountAggregationEnum = "customer"
+	DiscountAggregationEnumResource DiscountAggregationEnum = "resource"
+)
+
+// Valid indicates whether the value is a known member of the DiscountAggregationEnum enum.
+func (e DiscountAggregationEnum) Valid() bool {
+	switch e {
+	case DiscountAggregationEnumCustomer:
+		return true
+	case DiscountAggregationEnumResource:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for DiscountTypeEnum.
 const (
 	Discount     DiscountTypeEnum = "discount"
@@ -5755,6 +5806,7 @@ const (
 	EventMetadataResponseEventGroupsChatPiiDetected                                  EventMetadataResponseEventGroups = "chat_pii_detected"
 	EventMetadataResponseEventGroupsChatSessionAccessed                              EventMetadataResponseEventGroups = "chat_session_accessed"
 	EventMetadataResponseEventGroupsChatThreadAccessed                               EventMetadataResponseEventGroups = "chat_thread_accessed"
+	EventMetadataResponseEventGroupsCreateOfAffiliateByStaff                         EventMetadataResponseEventGroups = "create_of_affiliate_by_staff"
 	EventMetadataResponseEventGroupsCreateOfCreditByStaff                            EventMetadataResponseEventGroups = "create_of_credit_by_staff"
 	EventMetadataResponseEventGroupsCreateOfProjectCreditByStaff                     EventMetadataResponseEventGroups = "create_of_project_credit_by_staff"
 	EventMetadataResponseEventGroupsCustomNotification                               EventMetadataResponseEventGroups = "custom_notification"
@@ -5769,6 +5821,7 @@ const (
 	EventMetadataResponseEventGroupsFreeipaProfileDeleted                            EventMetadataResponseEventGroups = "freeipa_profile_deleted"
 	EventMetadataResponseEventGroupsFreeipaProfileDisabled                           EventMetadataResponseEventGroups = "freeipa_profile_disabled"
 	EventMetadataResponseEventGroupsFreeipaProfileEnabled                            EventMetadataResponseEventGroups = "freeipa_profile_enabled"
+	EventMetadataResponseEventGroupsIncreaseOfCustomerCreditDueToAffiliateFee        EventMetadataResponseEventGroups = "increase_of_customer_credit_due_to_affiliate_fee"
 	EventMetadataResponseEventGroupsInvoiceCanceled                                  EventMetadataResponseEventGroups = "invoice_canceled"
 	EventMetadataResponseEventGroupsInvoiceCreated                                   EventMetadataResponseEventGroups = "invoice_created"
 	EventMetadataResponseEventGroupsInvoiceItemCreated                               EventMetadataResponseEventGroups = "invoice_item_created"
@@ -6032,6 +6085,7 @@ const (
 	EventMetadataResponseEventGroupsTermsOfServiceConsentRevoked                     EventMetadataResponseEventGroups = "terms_of_service_consent_revoked"
 	EventMetadataResponseEventGroupsTokenCreated                                     EventMetadataResponseEventGroups = "token_created"
 	EventMetadataResponseEventGroupsTokenLifetimeUpdated                             EventMetadataResponseEventGroups = "token_lifetime_updated"
+	EventMetadataResponseEventGroupsUpdateOfAffiliateByStaff                         EventMetadataResponseEventGroups = "update_of_affiliate_by_staff"
 	EventMetadataResponseEventGroupsUpdateOfCreditByStaff                            EventMetadataResponseEventGroups = "update_of_credit_by_staff"
 	EventMetadataResponseEventGroupsUpdateOfProjectCreditByStaff                     EventMetadataResponseEventGroups = "update_of_project_credit_by_staff"
 	EventMetadataResponseEventGroupsUserActivated                                    EventMetadataResponseEventGroups = "user_activated"
@@ -6100,6 +6154,8 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 		return true
 	case EventMetadataResponseEventGroupsChatThreadAccessed:
 		return true
+	case EventMetadataResponseEventGroupsCreateOfAffiliateByStaff:
+		return true
 	case EventMetadataResponseEventGroupsCreateOfCreditByStaff:
 		return true
 	case EventMetadataResponseEventGroupsCreateOfProjectCreditByStaff:
@@ -6127,6 +6183,8 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 	case EventMetadataResponseEventGroupsFreeipaProfileDisabled:
 		return true
 	case EventMetadataResponseEventGroupsFreeipaProfileEnabled:
+		return true
+	case EventMetadataResponseEventGroupsIncreaseOfCustomerCreditDueToAffiliateFee:
 		return true
 	case EventMetadataResponseEventGroupsInvoiceCanceled:
 		return true
@@ -6654,6 +6712,8 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 		return true
 	case EventMetadataResponseEventGroupsTokenLifetimeUpdated:
 		return true
+	case EventMetadataResponseEventGroupsUpdateOfAffiliateByStaff:
+		return true
 	case EventMetadataResponseEventGroupsUpdateOfCreditByStaff:
 		return true
 	case EventMetadataResponseEventGroupsUpdateOfProjectCreditByStaff:
@@ -6718,6 +6778,7 @@ const (
 	EventTypesEnumChatPiiDetected                                  EventTypesEnum = "chat_pii_detected"
 	EventTypesEnumChatSessionAccessed                              EventTypesEnum = "chat_session_accessed"
 	EventTypesEnumChatThreadAccessed                               EventTypesEnum = "chat_thread_accessed"
+	EventTypesEnumCreateOfAffiliateByStaff                         EventTypesEnum = "create_of_affiliate_by_staff"
 	EventTypesEnumCreateOfCreditByStaff                            EventTypesEnum = "create_of_credit_by_staff"
 	EventTypesEnumCreateOfProjectCreditByStaff                     EventTypesEnum = "create_of_project_credit_by_staff"
 	EventTypesEnumCustomNotification                               EventTypesEnum = "custom_notification"
@@ -6732,6 +6793,7 @@ const (
 	EventTypesEnumFreeipaProfileDeleted                            EventTypesEnum = "freeipa_profile_deleted"
 	EventTypesEnumFreeipaProfileDisabled                           EventTypesEnum = "freeipa_profile_disabled"
 	EventTypesEnumFreeipaProfileEnabled                            EventTypesEnum = "freeipa_profile_enabled"
+	EventTypesEnumIncreaseOfCustomerCreditDueToAffiliateFee        EventTypesEnum = "increase_of_customer_credit_due_to_affiliate_fee"
 	EventTypesEnumInvoiceCanceled                                  EventTypesEnum = "invoice_canceled"
 	EventTypesEnumInvoiceCreated                                   EventTypesEnum = "invoice_created"
 	EventTypesEnumInvoiceItemCreated                               EventTypesEnum = "invoice_item_created"
@@ -6995,6 +7057,7 @@ const (
 	EventTypesEnumTermsOfServiceConsentRevoked                     EventTypesEnum = "terms_of_service_consent_revoked"
 	EventTypesEnumTokenCreated                                     EventTypesEnum = "token_created"
 	EventTypesEnumTokenLifetimeUpdated                             EventTypesEnum = "token_lifetime_updated"
+	EventTypesEnumUpdateOfAffiliateByStaff                         EventTypesEnum = "update_of_affiliate_by_staff"
 	EventTypesEnumUpdateOfCreditByStaff                            EventTypesEnum = "update_of_credit_by_staff"
 	EventTypesEnumUpdateOfProjectCreditByStaff                     EventTypesEnum = "update_of_project_credit_by_staff"
 	EventTypesEnumUserActivated                                    EventTypesEnum = "user_activated"
@@ -7063,6 +7126,8 @@ func (e EventTypesEnum) Valid() bool {
 		return true
 	case EventTypesEnumChatThreadAccessed:
 		return true
+	case EventTypesEnumCreateOfAffiliateByStaff:
+		return true
 	case EventTypesEnumCreateOfCreditByStaff:
 		return true
 	case EventTypesEnumCreateOfProjectCreditByStaff:
@@ -7090,6 +7155,8 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumFreeipaProfileDisabled:
 		return true
 	case EventTypesEnumFreeipaProfileEnabled:
+		return true
+	case EventTypesEnumIncreaseOfCustomerCreditDueToAffiliateFee:
 		return true
 	case EventTypesEnumInvoiceCanceled:
 		return true
@@ -7616,6 +7683,8 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumTokenCreated:
 		return true
 	case EventTypesEnumTokenLifetimeUpdated:
+		return true
+	case EventTypesEnumUpdateOfAffiliateByStaff:
 		return true
 	case EventTypesEnumUpdateOfCreditByStaff:
 		return true
@@ -9530,22 +9599,22 @@ func (e LikertScaleLengthEnum) Valid() bool {
 
 // Defines values for LimitPeriodEnum.
 const (
-	LimitPeriodEnumAnnual    LimitPeriodEnum = "annual"
-	LimitPeriodEnumMonth     LimitPeriodEnum = "month"
-	LimitPeriodEnumQuarterly LimitPeriodEnum = "quarterly"
-	LimitPeriodEnumTotal     LimitPeriodEnum = "total"
+	Annual    LimitPeriodEnum = "annual"
+	Month     LimitPeriodEnum = "month"
+	Quarterly LimitPeriodEnum = "quarterly"
+	Total     LimitPeriodEnum = "total"
 )
 
 // Valid indicates whether the value is a known member of the LimitPeriodEnum enum.
 func (e LimitPeriodEnum) Valid() bool {
 	switch e {
-	case LimitPeriodEnumAnnual:
+	case Annual:
 		return true
-	case LimitPeriodEnumMonth:
+	case Month:
 		return true
-	case LimitPeriodEnumQuarterly:
+	case Quarterly:
 		return true
-	case LimitPeriodEnumTotal:
+	case Total:
 		return true
 	default:
 		return false
@@ -12281,16 +12350,16 @@ func (e OpenStackInstanceFieldEnum) Valid() bool {
 
 // Defines values for OpenStackInstanceOEnum.
 const (
-	OpenStackInstanceOEnumMinusStartTime OpenStackInstanceOEnum = "-start_time"
-	OpenStackInstanceOEnumStartTime      OpenStackInstanceOEnum = "start_time"
+	MinusStartTime OpenStackInstanceOEnum = "-start_time"
+	StartTime      OpenStackInstanceOEnum = "start_time"
 )
 
 // Valid indicates whether the value is a known member of the OpenStackInstanceOEnum enum.
 func (e OpenStackInstanceOEnum) Valid() bool {
 	switch e {
-	case OpenStackInstanceOEnumMinusStartTime:
+	case MinusStartTime:
 		return true
-	case OpenStackInstanceOEnumStartTime:
+	case StartTime:
 		return true
 	default:
 		return false
@@ -20478,6 +20547,48 @@ func (e TopologyNodeTypeEnum) Valid() bool {
 	}
 }
 
+// Defines values for TransactionTypeEnum.
+const (
+	Adjustment             TransactionTypeEnum = "adjustment"
+	AffiliateFee           TransactionTypeEnum = "affiliate_fee"
+	Compensation           TransactionTypeEnum = "compensation"
+	Expiry                 TransactionTypeEnum = "expiry"
+	Payout                 TransactionTypeEnum = "payout"
+	Rollback               TransactionTypeEnum = "rollback"
+	StaffGrant             TransactionTypeEnum = "staff_grant"
+	TransferIn             TransactionTypeEnum = "transfer_in"
+	TransferOut            TransactionTypeEnum = "transfer_out"
+	WithdrawableAdjustment TransactionTypeEnum = "withdrawable_adjustment"
+)
+
+// Valid indicates whether the value is a known member of the TransactionTypeEnum enum.
+func (e TransactionTypeEnum) Valid() bool {
+	switch e {
+	case Adjustment:
+		return true
+	case AffiliateFee:
+		return true
+	case Compensation:
+		return true
+	case Expiry:
+		return true
+	case Payout:
+		return true
+	case Rollback:
+		return true
+	case StaffGrant:
+		return true
+	case TransferIn:
+		return true
+	case TransferOut:
+		return true
+	case WithdrawableAdjustment:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for TransitionModeEnum.
 const (
 	AutomaticOnCompletion TransitionModeEnum = "automatic_on_completion"
@@ -22966,6 +23077,31 @@ type AdministrativeAccess struct {
 	StaffCount   *int         `json:"staff_count,omitempty"`
 	SupportCount *int         `json:"support_count,omitempty"`
 	Users        *[]AdminUser `json:"users,omitempty"`
+}
+
+// AffiliateEarnings defines model for AffiliateEarnings.
+type AffiliateEarnings struct {
+	PerMonth            []AffiliateEarningsMonth `json:"per_month"`
+	TotalEarned         string                   `json:"total_earned"`
+	WithdrawableBalance string                   `json:"withdrawable_balance"`
+}
+
+// AffiliateEarningsMonth defines model for AffiliateEarningsMonth.
+type AffiliateEarningsMonth struct {
+	Amount string `json:"amount"`
+	Month  int    `json:"month"`
+	Year   int    `json:"year"`
+}
+
+// AffiliateFeeAccrual defines model for AffiliateFeeAccrual.
+type AffiliateFeeAccrual struct {
+	AffiliateUuid *openapi_types.UUID `json:"affiliate_uuid,omitempty"`
+	Amount        string              `json:"amount"`
+	Created       *time.Time          `json:"created,omitempty"`
+	CustomerName  *string             `json:"customer_name,omitempty"`
+	InvoiceMonth  *int                `json:"invoice_month,omitempty"`
+	InvoiceYear   *int                `json:"invoice_year,omitempty"`
+	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // AffiliatedOrganization defines model for AffiliatedOrganization.
@@ -27803,6 +27939,7 @@ type ConsoleUrl struct {
 
 // ConstanceSettings defines model for ConstanceSettings.
 type ConstanceSettings struct {
+	AFFILIATESENABLED                                *bool                                                            `json:"AFFILIATES_ENABLED,omitempty"`
 	AFFILIATIONREQUIREDATPROJECTCREATION             *bool                                                            `json:"AFFILIATION_REQUIRED_AT_PROJECT_CREATION,omitempty"`
 	AIASSISTANTAPITOKEN                              *string                                                          `json:"AI_ASSISTANT_API_TOKEN,omitempty"`
 	AIASSISTANTAPIURL                                *string                                                          `json:"AI_ASSISTANT_API_URL,omitempty"`
@@ -28170,6 +28307,7 @@ type ConstanceSettings_SSHKEYALLOWEDTYPES_Item struct {
 
 // ConstanceSettingsRequest defines model for ConstanceSettingsRequest.
 type ConstanceSettingsRequest struct {
+	AFFILIATESENABLED                                *bool                                                                   `json:"AFFILIATES_ENABLED,omitempty"`
 	AFFILIATIONREQUIREDATPROJECTCREATION             *bool                                                                   `json:"AFFILIATION_REQUIRED_AT_PROJECT_CREATION,omitempty"`
 	AIASSISTANTAPITOKEN                              *string                                                                 `json:"AI_ASSISTANT_API_TOKEN,omitempty"`
 	AIASSISTANTAPIURL                                *string                                                                 `json:"AI_ASSISTANT_API_URL,omitempty"`
@@ -28537,6 +28675,7 @@ type ConstanceSettingsRequest_SSHKEYALLOWEDTYPES_Item struct {
 
 // ConstanceSettingsRequestForm defines model for ConstanceSettingsRequestForm.
 type ConstanceSettingsRequestForm struct {
+	AFFILIATESENABLED                                *bool                                                                       `json:"AFFILIATES_ENABLED,omitempty"`
 	AFFILIATIONREQUIREDATPROJECTCREATION             *bool                                                                       `json:"AFFILIATION_REQUIRED_AT_PROJECT_CREATION,omitempty"`
 	AIASSISTANTAPITOKEN                              *string                                                                     `json:"AI_ASSISTANT_API_TOKEN,omitempty"`
 	AIASSISTANTAPIURL                                *string                                                                     `json:"AI_ASSISTANT_API_URL,omitempty"`
@@ -28904,6 +29043,7 @@ type ConstanceSettingsRequestForm_SSHKEYALLOWEDTYPES_Item struct {
 
 // ConstanceSettingsRequestMultipart defines model for ConstanceSettingsRequestMultipart.
 type ConstanceSettingsRequestMultipart struct {
+	AFFILIATESENABLED                                *bool                                                                            `json:"AFFILIATES_ENABLED,omitempty"`
 	AFFILIATIONREQUIREDATPROJECTCREATION             *bool                                                                            `json:"AFFILIATION_REQUIRED_AT_PROJECT_CREATION,omitempty"`
 	AIASSISTANTAPITOKEN                              *string                                                                          `json:"AI_ASSISTANT_API_TOKEN,omitempty"`
 	AIASSISTANTAPIURL                                *string                                                                          `json:"AI_ASSISTANT_API_URL,omitempty"`
@@ -29481,6 +29621,34 @@ type CreateAttachmentsRequest struct {
 	Attachments []openapi_types.File `json:"attachments"`
 }
 
+// CreateCustomerAffiliate defines model for CreateCustomerAffiliate.
+type CreateCustomerAffiliate struct {
+	Affiliate     string              `json:"affiliate"`
+	AffiliateName *string             `json:"affiliate_name,omitempty"`
+	AffiliateUuid *openapi_types.UUID `json:"affiliate_uuid,omitempty"`
+	Created       *time.Time          `json:"created,omitempty"`
+	Customer      string              `json:"customer"`
+	CustomerName  *string             `json:"customer_name,omitempty"`
+	CustomerUuid  *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	EndDate       *openapi_types.Date `json:"end_date,omitempty"`
+	FeePercent    *string             `json:"fee_percent,omitempty"`
+	IsActive      *bool               `json:"is_active,omitempty"`
+	StartDate     *openapi_types.Date `json:"start_date,omitempty"`
+	TotalEarned   *float64            `json:"total_earned,omitempty"`
+	Url           *string             `json:"url,omitempty"`
+	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// CreateCustomerAffiliateRequest defines model for CreateCustomerAffiliateRequest.
+type CreateCustomerAffiliateRequest struct {
+	Affiliate  string              `json:"affiliate"`
+	Customer   string              `json:"customer"`
+	EndDate    *openapi_types.Date `json:"end_date,omitempty"`
+	FeePercent *string             `json:"fee_percent,omitempty"`
+	IsActive   *bool               `json:"is_active,omitempty"`
+	StartDate  *openapi_types.Date `json:"start_date,omitempty"`
+}
+
 // CreateCustomerCredit defines model for CreateCustomerCredit.
 type CreateCustomerCredit struct {
 	AllocatedToProjects       *float64                     `json:"allocated_to_projects,omitempty"`
@@ -29499,6 +29667,12 @@ type CreateCustomerCredit struct {
 	Url                       *string                      `json:"url,omitempty"`
 	Uuid                      *openapi_types.UUID          `json:"uuid,omitempty"`
 	Value                     *string                      `json:"value,omitempty"`
+
+	// WithdrawableBalance Part of the credit that may leave the platform via payouts or
+	// transfers: earnings-typed ledger inflows minus outflows, capped by
+	// the current credit value so that staff-granted (promotional) credit
+	// is never withdrawable and credit expiry wipes earnings too.
+	WithdrawableBalance *float64 `json:"withdrawable_balance,omitempty"`
 }
 
 // CreateCustomerCreditRequest defines model for CreateCustomerCreditRequest.
@@ -29735,6 +29909,18 @@ type CredentialsValidationResponse struct {
 	Valid      bool        `json:"valid"`
 }
 
+// CreditTransaction defines model for CreditTransaction.
+type CreditTransaction struct {
+	Amount                 string              `json:"amount"`
+	Comment                *string             `json:"comment,omitempty"`
+	Created                *time.Time          `json:"created,omitempty"`
+	CustomerName           *string             `json:"customer_name,omitempty"`
+	CustomerUuid           *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	TransactionType        TransactionTypeEnum `json:"transaction_type"`
+	TransactionTypeDisplay *string             `json:"transaction_type_display,omitempty"`
+	Uuid                   *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
 // CurrentQosStatusEnum defines model for CurrentQosStatusEnum.
 type CurrentQosStatusEnum string
 
@@ -29782,6 +29968,7 @@ type Customer struct {
 
 	// GracePeriodDays Number of extra days after project end date before resources are terminated
 	GracePeriodDays   *int     `json:"grace_period_days,omitempty"`
+	HasAffiliateLinks *bool    `json:"has_affiliate_links,omitempty"`
 	Homepage          *string  `json:"homepage,omitempty"`
 	HouseNr           *string  `json:"house_nr,omitempty"`
 	Household         *string  `json:"household,omitempty"`
@@ -29843,6 +30030,27 @@ type Customer struct {
 type Customer_Country struct {
 	union json.RawMessage
 }
+
+// CustomerAffiliate defines model for CustomerAffiliate.
+type CustomerAffiliate struct {
+	Affiliate     string              `json:"affiliate"`
+	AffiliateName *string             `json:"affiliate_name,omitempty"`
+	AffiliateUuid *openapi_types.UUID `json:"affiliate_uuid,omitempty"`
+	Created       *time.Time          `json:"created,omitempty"`
+	Customer      string              `json:"customer"`
+	CustomerName  *string             `json:"customer_name,omitempty"`
+	CustomerUuid  *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	EndDate       *openapi_types.Date `json:"end_date,omitempty"`
+	FeePercent    *string             `json:"fee_percent,omitempty"`
+	IsActive      *bool               `json:"is_active,omitempty"`
+	StartDate     *openapi_types.Date `json:"start_date,omitempty"`
+	TotalEarned   *float64            `json:"total_earned,omitempty"`
+	Url           *string             `json:"url,omitempty"`
+	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// CustomerAffiliateOEnum defines model for CustomerAffiliateOEnum.
+type CustomerAffiliateOEnum string
 
 // CustomerBillingSummaryBillingSync defines model for CustomerBillingSummaryBillingSync.
 type CustomerBillingSummaryBillingSync struct {
@@ -29963,6 +30171,12 @@ type CustomerCredit struct {
 	Url                       *string                      `json:"url,omitempty"`
 	Uuid                      *openapi_types.UUID          `json:"uuid,omitempty"`
 	Value                     *string                      `json:"value,omitempty"`
+
+	// WithdrawableBalance Part of the credit that may leave the platform via payouts or
+	// transfers: earnings-typed ledger inflows minus outflows, capped by
+	// the current credit value so that staff-granted (promotional) credit
+	// is never withdrawable and credit expiry wipes earnings too.
+	WithdrawableBalance *float64 `json:"withdrawable_balance,omitempty"`
 }
 
 // CustomerCreditConsumption defines model for CustomerCreditConsumption.
@@ -30870,13 +31084,16 @@ type DigitalOceanSize struct {
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// DiscountAggregationEnum defines model for DiscountAggregationEnum.
+type DiscountAggregationEnum string
+
 // DiscountConfigRequest defines model for DiscountConfigRequest.
 type DiscountConfigRequest struct {
-	// DiscountRate Discount rate in percentage (0-100).
-	DiscountRate *int `json:"discount_rate,omitempty"`
+	// DiscountAggregation Whether the discount is computed on a single resource's usage or aggregated across all of the customer's resources of the offering.
+	DiscountAggregation *DiscountAggregationEnum `json:"discount_aggregation,omitempty"`
 
-	// DiscountThreshold Minimum quantity to be eligible for discount.
-	DiscountThreshold *int `json:"discount_threshold,omitempty"`
+	// DiscountFormula Volume discount formula evaluated with the billed quantity bound to `usage`; returns a discount percentage (0-100). Empty removes the discount. Example: '10 if usage >= 100 else 0'.
+	DiscountFormula *string `json:"discount_formula,omitempty"`
 }
 
 // DiscountTypeEnum defines model for DiscountTypeEnum.
@@ -35858,16 +36075,15 @@ type NestedPartition struct {
 
 // NestedPlanComponent defines model for NestedPlanComponent.
 type NestedPlanComponent struct {
-	Amount              *int    `json:"amount,omitempty"`
-	DiscountDescription *string `json:"discount_description,omitempty"`
+	Amount *int `json:"amount,omitempty"`
 
-	// DiscountRate Discount rate in percentage.
-	DiscountRate *int `json:"discount_rate,omitempty"`
+	// DiscountAggregation Whether the volume discount is computed on a single resource's usage or aggregated across all of the customer's resources of this offering.
+	DiscountAggregation *DiscountAggregationEnum `json:"discount_aggregation,omitempty"`
+	DiscountDescription *string                  `json:"discount_description,omitempty"`
 
-	// DiscountThreshold Minimum amount to be eligible for discount.
-	DiscountThreshold *int    `json:"discount_threshold,omitempty"`
-	DiscountedPrice   *string `json:"discounted_price,omitempty"`
-	FuturePrice       *string `json:"future_price,omitempty"`
+	// DiscountFormula Volume discount formula evaluated with the billed quantity bound to `usage`; returns a discount percentage (clamped to 0-100). Empty means no discount. Example: '10 if usage >= 100 else 0'.
+	DiscountFormula *string `json:"discount_formula,omitempty"`
+	FuturePrice     *string `json:"future_price,omitempty"`
 
 	// MeasuredUnit Unit of measurement, for example, GB.
 	MeasuredUnit *string `json:"measured_unit,omitempty"`
@@ -41370,6 +41586,16 @@ type PatchedConflictOfInterestRequest struct {
 	Status         *ConflictOfInterestStatusEnum `json:"status,omitempty"`
 }
 
+// PatchedCreateCustomerAffiliateRequest defines model for PatchedCreateCustomerAffiliateRequest.
+type PatchedCreateCustomerAffiliateRequest struct {
+	Affiliate  *string             `json:"affiliate,omitempty"`
+	Customer   *string             `json:"customer,omitempty"`
+	EndDate    *openapi_types.Date `json:"end_date,omitempty"`
+	FeePercent *string             `json:"fee_percent,omitempty"`
+	IsActive   *bool               `json:"is_active,omitempty"`
+	StartDate  *openapi_types.Date `json:"start_date,omitempty"`
+}
+
 // PatchedCreateCustomerCreditRequest defines model for PatchedCreateCustomerCreditRequest.
 type PatchedCreateCustomerCreditRequest struct {
 	ApplyAsMinimalConsumption *bool                        `json:"apply_as_minimal_consumption,omitempty"`
@@ -43850,12 +44076,12 @@ type PlanComponent struct {
 	// ComponentName Display name for the measured unit, for example, Floating IP.
 	ComponentName *string `json:"component_name,omitempty"`
 
-	// DiscountRate Discount rate in percentage.
-	DiscountRate *int `json:"discount_rate,omitempty"`
+	// DiscountAggregation Whether the volume discount is computed on a single resource's usage or aggregated across all of the customer's resources of this offering.
+	DiscountAggregation *DiscountAggregationEnum `json:"discount_aggregation,omitempty"`
 
-	// DiscountThreshold Minimum amount to be eligible for discount.
-	DiscountThreshold *int    `json:"discount_threshold,omitempty"`
-	FuturePrice       *string `json:"future_price,omitempty"`
+	// DiscountFormula Volume discount formula evaluated with the billed quantity bound to `usage`; returns a discount percentage (clamped to 0-100). Empty means no discount. Example: '10 if usage >= 100 else 0'.
+	DiscountFormula *string `json:"discount_formula,omitempty"`
+	FuturePrice     *string `json:"future_price,omitempty"`
 
 	// MeasuredUnit Unit of measurement, for example, GB.
 	MeasuredUnit *string             `json:"measured_unit,omitempty"`
@@ -51663,6 +51889,9 @@ type TransactionStats struct {
 	RolledBack *int `json:"rolled_back,omitempty"`
 }
 
+// TransactionTypeEnum defines model for TransactionTypeEnum.
+type TransactionTypeEnum string
+
 // TransitionModeEnum defines model for TransitionModeEnum.
 type TransitionModeEnum string
 
@@ -53343,6 +53572,12 @@ type WebHookRequest struct {
 
 // WidgetEnum defines model for WidgetEnum.
 type WidgetEnum string
+
+// WithdrawableAdjustmentRequest defines model for WithdrawableAdjustmentRequest.
+type WithdrawableAdjustmentRequest struct {
+	Amount  string `json:"amount"`
+	Comment string `json:"comment"`
+}
 
 // WorkflowCriterion defines model for WorkflowCriterion.
 type WorkflowCriterion struct {
@@ -56285,6 +56520,97 @@ type ConflictsOfInterestCountParams struct {
 	RoundUuid    *openapi_types.UUID             `form:"round_uuid,omitempty" json:"round_uuid,omitempty"`
 	Severity     *COISeverityLevel               `form:"severity,omitempty" json:"severity,omitempty"`
 	Status       *[]ConflictOfInterestStatusEnum `form:"status,omitempty" json:"status,omitempty"`
+}
+
+// CreditTransactionsListParams defines parameters for CreditTransactionsList.
+type CreditTransactionsListParams struct {
+	CreditUuid   *openapi_types.UUID `form:"credit_uuid,omitempty" json:"credit_uuid,omitempty"`
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// O Ordering
+	//
+	O *[]BackendResourceReqOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize        *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	TransactionType *string   `form:"transaction_type,omitempty" json:"transaction_type,omitempty"`
+}
+
+// CreditTransactionsCountParams defines parameters for CreditTransactionsCount.
+type CreditTransactionsCountParams struct {
+	CreditUuid   *openapi_types.UUID `form:"credit_uuid,omitempty" json:"credit_uuid,omitempty"`
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// O Ordering
+	//
+	O *[]BackendResourceReqOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize        *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	TransactionType *string   `form:"transaction_type,omitempty" json:"transaction_type,omitempty"`
+}
+
+// CustomerAffiliatesListParams defines parameters for CustomerAffiliatesList.
+type CustomerAffiliatesListParams struct {
+	AffiliateName *string             `form:"affiliate_name,omitempty" json:"affiliate_name,omitempty"`
+	AffiliateUuid *openapi_types.UUID `form:"affiliate_uuid,omitempty" json:"affiliate_uuid,omitempty"`
+	CustomerName  *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+	CustomerUuid  *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	IsActive      *bool               `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// O Ordering
+	//
+	O *[]CustomerAffiliateOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// CustomerAffiliatesCountParams defines parameters for CustomerAffiliatesCount.
+type CustomerAffiliatesCountParams struct {
+	AffiliateName *string             `form:"affiliate_name,omitempty" json:"affiliate_name,omitempty"`
+	AffiliateUuid *openapi_types.UUID `form:"affiliate_uuid,omitempty" json:"affiliate_uuid,omitempty"`
+	CustomerName  *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+	CustomerUuid  *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	IsActive      *bool               `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// O Ordering
+	//
+	O *[]CustomerAffiliateOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// CustomerAffiliatesAccrualsListParams defines parameters for CustomerAffiliatesAccrualsList.
+type CustomerAffiliatesAccrualsListParams struct {
+	AffiliateName *string             `form:"affiliate_name,omitempty" json:"affiliate_name,omitempty"`
+	AffiliateUuid *openapi_types.UUID `form:"affiliate_uuid,omitempty" json:"affiliate_uuid,omitempty"`
+	CustomerName  *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+	CustomerUuid  *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	IsActive      *bool               `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// O Ordering
+	//
+	O *[]CustomerAffiliateOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
 // CustomerCreditsListParams defines parameters for CustomerCreditsList.
@@ -76963,6 +77289,15 @@ type ConflictsOfInterestRecuseJSONRequestBody = COIStatusUpdateRequest
 // ConflictsOfInterestWaiveJSONRequestBody defines body for ConflictsOfInterestWaive for application/json ContentType.
 type ConflictsOfInterestWaiveJSONRequestBody = COIStatusUpdateRequest
 
+// CustomerAffiliatesCreateJSONRequestBody defines body for CustomerAffiliatesCreate for application/json ContentType.
+type CustomerAffiliatesCreateJSONRequestBody = CreateCustomerAffiliateRequest
+
+// CustomerAffiliatesPartialUpdateJSONRequestBody defines body for CustomerAffiliatesPartialUpdate for application/json ContentType.
+type CustomerAffiliatesPartialUpdateJSONRequestBody = PatchedCreateCustomerAffiliateRequest
+
+// CustomerAffiliatesUpdateJSONRequestBody defines body for CustomerAffiliatesUpdate for application/json ContentType.
+type CustomerAffiliatesUpdateJSONRequestBody = CreateCustomerAffiliateRequest
+
 // CustomerCreditsCreateJSONRequestBody defines body for CustomerCreditsCreate for application/json ContentType.
 type CustomerCreditsCreateJSONRequestBody = CreateCustomerCreditRequest
 
@@ -76971,6 +77306,9 @@ type CustomerCreditsPartialUpdateJSONRequestBody = PatchedCreateCustomerCreditRe
 
 // CustomerCreditsUpdateJSONRequestBody defines body for CustomerCreditsUpdate for application/json ContentType.
 type CustomerCreditsUpdateJSONRequestBody = CreateCustomerCreditRequest
+
+// CustomerCreditsAdjustWithdrawableJSONRequestBody defines body for CustomerCreditsAdjustWithdrawable for application/json ContentType.
+type CustomerCreditsAdjustWithdrawableJSONRequestBody = WithdrawableAdjustmentRequest
 
 // CustomersCreateJSONRequestBody defines body for CustomersCreate for application/json ContentType.
 type CustomersCreateJSONRequestBody = CustomerRequest
@@ -95701,6 +96039,48 @@ type ClientInterface interface {
 
 	ConflictsOfInterestWaive(ctx context.Context, uuid openapi_types.UUID, body ConflictsOfInterestWaiveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// CreditTransactionsList request
+	CreditTransactionsList(ctx context.Context, params *CreditTransactionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CreditTransactionsCount request
+	CreditTransactionsCount(ctx context.Context, params *CreditTransactionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CreditTransactionsRetrieve request
+	CreditTransactionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CustomerAffiliatesList request
+	CustomerAffiliatesList(ctx context.Context, params *CustomerAffiliatesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CustomerAffiliatesCount request
+	CustomerAffiliatesCount(ctx context.Context, params *CustomerAffiliatesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CustomerAffiliatesCreateWithBody request with any body
+	CustomerAffiliatesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	CustomerAffiliatesCreate(ctx context.Context, body CustomerAffiliatesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CustomerAffiliatesDestroy request
+	CustomerAffiliatesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CustomerAffiliatesRetrieve request
+	CustomerAffiliatesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CustomerAffiliatesPartialUpdateWithBody request with any body
+	CustomerAffiliatesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	CustomerAffiliatesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body CustomerAffiliatesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CustomerAffiliatesUpdateWithBody request with any body
+	CustomerAffiliatesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	CustomerAffiliatesUpdate(ctx context.Context, uuid openapi_types.UUID, body CustomerAffiliatesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CustomerAffiliatesAccrualsList request
+	CustomerAffiliatesAccrualsList(ctx context.Context, uuid openapi_types.UUID, params *CustomerAffiliatesAccrualsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CustomerAffiliatesEarningsRetrieve request
+	CustomerAffiliatesEarningsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// CustomerCreditsList request
 	CustomerCreditsList(ctx context.Context, params *CustomerCreditsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -95727,6 +96107,11 @@ type ClientInterface interface {
 	CustomerCreditsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	CustomerCreditsUpdate(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CustomerCreditsAdjustWithdrawableWithBody request with any body
+	CustomerCreditsAdjustWithdrawableWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	CustomerCreditsAdjustWithdrawable(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsAdjustWithdrawableJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CustomerCreditsApplyCompensations request
 	CustomerCreditsApplyCompensations(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -110569,6 +110954,186 @@ func (c *Client) ConflictsOfInterestWaive(ctx context.Context, uuid openapi_type
 	return c.Client.Do(req)
 }
 
+func (c *Client) CreditTransactionsList(ctx context.Context, params *CreditTransactionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreditTransactionsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CreditTransactionsCount(ctx context.Context, params *CreditTransactionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreditTransactionsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CreditTransactionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreditTransactionsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomerAffiliatesList(ctx context.Context, params *CustomerAffiliatesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomerAffiliatesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomerAffiliatesCount(ctx context.Context, params *CustomerAffiliatesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomerAffiliatesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomerAffiliatesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomerAffiliatesCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomerAffiliatesCreate(ctx context.Context, body CustomerAffiliatesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomerAffiliatesCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomerAffiliatesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomerAffiliatesDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomerAffiliatesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomerAffiliatesRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomerAffiliatesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomerAffiliatesPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomerAffiliatesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body CustomerAffiliatesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomerAffiliatesPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomerAffiliatesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomerAffiliatesUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomerAffiliatesUpdate(ctx context.Context, uuid openapi_types.UUID, body CustomerAffiliatesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomerAffiliatesUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomerAffiliatesAccrualsList(ctx context.Context, uuid openapi_types.UUID, params *CustomerAffiliatesAccrualsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomerAffiliatesAccrualsListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomerAffiliatesEarningsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomerAffiliatesEarningsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) CustomerCreditsList(ctx context.Context, params *CustomerCreditsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCustomerCreditsListRequest(c.Server, params)
 	if err != nil {
@@ -110679,6 +111244,30 @@ func (c *Client) CustomerCreditsUpdateWithBody(ctx context.Context, uuid openapi
 
 func (c *Client) CustomerCreditsUpdate(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCustomerCreditsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomerCreditsAdjustWithdrawableWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomerCreditsAdjustWithdrawableRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomerCreditsAdjustWithdrawable(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsAdjustWithdrawableJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomerCreditsAdjustWithdrawableRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -175257,6 +175846,925 @@ func NewConflictsOfInterestWaiveRequestWithBody(server string, uuid openapi_type
 	return req, nil
 }
 
+// NewCreditTransactionsListRequest generates requests for CreditTransactionsList
+func NewCreditTransactionsListRequest(server string, params *CreditTransactionsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/credit-transactions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CreditUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "credit_uuid", *params.CreditUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.TransactionType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "transaction_type", *params.TransactionType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCreditTransactionsCountRequest generates requests for CreditTransactionsCount
+func NewCreditTransactionsCountRequest(server string, params *CreditTransactionsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/credit-transactions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CreditUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "credit_uuid", *params.CreditUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.TransactionType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "transaction_type", *params.TransactionType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCreditTransactionsRetrieveRequest generates requests for CreditTransactionsRetrieve
+func NewCreditTransactionsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/credit-transactions/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCustomerAffiliatesListRequest generates requests for CustomerAffiliatesList
+func NewCustomerAffiliatesListRequest(server string, params *CustomerAffiliatesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/customer-affiliates/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.AffiliateName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliate_name", *params.AffiliateName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.AffiliateUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliate_uuid", *params.AffiliateUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_name", *params.CustomerName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_active", *params.IsActive, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCustomerAffiliatesCountRequest generates requests for CustomerAffiliatesCount
+func NewCustomerAffiliatesCountRequest(server string, params *CustomerAffiliatesCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/customer-affiliates/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.AffiliateName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliate_name", *params.AffiliateName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.AffiliateUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliate_uuid", *params.AffiliateUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_name", *params.CustomerName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_active", *params.IsActive, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCustomerAffiliatesCreateRequest calls the generic CustomerAffiliatesCreate builder with application/json body
+func NewCustomerAffiliatesCreateRequest(server string, body CustomerAffiliatesCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCustomerAffiliatesCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewCustomerAffiliatesCreateRequestWithBody generates requests for CustomerAffiliatesCreate with any type of body
+func NewCustomerAffiliatesCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/customer-affiliates/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewCustomerAffiliatesDestroyRequest generates requests for CustomerAffiliatesDestroy
+func NewCustomerAffiliatesDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/customer-affiliates/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCustomerAffiliatesRetrieveRequest generates requests for CustomerAffiliatesRetrieve
+func NewCustomerAffiliatesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/customer-affiliates/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCustomerAffiliatesPartialUpdateRequest calls the generic CustomerAffiliatesPartialUpdate builder with application/json body
+func NewCustomerAffiliatesPartialUpdateRequest(server string, uuid openapi_types.UUID, body CustomerAffiliatesPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCustomerAffiliatesPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewCustomerAffiliatesPartialUpdateRequestWithBody generates requests for CustomerAffiliatesPartialUpdate with any type of body
+func NewCustomerAffiliatesPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/customer-affiliates/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewCustomerAffiliatesUpdateRequest calls the generic CustomerAffiliatesUpdate builder with application/json body
+func NewCustomerAffiliatesUpdateRequest(server string, uuid openapi_types.UUID, body CustomerAffiliatesUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCustomerAffiliatesUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewCustomerAffiliatesUpdateRequestWithBody generates requests for CustomerAffiliatesUpdate with any type of body
+func NewCustomerAffiliatesUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/customer-affiliates/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewCustomerAffiliatesAccrualsListRequest generates requests for CustomerAffiliatesAccrualsList
+func NewCustomerAffiliatesAccrualsListRequest(server string, uuid openapi_types.UUID, params *CustomerAffiliatesAccrualsListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/customer-affiliates/%s/accruals/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.AffiliateName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliate_name", *params.AffiliateName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.AffiliateUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliate_uuid", *params.AffiliateUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_name", *params.CustomerName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_active", *params.IsActive, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCustomerAffiliatesEarningsRetrieveRequest generates requests for CustomerAffiliatesEarningsRetrieve
+func NewCustomerAffiliatesEarningsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/customer-affiliates/%s/earnings/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewCustomerCreditsListRequest generates requests for CustomerCreditsList
 func NewCustomerCreditsListRequest(server string, params *CustomerCreditsListParams) (*http.Request, error) {
 	var err error
@@ -175702,6 +177210,53 @@ func NewCustomerCreditsUpdateRequestWithBody(server string, uuid openapi_types.U
 	}
 
 	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewCustomerCreditsAdjustWithdrawableRequest calls the generic CustomerCreditsAdjustWithdrawable builder with application/json body
+func NewCustomerCreditsAdjustWithdrawableRequest(server string, uuid openapi_types.UUID, body CustomerCreditsAdjustWithdrawableJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCustomerCreditsAdjustWithdrawableRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewCustomerCreditsAdjustWithdrawableRequestWithBody generates requests for CustomerCreditsAdjustWithdrawable with any type of body
+func NewCustomerCreditsAdjustWithdrawableRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/customer-credits/%s/adjust_withdrawable/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
@@ -347765,6 +349320,48 @@ type ClientWithResponsesInterface interface {
 
 	ConflictsOfInterestWaiveWithResponse(ctx context.Context, uuid openapi_types.UUID, body ConflictsOfInterestWaiveJSONRequestBody, reqEditors ...RequestEditorFn) (*ConflictsOfInterestWaiveResponse, error)
 
+	// CreditTransactionsListWithResponse request
+	CreditTransactionsListWithResponse(ctx context.Context, params *CreditTransactionsListParams, reqEditors ...RequestEditorFn) (*CreditTransactionsListResponse, error)
+
+	// CreditTransactionsCountWithResponse request
+	CreditTransactionsCountWithResponse(ctx context.Context, params *CreditTransactionsCountParams, reqEditors ...RequestEditorFn) (*CreditTransactionsCountResponse, error)
+
+	// CreditTransactionsRetrieveWithResponse request
+	CreditTransactionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CreditTransactionsRetrieveResponse, error)
+
+	// CustomerAffiliatesListWithResponse request
+	CustomerAffiliatesListWithResponse(ctx context.Context, params *CustomerAffiliatesListParams, reqEditors ...RequestEditorFn) (*CustomerAffiliatesListResponse, error)
+
+	// CustomerAffiliatesCountWithResponse request
+	CustomerAffiliatesCountWithResponse(ctx context.Context, params *CustomerAffiliatesCountParams, reqEditors ...RequestEditorFn) (*CustomerAffiliatesCountResponse, error)
+
+	// CustomerAffiliatesCreateWithBodyWithResponse request with any body
+	CustomerAffiliatesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomerAffiliatesCreateResponse, error)
+
+	CustomerAffiliatesCreateWithResponse(ctx context.Context, body CustomerAffiliatesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomerAffiliatesCreateResponse, error)
+
+	// CustomerAffiliatesDestroyWithResponse request
+	CustomerAffiliatesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomerAffiliatesDestroyResponse, error)
+
+	// CustomerAffiliatesRetrieveWithResponse request
+	CustomerAffiliatesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomerAffiliatesRetrieveResponse, error)
+
+	// CustomerAffiliatesPartialUpdateWithBodyWithResponse request with any body
+	CustomerAffiliatesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomerAffiliatesPartialUpdateResponse, error)
+
+	CustomerAffiliatesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomerAffiliatesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomerAffiliatesPartialUpdateResponse, error)
+
+	// CustomerAffiliatesUpdateWithBodyWithResponse request with any body
+	CustomerAffiliatesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomerAffiliatesUpdateResponse, error)
+
+	CustomerAffiliatesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomerAffiliatesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomerAffiliatesUpdateResponse, error)
+
+	// CustomerAffiliatesAccrualsListWithResponse request
+	CustomerAffiliatesAccrualsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *CustomerAffiliatesAccrualsListParams, reqEditors ...RequestEditorFn) (*CustomerAffiliatesAccrualsListResponse, error)
+
+	// CustomerAffiliatesEarningsRetrieveWithResponse request
+	CustomerAffiliatesEarningsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomerAffiliatesEarningsRetrieveResponse, error)
+
 	// CustomerCreditsListWithResponse request
 	CustomerCreditsListWithResponse(ctx context.Context, params *CustomerCreditsListParams, reqEditors ...RequestEditorFn) (*CustomerCreditsListResponse, error)
 
@@ -347791,6 +349388,11 @@ type ClientWithResponsesInterface interface {
 	CustomerCreditsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomerCreditsUpdateResponse, error)
 
 	CustomerCreditsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomerCreditsUpdateResponse, error)
+
+	// CustomerCreditsAdjustWithdrawableWithBodyWithResponse request with any body
+	CustomerCreditsAdjustWithdrawableWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomerCreditsAdjustWithdrawableResponse, error)
+
+	CustomerCreditsAdjustWithdrawableWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsAdjustWithdrawableJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomerCreditsAdjustWithdrawableResponse, error)
 
 	// CustomerCreditsApplyCompensationsWithResponse request
 	CustomerCreditsApplyCompensationsWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomerCreditsApplyCompensationsResponse, error)
@@ -368190,6 +369792,363 @@ func (r ConflictsOfInterestWaiveResponse) ContentType() string {
 	return ""
 }
 
+type CreditTransactionsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]CreditTransaction
+}
+
+// Status returns HTTPResponse.Status
+func (r CreditTransactionsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CreditTransactionsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r CreditTransactionsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type CreditTransactionsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r CreditTransactionsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CreditTransactionsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r CreditTransactionsCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type CreditTransactionsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CreditTransaction
+}
+
+// Status returns HTTPResponse.Status
+func (r CreditTransactionsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CreditTransactionsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r CreditTransactionsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type CustomerAffiliatesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]CustomerAffiliate
+}
+
+// Status returns HTTPResponse.Status
+func (r CustomerAffiliatesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CustomerAffiliatesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r CustomerAffiliatesListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type CustomerAffiliatesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r CustomerAffiliatesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CustomerAffiliatesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r CustomerAffiliatesCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type CustomerAffiliatesCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *CreateCustomerAffiliate
+}
+
+// Status returns HTTPResponse.Status
+func (r CustomerAffiliatesCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CustomerAffiliatesCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r CustomerAffiliatesCreateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type CustomerAffiliatesDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r CustomerAffiliatesDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CustomerAffiliatesDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r CustomerAffiliatesDestroyResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type CustomerAffiliatesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CustomerAffiliate
+}
+
+// Status returns HTTPResponse.Status
+func (r CustomerAffiliatesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CustomerAffiliatesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r CustomerAffiliatesRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type CustomerAffiliatesPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CreateCustomerAffiliate
+}
+
+// Status returns HTTPResponse.Status
+func (r CustomerAffiliatesPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CustomerAffiliatesPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r CustomerAffiliatesPartialUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type CustomerAffiliatesUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CreateCustomerAffiliate
+}
+
+// Status returns HTTPResponse.Status
+func (r CustomerAffiliatesUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CustomerAffiliatesUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r CustomerAffiliatesUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type CustomerAffiliatesAccrualsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]AffiliateFeeAccrual
+}
+
+// Status returns HTTPResponse.Status
+func (r CustomerAffiliatesAccrualsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CustomerAffiliatesAccrualsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r CustomerAffiliatesAccrualsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type CustomerAffiliatesEarningsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AffiliateEarnings
+}
+
+// Status returns HTTPResponse.Status
+func (r CustomerAffiliatesEarningsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CustomerAffiliatesEarningsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r CustomerAffiliatesEarningsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type CustomerCreditsListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -368392,6 +370351,36 @@ func (r CustomerCreditsUpdateResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r CustomerCreditsUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type CustomerCreditsAdjustWithdrawableResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CustomerCredit
+}
+
+// Status returns HTTPResponse.Status
+func (r CustomerCreditsAdjustWithdrawableResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CustomerCreditsAdjustWithdrawableResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r CustomerCreditsAdjustWithdrawableResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -438543,6 +440532,138 @@ func (c *ClientWithResponses) ConflictsOfInterestWaiveWithResponse(ctx context.C
 	return ParseConflictsOfInterestWaiveResponse(rsp)
 }
 
+// CreditTransactionsListWithResponse request returning *CreditTransactionsListResponse
+func (c *ClientWithResponses) CreditTransactionsListWithResponse(ctx context.Context, params *CreditTransactionsListParams, reqEditors ...RequestEditorFn) (*CreditTransactionsListResponse, error) {
+	rsp, err := c.CreditTransactionsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreditTransactionsListResponse(rsp)
+}
+
+// CreditTransactionsCountWithResponse request returning *CreditTransactionsCountResponse
+func (c *ClientWithResponses) CreditTransactionsCountWithResponse(ctx context.Context, params *CreditTransactionsCountParams, reqEditors ...RequestEditorFn) (*CreditTransactionsCountResponse, error) {
+	rsp, err := c.CreditTransactionsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreditTransactionsCountResponse(rsp)
+}
+
+// CreditTransactionsRetrieveWithResponse request returning *CreditTransactionsRetrieveResponse
+func (c *ClientWithResponses) CreditTransactionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CreditTransactionsRetrieveResponse, error) {
+	rsp, err := c.CreditTransactionsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCreditTransactionsRetrieveResponse(rsp)
+}
+
+// CustomerAffiliatesListWithResponse request returning *CustomerAffiliatesListResponse
+func (c *ClientWithResponses) CustomerAffiliatesListWithResponse(ctx context.Context, params *CustomerAffiliatesListParams, reqEditors ...RequestEditorFn) (*CustomerAffiliatesListResponse, error) {
+	rsp, err := c.CustomerAffiliatesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomerAffiliatesListResponse(rsp)
+}
+
+// CustomerAffiliatesCountWithResponse request returning *CustomerAffiliatesCountResponse
+func (c *ClientWithResponses) CustomerAffiliatesCountWithResponse(ctx context.Context, params *CustomerAffiliatesCountParams, reqEditors ...RequestEditorFn) (*CustomerAffiliatesCountResponse, error) {
+	rsp, err := c.CustomerAffiliatesCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomerAffiliatesCountResponse(rsp)
+}
+
+// CustomerAffiliatesCreateWithBodyWithResponse request with arbitrary body returning *CustomerAffiliatesCreateResponse
+func (c *ClientWithResponses) CustomerAffiliatesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomerAffiliatesCreateResponse, error) {
+	rsp, err := c.CustomerAffiliatesCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomerAffiliatesCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) CustomerAffiliatesCreateWithResponse(ctx context.Context, body CustomerAffiliatesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomerAffiliatesCreateResponse, error) {
+	rsp, err := c.CustomerAffiliatesCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomerAffiliatesCreateResponse(rsp)
+}
+
+// CustomerAffiliatesDestroyWithResponse request returning *CustomerAffiliatesDestroyResponse
+func (c *ClientWithResponses) CustomerAffiliatesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomerAffiliatesDestroyResponse, error) {
+	rsp, err := c.CustomerAffiliatesDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomerAffiliatesDestroyResponse(rsp)
+}
+
+// CustomerAffiliatesRetrieveWithResponse request returning *CustomerAffiliatesRetrieveResponse
+func (c *ClientWithResponses) CustomerAffiliatesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomerAffiliatesRetrieveResponse, error) {
+	rsp, err := c.CustomerAffiliatesRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomerAffiliatesRetrieveResponse(rsp)
+}
+
+// CustomerAffiliatesPartialUpdateWithBodyWithResponse request with arbitrary body returning *CustomerAffiliatesPartialUpdateResponse
+func (c *ClientWithResponses) CustomerAffiliatesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomerAffiliatesPartialUpdateResponse, error) {
+	rsp, err := c.CustomerAffiliatesPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomerAffiliatesPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) CustomerAffiliatesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomerAffiliatesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomerAffiliatesPartialUpdateResponse, error) {
+	rsp, err := c.CustomerAffiliatesPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomerAffiliatesPartialUpdateResponse(rsp)
+}
+
+// CustomerAffiliatesUpdateWithBodyWithResponse request with arbitrary body returning *CustomerAffiliatesUpdateResponse
+func (c *ClientWithResponses) CustomerAffiliatesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomerAffiliatesUpdateResponse, error) {
+	rsp, err := c.CustomerAffiliatesUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomerAffiliatesUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) CustomerAffiliatesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomerAffiliatesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomerAffiliatesUpdateResponse, error) {
+	rsp, err := c.CustomerAffiliatesUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomerAffiliatesUpdateResponse(rsp)
+}
+
+// CustomerAffiliatesAccrualsListWithResponse request returning *CustomerAffiliatesAccrualsListResponse
+func (c *ClientWithResponses) CustomerAffiliatesAccrualsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *CustomerAffiliatesAccrualsListParams, reqEditors ...RequestEditorFn) (*CustomerAffiliatesAccrualsListResponse, error) {
+	rsp, err := c.CustomerAffiliatesAccrualsList(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomerAffiliatesAccrualsListResponse(rsp)
+}
+
+// CustomerAffiliatesEarningsRetrieveWithResponse request returning *CustomerAffiliatesEarningsRetrieveResponse
+func (c *ClientWithResponses) CustomerAffiliatesEarningsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomerAffiliatesEarningsRetrieveResponse, error) {
+	rsp, err := c.CustomerAffiliatesEarningsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomerAffiliatesEarningsRetrieveResponse(rsp)
+}
+
 // CustomerCreditsListWithResponse request returning *CustomerCreditsListResponse
 func (c *ClientWithResponses) CustomerCreditsListWithResponse(ctx context.Context, params *CustomerCreditsListParams, reqEditors ...RequestEditorFn) (*CustomerCreditsListResponse, error) {
 	rsp, err := c.CustomerCreditsList(ctx, params, reqEditors...)
@@ -438628,6 +440749,23 @@ func (c *ClientWithResponses) CustomerCreditsUpdateWithResponse(ctx context.Cont
 		return nil, err
 	}
 	return ParseCustomerCreditsUpdateResponse(rsp)
+}
+
+// CustomerCreditsAdjustWithdrawableWithBodyWithResponse request with arbitrary body returning *CustomerCreditsAdjustWithdrawableResponse
+func (c *ClientWithResponses) CustomerCreditsAdjustWithdrawableWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomerCreditsAdjustWithdrawableResponse, error) {
+	rsp, err := c.CustomerCreditsAdjustWithdrawableWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomerCreditsAdjustWithdrawableResponse(rsp)
+}
+
+func (c *ClientWithResponses) CustomerCreditsAdjustWithdrawableWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsAdjustWithdrawableJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomerCreditsAdjustWithdrawableResponse, error) {
+	rsp, err := c.CustomerCreditsAdjustWithdrawable(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomerCreditsAdjustWithdrawableResponse(rsp)
 }
 
 // CustomerCreditsApplyCompensationsWithResponse request returning *CustomerCreditsApplyCompensationsResponse
@@ -474242,6 +476380,288 @@ func ParseConflictsOfInterestWaiveResponse(rsp *http.Response) (*ConflictsOfInte
 	return response, nil
 }
 
+// ParseCreditTransactionsListResponse parses an HTTP response from a CreditTransactionsListWithResponse call
+func ParseCreditTransactionsListResponse(rsp *http.Response) (*CreditTransactionsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CreditTransactionsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []CreditTransaction
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCreditTransactionsCountResponse parses an HTTP response from a CreditTransactionsCountWithResponse call
+func ParseCreditTransactionsCountResponse(rsp *http.Response) (*CreditTransactionsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CreditTransactionsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseCreditTransactionsRetrieveResponse parses an HTTP response from a CreditTransactionsRetrieveWithResponse call
+func ParseCreditTransactionsRetrieveResponse(rsp *http.Response) (*CreditTransactionsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CreditTransactionsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CreditTransaction
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCustomerAffiliatesListResponse parses an HTTP response from a CustomerAffiliatesListWithResponse call
+func ParseCustomerAffiliatesListResponse(rsp *http.Response) (*CustomerAffiliatesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CustomerAffiliatesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []CustomerAffiliate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCustomerAffiliatesCountResponse parses an HTTP response from a CustomerAffiliatesCountWithResponse call
+func ParseCustomerAffiliatesCountResponse(rsp *http.Response) (*CustomerAffiliatesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CustomerAffiliatesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseCustomerAffiliatesCreateResponse parses an HTTP response from a CustomerAffiliatesCreateWithResponse call
+func ParseCustomerAffiliatesCreateResponse(rsp *http.Response) (*CustomerAffiliatesCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CustomerAffiliatesCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest CreateCustomerAffiliate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCustomerAffiliatesDestroyResponse parses an HTTP response from a CustomerAffiliatesDestroyWithResponse call
+func ParseCustomerAffiliatesDestroyResponse(rsp *http.Response) (*CustomerAffiliatesDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CustomerAffiliatesDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseCustomerAffiliatesRetrieveResponse parses an HTTP response from a CustomerAffiliatesRetrieveWithResponse call
+func ParseCustomerAffiliatesRetrieveResponse(rsp *http.Response) (*CustomerAffiliatesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CustomerAffiliatesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CustomerAffiliate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCustomerAffiliatesPartialUpdateResponse parses an HTTP response from a CustomerAffiliatesPartialUpdateWithResponse call
+func ParseCustomerAffiliatesPartialUpdateResponse(rsp *http.Response) (*CustomerAffiliatesPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CustomerAffiliatesPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CreateCustomerAffiliate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCustomerAffiliatesUpdateResponse parses an HTTP response from a CustomerAffiliatesUpdateWithResponse call
+func ParseCustomerAffiliatesUpdateResponse(rsp *http.Response) (*CustomerAffiliatesUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CustomerAffiliatesUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CreateCustomerAffiliate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCustomerAffiliatesAccrualsListResponse parses an HTTP response from a CustomerAffiliatesAccrualsListWithResponse call
+func ParseCustomerAffiliatesAccrualsListResponse(rsp *http.Response) (*CustomerAffiliatesAccrualsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CustomerAffiliatesAccrualsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AffiliateFeeAccrual
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCustomerAffiliatesEarningsRetrieveResponse parses an HTTP response from a CustomerAffiliatesEarningsRetrieveWithResponse call
+func ParseCustomerAffiliatesEarningsRetrieveResponse(rsp *http.Response) (*CustomerAffiliatesEarningsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CustomerAffiliatesEarningsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AffiliateEarnings
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseCustomerCreditsListResponse parses an HTTP response from a CustomerCreditsListWithResponse call
 func ParseCustomerCreditsListResponse(rsp *http.Response) (*CustomerCreditsListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -474394,6 +476814,32 @@ func ParseCustomerCreditsUpdateResponse(rsp *http.Response) (*CustomerCreditsUpd
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest CreateCustomerCredit
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCustomerCreditsAdjustWithdrawableResponse parses an HTTP response from a CustomerCreditsAdjustWithdrawableWithResponse call
+func ParseCustomerCreditsAdjustWithdrawableResponse(rsp *http.Response) (*CustomerCreditsAdjustWithdrawableResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CustomerCreditsAdjustWithdrawableResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CustomerCredit
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
