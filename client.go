@@ -9725,14 +9725,18 @@ func (e MARKETPLACELAYOUTMODEEnum) Valid() bool {
 
 // Defines values for MaintenanceAnnouncementOEnum.
 const (
-	MaintenanceAnnouncementOEnumCreated             MaintenanceAnnouncementOEnum = "created"
-	MaintenanceAnnouncementOEnumMinusCreated        MaintenanceAnnouncementOEnum = "-created"
-	MaintenanceAnnouncementOEnumMinusName           MaintenanceAnnouncementOEnum = "-name"
-	MaintenanceAnnouncementOEnumMinusScheduledEnd   MaintenanceAnnouncementOEnum = "-scheduled_end"
-	MaintenanceAnnouncementOEnumMinusScheduledStart MaintenanceAnnouncementOEnum = "-scheduled_start"
-	MaintenanceAnnouncementOEnumName                MaintenanceAnnouncementOEnum = "name"
-	MaintenanceAnnouncementOEnumScheduledEnd        MaintenanceAnnouncementOEnum = "scheduled_end"
-	MaintenanceAnnouncementOEnumScheduledStart      MaintenanceAnnouncementOEnum = "scheduled_start"
+	MaintenanceAnnouncementOEnumCreated                MaintenanceAnnouncementOEnum = "created"
+	MaintenanceAnnouncementOEnumMinusCreated           MaintenanceAnnouncementOEnum = "-created"
+	MaintenanceAnnouncementOEnumMinusName              MaintenanceAnnouncementOEnum = "-name"
+	MaintenanceAnnouncementOEnumMinusOverrunMinutes    MaintenanceAnnouncementOEnum = "-overrun_minutes"
+	MaintenanceAnnouncementOEnumMinusScheduledEnd      MaintenanceAnnouncementOEnum = "-scheduled_end"
+	MaintenanceAnnouncementOEnumMinusScheduledStart    MaintenanceAnnouncementOEnum = "-scheduled_start"
+	MaintenanceAnnouncementOEnumMinusStartDeltaMinutes MaintenanceAnnouncementOEnum = "-start_delta_minutes"
+	MaintenanceAnnouncementOEnumName                   MaintenanceAnnouncementOEnum = "name"
+	MaintenanceAnnouncementOEnumOverrunMinutes         MaintenanceAnnouncementOEnum = "overrun_minutes"
+	MaintenanceAnnouncementOEnumScheduledEnd           MaintenanceAnnouncementOEnum = "scheduled_end"
+	MaintenanceAnnouncementOEnumScheduledStart         MaintenanceAnnouncementOEnum = "scheduled_start"
+	MaintenanceAnnouncementOEnumStartDeltaMinutes      MaintenanceAnnouncementOEnum = "start_delta_minutes"
 )
 
 // Valid indicates whether the value is a known member of the MaintenanceAnnouncementOEnum enum.
@@ -9744,15 +9748,23 @@ func (e MaintenanceAnnouncementOEnum) Valid() bool {
 		return true
 	case MaintenanceAnnouncementOEnumMinusName:
 		return true
+	case MaintenanceAnnouncementOEnumMinusOverrunMinutes:
+		return true
 	case MaintenanceAnnouncementOEnumMinusScheduledEnd:
 		return true
 	case MaintenanceAnnouncementOEnumMinusScheduledStart:
 		return true
+	case MaintenanceAnnouncementOEnumMinusStartDeltaMinutes:
+		return true
 	case MaintenanceAnnouncementOEnumName:
+		return true
+	case MaintenanceAnnouncementOEnumOverrunMinutes:
 		return true
 	case MaintenanceAnnouncementOEnumScheduledEnd:
 		return true
 	case MaintenanceAnnouncementOEnumScheduledStart:
+		return true
+	case MaintenanceAnnouncementOEnumStartDeltaMinutes:
 		return true
 	default:
 		return false
@@ -11171,19 +11183,23 @@ const (
 	OfferingUserFieldEnumCustomerUuid                 OfferingUserFieldEnum = "customer_uuid"
 	OfferingUserFieldEnumHasComplianceChecklist       OfferingUserFieldEnum = "has_compliance_checklist"
 	OfferingUserFieldEnumHasConsent                   OfferingUserFieldEnum = "has_consent"
+	OfferingUserFieldEnumHomeDirectory                OfferingUserFieldEnum = "home_directory"
 	OfferingUserFieldEnumIsProfileComplete            OfferingUserFieldEnum = "is_profile_complete"
 	OfferingUserFieldEnumIsRestricted                 OfferingUserFieldEnum = "is_restricted"
+	OfferingUserFieldEnumLoginShell                   OfferingUserFieldEnum = "login_shell"
 	OfferingUserFieldEnumMissingProfileAttributes     OfferingUserFieldEnum = "missing_profile_attributes"
 	OfferingUserFieldEnumModified                     OfferingUserFieldEnum = "modified"
 	OfferingUserFieldEnumOffering                     OfferingUserFieldEnum = "offering"
 	OfferingUserFieldEnumOfferingHasActiveTos         OfferingUserFieldEnum = "offering_has_active_tos"
 	OfferingUserFieldEnumOfferingName                 OfferingUserFieldEnum = "offering_name"
 	OfferingUserFieldEnumOfferingUuid                 OfferingUserFieldEnum = "offering_uuid"
+	OfferingUserFieldEnumPrimarygroup                 OfferingUserFieldEnum = "primarygroup"
 	OfferingUserFieldEnumRequiresReconsent            OfferingUserFieldEnum = "requires_reconsent"
 	OfferingUserFieldEnumRuntimeState                 OfferingUserFieldEnum = "runtime_state"
 	OfferingUserFieldEnumServiceProviderComment       OfferingUserFieldEnum = "service_provider_comment"
 	OfferingUserFieldEnumServiceProviderCommentUrl    OfferingUserFieldEnum = "service_provider_comment_url"
 	OfferingUserFieldEnumState                        OfferingUserFieldEnum = "state"
+	OfferingUserFieldEnumUidnumber                    OfferingUserFieldEnum = "uidnumber"
 	OfferingUserFieldEnumUrl                          OfferingUserFieldEnum = "url"
 	OfferingUserFieldEnumUser                         OfferingUserFieldEnum = "user"
 	OfferingUserFieldEnumUserActiveIsds               OfferingUserFieldEnum = "user_active_isds"
@@ -11211,6 +11227,8 @@ const (
 	OfferingUserFieldEnumUserPersonalTitle            OfferingUserFieldEnum = "user_personal_title"
 	OfferingUserFieldEnumUserPhoneNumber              OfferingUserFieldEnum = "user_phone_number"
 	OfferingUserFieldEnumUserPlaceOfBirth             OfferingUserFieldEnum = "user_place_of_birth"
+	OfferingUserFieldEnumUserPrimaryGid               OfferingUserFieldEnum = "user_primary_gid"
+	OfferingUserFieldEnumUserUidNumber                OfferingUserFieldEnum = "user_uid_number"
 	OfferingUserFieldEnumUserUsername                 OfferingUserFieldEnum = "user_username"
 	OfferingUserFieldEnumUserUuid                     OfferingUserFieldEnum = "user_uuid"
 	OfferingUserFieldEnumUsername                     OfferingUserFieldEnum = "username"
@@ -11232,9 +11250,13 @@ func (e OfferingUserFieldEnum) Valid() bool {
 		return true
 	case OfferingUserFieldEnumHasConsent:
 		return true
+	case OfferingUserFieldEnumHomeDirectory:
+		return true
 	case OfferingUserFieldEnumIsProfileComplete:
 		return true
 	case OfferingUserFieldEnumIsRestricted:
+		return true
+	case OfferingUserFieldEnumLoginShell:
 		return true
 	case OfferingUserFieldEnumMissingProfileAttributes:
 		return true
@@ -11248,6 +11270,8 @@ func (e OfferingUserFieldEnum) Valid() bool {
 		return true
 	case OfferingUserFieldEnumOfferingUuid:
 		return true
+	case OfferingUserFieldEnumPrimarygroup:
+		return true
 	case OfferingUserFieldEnumRequiresReconsent:
 		return true
 	case OfferingUserFieldEnumRuntimeState:
@@ -11257,6 +11281,8 @@ func (e OfferingUserFieldEnum) Valid() bool {
 	case OfferingUserFieldEnumServiceProviderCommentUrl:
 		return true
 	case OfferingUserFieldEnumState:
+		return true
+	case OfferingUserFieldEnumUidnumber:
 		return true
 	case OfferingUserFieldEnumUrl:
 		return true
@@ -11311,6 +11337,10 @@ func (e OfferingUserFieldEnum) Valid() bool {
 	case OfferingUserFieldEnumUserPhoneNumber:
 		return true
 	case OfferingUserFieldEnumUserPlaceOfBirth:
+		return true
+	case OfferingUserFieldEnumUserPrimaryGid:
+		return true
+	case OfferingUserFieldEnumUserUidNumber:
 		return true
 	case OfferingUserFieldEnumUserUsername:
 		return true
@@ -15060,6 +15090,7 @@ const (
 	PermissionMetadataResponsePermissionMapORDERLIST                               PermissionMetadataResponsePermissionMap = "ORDER.LIST"
 	PermissionMetadataResponsePermissionMapORDERREJECT                             PermissionMetadataResponsePermissionMap = "ORDER.REJECT"
 	PermissionMetadataResponsePermissionMapORDERSETCONSUMERINFO                    PermissionMetadataResponsePermissionMap = "ORDER.SET_CONSUMER_INFO"
+	PermissionMetadataResponsePermissionMapPOSIXIDPOOLMANAGE                       PermissionMetadataResponsePermissionMap = "POSIX_ID_POOL.MANAGE"
 	PermissionMetadataResponsePermissionMapPROJECTCOURSEACCOUNTMANAGE              PermissionMetadataResponsePermissionMap = "PROJECT.COURSE_ACCOUNT_MANAGE"
 	PermissionMetadataResponsePermissionMapPROJECTCREATE                           PermissionMetadataResponsePermissionMap = "PROJECT.CREATE"
 	PermissionMetadataResponsePermissionMapPROJECTCREATEPERMISSION                 PermissionMetadataResponsePermissionMap = "PROJECT.CREATE_PERMISSION"
@@ -15262,6 +15293,8 @@ func (e PermissionMetadataResponsePermissionMap) Valid() bool {
 		return true
 	case PermissionMetadataResponsePermissionMapORDERSETCONSUMERINFO:
 		return true
+	case PermissionMetadataResponsePermissionMapPOSIXIDPOOLMANAGE:
+		return true
 	case PermissionMetadataResponsePermissionMapPROJECTCOURSEACCOUNTMANAGE:
 		return true
 	case PermissionMetadataResponsePermissionMapPROJECTCREATE:
@@ -15462,6 +15495,7 @@ const (
 	PermissionMetadataResponsePermissionsORDERLIST                               PermissionMetadataResponsePermissions = "ORDER.LIST"
 	PermissionMetadataResponsePermissionsORDERREJECT                             PermissionMetadataResponsePermissions = "ORDER.REJECT"
 	PermissionMetadataResponsePermissionsORDERSETCONSUMERINFO                    PermissionMetadataResponsePermissions = "ORDER.SET_CONSUMER_INFO"
+	PermissionMetadataResponsePermissionsPOSIXIDPOOLMANAGE                       PermissionMetadataResponsePermissions = "POSIX_ID_POOL.MANAGE"
 	PermissionMetadataResponsePermissionsPROJECTCOURSEACCOUNTMANAGE              PermissionMetadataResponsePermissions = "PROJECT.COURSE_ACCOUNT_MANAGE"
 	PermissionMetadataResponsePermissionsPROJECTCREATE                           PermissionMetadataResponsePermissions = "PROJECT.CREATE"
 	PermissionMetadataResponsePermissionsPROJECTCREATEPERMISSION                 PermissionMetadataResponsePermissions = "PROJECT.CREATE_PERMISSION"
@@ -15663,6 +15697,8 @@ func (e PermissionMetadataResponsePermissions) Valid() bool {
 	case PermissionMetadataResponsePermissionsORDERREJECT:
 		return true
 	case PermissionMetadataResponsePermissionsORDERSETCONSUMERINFO:
+		return true
+	case PermissionMetadataResponsePermissionsPOSIXIDPOOLMANAGE:
 		return true
 	case PermissionMetadataResponsePermissionsPROJECTCOURSEACCOUNTMANAGE:
 		return true
@@ -15903,6 +15939,93 @@ func (e PolicyTypeEnum) Valid() bool {
 	case AccessAsExternal:
 		return true
 	case AccessAsShared:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for PosixIdPoolFieldEnum.
+const (
+	PosixIdPoolFieldEnumCreated         PosixIdPoolFieldEnum = "created"
+	PosixIdPoolFieldEnumCustomerName    PosixIdPoolFieldEnum = "customer_name"
+	PosixIdPoolFieldEnumCustomerUuid    PosixIdPoolFieldEnum = "customer_uuid"
+	PosixIdPoolFieldEnumDescription     PosixIdPoolFieldEnum = "description"
+	PosixIdPoolFieldEnumGidUsed         PosixIdPoolFieldEnum = "gid_used"
+	PosixIdPoolFieldEnumGidUtilization  PosixIdPoolFieldEnum = "gid_utilization"
+	PosixIdPoolFieldEnumMaxGid          PosixIdPoolFieldEnum = "max_gid"
+	PosixIdPoolFieldEnumMaxUid          PosixIdPoolFieldEnum = "max_uid"
+	PosixIdPoolFieldEnumMinGid          PosixIdPoolFieldEnum = "min_gid"
+	PosixIdPoolFieldEnumMinUid          PosixIdPoolFieldEnum = "min_uid"
+	PosixIdPoolFieldEnumNextGid         PosixIdPoolFieldEnum = "next_gid"
+	PosixIdPoolFieldEnumNextUid         PosixIdPoolFieldEnum = "next_uid"
+	PosixIdPoolFieldEnumOffering        PosixIdPoolFieldEnum = "offering"
+	PosixIdPoolFieldEnumScope           PosixIdPoolFieldEnum = "scope"
+	PosixIdPoolFieldEnumServiceProvider PosixIdPoolFieldEnum = "service_provider"
+	PosixIdPoolFieldEnumUidUsed         PosixIdPoolFieldEnum = "uid_used"
+	PosixIdPoolFieldEnumUidUtilization  PosixIdPoolFieldEnum = "uid_utilization"
+	PosixIdPoolFieldEnumUrl             PosixIdPoolFieldEnum = "url"
+	PosixIdPoolFieldEnumUuid            PosixIdPoolFieldEnum = "uuid"
+)
+
+// Valid indicates whether the value is a known member of the PosixIdPoolFieldEnum enum.
+func (e PosixIdPoolFieldEnum) Valid() bool {
+	switch e {
+	case PosixIdPoolFieldEnumCreated:
+		return true
+	case PosixIdPoolFieldEnumCustomerName:
+		return true
+	case PosixIdPoolFieldEnumCustomerUuid:
+		return true
+	case PosixIdPoolFieldEnumDescription:
+		return true
+	case PosixIdPoolFieldEnumGidUsed:
+		return true
+	case PosixIdPoolFieldEnumGidUtilization:
+		return true
+	case PosixIdPoolFieldEnumMaxGid:
+		return true
+	case PosixIdPoolFieldEnumMaxUid:
+		return true
+	case PosixIdPoolFieldEnumMinGid:
+		return true
+	case PosixIdPoolFieldEnumMinUid:
+		return true
+	case PosixIdPoolFieldEnumNextGid:
+		return true
+	case PosixIdPoolFieldEnumNextUid:
+		return true
+	case PosixIdPoolFieldEnumOffering:
+		return true
+	case PosixIdPoolFieldEnumScope:
+		return true
+	case PosixIdPoolFieldEnumServiceProvider:
+		return true
+	case PosixIdPoolFieldEnumUidUsed:
+		return true
+	case PosixIdPoolFieldEnumUidUtilization:
+		return true
+	case PosixIdPoolFieldEnumUrl:
+		return true
+	case PosixIdPoolFieldEnumUuid:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for PosixIdSourceEnum.
+const (
+	Pool          PosixIdSourceEnum = "pool"
+	UserAttribute PosixIdSourceEnum = "user_attribute"
+)
+
+// Valid indicates whether the value is a known member of the PosixIdSourceEnum enum.
+func (e PosixIdSourceEnum) Valid() bool {
+	switch e {
+	case Pool:
+		return true
+	case UserAttribute:
 		return true
 	default:
 		return false
@@ -16239,6 +16362,24 @@ func (e ProjectPermissionLogFieldEnum) Valid() bool {
 	case ProjectPermissionLogFieldEnumUserUsername:
 		return true
 	case ProjectPermissionLogFieldEnumUserUuid:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ProjectPosixGroupKindEnum.
+const (
+	ProjectGroup ProjectPosixGroupKindEnum = "project_group"
+	RoleGroup    ProjectPosixGroupKindEnum = "role_group"
+)
+
+// Valid indicates whether the value is a known member of the ProjectPosixGroupKindEnum enum.
+func (e ProjectPosixGroupKindEnum) Valid() bool {
+	switch e {
+	case ProjectGroup:
+		return true
+	case RoleGroup:
 		return true
 	default:
 		return false
@@ -16874,23 +17015,24 @@ func (e ProviderOfferingDetailsOEnum) Valid() bool {
 
 // Defines values for ProviderOfferingFieldEnum.
 const (
-	ProviderOfferingFieldEnumBillingPriceEstimate ProviderOfferingFieldEnum = "billing_price_estimate"
-	ProviderOfferingFieldEnumCategoryTitle        ProviderOfferingFieldEnum = "category_title"
-	ProviderOfferingFieldEnumComponents           ProviderOfferingFieldEnum = "components"
-	ProviderOfferingFieldEnumCustomerUuid         ProviderOfferingFieldEnum = "customer_uuid"
-	ProviderOfferingFieldEnumName                 ProviderOfferingFieldEnum = "name"
-	ProviderOfferingFieldEnumOfferingGroupTitle   ProviderOfferingFieldEnum = "offering_group_title"
-	ProviderOfferingFieldEnumOfferingGroupUuid    ProviderOfferingFieldEnum = "offering_group_uuid"
-	ProviderOfferingFieldEnumOptions              ProviderOfferingFieldEnum = "options"
-	ProviderOfferingFieldEnumPlans                ProviderOfferingFieldEnum = "plans"
-	ProviderOfferingFieldEnumResourceOptions      ProviderOfferingFieldEnum = "resource_options"
-	ProviderOfferingFieldEnumResourcesCount       ProviderOfferingFieldEnum = "resources_count"
-	ProviderOfferingFieldEnumSecretOptions        ProviderOfferingFieldEnum = "secret_options"
-	ProviderOfferingFieldEnumSlug                 ProviderOfferingFieldEnum = "slug"
-	ProviderOfferingFieldEnumState                ProviderOfferingFieldEnum = "state"
-	ProviderOfferingFieldEnumThumbnail            ProviderOfferingFieldEnum = "thumbnail"
-	ProviderOfferingFieldEnumType                 ProviderOfferingFieldEnum = "type"
-	ProviderOfferingFieldEnumUuid                 ProviderOfferingFieldEnum = "uuid"
+	ProviderOfferingFieldEnumBillingPriceEstimate                 ProviderOfferingFieldEnum = "billing_price_estimate"
+	ProviderOfferingFieldEnumCategoryTitle                        ProviderOfferingFieldEnum = "category_title"
+	ProviderOfferingFieldEnumComponents                           ProviderOfferingFieldEnum = "components"
+	ProviderOfferingFieldEnumCustomerUuid                         ProviderOfferingFieldEnum = "customer_uuid"
+	ProviderOfferingFieldEnumName                                 ProviderOfferingFieldEnum = "name"
+	ProviderOfferingFieldEnumOfferingGroupTitle                   ProviderOfferingFieldEnum = "offering_group_title"
+	ProviderOfferingFieldEnumOfferingGroupUuid                    ProviderOfferingFieldEnum = "offering_group_uuid"
+	ProviderOfferingFieldEnumOptions                              ProviderOfferingFieldEnum = "options"
+	ProviderOfferingFieldEnumPlans                                ProviderOfferingFieldEnum = "plans"
+	ProviderOfferingFieldEnumResourceOptions                      ProviderOfferingFieldEnum = "resource_options"
+	ProviderOfferingFieldEnumResourcesCount                       ProviderOfferingFieldEnum = "resources_count"
+	ProviderOfferingFieldEnumSecretOptions                        ProviderOfferingFieldEnum = "secret_options"
+	ProviderOfferingFieldEnumServiceProviderCanCreateOfferingUser ProviderOfferingFieldEnum = "service_provider_can_create_offering_user"
+	ProviderOfferingFieldEnumSlug                                 ProviderOfferingFieldEnum = "slug"
+	ProviderOfferingFieldEnumState                                ProviderOfferingFieldEnum = "state"
+	ProviderOfferingFieldEnumThumbnail                            ProviderOfferingFieldEnum = "thumbnail"
+	ProviderOfferingFieldEnumType                                 ProviderOfferingFieldEnum = "type"
+	ProviderOfferingFieldEnumUuid                                 ProviderOfferingFieldEnum = "uuid"
 )
 
 // Valid indicates whether the value is a known member of the ProviderOfferingFieldEnum enum.
@@ -16919,6 +17061,8 @@ func (e ProviderOfferingFieldEnum) Valid() bool {
 	case ProviderOfferingFieldEnumResourcesCount:
 		return true
 	case ProviderOfferingFieldEnumSecretOptions:
+		return true
+	case ProviderOfferingFieldEnumServiceProviderCanCreateOfferingUser:
 		return true
 	case ProviderOfferingFieldEnumSlug:
 		return true
@@ -20490,6 +20634,33 @@ func (e ThreadSessionScopeEnum) Valid() bool {
 	}
 }
 
+// Defines values for TimingBucketEnum.
+const (
+	TimingBucketEnumEarly     TimingBucketEnum = "early"
+	TimingBucketEnumLateStart TimingBucketEnum = "late_start"
+	TimingBucketEnumOnTime    TimingBucketEnum = "on_time"
+	TimingBucketEnumOverrun   TimingBucketEnum = "overrun"
+	TimingBucketEnumPending   TimingBucketEnum = "pending"
+)
+
+// Valid indicates whether the value is a known member of the TimingBucketEnum enum.
+func (e TimingBucketEnum) Valid() bool {
+	switch e {
+	case TimingBucketEnumEarly:
+		return true
+	case TimingBucketEnumLateStart:
+		return true
+	case TimingBucketEnumOnTime:
+		return true
+	case TimingBucketEnumOverrun:
+		return true
+	case TimingBucketEnumPending:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for TopologyEdgeKindEnum.
 const (
 	TopologyEdgeKindEnumAttachedTo   TopologyEdgeKindEnum = "attached_to"
@@ -20827,6 +20998,7 @@ const (
 	UserFieldEnumPhoneNumber                   UserFieldEnum = "phone_number"
 	UserFieldEnumPlaceOfBirth                  UserFieldEnum = "place_of_birth"
 	UserFieldEnumPreferredLanguage             UserFieldEnum = "preferred_language"
+	UserFieldEnumPrimaryGid                    UserFieldEnum = "primary_gid"
 	UserFieldEnumRegistrationMethod            UserFieldEnum = "registration_method"
 	UserFieldEnumRequestedEmail                UserFieldEnum = "requested_email"
 	UserFieldEnumShouldProtectUserDetails      UserFieldEnum = "should_protect_user_details"
@@ -20834,6 +21006,7 @@ const (
 	UserFieldEnumToken                         UserFieldEnum = "token"
 	UserFieldEnumTokenExpiresAt                UserFieldEnum = "token_expires_at"
 	UserFieldEnumTokenLifetime                 UserFieldEnum = "token_lifetime"
+	UserFieldEnumUidNumber                     UserFieldEnum = "uid_number"
 	UserFieldEnumUrl                           UserFieldEnum = "url"
 	UserFieldEnumUsername                      UserFieldEnum = "username"
 	UserFieldEnumUuid                          UserFieldEnum = "uuid"
@@ -20942,6 +21115,8 @@ func (e UserFieldEnum) Valid() bool {
 		return true
 	case UserFieldEnumPreferredLanguage:
 		return true
+	case UserFieldEnumPrimaryGid:
+		return true
 	case UserFieldEnumRegistrationMethod:
 		return true
 	case UserFieldEnumRequestedEmail:
@@ -20955,6 +21130,8 @@ func (e UserFieldEnum) Valid() bool {
 	case UserFieldEnumTokenExpiresAt:
 		return true
 	case UserFieldEnumTokenLifetime:
+		return true
+	case UserFieldEnumUidNumber:
 		return true
 	case UserFieldEnumUrl:
 		return true
@@ -21019,6 +21196,7 @@ const (
 	UserMeFieldEnumPhoneNumber                   UserMeFieldEnum = "phone_number"
 	UserMeFieldEnumPlaceOfBirth                  UserMeFieldEnum = "place_of_birth"
 	UserMeFieldEnumPreferredLanguage             UserMeFieldEnum = "preferred_language"
+	UserMeFieldEnumPrimaryGid                    UserMeFieldEnum = "primary_gid"
 	UserMeFieldEnumProfileCompleteness           UserMeFieldEnum = "profile_completeness"
 	UserMeFieldEnumRegistrationMethod            UserMeFieldEnum = "registration_method"
 	UserMeFieldEnumRequestedEmail                UserMeFieldEnum = "requested_email"
@@ -21027,6 +21205,7 @@ const (
 	UserMeFieldEnumToken                         UserMeFieldEnum = "token"
 	UserMeFieldEnumTokenExpiresAt                UserMeFieldEnum = "token_expires_at"
 	UserMeFieldEnumTokenLifetime                 UserMeFieldEnum = "token_lifetime"
+	UserMeFieldEnumUidNumber                     UserMeFieldEnum = "uid_number"
 	UserMeFieldEnumUrl                           UserMeFieldEnum = "url"
 	UserMeFieldEnumUsername                      UserMeFieldEnum = "username"
 	UserMeFieldEnumUuid                          UserMeFieldEnum = "uuid"
@@ -21135,6 +21314,8 @@ func (e UserMeFieldEnum) Valid() bool {
 		return true
 	case UserMeFieldEnumPreferredLanguage:
 		return true
+	case UserMeFieldEnumPrimaryGid:
+		return true
 	case UserMeFieldEnumProfileCompleteness:
 		return true
 	case UserMeFieldEnumRegistrationMethod:
@@ -21150,6 +21331,8 @@ func (e UserMeFieldEnum) Valid() bool {
 	case UserMeFieldEnumTokenExpiresAt:
 		return true
 	case UserMeFieldEnumTokenLifetime:
+		return true
+	case UserMeFieldEnumUidNumber:
 		return true
 	case UserMeFieldEnumUrl:
 		return true
@@ -21770,19 +21953,19 @@ func (e VMwareVirtualMachineCreateOrderAttributesGuestOs) Valid() bool {
 
 // Defines values for ValidationDecisionEnum.
 const (
-	Approved ValidationDecisionEnum = "approved"
-	Pending  ValidationDecisionEnum = "pending"
-	Rejected ValidationDecisionEnum = "rejected"
+	ValidationDecisionEnumApproved ValidationDecisionEnum = "approved"
+	ValidationDecisionEnumPending  ValidationDecisionEnum = "pending"
+	ValidationDecisionEnumRejected ValidationDecisionEnum = "rejected"
 )
 
 // Valid indicates whether the value is a known member of the ValidationDecisionEnum enum.
 func (e ValidationDecisionEnum) Valid() bool {
 	switch e {
-	case Approved:
+	case ValidationDecisionEnumApproved:
 		return true
-	case Pending:
+	case ValidationDecisionEnumPending:
 		return true
-	case Rejected:
+	case ValidationDecisionEnumRejected:
 		return true
 	default:
 		return false
@@ -21882,6 +22065,7 @@ const (
 	ORDERLIST                               ValueEnum = "ORDER.LIST"
 	ORDERREJECT                             ValueEnum = "ORDER.REJECT"
 	ORDERSETCONSUMERINFO                    ValueEnum = "ORDER.SET_CONSUMER_INFO"
+	POSIXIDPOOLMANAGE                       ValueEnum = "POSIX_ID_POOL.MANAGE"
 	PROJECTCOURSEACCOUNTMANAGE              ValueEnum = "PROJECT.COURSE_ACCOUNT_MANAGE"
 	PROJECTCREATE                           ValueEnum = "PROJECT.CREATE"
 	PROJECTCREATEPERMISSION                 ValueEnum = "PROJECT.CREATE_PERMISSION"
@@ -22083,6 +22267,8 @@ func (e ValueEnum) Valid() bool {
 	case ORDERREJECT:
 		return true
 	case ORDERSETCONSUMERINFO:
+		return true
+	case POSIXIDPOOLMANAGE:
 		return true
 	case PROJECTCOURSEACCOUNTMANAGE:
 		return true
@@ -26203,7 +26389,9 @@ type CallApplicantVisibilityConfig struct {
 	ExposePersonalTitle            *bool      `json:"expose_personal_title,omitempty"`
 	ExposePhoneNumber              *bool      `json:"expose_phone_number,omitempty"`
 	ExposePlaceOfBirth             *bool      `json:"expose_place_of_birth,omitempty"`
+	ExposePrimaryGid               *bool      `json:"expose_primary_gid,omitempty"`
 	ExposeRegistrationMethod       *bool      `json:"expose_registration_method,omitempty"`
+	ExposeUidNumber                *bool      `json:"expose_uid_number,omitempty"`
 	ExposeUsername                 *bool      `json:"expose_username,omitempty"`
 	ExposedFields                  *[]string  `json:"exposed_fields,omitempty"`
 
@@ -26238,7 +26426,9 @@ type CallApplicantVisibilityConfigRequest struct {
 	ExposePersonalTitle            *bool `json:"expose_personal_title,omitempty"`
 	ExposePhoneNumber              *bool `json:"expose_phone_number,omitempty"`
 	ExposePlaceOfBirth             *bool `json:"expose_place_of_birth,omitempty"`
+	ExposePrimaryGid               *bool `json:"expose_primary_gid,omitempty"`
 	ExposeRegistrationMethod       *bool `json:"expose_registration_method,omitempty"`
+	ExposeUidNumber                *bool `json:"expose_uid_number,omitempty"`
 	ExposeUsername                 *bool `json:"expose_username,omitempty"`
 }
 
@@ -28167,6 +28357,7 @@ type ConstanceSettings struct {
 	PATENABLED                                       *bool                                                            `json:"PAT_ENABLED,omitempty"`
 	PATMAXLIFETIMEDAYS                               *int                                                             `json:"PAT_MAX_LIFETIME_DAYS,omitempty"`
 	PATMAXTOKENSPERUSER                              *int                                                             `json:"PAT_MAX_TOKENS_PER_USER,omitempty"`
+	POSIXIDPOOLUTILIZATIONTHRESHOLD                  *int                                                             `json:"POSIX_ID_POOL_UTILIZATION_THRESHOLD,omitempty"`
 	POWEREDBYLOGO                                    *string                                                          `json:"POWERED_BY_LOGO,omitempty"`
 	PROJECTENDDATEMANDATORY                          *bool                                                            `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
 	PROPOSALREVIEWDURATION                           *int                                                             `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
@@ -28535,6 +28726,7 @@ type ConstanceSettingsRequest struct {
 	PATENABLED                                       *bool                                                                   `json:"PAT_ENABLED,omitempty"`
 	PATMAXLIFETIMEDAYS                               *int                                                                    `json:"PAT_MAX_LIFETIME_DAYS,omitempty"`
 	PATMAXTOKENSPERUSER                              *int                                                                    `json:"PAT_MAX_TOKENS_PER_USER,omitempty"`
+	POSIXIDPOOLUTILIZATIONTHRESHOLD                  *int                                                                    `json:"POSIX_ID_POOL_UTILIZATION_THRESHOLD,omitempty"`
 	POWEREDBYLOGO                                    *openapi_types.File                                                     `json:"POWERED_BY_LOGO,omitempty"`
 	PROJECTENDDATEMANDATORY                          *bool                                                                   `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
 	PROPOSALREVIEWDURATION                           *int                                                                    `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
@@ -28903,6 +29095,7 @@ type ConstanceSettingsRequestForm struct {
 	PATENABLED                                       *bool                                                                       `json:"PAT_ENABLED,omitempty"`
 	PATMAXLIFETIMEDAYS                               *int                                                                        `json:"PAT_MAX_LIFETIME_DAYS,omitempty"`
 	PATMAXTOKENSPERUSER                              *int                                                                        `json:"PAT_MAX_TOKENS_PER_USER,omitempty"`
+	POSIXIDPOOLUTILIZATIONTHRESHOLD                  *int                                                                        `json:"POSIX_ID_POOL_UTILIZATION_THRESHOLD,omitempty"`
 	POWEREDBYLOGO                                    *openapi_types.File                                                         `json:"POWERED_BY_LOGO,omitempty"`
 	PROJECTENDDATEMANDATORY                          *bool                                                                       `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
 	PROPOSALREVIEWDURATION                           *int                                                                        `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
@@ -29271,6 +29464,7 @@ type ConstanceSettingsRequestMultipart struct {
 	PATENABLED                                       *bool                                                                            `json:"PAT_ENABLED,omitempty"`
 	PATMAXLIFETIMEDAYS                               *int                                                                             `json:"PAT_MAX_LIFETIME_DAYS,omitempty"`
 	PATMAXTOKENSPERUSER                              *int                                                                             `json:"PAT_MAX_TOKENS_PER_USER,omitempty"`
+	POSIXIDPOOLUTILIZATIONTHRESHOLD                  *int                                                                             `json:"POSIX_ID_POOL_UTILIZATION_THRESHOLD,omitempty"`
 	POWEREDBYLOGO                                    *openapi_types.File                                                              `json:"POWERED_BY_LOGO,omitempty"`
 	PROJECTENDDATEMANDATORY                          *bool                                                                            `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
 	PROPOSALREVIEWDURATION                           *int                                                                             `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
@@ -34169,6 +34363,7 @@ type MaintenanceAnnouncement struct {
 	MaintenanceType *MaintenanceTypeEnum `json:"maintenance_type,omitempty"`
 	Message         *string              `json:"message,omitempty"`
 	Name            string               `json:"name"`
+	OverrunMinutes  *int                 `json:"overrun_minutes,omitempty"`
 
 	// ScheduledEnd When the maintenance is scheduled to complete
 	ScheduledEnd time.Time `json:"scheduled_end"`
@@ -34179,7 +34374,9 @@ type MaintenanceAnnouncement struct {
 	// ServiceProvider Service provider announcing the maintenance
 	ServiceProvider     string                            `json:"service_provider"`
 	ServiceProviderName *string                           `json:"service_provider_name,omitempty"`
+	StartDeltaMinutes   *int                              `json:"start_delta_minutes,omitempty"`
 	State               *MaintenanceAnnouncementStateEnum `json:"state,omitempty"`
+	TimingBucket        *TimingBucketEnum                 `json:"timing_bucket,omitempty"`
 	Url                 *string                           `json:"url,omitempty"`
 	Uuid                *openapi_types.UUID               `json:"uuid,omitempty"`
 }
@@ -34360,11 +34557,20 @@ type MaintenanceStatsSummary struct {
 	// AverageDurationHours Average duration of completed maintenances in hours
 	AverageDurationHours *float64 `json:"average_duration_hours"`
 
+	// AvgOverrunHours Mean overrun in hours across completed maintenances that ran past their scheduled end
+	AvgOverrunHours *float64 `json:"avg_overrun_hours"`
+
 	// Completed Number of completed maintenances
 	Completed int `json:"completed"`
 
+	// EmergencyCount Number of emergency-type maintenances in the window
+	EmergencyCount int `json:"emergency_count"`
+
 	// OnTimeCompletionRate Percentage of maintenances completed on time
 	OnTimeCompletionRate *float64 `json:"on_time_completion_rate"`
+
+	// OnTimeRate15min Fraction (0-1) of completed maintenances that finished within 15 minutes of their scheduled end
+	OnTimeRate15min *float64 `json:"on_time_rate_15min"`
 
 	// Scheduled Number of scheduled maintenances
 	Scheduled int `json:"scheduled"`
@@ -34915,11 +35121,20 @@ type MergedPluginOptions struct {
 	// DisabledResourceActions List of disabled marketplace resource actions for this offering.
 	DisabledResourceActions *[]string `json:"disabled_resource_actions,omitempty"`
 
+	// EmitDisplayName Emit the user's full name as a GLAuth displayName custom attribute (rendered to LDAP displayName).
+	EmitDisplayName *bool `json:"emit_display_name,omitempty"`
+
+	// EmitWaldurUsername Emit the Waldur username as a GLAuth waldurUsername custom attribute, alongside the generated POSIX login name.
+	EmitWaldurUsername *bool `json:"emit_waldur_username,omitempty"`
+
 	// EnableDisplayOfOrderActionsForServiceProvider Enable display of order actions for service provider
 	EnableDisplayOfOrderActionsForServiceProvider *bool `json:"enable_display_of_order_actions_for_service_provider,omitempty"`
 
 	// EnableIssuesForMembershipChanges Enable issues for membership changes
 	EnableIssuesForMembershipChanges *bool `json:"enable_issues_for_membership_changes,omitempty"`
+
+	// EnablePosixAccount Manage a POSIX/LDAP account (UID, GID, home directory, login shell and GLAuth exposure) for this offering's users. Disable for offerings that only need a username.
+	EnablePosixAccount *bool `json:"enable_posix_account,omitempty"`
 
 	// EnableProviderConsumerMessaging If set to True, service providers can send messages with attachments to consumers on pending orders, and consumers can respond.
 	EnableProviderConsumerMessaging *bool `json:"enable_provider_consumer_messaging,omitempty"`
@@ -34935,6 +35150,9 @@ type MergedPluginOptions struct {
 
 	// FlavorsRegex Regular expression to limit flavors list
 	FlavorsRegex *string `json:"flavors_regex,omitempty"`
+
+	// GidSource Where each offering user's primary GID comes from: the POSIX ID pool (default), or the user's primary_gid attribute.
+	GidSource *PosixIdSourceEnum `json:"gid_source,omitempty"`
 
 	// HeappeClusterId HEAppE cluster id
 	HeappeClusterId *string `json:"heappe_cluster_id,omitempty"`
@@ -34954,18 +35172,6 @@ type MergedPluginOptions struct {
 	// HomedirPrefix GLAuth homedir prefix
 	HomedirPrefix *string `json:"homedir_prefix,omitempty"`
 
-	// InitialPrimarygroupNumber GLAuth initial primary group number
-	InitialPrimarygroupNumber *int `json:"initial_primarygroup_number,omitempty"`
-
-	// InitialRolegroupNumber GLAuth initial gid for role-aware groups (one per (resource|resource-project, role) tuple). Must leave at least 50000 gids of headroom above initial_usergroup_number to avoid collisions.
-	InitialRolegroupNumber *int `json:"initial_rolegroup_number,omitempty"`
-
-	// InitialUidnumber GLAuth initial uidnumber
-	InitialUidnumber *int `json:"initial_uidnumber,omitempty"`
-
-	// InitialUsergroupNumber GLAuth initial usergroup number
-	InitialUsergroupNumber *int `json:"initial_usergroup_number,omitempty"`
-
 	// IsResourceTerminationDateRequired If set to True, resource termination date is required
 	IsResourceTerminationDateRequired *bool `json:"is_resource_termination_date_required,omitempty"`
 
@@ -34974,6 +35180,9 @@ type MergedPluginOptions struct {
 
 	// LbaasEnabled If True, Octavia LBaaS (load balancers) is intended to be available for tenants from this offering.
 	LbaasEnabled *bool `json:"lbaas_enabled,omitempty"`
+
+	// LoginShell Default login shell assigned to GLAuth/LDAP accounts.
+	LoginShell *string `json:"login_shell,omitempty"`
 
 	// ManagedRancherLoadBalancerDataVolumeSizeGb Data volume size in GB for managed Rancher load balancer
 	ManagedRancherLoadBalancerDataVolumeSizeGb *int `json:"managed_rancher_load_balancer_data_volume_size_gb,omitempty"`
@@ -35112,6 +35321,9 @@ type MergedPluginOptions struct {
 
 	// SupportsPausing If set to True, it will be possible to pause resources
 	SupportsPausing *bool `json:"supports_pausing,omitempty"`
+
+	// UidSource Where each offering user's UID comes from: allocated from the POSIX ID pool (default), or taken from the user's uid_number attribute (e.g. an OIDC claim). Pair 'user_attribute' with a GID-only pool to avoid UID collisions.
+	UidSource *PosixIdSourceEnum `json:"uid_source,omitempty"`
 
 	// UniqueResourcePerAttribute Attribute name to enforce uniqueness per value. E.g., 'storage_data_type' ensures only one resource per storage type per project.
 	UniqueResourcePerAttribute *string `json:"unique_resource_per_attribute,omitempty"`
@@ -35184,11 +35396,20 @@ type MergedPluginOptionsRequest struct {
 	// DisabledResourceActions List of disabled marketplace resource actions for this offering.
 	DisabledResourceActions *[]string `json:"disabled_resource_actions,omitempty"`
 
+	// EmitDisplayName Emit the user's full name as a GLAuth displayName custom attribute (rendered to LDAP displayName).
+	EmitDisplayName *bool `json:"emit_display_name,omitempty"`
+
+	// EmitWaldurUsername Emit the Waldur username as a GLAuth waldurUsername custom attribute, alongside the generated POSIX login name.
+	EmitWaldurUsername *bool `json:"emit_waldur_username,omitempty"`
+
 	// EnableDisplayOfOrderActionsForServiceProvider Enable display of order actions for service provider
 	EnableDisplayOfOrderActionsForServiceProvider *bool `json:"enable_display_of_order_actions_for_service_provider,omitempty"`
 
 	// EnableIssuesForMembershipChanges Enable issues for membership changes
 	EnableIssuesForMembershipChanges *bool `json:"enable_issues_for_membership_changes,omitempty"`
+
+	// EnablePosixAccount Manage a POSIX/LDAP account (UID, GID, home directory, login shell and GLAuth exposure) for this offering's users. Disable for offerings that only need a username.
+	EnablePosixAccount *bool `json:"enable_posix_account,omitempty"`
 
 	// EnableProviderConsumerMessaging If set to True, service providers can send messages with attachments to consumers on pending orders, and consumers can respond.
 	EnableProviderConsumerMessaging *bool `json:"enable_provider_consumer_messaging,omitempty"`
@@ -35204,6 +35425,9 @@ type MergedPluginOptionsRequest struct {
 
 	// FlavorsRegex Regular expression to limit flavors list
 	FlavorsRegex *string `json:"flavors_regex,omitempty"`
+
+	// GidSource Where each offering user's primary GID comes from: the POSIX ID pool (default), or the user's primary_gid attribute.
+	GidSource *PosixIdSourceEnum `json:"gid_source,omitempty"`
 
 	// HeappeClusterId HEAppE cluster id
 	HeappeClusterId *string `json:"heappe_cluster_id,omitempty"`
@@ -35223,18 +35447,6 @@ type MergedPluginOptionsRequest struct {
 	// HomedirPrefix GLAuth homedir prefix
 	HomedirPrefix *string `json:"homedir_prefix,omitempty"`
 
-	// InitialPrimarygroupNumber GLAuth initial primary group number
-	InitialPrimarygroupNumber *int `json:"initial_primarygroup_number,omitempty"`
-
-	// InitialRolegroupNumber GLAuth initial gid for role-aware groups (one per (resource|resource-project, role) tuple). Must leave at least 50000 gids of headroom above initial_usergroup_number to avoid collisions.
-	InitialRolegroupNumber *int `json:"initial_rolegroup_number,omitempty"`
-
-	// InitialUidnumber GLAuth initial uidnumber
-	InitialUidnumber *int `json:"initial_uidnumber,omitempty"`
-
-	// InitialUsergroupNumber GLAuth initial usergroup number
-	InitialUsergroupNumber *int `json:"initial_usergroup_number,omitempty"`
-
 	// IsResourceTerminationDateRequired If set to True, resource termination date is required
 	IsResourceTerminationDateRequired *bool `json:"is_resource_termination_date_required,omitempty"`
 
@@ -35243,6 +35455,9 @@ type MergedPluginOptionsRequest struct {
 
 	// LbaasEnabled If True, Octavia LBaaS (load balancers) is intended to be available for tenants from this offering.
 	LbaasEnabled *bool `json:"lbaas_enabled,omitempty"`
+
+	// LoginShell Default login shell assigned to GLAuth/LDAP accounts.
+	LoginShell *string `json:"login_shell,omitempty"`
 
 	// ManagedRancherLoadBalancerDataVolumeSizeGb Data volume size in GB for managed Rancher load balancer
 	ManagedRancherLoadBalancerDataVolumeSizeGb *int `json:"managed_rancher_load_balancer_data_volume_size_gb,omitempty"`
@@ -35381,6 +35596,9 @@ type MergedPluginOptionsRequest struct {
 
 	// SupportsPausing If set to True, it will be possible to pause resources
 	SupportsPausing *bool `json:"supports_pausing,omitempty"`
+
+	// UidSource Where each offering user's UID comes from: allocated from the POSIX ID pool (default), or taken from the user's uid_number attribute (e.g. an OIDC claim). Pair 'user_attribute' with a GID-only pool to avoid UID collisions.
+	UidSource *PosixIdSourceEnum `json:"uid_source,omitempty"`
 
 	// UniqueResourcePerAttribute Attribute name to enforce uniqueness per value. E.g., 'storage_data_type' ensures only one resource per storage type per project.
 	UniqueResourcePerAttribute *string `json:"unique_resource_per_attribute,omitempty"`
@@ -37765,17 +37983,20 @@ type OfferingUser struct {
 	HasComplianceChecklist *bool `json:"has_compliance_checklist,omitempty"`
 
 	// HasConsent Check if the user has active consent for this offering.
-	HasConsent        *bool `json:"has_consent,omitempty"`
-	IsProfileComplete *bool `json:"is_profile_complete,omitempty"`
+	HasConsent        *bool   `json:"has_consent,omitempty"`
+	HomeDirectory     *string `json:"home_directory,omitempty"`
+	IsProfileComplete *bool   `json:"is_profile_complete,omitempty"`
 
 	// IsRestricted Signal to service if the user account is restricted or not
 	IsRestricted             *bool               `json:"is_restricted,omitempty"`
+	LoginShell               *string             `json:"login_shell,omitempty"`
 	MissingProfileAttributes *[]string           `json:"missing_profile_attributes,omitempty"`
 	Modified                 *time.Time          `json:"modified,omitempty"`
 	Offering                 *string             `json:"offering,omitempty"`
 	OfferingHasActiveTos     *bool               `json:"offering_has_active_tos,omitempty"`
 	OfferingName             *string             `json:"offering_name,omitempty"`
 	OfferingUuid             *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	Primarygroup             *int                `json:"primarygroup,omitempty"`
 
 	// RequiresReconsent Check if the user needs to re-consent due to ToS changes.
 	RequiresReconsent *bool             `json:"requires_reconsent,omitempty"`
@@ -37787,6 +38008,7 @@ type OfferingUser struct {
 	// ServiceProviderCommentUrl URL link for additional information or actions related to service provider comment
 	ServiceProviderCommentUrl *string            `json:"service_provider_comment_url,omitempty"`
 	State                     *OfferingUserState `json:"state,omitempty"`
+	Uidnumber                 *int               `json:"uidnumber,omitempty"`
 	Url                       *string            `json:"url,omitempty"`
 	User                      *string            `json:"user,omitempty"`
 
@@ -37839,6 +38061,12 @@ type OfferingUser struct {
 	UserPhoneNumber   *string `json:"user_phone_number,omitempty"`
 	UserPlaceOfBirth  *string `json:"user_place_of_birth,omitempty"`
 
+	// UserPrimaryGid POSIX primary GID from the identity provider; used when an offering's gid_source is 'user_attribute'.
+	UserPrimaryGid *int64 `json:"user_primary_gid,omitempty"`
+
+	// UserUidNumber POSIX UID from the identity provider; used when an offering's uid_source is 'user_attribute'.
+	UserUidNumber *int64 `json:"user_uid_number,omitempty"`
+
 	// UserUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	UserUsername *string             `json:"user_username,omitempty"`
 	UserUuid     *openapi_types.UUID `json:"user_uuid,omitempty"`
@@ -37877,7 +38105,9 @@ type OfferingUserAttributeConfig struct {
 	ExposePersonalTitle            *bool      `json:"expose_personal_title,omitempty"`
 	ExposePhoneNumber              *bool      `json:"expose_phone_number,omitempty"`
 	ExposePlaceOfBirth             *bool      `json:"expose_place_of_birth,omitempty"`
+	ExposePrimaryGid               *bool      `json:"expose_primary_gid,omitempty"`
 	ExposeRegistrationMethod       *bool      `json:"expose_registration_method,omitempty"`
+	ExposeUidNumber                *bool      `json:"expose_uid_number,omitempty"`
 	ExposeUsername                 *bool      `json:"expose_username,omitempty"`
 	ExposedFields                  *[]string  `json:"exposed_fields,omitempty"`
 
@@ -37914,7 +38144,9 @@ type OfferingUserAttributeConfigRequest struct {
 	ExposePersonalTitle            *bool               `json:"expose_personal_title,omitempty"`
 	ExposePhoneNumber              *bool               `json:"expose_phone_number,omitempty"`
 	ExposePlaceOfBirth             *bool               `json:"expose_place_of_birth,omitempty"`
+	ExposePrimaryGid               *bool               `json:"expose_primary_gid,omitempty"`
 	ExposeRegistrationMethod       *bool               `json:"expose_registration_method,omitempty"`
+	ExposeUidNumber                *bool               `json:"expose_uid_number,omitempty"`
 	ExposeUsername                 *bool               `json:"expose_username,omitempty"`
 	Offering                       *openapi_types.UUID `json:"offering,omitempty"`
 }
@@ -37924,6 +38156,49 @@ type OfferingUserFieldEnum string
 
 // OfferingUserOEnum defines model for OfferingUserOEnum.
 type OfferingUserOEnum string
+
+// OfferingUserPosixAllocation defines model for OfferingUserPosixAllocation.
+type OfferingUserPosixAllocation struct {
+	Namespace string  `json:"namespace"`
+	PoolUuid  *string `json:"pool_uuid"`
+	Scope     *string `json:"scope"`
+	ScopeName *string `json:"scope_name"`
+	Value     int     `json:"value"`
+}
+
+// OfferingUserPosixAttributesRequest defines model for OfferingUserPosixAttributesRequest.
+type OfferingUserPosixAttributesRequest struct {
+	// HomeDirectory Home directory for this account (LDAP homeDirectory).
+	HomeDirectory *string `json:"home_directory,omitempty"`
+
+	// LoginShell Login shell for this account (LDAP loginShell).
+	LoginShell *string `json:"login_shell,omitempty"`
+
+	// Primarygroup Override the account's primary GID (see uidnumber).
+	Primarygroup *int64 `json:"primarygroup,omitempty"`
+
+	// Uidnumber Override the account's UID. The value must fall within the offering's POSIX ID pool and is rejected if already allocated.
+	Uidnumber *int64 `json:"uidnumber,omitempty"`
+}
+
+// OfferingUserPosixGroup defines model for OfferingUserPosixGroup.
+type OfferingUserPosixGroup struct {
+	CustomerName      *string `json:"customer_name"`
+	CustomerUuid      *string `json:"customer_uuid"`
+	Gid               int     `json:"gid"`
+	OfferingName      string  `json:"offering_name"`
+	PoolUuid          *string `json:"pool_uuid"`
+	ProjectAccessible bool    `json:"project_accessible"`
+	ProjectName       *string `json:"project_name"`
+	ProjectUuid       *string `json:"project_uuid"`
+}
+
+// OfferingUserPosixUpdateResponse defines model for OfferingUserPosixUpdateResponse.
+type OfferingUserPosixUpdateResponse struct {
+	Primarygroup *int      `json:"primarygroup,omitempty"`
+	Uidnumber    *int      `json:"uidnumber,omitempty"`
+	Warnings     *[]string `json:"warnings,omitempty"`
+}
 
 // OfferingUserRequest defines model for OfferingUserRequest.
 type OfferingUserRequest struct {
@@ -42417,7 +42692,9 @@ type PatchedOfferingUserAttributeConfigRequest struct {
 	ExposePersonalTitle            *bool               `json:"expose_personal_title,omitempty"`
 	ExposePhoneNumber              *bool               `json:"expose_phone_number,omitempty"`
 	ExposePlaceOfBirth             *bool               `json:"expose_place_of_birth,omitempty"`
+	ExposePrimaryGid               *bool               `json:"expose_primary_gid,omitempty"`
 	ExposeRegistrationMethod       *bool               `json:"expose_registration_method,omitempty"`
+	ExposeUidNumber                *bool               `json:"expose_uid_number,omitempty"`
 	ExposeUsername                 *bool               `json:"expose_username,omitempty"`
 	Offering                       *openapi_types.UUID `json:"offering,omitempty"`
 }
@@ -42624,6 +42901,15 @@ type PatchedPaymentRequestMultipart struct {
 	Profile       *string             `json:"profile,omitempty"`
 	Proof         *openapi_types.File `json:"proof,omitempty"`
 	Sum           *string             `json:"sum,omitempty"`
+}
+
+// PatchedPosixIdPoolRequest defines model for PatchedPosixIdPoolRequest.
+type PatchedPosixIdPoolRequest struct {
+	Description *string `json:"description,omitempty"`
+	MaxGid      *int64  `json:"max_gid,omitempty"`
+	MaxUid      *int64  `json:"max_uid,omitempty"`
+	MinGid      *int64  `json:"min_gid,omitempty"`
+	MinUid      *int64  `json:"min_uid,omitempty"`
 }
 
 // PatchedProjectCreditRequest defines model for PatchedProjectCreditRequest.
@@ -44174,6 +44460,78 @@ type PolicyPeriodEnum int
 // PolicyTypeEnum defines model for PolicyTypeEnum.
 type PolicyTypeEnum string
 
+// PosixIdPool defines model for PosixIdPool.
+type PosixIdPool struct {
+	Created         *time.Time          `json:"created,omitempty"`
+	CustomerName    *string             `json:"customer_name,omitempty"`
+	CustomerUuid    *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Description     *string             `json:"description,omitempty"`
+	GidUsed         *int                `json:"gid_used,omitempty"`
+	GidUtilization  *float64            `json:"gid_utilization,omitempty"`
+	MaxGid          *int64              `json:"max_gid,omitempty"`
+	MaxUid          *int64              `json:"max_uid,omitempty"`
+	MinGid          *int64              `json:"min_gid,omitempty"`
+	MinUid          *int64              `json:"min_uid,omitempty"`
+	NextGid         *int                `json:"next_gid,omitempty"`
+	NextUid         *int                `json:"next_uid,omitempty"`
+	Offering        *openapi_types.UUID `json:"offering,omitempty"`
+	Scope           *string             `json:"scope,omitempty"`
+	ServiceProvider *openapi_types.UUID `json:"service_provider,omitempty"`
+	UidUsed         *int                `json:"uid_used,omitempty"`
+	UidUtilization  *float64            `json:"uid_utilization,omitempty"`
+	Url             *string             `json:"url,omitempty"`
+	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// PosixIdPoolFieldEnum defines model for PosixIdPoolFieldEnum.
+type PosixIdPoolFieldEnum string
+
+// PosixIdPoolNamespaceStats defines model for PosixIdPoolNamespaceStats.
+type PosixIdPoolNamespaceStats struct {
+	Capacity    int     `json:"capacity"`
+	Max         int     `json:"max"`
+	Min         int     `json:"min"`
+	Next        int     `json:"next"`
+	Used        int     `json:"used"`
+	Utilization float64 `json:"utilization"`
+}
+
+// PosixIdPoolRequest defines model for PosixIdPoolRequest.
+type PosixIdPoolRequest struct {
+	Description     *string             `json:"description,omitempty"`
+	MaxGid          *int64              `json:"max_gid,omitempty"`
+	MaxUid          *int64              `json:"max_uid,omitempty"`
+	MinGid          *int64              `json:"min_gid,omitempty"`
+	MinUid          *int64              `json:"min_uid,omitempty"`
+	Offering        *openapi_types.UUID `json:"offering,omitempty"`
+	ServiceProvider *openapi_types.UUID `json:"service_provider,omitempty"`
+}
+
+// PosixIdPoolStats defines model for PosixIdPoolStats.
+type PosixIdPoolStats struct {
+	Gid                  *PosixIdPoolNamespaceStats `json:"gid"`
+	Uid                  *PosixIdPoolNamespaceStats `json:"uid"`
+	UtilizationThreshold int                        `json:"utilization_threshold"`
+}
+
+// PosixIdSourceEnum defines model for PosixIdSourceEnum.
+type PosixIdSourceEnum string
+
+// PosixIdentity defines model for PosixIdentity.
+type PosixIdentity struct {
+	ConsumerName *string             `json:"consumer_name,omitempty"`
+	ConsumerType *string             `json:"consumer_type,omitempty"`
+	Created      *time.Time          `json:"created,omitempty"`
+	Gid          *int64              `json:"gid,omitempty"`
+	OfferingName *string             `json:"offering_name,omitempty"`
+	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	PoolUuid     *openapi_types.UUID `json:"pool_uuid,omitempty"`
+	ReleasedAt   *time.Time          `json:"released_at,omitempty"`
+	Uid          *int64              `json:"uid,omitempty"`
+	Url          *string             `json:"url,omitempty"`
+	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
 // PresetEnum defines model for PresetEnum.
 type PresetEnum string
 
@@ -44756,6 +45114,22 @@ type ProjectPermissionReview struct {
 	Url              *string             `json:"url,omitempty"`
 	Uuid             *openapi_types.UUID `json:"uuid,omitempty"`
 }
+
+// ProjectPosixGroup defines model for ProjectPosixGroup.
+type ProjectPosixGroup struct {
+	Gid          int                       `json:"gid"`
+	Kind         ProjectPosixGroupKindEnum `json:"kind"`
+	OfferingName string                    `json:"offering_name"`
+	OfferingUuid string                    `json:"offering_uuid"`
+	ProviderName string                    `json:"provider_name"`
+	Role         *string                   `json:"role"`
+	ScopeName    *string                   `json:"scope_name"`
+	ScopeType    *string                   `json:"scope_type"`
+	ScopeUuid    *string                   `json:"scope_uuid"`
+}
+
+// ProjectPosixGroupKindEnum defines model for ProjectPosixGroupKindEnum.
+type ProjectPosixGroupKindEnum string
 
 // ProjectQuotas defines model for ProjectQuotas.
 type ProjectQuotas struct {
@@ -45654,9 +46028,10 @@ type ProviderOffering struct {
 	Plans   *[]BaseProviderPlan     `json:"plans,omitempty"`
 
 	// ResourceOptions Fields describing resource report form.
-	ResourceOptions *map[string]interface{} `json:"resource_options,omitempty"`
-	ResourcesCount  *int                    `json:"resources_count,omitempty"`
-	SecretOptions   *MergedSecretOptions    `json:"secret_options,omitempty"`
+	ResourceOptions                      *map[string]interface{} `json:"resource_options,omitempty"`
+	ResourcesCount                       *int                    `json:"resources_count,omitempty"`
+	SecretOptions                        *MergedSecretOptions    `json:"secret_options,omitempty"`
+	ServiceProviderCanCreateOfferingUser *bool                   `json:"service_provider_can_create_offering_user,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug      *string             `json:"slug,omitempty"`
@@ -51756,6 +52131,9 @@ type TimeSeriesToSData struct {
 	Date *openapi_types.Date `json:"date,omitempty"`
 }
 
+// TimingBucketEnum defines model for TimingBucketEnum.
+type TimingBucketEnum string
+
 // ToSConsentDashboard defines model for ToSConsentDashboard.
 type ToSConsentDashboard struct {
 	// AcceptedConsentsCount Number of accepted consents
@@ -52189,6 +52567,9 @@ type User struct {
 	PlaceOfBirth      *string `json:"place_of_birth,omitempty"`
 	PreferredLanguage *string `json:"preferred_language,omitempty"`
 
+	// PrimaryGid POSIX primary GID from the identity provider; used when an offering's gid_source is 'user_attribute'.
+	PrimaryGid *int `json:"primary_gid,omitempty"`
+
 	// RegistrationMethod Indicates what registration method was used.
 	RegistrationMethod       *string `json:"registration_method,omitempty"`
 	RequestedEmail           *string `json:"requested_email,omitempty"`
@@ -52200,8 +52581,11 @@ type User struct {
 	TokenExpiresAt *time.Time `json:"token_expires_at,omitempty"`
 
 	// TokenLifetime Token lifetime in seconds.
-	TokenLifetime *int    `json:"token_lifetime,omitempty"`
-	Url           *string `json:"url,omitempty"`
+	TokenLifetime *int `json:"token_lifetime,omitempty"`
+
+	// UidNumber POSIX UID from the identity provider; used when an offering's uid_source is 'user_attribute'.
+	UidNumber *int    `json:"uid_number,omitempty"`
+	Url       *string `json:"url,omitempty"`
 
 	// Username Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	Username *string             `json:"username,omitempty"`
@@ -52595,10 +52979,13 @@ type UserMe struct {
 	Permissions         *[]Permission `json:"permissions,omitempty"`
 
 	// PersonalTitle Honorific title (Mr, Ms, Dr, Prof, etc.)
-	PersonalTitle       *string              `json:"personal_title,omitempty"`
-	PhoneNumber         *string              `json:"phone_number,omitempty"`
-	PlaceOfBirth        *string              `json:"place_of_birth,omitempty"`
-	PreferredLanguage   *string              `json:"preferred_language,omitempty"`
+	PersonalTitle     *string `json:"personal_title,omitempty"`
+	PhoneNumber       *string `json:"phone_number,omitempty"`
+	PlaceOfBirth      *string `json:"place_of_birth,omitempty"`
+	PreferredLanguage *string `json:"preferred_language,omitempty"`
+
+	// PrimaryGid POSIX primary GID from the identity provider; used when an offering's gid_source is 'user_attribute'.
+	PrimaryGid          *int                 `json:"primary_gid,omitempty"`
 	ProfileCompleteness *ProfileCompleteness `json:"profile_completeness,omitempty"`
 
 	// RegistrationMethod Indicates what registration method was used.
@@ -52612,8 +52999,11 @@ type UserMe struct {
 	TokenExpiresAt *time.Time `json:"token_expires_at,omitempty"`
 
 	// TokenLifetime Token lifetime in seconds.
-	TokenLifetime *int    `json:"token_lifetime,omitempty"`
-	Url           *string `json:"url,omitempty"`
+	TokenLifetime *int `json:"token_lifetime,omitempty"`
+
+	// UidNumber POSIX UID from the identity provider; used when an offering's uid_source is 'user_attribute'.
+	UidNumber *int    `json:"uid_number,omitempty"`
+	Url       *string `json:"url,omitempty"`
 
 	// Username Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	Username *string             `json:"username,omitempty"`
@@ -52696,6 +53086,16 @@ type UserOrganizationTypeCount struct {
 
 	// OrganizationType Organization type (SCHAC URN)
 	OrganizationType *string `json:"organization_type"`
+}
+
+// UserPosixIdentity defines model for UserPosixIdentity.
+type UserPosixIdentity struct {
+	Context      *string `json:"context"`
+	Namespace    string  `json:"namespace"`
+	OfferingName string  `json:"offering_name"`
+	OfferingUuid string  `json:"offering_uuid"`
+	PoolUuid     *string `json:"pool_uuid"`
+	Value        int     `json:"value"`
 }
 
 // UserRegistrationTrend defines model for UserRegistrationTrend.
@@ -58891,6 +59291,9 @@ type MaintenanceAnnouncementsListParams struct {
 	// State Maintenance state
 	//
 	State *[]MaintenanceAnnouncementStateEnum `form:"state,omitempty" json:"state,omitempty"`
+
+	// TimingBucket Timing bucket (comma-separated: on_time, late_start, overrun, early, pending)
+	TimingBucket *string `form:"timing_bucket,omitempty" json:"timing_bucket,omitempty"`
 }
 
 // MaintenanceAnnouncementsCountParams defines parameters for MaintenanceAnnouncementsCount.
@@ -58926,6 +59329,9 @@ type MaintenanceAnnouncementsCountParams struct {
 	// State Maintenance state
 	//
 	State *[]MaintenanceAnnouncementStateEnum `form:"state,omitempty" json:"state,omitempty"`
+
+	// TimingBucket Timing bucket (comma-separated: on_time, late_start, overrun, early, pending)
+	TimingBucket *string `form:"timing_bucket,omitempty" json:"timing_bucket,omitempty"`
 }
 
 // MaintenanceAnnouncementsMaintenanceStatsRetrieveParams defines parameters for MaintenanceAnnouncementsMaintenanceStatsRetrieve.
@@ -60394,7 +60800,7 @@ type MarketplaceOfferingUsersListParams struct {
 	// ProviderUuid Provider UUID
 	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
-	// Query Search by offering name, username or user name
+	// Query Search by offering name, username, user name, UID or primary GID
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
 
 	// RuntimeState Offering user runtime state
@@ -60459,7 +60865,7 @@ type MarketplaceOfferingUsersCountParams struct {
 	// ProviderUuid Provider UUID
 	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
-	// Query Search by offering name, username or user name
+	// Query Search by offering name, username, user name, UID or primary GID
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
 
 	// RuntimeState Offering user runtime state
@@ -60489,6 +60895,132 @@ type MarketplaceOfferingUsersChecklistTemplateCountParams struct {
 	ParentUuid openapi_types.UUID `form:"parent_uuid" json:"parent_uuid"`
 }
 
+// MarketplaceOfferingUsersPosixIdentitiesListParams defines parameters for MarketplaceOfferingUsersPosixIdentitiesList.
+type MarketplaceOfferingUsersPosixIdentitiesListParams struct {
+	// Created Created after
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// CreatedBefore Created before
+	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
+
+	// HasCompleteProfile User has complete profile for the offering
+	HasCompleteProfile *bool `form:"has_complete_profile,omitempty" json:"has_complete_profile,omitempty"`
+
+	// HasConsent User Has Consent
+	HasConsent *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
+
+	// IsRestricted Is restricted
+	IsRestricted *bool `form:"is_restricted,omitempty" json:"is_restricted,omitempty"`
+
+	// Modified Modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// ModifiedBefore Modified before
+	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
+	// O Ordering
+	//
+	O        *[]OfferingUserOEnum `form:"o,omitempty" json:"o,omitempty"`
+	Offering *string              `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingHasActiveTos Offering has active Terms of Service
+	OfferingHasActiveTos *bool `form:"offering_has_active_tos,omitempty" json:"offering_has_active_tos,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+
+	// OfferingUuid Multiple values may be separated by commas.
+	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
+
+	// ProviderUuid Provider UUID
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// Query Search by offering name, username, user name, UID or primary GID
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// RuntimeState Offering user runtime state
+	//
+	RuntimeState *[]RuntimeStateEnum `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+
+	// State Offering user state
+	//
+	State *[]OfferingUserState `form:"state,omitempty" json:"state,omitempty"`
+
+	// UserUsername User username
+	UserUsername *string            `form:"user_username,omitempty" json:"user_username,omitempty"`
+	UserUuid     openapi_types.UUID `form:"user_uuid" json:"user_uuid"`
+}
+
+// MarketplaceOfferingUsersPosixIdentitiesCountParams defines parameters for MarketplaceOfferingUsersPosixIdentitiesCount.
+type MarketplaceOfferingUsersPosixIdentitiesCountParams struct {
+	// Created Created after
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// CreatedBefore Created before
+	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
+
+	// HasCompleteProfile User has complete profile for the offering
+	HasCompleteProfile *bool `form:"has_complete_profile,omitempty" json:"has_complete_profile,omitempty"`
+
+	// HasConsent User Has Consent
+	HasConsent *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
+
+	// IsRestricted Is restricted
+	IsRestricted *bool `form:"is_restricted,omitempty" json:"is_restricted,omitempty"`
+
+	// Modified Modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// ModifiedBefore Modified before
+	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
+	// O Ordering
+	//
+	O        *[]OfferingUserOEnum `form:"o,omitempty" json:"o,omitempty"`
+	Offering *string              `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingHasActiveTos Offering has active Terms of Service
+	OfferingHasActiveTos *bool `form:"offering_has_active_tos,omitempty" json:"offering_has_active_tos,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+
+	// OfferingUuid Multiple values may be separated by commas.
+	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
+
+	// ProviderUuid Provider UUID
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// Query Search by offering name, username, user name, UID or primary GID
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// RuntimeState Offering user runtime state
+	//
+	RuntimeState *[]RuntimeStateEnum `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+
+	// State Offering user state
+	//
+	State *[]OfferingUserState `form:"state,omitempty" json:"state,omitempty"`
+
+	// UserUsername User username
+	UserUsername *string            `form:"user_username,omitempty" json:"user_username,omitempty"`
+	UserUuid     openapi_types.UUID `form:"user_uuid" json:"user_uuid"`
+}
+
 // MarketplaceOfferingUsersRetrieveParams defines parameters for MarketplaceOfferingUsersRetrieve.
 type MarketplaceOfferingUsersRetrieveParams struct {
 	Field *[]OfferingUserFieldEnum `form:"field,omitempty" json:"field,omitempty"`
@@ -60498,6 +61030,136 @@ type MarketplaceOfferingUsersRetrieveParams struct {
 type MarketplaceOfferingUsersChecklistRetrieveParams struct {
 	// IncludeAll If true, returns all questions including hidden ones (for dynamic form visibility). Default: false.
 	IncludeAll *bool `form:"include_all,omitempty" json:"include_all,omitempty"`
+}
+
+// MarketplaceOfferingUsersPosixAllocationsListParams defines parameters for MarketplaceOfferingUsersPosixAllocationsList.
+type MarketplaceOfferingUsersPosixAllocationsListParams struct {
+	// Created Created after
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// CreatedBefore Created before
+	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
+
+	// HasCompleteProfile User has complete profile for the offering
+	HasCompleteProfile *bool `form:"has_complete_profile,omitempty" json:"has_complete_profile,omitempty"`
+
+	// HasConsent User Has Consent
+	HasConsent *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
+
+	// IsRestricted Is restricted
+	IsRestricted *bool `form:"is_restricted,omitempty" json:"is_restricted,omitempty"`
+
+	// Modified Modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// ModifiedBefore Modified before
+	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
+	// O Ordering
+	//
+	O        *[]OfferingUserOEnum `form:"o,omitempty" json:"o,omitempty"`
+	Offering *string              `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingHasActiveTos Offering has active Terms of Service
+	OfferingHasActiveTos *bool `form:"offering_has_active_tos,omitempty" json:"offering_has_active_tos,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+
+	// OfferingUuid Multiple values may be separated by commas.
+	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
+
+	// ProviderUuid Provider UUID
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// Query Search by offering name, username, user name, UID or primary GID
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// RuntimeState Offering user runtime state
+	//
+	RuntimeState *[]RuntimeStateEnum `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+
+	// State Offering user state
+	//
+	State *[]OfferingUserState `form:"state,omitempty" json:"state,omitempty"`
+
+	// UserUsername User username
+	UserUsername *string `form:"user_username,omitempty" json:"user_username,omitempty"`
+
+	// UserUuid User UUID
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+}
+
+// MarketplaceOfferingUsersPosixGroupsListParams defines parameters for MarketplaceOfferingUsersPosixGroupsList.
+type MarketplaceOfferingUsersPosixGroupsListParams struct {
+	// Created Created after
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// CreatedBefore Created before
+	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
+
+	// HasCompleteProfile User has complete profile for the offering
+	HasCompleteProfile *bool `form:"has_complete_profile,omitempty" json:"has_complete_profile,omitempty"`
+
+	// HasConsent User Has Consent
+	HasConsent *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
+
+	// IsRestricted Is restricted
+	IsRestricted *bool `form:"is_restricted,omitempty" json:"is_restricted,omitempty"`
+
+	// Modified Modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// ModifiedBefore Modified before
+	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
+	// O Ordering
+	//
+	O        *[]OfferingUserOEnum `form:"o,omitempty" json:"o,omitempty"`
+	Offering *string              `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingHasActiveTos Offering has active Terms of Service
+	OfferingHasActiveTos *bool `form:"offering_has_active_tos,omitempty" json:"offering_has_active_tos,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+
+	// OfferingUuid Multiple values may be separated by commas.
+	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
+
+	// ProviderUuid Provider UUID
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// Query Search by offering name, username, user name, UID or primary GID
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// RuntimeState Offering user runtime state
+	//
+	RuntimeState *[]RuntimeStateEnum `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+
+	// State Offering user state
+	//
+	State *[]OfferingUserState `form:"state,omitempty" json:"state,omitempty"`
+
+	// UserUsername User username
+	UserUsername *string `form:"user_username,omitempty" json:"user_username,omitempty"`
+
+	// UserUuid User UUID
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
 // MarketplaceOfferingUsersSubmitAnswersJSONBody defines parameters for MarketplaceOfferingUsersSubmitAnswers.
@@ -60838,6 +61500,82 @@ type MarketplacePlansHistoryAtRetrieveParams struct {
 	Timestamp string `form:"timestamp" json:"timestamp"`
 }
 
+// MarketplacePosixIdPoolsListParams defines parameters for MarketplacePosixIdPoolsList.
+type MarketplacePosixIdPoolsListParams struct {
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID     `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	Field        *[]PosixIdPoolFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+
+	// OfferingUuid Offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ServiceProviderUuid Service provider UUID
+	ServiceProviderUuid *openapi_types.UUID `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
+}
+
+// MarketplacePosixIdPoolsCountParams defines parameters for MarketplacePosixIdPoolsCount.
+type MarketplacePosixIdPoolsCountParams struct {
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// OfferingUuid Offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ServiceProviderUuid Service provider UUID
+	ServiceProviderUuid *openapi_types.UUID `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
+}
+
+// MarketplacePosixIdPoolsRetrieveParams defines parameters for MarketplacePosixIdPoolsRetrieve.
+type MarketplacePosixIdPoolsRetrieveParams struct {
+	Field *[]PosixIdPoolFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+}
+
+// MarketplacePosixIdentitiesListParams defines parameters for MarketplacePosixIdentitiesList.
+type MarketplacePosixIdentitiesListParams struct {
+	IsReleased *bool `form:"is_released,omitempty" json:"is_released,omitempty"`
+
+	// OfferingUuid Offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// PoolUuid POSIX ID pool UUID
+	PoolUuid *openapi_types.UUID `form:"pool_uuid,omitempty" json:"pool_uuid,omitempty"`
+}
+
+// MarketplacePosixIdentitiesCountParams defines parameters for MarketplacePosixIdentitiesCount.
+type MarketplacePosixIdentitiesCountParams struct {
+	IsReleased *bool `form:"is_released,omitempty" json:"is_released,omitempty"`
+
+	// OfferingUuid Offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// PoolUuid POSIX ID pool UUID
+	PoolUuid *openapi_types.UUID `form:"pool_uuid,omitempty" json:"pool_uuid,omitempty"`
+}
+
 // MarketplaceProjectEstimatedCostPoliciesListParams defines parameters for MarketplaceProjectEstimatedCostPoliciesList.
 type MarketplaceProjectEstimatedCostPoliciesListParams struct {
 	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
@@ -60902,6 +61640,16 @@ type MarketplaceProjectOrderAutoApprovalsCountParams struct {
 
 	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+}
+
+// MarketplaceProjectPosixGroupsListParams defines parameters for MarketplaceProjectPosixGroupsList.
+type MarketplaceProjectPosixGroupsListParams struct {
+	ProjectUuid string `form:"project_uuid" json:"project_uuid"`
+}
+
+// MarketplaceProjectPosixGroupsCountParams defines parameters for MarketplaceProjectPosixGroupsCount.
+type MarketplaceProjectPosixGroupsCountParams struct {
+	ProjectUuid string `form:"project_uuid" json:"project_uuid"`
 }
 
 // MarketplaceProjectServiceAccountsListParams defines parameters for MarketplaceProjectServiceAccountsList.
@@ -61927,6 +62675,11 @@ type MarketplaceProviderOfferingsCustomersListParams struct {
 
 	// UuidList Comma-separated offering UUIDs
 	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
+}
+
+// MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveParams defines parameters for MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieve.
+type MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveParams struct {
+	Field *[]PosixIdPoolFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 }
 
 // MarketplaceProviderOfferingsHistoryListParams defines parameters for MarketplaceProviderOfferingsHistoryList.
@@ -72851,6 +73604,9 @@ type PublicMaintenanceAnnouncementsListParams struct {
 	// State Maintenance state
 	//
 	State *[]MaintenanceAnnouncementStateEnum `form:"state,omitempty" json:"state,omitempty"`
+
+	// TimingBucket Timing bucket (comma-separated: on_time, late_start, overrun, early, pending)
+	TimingBucket *string `form:"timing_bucket,omitempty" json:"timing_bucket,omitempty"`
 }
 
 // PublicMaintenanceAnnouncementsCountParams defines parameters for PublicMaintenanceAnnouncementsCount.
@@ -72886,6 +73642,9 @@ type PublicMaintenanceAnnouncementsCountParams struct {
 	// State Maintenance state
 	//
 	State *[]MaintenanceAnnouncementStateEnum `form:"state,omitempty" json:"state,omitempty"`
+
+	// TimingBucket Timing bucket (comma-separated: on_time, late_start, overrun, early, pending)
+	TimingBucket *string `form:"timing_bucket,omitempty" json:"timing_bucket,omitempty"`
 }
 
 // RabbitmqUserStatsListParams defines parameters for RabbitmqUserStatsList.
@@ -77844,6 +78603,9 @@ type MarketplaceOfferingUsersSetPendingAccountLinkingJSONRequestBody = OfferingU
 // MarketplaceOfferingUsersSetPendingAdditionalValidationJSONRequestBody defines body for MarketplaceOfferingUsersSetPendingAdditionalValidation for application/json ContentType.
 type MarketplaceOfferingUsersSetPendingAdditionalValidationJSONRequestBody = OfferingUserStateTransitionRequest
 
+// MarketplaceOfferingUsersSetPosixAttributesJSONRequestBody defines body for MarketplaceOfferingUsersSetPosixAttributes for application/json ContentType.
+type MarketplaceOfferingUsersSetPosixAttributesJSONRequestBody = OfferingUserPosixAttributesRequest
+
 // MarketplaceOfferingUsersSubmitAnswersJSONRequestBody defines body for MarketplaceOfferingUsersSubmitAnswers for application/json ContentType.
 type MarketplaceOfferingUsersSubmitAnswersJSONRequestBody = MarketplaceOfferingUsersSubmitAnswersJSONBody
 
@@ -77927,6 +78689,15 @@ type MarketplacePlansUpdatePricesJSONRequestBody = PricesUpdateRequest
 
 // MarketplacePlansUpdateQuotasJSONRequestBody defines body for MarketplacePlansUpdateQuotas for application/json ContentType.
 type MarketplacePlansUpdateQuotasJSONRequestBody = QuotasUpdateRequest
+
+// MarketplacePosixIdPoolsCreateJSONRequestBody defines body for MarketplacePosixIdPoolsCreate for application/json ContentType.
+type MarketplacePosixIdPoolsCreateJSONRequestBody = PosixIdPoolRequest
+
+// MarketplacePosixIdPoolsPartialUpdateJSONRequestBody defines body for MarketplacePosixIdPoolsPartialUpdate for application/json ContentType.
+type MarketplacePosixIdPoolsPartialUpdateJSONRequestBody = PatchedPosixIdPoolRequest
+
+// MarketplacePosixIdPoolsUpdateJSONRequestBody defines body for MarketplacePosixIdPoolsUpdate for application/json ContentType.
+type MarketplacePosixIdPoolsUpdateJSONRequestBody = PosixIdPoolRequest
 
 // MarketplaceProjectEstimatedCostPoliciesCreateJSONRequestBody defines body for MarketplaceProjectEstimatedCostPoliciesCreate for application/json ContentType.
 type MarketplaceProjectEstimatedCostPoliciesCreateJSONRequestBody = ProjectEstimatedCostPolicyRequest
@@ -97744,6 +98515,12 @@ type ClientInterface interface {
 	// MarketplaceOfferingUsersChecklistTemplateCount request
 	MarketplaceOfferingUsersChecklistTemplateCount(ctx context.Context, params *MarketplaceOfferingUsersChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceOfferingUsersPosixIdentitiesList request
+	MarketplaceOfferingUsersPosixIdentitiesList(ctx context.Context, params *MarketplaceOfferingUsersPosixIdentitiesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingUsersPosixIdentitiesCount request
+	MarketplaceOfferingUsersPosixIdentitiesCount(ctx context.Context, params *MarketplaceOfferingUsersPosixIdentitiesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceOfferingUsersProfileFieldWarningsRetrieve request
 	MarketplaceOfferingUsersProfileFieldWarningsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -97781,6 +98558,12 @@ type ClientInterface interface {
 	// MarketplaceOfferingUsersCompletionStatusRetrieve request
 	MarketplaceOfferingUsersCompletionStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceOfferingUsersPosixAllocationsList request
+	MarketplaceOfferingUsersPosixAllocationsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOfferingUsersPosixAllocationsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingUsersPosixGroupsList request
+	MarketplaceOfferingUsersPosixGroupsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOfferingUsersPosixGroupsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceOfferingUsersRequestDeletion request
 	MarketplaceOfferingUsersRequestDeletion(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -97808,6 +98591,11 @@ type ClientInterface interface {
 	MarketplaceOfferingUsersSetPendingAdditionalValidationWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceOfferingUsersSetPendingAdditionalValidation(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersSetPendingAdditionalValidationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingUsersSetPosixAttributesWithBody request with any body
+	MarketplaceOfferingUsersSetPosixAttributesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceOfferingUsersSetPosixAttributes(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersSetPosixAttributesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOfferingUsersSetValidationComplete request
 	MarketplaceOfferingUsersSetValidationComplete(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -98009,6 +98797,45 @@ type ClientInterface interface {
 	// MarketplacePluginsList request
 	MarketplacePluginsList(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplacePosixIdPoolsList request
+	MarketplacePosixIdPoolsList(ctx context.Context, params *MarketplacePosixIdPoolsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplacePosixIdPoolsCount request
+	MarketplacePosixIdPoolsCount(ctx context.Context, params *MarketplacePosixIdPoolsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplacePosixIdPoolsCreateWithBody request with any body
+	MarketplacePosixIdPoolsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplacePosixIdPoolsCreate(ctx context.Context, body MarketplacePosixIdPoolsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplacePosixIdPoolsDestroy request
+	MarketplacePosixIdPoolsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplacePosixIdPoolsRetrieve request
+	MarketplacePosixIdPoolsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplacePosixIdPoolsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplacePosixIdPoolsPartialUpdateWithBody request with any body
+	MarketplacePosixIdPoolsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplacePosixIdPoolsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplacePosixIdPoolsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplacePosixIdPoolsUpdateWithBody request with any body
+	MarketplacePosixIdPoolsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplacePosixIdPoolsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplacePosixIdPoolsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplacePosixIdPoolsStatsRetrieve request
+	MarketplacePosixIdPoolsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplacePosixIdentitiesList request
+	MarketplacePosixIdentitiesList(ctx context.Context, params *MarketplacePosixIdentitiesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplacePosixIdentitiesCount request
+	MarketplacePosixIdentitiesCount(ctx context.Context, params *MarketplacePosixIdentitiesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplacePosixIdentitiesRetrieve request
+	MarketplacePosixIdentitiesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProjectEstimatedCostPoliciesList request
 	MarketplaceProjectEstimatedCostPoliciesList(ctx context.Context, params *MarketplaceProjectEstimatedCostPoliciesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -98068,6 +98895,12 @@ type ClientInterface interface {
 	MarketplaceProjectOrderAutoApprovalsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceProjectOrderAutoApprovalsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectOrderAutoApprovalsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProjectPosixGroupsList request
+	MarketplaceProjectPosixGroupsList(ctx context.Context, params *MarketplaceProjectPosixGroupsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProjectPosixGroupsCount request
+	MarketplaceProjectPosixGroupsCount(ctx context.Context, params *MarketplaceProjectPosixGroupsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProjectServiceAccountsList request
 	MarketplaceProjectServiceAccountsList(ctx context.Context, params *MarketplaceProjectServiceAccountsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -98226,6 +99059,9 @@ type ClientInterface interface {
 
 	// MarketplaceProviderOfferingsDraft request
 	MarketplaceProviderOfferingsDraft(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieve request
+	MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsExportOfferingWithBody request with any body
 	MarketplaceProviderOfferingsExportOfferingWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -118313,6 +119149,30 @@ func (c *Client) MarketplaceOfferingUsersChecklistTemplateCount(ctx context.Cont
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceOfferingUsersPosixIdentitiesList(ctx context.Context, params *MarketplaceOfferingUsersPosixIdentitiesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersPosixIdentitiesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingUsersPosixIdentitiesCount(ctx context.Context, params *MarketplaceOfferingUsersPosixIdentitiesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersPosixIdentitiesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceOfferingUsersProfileFieldWarningsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceOfferingUsersProfileFieldWarningsRetrieveRequest(c.Server)
 	if err != nil {
@@ -118469,6 +119329,30 @@ func (c *Client) MarketplaceOfferingUsersCompletionStatusRetrieve(ctx context.Co
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceOfferingUsersPosixAllocationsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOfferingUsersPosixAllocationsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersPosixAllocationsListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingUsersPosixGroupsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOfferingUsersPosixGroupsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersPosixGroupsListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceOfferingUsersRequestDeletion(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceOfferingUsersRequestDeletionRequest(c.Server, uuid)
 	if err != nil {
@@ -118579,6 +119463,30 @@ func (c *Client) MarketplaceOfferingUsersSetPendingAdditionalValidationWithBody(
 
 func (c *Client) MarketplaceOfferingUsersSetPendingAdditionalValidation(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersSetPendingAdditionalValidationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceOfferingUsersSetPendingAdditionalValidationRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingUsersSetPosixAttributesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersSetPosixAttributesRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingUsersSetPosixAttributes(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersSetPosixAttributesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersSetPosixAttributesRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -119489,6 +120397,174 @@ func (c *Client) MarketplacePluginsList(ctx context.Context, reqEditors ...Reque
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplacePosixIdPoolsList(ctx context.Context, params *MarketplacePosixIdPoolsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplacePosixIdPoolsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplacePosixIdPoolsCount(ctx context.Context, params *MarketplacePosixIdPoolsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplacePosixIdPoolsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplacePosixIdPoolsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplacePosixIdPoolsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplacePosixIdPoolsCreate(ctx context.Context, body MarketplacePosixIdPoolsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplacePosixIdPoolsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplacePosixIdPoolsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplacePosixIdPoolsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplacePosixIdPoolsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplacePosixIdPoolsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplacePosixIdPoolsRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplacePosixIdPoolsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplacePosixIdPoolsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplacePosixIdPoolsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplacePosixIdPoolsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplacePosixIdPoolsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplacePosixIdPoolsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplacePosixIdPoolsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplacePosixIdPoolsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplacePosixIdPoolsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplacePosixIdPoolsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplacePosixIdPoolsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplacePosixIdPoolsStatsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplacePosixIdentitiesList(ctx context.Context, params *MarketplacePosixIdentitiesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplacePosixIdentitiesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplacePosixIdentitiesCount(ctx context.Context, params *MarketplacePosixIdentitiesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplacePosixIdentitiesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplacePosixIdentitiesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplacePosixIdentitiesRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceProjectEstimatedCostPoliciesList(ctx context.Context, params *MarketplaceProjectEstimatedCostPoliciesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProjectEstimatedCostPoliciesListRequest(c.Server, params)
 	if err != nil {
@@ -119743,6 +120819,30 @@ func (c *Client) MarketplaceProjectOrderAutoApprovalsUpdateWithBody(ctx context.
 
 func (c *Client) MarketplaceProjectOrderAutoApprovalsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectOrderAutoApprovalsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProjectOrderAutoApprovalsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProjectPosixGroupsList(ctx context.Context, params *MarketplaceProjectPosixGroupsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectPosixGroupsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProjectPosixGroupsCount(ctx context.Context, params *MarketplaceProjectPosixGroupsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectPosixGroupsCountRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -120439,6 +121539,18 @@ func (c *Client) MarketplaceProviderOfferingsDeleteUser(ctx context.Context, uui
 
 func (c *Client) MarketplaceProviderOfferingsDraft(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsDraftRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -196237,6 +197349,18 @@ func NewMaintenanceAnnouncementsListRequest(server string, params *MaintenanceAn
 
 		}
 
+		if params.TimingBucket != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "timing_bucket", *params.TimingBucket, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if encoded := queryValues.Encode(); encoded != "" {
 			rawQueryFragments = append(rawQueryFragments, encoded)
 		}
@@ -196390,6 +197514,18 @@ func NewMaintenanceAnnouncementsCountRequest(server string, params *MaintenanceA
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.TimingBucket != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "timing_bucket", *params.TimingBucket, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -210693,6 +211829,586 @@ func NewMarketplaceOfferingUsersChecklistTemplateCountRequest(server string, par
 	return req, nil
 }
 
+// NewMarketplaceOfferingUsersPosixIdentitiesListRequest generates requests for MarketplaceOfferingUsersPosixIdentitiesList
+func NewMarketplaceOfferingUsersPosixIdentitiesListRequest(server string, params *MarketplaceOfferingUsersPosixIdentitiesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-users/posix_identities/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created", *params.Created, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_before", *params.CreatedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasCompleteProfile != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_complete_profile", *params.HasCompleteProfile, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_consent", *params.HasConsent, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsRestricted != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_restricted", *params.IsRestricted, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified", *params.Modified, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ModifiedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified_before", *params.ModifiedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Offering != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering", *params.Offering, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingHasActiveTos != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_has_active_tos", *params.OfferingHasActiveTos, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "offering_slug", *params.OfferingSlug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ParentOfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "parent_offering_uuid", *params.ParentOfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "provider_uuid", *params.ProviderUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RuntimeState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "runtime_state", *params.RuntimeState, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserUsername != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_username", *params.UserUsername, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid", params.UserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingUsersPosixIdentitiesCountRequest generates requests for MarketplaceOfferingUsersPosixIdentitiesCount
+func NewMarketplaceOfferingUsersPosixIdentitiesCountRequest(server string, params *MarketplaceOfferingUsersPosixIdentitiesCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-users/posix_identities/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created", *params.Created, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_before", *params.CreatedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasCompleteProfile != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_complete_profile", *params.HasCompleteProfile, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_consent", *params.HasConsent, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsRestricted != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_restricted", *params.IsRestricted, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified", *params.Modified, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ModifiedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified_before", *params.ModifiedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Offering != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering", *params.Offering, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingHasActiveTos != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_has_active_tos", *params.OfferingHasActiveTos, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "offering_slug", *params.OfferingSlug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ParentOfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "parent_offering_uuid", *params.ParentOfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "provider_uuid", *params.ProviderUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RuntimeState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "runtime_state", *params.RuntimeState, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserUsername != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_username", *params.UserUsername, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid", params.UserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceOfferingUsersProfileFieldWarningsRetrieveRequest generates requests for MarketplaceOfferingUsersProfileFieldWarningsRetrieve
 func NewMarketplaceOfferingUsersProfileFieldWarningsRetrieveRequest(server string) (*http.Request, error) {
 	var err error
@@ -211133,6 +212849,608 @@ func NewMarketplaceOfferingUsersCompletionStatusRetrieveRequest(server string, u
 	return req, nil
 }
 
+// NewMarketplaceOfferingUsersPosixAllocationsListRequest generates requests for MarketplaceOfferingUsersPosixAllocationsList
+func NewMarketplaceOfferingUsersPosixAllocationsListRequest(server string, uuid openapi_types.UUID, params *MarketplaceOfferingUsersPosixAllocationsListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-users/%s/posix_allocations/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created", *params.Created, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_before", *params.CreatedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasCompleteProfile != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_complete_profile", *params.HasCompleteProfile, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_consent", *params.HasConsent, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsRestricted != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_restricted", *params.IsRestricted, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified", *params.Modified, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ModifiedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified_before", *params.ModifiedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Offering != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering", *params.Offering, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingHasActiveTos != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_has_active_tos", *params.OfferingHasActiveTos, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "offering_slug", *params.OfferingSlug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ParentOfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "parent_offering_uuid", *params.ParentOfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "provider_uuid", *params.ProviderUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RuntimeState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "runtime_state", *params.RuntimeState, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserUsername != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_username", *params.UserUsername, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid", *params.UserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingUsersPosixGroupsListRequest generates requests for MarketplaceOfferingUsersPosixGroupsList
+func NewMarketplaceOfferingUsersPosixGroupsListRequest(server string, uuid openapi_types.UUID, params *MarketplaceOfferingUsersPosixGroupsListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-users/%s/posix_groups/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created", *params.Created, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_before", *params.CreatedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasCompleteProfile != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_complete_profile", *params.HasCompleteProfile, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_consent", *params.HasConsent, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsRestricted != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_restricted", *params.IsRestricted, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified", *params.Modified, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ModifiedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified_before", *params.ModifiedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Offering != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering", *params.Offering, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingHasActiveTos != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_has_active_tos", *params.OfferingHasActiveTos, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "offering_slug", *params.OfferingSlug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ParentOfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "parent_offering_uuid", *params.ParentOfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "provider_uuid", *params.ProviderUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RuntimeState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "runtime_state", *params.RuntimeState, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserUsername != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_username", *params.UserUsername, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid", *params.UserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceOfferingUsersRequestDeletionRequest generates requests for MarketplaceOfferingUsersRequestDeletion
 func NewMarketplaceOfferingUsersRequestDeletionRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -211412,6 +213730,53 @@ func NewMarketplaceOfferingUsersSetPendingAdditionalValidationRequestWithBody(se
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-offering-users/%s/set_pending_additional_validation/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingUsersSetPosixAttributesRequest calls the generic MarketplaceOfferingUsersSetPosixAttributes builder with application/json body
+func NewMarketplaceOfferingUsersSetPosixAttributesRequest(server string, uuid openapi_types.UUID, body MarketplaceOfferingUsersSetPosixAttributesJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceOfferingUsersSetPosixAttributesRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceOfferingUsersSetPosixAttributesRequestWithBody generates requests for MarketplaceOfferingUsersSetPosixAttributes with any type of body
+func NewMarketplaceOfferingUsersSetPosixAttributesRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-users/%s/set_posix_attributes/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -214848,6 +217213,723 @@ func NewMarketplacePluginsListRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
+// NewMarketplacePosixIdPoolsListRequest generates requests for MarketplacePosixIdPoolsList
+func NewMarketplacePosixIdPoolsListRequest(server string, params *MarketplacePosixIdPoolsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-posix-id-pools/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ServiceProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "service_provider_uuid", *params.ServiceProviderUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplacePosixIdPoolsCountRequest generates requests for MarketplacePosixIdPoolsCount
+func NewMarketplacePosixIdPoolsCountRequest(server string, params *MarketplacePosixIdPoolsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-posix-id-pools/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ServiceProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "service_provider_uuid", *params.ServiceProviderUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplacePosixIdPoolsCreateRequest calls the generic MarketplacePosixIdPoolsCreate builder with application/json body
+func NewMarketplacePosixIdPoolsCreateRequest(server string, body MarketplacePosixIdPoolsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplacePosixIdPoolsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplacePosixIdPoolsCreateRequestWithBody generates requests for MarketplacePosixIdPoolsCreate with any type of body
+func NewMarketplacePosixIdPoolsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-posix-id-pools/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplacePosixIdPoolsDestroyRequest generates requests for MarketplacePosixIdPoolsDestroy
+func NewMarketplacePosixIdPoolsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-posix-id-pools/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplacePosixIdPoolsRetrieveRequest generates requests for MarketplacePosixIdPoolsRetrieve
+func NewMarketplacePosixIdPoolsRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplacePosixIdPoolsRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-posix-id-pools/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplacePosixIdPoolsPartialUpdateRequest calls the generic MarketplacePosixIdPoolsPartialUpdate builder with application/json body
+func NewMarketplacePosixIdPoolsPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplacePosixIdPoolsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplacePosixIdPoolsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplacePosixIdPoolsPartialUpdateRequestWithBody generates requests for MarketplacePosixIdPoolsPartialUpdate with any type of body
+func NewMarketplacePosixIdPoolsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-posix-id-pools/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplacePosixIdPoolsUpdateRequest calls the generic MarketplacePosixIdPoolsUpdate builder with application/json body
+func NewMarketplacePosixIdPoolsUpdateRequest(server string, uuid openapi_types.UUID, body MarketplacePosixIdPoolsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplacePosixIdPoolsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplacePosixIdPoolsUpdateRequestWithBody generates requests for MarketplacePosixIdPoolsUpdate with any type of body
+func NewMarketplacePosixIdPoolsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-posix-id-pools/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplacePosixIdPoolsStatsRetrieveRequest generates requests for MarketplacePosixIdPoolsStatsRetrieve
+func NewMarketplacePosixIdPoolsStatsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-posix-id-pools/%s/stats/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplacePosixIdentitiesListRequest generates requests for MarketplacePosixIdentitiesList
+func NewMarketplacePosixIdentitiesListRequest(server string, params *MarketplacePosixIdentitiesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-posix-identities/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.IsReleased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_released", *params.IsReleased, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PoolUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "pool_uuid", *params.PoolUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplacePosixIdentitiesCountRequest generates requests for MarketplacePosixIdentitiesCount
+func NewMarketplacePosixIdentitiesCountRequest(server string, params *MarketplacePosixIdentitiesCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-posix-identities/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.IsReleased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_released", *params.IsReleased, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PoolUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "pool_uuid", *params.PoolUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplacePosixIdentitiesRetrieveRequest generates requests for MarketplacePosixIdentitiesRetrieve
+func NewMarketplacePosixIdentitiesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-posix-identities/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceProjectEstimatedCostPoliciesListRequest generates requests for MarketplaceProjectEstimatedCostPoliciesList
 func NewMarketplaceProjectEstimatedCostPoliciesListRequest(server string, params *MarketplaceProjectEstimatedCostPoliciesListParams) (*http.Request, error) {
 	var err error
@@ -215806,6 +218888,106 @@ func NewMarketplaceProjectOrderAutoApprovalsUpdateRequestWithBody(server string,
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProjectPosixGroupsListRequest generates requests for MarketplaceProjectPosixGroupsList
+func NewMarketplaceProjectPosixGroupsListRequest(server string, params *MarketplaceProjectPosixGroupsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-project-posix-groups/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceProjectPosixGroupsCountRequest generates requests for MarketplaceProjectPosixGroupsCount
+func NewMarketplaceProjectPosixGroupsCountRequest(server string, params *MarketplaceProjectPosixGroupsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-project-posix-groups/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -221607,6 +224789,67 @@ func NewMarketplaceProviderOfferingsDraftRequest(server string, uuid openapi_typ
 	}
 
 	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveRequest generates requests for MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieve
+func NewMarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/effective_posix_id_pool/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -310776,6 +314019,18 @@ func NewPublicMaintenanceAnnouncementsListRequest(server string, params *PublicM
 
 		}
 
+		if params.TimingBucket != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "timing_bucket", *params.TimingBucket, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if encoded := queryValues.Encode(); encoded != "" {
 			rawQueryFragments = append(rawQueryFragments, encoded)
 		}
@@ -310929,6 +314184,18 @@ func NewPublicMaintenanceAnnouncementsCountRequest(server string, params *Public
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.TimingBucket != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "timing_bucket", *params.TimingBucket, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -351025,6 +354292,12 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceOfferingUsersChecklistTemplateCountWithResponse request
 	MarketplaceOfferingUsersChecklistTemplateCountWithResponse(ctx context.Context, params *MarketplaceOfferingUsersChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersChecklistTemplateCountResponse, error)
 
+	// MarketplaceOfferingUsersPosixIdentitiesListWithResponse request
+	MarketplaceOfferingUsersPosixIdentitiesListWithResponse(ctx context.Context, params *MarketplaceOfferingUsersPosixIdentitiesListParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersPosixIdentitiesListResponse, error)
+
+	// MarketplaceOfferingUsersPosixIdentitiesCountWithResponse request
+	MarketplaceOfferingUsersPosixIdentitiesCountWithResponse(ctx context.Context, params *MarketplaceOfferingUsersPosixIdentitiesCountParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersPosixIdentitiesCountResponse, error)
+
 	// MarketplaceOfferingUsersProfileFieldWarningsRetrieveWithResponse request
 	MarketplaceOfferingUsersProfileFieldWarningsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersProfileFieldWarningsRetrieveResponse, error)
 
@@ -351062,6 +354335,12 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceOfferingUsersCompletionStatusRetrieveWithResponse request
 	MarketplaceOfferingUsersCompletionStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersCompletionStatusRetrieveResponse, error)
 
+	// MarketplaceOfferingUsersPosixAllocationsListWithResponse request
+	MarketplaceOfferingUsersPosixAllocationsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOfferingUsersPosixAllocationsListParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersPosixAllocationsListResponse, error)
+
+	// MarketplaceOfferingUsersPosixGroupsListWithResponse request
+	MarketplaceOfferingUsersPosixGroupsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOfferingUsersPosixGroupsListParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersPosixGroupsListResponse, error)
+
 	// MarketplaceOfferingUsersRequestDeletionWithResponse request
 	MarketplaceOfferingUsersRequestDeletionWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersRequestDeletionResponse, error)
 
@@ -351089,6 +354368,11 @@ type ClientWithResponsesInterface interface {
 	MarketplaceOfferingUsersSetPendingAdditionalValidationWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetPendingAdditionalValidationResponse, error)
 
 	MarketplaceOfferingUsersSetPendingAdditionalValidationWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersSetPendingAdditionalValidationJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetPendingAdditionalValidationResponse, error)
+
+	// MarketplaceOfferingUsersSetPosixAttributesWithBodyWithResponse request with any body
+	MarketplaceOfferingUsersSetPosixAttributesWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetPosixAttributesResponse, error)
+
+	MarketplaceOfferingUsersSetPosixAttributesWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersSetPosixAttributesJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetPosixAttributesResponse, error)
 
 	// MarketplaceOfferingUsersSetValidationCompleteWithResponse request
 	MarketplaceOfferingUsersSetValidationCompleteWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetValidationCompleteResponse, error)
@@ -351290,6 +354574,45 @@ type ClientWithResponsesInterface interface {
 	// MarketplacePluginsListWithResponse request
 	MarketplacePluginsListWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplacePluginsListResponse, error)
 
+	// MarketplacePosixIdPoolsListWithResponse request
+	MarketplacePosixIdPoolsListWithResponse(ctx context.Context, params *MarketplacePosixIdPoolsListParams, reqEditors ...RequestEditorFn) (*MarketplacePosixIdPoolsListResponse, error)
+
+	// MarketplacePosixIdPoolsCountWithResponse request
+	MarketplacePosixIdPoolsCountWithResponse(ctx context.Context, params *MarketplacePosixIdPoolsCountParams, reqEditors ...RequestEditorFn) (*MarketplacePosixIdPoolsCountResponse, error)
+
+	// MarketplacePosixIdPoolsCreateWithBodyWithResponse request with any body
+	MarketplacePosixIdPoolsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplacePosixIdPoolsCreateResponse, error)
+
+	MarketplacePosixIdPoolsCreateWithResponse(ctx context.Context, body MarketplacePosixIdPoolsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplacePosixIdPoolsCreateResponse, error)
+
+	// MarketplacePosixIdPoolsDestroyWithResponse request
+	MarketplacePosixIdPoolsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplacePosixIdPoolsDestroyResponse, error)
+
+	// MarketplacePosixIdPoolsRetrieveWithResponse request
+	MarketplacePosixIdPoolsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplacePosixIdPoolsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplacePosixIdPoolsRetrieveResponse, error)
+
+	// MarketplacePosixIdPoolsPartialUpdateWithBodyWithResponse request with any body
+	MarketplacePosixIdPoolsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplacePosixIdPoolsPartialUpdateResponse, error)
+
+	MarketplacePosixIdPoolsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplacePosixIdPoolsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplacePosixIdPoolsPartialUpdateResponse, error)
+
+	// MarketplacePosixIdPoolsUpdateWithBodyWithResponse request with any body
+	MarketplacePosixIdPoolsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplacePosixIdPoolsUpdateResponse, error)
+
+	MarketplacePosixIdPoolsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplacePosixIdPoolsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplacePosixIdPoolsUpdateResponse, error)
+
+	// MarketplacePosixIdPoolsStatsRetrieveWithResponse request
+	MarketplacePosixIdPoolsStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplacePosixIdPoolsStatsRetrieveResponse, error)
+
+	// MarketplacePosixIdentitiesListWithResponse request
+	MarketplacePosixIdentitiesListWithResponse(ctx context.Context, params *MarketplacePosixIdentitiesListParams, reqEditors ...RequestEditorFn) (*MarketplacePosixIdentitiesListResponse, error)
+
+	// MarketplacePosixIdentitiesCountWithResponse request
+	MarketplacePosixIdentitiesCountWithResponse(ctx context.Context, params *MarketplacePosixIdentitiesCountParams, reqEditors ...RequestEditorFn) (*MarketplacePosixIdentitiesCountResponse, error)
+
+	// MarketplacePosixIdentitiesRetrieveWithResponse request
+	MarketplacePosixIdentitiesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplacePosixIdentitiesRetrieveResponse, error)
+
 	// MarketplaceProjectEstimatedCostPoliciesListWithResponse request
 	MarketplaceProjectEstimatedCostPoliciesListWithResponse(ctx context.Context, params *MarketplaceProjectEstimatedCostPoliciesListParams, reqEditors ...RequestEditorFn) (*MarketplaceProjectEstimatedCostPoliciesListResponse, error)
 
@@ -351349,6 +354672,12 @@ type ClientWithResponsesInterface interface {
 	MarketplaceProjectOrderAutoApprovalsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProjectOrderAutoApprovalsUpdateResponse, error)
 
 	MarketplaceProjectOrderAutoApprovalsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectOrderAutoApprovalsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProjectOrderAutoApprovalsUpdateResponse, error)
+
+	// MarketplaceProjectPosixGroupsListWithResponse request
+	MarketplaceProjectPosixGroupsListWithResponse(ctx context.Context, params *MarketplaceProjectPosixGroupsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProjectPosixGroupsListResponse, error)
+
+	// MarketplaceProjectPosixGroupsCountWithResponse request
+	MarketplaceProjectPosixGroupsCountWithResponse(ctx context.Context, params *MarketplaceProjectPosixGroupsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceProjectPosixGroupsCountResponse, error)
 
 	// MarketplaceProjectServiceAccountsListWithResponse request
 	MarketplaceProjectServiceAccountsListWithResponse(ctx context.Context, params *MarketplaceProjectServiceAccountsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProjectServiceAccountsListResponse, error)
@@ -351507,6 +354836,9 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceProviderOfferingsDraftWithResponse request
 	MarketplaceProviderOfferingsDraftWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsDraftResponse, error)
+
+	// MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveWithResponse request
+	MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveResponse, error)
 
 	// MarketplaceProviderOfferingsExportOfferingWithBodyWithResponse request with any body
 	MarketplaceProviderOfferingsExportOfferingWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsExportOfferingResponse, error)
@@ -383377,6 +386709,65 @@ func (r MarketplaceOfferingUsersChecklistTemplateCountResponse) ContentType() st
 	return ""
 }
 
+type MarketplaceOfferingUsersPosixIdentitiesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]UserPosixIdentity
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUsersPosixIdentitiesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUsersPosixIdentitiesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingUsersPosixIdentitiesListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceOfferingUsersPosixIdentitiesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUsersPosixIdentitiesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUsersPosixIdentitiesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingUsersPosixIdentitiesCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type MarketplaceOfferingUsersProfileFieldWarningsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -383711,6 +387102,66 @@ func (r MarketplaceOfferingUsersCompletionStatusRetrieveResponse) ContentType() 
 	return ""
 }
 
+type MarketplaceOfferingUsersPosixAllocationsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OfferingUserPosixAllocation
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUsersPosixAllocationsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUsersPosixAllocationsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingUsersPosixAllocationsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceOfferingUsersPosixGroupsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OfferingUserPosixGroup
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUsersPosixGroupsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUsersPosixGroupsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingUsersPosixGroupsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type MarketplaceOfferingUsersRequestDeletionResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -383937,6 +387388,36 @@ func (r MarketplaceOfferingUsersSetPendingAdditionalValidationResponse) StatusCo
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceOfferingUsersSetPendingAdditionalValidationResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceOfferingUsersSetPosixAttributesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OfferingUserPosixUpdateResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUsersSetPosixAttributesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUsersSetPosixAttributesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingUsersSetPosixAttributesResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -385423,6 +388904,333 @@ func (r MarketplacePluginsListResponse) ContentType() string {
 	return ""
 }
 
+type MarketplacePosixIdPoolsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]PosixIdPool
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplacePosixIdPoolsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplacePosixIdPoolsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplacePosixIdPoolsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplacePosixIdPoolsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplacePosixIdPoolsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplacePosixIdPoolsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplacePosixIdPoolsCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplacePosixIdPoolsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *PosixIdPool
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplacePosixIdPoolsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplacePosixIdPoolsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplacePosixIdPoolsCreateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplacePosixIdPoolsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplacePosixIdPoolsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplacePosixIdPoolsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplacePosixIdPoolsDestroyResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplacePosixIdPoolsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *PosixIdPool
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplacePosixIdPoolsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplacePosixIdPoolsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplacePosixIdPoolsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplacePosixIdPoolsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *PosixIdPool
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplacePosixIdPoolsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplacePosixIdPoolsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplacePosixIdPoolsPartialUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplacePosixIdPoolsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *PosixIdPool
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplacePosixIdPoolsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplacePosixIdPoolsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplacePosixIdPoolsUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplacePosixIdPoolsStatsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *PosixIdPoolStats
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplacePosixIdPoolsStatsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplacePosixIdPoolsStatsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplacePosixIdPoolsStatsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplacePosixIdentitiesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]PosixIdentity
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplacePosixIdentitiesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplacePosixIdentitiesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplacePosixIdentitiesListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplacePosixIdentitiesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplacePosixIdentitiesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplacePosixIdentitiesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplacePosixIdentitiesCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplacePosixIdentitiesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *PosixIdentity
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplacePosixIdentitiesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplacePosixIdentitiesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplacePosixIdentitiesRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type MarketplaceProjectEstimatedCostPoliciesListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -385892,6 +389700,65 @@ func (r MarketplaceProjectOrderAutoApprovalsUpdateResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceProjectOrderAutoApprovalsUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProjectPosixGroupsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ProjectPosixGroup
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProjectPosixGroupsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProjectPosixGroupsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProjectPosixGroupsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProjectPosixGroupsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProjectPosixGroupsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProjectPosixGroupsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProjectPosixGroupsCountResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -387136,6 +391003,36 @@ func (r MarketplaceProviderOfferingsDraftResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceProviderOfferingsDraftResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *PosixIdPool
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -445903,6 +449800,24 @@ func (c *ClientWithResponses) MarketplaceOfferingUsersChecklistTemplateCountWith
 	return ParseMarketplaceOfferingUsersChecklistTemplateCountResponse(rsp)
 }
 
+// MarketplaceOfferingUsersPosixIdentitiesListWithResponse request returning *MarketplaceOfferingUsersPosixIdentitiesListResponse
+func (c *ClientWithResponses) MarketplaceOfferingUsersPosixIdentitiesListWithResponse(ctx context.Context, params *MarketplaceOfferingUsersPosixIdentitiesListParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersPosixIdentitiesListResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersPosixIdentitiesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersPosixIdentitiesListResponse(rsp)
+}
+
+// MarketplaceOfferingUsersPosixIdentitiesCountWithResponse request returning *MarketplaceOfferingUsersPosixIdentitiesCountResponse
+func (c *ClientWithResponses) MarketplaceOfferingUsersPosixIdentitiesCountWithResponse(ctx context.Context, params *MarketplaceOfferingUsersPosixIdentitiesCountParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersPosixIdentitiesCountResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersPosixIdentitiesCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersPosixIdentitiesCountResponse(rsp)
+}
+
 // MarketplaceOfferingUsersProfileFieldWarningsRetrieveWithResponse request returning *MarketplaceOfferingUsersProfileFieldWarningsRetrieveResponse
 func (c *ClientWithResponses) MarketplaceOfferingUsersProfileFieldWarningsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersProfileFieldWarningsRetrieveResponse, error) {
 	rsp, err := c.MarketplaceOfferingUsersProfileFieldWarningsRetrieve(ctx, reqEditors...)
@@ -446018,6 +449933,24 @@ func (c *ClientWithResponses) MarketplaceOfferingUsersCompletionStatusRetrieveWi
 	return ParseMarketplaceOfferingUsersCompletionStatusRetrieveResponse(rsp)
 }
 
+// MarketplaceOfferingUsersPosixAllocationsListWithResponse request returning *MarketplaceOfferingUsersPosixAllocationsListResponse
+func (c *ClientWithResponses) MarketplaceOfferingUsersPosixAllocationsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOfferingUsersPosixAllocationsListParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersPosixAllocationsListResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersPosixAllocationsList(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersPosixAllocationsListResponse(rsp)
+}
+
+// MarketplaceOfferingUsersPosixGroupsListWithResponse request returning *MarketplaceOfferingUsersPosixGroupsListResponse
+func (c *ClientWithResponses) MarketplaceOfferingUsersPosixGroupsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOfferingUsersPosixGroupsListParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersPosixGroupsListResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersPosixGroupsList(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersPosixGroupsListResponse(rsp)
+}
+
 // MarketplaceOfferingUsersRequestDeletionWithResponse request returning *MarketplaceOfferingUsersRequestDeletionResponse
 func (c *ClientWithResponses) MarketplaceOfferingUsersRequestDeletionWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersRequestDeletionResponse, error) {
 	rsp, err := c.MarketplaceOfferingUsersRequestDeletion(ctx, uuid, reqEditors...)
@@ -446104,6 +450037,23 @@ func (c *ClientWithResponses) MarketplaceOfferingUsersSetPendingAdditionalValida
 		return nil, err
 	}
 	return ParseMarketplaceOfferingUsersSetPendingAdditionalValidationResponse(rsp)
+}
+
+// MarketplaceOfferingUsersSetPosixAttributesWithBodyWithResponse request with arbitrary body returning *MarketplaceOfferingUsersSetPosixAttributesResponse
+func (c *ClientWithResponses) MarketplaceOfferingUsersSetPosixAttributesWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetPosixAttributesResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersSetPosixAttributesWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersSetPosixAttributesResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceOfferingUsersSetPosixAttributesWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersSetPosixAttributesJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetPosixAttributesResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersSetPosixAttributes(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersSetPosixAttributesResponse(rsp)
 }
 
 // MarketplaceOfferingUsersSetValidationCompleteWithResponse request returning *MarketplaceOfferingUsersSetValidationCompleteResponse
@@ -446756,6 +450706,129 @@ func (c *ClientWithResponses) MarketplacePluginsListWithResponse(ctx context.Con
 	return ParseMarketplacePluginsListResponse(rsp)
 }
 
+// MarketplacePosixIdPoolsListWithResponse request returning *MarketplacePosixIdPoolsListResponse
+func (c *ClientWithResponses) MarketplacePosixIdPoolsListWithResponse(ctx context.Context, params *MarketplacePosixIdPoolsListParams, reqEditors ...RequestEditorFn) (*MarketplacePosixIdPoolsListResponse, error) {
+	rsp, err := c.MarketplacePosixIdPoolsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplacePosixIdPoolsListResponse(rsp)
+}
+
+// MarketplacePosixIdPoolsCountWithResponse request returning *MarketplacePosixIdPoolsCountResponse
+func (c *ClientWithResponses) MarketplacePosixIdPoolsCountWithResponse(ctx context.Context, params *MarketplacePosixIdPoolsCountParams, reqEditors ...RequestEditorFn) (*MarketplacePosixIdPoolsCountResponse, error) {
+	rsp, err := c.MarketplacePosixIdPoolsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplacePosixIdPoolsCountResponse(rsp)
+}
+
+// MarketplacePosixIdPoolsCreateWithBodyWithResponse request with arbitrary body returning *MarketplacePosixIdPoolsCreateResponse
+func (c *ClientWithResponses) MarketplacePosixIdPoolsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplacePosixIdPoolsCreateResponse, error) {
+	rsp, err := c.MarketplacePosixIdPoolsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplacePosixIdPoolsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplacePosixIdPoolsCreateWithResponse(ctx context.Context, body MarketplacePosixIdPoolsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplacePosixIdPoolsCreateResponse, error) {
+	rsp, err := c.MarketplacePosixIdPoolsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplacePosixIdPoolsCreateResponse(rsp)
+}
+
+// MarketplacePosixIdPoolsDestroyWithResponse request returning *MarketplacePosixIdPoolsDestroyResponse
+func (c *ClientWithResponses) MarketplacePosixIdPoolsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplacePosixIdPoolsDestroyResponse, error) {
+	rsp, err := c.MarketplacePosixIdPoolsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplacePosixIdPoolsDestroyResponse(rsp)
+}
+
+// MarketplacePosixIdPoolsRetrieveWithResponse request returning *MarketplacePosixIdPoolsRetrieveResponse
+func (c *ClientWithResponses) MarketplacePosixIdPoolsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplacePosixIdPoolsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplacePosixIdPoolsRetrieveResponse, error) {
+	rsp, err := c.MarketplacePosixIdPoolsRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplacePosixIdPoolsRetrieveResponse(rsp)
+}
+
+// MarketplacePosixIdPoolsPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplacePosixIdPoolsPartialUpdateResponse
+func (c *ClientWithResponses) MarketplacePosixIdPoolsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplacePosixIdPoolsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplacePosixIdPoolsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplacePosixIdPoolsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplacePosixIdPoolsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplacePosixIdPoolsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplacePosixIdPoolsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplacePosixIdPoolsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplacePosixIdPoolsPartialUpdateResponse(rsp)
+}
+
+// MarketplacePosixIdPoolsUpdateWithBodyWithResponse request with arbitrary body returning *MarketplacePosixIdPoolsUpdateResponse
+func (c *ClientWithResponses) MarketplacePosixIdPoolsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplacePosixIdPoolsUpdateResponse, error) {
+	rsp, err := c.MarketplacePosixIdPoolsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplacePosixIdPoolsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplacePosixIdPoolsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplacePosixIdPoolsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplacePosixIdPoolsUpdateResponse, error) {
+	rsp, err := c.MarketplacePosixIdPoolsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplacePosixIdPoolsUpdateResponse(rsp)
+}
+
+// MarketplacePosixIdPoolsStatsRetrieveWithResponse request returning *MarketplacePosixIdPoolsStatsRetrieveResponse
+func (c *ClientWithResponses) MarketplacePosixIdPoolsStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplacePosixIdPoolsStatsRetrieveResponse, error) {
+	rsp, err := c.MarketplacePosixIdPoolsStatsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplacePosixIdPoolsStatsRetrieveResponse(rsp)
+}
+
+// MarketplacePosixIdentitiesListWithResponse request returning *MarketplacePosixIdentitiesListResponse
+func (c *ClientWithResponses) MarketplacePosixIdentitiesListWithResponse(ctx context.Context, params *MarketplacePosixIdentitiesListParams, reqEditors ...RequestEditorFn) (*MarketplacePosixIdentitiesListResponse, error) {
+	rsp, err := c.MarketplacePosixIdentitiesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplacePosixIdentitiesListResponse(rsp)
+}
+
+// MarketplacePosixIdentitiesCountWithResponse request returning *MarketplacePosixIdentitiesCountResponse
+func (c *ClientWithResponses) MarketplacePosixIdentitiesCountWithResponse(ctx context.Context, params *MarketplacePosixIdentitiesCountParams, reqEditors ...RequestEditorFn) (*MarketplacePosixIdentitiesCountResponse, error) {
+	rsp, err := c.MarketplacePosixIdentitiesCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplacePosixIdentitiesCountResponse(rsp)
+}
+
+// MarketplacePosixIdentitiesRetrieveWithResponse request returning *MarketplacePosixIdentitiesRetrieveResponse
+func (c *ClientWithResponses) MarketplacePosixIdentitiesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplacePosixIdentitiesRetrieveResponse, error) {
+	rsp, err := c.MarketplacePosixIdentitiesRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplacePosixIdentitiesRetrieveResponse(rsp)
+}
+
 // MarketplaceProjectEstimatedCostPoliciesListWithResponse request returning *MarketplaceProjectEstimatedCostPoliciesListResponse
 func (c *ClientWithResponses) MarketplaceProjectEstimatedCostPoliciesListWithResponse(ctx context.Context, params *MarketplaceProjectEstimatedCostPoliciesListParams, reqEditors ...RequestEditorFn) (*MarketplaceProjectEstimatedCostPoliciesListResponse, error) {
 	rsp, err := c.MarketplaceProjectEstimatedCostPoliciesList(ctx, params, reqEditors...)
@@ -446946,6 +451019,24 @@ func (c *ClientWithResponses) MarketplaceProjectOrderAutoApprovalsUpdateWithResp
 		return nil, err
 	}
 	return ParseMarketplaceProjectOrderAutoApprovalsUpdateResponse(rsp)
+}
+
+// MarketplaceProjectPosixGroupsListWithResponse request returning *MarketplaceProjectPosixGroupsListResponse
+func (c *ClientWithResponses) MarketplaceProjectPosixGroupsListWithResponse(ctx context.Context, params *MarketplaceProjectPosixGroupsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProjectPosixGroupsListResponse, error) {
+	rsp, err := c.MarketplaceProjectPosixGroupsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProjectPosixGroupsListResponse(rsp)
+}
+
+// MarketplaceProjectPosixGroupsCountWithResponse request returning *MarketplaceProjectPosixGroupsCountResponse
+func (c *ClientWithResponses) MarketplaceProjectPosixGroupsCountWithResponse(ctx context.Context, params *MarketplaceProjectPosixGroupsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceProjectPosixGroupsCountResponse, error) {
+	rsp, err := c.MarketplaceProjectPosixGroupsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProjectPosixGroupsCountResponse(rsp)
 }
 
 // MarketplaceProjectServiceAccountsListWithResponse request returning *MarketplaceProjectServiceAccountsListResponse
@@ -447452,6 +451543,15 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsDraftWithResponse(ctx 
 		return nil, err
 	}
 	return ParseMarketplaceProviderOfferingsDraftResponse(rsp)
+}
+
+// MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveWithResponse request returning *MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveResponse(rsp)
 }
 
 // MarketplaceProviderOfferingsExportOfferingWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsExportOfferingResponse
@@ -486953,6 +491053,48 @@ func ParseMarketplaceOfferingUsersChecklistTemplateCountResponse(rsp *http.Respo
 	return response, nil
 }
 
+// ParseMarketplaceOfferingUsersPosixIdentitiesListResponse parses an HTTP response from a MarketplaceOfferingUsersPosixIdentitiesListWithResponse call
+func ParseMarketplaceOfferingUsersPosixIdentitiesListResponse(rsp *http.Response) (*MarketplaceOfferingUsersPosixIdentitiesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUsersPosixIdentitiesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []UserPosixIdentity
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingUsersPosixIdentitiesCountResponse parses an HTTP response from a MarketplaceOfferingUsersPosixIdentitiesCountWithResponse call
+func ParseMarketplaceOfferingUsersPosixIdentitiesCountResponse(rsp *http.Response) (*MarketplaceOfferingUsersPosixIdentitiesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUsersPosixIdentitiesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceOfferingUsersProfileFieldWarningsRetrieveResponse parses an HTTP response from a MarketplaceOfferingUsersProfileFieldWarningsRetrieveWithResponse call
 func ParseMarketplaceOfferingUsersProfileFieldWarningsRetrieveResponse(rsp *http.Response) (*MarketplaceOfferingUsersProfileFieldWarningsRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -487255,6 +491397,58 @@ func ParseMarketplaceOfferingUsersCompletionStatusRetrieveResponse(rsp *http.Res
 	return response, nil
 }
 
+// ParseMarketplaceOfferingUsersPosixAllocationsListResponse parses an HTTP response from a MarketplaceOfferingUsersPosixAllocationsListWithResponse call
+func ParseMarketplaceOfferingUsersPosixAllocationsListResponse(rsp *http.Response) (*MarketplaceOfferingUsersPosixAllocationsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUsersPosixAllocationsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OfferingUserPosixAllocation
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingUsersPosixGroupsListResponse parses an HTTP response from a MarketplaceOfferingUsersPosixGroupsListWithResponse call
+func ParseMarketplaceOfferingUsersPosixGroupsListResponse(rsp *http.Response) (*MarketplaceOfferingUsersPosixGroupsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUsersPosixGroupsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OfferingUserPosixGroup
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceOfferingUsersRequestDeletionResponse parses an HTTP response from a MarketplaceOfferingUsersRequestDeletionWithResponse call
 func ParseMarketplaceOfferingUsersRequestDeletionResponse(rsp *http.Response) (*MarketplaceOfferingUsersRequestDeletionResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -487378,6 +491572,32 @@ func ParseMarketplaceOfferingUsersSetPendingAdditionalValidationResponse(rsp *ht
 	response := &MarketplaceOfferingUsersSetPendingAdditionalValidationResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingUsersSetPosixAttributesResponse parses an HTTP response from a MarketplaceOfferingUsersSetPosixAttributesWithResponse call
+func ParseMarketplaceOfferingUsersSetPosixAttributesResponse(rsp *http.Response) (*MarketplaceOfferingUsersSetPosixAttributesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUsersSetPosixAttributesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingUserPosixUpdateResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -488471,6 +492691,262 @@ func ParseMarketplacePluginsListResponse(rsp *http.Response) (*MarketplacePlugin
 	return response, nil
 }
 
+// ParseMarketplacePosixIdPoolsListResponse parses an HTTP response from a MarketplacePosixIdPoolsListWithResponse call
+func ParseMarketplacePosixIdPoolsListResponse(rsp *http.Response) (*MarketplacePosixIdPoolsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplacePosixIdPoolsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []PosixIdPool
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplacePosixIdPoolsCountResponse parses an HTTP response from a MarketplacePosixIdPoolsCountWithResponse call
+func ParseMarketplacePosixIdPoolsCountResponse(rsp *http.Response) (*MarketplacePosixIdPoolsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplacePosixIdPoolsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplacePosixIdPoolsCreateResponse parses an HTTP response from a MarketplacePosixIdPoolsCreateWithResponse call
+func ParseMarketplacePosixIdPoolsCreateResponse(rsp *http.Response) (*MarketplacePosixIdPoolsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplacePosixIdPoolsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest PosixIdPool
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplacePosixIdPoolsDestroyResponse parses an HTTP response from a MarketplacePosixIdPoolsDestroyWithResponse call
+func ParseMarketplacePosixIdPoolsDestroyResponse(rsp *http.Response) (*MarketplacePosixIdPoolsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplacePosixIdPoolsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplacePosixIdPoolsRetrieveResponse parses an HTTP response from a MarketplacePosixIdPoolsRetrieveWithResponse call
+func ParseMarketplacePosixIdPoolsRetrieveResponse(rsp *http.Response) (*MarketplacePosixIdPoolsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplacePosixIdPoolsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PosixIdPool
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplacePosixIdPoolsPartialUpdateResponse parses an HTTP response from a MarketplacePosixIdPoolsPartialUpdateWithResponse call
+func ParseMarketplacePosixIdPoolsPartialUpdateResponse(rsp *http.Response) (*MarketplacePosixIdPoolsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplacePosixIdPoolsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PosixIdPool
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplacePosixIdPoolsUpdateResponse parses an HTTP response from a MarketplacePosixIdPoolsUpdateWithResponse call
+func ParseMarketplacePosixIdPoolsUpdateResponse(rsp *http.Response) (*MarketplacePosixIdPoolsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplacePosixIdPoolsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PosixIdPool
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplacePosixIdPoolsStatsRetrieveResponse parses an HTTP response from a MarketplacePosixIdPoolsStatsRetrieveWithResponse call
+func ParseMarketplacePosixIdPoolsStatsRetrieveResponse(rsp *http.Response) (*MarketplacePosixIdPoolsStatsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplacePosixIdPoolsStatsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PosixIdPoolStats
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplacePosixIdentitiesListResponse parses an HTTP response from a MarketplacePosixIdentitiesListWithResponse call
+func ParseMarketplacePosixIdentitiesListResponse(rsp *http.Response) (*MarketplacePosixIdentitiesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplacePosixIdentitiesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []PosixIdentity
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplacePosixIdentitiesCountResponse parses an HTTP response from a MarketplacePosixIdentitiesCountWithResponse call
+func ParseMarketplacePosixIdentitiesCountResponse(rsp *http.Response) (*MarketplacePosixIdentitiesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplacePosixIdentitiesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplacePosixIdentitiesRetrieveResponse parses an HTTP response from a MarketplacePosixIdentitiesRetrieveWithResponse call
+func ParseMarketplacePosixIdentitiesRetrieveResponse(rsp *http.Response) (*MarketplacePosixIdentitiesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplacePosixIdentitiesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PosixIdentity
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceProjectEstimatedCostPoliciesListResponse parses an HTTP response from a MarketplaceProjectEstimatedCostPoliciesListWithResponse call
 func ParseMarketplaceProjectEstimatedCostPoliciesListResponse(rsp *http.Response) (*MarketplaceProjectEstimatedCostPoliciesListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -488832,6 +493308,48 @@ func ParseMarketplaceProjectOrderAutoApprovalsUpdateResponse(rsp *http.Response)
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProjectPosixGroupsListResponse parses an HTTP response from a MarketplaceProjectPosixGroupsListWithResponse call
+func ParseMarketplaceProjectPosixGroupsListResponse(rsp *http.Response) (*MarketplaceProjectPosixGroupsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProjectPosixGroupsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ProjectPosixGroup
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProjectPosixGroupsCountResponse parses an HTTP response from a MarketplaceProjectPosixGroupsCountWithResponse call
+func ParseMarketplaceProjectPosixGroupsCountResponse(rsp *http.Response) (*MarketplaceProjectPosixGroupsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProjectPosixGroupsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
@@ -489759,6 +494277,32 @@ func ParseMarketplaceProviderOfferingsDraftResponse(rsp *http.Response) (*Market
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest DetailState
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveResponse parses an HTTP response from a MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveWithResponse call
+func ParseMarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveResponse(rsp *http.Response) (*MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PosixIdPool
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
