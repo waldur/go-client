@@ -2172,6 +2172,24 @@ func (e BillingModeEnum) Valid() bool {
 	}
 }
 
+// Defines values for BillingSourceEnum.
+const (
+	BillingSourceEnumPlacement BillingSourceEnum = "placement"
+	BillingSourceEnumQuota     BillingSourceEnum = "quota"
+)
+
+// Valid indicates whether the value is a known member of the BillingSourceEnum enum.
+func (e BillingSourceEnum) Valid() bool {
+	switch e {
+	case BillingSourceEnumPlacement:
+		return true
+	case BillingSourceEnumQuota:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for BillingTypeEnum.
 const (
 	BillingTypeEnumFew   BillingTypeEnum = "few"
@@ -25793,6 +25811,9 @@ type BidEnum string
 // BillingModeEnum defines model for BillingModeEnum.
 type BillingModeEnum string
 
+// BillingSourceEnum defines model for BillingSourceEnum.
+type BillingSourceEnum string
+
 // BillingTypeEnum defines model for BillingTypeEnum.
 type BillingTypeEnum string
 
@@ -34864,6 +34885,9 @@ type MergedPluginOptions struct {
 	// BackendIdDisplayLabel Label used by UI for showing value of the backend_id
 	BackendIdDisplayLabel *string `json:"backend_id_display_label,omitempty"`
 
+	// BillingSource Source for OpenStack instance compute ComponentUsage: 'quota' (flavor-derived Nova quota, default) or 'placement' (Placement allocations; also bills VGPU/PCI/custom resource classes).
+	BillingSource *BillingSourceEnum `json:"billing_source,omitempty"`
+
 	// CanRestoreResource If set to True, resource can be restored.
 	CanRestoreResource *bool `json:"can_restore_resource,omitempty"`
 
@@ -35129,6 +35153,9 @@ type MergedPluginOptionsRequest struct {
 
 	// BackendIdDisplayLabel Label used by UI for showing value of the backend_id
 	BackendIdDisplayLabel *string `json:"backend_id_display_label,omitempty"`
+
+	// BillingSource Source for OpenStack instance compute ComponentUsage: 'quota' (flavor-derived Nova quota, default) or 'placement' (Placement allocations; also bills VGPU/PCI/custom resource classes).
+	BillingSource *BillingSourceEnum `json:"billing_source,omitempty"`
 
 	// CanRestoreResource If set to True, resource can be restored.
 	CanRestoreResource *bool `json:"can_restore_resource,omitempty"`
