@@ -31612,6 +31612,30 @@ type DuplicateCallRequestRequest struct {
 	Name                          string `json:"name"`
 }
 
+// DuplicateOfferingCandidate defines model for DuplicateOfferingCandidate.
+type DuplicateOfferingCandidate struct {
+	ActiveResources     int                `json:"active_resources"`
+	Id                  int                `json:"id"`
+	IsRecommendedKeeper bool               `json:"is_recommended_keeper"`
+	Name                string             `json:"name"`
+	State               string             `json:"state"`
+	TotalResources      int                `json:"total_resources"`
+	Uuid                openapi_types.UUID `json:"uuid"`
+}
+
+// DuplicateOfferingGroup defines model for DuplicateOfferingGroup.
+type DuplicateOfferingGroup struct {
+	Candidates          []DuplicateOfferingCandidate `json:"candidates"`
+	CustomerName        *string                      `json:"customer_name"`
+	CustomerUuid        *openapi_types.UUID          `json:"customer_uuid"`
+	OfferingType        string                       `json:"offering_type"`
+	OrphanCount         int                          `json:"orphan_count"`
+	RecommendedKeeperId int                          `json:"recommended_keeper_id"`
+	TenantId            int                          `json:"tenant_id"`
+	TenantName          *string                      `json:"tenant_name"`
+	TenantUuid          *openapi_types.UUID          `json:"tenant_uuid"`
+}
+
 // ENABLEDREPORTINGSCREENSEnum defines model for ENABLEDREPORTINGSCREENSEnum.
 type ENABLEDREPORTINGSCREENSEnum string
 
@@ -61164,6 +61188,24 @@ type MarketplaceOfferingUsersPosixGroupsListParams struct {
 
 // MarketplaceOfferingUsersSubmitAnswersJSONBody defines parameters for MarketplaceOfferingUsersSubmitAnswers.
 type MarketplaceOfferingUsersSubmitAnswersJSONBody = []AnswerSubmitRequest
+
+// MarketplaceOpenstackDuplicateOfferingsListParams defines parameters for MarketplaceOpenstackDuplicateOfferingsList.
+type MarketplaceOpenstackDuplicateOfferingsListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceOpenstackDuplicateOfferingsCountParams defines parameters for MarketplaceOpenstackDuplicateOfferingsCount.
+type MarketplaceOpenstackDuplicateOfferingsCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
 
 // MarketplaceOrdersListParams defines parameters for MarketplaceOrdersList.
 type MarketplaceOrdersListParams struct {
@@ -98620,6 +98662,12 @@ type ClientInterface interface {
 
 	MarketplaceOfferingUsersUpdateRuntimeState(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersUpdateRuntimeStateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceOpenstackDuplicateOfferingsList request
+	MarketplaceOpenstackDuplicateOfferingsList(ctx context.Context, params *MarketplaceOpenstackDuplicateOfferingsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOpenstackDuplicateOfferingsCount request
+	MarketplaceOpenstackDuplicateOfferingsCount(ctx context.Context, params *MarketplaceOpenstackDuplicateOfferingsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceOrdersList request
 	MarketplaceOrdersList(ctx context.Context, params *MarketplaceOrdersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -119595,6 +119643,30 @@ func (c *Client) MarketplaceOfferingUsersUpdateRuntimeStateWithBody(ctx context.
 
 func (c *Client) MarketplaceOfferingUsersUpdateRuntimeState(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersUpdateRuntimeStateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceOfferingUsersUpdateRuntimeStateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOpenstackDuplicateOfferingsList(ctx context.Context, params *MarketplaceOpenstackDuplicateOfferingsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOpenstackDuplicateOfferingsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOpenstackDuplicateOfferingsCount(ctx context.Context, params *MarketplaceOpenstackDuplicateOfferingsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOpenstackDuplicateOfferingsCountRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -214014,6 +214086,138 @@ func NewMarketplaceOfferingUsersUpdateRuntimeStateRequestWithBody(server string,
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceOpenstackDuplicateOfferingsListRequest generates requests for MarketplaceOpenstackDuplicateOfferingsList
+func NewMarketplaceOpenstackDuplicateOfferingsListRequest(server string, params *MarketplaceOpenstackDuplicateOfferingsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-openstack-duplicate-offerings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOpenstackDuplicateOfferingsCountRequest generates requests for MarketplaceOpenstackDuplicateOfferingsCount
+func NewMarketplaceOpenstackDuplicateOfferingsCountRequest(server string, params *MarketplaceOpenstackDuplicateOfferingsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-openstack-duplicate-offerings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -354397,6 +354601,12 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceOfferingUsersUpdateRuntimeStateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersUpdateRuntimeStateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersUpdateRuntimeStateResponse, error)
 
+	// MarketplaceOpenstackDuplicateOfferingsListWithResponse request
+	MarketplaceOpenstackDuplicateOfferingsListWithResponse(ctx context.Context, params *MarketplaceOpenstackDuplicateOfferingsListParams, reqEditors ...RequestEditorFn) (*MarketplaceOpenstackDuplicateOfferingsListResponse, error)
+
+	// MarketplaceOpenstackDuplicateOfferingsCountWithResponse request
+	MarketplaceOpenstackDuplicateOfferingsCountWithResponse(ctx context.Context, params *MarketplaceOpenstackDuplicateOfferingsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceOpenstackDuplicateOfferingsCountResponse, error)
+
 	// MarketplaceOrdersListWithResponse request
 	MarketplaceOrdersListWithResponse(ctx context.Context, params *MarketplaceOrdersListParams, reqEditors ...RequestEditorFn) (*MarketplaceOrdersListResponse, error)
 
@@ -387567,6 +387777,65 @@ func (r MarketplaceOfferingUsersUpdateRuntimeStateResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceOfferingUsersUpdateRuntimeStateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceOpenstackDuplicateOfferingsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]DuplicateOfferingGroup
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOpenstackDuplicateOfferingsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOpenstackDuplicateOfferingsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOpenstackDuplicateOfferingsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceOpenstackDuplicateOfferingsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOpenstackDuplicateOfferingsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOpenstackDuplicateOfferingsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOpenstackDuplicateOfferingsCountResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -450133,6 +450402,24 @@ func (c *ClientWithResponses) MarketplaceOfferingUsersUpdateRuntimeStateWithResp
 	return ParseMarketplaceOfferingUsersUpdateRuntimeStateResponse(rsp)
 }
 
+// MarketplaceOpenstackDuplicateOfferingsListWithResponse request returning *MarketplaceOpenstackDuplicateOfferingsListResponse
+func (c *ClientWithResponses) MarketplaceOpenstackDuplicateOfferingsListWithResponse(ctx context.Context, params *MarketplaceOpenstackDuplicateOfferingsListParams, reqEditors ...RequestEditorFn) (*MarketplaceOpenstackDuplicateOfferingsListResponse, error) {
+	rsp, err := c.MarketplaceOpenstackDuplicateOfferingsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOpenstackDuplicateOfferingsListResponse(rsp)
+}
+
+// MarketplaceOpenstackDuplicateOfferingsCountWithResponse request returning *MarketplaceOpenstackDuplicateOfferingsCountResponse
+func (c *ClientWithResponses) MarketplaceOpenstackDuplicateOfferingsCountWithResponse(ctx context.Context, params *MarketplaceOpenstackDuplicateOfferingsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceOpenstackDuplicateOfferingsCountResponse, error) {
+	rsp, err := c.MarketplaceOpenstackDuplicateOfferingsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOpenstackDuplicateOfferingsCountResponse(rsp)
+}
+
 // MarketplaceOrdersListWithResponse request returning *MarketplaceOrdersListResponse
 func (c *ClientWithResponses) MarketplaceOrdersListWithResponse(ctx context.Context, params *MarketplaceOrdersListParams, reqEditors ...RequestEditorFn) (*MarketplaceOrdersListResponse, error) {
 	rsp, err := c.MarketplaceOrdersList(ctx, params, reqEditors...)
@@ -491710,6 +491997,48 @@ func ParseMarketplaceOfferingUsersUpdateRuntimeStateResponse(rsp *http.Response)
 	}
 
 	response := &MarketplaceOfferingUsersUpdateRuntimeStateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOpenstackDuplicateOfferingsListResponse parses an HTTP response from a MarketplaceOpenstackDuplicateOfferingsListWithResponse call
+func ParseMarketplaceOpenstackDuplicateOfferingsListResponse(rsp *http.Response) (*MarketplaceOpenstackDuplicateOfferingsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOpenstackDuplicateOfferingsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []DuplicateOfferingGroup
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOpenstackDuplicateOfferingsCountResponse parses an HTTP response from a MarketplaceOpenstackDuplicateOfferingsCountWithResponse call
+func ParseMarketplaceOpenstackDuplicateOfferingsCountResponse(rsp *http.Response) (*MarketplaceOpenstackDuplicateOfferingsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOpenstackDuplicateOfferingsCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
