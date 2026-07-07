@@ -26076,7 +26076,7 @@ type BookingResource struct {
 	IsUsageBased *bool      `json:"is_usage_based,omitempty"`
 	LastSync     *time.Time `json:"last_sync,omitempty"`
 
-	// LimitUsage Dictionary mapping limit-based component types to their consumed usage. For monthly periods, maps from current_usages; for longer periods, aggregates historical usage.
+	// LimitUsage Dictionary mapping limit-based component types to their consumed usage. Sums the ComponentUsage rows of the component's current period (the monthly billing period unless the component defines a longer limit_period), i.e. the period's high-watermark rather than the instantaneous current_usages value.
 	LimitUsage        *map[string]float64 `json:"limit_usage,omitempty"`
 	Limits            *map[string]int     `json:"limits,omitempty"`
 	Modified          *time.Time          `json:"modified,omitempty"`
@@ -28376,6 +28376,7 @@ type ConstanceSettings struct {
 	SCIMINBOUNDALLOWEDATTRIBUTES                     *[]ConstanceSettings_SCIMINBOUNDALLOWEDATTRIBUTES_Item           `json:"SCIM_INBOUND_ALLOWED_ATTRIBUTES,omitempty"`
 	SCIMINBOUNDENABLED                               *bool                                                            `json:"SCIM_INBOUND_ENABLED,omitempty"`
 	SCIMINBOUNDSOURCENAME                            *string                                                          `json:"SCIM_INBOUND_SOURCE_NAME,omitempty"`
+	SCIMINBOUNDSSHKEYSENABLED                        *bool                                                            `json:"SCIM_INBOUND_SSH_KEYS_ENABLED,omitempty"`
 	SCIMMEMBERSHIPSYNCENABLED                        *bool                                                            `json:"SCIM_MEMBERSHIP_SYNC_ENABLED,omitempty"`
 	SCIMPULLAPIKEY                                   *string                                                          `json:"SCIM_PULL_API_KEY,omitempty"`
 	SCIMPULLAPIURL                                   *string                                                          `json:"SCIM_PULL_API_URL,omitempty"`
@@ -28745,6 +28746,7 @@ type ConstanceSettingsRequest struct {
 	SCIMINBOUNDALLOWEDATTRIBUTES                     *[]ConstanceSettingsRequest_SCIMINBOUNDALLOWEDATTRIBUTES_Item           `json:"SCIM_INBOUND_ALLOWED_ATTRIBUTES,omitempty"`
 	SCIMINBOUNDENABLED                               *bool                                                                   `json:"SCIM_INBOUND_ENABLED,omitempty"`
 	SCIMINBOUNDSOURCENAME                            *string                                                                 `json:"SCIM_INBOUND_SOURCE_NAME,omitempty"`
+	SCIMINBOUNDSSHKEYSENABLED                        *bool                                                                   `json:"SCIM_INBOUND_SSH_KEYS_ENABLED,omitempty"`
 	SCIMMEMBERSHIPSYNCENABLED                        *bool                                                                   `json:"SCIM_MEMBERSHIP_SYNC_ENABLED,omitempty"`
 	SCIMPULLAPIKEY                                   *string                                                                 `json:"SCIM_PULL_API_KEY,omitempty"`
 	SCIMPULLAPIURL                                   *string                                                                 `json:"SCIM_PULL_API_URL,omitempty"`
@@ -29114,6 +29116,7 @@ type ConstanceSettingsRequestForm struct {
 	SCIMINBOUNDALLOWEDATTRIBUTES                     *[]ConstanceSettingsRequestForm_SCIMINBOUNDALLOWEDATTRIBUTES_Item           `json:"SCIM_INBOUND_ALLOWED_ATTRIBUTES,omitempty"`
 	SCIMINBOUNDENABLED                               *bool                                                                       `json:"SCIM_INBOUND_ENABLED,omitempty"`
 	SCIMINBOUNDSOURCENAME                            *string                                                                     `json:"SCIM_INBOUND_SOURCE_NAME,omitempty"`
+	SCIMINBOUNDSSHKEYSENABLED                        *bool                                                                       `json:"SCIM_INBOUND_SSH_KEYS_ENABLED,omitempty"`
 	SCIMMEMBERSHIPSYNCENABLED                        *bool                                                                       `json:"SCIM_MEMBERSHIP_SYNC_ENABLED,omitempty"`
 	SCIMPULLAPIKEY                                   *string                                                                     `json:"SCIM_PULL_API_KEY,omitempty"`
 	SCIMPULLAPIURL                                   *string                                                                     `json:"SCIM_PULL_API_URL,omitempty"`
@@ -29483,6 +29486,7 @@ type ConstanceSettingsRequestMultipart struct {
 	SCIMINBOUNDALLOWEDATTRIBUTES                     *[]ConstanceSettingsRequestMultipart_SCIMINBOUNDALLOWEDATTRIBUTES_Item           `json:"SCIM_INBOUND_ALLOWED_ATTRIBUTES,omitempty"`
 	SCIMINBOUNDENABLED                               *bool                                                                            `json:"SCIM_INBOUND_ENABLED,omitempty"`
 	SCIMINBOUNDSOURCENAME                            *string                                                                          `json:"SCIM_INBOUND_SOURCE_NAME,omitempty"`
+	SCIMINBOUNDSSHKEYSENABLED                        *bool                                                                            `json:"SCIM_INBOUND_SSH_KEYS_ENABLED,omitempty"`
 	SCIMMEMBERSHIPSYNCENABLED                        *bool                                                                            `json:"SCIM_MEMBERSHIP_SYNC_ENABLED,omitempty"`
 	SCIMPULLAPIKEY                                   *string                                                                          `json:"SCIM_PULL_API_KEY,omitempty"`
 	SCIMPULLAPIURL                                   *string                                                                          `json:"SCIM_PULL_API_URL,omitempty"`
@@ -48707,7 +48711,7 @@ type Resource struct {
 	IsUsageBased *bool      `json:"is_usage_based,omitempty"`
 	LastSync     *time.Time `json:"last_sync,omitempty"`
 
-	// LimitUsage Dictionary mapping limit-based component types to their consumed usage. For monthly periods, maps from current_usages; for longer periods, aggregates historical usage.
+	// LimitUsage Dictionary mapping limit-based component types to their consumed usage. Sums the ComponentUsage rows of the component's current period (the monthly billing period unless the component defines a longer limit_period), i.e. the period's high-watermark rather than the instantaneous current_usages value.
 	LimitUsage        *map[string]float64 `json:"limit_usage,omitempty"`
 	Limits            *map[string]int     `json:"limits,omitempty"`
 	Modified          *time.Time          `json:"modified,omitempty"`
