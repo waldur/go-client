@@ -20843,6 +20843,8 @@ func (e UrgencyEnum) Valid() bool {
 
 // Defines values for UserAttributeEnum.
 const (
+	UserAttributeEnumActiveIsds               UserAttributeEnum = "active_isds"
+	UserAttributeEnumAddress                  UserAttributeEnum = "address"
 	UserAttributeEnumAffiliations             UserAttributeEnum = "affiliations"
 	UserAttributeEnumBirthDate                UserAttributeEnum = "birth_date"
 	UserAttributeEnumCivilNumber              UserAttributeEnum = "civil_number"
@@ -20866,13 +20868,19 @@ const (
 	UserAttributeEnumPersonalTitle            UserAttributeEnum = "personal_title"
 	UserAttributeEnumPhoneNumber              UserAttributeEnum = "phone_number"
 	UserAttributeEnumPlaceOfBirth             UserAttributeEnum = "place_of_birth"
+	UserAttributeEnumPrimaryGid               UserAttributeEnum = "primary_gid"
 	UserAttributeEnumRegistrationMethod       UserAttributeEnum = "registration_method"
+	UserAttributeEnumUidNumber                UserAttributeEnum = "uid_number"
 	UserAttributeEnumUsername                 UserAttributeEnum = "username"
 )
 
 // Valid indicates whether the value is a known member of the UserAttributeEnum enum.
 func (e UserAttributeEnum) Valid() bool {
 	switch e {
+	case UserAttributeEnumActiveIsds:
+		return true
+	case UserAttributeEnumAddress:
+		return true
 	case UserAttributeEnumAffiliations:
 		return true
 	case UserAttributeEnumBirthDate:
@@ -20919,7 +20927,11 @@ func (e UserAttributeEnum) Valid() bool {
 		return true
 	case UserAttributeEnumPlaceOfBirth:
 		return true
+	case UserAttributeEnumPrimaryGid:
+		return true
 	case UserAttributeEnumRegistrationMethod:
+		return true
+	case UserAttributeEnumUidNumber:
 		return true
 	case UserAttributeEnumUsername:
 		return true
