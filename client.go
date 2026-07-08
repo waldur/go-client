@@ -28226,6 +28226,7 @@ type ConstanceSettings struct {
 	AUTOAPPROVEUSERTOS                               *bool                                                            `json:"AUTO_APPROVE_USER_TOS,omitempty"`
 	BRANDCOLOR                                       *string                                                          `json:"BRAND_COLOR,omitempty"`
 	CALLMANAGEMENTHEROIMAGE                          *string                                                          `json:"CALL_MANAGEMENT_HERO_IMAGE,omitempty"`
+	CHECKFORUPDATES                                  *bool                                                            `json:"CHECK_FOR_UPDATES,omitempty"`
 	COICOAUTHORSHIPLOOKBACKYEARS                     *int                                                             `json:"COI_COAUTHORSHIP_LOOKBACK_YEARS,omitempty"`
 	COICOAUTHORSHIPTHRESHOLDPAPERS                   *int                                                             `json:"COI_COAUTHORSHIP_THRESHOLD_PAPERS,omitempty"`
 	COIDETECTIONENABLED                              *bool                                                            `json:"COI_DETECTION_ENABLED,omitempty"`
@@ -28596,6 +28597,7 @@ type ConstanceSettingsRequest struct {
 	AUTOAPPROVEUSERTOS                               *bool                                                                   `json:"AUTO_APPROVE_USER_TOS,omitempty"`
 	BRANDCOLOR                                       *string                                                                 `json:"BRAND_COLOR,omitempty"`
 	CALLMANAGEMENTHEROIMAGE                          *openapi_types.File                                                     `json:"CALL_MANAGEMENT_HERO_IMAGE,omitempty"`
+	CHECKFORUPDATES                                  *bool                                                                   `json:"CHECK_FOR_UPDATES,omitempty"`
 	COICOAUTHORSHIPLOOKBACKYEARS                     *int                                                                    `json:"COI_COAUTHORSHIP_LOOKBACK_YEARS,omitempty"`
 	COICOAUTHORSHIPTHRESHOLDPAPERS                   *int                                                                    `json:"COI_COAUTHORSHIP_THRESHOLD_PAPERS,omitempty"`
 	COIDETECTIONENABLED                              *bool                                                                   `json:"COI_DETECTION_ENABLED,omitempty"`
@@ -28966,6 +28968,7 @@ type ConstanceSettingsRequestForm struct {
 	AUTOAPPROVEUSERTOS                               *bool                                                                       `json:"AUTO_APPROVE_USER_TOS,omitempty"`
 	BRANDCOLOR                                       *string                                                                     `json:"BRAND_COLOR,omitempty"`
 	CALLMANAGEMENTHEROIMAGE                          *openapi_types.File                                                         `json:"CALL_MANAGEMENT_HERO_IMAGE,omitempty"`
+	CHECKFORUPDATES                                  *bool                                                                       `json:"CHECK_FOR_UPDATES,omitempty"`
 	COICOAUTHORSHIPLOOKBACKYEARS                     *int                                                                        `json:"COI_COAUTHORSHIP_LOOKBACK_YEARS,omitempty"`
 	COICOAUTHORSHIPTHRESHOLDPAPERS                   *int                                                                        `json:"COI_COAUTHORSHIP_THRESHOLD_PAPERS,omitempty"`
 	COIDETECTIONENABLED                              *bool                                                                       `json:"COI_DETECTION_ENABLED,omitempty"`
@@ -29336,6 +29339,7 @@ type ConstanceSettingsRequestMultipart struct {
 	AUTOAPPROVEUSERTOS                               *bool                                                                            `json:"AUTO_APPROVE_USER_TOS,omitempty"`
 	BRANDCOLOR                                       *string                                                                          `json:"BRAND_COLOR,omitempty"`
 	CALLMANAGEMENTHEROIMAGE                          *openapi_types.File                                                              `json:"CALL_MANAGEMENT_HERO_IMAGE,omitempty"`
+	CHECKFORUPDATES                                  *bool                                                                            `json:"CHECK_FOR_UPDATES,omitempty"`
 	COICOAUTHORSHIPLOOKBACKYEARS                     *int                                                                             `json:"COI_COAUTHORSHIP_LOOKBACK_YEARS,omitempty"`
 	COICOAUTHORSHIPTHRESHOLDPAPERS                   *int                                                                             `json:"COI_COAUTHORSHIP_THRESHOLD_PAPERS,omitempty"`
 	COIDETECTIONENABLED                              *bool                                                                            `json:"COI_DETECTION_ENABLED,omitempty"`
