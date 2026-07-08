@@ -15840,6 +15840,7 @@ func (e PermissionMetadataResponsePermissions) Valid() bool {
 // Defines values for PermissionMetadataResponseRoles.
 const (
 	PermissionMetadataResponseRolesCALLMANAGER     PermissionMetadataResponseRoles = "CALL.MANAGER"
+	PermissionMetadataResponseRolesCALLPANELMEMBER PermissionMetadataResponseRoles = "CALL.PANEL_MEMBER"
 	PermissionMetadataResponseRolesCALLREVIEWER    PermissionMetadataResponseRoles = "CALL.REVIEWER"
 	PermissionMetadataResponseRolesCUSTOMERMANAGER PermissionMetadataResponseRoles = "CUSTOMER.MANAGER"
 	PermissionMetadataResponseRolesCUSTOMEROWNER   PermissionMetadataResponseRoles = "CUSTOMER.OWNER"
@@ -15857,6 +15858,8 @@ const (
 func (e PermissionMetadataResponseRoles) Valid() bool {
 	switch e {
 	case PermissionMetadataResponseRolesCALLMANAGER:
+		return true
+	case PermissionMetadataResponseRolesCALLPANELMEMBER:
 		return true
 	case PermissionMetadataResponseRolesCALLREVIEWER:
 		return true
