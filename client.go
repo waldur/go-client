@@ -99,6 +99,24 @@ func (e AccessorTypeEnum) Valid() bool {
 	}
 }
 
+// Defines values for ActionOnUsageLimitEnum.
+const (
+	Downscale ActionOnUsageLimitEnum = "downscale"
+	Pause     ActionOnUsageLimitEnum = "pause"
+)
+
+// Valid indicates whether the value is a known member of the ActionOnUsageLimitEnum enum.
+func (e ActionOnUsageLimitEnum) Valid() bool {
+	switch e {
+	case Downscale:
+		return true
+	case Pause:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ActionTakenEnum.
 const (
 	ActionTakenEnumAllow  ActionTakenEnum = "allow"
@@ -2336,6 +2354,7 @@ const (
 	BookingResourceFieldEnumSlug                       BookingResourceFieldEnum = "slug"
 	BookingResourceFieldEnumState                      BookingResourceFieldEnum = "state"
 	BookingResourceFieldEnumUrl                        BookingResourceFieldEnum = "url"
+	BookingResourceFieldEnumUsageLimitRestriction      BookingResourceFieldEnum = "usage_limit_restriction"
 	BookingResourceFieldEnumUserRequiresReconsent      BookingResourceFieldEnum = "user_requires_reconsent"
 	BookingResourceFieldEnumUsername                   BookingResourceFieldEnum = "username"
 	BookingResourceFieldEnumUuid                       BookingResourceFieldEnum = "uuid"
@@ -2517,6 +2536,8 @@ func (e BookingResourceFieldEnum) Valid() bool {
 	case BookingResourceFieldEnumState:
 		return true
 	case BookingResourceFieldEnumUrl:
+		return true
+	case BookingResourceFieldEnumUsageLimitRestriction:
 		return true
 	case BookingResourceFieldEnumUserRequiresReconsent:
 		return true
@@ -18769,6 +18790,7 @@ const (
 	ResourceFieldEnumSlug                      ResourceFieldEnum = "slug"
 	ResourceFieldEnumState                     ResourceFieldEnum = "state"
 	ResourceFieldEnumUrl                       ResourceFieldEnum = "url"
+	ResourceFieldEnumUsageLimitRestriction     ResourceFieldEnum = "usage_limit_restriction"
 	ResourceFieldEnumUserRequiresReconsent     ResourceFieldEnum = "user_requires_reconsent"
 	ResourceFieldEnumUsername                  ResourceFieldEnum = "username"
 	ResourceFieldEnumUuid                      ResourceFieldEnum = "uuid"
@@ -18936,6 +18958,8 @@ func (e ResourceFieldEnum) Valid() bool {
 	case ResourceFieldEnumState:
 		return true
 	case ResourceFieldEnumUrl:
+		return true
+	case ResourceFieldEnumUsageLimitRestriction:
 		return true
 	case ResourceFieldEnumUserRequiresReconsent:
 		return true
@@ -20802,6 +20826,24 @@ func (e UrgencyEnum) Valid() bool {
 	case UrgencyEnumLow:
 		return true
 	case UrgencyEnumMedium:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for UsageLimitRestrictionEnum.
+const (
+	Downscaled UsageLimitRestrictionEnum = "downscaled"
+	Paused     UsageLimitRestrictionEnum = "paused"
+)
+
+// Valid indicates whether the value is a known member of the UsageLimitRestrictionEnum enum.
+func (e UsageLimitRestrictionEnum) Valid() bool {
+	switch e {
+	case Downscaled:
+		return true
+	case Paused:
 		return true
 	default:
 		return false
@@ -23194,6 +23236,9 @@ type AccessorUser struct {
 
 // AccountNameGenerationPolicyEnum defines model for AccountNameGenerationPolicyEnum.
 type AccountNameGenerationPolicyEnum = interface{}
+
+// ActionOnUsageLimitEnum defines model for ActionOnUsageLimitEnum.
+type ActionOnUsageLimitEnum string
 
 // ActionTakenEnum defines model for ActionTakenEnum.
 type ActionTakenEnum string
@@ -26167,6 +26212,9 @@ type BookingResource struct {
 	Slug  *string        `json:"slug,omitempty"`
 	State *ResourceState `json:"state,omitempty"`
 	Url   *string        `json:"url,omitempty"`
+
+	// UsageLimitRestriction Which restriction (paused or downscaled) was automatically applied because reported usage reached a component limit. Empty when no such restriction is active. Used so the automatic lift never clears a restriction that was set for another reason.
+	UsageLimitRestriction *UsageLimitRestrictionEnum `json:"usage_limit_restriction,omitempty"`
 
 	// UserRequiresReconsent Check if the current user needs to re-consent for this resource's offering.
 	UserRequiresReconsent *bool               `json:"user_requires_reconsent,omitempty"`
@@ -35130,6 +35178,9 @@ type MergedPluginOptions struct {
 	// AccountNameGenerationPolicy Slurm account name generation policy
 	AccountNameGenerationPolicy *MergedPluginOptions_AccountNameGenerationPolicy `json:"account_name_generation_policy,omitempty"`
 
+	// ActionOnUsageLimit If set to 'pause' or 'downscale', resources are automatically paused or downscaled when reported usage in the current period reaches a component's limit_amount, and the restriction is lifted when usage drops below the limit again (e.g. a new billing period or a raised limit).
+	ActionOnUsageLimit *MergedPluginOptions_ActionOnUsageLimit `json:"action_on_usage_limit,omitempty"`
+
 	// AutoApproveForRoles List of project or organization role names (e.g. 'PROJECT.MANAGER') whose orders skip consumer review for this offering. The creator must hold the role on the target project or its organization. Independent of restricted_to_roles (which governs visibility/ordering) and of the ORDER.APPROVE permission. Provider review and purchase-order requirements still apply. Only staff can change this option.
 	AutoApproveForRoles *[]string `json:"auto_approve_for_roles,omitempty"`
 
@@ -35400,10 +35451,18 @@ type MergedPluginOptions_AccountNameGenerationPolicy struct {
 	union json.RawMessage
 }
 
+// MergedPluginOptions_ActionOnUsageLimit If set to 'pause' or 'downscale', resources are automatically paused or downscaled when reported usage in the current period reaches a component's limit_amount, and the restriction is lifted when usage drops below the limit again (e.g. a new billing period or a raised limit).
+type MergedPluginOptions_ActionOnUsageLimit struct {
+	union json.RawMessage
+}
+
 // MergedPluginOptionsRequest defines model for MergedPluginOptionsRequest.
 type MergedPluginOptionsRequest struct {
 	// AccountNameGenerationPolicy Slurm account name generation policy
 	AccountNameGenerationPolicy *MergedPluginOptionsRequest_AccountNameGenerationPolicy `json:"account_name_generation_policy,omitempty"`
+
+	// ActionOnUsageLimit If set to 'pause' or 'downscale', resources are automatically paused or downscaled when reported usage in the current period reaches a component's limit_amount, and the restriction is lifted when usage drops below the limit again (e.g. a new billing period or a raised limit).
+	ActionOnUsageLimit *MergedPluginOptionsRequest_ActionOnUsageLimit `json:"action_on_usage_limit,omitempty"`
 
 	// AutoApproveForRoles List of project or organization role names (e.g. 'PROJECT.MANAGER') whose orders skip consumer review for this offering. The creator must hold the role on the target project or its organization. Independent of restricted_to_roles (which governs visibility/ordering) and of the ORDER.APPROVE permission. Provider review and purchase-order requirements still apply. Only staff can change this option.
 	AutoApproveForRoles *[]string `json:"auto_approve_for_roles,omitempty"`
@@ -35672,6 +35731,11 @@ type MergedPluginOptionsRequest struct {
 
 // MergedPluginOptionsRequest_AccountNameGenerationPolicy Slurm account name generation policy
 type MergedPluginOptionsRequest_AccountNameGenerationPolicy struct {
+	union json.RawMessage
+}
+
+// MergedPluginOptionsRequest_ActionOnUsageLimit If set to 'pause' or 'downscale', resources are automatically paused or downscaled when reported usage in the current period reaches a component's limit_amount, and the restriction is lifted when usage drops below the limit again (e.g. a new billing period or a raised limit).
+type MergedPluginOptionsRequest_ActionOnUsageLimit struct {
 	union json.RawMessage
 }
 
@@ -48794,6 +48858,9 @@ type Resource struct {
 	State *ResourceState `json:"state,omitempty"`
 	Url   *string        `json:"url,omitempty"`
 
+	// UsageLimitRestriction Which restriction (paused or downscaled) was automatically applied because reported usage reached a component limit. Empty when no such restriction is active. Used so the automatic lift never clears a restriction that was set for another reason.
+	UsageLimitRestriction *UsageLimitRestrictionEnum `json:"usage_limit_restriction,omitempty"`
+
 	// UserRequiresReconsent Check if the current user needs to re-consent for this resource's offering.
 	UserRequiresReconsent *bool               `json:"user_requires_reconsent,omitempty"`
 	Username              *string             `json:"username,omitempty"`
@@ -52516,6 +52583,9 @@ type UrgencyEnum string
 type Usage struct {
 	Seconds int `json:"seconds"`
 }
+
+// UsageLimitRestrictionEnum defines model for UsageLimitRestrictionEnum.
+type UsageLimitRestrictionEnum string
 
 // UsageTimeseriesBucket defines model for UsageTimeseriesBucket.
 type UsageTimeseriesBucket struct {
@@ -87918,6 +87988,94 @@ func (t *MergedPluginOptions_AccountNameGenerationPolicy) UnmarshalJSON(b []byte
 	return err
 }
 
+// AsActionOnUsageLimitEnum returns the union data inside the MergedPluginOptions_ActionOnUsageLimit as a ActionOnUsageLimitEnum
+func (t MergedPluginOptions_ActionOnUsageLimit) AsActionOnUsageLimitEnum() (ActionOnUsageLimitEnum, error) {
+	var body ActionOnUsageLimitEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromActionOnUsageLimitEnum overwrites any union data inside the MergedPluginOptions_ActionOnUsageLimit as the provided ActionOnUsageLimitEnum
+func (t *MergedPluginOptions_ActionOnUsageLimit) FromActionOnUsageLimitEnum(v ActionOnUsageLimitEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeActionOnUsageLimitEnum performs a merge with any union data inside the MergedPluginOptions_ActionOnUsageLimit, using the provided ActionOnUsageLimitEnum
+func (t *MergedPluginOptions_ActionOnUsageLimit) MergeActionOnUsageLimitEnum(v ActionOnUsageLimitEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the MergedPluginOptions_ActionOnUsageLimit as a BlankEnum
+func (t MergedPluginOptions_ActionOnUsageLimit) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the MergedPluginOptions_ActionOnUsageLimit as the provided BlankEnum
+func (t *MergedPluginOptions_ActionOnUsageLimit) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the MergedPluginOptions_ActionOnUsageLimit, using the provided BlankEnum
+func (t *MergedPluginOptions_ActionOnUsageLimit) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the MergedPluginOptions_ActionOnUsageLimit as a NullEnum
+func (t MergedPluginOptions_ActionOnUsageLimit) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the MergedPluginOptions_ActionOnUsageLimit as the provided NullEnum
+func (t *MergedPluginOptions_ActionOnUsageLimit) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the MergedPluginOptions_ActionOnUsageLimit, using the provided NullEnum
+func (t *MergedPluginOptions_ActionOnUsageLimit) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t MergedPluginOptions_ActionOnUsageLimit) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *MergedPluginOptions_ActionOnUsageLimit) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsAccountNameGenerationPolicyEnum returns the union data inside the MergedPluginOptionsRequest_AccountNameGenerationPolicy as a AccountNameGenerationPolicyEnum
 func (t MergedPluginOptionsRequest_AccountNameGenerationPolicy) AsAccountNameGenerationPolicyEnum() (AccountNameGenerationPolicyEnum, error) {
 	var body AccountNameGenerationPolicyEnum
@@ -87976,6 +88134,94 @@ func (t MergedPluginOptionsRequest_AccountNameGenerationPolicy) MarshalJSON() ([
 }
 
 func (t *MergedPluginOptionsRequest_AccountNameGenerationPolicy) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsActionOnUsageLimitEnum returns the union data inside the MergedPluginOptionsRequest_ActionOnUsageLimit as a ActionOnUsageLimitEnum
+func (t MergedPluginOptionsRequest_ActionOnUsageLimit) AsActionOnUsageLimitEnum() (ActionOnUsageLimitEnum, error) {
+	var body ActionOnUsageLimitEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromActionOnUsageLimitEnum overwrites any union data inside the MergedPluginOptionsRequest_ActionOnUsageLimit as the provided ActionOnUsageLimitEnum
+func (t *MergedPluginOptionsRequest_ActionOnUsageLimit) FromActionOnUsageLimitEnum(v ActionOnUsageLimitEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeActionOnUsageLimitEnum performs a merge with any union data inside the MergedPluginOptionsRequest_ActionOnUsageLimit, using the provided ActionOnUsageLimitEnum
+func (t *MergedPluginOptionsRequest_ActionOnUsageLimit) MergeActionOnUsageLimitEnum(v ActionOnUsageLimitEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the MergedPluginOptionsRequest_ActionOnUsageLimit as a BlankEnum
+func (t MergedPluginOptionsRequest_ActionOnUsageLimit) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the MergedPluginOptionsRequest_ActionOnUsageLimit as the provided BlankEnum
+func (t *MergedPluginOptionsRequest_ActionOnUsageLimit) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the MergedPluginOptionsRequest_ActionOnUsageLimit, using the provided BlankEnum
+func (t *MergedPluginOptionsRequest_ActionOnUsageLimit) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the MergedPluginOptionsRequest_ActionOnUsageLimit as a NullEnum
+func (t MergedPluginOptionsRequest_ActionOnUsageLimit) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the MergedPluginOptionsRequest_ActionOnUsageLimit as the provided NullEnum
+func (t *MergedPluginOptionsRequest_ActionOnUsageLimit) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the MergedPluginOptionsRequest_ActionOnUsageLimit, using the provided NullEnum
+func (t *MergedPluginOptionsRequest_ActionOnUsageLimit) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t MergedPluginOptionsRequest_ActionOnUsageLimit) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *MergedPluginOptionsRequest_ActionOnUsageLimit) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
