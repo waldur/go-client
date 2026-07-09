@@ -2345,6 +2345,7 @@ const (
 	BookingResourceFieldEnumProviderUuid               BookingResourceFieldEnum = "provider_uuid"
 	BookingResourceFieldEnumRenewalDate                BookingResourceFieldEnum = "renewal_date"
 	BookingResourceFieldEnumReport                     BookingResourceFieldEnum = "report"
+	BookingResourceFieldEnumResourceEffectiveEndDate   BookingResourceFieldEnum = "resource_effective_end_date"
 	BookingResourceFieldEnumResourceType               BookingResourceFieldEnum = "resource_type"
 	BookingResourceFieldEnumResourceUuid               BookingResourceFieldEnum = "resource_uuid"
 	BookingResourceFieldEnumRestrictMemberAccess       BookingResourceFieldEnum = "restrict_member_access"
@@ -2518,6 +2519,8 @@ func (e BookingResourceFieldEnum) Valid() bool {
 	case BookingResourceFieldEnumRenewalDate:
 		return true
 	case BookingResourceFieldEnumReport:
+		return true
+	case BookingResourceFieldEnumResourceEffectiveEndDate:
 		return true
 	case BookingResourceFieldEnumResourceType:
 		return true
@@ -18782,6 +18785,7 @@ const (
 	ResourceFieldEnumProviderUuid              ResourceFieldEnum = "provider_uuid"
 	ResourceFieldEnumRenewalDate               ResourceFieldEnum = "renewal_date"
 	ResourceFieldEnumReport                    ResourceFieldEnum = "report"
+	ResourceFieldEnumResourceEffectiveEndDate  ResourceFieldEnum = "resource_effective_end_date"
 	ResourceFieldEnumResourceType              ResourceFieldEnum = "resource_type"
 	ResourceFieldEnumResourceUuid              ResourceFieldEnum = "resource_uuid"
 	ResourceFieldEnumRestrictMemberAccess      ResourceFieldEnum = "restrict_member_access"
@@ -18942,6 +18946,8 @@ func (e ResourceFieldEnum) Valid() bool {
 	case ResourceFieldEnumRenewalDate:
 		return true
 	case ResourceFieldEnumReport:
+		return true
+	case ResourceFieldEnumResourceEffectiveEndDate:
 		return true
 	case ResourceFieldEnumResourceType:
 		return true
@@ -26183,7 +26189,7 @@ type BookingResource struct {
 	Project            *string                 `json:"project,omitempty"`
 	ProjectDescription *string                 `json:"project_description,omitempty"`
 
-	// ProjectEffectiveEndDate Effective project end date including grace period. After this date, resources will be terminated.
+	// ProjectEffectiveEndDate Effective project end date including grace period. After this date, resources are terminated, except resources of offerings that disable the grace period — those are terminated on the raw project end date.
 	ProjectEffectiveEndDate *openapi_types.Date `json:"project_effective_end_date,omitempty"`
 
 	// ProjectEndDate The date is inclusive. Once reached, all project resource will be scheduled for termination.
@@ -26201,12 +26207,15 @@ type BookingResource struct {
 	ProviderUuid           *openapi_types.UUID            `json:"provider_uuid,omitempty"`
 	RenewalDate            *map[string]openapi_types.Date `json:"renewal_date,omitempty"`
 	Report                 *[]ReportSection               `json:"report,omitempty"`
-	ResourceType           *string                        `json:"resource_type,omitempty"`
-	ResourceUuid           *openapi_types.UUID            `json:"resource_uuid,omitempty"`
-	RestrictMemberAccess   *bool                          `json:"restrict_member_access,omitempty"`
-	Scope                  *string                        `json:"scope,omitempty"`
-	ServiceSettingsUuid    *openapi_types.UUID            `json:"service_settings_uuid,omitempty"`
-	Slots                  *[]BookingSlot                 `json:"slots,omitempty"`
+
+	// ResourceEffectiveEndDate The date this resource is scheduled to terminate: the earliest of its own end date and the project-driven termination date (the raw project end date if the offering disables the grace period, otherwise the effective with-grace end date).
+	ResourceEffectiveEndDate *openapi_types.Date `json:"resource_effective_end_date,omitempty"`
+	ResourceType             *string             `json:"resource_type,omitempty"`
+	ResourceUuid             *openapi_types.UUID `json:"resource_uuid,omitempty"`
+	RestrictMemberAccess     *bool               `json:"restrict_member_access,omitempty"`
+	Scope                    *string             `json:"scope,omitempty"`
+	ServiceSettingsUuid      *openapi_types.UUID `json:"service_settings_uuid,omitempty"`
+	Slots                    *[]BookingSlot      `json:"slots,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug  *string        `json:"slug,omitempty"`
@@ -35226,6 +35235,9 @@ type MergedPluginOptions struct {
 	// DisableAutoapprove If set to True, orders for this offering will always require manual approval, overriding auto_approve_in_service_provider_projects
 	DisableAutoapprove *bool `json:"disable_autoapprove,omitempty"`
 
+	// DisableGracePeriod If set to True, this offering's resources ignore the project grace period and are terminated on the project end date. Only staff can change this option.
+	DisableGracePeriod *bool `json:"disable_grace_period,omitempty"`
+
 	// DisabledResourceActions List of disabled marketplace resource actions for this offering.
 	DisabledResourceActions *[]string `json:"disabled_resource_actions,omitempty"`
 
@@ -35508,6 +35520,9 @@ type MergedPluginOptionsRequest struct {
 
 	// DisableAutoapprove If set to True, orders for this offering will always require manual approval, overriding auto_approve_in_service_provider_projects
 	DisableAutoapprove *bool `json:"disable_autoapprove,omitempty"`
+
+	// DisableGracePeriod If set to True, this offering's resources ignore the project grace period and are terminated on the project end date. Only staff can change this option.
+	DisableGracePeriod *bool `json:"disable_grace_period,omitempty"`
 
 	// DisabledResourceActions List of disabled marketplace resource actions for this offering.
 	DisabledResourceActions *[]string `json:"disabled_resource_actions,omitempty"`
@@ -48829,7 +48844,7 @@ type Resource struct {
 	Project            *string                 `json:"project,omitempty"`
 	ProjectDescription *string                 `json:"project_description,omitempty"`
 
-	// ProjectEffectiveEndDate Effective project end date including grace period. After this date, resources will be terminated.
+	// ProjectEffectiveEndDate Effective project end date including grace period. After this date, resources are terminated, except resources of offerings that disable the grace period — those are terminated on the raw project end date.
 	ProjectEffectiveEndDate *openapi_types.Date `json:"project_effective_end_date,omitempty"`
 
 	// ProjectEndDate The date is inclusive. Once reached, all project resource will be scheduled for termination.
@@ -48847,11 +48862,14 @@ type Resource struct {
 	ProviderUuid           *openapi_types.UUID            `json:"provider_uuid,omitempty"`
 	RenewalDate            *map[string]openapi_types.Date `json:"renewal_date,omitempty"`
 	Report                 *[]ReportSection               `json:"report,omitempty"`
-	ResourceType           *string                        `json:"resource_type,omitempty"`
-	ResourceUuid           *openapi_types.UUID            `json:"resource_uuid,omitempty"`
-	RestrictMemberAccess   *bool                          `json:"restrict_member_access,omitempty"`
-	Scope                  *string                        `json:"scope,omitempty"`
-	ServiceSettingsUuid    *openapi_types.UUID            `json:"service_settings_uuid,omitempty"`
+
+	// ResourceEffectiveEndDate The date this resource is scheduled to terminate: the earliest of its own end date and the project-driven termination date (the raw project end date if the offering disables the grace period, otherwise the effective with-grace end date).
+	ResourceEffectiveEndDate *openapi_types.Date `json:"resource_effective_end_date,omitempty"`
+	ResourceType             *string             `json:"resource_type,omitempty"`
+	ResourceUuid             *openapi_types.UUID `json:"resource_uuid,omitempty"`
+	RestrictMemberAccess     *bool               `json:"restrict_member_access,omitempty"`
+	Scope                    *string             `json:"scope,omitempty"`
+	ServiceSettingsUuid      *openapi_types.UUID `json:"service_settings_uuid,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug  *string        `json:"slug,omitempty"`
