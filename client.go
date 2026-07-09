@@ -5010,24 +5010,6 @@ func (e DEFAULTIDPEnum) Valid() bool {
 	}
 }
 
-// Defines values for DecidingEntityEnum.
-const (
-	Automatic     DecidingEntityEnum = "automatic"
-	ByCallManager DecidingEntityEnum = "by_call_manager"
-)
-
-// Valid indicates whether the value is a known member of the DecidingEntityEnum enum.
-func (e DecidingEntityEnum) Valid() bool {
-	switch e {
-	case Automatic:
-		return true
-	case ByCallManager:
-		return true
-	default:
-		return false
-	}
-}
-
 // Defines values for DefaultPermissionEnum.
 const (
 	N2770 DefaultPermissionEnum = "2770"
@@ -19107,24 +19089,6 @@ func (e ResponsibleRoleEnum) Valid() bool {
 	}
 }
 
-// Defines values for ReviewStrategyEnum.
-const (
-	AfterProposal ReviewStrategyEnum = "after_proposal"
-	AfterRound    ReviewStrategyEnum = "after_round"
-)
-
-// Valid indicates whether the value is a known member of the ReviewStrategyEnum enum.
-func (e ReviewStrategyEnum) Valid() bool {
-	switch e {
-	case AfterProposal:
-		return true
-	case AfterRound:
-		return true
-	default:
-		return false
-	}
-}
-
 // Defines values for ReviewerBidOEnum.
 const (
 	ReviewerBidOEnumBid              ReviewerBidOEnum = "bid"
@@ -26262,17 +26226,12 @@ type BroadcastMessageStateEnum string
 
 // BulkRoundCreateRequestRequest defines model for BulkRoundCreateRequestRequest.
 type BulkRoundCreateRequestRequest struct {
-	AllocationTime           *AllocationTimeEnum `json:"allocation_time,omitempty"`
-	Cadence                  CadenceEnum         `json:"cadence"`
-	CustomIntervalMonths     *int                `json:"custom_interval_months,omitempty"`
-	DecidingEntity           *DecidingEntityEnum `json:"deciding_entity,omitempty"`
-	MinimalAverageScoring    *string             `json:"minimal_average_scoring,omitempty"`
-	MinimumNumberOfReviewers *int                `json:"minimum_number_of_reviewers,omitempty"`
-	NumberOfRounds           int                 `json:"number_of_rounds"`
-	ReviewDurationInDays     *int                `json:"review_duration_in_days,omitempty"`
-	ReviewStrategy           *ReviewStrategyEnum `json:"review_strategy,omitempty"`
-	StartTime                time.Time           `json:"start_time"`
-	SubmissionWindowDays     int                 `json:"submission_window_days"`
+	Cadence              CadenceEnum `json:"cadence"`
+	CustomIntervalMonths *int        `json:"custom_interval_months,omitempty"`
+	NumberOfRounds       int         `json:"number_of_rounds"`
+	ReviewDurationInDays *int        `json:"review_duration_in_days,omitempty"`
+	StartTime            time.Time   `json:"start_time"`
+	SubmissionWindowDays int         `json:"submission_window_days"`
 }
 
 // BulkSilenceResponse defines model for BulkSilenceResponse.
@@ -26847,6 +26806,9 @@ type CallStates string
 
 // CallWorkflowStep defines model for CallWorkflowStep.
 type CallWorkflowStep struct {
+	// AllocationTime Allocation decision: when a granted proposal takes effect — immediately (on_decision) or on the round's allocation date (fixed_date).
+	AllocationTime *AllocationTimeEnum `json:"allocation_time,omitempty"`
+
 	// ApplicantVisible Whether the applicant can see step details (not just status).
 	ApplicantVisible *bool `json:"applicant_visible,omitempty"`
 
@@ -26897,6 +26859,9 @@ type CallWorkflowStep_ResponsibleRole struct {
 
 // CallWorkflowStepRequest defines model for CallWorkflowStepRequest.
 type CallWorkflowStepRequest struct {
+	// AllocationTime Allocation decision: when a granted proposal takes effect — immediately (on_decision) or on the round's allocation date (fixed_date).
+	AllocationTime *AllocationTimeEnum `json:"allocation_time,omitempty"`
+
 	// ApplicantVisible Whether the applicant can see step details (not just status).
 	ApplicantVisible *bool `json:"applicant_visible,omitempty"`
 
@@ -31096,9 +31061,6 @@ type DeadLetterQueue struct {
 	// TotalDlqMessages Total messages across all DLQs
 	TotalDlqMessages *int `json:"total_dlq_messages,omitempty"`
 }
-
-// DecidingEntityEnum defines model for DecidingEntityEnum.
-type DecidingEntityEnum string
 
 // DefaultPermissionEnum defines model for DefaultPermissionEnum.
 type DefaultPermissionEnum string
@@ -36522,19 +36484,14 @@ type NestedResourceProjectPermission struct {
 
 // NestedRound defines model for NestedRound.
 type NestedRound struct {
-	AllocationDate           *time.Time          `json:"allocation_date,omitempty"`
-	AllocationTime           *AllocationTimeEnum `json:"allocation_time,omitempty"`
-	CutoffTime               *time.Time          `json:"cutoff_time,omitempty"`
-	DecidingEntity           *DecidingEntityEnum `json:"deciding_entity,omitempty"`
-	MinimalAverageScoring    *string             `json:"minimal_average_scoring,omitempty"`
-	MinimumNumberOfReviewers *int                `json:"minimum_number_of_reviewers,omitempty"`
-	Name                     *string             `json:"name,omitempty"`
-	ReviewDurationInDays     *int                `json:"review_duration_in_days,omitempty"`
-	ReviewStrategy           *ReviewStrategyEnum `json:"review_strategy,omitempty"`
-	Slug                     *string             `json:"slug,omitempty"`
-	StartTime                *time.Time          `json:"start_time,omitempty"`
-	Status                   *RoundStatus        `json:"status,omitempty"`
-	Uuid                     *openapi_types.UUID `json:"uuid,omitempty"`
+	AllocationDate       *time.Time          `json:"allocation_date,omitempty"`
+	CutoffTime           *time.Time          `json:"cutoff_time,omitempty"`
+	Name                 *string             `json:"name,omitempty"`
+	ReviewDurationInDays *int                `json:"review_duration_in_days,omitempty"`
+	Slug                 *string             `json:"slug,omitempty"`
+	StartTime            *time.Time          `json:"start_time,omitempty"`
+	Status               *RoundStatus        `json:"status,omitempty"`
+	Uuid                 *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // NestedScreenshot defines model for NestedScreenshot.
@@ -41843,6 +41800,9 @@ type PatchedCallReviewerPoolUpdateRequest struct {
 
 // PatchedCallWorkflowStepRequest defines model for PatchedCallWorkflowStepRequest.
 type PatchedCallWorkflowStepRequest struct {
+	// AllocationTime Allocation decision: when a granted proposal takes effect — immediately (on_decision) or on the round's allocation date (fixed_date).
+	AllocationTime *AllocationTimeEnum `json:"allocation_time,omitempty"`
+
 	// ApplicantVisible Whether the applicant can see step details (not just status).
 	ApplicantVisible *bool `json:"applicant_visible,omitempty"`
 
@@ -43292,15 +43252,10 @@ type PatchedProtectedCallRequest struct {
 
 // PatchedProtectedRoundRequest defines model for PatchedProtectedRoundRequest.
 type PatchedProtectedRoundRequest struct {
-	AllocationDate           *time.Time          `json:"allocation_date,omitempty"`
-	AllocationTime           *AllocationTimeEnum `json:"allocation_time,omitempty"`
-	CutoffTime               *time.Time          `json:"cutoff_time,omitempty"`
-	DecidingEntity           *DecidingEntityEnum `json:"deciding_entity,omitempty"`
-	MinimalAverageScoring    *string             `json:"minimal_average_scoring,omitempty"`
-	MinimumNumberOfReviewers *int                `json:"minimum_number_of_reviewers,omitempty"`
-	ReviewDurationInDays     *int                `json:"review_duration_in_days,omitempty"`
-	ReviewStrategy           *ReviewStrategyEnum `json:"review_strategy,omitempty"`
-	StartTime                *time.Time          `json:"start_time,omitempty"`
+	AllocationDate       *time.Time `json:"allocation_date,omitempty"`
+	CutoffTime           *time.Time `json:"cutoff_time,omitempty"`
+	ReviewDurationInDays *int       `json:"review_duration_in_days,omitempty"`
+	StartTime            *time.Time `json:"start_time,omitempty"`
 }
 
 // PatchedProviderPlanDetailsRequest defines model for PatchedProviderPlanDetailsRequest.
@@ -46040,34 +45995,24 @@ type ProtectedProposalList struct {
 
 // ProtectedRound defines model for ProtectedRound.
 type ProtectedRound struct {
-	AllocationDate           *time.Time               `json:"allocation_date,omitempty"`
-	AllocationTime           *AllocationTimeEnum      `json:"allocation_time,omitempty"`
-	CutoffTime               time.Time                `json:"cutoff_time"`
-	DecidingEntity           *DecidingEntityEnum      `json:"deciding_entity,omitempty"`
-	MinimalAverageScoring    *string                  `json:"minimal_average_scoring,omitempty"`
-	MinimumNumberOfReviewers *int                     `json:"minimum_number_of_reviewers,omitempty"`
-	Name                     *string                  `json:"name,omitempty"`
-	Proposals                *[]ProtectedProposalList `json:"proposals,omitempty"`
-	ReviewDurationInDays     *int                     `json:"review_duration_in_days,omitempty"`
-	ReviewStrategy           *ReviewStrategyEnum      `json:"review_strategy,omitempty"`
-	Slug                     *string                  `json:"slug,omitempty"`
-	StartTime                time.Time                `json:"start_time"`
-	Status                   *RoundStatus             `json:"status,omitempty"`
-	Url                      *string                  `json:"url,omitempty"`
-	Uuid                     *openapi_types.UUID      `json:"uuid,omitempty"`
+	AllocationDate       *time.Time               `json:"allocation_date,omitempty"`
+	CutoffTime           time.Time                `json:"cutoff_time"`
+	Name                 *string                  `json:"name,omitempty"`
+	Proposals            *[]ProtectedProposalList `json:"proposals,omitempty"`
+	ReviewDurationInDays *int                     `json:"review_duration_in_days,omitempty"`
+	Slug                 *string                  `json:"slug,omitempty"`
+	StartTime            time.Time                `json:"start_time"`
+	Status               *RoundStatus             `json:"status,omitempty"`
+	Url                  *string                  `json:"url,omitempty"`
+	Uuid                 *openapi_types.UUID      `json:"uuid,omitempty"`
 }
 
 // ProtectedRoundRequest defines model for ProtectedRoundRequest.
 type ProtectedRoundRequest struct {
-	AllocationDate           *time.Time          `json:"allocation_date,omitempty"`
-	AllocationTime           *AllocationTimeEnum `json:"allocation_time,omitempty"`
-	CutoffTime               time.Time           `json:"cutoff_time"`
-	DecidingEntity           *DecidingEntityEnum `json:"deciding_entity,omitempty"`
-	MinimalAverageScoring    *string             `json:"minimal_average_scoring,omitempty"`
-	MinimumNumberOfReviewers *int                `json:"minimum_number_of_reviewers,omitempty"`
-	ReviewDurationInDays     *int                `json:"review_duration_in_days,omitempty"`
-	ReviewStrategy           *ReviewStrategyEnum `json:"review_strategy,omitempty"`
-	StartTime                time.Time           `json:"start_time"`
+	AllocationDate       *time.Time `json:"allocation_date,omitempty"`
+	CutoffTime           time.Time  `json:"cutoff_time"`
+	ReviewDurationInDays *int       `json:"review_duration_in_days,omitempty"`
+	StartTime            time.Time  `json:"start_time"`
 }
 
 // ProviderCustomerMonthly defines model for ProviderCustomerMonthly.
@@ -49446,9 +49391,6 @@ type ReviewProgressStat struct {
 	ReviewerUuid          *openapi_types.UUID  `json:"reviewer_uuid,omitempty"`
 	TotalAssigned         *int                 `json:"total_assigned,omitempty"`
 }
-
-// ReviewStrategyEnum defines model for ReviewStrategyEnum.
-type ReviewStrategyEnum string
 
 // ReviewSubmitRequest defines model for ReviewSubmitRequest.
 type ReviewSubmitRequest struct {
