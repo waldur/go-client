@@ -42997,9 +42997,11 @@ type PatchedProjectEstimatedCostPolicyRequest struct {
 	LimitCost *int    `json:"limit_cost,omitempty"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options *map[string]interface{} `json:"options,omitempty"`
-	Period  *PolicyPeriodEnum       `json:"period,omitempty"`
-	Scope   *string                 `json:"scope,omitempty"`
+	Options   *map[string]interface{} `json:"options,omitempty"`
+	Period    *PolicyPeriodEnum       `json:"period,omitempty"`
+	Resource  *openapi_types.UUID     `json:"resource,omitempty"`
+	Scope     *string                 `json:"scope,omitempty"`
+	UseCredit *bool                   `json:"use_credit,omitempty"`
 }
 
 // PatchedProjectInfoRequest defines model for PatchedProjectInfoRequest.
@@ -45016,10 +45018,13 @@ type ProjectEstimatedCostPolicy struct {
 	Period        *PolicyPeriodEnum       `json:"period,omitempty"`
 	PeriodName    *string                 `json:"period_name,omitempty"`
 	ProjectCredit *string                 `json:"project_credit,omitempty"`
+	Resource      *openapi_types.UUID     `json:"resource,omitempty"`
+	ResourceName  *string                 `json:"resource_name,omitempty"`
 	Scope         string                  `json:"scope"`
 	ScopeName     *string                 `json:"scope_name,omitempty"`
 	ScopeUuid     *openapi_types.UUID     `json:"scope_uuid,omitempty"`
 	Url           *string                 `json:"url,omitempty"`
+	UseCredit     *bool                   `json:"use_credit,omitempty"`
 	Uuid          *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
@@ -45029,9 +45034,11 @@ type ProjectEstimatedCostPolicyRequest struct {
 	LimitCost int    `json:"limit_cost"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options *map[string]interface{} `json:"options,omitempty"`
-	Period  *PolicyPeriodEnum       `json:"period,omitempty"`
-	Scope   string                  `json:"scope"`
+	Options   *map[string]interface{} `json:"options,omitempty"`
+	Period    *PolicyPeriodEnum       `json:"period,omitempty"`
+	Resource  *openapi_types.UUID     `json:"resource,omitempty"`
+	Scope     string                  `json:"scope"`
+	UseCredit *bool                   `json:"use_credit,omitempty"`
 }
 
 // ProjectFieldEnum defines model for ProjectFieldEnum.
@@ -58945,6 +58952,9 @@ type InvoiceItemsProjectCostsForPeriodRetrieveParams struct {
 
 	// ProjectUuid UUID of the project for which statistics should be calculated.
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ResourceUuid Optional marketplace resource UUID. When provided, costs are limited to this resource only.
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
 }
 
 // InvoiceItemsProjectCostsForPeriodCountParams defines parameters for InvoiceItemsProjectCostsForPeriodCount.
@@ -58954,6 +58964,9 @@ type InvoiceItemsProjectCostsForPeriodCountParams struct {
 
 	// ProjectUuid UUID of the project for which statistics should be calculated.
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ResourceUuid Optional marketplace resource UUID. When provided, costs are limited to this resource only.
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
 }
 
 // InvoiceItemsTotalPriceRetrieveParams defines parameters for InvoiceItemsTotalPriceRetrieve.
@@ -194700,6 +194713,18 @@ func NewInvoiceItemsProjectCostsForPeriodRetrieveRequest(server string, params *
 
 		}
 
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_uuid", *params.ResourceUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if encoded := queryValues.Encode(); encoded != "" {
 			rawQueryFragments = append(rawQueryFragments, encoded)
 		}
@@ -194757,6 +194782,18 @@ func NewInvoiceItemsProjectCostsForPeriodCountRequest(server string, params *Inv
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_uuid", *params.ResourceUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
