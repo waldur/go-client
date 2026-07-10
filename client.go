@@ -26888,12 +26888,13 @@ type CallWorkflowStep struct {
 	IncludeAwardResponse *bool `json:"include_award_response,omitempty"`
 
 	// IsEnabled Whether this step is enabled. Disabled steps are skipped.
-	IsEnabled *bool `json:"is_enabled,omitempty"`
+	IsEnabled   *bool `json:"is_enabled,omitempty"`
+	IsMandatory *bool `json:"is_mandatory,omitempty"`
 
 	// MinReviewers Minimum reviews required before step can complete.
 	MinReviewers *int `json:"min_reviewers,omitempty"`
 
-	// MinScoreThreshold Minimum average score to pass this step.
+	// MinScoreThreshold Minimum average score required before this step can complete (a completion gate; it does not auto-reject lower scores).
 	MinScoreThreshold *string    `json:"min_score_threshold,omitempty"`
 	Modified          *time.Time `json:"modified,omitempty"`
 
@@ -26904,7 +26905,7 @@ type CallWorkflowStep struct {
 	ResponsibleRole *CallWorkflowStep_ResponsibleRole `json:"responsible_role,omitempty"`
 	Step            StepEnum                          `json:"step"`
 
-	// TransitionMode How this step advances to the next.
+	// TransitionMode How this step advances once a human completes it. 'Automatic' advances to the next step immediately; 'Manual' waits for a separate advance action. Neither auto-decides from review scores.
 	TransitionMode *TransitionModeEnum `json:"transition_mode,omitempty"`
 	Uuid           *openapi_types.UUID `json:"uuid,omitempty"`
 }
@@ -26942,7 +26943,7 @@ type CallWorkflowStepRequest struct {
 	// MinReviewers Minimum reviews required before step can complete.
 	MinReviewers *int `json:"min_reviewers,omitempty"`
 
-	// MinScoreThreshold Minimum average score to pass this step.
+	// MinScoreThreshold Minimum average score required before this step can complete (a completion gate; it does not auto-reject lower scores).
 	MinScoreThreshold *string `json:"min_score_threshold,omitempty"`
 
 	// RequiresCoiConfirmation Evaluator must confirm absence of conflict of interest.
@@ -26952,7 +26953,7 @@ type CallWorkflowStepRequest struct {
 	ResponsibleRole *CallWorkflowStepRequest_ResponsibleRole `json:"responsible_role,omitempty"`
 	Step            StepEnum                                 `json:"step"`
 
-	// TransitionMode How this step advances to the next.
+	// TransitionMode How this step advances once a human completes it. 'Automatic' advances to the next step immediately; 'Manual' waits for a separate advance action. Neither auto-decides from review scores.
 	TransitionMode *TransitionModeEnum `json:"transition_mode,omitempty"`
 }
 
@@ -41905,7 +41906,7 @@ type PatchedCallWorkflowStepRequest struct {
 	// MinReviewers Minimum reviews required before step can complete.
 	MinReviewers *int `json:"min_reviewers,omitempty"`
 
-	// MinScoreThreshold Minimum average score to pass this step.
+	// MinScoreThreshold Minimum average score required before this step can complete (a completion gate; it does not auto-reject lower scores).
 	MinScoreThreshold *string `json:"min_score_threshold,omitempty"`
 
 	// RequiresCoiConfirmation Evaluator must confirm absence of conflict of interest.
@@ -41914,7 +41915,7 @@ type PatchedCallWorkflowStepRequest struct {
 	// ResponsibleRole Role expected to act on this step.
 	ResponsibleRole *PatchedCallWorkflowStepRequest_ResponsibleRole `json:"responsible_role,omitempty"`
 
-	// TransitionMode How this step advances to the next.
+	// TransitionMode How this step advances once a human completes it. 'Automatic' advances to the next step immediately; 'Manual' waits for a separate advance action. Neither auto-decides from review scores.
 	TransitionMode *TransitionModeEnum `json:"transition_mode,omitempty"`
 }
 
@@ -45699,11 +45700,6 @@ type Proposal_ApplicantGender struct {
 // Proposal_OecdFos2007Code defines model for Proposal.OecdFos2007Code.
 type Proposal_OecdFos2007Code struct {
 	union json.RawMessage
-}
-
-// ProposalApproveRequest defines model for ProposalApproveRequest.
-type ProposalApproveRequest struct {
-	AllocationComment *string `json:"allocation_comment,omitempty"`
 }
 
 // ProposalCanSubmitResponse defines model for ProposalCanSubmitResponse.
@@ -81503,9 +81499,6 @@ type ProposalProposalsCreateJSONRequestBody = ProposalRequest
 // ProposalProposalsAddUserJSONRequestBody defines body for ProposalProposalsAddUser for application/json ContentType.
 type ProposalProposalsAddUserJSONRequestBody = UserRoleCreateRequest
 
-// ProposalProposalsApproveJSONRequestBody defines body for ProposalProposalsApprove for application/json ContentType.
-type ProposalProposalsApproveJSONRequestBody = ProposalApproveRequest
-
 // ProposalProposalsAttachDocumentJSONRequestBody defines body for ProposalProposalsAttachDocument for application/json ContentType.
 type ProposalProposalsAttachDocumentJSONRequestBody = ProposalDocumentationRequest
 
@@ -81523,9 +81516,6 @@ type ProposalProposalsDeleteUserJSONRequestBody = UserRoleDeleteRequest
 
 // ProposalProposalsDetachDocumentsJSONRequestBody defines body for ProposalProposalsDetachDocuments for application/json ContentType.
 type ProposalProposalsDetachDocumentsJSONRequestBody = ProposalDetachDocumentsRequest
-
-// ProposalProposalsRejectJSONRequestBody defines body for ProposalProposalsReject for application/json ContentType.
-type ProposalProposalsRejectJSONRequestBody = ProposalApproveRequest
 
 // ProposalProposalsRejectWorkflowStepJSONRequestBody defines body for ProposalProposalsRejectWorkflowStep for application/json ContentType.
 type ProposalProposalsRejectWorkflowStepJSONRequestBody = RejectWorkflowStepRequest
@@ -104795,11 +104785,6 @@ type ClientInterface interface {
 	// ProposalProposalsAdvanceWorkflowStep request
 	ProposalProposalsAdvanceWorkflowStep(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ProposalProposalsApproveWithBody request with any body
-	ProposalProposalsApproveWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	ProposalProposalsApprove(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// ProposalProposalsAttachDocumentWithBody request with any body
 	ProposalProposalsAttachDocumentWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -104839,11 +104824,6 @@ type ClientInterface interface {
 
 	// ProposalProposalsListUsersCount request
 	ProposalProposalsListUsersCount(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsListUsersCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ProposalProposalsRejectWithBody request with any body
-	ProposalProposalsRejectWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	ProposalProposalsReject(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProposalsRejectWorkflowStepWithBody request with any body
 	ProposalProposalsRejectWorkflowStepWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -140442,30 +140422,6 @@ func (c *Client) ProposalProposalsAdvanceWorkflowStep(ctx context.Context, uuid 
 	return c.Client.Do(req)
 }
 
-func (c *Client) ProposalProposalsApproveWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProposalProposalsApproveRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ProposalProposalsApprove(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProposalProposalsApproveRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) ProposalProposalsAttachDocumentWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProposalsAttachDocumentRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -140636,30 +140592,6 @@ func (c *Client) ProposalProposalsListUsersList(ctx context.Context, uuid openap
 
 func (c *Client) ProposalProposalsListUsersCount(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsListUsersCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProposalsListUsersCountRequest(c.Server, uuid, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ProposalProposalsRejectWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProposalProposalsRejectRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ProposalProposalsReject(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProposalProposalsRejectRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -314557,53 +314489,6 @@ func NewProposalProposalsAdvanceWorkflowStepRequest(server string, uuid openapi_
 	return req, nil
 }
 
-// NewProposalProposalsApproveRequest calls the generic ProposalProposalsApprove builder with application/json body
-func NewProposalProposalsApproveRequest(server string, uuid openapi_types.UUID, body ProposalProposalsApproveJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewProposalProposalsApproveRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewProposalProposalsApproveRequestWithBody generates requests for ProposalProposalsApprove with any type of body
-func NewProposalProposalsApproveRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/proposal-proposals/%s/approve/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
 // NewProposalProposalsAttachDocumentRequest calls the generic ProposalProposalsAttachDocument builder with application/json body
 func NewProposalProposalsAttachDocumentRequest(server string, uuid openapi_types.UUID, body ProposalProposalsAttachDocumentJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -315348,53 +315233,6 @@ func NewProposalProposalsListUsersCountRequest(server string, uuid openapi_types
 	if err != nil {
 		return nil, err
 	}
-
-	return req, nil
-}
-
-// NewProposalProposalsRejectRequest calls the generic ProposalProposalsReject builder with application/json body
-func NewProposalProposalsRejectRequest(server string, uuid openapi_types.UUID, body ProposalProposalsRejectJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewProposalProposalsRejectRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewProposalProposalsRejectRequestWithBody generates requests for ProposalProposalsReject with any type of body
-func NewProposalProposalsRejectRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/proposal-proposals/%s/reject/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -368369,11 +368207,6 @@ type ClientWithResponsesInterface interface {
 	// ProposalProposalsAdvanceWorkflowStepWithResponse request
 	ProposalProposalsAdvanceWorkflowStepWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsAdvanceWorkflowStepResponse, error)
 
-	// ProposalProposalsApproveWithBodyWithResponse request with any body
-	ProposalProposalsApproveWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsApproveResponse, error)
-
-	ProposalProposalsApproveWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsApproveResponse, error)
-
 	// ProposalProposalsAttachDocumentWithBodyWithResponse request with any body
 	ProposalProposalsAttachDocumentWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsAttachDocumentResponse, error)
 
@@ -368413,11 +368246,6 @@ type ClientWithResponsesInterface interface {
 
 	// ProposalProposalsListUsersCountWithResponse request
 	ProposalProposalsListUsersCountWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsListUsersCountParams, reqEditors ...RequestEditorFn) (*ProposalProposalsListUsersCountResponse, error)
-
-	// ProposalProposalsRejectWithBodyWithResponse request with any body
-	ProposalProposalsRejectWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsRejectResponse, error)
-
-	ProposalProposalsRejectWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsRejectResponse, error)
 
 	// ProposalProposalsRejectWorkflowStepWithBodyWithResponse request with any body
 	ProposalProposalsRejectWorkflowStepWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsRejectWorkflowStepResponse, error)
@@ -431803,35 +431631,6 @@ func (r ProposalProposalsAdvanceWorkflowStepResponse) ContentType() string {
 	return ""
 }
 
-type ProposalProposalsApproveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// Status returns HTTPResponse.Status
-func (r ProposalProposalsApproveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ProposalProposalsApproveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r ProposalProposalsApproveResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
 type ProposalProposalsAttachDocumentResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -432130,35 +431929,6 @@ func (r ProposalProposalsListUsersCountResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r ProposalProposalsListUsersCountResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type ProposalProposalsRejectResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// Status returns HTTPResponse.Status
-func (r ProposalProposalsRejectResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ProposalProposalsRejectResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r ProposalProposalsRejectResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -474716,23 +474486,6 @@ func (c *ClientWithResponses) ProposalProposalsAdvanceWorkflowStepWithResponse(c
 	return ParseProposalProposalsAdvanceWorkflowStepResponse(rsp)
 }
 
-// ProposalProposalsApproveWithBodyWithResponse request with arbitrary body returning *ProposalProposalsApproveResponse
-func (c *ClientWithResponses) ProposalProposalsApproveWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsApproveResponse, error) {
-	rsp, err := c.ProposalProposalsApproveWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseProposalProposalsApproveResponse(rsp)
-}
-
-func (c *ClientWithResponses) ProposalProposalsApproveWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsApproveResponse, error) {
-	rsp, err := c.ProposalProposalsApprove(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseProposalProposalsApproveResponse(rsp)
-}
-
 // ProposalProposalsAttachDocumentWithBodyWithResponse request with arbitrary body returning *ProposalProposalsAttachDocumentResponse
 func (c *ClientWithResponses) ProposalProposalsAttachDocumentWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsAttachDocumentResponse, error) {
 	rsp, err := c.ProposalProposalsAttachDocumentWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -474861,23 +474614,6 @@ func (c *ClientWithResponses) ProposalProposalsListUsersCountWithResponse(ctx co
 		return nil, err
 	}
 	return ParseProposalProposalsListUsersCountResponse(rsp)
-}
-
-// ProposalProposalsRejectWithBodyWithResponse request with arbitrary body returning *ProposalProposalsRejectResponse
-func (c *ClientWithResponses) ProposalProposalsRejectWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsRejectResponse, error) {
-	rsp, err := c.ProposalProposalsRejectWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseProposalProposalsRejectResponse(rsp)
-}
-
-func (c *ClientWithResponses) ProposalProposalsRejectWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsRejectResponse, error) {
-	rsp, err := c.ProposalProposalsReject(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseProposalProposalsRejectResponse(rsp)
 }
 
 // ProposalProposalsRejectWorkflowStepWithBodyWithResponse request with arbitrary body returning *ProposalProposalsRejectWorkflowStepResponse
@@ -529583,22 +529319,6 @@ func ParseProposalProposalsAdvanceWorkflowStepResponse(rsp *http.Response) (*Pro
 	return response, nil
 }
 
-// ParseProposalProposalsApproveResponse parses an HTTP response from a ProposalProposalsApproveWithResponse call
-func ParseProposalProposalsApproveResponse(rsp *http.Response) (*ProposalProposalsApproveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ProposalProposalsApproveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
 // ParseProposalProposalsAttachDocumentResponse parses an HTTP response from a ProposalProposalsAttachDocumentWithResponse call
 func ParseProposalProposalsAttachDocumentResponse(rsp *http.Response) (*ProposalProposalsAttachDocumentResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -529868,22 +529588,6 @@ func ParseProposalProposalsListUsersCountResponse(rsp *http.Response) (*Proposal
 	}
 
 	response := &ProposalProposalsListUsersCountResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseProposalProposalsRejectResponse parses an HTTP response from a ProposalProposalsRejectWithResponse call
-func ParseProposalProposalsRejectResponse(rsp *http.Response) (*ProposalProposalsRejectResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ProposalProposalsRejectResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
