@@ -26870,13 +26870,16 @@ type CallWorkflowStep struct {
 	ApplicantVisible *bool `json:"applicant_visible,omitempty"`
 
 	// BlindReview Evaluators cannot see each other's assessments.
-	BlindReview   *bool                `json:"blind_review,omitempty"`
-	CallName      *string              `json:"call_name,omitempty"`
-	CallUuid      *openapi_types.UUID  `json:"call_uuid,omitempty"`
-	Checklist     *openapi_types.UUID  `json:"checklist,omitempty"`
-	ChecklistName *string              `json:"checklist_name,omitempty"`
-	Created       *time.Time           `json:"created,omitempty"`
-	Criteria      *[]WorkflowCriterion `json:"criteria,omitempty"`
+	BlindReview   *bool               `json:"blind_review,omitempty"`
+	CallName      *string             `json:"call_name,omitempty"`
+	CallUuid      *openapi_types.UUID `json:"call_uuid,omitempty"`
+	Checklist     *openapi_types.UUID `json:"checklist,omitempty"`
+	ChecklistName *string             `json:"checklist_name,omitempty"`
+
+	// ChecklistRequired When the step has a checklist, block completion until its required questions are answered. Set False to make the checklist advisory.
+	ChecklistRequired *bool                `json:"checklist_required,omitempty"`
+	Created           *time.Time           `json:"created,omitempty"`
+	Criteria          *[]WorkflowCriterion `json:"criteria,omitempty"`
 
 	// DisplayOrder Optional override of catalog ordering.
 	DisplayOrder *int `json:"display_order,omitempty"`
@@ -26924,9 +26927,12 @@ type CallWorkflowStepRequest struct {
 	ApplicantVisible *bool `json:"applicant_visible,omitempty"`
 
 	// BlindReview Evaluators cannot see each other's assessments.
-	BlindReview *bool                       `json:"blind_review,omitempty"`
-	Checklist   *openapi_types.UUID         `json:"checklist,omitempty"`
-	Criteria    *[]WorkflowCriterionRequest `json:"criteria,omitempty"`
+	BlindReview *bool               `json:"blind_review,omitempty"`
+	Checklist   *openapi_types.UUID `json:"checklist,omitempty"`
+
+	// ChecklistRequired When the step has a checklist, block completion until its required questions are answered. Set False to make the checklist advisory.
+	ChecklistRequired *bool                       `json:"checklist_required,omitempty"`
+	Criteria          *[]WorkflowCriterionRequest `json:"criteria,omitempty"`
 
 	// DisplayOrder Optional override of catalog ordering.
 	DisplayOrder *int `json:"display_order,omitempty"`
@@ -41887,9 +41893,12 @@ type PatchedCallWorkflowStepRequest struct {
 	ApplicantVisible *bool `json:"applicant_visible,omitempty"`
 
 	// BlindReview Evaluators cannot see each other's assessments.
-	BlindReview *bool                       `json:"blind_review,omitempty"`
-	Checklist   *openapi_types.UUID         `json:"checklist,omitempty"`
-	Criteria    *[]WorkflowCriterionRequest `json:"criteria,omitempty"`
+	BlindReview *bool               `json:"blind_review,omitempty"`
+	Checklist   *openapi_types.UUID `json:"checklist,omitempty"`
+
+	// ChecklistRequired When the step has a checklist, block completion until its required questions are answered. Set False to make the checklist advisory.
+	ChecklistRequired *bool                       `json:"checklist_required,omitempty"`
+	Criteria          *[]WorkflowCriterionRequest `json:"criteria,omitempty"`
 
 	// DisplayOrder Optional override of catalog ordering.
 	DisplayOrder *int `json:"display_order,omitempty"`
@@ -45806,11 +45815,16 @@ type ProposalRequest_OecdFos2007Code struct {
 type ProposalReview struct {
 	// AnonymousReviewerName Generate an anonymous reviewer identifier like 'Reviewer 1', 'Reviewer 2'.
 	// Returns None if the review is not associated with a proposal.
-	AnonymousReviewerName                 *string                  `json:"anonymous_reviewer_name,omitempty"`
-	CallManagingOrganisationUuid          *openapi_types.UUID      `json:"call_managing_organisation_uuid,omitempty"`
-	CallName                              *string                  `json:"call_name,omitempty"`
-	CallSlug                              *string                  `json:"call_slug,omitempty"`
-	CallUuid                              *openapi_types.UUID      `json:"call_uuid,omitempty"`
+	AnonymousReviewerName        *string             `json:"anonymous_reviewer_name,omitempty"`
+	CallManagingOrganisationUuid *openapi_types.UUID `json:"call_managing_organisation_uuid,omitempty"`
+	CallName                     *string             `json:"call_name,omitempty"`
+	CallSlug                     *string             `json:"call_slug,omitempty"`
+	CallUuid                     *openapi_types.UUID `json:"call_uuid,omitempty"`
+	CoiConfirmationRequired      *bool               `json:"coi_confirmation_required,omitempty"`
+
+	// CoiConfirmed Reviewer confirmed absence of conflict of interest with this proposal.
+	CoiConfirmed                          *bool                    `json:"coi_confirmed,omitempty"`
+	CoiConfirmedAt                        *time.Time               `json:"coi_confirmed_at,omitempty"`
 	CommentProjectDescription             *string                  `json:"comment_project_description,omitempty"`
 	CommentProjectDuration                *string                  `json:"comment_project_duration,omitempty"`
 	CommentProjectHasCivilianPurpose      *string                  `json:"comment_project_has_civilian_purpose,omitempty"`
@@ -45891,9 +45905,10 @@ type ProposalUpdateProjectDetailsRequest_OecdFos2007Code struct {
 
 // ProposalWorkflowStepInstance defines model for ProposalWorkflowStepInstance.
 type ProposalWorkflowStepInstance struct {
-	ApplicantVisible *bool               `json:"applicant_visible,omitempty"`
-	CompletedAt      *time.Time          `json:"completed_at,omitempty"`
-	CompletedBy      *openapi_types.UUID `json:"completed_by,omitempty"`
+	ApplicantVisible *bool                `json:"applicant_visible,omitempty"`
+	ChecklistStatus  *StepChecklistStatus `json:"checklist_status,omitempty"`
+	CompletedAt      *time.Time           `json:"completed_at,omitempty"`
+	CompletedBy      *openapi_types.UUID  `json:"completed_by,omitempty"`
 
 	// Deadline Computed from started_at + step duration_in_days.
 	Deadline       *time.Time `json:"deadline,omitempty"`
@@ -49482,6 +49497,8 @@ type ReviewProgressStat struct {
 
 // ReviewSubmitRequest defines model for ReviewSubmitRequest.
 type ReviewSubmitRequest struct {
+	// CoiConfirmed Reviewer confirmed absence of conflict of interest with this proposal.
+	CoiConfirmed          *bool   `json:"coi_confirmed,omitempty"`
 	SummaryPrivateComment *string `json:"summary_private_comment,omitempty"`
 	SummaryPublicComment  *string `json:"summary_public_comment,omitempty"`
 	SummaryScore          *int    `json:"summary_score,omitempty"`
@@ -51745,6 +51762,24 @@ type Status struct {
 	Status string `json:"status"`
 }
 
+// StepChecklistResponseGroup defines model for StepChecklistResponseGroup.
+type StepChecklistResponseGroup struct {
+	Answers      []TechnicalAssessmentAnswer `json:"answers"`
+	SubmittedAt  *time.Time                  `json:"submitted_at"`
+	UserFullName *string                     `json:"user_full_name,omitempty"`
+	UserImage    *string                     `json:"user_image,omitempty"`
+	UserUuid     *openapi_types.UUID         `json:"user_uuid,omitempty"`
+}
+
+// StepChecklistStatus defines model for StepChecklistStatus.
+type StepChecklistStatus struct {
+	ChecklistCompleted      bool    `json:"checklist_completed"`
+	ChecklistName           *string `json:"checklist_name"`
+	ChecklistRequired       bool    `json:"checklist_required"`
+	HasChecklist            bool    `json:"has_checklist"`
+	UnansweredRequiredCount int     `json:"unanswered_required_count"`
+}
+
 // StepEnum defines model for StepEnum.
 type StepEnum string
 
@@ -52153,6 +52188,15 @@ type TargetUser struct {
 	FullName string             `json:"full_name"`
 	Username string             `json:"username"`
 	Uuid     openapi_types.UUID `json:"uuid"`
+}
+
+// TechnicalAssessmentAnswer defines model for TechnicalAssessmentAnswer.
+type TechnicalAssessmentAnswer struct {
+	AnswerData          map[string]interface{} `json:"answer_data"`
+	AnswerDisplay       *string                `json:"answer_display,omitempty"`
+	QuestionDescription string                 `json:"question_description"`
+	QuestionType        string                 `json:"question_type"`
+	QuestionUuid        openapi_types.UUID     `json:"question_uuid"`
 }
 
 // Template defines model for Template.
@@ -74428,6 +74472,52 @@ type ProposalProposalsResourcesListParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
+// ProposalProposalsStepChecklistResponsesListParams defines parameters for ProposalProposalsStepChecklistResponsesList.
+type ProposalProposalsStepChecklistResponsesListParams struct {
+	CallUuid      *openapi_types.UUID `form:"call_uuid,omitempty" json:"call_uuid,omitempty"`
+	CreatedByUuid *openapi_types.UUID `form:"created_by_uuid,omitempty" json:"created_by_uuid,omitempty"`
+	MyProposals   *bool               `form:"my_proposals,omitempty" json:"my_proposals,omitempty"`
+	Name          *string             `form:"name,omitempty" json:"name,omitempty"`
+
+	// O Ordering
+	//
+	O                *[]ProposalOEnum    `form:"o,omitempty" json:"o,omitempty"`
+	OrganizationUuid *openapi_types.UUID `form:"organization_uuid,omitempty" json:"organization_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize  *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Round     *openapi_types.UUID `form:"round,omitempty" json:"round,omitempty"`
+	RoundUuid *openapi_types.UUID `form:"round_uuid,omitempty" json:"round_uuid,omitempty"`
+
+	// Slug Slug
+	Slug  *string           `form:"slug,omitempty" json:"slug,omitempty"`
+	State *[]ProposalStates `form:"state,omitempty" json:"state,omitempty"`
+
+	// Step Workflow step key (e.g. technical_assessment).
+	Step string `form:"step" json:"step"`
+}
+
+// ProposalProposalsStepChecklistRetrieveParams defines parameters for ProposalProposalsStepChecklistRetrieve.
+type ProposalProposalsStepChecklistRetrieveParams struct {
+	// IncludeAll Return all questions ignoring dynamic visibility.
+	IncludeAll *string `form:"include_all,omitempty" json:"include_all,omitempty"`
+
+	// Step Workflow step key (e.g. technical_assessment).
+	Step string `form:"step" json:"step"`
+}
+
+// ProposalProposalsSubmitStepChecklistAnswersJSONBody defines parameters for ProposalProposalsSubmitStepChecklistAnswers.
+type ProposalProposalsSubmitStepChecklistAnswersJSONBody = []AnswerSubmitRequest
+
+// ProposalProposalsSubmitStepChecklistAnswersParams defines parameters for ProposalProposalsSubmitStepChecklistAnswers.
+type ProposalProposalsSubmitStepChecklistAnswersParams struct {
+	// Step Workflow step key (e.g. technical_assessment).
+	Step string `form:"step" json:"step"`
+}
+
 // ProposalProposalsSubmitAnswersJSONBody defines parameters for ProposalProposalsSubmitAnswers.
 type ProposalProposalsSubmitAnswersJSONBody = []AnswerSubmitRequest
 
@@ -74547,6 +74637,56 @@ type ProposalProtectedCallsAvailableComplianceChecklistsCountParams struct {
 	CustomerUuid   string  `form:"customer_uuid" json:"customer_uuid"`
 	HasActiveRound *bool   `form:"has_active_round,omitempty" json:"has_active_round,omitempty"`
 	Name           *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// O Ordering
+	//
+	O                     *[]ProtectedCallOEnum `form:"o,omitempty" json:"o,omitempty"`
+	OfferingUuid          *openapi_types.UUID   `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	OfferingsProviderUuid *openapi_types.UUID   `form:"offerings_provider_uuid,omitempty" json:"offerings_provider_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Slug Slug
+	Slug  *string       `form:"slug,omitempty" json:"slug,omitempty"`
+	State *[]CallStates `form:"state,omitempty" json:"state,omitempty"`
+}
+
+// ProposalProtectedCallsStepChecklistsListParams defines parameters for ProposalProtectedCallsStepChecklistsList.
+type ProposalProtectedCallsStepChecklistsListParams struct {
+	Customer        *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerKeyword *string             `form:"customer_keyword,omitempty" json:"customer_keyword,omitempty"`
+	CustomerUuid    *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	HasActiveRound  *bool               `form:"has_active_round,omitempty" json:"has_active_round,omitempty"`
+	Name            *string             `form:"name,omitempty" json:"name,omitempty"`
+
+	// O Ordering
+	//
+	O                     *[]ProtectedCallOEnum `form:"o,omitempty" json:"o,omitempty"`
+	OfferingUuid          *openapi_types.UUID   `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	OfferingsProviderUuid *openapi_types.UUID   `form:"offerings_provider_uuid,omitempty" json:"offerings_provider_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Slug Slug
+	Slug  *string       `form:"slug,omitempty" json:"slug,omitempty"`
+	State *[]CallStates `form:"state,omitempty" json:"state,omitempty"`
+}
+
+// ProposalProtectedCallsStepChecklistsCountParams defines parameters for ProposalProtectedCallsStepChecklistsCount.
+type ProposalProtectedCallsStepChecklistsCountParams struct {
+	Customer        *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerKeyword *string             `form:"customer_keyword,omitempty" json:"customer_keyword,omitempty"`
+	CustomerUuid    *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	HasActiveRound  *bool               `form:"has_active_round,omitempty" json:"has_active_round,omitempty"`
+	Name            *string             `form:"name,omitempty" json:"name,omitempty"`
 
 	// O Ordering
 	//
@@ -81528,6 +81668,9 @@ type ProposalProposalsResourcesPartialUpdateJSONRequestBody = PatchedRequestedRe
 
 // ProposalProposalsResourcesUpdateJSONRequestBody defines body for ProposalProposalsResourcesUpdate for application/json ContentType.
 type ProposalProposalsResourcesUpdateJSONRequestBody = RequestedResourceRequest
+
+// ProposalProposalsSubmitStepChecklistAnswersJSONRequestBody defines body for ProposalProposalsSubmitStepChecklistAnswers for application/json ContentType.
+type ProposalProposalsSubmitStepChecklistAnswersJSONRequestBody = ProposalProposalsSubmitStepChecklistAnswersJSONBody
 
 // ProposalProposalsSubmitAnswersJSONRequestBody defines body for ProposalProposalsSubmitAnswers for application/json ContentType.
 type ProposalProposalsSubmitAnswersJSONRequestBody = ProposalProposalsSubmitAnswersJSONBody
@@ -104854,6 +104997,17 @@ type ClientInterface interface {
 
 	ProposalProposalsResourcesUpdate(ctx context.Context, uuid string, objUuid string, body ProposalProposalsResourcesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ProposalProposalsStepChecklistResponsesList request
+	ProposalProposalsStepChecklistResponsesList(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsStepChecklistResponsesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProposalsStepChecklistRetrieve request
+	ProposalProposalsStepChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsStepChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProposalsSubmitStepChecklistAnswersWithBody request with any body
+	ProposalProposalsSubmitStepChecklistAnswersWithBody(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsSubmitStepChecklistAnswersParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ProposalProposalsSubmitStepChecklistAnswers(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsSubmitStepChecklistAnswersParams, body ProposalProposalsSubmitStepChecklistAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ProposalProposalsSubmit request
 	ProposalProposalsSubmit(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -104891,6 +105045,12 @@ type ClientInterface interface {
 
 	// ProposalProtectedCallsAvailableComplianceChecklistsCount request
 	ProposalProtectedCallsAvailableComplianceChecklistsCount(ctx context.Context, params *ProposalProtectedCallsAvailableComplianceChecklistsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProtectedCallsStepChecklistsList request
+	ProposalProtectedCallsStepChecklistsList(ctx context.Context, params *ProposalProtectedCallsStepChecklistsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProtectedCallsStepChecklistsCount request
+	ProposalProtectedCallsStepChecklistsCount(ctx context.Context, params *ProposalProtectedCallsStepChecklistsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProtectedCallsDestroy request
 	ProposalProtectedCallsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -140734,6 +140894,54 @@ func (c *Client) ProposalProposalsResourcesUpdate(ctx context.Context, uuid stri
 	return c.Client.Do(req)
 }
 
+func (c *Client) ProposalProposalsStepChecklistResponsesList(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsStepChecklistResponsesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsStepChecklistResponsesListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProposalsStepChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsStepChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsStepChecklistRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProposalsSubmitStepChecklistAnswersWithBody(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsSubmitStepChecklistAnswersParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsSubmitStepChecklistAnswersRequestWithBody(c.Server, uuid, params, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProposalsSubmitStepChecklistAnswers(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsSubmitStepChecklistAnswersParams, body ProposalProposalsSubmitStepChecklistAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsSubmitStepChecklistAnswersRequest(c.Server, uuid, params, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ProposalProposalsSubmit(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProposalsSubmitRequest(c.Server, uuid)
 	if err != nil {
@@ -140892,6 +141100,30 @@ func (c *Client) ProposalProtectedCallsAvailableComplianceChecklistsList(ctx con
 
 func (c *Client) ProposalProtectedCallsAvailableComplianceChecklistsCount(ctx context.Context, params *ProposalProtectedCallsAvailableComplianceChecklistsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProtectedCallsAvailableComplianceChecklistsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProtectedCallsStepChecklistsList(ctx context.Context, params *ProposalProtectedCallsStepChecklistsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsStepChecklistsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProtectedCallsStepChecklistsCount(ctx context.Context, params *ProposalProtectedCallsStepChecklistsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsStepChecklistsCountRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -315594,6 +315826,346 @@ func NewProposalProposalsResourcesUpdateRequestWithBody(server string, uuid stri
 	return req, nil
 }
 
+// NewProposalProposalsStepChecklistResponsesListRequest generates requests for ProposalProposalsStepChecklistResponsesList
+func NewProposalProposalsStepChecklistResponsesListRequest(server string, uuid openapi_types.UUID, params *ProposalProposalsStepChecklistResponsesListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-proposals/%s/step-checklist-responses/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CallUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "call_uuid", *params.CallUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedByUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_by_uuid", *params.CreatedByUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.MyProposals != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "my_proposals", *params.MyProposals, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OrganizationUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "organization_uuid", *params.OrganizationUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Round != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "round", *params.Round, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RoundUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "round_uuid", *params.RoundUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Slug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "step", params.Step, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProposalProposalsStepChecklistRetrieveRequest generates requests for ProposalProposalsStepChecklistRetrieve
+func NewProposalProposalsStepChecklistRetrieveRequest(server string, uuid openapi_types.UUID, params *ProposalProposalsStepChecklistRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-proposals/%s/step-checklist/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.IncludeAll != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "include_all", *params.IncludeAll, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "step", params.Step, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProposalProposalsSubmitStepChecklistAnswersRequest calls the generic ProposalProposalsSubmitStepChecklistAnswers builder with application/json body
+func NewProposalProposalsSubmitStepChecklistAnswersRequest(server string, uuid openapi_types.UUID, params *ProposalProposalsSubmitStepChecklistAnswersParams, body ProposalProposalsSubmitStepChecklistAnswersJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewProposalProposalsSubmitStepChecklistAnswersRequestWithBody(server, uuid, params, "application/json", bodyReader)
+}
+
+// NewProposalProposalsSubmitStepChecklistAnswersRequestWithBody generates requests for ProposalProposalsSubmitStepChecklistAnswers with any type of body
+func NewProposalProposalsSubmitStepChecklistAnswersRequestWithBody(server string, uuid openapi_types.UUID, params *ProposalProposalsSubmitStepChecklistAnswersParams, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-proposals/%s/submit-step-checklist-answers/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "step", params.Step, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewProposalProposalsSubmitRequest generates requests for ProposalProposalsSubmit
 func NewProposalProposalsSubmitRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -316650,6 +317222,378 @@ func NewProposalProtectedCallsAvailableComplianceChecklistsCountRequest(server s
 			for _, qp := range strings.Split(queryFrag, "&") {
 				rawQueryFragments = append(rawQueryFragments, qp)
 			}
+		}
+
+		if params.HasActiveRound != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_active_round", *params.HasActiveRound, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingsProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offerings_provider_uuid", *params.OfferingsProviderUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Slug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProposalProtectedCallsStepChecklistsListRequest generates requests for ProposalProtectedCallsStepChecklistsList
+func NewProposalProtectedCallsStepChecklistsListRequest(server string, params *ProposalProtectedCallsStepChecklistsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-protected-calls/step_checklists/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer", *params.Customer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerKeyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_keyword", *params.CustomerKeyword, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasActiveRound != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_active_round", *params.HasActiveRound, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingsProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offerings_provider_uuid", *params.OfferingsProviderUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Slug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProposalProtectedCallsStepChecklistsCountRequest generates requests for ProposalProtectedCallsStepChecklistsCount
+func NewProposalProtectedCallsStepChecklistsCountRequest(server string, params *ProposalProtectedCallsStepChecklistsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-protected-calls/step_checklists/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer", *params.Customer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerKeyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_keyword", *params.CustomerKeyword, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
 		}
 
 		if params.HasActiveRound != nil {
@@ -368276,6 +369220,17 @@ type ClientWithResponsesInterface interface {
 
 	ProposalProposalsResourcesUpdateWithResponse(ctx context.Context, uuid string, objUuid string, body ProposalProposalsResourcesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsResourcesUpdateResponse, error)
 
+	// ProposalProposalsStepChecklistResponsesListWithResponse request
+	ProposalProposalsStepChecklistResponsesListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsStepChecklistResponsesListParams, reqEditors ...RequestEditorFn) (*ProposalProposalsStepChecklistResponsesListResponse, error)
+
+	// ProposalProposalsStepChecklistRetrieveWithResponse request
+	ProposalProposalsStepChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsStepChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*ProposalProposalsStepChecklistRetrieveResponse, error)
+
+	// ProposalProposalsSubmitStepChecklistAnswersWithBodyWithResponse request with any body
+	ProposalProposalsSubmitStepChecklistAnswersWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsSubmitStepChecklistAnswersParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsSubmitStepChecklistAnswersResponse, error)
+
+	ProposalProposalsSubmitStepChecklistAnswersWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsSubmitStepChecklistAnswersParams, body ProposalProposalsSubmitStepChecklistAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsSubmitStepChecklistAnswersResponse, error)
+
 	// ProposalProposalsSubmitWithResponse request
 	ProposalProposalsSubmitWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsSubmitResponse, error)
 
@@ -368313,6 +369268,12 @@ type ClientWithResponsesInterface interface {
 
 	// ProposalProtectedCallsAvailableComplianceChecklistsCountWithResponse request
 	ProposalProtectedCallsAvailableComplianceChecklistsCountWithResponse(ctx context.Context, params *ProposalProtectedCallsAvailableComplianceChecklistsCountParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsAvailableComplianceChecklistsCountResponse, error)
+
+	// ProposalProtectedCallsStepChecklistsListWithResponse request
+	ProposalProtectedCallsStepChecklistsListWithResponse(ctx context.Context, params *ProposalProtectedCallsStepChecklistsListParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsStepChecklistsListResponse, error)
+
+	// ProposalProtectedCallsStepChecklistsCountWithResponse request
+	ProposalProtectedCallsStepChecklistsCountWithResponse(ctx context.Context, params *ProposalProtectedCallsStepChecklistsCountParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsStepChecklistsCountResponse, error)
 
 	// ProposalProtectedCallsDestroyWithResponse request
 	ProposalProtectedCallsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsDestroyResponse, error)
@@ -432145,6 +433106,99 @@ func (r ProposalProposalsResourcesUpdateResponse) ContentType() string {
 	return ""
 }
 
+type ProposalProposalsStepChecklistResponsesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]StepChecklistResponseGroup
+	JSON400      *interface{}
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProposalsStepChecklistResponsesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProposalsStepChecklistResponsesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalProposalsStepChecklistResponsesListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProposalProposalsStepChecklistRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ChecklistResponse
+	JSON400      *interface{}
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProposalsStepChecklistRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProposalsStepChecklistRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalProposalsStepChecklistRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProposalProposalsSubmitStepChecklistAnswersResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ProposalChecklistAnswerSubmitResponse
+	JSON400      *interface{}
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProposalsSubmitStepChecklistAnswersResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProposalsSubmitStepChecklistAnswersResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalProposalsSubmitStepChecklistAnswersResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type ProposalProposalsSubmitResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -432437,6 +433491,65 @@ func (r ProposalProtectedCallsAvailableComplianceChecklistsCountResponse) Status
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r ProposalProtectedCallsAvailableComplianceChecklistsCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProposalProtectedCallsStepChecklistsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ChecklistShort
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProtectedCallsStepChecklistsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProtectedCallsStepChecklistsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalProtectedCallsStepChecklistsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProposalProtectedCallsStepChecklistsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProtectedCallsStepChecklistsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProtectedCallsStepChecklistsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalProtectedCallsStepChecklistsCountResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -474711,6 +475824,41 @@ func (c *ClientWithResponses) ProposalProposalsResourcesUpdateWithResponse(ctx c
 	return ParseProposalProposalsResourcesUpdateResponse(rsp)
 }
 
+// ProposalProposalsStepChecklistResponsesListWithResponse request returning *ProposalProposalsStepChecklistResponsesListResponse
+func (c *ClientWithResponses) ProposalProposalsStepChecklistResponsesListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsStepChecklistResponsesListParams, reqEditors ...RequestEditorFn) (*ProposalProposalsStepChecklistResponsesListResponse, error) {
+	rsp, err := c.ProposalProposalsStepChecklistResponsesList(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProposalsStepChecklistResponsesListResponse(rsp)
+}
+
+// ProposalProposalsStepChecklistRetrieveWithResponse request returning *ProposalProposalsStepChecklistRetrieveResponse
+func (c *ClientWithResponses) ProposalProposalsStepChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsStepChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*ProposalProposalsStepChecklistRetrieveResponse, error) {
+	rsp, err := c.ProposalProposalsStepChecklistRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProposalsStepChecklistRetrieveResponse(rsp)
+}
+
+// ProposalProposalsSubmitStepChecklistAnswersWithBodyWithResponse request with arbitrary body returning *ProposalProposalsSubmitStepChecklistAnswersResponse
+func (c *ClientWithResponses) ProposalProposalsSubmitStepChecklistAnswersWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsSubmitStepChecklistAnswersParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsSubmitStepChecklistAnswersResponse, error) {
+	rsp, err := c.ProposalProposalsSubmitStepChecklistAnswersWithBody(ctx, uuid, params, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProposalsSubmitStepChecklistAnswersResponse(rsp)
+}
+
+func (c *ClientWithResponses) ProposalProposalsSubmitStepChecklistAnswersWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsSubmitStepChecklistAnswersParams, body ProposalProposalsSubmitStepChecklistAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsSubmitStepChecklistAnswersResponse, error) {
+	rsp, err := c.ProposalProposalsSubmitStepChecklistAnswers(ctx, uuid, params, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProposalsSubmitStepChecklistAnswersResponse(rsp)
+}
+
 // ProposalProposalsSubmitWithResponse request returning *ProposalProposalsSubmitResponse
 func (c *ClientWithResponses) ProposalProposalsSubmitWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsSubmitResponse, error) {
 	rsp, err := c.ProposalProposalsSubmit(ctx, uuid, reqEditors...)
@@ -474831,6 +475979,24 @@ func (c *ClientWithResponses) ProposalProtectedCallsAvailableComplianceChecklist
 		return nil, err
 	}
 	return ParseProposalProtectedCallsAvailableComplianceChecklistsCountResponse(rsp)
+}
+
+// ProposalProtectedCallsStepChecklistsListWithResponse request returning *ProposalProtectedCallsStepChecklistsListResponse
+func (c *ClientWithResponses) ProposalProtectedCallsStepChecklistsListWithResponse(ctx context.Context, params *ProposalProtectedCallsStepChecklistsListParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsStepChecklistsListResponse, error) {
+	rsp, err := c.ProposalProtectedCallsStepChecklistsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsStepChecklistsListResponse(rsp)
+}
+
+// ProposalProtectedCallsStepChecklistsCountWithResponse request returning *ProposalProtectedCallsStepChecklistsCountResponse
+func (c *ClientWithResponses) ProposalProtectedCallsStepChecklistsCountWithResponse(ctx context.Context, params *ProposalProtectedCallsStepChecklistsCountParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsStepChecklistsCountResponse, error) {
+	rsp, err := c.ProposalProtectedCallsStepChecklistsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsStepChecklistsCountResponse(rsp)
 }
 
 // ProposalProtectedCallsDestroyWithResponse request returning *ProposalProtectedCallsDestroyResponse
@@ -529777,6 +530943,105 @@ func ParseProposalProposalsResourcesUpdateResponse(rsp *http.Response) (*Proposa
 	return response, nil
 }
 
+// ParseProposalProposalsStepChecklistResponsesListResponse parses an HTTP response from a ProposalProposalsStepChecklistResponsesListWithResponse call
+func ParseProposalProposalsStepChecklistResponsesListResponse(rsp *http.Response) (*ProposalProposalsStepChecklistResponsesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProposalsStepChecklistResponsesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []StepChecklistResponseGroup
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProposalProposalsStepChecklistRetrieveResponse parses an HTTP response from a ProposalProposalsStepChecklistRetrieveWithResponse call
+func ParseProposalProposalsStepChecklistRetrieveResponse(rsp *http.Response) (*ProposalProposalsStepChecklistRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProposalsStepChecklistRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ChecklistResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProposalProposalsSubmitStepChecklistAnswersResponse parses an HTTP response from a ProposalProposalsSubmitStepChecklistAnswersWithResponse call
+func ParseProposalProposalsSubmitStepChecklistAnswersResponse(rsp *http.Response) (*ProposalProposalsSubmitStepChecklistAnswersResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProposalsSubmitStepChecklistAnswersResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProposalChecklistAnswerSubmitResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseProposalProposalsSubmitResponse parses an HTTP response from a ProposalProposalsSubmitWithResponse call
 func ParseProposalProposalsSubmitResponse(rsp *http.Response) (*ProposalProposalsSubmitResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -530004,6 +531269,48 @@ func ParseProposalProtectedCallsAvailableComplianceChecklistsCountResponse(rsp *
 	}
 
 	response := &ProposalProtectedCallsAvailableComplianceChecklistsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseProposalProtectedCallsStepChecklistsListResponse parses an HTTP response from a ProposalProtectedCallsStepChecklistsListWithResponse call
+func ParseProposalProtectedCallsStepChecklistsListResponse(rsp *http.Response) (*ProposalProtectedCallsStepChecklistsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProtectedCallsStepChecklistsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ChecklistShort
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProposalProtectedCallsStepChecklistsCountResponse parses an HTTP response from a ProposalProtectedCallsStepChecklistsCountWithResponse call
+func ParseProposalProtectedCallsStepChecklistsCountResponse(rsp *http.Response) (*ProposalProtectedCallsStepChecklistsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProtectedCallsStepChecklistsCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
