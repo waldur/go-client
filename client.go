@@ -16567,6 +16567,7 @@ const (
 	ProtectedCallFieldEnumExternalUrl                         ProtectedCallFieldEnum = "external_url"
 	ProtectedCallFieldEnumFixedDurationInDays                 ProtectedCallFieldEnum = "fixed_duration_in_days"
 	ProtectedCallFieldEnumHasEligibilityRestrictions          ProtectedCallFieldEnum = "has_eligibility_restrictions"
+	ProtectedCallFieldEnumHasProposals                        ProtectedCallFieldEnum = "has_proposals"
 	ProtectedCallFieldEnumManager                             ProtectedCallFieldEnum = "manager"
 	ProtectedCallFieldEnumManagerUuid                         ProtectedCallFieldEnum = "manager_uuid"
 	ProtectedCallFieldEnumName                                ProtectedCallFieldEnum = "name"
@@ -16620,6 +16621,8 @@ func (e ProtectedCallFieldEnum) Valid() bool {
 	case ProtectedCallFieldEnumFixedDurationInDays:
 		return true
 	case ProtectedCallFieldEnumHasEligibilityRestrictions:
+		return true
+	case ProtectedCallFieldEnumHasProposals:
 		return true
 	case ProtectedCallFieldEnumManager:
 		return true
@@ -45978,11 +45981,14 @@ type ProtectedCall struct {
 	FixedDurationInDays     *int                `json:"fixed_duration_in_days,omitempty"`
 
 	// HasEligibilityRestrictions Check if call has any eligibility restrictions configured.
-	HasEligibilityRestrictions *bool                      `json:"has_eligibility_restrictions,omitempty"`
-	Manager                    *string                    `json:"manager,omitempty"`
-	ManagerUuid                *openapi_types.UUID        `json:"manager_uuid,omitempty"`
-	Name                       *string                    `json:"name,omitempty"`
-	Offerings                  *[]NestedRequestedOffering `json:"offerings,omitempty"`
+	HasEligibilityRestrictions *bool `json:"has_eligibility_restrictions,omitempty"`
+
+	// HasProposals Whether any proposal has been submitted to this call. Used by the frontend to gate slug-template and checklist fields.
+	HasProposals *bool                      `json:"has_proposals,omitempty"`
+	Manager      *string                    `json:"manager,omitempty"`
+	ManagerUuid  *openapi_types.UUID        `json:"manager_uuid,omitempty"`
+	Name         *string                    `json:"name,omitempty"`
+	Offerings    *[]NestedRequestedOffering `json:"offerings,omitempty"`
 
 	// ProposalSlugTemplate Template for proposal slugs. Supports: {call_slug}, {round_slug}, {org_slug}, {year}, {month}, {counter}, {counter_padded}. Default: {round_slug}-{counter_padded}
 	ProposalSlugTemplate *string                 `json:"proposal_slug_template,omitempty"`
