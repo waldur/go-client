@@ -30326,15 +30326,13 @@ type Customer struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber     *int                    `json:"sponsor_number,omitempty"`
-	State             *string                 `json:"state,omitempty"`
-	Street            *string                 `json:"street,omitempty"`
-	Url               *string                 `json:"url,omitempty"`
-	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
-
-	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
+	SponsorNumber       *int      `json:"sponsor_number,omitempty"`
+	State               *string   `json:"state,omitempty"`
+	Street              *string   `json:"street,omitempty"`
+	Url                 *string   `json:"url,omitempty"`
+	UserAffiliations    *[]string `json:"user_affiliations,omitempty"`
+	UserEmailPatterns   *[]string `json:"user_email_patterns,omitempty"`
+	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
 
 	// UsersCount Number of users with access to this organization
 	UsersCount *int                `json:"users_count,omitempty"`
@@ -30737,14 +30735,12 @@ type CustomerRequest struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber     *int                    `json:"sponsor_number,omitempty"`
-	State             *string                 `json:"state,omitempty"`
-	Street            *string                 `json:"street,omitempty"`
-	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
-
-	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
+	SponsorNumber       *int      `json:"sponsor_number,omitempty"`
+	State               *string   `json:"state,omitempty"`
+	Street              *string   `json:"street,omitempty"`
+	UserAffiliations    *[]string `json:"user_affiliations,omitempty"`
+	UserEmailPatterns   *[]string `json:"user_email_patterns,omitempty"`
+	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -30814,14 +30810,12 @@ type CustomerRequestForm struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber     *int                    `json:"sponsor_number,omitempty"`
-	State             *string                 `json:"state,omitempty"`
-	Street            *string                 `json:"street,omitempty"`
-	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
-
-	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
+	SponsorNumber       *int      `json:"sponsor_number,omitempty"`
+	State               *string   `json:"state,omitempty"`
+	Street              *string   `json:"street,omitempty"`
+	UserAffiliations    *[]string `json:"user_affiliations,omitempty"`
+	UserEmailPatterns   *[]string `json:"user_email_patterns,omitempty"`
+	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -30891,14 +30885,12 @@ type CustomerRequestMultipart struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber     *int                    `json:"sponsor_number,omitempty"`
-	State             *string                 `json:"state,omitempty"`
-	Street            *string                 `json:"street,omitempty"`
-	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
-
-	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
+	SponsorNumber       *int      `json:"sponsor_number,omitempty"`
+	State               *string   `json:"state,omitempty"`
+	Street              *string   `json:"street,omitempty"`
+	UserAffiliations    *[]string `json:"user_affiliations,omitempty"`
+	UserEmailPatterns   *[]string `json:"user_email_patterns,omitempty"`
+	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -34938,20 +34930,20 @@ type MarketplaceProviderCustomerProjectOEnum string
 // MarketplaceServiceProviderUser defines model for MarketplaceServiceProviderUser.
 type MarketplaceServiceProviderUser struct {
 	// ActiveIsds List of ISDs that have asserted this user exists. User is deactivated when this becomes empty.
-	ActiveIsds *map[string]interface{} `json:"active_isds,omitempty"`
-	Address    *string                 `json:"address,omitempty"`
+	ActiveIsds *[]string `json:"active_isds,omitempty"`
+	Address    *string   `json:"address,omitempty"`
 
 	// Affiliations Person's affiliation within organization such as student, faculty, staff.
-	Affiliations       *map[string]interface{} `json:"affiliations,omitempty"`
-	BirthDate          *openapi_types.Date     `json:"birth_date,omitempty"`
-	CivilNumber        *string                 `json:"civil_number,omitempty"`
-	CountryOfResidence *string                 `json:"country_of_residence,omitempty"`
+	Affiliations       *[]string           `json:"affiliations,omitempty"`
+	BirthDate          *openapi_types.Date `json:"birth_date,omitempty"`
+	CivilNumber        *string             `json:"civil_number,omitempty"`
+	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
 
 	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
-	EdupersonAssurance *map[string]interface{} `json:"eduperson_assurance,omitempty"`
-	Email              *openapi_types.Email    `json:"email,omitempty"`
-	FirstName          *string                 `json:"first_name,omitempty"`
-	FullName           *string                 `json:"full_name,omitempty"`
+	EdupersonAssurance *[]string            `json:"eduperson_assurance,omitempty"`
+	Email              *openapi_types.Email `json:"email,omitempty"`
+	FirstName          *string              `json:"first_name,omitempty"`
+	FullName           *string              `json:"full_name,omitempty"`
 
 	// Gender User's gender (male, female, or unknown)
 	Gender *MarketplaceServiceProviderUser_Gender `json:"gender,omitempty"`
@@ -34965,7 +34957,7 @@ type MarketplaceServiceProviderUser struct {
 	LastName *string `json:"last_name,omitempty"`
 
 	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
-	Nationalities *map[string]interface{} `json:"nationalities,omitempty"`
+	Nationalities *[]string `json:"nationalities,omitempty"`
 
 	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
 	Nationality  *string `json:"nationality,omitempty"`
@@ -39262,7 +39254,7 @@ type OpenStackInstance struct {
 	TenantUuid *openapi_types.UUID `json:"tenant_uuid,omitempty"`
 	Url        *string             `json:"url,omitempty"`
 
-	// UserData Additional data that will be added to instance on provisioning
+	// UserData Cloud-init user data passed to the instance on provisioning. SECURITY: this value is stored and transmitted in plain text — it is kept unencrypted in Waldur's database, forwarded to OpenStack where any process on the instance can read it via the metadata service, and it may appear in logs. Do NOT put unencrypted secrets (passwords, private keys, API tokens) here; reference a secrets manager or inject them through an encrypted channel instead.
 	UserData *string             `json:"user_data,omitempty"`
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 
@@ -39377,7 +39369,7 @@ type OpenStackInstanceCreateOrderAttributes struct {
 	// SystemVolumeType Volume type for the system volume
 	SystemVolumeType *string `json:"system_volume_type,omitempty"`
 
-	// UserData Additional data that will be added to instance on provisioning
+	// UserData Cloud-init user data passed to the instance on provisioning. SECURITY: this value is stored and transmitted in plain text — it is kept unencrypted in Waldur's database, forwarded to OpenStack where any process on the instance can read it via the metadata service, and it may appear in logs. Do NOT put unencrypted secrets (passwords, private keys, API tokens) here; reference a secrets manager or inject them through an encrypted channel instead.
 	UserData *string `json:"user_data,omitempty"`
 }
 
@@ -42137,14 +42129,12 @@ type PatchedCustomerRequest struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber     *int                    `json:"sponsor_number,omitempty"`
-	State             *string                 `json:"state,omitempty"`
-	Street            *string                 `json:"street,omitempty"`
-	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
-
-	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
+	SponsorNumber       *int      `json:"sponsor_number,omitempty"`
+	State               *string   `json:"state,omitempty"`
+	Street              *string   `json:"street,omitempty"`
+	UserAffiliations    *[]string `json:"user_affiliations,omitempty"`
+	UserEmailPatterns   *[]string `json:"user_email_patterns,omitempty"`
+	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -42214,14 +42204,12 @@ type PatchedCustomerRequestForm struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber     *int                    `json:"sponsor_number,omitempty"`
-	State             *string                 `json:"state,omitempty"`
-	Street            *string                 `json:"street,omitempty"`
-	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
-
-	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
+	SponsorNumber       *int      `json:"sponsor_number,omitempty"`
+	State               *string   `json:"state,omitempty"`
+	Street              *string   `json:"street,omitempty"`
+	UserAffiliations    *[]string `json:"user_affiliations,omitempty"`
+	UserEmailPatterns   *[]string `json:"user_email_patterns,omitempty"`
+	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -42291,14 +42279,12 @@ type PatchedCustomerRequestMultipart struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber     *int                    `json:"sponsor_number,omitempty"`
-	State             *string                 `json:"state,omitempty"`
-	Street            *string                 `json:"street,omitempty"`
-	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
-
-	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
+	SponsorNumber       *int      `json:"sponsor_number,omitempty"`
+	State               *string   `json:"state,omitempty"`
+	Street              *string   `json:"street,omitempty"`
+	UserAffiliations    *[]string `json:"user_affiliations,omitempty"`
+	UserEmailPatterns   *[]string `json:"user_email_patterns,omitempty"`
+	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -43141,13 +43127,11 @@ type PatchedProjectRequest struct {
 	StaffNotes *string `json:"staff_notes,omitempty"`
 
 	// StartDate Project start date. Cannot be edited after the start date has arrived.
-	StartDate         *openapi_types.Date     `json:"start_date,omitempty"`
-	Type              *string                 `json:"type,omitempty"`
-	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
-
-	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
+	StartDate           *openapi_types.Date `json:"start_date,omitempty"`
+	Type                *string             `json:"type,omitempty"`
+	UserAffiliations    *[]string           `json:"user_affiliations,omitempty"`
+	UserEmailPatterns   *[]string           `json:"user_email_patterns,omitempty"`
+	UserIdentitySources *[]string           `json:"user_identity_sources,omitempty"`
 }
 
 // PatchedProjectRequest_OecdFos2007Code defines model for PatchedProjectRequest.OecdFos2007Code.
@@ -43183,13 +43167,11 @@ type PatchedProjectRequestForm struct {
 	StaffNotes *string `json:"staff_notes,omitempty"`
 
 	// StartDate Project start date. Cannot be edited after the start date has arrived.
-	StartDate         *openapi_types.Date     `json:"start_date,omitempty"`
-	Type              *string                 `json:"type,omitempty"`
-	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
-
-	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
+	StartDate           *openapi_types.Date `json:"start_date,omitempty"`
+	Type                *string             `json:"type,omitempty"`
+	UserAffiliations    *[]string           `json:"user_affiliations,omitempty"`
+	UserEmailPatterns   *[]string           `json:"user_email_patterns,omitempty"`
+	UserIdentitySources *[]string           `json:"user_identity_sources,omitempty"`
 }
 
 // PatchedProjectRequestForm_OecdFos2007Code defines model for PatchedProjectRequestForm.OecdFos2007Code.
@@ -43225,13 +43207,11 @@ type PatchedProjectRequestMultipart struct {
 	StaffNotes *string `json:"staff_notes,omitempty"`
 
 	// StartDate Project start date. Cannot be edited after the start date has arrived.
-	StartDate         *openapi_types.Date     `json:"start_date,omitempty"`
-	Type              *string                 `json:"type,omitempty"`
-	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
-
-	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
+	StartDate           *openapi_types.Date `json:"start_date,omitempty"`
+	Type                *string             `json:"type,omitempty"`
+	UserAffiliations    *[]string           `json:"user_affiliations,omitempty"`
+	UserEmailPatterns   *[]string           `json:"user_email_patterns,omitempty"`
+	UserIdentitySources *[]string           `json:"user_identity_sources,omitempty"`
 }
 
 // PatchedProjectRequestMultipart_OecdFos2007Code defines model for PatchedProjectRequestMultipart.OecdFos2007Code.
@@ -43326,22 +43306,22 @@ type PatchedProtectedCallRequest struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// UserAffiliations List of allowed affiliations. User must have one.
-	UserAffiliations *map[string]interface{} `json:"user_affiliations,omitempty"`
+	UserAffiliations *[]string `json:"user_affiliations,omitempty"`
 
 	// UserAssuranceLevels List of required assurance URIs (REFEDS). User must have ALL of these.
-	UserAssuranceLevels *map[string]interface{} `json:"user_assurance_levels,omitempty"`
+	UserAssuranceLevels *[]string `json:"user_assurance_levels,omitempty"`
 
 	// UserEmailPatterns List of email regex patterns. User must match one.
-	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
+	UserEmailPatterns *[]string `json:"user_email_patterns,omitempty"`
 
 	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
+	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
 
 	// UserNationalities List of allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
-	UserNationalities *map[string]interface{} `json:"user_nationalities,omitempty"`
+	UserNationalities *[]string `json:"user_nationalities,omitempty"`
 
 	// UserOrganizationTypes List of allowed organization type URNs (SCHAC). User must match one.
-	UserOrganizationTypes *map[string]interface{} `json:"user_organization_types,omitempty"`
+	UserOrganizationTypes *[]string `json:"user_organization_types,omitempty"`
 }
 
 // PatchedProtectedRoundRequest defines model for PatchedProtectedRoundRequest.
@@ -44859,11 +44839,9 @@ type Project struct {
 	TypeName            *string                 `json:"type_name,omitempty"`
 	TypeUuid            *openapi_types.UUID     `json:"type_uuid,omitempty"`
 	Url                 *string                 `json:"url,omitempty"`
-	UserAffiliations    *map[string]interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns   *map[string]interface{} `json:"user_email_patterns,omitempty"`
-
-	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
+	UserAffiliations    *[]string               `json:"user_affiliations,omitempty"`
+	UserEmailPatterns   *[]string               `json:"user_email_patterns,omitempty"`
+	UserIdentitySources *[]string               `json:"user_identity_sources,omitempty"`
 	Uuid                *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
@@ -45328,13 +45306,11 @@ type ProjectRequest struct {
 	StaffNotes *string `json:"staff_notes,omitempty"`
 
 	// StartDate Project start date. Cannot be edited after the start date has arrived.
-	StartDate         *openapi_types.Date     `json:"start_date,omitempty"`
-	Type              *string                 `json:"type,omitempty"`
-	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
-
-	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
+	StartDate           *openapi_types.Date `json:"start_date,omitempty"`
+	Type                *string             `json:"type,omitempty"`
+	UserAffiliations    *[]string           `json:"user_affiliations,omitempty"`
+	UserEmailPatterns   *[]string           `json:"user_email_patterns,omitempty"`
+	UserIdentitySources *[]string           `json:"user_identity_sources,omitempty"`
 }
 
 // ProjectRequest_OecdFos2007Code defines model for ProjectRequest.OecdFos2007Code.
@@ -45370,13 +45346,11 @@ type ProjectRequestForm struct {
 	StaffNotes *string `json:"staff_notes,omitempty"`
 
 	// StartDate Project start date. Cannot be edited after the start date has arrived.
-	StartDate         *openapi_types.Date     `json:"start_date,omitempty"`
-	Type              *string                 `json:"type,omitempty"`
-	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
-
-	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
+	StartDate           *openapi_types.Date `json:"start_date,omitempty"`
+	Type                *string             `json:"type,omitempty"`
+	UserAffiliations    *[]string           `json:"user_affiliations,omitempty"`
+	UserEmailPatterns   *[]string           `json:"user_email_patterns,omitempty"`
+	UserIdentitySources *[]string           `json:"user_identity_sources,omitempty"`
 }
 
 // ProjectRequestForm_OecdFos2007Code defines model for ProjectRequestForm.OecdFos2007Code.
@@ -45412,13 +45386,11 @@ type ProjectRequestMultipart struct {
 	StaffNotes *string `json:"staff_notes,omitempty"`
 
 	// StartDate Project start date. Cannot be edited after the start date has arrived.
-	StartDate         *openapi_types.Date     `json:"start_date,omitempty"`
-	Type              *string                 `json:"type,omitempty"`
-	UserAffiliations  *map[string]interface{} `json:"user_affiliations,omitempty"`
-	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
-
-	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
+	StartDate           *openapi_types.Date `json:"start_date,omitempty"`
+	Type                *string             `json:"type,omitempty"`
+	UserAffiliations    *[]string           `json:"user_affiliations,omitempty"`
+	UserEmailPatterns   *[]string           `json:"user_email_patterns,omitempty"`
+	UserIdentitySources *[]string           `json:"user_identity_sources,omitempty"`
 }
 
 // ProjectRequestMultipart_OecdFos2007Code defines model for ProjectRequestMultipart.OecdFos2007Code.
@@ -45613,34 +45585,26 @@ type ProjectsUsagesGroupedByOecd struct {
 
 // Proposal defines model for Proposal.
 type Proposal struct {
-	AllocationComment *string `json:"allocation_comment,omitempty"`
-
-	// ApplicantActiveIsds List of ISDs that have asserted this user exists. User is deactivated when this becomes empty.
-	ApplicantActiveIsds *map[string]interface{} `json:"applicant_active_isds,omitempty"`
-	ApplicantAddress    *string                 `json:"applicant_address,omitempty"`
-
-	// ApplicantAffiliations Person's affiliation within organization such as student, faculty, staff.
-	ApplicantAffiliations       *map[string]interface{} `json:"applicant_affiliations,omitempty"`
-	ApplicantBirthDate          *openapi_types.Date     `json:"applicant_birth_date,omitempty"`
-	ApplicantCivilNumber        *string                 `json:"applicant_civil_number,omitempty"`
-	ApplicantCountryOfResidence *string                 `json:"applicant_country_of_residence,omitempty"`
-
-	// ApplicantEdupersonAssurance REFEDS assurance profile URIs from identity provider
-	ApplicantEdupersonAssurance *map[string]interface{} `json:"applicant_eduperson_assurance,omitempty"`
-	ApplicantEmail              *openapi_types.Email    `json:"applicant_email,omitempty"`
-	ApplicantFirstName          *string                 `json:"applicant_first_name,omitempty"`
-	ApplicantFullName           *string                 `json:"applicant_full_name,omitempty"`
+	AllocationComment           *string              `json:"allocation_comment,omitempty"`
+	ApplicantActiveIsds         *[]string            `json:"applicant_active_isds,omitempty"`
+	ApplicantAddress            *string              `json:"applicant_address,omitempty"`
+	ApplicantAffiliations       *[]string            `json:"applicant_affiliations,omitempty"`
+	ApplicantBirthDate          *openapi_types.Date  `json:"applicant_birth_date,omitempty"`
+	ApplicantCivilNumber        *string              `json:"applicant_civil_number,omitempty"`
+	ApplicantCountryOfResidence *string              `json:"applicant_country_of_residence,omitempty"`
+	ApplicantEdupersonAssurance *[]string            `json:"applicant_eduperson_assurance,omitempty"`
+	ApplicantEmail              *openapi_types.Email `json:"applicant_email,omitempty"`
+	ApplicantFirstName          *string              `json:"applicant_first_name,omitempty"`
+	ApplicantFullName           *string              `json:"applicant_full_name,omitempty"`
 
 	// ApplicantGender User's gender (male, female, or unknown)
 	ApplicantGender *Proposal_ApplicantGender `json:"applicant_gender,omitempty"`
 
 	// ApplicantIdentitySource Indicates what identity provider was used.
-	ApplicantIdentitySource *string `json:"applicant_identity_source,omitempty"`
-	ApplicantJobTitle       *string `json:"applicant_job_title,omitempty"`
-	ApplicantLastName       *string `json:"applicant_last_name,omitempty"`
-
-	// ApplicantNationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
-	ApplicantNationalities *map[string]interface{} `json:"applicant_nationalities,omitempty"`
+	ApplicantIdentitySource *string   `json:"applicant_identity_source,omitempty"`
+	ApplicantJobTitle       *string   `json:"applicant_job_title,omitempty"`
+	ApplicantLastName       *string   `json:"applicant_last_name,omitempty"`
+	ApplicantNationalities  *[]string `json:"applicant_nationalities,omitempty"`
 
 	// ApplicantNationality Primary citizenship (ISO 3166-1 alpha-2 code)
 	ApplicantNationality  *string `json:"applicant_nationality,omitempty"`
@@ -46009,23 +45973,23 @@ type ProtectedCall struct {
 	Url       *string     `json:"url,omitempty"`
 
 	// UserAffiliations List of allowed affiliations. User must have one.
-	UserAffiliations *map[string]interface{} `json:"user_affiliations,omitempty"`
+	UserAffiliations *[]string `json:"user_affiliations,omitempty"`
 
 	// UserAssuranceLevels List of required assurance URIs (REFEDS). User must have ALL of these.
-	UserAssuranceLevels *map[string]interface{} `json:"user_assurance_levels,omitempty"`
+	UserAssuranceLevels *[]string `json:"user_assurance_levels,omitempty"`
 
 	// UserEmailPatterns List of email regex patterns. User must match one.
-	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
+	UserEmailPatterns *[]string `json:"user_email_patterns,omitempty"`
 
 	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
+	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
 
 	// UserNationalities List of allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
-	UserNationalities *map[string]interface{} `json:"user_nationalities,omitempty"`
+	UserNationalities *[]string `json:"user_nationalities,omitempty"`
 
 	// UserOrganizationTypes List of allowed organization type URNs (SCHAC). User must match one.
-	UserOrganizationTypes *map[string]interface{} `json:"user_organization_types,omitempty"`
-	Uuid                  *openapi_types.UUID     `json:"uuid,omitempty"`
+	UserOrganizationTypes *[]string           `json:"user_organization_types,omitempty"`
+	Uuid                  *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // ProtectedCallFieldEnum defines model for ProtectedCallFieldEnum.
@@ -46062,22 +46026,22 @@ type ProtectedCallRequest struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// UserAffiliations List of allowed affiliations. User must have one.
-	UserAffiliations *map[string]interface{} `json:"user_affiliations,omitempty"`
+	UserAffiliations *[]string `json:"user_affiliations,omitempty"`
 
 	// UserAssuranceLevels List of required assurance URIs (REFEDS). User must have ALL of these.
-	UserAssuranceLevels *map[string]interface{} `json:"user_assurance_levels,omitempty"`
+	UserAssuranceLevels *[]string `json:"user_assurance_levels,omitempty"`
 
 	// UserEmailPatterns List of email regex patterns. User must match one.
-	UserEmailPatterns *map[string]interface{} `json:"user_email_patterns,omitempty"`
+	UserEmailPatterns *[]string `json:"user_email_patterns,omitempty"`
 
 	// UserIdentitySources List of allowed identity sources (identity providers).
-	UserIdentitySources *map[string]interface{} `json:"user_identity_sources,omitempty"`
+	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
 
 	// UserNationalities List of allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
-	UserNationalities *map[string]interface{} `json:"user_nationalities,omitempty"`
+	UserNationalities *[]string `json:"user_nationalities,omitempty"`
 
 	// UserOrganizationTypes List of allowed organization type URNs (SCHAC). User must match one.
-	UserOrganizationTypes *map[string]interface{} `json:"user_organization_types,omitempty"`
+	UserOrganizationTypes *[]string `json:"user_organization_types,omitempty"`
 }
 
 // ProtectedProposalList defines model for ProtectedProposalList.
