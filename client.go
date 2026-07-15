@@ -62098,6 +62098,9 @@ type MarketplaceProjectUsageComponentsUsageTimeseriesRetrieveParams struct {
 
 // MarketplaceProviderOfferingsListParams defines parameters for MarketplaceProviderOfferingsList.
 type MarketplaceProviderOfferingsListParams struct {
+	// Accessible Only offerings the current user can order
+	Accessible *bool `form:"accessible,omitempty" json:"accessible,omitempty"`
+
 	// AccessibleViaCalls Accessible via calls
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
@@ -62231,6 +62234,9 @@ type MarketplaceProviderOfferingsListParams struct {
 
 // MarketplaceProviderOfferingsCountParams defines parameters for MarketplaceProviderOfferingsCount.
 type MarketplaceProviderOfferingsCountParams struct {
+	// Accessible Only offerings the current user can order
+	Accessible *bool `form:"accessible,omitempty" json:"accessible,omitempty"`
+
 	// AccessibleViaCalls Accessible via calls
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
@@ -62363,6 +62369,9 @@ type MarketplaceProviderOfferingsCountParams struct {
 
 // MarketplaceProviderOfferingsGroupsListParams defines parameters for MarketplaceProviderOfferingsGroupsList.
 type MarketplaceProviderOfferingsGroupsListParams struct {
+	// Accessible Only offerings the current user can order
+	Accessible *bool `form:"accessible,omitempty" json:"accessible,omitempty"`
+
 	// AccessibleViaCalls Accessible via calls
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
@@ -62492,6 +62501,9 @@ type MarketplaceProviderOfferingsGroupsListParams struct {
 
 // MarketplaceProviderOfferingsGroupsCountParams defines parameters for MarketplaceProviderOfferingsGroupsCount.
 type MarketplaceProviderOfferingsGroupsCountParams struct {
+	// Accessible Only offerings the current user can order
+	Accessible *bool `form:"accessible,omitempty" json:"accessible,omitempty"`
+
 	// AccessibleViaCalls Accessible via calls
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
@@ -62626,6 +62638,9 @@ type MarketplaceProviderOfferingsRetrieveParams struct {
 
 // MarketplaceProviderOfferingsComponentStatsListParams defines parameters for MarketplaceProviderOfferingsComponentStatsList.
 type MarketplaceProviderOfferingsComponentStatsListParams struct {
+	// Accessible Only offerings the current user can order
+	Accessible *bool `form:"accessible,omitempty" json:"accessible,omitempty"`
+
 	// AccessibleViaCalls Accessible via calls
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
@@ -62764,6 +62779,9 @@ type MarketplaceProviderOfferingsComponentStatsListParams struct {
 
 // MarketplaceProviderOfferingsCostsListParams defines parameters for MarketplaceProviderOfferingsCostsList.
 type MarketplaceProviderOfferingsCostsListParams struct {
+	// Accessible Only offerings the current user can order
+	Accessible *bool `form:"accessible,omitempty" json:"accessible,omitempty"`
+
 	// AccessibleViaCalls Accessible via calls
 	AccessibleViaCalls  *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 	AccountingIsRunning *bool `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
@@ -62903,6 +62921,9 @@ type MarketplaceProviderOfferingsCostsListParams struct {
 
 // MarketplaceProviderOfferingsCustomersListParams defines parameters for MarketplaceProviderOfferingsCustomersList.
 type MarketplaceProviderOfferingsCustomersListParams struct {
+	// Accessible Only offerings the current user can order
+	Accessible *bool `form:"accessible,omitempty" json:"accessible,omitempty"`
+
 	// AccessibleViaCalls Accessible via calls
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
@@ -63041,6 +63062,9 @@ type MarketplaceProviderOfferingsEffectivePosixIdPoolRetrieveParams struct {
 
 // MarketplaceProviderOfferingsHistoryListParams defines parameters for MarketplaceProviderOfferingsHistoryList.
 type MarketplaceProviderOfferingsHistoryListParams struct {
+	// Accessible Only offerings the current user can order
+	Accessible *bool `form:"accessible,omitempty" json:"accessible,omitempty"`
+
 	// AccessibleViaCalls Accessible via calls
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
@@ -63191,6 +63215,9 @@ type MarketplaceProviderOfferingsImportableResourcesListParams struct {
 
 // MarketplaceProviderOfferingsListCourseAccountsListParams defines parameters for MarketplaceProviderOfferingsListCourseAccountsList.
 type MarketplaceProviderOfferingsListCourseAccountsListParams struct {
+	// Accessible Only offerings the current user can order
+	Accessible *bool `form:"accessible,omitempty" json:"accessible,omitempty"`
+
 	// AccessibleViaCalls Accessible via calls
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
@@ -63334,6 +63361,9 @@ type MarketplaceProviderOfferingsListCustomerProjectsListParams struct {
 
 // MarketplaceProviderOfferingsListCustomerServiceAccountsListParams defines parameters for MarketplaceProviderOfferingsListCustomerServiceAccountsList.
 type MarketplaceProviderOfferingsListCustomerServiceAccountsListParams struct {
+	// Accessible Only offerings the current user can order
+	Accessible *bool `form:"accessible,omitempty" json:"accessible,omitempty"`
+
 	// AccessibleViaCalls Accessible via calls
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
@@ -63477,6 +63507,9 @@ type MarketplaceProviderOfferingsListCustomerUsersListParams struct {
 
 // MarketplaceProviderOfferingsListProjectServiceAccountsListParams defines parameters for MarketplaceProviderOfferingsListProjectServiceAccountsList.
 type MarketplaceProviderOfferingsListProjectServiceAccountsListParams struct {
+	// Accessible Only offerings the current user can order
+	Accessible *bool `form:"accessible,omitempty" json:"accessible,omitempty"`
+
 	// AccessibleViaCalls Accessible via calls
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
@@ -64366,6 +64399,9 @@ type MarketplaceProviderResourcesTeamListParams struct {
 
 // MarketplacePublicOfferingsListParams defines parameters for MarketplacePublicOfferingsList.
 type MarketplacePublicOfferingsListParams struct {
+	// Accessible Only offerings the current user can order
+	Accessible *bool `form:"accessible,omitempty" json:"accessible,omitempty"`
+
 	// AccessibleViaCalls Accessible via calls
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
@@ -64496,6 +64532,9 @@ type MarketplacePublicOfferingsListParams struct {
 
 // MarketplacePublicOfferingsCountParams defines parameters for MarketplacePublicOfferingsCount.
 type MarketplacePublicOfferingsCountParams struct {
+	// Accessible Only offerings the current user can order
+	Accessible *bool `form:"accessible,omitempty" json:"accessible,omitempty"`
+
 	// AccessibleViaCalls Accessible via calls
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
@@ -66231,6 +66270,9 @@ type MarketplaceServiceProvidersKeysCountParams struct {
 
 // MarketplaceServiceProvidersOfferingsListParams defines parameters for MarketplaceServiceProvidersOfferingsList.
 type MarketplaceServiceProvidersOfferingsListParams struct {
+	// Accessible Only offerings the current user can order
+	Accessible *bool `form:"accessible,omitempty" json:"accessible,omitempty"`
+
 	// AccessibleViaCalls Accessible via calls
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
@@ -66361,6 +66403,9 @@ type MarketplaceServiceProvidersOfferingsListParams struct {
 
 // MarketplaceServiceProvidersOfferingsCountParams defines parameters for MarketplaceServiceProvidersOfferingsCount.
 type MarketplaceServiceProvidersOfferingsCountParams struct {
+	// Accessible Only offerings the current user can order
+	Accessible *bool `form:"accessible,omitempty" json:"accessible,omitempty"`
+
 	// AccessibleViaCalls Accessible via calls
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
@@ -66490,6 +66535,9 @@ type MarketplaceServiceProvidersOfferingsCountParams struct {
 
 // MarketplaceServiceProvidersOfferingsTypesListParams defines parameters for MarketplaceServiceProvidersOfferingsTypesList.
 type MarketplaceServiceProvidersOfferingsTypesListParams struct {
+	// Accessible Only offerings the current user can order
+	Accessible *bool `form:"accessible,omitempty" json:"accessible,omitempty"`
+
 	// AccessibleViaCalls Accessible via calls
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
@@ -66619,6 +66667,9 @@ type MarketplaceServiceProvidersOfferingsTypesListParams struct {
 
 // MarketplaceServiceProvidersOfferingsTypesCountParams defines parameters for MarketplaceServiceProvidersOfferingsTypesCount.
 type MarketplaceServiceProvidersOfferingsTypesCountParams struct {
+	// Accessible Only offerings the current user can order
+	Accessible *bool `form:"accessible,omitempty" json:"accessible,omitempty"`
+
 	// AccessibleViaCalls Accessible via calls
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
@@ -223689,6 +223740,18 @@ func NewMarketplaceProviderOfferingsListRequest(server string, params *Marketpla
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
+		if params.Accessible != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible", *params.Accessible, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.AccessibleViaCalls != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible_via_calls", *params.AccessibleViaCalls, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
@@ -224258,6 +224321,18 @@ func NewMarketplaceProviderOfferingsCountRequest(server string, params *Marketpl
 		// styled parameters, preserving literal commas as delimiters
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
+
+		if params.Accessible != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible", *params.Accessible, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
 
 		if params.AccessibleViaCalls != nil {
 
@@ -224868,6 +224943,18 @@ func NewMarketplaceProviderOfferingsGroupsListRequest(server string, params *Mar
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
+		if params.Accessible != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible", *params.Accessible, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.AccessibleViaCalls != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible_via_calls", *params.AccessibleViaCalls, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
@@ -225413,6 +225500,18 @@ func NewMarketplaceProviderOfferingsGroupsCountRequest(server string, params *Ma
 		// styled parameters, preserving literal commas as delimiters
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
+
+		if params.Accessible != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible", *params.Accessible, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
 
 		if params.AccessibleViaCalls != nil {
 
@@ -226405,6 +226504,18 @@ func NewMarketplaceProviderOfferingsComponentStatsListRequest(server string, uui
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
+		if params.Accessible != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible", *params.Accessible, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.AccessibleViaCalls != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible_via_calls", *params.AccessibleViaCalls, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
@@ -226993,6 +227104,18 @@ func NewMarketplaceProviderOfferingsCostsListRequest(server string, uuid openapi
 		// styled parameters, preserving literal commas as delimiters
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
+
+		if params.Accessible != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible", *params.Accessible, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
 
 		if params.AccessibleViaCalls != nil {
 
@@ -227641,6 +227764,18 @@ func NewMarketplaceProviderOfferingsCustomersListRequest(server string, uuid ope
 		// styled parameters, preserving literal commas as delimiters
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
+
+		if params.Accessible != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible", *params.Accessible, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
 
 		if params.AccessibleViaCalls != nil {
 
@@ -228693,6 +228828,18 @@ func NewMarketplaceProviderOfferingsHistoryListRequest(server string, uuid opena
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
+		if params.Accessible != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible", *params.Accessible, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.AccessibleViaCalls != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible_via_calls", *params.AccessibleViaCalls, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
@@ -229447,6 +229594,18 @@ func NewMarketplaceProviderOfferingsListCourseAccountsListRequest(server string,
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
+		if params.Accessible != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible", *params.Accessible, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.AccessibleViaCalls != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible_via_calls", *params.AccessibleViaCalls, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
@@ -230097,6 +230256,18 @@ func NewMarketplaceProviderOfferingsListCustomerServiceAccountsListRequest(serve
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
+		if params.Accessible != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible", *params.Accessible, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.AccessibleViaCalls != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible_via_calls", *params.AccessibleViaCalls, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
@@ -230746,6 +230917,18 @@ func NewMarketplaceProviderOfferingsListProjectServiceAccountsListRequest(server
 		// styled parameters, preserving literal commas as delimiters
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
+
+		if params.Accessible != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible", *params.Accessible, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
 
 		if params.AccessibleViaCalls != nil {
 
@@ -238824,6 +239007,18 @@ func NewMarketplacePublicOfferingsListRequest(server string, params *Marketplace
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
+		if params.Accessible != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible", *params.Accessible, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.AccessibleViaCalls != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible_via_calls", *params.AccessibleViaCalls, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
@@ -239381,6 +239576,18 @@ func NewMarketplacePublicOfferingsCountRequest(server string, params *Marketplac
 		// styled parameters, preserving literal commas as delimiters
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
+
+		if params.Accessible != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible", *params.Accessible, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
 
 		if params.AccessibleViaCalls != nil {
 
@@ -251394,6 +251601,18 @@ func NewMarketplaceServiceProvidersOfferingsListRequest(server string, servicePr
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
+		if params.Accessible != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible", *params.Accessible, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.AccessibleViaCalls != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible_via_calls", *params.AccessibleViaCalls, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
@@ -251959,6 +252178,18 @@ func NewMarketplaceServiceProvidersOfferingsCountRequest(server string, serviceP
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
+		if params.Accessible != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible", *params.Accessible, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.AccessibleViaCalls != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible_via_calls", *params.AccessibleViaCalls, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
@@ -252512,6 +252743,18 @@ func NewMarketplaceServiceProvidersOfferingsTypesListRequest(server string, serv
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
+		if params.Accessible != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible", *params.Accessible, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.AccessibleViaCalls != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible_via_calls", *params.AccessibleViaCalls, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
@@ -253064,6 +253307,18 @@ func NewMarketplaceServiceProvidersOfferingsTypesCountRequest(server string, ser
 		// styled parameters, preserving literal commas as delimiters
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
+
+		if params.Accessible != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible", *params.Accessible, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
 
 		if params.AccessibleViaCalls != nil {
 
