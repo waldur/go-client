@@ -6,17 +6,20 @@ stages:
   - test
   - release
 
+Fetch OpenAPI schema:
+  extends: .fetch-openapi-schema
+
 Build Go SDK:
   stage: test
   image: registry.hpc.ut.ee/mirror/library/golang:tip-alpine
   rules:
     - if: '$CI_PIPELINE_SOURCE == "pipeline"'
     - if: '$CI_PIPELINE_SOURCE == "trigger"'
-  needs: []
+  needs:
+    - job: Fetch OpenAPI schema
+      artifacts: true
   before_script:
-    - apk add --no-cache git curl jq
-    - !reference [.resolve-parent-job-id]
-    - !reference [.download-openapi-schema]
+    - apk add --no-cache git
   script:
     - set -e
     # waldur-openapi-schema.yaml is downloaded automatically from needs
