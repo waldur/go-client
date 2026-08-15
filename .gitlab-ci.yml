@@ -1,6 +1,8 @@
 include:
   - project: "waldur/waldur-pipelines"
     file: "/templates/utils/release-utils.yml"
+  - project: "waldur/waldur-pipelines"
+    file: "/templates/utils/verify-generated-artifact.yml"
 
 stages:
   - test
@@ -45,6 +47,25 @@ Build Go SDK:
       - client.go
     expire_in: 1 day
 
+# The 8.1.0 client was tagged containing none of the release's 234 new
+# operations, because the schema fetch had silently fallen back to 8.0.9.
+# Nothing failed. This compares the generated client against the schema before
+# it can be released.
+Verify generated client:
+  extends: .verify-generated-artifact
+  stage: test
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "pipeline"'
+    - if: '$CI_PIPELINE_SOURCE == "trigger"'
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+  needs:
+    - job: Fetch OpenAPI schema
+      artifacts: true
+    - job: Build Go SDK
+      artifacts: true
+  variables:
+    GENERATED_DIR: "."
+
 Release Go SDK:
   stage: release
   image: $GO_IMAGE
@@ -55,6 +76,9 @@ Release Go SDK:
   needs:
     - job: Build Go SDK
       artifacts: true
+    # Gate the release on the check, so a stale client cannot be tagged.
+    - job: Verify generated client
+      artifacts: false
   before_script:
     - apk add --no-cache git
     - git config --global user.name "$GITLAB_USER_NAME"
