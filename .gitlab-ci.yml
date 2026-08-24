@@ -97,4 +97,8 @@ Release Go SDK:
         git add client.go
         git diff --cached --quiet && echo "No changes" || git commit -m "chore: nightly update of Waldur Go SDK"
       fi
-    - git push origin HEAD:main || echo "main already up to date in go-client"
+    # `|| echo` here turned a rejected push into exit 0. When nothing was
+    # committed above, the push is already a no-op that exits 0, so the
+    # fallback only ever hid real failures: a non-fast-forward main, or a
+    # credential that cannot write.
+    - git push origin HEAD:main
