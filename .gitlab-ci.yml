@@ -26,6 +26,15 @@ Fetch OpenAPI schema:
 Build Go SDK:
   stage: test
   image: $GO_IMAGE
+  # client.go is one 27 MB package, and compiling it peaks at ~4.1 GB RSS with
+  # default GC settings. Runners in the ut-runner-pool-df-* pool kill the
+  # compiler at about 4 GB ("compile: signal: killed"), which is why the
+  # nightly build failed from 2026-09-05 whenever it landed there. A soft heap
+  # limit keeps the compiler at full speed until it nears the ceiling and then
+  # collects aggressively: measured peak drops to ~3.0 GB for ~30% more CPU.
+  # GOMEMLIMIT is the Go runtime's own knob, so it applies to the compiler too.
+  variables:
+    GOMEMLIMIT: 2500MiB
   rules:
     - if: '$CI_PIPELINE_SOURCE == "pipeline"'
     - if: '$CI_PIPELINE_SOURCE == "trigger"'
