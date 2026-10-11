@@ -30628,16 +30628,22 @@ type ComponentMultiplierConfigRequest struct {
 
 // ComponentStats defines model for ComponentStats.
 type ComponentStats struct {
-	BillingType  *string             `json:"billing_type,omitempty"`
-	Description  *string             `json:"description,omitempty"`
-	Limit        *int                `json:"limit,omitempty"`
-	LimitUsage   *int                `json:"limit_usage,omitempty"`
-	MeasuredUnit *string             `json:"measured_unit,omitempty"`
-	Name         *string             `json:"name,omitempty"`
-	OfferingName *string             `json:"offering_name,omitempty"`
-	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
-	Type         *string             `json:"type,omitempty"`
-	Usage        *int                `json:"usage,omitempty"`
+	BillingType *string `json:"billing_type,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Limit       *int    `json:"limit,omitempty"`
+	LimitUsage  *int    `json:"limit_usage,omitempty"`
+
+	// LimitUsageTerminated Part of limit_usage that came from terminated resources.
+	LimitUsageTerminated *int                `json:"limit_usage_terminated,omitempty"`
+	MeasuredUnit         *string             `json:"measured_unit,omitempty"`
+	Name                 *string             `json:"name,omitempty"`
+	OfferingName         *string             `json:"offering_name,omitempty"`
+	OfferingUuid         *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	Type                 *string             `json:"type,omitempty"`
+	Usage                *int                `json:"usage,omitempty"`
+
+	// UsageTerminated Part of usage that came from terminated resources.
+	UsageTerminated *int `json:"usage_terminated,omitempty"`
 }
 
 // ComponentStatsPerOffering defines model for ComponentStatsPerOffering.
@@ -30650,12 +30656,18 @@ type ComponentStatsPerOffering struct {
 	Limit              *float64            `json:"limit,omitempty"`
 	LimitPeriod        *string             `json:"limit_period,omitempty"`
 	LimitUsage         *float64            `json:"limit_usage,omitempty"`
-	MeasuredUnit       *string             `json:"measured_unit,omitempty"`
-	Name               *string             `json:"name,omitempty"`
-	OfferingName       *string             `json:"offering_name,omitempty"`
-	OfferingUuid       *openapi_types.UUID `json:"offering_uuid,omitempty"`
-	Type               *string             `json:"type,omitempty"`
-	Usage              *float64            `json:"usage,omitempty"`
+
+	// LimitUsageTerminated Part of limit_usage that came from terminated resources.
+	LimitUsageTerminated *float64            `json:"limit_usage_terminated,omitempty"`
+	MeasuredUnit         *string             `json:"measured_unit,omitempty"`
+	Name                 *string             `json:"name,omitempty"`
+	OfferingName         *string             `json:"offering_name,omitempty"`
+	OfferingUuid         *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	Type                 *string             `json:"type,omitempty"`
+	Usage                *float64            `json:"usage,omitempty"`
+
+	// UsageTerminated Part of usage that came from terminated resources.
+	UsageTerminated *float64 `json:"usage_terminated,omitempty"`
 }
 
 // ComponentSumConfig defines model for ComponentSumConfig.
@@ -50940,9 +50952,13 @@ type ProjectType struct {
 // ProjectUsageEntry defines model for ProjectUsageEntry.
 type ProjectUsageEntry struct {
 	Buckets     *[]UsageTimeseriesBucket `json:"buckets,omitempty"`
+	IsRemoved   *bool                    `json:"is_removed,omitempty"`
 	ProjectName *string                  `json:"project_name,omitempty"`
 	ProjectUuid *openapi_types.UUID      `json:"project_uuid,omitempty"`
 	Usage       *float64                 `json:"usage,omitempty"`
+
+	// UsageTerminated Part of usage that came from terminated resources.
+	UsageTerminated *float64 `json:"usage_terminated,omitempty"`
 }
 
 // ProjectUsageReport defines model for ProjectUsageReport.
@@ -59463,6 +59479,9 @@ type UsageLimitRestrictionEnum string
 type UsageTimeseriesBucket struct {
 	BillingPeriod *openapi_types.Date `json:"billing_period,omitempty"`
 	Usage         *float64            `json:"usage,omitempty"`
+
+	// UsageTerminated Part of usage that came from terminated resources.
+	UsageTerminated *float64 `json:"usage_terminated,omitempty"`
 }
 
 // User defines model for User.
@@ -64614,6 +64633,9 @@ type CustomersProvidersListParams struct {
 type CustomersStatsRetrieveParams struct {
 	// ForCurrentMonth If true, returns usage data for the current month only. Otherwise, returns total usage.
 	ForCurrentMonth *bool `form:"for_current_month,omitempty" json:"for_current_month,omitempty"`
+
+	// IncludeTerminated If true, also counts terminated resources that reported usage in the current month. Their share is returned as usage_terminated and limit_usage_terminated; limit never includes them. Ignored unless the dashboard.usage_include_terminated feature is enabled.
+	IncludeTerminated *bool `form:"include_terminated,omitempty" json:"include_terminated,omitempty"`
 }
 
 // DailyQuotasRetrieveParams defines parameters for DailyQuotasRetrieve.
@@ -67129,16 +67151,28 @@ type MarketplaceCustomerServiceAccountsCountParams struct {
 
 // MarketplaceCustomerUsageComponentsUsageByProjectRetrieveParams defines parameters for MarketplaceCustomerUsageComponentsUsageByProjectRetrieve.
 type MarketplaceCustomerUsageComponentsUsageByProjectRetrieveParams struct {
-	ComponentType *string            `form:"component_type,omitempty" json:"component_type,omitempty"`
-	OfferingUuid  openapi_types.UUID `form:"offering_uuid" json:"offering_uuid"`
-	PeriodOffset  *int               `form:"period_offset,omitempty" json:"period_offset,omitempty"`
+	ComponentType *string `form:"component_type,omitempty" json:"component_type,omitempty"`
+
+	// IncludeTerminated If true, also counts terminated resources. Their share of usage is returned as usage_terminated (and limit_usage_terminated); limit never includes them. Ignored unless the dashboard.usage_include_terminated feature is enabled.
+	IncludeTerminated *bool              `form:"include_terminated,omitempty" json:"include_terminated,omitempty"`
+	OfferingUuid      openapi_types.UUID `form:"offering_uuid" json:"offering_uuid"`
+	PeriodOffset      *int               `form:"period_offset,omitempty" json:"period_offset,omitempty"`
 }
 
 // MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveParams defines parameters for MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieve.
 type MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveParams struct {
-	ComponentType *string            `form:"component_type,omitempty" json:"component_type,omitempty"`
-	OfferingUuid  openapi_types.UUID `form:"offering_uuid" json:"offering_uuid"`
-	PeriodOffset  *int               `form:"period_offset,omitempty" json:"period_offset,omitempty"`
+	ComponentType *string `form:"component_type,omitempty" json:"component_type,omitempty"`
+
+	// IncludeTerminated If true, also counts terminated resources. Their share of usage is returned as usage_terminated (and limit_usage_terminated); limit never includes them. Ignored unless the dashboard.usage_include_terminated feature is enabled.
+	IncludeTerminated *bool              `form:"include_terminated,omitempty" json:"include_terminated,omitempty"`
+	OfferingUuid      openapi_types.UUID `form:"offering_uuid" json:"offering_uuid"`
+	PeriodOffset      *int               `form:"period_offset,omitempty" json:"period_offset,omitempty"`
+}
+
+// MarketplaceCustomerUsageComponentsUsageRetrieveParams defines parameters for MarketplaceCustomerUsageComponentsUsageRetrieve.
+type MarketplaceCustomerUsageComponentsUsageRetrieveParams struct {
+	// IncludeTerminated If true, also counts terminated resources. Their share of usage is returned as usage_terminated (and limit_usage_terminated); limit never includes them. Ignored unless the dashboard.usage_include_terminated feature is enabled.
+	IncludeTerminated *bool `form:"include_terminated,omitempty" json:"include_terminated,omitempty"`
 }
 
 // MarketplaceDemoPresetsListListParams defines parameters for MarketplaceDemoPresetsListList.
@@ -69355,9 +69389,18 @@ type MarketplaceProjectUpdateRequestsCountParams struct {
 
 // MarketplaceProjectUsageComponentsUsageTimeseriesRetrieveParams defines parameters for MarketplaceProjectUsageComponentsUsageTimeseriesRetrieve.
 type MarketplaceProjectUsageComponentsUsageTimeseriesRetrieveParams struct {
-	ComponentType *string            `form:"component_type,omitempty" json:"component_type,omitempty"`
-	OfferingUuid  openapi_types.UUID `form:"offering_uuid" json:"offering_uuid"`
-	PeriodOffset  *int               `form:"period_offset,omitempty" json:"period_offset,omitempty"`
+	ComponentType *string `form:"component_type,omitempty" json:"component_type,omitempty"`
+
+	// IncludeTerminated If true, also counts terminated resources. Their share of usage is returned as usage_terminated (and limit_usage_terminated); limit never includes them. Ignored unless the dashboard.usage_include_terminated feature is enabled.
+	IncludeTerminated *bool              `form:"include_terminated,omitempty" json:"include_terminated,omitempty"`
+	OfferingUuid      openapi_types.UUID `form:"offering_uuid" json:"offering_uuid"`
+	PeriodOffset      *int               `form:"period_offset,omitempty" json:"period_offset,omitempty"`
+}
+
+// MarketplaceProjectUsageComponentsUsageRetrieveParams defines parameters for MarketplaceProjectUsageComponentsUsageRetrieve.
+type MarketplaceProjectUsageComponentsUsageRetrieveParams struct {
+	// IncludeTerminated If true, also counts terminated resources. Their share of usage is returned as usage_terminated (and limit_usage_terminated); limit never includes them. Ignored unless the dashboard.usage_include_terminated feature is enabled.
+	IncludeTerminated *bool `form:"include_terminated,omitempty" json:"include_terminated,omitempty"`
 }
 
 // MarketplaceProviderOfferingsListParams defines parameters for MarketplaceProviderOfferingsList.
@@ -78470,6 +78513,9 @@ type OpenportalUnmanagedProjectsListUsersCountParams struct {
 type OpenportalUnmanagedProjectsStatsRetrieveParams struct {
 	// ForCurrentMonth If true, returns usage data for the current month only. Otherwise, returns total usage.
 	ForCurrentMonth *bool `form:"for_current_month,omitempty" json:"for_current_month,omitempty"`
+
+	// IncludeTerminated If true, also counts terminated resources that reported usage in the current month. Their share is returned as usage_terminated and limit_usage_terminated; limit never includes them. Ignored unless the dashboard.usage_include_terminated feature is enabled.
+	IncludeTerminated *bool `form:"include_terminated,omitempty" json:"include_terminated,omitempty"`
 }
 
 // OpenportalUnmanagedProjectsSubmitAnswersJSONBody defines parameters for OpenportalUnmanagedProjectsSubmitAnswers.
@@ -82332,6 +82378,9 @@ type ProjectsListUsersCountParams struct {
 type ProjectsStatsRetrieveParams struct {
 	// ForCurrentMonth If true, returns usage data for the current month only. Otherwise, returns total usage.
 	ForCurrentMonth *bool `form:"for_current_month,omitempty" json:"for_current_month,omitempty"`
+
+	// IncludeTerminated If true, also counts terminated resources that reported usage in the current month. Their share is returned as usage_terminated and limit_usage_terminated; limit never includes them. Ignored unless the dashboard.usage_include_terminated feature is enabled.
+	IncludeTerminated *bool `form:"include_terminated,omitempty" json:"include_terminated,omitempty"`
 }
 
 // ProjectsSubmitAnswersJSONBody defines parameters for ProjectsSubmitAnswers.
@@ -115711,10 +115760,10 @@ type ClientInterface interface {
 
 	// MarketplaceCustomerUsageComponentsUsageRetrieve Get resource usage statistics broken down per offering
 	//
-	// Returns one row per (offering, component type, billing type) for all non-terminated resources within the scope. Each row's `usage` and `limit_usage` are aggregated using the offering's own `limit_period`.
+	// Returns one row per (offering, component type, billing type) for all non-terminated resources within the scope (or all resources when `include_terminated` is true). Each row's `usage` and `limit_usage` are aggregated using the offering's own `limit_period`.
 	//
 	// Corresponds with GET /api/marketplace-customer-usage/{uuid}/components-usage/ (the `MarketplaceCustomerUsageComponentsUsageRetrieve` operationId).
-	MarketplaceCustomerUsageComponentsUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	MarketplaceCustomerUsageComponentsUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceCustomerUsageComponentsUsageRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceDemoPresetsInfoRetrieve Get demo preset details
 	//
@@ -117750,10 +117799,10 @@ type ClientInterface interface {
 
 	// MarketplaceProjectUsageComponentsUsageRetrieve Get resource usage statistics broken down per offering
 	//
-	// Returns one row per (offering, component type, billing type) for all non-terminated resources within the scope. Each row's `usage` and `limit_usage` are aggregated using the offering's own `limit_period`.
+	// Returns one row per (offering, component type, billing type) for all non-terminated resources within the scope (or all resources when `include_terminated` is true). Each row's `usage` and `limit_usage` are aggregated using the offering's own `limit_period`.
 	//
 	// Corresponds with GET /api/marketplace-project-usage/{uuid}/components-usage/ (the `MarketplaceProjectUsageComponentsUsageRetrieve` operationId).
-	MarketplaceProjectUsageComponentsUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	MarketplaceProjectUsageComponentsUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProjectUsageComponentsUsageRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsList List provider offerings
 	//
@@ -149939,11 +149988,11 @@ func (c *Client) MarketplaceCustomerUsageComponentsUsageTimeseriesRetrieve(ctx c
 
 // MarketplaceCustomerUsageComponentsUsageRetrieve Get resource usage statistics broken down per offering
 //
-// Returns one row per (offering, component type, billing type) for all non-terminated resources within the scope. Each row's `usage` and `limit_usage` are aggregated using the offering's own `limit_period`.
+// Returns one row per (offering, component type, billing type) for all non-terminated resources within the scope (or all resources when `include_terminated` is true). Each row's `usage` and `limit_usage` are aggregated using the offering's own `limit_period`.
 //
 // Corresponds with GET /api/marketplace-customer-usage/{uuid}/components-usage/ (the `MarketplaceCustomerUsageComponentsUsageRetrieve` operationId).
-func (c *Client) MarketplaceCustomerUsageComponentsUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceCustomerUsageComponentsUsageRetrieveRequest(c.Server, uuid)
+func (c *Client) MarketplaceCustomerUsageComponentsUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceCustomerUsageComponentsUsageRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerUsageComponentsUsageRetrieveRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -155448,11 +155497,11 @@ func (c *Client) MarketplaceProjectUsageComponentsUsageTimeseriesRetrieve(ctx co
 
 // MarketplaceProjectUsageComponentsUsageRetrieve Get resource usage statistics broken down per offering
 //
-// Returns one row per (offering, component type, billing type) for all non-terminated resources within the scope. Each row's `usage` and `limit_usage` are aggregated using the offering's own `limit_period`.
+// Returns one row per (offering, component type, billing type) for all non-terminated resources within the scope (or all resources when `include_terminated` is true). Each row's `usage` and `limit_usage` are aggregated using the offering's own `limit_period`.
 //
 // Corresponds with GET /api/marketplace-project-usage/{uuid}/components-usage/ (the `MarketplaceProjectUsageComponentsUsageRetrieve` operationId).
-func (c *Client) MarketplaceProjectUsageComponentsUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceProjectUsageComponentsUsageRetrieveRequest(c.Server, uuid)
+func (c *Client) MarketplaceProjectUsageComponentsUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProjectUsageComponentsUsageRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectUsageComponentsUsageRetrieveRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -229893,6 +229942,18 @@ func NewCustomersStatsRetrieveRequest(server string, uuid openapi_types.UUID, pa
 
 		}
 
+		if params.IncludeTerminated != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "include_terminated", *params.IncludeTerminated, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if encoded := queryValues.Encode(); encoded != "" {
 			rawQueryFragments = append(rawQueryFragments, encoded)
 		}
@@ -253712,6 +253773,18 @@ func NewMarketplaceCustomerUsageComponentsUsageByProjectRetrieveRequest(server s
 
 		}
 
+		if params.IncludeTerminated != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "include_terminated", *params.IncludeTerminated, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 			return nil, err
 		} else {
@@ -253793,6 +253866,18 @@ func NewMarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveRequest(server 
 
 		}
 
+		if params.IncludeTerminated != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "include_terminated", *params.IncludeTerminated, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 			return nil, err
 		} else {
@@ -253828,7 +253913,7 @@ func NewMarketplaceCustomerUsageComponentsUsageTimeseriesRetrieveRequest(server 
 }
 
 // NewMarketplaceCustomerUsageComponentsUsageRetrieveRequest constructs an http.Request for the MarketplaceCustomerUsageComponentsUsageRetrieve method
-func NewMarketplaceCustomerUsageComponentsUsageRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+func NewMarketplaceCustomerUsageComponentsUsageRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceCustomerUsageComponentsUsageRetrieveParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -253851,6 +253936,33 @@ func NewMarketplaceCustomerUsageComponentsUsageRetrieveRequest(server string, uu
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.IncludeTerminated != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "include_terminated", *params.IncludeTerminated, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -273154,6 +273266,18 @@ func NewMarketplaceProjectUsageComponentsUsageTimeseriesRetrieveRequest(server s
 
 		}
 
+		if params.IncludeTerminated != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "include_terminated", *params.IncludeTerminated, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 			return nil, err
 		} else {
@@ -273189,7 +273313,7 @@ func NewMarketplaceProjectUsageComponentsUsageTimeseriesRetrieveRequest(server s
 }
 
 // NewMarketplaceProjectUsageComponentsUsageRetrieveRequest constructs an http.Request for the MarketplaceProjectUsageComponentsUsageRetrieve method
-func NewMarketplaceProjectUsageComponentsUsageRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+func NewMarketplaceProjectUsageComponentsUsageRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceProjectUsageComponentsUsageRetrieveParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -273212,6 +273336,33 @@ func NewMarketplaceProjectUsageComponentsUsageRetrieveRequest(server string, uui
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.IncludeTerminated != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "include_terminated", *params.IncludeTerminated, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -339499,6 +339650,18 @@ func NewOpenportalUnmanagedProjectsStatsRetrieveRequest(server string, uuid open
 
 		}
 
+		if params.IncludeTerminated != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "include_terminated", *params.IncludeTerminated, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if encoded := queryValues.Encode(); encoded != "" {
 			rawQueryFragments = append(rawQueryFragments, encoded)
 		}
@@ -370439,6 +370602,18 @@ func NewProjectsStatsRetrieveRequest(server string, uuid openapi_types.UUID, par
 		if params.ForCurrentMonth != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "for_current_month", *params.ForCurrentMonth, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IncludeTerminated != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "include_terminated", *params.IncludeTerminated, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -432700,12 +432875,12 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceCustomerUsageComponentsUsageRetrieveWithResponse Get resource usage statistics broken down per offering
 	//
-	// Returns one row per (offering, component type, billing type) for all non-terminated resources within the scope. Each row's `usage` and `limit_usage` are aggregated using the offering's own `limit_period`.
+	// Returns one row per (offering, component type, billing type) for all non-terminated resources within the scope (or all resources when `include_terminated` is true). Each row's `usage` and `limit_usage` are aggregated using the offering's own `limit_period`.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
 	// Corresponds with GET /api/marketplace-customer-usage/{uuid}/components-usage/ (the `MarketplaceCustomerUsageComponentsUsageRetrieve` operationId).
-	MarketplaceCustomerUsageComponentsUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCustomerUsageComponentsUsageRetrieveResponse, error)
+	MarketplaceCustomerUsageComponentsUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceCustomerUsageComponentsUsageRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceCustomerUsageComponentsUsageRetrieveResponse, error)
 
 	// MarketplaceDemoPresetsInfoRetrieveWithResponse Get demo preset details
 	//
@@ -435185,12 +435360,12 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceProjectUsageComponentsUsageRetrieveWithResponse Get resource usage statistics broken down per offering
 	//
-	// Returns one row per (offering, component type, billing type) for all non-terminated resources within the scope. Each row's `usage` and `limit_usage` are aggregated using the offering's own `limit_period`.
+	// Returns one row per (offering, component type, billing type) for all non-terminated resources within the scope (or all resources when `include_terminated` is true). Each row's `usage` and `limit_usage` are aggregated using the offering's own `limit_period`.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
 	// Corresponds with GET /api/marketplace-project-usage/{uuid}/components-usage/ (the `MarketplaceProjectUsageComponentsUsageRetrieve` operationId).
-	MarketplaceProjectUsageComponentsUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProjectUsageComponentsUsageRetrieveResponse, error)
+	MarketplaceProjectUsageComponentsUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProjectUsageComponentsUsageRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProjectUsageComponentsUsageRetrieveResponse, error)
 
 	// MarketplaceProviderOfferingsListWithResponse List provider offerings
 	//
@@ -585844,13 +586019,13 @@ func (c *ClientWithResponses) MarketplaceCustomerUsageComponentsUsageTimeseriesR
 
 // MarketplaceCustomerUsageComponentsUsageRetrieveWithResponse Get resource usage statistics broken down per offering
 //
-// Returns one row per (offering, component type, billing type) for all non-terminated resources within the scope. Each row's `usage` and `limit_usage` are aggregated using the offering's own `limit_period`.
+// Returns one row per (offering, component type, billing type) for all non-terminated resources within the scope (or all resources when `include_terminated` is true). Each row's `usage` and `limit_usage` are aggregated using the offering's own `limit_period`.
 //
 // Returns a wrapper object for the known response body format(s).
 //
 // Corresponds with GET /api/marketplace-customer-usage/{uuid}/components-usage/ (the `MarketplaceCustomerUsageComponentsUsageRetrieve` operationId).
-func (c *ClientWithResponses) MarketplaceCustomerUsageComponentsUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCustomerUsageComponentsUsageRetrieveResponse, error) {
-	rsp, err := c.MarketplaceCustomerUsageComponentsUsageRetrieve(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) MarketplaceCustomerUsageComponentsUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceCustomerUsageComponentsUsageRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceCustomerUsageComponentsUsageRetrieveResponse, error) {
+	rsp, err := c.MarketplaceCustomerUsageComponentsUsageRetrieve(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -590407,13 +590582,13 @@ func (c *ClientWithResponses) MarketplaceProjectUsageComponentsUsageTimeseriesRe
 
 // MarketplaceProjectUsageComponentsUsageRetrieveWithResponse Get resource usage statistics broken down per offering
 //
-// Returns one row per (offering, component type, billing type) for all non-terminated resources within the scope. Each row's `usage` and `limit_usage` are aggregated using the offering's own `limit_period`.
+// Returns one row per (offering, component type, billing type) for all non-terminated resources within the scope (or all resources when `include_terminated` is true). Each row's `usage` and `limit_usage` are aggregated using the offering's own `limit_period`.
 //
 // Returns a wrapper object for the known response body format(s).
 //
 // Corresponds with GET /api/marketplace-project-usage/{uuid}/components-usage/ (the `MarketplaceProjectUsageComponentsUsageRetrieve` operationId).
-func (c *ClientWithResponses) MarketplaceProjectUsageComponentsUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProjectUsageComponentsUsageRetrieveResponse, error) {
-	rsp, err := c.MarketplaceProjectUsageComponentsUsageRetrieve(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) MarketplaceProjectUsageComponentsUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProjectUsageComponentsUsageRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProjectUsageComponentsUsageRetrieveResponse, error) {
+	rsp, err := c.MarketplaceProjectUsageComponentsUsageRetrieve(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
