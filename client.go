@@ -16210,6 +16210,7 @@ const (
 	PermissionMetadataResponsePermissionMapPROJECTDELETEPERMISSION                      PermissionMetadataResponsePermissionMap = "PROJECT.DELETE_PERMISSION"
 	PermissionMetadataResponsePermissionMapPROJECTLIST                                  PermissionMetadataResponsePermissionMap = "PROJECT.LIST"
 	PermissionMetadataResponsePermissionMapPROJECTREVIEWMEMBERSHIP                      PermissionMetadataResponsePermissionMap = "PROJECT.REVIEW_MEMBERSHIP"
+	PermissionMetadataResponsePermissionMapPROJECTSETSLUG                               PermissionMetadataResponsePermissionMap = "PROJECT.SET_SLUG"
 	PermissionMetadataResponsePermissionMapPROJECTUPDATE                                PermissionMetadataResponsePermissionMap = "PROJECT.UPDATE"
 	PermissionMetadataResponsePermissionMapPROJECTUPDATEMETADATA                        PermissionMetadataResponsePermissionMap = "PROJECT.UPDATE_METADATA"
 	PermissionMetadataResponsePermissionMapPROJECTUPDATEPERMISSION                      PermissionMetadataResponsePermissionMap = "PROJECT.UPDATE_PERMISSION"
@@ -16239,6 +16240,7 @@ const (
 	PermissionMetadataResponsePermissionMapRESOURCESETENDDATE                           PermissionMetadataResponsePermissionMap = "RESOURCE.SET_END_DATE"
 	PermissionMetadataResponsePermissionMapRESOURCESETLIMITS                            PermissionMetadataResponsePermissionMap = "RESOURCE.SET_LIMITS"
 	PermissionMetadataResponsePermissionMapRESOURCESETPLAN                              PermissionMetadataResponsePermissionMap = "RESOURCE.SET_PLAN"
+	PermissionMetadataResponsePermissionMapRESOURCESETSLUG                              PermissionMetadataResponsePermissionMap = "RESOURCE.SET_SLUG"
 	PermissionMetadataResponsePermissionMapRESOURCESETSTATE                             PermissionMetadataResponsePermissionMap = "RESOURCE.SET_STATE"
 	PermissionMetadataResponsePermissionMapRESOURCESETUSAGE                             PermissionMetadataResponsePermissionMap = "RESOURCE.SET_USAGE"
 	PermissionMetadataResponsePermissionMapRESOURCESUBMITREPORT                         PermissionMetadataResponsePermissionMap = "RESOURCE.SUBMIT_REPORT"
@@ -16435,6 +16437,8 @@ func (e PermissionMetadataResponsePermissionMap) Valid() bool {
 		return true
 	case PermissionMetadataResponsePermissionMapPROJECTREVIEWMEMBERSHIP:
 		return true
+	case PermissionMetadataResponsePermissionMapPROJECTSETSLUG:
+		return true
 	case PermissionMetadataResponsePermissionMapPROJECTUPDATE:
 		return true
 	case PermissionMetadataResponsePermissionMapPROJECTUPDATEMETADATA:
@@ -16492,6 +16496,8 @@ func (e PermissionMetadataResponsePermissionMap) Valid() bool {
 	case PermissionMetadataResponsePermissionMapRESOURCESETLIMITS:
 		return true
 	case PermissionMetadataResponsePermissionMapRESOURCESETPLAN:
+		return true
+	case PermissionMetadataResponsePermissionMapRESOURCESETSLUG:
 		return true
 	case PermissionMetadataResponsePermissionMapRESOURCESETSTATE:
 		return true
@@ -16642,6 +16648,7 @@ const (
 	PermissionMetadataResponsePermissionsPROJECTDELETEPERMISSION                      PermissionMetadataResponsePermissions = "PROJECT.DELETE_PERMISSION"
 	PermissionMetadataResponsePermissionsPROJECTLIST                                  PermissionMetadataResponsePermissions = "PROJECT.LIST"
 	PermissionMetadataResponsePermissionsPROJECTREVIEWMEMBERSHIP                      PermissionMetadataResponsePermissions = "PROJECT.REVIEW_MEMBERSHIP"
+	PermissionMetadataResponsePermissionsPROJECTSETSLUG                               PermissionMetadataResponsePermissions = "PROJECT.SET_SLUG"
 	PermissionMetadataResponsePermissionsPROJECTUPDATE                                PermissionMetadataResponsePermissions = "PROJECT.UPDATE"
 	PermissionMetadataResponsePermissionsPROJECTUPDATEMETADATA                        PermissionMetadataResponsePermissions = "PROJECT.UPDATE_METADATA"
 	PermissionMetadataResponsePermissionsPROJECTUPDATEPERMISSION                      PermissionMetadataResponsePermissions = "PROJECT.UPDATE_PERMISSION"
@@ -16671,6 +16678,7 @@ const (
 	PermissionMetadataResponsePermissionsRESOURCESETENDDATE                           PermissionMetadataResponsePermissions = "RESOURCE.SET_END_DATE"
 	PermissionMetadataResponsePermissionsRESOURCESETLIMITS                            PermissionMetadataResponsePermissions = "RESOURCE.SET_LIMITS"
 	PermissionMetadataResponsePermissionsRESOURCESETPLAN                              PermissionMetadataResponsePermissions = "RESOURCE.SET_PLAN"
+	PermissionMetadataResponsePermissionsRESOURCESETSLUG                              PermissionMetadataResponsePermissions = "RESOURCE.SET_SLUG"
 	PermissionMetadataResponsePermissionsRESOURCESETSTATE                             PermissionMetadataResponsePermissions = "RESOURCE.SET_STATE"
 	PermissionMetadataResponsePermissionsRESOURCESETUSAGE                             PermissionMetadataResponsePermissions = "RESOURCE.SET_USAGE"
 	PermissionMetadataResponsePermissionsRESOURCESUBMITREPORT                         PermissionMetadataResponsePermissions = "RESOURCE.SUBMIT_REPORT"
@@ -16867,6 +16875,8 @@ func (e PermissionMetadataResponsePermissions) Valid() bool {
 		return true
 	case PermissionMetadataResponsePermissionsPROJECTREVIEWMEMBERSHIP:
 		return true
+	case PermissionMetadataResponsePermissionsPROJECTSETSLUG:
+		return true
 	case PermissionMetadataResponsePermissionsPROJECTUPDATE:
 		return true
 	case PermissionMetadataResponsePermissionsPROJECTUPDATEMETADATA:
@@ -16924,6 +16934,8 @@ func (e PermissionMetadataResponsePermissions) Valid() bool {
 	case PermissionMetadataResponsePermissionsRESOURCESETLIMITS:
 		return true
 	case PermissionMetadataResponsePermissionsRESOURCESETPLAN:
+		return true
+	case PermissionMetadataResponsePermissionsRESOURCESETSLUG:
 		return true
 	case PermissionMetadataResponsePermissionsRESOURCESETSTATE:
 		return true
@@ -24331,6 +24343,7 @@ const (
 	ValueEnumPROJECTDELETEPERMISSION                      ValueEnum = "PROJECT.DELETE_PERMISSION"
 	ValueEnumPROJECTLIST                                  ValueEnum = "PROJECT.LIST"
 	ValueEnumPROJECTREVIEWMEMBERSHIP                      ValueEnum = "PROJECT.REVIEW_MEMBERSHIP"
+	ValueEnumPROJECTSETSLUG                               ValueEnum = "PROJECT.SET_SLUG"
 	ValueEnumPROJECTUPDATE                                ValueEnum = "PROJECT.UPDATE"
 	ValueEnumPROJECTUPDATEMETADATA                        ValueEnum = "PROJECT.UPDATE_METADATA"
 	ValueEnumPROJECTUPDATEPERMISSION                      ValueEnum = "PROJECT.UPDATE_PERMISSION"
@@ -24360,6 +24373,7 @@ const (
 	ValueEnumRESOURCESETENDDATE                           ValueEnum = "RESOURCE.SET_END_DATE"
 	ValueEnumRESOURCESETLIMITS                            ValueEnum = "RESOURCE.SET_LIMITS"
 	ValueEnumRESOURCESETPLAN                              ValueEnum = "RESOURCE.SET_PLAN"
+	ValueEnumRESOURCESETSLUG                              ValueEnum = "RESOURCE.SET_SLUG"
 	ValueEnumRESOURCESETSTATE                             ValueEnum = "RESOURCE.SET_STATE"
 	ValueEnumRESOURCESETUSAGE                             ValueEnum = "RESOURCE.SET_USAGE"
 	ValueEnumRESOURCESUBMITREPORT                         ValueEnum = "RESOURCE.SUBMIT_REPORT"
@@ -24556,6 +24570,8 @@ func (e ValueEnum) Valid() bool {
 		return true
 	case ValueEnumPROJECTREVIEWMEMBERSHIP:
 		return true
+	case ValueEnumPROJECTSETSLUG:
+		return true
 	case ValueEnumPROJECTUPDATE:
 		return true
 	case ValueEnumPROJECTUPDATEMETADATA:
@@ -24613,6 +24629,8 @@ func (e ValueEnum) Valid() bool {
 	case ValueEnumRESOURCESETLIMITS:
 		return true
 	case ValueEnumRESOURCESETPLAN:
+		return true
+	case ValueEnumRESOURCESETSLUG:
 		return true
 	case ValueEnumRESOURCESETSTATE:
 		return true
@@ -39002,7 +39020,7 @@ type MergedPluginOptions struct {
 	// EnableResourceProjects Enable sub-project management within resources.
 	EnableResourceProjects *bool `json:"enable_resource_projects,omitempty"`
 
-	// EnableScimEntitlements Include this offering in outbound SCIM user entitlement sync. When unset or false, SSH access endpoints on this offering are not pushed to the remote SCIM service even if SCIM_MEMBERSHIP_SYNC_ENABLED is on.
+	// EnableScimEntitlements Include this offering in outbound SCIM user entitlement sync. Login hosts are read from scim_login_nodes. When unset or false, this offering is not pushed to the remote SCIM service even if SCIM_MEMBERSHIP_SYNC_ENABLED is on.
 	EnableScimEntitlements *bool `json:"enable_scim_entitlements,omitempty"`
 
 	// EnforceQos When enabled, the site agent enforces the offering's QoS selection by granting the chosen QoS on the SLURM association (QosLevel/DefaultQOS). When disabled (default), QoS is informational only — profiles are shown and the selection is recorded on the resource, but the agent does not touch SLURM QoS. The agent config may override this per deployment.
@@ -39172,6 +39190,9 @@ type MergedPluginOptions struct {
 
 	// RestrictedToRoles List of project or organization role names (e.g. 'PROJECT.MANAGER') allowed to view and order this offering. When set, the offering is hidden from the catalog for other users and they cannot create orders for it. Whether their orders skip consumer review still depends on the role having the order-approval permission.
 	RestrictedToRoles *[]string `json:"restricted_to_roles,omitempty"`
+
+	// ScimLoginNodes Bare hostnames of login nodes included in outbound SCIM entitlements when enable_scim_entitlements is set. Each entry is a DNS hostname only (for example login.example.org): stored lowercased, with no ssh:// URL, user@host, or host:port. These are not access links and do not appear in the resource access dropdown.
+	ScimLoginNodes *[]string `json:"scim_login_nodes,omitempty"`
 
 	// ScratchProjectDirectory HEAppE scratch project directory
 	ScratchProjectDirectory *string `json:"scratch_project_directory,omitempty"`
@@ -39345,7 +39366,7 @@ type MergedPluginOptionsRequest struct {
 	// EnableResourceProjects Enable sub-project management within resources.
 	EnableResourceProjects *bool `json:"enable_resource_projects,omitempty"`
 
-	// EnableScimEntitlements Include this offering in outbound SCIM user entitlement sync. When unset or false, SSH access endpoints on this offering are not pushed to the remote SCIM service even if SCIM_MEMBERSHIP_SYNC_ENABLED is on.
+	// EnableScimEntitlements Include this offering in outbound SCIM user entitlement sync. Login hosts are read from scim_login_nodes. When unset or false, this offering is not pushed to the remote SCIM service even if SCIM_MEMBERSHIP_SYNC_ENABLED is on.
 	EnableScimEntitlements *bool `json:"enable_scim_entitlements,omitempty"`
 
 	// EnforceQos When enabled, the site agent enforces the offering's QoS selection by granting the chosen QoS on the SLURM association (QosLevel/DefaultQOS). When disabled (default), QoS is informational only — profiles are shown and the selection is recorded on the resource, but the agent does not touch SLURM QoS. The agent config may override this per deployment.
@@ -39516,6 +39537,9 @@ type MergedPluginOptionsRequest struct {
 	// RestrictedToRoles List of project or organization role names (e.g. 'PROJECT.MANAGER') allowed to view and order this offering. When set, the offering is hidden from the catalog for other users and they cannot create orders for it. Whether their orders skip consumer review still depends on the role having the order-approval permission.
 	RestrictedToRoles *[]string `json:"restricted_to_roles,omitempty"`
 
+	// ScimLoginNodes Bare hostnames of login nodes included in outbound SCIM entitlements when enable_scim_entitlements is set. Each entry is a DNS hostname only (for example login.example.org): stored lowercased, with no ssh:// URL, user@host, or host:port. These are not access links and do not appear in the resource access dropdown.
+	ScimLoginNodes *[]string `json:"scim_login_nodes,omitempty"`
+
 	// ScratchProjectDirectory HEAppE scratch project directory
 	ScratchProjectDirectory *string `json:"scratch_project_directory,omitempty"`
 
@@ -39659,10 +39683,10 @@ type MergedSecretOptions struct {
 	// OpenstackApiTlsCertificate TLS certificate for OpenStack API connection verification
 	OpenstackApiTlsCertificate *string `json:"openstack_api_tls_certificate,omitempty"`
 
-	// OrderNotificationEmails Email addresses notified about every new order for this offering, regardless of whether the order needs approval. Intended for provider-side mailboxes which do not belong to a Waldur user, so these addresses are notified even if a user with the same address disabled notifications. At most 10 addresses.
+	// OrderNotificationEmails Email addresses notified about every new order for this offering, once the consumer side has approved it, or when it is placed if it needs no consumer approval. Provider approval is not awaited. Intended for provider-side mailboxes which do not belong to a Waldur user, so these addresses are notified even if a user with the same address disabled notifications. At most 10 addresses.
 	OrderNotificationEmails *[]openapi_types.Email `json:"order_notification_emails,omitempty"`
 
-	// OrderNotificationRoles List of organization or offering role names (e.g. 'CUSTOMER.OWNER', 'OFFERING.MANAGER') whose holders are notified about every new order for this offering, regardless of whether the order needs approval. Names are resolved on the provider organization and on the offering itself. Users who disabled notifications in their profile are skipped. At most 10 names.
+	// OrderNotificationRoles List of organization or offering role names (e.g. 'CUSTOMER.OWNER', 'OFFERING.MANAGER') whose holders are notified about every new order for this offering, once the consumer side has approved it, or when it is placed if it needs no consumer approval. Provider approval is not awaited. Names are resolved on the provider organization and on the offering itself. Users who disabled notifications in their profile are skipped. At most 10 names.
 	OrderNotificationRoles *[]string `json:"order_notification_roles,omitempty"`
 	Password               *string   `json:"password,omitempty"`
 
@@ -39782,10 +39806,10 @@ type MergedSecretOptionsRequest struct {
 	// OpenstackApiTlsCertificate TLS certificate for OpenStack API connection verification
 	OpenstackApiTlsCertificate *string `json:"openstack_api_tls_certificate,omitempty"`
 
-	// OrderNotificationEmails Email addresses notified about every new order for this offering, regardless of whether the order needs approval. Intended for provider-side mailboxes which do not belong to a Waldur user, so these addresses are notified even if a user with the same address disabled notifications. At most 10 addresses.
+	// OrderNotificationEmails Email addresses notified about every new order for this offering, once the consumer side has approved it, or when it is placed if it needs no consumer approval. Provider approval is not awaited. Intended for provider-side mailboxes which do not belong to a Waldur user, so these addresses are notified even if a user with the same address disabled notifications. At most 10 addresses.
 	OrderNotificationEmails *[]openapi_types.Email `json:"order_notification_emails,omitempty"`
 
-	// OrderNotificationRoles List of organization or offering role names (e.g. 'CUSTOMER.OWNER', 'OFFERING.MANAGER') whose holders are notified about every new order for this offering, regardless of whether the order needs approval. Names are resolved on the provider organization and on the offering itself. Users who disabled notifications in their profile are skipped. At most 10 names.
+	// OrderNotificationRoles List of organization or offering role names (e.g. 'CUSTOMER.OWNER', 'OFFERING.MANAGER') whose holders are notified about every new order for this offering, once the consumer side has approved it, or when it is placed if it needs no consumer approval. Provider approval is not awaited. Names are resolved on the provider organization and on the offering itself. Users who disabled notifications in their profile are skipped. At most 10 names.
 	OrderNotificationRoles *[]string `json:"order_notification_roles,omitempty"`
 	Password               *string   `json:"password,omitempty"`
 
@@ -46096,7 +46120,7 @@ type OrderCreateRequest struct {
 	Project        string                         `json:"project"`
 	RequestComment *string                        `json:"request_comment,omitempty"`
 
-	// Slug URL-friendly identifier. Only editable by staff users.
+	// Slug Slug of the new resource. Used when the caller is staff or holds RESOURCE.SET_SLUG on the project, the offering or their organizations; otherwise ignored.
 	Slug *string `json:"slug,omitempty"`
 
 	// StartDate Enables delayed processing of resource provisioning order.
@@ -48198,7 +48222,7 @@ type PatchedProjectRequest struct {
 	OecdFos2007Code  *PatchedProjectRequest_OecdFos2007Code `json:"oecd_fos_2007_code,omitempty"`
 	ScienceSubDomain *openapi_types.UUID                    `json:"science_sub_domain,omitempty"`
 
-	// Slug URL-friendly identifier. Only editable by staff users.
+	// Slug URL-friendly identifier. Editable by staff; on create also by holders of PROJECT.SET_SLUG on the organization, otherwise ignored.
 	Slug *string `json:"slug,omitempty"`
 
 	// StaffNotes Internal notes visible only to staff and support users (HTML content will be sanitized)
@@ -48238,7 +48262,7 @@ type PatchedProjectRequestForm struct {
 	OecdFos2007Code  *PatchedProjectRequestForm_OecdFos2007Code `json:"oecd_fos_2007_code,omitempty"`
 	ScienceSubDomain *openapi_types.UUID                        `json:"science_sub_domain,omitempty"`
 
-	// Slug URL-friendly identifier. Only editable by staff users.
+	// Slug URL-friendly identifier. Editable by staff; on create also by holders of PROJECT.SET_SLUG on the organization, otherwise ignored.
 	Slug *string `json:"slug,omitempty"`
 
 	// StaffNotes Internal notes visible only to staff and support users (HTML content will be sanitized)
@@ -48278,7 +48302,7 @@ type PatchedProjectRequestMultipart struct {
 	OecdFos2007Code  *PatchedProjectRequestMultipart_OecdFos2007Code `json:"oecd_fos_2007_code,omitempty"`
 	ScienceSubDomain *openapi_types.UUID                             `json:"science_sub_domain,omitempty"`
 
-	// Slug URL-friendly identifier. Only editable by staff users.
+	// Slug URL-friendly identifier. Editable by staff; on create also by holders of PROJECT.SET_SLUG on the organization, otherwise ignored.
 	Slug *string `json:"slug,omitempty"`
 
 	// StaffNotes Internal notes visible only to staff and support users (HTML content will be sanitized)
@@ -50167,7 +50191,7 @@ type Project struct {
 	ScienceSubDomainCode *string `json:"science_sub_domain_code,omitempty"`
 	ScienceSubDomainName *string `json:"science_sub_domain_name,omitempty"`
 
-	// Slug URL-friendly identifier. Only editable by staff users.
+	// Slug URL-friendly identifier. Editable by staff; on create also by holders of PROJECT.SET_SLUG on the organization, otherwise ignored.
 	Slug *string `json:"slug,omitempty"`
 
 	// StaffNotes Internal notes visible only to staff and support users (HTML content will be sanitized)
@@ -50729,7 +50753,7 @@ type ProjectRequest struct {
 	OecdFos2007Code  *ProjectRequest_OecdFos2007Code `json:"oecd_fos_2007_code,omitempty"`
 	ScienceSubDomain *openapi_types.UUID             `json:"science_sub_domain,omitempty"`
 
-	// Slug URL-friendly identifier. Only editable by staff users.
+	// Slug URL-friendly identifier. Editable by staff; on create also by holders of PROJECT.SET_SLUG on the organization, otherwise ignored.
 	Slug *string `json:"slug,omitempty"`
 
 	// StaffNotes Internal notes visible only to staff and support users (HTML content will be sanitized)
@@ -50769,7 +50793,7 @@ type ProjectRequestForm struct {
 	OecdFos2007Code  *ProjectRequestForm_OecdFos2007Code `json:"oecd_fos_2007_code,omitempty"`
 	ScienceSubDomain *openapi_types.UUID                 `json:"science_sub_domain,omitempty"`
 
-	// Slug URL-friendly identifier. Only editable by staff users.
+	// Slug URL-friendly identifier. Editable by staff; on create also by holders of PROJECT.SET_SLUG on the organization, otherwise ignored.
 	Slug *string `json:"slug,omitempty"`
 
 	// StaffNotes Internal notes visible only to staff and support users (HTML content will be sanitized)
@@ -50809,7 +50833,7 @@ type ProjectRequestMultipart struct {
 	OecdFos2007Code  *ProjectRequestMultipart_OecdFos2007Code `json:"oecd_fos_2007_code,omitempty"`
 	ScienceSubDomain *openapi_types.UUID                      `json:"science_sub_domain,omitempty"`
 
-	// Slug URL-friendly identifier. Only editable by staff users.
+	// Slug URL-friendly identifier. Editable by staff; on create also by holders of PROJECT.SET_SLUG on the organization, otherwise ignored.
 	Slug *string `json:"slug,omitempty"`
 
 	// StaffNotes Internal notes visible only to staff and support users (HTML content will be sanitized)
@@ -50859,6 +50883,11 @@ type ProjectServiceAccountRequest struct {
 	PreferredIdentifier *string              `json:"preferred_identifier,omitempty"`
 	Project             *openapi_types.UUID  `json:"project"`
 	Username            *string              `json:"username,omitempty"`
+}
+
+// ProjectSlugRequest defines model for ProjectSlugRequest.
+type ProjectSlugRequest struct {
+	Slug string `json:"slug"`
 }
 
 // ProjectStorageReport defines model for ProjectStorageReport.
@@ -89962,6 +89991,9 @@ type OpenportalUnmanagedProjectsMoveProjectJSONRequestBody = MoveProjectRequest
 // OpenportalUnmanagedProjectsRecoverJSONRequestBody defines body for OpenportalUnmanagedProjectsRecover for application/json ContentType.
 type OpenportalUnmanagedProjectsRecoverJSONRequestBody = ProjectRecoveryRequest
 
+// OpenportalUnmanagedProjectsSetSlugJSONRequestBody defines body for OpenportalUnmanagedProjectsSetSlug for application/json ContentType.
+type OpenportalUnmanagedProjectsSetSlugJSONRequestBody = ProjectSlugRequest
+
 // OpenportalUnmanagedProjectsSubmitAnswersJSONRequestBody defines body for OpenportalUnmanagedProjectsSubmitAnswers for application/json ContentType.
 type OpenportalUnmanagedProjectsSubmitAnswersJSONRequestBody = OpenportalUnmanagedProjectsSubmitAnswersJSONBody
 
@@ -90431,6 +90463,9 @@ type ProjectsMoveProjectJSONRequestBody = MoveProjectRequest
 
 // ProjectsRecoverJSONRequestBody defines body for ProjectsRecover for application/json ContentType.
 type ProjectsRecoverJSONRequestBody = ProjectRecoveryRequest
+
+// ProjectsSetSlugJSONRequestBody defines body for ProjectsSetSlug for application/json ContentType.
+type ProjectsSetSlugJSONRequestBody = ProjectSlugRequest
 
 // ProjectsSubmitAnswersJSONRequestBody defines body for ProjectsSubmitAnswers for application/json ContentType.
 type ProjectsSubmitAnswersJSONRequestBody = ProjectsSubmitAnswersJSONBody
@@ -119620,7 +119655,7 @@ type ClientInterface interface {
 
 	// MarketplaceProviderResourcesSetSlugWithBody Set resource slug
 	//
-	// Updates the slug for a resource. Requires staff permissions.
+	// Updates the slug of a resource. Requires staff or the RESOURCE.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once the resource's creation order is executing or the resource exists in the backend.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -119629,7 +119664,7 @@ type ClientInterface interface {
 
 	// MarketplaceProviderResourcesSetSlug Set resource slug
 	//
-	// Updates the slug for a resource. Requires staff permissions.
+	// Updates the slug of a resource. Requires staff or the RESOURCE.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once the resource's creation order is executing or the resource exists in the backend.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -120739,7 +120774,7 @@ type ClientInterface interface {
 
 	// MarketplaceResourcesSetSlugWithBody Set resource slug
 	//
-	// Updates the slug for a resource. Requires staff permissions.
+	// Updates the slug of a resource. Requires staff or the RESOURCE.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once the resource's creation order is executing or the resource exists in the backend.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -120748,7 +120783,7 @@ type ClientInterface interface {
 
 	// MarketplaceResourcesSetSlug Set resource slug
 	//
-	// Updates the slug for a resource. Requires staff permissions.
+	// Updates the slug of a resource. Requires staff or the RESOURCE.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once the resource's creation order is executing or the resource exists in the backend.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -124473,6 +124508,24 @@ type ClientInterface interface {
 	//
 	// Corresponds with POST /api/openportal-unmanaged-projects/{uuid}/recover/ (the `OpenportalUnmanagedProjectsRecover` operationId).
 	OpenportalUnmanagedProjectsRecover(ctx context.Context, uuid openapi_types.UUID, body OpenportalUnmanagedProjectsRecoverJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenportalUnmanagedProjectsSetSlugWithBody Set project slug
+	//
+	// Updates the slug of a project. Requires staff or the PROJECT.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once a resource of the project is being provisioned or exists in the backend.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/openportal-unmanaged-projects/{uuid}/set_slug/ (the `OpenportalUnmanagedProjectsSetSlug` operationId).
+	OpenportalUnmanagedProjectsSetSlugWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenportalUnmanagedProjectsSetSlug Set project slug
+	//
+	// Updates the slug of a project. Requires staff or the PROJECT.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once a resource of the project is being provisioned or exists in the backend.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/openportal-unmanaged-projects/{uuid}/set_slug/ (the `OpenportalUnmanagedProjectsSetSlug` operationId).
+	OpenportalUnmanagedProjectsSetSlug(ctx context.Context, uuid openapi_types.UUID, body OpenportalUnmanagedProjectsSetSlugJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalUnmanagedProjectsStatsRetrieve Get project resource usage statistics
 	//
@@ -128376,6 +128429,24 @@ type ClientInterface interface {
 	//
 	// Corresponds with POST /api/projects/{uuid}/recover/ (the `ProjectsRecover` operationId).
 	ProjectsRecover(ctx context.Context, uuid openapi_types.UUID, body ProjectsRecoverJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProjectsSetSlugWithBody Set project slug
+	//
+	// Updates the slug of a project. Requires staff or the PROJECT.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once a resource of the project is being provisioned or exists in the backend.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/projects/{uuid}/set_slug/ (the `ProjectsSetSlug` operationId).
+	ProjectsSetSlugWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProjectsSetSlug Set project slug
+	//
+	// Updates the slug of a project. Requires staff or the PROJECT.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once a resource of the project is being provisioned or exists in the backend.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/projects/{uuid}/set_slug/ (the `ProjectsSetSlug` operationId).
+	ProjectsSetSlug(ctx context.Context, uuid openapi_types.UUID, body ProjectsSetSlugJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProjectsStatsRetrieve Get project resource usage statistics
 	//
@@ -159530,7 +159601,7 @@ func (c *Client) MarketplaceProviderResourcesSetRestrictMemberAccess(ctx context
 
 // MarketplaceProviderResourcesSetSlugWithBody Set resource slug
 //
-// Updates the slug for a resource. Requires staff permissions.
+// Updates the slug of a resource. Requires staff or the RESOURCE.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once the resource's creation order is executing or the resource exists in the backend.
 //
 // Takes any type of body and a specified content type.
 //
@@ -159549,7 +159620,7 @@ func (c *Client) MarketplaceProviderResourcesSetSlugWithBody(ctx context.Context
 
 // MarketplaceProviderResourcesSetSlug Set resource slug
 //
-// Updates the slug for a resource. Requires staff permissions.
+// Updates the slug of a resource. Requires staff or the RESOURCE.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once the resource's creation order is executing or the resource exists in the backend.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -162197,7 +162268,7 @@ func (c *Client) MarketplaceResourcesSetRestrictMemberAccess(ctx context.Context
 
 // MarketplaceResourcesSetSlugWithBody Set resource slug
 //
-// Updates the slug for a resource. Requires staff permissions.
+// Updates the slug of a resource. Requires staff or the RESOURCE.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once the resource's creation order is executing or the resource exists in the backend.
 //
 // Takes any type of body and a specified content type.
 //
@@ -162216,7 +162287,7 @@ func (c *Client) MarketplaceResourcesSetSlugWithBody(ctx context.Context, uuid o
 
 // MarketplaceResourcesSetSlug Set resource slug
 //
-// Updates the slug for a resource. Requires staff permissions.
+// Updates the slug of a resource. Requires staff or the RESOURCE.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once the resource's creation order is executing or the resource exists in the backend.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -172267,6 +172338,44 @@ func (c *Client) OpenportalUnmanagedProjectsRecover(ctx context.Context, uuid op
 	return c.Client.Do(req)
 }
 
+// OpenportalUnmanagedProjectsSetSlugWithBody Set project slug
+//
+// Updates the slug of a project. Requires staff or the PROJECT.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once a resource of the project is being provisioned or exists in the backend.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/openportal-unmanaged-projects/{uuid}/set_slug/ (the `OpenportalUnmanagedProjectsSetSlug` operationId).
+func (c *Client) OpenportalUnmanagedProjectsSetSlugWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalUnmanagedProjectsSetSlugRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// OpenportalUnmanagedProjectsSetSlug Set project slug
+//
+// Updates the slug of a project. Requires staff or the PROJECT.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once a resource of the project is being provisioned or exists in the backend.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/openportal-unmanaged-projects/{uuid}/set_slug/ (the `OpenportalUnmanagedProjectsSetSlug` operationId).
+func (c *Client) OpenportalUnmanagedProjectsSetSlug(ctx context.Context, uuid openapi_types.UUID, body OpenportalUnmanagedProjectsSetSlugJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalUnmanagedProjectsSetSlugRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // OpenportalUnmanagedProjectsStatsRetrieve Get project resource usage statistics
 //
 // Provides statistics about the resource usage (e.g., CPU, RAM, storage) for all resources within a project. Can be filtered to show usage for the current month only.
@@ -181642,6 +181751,44 @@ func (c *Client) ProjectsRecoverWithBody(ctx context.Context, uuid openapi_types
 // Corresponds with POST /api/projects/{uuid}/recover/ (the `ProjectsRecover` operationId).
 func (c *Client) ProjectsRecover(ctx context.Context, uuid openapi_types.UUID, body ProjectsRecoverJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProjectsRecoverRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProjectsSetSlugWithBody Set project slug
+//
+// Updates the slug of a project. Requires staff or the PROJECT.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once a resource of the project is being provisioned or exists in the backend.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/projects/{uuid}/set_slug/ (the `ProjectsSetSlug` operationId).
+func (c *Client) ProjectsSetSlugWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectsSetSlugRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProjectsSetSlug Set project slug
+//
+// Updates the slug of a project. Requires staff or the PROJECT.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once a resource of the project is being provisioned or exists in the backend.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/projects/{uuid}/set_slug/ (the `ProjectsSetSlug` operationId).
+func (c *Client) ProjectsSetSlug(ctx context.Context, uuid openapi_types.UUID, body ProjectsSetSlugJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectsSetSlugRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -339603,6 +339750,53 @@ func NewOpenportalUnmanagedProjectsRecoverRequestWithBody(server string, uuid op
 	return req, nil
 }
 
+// NewOpenportalUnmanagedProjectsSetSlugRequest calls the generic OpenportalUnmanagedProjectsSetSlug builder with application/json body
+func NewOpenportalUnmanagedProjectsSetSlugRequest(server string, uuid openapi_types.UUID, body OpenportalUnmanagedProjectsSetSlugJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenportalUnmanagedProjectsSetSlugRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenportalUnmanagedProjectsSetSlugRequestWithBody constructs an http.Request for the OpenportalUnmanagedProjectsSetSlug method, with any body, and a specified content type
+func NewOpenportalUnmanagedProjectsSetSlugRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openportal-unmanaged-projects/%s/set_slug/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewOpenportalUnmanagedProjectsStatsRetrieveRequest constructs an http.Request for the OpenportalUnmanagedProjectsStatsRetrieve method
 func NewOpenportalUnmanagedProjectsStatsRetrieveRequest(server string, uuid openapi_types.UUID, params *OpenportalUnmanagedProjectsStatsRetrieveParams) (*http.Request, error) {
 	var err error
@@ -370545,6 +370739,53 @@ func NewProjectsRecoverRequestWithBody(server string, uuid openapi_types.UUID, c
 	}
 
 	operationPath := fmt.Sprintf("/api/projects/%s/recover/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewProjectsSetSlugRequest calls the generic ProjectsSetSlug builder with application/json body
+func NewProjectsSetSlugRequest(server string, uuid openapi_types.UUID, body ProjectsSetSlugJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewProjectsSetSlugRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewProjectsSetSlugRequestWithBody constructs an http.Request for the ProjectsSetSlug method, with any body, and a specified content type
+func NewProjectsSetSlugRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/projects/%s/set_slug/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -437331,7 +437572,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceProviderResourcesSetSlugWithBodyWithResponse Set resource slug
 	//
-	// Updates the slug for a resource. Requires staff permissions.
+	// Updates the slug of a resource. Requires staff or the RESOURCE.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once the resource's creation order is executing or the resource exists in the backend.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -437340,7 +437581,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceProviderResourcesSetSlugWithResponse Set resource slug
 	//
-	// Updates the slug for a resource. Requires staff permissions.
+	// Updates the slug of a resource. Requires staff or the RESOURCE.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once the resource's creation order is executing or the resource exists in the backend.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -438594,7 +438835,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceResourcesSetSlugWithBodyWithResponse Set resource slug
 	//
-	// Updates the slug for a resource. Requires staff permissions.
+	// Updates the slug of a resource. Requires staff or the RESOURCE.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once the resource's creation order is executing or the resource exists in the backend.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -438603,7 +438844,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceResourcesSetSlugWithResponse Set resource slug
 	//
-	// Updates the slug for a resource. Requires staff permissions.
+	// Updates the slug of a resource. Requires staff or the RESOURCE.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once the resource's creation order is executing or the resource exists in the backend.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -443217,6 +443458,24 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with POST /api/openportal-unmanaged-projects/{uuid}/recover/ (the `OpenportalUnmanagedProjectsRecover` operationId).
 	OpenportalUnmanagedProjectsRecoverWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenportalUnmanagedProjectsRecoverJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsRecoverResponse, error)
 
+	// OpenportalUnmanagedProjectsSetSlugWithBodyWithResponse Set project slug
+	//
+	// Updates the slug of a project. Requires staff or the PROJECT.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once a resource of the project is being provisioned or exists in the backend.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/openportal-unmanaged-projects/{uuid}/set_slug/ (the `OpenportalUnmanagedProjectsSetSlug` operationId).
+	OpenportalUnmanagedProjectsSetSlugWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsSetSlugResponse, error)
+
+	// OpenportalUnmanagedProjectsSetSlugWithResponse Set project slug
+	//
+	// Updates the slug of a project. Requires staff or the PROJECT.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once a resource of the project is being provisioned or exists in the backend.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/openportal-unmanaged-projects/{uuid}/set_slug/ (the `OpenportalUnmanagedProjectsSetSlug` operationId).
+	OpenportalUnmanagedProjectsSetSlugWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenportalUnmanagedProjectsSetSlugJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsSetSlugResponse, error)
+
 	// OpenportalUnmanagedProjectsStatsRetrieveWithResponse Get project resource usage statistics
 	//
 	// Provides statistics about the resource usage (e.g., CPU, RAM, storage) for all resources within a project. Can be filtered to show usage for the current month only.
@@ -447709,6 +447968,24 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with POST /api/projects/{uuid}/recover/ (the `ProjectsRecover` operationId).
 	ProjectsRecoverWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectsRecoverJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectsRecoverResponse, error)
+
+	// ProjectsSetSlugWithBodyWithResponse Set project slug
+	//
+	// Updates the slug of a project. Requires staff or the PROJECT.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once a resource of the project is being provisioned or exists in the backend.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/projects/{uuid}/set_slug/ (the `ProjectsSetSlug` operationId).
+	ProjectsSetSlugWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectsSetSlugResponse, error)
+
+	// ProjectsSetSlugWithResponse Set project slug
+	//
+	// Updates the slug of a project. Requires staff or the PROJECT.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once a resource of the project is being provisioned or exists in the backend.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/projects/{uuid}/set_slug/ (the `ProjectsSetSlug` operationId).
+	ProjectsSetSlugWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectsSetSlugJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectsSetSlugResponse, error)
 
 	// ProjectsStatsRetrieveWithResponse Get project resource usage statistics
 	//
@@ -525930,6 +526207,47 @@ func (r OpenportalUnmanagedProjectsRecoverResponse) ContentType() string {
 	return ""
 }
 
+type OpenportalUnmanagedProjectsSetSlugResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *Status
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r OpenportalUnmanagedProjectsSetSlugResponse) GetJSON200() *Status {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r OpenportalUnmanagedProjectsSetSlugResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenportalUnmanagedProjectsSetSlugResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenportalUnmanagedProjectsSetSlugResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenportalUnmanagedProjectsSetSlugResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type OpenportalUnmanagedProjectsStatsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -541955,6 +542273,47 @@ func (r ProjectsRecoverResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r ProjectsRecoverResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProjectsSetSlugResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *Status
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r ProjectsSetSlugResponse) GetJSON200() *Status {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r ProjectsSetSlugResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ProjectsSetSlugResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProjectsSetSlugResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProjectsSetSlugResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -593879,7 +594238,7 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesSetRestrictMemberAcces
 
 // MarketplaceProviderResourcesSetSlugWithBodyWithResponse Set resource slug
 //
-// Updates the slug for a resource. Requires staff permissions.
+// Updates the slug of a resource. Requires staff or the RESOURCE.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once the resource's creation order is executing or the resource exists in the backend.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -593894,7 +594253,7 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesSetSlugWithBodyWithRes
 
 // MarketplaceProviderResourcesSetSlugWithResponse Set resource slug
 //
-// Updates the slug for a resource. Requires staff permissions.
+// Updates the slug of a resource. Requires staff or the RESOURCE.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once the resource's creation order is executing or the resource exists in the backend.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -596067,7 +596426,7 @@ func (c *ClientWithResponses) MarketplaceResourcesSetRestrictMemberAccessWithRes
 
 // MarketplaceResourcesSetSlugWithBodyWithResponse Set resource slug
 //
-// Updates the slug for a resource. Requires staff permissions.
+// Updates the slug of a resource. Requires staff or the RESOURCE.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once the resource's creation order is executing or the resource exists in the backend.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -596082,7 +596441,7 @@ func (c *ClientWithResponses) MarketplaceResourcesSetSlugWithBodyWithResponse(ct
 
 // MarketplaceResourcesSetSlugWithResponse Set resource slug
 //
-// Updates the slug for a resource. Requires staff permissions.
+// Updates the slug of a resource. Requires staff or the RESOURCE.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once the resource's creation order is executing or the resource exists in the backend.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -604490,6 +604849,36 @@ func (c *ClientWithResponses) OpenportalUnmanagedProjectsRecoverWithResponse(ctx
 	return ParseOpenportalUnmanagedProjectsRecoverResponse(rsp)
 }
 
+// OpenportalUnmanagedProjectsSetSlugWithBodyWithResponse Set project slug
+//
+// Updates the slug of a project. Requires staff or the PROJECT.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once a resource of the project is being provisioned or exists in the backend.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/openportal-unmanaged-projects/{uuid}/set_slug/ (the `OpenportalUnmanagedProjectsSetSlug` operationId).
+func (c *ClientWithResponses) OpenportalUnmanagedProjectsSetSlugWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsSetSlugResponse, error) {
+	rsp, err := c.OpenportalUnmanagedProjectsSetSlugWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenportalUnmanagedProjectsSetSlugResponse(rsp)
+}
+
+// OpenportalUnmanagedProjectsSetSlugWithResponse Set project slug
+//
+// Updates the slug of a project. Requires staff or the PROJECT.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once a resource of the project is being provisioned or exists in the backend.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/openportal-unmanaged-projects/{uuid}/set_slug/ (the `OpenportalUnmanagedProjectsSetSlug` operationId).
+func (c *ClientWithResponses) OpenportalUnmanagedProjectsSetSlugWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenportalUnmanagedProjectsSetSlugJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsSetSlugResponse, error) {
+	rsp, err := c.OpenportalUnmanagedProjectsSetSlug(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenportalUnmanagedProjectsSetSlugResponse(rsp)
+}
+
 // OpenportalUnmanagedProjectsStatsRetrieveWithResponse Get project resource usage statistics
 //
 // Provides statistics about the resource usage (e.g., CPU, RAM, storage) for all resources within a project. Can be filtered to show usage for the current month only.
@@ -612277,6 +612666,36 @@ func (c *ClientWithResponses) ProjectsRecoverWithResponse(ctx context.Context, u
 		return nil, err
 	}
 	return ParseProjectsRecoverResponse(rsp)
+}
+
+// ProjectsSetSlugWithBodyWithResponse Set project slug
+//
+// Updates the slug of a project. Requires staff or the PROJECT.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once a resource of the project is being provisioned or exists in the backend.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/projects/{uuid}/set_slug/ (the `ProjectsSetSlug` operationId).
+func (c *ClientWithResponses) ProjectsSetSlugWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectsSetSlugResponse, error) {
+	rsp, err := c.ProjectsSetSlugWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectsSetSlugResponse(rsp)
+}
+
+// ProjectsSetSlugWithResponse Set project slug
+//
+// Updates the slug of a project. Requires staff or the PROJECT.SET_SLUG permission, which no role holds unless the deployment grants it. Other than staff, a holder cannot change the slug once a resource of the project is being provisioned or exists in the backend.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/projects/{uuid}/set_slug/ (the `ProjectsSetSlug` operationId).
+func (c *ClientWithResponses) ProjectsSetSlugWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectsSetSlugJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectsSetSlugResponse, error) {
+	rsp, err := c.ProjectsSetSlug(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectsSetSlugResponse(rsp)
 }
 
 // ProjectsStatsRetrieveWithResponse Get project resource usage statistics
@@ -670352,6 +670771,32 @@ func ParseOpenportalUnmanagedProjectsRecoverResponse(rsp *http.Response) (*Openp
 	return response, nil
 }
 
+// ParseOpenportalUnmanagedProjectsSetSlugResponse parses an HTTP response from a OpenportalUnmanagedProjectsSetSlugWithResponse call
+func ParseOpenportalUnmanagedProjectsSetSlugResponse(rsp *http.Response) (*OpenportalUnmanagedProjectsSetSlugResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenportalUnmanagedProjectsSetSlugResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Status
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseOpenportalUnmanagedProjectsStatsRetrieveResponse parses an HTTP response from a OpenportalUnmanagedProjectsStatsRetrieveWithResponse call
 func ParseOpenportalUnmanagedProjectsStatsRetrieveResponse(rsp *http.Response) (*OpenportalUnmanagedProjectsStatsRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -680382,6 +680827,32 @@ func ParseProjectsRecoverResponse(rsp *http.Response) (*ProjectsRecoverResponse,
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest Project
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProjectsSetSlugResponse parses an HTTP response from a ProjectsSetSlugWithResponse call
+func ParseProjectsSetSlugResponse(rsp *http.Response) (*ProjectsSetSlugResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProjectsSetSlugResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Status
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
