@@ -4524,6 +4524,7 @@ const (
 	CustomerFieldEnumHouseNr                      CustomerFieldEnum = "house_nr"
 	CustomerFieldEnumHousehold                    CustomerFieldEnum = "household"
 	CustomerFieldEnumImage                        CustomerFieldEnum = "image"
+	CustomerFieldEnumIsPrivatePerson              CustomerFieldEnum = "is_private_person"
 	CustomerFieldEnumIsServiceProvider            CustomerFieldEnum = "is_service_provider"
 	CustomerFieldEnumIsServiceProviderManagerOnly CustomerFieldEnum = "is_service_provider_manager_only"
 	CustomerFieldEnumLatitude                     CustomerFieldEnum = "latitude"
@@ -4554,6 +4555,9 @@ const (
 	CustomerFieldEnumUsersCount                   CustomerFieldEnum = "users_count"
 	CustomerFieldEnumUuid                         CustomerFieldEnum = "uuid"
 	CustomerFieldEnumVatCode                      CustomerFieldEnum = "vat_code"
+	CustomerFieldEnumVatCodeVerified              CustomerFieldEnum = "vat_code_verified"
+	CustomerFieldEnumVatPercent                   CustomerFieldEnum = "vat_percent"
+	CustomerFieldEnumVatRule                      CustomerFieldEnum = "vat_rule"
 )
 
 // Valid indicates whether the value is a known member of the CustomerFieldEnum enum.
@@ -4627,6 +4631,8 @@ func (e CustomerFieldEnum) Valid() bool {
 		return true
 	case CustomerFieldEnumImage:
 		return true
+	case CustomerFieldEnumIsPrivatePerson:
+		return true
 	case CustomerFieldEnumIsServiceProvider:
 		return true
 	case CustomerFieldEnumIsServiceProviderManagerOnly:
@@ -4686,6 +4692,12 @@ func (e CustomerFieldEnum) Valid() bool {
 	case CustomerFieldEnumUuid:
 		return true
 	case CustomerFieldEnumVatCode:
+		return true
+	case CustomerFieldEnumVatCodeVerified:
+		return true
+	case CustomerFieldEnumVatPercent:
+		return true
+	case CustomerFieldEnumVatRule:
 		return true
 	default:
 		return false
@@ -31378,6 +31390,8 @@ type ConstanceSettings struct {
 	USERREVISIONKEEPMINIMUM                          *int                                                             `json:"USER_REVISION_KEEP_MINIMUM,omitempty"`
 	USERREVISIONRETENTIONDAYS                        *int                                                             `json:"USER_REVISION_RETENTION_DAYS,omitempty"`
 	USERTABLECOLUMNS                                 *string                                                          `json:"USER_TABLE_COLUMNS,omitempty"`
+	VATOSSENABLED                                    *bool                                                            `json:"VAT_OSS_ENABLED,omitempty"`
+	VATTAXATIONENABLED                               *bool                                                            `json:"VAT_TAXATION_ENABLED,omitempty"`
 	WALDURAUTHSOCIALROLECLAIM                        *string                                                          `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
 	WALDURSUPPORTACTIVEBACKENDTYPE                   *WALDURSUPPORTACTIVEBACKENDTYPEEnum                              `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
 	WALDURSUPPORTAUTOASSIGN                          *bool                                                            `json:"WALDUR_SUPPORT_AUTO_ASSIGN,omitempty"`
@@ -31810,6 +31824,8 @@ type ConstanceSettingsRequest struct {
 	USERREVISIONKEEPMINIMUM                          *int                                                                    `json:"USER_REVISION_KEEP_MINIMUM,omitempty"`
 	USERREVISIONRETENTIONDAYS                        *int                                                                    `json:"USER_REVISION_RETENTION_DAYS,omitempty"`
 	USERTABLECOLUMNS                                 *string                                                                 `json:"USER_TABLE_COLUMNS,omitempty"`
+	VATOSSENABLED                                    *bool                                                                   `json:"VAT_OSS_ENABLED,omitempty"`
+	VATTAXATIONENABLED                               *bool                                                                   `json:"VAT_TAXATION_ENABLED,omitempty"`
 	WALDURAUTHSOCIALROLECLAIM                        *string                                                                 `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
 	WALDURSUPPORTACTIVEBACKENDTYPE                   *WALDURSUPPORTACTIVEBACKENDTYPEEnum                                     `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
 	WALDURSUPPORTAUTOASSIGN                          *bool                                                                   `json:"WALDUR_SUPPORT_AUTO_ASSIGN,omitempty"`
@@ -32242,6 +32258,8 @@ type ConstanceSettingsRequestForm struct {
 	USERREVISIONKEEPMINIMUM                          *int                                                                        `json:"USER_REVISION_KEEP_MINIMUM,omitempty"`
 	USERREVISIONRETENTIONDAYS                        *int                                                                        `json:"USER_REVISION_RETENTION_DAYS,omitempty"`
 	USERTABLECOLUMNS                                 *string                                                                     `json:"USER_TABLE_COLUMNS,omitempty"`
+	VATOSSENABLED                                    *bool                                                                       `json:"VAT_OSS_ENABLED,omitempty"`
+	VATTAXATIONENABLED                               *bool                                                                       `json:"VAT_TAXATION_ENABLED,omitempty"`
 	WALDURAUTHSOCIALROLECLAIM                        *string                                                                     `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
 	WALDURSUPPORTACTIVEBACKENDTYPE                   *WALDURSUPPORTACTIVEBACKENDTYPEEnum                                         `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
 	WALDURSUPPORTAUTOASSIGN                          *bool                                                                       `json:"WALDUR_SUPPORT_AUTO_ASSIGN,omitempty"`
@@ -32674,6 +32692,8 @@ type ConstanceSettingsRequestMultipart struct {
 	USERREVISIONKEEPMINIMUM                          *int                                                                             `json:"USER_REVISION_KEEP_MINIMUM,omitempty"`
 	USERREVISIONRETENTIONDAYS                        *int                                                                             `json:"USER_REVISION_RETENTION_DAYS,omitempty"`
 	USERTABLECOLUMNS                                 *string                                                                          `json:"USER_TABLE_COLUMNS,omitempty"`
+	VATOSSENABLED                                    *bool                                                                            `json:"VAT_OSS_ENABLED,omitempty"`
+	VATTAXATIONENABLED                               *bool                                                                            `json:"VAT_TAXATION_ENABLED,omitempty"`
 	WALDURAUTHSOCIALROLECLAIM                        *string                                                                          `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
 	WALDURSUPPORTACTIVEBACKENDTYPE                   *WALDURSUPPORTACTIVEBACKENDTYPEEnum                                              `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
 	WALDURSUPPORTAUTOASSIGN                          *bool                                                                            `json:"WALDUR_SUPPORT_AUTO_ASSIGN,omitempty"`
@@ -33381,7 +33401,10 @@ type Customer struct {
 	HouseNr           *string `json:"house_nr,omitempty"`
 	Household         *string `json:"household,omitempty"`
 	Image             *string `json:"image,omitempty"`
-	IsServiceProvider *bool   `json:"is_service_provider,omitempty"`
+
+	// IsPrivatePerson Organization represents a private person rather than a legal entity. Used for EU VAT calculation.
+	IsPrivatePerson   *bool `json:"is_private_person,omitempty"`
+	IsServiceProvider *bool `json:"is_service_provider,omitempty"`
 
 	// IsServiceProviderManagerOnly True when the requesting user's only link to this organization is a role on its service provider. Such a row carries only identity fields.
 	IsServiceProviderManagerOnly *bool    `json:"is_service_provider_manager_only,omitempty"`
@@ -33433,6 +33456,15 @@ type Customer struct {
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
+
+	// VatCodeVerified Whether the EU VIES service confirmed the current VAT number.
+	VatCodeVerified *bool `json:"vat_code_verified,omitempty"`
+
+	// VatPercent VAT percent calculated from EU VAT rules, when VAT taxation is on.
+	VatPercent *string `json:"vat_percent,omitempty"`
+
+	// VatRule Which EU VAT rule picked vat_percent, or why it cannot be calculated.
+	VatRule *string `json:"vat_rule,omitempty"`
 }
 
 // Customer_Country Country code (ISO 3166-1 alpha-2)
@@ -33822,8 +33854,11 @@ type CustomerRequest struct {
 	HouseNr         *string             `json:"house_nr,omitempty"`
 	Household       *string             `json:"household,omitempty"`
 	Image           *openapi_types.File `json:"image,omitempty"`
-	Latitude        *float64            `json:"latitude,omitempty"`
-	Longitude       *float64            `json:"longitude,omitempty"`
+
+	// IsPrivatePerson Organization represents a private person rather than a legal entity. Used for EU VAT calculation.
+	IsPrivatePerson *bool    `json:"is_private_person,omitempty"`
+	Latitude        *float64 `json:"latitude,omitempty"`
+	Longitude       *float64 `json:"longitude,omitempty"`
 
 	// MaxServiceAccounts Maximum number of service accounts allowed
 	MaxServiceAccounts *int    `json:"max_service_accounts,omitempty"`
@@ -33897,8 +33932,11 @@ type CustomerRequestForm struct {
 	HouseNr         *string             `json:"house_nr,omitempty"`
 	Household       *string             `json:"household,omitempty"`
 	Image           *openapi_types.File `json:"image,omitempty"`
-	Latitude        *float64            `json:"latitude,omitempty"`
-	Longitude       *float64            `json:"longitude,omitempty"`
+
+	// IsPrivatePerson Organization represents a private person rather than a legal entity. Used for EU VAT calculation.
+	IsPrivatePerson *bool    `json:"is_private_person,omitempty"`
+	Latitude        *float64 `json:"latitude,omitempty"`
+	Longitude       *float64 `json:"longitude,omitempty"`
 
 	// MaxServiceAccounts Maximum number of service accounts allowed
 	MaxServiceAccounts *int    `json:"max_service_accounts,omitempty"`
@@ -33972,8 +34010,11 @@ type CustomerRequestMultipart struct {
 	HouseNr         *string             `json:"house_nr,omitempty"`
 	Household       *string             `json:"household,omitempty"`
 	Image           *openapi_types.File `json:"image,omitempty"`
-	Latitude        *float64            `json:"latitude,omitempty"`
-	Longitude       *float64            `json:"longitude,omitempty"`
+
+	// IsPrivatePerson Organization represents a private person rather than a legal entity. Used for EU VAT calculation.
+	IsPrivatePerson *bool    `json:"is_private_person,omitempty"`
+	Latitude        *float64 `json:"latitude,omitempty"`
+	Longitude       *float64 `json:"longitude,omitempty"`
 
 	// MaxServiceAccounts Maximum number of service accounts allowed
 	MaxServiceAccounts *int    `json:"max_service_accounts,omitempty"`
@@ -47055,8 +47096,11 @@ type PatchedCustomerRequest struct {
 	HouseNr         *string             `json:"house_nr,omitempty"`
 	Household       *string             `json:"household,omitempty"`
 	Image           *openapi_types.File `json:"image,omitempty"`
-	Latitude        *float64            `json:"latitude,omitempty"`
-	Longitude       *float64            `json:"longitude,omitempty"`
+
+	// IsPrivatePerson Organization represents a private person rather than a legal entity. Used for EU VAT calculation.
+	IsPrivatePerson *bool    `json:"is_private_person,omitempty"`
+	Latitude        *float64 `json:"latitude,omitempty"`
+	Longitude       *float64 `json:"longitude,omitempty"`
 
 	// MaxServiceAccounts Maximum number of service accounts allowed
 	MaxServiceAccounts *int    `json:"max_service_accounts,omitempty"`
@@ -47130,8 +47174,11 @@ type PatchedCustomerRequestForm struct {
 	HouseNr         *string             `json:"house_nr,omitempty"`
 	Household       *string             `json:"household,omitempty"`
 	Image           *openapi_types.File `json:"image,omitempty"`
-	Latitude        *float64            `json:"latitude,omitempty"`
-	Longitude       *float64            `json:"longitude,omitempty"`
+
+	// IsPrivatePerson Organization represents a private person rather than a legal entity. Used for EU VAT calculation.
+	IsPrivatePerson *bool    `json:"is_private_person,omitempty"`
+	Latitude        *float64 `json:"latitude,omitempty"`
+	Longitude       *float64 `json:"longitude,omitempty"`
 
 	// MaxServiceAccounts Maximum number of service accounts allowed
 	MaxServiceAccounts *int    `json:"max_service_accounts,omitempty"`
@@ -47205,8 +47252,11 @@ type PatchedCustomerRequestMultipart struct {
 	HouseNr         *string             `json:"house_nr,omitempty"`
 	Household       *string             `json:"household,omitempty"`
 	Image           *openapi_types.File `json:"image,omitempty"`
-	Latitude        *float64            `json:"latitude,omitempty"`
-	Longitude       *float64            `json:"longitude,omitempty"`
+
+	// IsPrivatePerson Organization represents a private person rather than a legal entity. Used for EU VAT calculation.
+	IsPrivatePerson *bool    `json:"is_private_person,omitempty"`
+	Latitude        *float64 `json:"latitude,omitempty"`
+	Longitude       *float64 `json:"longitude,omitempty"`
 
 	// MaxServiceAccounts Maximum number of service accounts allowed
 	MaxServiceAccounts *int    `json:"max_service_accounts,omitempty"`
