@@ -36787,6 +36787,12 @@ type IdentityProvider struct {
 	ExtraScope *string `json:"extra_scope,omitempty"`
 	IsActive   *bool   `json:"is_active,omitempty"`
 
+	// Issuer The issuer identifier the ID token must carry.
+	Issuer *string `json:"issuer,omitempty"`
+
+	// JwksUrl The endpoint publishing the keys that sign ID tokens.
+	JwksUrl *string `json:"jwks_url,omitempty"`
+
 	// Label Human-readable identity provider is label.
 	Label string `json:"label"`
 
