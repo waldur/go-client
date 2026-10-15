@@ -1754,6 +1754,7 @@ const (
 	BookingResourceFieldEnumCustomerSlug               BookingResourceFieldEnum = "customer_slug"
 	BookingResourceFieldEnumCustomerUuid               BookingResourceFieldEnum = "customer_uuid"
 	BookingResourceFieldEnumDescription                BookingResourceFieldEnum = "description"
+	BookingResourceFieldEnumDisplayLimits              BookingResourceFieldEnum = "display_limits"
 	BookingResourceFieldEnumDownscaled                 BookingResourceFieldEnum = "downscaled"
 	BookingResourceFieldEnumEffectiveId                BookingResourceFieldEnum = "effective_id"
 	BookingResourceFieldEnumEndDate                    BookingResourceFieldEnum = "end_date"
@@ -1874,6 +1875,8 @@ func (e BookingResourceFieldEnum) Valid() bool {
 	case BookingResourceFieldEnumCustomerUuid:
 		return true
 	case BookingResourceFieldEnumDescription:
+		return true
+	case BookingResourceFieldEnumDisplayLimits:
 		return true
 	case BookingResourceFieldEnumDownscaled:
 		return true
@@ -15615,6 +15618,24 @@ func (e OptionFieldTypeEnum) Valid() bool {
 	}
 }
 
+// Defines values for OptionTransformCase.
+const (
+	Lower OptionTransformCase = "lower"
+	Upper OptionTransformCase = "upper"
+)
+
+// Valid indicates whether the value is a known member of the OptionTransformCase enum.
+func (e OptionTransformCase) Valid() bool {
+	switch e {
+	case Lower:
+		return true
+	case Upper:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for OptionValidatorTypeEnum.
 const (
 	Gt  OptionValidatorTypeEnum = "gt"
@@ -16160,6 +16181,7 @@ const (
 	PermissionMetadataResponsePermissionMapCUSTOMERLISTUSERS                            PermissionMetadataResponsePermissionMap = "CUSTOMER.LIST_USERS"
 	PermissionMetadataResponsePermissionMapCUSTOMERUPDATE                               PermissionMetadataResponsePermissionMap = "CUSTOMER.UPDATE"
 	PermissionMetadataResponsePermissionMapCUSTOMERUPDATEPERMISSION                     PermissionMetadataResponsePermissionMap = "CUSTOMER.UPDATE_PERMISSION"
+	PermissionMetadataResponsePermissionMapCUSTOMERVIEWACCOUNTING                       PermissionMetadataResponsePermissionMap = "CUSTOMER.VIEW_ACCOUNTING"
 	PermissionMetadataResponsePermissionMapCUSTOMERVIEWTEAM                             PermissionMetadataResponsePermissionMap = "CUSTOMER.VIEW_TEAM"
 	PermissionMetadataResponsePermissionMapINVITATIONLIST                               PermissionMetadataResponsePermissionMap = "INVITATION.LIST"
 	PermissionMetadataResponsePermissionMapLEXISLINKCREATE                              PermissionMetadataResponsePermissionMap = "LEXIS_LINK.CREATE"
@@ -16324,6 +16346,8 @@ func (e PermissionMetadataResponsePermissionMap) Valid() bool {
 	case PermissionMetadataResponsePermissionMapCUSTOMERUPDATE:
 		return true
 	case PermissionMetadataResponsePermissionMapCUSTOMERUPDATEPERMISSION:
+		return true
+	case PermissionMetadataResponsePermissionMapCUSTOMERVIEWACCOUNTING:
 		return true
 	case PermissionMetadataResponsePermissionMapCUSTOMERVIEWTEAM:
 		return true
@@ -16598,6 +16622,7 @@ const (
 	PermissionMetadataResponsePermissionsCUSTOMERLISTUSERS                            PermissionMetadataResponsePermissions = "CUSTOMER.LIST_USERS"
 	PermissionMetadataResponsePermissionsCUSTOMERUPDATE                               PermissionMetadataResponsePermissions = "CUSTOMER.UPDATE"
 	PermissionMetadataResponsePermissionsCUSTOMERUPDATEPERMISSION                     PermissionMetadataResponsePermissions = "CUSTOMER.UPDATE_PERMISSION"
+	PermissionMetadataResponsePermissionsCUSTOMERVIEWACCOUNTING                       PermissionMetadataResponsePermissions = "CUSTOMER.VIEW_ACCOUNTING"
 	PermissionMetadataResponsePermissionsCUSTOMERVIEWTEAM                             PermissionMetadataResponsePermissions = "CUSTOMER.VIEW_TEAM"
 	PermissionMetadataResponsePermissionsINVITATIONLIST                               PermissionMetadataResponsePermissions = "INVITATION.LIST"
 	PermissionMetadataResponsePermissionsLEXISLINKCREATE                              PermissionMetadataResponsePermissions = "LEXIS_LINK.CREATE"
@@ -16762,6 +16787,8 @@ func (e PermissionMetadataResponsePermissions) Valid() bool {
 	case PermissionMetadataResponsePermissionsCUSTOMERUPDATE:
 		return true
 	case PermissionMetadataResponsePermissionsCUSTOMERUPDATEPERMISSION:
+		return true
+	case PermissionMetadataResponsePermissionsCUSTOMERVIEWACCOUNTING:
 		return true
 	case PermissionMetadataResponsePermissionsCUSTOMERVIEWTEAM:
 		return true
@@ -20522,6 +20549,7 @@ const (
 	ResourceFieldEnumCustomerSlug              ResourceFieldEnum = "customer_slug"
 	ResourceFieldEnumCustomerUuid              ResourceFieldEnum = "customer_uuid"
 	ResourceFieldEnumDescription               ResourceFieldEnum = "description"
+	ResourceFieldEnumDisplayLimits             ResourceFieldEnum = "display_limits"
 	ResourceFieldEnumDownscaled                ResourceFieldEnum = "downscaled"
 	ResourceFieldEnumEffectiveId               ResourceFieldEnum = "effective_id"
 	ResourceFieldEnumEndDate                   ResourceFieldEnum = "end_date"
@@ -20629,6 +20657,8 @@ func (e ResourceFieldEnum) Valid() bool {
 	case ResourceFieldEnumCustomerUuid:
 		return true
 	case ResourceFieldEnumDescription:
+		return true
+	case ResourceFieldEnumDisplayLimits:
 		return true
 	case ResourceFieldEnumDownscaled:
 		return true
@@ -24296,6 +24326,7 @@ const (
 	ValueEnumCUSTOMERLISTUSERS                            ValueEnum = "CUSTOMER.LIST_USERS"
 	ValueEnumCUSTOMERUPDATE                               ValueEnum = "CUSTOMER.UPDATE"
 	ValueEnumCUSTOMERUPDATEPERMISSION                     ValueEnum = "CUSTOMER.UPDATE_PERMISSION"
+	ValueEnumCUSTOMERVIEWACCOUNTING                       ValueEnum = "CUSTOMER.VIEW_ACCOUNTING"
 	ValueEnumCUSTOMERVIEWTEAM                             ValueEnum = "CUSTOMER.VIEW_TEAM"
 	ValueEnumINVITATIONLIST                               ValueEnum = "INVITATION.LIST"
 	ValueEnumLEXISLINKCREATE                              ValueEnum = "LEXIS_LINK.CREATE"
@@ -24460,6 +24491,8 @@ func (e ValueEnum) Valid() bool {
 	case ValueEnumCUSTOMERUPDATE:
 		return true
 	case ValueEnumCUSTOMERUPDATEPERMISSION:
+		return true
+	case ValueEnumCUSTOMERVIEWACCOUNTING:
 		return true
 	case ValueEnumCUSTOMERVIEWTEAM:
 		return true
@@ -28470,6 +28503,9 @@ type BookingResource struct {
 	CustomerSlug  *string             `json:"customer_slug,omitempty"`
 	CustomerUuid  *openapi_types.UUID `json:"customer_uuid,omitempty"`
 	Description   *string             `json:"description,omitempty"`
+
+	// DisplayLimits Resource option values shown as the limits of usage-based components. Display only: not stored in limits, billed or enforced.
+	DisplayLimits *map[string]float64 `json:"display_limits,omitempty"`
 	Downscaled    *bool               `json:"downscaled,omitempty"`
 	EffectiveId   *string             `json:"effective_id,omitempty"`
 
@@ -34998,6 +35034,18 @@ type DiscoverVolumeTypesRequestRequest struct {
 
 // DiskFormatEnum defines model for DiskFormatEnum.
 type DiskFormatEnum string
+
+// DisplayLimitConfig defines model for DisplayLimitConfig.
+type DisplayLimitConfig struct {
+	// ComponentType Usage-based component whose limit the option's value is shown as.
+	ComponentType string `json:"component_type"`
+}
+
+// DisplayLimitConfigRequest defines model for DisplayLimitConfigRequest.
+type DisplayLimitConfigRequest struct {
+	// ComponentType Usage-based component whose limit the option's value is shown as.
+	ComponentType string `json:"component_type"`
+}
 
 // DryRun defines model for DryRun.
 type DryRun struct {
@@ -46040,10 +46088,13 @@ type OptionField struct {
 	ComponentSumConfig        *ComponentSumConfig        `json:"component_sum_config,omitempty"`
 	Default                   *string                    `json:"default,omitempty"`
 	DefaultConfigs            *K8sDefaultConfiguration   `json:"default_configs,omitempty"`
-	HelpText                  *string                    `json:"help_text,omitempty"`
-	Label                     string                     `json:"label"`
-	Max                       *int                       `json:"max,omitempty"`
-	Min                       *int                       `json:"min,omitempty"`
+
+	// DisplayLimitConfig Show this option's value as the limit of a usage-based component. Only for integer resource options; the value is not billed or enforced.
+	DisplayLimitConfig *DisplayLimitConfig `json:"display_limit_config,omitempty"`
+	HelpText           *string             `json:"help_text,omitempty"`
+	Label              string              `json:"label"`
+	Max                *int                `json:"max,omitempty"`
+	Min                *int                `json:"min,omitempty"`
 
 	// Pattern Regular expression the whole value must match. Only for string and text options. Use syntax common to Python and JavaScript, so the order form can check it too; \w, \d, \s and \b match ASCII characters only. Blank means no pattern.
 	Pattern *string `json:"pattern,omitempty"`
@@ -46052,7 +46103,10 @@ type OptionField struct {
 	PatternError        *string              `json:"pattern_error,omitempty"`
 	Required            *bool                `json:"required,omitempty"`
 	StorageFolderConfig *StorageFolderConfig `json:"storage_folder_config,omitempty"`
-	Type                OptionFieldTypeEnum  `json:"type"`
+
+	// Transform Rewrite the value before it is stored: add a prefix or suffix, or change its case. Only for string and text options. The pattern is checked against the value the user typed. A value that already carries the prefix or suffix does not get it twice.
+	Transform *OptionTransform    `json:"transform,omitempty"`
+	Type      OptionFieldTypeEnum `json:"type"`
 
 	// Unique The value must not be used by another non-terminated resource of this offering. Only for string, text, integer and select_string options.
 	Unique     *bool              `json:"unique,omitempty"`
@@ -46071,10 +46125,13 @@ type OptionFieldRequest struct {
 	ComponentSumConfig        *ComponentSumConfigRequest        `json:"component_sum_config,omitempty"`
 	Default                   *string                           `json:"default,omitempty"`
 	DefaultConfigs            *K8sDefaultConfigurationRequest   `json:"default_configs,omitempty"`
-	HelpText                  *string                           `json:"help_text,omitempty"`
-	Label                     string                            `json:"label"`
-	Max                       *int                              `json:"max,omitempty"`
-	Min                       *int                              `json:"min,omitempty"`
+
+	// DisplayLimitConfig Show this option's value as the limit of a usage-based component. Only for integer resource options; the value is not billed or enforced.
+	DisplayLimitConfig *DisplayLimitConfigRequest `json:"display_limit_config,omitempty"`
+	HelpText           *string                    `json:"help_text,omitempty"`
+	Label              string                     `json:"label"`
+	Max                *int                       `json:"max,omitempty"`
+	Min                *int                       `json:"min,omitempty"`
 
 	// Pattern Regular expression the whole value must match. Only for string and text options. Use syntax common to Python and JavaScript, so the order form can check it too; \w, \d, \s and \b match ASCII characters only. Blank means no pattern.
 	Pattern *string `json:"pattern,omitempty"`
@@ -46083,7 +46140,10 @@ type OptionFieldRequest struct {
 	PatternError        *string                     `json:"pattern_error,omitempty"`
 	Required            *bool                       `json:"required,omitempty"`
 	StorageFolderConfig *StorageFolderConfigRequest `json:"storage_folder_config,omitempty"`
-	Type                OptionFieldTypeEnum         `json:"type"`
+
+	// Transform Rewrite the value before it is stored: add a prefix or suffix, or change its case. Only for string and text options. The pattern is checked against the value the user typed. A value that already carries the prefix or suffix does not get it twice.
+	Transform *OptionTransformRequest `json:"transform,omitempty"`
+	Type      OptionFieldTypeEnum     `json:"type"`
 
 	// Unique The value must not be used by another non-terminated resource of this offering. Only for string, text, integer and select_string options.
 	Unique     *bool                     `json:"unique,omitempty"`
@@ -46095,6 +46155,43 @@ type OptionFieldRequest struct {
 
 // OptionFieldTypeEnum defines model for OptionFieldTypeEnum.
 type OptionFieldTypeEnum string
+
+// OptionTransform defines model for OptionTransform.
+type OptionTransform struct {
+	// Case Convert the part the user typed to lower or upper case. The prefix and suffix are kept as written.
+	Case *OptionTransform_Case `json:"case,omitempty"`
+
+	// Prefix Text added before the value.
+	Prefix *string `json:"prefix,omitempty"`
+
+	// Suffix Text added after the value.
+	Suffix *string `json:"suffix,omitempty"`
+}
+
+// OptionTransform_Case Convert the part the user typed to lower or upper case. The prefix and suffix are kept as written.
+type OptionTransform_Case struct {
+	union json.RawMessage
+}
+
+// OptionTransformCase defines model for OptionTransformCase.
+type OptionTransformCase string
+
+// OptionTransformRequest defines model for OptionTransformRequest.
+type OptionTransformRequest struct {
+	// Case Convert the part the user typed to lower or upper case. The prefix and suffix are kept as written.
+	Case *OptionTransformRequest_Case `json:"case,omitempty"`
+
+	// Prefix Text added before the value.
+	Prefix *string `json:"prefix,omitempty"`
+
+	// Suffix Text added after the value.
+	Suffix *string `json:"suffix,omitempty"`
+}
+
+// OptionTransformRequest_Case Convert the part the user typed to lower or upper case. The prefix and suffix are kept as written.
+type OptionTransformRequest_Case struct {
+	union json.RawMessage
+}
 
 // OptionValidator defines model for OptionValidator.
 type OptionValidator struct {
@@ -55113,6 +55210,9 @@ type Resource struct {
 	CustomerSlug  *string             `json:"customer_slug,omitempty"`
 	CustomerUuid  *openapi_types.UUID `json:"customer_uuid,omitempty"`
 	Description   *string             `json:"description,omitempty"`
+
+	// DisplayLimits Resource option values shown as the limits of usage-based components. Display only: not stored in limits, billed or enforced.
+	DisplayLimits *map[string]float64 `json:"display_limits,omitempty"`
 	Downscaled    *bool               `json:"downscaled,omitempty"`
 	EffectiveId   *string             `json:"effective_id,omitempty"`
 
@@ -60029,6 +60129,12 @@ type UserInfoRequest struct {
 	// Shortname A short, unique name for you. It will be used to form your local username on any systems. Should only contain lower-case letters and digits and must start with a letter.
 	Shortname *string `json:"shortname,omitempty"`
 	User      string  `json:"user"`
+}
+
+// UserInvitationAcceptRequest defines model for UserInvitationAcceptRequest.
+type UserInvitationAcceptRequest struct {
+	// User Staff only. Accept the invitation for this user instead of the caller. The user's email must match the invitation. Empty, null or the caller's own uuid accepts for the caller.
+	User *openapi_types.UUID `json:"user,omitempty"`
 }
 
 // UserJobTitleCount defines model for UserJobTitleCount.
@@ -91367,6 +91473,9 @@ type UserInvitationsPartialUpdateJSONRequestBody = PatchedInvitationUpdateReques
 // UserInvitationsUpdateJSONRequestBody defines body for UserInvitationsUpdate for application/json ContentType.
 type UserInvitationsUpdateJSONRequestBody = InvitationUpdateRequest
 
+// UserInvitationsAcceptJSONRequestBody defines body for UserInvitationsAccept for application/json ContentType.
+type UserInvitationsAcceptJSONRequestBody = UserInvitationAcceptRequest
+
 // UserPermissionRequestsApproveJSONRequestBody defines body for UserPermissionRequestsApprove for application/json ContentType.
 type UserPermissionRequestsApproveJSONRequestBody = ReviewCommentRequest
 
@@ -102717,6 +102826,130 @@ func (t OpenStackVolume_AccessUrl) MarshalJSON() ([]byte, error) {
 }
 
 func (t *OpenStackVolume_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOptionTransformCase returns the union data inside the OptionTransform_Case as a OptionTransformCase
+func (t OptionTransform_Case) AsOptionTransformCase() (OptionTransformCase, error) {
+	var body OptionTransformCase
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOptionTransformCase overwrites any union data inside the OptionTransform_Case as the provided OptionTransformCase
+func (t *OptionTransform_Case) FromOptionTransformCase(v OptionTransformCase) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOptionTransformCase performs a merge with any union data inside the OptionTransform_Case, using the provided OptionTransformCase
+func (t *OptionTransform_Case) MergeOptionTransformCase(v OptionTransformCase) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the OptionTransform_Case as a BlankEnum
+func (t OptionTransform_Case) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the OptionTransform_Case as the provided BlankEnum
+func (t *OptionTransform_Case) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the OptionTransform_Case, using the provided BlankEnum
+func (t *OptionTransform_Case) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OptionTransform_Case) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OptionTransform_Case) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOptionTransformCase returns the union data inside the OptionTransformRequest_Case as a OptionTransformCase
+func (t OptionTransformRequest_Case) AsOptionTransformCase() (OptionTransformCase, error) {
+	var body OptionTransformCase
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOptionTransformCase overwrites any union data inside the OptionTransformRequest_Case as the provided OptionTransformCase
+func (t *OptionTransformRequest_Case) FromOptionTransformCase(v OptionTransformCase) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOptionTransformCase performs a merge with any union data inside the OptionTransformRequest_Case, using the provided OptionTransformCase
+func (t *OptionTransformRequest_Case) MergeOptionTransformCase(v OptionTransformCase) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the OptionTransformRequest_Case as a BlankEnum
+func (t OptionTransformRequest_Case) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the OptionTransformRequest_Case as the provided BlankEnum
+func (t *OptionTransformRequest_Case) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the OptionTransformRequest_Case, using the provided BlankEnum
+func (t *OptionTransformRequest_Case) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OptionTransformRequest_Case) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OptionTransformRequest_Case) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -133148,12 +133381,23 @@ type ClientInterface interface {
 	// Corresponds with PUT /api/user-invitations/{uuid}/ (the `UserInvitationsUpdate` operationId).
 	UserInvitationsUpdate(ctx context.Context, uuid openapi_types.UUID, body UserInvitationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// UserInvitationsAccept Accept an invitation
+	// UserInvitationsAcceptWithBody Accept an invitation
 	//
-	// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope.
+	// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope. Staff may pass `user` to accept it for that user instead, for example from a service account that registers users elsewhere; the user's email must match the invitation.
+	//
+	// Takes any type of body and a specified content type.
 	//
 	// Corresponds with POST /api/user-invitations/{uuid}/accept/ (the `UserInvitationsAccept` operationId).
-	UserInvitationsAccept(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UserInvitationsAcceptWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UserInvitationsAccept Accept an invitation
+	//
+	// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope. Staff may pass `user` to accept it for that user instead, for example from a service account that registers users elsewhere; the user's email must match the invitation.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/user-invitations/{uuid}/accept/ (the `UserInvitationsAccept` operationId).
+	UserInvitationsAccept(ctx context.Context, uuid openapi_types.UUID, body UserInvitationsAcceptJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UserInvitationsCancel Cancel an invitation
 	//
@@ -195453,13 +195697,34 @@ func (c *Client) UserInvitationsUpdate(ctx context.Context, uuid openapi_types.U
 	return c.Client.Do(req)
 }
 
-// UserInvitationsAccept Accept an invitation
+// UserInvitationsAcceptWithBody Accept an invitation
 //
-// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope.
+// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope. Staff may pass `user` to accept it for that user instead, for example from a service account that registers users elsewhere; the user's email must match the invitation.
+//
+// Takes any type of body and a specified content type.
 //
 // Corresponds with POST /api/user-invitations/{uuid}/accept/ (the `UserInvitationsAccept` operationId).
-func (c *Client) UserInvitationsAccept(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUserInvitationsAcceptRequest(c.Server, uuid)
+func (c *Client) UserInvitationsAcceptWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserInvitationsAcceptRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// UserInvitationsAccept Accept an invitation
+//
+// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope. Staff may pass `user` to accept it for that user instead, for example from a service account that registers users elsewhere; the user's email must match the invitation.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/user-invitations/{uuid}/accept/ (the `UserInvitationsAccept` operationId).
+func (c *Client) UserInvitationsAccept(ctx context.Context, uuid openapi_types.UUID, body UserInvitationsAcceptJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserInvitationsAcceptRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -414932,8 +415197,19 @@ func NewUserInvitationsUpdateRequestWithBody(server string, uuid openapi_types.U
 	return req, nil
 }
 
-// NewUserInvitationsAcceptRequest constructs an http.Request for the UserInvitationsAccept method
-func NewUserInvitationsAcceptRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+// NewUserInvitationsAcceptRequest calls the generic UserInvitationsAccept builder with application/json body
+func NewUserInvitationsAcceptRequest(server string, uuid openapi_types.UUID, body UserInvitationsAcceptJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewUserInvitationsAcceptRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewUserInvitationsAcceptRequestWithBody constructs an http.Request for the UserInvitationsAccept method, with any body, and a specified content type
+func NewUserInvitationsAcceptRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -414958,10 +415234,12 @@ func NewUserInvitationsAcceptRequest(server string, uuid openapi_types.UUID) (*h
 		return nil, err
 	}
 
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -453997,14 +454275,23 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with PUT /api/user-invitations/{uuid}/ (the `UserInvitationsUpdate` operationId).
 	UserInvitationsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body UserInvitationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*UserInvitationsUpdateResponse, error)
 
-	// UserInvitationsAcceptWithResponse Accept an invitation
+	// UserInvitationsAcceptWithBodyWithResponse Accept an invitation
 	//
-	// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope.
+	// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope. Staff may pass `user` to accept it for that user instead, for example from a service account that registers users elsewhere; the user's email must match the invitation.
 	//
-	// Returns a wrapper object for the known response body format(s).
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
 	// Corresponds with POST /api/user-invitations/{uuid}/accept/ (the `UserInvitationsAccept` operationId).
-	UserInvitationsAcceptWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UserInvitationsAcceptResponse, error)
+	UserInvitationsAcceptWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserInvitationsAcceptResponse, error)
+
+	// UserInvitationsAcceptWithResponse Accept an invitation
+	//
+	// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope. Staff may pass `user` to accept it for that user instead, for example from a service account that registers users elsewhere; the user's email must match the invitation.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/user-invitations/{uuid}/accept/ (the `UserInvitationsAccept` operationId).
+	UserInvitationsAcceptWithResponse(ctx context.Context, uuid openapi_types.UUID, body UserInvitationsAcceptJSONRequestBody, reqEditors ...RequestEditorFn) (*UserInvitationsAcceptResponse, error)
 
 	// UserInvitationsCancelWithResponse Cancel an invitation
 	//
@@ -624125,15 +624412,30 @@ func (c *ClientWithResponses) UserInvitationsUpdateWithResponse(ctx context.Cont
 	return ParseUserInvitationsUpdateResponse(rsp)
 }
 
-// UserInvitationsAcceptWithResponse Accept an invitation
+// UserInvitationsAcceptWithBodyWithResponse Accept an invitation
 //
-// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope.
+// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope. Staff may pass `user` to accept it for that user instead, for example from a service account that registers users elsewhere; the user's email must match the invitation.
 //
-// Returns a wrapper object for the known response body format(s).
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
 // Corresponds with POST /api/user-invitations/{uuid}/accept/ (the `UserInvitationsAccept` operationId).
-func (c *ClientWithResponses) UserInvitationsAcceptWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UserInvitationsAcceptResponse, error) {
-	rsp, err := c.UserInvitationsAccept(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) UserInvitationsAcceptWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserInvitationsAcceptResponse, error) {
+	rsp, err := c.UserInvitationsAcceptWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserInvitationsAcceptResponse(rsp)
+}
+
+// UserInvitationsAcceptWithResponse Accept an invitation
+//
+// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope. Staff may pass `user` to accept it for that user instead, for example from a service account that registers users elsewhere; the user's email must match the invitation.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/user-invitations/{uuid}/accept/ (the `UserInvitationsAccept` operationId).
+func (c *ClientWithResponses) UserInvitationsAcceptWithResponse(ctx context.Context, uuid openapi_types.UUID, body UserInvitationsAcceptJSONRequestBody, reqEditors ...RequestEditorFn) (*UserInvitationsAcceptResponse, error) {
+	rsp, err := c.UserInvitationsAccept(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
