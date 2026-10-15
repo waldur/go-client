@@ -29303,6 +29303,71 @@ type CallRound struct {
 // CallStates defines model for CallStates.
 type CallStates string
 
+// CallStats defines model for CallStats.
+type CallStats struct {
+	Call   CallStatsBlock   `json:"call"`
+	Rounds []CallStatsRound `json:"rounds"`
+}
+
+// CallStatsBlock defines model for CallStatsBlock.
+type CallStatsBlock struct {
+	// AdminApproved Proposals whose administrative check completed as eligible.
+	AdminApproved int `json:"admin_approved"`
+
+	// MissingAdminChecks Proposals whose administrative check is active or expired.
+	MissingAdminChecks int `json:"missing_admin_checks"`
+
+	// MissingReviews Proposals in expert review below the step's minimum reviews.
+	MissingReviews int `json:"missing_reviews"`
+
+	// OverdueReviews Reviews still in review past their deadline.
+	OverdueReviews int `json:"overdue_reviews"`
+
+	// Proposals Proposals by state (accepted = awarded), plus total.
+	Proposals map[string]int `json:"proposals"`
+
+	// Reviews Reviews by state, plus total.
+	Reviews map[string]int `json:"reviews"`
+
+	// Steps Proposals per current workflow step, over the enabled steps.
+	Steps []CallStatsStep `json:"steps"`
+}
+
+// CallStatsRound defines model for CallStatsRound.
+type CallStatsRound struct {
+	// AdminApproved Proposals whose administrative check completed as eligible.
+	AdminApproved int       `json:"admin_approved"`
+	CutoffTime    time.Time `json:"cutoff_time"`
+
+	// MissingAdminChecks Proposals whose administrative check is active or expired.
+	MissingAdminChecks int `json:"missing_admin_checks"`
+
+	// MissingReviews Proposals in expert review below the step's minimum reviews.
+	MissingReviews int `json:"missing_reviews"`
+
+	// OverdueReviews Reviews still in review past their deadline.
+	OverdueReviews int `json:"overdue_reviews"`
+
+	// Proposals Proposals by state (accepted = awarded), plus total.
+	Proposals map[string]int `json:"proposals"`
+
+	// Reviews Reviews by state, plus total.
+	Reviews   map[string]int `json:"reviews"`
+	Slug      string         `json:"slug"`
+	StartTime time.Time      `json:"start_time"`
+
+	// Steps Proposals per current workflow step, over the enabled steps.
+	Steps []CallStatsStep    `json:"steps"`
+	Uuid  openapi_types.UUID `json:"uuid"`
+}
+
+// CallStatsStep defines model for CallStatsStep.
+type CallStatsStep struct {
+	Count int    `json:"count"`
+	Label string `json:"label"`
+	Step  string `json:"step"`
+}
+
 // CallWorkflowStep defines model for CallWorkflowStep.
 type CallWorkflowStep struct {
 	// AllocationTime Allocation decision: when a granted proposal takes effect — immediately (on_decision) or on the round's allocation date (fixed_date).
@@ -82649,6 +82714,10 @@ type ProposalProposalsListParams struct {
 	// Slug Slug
 	Slug  *string           `form:"slug,omitempty" json:"slug,omitempty"`
 	State *[]ProposalStates `form:"state,omitempty" json:"state,omitempty"`
+
+	// WorkflowStep Current workflow step
+	//
+	WorkflowStep *[]StepEnum `form:"workflow_step,omitempty" json:"workflow_step,omitempty"`
 }
 
 // ProposalProposalsCountParams defines parameters for ProposalProposalsCount.
@@ -82677,6 +82746,10 @@ type ProposalProposalsCountParams struct {
 	// Slug Slug
 	Slug  *string           `form:"slug,omitempty" json:"slug,omitempty"`
 	State *[]ProposalStates `form:"state,omitempty" json:"state,omitempty"`
+
+	// WorkflowStep Current workflow step
+	//
+	WorkflowStep *[]StepEnum `form:"workflow_step,omitempty" json:"workflow_step,omitempty"`
 }
 
 // ProposalProposalsChecklistTemplateRetrieveParams defines parameters for ProposalProposalsChecklistTemplateRetrieve.
@@ -82822,6 +82895,10 @@ type ProposalProposalsStepChecklistResponsesListParams struct {
 
 	// Step Workflow step key (e.g. technical_assessment).
 	Step string `form:"step" json:"step"`
+
+	// WorkflowStep Current workflow step
+	//
+	WorkflowStep *[]StepEnum `form:"workflow_step,omitempty" json:"workflow_step,omitempty"`
 }
 
 // ProposalProposalsStepChecklistRetrieveParams defines parameters for ProposalProposalsStepChecklistRetrieve.
@@ -82871,6 +82948,10 @@ type ProposalProposalsWorkflowStatesListParams struct {
 	// Slug Slug
 	Slug  *string           `form:"slug,omitempty" json:"slug,omitempty"`
 	State *[]ProposalStates `form:"state,omitempty" json:"state,omitempty"`
+
+	// WorkflowStep Current workflow step
+	//
+	WorkflowStep *[]StepEnum `form:"workflow_step,omitempty" json:"workflow_step,omitempty"`
 }
 
 // ProposalProtectedCallsListParams defines parameters for ProposalProtectedCallsList.
@@ -129542,6 +129623,11 @@ type ClientInterface interface {
 	//
 	// Send invitations to all confirmed suggestions.
 	ProposalProtectedCallsSendInvitations(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProtectedCallsStatsRetrieve performs a GET /api/proposal-protected-calls/{uuid}/stats/ (the `ProposalProtectedCallsStatsRetrieve` operationId) request.
+	//
+	// Proposal, review and workflow step counts per call and round.
+	ProposalProtectedCallsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProtectedCallsSuggestionsList performs a GET /api/proposal-protected-calls/{uuid}/suggestions/ (the `ProposalProtectedCallsSuggestionsList` operationId) request.
 	//
@@ -184784,6 +184870,21 @@ func (c *Client) ProposalProtectedCallsSendAllAssignments(ctx context.Context, u
 // Send invitations to all confirmed suggestions.
 func (c *Client) ProposalProtectedCallsSendInvitations(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProtectedCallsSendInvitationsRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProposalProtectedCallsStatsRetrieve performs a GET /api/proposal-protected-calls/{uuid}/stats/ (the `ProposalProtectedCallsStatsRetrieve` operationId) request.
+//
+// Proposal, review and workflow step counts per call and round.
+func (c *Client) ProposalProtectedCallsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsStatsRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -372468,6 +372569,18 @@ func NewProposalProposalsListRequest(server string, params *ProposalProposalsLis
 
 		}
 
+		if params.WorkflowStep != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "workflow_step", *params.WorkflowStep, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if encoded := queryValues.Encode(); encoded != "" {
 			rawQueryFragments = append(rawQueryFragments, encoded)
 		}
@@ -372657,6 +372770,18 @@ func NewProposalProposalsCountRequest(server string, params *ProposalProposalsCo
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.WorkflowStep != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "workflow_step", *params.WorkflowStep, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -374763,6 +374888,18 @@ func NewProposalProposalsStepChecklistResponsesListRequest(server string, uuid o
 			}
 		}
 
+		if params.WorkflowStep != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "workflow_step", *params.WorkflowStep, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if encoded := queryValues.Encode(); encoded != "" {
 			rawQueryFragments = append(rawQueryFragments, encoded)
 		}
@@ -375273,6 +375410,18 @@ func NewProposalProposalsWorkflowStatesListRequest(server string, uuid openapi_t
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.WorkflowStep != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "workflow_step", *params.WorkflowStep, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -380737,6 +380886,40 @@ func NewProposalProtectedCallsSendInvitationsRequest(server string, uuid openapi
 	}
 
 	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProposalProtectedCallsStatsRetrieveRequest constructs an http.Request for the ProposalProtectedCallsStatsRetrieve method
+func NewProposalProtectedCallsStatsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-protected-calls/%s/stats/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -449327,6 +449510,13 @@ type ClientWithResponsesInterface interface {
 	//
 	// Returns a wrapper object for the known response body format(s).
 	ProposalProtectedCallsSendInvitationsWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsSendInvitationsResponse, error)
+
+	// ProposalProtectedCallsStatsRetrieveWithResponse performs a GET /api/proposal-protected-calls/{uuid}/stats/ (the `ProposalProtectedCallsStatsRetrieve` operationId) request.
+	//
+	// Proposal, review and workflow step counts per call and round.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	ProposalProtectedCallsStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsStatsRetrieveResponse, error)
 
 	// ProposalProtectedCallsSuggestionsListWithResponse performs a GET /api/proposal-protected-calls/{uuid}/suggestions/ (the `ProposalProtectedCallsSuggestionsList` operationId) request.
 	//
@@ -547883,6 +548073,47 @@ func (r ProposalProtectedCallsSendInvitationsResponse) ContentType() string {
 	return ""
 }
 
+type ProposalProtectedCallsStatsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *CallStats
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r ProposalProtectedCallsStatsRetrieveResponse) GetJSON200() *CallStats {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r ProposalProtectedCallsStatsRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProtectedCallsStatsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProtectedCallsStatsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalProtectedCallsStatsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // ProposalProtectedCallsSuggestionsListResponse200Headers the declared response headers of an HTTP 200 response for ProposalProtectedCallsSuggestionsList
 type ProposalProtectedCallsSuggestionsListResponse200Headers struct {
 	XResultCount *int
@@ -615177,6 +615408,19 @@ func (c *ClientWithResponses) ProposalProtectedCallsSendInvitationsWithResponse(
 		return nil, err
 	}
 	return ParseProposalProtectedCallsSendInvitationsResponse(rsp)
+}
+
+// ProposalProtectedCallsStatsRetrieveWithResponse performs a GET /api/proposal-protected-calls/{uuid}/stats/ (the `ProposalProtectedCallsStatsRetrieve` operationId) request.
+//
+// Proposal, review and workflow step counts per call and round.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) ProposalProtectedCallsStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsStatsRetrieveResponse, error) {
+	rsp, err := c.ProposalProtectedCallsStatsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsStatsRetrieveResponse(rsp)
 }
 
 // ProposalProtectedCallsSuggestionsListWithResponse performs a GET /api/proposal-protected-calls/{uuid}/suggestions/ (the `ProposalProtectedCallsSuggestionsList` operationId) request.
@@ -684487,6 +684731,32 @@ func ParseProposalProtectedCallsSendInvitationsResponse(rsp *http.Response) (*Pr
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest SendInvitationsResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProposalProtectedCallsStatsRetrieveResponse parses an HTTP response from a ProposalProtectedCallsStatsRetrieveWithResponse call
+func ParseProposalProtectedCallsStatsRetrieveResponse(rsp *http.Response) (*ProposalProtectedCallsStatsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProtectedCallsStatsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CallStats
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
