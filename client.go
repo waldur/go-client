@@ -16218,6 +16218,7 @@ const (
 	PermissionMetadataResponsePermissionMapOFFERINGUPDATEATTRIBUTES                     PermissionMetadataResponsePermissionMap = "OFFERING.UPDATE_ATTRIBUTES"
 	PermissionMetadataResponsePermissionMapOFFERINGUPDATECOMPONENTS                     PermissionMetadataResponsePermissionMap = "OFFERING.UPDATE_COMPONENTS"
 	PermissionMetadataResponsePermissionMapOFFERINGUPDATEDESCRIPTION                    PermissionMetadataResponsePermissionMap = "OFFERING.UPDATE_DESCRIPTION"
+	PermissionMetadataResponsePermissionMapOFFERINGUPDATEENDPOINT                       PermissionMetadataResponsePermissionMap = "OFFERING.UPDATE_ENDPOINT"
 	PermissionMetadataResponsePermissionMapOFFERINGUPDATEINTEGRATION                    PermissionMetadataResponsePermissionMap = "OFFERING.UPDATE_INTEGRATION"
 	PermissionMetadataResponsePermissionMapOFFERINGUPDATELOCATION                       PermissionMetadataResponsePermissionMap = "OFFERING.UPDATE_LOCATION"
 	PermissionMetadataResponsePermissionMapOFFERINGUPDATEOPTIONS                        PermissionMetadataResponsePermissionMap = "OFFERING.UPDATE_OPTIONS"
@@ -16417,6 +16418,8 @@ func (e PermissionMetadataResponsePermissionMap) Valid() bool {
 	case PermissionMetadataResponsePermissionMapOFFERINGUPDATECOMPONENTS:
 		return true
 	case PermissionMetadataResponsePermissionMapOFFERINGUPDATEDESCRIPTION:
+		return true
+	case PermissionMetadataResponsePermissionMapOFFERINGUPDATEENDPOINT:
 		return true
 	case PermissionMetadataResponsePermissionMapOFFERINGUPDATEINTEGRATION:
 		return true
@@ -16659,6 +16662,7 @@ const (
 	PermissionMetadataResponsePermissionsOFFERINGUPDATEATTRIBUTES                     PermissionMetadataResponsePermissions = "OFFERING.UPDATE_ATTRIBUTES"
 	PermissionMetadataResponsePermissionsOFFERINGUPDATECOMPONENTS                     PermissionMetadataResponsePermissions = "OFFERING.UPDATE_COMPONENTS"
 	PermissionMetadataResponsePermissionsOFFERINGUPDATEDESCRIPTION                    PermissionMetadataResponsePermissions = "OFFERING.UPDATE_DESCRIPTION"
+	PermissionMetadataResponsePermissionsOFFERINGUPDATEENDPOINT                       PermissionMetadataResponsePermissions = "OFFERING.UPDATE_ENDPOINT"
 	PermissionMetadataResponsePermissionsOFFERINGUPDATEINTEGRATION                    PermissionMetadataResponsePermissions = "OFFERING.UPDATE_INTEGRATION"
 	PermissionMetadataResponsePermissionsOFFERINGUPDATELOCATION                       PermissionMetadataResponsePermissions = "OFFERING.UPDATE_LOCATION"
 	PermissionMetadataResponsePermissionsOFFERINGUPDATEOPTIONS                        PermissionMetadataResponsePermissions = "OFFERING.UPDATE_OPTIONS"
@@ -16858,6 +16862,8 @@ func (e PermissionMetadataResponsePermissions) Valid() bool {
 	case PermissionMetadataResponsePermissionsOFFERINGUPDATECOMPONENTS:
 		return true
 	case PermissionMetadataResponsePermissionsOFFERINGUPDATEDESCRIPTION:
+		return true
+	case PermissionMetadataResponsePermissionsOFFERINGUPDATEENDPOINT:
 		return true
 	case PermissionMetadataResponsePermissionsOFFERINGUPDATEINTEGRATION:
 		return true
@@ -24363,6 +24369,7 @@ const (
 	ValueEnumOFFERINGUPDATEATTRIBUTES                     ValueEnum = "OFFERING.UPDATE_ATTRIBUTES"
 	ValueEnumOFFERINGUPDATECOMPONENTS                     ValueEnum = "OFFERING.UPDATE_COMPONENTS"
 	ValueEnumOFFERINGUPDATEDESCRIPTION                    ValueEnum = "OFFERING.UPDATE_DESCRIPTION"
+	ValueEnumOFFERINGUPDATEENDPOINT                       ValueEnum = "OFFERING.UPDATE_ENDPOINT"
 	ValueEnumOFFERINGUPDATEINTEGRATION                    ValueEnum = "OFFERING.UPDATE_INTEGRATION"
 	ValueEnumOFFERINGUPDATELOCATION                       ValueEnum = "OFFERING.UPDATE_LOCATION"
 	ValueEnumOFFERINGUPDATEOPTIONS                        ValueEnum = "OFFERING.UPDATE_OPTIONS"
@@ -24562,6 +24569,8 @@ func (e ValueEnum) Valid() bool {
 	case ValueEnumOFFERINGUPDATECOMPONENTS:
 		return true
 	case ValueEnumOFFERINGUPDATEDESCRIPTION:
+		return true
+	case ValueEnumOFFERINGUPDATEENDPOINT:
 		return true
 	case ValueEnumOFFERINGUPDATEINTEGRATION:
 		return true
@@ -59639,6 +59648,17 @@ type UpdateActionsResponse struct {
 	Status             string  `json:"status"`
 }
 
+// UpdateEndpointRequest defines model for UpdateEndpointRequest.
+type UpdateEndpointRequest struct {
+	Name *string `json:"name,omitempty"`
+
+	// Url URL of the access endpoint
+	Url *string `json:"url,omitempty"`
+
+	// Uuid UUID of the access endpoint
+	Uuid openapi_types.UUID `json:"uuid"`
+}
+
 // UpdateHealthMonitor defines model for UpdateHealthMonitor.
 type UpdateHealthMonitor struct {
 	// Delay Interval between health checks in seconds
@@ -89543,6 +89563,9 @@ type MarketplaceProviderOfferingsUpdateComplianceChecklistJSONRequestBody = Offe
 // MarketplaceProviderOfferingsUpdateDescriptionJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateDescription for application/json ContentType.
 type MarketplaceProviderOfferingsUpdateDescriptionJSONRequestBody = OfferingDescriptionUpdateRequest
 
+// MarketplaceProviderOfferingsUpdateEndpointJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateEndpoint for application/json ContentType.
+type MarketplaceProviderOfferingsUpdateEndpointJSONRequestBody = UpdateEndpointRequest
+
 // MarketplaceProviderOfferingsUpdateImageJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateImage for application/json ContentType.
 type MarketplaceProviderOfferingsUpdateImageJSONRequestBody = OfferingImageRequest
 
@@ -119169,6 +119192,24 @@ type ClientInterface interface {
 	//
 	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/update_description/ (the `MarketplaceProviderOfferingsUpdateDescription` operationId).
 	MarketplaceProviderOfferingsUpdateDescription(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateDescriptionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsUpdateEndpointWithBody Update an access endpoint of an offering
+	//
+	// Updates the name and/or URL of an existing access endpoint of an offering, identified by its UUID.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/update_endpoint/ (the `MarketplaceProviderOfferingsUpdateEndpoint` operationId).
+	MarketplaceProviderOfferingsUpdateEndpointWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsUpdateEndpoint Update an access endpoint of an offering
+	//
+	// Updates the name and/or URL of an existing access endpoint of an offering, identified by its UUID.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/update_endpoint/ (the `MarketplaceProviderOfferingsUpdateEndpoint` operationId).
+	MarketplaceProviderOfferingsUpdateEndpoint(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateEndpointJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsUpdateImageWithBody Update offering image
 	//
@@ -158000,6 +158041,44 @@ func (c *Client) MarketplaceProviderOfferingsUpdateDescriptionWithBody(ctx conte
 // Corresponds with POST /api/marketplace-provider-offerings/{uuid}/update_description/ (the `MarketplaceProviderOfferingsUpdateDescription` operationId).
 func (c *Client) MarketplaceProviderOfferingsUpdateDescription(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateDescriptionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsUpdateDescriptionRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceProviderOfferingsUpdateEndpointWithBody Update an access endpoint of an offering
+//
+// Updates the name and/or URL of an existing access endpoint of an offering, identified by its UUID.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/update_endpoint/ (the `MarketplaceProviderOfferingsUpdateEndpoint` operationId).
+func (c *Client) MarketplaceProviderOfferingsUpdateEndpointWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsUpdateEndpointRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceProviderOfferingsUpdateEndpoint Update an access endpoint of an offering
+//
+// Updates the name and/or URL of an existing access endpoint of an offering, identified by its UUID.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/update_endpoint/ (the `MarketplaceProviderOfferingsUpdateEndpoint` operationId).
+func (c *Client) MarketplaceProviderOfferingsUpdateEndpoint(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateEndpointJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsUpdateEndpointRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -283953,6 +284032,53 @@ func NewMarketplaceProviderOfferingsUpdateDescriptionRequestWithBody(server stri
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/update_description/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsUpdateEndpointRequest calls the generic MarketplaceProviderOfferingsUpdateEndpoint builder with application/json body
+func NewMarketplaceProviderOfferingsUpdateEndpointRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateEndpointJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderOfferingsUpdateEndpointRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsUpdateEndpointRequestWithBody constructs an http.Request for the MarketplaceProviderOfferingsUpdateEndpoint method, with any body, and a specified content type
+func NewMarketplaceProviderOfferingsUpdateEndpointRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/update_endpoint/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -437240,6 +437366,24 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/update_description/ (the `MarketplaceProviderOfferingsUpdateDescription` operationId).
 	MarketplaceProviderOfferingsUpdateDescriptionWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateDescriptionJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateDescriptionResponse, error)
 
+	// MarketplaceProviderOfferingsUpdateEndpointWithBodyWithResponse Update an access endpoint of an offering
+	//
+	// Updates the name and/or URL of an existing access endpoint of an offering, identified by its UUID.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/update_endpoint/ (the `MarketplaceProviderOfferingsUpdateEndpoint` operationId).
+	MarketplaceProviderOfferingsUpdateEndpointWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateEndpointResponse, error)
+
+	// MarketplaceProviderOfferingsUpdateEndpointWithResponse Update an access endpoint of an offering
+	//
+	// Updates the name and/or URL of an existing access endpoint of an offering, identified by its UUID.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/update_endpoint/ (the `MarketplaceProviderOfferingsUpdateEndpoint` operationId).
+	MarketplaceProviderOfferingsUpdateEndpointWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateEndpointJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateEndpointResponse, error)
+
 	// MarketplaceProviderOfferingsUpdateImageWithBodyWithResponse Update offering image
 	//
 	// Uploads or replaces the main image for an offering.
@@ -499723,6 +499867,47 @@ func (r MarketplaceProviderOfferingsUpdateDescriptionResponse) StatusCode() int 
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceProviderOfferingsUpdateDescriptionResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProviderOfferingsUpdateEndpointResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *NestedEndpoint
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceProviderOfferingsUpdateEndpointResponse) GetJSON200() *NestedEndpoint {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceProviderOfferingsUpdateEndpointResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsUpdateEndpointResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsUpdateEndpointResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderOfferingsUpdateEndpointResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -593295,6 +593480,36 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateDescriptionWithR
 	return ParseMarketplaceProviderOfferingsUpdateDescriptionResponse(rsp)
 }
 
+// MarketplaceProviderOfferingsUpdateEndpointWithBodyWithResponse Update an access endpoint of an offering
+//
+// Updates the name and/or URL of an existing access endpoint of an offering, identified by its UUID.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/update_endpoint/ (the `MarketplaceProviderOfferingsUpdateEndpoint` operationId).
+func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateEndpointWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateEndpointResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsUpdateEndpointWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsUpdateEndpointResponse(rsp)
+}
+
+// MarketplaceProviderOfferingsUpdateEndpointWithResponse Update an access endpoint of an offering
+//
+// Updates the name and/or URL of an existing access endpoint of an offering, identified by its UUID.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/update_endpoint/ (the `MarketplaceProviderOfferingsUpdateEndpoint` operationId).
+func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateEndpointWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateEndpointJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateEndpointResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsUpdateEndpoint(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsUpdateEndpointResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsUpdateImageWithBodyWithResponse Update offering image
 //
 // Uploads or replaces the main image for an offering.
@@ -654230,6 +654445,32 @@ func ParseMarketplaceProviderOfferingsUpdateDescriptionResponse(rsp *http.Respon
 	response := &MarketplaceProviderOfferingsUpdateDescriptionResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsUpdateEndpointResponse parses an HTTP response from a MarketplaceProviderOfferingsUpdateEndpointWithResponse call
+func ParseMarketplaceProviderOfferingsUpdateEndpointResponse(rsp *http.Response) (*MarketplaceProviderOfferingsUpdateEndpointResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsUpdateEndpointResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest NestedEndpoint
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
