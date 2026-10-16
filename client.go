@@ -4527,6 +4527,7 @@ const (
 	CustomerFieldEnumHouseNr                      CustomerFieldEnum = "house_nr"
 	CustomerFieldEnumHousehold                    CustomerFieldEnum = "household"
 	CustomerFieldEnumImage                        CustomerFieldEnum = "image"
+	CustomerFieldEnumInvoiceEmails                CustomerFieldEnum = "invoice_emails"
 	CustomerFieldEnumIsPrivatePerson              CustomerFieldEnum = "is_private_person"
 	CustomerFieldEnumIsServiceProvider            CustomerFieldEnum = "is_service_provider"
 	CustomerFieldEnumIsServiceProviderManagerOnly CustomerFieldEnum = "is_service_provider_manager_only"
@@ -4633,6 +4634,8 @@ func (e CustomerFieldEnum) Valid() bool {
 	case CustomerFieldEnumHousehold:
 		return true
 	case CustomerFieldEnumImage:
+		return true
+	case CustomerFieldEnumInvoiceEmails:
 		return true
 	case CustomerFieldEnumIsPrivatePerson:
 		return true
@@ -28951,6 +28954,18 @@ type CallAttachDocumentsRequest struct {
 	Documents   []openapi_types.File `json:"documents"`
 }
 
+// CallAttachDocumentsRequestForm defines model for CallAttachDocumentsRequestForm.
+type CallAttachDocumentsRequestForm struct {
+	Description *string              `json:"description,omitempty"`
+	Documents   []openapi_types.File `json:"documents"`
+}
+
+// CallAttachDocumentsRequestMultipart defines model for CallAttachDocumentsRequestMultipart.
+type CallAttachDocumentsRequestMultipart struct {
+	Description *string              `json:"description,omitempty"`
+	Documents   []openapi_types.File `json:"documents"`
+}
+
 // CallCOIConfiguration defines model for CallCOIConfiguration.
 type CallCOIConfiguration struct {
 	// AutoDetectCoauthorship Enable automated co-authorship detection
@@ -33108,6 +33123,18 @@ type CreateAttachmentsRequest struct {
 	Attachments []openapi_types.File `json:"attachments"`
 }
 
+// CreateAttachmentsRequestForm defines model for CreateAttachmentsRequestForm.
+type CreateAttachmentsRequestForm struct {
+	// Attachments List of files to attach
+	Attachments []openapi_types.File `json:"attachments"`
+}
+
+// CreateAttachmentsRequestMultipart defines model for CreateAttachmentsRequestMultipart.
+type CreateAttachmentsRequestMultipart struct {
+	// Attachments List of files to attach
+	Attachments []openapi_types.File `json:"attachments"`
+}
+
 // CreateCustomerAffiliate defines model for CreateCustomerAffiliate.
 type CreateCustomerAffiliate struct {
 	Affiliate     string              `json:"affiliate"`
@@ -33503,6 +33530,9 @@ type Customer struct {
 	Household         *string `json:"household,omitempty"`
 	Image             *string `json:"image,omitempty"`
 
+	// InvoiceEmails Comma-separated list of email addresses that receive invoice notifications instead of the organization owners
+	InvoiceEmails *string `json:"invoice_emails,omitempty"`
+
 	// IsPrivatePerson Organization represents a private person rather than a legal entity. Used for EU VAT calculation.
 	IsPrivatePerson   *bool `json:"is_private_person,omitempty"`
 	IsServiceProvider *bool `json:"is_service_provider,omitempty"`
@@ -33679,6 +33709,9 @@ type CustomerContactUpdate struct {
 	Email          *openapi_types.Email `json:"email,omitempty"`
 	Homepage       *string              `json:"homepage,omitempty"`
 
+	// InvoiceEmails Comma-separated list of email addresses that receive invoice notifications instead of the organization owners
+	InvoiceEmails *string `json:"invoice_emails,omitempty"`
+
 	// NotificationEmails Comma-separated list of notification email addresses
 	NotificationEmails *string `json:"notification_emails,omitempty"`
 	PhoneNumber        *string `json:"phone_number,omitempty"`
@@ -33689,6 +33722,9 @@ type CustomerContactUpdateRequest struct {
 	ContactDetails *string              `json:"contact_details,omitempty"`
 	Email          *openapi_types.Email `json:"email,omitempty"`
 	Homepage       *string              `json:"homepage,omitempty"`
+
+	// InvoiceEmails Comma-separated list of email addresses that receive invoice notifications instead of the organization owners
+	InvoiceEmails *string `json:"invoice_emails,omitempty"`
 
 	// NotificationEmails Comma-separated list of notification email addresses
 	NotificationEmails *string `json:"notification_emails,omitempty"`
@@ -33956,6 +33992,9 @@ type CustomerRequest struct {
 	Household       *string             `json:"household,omitempty"`
 	Image           *openapi_types.File `json:"image,omitempty"`
 
+	// InvoiceEmails Comma-separated list of email addresses that receive invoice notifications instead of the organization owners
+	InvoiceEmails *string `json:"invoice_emails,omitempty"`
+
 	// IsPrivatePerson Organization represents a private person rather than a legal entity. Used for EU VAT calculation.
 	IsPrivatePerson *bool    `json:"is_private_person,omitempty"`
 	Latitude        *float64 `json:"latitude,omitempty"`
@@ -34034,6 +34073,9 @@ type CustomerRequestForm struct {
 	Household       *string             `json:"household,omitempty"`
 	Image           *openapi_types.File `json:"image,omitempty"`
 
+	// InvoiceEmails Comma-separated list of email addresses that receive invoice notifications instead of the organization owners
+	InvoiceEmails *string `json:"invoice_emails,omitempty"`
+
 	// IsPrivatePerson Organization represents a private person rather than a legal entity. Used for EU VAT calculation.
 	IsPrivatePerson *bool    `json:"is_private_person,omitempty"`
 	Latitude        *float64 `json:"latitude,omitempty"`
@@ -34111,6 +34153,9 @@ type CustomerRequestMultipart struct {
 	HouseNr         *string             `json:"house_nr,omitempty"`
 	Household       *string             `json:"household,omitempty"`
 	Image           *openapi_types.File `json:"image,omitempty"`
+
+	// InvoiceEmails Comma-separated list of email addresses that receive invoice notifications instead of the organization owners
+	InvoiceEmails *string `json:"invoice_emails,omitempty"`
 
 	// IsPrivatePerson Organization represents a private person rather than a legal entity. Used for EU VAT calculation.
 	IsPrivatePerson *bool    `json:"is_private_person,omitempty"`
@@ -47265,6 +47310,9 @@ type PatchedCustomerRequest struct {
 	Household       *string             `json:"household,omitempty"`
 	Image           *openapi_types.File `json:"image,omitempty"`
 
+	// InvoiceEmails Comma-separated list of email addresses that receive invoice notifications instead of the organization owners
+	InvoiceEmails *string `json:"invoice_emails,omitempty"`
+
 	// IsPrivatePerson Organization represents a private person rather than a legal entity. Used for EU VAT calculation.
 	IsPrivatePerson *bool    `json:"is_private_person,omitempty"`
 	Latitude        *float64 `json:"latitude,omitempty"`
@@ -47343,6 +47391,9 @@ type PatchedCustomerRequestForm struct {
 	Household       *string             `json:"household,omitempty"`
 	Image           *openapi_types.File `json:"image,omitempty"`
 
+	// InvoiceEmails Comma-separated list of email addresses that receive invoice notifications instead of the organization owners
+	InvoiceEmails *string `json:"invoice_emails,omitempty"`
+
 	// IsPrivatePerson Organization represents a private person rather than a legal entity. Used for EU VAT calculation.
 	IsPrivatePerson *bool    `json:"is_private_person,omitempty"`
 	Latitude        *float64 `json:"latitude,omitempty"`
@@ -47420,6 +47471,9 @@ type PatchedCustomerRequestMultipart struct {
 	HouseNr         *string             `json:"house_nr,omitempty"`
 	Household       *string             `json:"household,omitempty"`
 	Image           *openapi_types.File `json:"image,omitempty"`
+
+	// InvoiceEmails Comma-separated list of email addresses that receive invoice notifications instead of the organization owners
+	InvoiceEmails *string `json:"invoice_emails,omitempty"`
 
 	// IsPrivatePerson Organization represents a private person rather than a legal entity. Used for EU VAT calculation.
 	IsPrivatePerson *bool    `json:"is_private_person,omitempty"`
@@ -90816,6 +90870,12 @@ type ProposalProtectedCallsAddUserJSONRequestBody = UserRoleCreateRequest
 // ProposalProtectedCallsAttachDocumentsJSONRequestBody defines body for ProposalProtectedCallsAttachDocuments for application/json ContentType.
 type ProposalProtectedCallsAttachDocumentsJSONRequestBody = CallAttachDocumentsRequest
 
+// ProposalProtectedCallsAttachDocumentsFormdataRequestBody defines body for ProposalProtectedCallsAttachDocuments for application/x-www-form-urlencoded ContentType.
+type ProposalProtectedCallsAttachDocumentsFormdataRequestBody = CallAttachDocumentsRequestForm
+
+// ProposalProtectedCallsAttachDocumentsMultipartRequestBody defines body for ProposalProtectedCallsAttachDocuments for multipart/form-data ContentType.
+type ProposalProtectedCallsAttachDocumentsMultipartRequestBody = CallAttachDocumentsRequestMultipart
+
 // ProposalProtectedCallsCoiConfigurationPartialUpdateJSONRequestBody defines body for ProposalProtectedCallsCoiConfigurationPartialUpdate for application/json ContentType.
 type ProposalProtectedCallsCoiConfigurationPartialUpdateJSONRequestBody = PatchedCallCOIConfigurationRequest
 
@@ -91385,6 +91445,12 @@ type SupportTemplatesUpdateJSONRequestBody = TemplateRequest
 
 // SupportTemplatesCreateAttachmentsJSONRequestBody defines body for SupportTemplatesCreateAttachments for application/json ContentType.
 type SupportTemplatesCreateAttachmentsJSONRequestBody = CreateAttachmentsRequest
+
+// SupportTemplatesCreateAttachmentsFormdataRequestBody defines body for SupportTemplatesCreateAttachments for application/x-www-form-urlencoded ContentType.
+type SupportTemplatesCreateAttachmentsFormdataRequestBody = CreateAttachmentsRequestForm
+
+// SupportTemplatesCreateAttachmentsMultipartRequestBody defines body for SupportTemplatesCreateAttachments for multipart/form-data ContentType.
+type SupportTemplatesCreateAttachmentsMultipartRequestBody = CreateAttachmentsRequestMultipart
 
 // SupportTemplatesDeleteAttachmentsJSONRequestBody defines body for SupportTemplatesDeleteAttachments for application/json ContentType.
 type SupportTemplatesDeleteAttachmentsJSONRequestBody = DeleteAttachmentsRequest
@@ -129438,6 +129504,12 @@ type ClientInterface interface {
 	// Attach documents to call.
 	ProposalProtectedCallsAttachDocuments(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsAttachDocumentsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ProposalProtectedCallsAttachDocumentsWithFormdataBody performs a POST /api/proposal-protected-calls/{uuid}/attach_documents/ (the `ProposalProtectedCallsAttachDocuments` operationId) request.
+	// Takes a body of the `application/x-www-form-urlencoded` content type.
+	//
+	// Attach documents to call.
+	ProposalProtectedCallsAttachDocumentsWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsAttachDocumentsFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ProposalProtectedCallsCoiConfigurationRetrieve performs a GET /api/proposal-protected-calls/{uuid}/coi-configuration/ (the `ProposalProtectedCallsCoiConfigurationRetrieve` operationId) request.
 	//
 	// Get COI configuration for this call.
@@ -132758,6 +132830,12 @@ type ClientInterface interface {
 	//
 	// This view attaches documents to template.
 	SupportTemplatesCreateAttachments(ctx context.Context, uuid openapi_types.UUID, body SupportTemplatesCreateAttachmentsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportTemplatesCreateAttachmentsWithFormdataBody performs a POST /api/support-templates/{uuid}/create_attachments/ (the `SupportTemplatesCreateAttachments` operationId) request.
+	// Takes a body of the `application/x-www-form-urlencoded` content type.
+	//
+	// This view attaches documents to template.
+	SupportTemplatesCreateAttachmentsWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body SupportTemplatesCreateAttachmentsFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// SupportTemplatesDeleteAttachmentsWithBody performs a POST /api/support-templates/{uuid}/delete_attachments/ (the `SupportTemplatesDeleteAttachments` operationId) request,
 	// with any type of body and a specified content type.
@@ -183925,6 +184003,22 @@ func (c *Client) ProposalProtectedCallsAttachDocuments(ctx context.Context, uuid
 	return c.Client.Do(req)
 }
 
+// ProposalProtectedCallsAttachDocumentsWithFormdataBody performs a POST /api/proposal-protected-calls/{uuid}/attach_documents/ (the `ProposalProtectedCallsAttachDocuments` operationId) request.
+// Takes a body of the `application/x-www-form-urlencoded` content type.
+//
+// Attach documents to call.
+func (c *Client) ProposalProtectedCallsAttachDocumentsWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsAttachDocumentsFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsAttachDocumentsRequestWithFormdataBody(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // ProposalProtectedCallsCoiConfigurationRetrieve performs a GET /api/proposal-protected-calls/{uuid}/coi-configuration/ (the `ProposalProtectedCallsCoiConfigurationRetrieve` operationId) request.
 //
 // Get COI configuration for this call.
@@ -194013,6 +194107,22 @@ func (c *Client) SupportTemplatesCreateAttachmentsWithBody(ctx context.Context, 
 // This view attaches documents to template.
 func (c *Client) SupportTemplatesCreateAttachments(ctx context.Context, uuid openapi_types.UUID, body SupportTemplatesCreateAttachmentsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewSupportTemplatesCreateAttachmentsRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// SupportTemplatesCreateAttachmentsWithFormdataBody performs a POST /api/support-templates/{uuid}/create_attachments/ (the `SupportTemplatesCreateAttachments` operationId) request.
+// Takes a body of the `application/x-www-form-urlencoded` content type.
+//
+// This view attaches documents to template.
+func (c *Client) SupportTemplatesCreateAttachmentsWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body SupportTemplatesCreateAttachmentsFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportTemplatesCreateAttachmentsRequestWithFormdataBody(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -377409,6 +377519,17 @@ func NewProposalProtectedCallsAttachDocumentsRequest(server string, uuid openapi
 	return NewProposalProtectedCallsAttachDocumentsRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
+// NewProposalProtectedCallsAttachDocumentsRequestWithFormdataBody calls the generic ProposalProtectedCallsAttachDocuments builder with application/x-www-form-urlencoded body
+func NewProposalProtectedCallsAttachDocumentsRequestWithFormdataBody(server string, uuid openapi_types.UUID, body ProposalProtectedCallsAttachDocumentsFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewProposalProtectedCallsAttachDocumentsRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewProposalProtectedCallsAttachDocumentsRequestWithBody constructs an http.Request for the ProposalProtectedCallsAttachDocuments method, with any body, and a specified content type
 func NewProposalProtectedCallsAttachDocumentsRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -410144,6 +410265,17 @@ func NewSupportTemplatesCreateAttachmentsRequest(server string, uuid openapi_typ
 	}
 	bodyReader = bytes.NewReader(buf)
 	return NewSupportTemplatesCreateAttachmentsRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewSupportTemplatesCreateAttachmentsRequestWithFormdataBody calls the generic SupportTemplatesCreateAttachments builder with application/x-www-form-urlencoded body
+func NewSupportTemplatesCreateAttachmentsRequestWithFormdataBody(server string, uuid openapi_types.UUID, body SupportTemplatesCreateAttachmentsFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewSupportTemplatesCreateAttachmentsRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
 }
 
 // NewSupportTemplatesCreateAttachmentsRequestWithBody constructs an http.Request for the SupportTemplatesCreateAttachments method, with any body, and a specified content type
@@ -449270,6 +449402,12 @@ type ClientWithResponsesInterface interface {
 	// Attach documents to call.
 	ProposalProtectedCallsAttachDocumentsWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsAttachDocumentsJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsAttachDocumentsResponse, error)
 
+	// ProposalProtectedCallsAttachDocumentsWithFormdataBodyWithResponse performs a POST /api/proposal-protected-calls/{uuid}/attach_documents/ (the `ProposalProtectedCallsAttachDocuments` operationId) request.
+	// Takes a body of the `application/x-www-form-urlencoded` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Attach documents to call.
+	ProposalProtectedCallsAttachDocumentsWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsAttachDocumentsFormdataRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsAttachDocumentsResponse, error)
+
 	// ProposalProtectedCallsCoiConfigurationRetrieveWithResponse performs a GET /api/proposal-protected-calls/{uuid}/coi-configuration/ (the `ProposalProtectedCallsCoiConfigurationRetrieve` operationId) request.
 	//
 	// Get COI configuration for this call.
@@ -453518,6 +453656,12 @@ type ClientWithResponsesInterface interface {
 	//
 	// This view attaches documents to template.
 	SupportTemplatesCreateAttachmentsWithResponse(ctx context.Context, uuid openapi_types.UUID, body SupportTemplatesCreateAttachmentsJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportTemplatesCreateAttachmentsResponse, error)
+
+	// SupportTemplatesCreateAttachmentsWithFormdataBodyWithResponse performs a POST /api/support-templates/{uuid}/create_attachments/ (the `SupportTemplatesCreateAttachments` operationId) request.
+	// Takes a body of the `application/x-www-form-urlencoded` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// This view attaches documents to template.
+	SupportTemplatesCreateAttachmentsWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body SupportTemplatesCreateAttachmentsFormdataRequestBody, reqEditors ...RequestEditorFn) (*SupportTemplatesCreateAttachmentsResponse, error)
 
 	// SupportTemplatesDeleteAttachmentsWithBodyWithResponse performs a POST /api/support-templates/{uuid}/delete_attachments/ (the `SupportTemplatesDeleteAttachments` operationId) request,
 	// with any type of body and a specified content type.
@@ -614710,6 +614854,18 @@ func (c *ClientWithResponses) ProposalProtectedCallsAttachDocumentsWithResponse(
 	return ParseProposalProtectedCallsAttachDocumentsResponse(rsp)
 }
 
+// ProposalProtectedCallsAttachDocumentsWithFormdataBodyWithResponse performs a POST /api/proposal-protected-calls/{uuid}/attach_documents/ (the `ProposalProtectedCallsAttachDocuments` operationId) request.
+// Takes a body of the `application/x-www-form-urlencoded` content type, and returns a wrapper object for the known response body format(s).
+//
+// Attach documents to call.
+func (c *ClientWithResponses) ProposalProtectedCallsAttachDocumentsWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsAttachDocumentsFormdataRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsAttachDocumentsResponse, error) {
+	rsp, err := c.ProposalProtectedCallsAttachDocumentsWithFormdataBody(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsAttachDocumentsResponse(rsp)
+}
+
 // ProposalProtectedCallsCoiConfigurationRetrieveWithResponse performs a GET /api/proposal-protected-calls/{uuid}/coi-configuration/ (the `ProposalProtectedCallsCoiConfigurationRetrieve` operationId) request.
 //
 // Get COI configuration for this call.
@@ -623022,6 +623178,18 @@ func (c *ClientWithResponses) SupportTemplatesCreateAttachmentsWithBodyWithRespo
 // This view attaches documents to template.
 func (c *ClientWithResponses) SupportTemplatesCreateAttachmentsWithResponse(ctx context.Context, uuid openapi_types.UUID, body SupportTemplatesCreateAttachmentsJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportTemplatesCreateAttachmentsResponse, error) {
 	rsp, err := c.SupportTemplatesCreateAttachments(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportTemplatesCreateAttachmentsResponse(rsp)
+}
+
+// SupportTemplatesCreateAttachmentsWithFormdataBodyWithResponse performs a POST /api/support-templates/{uuid}/create_attachments/ (the `SupportTemplatesCreateAttachments` operationId) request.
+// Takes a body of the `application/x-www-form-urlencoded` content type, and returns a wrapper object for the known response body format(s).
+//
+// This view attaches documents to template.
+func (c *ClientWithResponses) SupportTemplatesCreateAttachmentsWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body SupportTemplatesCreateAttachmentsFormdataRequestBody, reqEditors ...RequestEditorFn) (*SupportTemplatesCreateAttachmentsResponse, error) {
+	rsp, err := c.SupportTemplatesCreateAttachmentsWithFormdataBody(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
