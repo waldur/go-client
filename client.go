@@ -4908,6 +4908,24 @@ func (e DefaultPermissionEnum) Valid() bool {
 	}
 }
 
+// Defines values for DeliveryEnum.
+const (
+	Rmq     DeliveryEnum = "rmq"
+	Webhook DeliveryEnum = "webhook"
+)
+
+// Valid indicates whether the value is a known member of the DeliveryEnum enum.
+func (e DeliveryEnum) Valid() bool {
+	switch e {
+	case Rmq:
+		return true
+	case Webhook:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for DependencyLogicOperatorEnum.
 const (
 	And DependencyLogicOperatorEnum = "and"
@@ -5583,6 +5601,7 @@ func (e EventFieldEnum) Valid() bool {
 // Defines values for EventGroupsEnum.
 const (
 	EventGroupsEnumAccessSubnets          EventGroupsEnum = "access_subnets"
+	EventGroupsEnumAdmin                  EventGroupsEnum = "admin"
 	EventGroupsEnumAuth                   EventGroupsEnum = "auth"
 	EventGroupsEnumCall                   EventGroupsEnum = "call"
 	EventGroupsEnumChat                   EventGroupsEnum = "chat"
@@ -5600,6 +5619,7 @@ const (
 	EventGroupsEnumOpenstackSecurityGroup EventGroupsEnum = "openstack_security_group"
 	EventGroupsEnumOpenstackSubnet        EventGroupsEnum = "openstack_subnet"
 	EventGroupsEnumPermissions            EventGroupsEnum = "permissions"
+	EventGroupsEnumPolicies               EventGroupsEnum = "policies"
 	EventGroupsEnumProjects               EventGroupsEnum = "projects"
 	EventGroupsEnumProposal               EventGroupsEnum = "proposal"
 	EventGroupsEnumProviders              EventGroupsEnum = "providers"
@@ -5615,6 +5635,8 @@ const (
 func (e EventGroupsEnum) Valid() bool {
 	switch e {
 	case EventGroupsEnumAccessSubnets:
+		return true
+	case EventGroupsEnumAdmin:
 		return true
 	case EventGroupsEnumAuth:
 		return true
@@ -5650,6 +5672,8 @@ func (e EventGroupsEnum) Valid() bool {
 		return true
 	case EventGroupsEnumPermissions:
 		return true
+	case EventGroupsEnumPolicies:
+		return true
 	case EventGroupsEnumProjects:
 		return true
 	case EventGroupsEnumProposal:
@@ -5678,16 +5702,25 @@ const (
 	EventMetadataResponseEventGroupsAccessSubnetCreationSucceeded                    EventMetadataResponseEventGroups = "access_subnet_creation_succeeded"
 	EventMetadataResponseEventGroupsAccessSubnetDeletionSucceeded                    EventMetadataResponseEventGroups = "access_subnet_deletion_succeeded"
 	EventMetadataResponseEventGroupsAccessSubnetUpdateSucceeded                      EventMetadataResponseEventGroups = "access_subnet_update_succeeded"
+	EventMetadataResponseEventGroupsAdminObjectCreated                               EventMetadataResponseEventGroups = "admin_object_created"
+	EventMetadataResponseEventGroupsAdminObjectDeleted                               EventMetadataResponseEventGroups = "admin_object_deleted"
+	EventMetadataResponseEventGroupsAdminObjectUpdated                               EventMetadataResponseEventGroups = "admin_object_updated"
 	EventMetadataResponseEventGroupsAllowedOfferingsHaveBeenUpdated                  EventMetadataResponseEventGroups = "allowed_offerings_have_been_updated"
 	EventMetadataResponseEventGroupsAttachmentCreated                                EventMetadataResponseEventGroups = "attachment_created"
 	EventMetadataResponseEventGroupsAttachmentDeleted                                EventMetadataResponseEventGroups = "attachment_deleted"
 	EventMetadataResponseEventGroupsAttachmentUpdated                                EventMetadataResponseEventGroups = "attachment_updated"
+	EventMetadataResponseEventGroupsAuthLoggedInToAdminSite                          EventMetadataResponseEventGroups = "auth_logged_in_to_admin_site"
 	EventMetadataResponseEventGroupsAuthLoggedInWithOauth                            EventMetadataResponseEventGroups = "auth_logged_in_with_oauth"
 	EventMetadataResponseEventGroupsAuthLoggedInWithSaml2                            EventMetadataResponseEventGroups = "auth_logged_in_with_saml2"
 	EventMetadataResponseEventGroupsAuthLoggedInWithUsername                         EventMetadataResponseEventGroups = "auth_logged_in_with_username"
+	EventMetadataResponseEventGroupsAuthLoggedInWithValimo                           EventMetadataResponseEventGroups = "auth_logged_in_with_valimo"
 	EventMetadataResponseEventGroupsAuthLoggedOut                                    EventMetadataResponseEventGroups = "auth_logged_out"
 	EventMetadataResponseEventGroupsAuthLoggedOutWithSaml2                           EventMetadataResponseEventGroups = "auth_logged_out_with_saml2"
+	EventMetadataResponseEventGroupsAuthLoginFailedToAdminSite                       EventMetadataResponseEventGroups = "auth_login_failed_to_admin_site"
+	EventMetadataResponseEventGroupsAuthLoginFailedWithOauth                         EventMetadataResponseEventGroups = "auth_login_failed_with_oauth"
+	EventMetadataResponseEventGroupsAuthLoginFailedWithSaml2                         EventMetadataResponseEventGroups = "auth_login_failed_with_saml2"
 	EventMetadataResponseEventGroupsAuthLoginFailedWithUsername                      EventMetadataResponseEventGroups = "auth_login_failed_with_username"
+	EventMetadataResponseEventGroupsAuthLoginFailedWithValimo                        EventMetadataResponseEventGroups = "auth_login_failed_with_valimo"
 	EventMetadataResponseEventGroupsAutomaticCreditAdjustment                        EventMetadataResponseEventGroups = "automatic_credit_adjustment"
 	EventMetadataResponseEventGroupsBlockCreationOfNewResources                      EventMetadataResponseEventGroups = "block_creation_of_new_resources"
 	EventMetadataResponseEventGroupsBlockModificationOfExistingResources             EventMetadataResponseEventGroups = "block_modification_of_existing_resources"
@@ -5710,6 +5743,8 @@ const (
 	EventMetadataResponseEventGroupsDropletResizeScheduled                           EventMetadataResponseEventGroups = "droplet_resize_scheduled"
 	EventMetadataResponseEventGroupsDropletResizeSucceeded                           EventMetadataResponseEventGroups = "droplet_resize_succeeded"
 	EventMetadataResponseEventGroupsEventConsumerRegisteredWithBroadCredential       EventMetadataResponseEventGroups = "event_consumer_registered_with_broad_credential"
+	EventMetadataResponseEventGroupsEventConsumerResyncRequested                     EventMetadataResponseEventGroups = "event_consumer_resync_requested"
+	EventMetadataResponseEventGroupsEventConsumerWebhookUpdated                      EventMetadataResponseEventGroups = "event_consumer_webhook_updated"
 	EventMetadataResponseEventGroupsFreeipaProfileCreated                            EventMetadataResponseEventGroups = "freeipa_profile_created"
 	EventMetadataResponseEventGroupsFreeipaProfileDeleted                            EventMetadataResponseEventGroups = "freeipa_profile_deleted"
 	EventMetadataResponseEventGroupsFreeipaProfileDisabled                           EventMetadataResponseEventGroups = "freeipa_profile_disabled"
@@ -5736,6 +5771,7 @@ const (
 	EventMetadataResponseEventGroupsMarketplaceOfferingComponentDeleted              EventMetadataResponseEventGroups = "marketplace_offering_component_deleted"
 	EventMetadataResponseEventGroupsMarketplaceOfferingComponentUpdated              EventMetadataResponseEventGroups = "marketplace_offering_component_updated"
 	EventMetadataResponseEventGroupsMarketplaceOfferingCreated                       EventMetadataResponseEventGroups = "marketplace_offering_created"
+	EventMetadataResponseEventGroupsMarketplaceOfferingDeleted                       EventMetadataResponseEventGroups = "marketplace_offering_deleted"
 	EventMetadataResponseEventGroupsMarketplaceOfferingMergeCreated                  EventMetadataResponseEventGroups = "marketplace_offering_merge_created"
 	EventMetadataResponseEventGroupsMarketplaceOfferingMergeExecuted                 EventMetadataResponseEventGroups = "marketplace_offering_merge_executed"
 	EventMetadataResponseEventGroupsMarketplaceOfferingMergeFailed                   EventMetadataResponseEventGroups = "marketplace_offering_merge_failed"
@@ -5899,7 +5935,10 @@ const (
 	EventMetadataResponseEventGroupsPaymentAdded                                     EventMetadataResponseEventGroups = "payment_added"
 	EventMetadataResponseEventGroupsPaymentCreated                                   EventMetadataResponseEventGroups = "payment_created"
 	EventMetadataResponseEventGroupsPaymentRemoved                                   EventMetadataResponseEventGroups = "payment_removed"
+	EventMetadataResponseEventGroupsPolicyCreated                                    EventMetadataResponseEventGroups = "policy_created"
+	EventMetadataResponseEventGroupsPolicyDeleted                                    EventMetadataResponseEventGroups = "policy_deleted"
 	EventMetadataResponseEventGroupsPolicyNotification                               EventMetadataResponseEventGroups = "policy_notification"
+	EventMetadataResponseEventGroupsPolicyUpdated                                    EventMetadataResponseEventGroups = "policy_updated"
 	EventMetadataResponseEventGroupsProjectCreationSucceeded                         EventMetadataResponseEventGroups = "project_creation_succeeded"
 	EventMetadataResponseEventGroupsProjectDeletionSucceeded                         EventMetadataResponseEventGroups = "project_deletion_succeeded"
 	EventMetadataResponseEventGroupsProjectDeletionTriggered                         EventMetadataResponseEventGroups = "project_deletion_triggered"
@@ -6044,6 +6083,7 @@ const (
 	EventMetadataResponseEventGroupsTermsOfServiceConsentRevoked                     EventMetadataResponseEventGroups = "terms_of_service_consent_revoked"
 	EventMetadataResponseEventGroupsTokenCreated                                     EventMetadataResponseEventGroups = "token_created"
 	EventMetadataResponseEventGroupsTokenLifetimeUpdated                             EventMetadataResponseEventGroups = "token_lifetime_updated"
+	EventMetadataResponseEventGroupsTokenViewed                                      EventMetadataResponseEventGroups = "token_viewed"
 	EventMetadataResponseEventGroupsUpdateOfAffiliateByStaff                         EventMetadataResponseEventGroups = "update_of_affiliate_by_staff"
 	EventMetadataResponseEventGroupsUpdateOfCreditByStaff                            EventMetadataResponseEventGroups = "update_of_credit_by_staff"
 	EventMetadataResponseEventGroupsUpdateOfProjectCreditByStaff                     EventMetadataResponseEventGroups = "update_of_project_credit_by_staff"
@@ -6074,6 +6114,12 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 		return true
 	case EventMetadataResponseEventGroupsAccessSubnetUpdateSucceeded:
 		return true
+	case EventMetadataResponseEventGroupsAdminObjectCreated:
+		return true
+	case EventMetadataResponseEventGroupsAdminObjectDeleted:
+		return true
+	case EventMetadataResponseEventGroupsAdminObjectUpdated:
+		return true
 	case EventMetadataResponseEventGroupsAllowedOfferingsHaveBeenUpdated:
 		return true
 	case EventMetadataResponseEventGroupsAttachmentCreated:
@@ -6082,17 +6128,29 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 		return true
 	case EventMetadataResponseEventGroupsAttachmentUpdated:
 		return true
+	case EventMetadataResponseEventGroupsAuthLoggedInToAdminSite:
+		return true
 	case EventMetadataResponseEventGroupsAuthLoggedInWithOauth:
 		return true
 	case EventMetadataResponseEventGroupsAuthLoggedInWithSaml2:
 		return true
 	case EventMetadataResponseEventGroupsAuthLoggedInWithUsername:
 		return true
+	case EventMetadataResponseEventGroupsAuthLoggedInWithValimo:
+		return true
 	case EventMetadataResponseEventGroupsAuthLoggedOut:
 		return true
 	case EventMetadataResponseEventGroupsAuthLoggedOutWithSaml2:
 		return true
+	case EventMetadataResponseEventGroupsAuthLoginFailedToAdminSite:
+		return true
+	case EventMetadataResponseEventGroupsAuthLoginFailedWithOauth:
+		return true
+	case EventMetadataResponseEventGroupsAuthLoginFailedWithSaml2:
+		return true
 	case EventMetadataResponseEventGroupsAuthLoginFailedWithUsername:
+		return true
+	case EventMetadataResponseEventGroupsAuthLoginFailedWithValimo:
 		return true
 	case EventMetadataResponseEventGroupsAutomaticCreditAdjustment:
 		return true
@@ -6137,6 +6195,10 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 	case EventMetadataResponseEventGroupsDropletResizeSucceeded:
 		return true
 	case EventMetadataResponseEventGroupsEventConsumerRegisteredWithBroadCredential:
+		return true
+	case EventMetadataResponseEventGroupsEventConsumerResyncRequested:
+		return true
+	case EventMetadataResponseEventGroupsEventConsumerWebhookUpdated:
 		return true
 	case EventMetadataResponseEventGroupsFreeipaProfileCreated:
 		return true
@@ -6189,6 +6251,8 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 	case EventMetadataResponseEventGroupsMarketplaceOfferingComponentUpdated:
 		return true
 	case EventMetadataResponseEventGroupsMarketplaceOfferingCreated:
+		return true
+	case EventMetadataResponseEventGroupsMarketplaceOfferingDeleted:
 		return true
 	case EventMetadataResponseEventGroupsMarketplaceOfferingMergeCreated:
 		return true
@@ -6516,7 +6580,13 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 		return true
 	case EventMetadataResponseEventGroupsPaymentRemoved:
 		return true
+	case EventMetadataResponseEventGroupsPolicyCreated:
+		return true
+	case EventMetadataResponseEventGroupsPolicyDeleted:
+		return true
 	case EventMetadataResponseEventGroupsPolicyNotification:
+		return true
+	case EventMetadataResponseEventGroupsPolicyUpdated:
 		return true
 	case EventMetadataResponseEventGroupsProjectCreationSucceeded:
 		return true
@@ -6806,6 +6876,8 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 		return true
 	case EventMetadataResponseEventGroupsTokenLifetimeUpdated:
 		return true
+	case EventMetadataResponseEventGroupsTokenViewed:
+		return true
 	case EventMetadataResponseEventGroupsUpdateOfAffiliateByStaff:
 		return true
 	case EventMetadataResponseEventGroupsUpdateOfCreditByStaff:
@@ -6854,16 +6926,25 @@ const (
 	EventTypesEnumAccessSubnetCreationSucceeded                    EventTypesEnum = "access_subnet_creation_succeeded"
 	EventTypesEnumAccessSubnetDeletionSucceeded                    EventTypesEnum = "access_subnet_deletion_succeeded"
 	EventTypesEnumAccessSubnetUpdateSucceeded                      EventTypesEnum = "access_subnet_update_succeeded"
+	EventTypesEnumAdminObjectCreated                               EventTypesEnum = "admin_object_created"
+	EventTypesEnumAdminObjectDeleted                               EventTypesEnum = "admin_object_deleted"
+	EventTypesEnumAdminObjectUpdated                               EventTypesEnum = "admin_object_updated"
 	EventTypesEnumAllowedOfferingsHaveBeenUpdated                  EventTypesEnum = "allowed_offerings_have_been_updated"
 	EventTypesEnumAttachmentCreated                                EventTypesEnum = "attachment_created"
 	EventTypesEnumAttachmentDeleted                                EventTypesEnum = "attachment_deleted"
 	EventTypesEnumAttachmentUpdated                                EventTypesEnum = "attachment_updated"
+	EventTypesEnumAuthLoggedInToAdminSite                          EventTypesEnum = "auth_logged_in_to_admin_site"
 	EventTypesEnumAuthLoggedInWithOauth                            EventTypesEnum = "auth_logged_in_with_oauth"
 	EventTypesEnumAuthLoggedInWithSaml2                            EventTypesEnum = "auth_logged_in_with_saml2"
 	EventTypesEnumAuthLoggedInWithUsername                         EventTypesEnum = "auth_logged_in_with_username"
+	EventTypesEnumAuthLoggedInWithValimo                           EventTypesEnum = "auth_logged_in_with_valimo"
 	EventTypesEnumAuthLoggedOut                                    EventTypesEnum = "auth_logged_out"
 	EventTypesEnumAuthLoggedOutWithSaml2                           EventTypesEnum = "auth_logged_out_with_saml2"
+	EventTypesEnumAuthLoginFailedToAdminSite                       EventTypesEnum = "auth_login_failed_to_admin_site"
+	EventTypesEnumAuthLoginFailedWithOauth                         EventTypesEnum = "auth_login_failed_with_oauth"
+	EventTypesEnumAuthLoginFailedWithSaml2                         EventTypesEnum = "auth_login_failed_with_saml2"
 	EventTypesEnumAuthLoginFailedWithUsername                      EventTypesEnum = "auth_login_failed_with_username"
+	EventTypesEnumAuthLoginFailedWithValimo                        EventTypesEnum = "auth_login_failed_with_valimo"
 	EventTypesEnumAutomaticCreditAdjustment                        EventTypesEnum = "automatic_credit_adjustment"
 	EventTypesEnumBlockCreationOfNewResources                      EventTypesEnum = "block_creation_of_new_resources"
 	EventTypesEnumBlockModificationOfExistingResources             EventTypesEnum = "block_modification_of_existing_resources"
@@ -6886,6 +6967,8 @@ const (
 	EventTypesEnumDropletResizeScheduled                           EventTypesEnum = "droplet_resize_scheduled"
 	EventTypesEnumDropletResizeSucceeded                           EventTypesEnum = "droplet_resize_succeeded"
 	EventTypesEnumEventConsumerRegisteredWithBroadCredential       EventTypesEnum = "event_consumer_registered_with_broad_credential"
+	EventTypesEnumEventConsumerResyncRequested                     EventTypesEnum = "event_consumer_resync_requested"
+	EventTypesEnumEventConsumerWebhookUpdated                      EventTypesEnum = "event_consumer_webhook_updated"
 	EventTypesEnumFreeipaProfileCreated                            EventTypesEnum = "freeipa_profile_created"
 	EventTypesEnumFreeipaProfileDeleted                            EventTypesEnum = "freeipa_profile_deleted"
 	EventTypesEnumFreeipaProfileDisabled                           EventTypesEnum = "freeipa_profile_disabled"
@@ -6912,6 +6995,7 @@ const (
 	EventTypesEnumMarketplaceOfferingComponentDeleted              EventTypesEnum = "marketplace_offering_component_deleted"
 	EventTypesEnumMarketplaceOfferingComponentUpdated              EventTypesEnum = "marketplace_offering_component_updated"
 	EventTypesEnumMarketplaceOfferingCreated                       EventTypesEnum = "marketplace_offering_created"
+	EventTypesEnumMarketplaceOfferingDeleted                       EventTypesEnum = "marketplace_offering_deleted"
 	EventTypesEnumMarketplaceOfferingMergeCreated                  EventTypesEnum = "marketplace_offering_merge_created"
 	EventTypesEnumMarketplaceOfferingMergeExecuted                 EventTypesEnum = "marketplace_offering_merge_executed"
 	EventTypesEnumMarketplaceOfferingMergeFailed                   EventTypesEnum = "marketplace_offering_merge_failed"
@@ -7075,7 +7159,10 @@ const (
 	EventTypesEnumPaymentAdded                                     EventTypesEnum = "payment_added"
 	EventTypesEnumPaymentCreated                                   EventTypesEnum = "payment_created"
 	EventTypesEnumPaymentRemoved                                   EventTypesEnum = "payment_removed"
+	EventTypesEnumPolicyCreated                                    EventTypesEnum = "policy_created"
+	EventTypesEnumPolicyDeleted                                    EventTypesEnum = "policy_deleted"
 	EventTypesEnumPolicyNotification                               EventTypesEnum = "policy_notification"
+	EventTypesEnumPolicyUpdated                                    EventTypesEnum = "policy_updated"
 	EventTypesEnumProjectCreationSucceeded                         EventTypesEnum = "project_creation_succeeded"
 	EventTypesEnumProjectDeletionSucceeded                         EventTypesEnum = "project_deletion_succeeded"
 	EventTypesEnumProjectDeletionTriggered                         EventTypesEnum = "project_deletion_triggered"
@@ -7220,6 +7307,7 @@ const (
 	EventTypesEnumTermsOfServiceConsentRevoked                     EventTypesEnum = "terms_of_service_consent_revoked"
 	EventTypesEnumTokenCreated                                     EventTypesEnum = "token_created"
 	EventTypesEnumTokenLifetimeUpdated                             EventTypesEnum = "token_lifetime_updated"
+	EventTypesEnumTokenViewed                                      EventTypesEnum = "token_viewed"
 	EventTypesEnumUpdateOfAffiliateByStaff                         EventTypesEnum = "update_of_affiliate_by_staff"
 	EventTypesEnumUpdateOfCreditByStaff                            EventTypesEnum = "update_of_credit_by_staff"
 	EventTypesEnumUpdateOfProjectCreditByStaff                     EventTypesEnum = "update_of_project_credit_by_staff"
@@ -7250,6 +7338,12 @@ func (e EventTypesEnum) Valid() bool {
 		return true
 	case EventTypesEnumAccessSubnetUpdateSucceeded:
 		return true
+	case EventTypesEnumAdminObjectCreated:
+		return true
+	case EventTypesEnumAdminObjectDeleted:
+		return true
+	case EventTypesEnumAdminObjectUpdated:
+		return true
 	case EventTypesEnumAllowedOfferingsHaveBeenUpdated:
 		return true
 	case EventTypesEnumAttachmentCreated:
@@ -7258,17 +7352,29 @@ func (e EventTypesEnum) Valid() bool {
 		return true
 	case EventTypesEnumAttachmentUpdated:
 		return true
+	case EventTypesEnumAuthLoggedInToAdminSite:
+		return true
 	case EventTypesEnumAuthLoggedInWithOauth:
 		return true
 	case EventTypesEnumAuthLoggedInWithSaml2:
 		return true
 	case EventTypesEnumAuthLoggedInWithUsername:
 		return true
+	case EventTypesEnumAuthLoggedInWithValimo:
+		return true
 	case EventTypesEnumAuthLoggedOut:
 		return true
 	case EventTypesEnumAuthLoggedOutWithSaml2:
 		return true
+	case EventTypesEnumAuthLoginFailedToAdminSite:
+		return true
+	case EventTypesEnumAuthLoginFailedWithOauth:
+		return true
+	case EventTypesEnumAuthLoginFailedWithSaml2:
+		return true
 	case EventTypesEnumAuthLoginFailedWithUsername:
+		return true
+	case EventTypesEnumAuthLoginFailedWithValimo:
 		return true
 	case EventTypesEnumAutomaticCreditAdjustment:
 		return true
@@ -7313,6 +7419,10 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumDropletResizeSucceeded:
 		return true
 	case EventTypesEnumEventConsumerRegisteredWithBroadCredential:
+		return true
+	case EventTypesEnumEventConsumerResyncRequested:
+		return true
+	case EventTypesEnumEventConsumerWebhookUpdated:
 		return true
 	case EventTypesEnumFreeipaProfileCreated:
 		return true
@@ -7365,6 +7475,8 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumMarketplaceOfferingComponentUpdated:
 		return true
 	case EventTypesEnumMarketplaceOfferingCreated:
+		return true
+	case EventTypesEnumMarketplaceOfferingDeleted:
 		return true
 	case EventTypesEnumMarketplaceOfferingMergeCreated:
 		return true
@@ -7692,7 +7804,13 @@ func (e EventTypesEnum) Valid() bool {
 		return true
 	case EventTypesEnumPaymentRemoved:
 		return true
+	case EventTypesEnumPolicyCreated:
+		return true
+	case EventTypesEnumPolicyDeleted:
+		return true
 	case EventTypesEnumPolicyNotification:
+		return true
+	case EventTypesEnumPolicyUpdated:
 		return true
 	case EventTypesEnumProjectCreationSucceeded:
 		return true
@@ -7981,6 +8099,8 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumTokenCreated:
 		return true
 	case EventTypesEnumTokenLifetimeUpdated:
+		return true
+	case EventTypesEnumTokenViewed:
 		return true
 	case EventTypesEnumUpdateOfAffiliateByStaff:
 		return true
@@ -34543,6 +34663,9 @@ type DeleteAttachmentsRequest struct {
 	AttachmentIds []openapi_types.UUID `json:"attachment_ids"`
 }
 
+// DeliveryEnum defines model for DeliveryEnum.
+type DeliveryEnum string
+
 // DemoPreset defines model for DemoPreset.
 type DemoPreset struct {
 	Description  *string         `json:"description,omitempty"`
@@ -35449,14 +35572,19 @@ type EventConsumer struct {
 	AuthTokenName *string `json:"auth_token_name,omitempty"`
 
 	// AuthTokenPrefix Prefix of the Personal Access Token used, when auth_kind is pat.
-	AuthTokenPrefix       *string                      `json:"auth_token_prefix,omitempty"`
-	AuthorizedVia         *EventConsumer_AuthorizedVia `json:"authorized_via,omitempty"`
-	Created               *time.Time                   `json:"created,omitempty"`
-	DeliveryBlockedReason *string                      `json:"delivery_blocked_reason,omitempty"`
-	IsGlobal              *bool                        `json:"is_global,omitempty"`
-	Modified              *time.Time                   `json:"modified,omitempty"`
-	ObjectTypes           *[]string                    `json:"object_types,omitempty"`
-	QueueCreated          *bool                        `json:"queue_created,omitempty"`
+	AuthTokenPrefix       *string                                         `json:"auth_token_prefix,omitempty"`
+	AuthorizedVia         *EventConsumer_AuthorizedVia                    `json:"authorized_via,omitempty"`
+	Created               *time.Time                                      `json:"created,omitempty"`
+	Delivery              *DeliveryEnum                                   `json:"delivery,omitempty"`
+	DeliveryBlockedReason *string                                         `json:"delivery_blocked_reason,omitempty"`
+	IsGlobal              *bool                                           `json:"is_global,omitempty"`
+	LastDeliveredAt       *time.Time                                      `json:"last_delivered_at,omitempty"`
+	LastError             *string                                         `json:"last_error,omitempty"`
+	LastErrorAt           *time.Time                                      `json:"last_error_at,omitempty"`
+	Modified              *time.Time                                      `json:"modified,omitempty"`
+	ObjectTypes           *[]string                                       `json:"object_types,omitempty"`
+	PayloadFilters        *map[string][]EventConsumer_PayloadFilters_Item `json:"payload_filters,omitempty"`
+	QueueCreated          *bool                                           `json:"queue_created,omitempty"`
 
 	// RmqUsername RabbitMQ username (UUID hex) for the consumer queue.
 	RmqUsername  *string                     `json:"rmq_username,omitempty"`
@@ -35470,6 +35598,9 @@ type EventConsumer struct {
 	UserUsername *string             `json:"user_username,omitempty"`
 	UserUuid     *openapi_types.UUID `json:"user_uuid,omitempty"`
 	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+
+	// WebhookDestination Scheme and host of the webhook URL. The full URL is a credential and is never returned.
+	WebhookDestination *string `json:"webhook_destination,omitempty"`
 }
 
 // EventConsumer_AuthKind defines model for EventConsumer.AuthKind.
@@ -35479,6 +35610,20 @@ type EventConsumer_AuthKind struct {
 
 // EventConsumer_AuthorizedVia defines model for EventConsumer.AuthorizedVia.
 type EventConsumer_AuthorizedVia struct {
+	union json.RawMessage
+}
+
+// EventConsumerPayloadFilters0 defines model for EventConsumer.PayloadFilters.0.
+type EventConsumerPayloadFilters0 = string
+
+// EventConsumerPayloadFilters1 defines model for EventConsumer.PayloadFilters.1.
+type EventConsumerPayloadFilters1 = float32
+
+// EventConsumerPayloadFilters2 defines model for EventConsumer.PayloadFilters.2.
+type EventConsumerPayloadFilters2 = bool
+
+// EventConsumer_PayloadFilters_Item defines model for EventConsumer.payload_filters.Item.
+type EventConsumer_PayloadFilters_Item struct {
 	union json.RawMessage
 }
 
@@ -35506,6 +35651,12 @@ type EventConsumerRegistrationResponse struct {
 	Vhost string `json:"vhost"`
 }
 
+// EventConsumerResyncResponse defines model for EventConsumerResyncResponse.
+type EventConsumerResyncResponse struct {
+	// ObjectTypes Object types whose current state is being replayed.
+	ObjectTypes []string `json:"object_types"`
+}
+
 // EventConsumerScopeInputRequest defines model for EventConsumerScopeInputRequest.
 type EventConsumerScopeInputRequest struct {
 	Type string             `json:"type"`
@@ -35516,6 +35667,61 @@ type EventConsumerScopeInputRequest struct {
 type EventConsumerScopeOutput struct {
 	Type *string `json:"type,omitempty"`
 	Uuid *string `json:"uuid,omitempty"`
+}
+
+// EventConsumerWebhookRequest defines model for EventConsumerWebhookRequest.
+type EventConsumerWebhookRequest struct {
+	// ObjectTypes Observable object types to receive. An explicit empty list means all types; omitting the field leaves an existing consumer's filter unchanged.
+	ObjectTypes *[]ObservableObjectTypeEnum `json:"object_types,omitempty"`
+
+	// PayloadFilters Allow-list over message fields, e.g. {"role_name": ["CUSTOMER.OWNER"], "scope_type": ["customer"]}. A message is delivered only if every listed field holds one of its values.
+	PayloadFilters *map[string][]EventConsumerWebhookRequest_PayloadFilters_Item `json:"payload_filters,omitempty"`
+
+	// Scopes Entity bindings this consumer receives events for — e.g. several projects, a customer, an offering, or your own user (type 'user', your own UUID) for identity events. You may only bind to an entity you hold a role on, or to yourself. AN EMPTY LIST MEANS GLOBAL (every event, including all-user PII) and is staff/support only.
+	Scopes *[]EventConsumerScopeInputRequest `json:"scopes,omitempty"`
+
+	// WebhookUrl HTTP(S) URL the messages are POSTed to as JSON. May carry its credential in the query string; it is stored as a secret and never returned.
+	WebhookUrl *string `json:"webhook_url,omitempty"`
+}
+
+// EventConsumerWebhookRequestPayloadFilters0 defines model for EventConsumerWebhookRequest.PayloadFilters.0.
+type EventConsumerWebhookRequestPayloadFilters0 = string
+
+// EventConsumerWebhookRequestPayloadFilters1 defines model for EventConsumerWebhookRequest.PayloadFilters.1.
+type EventConsumerWebhookRequestPayloadFilters1 = float32
+
+// EventConsumerWebhookRequestPayloadFilters2 defines model for EventConsumerWebhookRequest.PayloadFilters.2.
+type EventConsumerWebhookRequestPayloadFilters2 = bool
+
+// EventConsumerWebhookRequest_PayloadFilters_Item defines model for EventConsumerWebhookRequest.payload_filters.Item.
+type EventConsumerWebhookRequest_PayloadFilters_Item struct {
+	union json.RawMessage
+}
+
+// EventConsumerWebhookUpdateRequest defines model for EventConsumerWebhookUpdateRequest.
+type EventConsumerWebhookUpdateRequest struct {
+	// ObjectTypes Observable object types to receive; an empty list means all.
+	ObjectTypes *[]ObservableObjectTypeEnum `json:"object_types,omitempty"`
+
+	// PayloadFilters Allow-list over message fields, e.g. {"role_name": ["CUSTOMER.OWNER"], "scope_type": ["customer"]}. A message is delivered only if every listed field holds one of its values.
+	PayloadFilters *map[string][]EventConsumerWebhookUpdateRequest_PayloadFilters_Item `json:"payload_filters,omitempty"`
+
+	// WebhookUrl HTTP(S) URL the messages are POSTed to as JSON. May carry its credential in the query string; it is stored as a secret and never returned.
+	WebhookUrl *string `json:"webhook_url,omitempty"`
+}
+
+// EventConsumerWebhookUpdateRequestPayloadFilters0 defines model for EventConsumerWebhookUpdateRequest.PayloadFilters.0.
+type EventConsumerWebhookUpdateRequestPayloadFilters0 = string
+
+// EventConsumerWebhookUpdateRequestPayloadFilters1 defines model for EventConsumerWebhookUpdateRequest.PayloadFilters.1.
+type EventConsumerWebhookUpdateRequestPayloadFilters1 = float32
+
+// EventConsumerWebhookUpdateRequestPayloadFilters2 defines model for EventConsumerWebhookUpdateRequest.PayloadFilters.2.
+type EventConsumerWebhookUpdateRequestPayloadFilters2 = bool
+
+// EventConsumerWebhookUpdateRequest_PayloadFilters_Item defines model for EventConsumerWebhookUpdateRequest.payload_filters.Item.
+type EventConsumerWebhookUpdateRequest_PayloadFilters_Item struct {
+	union json.RawMessage
 }
 
 // EventCount defines model for EventCount.
@@ -65305,6 +65511,8 @@ type EmailLogsCountParams struct {
 
 // EventConsumersListParams defines parameters for EventConsumersList.
 type EventConsumersListParams struct {
+	Delivery *DeliveryEnum `form:"delivery,omitempty" json:"delivery,omitempty"`
+
 	// IsGlobal Consumer is bound to no scope and therefore receives every event
 	IsGlobal *bool `form:"is_global,omitempty" json:"is_global,omitempty"`
 
@@ -65325,6 +65533,8 @@ type EventConsumersListParams struct {
 
 // EventConsumersCountParams defines parameters for EventConsumersCount.
 type EventConsumersCountParams struct {
+	Delivery *DeliveryEnum `form:"delivery,omitempty" json:"delivery,omitempty"`
+
 	// IsGlobal Consumer is bound to no scope and therefore receives every event
 	IsGlobal *bool `form:"is_global,omitempty" json:"is_global,omitempty"`
 
@@ -88835,6 +89045,12 @@ type DigitaloceanDropletsSetErredJSONRequestBody = SetErredRequest
 // EventConsumersRegisterJSONRequestBody defines body for EventConsumersRegister for application/json ContentType.
 type EventConsumersRegisterJSONRequestBody = EventConsumerRegistrationRequest
 
+// EventConsumersRegisterWebhookJSONRequestBody defines body for EventConsumersRegisterWebhook for application/json ContentType.
+type EventConsumersRegisterWebhookJSONRequestBody = EventConsumerWebhookRequest
+
+// EventConsumersUpdateWebhookJSONRequestBody defines body for EventConsumersUpdateWebhook for application/json ContentType.
+type EventConsumersUpdateWebhookJSONRequestBody = EventConsumerWebhookUpdateRequest
+
 // EventSubscriptionsCreateJSONRequestBody defines body for EventSubscriptionsCreate for application/json ContentType.
 //
 // Deprecated: this type has been marked as deprecated upstream, but no `x-deprecated-reason` was set
@@ -98083,6 +98299,270 @@ func (t EventConsumer_AuthorizedVia) MarshalJSON() ([]byte, error) {
 }
 
 func (t *EventConsumer_AuthorizedVia) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsEventConsumerPayloadFilters0 returns the union data inside the EventConsumer_PayloadFilters_Item as a EventConsumerPayloadFilters0
+func (t EventConsumer_PayloadFilters_Item) AsEventConsumerPayloadFilters0() (EventConsumerPayloadFilters0, error) {
+	var body EventConsumerPayloadFilters0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEventConsumerPayloadFilters0 overwrites any union data inside the EventConsumer_PayloadFilters_Item as the provided EventConsumerPayloadFilters0
+func (t *EventConsumer_PayloadFilters_Item) FromEventConsumerPayloadFilters0(v EventConsumerPayloadFilters0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeEventConsumerPayloadFilters0 performs a merge with any union data inside the EventConsumer_PayloadFilters_Item, using the provided EventConsumerPayloadFilters0
+func (t *EventConsumer_PayloadFilters_Item) MergeEventConsumerPayloadFilters0(v EventConsumerPayloadFilters0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsEventConsumerPayloadFilters1 returns the union data inside the EventConsumer_PayloadFilters_Item as a EventConsumerPayloadFilters1
+func (t EventConsumer_PayloadFilters_Item) AsEventConsumerPayloadFilters1() (EventConsumerPayloadFilters1, error) {
+	var body EventConsumerPayloadFilters1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEventConsumerPayloadFilters1 overwrites any union data inside the EventConsumer_PayloadFilters_Item as the provided EventConsumerPayloadFilters1
+func (t *EventConsumer_PayloadFilters_Item) FromEventConsumerPayloadFilters1(v EventConsumerPayloadFilters1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeEventConsumerPayloadFilters1 performs a merge with any union data inside the EventConsumer_PayloadFilters_Item, using the provided EventConsumerPayloadFilters1
+func (t *EventConsumer_PayloadFilters_Item) MergeEventConsumerPayloadFilters1(v EventConsumerPayloadFilters1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsEventConsumerPayloadFilters2 returns the union data inside the EventConsumer_PayloadFilters_Item as a EventConsumerPayloadFilters2
+func (t EventConsumer_PayloadFilters_Item) AsEventConsumerPayloadFilters2() (EventConsumerPayloadFilters2, error) {
+	var body EventConsumerPayloadFilters2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEventConsumerPayloadFilters2 overwrites any union data inside the EventConsumer_PayloadFilters_Item as the provided EventConsumerPayloadFilters2
+func (t *EventConsumer_PayloadFilters_Item) FromEventConsumerPayloadFilters2(v EventConsumerPayloadFilters2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeEventConsumerPayloadFilters2 performs a merge with any union data inside the EventConsumer_PayloadFilters_Item, using the provided EventConsumerPayloadFilters2
+func (t *EventConsumer_PayloadFilters_Item) MergeEventConsumerPayloadFilters2(v EventConsumerPayloadFilters2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t EventConsumer_PayloadFilters_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *EventConsumer_PayloadFilters_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsEventConsumerWebhookRequestPayloadFilters0 returns the union data inside the EventConsumerWebhookRequest_PayloadFilters_Item as a EventConsumerWebhookRequestPayloadFilters0
+func (t EventConsumerWebhookRequest_PayloadFilters_Item) AsEventConsumerWebhookRequestPayloadFilters0() (EventConsumerWebhookRequestPayloadFilters0, error) {
+	var body EventConsumerWebhookRequestPayloadFilters0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEventConsumerWebhookRequestPayloadFilters0 overwrites any union data inside the EventConsumerWebhookRequest_PayloadFilters_Item as the provided EventConsumerWebhookRequestPayloadFilters0
+func (t *EventConsumerWebhookRequest_PayloadFilters_Item) FromEventConsumerWebhookRequestPayloadFilters0(v EventConsumerWebhookRequestPayloadFilters0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeEventConsumerWebhookRequestPayloadFilters0 performs a merge with any union data inside the EventConsumerWebhookRequest_PayloadFilters_Item, using the provided EventConsumerWebhookRequestPayloadFilters0
+func (t *EventConsumerWebhookRequest_PayloadFilters_Item) MergeEventConsumerWebhookRequestPayloadFilters0(v EventConsumerWebhookRequestPayloadFilters0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsEventConsumerWebhookRequestPayloadFilters1 returns the union data inside the EventConsumerWebhookRequest_PayloadFilters_Item as a EventConsumerWebhookRequestPayloadFilters1
+func (t EventConsumerWebhookRequest_PayloadFilters_Item) AsEventConsumerWebhookRequestPayloadFilters1() (EventConsumerWebhookRequestPayloadFilters1, error) {
+	var body EventConsumerWebhookRequestPayloadFilters1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEventConsumerWebhookRequestPayloadFilters1 overwrites any union data inside the EventConsumerWebhookRequest_PayloadFilters_Item as the provided EventConsumerWebhookRequestPayloadFilters1
+func (t *EventConsumerWebhookRequest_PayloadFilters_Item) FromEventConsumerWebhookRequestPayloadFilters1(v EventConsumerWebhookRequestPayloadFilters1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeEventConsumerWebhookRequestPayloadFilters1 performs a merge with any union data inside the EventConsumerWebhookRequest_PayloadFilters_Item, using the provided EventConsumerWebhookRequestPayloadFilters1
+func (t *EventConsumerWebhookRequest_PayloadFilters_Item) MergeEventConsumerWebhookRequestPayloadFilters1(v EventConsumerWebhookRequestPayloadFilters1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsEventConsumerWebhookRequestPayloadFilters2 returns the union data inside the EventConsumerWebhookRequest_PayloadFilters_Item as a EventConsumerWebhookRequestPayloadFilters2
+func (t EventConsumerWebhookRequest_PayloadFilters_Item) AsEventConsumerWebhookRequestPayloadFilters2() (EventConsumerWebhookRequestPayloadFilters2, error) {
+	var body EventConsumerWebhookRequestPayloadFilters2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEventConsumerWebhookRequestPayloadFilters2 overwrites any union data inside the EventConsumerWebhookRequest_PayloadFilters_Item as the provided EventConsumerWebhookRequestPayloadFilters2
+func (t *EventConsumerWebhookRequest_PayloadFilters_Item) FromEventConsumerWebhookRequestPayloadFilters2(v EventConsumerWebhookRequestPayloadFilters2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeEventConsumerWebhookRequestPayloadFilters2 performs a merge with any union data inside the EventConsumerWebhookRequest_PayloadFilters_Item, using the provided EventConsumerWebhookRequestPayloadFilters2
+func (t *EventConsumerWebhookRequest_PayloadFilters_Item) MergeEventConsumerWebhookRequestPayloadFilters2(v EventConsumerWebhookRequestPayloadFilters2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t EventConsumerWebhookRequest_PayloadFilters_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *EventConsumerWebhookRequest_PayloadFilters_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsEventConsumerWebhookUpdateRequestPayloadFilters0 returns the union data inside the EventConsumerWebhookUpdateRequest_PayloadFilters_Item as a EventConsumerWebhookUpdateRequestPayloadFilters0
+func (t EventConsumerWebhookUpdateRequest_PayloadFilters_Item) AsEventConsumerWebhookUpdateRequestPayloadFilters0() (EventConsumerWebhookUpdateRequestPayloadFilters0, error) {
+	var body EventConsumerWebhookUpdateRequestPayloadFilters0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEventConsumerWebhookUpdateRequestPayloadFilters0 overwrites any union data inside the EventConsumerWebhookUpdateRequest_PayloadFilters_Item as the provided EventConsumerWebhookUpdateRequestPayloadFilters0
+func (t *EventConsumerWebhookUpdateRequest_PayloadFilters_Item) FromEventConsumerWebhookUpdateRequestPayloadFilters0(v EventConsumerWebhookUpdateRequestPayloadFilters0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeEventConsumerWebhookUpdateRequestPayloadFilters0 performs a merge with any union data inside the EventConsumerWebhookUpdateRequest_PayloadFilters_Item, using the provided EventConsumerWebhookUpdateRequestPayloadFilters0
+func (t *EventConsumerWebhookUpdateRequest_PayloadFilters_Item) MergeEventConsumerWebhookUpdateRequestPayloadFilters0(v EventConsumerWebhookUpdateRequestPayloadFilters0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsEventConsumerWebhookUpdateRequestPayloadFilters1 returns the union data inside the EventConsumerWebhookUpdateRequest_PayloadFilters_Item as a EventConsumerWebhookUpdateRequestPayloadFilters1
+func (t EventConsumerWebhookUpdateRequest_PayloadFilters_Item) AsEventConsumerWebhookUpdateRequestPayloadFilters1() (EventConsumerWebhookUpdateRequestPayloadFilters1, error) {
+	var body EventConsumerWebhookUpdateRequestPayloadFilters1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEventConsumerWebhookUpdateRequestPayloadFilters1 overwrites any union data inside the EventConsumerWebhookUpdateRequest_PayloadFilters_Item as the provided EventConsumerWebhookUpdateRequestPayloadFilters1
+func (t *EventConsumerWebhookUpdateRequest_PayloadFilters_Item) FromEventConsumerWebhookUpdateRequestPayloadFilters1(v EventConsumerWebhookUpdateRequestPayloadFilters1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeEventConsumerWebhookUpdateRequestPayloadFilters1 performs a merge with any union data inside the EventConsumerWebhookUpdateRequest_PayloadFilters_Item, using the provided EventConsumerWebhookUpdateRequestPayloadFilters1
+func (t *EventConsumerWebhookUpdateRequest_PayloadFilters_Item) MergeEventConsumerWebhookUpdateRequestPayloadFilters1(v EventConsumerWebhookUpdateRequestPayloadFilters1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsEventConsumerWebhookUpdateRequestPayloadFilters2 returns the union data inside the EventConsumerWebhookUpdateRequest_PayloadFilters_Item as a EventConsumerWebhookUpdateRequestPayloadFilters2
+func (t EventConsumerWebhookUpdateRequest_PayloadFilters_Item) AsEventConsumerWebhookUpdateRequestPayloadFilters2() (EventConsumerWebhookUpdateRequestPayloadFilters2, error) {
+	var body EventConsumerWebhookUpdateRequestPayloadFilters2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEventConsumerWebhookUpdateRequestPayloadFilters2 overwrites any union data inside the EventConsumerWebhookUpdateRequest_PayloadFilters_Item as the provided EventConsumerWebhookUpdateRequestPayloadFilters2
+func (t *EventConsumerWebhookUpdateRequest_PayloadFilters_Item) FromEventConsumerWebhookUpdateRequestPayloadFilters2(v EventConsumerWebhookUpdateRequestPayloadFilters2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeEventConsumerWebhookUpdateRequestPayloadFilters2 performs a merge with any union data inside the EventConsumerWebhookUpdateRequest_PayloadFilters_Item, using the provided EventConsumerWebhookUpdateRequestPayloadFilters2
+func (t *EventConsumerWebhookUpdateRequest_PayloadFilters_Item) MergeEventConsumerWebhookUpdateRequestPayloadFilters2(v EventConsumerWebhookUpdateRequestPayloadFilters2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t EventConsumerWebhookUpdateRequest_PayloadFilters_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *EventConsumerWebhookUpdateRequest_PayloadFilters_Item) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -113789,8 +114269,37 @@ type ClientInterface interface {
 	// Register (or refresh) an event-consumer queue for the calling user. Pass `scopes` to bind the queue to entities you hold a role on; an EMPTY `scopes` list requests a GLOBAL queue (all events, including all-user PII) and requires staff/support. Idempotent per binding set.
 	EventConsumersRegister(ctx context.Context, body EventConsumersRegisterJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// EventConsumersRegisterWebhookWithBody performs a POST /api/event-consumers/register_webhook/ (the `EventConsumersRegisterWebhook` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Create a webhook event consumer: the same messages a queue consumer receives are POSTed as JSON to `webhook_url` instead. Staff only. An EMPTY `scopes` list makes it global (all events, including all-user PII). Use `payload_filters` to narrow delivery, e.g. to one role, and `resync` to send the current state once.
+	EventConsumersRegisterWebhookWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// EventConsumersRegisterWebhook performs a POST /api/event-consumers/register_webhook/ (the `EventConsumersRegisterWebhook` operationId) request.
+	// Takes a body of the `application/json` content type.
+	//
+	// Create a webhook event consumer: the same messages a queue consumer receives are POSTed as JSON to `webhook_url` instead. Staff only. An EMPTY `scopes` list makes it global (all events, including all-user PII). Use `payload_filters` to narrow delivery, e.g. to one role, and `resync` to send the current state once.
+	EventConsumersRegisterWebhook(ctx context.Context, body EventConsumersRegisterWebhookJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// EventConsumersDestroy performs a DELETE /api/event-consumers/{uuid}/ (the `EventConsumersDestroy` operationId) request.
 	EventConsumersDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// EventConsumersResync performs a POST /api/event-consumers/{uuid}/resync/ (the `EventConsumersResync` operationId) request.
+	//
+	// Replay the current state to a global consumer, through its own transport and filters, so a receiver that starts late can seed itself. Every active role grant is sent as a `user_role` message with `event_type` `role_snapshot`. Runs asynchronously. Staff/support only.
+	EventConsumersResync(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// EventConsumersUpdateWebhookWithBody performs a POST /api/event-consumers/{uuid}/update_webhook/ (the `EventConsumersUpdateWebhook` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Change a webhook consumer's destination URL, object types or payload filters. Staff only. Omitted fields are left unchanged.
+	EventConsumersUpdateWebhookWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// EventConsumersUpdateWebhook performs a POST /api/event-consumers/{uuid}/update_webhook/ (the `EventConsumersUpdateWebhook` operationId) request.
+	// Takes a body of the `application/json` content type.
+	//
+	// Change a webhook consumer's destination URL, object types or payload filters. Staff only. Omitted fields are left unchanged.
+	EventConsumersUpdateWebhook(ctx context.Context, uuid openapi_types.UUID, body EventConsumersUpdateWebhookJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// EventSubscriptionQueuesList performs a GET /api/event-subscription-queues/ (the `EventSubscriptionQueuesList` operationId) request.
 	//
@@ -144315,9 +144824,88 @@ func (c *Client) EventConsumersRegister(ctx context.Context, body EventConsumers
 	return c.Client.Do(req)
 }
 
+// EventConsumersRegisterWebhookWithBody performs a POST /api/event-consumers/register_webhook/ (the `EventConsumersRegisterWebhook` operationId) request,
+// with any type of body and a specified content type.
+//
+// Create a webhook event consumer: the same messages a queue consumer receives are POSTed as JSON to `webhook_url` instead. Staff only. An EMPTY `scopes` list makes it global (all events, including all-user PII). Use `payload_filters` to narrow delivery, e.g. to one role, and `resync` to send the current state once.
+func (c *Client) EventConsumersRegisterWebhookWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewEventConsumersRegisterWebhookRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// EventConsumersRegisterWebhook performs a POST /api/event-consumers/register_webhook/ (the `EventConsumersRegisterWebhook` operationId) request.
+// Takes a body of the `application/json` content type.
+//
+// Create a webhook event consumer: the same messages a queue consumer receives are POSTed as JSON to `webhook_url` instead. Staff only. An EMPTY `scopes` list makes it global (all events, including all-user PII). Use `payload_filters` to narrow delivery, e.g. to one role, and `resync` to send the current state once.
+func (c *Client) EventConsumersRegisterWebhook(ctx context.Context, body EventConsumersRegisterWebhookJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewEventConsumersRegisterWebhookRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // EventConsumersDestroy performs a DELETE /api/event-consumers/{uuid}/ (the `EventConsumersDestroy` operationId) request.
 func (c *Client) EventConsumersDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewEventConsumersDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// EventConsumersResync performs a POST /api/event-consumers/{uuid}/resync/ (the `EventConsumersResync` operationId) request.
+//
+// Replay the current state to a global consumer, through its own transport and filters, so a receiver that starts late can seed itself. Every active role grant is sent as a `user_role` message with `event_type` `role_snapshot`. Runs asynchronously. Staff/support only.
+func (c *Client) EventConsumersResync(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewEventConsumersResyncRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// EventConsumersUpdateWebhookWithBody performs a POST /api/event-consumers/{uuid}/update_webhook/ (the `EventConsumersUpdateWebhook` operationId) request,
+// with any type of body and a specified content type.
+//
+// Change a webhook consumer's destination URL, object types or payload filters. Staff only. Omitted fields are left unchanged.
+func (c *Client) EventConsumersUpdateWebhookWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewEventConsumersUpdateWebhookRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// EventConsumersUpdateWebhook performs a POST /api/event-consumers/{uuid}/update_webhook/ (the `EventConsumersUpdateWebhook` operationId) request.
+// Takes a body of the `application/json` content type.
+//
+// Change a webhook consumer's destination URL, object types or payload filters. Staff only. Omitted fields are left unchanged.
+func (c *Client) EventConsumersUpdateWebhook(ctx context.Context, uuid openapi_types.UUID, body EventConsumersUpdateWebhookJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewEventConsumersUpdateWebhookRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -233939,6 +234527,18 @@ func NewEventConsumersListRequest(server string, params *EventConsumersListParam
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
+		if params.Delivery != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "delivery", *params.Delivery, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.IsGlobal != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_global", *params.IsGlobal, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
@@ -234052,6 +234652,18 @@ func NewEventConsumersCountRequest(server string, params *EventConsumersCountPar
 		// styled parameters, preserving literal commas as delimiters
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
+
+		if params.Delivery != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "delivery", *params.Delivery, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
 
 		if params.IsGlobal != nil {
 
@@ -234179,6 +234791,46 @@ func NewEventConsumersRegisterRequestWithBody(server string, contentType string,
 	return req, nil
 }
 
+// NewEventConsumersRegisterWebhookRequest calls the generic EventConsumersRegisterWebhook builder with application/json body
+func NewEventConsumersRegisterWebhookRequest(server string, body EventConsumersRegisterWebhookJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewEventConsumersRegisterWebhookRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewEventConsumersRegisterWebhookRequestWithBody constructs an http.Request for the EventConsumersRegisterWebhook method, with any body, and a specified content type
+func NewEventConsumersRegisterWebhookRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/event-consumers/register_webhook/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewEventConsumersDestroyRequest constructs an http.Request for the EventConsumersDestroy method
 func NewEventConsumersDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -234209,6 +234861,87 @@ func NewEventConsumersDestroyRequest(server string, uuid openapi_types.UUID) (*h
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewEventConsumersResyncRequest constructs an http.Request for the EventConsumersResync method
+func NewEventConsumersResyncRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/event-consumers/%s/resync/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewEventConsumersUpdateWebhookRequest calls the generic EventConsumersUpdateWebhook builder with application/json body
+func NewEventConsumersUpdateWebhookRequest(server string, uuid openapi_types.UUID, body EventConsumersUpdateWebhookJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewEventConsumersUpdateWebhookRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewEventConsumersUpdateWebhookRequestWithBody constructs an http.Request for the EventConsumersUpdateWebhook method, with any body, and a specified content type
+func NewEventConsumersUpdateWebhookRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/event-consumers/%s/update_webhook/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -430970,10 +431703,45 @@ type ClientWithResponsesInterface interface {
 	// Register (or refresh) an event-consumer queue for the calling user. Pass `scopes` to bind the queue to entities you hold a role on; an EMPTY `scopes` list requests a GLOBAL queue (all events, including all-user PII) and requires staff/support. Idempotent per binding set.
 	EventConsumersRegisterWithResponse(ctx context.Context, body EventConsumersRegisterJSONRequestBody, reqEditors ...RequestEditorFn) (*EventConsumersRegisterResponse, error)
 
+	// EventConsumersRegisterWebhookWithBodyWithResponse performs a POST /api/event-consumers/register_webhook/ (the `EventConsumersRegisterWebhook` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Create a webhook event consumer: the same messages a queue consumer receives are POSTed as JSON to `webhook_url` instead. Staff only. An EMPTY `scopes` list makes it global (all events, including all-user PII). Use `payload_filters` to narrow delivery, e.g. to one role, and `resync` to send the current state once.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	EventConsumersRegisterWebhookWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*EventConsumersRegisterWebhookResponse, error)
+
+	// EventConsumersRegisterWebhookWithResponse performs a POST /api/event-consumers/register_webhook/ (the `EventConsumersRegisterWebhook` operationId) request.
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Create a webhook event consumer: the same messages a queue consumer receives are POSTed as JSON to `webhook_url` instead. Staff only. An EMPTY `scopes` list makes it global (all events, including all-user PII). Use `payload_filters` to narrow delivery, e.g. to one role, and `resync` to send the current state once.
+	EventConsumersRegisterWebhookWithResponse(ctx context.Context, body EventConsumersRegisterWebhookJSONRequestBody, reqEditors ...RequestEditorFn) (*EventConsumersRegisterWebhookResponse, error)
+
 	// EventConsumersDestroyWithResponse performs a DELETE /api/event-consumers/{uuid}/ (the `EventConsumersDestroy` operationId) request.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	EventConsumersDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*EventConsumersDestroyResponse, error)
+
+	// EventConsumersResyncWithResponse performs a POST /api/event-consumers/{uuid}/resync/ (the `EventConsumersResync` operationId) request.
+	//
+	// Replay the current state to a global consumer, through its own transport and filters, so a receiver that starts late can seed itself. Every active role grant is sent as a `user_role` message with `event_type` `role_snapshot`. Runs asynchronously. Staff/support only.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	EventConsumersResyncWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*EventConsumersResyncResponse, error)
+
+	// EventConsumersUpdateWebhookWithBodyWithResponse performs a POST /api/event-consumers/{uuid}/update_webhook/ (the `EventConsumersUpdateWebhook` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Change a webhook consumer's destination URL, object types or payload filters. Staff only. Omitted fields are left unchanged.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	EventConsumersUpdateWebhookWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*EventConsumersUpdateWebhookResponse, error)
+
+	// EventConsumersUpdateWebhookWithResponse performs a POST /api/event-consumers/{uuid}/update_webhook/ (the `EventConsumersUpdateWebhook` operationId) request.
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Change a webhook consumer's destination URL, object types or payload filters. Staff only. Omitted fields are left unchanged.
+	EventConsumersUpdateWebhookWithResponse(ctx context.Context, uuid openapi_types.UUID, body EventConsumersUpdateWebhookJSONRequestBody, reqEditors ...RequestEditorFn) (*EventConsumersUpdateWebhookResponse, error)
 
 	// EventSubscriptionQueuesListWithResponse performs a GET /api/event-subscription-queues/ (the `EventSubscriptionQueuesList` operationId) request.
 	//
@@ -475310,6 +476078,47 @@ func (r EventConsumersRegisterResponse) ContentType() string {
 	return ""
 }
 
+type EventConsumersRegisterWebhookResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON201 the response for an HTTP 201 `application/json` response
+	JSON201 *EventConsumer
+}
+
+// GetJSON201 returns the response for an HTTP 201 `application/json` response
+func (r EventConsumersRegisterWebhookResponse) GetJSON201() *EventConsumer {
+	return r.JSON201
+}
+
+// GetBody returns the raw response body bytes
+func (r EventConsumersRegisterWebhookResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r EventConsumersRegisterWebhookResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r EventConsumersRegisterWebhookResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r EventConsumersRegisterWebhookResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type EventConsumersDestroyResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -475338,6 +476147,88 @@ func (r EventConsumersDestroyResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r EventConsumersDestroyResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type EventConsumersResyncResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON202 the response for an HTTP 202 `application/json` response
+	JSON202 *EventConsumerResyncResponse
+}
+
+// GetJSON202 returns the response for an HTTP 202 `application/json` response
+func (r EventConsumersResyncResponse) GetJSON202() *EventConsumerResyncResponse {
+	return r.JSON202
+}
+
+// GetBody returns the raw response body bytes
+func (r EventConsumersResyncResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r EventConsumersResyncResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r EventConsumersResyncResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r EventConsumersResyncResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type EventConsumersUpdateWebhookResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *EventConsumer
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r EventConsumersUpdateWebhookResponse) GetJSON200() *EventConsumer {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r EventConsumersUpdateWebhookResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r EventConsumersUpdateWebhookResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r EventConsumersUpdateWebhookResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r EventConsumersUpdateWebhookResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -582091,6 +582982,32 @@ func (c *ClientWithResponses) EventConsumersRegisterWithResponse(ctx context.Con
 	return ParseEventConsumersRegisterResponse(rsp)
 }
 
+// EventConsumersRegisterWebhookWithBodyWithResponse performs a POST /api/event-consumers/register_webhook/ (the `EventConsumersRegisterWebhook` operationId) request,
+// with any type of body and a specified content type.
+//
+// Create a webhook event consumer: the same messages a queue consumer receives are POSTed as JSON to `webhook_url` instead. Staff only. An EMPTY `scopes` list makes it global (all events, including all-user PII). Use `payload_filters` to narrow delivery, e.g. to one role, and `resync` to send the current state once.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) EventConsumersRegisterWebhookWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*EventConsumersRegisterWebhookResponse, error) {
+	rsp, err := c.EventConsumersRegisterWebhookWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseEventConsumersRegisterWebhookResponse(rsp)
+}
+
+// EventConsumersRegisterWebhookWithResponse performs a POST /api/event-consumers/register_webhook/ (the `EventConsumersRegisterWebhook` operationId) request.
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Create a webhook event consumer: the same messages a queue consumer receives are POSTed as JSON to `webhook_url` instead. Staff only. An EMPTY `scopes` list makes it global (all events, including all-user PII). Use `payload_filters` to narrow delivery, e.g. to one role, and `resync` to send the current state once.
+func (c *ClientWithResponses) EventConsumersRegisterWebhookWithResponse(ctx context.Context, body EventConsumersRegisterWebhookJSONRequestBody, reqEditors ...RequestEditorFn) (*EventConsumersRegisterWebhookResponse, error) {
+	rsp, err := c.EventConsumersRegisterWebhook(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseEventConsumersRegisterWebhookResponse(rsp)
+}
+
 // EventConsumersDestroyWithResponse performs a DELETE /api/event-consumers/{uuid}/ (the `EventConsumersDestroy` operationId) request.
 //
 // Returns a wrapper object for the known response body format(s).
@@ -582100,6 +583017,45 @@ func (c *ClientWithResponses) EventConsumersDestroyWithResponse(ctx context.Cont
 		return nil, err
 	}
 	return ParseEventConsumersDestroyResponse(rsp)
+}
+
+// EventConsumersResyncWithResponse performs a POST /api/event-consumers/{uuid}/resync/ (the `EventConsumersResync` operationId) request.
+//
+// Replay the current state to a global consumer, through its own transport and filters, so a receiver that starts late can seed itself. Every active role grant is sent as a `user_role` message with `event_type` `role_snapshot`. Runs asynchronously. Staff/support only.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) EventConsumersResyncWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*EventConsumersResyncResponse, error) {
+	rsp, err := c.EventConsumersResync(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseEventConsumersResyncResponse(rsp)
+}
+
+// EventConsumersUpdateWebhookWithBodyWithResponse performs a POST /api/event-consumers/{uuid}/update_webhook/ (the `EventConsumersUpdateWebhook` operationId) request,
+// with any type of body and a specified content type.
+//
+// Change a webhook consumer's destination URL, object types or payload filters. Staff only. Omitted fields are left unchanged.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) EventConsumersUpdateWebhookWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*EventConsumersUpdateWebhookResponse, error) {
+	rsp, err := c.EventConsumersUpdateWebhookWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseEventConsumersUpdateWebhookResponse(rsp)
+}
+
+// EventConsumersUpdateWebhookWithResponse performs a POST /api/event-consumers/{uuid}/update_webhook/ (the `EventConsumersUpdateWebhook` operationId) request.
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Change a webhook consumer's destination URL, object types or payload filters. Staff only. Omitted fields are left unchanged.
+func (c *ClientWithResponses) EventConsumersUpdateWebhookWithResponse(ctx context.Context, uuid openapi_types.UUID, body EventConsumersUpdateWebhookJSONRequestBody, reqEditors ...RequestEditorFn) (*EventConsumersUpdateWebhookResponse, error) {
+	rsp, err := c.EventConsumersUpdateWebhook(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseEventConsumersUpdateWebhookResponse(rsp)
 }
 
 // EventSubscriptionQueuesListWithResponse performs a GET /api/event-subscription-queues/ (the `EventSubscriptionQueuesList` operationId) request.
@@ -639088,6 +640044,32 @@ func ParseEventConsumersRegisterResponse(rsp *http.Response) (*EventConsumersReg
 	return response, nil
 }
 
+// ParseEventConsumersRegisterWebhookResponse parses an HTTP response from a EventConsumersRegisterWebhookWithResponse call
+func ParseEventConsumersRegisterWebhookResponse(rsp *http.Response) (*EventConsumersRegisterWebhookResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &EventConsumersRegisterWebhookResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest EventConsumer
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseEventConsumersDestroyResponse parses an HTTP response from a EventConsumersDestroyWithResponse call
 func ParseEventConsumersDestroyResponse(rsp *http.Response) (*EventConsumersDestroyResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -639099,6 +640081,58 @@ func ParseEventConsumersDestroyResponse(rsp *http.Response) (*EventConsumersDest
 	response := &EventConsumersDestroyResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseEventConsumersResyncResponse parses an HTTP response from a EventConsumersResyncWithResponse call
+func ParseEventConsumersResyncResponse(rsp *http.Response) (*EventConsumersResyncResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &EventConsumersResyncResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest EventConsumerResyncResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseEventConsumersUpdateWebhookResponse parses an HTTP response from a EventConsumersUpdateWebhookWithResponse call
+func ParseEventConsumersUpdateWebhookResponse(rsp *http.Response) (*EventConsumersUpdateWebhookResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &EventConsumersUpdateWebhookResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest EventConsumer
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
