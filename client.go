@@ -10950,6 +10950,30 @@ func (e MatrixRoomStateEnum) Valid() bool {
 	}
 }
 
+// Defines values for MatrixTicketDraftStateEnum.
+const (
+	MatrixTicketDraftStateEnumCancelled MatrixTicketDraftStateEnum = "cancelled"
+	MatrixTicketDraftStateEnumExpired   MatrixTicketDraftStateEnum = "expired"
+	MatrixTicketDraftStateEnumPending   MatrixTicketDraftStateEnum = "pending"
+	MatrixTicketDraftStateEnumSent      MatrixTicketDraftStateEnum = "sent"
+)
+
+// Valid indicates whether the value is a known member of the MatrixTicketDraftStateEnum enum.
+func (e MatrixTicketDraftStateEnum) Valid() bool {
+	switch e {
+	case MatrixTicketDraftStateEnumCancelled:
+		return true
+	case MatrixTicketDraftStateEnumExpired:
+		return true
+	case MatrixTicketDraftStateEnumPending:
+		return true
+	case MatrixTicketDraftStateEnumSent:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for MemberSyncStatusEntryScopeTypeEnum.
 const (
 	MemberSyncStatusEntryScopeTypeEnumResource        MemberSyncStatusEntryScopeTypeEnum = "resource"
@@ -31483,6 +31507,8 @@ type ConstanceSettings struct {
 	MATRIXLIVEKITSECRET                              *string                                                          `json:"MATRIX_LIVEKIT_SECRET,omitempty"`
 	MATRIXLIVEKITURL                                 *string                                                          `json:"MATRIX_LIVEKIT_URL,omitempty"`
 	MATRIXSSOREGISTRATIONMETHOD                      *string                                                          `json:"MATRIX_SSO_REGISTRATION_METHOD,omitempty"`
+	MATRIXTICKETCONTEXTMESSAGES                      *int                                                             `json:"MATRIX_TICKET_CONTEXT_MESSAGES,omitempty"`
+	MATRIXTICKETDRAFTTTLMINUTES                      *int                                                             `json:"MATRIX_TICKET_DRAFT_TTL_MINUTES,omitempty"`
 	MATRIXTOKENSMANAGEDBY                            *string                                                          `json:"MATRIX_TOKENS_MANAGED_BY,omitempty"`
 	MATRIXUSERIDFORMAT                               *string                                                          `json:"MATRIX_USER_ID_FORMAT,omitempty"`
 	MATRIXUSERREGISTRATIONSECRET                     *string                                                          `json:"MATRIX_USER_REGISTRATION_SECRET,omitempty"`
@@ -31917,6 +31943,8 @@ type ConstanceSettingsRequest struct {
 	MATRIXLIVEKITSECRET                              *string                                                                 `json:"MATRIX_LIVEKIT_SECRET,omitempty"`
 	MATRIXLIVEKITURL                                 *string                                                                 `json:"MATRIX_LIVEKIT_URL,omitempty"`
 	MATRIXSSOREGISTRATIONMETHOD                      *string                                                                 `json:"MATRIX_SSO_REGISTRATION_METHOD,omitempty"`
+	MATRIXTICKETCONTEXTMESSAGES                      *int                                                                    `json:"MATRIX_TICKET_CONTEXT_MESSAGES,omitempty"`
+	MATRIXTICKETDRAFTTTLMINUTES                      *int                                                                    `json:"MATRIX_TICKET_DRAFT_TTL_MINUTES,omitempty"`
 	MATRIXTOKENSMANAGEDBY                            *string                                                                 `json:"MATRIX_TOKENS_MANAGED_BY,omitempty"`
 	MATRIXUSERIDFORMAT                               *string                                                                 `json:"MATRIX_USER_ID_FORMAT,omitempty"`
 	MATRIXUSERREGISTRATIONSECRET                     *string                                                                 `json:"MATRIX_USER_REGISTRATION_SECRET,omitempty"`
@@ -32351,6 +32379,8 @@ type ConstanceSettingsRequestForm struct {
 	MATRIXLIVEKITSECRET                              *string                                                                     `json:"MATRIX_LIVEKIT_SECRET,omitempty"`
 	MATRIXLIVEKITURL                                 *string                                                                     `json:"MATRIX_LIVEKIT_URL,omitempty"`
 	MATRIXSSOREGISTRATIONMETHOD                      *string                                                                     `json:"MATRIX_SSO_REGISTRATION_METHOD,omitempty"`
+	MATRIXTICKETCONTEXTMESSAGES                      *int                                                                        `json:"MATRIX_TICKET_CONTEXT_MESSAGES,omitempty"`
+	MATRIXTICKETDRAFTTTLMINUTES                      *int                                                                        `json:"MATRIX_TICKET_DRAFT_TTL_MINUTES,omitempty"`
 	MATRIXTOKENSMANAGEDBY                            *string                                                                     `json:"MATRIX_TOKENS_MANAGED_BY,omitempty"`
 	MATRIXUSERIDFORMAT                               *string                                                                     `json:"MATRIX_USER_ID_FORMAT,omitempty"`
 	MATRIXUSERREGISTRATIONSECRET                     *string                                                                     `json:"MATRIX_USER_REGISTRATION_SECRET,omitempty"`
@@ -32785,6 +32815,8 @@ type ConstanceSettingsRequestMultipart struct {
 	MATRIXLIVEKITSECRET                              *string                                                                          `json:"MATRIX_LIVEKIT_SECRET,omitempty"`
 	MATRIXLIVEKITURL                                 *string                                                                          `json:"MATRIX_LIVEKIT_URL,omitempty"`
 	MATRIXSSOREGISTRATIONMETHOD                      *string                                                                          `json:"MATRIX_SSO_REGISTRATION_METHOD,omitempty"`
+	MATRIXTICKETCONTEXTMESSAGES                      *int                                                                             `json:"MATRIX_TICKET_CONTEXT_MESSAGES,omitempty"`
+	MATRIXTICKETDRAFTTTLMINUTES                      *int                                                                             `json:"MATRIX_TICKET_DRAFT_TTL_MINUTES,omitempty"`
 	MATRIXTOKENSMANAGEDBY                            *string                                                                          `json:"MATRIX_TOKENS_MANAGED_BY,omitempty"`
 	MATRIXUSERIDFORMAT                               *string                                                                          `json:"MATRIX_USER_ID_FORMAT,omitempty"`
 	MATRIXUSERREGISTRATIONSECRET                     *string                                                                          `json:"MATRIX_USER_REGISTRATION_SECRET,omitempty"`
@@ -39111,6 +39143,21 @@ type MatrixAppserviceStatus struct {
 	WebhookPath       string `json:"webhook_path"`
 }
 
+// MatrixBotCommand defines model for MatrixBotCommand.
+type MatrixBotCommand struct {
+	Available   bool   `json:"available"`
+	Description string `json:"description"`
+
+	// Hint Arguments: `[optional]`, `<required>`.
+	Hint string `json:"hint"`
+
+	// Name As typed after `!`, e.g. `ticket send`.
+	Name string `json:"name"`
+
+	// Reason Why the command is not available; blank if it is.
+	Reason string `json:"reason"`
+}
+
 // MatrixCredentials defines model for MatrixCredentials.
 type MatrixCredentials struct {
 	HomeserverUrl string                        `json:"homeserver_url"`
@@ -39217,6 +39264,8 @@ type MatrixReprovisionResponse struct {
 
 // MatrixRoom defines model for MatrixRoom.
 type MatrixRoom struct {
+	// BotUserId The Matrix user ID of Waldur's bot in the room: only its events carry Waldur's blocks.
+	BotUserId                  *string                    `json:"bot_user_id,omitempty"`
 	Created                    *time.Time                 `json:"created,omitempty"`
 	CurrentUserMembershipState *string                    `json:"current_user_membership_state,omitempty"`
 	CustomerName               *string                    `json:"customer_name,omitempty"`
@@ -39290,6 +39339,53 @@ type MatrixSession struct {
 	RecoveryKey  *string `json:"recovery_key"`
 	RefreshToken *string `json:"refresh_token"`
 }
+
+// MatrixTicketDraft defines model for MatrixTicketDraft.
+type MatrixTicketDraft struct {
+	CustomerName         *string                     `json:"customer_name,omitempty"`
+	CustomerUuid         *string                     `json:"customer_uuid,omitempty"`
+	Description          *string                     `json:"description,omitempty"`
+	ExpiresAt            *time.Time                  `json:"expires_at,omitempty"`
+	Helpdesk             *string                     `json:"helpdesk,omitempty"`
+	IssueKey             *string                     `json:"issue_key,omitempty"`
+	IssueUrl             *string                     `json:"issue_url,omitempty"`
+	IssueUuid            *string                     `json:"issue_uuid,omitempty"`
+	Priority             *string                     `json:"priority,omitempty"`
+	ProjectName          *string                     `json:"project_name,omitempty"`
+	ProjectUuid          *string                     `json:"project_uuid,omitempty"`
+	RequestType          *string                     `json:"request_type,omitempty"`
+	ResourceName         *string                     `json:"resource_name,omitempty"`
+	ResourceOfferingName *string                     `json:"resource_offering_name,omitempty"`
+	ResourceUuid         *string                     `json:"resource_uuid,omitempty"`
+	State                *MatrixTicketDraftStateEnum `json:"state,omitempty"`
+	Title                *string                     `json:"title,omitempty"`
+	Uuid                 *string                     `json:"uuid,omitempty"`
+}
+
+// MatrixTicketDraftCreateIssueRequest defines model for MatrixTicketDraftCreateIssueRequest.
+type MatrixTicketDraftCreateIssueRequest struct {
+	// Description Replaces the draft's description.
+	Description *string `json:"description,omitempty"`
+
+	// ResourceUuid Replaces the draft's resource: one of the room's project, or blank or null for none.
+	ResourceUuid *string `json:"resource_uuid,omitempty"`
+
+	// Summary Replaces the draft's title.
+	Summary *string `json:"summary,omitempty"`
+
+	// Type Replaces the draft's request type.
+	Type *string `json:"type,omitempty"`
+}
+
+// MatrixTicketDraftIssue defines model for MatrixTicketDraftIssue.
+type MatrixTicketDraftIssue struct {
+	IssueKey  string `json:"issue_key"`
+	IssueUrl  string `json:"issue_url"`
+	IssueUuid string `json:"issue_uuid"`
+}
+
+// MatrixTicketDraftStateEnum defines model for MatrixTicketDraftStateEnum.
+type MatrixTicketDraftStateEnum string
 
 // MePermission defines model for MePermission.
 type MePermission struct {
@@ -77781,6 +77877,16 @@ type MatrixRoomsEligibleProjectsCountParams struct {
 	State       *MatrixRoomStateEnum `form:"state,omitempty" json:"state,omitempty"`
 }
 
+// MatrixRoomsCommandsListParams defines parameters for MatrixRoomsCommandsList.
+type MatrixRoomsCommandsListParams struct {
+	// Member Only rooms the current user is a member of
+	Member *bool `form:"member,omitempty" json:"member,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID  `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	State       *MatrixRoomStateEnum `form:"state,omitempty" json:"state,omitempty"`
+}
+
 // MatrixRoomsMembersListParams defines parameters for MatrixRoomsMembersList.
 type MatrixRoomsMembersListParams struct {
 	// Member Only rooms the current user is a member of
@@ -90335,6 +90441,9 @@ type MatrixRoomsCreateJSONRequestBody = MatrixRoomCreateRequest
 
 // MatrixRoomsDisableJSONRequestBody defines body for MatrixRoomsDisable for application/json ContentType.
 type MatrixRoomsDisableJSONRequestBody = MatrixRoomDisableRequest
+
+// MatrixTicketDraftsCreateIssueJSONRequestBody defines body for MatrixTicketDraftsCreateIssue for application/json ContentType.
+type MatrixTicketDraftsCreateIssueJSONRequestBody = MatrixTicketDraftCreateIssueRequest
 
 // NotificationMessagesTemplatesCreateJSONRequestBody defines body for NotificationMessagesTemplatesCreate for application/json ContentType.
 type NotificationMessagesTemplatesCreateJSONRequestBody = NotificationTemplateDetailSerializersRequest
@@ -124248,6 +124357,13 @@ type ClientInterface interface {
 	// MatrixRoomsRetrieve performs a GET /api/matrix/rooms/{uuid}/ (the `MatrixRoomsRetrieve` operationId) request.
 	MatrixRoomsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MatrixRoomsCommandsList List the bot commands the caller can use in the room
+	//
+	// Every bot command, and whether the caller can use it in this room now; where not, a short reason. The bot refuses with the same checks. `!ticket send` and `!ticket cancel` are available only while the caller has an open ticket draft in the room.
+	//
+	// Corresponds with GET /api/matrix/rooms/{uuid}/commands/ (the `MatrixRoomsCommandsList` operationId).
+	MatrixRoomsCommandsList(ctx context.Context, uuid openapi_types.UUID, params *MatrixRoomsCommandsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MatrixRoomsDisableWithBody Disable an active chat room
 	//
 	// Takes any type of body and a specified content type.
@@ -124314,6 +124430,32 @@ type ClientInterface interface {
 	//
 	// Corresponds with POST /api/matrix/session/ (the `MatrixSession` operationId).
 	MatrixSession(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MatrixTicketDraftsRetrieve performs a GET /api/matrix/ticket-drafts/{uuid}/ (the `MatrixTicketDraftsRetrieve` operationId) request.
+	MatrixTicketDraftsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MatrixTicketDraftsCancel Cancel the draft
+	//
+	// Corresponds with POST /api/matrix/ticket-drafts/{uuid}/cancel/ (the `MatrixTicketDraftsCancel` operationId).
+	MatrixTicketDraftsCancel(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MatrixTicketDraftsCreateIssueWithBody Create the draft's support ticket
+	//
+	// Create the pending draft's ticket as its requester, through the support API, and post its key in the room's thread. The draft is then sent: a second call, or one for a cancelled or expired draft, gets 404.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/matrix/ticket-drafts/{uuid}/create_issue/ (the `MatrixTicketDraftsCreateIssue` operationId).
+	MatrixTicketDraftsCreateIssueWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MatrixTicketDraftsCreateIssue Create the draft's support ticket
+	//
+	// Create the pending draft's ticket as its requester, through the support API, and post its key in the room's thread. The draft is then sent: a second call, or one for a cancelled or expired draft, gets 404.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/matrix/ticket-drafts/{uuid}/create_issue/ (the `MatrixTicketDraftsCreateIssue` operationId).
+	MatrixTicketDraftsCreateIssue(ctx context.Context, uuid openapi_types.UUID, body MatrixTicketDraftsCreateIssueJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MediaRetrieve performs a GET /api/media/{uuid}/ (the `MediaRetrieve` operationId) request.
 	//
@@ -169800,6 +169942,23 @@ func (c *Client) MatrixRoomsRetrieve(ctx context.Context, uuid openapi_types.UUI
 	return c.Client.Do(req)
 }
 
+// MatrixRoomsCommandsList List the bot commands the caller can use in the room
+//
+// Every bot command, and whether the caller can use it in this room now; where not, a short reason. The bot refuses with the same checks. `!ticket send` and `!ticket cancel` are available only while the caller has an open ticket draft in the room.
+//
+// Corresponds with GET /api/matrix/rooms/{uuid}/commands/ (the `MatrixRoomsCommandsList` operationId).
+func (c *Client) MatrixRoomsCommandsList(ctx context.Context, uuid openapi_types.UUID, params *MatrixRoomsCommandsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixRoomsCommandsListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // MatrixRoomsDisableWithBody Disable an active chat room
 //
 // Takes any type of body and a specified content type.
@@ -169967,6 +170126,72 @@ func (c *Client) MatrixRoomsSyncMembers(ctx context.Context, uuid openapi_types.
 // Corresponds with POST /api/matrix/session/ (the `MatrixSession` operationId).
 func (c *Client) MatrixSession(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMatrixSessionRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MatrixTicketDraftsRetrieve performs a GET /api/matrix/ticket-drafts/{uuid}/ (the `MatrixTicketDraftsRetrieve` operationId) request.
+func (c *Client) MatrixTicketDraftsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixTicketDraftsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MatrixTicketDraftsCancel Cancel the draft
+//
+// Corresponds with POST /api/matrix/ticket-drafts/{uuid}/cancel/ (the `MatrixTicketDraftsCancel` operationId).
+func (c *Client) MatrixTicketDraftsCancel(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixTicketDraftsCancelRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MatrixTicketDraftsCreateIssueWithBody Create the draft's support ticket
+//
+// Create the pending draft's ticket as its requester, through the support API, and post its key in the room's thread. The draft is then sent: a second call, or one for a cancelled or expired draft, gets 404.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/matrix/ticket-drafts/{uuid}/create_issue/ (the `MatrixTicketDraftsCreateIssue` operationId).
+func (c *Client) MatrixTicketDraftsCreateIssueWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixTicketDraftsCreateIssueRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MatrixTicketDraftsCreateIssue Create the draft's support ticket
+//
+// Create the pending draft's ticket as its requester, through the support API, and post its key in the room's thread. The draft is then sent: a second call, or one for a cancelled or expired draft, gets 404.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/matrix/ticket-drafts/{uuid}/create_issue/ (the `MatrixTicketDraftsCreateIssue` operationId).
+func (c *Client) MatrixTicketDraftsCreateIssue(ctx context.Context, uuid openapi_types.UUID, body MatrixTicketDraftsCreateIssueJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMatrixTicketDraftsCreateIssueRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -328428,6 +328653,91 @@ func NewMatrixRoomsRetrieveRequest(server string, uuid openapi_types.UUID) (*htt
 	return req, nil
 }
 
+// NewMatrixRoomsCommandsListRequest constructs an http.Request for the MatrixRoomsCommandsList method
+func NewMatrixRoomsCommandsListRequest(server string, uuid openapi_types.UUID, params *MatrixRoomsCommandsListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/matrix/rooms/%s/commands/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Member != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "member", *params.Member, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMatrixRoomsDisableRequest calls the generic MatrixRoomsDisable builder with application/json body
 func NewMatrixRoomsDisableRequest(server string, uuid openapi_types.UUID, body MatrixRoomsDisableJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -328845,6 +329155,121 @@ func NewMatrixSessionRequest(server string) (*http.Request, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewMatrixTicketDraftsRetrieveRequest constructs an http.Request for the MatrixTicketDraftsRetrieve method
+func NewMatrixTicketDraftsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/matrix/ticket-drafts/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMatrixTicketDraftsCancelRequest constructs an http.Request for the MatrixTicketDraftsCancel method
+func NewMatrixTicketDraftsCancelRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/matrix/ticket-drafts/%s/cancel/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMatrixTicketDraftsCreateIssueRequest calls the generic MatrixTicketDraftsCreateIssue builder with application/json body
+func NewMatrixTicketDraftsCreateIssueRequest(server string, uuid openapi_types.UUID, body MatrixTicketDraftsCreateIssueJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMatrixTicketDraftsCreateIssueRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMatrixTicketDraftsCreateIssueRequestWithBody constructs an http.Request for the MatrixTicketDraftsCreateIssue method, with any body, and a specified content type
+func NewMatrixTicketDraftsCreateIssueRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/matrix/ticket-drafts/%s/create_issue/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -443434,6 +443859,15 @@ type ClientWithResponsesInterface interface {
 	// Returns a wrapper object for the known response body format(s).
 	MatrixRoomsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MatrixRoomsRetrieveResponse, error)
 
+	// MatrixRoomsCommandsListWithResponse List the bot commands the caller can use in the room
+	//
+	// Every bot command, and whether the caller can use it in this room now; where not, a short reason. The bot refuses with the same checks. `!ticket send` and `!ticket cancel` are available only while the caller has an open ticket draft in the room.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/matrix/rooms/{uuid}/commands/ (the `MatrixRoomsCommandsList` operationId).
+	MatrixRoomsCommandsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MatrixRoomsCommandsListParams, reqEditors ...RequestEditorFn) (*MatrixRoomsCommandsListResponse, error)
+
 	// MatrixRoomsDisableWithBodyWithResponse Disable an active chat room
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
@@ -443518,6 +443952,36 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with POST /api/matrix/session/ (the `MatrixSession` operationId).
 	MatrixSessionWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MatrixSessionResponse, error)
+
+	// MatrixTicketDraftsRetrieveWithResponse performs a GET /api/matrix/ticket-drafts/{uuid}/ (the `MatrixTicketDraftsRetrieve` operationId) request.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	MatrixTicketDraftsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MatrixTicketDraftsRetrieveResponse, error)
+
+	// MatrixTicketDraftsCancelWithResponse Cancel the draft
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/matrix/ticket-drafts/{uuid}/cancel/ (the `MatrixTicketDraftsCancel` operationId).
+	MatrixTicketDraftsCancelWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MatrixTicketDraftsCancelResponse, error)
+
+	// MatrixTicketDraftsCreateIssueWithBodyWithResponse Create the draft's support ticket
+	//
+	// Create the pending draft's ticket as its requester, through the support API, and post its key in the room's thread. The draft is then sent: a second call, or one for a cancelled or expired draft, gets 404.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/matrix/ticket-drafts/{uuid}/create_issue/ (the `MatrixTicketDraftsCreateIssue` operationId).
+	MatrixTicketDraftsCreateIssueWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MatrixTicketDraftsCreateIssueResponse, error)
+
+	// MatrixTicketDraftsCreateIssueWithResponse Create the draft's support ticket
+	//
+	// Create the pending draft's ticket as its requester, through the support API, and post its key in the room's thread. The draft is then sent: a second call, or one for a cancelled or expired draft, gets 404.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/matrix/ticket-drafts/{uuid}/create_issue/ (the `MatrixTicketDraftsCreateIssue` operationId).
+	MatrixTicketDraftsCreateIssueWithResponse(ctx context.Context, uuid openapi_types.UUID, body MatrixTicketDraftsCreateIssueJSONRequestBody, reqEditors ...RequestEditorFn) (*MatrixTicketDraftsCreateIssueResponse, error)
 
 	// MediaRetrieveWithResponse performs a GET /api/media/{uuid}/ (the `MediaRetrieve` operationId) request.
 	//
@@ -520710,6 +521174,54 @@ func (r MatrixRoomsRetrieveResponse) ContentType() string {
 	return ""
 }
 
+// MatrixRoomsCommandsListResponse200Headers the declared response headers of an HTTP 200 response for MatrixRoomsCommandsList
+type MatrixRoomsCommandsListResponse200Headers struct {
+	XResultCount *int
+}
+
+type MatrixRoomsCommandsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]MatrixBotCommand
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *MatrixRoomsCommandsListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MatrixRoomsCommandsListResponse) GetJSON200() *[]MatrixBotCommand {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MatrixRoomsCommandsListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MatrixRoomsCommandsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MatrixRoomsCommandsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MatrixRoomsCommandsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type MatrixRoomsDisableResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -521121,6 +521633,122 @@ func (r MatrixSessionResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MatrixSessionResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MatrixTicketDraftsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *MatrixTicketDraft
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MatrixTicketDraftsRetrieveResponse) GetJSON200() *MatrixTicketDraft {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MatrixTicketDraftsRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MatrixTicketDraftsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MatrixTicketDraftsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MatrixTicketDraftsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MatrixTicketDraftsCancelResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r MatrixTicketDraftsCancelResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MatrixTicketDraftsCancelResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MatrixTicketDraftsCancelResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MatrixTicketDraftsCancelResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MatrixTicketDraftsCreateIssueResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON201 the response for an HTTP 201 `application/json` response
+	JSON201 *MatrixTicketDraftIssue
+}
+
+// GetJSON201 returns the response for an HTTP 201 `application/json` response
+func (r MatrixTicketDraftsCreateIssueResponse) GetJSON201() *MatrixTicketDraftIssue {
+	return r.JSON201
+}
+
+// GetBody returns the raw response body bytes
+func (r MatrixTicketDraftsCreateIssueResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MatrixTicketDraftsCreateIssueResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MatrixTicketDraftsCreateIssueResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MatrixTicketDraftsCreateIssueResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -603699,6 +604327,21 @@ func (c *ClientWithResponses) MatrixRoomsRetrieveWithResponse(ctx context.Contex
 	return ParseMatrixRoomsRetrieveResponse(rsp)
 }
 
+// MatrixRoomsCommandsListWithResponse List the bot commands the caller can use in the room
+//
+// Every bot command, and whether the caller can use it in this room now; where not, a short reason. The bot refuses with the same checks. `!ticket send` and `!ticket cancel` are available only while the caller has an open ticket draft in the room.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/matrix/rooms/{uuid}/commands/ (the `MatrixRoomsCommandsList` operationId).
+func (c *ClientWithResponses) MatrixRoomsCommandsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MatrixRoomsCommandsListParams, reqEditors ...RequestEditorFn) (*MatrixRoomsCommandsListResponse, error) {
+	rsp, err := c.MatrixRoomsCommandsList(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixRoomsCommandsListResponse(rsp)
+}
+
 // MatrixRoomsDisableWithBodyWithResponse Disable an active chat room
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
@@ -603848,6 +604491,60 @@ func (c *ClientWithResponses) MatrixSessionWithResponse(ctx context.Context, req
 		return nil, err
 	}
 	return ParseMatrixSessionResponse(rsp)
+}
+
+// MatrixTicketDraftsRetrieveWithResponse performs a GET /api/matrix/ticket-drafts/{uuid}/ (the `MatrixTicketDraftsRetrieve` operationId) request.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) MatrixTicketDraftsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MatrixTicketDraftsRetrieveResponse, error) {
+	rsp, err := c.MatrixTicketDraftsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixTicketDraftsRetrieveResponse(rsp)
+}
+
+// MatrixTicketDraftsCancelWithResponse Cancel the draft
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/matrix/ticket-drafts/{uuid}/cancel/ (the `MatrixTicketDraftsCancel` operationId).
+func (c *ClientWithResponses) MatrixTicketDraftsCancelWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MatrixTicketDraftsCancelResponse, error) {
+	rsp, err := c.MatrixTicketDraftsCancel(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixTicketDraftsCancelResponse(rsp)
+}
+
+// MatrixTicketDraftsCreateIssueWithBodyWithResponse Create the draft's support ticket
+//
+// Create the pending draft's ticket as its requester, through the support API, and post its key in the room's thread. The draft is then sent: a second call, or one for a cancelled or expired draft, gets 404.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/matrix/ticket-drafts/{uuid}/create_issue/ (the `MatrixTicketDraftsCreateIssue` operationId).
+func (c *ClientWithResponses) MatrixTicketDraftsCreateIssueWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MatrixTicketDraftsCreateIssueResponse, error) {
+	rsp, err := c.MatrixTicketDraftsCreateIssueWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixTicketDraftsCreateIssueResponse(rsp)
+}
+
+// MatrixTicketDraftsCreateIssueWithResponse Create the draft's support ticket
+//
+// Create the pending draft's ticket as its requester, through the support API, and post its key in the room's thread. The draft is then sent: a second call, or one for a cancelled or expired draft, gets 404.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/matrix/ticket-drafts/{uuid}/create_issue/ (the `MatrixTicketDraftsCreateIssue` operationId).
+func (c *ClientWithResponses) MatrixTicketDraftsCreateIssueWithResponse(ctx context.Context, uuid openapi_types.UUID, body MatrixTicketDraftsCreateIssueJSONRequestBody, reqEditors ...RequestEditorFn) (*MatrixTicketDraftsCreateIssueResponse, error) {
+	rsp, err := c.MatrixTicketDraftsCreateIssue(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMatrixTicketDraftsCreateIssueResponse(rsp)
 }
 
 // MediaRetrieveWithResponse performs a GET /api/media/{uuid}/ (the `MediaRetrieve` operationId) request.
@@ -668266,6 +668963,45 @@ func ParseMatrixRoomsRetrieveResponse(rsp *http.Response) (*MatrixRoomsRetrieveR
 	return response, nil
 }
 
+// ParseMatrixRoomsCommandsListResponse parses an HTTP response from a MatrixRoomsCommandsListWithResponse call
+func ParseMatrixRoomsCommandsListResponse(rsp *http.Response) (*MatrixRoomsCommandsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MatrixRoomsCommandsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []MatrixBotCommand
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers MatrixRoomsCommandsListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
 // ParseMatrixRoomsDisableResponse parses an HTTP response from a MatrixRoomsDisableWithResponse call
 func ParseMatrixRoomsDisableResponse(rsp *http.Response) (*MatrixRoomsDisableResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -668542,6 +669278,74 @@ func ParseMatrixSessionResponse(rsp *http.Response) (*MatrixSessionResponse, err
 
 	case rsp.StatusCode == 503:
 		break // No content-type
+
+	}
+
+	return response, nil
+}
+
+// ParseMatrixTicketDraftsRetrieveResponse parses an HTTP response from a MatrixTicketDraftsRetrieveWithResponse call
+func ParseMatrixTicketDraftsRetrieveResponse(rsp *http.Response) (*MatrixTicketDraftsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MatrixTicketDraftsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MatrixTicketDraft
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMatrixTicketDraftsCancelResponse parses an HTTP response from a MatrixTicketDraftsCancelWithResponse call
+func ParseMatrixTicketDraftsCancelResponse(rsp *http.Response) (*MatrixTicketDraftsCancelResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MatrixTicketDraftsCancelResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMatrixTicketDraftsCreateIssueResponse parses an HTTP response from a MatrixTicketDraftsCreateIssueWithResponse call
+func ParseMatrixTicketDraftsCreateIssueResponse(rsp *http.Response) (*MatrixTicketDraftsCreateIssueResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MatrixTicketDraftsCreateIssueResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest MatrixTicketDraftIssue
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
 
 	}
 
