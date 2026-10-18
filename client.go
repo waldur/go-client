@@ -21419,34 +21419,40 @@ func (e RobotAccountStates) Valid() bool {
 
 // Defines values for RoleDetailsFieldEnum.
 const (
-	RoleDetailsFieldEnumContentType   RoleDetailsFieldEnum = "content_type"
-	RoleDetailsFieldEnumCustomerName  RoleDetailsFieldEnum = "customer_name"
-	RoleDetailsFieldEnumCustomerUuid  RoleDetailsFieldEnum = "customer_uuid"
-	RoleDetailsFieldEnumDescription   RoleDetailsFieldEnum = "description"
-	RoleDetailsFieldEnumDescriptionAr RoleDetailsFieldEnum = "description_ar"
-	RoleDetailsFieldEnumDescriptionCs RoleDetailsFieldEnum = "description_cs"
-	RoleDetailsFieldEnumDescriptionDa RoleDetailsFieldEnum = "description_da"
-	RoleDetailsFieldEnumDescriptionDe RoleDetailsFieldEnum = "description_de"
-	RoleDetailsFieldEnumDescriptionEn RoleDetailsFieldEnum = "description_en"
-	RoleDetailsFieldEnumDescriptionEs RoleDetailsFieldEnum = "description_es"
-	RoleDetailsFieldEnumDescriptionEt RoleDetailsFieldEnum = "description_et"
-	RoleDetailsFieldEnumDescriptionFr RoleDetailsFieldEnum = "description_fr"
-	RoleDetailsFieldEnumDescriptionHr RoleDetailsFieldEnum = "description_hr"
-	RoleDetailsFieldEnumDescriptionIt RoleDetailsFieldEnum = "description_it"
-	RoleDetailsFieldEnumDescriptionKm RoleDetailsFieldEnum = "description_km"
-	RoleDetailsFieldEnumDescriptionLt RoleDetailsFieldEnum = "description_lt"
-	RoleDetailsFieldEnumDescriptionLv RoleDetailsFieldEnum = "description_lv"
-	RoleDetailsFieldEnumDescriptionNb RoleDetailsFieldEnum = "description_nb"
-	RoleDetailsFieldEnumDescriptionRu RoleDetailsFieldEnum = "description_ru"
-	RoleDetailsFieldEnumDescriptionSv RoleDetailsFieldEnum = "description_sv"
-	RoleDetailsFieldEnumIsActive      RoleDetailsFieldEnum = "is_active"
-	RoleDetailsFieldEnumIsSystemRole  RoleDetailsFieldEnum = "is_system_role"
-	RoleDetailsFieldEnumName          RoleDetailsFieldEnum = "name"
-	RoleDetailsFieldEnumPermissions   RoleDetailsFieldEnum = "permissions"
-	RoleDetailsFieldEnumTemplateName  RoleDetailsFieldEnum = "template_name"
-	RoleDetailsFieldEnumTemplateUuid  RoleDetailsFieldEnum = "template_uuid"
-	RoleDetailsFieldEnumUsersCount    RoleDetailsFieldEnum = "users_count"
-	RoleDetailsFieldEnumUuid          RoleDetailsFieldEnum = "uuid"
+	RoleDetailsFieldEnumContentType     RoleDetailsFieldEnum = "content_type"
+	RoleDetailsFieldEnumCustomerName    RoleDetailsFieldEnum = "customer_name"
+	RoleDetailsFieldEnumCustomerUuid    RoleDetailsFieldEnum = "customer_uuid"
+	RoleDetailsFieldEnumDescription     RoleDetailsFieldEnum = "description"
+	RoleDetailsFieldEnumDescriptionAr   RoleDetailsFieldEnum = "description_ar"
+	RoleDetailsFieldEnumDescriptionBg   RoleDetailsFieldEnum = "description_bg"
+	RoleDetailsFieldEnumDescriptionCs   RoleDetailsFieldEnum = "description_cs"
+	RoleDetailsFieldEnumDescriptionDa   RoleDetailsFieldEnum = "description_da"
+	RoleDetailsFieldEnumDescriptionDe   RoleDetailsFieldEnum = "description_de"
+	RoleDetailsFieldEnumDescriptionEl   RoleDetailsFieldEnum = "description_el"
+	RoleDetailsFieldEnumDescriptionEn   RoleDetailsFieldEnum = "description_en"
+	RoleDetailsFieldEnumDescriptionEnGb RoleDetailsFieldEnum = "description_en_gb"
+	RoleDetailsFieldEnumDescriptionEs   RoleDetailsFieldEnum = "description_es"
+	RoleDetailsFieldEnumDescriptionEt   RoleDetailsFieldEnum = "description_et"
+	RoleDetailsFieldEnumDescriptionFr   RoleDetailsFieldEnum = "description_fr"
+	RoleDetailsFieldEnumDescriptionHr   RoleDetailsFieldEnum = "description_hr"
+	RoleDetailsFieldEnumDescriptionIt   RoleDetailsFieldEnum = "description_it"
+	RoleDetailsFieldEnumDescriptionKm   RoleDetailsFieldEnum = "description_km"
+	RoleDetailsFieldEnumDescriptionLt   RoleDetailsFieldEnum = "description_lt"
+	RoleDetailsFieldEnumDescriptionLv   RoleDetailsFieldEnum = "description_lv"
+	RoleDetailsFieldEnumDescriptionMk   RoleDetailsFieldEnum = "description_mk"
+	RoleDetailsFieldEnumDescriptionNb   RoleDetailsFieldEnum = "description_nb"
+	RoleDetailsFieldEnumDescriptionRu   RoleDetailsFieldEnum = "description_ru"
+	RoleDetailsFieldEnumDescriptionSl   RoleDetailsFieldEnum = "description_sl"
+	RoleDetailsFieldEnumDescriptionSq   RoleDetailsFieldEnum = "description_sq"
+	RoleDetailsFieldEnumDescriptionSv   RoleDetailsFieldEnum = "description_sv"
+	RoleDetailsFieldEnumIsActive        RoleDetailsFieldEnum = "is_active"
+	RoleDetailsFieldEnumIsSystemRole    RoleDetailsFieldEnum = "is_system_role"
+	RoleDetailsFieldEnumName            RoleDetailsFieldEnum = "name"
+	RoleDetailsFieldEnumPermissions     RoleDetailsFieldEnum = "permissions"
+	RoleDetailsFieldEnumTemplateName    RoleDetailsFieldEnum = "template_name"
+	RoleDetailsFieldEnumTemplateUuid    RoleDetailsFieldEnum = "template_uuid"
+	RoleDetailsFieldEnumUsersCount      RoleDetailsFieldEnum = "users_count"
+	RoleDetailsFieldEnumUuid            RoleDetailsFieldEnum = "uuid"
 )
 
 // Valid indicates whether the value is a known member of the RoleDetailsFieldEnum enum.
@@ -21462,13 +21468,19 @@ func (e RoleDetailsFieldEnum) Valid() bool {
 		return true
 	case RoleDetailsFieldEnumDescriptionAr:
 		return true
+	case RoleDetailsFieldEnumDescriptionBg:
+		return true
 	case RoleDetailsFieldEnumDescriptionCs:
 		return true
 	case RoleDetailsFieldEnumDescriptionDa:
 		return true
 	case RoleDetailsFieldEnumDescriptionDe:
 		return true
+	case RoleDetailsFieldEnumDescriptionEl:
+		return true
 	case RoleDetailsFieldEnumDescriptionEn:
+		return true
+	case RoleDetailsFieldEnumDescriptionEnGb:
 		return true
 	case RoleDetailsFieldEnumDescriptionEs:
 		return true
@@ -21486,9 +21498,15 @@ func (e RoleDetailsFieldEnum) Valid() bool {
 		return true
 	case RoleDetailsFieldEnumDescriptionLv:
 		return true
+	case RoleDetailsFieldEnumDescriptionMk:
+		return true
 	case RoleDetailsFieldEnumDescriptionNb:
 		return true
 	case RoleDetailsFieldEnumDescriptionRu:
+		return true
+	case RoleDetailsFieldEnumDescriptionSl:
+		return true
+	case RoleDetailsFieldEnumDescriptionSq:
 		return true
 	case RoleDetailsFieldEnumDescriptionSv:
 		return true
@@ -26154,7 +26172,7 @@ type AgentConnectionInfo struct {
 	// AuthTokenPrefix Prefix of the Personal Access Token backing the queue
 	AuthTokenPrefix *string `json:"auth_token_prefix,omitempty"`
 
-	// AuthorizedVia Permission branch that authorised the registration
+	// AuthorizedVia Permission branch that authorized the registration
 	AuthorizedVia *AgentConnectionInfo_AuthorizedVia `json:"authorized_via,omitempty"`
 
 	// DeliveryBlockedReason Why no event can reach this consumer, null when delivery works
@@ -26208,7 +26226,7 @@ type AgentConnectionInfo_AuthKind struct {
 	union json.RawMessage
 }
 
-// AgentConnectionInfo_AuthorizedVia Permission branch that authorised the registration
+// AgentConnectionInfo_AuthorizedVia Permission branch that authorized the registration
 type AgentConnectionInfo_AuthorizedVia struct {
 	union json.RawMessage
 }
@@ -29276,7 +29294,7 @@ type CallImportParametersRequest struct {
 	ImportRounds              *bool                  `json:"import_rounds,omitempty"`
 	ImportWorkflowSteps       *bool                  `json:"import_workflow_steps,omitempty"`
 
-	// Manager Call managing organisation that will own the imported call.
+	// Manager Call managing organization that will own the imported call.
 	Manager openapi_types.UUID `json:"manager"`
 
 	// Name Name for the imported call. Defaults to the exported name.
@@ -29906,11 +29924,11 @@ type CategoryColumn struct {
 	Title string              `json:"title"`
 	Uuid  *openapi_types.UUID `json:"uuid,omitempty"`
 
-	// Widget Widget field allows to customise table cell rendering.
+	// Widget Widget field allows to customize table cell rendering.
 	Widget *CategoryColumn_Widget `json:"widget,omitempty"`
 }
 
-// CategoryColumn_Widget Widget field allows to customise table cell rendering.
+// CategoryColumn_Widget Widget field allows to customize table cell rendering.
 type CategoryColumn_Widget struct {
 	union json.RawMessage
 }
@@ -29927,11 +29945,11 @@ type CategoryColumnRequest struct {
 	// Title Title is rendered as column header.
 	Title string `json:"title"`
 
-	// Widget Widget field allows to customise table cell rendering.
+	// Widget Widget field allows to customize table cell rendering.
 	Widget *CategoryColumnRequest_Widget `json:"widget,omitempty"`
 }
 
-// CategoryColumnRequest_Widget Widget field allows to customise table cell rendering.
+// CategoryColumnRequest_Widget Widget field allows to customize table cell rendering.
 type CategoryColumnRequest_Widget struct {
 	union json.RawMessage
 }
@@ -30127,7 +30145,7 @@ type CeleryStatsResponse struct {
 	// Reserved Tasks that have been received but not yet started per worker. Keys are worker names, values are lists of reserved tasks.
 	Reserved *map[string][]CeleryTask `json:"reserved,omitempty"`
 
-	// Revoked IDs of revoked (cancelled) tasks per worker. Keys are worker names, values are lists of task IDs.
+	// Revoked IDs of revoked (canceled) tasks per worker. Keys are worker names, values are lists of task IDs.
 	Revoked *map[string][]string `json:"revoked,omitempty"`
 
 	// Scheduled Tasks scheduled for future execution per worker. Keys are worker names, values are lists of scheduled tasks with ETA.
@@ -39440,7 +39458,7 @@ type MergedPluginOptions struct {
 	// AccountNameGenerationPolicy Slurm account name generation policy
 	AccountNameGenerationPolicy *MergedPluginOptions_AccountNameGenerationPolicy `json:"account_name_generation_policy,omitempty"`
 
-	// AccountScope Where accounts are held: 'offering' keeps one account per offering (the historical behaviour); 'provider' shares one account per user across the provider's offerings.
+	// AccountScope Where accounts are held: 'offering' keeps one account per offering (the historical behavior); 'provider' shares one account per user across the provider's offerings.
 	AccountScope *MergedPluginOptions_AccountScope `json:"account_scope,omitempty"`
 
 	// ActionOnUsageLimit If set to 'pause' or 'downscale', resources are automatically paused or downscaled when reported usage in the current period reaches a component's limit_amount, and the restriction is lifted when usage drops below the limit again (e.g. a new billing period or a raised limit).
@@ -39761,7 +39779,7 @@ type MergedPluginOptions_AccountNameGenerationPolicy struct {
 	union json.RawMessage
 }
 
-// MergedPluginOptions_AccountScope Where accounts are held: 'offering' keeps one account per offering (the historical behaviour); 'provider' shares one account per user across the provider's offerings.
+// MergedPluginOptions_AccountScope Where accounts are held: 'offering' keeps one account per offering (the historical behavior); 'provider' shares one account per user across the provider's offerings.
 type MergedPluginOptions_AccountScope struct {
 	union json.RawMessage
 }
@@ -39786,7 +39804,7 @@ type MergedPluginOptionsRequest struct {
 	// AccountNameGenerationPolicy Slurm account name generation policy
 	AccountNameGenerationPolicy *MergedPluginOptionsRequest_AccountNameGenerationPolicy `json:"account_name_generation_policy,omitempty"`
 
-	// AccountScope Where accounts are held: 'offering' keeps one account per offering (the historical behaviour); 'provider' shares one account per user across the provider's offerings.
+	// AccountScope Where accounts are held: 'offering' keeps one account per offering (the historical behavior); 'provider' shares one account per user across the provider's offerings.
 	AccountScope *MergedPluginOptionsRequest_AccountScope `json:"account_scope,omitempty"`
 
 	// ActionOnUsageLimit If set to 'pause' or 'downscale', resources are automatically paused or downscaled when reported usage in the current period reaches a component's limit_amount, and the restriction is lifted when usage drops below the limit again (e.g. a new billing period or a raised limit).
@@ -40107,7 +40125,7 @@ type MergedPluginOptionsRequest_AccountNameGenerationPolicy struct {
 	union json.RawMessage
 }
 
-// MergedPluginOptionsRequest_AccountScope Where accounts are held: 'offering' keeps one account per offering (the historical behaviour); 'provider' shares one account per user across the provider's offerings.
+// MergedPluginOptionsRequest_AccountScope Where accounts are held: 'offering' keeps one account per offering (the historical behavior); 'provider' shares one account per user across the provider's offerings.
 type MergedPluginOptionsRequest_AccountScope struct {
 	union json.RawMessage
 }
@@ -40838,11 +40856,11 @@ type NestedColumn struct {
 	Title *string             `json:"title,omitempty"`
 	Uuid  *openapi_types.UUID `json:"uuid,omitempty"`
 
-	// Widget Widget field allows to customise table cell rendering.
+	// Widget Widget field allows to customize table cell rendering.
 	Widget *NestedColumn_Widget `json:"widget,omitempty"`
 }
 
-// NestedColumn_Widget Widget field allows to customise table cell rendering.
+// NestedColumn_Widget Widget field allows to customize table cell rendering.
 type NestedColumn_Widget struct {
 	union json.RawMessage
 }
@@ -47455,11 +47473,11 @@ type PatchedCategoryColumnRequest struct {
 	// Title Title is rendered as column header.
 	Title *string `json:"title,omitempty"`
 
-	// Widget Widget field allows to customise table cell rendering.
+	// Widget Widget field allows to customize table cell rendering.
 	Widget *PatchedCategoryColumnRequest_Widget `json:"widget,omitempty"`
 }
 
-// PatchedCategoryColumnRequest_Widget Widget field allows to customise table cell rendering.
+// PatchedCategoryColumnRequest_Widget Widget field allows to customize table cell rendering.
 type PatchedCategoryColumnRequest_Widget struct {
 	union json.RawMessage
 }
@@ -48972,7 +48990,7 @@ type PatchedProtectedCallRequest struct {
 	ApplicantVisibilityConfig *CallApplicantVisibilityConfigRequest `json:"applicant_visibility_config,omitempty"`
 	BackendId                 *string                               `json:"backend_id,omitempty"`
 
-	// CarryOverDrafts Whether a draft still open when its round's cut-off passes moves on to the call's next round instead of being cancelled. Without a later round the draft is cancelled either way.
+	// CarryOverDrafts Whether a draft still open when its round's cut-off passes moves on to the call's next round instead of being canceled. Without a later round the draft is canceled either way.
 	CarryOverDrafts *bool `json:"carry_over_drafts,omitempty"`
 
 	// ComplianceChecklist Compliance checklist that proposals must complete before submission
@@ -48989,7 +49007,7 @@ type PatchedProtectedCallRequest struct {
 	// OrderAuthor Whose name the orders for resources granted by this call carry.
 	OrderAuthor *OrderAuthorEnum `json:"order_author,omitempty"`
 
-	// OrderAuthorUser The person orders are attributed to when the author is a named contact. Must hold a role on this call or on the organisation managing it.
+	// OrderAuthorUser The person orders are attributed to when the author is a named contact. Must hold a role on this call or on the organization managing it.
 	OrderAuthorUser     *openapi_types.UUID             `json:"order_author_user,omitempty"`
 	PanelChair          *openapi_types.UUID             `json:"panel_chair,omitempty"`
 	ProposalFieldConfig *CallProposalFieldConfigRequest `json:"proposal_field_config,omitempty"`
@@ -49516,25 +49534,31 @@ type PatchedRobotAccountRequest struct {
 
 // PatchedRoleDetailsRequest defines model for PatchedRoleDetailsRequest.
 type PatchedRoleDetailsRequest struct {
-	Description   *string `json:"description,omitempty"`
-	DescriptionAr *string `json:"description_ar,omitempty"`
-	DescriptionCs *string `json:"description_cs,omitempty"`
-	DescriptionDa *string `json:"description_da,omitempty"`
-	DescriptionDe *string `json:"description_de,omitempty"`
-	DescriptionEn *string `json:"description_en,omitempty"`
-	DescriptionEs *string `json:"description_es,omitempty"`
-	DescriptionEt *string `json:"description_et,omitempty"`
-	DescriptionFr *string `json:"description_fr,omitempty"`
-	DescriptionHr *string `json:"description_hr,omitempty"`
-	DescriptionIt *string `json:"description_it,omitempty"`
-	DescriptionKm *string `json:"description_km,omitempty"`
-	DescriptionLt *string `json:"description_lt,omitempty"`
-	DescriptionLv *string `json:"description_lv,omitempty"`
-	DescriptionNb *string `json:"description_nb,omitempty"`
-	DescriptionRu *string `json:"description_ru,omitempty"`
-	DescriptionSv *string `json:"description_sv,omitempty"`
-	IsActive      *bool   `json:"is_active,omitempty"`
-	Name          *string `json:"name,omitempty"`
+	Description     *string `json:"description,omitempty"`
+	DescriptionAr   *string `json:"description_ar,omitempty"`
+	DescriptionBg   *string `json:"description_bg,omitempty"`
+	DescriptionCs   *string `json:"description_cs,omitempty"`
+	DescriptionDa   *string `json:"description_da,omitempty"`
+	DescriptionDe   *string `json:"description_de,omitempty"`
+	DescriptionEl   *string `json:"description_el,omitempty"`
+	DescriptionEn   *string `json:"description_en,omitempty"`
+	DescriptionEnGb *string `json:"description_en_gb,omitempty"`
+	DescriptionEs   *string `json:"description_es,omitempty"`
+	DescriptionEt   *string `json:"description_et,omitempty"`
+	DescriptionFr   *string `json:"description_fr,omitempty"`
+	DescriptionHr   *string `json:"description_hr,omitempty"`
+	DescriptionIt   *string `json:"description_it,omitempty"`
+	DescriptionKm   *string `json:"description_km,omitempty"`
+	DescriptionLt   *string `json:"description_lt,omitempty"`
+	DescriptionLv   *string `json:"description_lv,omitempty"`
+	DescriptionMk   *string `json:"description_mk,omitempty"`
+	DescriptionNb   *string `json:"description_nb,omitempty"`
+	DescriptionRu   *string `json:"description_ru,omitempty"`
+	DescriptionSl   *string `json:"description_sl,omitempty"`
+	DescriptionSq   *string `json:"description_sq,omitempty"`
+	DescriptionSv   *string `json:"description_sv,omitempty"`
+	IsActive        *bool   `json:"is_active,omitempty"`
+	Name            *string `json:"name,omitempty"`
 }
 
 // PatchedRuleRequest defines model for PatchedRuleRequest.
@@ -49759,7 +49783,7 @@ type PatchedSupportUserRequest struct {
 
 // PatchedSystemPromptRequest defines model for PatchedSystemPromptRequest.
 type PatchedSystemPromptRequest struct {
-	// CustomInstructions Additional instructions injected into the system prompt. Use this for organisation-specific context, terminology, FAQ content, or behavioural guidelines. Supports {assistant_name} and {organization} placeholders.
+	// CustomInstructions Additional instructions injected into the system prompt. Use this for organization-specific context, terminology, FAQ content, or behavioral guidelines. Supports {assistant_name} and {organization} placeholders.
 	CustomInstructions *string `json:"custom_instructions,omitempty"`
 	Description        *string `json:"description,omitempty"`
 	Name               *string `json:"name,omitempty"`
@@ -51987,7 +52011,7 @@ type ProtectedCall struct {
 	ApplicantVisibilityConfig *CallApplicantVisibilityConfig `json:"applicant_visibility_config,omitempty"`
 	BackendId                 *string                        `json:"backend_id,omitempty"`
 
-	// CarryOverDrafts Whether a draft still open when its round's cut-off passes moves on to the call's next round instead of being cancelled. Without a later round the draft is cancelled either way.
+	// CarryOverDrafts Whether a draft still open when its round's cut-off passes moves on to the call's next round instead of being canceled. Without a later round the draft is canceled either way.
 	CarryOverDrafts *bool `json:"carry_over_drafts,omitempty"`
 
 	// ComplianceChecklist Compliance checklist that proposals must complete before submission
@@ -52022,7 +52046,7 @@ type ProtectedCall struct {
 	// OrderAuthor Whose name the orders for resources granted by this call carry.
 	OrderAuthor *OrderAuthorEnum `json:"order_author,omitempty"`
 
-	// OrderAuthorUser The person orders are attributed to when the author is a named contact. Must hold a role on this call or on the organisation managing it.
+	// OrderAuthorUser The person orders are attributed to when the author is a named contact. Must hold a role on this call or on the organization managing it.
 	OrderAuthorUser     *openapi_types.UUID      `json:"order_author_user,omitempty"`
 	OrderAuthorUserName *string                  `json:"order_author_user_name,omitempty"`
 	OrderAuthorUserUuid *openapi_types.UUID      `json:"order_author_user_uuid,omitempty"`
@@ -52089,7 +52113,7 @@ type ProtectedCallRequest struct {
 	ApplicantVisibilityConfig *CallApplicantVisibilityConfigRequest `json:"applicant_visibility_config,omitempty"`
 	BackendId                 *string                               `json:"backend_id,omitempty"`
 
-	// CarryOverDrafts Whether a draft still open when its round's cut-off passes moves on to the call's next round instead of being cancelled. Without a later round the draft is cancelled either way.
+	// CarryOverDrafts Whether a draft still open when its round's cut-off passes moves on to the call's next round instead of being canceled. Without a later round the draft is canceled either way.
 	CarryOverDrafts *bool `json:"carry_over_drafts,omitempty"`
 
 	// ComplianceChecklist Compliance checklist that proposals must complete before submission
@@ -52107,7 +52131,7 @@ type ProtectedCallRequest struct {
 	// OrderAuthor Whose name the orders for resources granted by this call carry.
 	OrderAuthor *OrderAuthorEnum `json:"order_author,omitempty"`
 
-	// OrderAuthorUser The person orders are attributed to when the author is a named contact. Must hold a role on this call or on the organisation managing it.
+	// OrderAuthorUser The person orders are attributed to when the author is a named contact. Must hold a role on this call or on the organization managing it.
 	OrderAuthorUser     *openapi_types.UUID             `json:"order_author_user,omitempty"`
 	PanelChair          *openapi_types.UUID             `json:"panel_chair,omitempty"`
 	ProposalFieldConfig *CallProposalFieldConfigRequest `json:"proposal_field_config,omitempty"`
@@ -52232,7 +52256,7 @@ type ProtectedRoundRequest_UndecidedAtRoundCompletion struct {
 
 // ProviderAccountOptions defines model for ProviderAccountOptions.
 type ProviderAccountOptions struct {
-	// AccountScope Where accounts are held: 'offering' keeps one account per offering (the historical behaviour); 'provider' shares one account per user across the provider's offerings.
+	// AccountScope Where accounts are held: 'offering' keeps one account per offering (the historical behavior); 'provider' shares one account per user across the provider's offerings.
 	AccountScope *ProviderAccountOptions_AccountScope `json:"account_scope,omitempty"`
 
 	// HomedirPrefix Prefix of each account's home directory; the username follows.
@@ -52251,7 +52275,7 @@ type ProviderAccountOptions struct {
 	UsernameGenerationPolicy *ProviderAccountOptions_UsernameGenerationPolicy `json:"username_generation_policy,omitempty"`
 }
 
-// ProviderAccountOptions_AccountScope Where accounts are held: 'offering' keeps one account per offering (the historical behaviour); 'provider' shares one account per user across the provider's offerings.
+// ProviderAccountOptions_AccountScope Where accounts are held: 'offering' keeps one account per offering (the historical behavior); 'provider' shares one account per user across the provider's offerings.
 type ProviderAccountOptions_AccountScope struct {
 	union json.RawMessage
 }
@@ -52263,7 +52287,7 @@ type ProviderAccountOptions_UsernameGenerationPolicy struct {
 
 // ProviderAccountOptionsRequest defines model for ProviderAccountOptionsRequest.
 type ProviderAccountOptionsRequest struct {
-	// AccountScope Where accounts are held: 'offering' keeps one account per offering (the historical behaviour); 'provider' shares one account per user across the provider's offerings.
+	// AccountScope Where accounts are held: 'offering' keeps one account per offering (the historical behavior); 'provider' shares one account per user across the provider's offerings.
 	AccountScope *ProviderAccountOptionsRequest_AccountScope `json:"account_scope,omitempty"`
 
 	// HomedirPrefix Prefix of each account's home directory; the username follows.
@@ -52282,7 +52306,7 @@ type ProviderAccountOptionsRequest struct {
 	UsernameGenerationPolicy *ProviderAccountOptionsRequest_UsernameGenerationPolicy `json:"username_generation_policy,omitempty"`
 }
 
-// ProviderAccountOptionsRequest_AccountScope Where accounts are held: 'offering' keeps one account per offering (the historical behaviour); 'provider' shares one account per user across the provider's offerings.
+// ProviderAccountOptionsRequest_AccountScope Where accounts are held: 'offering' keeps one account per offering (the historical behavior); 'provider' shares one account per user across the provider's offerings.
 type ProviderAccountOptionsRequest_AccountScope struct {
 	union json.RawMessage
 }
@@ -57282,76 +57306,94 @@ type RoleCloneRequest struct {
 
 // RoleDescription defines model for RoleDescription.
 type RoleDescription struct {
-	Description   *string `json:"description,omitempty"`
-	DescriptionAr *string `json:"description_ar,omitempty"`
-	DescriptionCs *string `json:"description_cs,omitempty"`
-	DescriptionDa *string `json:"description_da,omitempty"`
-	DescriptionDe *string `json:"description_de,omitempty"`
-	DescriptionEn *string `json:"description_en,omitempty"`
-	DescriptionEs *string `json:"description_es,omitempty"`
-	DescriptionEt *string `json:"description_et,omitempty"`
-	DescriptionFr *string `json:"description_fr,omitempty"`
-	DescriptionHr *string `json:"description_hr,omitempty"`
-	DescriptionIt *string `json:"description_it,omitempty"`
-	DescriptionKm *string `json:"description_km,omitempty"`
-	DescriptionLt *string `json:"description_lt,omitempty"`
-	DescriptionLv *string `json:"description_lv,omitempty"`
-	DescriptionNb *string `json:"description_nb,omitempty"`
-	DescriptionRu *string `json:"description_ru,omitempty"`
-	DescriptionSv *string `json:"description_sv,omitempty"`
+	Description     *string `json:"description,omitempty"`
+	DescriptionAr   *string `json:"description_ar,omitempty"`
+	DescriptionBg   *string `json:"description_bg,omitempty"`
+	DescriptionCs   *string `json:"description_cs,omitempty"`
+	DescriptionDa   *string `json:"description_da,omitempty"`
+	DescriptionDe   *string `json:"description_de,omitempty"`
+	DescriptionEl   *string `json:"description_el,omitempty"`
+	DescriptionEn   *string `json:"description_en,omitempty"`
+	DescriptionEnGb *string `json:"description_en_gb,omitempty"`
+	DescriptionEs   *string `json:"description_es,omitempty"`
+	DescriptionEt   *string `json:"description_et,omitempty"`
+	DescriptionFr   *string `json:"description_fr,omitempty"`
+	DescriptionHr   *string `json:"description_hr,omitempty"`
+	DescriptionIt   *string `json:"description_it,omitempty"`
+	DescriptionKm   *string `json:"description_km,omitempty"`
+	DescriptionLt   *string `json:"description_lt,omitempty"`
+	DescriptionLv   *string `json:"description_lv,omitempty"`
+	DescriptionMk   *string `json:"description_mk,omitempty"`
+	DescriptionNb   *string `json:"description_nb,omitempty"`
+	DescriptionRu   *string `json:"description_ru,omitempty"`
+	DescriptionSl   *string `json:"description_sl,omitempty"`
+	DescriptionSq   *string `json:"description_sq,omitempty"`
+	DescriptionSv   *string `json:"description_sv,omitempty"`
 }
 
 // RoleDescriptionRequest defines model for RoleDescriptionRequest.
 type RoleDescriptionRequest struct {
-	Description   *string `json:"description,omitempty"`
-	DescriptionAr *string `json:"description_ar,omitempty"`
-	DescriptionCs *string `json:"description_cs,omitempty"`
-	DescriptionDa *string `json:"description_da,omitempty"`
-	DescriptionDe *string `json:"description_de,omitempty"`
-	DescriptionEn *string `json:"description_en,omitempty"`
-	DescriptionEs *string `json:"description_es,omitempty"`
-	DescriptionEt *string `json:"description_et,omitempty"`
-	DescriptionFr *string `json:"description_fr,omitempty"`
-	DescriptionHr *string `json:"description_hr,omitempty"`
-	DescriptionIt *string `json:"description_it,omitempty"`
-	DescriptionKm *string `json:"description_km,omitempty"`
-	DescriptionLt *string `json:"description_lt,omitempty"`
-	DescriptionLv *string `json:"description_lv,omitempty"`
-	DescriptionNb *string `json:"description_nb,omitempty"`
-	DescriptionRu *string `json:"description_ru,omitempty"`
-	DescriptionSv *string `json:"description_sv,omitempty"`
+	Description     *string `json:"description,omitempty"`
+	DescriptionAr   *string `json:"description_ar,omitempty"`
+	DescriptionBg   *string `json:"description_bg,omitempty"`
+	DescriptionCs   *string `json:"description_cs,omitempty"`
+	DescriptionDa   *string `json:"description_da,omitempty"`
+	DescriptionDe   *string `json:"description_de,omitempty"`
+	DescriptionEl   *string `json:"description_el,omitempty"`
+	DescriptionEn   *string `json:"description_en,omitempty"`
+	DescriptionEnGb *string `json:"description_en_gb,omitempty"`
+	DescriptionEs   *string `json:"description_es,omitempty"`
+	DescriptionEt   *string `json:"description_et,omitempty"`
+	DescriptionFr   *string `json:"description_fr,omitempty"`
+	DescriptionHr   *string `json:"description_hr,omitempty"`
+	DescriptionIt   *string `json:"description_it,omitempty"`
+	DescriptionKm   *string `json:"description_km,omitempty"`
+	DescriptionLt   *string `json:"description_lt,omitempty"`
+	DescriptionLv   *string `json:"description_lv,omitempty"`
+	DescriptionMk   *string `json:"description_mk,omitempty"`
+	DescriptionNb   *string `json:"description_nb,omitempty"`
+	DescriptionRu   *string `json:"description_ru,omitempty"`
+	DescriptionSl   *string `json:"description_sl,omitempty"`
+	DescriptionSq   *string `json:"description_sq,omitempty"`
+	DescriptionSv   *string `json:"description_sv,omitempty"`
 }
 
 // RoleDetails defines model for RoleDetails.
 type RoleDetails struct {
-	ContentType   *RoleType           `json:"content_type,omitempty"`
-	CustomerName  *string             `json:"customer_name,omitempty"`
-	CustomerUuid  *openapi_types.UUID `json:"customer_uuid,omitempty"`
-	Description   *string             `json:"description,omitempty"`
-	DescriptionAr *string             `json:"description_ar,omitempty"`
-	DescriptionCs *string             `json:"description_cs,omitempty"`
-	DescriptionDa *string             `json:"description_da,omitempty"`
-	DescriptionDe *string             `json:"description_de,omitempty"`
-	DescriptionEn *string             `json:"description_en,omitempty"`
-	DescriptionEs *string             `json:"description_es,omitempty"`
-	DescriptionEt *string             `json:"description_et,omitempty"`
-	DescriptionFr *string             `json:"description_fr,omitempty"`
-	DescriptionHr *string             `json:"description_hr,omitempty"`
-	DescriptionIt *string             `json:"description_it,omitempty"`
-	DescriptionKm *string             `json:"description_km,omitempty"`
-	DescriptionLt *string             `json:"description_lt,omitempty"`
-	DescriptionLv *string             `json:"description_lv,omitempty"`
-	DescriptionNb *string             `json:"description_nb,omitempty"`
-	DescriptionRu *string             `json:"description_ru,omitempty"`
-	DescriptionSv *string             `json:"description_sv,omitempty"`
-	IsActive      *bool               `json:"is_active,omitempty"`
-	IsSystemRole  *bool               `json:"is_system_role,omitempty"`
-	Name          *string             `json:"name,omitempty"`
-	Permissions   *[]string           `json:"permissions,omitempty"`
-	TemplateName  *string             `json:"template_name,omitempty"`
-	TemplateUuid  *string             `json:"template_uuid,omitempty"`
-	UsersCount    *int                `json:"users_count,omitempty"`
-	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
+	ContentType     *RoleType           `json:"content_type,omitempty"`
+	CustomerName    *string             `json:"customer_name,omitempty"`
+	CustomerUuid    *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Description     *string             `json:"description,omitempty"`
+	DescriptionAr   *string             `json:"description_ar,omitempty"`
+	DescriptionBg   *string             `json:"description_bg,omitempty"`
+	DescriptionCs   *string             `json:"description_cs,omitempty"`
+	DescriptionDa   *string             `json:"description_da,omitempty"`
+	DescriptionDe   *string             `json:"description_de,omitempty"`
+	DescriptionEl   *string             `json:"description_el,omitempty"`
+	DescriptionEn   *string             `json:"description_en,omitempty"`
+	DescriptionEnGb *string             `json:"description_en_gb,omitempty"`
+	DescriptionEs   *string             `json:"description_es,omitempty"`
+	DescriptionEt   *string             `json:"description_et,omitempty"`
+	DescriptionFr   *string             `json:"description_fr,omitempty"`
+	DescriptionHr   *string             `json:"description_hr,omitempty"`
+	DescriptionIt   *string             `json:"description_it,omitempty"`
+	DescriptionKm   *string             `json:"description_km,omitempty"`
+	DescriptionLt   *string             `json:"description_lt,omitempty"`
+	DescriptionLv   *string             `json:"description_lv,omitempty"`
+	DescriptionMk   *string             `json:"description_mk,omitempty"`
+	DescriptionNb   *string             `json:"description_nb,omitempty"`
+	DescriptionRu   *string             `json:"description_ru,omitempty"`
+	DescriptionSl   *string             `json:"description_sl,omitempty"`
+	DescriptionSq   *string             `json:"description_sq,omitempty"`
+	DescriptionSv   *string             `json:"description_sv,omitempty"`
+	IsActive        *bool               `json:"is_active,omitempty"`
+	IsSystemRole    *bool               `json:"is_system_role,omitempty"`
+	Name            *string             `json:"name,omitempty"`
+	Permissions     *[]string           `json:"permissions,omitempty"`
+	TemplateName    *string             `json:"template_name,omitempty"`
+	TemplateUuid    *string             `json:"template_uuid,omitempty"`
+	UsersCount      *int                `json:"users_count,omitempty"`
+	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // RoleDetailsFieldEnum defines model for RoleDetailsFieldEnum.
@@ -57393,27 +57435,33 @@ type RoleHygieneReport struct {
 
 // RoleModifyRequest defines model for RoleModifyRequest.
 type RoleModifyRequest struct {
-	ContentType   string                 `json:"content_type"`
-	Description   *string                `json:"description,omitempty"`
-	DescriptionAr *string                `json:"description_ar,omitempty"`
-	DescriptionCs *string                `json:"description_cs,omitempty"`
-	DescriptionDa *string                `json:"description_da,omitempty"`
-	DescriptionDe *string                `json:"description_de,omitempty"`
-	DescriptionEn *string                `json:"description_en,omitempty"`
-	DescriptionEs *string                `json:"description_es,omitempty"`
-	DescriptionEt *string                `json:"description_et,omitempty"`
-	DescriptionFr *string                `json:"description_fr,omitempty"`
-	DescriptionHr *string                `json:"description_hr,omitempty"`
-	DescriptionIt *string                `json:"description_it,omitempty"`
-	DescriptionKm *string                `json:"description_km,omitempty"`
-	DescriptionLt *string                `json:"description_lt,omitempty"`
-	DescriptionLv *string                `json:"description_lv,omitempty"`
-	DescriptionNb *string                `json:"description_nb,omitempty"`
-	DescriptionRu *string                `json:"description_ru,omitempty"`
-	DescriptionSv *string                `json:"description_sv,omitempty"`
-	IsActive      *bool                  `json:"is_active,omitempty"`
-	Name          string                 `json:"name"`
-	Permissions   map[string]interface{} `json:"permissions"`
+	ContentType     string                 `json:"content_type"`
+	Description     *string                `json:"description,omitempty"`
+	DescriptionAr   *string                `json:"description_ar,omitempty"`
+	DescriptionBg   *string                `json:"description_bg,omitempty"`
+	DescriptionCs   *string                `json:"description_cs,omitempty"`
+	DescriptionDa   *string                `json:"description_da,omitempty"`
+	DescriptionDe   *string                `json:"description_de,omitempty"`
+	DescriptionEl   *string                `json:"description_el,omitempty"`
+	DescriptionEn   *string                `json:"description_en,omitempty"`
+	DescriptionEnGb *string                `json:"description_en_gb,omitempty"`
+	DescriptionEs   *string                `json:"description_es,omitempty"`
+	DescriptionEt   *string                `json:"description_et,omitempty"`
+	DescriptionFr   *string                `json:"description_fr,omitempty"`
+	DescriptionHr   *string                `json:"description_hr,omitempty"`
+	DescriptionIt   *string                `json:"description_it,omitempty"`
+	DescriptionKm   *string                `json:"description_km,omitempty"`
+	DescriptionLt   *string                `json:"description_lt,omitempty"`
+	DescriptionLv   *string                `json:"description_lv,omitempty"`
+	DescriptionMk   *string                `json:"description_mk,omitempty"`
+	DescriptionNb   *string                `json:"description_nb,omitempty"`
+	DescriptionRu   *string                `json:"description_ru,omitempty"`
+	DescriptionSl   *string                `json:"description_sl,omitempty"`
+	DescriptionSq   *string                `json:"description_sq,omitempty"`
+	DescriptionSv   *string                `json:"description_sv,omitempty"`
+	IsActive        *bool                  `json:"is_active,omitempty"`
+	Name            string                 `json:"name"`
+	Permissions     map[string]interface{} `json:"permissions"`
 }
 
 // RoleTemplate defines model for RoleTemplate.
@@ -58991,7 +59039,7 @@ type SramGroup struct {
 	RoleName     *string             `json:"role_name,omitempty"`
 	RoleUuid     *openapi_types.UUID `json:"role_uuid,omitempty"`
 
-	// Urn SRAM global URN: '<organisation>:<co>' or '<organisation>:<co>:<group>'.
+	// Urn SRAM global URN: '<organization>:<co>' or '<organization>:<co>:<group>'.
 	Urn  *string             `json:"urn,omitempty"`
 	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
 }
@@ -59461,7 +59509,7 @@ type SystemLogStatsResponse struct {
 type SystemPrompt struct {
 	Created *time.Time `json:"created,omitempty"`
 
-	// CustomInstructions Additional instructions injected into the system prompt. Use this for organisation-specific context, terminology, FAQ content, or behavioural guidelines. Supports {assistant_name} and {organization} placeholders.
+	// CustomInstructions Additional instructions injected into the system prompt. Use this for organization-specific context, terminology, FAQ content, or behavioral guidelines. Supports {assistant_name} and {organization} placeholders.
 	CustomInstructions *string `json:"custom_instructions,omitempty"`
 	Description        *string `json:"description,omitempty"`
 
@@ -59474,7 +59522,7 @@ type SystemPrompt struct {
 
 // SystemPromptRequest defines model for SystemPromptRequest.
 type SystemPromptRequest struct {
-	// CustomInstructions Additional instructions injected into the system prompt. Use this for organisation-specific context, terminology, FAQ content, or behavioural guidelines. Supports {assistant_name} and {organization} placeholders.
+	// CustomInstructions Additional instructions injected into the system prompt. Use this for organization-specific context, terminology, FAQ content, or behavioral guidelines. Supports {assistant_name} and {organization} placeholders.
 	CustomInstructions *string `json:"custom_instructions,omitempty"`
 	Description        *string `json:"description,omitempty"`
 	Name               string  `json:"name"`
@@ -111686,14 +111734,14 @@ type ClientInterface interface {
 
 	// AnonymousChatInteractionsConversationsList Conversations grouped by session
 	//
-	// One row per anonymous conversation (``session_id``) with aggregate counters, mirroring the authenticated threads table. Honours the same filters as the list endpoint. Read a conversation's transcript via ``by-session/{session_id}``.
+	// One row per anonymous conversation (``session_id``) with aggregate counters, mirroring the authenticated threads table. Honors the same filters as the list endpoint. Read a conversation's transcript via ``by-session/{session_id}``.
 	//
 	// Corresponds with GET /api/anonymous-chat-interactions/conversations/ (the `AnonymousChatInteractionsConversationsList` operationId).
 	AnonymousChatInteractionsConversationsList(ctx context.Context, params *AnonymousChatInteractionsConversationsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// AnonymousChatInteractionsKpiRetrieve Aggregate KPI roll-up
 	//
-	// Returns aggregate counters and rates for the anonymous chat flow. Filters are honoured (date range etc.) so the same parameters work as on the list endpoint.
+	// Returns aggregate counters and rates for the anonymous chat flow. Filters are honored (date range etc.) so the same parameters work as on the list endpoint.
 	//
 	// Corresponds with GET /api/anonymous-chat-interactions/kpi/ (the `AnonymousChatInteractionsKpiRetrieve` operationId).
 	AnonymousChatInteractionsKpiRetrieve(ctx context.Context, params *AnonymousChatInteractionsKpiRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -112613,7 +112661,7 @@ type ClientInterface interface {
 
 	// CallManagingOrganisationsStatsRetrieve performs a GET /api/call-managing-organisations/{uuid}/stats/ (the `CallManagingOrganisationsStatsRetrieve` operationId) request.
 	//
-	// Return statistics for call managing organisation.
+	// Return statistics for call managing organization.
 	CallManagingOrganisationsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CallManagingOrganisationsUpdateUserWithBody Update a user's role expiration
@@ -112808,7 +112856,7 @@ type ClientInterface interface {
 	// - **active**: Tasks currently being executed by workers
 	// - **scheduled**: Tasks scheduled for future execution (with ETA)
 	// - **reserved**: Tasks received by workers but not yet started
-	// - **revoked**: Task IDs that have been cancelled/revoked
+	// - **revoked**: Task IDs that have been canceled/revoked
 	// - **query_task**: Results of task queries (if any)
 	// - **stats**: Detailed worker statistics including uptime, pool info, and broker connection
 	//
@@ -122820,7 +122868,7 @@ type ClientInterface interface {
 	//
 	// Backs every offering account at this provider with one provider-level account per user, so a person resolves to a single username and POSIX identity across the provider's offerings.
 	//
-	// Users whose accounts already agree are adopted without input. A user whose accounts disagree must be given a surviving username in 'resolutions', keyed by user UUID — see the 'username_conflicts' action. The call is refused while any conflict is unresolved, rather than adopting part of the provider and leaving the rest on the old per-offering behaviour.
+	// Users whose accounts already agree are adopted without input. A user whose accounts disagree must be given a surviving username in 'resolutions', keyed by user UUID — see the 'username_conflicts' action. The call is refused while any conflict is unresolved, rather than adopting part of the provider and leaving the rest on the old per-offering behavior.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -122831,7 +122879,7 @@ type ClientInterface interface {
 	//
 	// Backs every offering account at this provider with one provider-level account per user, so a person resolves to a single username and POSIX identity across the provider's offerings.
 	//
-	// Users whose accounts already agree are adopted without input. A user whose accounts disagree must be given a surviving username in 'resolutions', keyed by user UUID — see the 'username_conflicts' action. The call is refused while any conflict is unresolved, rather than adopting part of the provider and leaving the rest on the old per-offering behaviour.
+	// Users whose accounts already agree are adopted without input. A user whose accounts disagree must be given a surviving username in 'resolutions', keyed by user UUID — see the 'username_conflicts' action. The call is refused while any conflict is unresolved, rather than adopting part of the provider and leaving the rest on the old per-offering behavior.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -124441,7 +124489,7 @@ type ClientInterface interface {
 
 	// MatrixTicketDraftsCreateIssueWithBody Create the draft's support ticket
 	//
-	// Create the pending draft's ticket as its requester, through the support API, and post its key in the room's thread. The draft is then sent: a second call, or one for a cancelled or expired draft, gets 404.
+	// Create the pending draft's ticket as its requester, through the support API, and post its key in the room's thread. The draft is then sent: a second call, or one for a canceled or expired draft, gets 404.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -124450,7 +124498,7 @@ type ClientInterface interface {
 
 	// MatrixTicketDraftsCreateIssue Create the draft's support ticket
 	//
-	// Create the pending draft's ticket as its requester, through the support API, and post its key in the room's thread. The draft is then sent: a second call, or one for a cancelled or expired draft, gets 404.
+	// Create the pending draft's ticket as its requester, through the support API, and post its key in the room's thread. The draft is then sent: a second call, or one for a canceled or expired draft, gets 404.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -129783,7 +129831,7 @@ type ClientInterface interface {
 
 	// ProposalProposalsAwardedResourcesList performs a GET /api/proposal-proposals/{uuid}/awarded_resources/ (the `ProposalProposalsAwardedResourcesList` operationId) request.
 	//
-	// List what the allocation decision awards the proposal. Staff, support, the call's managers and organisers, and the managers of the offerings involved see it at any time; the applicant team once the decision is released.
+	// List what the allocation decision awards the proposal. Staff, support, the call's managers and organizers, and the managers of the offerings involved see it at any time; the applicant team once the decision is released.
 	ProposalProposalsAwardedResourcesList(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsAwardedResourcesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProposalsAwardedResourcesSetWithBody performs a POST /api/proposal-proposals/{uuid}/awarded_resources/ (the `ProposalProposalsAwardedResourcesSet` operationId) request,
@@ -130103,7 +130151,7 @@ type ClientInterface interface {
 
 	// ProposalProtectedCallsImportCallWithBody Import call configuration
 	//
-	// Create a draft call under the given call managing organisation from a document produced by export_call. References that cannot be resolved by name on this portal are skipped and reported in warnings. The import is atomic.
+	// Create a draft call under the given call managing organization from a document produced by export_call. References that cannot be resolved by name on this portal are skipped and reported in warnings. The import is atomic.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -130112,7 +130160,7 @@ type ClientInterface interface {
 
 	// ProposalProtectedCallsImportCall Import call configuration
 	//
-	// Create a draft call under the given call managing organisation from a document produced by export_call. References that cannot be resolved by name on this portal are skipped and reported in warnings. The import is atomic.
+	// Create a draft call under the given call managing organization from a document produced by export_call. References that cannot be resolved by name on this portal are skipped and reported in warnings. The import is atomic.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -132849,7 +132897,7 @@ type ClientInterface interface {
 	// - **active**: Tasks currently being executed by workers
 	// - **scheduled**: Tasks scheduled for future execution (with ETA)
 	// - **reserved**: Tasks received by workers but not yet started
-	// - **revoked**: Task IDs that have been cancelled/revoked
+	// - **revoked**: Task IDs that have been canceled/revoked
 	// - **query_task**: Results of task queries (if any)
 	// - **stats**: Detailed worker statistics including uptime, pool info, and broker connection
 	//
@@ -137411,7 +137459,7 @@ func (c *Client) AnonymousChatInteractionsByUserList(ctx context.Context, userSl
 
 // AnonymousChatInteractionsConversationsList Conversations grouped by session
 //
-// One row per anonymous conversation (“session_id“) with aggregate counters, mirroring the authenticated threads table. Honours the same filters as the list endpoint. Read a conversation's transcript via “by-session/{session_id}“.
+// One row per anonymous conversation (“session_id“) with aggregate counters, mirroring the authenticated threads table. Honors the same filters as the list endpoint. Read a conversation's transcript via “by-session/{session_id}“.
 //
 // Corresponds with GET /api/anonymous-chat-interactions/conversations/ (the `AnonymousChatInteractionsConversationsList` operationId).
 func (c *Client) AnonymousChatInteractionsConversationsList(ctx context.Context, params *AnonymousChatInteractionsConversationsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -137428,7 +137476,7 @@ func (c *Client) AnonymousChatInteractionsConversationsList(ctx context.Context,
 
 // AnonymousChatInteractionsKpiRetrieve Aggregate KPI roll-up
 //
-// Returns aggregate counters and rates for the anonymous chat flow. Filters are honoured (date range etc.) so the same parameters work as on the list endpoint.
+// Returns aggregate counters and rates for the anonymous chat flow. Filters are honored (date range etc.) so the same parameters work as on the list endpoint.
 //
 // Corresponds with GET /api/anonymous-chat-interactions/kpi/ (the `AnonymousChatInteractionsKpiRetrieve` operationId).
 func (c *Client) AnonymousChatInteractionsKpiRetrieve(ctx context.Context, params *AnonymousChatInteractionsKpiRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -140172,7 +140220,7 @@ func (c *Client) CallManagingOrganisationsListUsersCount(ctx context.Context, uu
 
 // CallManagingOrganisationsStatsRetrieve performs a GET /api/call-managing-organisations/{uuid}/stats/ (the `CallManagingOrganisationsStatsRetrieve` operationId) request.
 //
-// Return statistics for call managing organisation.
+// Return statistics for call managing organization.
 func (c *Client) CallManagingOrganisationsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCallManagingOrganisationsStatsRetrieveRequest(c.Server, uuid)
 	if err != nil {
@@ -140777,7 +140825,7 @@ func (c *Client) CallWorkflowStepNotificationRulesUpdate(ctx context.Context, uu
 // - **active**: Tasks currently being executed by workers
 // - **scheduled**: Tasks scheduled for future execution (with ETA)
 // - **reserved**: Tasks received by workers but not yet started
-// - **revoked**: Task IDs that have been cancelled/revoked
+// - **revoked**: Task IDs that have been canceled/revoked
 // - **query_task**: Results of task queries (if any)
 // - **stats**: Detailed worker statistics including uptime, pool info, and broker connection
 //
@@ -165767,7 +165815,7 @@ func (c *Client) MarketplaceServiceProvidersAddUser(ctx context.Context, uuid op
 //
 // Backs every offering account at this provider with one provider-level account per user, so a person resolves to a single username and POSIX identity across the provider's offerings.
 //
-// Users whose accounts already agree are adopted without input. A user whose accounts disagree must be given a surviving username in 'resolutions', keyed by user UUID — see the 'username_conflicts' action. The call is refused while any conflict is unresolved, rather than adopting part of the provider and leaving the rest on the old per-offering behaviour.
+// Users whose accounts already agree are adopted without input. A user whose accounts disagree must be given a surviving username in 'resolutions', keyed by user UUID — see the 'username_conflicts' action. The call is refused while any conflict is unresolved, rather than adopting part of the provider and leaving the rest on the old per-offering behavior.
 //
 // Takes any type of body and a specified content type.
 //
@@ -165788,7 +165836,7 @@ func (c *Client) MarketplaceServiceProvidersAdoptProviderAccountsWithBody(ctx co
 //
 // Backs every offering account at this provider with one provider-level account per user, so a person resolves to a single username and POSIX identity across the provider's offerings.
 //
-// Users whose accounts already agree are adopted without input. A user whose accounts disagree must be given a surviving username in 'resolutions', keyed by user UUID — see the 'username_conflicts' action. The call is refused while any conflict is unresolved, rather than adopting part of the provider and leaving the rest on the old per-offering behaviour.
+// Users whose accounts already agree are adopted without input. A user whose accounts disagree must be given a surviving username in 'resolutions', keyed by user UUID — see the 'username_conflicts' action. The call is refused while any conflict is unresolved, rather than adopting part of the provider and leaving the rest on the old per-offering behavior.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -170166,7 +170214,7 @@ func (c *Client) MatrixTicketDraftsCancel(ctx context.Context, uuid openapi_type
 
 // MatrixTicketDraftsCreateIssueWithBody Create the draft's support ticket
 //
-// Create the pending draft's ticket as its requester, through the support API, and post its key in the room's thread. The draft is then sent: a second call, or one for a cancelled or expired draft, gets 404.
+// Create the pending draft's ticket as its requester, through the support API, and post its key in the room's thread. The draft is then sent: a second call, or one for a canceled or expired draft, gets 404.
 //
 // Takes any type of body and a specified content type.
 //
@@ -170185,7 +170233,7 @@ func (c *Client) MatrixTicketDraftsCreateIssueWithBody(ctx context.Context, uuid
 
 // MatrixTicketDraftsCreateIssue Create the draft's support ticket
 //
-// Create the pending draft's ticket as its requester, through the support API, and post its key in the room's thread. The draft is then sent: a second call, or one for a cancelled or expired draft, gets 404.
+// Create the pending draft's ticket as its requester, through the support API, and post its key in the room's thread. The draft is then sent: a second call, or one for a canceled or expired draft, gets 404.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -183742,7 +183790,7 @@ func (c *Client) ProposalProposalsAttachDocumentWithFormdataBody(ctx context.Con
 
 // ProposalProposalsAwardedResourcesList performs a GET /api/proposal-proposals/{uuid}/awarded_resources/ (the `ProposalProposalsAwardedResourcesList` operationId) request.
 //
-// List what the allocation decision awards the proposal. Staff, support, the call's managers and organisers, and the managers of the offerings involved see it at any time; the applicant team once the decision is released.
+// List what the allocation decision awards the proposal. Staff, support, the call's managers and organizers, and the managers of the offerings involved see it at any time; the applicant team once the decision is released.
 func (c *Client) ProposalProposalsAwardedResourcesList(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsAwardedResourcesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProposalsAwardedResourcesListRequest(c.Server, uuid, params)
 	if err != nil {
@@ -184632,7 +184680,7 @@ func (c *Client) ProposalProtectedCallsDashboardStatsRetrieve(ctx context.Contex
 
 // ProposalProtectedCallsImportCallWithBody Import call configuration
 //
-// Create a draft call under the given call managing organisation from a document produced by export_call. References that cannot be resolved by name on this portal are skipped and reported in warnings. The import is atomic.
+// Create a draft call under the given call managing organization from a document produced by export_call. References that cannot be resolved by name on this portal are skipped and reported in warnings. The import is atomic.
 //
 // Takes any type of body and a specified content type.
 //
@@ -184651,7 +184699,7 @@ func (c *Client) ProposalProtectedCallsImportCallWithBody(ctx context.Context, c
 
 // ProposalProtectedCallsImportCall Import call configuration
 //
-// Create a draft call under the given call managing organisation from a document produced by export_call. References that cannot be resolved by name on this portal are skipped and reported in warnings. The import is atomic.
+// Create a draft call under the given call managing organization from a document produced by export_call. References that cannot be resolved by name on this portal are skipped and reported in warnings. The import is atomic.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -192895,7 +192943,7 @@ func (c *Client) StaffPasskeysRevoke(ctx context.Context, uuid openapi_types.UUI
 // - **active**: Tasks currently being executed by workers
 // - **scheduled**: Tasks scheduled for future execution (with ETA)
 // - **reserved**: Tasks received by workers but not yet started
-// - **revoked**: Task IDs that have been cancelled/revoked
+// - **revoked**: Task IDs that have been canceled/revoked
 // - **query_task**: Results of task queries (if any)
 // - **stats**: Detailed worker statistics including uptime, pool info, and broker connection
 //
@@ -428758,7 +428806,7 @@ type ClientWithResponsesInterface interface {
 
 	// AnonymousChatInteractionsConversationsListWithResponse Conversations grouped by session
 	//
-	// One row per anonymous conversation (``session_id``) with aggregate counters, mirroring the authenticated threads table. Honours the same filters as the list endpoint. Read a conversation's transcript via ``by-session/{session_id}``.
+	// One row per anonymous conversation (``session_id``) with aggregate counters, mirroring the authenticated threads table. Honors the same filters as the list endpoint. Read a conversation's transcript via ``by-session/{session_id}``.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -428767,7 +428815,7 @@ type ClientWithResponsesInterface interface {
 
 	// AnonymousChatInteractionsKpiRetrieveWithResponse Aggregate KPI roll-up
 	//
-	// Returns aggregate counters and rates for the anonymous chat flow. Filters are honoured (date range etc.) so the same parameters work as on the list endpoint.
+	// Returns aggregate counters and rates for the anonymous chat flow. Filters are honored (date range etc.) so the same parameters work as on the list endpoint.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -429947,7 +429995,7 @@ type ClientWithResponsesInterface interface {
 
 	// CallManagingOrganisationsStatsRetrieveWithResponse performs a GET /api/call-managing-organisations/{uuid}/stats/ (the `CallManagingOrganisationsStatsRetrieve` operationId) request.
 	//
-	// Return statistics for call managing organisation.
+	// Return statistics for call managing organization.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	CallManagingOrganisationsStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsStatsRetrieveResponse, error)
@@ -430200,7 +430248,7 @@ type ClientWithResponsesInterface interface {
 	// - **active**: Tasks currently being executed by workers
 	// - **scheduled**: Tasks scheduled for future execution (with ETA)
 	// - **reserved**: Tasks received by workers but not yet started
-	// - **revoked**: Task IDs that have been cancelled/revoked
+	// - **revoked**: Task IDs that have been canceled/revoked
 	// - **query_task**: Results of task queries (if any)
 	// - **stats**: Detailed worker statistics including uptime, pool info, and broker connection
 	//
@@ -441910,7 +441958,7 @@ type ClientWithResponsesInterface interface {
 	//
 	// Backs every offering account at this provider with one provider-level account per user, so a person resolves to a single username and POSIX identity across the provider's offerings.
 	//
-	// Users whose accounts already agree are adopted without input. A user whose accounts disagree must be given a surviving username in 'resolutions', keyed by user UUID — see the 'username_conflicts' action. The call is refused while any conflict is unresolved, rather than adopting part of the provider and leaving the rest on the old per-offering behaviour.
+	// Users whose accounts already agree are adopted without input. A user whose accounts disagree must be given a surviving username in 'resolutions', keyed by user UUID — see the 'username_conflicts' action. The call is refused while any conflict is unresolved, rather than adopting part of the provider and leaving the rest on the old per-offering behavior.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -441921,7 +441969,7 @@ type ClientWithResponsesInterface interface {
 	//
 	// Backs every offering account at this provider with one provider-level account per user, so a person resolves to a single username and POSIX identity across the provider's offerings.
 	//
-	// Users whose accounts already agree are adopted without input. A user whose accounts disagree must be given a surviving username in 'resolutions', keyed by user UUID — see the 'username_conflicts' action. The call is refused while any conflict is unresolved, rather than adopting part of the provider and leaving the rest on the old per-offering behaviour.
+	// Users whose accounts already agree are adopted without input. A user whose accounts disagree must be given a surviving username in 'resolutions', keyed by user UUID — see the 'username_conflicts' action. The call is refused while any conflict is unresolved, rather than adopting part of the provider and leaving the rest on the old per-offering behavior.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -443967,7 +444015,7 @@ type ClientWithResponsesInterface interface {
 
 	// MatrixTicketDraftsCreateIssueWithBodyWithResponse Create the draft's support ticket
 	//
-	// Create the pending draft's ticket as its requester, through the support API, and post its key in the room's thread. The draft is then sent: a second call, or one for a cancelled or expired draft, gets 404.
+	// Create the pending draft's ticket as its requester, through the support API, and post its key in the room's thread. The draft is then sent: a second call, or one for a canceled or expired draft, gets 404.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -443976,7 +444024,7 @@ type ClientWithResponsesInterface interface {
 
 	// MatrixTicketDraftsCreateIssueWithResponse Create the draft's support ticket
 	//
-	// Create the pending draft's ticket as its requester, through the support API, and post its key in the room's thread. The draft is then sent: a second call, or one for a cancelled or expired draft, gets 404.
+	// Create the pending draft's ticket as its requester, through the support API, and post its key in the room's thread. The draft is then sent: a second call, or one for a canceled or expired draft, gets 404.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -450271,7 +450319,7 @@ type ClientWithResponsesInterface interface {
 
 	// ProposalProposalsAwardedResourcesListWithResponse performs a GET /api/proposal-proposals/{uuid}/awarded_resources/ (the `ProposalProposalsAwardedResourcesList` operationId) request.
 	//
-	// List what the allocation decision awards the proposal. Staff, support, the call's managers and organisers, and the managers of the offerings involved see it at any time; the applicant team once the decision is released.
+	// List what the allocation decision awards the proposal. Staff, support, the call's managers and organizers, and the managers of the offerings involved see it at any time; the applicant team once the decision is released.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	ProposalProposalsAwardedResourcesListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsAwardedResourcesListParams, reqEditors ...RequestEditorFn) (*ProposalProposalsAwardedResourcesListResponse, error)
@@ -450665,7 +450713,7 @@ type ClientWithResponsesInterface interface {
 
 	// ProposalProtectedCallsImportCallWithBodyWithResponse Import call configuration
 	//
-	// Create a draft call under the given call managing organisation from a document produced by export_call. References that cannot be resolved by name on this portal are skipped and reported in warnings. The import is atomic.
+	// Create a draft call under the given call managing organization from a document produced by export_call. References that cannot be resolved by name on this portal are skipped and reported in warnings. The import is atomic.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -450674,7 +450722,7 @@ type ClientWithResponsesInterface interface {
 
 	// ProposalProtectedCallsImportCallWithResponse Import call configuration
 	//
-	// Create a draft call under the given call managing organisation from a document produced by export_call. References that cannot be resolved by name on this portal are skipped and reported in warnings. The import is atomic.
+	// Create a draft call under the given call managing organization from a document produced by export_call. References that cannot be resolved by name on this portal are skipped and reported in warnings. The import is atomic.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -454173,7 +454221,7 @@ type ClientWithResponsesInterface interface {
 	// - **active**: Tasks currently being executed by workers
 	// - **scheduled**: Tasks scheduled for future execution (with ETA)
 	// - **reserved**: Tasks received by workers but not yet started
-	// - **revoked**: Task IDs that have been cancelled/revoked
+	// - **revoked**: Task IDs that have been canceled/revoked
 	// - **query_task**: Results of task queries (if any)
 	// - **stats**: Detailed worker statistics including uptime, pool info, and broker connection
 	//
@@ -577325,7 +577373,7 @@ func (c *ClientWithResponses) AnonymousChatInteractionsByUserListWithResponse(ct
 
 // AnonymousChatInteractionsConversationsListWithResponse Conversations grouped by session
 //
-// One row per anonymous conversation (“session_id“) with aggregate counters, mirroring the authenticated threads table. Honours the same filters as the list endpoint. Read a conversation's transcript via “by-session/{session_id}“.
+// One row per anonymous conversation (“session_id“) with aggregate counters, mirroring the authenticated threads table. Honors the same filters as the list endpoint. Read a conversation's transcript via “by-session/{session_id}“.
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -577340,7 +577388,7 @@ func (c *ClientWithResponses) AnonymousChatInteractionsConversationsListWithResp
 
 // AnonymousChatInteractionsKpiRetrieveWithResponse Aggregate KPI roll-up
 //
-// Returns aggregate counters and rates for the anonymous chat flow. Filters are honoured (date range etc.) so the same parameters work as on the list endpoint.
+// Returns aggregate counters and rates for the anonymous chat flow. Filters are honored (date range etc.) so the same parameters work as on the list endpoint.
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -579612,7 +579660,7 @@ func (c *ClientWithResponses) CallManagingOrganisationsListUsersCountWithRespons
 
 // CallManagingOrganisationsStatsRetrieveWithResponse performs a GET /api/call-managing-organisations/{uuid}/stats/ (the `CallManagingOrganisationsStatsRetrieve` operationId) request.
 //
-// Return statistics for call managing organisation.
+// Return statistics for call managing organization.
 //
 // Returns a wrapper object for the known response body format(s).
 func (c *ClientWithResponses) CallManagingOrganisationsStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsStatsRetrieveResponse, error) {
@@ -580111,7 +580159,7 @@ func (c *ClientWithResponses) CallWorkflowStepNotificationRulesUpdateWithRespons
 // - **active**: Tasks currently being executed by workers
 // - **scheduled**: Tasks scheduled for future execution (with ETA)
 // - **reserved**: Tasks received by workers but not yet started
-// - **revoked**: Task IDs that have been cancelled/revoked
+// - **revoked**: Task IDs that have been canceled/revoked
 // - **query_task**: Results of task queries (if any)
 // - **stats**: Detailed worker statistics including uptime, pool info, and broker connection
 //
@@ -600795,7 +600843,7 @@ func (c *ClientWithResponses) MarketplaceServiceProvidersAddUserWithResponse(ctx
 //
 // Backs every offering account at this provider with one provider-level account per user, so a person resolves to a single username and POSIX identity across the provider's offerings.
 //
-// Users whose accounts already agree are adopted without input. A user whose accounts disagree must be given a surviving username in 'resolutions', keyed by user UUID — see the 'username_conflicts' action. The call is refused while any conflict is unresolved, rather than adopting part of the provider and leaving the rest on the old per-offering behaviour.
+// Users whose accounts already agree are adopted without input. A user whose accounts disagree must be given a surviving username in 'resolutions', keyed by user UUID — see the 'username_conflicts' action. The call is refused while any conflict is unresolved, rather than adopting part of the provider and leaving the rest on the old per-offering behavior.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -600812,7 +600860,7 @@ func (c *ClientWithResponses) MarketplaceServiceProvidersAdoptProviderAccountsWi
 //
 // Backs every offering account at this provider with one provider-level account per user, so a person resolves to a single username and POSIX identity across the provider's offerings.
 //
-// Users whose accounts already agree are adopted without input. A user whose accounts disagree must be given a surviving username in 'resolutions', keyed by user UUID — see the 'username_conflicts' action. The call is refused while any conflict is unresolved, rather than adopting part of the provider and leaving the rest on the old per-offering behaviour.
+// Users whose accounts already agree are adopted without input. A user whose accounts disagree must be given a surviving username in 'resolutions', keyed by user UUID — see the 'username_conflicts' action. The call is refused while any conflict is unresolved, rather than adopting part of the provider and leaving the rest on the old per-offering behavior.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -604519,7 +604567,7 @@ func (c *ClientWithResponses) MatrixTicketDraftsCancelWithResponse(ctx context.C
 
 // MatrixTicketDraftsCreateIssueWithBodyWithResponse Create the draft's support ticket
 //
-// Create the pending draft's ticket as its requester, through the support API, and post its key in the room's thread. The draft is then sent: a second call, or one for a cancelled or expired draft, gets 404.
+// Create the pending draft's ticket as its requester, through the support API, and post its key in the room's thread. The draft is then sent: a second call, or one for a canceled or expired draft, gets 404.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -604534,7 +604582,7 @@ func (c *ClientWithResponses) MatrixTicketDraftsCreateIssueWithBodyWithResponse(
 
 // MatrixTicketDraftsCreateIssueWithResponse Create the draft's support ticket
 //
-// Create the pending draft's ticket as its requester, through the support API, and post its key in the room's thread. The draft is then sent: a second call, or one for a cancelled or expired draft, gets 404.
+// Create the pending draft's ticket as its requester, through the support API, and post its key in the room's thread. The draft is then sent: a second call, or one for a canceled or expired draft, gets 404.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -615771,7 +615819,7 @@ func (c *ClientWithResponses) ProposalProposalsAttachDocumentWithFormdataBodyWit
 
 // ProposalProposalsAwardedResourcesListWithResponse performs a GET /api/proposal-proposals/{uuid}/awarded_resources/ (the `ProposalProposalsAwardedResourcesList` operationId) request.
 //
-// List what the allocation decision awards the proposal. Staff, support, the call's managers and organisers, and the managers of the offerings involved see it at any time; the applicant team once the decision is released.
+// List what the allocation decision awards the proposal. Staff, support, the call's managers and organizers, and the managers of the offerings involved see it at any time; the applicant team once the decision is released.
 //
 // Returns a wrapper object for the known response body format(s).
 func (c *ClientWithResponses) ProposalProposalsAwardedResourcesListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsAwardedResourcesListParams, reqEditors ...RequestEditorFn) (*ProposalProposalsAwardedResourcesListResponse, error) {
@@ -616507,7 +616555,7 @@ func (c *ClientWithResponses) ProposalProtectedCallsDashboardStatsRetrieveWithRe
 
 // ProposalProtectedCallsImportCallWithBodyWithResponse Import call configuration
 //
-// Create a draft call under the given call managing organisation from a document produced by export_call. References that cannot be resolved by name on this portal are skipped and reported in warnings. The import is atomic.
+// Create a draft call under the given call managing organization from a document produced by export_call. References that cannot be resolved by name on this portal are skipped and reported in warnings. The import is atomic.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -616522,7 +616570,7 @@ func (c *ClientWithResponses) ProposalProtectedCallsImportCallWithBodyWithRespon
 
 // ProposalProtectedCallsImportCallWithResponse Import call configuration
 //
-// Create a draft call under the given call managing organisation from a document produced by export_call. References that cannot be resolved by name on this portal are skipped and reported in warnings. The import is atomic.
+// Create a draft call under the given call managing organization from a document produced by export_call. References that cannot be resolved by name on this portal are skipped and reported in warnings. The import is atomic.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -623328,7 +623376,7 @@ func (c *ClientWithResponses) StaffPasskeysRevokeWithResponse(ctx context.Contex
 // - **active**: Tasks currently being executed by workers
 // - **scheduled**: Tasks scheduled for future execution (with ETA)
 // - **reserved**: Tasks received by workers but not yet started
-// - **revoked**: Task IDs that have been cancelled/revoked
+// - **revoked**: Task IDs that have been canceled/revoked
 // - **query_task**: Results of task queries (if any)
 // - **stats**: Detailed worker statistics including uptime, pool info, and broker connection
 //
