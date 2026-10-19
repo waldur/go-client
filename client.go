@@ -79129,6 +79129,107 @@ type OpenportalUnmanagedProjectsChecklistRetrieveParams struct {
 	IncludeAll *bool `form:"include_all,omitempty" json:"include_all,omitempty"`
 }
 
+// OpenportalUnmanagedProjectsHistoryListParams defines parameters for OpenportalUnmanagedProjectsHistoryList.
+type OpenportalUnmanagedProjectsHistoryListParams struct {
+	// AccountingIsRunning Filter by whether accounting is running.
+	AccountingIsRunning *bool `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
+
+	// AffiliationName Affiliation name
+	AffiliationName *string `form:"affiliation_name,omitempty" json:"affiliation_name,omitempty"`
+
+	// AffiliationUuid Affiliation UUID
+	AffiliationUuid *[]openapi_types.UUID `form:"affiliation_uuid,omitempty" json:"affiliation_uuid,omitempty"`
+	BackendId       *string               `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanAdmin Return a list of projects where current user is admin.
+	CanAdmin *bool `form:"can_admin,omitempty" json:"can_admin,omitempty"`
+
+	// CanManage Return a list of projects where current user is manager or a customer owner.
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// ConcealFinishedProjects Conceal finished projects
+	ConcealFinishedProjects *bool `form:"conceal_finished_projects,omitempty" json:"conceal_finished_projects,omitempty"`
+
+	// Created Created after
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// CreatedAfter Filter versions created after this timestamp (ISO 8601)
+	CreatedAfter *string `form:"created_after,omitempty" json:"created_after,omitempty"`
+
+	// CreatedBefore Filter versions created before this timestamp (ISO 8601)
+	CreatedBefore *string `form:"created_before,omitempty" json:"created_before,omitempty"`
+
+	// CurrentUserHasRole Multiple values may be separated by commas.
+	CurrentUserHasRole *[]string `form:"current_user_has_role,omitempty" json:"current_user_has_role,omitempty"`
+
+	// Customer Multiple values may be separated by commas.
+	Customer *[]openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// HasAffiliation Filter projects that have an affiliation.
+	HasAffiliation *bool `form:"has_affiliation,omitempty" json:"has_affiliation,omitempty"`
+
+	// IsRemoved Is removed
+	IsRemoved *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
+
+	// Modified Modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// ModifiedBefore Modified before
+	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Ordering
+	//
+	O *[]MarketplaceProviderCustomerProjectOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Filter by name, slug, UUID, backend ID or resource effective ID
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ScienceDomainUuid Science domain UUID
+	ScienceDomainUuid *openapi_types.UUID `form:"science_domain_uuid,omitempty" json:"science_domain_uuid,omitempty"`
+
+	// ScienceSubDomainUuid Science sub-domain UUID
+	ScienceSubDomainUuid *openapi_types.UUID `form:"science_sub_domain_uuid,omitempty" json:"science_sub_domain_uuid,omitempty"`
+
+	// Slug Slug
+	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// UserUuid Filter by user UUID.
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+
+	// UserUuidWithActiveRole Filter projects where the given user has a role.
+	UserUuidWithActiveRole *openapi_types.UUID `form:"user_uuid_with_active_role,omitempty" json:"user_uuid_with_active_role,omitempty"`
+}
+
+// OpenportalUnmanagedProjectsHistoryAtRetrieveParams defines parameters for OpenportalUnmanagedProjectsHistoryAtRetrieve.
+type OpenportalUnmanagedProjectsHistoryAtRetrieveParams struct {
+	// Timestamp ISO 8601 timestamp to query the object state at
+	Timestamp string `form:"timestamp" json:"timestamp"`
+}
+
 // OpenportalUnmanagedProjectsListUsersListParams defines parameters for OpenportalUnmanagedProjectsListUsersList.
 type OpenportalUnmanagedProjectsListUsersListParams struct {
 	// Field Fields to include in response
@@ -82992,6 +83093,107 @@ type ProjectsRetrieveParams struct {
 type ProjectsChecklistRetrieveParams struct {
 	// IncludeAll If true, returns all questions including hidden ones (for dynamic form visibility). Default: false.
 	IncludeAll *bool `form:"include_all,omitempty" json:"include_all,omitempty"`
+}
+
+// ProjectsHistoryListParams defines parameters for ProjectsHistoryList.
+type ProjectsHistoryListParams struct {
+	// AccountingIsRunning Filter by whether accounting is running.
+	AccountingIsRunning *bool `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
+
+	// AffiliationName Affiliation name
+	AffiliationName *string `form:"affiliation_name,omitempty" json:"affiliation_name,omitempty"`
+
+	// AffiliationUuid Affiliation UUID
+	AffiliationUuid *[]openapi_types.UUID `form:"affiliation_uuid,omitempty" json:"affiliation_uuid,omitempty"`
+	BackendId       *string               `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanAdmin Return a list of projects where current user is admin.
+	CanAdmin *bool `form:"can_admin,omitempty" json:"can_admin,omitempty"`
+
+	// CanManage Return a list of projects where current user is manager or a customer owner.
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// ConcealFinishedProjects Conceal finished projects
+	ConcealFinishedProjects *bool `form:"conceal_finished_projects,omitempty" json:"conceal_finished_projects,omitempty"`
+
+	// Created Created after
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// CreatedAfter Filter versions created after this timestamp (ISO 8601)
+	CreatedAfter *string `form:"created_after,omitempty" json:"created_after,omitempty"`
+
+	// CreatedBefore Filter versions created before this timestamp (ISO 8601)
+	CreatedBefore *string `form:"created_before,omitempty" json:"created_before,omitempty"`
+
+	// CurrentUserHasRole Multiple values may be separated by commas.
+	CurrentUserHasRole *[]string `form:"current_user_has_role,omitempty" json:"current_user_has_role,omitempty"`
+
+	// Customer Multiple values may be separated by commas.
+	Customer *[]openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// HasAffiliation Filter projects that have an affiliation.
+	HasAffiliation *bool `form:"has_affiliation,omitempty" json:"has_affiliation,omitempty"`
+
+	// IsRemoved Is removed
+	IsRemoved *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
+
+	// Modified Modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// ModifiedBefore Modified before
+	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Ordering
+	//
+	O *[]MarketplaceProviderCustomerProjectOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Filter by name, slug, UUID, backend ID or resource effective ID
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ScienceDomainUuid Science domain UUID
+	ScienceDomainUuid *openapi_types.UUID `form:"science_domain_uuid,omitempty" json:"science_domain_uuid,omitempty"`
+
+	// ScienceSubDomainUuid Science sub-domain UUID
+	ScienceSubDomainUuid *openapi_types.UUID `form:"science_sub_domain_uuid,omitempty" json:"science_sub_domain_uuid,omitempty"`
+
+	// Slug Slug
+	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// UserUuid Filter by user UUID.
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+
+	// UserUuidWithActiveRole Filter projects where the given user has a role.
+	UserUuidWithActiveRole *openapi_types.UUID `form:"user_uuid_with_active_role,omitempty" json:"user_uuid_with_active_role,omitempty"`
+}
+
+// ProjectsHistoryAtRetrieveParams defines parameters for ProjectsHistoryAtRetrieve.
+type ProjectsHistoryAtRetrieveParams struct {
+	// Timestamp ISO 8601 timestamp to query the object state at
+	Timestamp string `form:"timestamp" json:"timestamp"`
 }
 
 // ProjectsListUsersListParams defines parameters for ProjectsListUsersList.
@@ -125639,6 +125841,20 @@ type ClientInterface interface {
 	// Corresponds with POST /api/openportal-unmanaged-projects/{uuid}/delete_user/ (the `OpenportalUnmanagedProjectsDeleteUser` operationId).
 	OpenportalUnmanagedProjectsDeleteUser(ctx context.Context, uuid openapi_types.UUID, body OpenportalUnmanagedProjectsDeleteUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenportalUnmanagedProjectsHistoryList Get version history
+	//
+	// Returns the version history for this object. Only accessible by staff and support users.
+	//
+	// Corresponds with GET /api/openportal-unmanaged-projects/{uuid}/history/ (the `OpenportalUnmanagedProjectsHistoryList` operationId).
+	OpenportalUnmanagedProjectsHistoryList(ctx context.Context, uuid openapi_types.UUID, params *OpenportalUnmanagedProjectsHistoryListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenportalUnmanagedProjectsHistoryAtRetrieve Get object state at a specific timestamp
+	//
+	// Returns the state of the object as it was at the specified timestamp. Only accessible by staff and support users.
+	//
+	// Corresponds with GET /api/openportal-unmanaged-projects/{uuid}/history/at/ (the `OpenportalUnmanagedProjectsHistoryAtRetrieve` operationId).
+	OpenportalUnmanagedProjectsHistoryAtRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenportalUnmanagedProjectsHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenportalUnmanagedProjectsListUsersList List users and their roles in a scope
 	//
 	// Retrieves a list of users who have a role within a specific scope (e.g., a project or an organization). The list can be filtered by user details or role.
@@ -129559,6 +129775,20 @@ type ClientInterface interface {
 	//
 	// Corresponds with POST /api/projects/{uuid}/delete_user/ (the `ProjectsDeleteUser` operationId).
 	ProjectsDeleteUser(ctx context.Context, uuid openapi_types.UUID, body ProjectsDeleteUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProjectsHistoryList Get version history
+	//
+	// Returns the version history for this object. Only accessible by staff and support users.
+	//
+	// Corresponds with GET /api/projects/{uuid}/history/ (the `ProjectsHistoryList` operationId).
+	ProjectsHistoryList(ctx context.Context, uuid openapi_types.UUID, params *ProjectsHistoryListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProjectsHistoryAtRetrieve Get object state at a specific timestamp
+	//
+	// Returns the state of the object as it was at the specified timestamp. Only accessible by staff and support users.
+	//
+	// Corresponds with GET /api/projects/{uuid}/history/at/ (the `ProjectsHistoryAtRetrieve` operationId).
+	ProjectsHistoryAtRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ProjectsHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProjectsListUsersList List users and their roles in a scope
 	//
@@ -173636,6 +173866,40 @@ func (c *Client) OpenportalUnmanagedProjectsDeleteUser(ctx context.Context, uuid
 	return c.Client.Do(req)
 }
 
+// OpenportalUnmanagedProjectsHistoryList Get version history
+//
+// Returns the version history for this object. Only accessible by staff and support users.
+//
+// Corresponds with GET /api/openportal-unmanaged-projects/{uuid}/history/ (the `OpenportalUnmanagedProjectsHistoryList` operationId).
+func (c *Client) OpenportalUnmanagedProjectsHistoryList(ctx context.Context, uuid openapi_types.UUID, params *OpenportalUnmanagedProjectsHistoryListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalUnmanagedProjectsHistoryListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// OpenportalUnmanagedProjectsHistoryAtRetrieve Get object state at a specific timestamp
+//
+// Returns the state of the object as it was at the specified timestamp. Only accessible by staff and support users.
+//
+// Corresponds with GET /api/openportal-unmanaged-projects/{uuid}/history/at/ (the `OpenportalUnmanagedProjectsHistoryAtRetrieve` operationId).
+func (c *Client) OpenportalUnmanagedProjectsHistoryAtRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenportalUnmanagedProjectsHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalUnmanagedProjectsHistoryAtRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // OpenportalUnmanagedProjectsListUsersList List users and their roles in a scope
 //
 // Retrieves a list of users who have a role within a specific scope (e.g., a project or an organization). The list can be filtered by user details or role.
@@ -183049,6 +183313,40 @@ func (c *Client) ProjectsDeleteUserWithBody(ctx context.Context, uuid openapi_ty
 // Corresponds with POST /api/projects/{uuid}/delete_user/ (the `ProjectsDeleteUser` operationId).
 func (c *Client) ProjectsDeleteUser(ctx context.Context, uuid openapi_types.UUID, body ProjectsDeleteUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProjectsDeleteUserRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProjectsHistoryList Get version history
+//
+// Returns the version history for this object. Only accessible by staff and support users.
+//
+// Corresponds with GET /api/projects/{uuid}/history/ (the `ProjectsHistoryList` operationId).
+func (c *Client) ProjectsHistoryList(ctx context.Context, uuid openapi_types.UUID, params *ProjectsHistoryListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectsHistoryListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProjectsHistoryAtRetrieve Get object state at a specific timestamp
+//
+// Returns the state of the object as it was at the specified timestamp. Only accessible by staff and support users.
+//
+// Corresponds with GET /api/projects/{uuid}/history/at/ (the `ProjectsHistoryAtRetrieve` operationId).
+func (c *Client) ProjectsHistoryAtRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ProjectsHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectsHistoryAtRetrieveRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -341138,6 +341436,484 @@ func NewOpenportalUnmanagedProjectsDeleteUserRequestWithBody(server string, uuid
 	return req, nil
 }
 
+// NewOpenportalUnmanagedProjectsHistoryListRequest constructs an http.Request for the OpenportalUnmanagedProjectsHistoryList method
+func NewOpenportalUnmanagedProjectsHistoryListRequest(server string, uuid openapi_types.UUID, params *OpenportalUnmanagedProjectsHistoryListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openportal-unmanaged-projects/%s/history/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.AccountingIsRunning != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accounting_is_running", *params.AccountingIsRunning, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.AffiliationName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliation_name", *params.AffiliationName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.AffiliationUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliation_uuid", *params.AffiliationUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.BackendId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "backend_id", *params.BackendId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CanAdmin != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "can_admin", *params.CanAdmin, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "can_manage", *params.CanManage, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ConcealFinishedProjects != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "conceal_finished_projects", *params.ConcealFinishedProjects, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created", *params.Created, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_after", *params.CreatedAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_before", *params.CreatedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CurrentUserHasRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "current_user_has_role", *params.CurrentUserHasRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "customer", *params.Customer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerAbbreviation != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_abbreviation", *params.CustomerAbbreviation, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_name", *params.CustomerName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerNativeName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_native_name", *params.CustomerNativeName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "description", *params.Description, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasAffiliation != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_affiliation", *params.HasAffiliation, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsRemoved != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_removed", *params.IsRemoved, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified", *params.Modified, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ModifiedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified_before", *params.ModifiedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ScienceDomainUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "science_domain_uuid", *params.ScienceDomainUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ScienceSubDomainUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "science_sub_domain_uuid", *params.ScienceSubDomainUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Slug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid", *params.UserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserUuidWithActiveRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid_with_active_role", *params.UserUuidWithActiveRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenportalUnmanagedProjectsHistoryAtRetrieveRequest constructs an http.Request for the OpenportalUnmanagedProjectsHistoryAtRetrieve method
+func NewOpenportalUnmanagedProjectsHistoryAtRetrieveRequest(server string, uuid openapi_types.UUID, params *OpenportalUnmanagedProjectsHistoryAtRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openportal-unmanaged-projects/%s/history/at/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "timestamp", params.Timestamp, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOpenportalUnmanagedProjectsListUsersListRequest constructs an http.Request for the OpenportalUnmanagedProjectsListUsersList method
 func NewOpenportalUnmanagedProjectsListUsersListRequest(server string, uuid openapi_types.UUID, params *OpenportalUnmanagedProjectsListUsersListParams) (*http.Request, error) {
 	var err error
@@ -372142,6 +372918,484 @@ func NewProjectsDeleteUserRequestWithBody(server string, uuid openapi_types.UUID
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewProjectsHistoryListRequest constructs an http.Request for the ProjectsHistoryList method
+func NewProjectsHistoryListRequest(server string, uuid openapi_types.UUID, params *ProjectsHistoryListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/projects/%s/history/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.AccountingIsRunning != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accounting_is_running", *params.AccountingIsRunning, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.AffiliationName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliation_name", *params.AffiliationName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.AffiliationUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliation_uuid", *params.AffiliationUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.BackendId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "backend_id", *params.BackendId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CanAdmin != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "can_admin", *params.CanAdmin, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "can_manage", *params.CanManage, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ConcealFinishedProjects != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "conceal_finished_projects", *params.ConcealFinishedProjects, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created", *params.Created, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_after", *params.CreatedAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_before", *params.CreatedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CurrentUserHasRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "current_user_has_role", *params.CurrentUserHasRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "customer", *params.Customer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerAbbreviation != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_abbreviation", *params.CustomerAbbreviation, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_name", *params.CustomerName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerNativeName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_native_name", *params.CustomerNativeName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "description", *params.Description, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasAffiliation != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_affiliation", *params.HasAffiliation, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsRemoved != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_removed", *params.IsRemoved, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified", *params.Modified, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ModifiedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified_before", *params.ModifiedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ScienceDomainUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "science_domain_uuid", *params.ScienceDomainUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ScienceSubDomainUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "science_sub_domain_uuid", *params.ScienceSubDomainUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Slug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid", *params.UserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserUuidWithActiveRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid_with_active_role", *params.UserUuidWithActiveRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProjectsHistoryAtRetrieveRequest constructs an http.Request for the ProjectsHistoryAtRetrieve method
+func NewProjectsHistoryAtRetrieveRequest(server string, uuid openapi_types.UUID, params *ProjectsHistoryAtRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/projects/%s/history/at/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "timestamp", params.Timestamp, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -445481,6 +446735,24 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with POST /api/openportal-unmanaged-projects/{uuid}/delete_user/ (the `OpenportalUnmanagedProjectsDeleteUser` operationId).
 	OpenportalUnmanagedProjectsDeleteUserWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenportalUnmanagedProjectsDeleteUserJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsDeleteUserResponse, error)
 
+	// OpenportalUnmanagedProjectsHistoryListWithResponse Get version history
+	//
+	// Returns the version history for this object. Only accessible by staff and support users.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/openportal-unmanaged-projects/{uuid}/history/ (the `OpenportalUnmanagedProjectsHistoryList` operationId).
+	OpenportalUnmanagedProjectsHistoryListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenportalUnmanagedProjectsHistoryListParams, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsHistoryListResponse, error)
+
+	// OpenportalUnmanagedProjectsHistoryAtRetrieveWithResponse Get object state at a specific timestamp
+	//
+	// Returns the state of the object as it was at the specified timestamp. Only accessible by staff and support users.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/openportal-unmanaged-projects/{uuid}/history/at/ (the `OpenportalUnmanagedProjectsHistoryAtRetrieve` operationId).
+	OpenportalUnmanagedProjectsHistoryAtRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenportalUnmanagedProjectsHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsHistoryAtRetrieveResponse, error)
+
 	// OpenportalUnmanagedProjectsListUsersListWithResponse List users and their roles in a scope
 	//
 	// Retrieves a list of users who have a role within a specific scope (e.g., a project or an organization). The list can be filtered by user details or role.
@@ -449991,6 +451263,24 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with POST /api/projects/{uuid}/delete_user/ (the `ProjectsDeleteUser` operationId).
 	ProjectsDeleteUserWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectsDeleteUserJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectsDeleteUserResponse, error)
+
+	// ProjectsHistoryListWithResponse Get version history
+	//
+	// Returns the version history for this object. Only accessible by staff and support users.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/projects/{uuid}/history/ (the `ProjectsHistoryList` operationId).
+	ProjectsHistoryListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProjectsHistoryListParams, reqEditors ...RequestEditorFn) (*ProjectsHistoryListResponse, error)
+
+	// ProjectsHistoryAtRetrieveWithResponse Get object state at a specific timestamp
+	//
+	// Returns the state of the object as it was at the specified timestamp. Only accessible by staff and support users.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/projects/{uuid}/history/at/ (the `ProjectsHistoryAtRetrieve` operationId).
+	ProjectsHistoryAtRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProjectsHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*ProjectsHistoryAtRetrieveResponse, error)
 
 	// ProjectsListUsersListWithResponse List users and their roles in a scope
 	//
@@ -528476,6 +529766,109 @@ func (r OpenportalUnmanagedProjectsDeleteUserResponse) ContentType() string {
 	return ""
 }
 
+// OpenportalUnmanagedProjectsHistoryListResponse200Headers the declared response headers of an HTTP 200 response for OpenportalUnmanagedProjectsHistoryList
+type OpenportalUnmanagedProjectsHistoryListResponse200Headers struct {
+	XResultCount *int
+}
+
+type OpenportalUnmanagedProjectsHistoryListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]VersionHistory
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *OpenportalUnmanagedProjectsHistoryListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r OpenportalUnmanagedProjectsHistoryListResponse) GetJSON200() *[]VersionHistory {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r OpenportalUnmanagedProjectsHistoryListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenportalUnmanagedProjectsHistoryListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenportalUnmanagedProjectsHistoryListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenportalUnmanagedProjectsHistoryListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenportalUnmanagedProjectsHistoryAtRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *VersionHistory
+	// JSON400 the response for an HTTP 400 `application/json` response
+	JSON400 *map[string]interface{}
+	// JSON404 the response for an HTTP 404 `application/json` response
+	JSON404 *map[string]interface{}
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r OpenportalUnmanagedProjectsHistoryAtRetrieveResponse) GetJSON200() *VersionHistory {
+	return r.JSON200
+}
+
+// GetJSON400 returns the response for an HTTP 400 `application/json` response
+func (r OpenportalUnmanagedProjectsHistoryAtRetrieveResponse) GetJSON400() *map[string]interface{} {
+	return r.JSON400
+}
+
+// GetJSON404 returns the response for an HTTP 404 `application/json` response
+func (r OpenportalUnmanagedProjectsHistoryAtRetrieveResponse) GetJSON404() *map[string]interface{} {
+	return r.JSON404
+}
+
+// GetBody returns the raw response body bytes
+func (r OpenportalUnmanagedProjectsHistoryAtRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenportalUnmanagedProjectsHistoryAtRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenportalUnmanagedProjectsHistoryAtRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenportalUnmanagedProjectsHistoryAtRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // OpenportalUnmanagedProjectsListUsersListResponse200Headers the declared response headers of an HTTP 200 response for OpenportalUnmanagedProjectsListUsersList
 type OpenportalUnmanagedProjectsListUsersListResponse200Headers struct {
 	XResultCount *int
@@ -544542,6 +545935,109 @@ func (r ProjectsDeleteUserResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r ProjectsDeleteUserResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// ProjectsHistoryListResponse200Headers the declared response headers of an HTTP 200 response for ProjectsHistoryList
+type ProjectsHistoryListResponse200Headers struct {
+	XResultCount *int
+}
+
+type ProjectsHistoryListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]VersionHistory
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *ProjectsHistoryListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r ProjectsHistoryListResponse) GetJSON200() *[]VersionHistory {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r ProjectsHistoryListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ProjectsHistoryListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProjectsHistoryListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProjectsHistoryListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProjectsHistoryAtRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *VersionHistory
+	// JSON400 the response for an HTTP 400 `application/json` response
+	JSON400 *map[string]interface{}
+	// JSON404 the response for an HTTP 404 `application/json` response
+	JSON404 *map[string]interface{}
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r ProjectsHistoryAtRetrieveResponse) GetJSON200() *VersionHistory {
+	return r.JSON200
+}
+
+// GetJSON400 returns the response for an HTTP 400 `application/json` response
+func (r ProjectsHistoryAtRetrieveResponse) GetJSON400() *map[string]interface{} {
+	return r.JSON400
+}
+
+// GetJSON404 returns the response for an HTTP 404 `application/json` response
+func (r ProjectsHistoryAtRetrieveResponse) GetJSON404() *map[string]interface{} {
+	return r.JSON404
+}
+
+// GetBody returns the raw response body bytes
+func (r ProjectsHistoryAtRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ProjectsHistoryAtRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProjectsHistoryAtRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProjectsHistoryAtRetrieveResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -607397,6 +608893,36 @@ func (c *ClientWithResponses) OpenportalUnmanagedProjectsDeleteUserWithResponse(
 	return ParseOpenportalUnmanagedProjectsDeleteUserResponse(rsp)
 }
 
+// OpenportalUnmanagedProjectsHistoryListWithResponse Get version history
+//
+// Returns the version history for this object. Only accessible by staff and support users.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/openportal-unmanaged-projects/{uuid}/history/ (the `OpenportalUnmanagedProjectsHistoryList` operationId).
+func (c *ClientWithResponses) OpenportalUnmanagedProjectsHistoryListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenportalUnmanagedProjectsHistoryListParams, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsHistoryListResponse, error) {
+	rsp, err := c.OpenportalUnmanagedProjectsHistoryList(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenportalUnmanagedProjectsHistoryListResponse(rsp)
+}
+
+// OpenportalUnmanagedProjectsHistoryAtRetrieveWithResponse Get object state at a specific timestamp
+//
+// Returns the state of the object as it was at the specified timestamp. Only accessible by staff and support users.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/openportal-unmanaged-projects/{uuid}/history/at/ (the `OpenportalUnmanagedProjectsHistoryAtRetrieve` operationId).
+func (c *ClientWithResponses) OpenportalUnmanagedProjectsHistoryAtRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenportalUnmanagedProjectsHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsHistoryAtRetrieveResponse, error) {
+	rsp, err := c.OpenportalUnmanagedProjectsHistoryAtRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenportalUnmanagedProjectsHistoryAtRetrieveResponse(rsp)
+}
+
 // OpenportalUnmanagedProjectsListUsersListWithResponse List users and their roles in a scope
 //
 // Retrieves a list of users who have a role within a specific scope (e.g., a project or an organization). The list can be filtered by user details or role.
@@ -615214,6 +616740,36 @@ func (c *ClientWithResponses) ProjectsDeleteUserWithResponse(ctx context.Context
 		return nil, err
 	}
 	return ParseProjectsDeleteUserResponse(rsp)
+}
+
+// ProjectsHistoryListWithResponse Get version history
+//
+// Returns the version history for this object. Only accessible by staff and support users.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/projects/{uuid}/history/ (the `ProjectsHistoryList` operationId).
+func (c *ClientWithResponses) ProjectsHistoryListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProjectsHistoryListParams, reqEditors ...RequestEditorFn) (*ProjectsHistoryListResponse, error) {
+	rsp, err := c.ProjectsHistoryList(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectsHistoryListResponse(rsp)
+}
+
+// ProjectsHistoryAtRetrieveWithResponse Get object state at a specific timestamp
+//
+// Returns the state of the object as it was at the specified timestamp. Only accessible by staff and support users.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/projects/{uuid}/history/at/ (the `ProjectsHistoryAtRetrieve` operationId).
+func (c *ClientWithResponses) ProjectsHistoryAtRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProjectsHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*ProjectsHistoryAtRetrieveResponse, error) {
+	rsp, err := c.ProjectsHistoryAtRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectsHistoryAtRetrieveResponse(rsp)
 }
 
 // ProjectsListUsersListWithResponse List users and their roles in a scope
@@ -673565,6 +675121,85 @@ func ParseOpenportalUnmanagedProjectsDeleteUserResponse(rsp *http.Response) (*Op
 	return response, nil
 }
 
+// ParseOpenportalUnmanagedProjectsHistoryListResponse parses an HTTP response from a OpenportalUnmanagedProjectsHistoryListWithResponse call
+func ParseOpenportalUnmanagedProjectsHistoryListResponse(rsp *http.Response) (*OpenportalUnmanagedProjectsHistoryListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenportalUnmanagedProjectsHistoryListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []VersionHistory
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers OpenportalUnmanagedProjectsHistoryListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParseOpenportalUnmanagedProjectsHistoryAtRetrieveResponse parses an HTTP response from a OpenportalUnmanagedProjectsHistoryAtRetrieveWithResponse call
+func ParseOpenportalUnmanagedProjectsHistoryAtRetrieveResponse(rsp *http.Response) (*OpenportalUnmanagedProjectsHistoryAtRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenportalUnmanagedProjectsHistoryAtRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest VersionHistory
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest map[string]interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest map[string]interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseOpenportalUnmanagedProjectsListUsersListResponse parses an HTTP response from a OpenportalUnmanagedProjectsListUsersListWithResponse call
 func ParseOpenportalUnmanagedProjectsListUsersListResponse(rsp *http.Response) (*OpenportalUnmanagedProjectsListUsersListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -683626,6 +685261,85 @@ func ParseProjectsDeleteUserResponse(rsp *http.Response) (*ProjectsDeleteUserRes
 	response := &ProjectsDeleteUserResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseProjectsHistoryListResponse parses an HTTP response from a ProjectsHistoryListWithResponse call
+func ParseProjectsHistoryListResponse(rsp *http.Response) (*ProjectsHistoryListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProjectsHistoryListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []VersionHistory
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers ProjectsHistoryListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParseProjectsHistoryAtRetrieveResponse parses an HTTP response from a ProjectsHistoryAtRetrieveWithResponse call
+func ParseProjectsHistoryAtRetrieveResponse(rsp *http.Response) (*ProjectsHistoryAtRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProjectsHistoryAtRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest VersionHistory
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest map[string]interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest map[string]interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
 	}
 
 	return response, nil
