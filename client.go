@@ -124735,7 +124735,7 @@ type ClientInterface interface {
 
 	// MetadataSettingsRetrieve Get overridable settings metadata
 	//
-	// Retrieves metadata for all settings that can be configured via the Constance backend. This includes setting keys, human-readable descriptions, default values, and types. This endpoint is publicly accessible.
+	// Retrieves metadata for all settings that can be changed at runtime. This includes setting keys, human-readable descriptions, default values, and types. This endpoint is publicly accessible.
 	//
 	// Corresponds with GET /api/metadata/settings/ (the `MetadataSettingsRetrieve` operationId).
 	MetadataSettingsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -129119,14 +129119,14 @@ type ClientInterface interface {
 
 	// OverrideSettingsRetrieve Get all overridable settings
 	//
-	// Returns all settings that can be overridden in the database via the Constance backend. Staff receive every value. Support users receive the same keys, with secret_field values blanked.
+	// Returns all settings that can be overridden in the database. Staff receive every value. Support users receive the same keys, with secret_field values blanked.
 	//
 	// Corresponds with GET /api/override-settings/ (the `OverrideSettingsRetrieve` operationId).
 	OverrideSettingsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OverrideSettingsWithBody Update overridable settings
 	//
-	// Updates one or more settings in the database via the Constance backend. Requires staff permissions. Support users cannot update settings.
+	// Updates one or more settings in the database. Requires staff permissions. Support users cannot update settings.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -129135,7 +129135,7 @@ type ClientInterface interface {
 
 	// OverrideSettings Update overridable settings
 	//
-	// Updates one or more settings in the database via the Constance backend. Requires staff permissions. Support users cannot update settings.
+	// Updates one or more settings in the database. Requires staff permissions. Support users cannot update settings.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -129144,7 +129144,7 @@ type ClientInterface interface {
 
 	// OverrideSettingsWithFormdataBody Update overridable settings
 	//
-	// Updates one or more settings in the database via the Constance backend. Requires staff permissions. Support users cannot update settings.
+	// Updates one or more settings in the database. Requires staff permissions. Support users cannot update settings.
 	//
 	// Takes a body of the `application/x-www-form-urlencoded` content type.
 	//
@@ -170548,7 +170548,7 @@ func (c *Client) MetadataPermissionsRetrieve(ctx context.Context, reqEditors ...
 
 // MetadataSettingsRetrieve Get overridable settings metadata
 //
-// Retrieves metadata for all settings that can be configured via the Constance backend. This includes setting keys, human-readable descriptions, default values, and types. This endpoint is publicly accessible.
+// Retrieves metadata for all settings that can be changed at runtime. This includes setting keys, human-readable descriptions, default values, and types. This endpoint is publicly accessible.
 //
 // Corresponds with GET /api/metadata/settings/ (the `MetadataSettingsRetrieve` operationId).
 func (c *Client) MetadataSettingsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -181516,7 +181516,7 @@ func (c *Client) OtlpV1Metrics(ctx context.Context, body OtlpV1MetricsJSONReques
 
 // OverrideSettingsRetrieve Get all overridable settings
 //
-// Returns all settings that can be overridden in the database via the Constance backend. Staff receive every value. Support users receive the same keys, with secret_field values blanked.
+// Returns all settings that can be overridden in the database. Staff receive every value. Support users receive the same keys, with secret_field values blanked.
 //
 // Corresponds with GET /api/override-settings/ (the `OverrideSettingsRetrieve` operationId).
 func (c *Client) OverrideSettingsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -181533,7 +181533,7 @@ func (c *Client) OverrideSettingsRetrieve(ctx context.Context, reqEditors ...Req
 
 // OverrideSettingsWithBody Update overridable settings
 //
-// Updates one or more settings in the database via the Constance backend. Requires staff permissions. Support users cannot update settings.
+// Updates one or more settings in the database. Requires staff permissions. Support users cannot update settings.
 //
 // Takes any type of body and a specified content type.
 //
@@ -181552,7 +181552,7 @@ func (c *Client) OverrideSettingsWithBody(ctx context.Context, contentType strin
 
 // OverrideSettings Update overridable settings
 //
-// Updates one or more settings in the database via the Constance backend. Requires staff permissions. Support users cannot update settings.
+// Updates one or more settings in the database. Requires staff permissions. Support users cannot update settings.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -181571,7 +181571,7 @@ func (c *Client) OverrideSettings(ctx context.Context, body OverrideSettingsJSON
 
 // OverrideSettingsWithFormdataBody Update overridable settings
 //
-// Updates one or more settings in the database via the Constance backend. Requires staff permissions. Support users cannot update settings.
+// Updates one or more settings in the database. Requires staff permissions. Support users cannot update settings.
 //
 // Takes a body of the `application/x-www-form-urlencoded` content type.
 //
@@ -445321,7 +445321,7 @@ type ClientWithResponsesInterface interface {
 
 	// MetadataSettingsRetrieveWithResponse Get overridable settings metadata
 	//
-	// Retrieves metadata for all settings that can be configured via the Constance backend. This includes setting keys, human-readable descriptions, default values, and types. This endpoint is publicly accessible.
+	// Retrieves metadata for all settings that can be changed at runtime. This includes setting keys, human-readable descriptions, default values, and types. This endpoint is publicly accessible.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -450473,7 +450473,7 @@ type ClientWithResponsesInterface interface {
 
 	// OverrideSettingsRetrieveWithResponse Get all overridable settings
 	//
-	// Returns all settings that can be overridden in the database via the Constance backend. Staff receive every value. Support users receive the same keys, with secret_field values blanked.
+	// Returns all settings that can be overridden in the database. Staff receive every value. Support users receive the same keys, with secret_field values blanked.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -450482,7 +450482,7 @@ type ClientWithResponsesInterface interface {
 
 	// OverrideSettingsWithBodyWithResponse Update overridable settings
 	//
-	// Updates one or more settings in the database via the Constance backend. Requires staff permissions. Support users cannot update settings.
+	// Updates one or more settings in the database. Requires staff permissions. Support users cannot update settings.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -450491,7 +450491,7 @@ type ClientWithResponsesInterface interface {
 
 	// OverrideSettingsWithResponse Update overridable settings
 	//
-	// Updates one or more settings in the database via the Constance backend. Requires staff permissions. Support users cannot update settings.
+	// Updates one or more settings in the database. Requires staff permissions. Support users cannot update settings.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -450500,7 +450500,7 @@ type ClientWithResponsesInterface interface {
 
 	// OverrideSettingsWithFormdataBodyWithResponse Update overridable settings
 	//
-	// Updates one or more settings in the database via the Constance backend. Requires staff permissions. Support users cannot update settings.
+	// Updates one or more settings in the database. Requires staff permissions. Support users cannot update settings.
 	//
 	// Takes a body of the `application/x-www-form-urlencoded` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -606151,7 +606151,7 @@ func (c *ClientWithResponses) MetadataPermissionsRetrieveWithResponse(ctx contex
 
 // MetadataSettingsRetrieveWithResponse Get overridable settings metadata
 //
-// Retrieves metadata for all settings that can be configured via the Constance backend. This includes setting keys, human-readable descriptions, default values, and types. This endpoint is publicly accessible.
+// Retrieves metadata for all settings that can be changed at runtime. This includes setting keys, human-readable descriptions, default values, and types. This endpoint is publicly accessible.
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -615261,7 +615261,7 @@ func (c *ClientWithResponses) OtlpV1MetricsWithResponse(ctx context.Context, bod
 
 // OverrideSettingsRetrieveWithResponse Get all overridable settings
 //
-// Returns all settings that can be overridden in the database via the Constance backend. Staff receive every value. Support users receive the same keys, with secret_field values blanked.
+// Returns all settings that can be overridden in the database. Staff receive every value. Support users receive the same keys, with secret_field values blanked.
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -615276,7 +615276,7 @@ func (c *ClientWithResponses) OverrideSettingsRetrieveWithResponse(ctx context.C
 
 // OverrideSettingsWithBodyWithResponse Update overridable settings
 //
-// Updates one or more settings in the database via the Constance backend. Requires staff permissions. Support users cannot update settings.
+// Updates one or more settings in the database. Requires staff permissions. Support users cannot update settings.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -615291,7 +615291,7 @@ func (c *ClientWithResponses) OverrideSettingsWithBodyWithResponse(ctx context.C
 
 // OverrideSettingsWithResponse Update overridable settings
 //
-// Updates one or more settings in the database via the Constance backend. Requires staff permissions. Support users cannot update settings.
+// Updates one or more settings in the database. Requires staff permissions. Support users cannot update settings.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -615306,7 +615306,7 @@ func (c *ClientWithResponses) OverrideSettingsWithResponse(ctx context.Context, 
 
 // OverrideSettingsWithFormdataBodyWithResponse Update overridable settings
 //
-// Updates one or more settings in the database via the Constance backend. Requires staff permissions. Support users cannot update settings.
+// Updates one or more settings in the database. Requires staff permissions. Support users cannot update settings.
 //
 // Takes a body of the `application/x-www-form-urlencoded` content type, and returns a wrapper object for the known response body format(s).
 //
