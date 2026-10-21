@@ -31530,6 +31530,7 @@ type ConstanceSettings struct {
 	MATRIXTOKENSMANAGEDBY                            *string                                                          `json:"MATRIX_TOKENS_MANAGED_BY,omitempty"`
 	MATRIXUSERIDFORMAT                               *string                                                          `json:"MATRIX_USER_ID_FORMAT,omitempty"`
 	MATRIXUSERREGISTRATIONSECRET                     *string                                                          `json:"MATRIX_USER_REGISTRATION_SECRET,omitempty"`
+	MCPENABLED                                       *bool                                                            `json:"MCP_ENABLED,omitempty"`
 	METRICSARCHIVEGRACEDAYS                          *int                                                             `json:"METRICS_ARCHIVE_GRACE_DAYS,omitempty"`
 	METRICSDEFAULTRETENTIONPOLICY                    *string                                                          `json:"METRICS_DEFAULT_RETENTION_POLICY,omitempty"`
 	METRICSLATEDATADAYS                              *int                                                             `json:"METRICS_LATE_DATA_DAYS,omitempty"`
@@ -31966,6 +31967,7 @@ type ConstanceSettingsRequest struct {
 	MATRIXTOKENSMANAGEDBY                            *string                                                                 `json:"MATRIX_TOKENS_MANAGED_BY,omitempty"`
 	MATRIXUSERIDFORMAT                               *string                                                                 `json:"MATRIX_USER_ID_FORMAT,omitempty"`
 	MATRIXUSERREGISTRATIONSECRET                     *string                                                                 `json:"MATRIX_USER_REGISTRATION_SECRET,omitempty"`
+	MCPENABLED                                       *bool                                                                   `json:"MCP_ENABLED,omitempty"`
 	METRICSARCHIVEGRACEDAYS                          *int                                                                    `json:"METRICS_ARCHIVE_GRACE_DAYS,omitempty"`
 	METRICSDEFAULTRETENTIONPOLICY                    *string                                                                 `json:"METRICS_DEFAULT_RETENTION_POLICY,omitempty"`
 	METRICSLATEDATADAYS                              *int                                                                    `json:"METRICS_LATE_DATA_DAYS,omitempty"`
@@ -32402,6 +32404,7 @@ type ConstanceSettingsRequestForm struct {
 	MATRIXTOKENSMANAGEDBY                            *string                                                                     `json:"MATRIX_TOKENS_MANAGED_BY,omitempty"`
 	MATRIXUSERIDFORMAT                               *string                                                                     `json:"MATRIX_USER_ID_FORMAT,omitempty"`
 	MATRIXUSERREGISTRATIONSECRET                     *string                                                                     `json:"MATRIX_USER_REGISTRATION_SECRET,omitempty"`
+	MCPENABLED                                       *bool                                                                       `json:"MCP_ENABLED,omitempty"`
 	METRICSARCHIVEGRACEDAYS                          *int                                                                        `json:"METRICS_ARCHIVE_GRACE_DAYS,omitempty"`
 	METRICSDEFAULTRETENTIONPOLICY                    *string                                                                     `json:"METRICS_DEFAULT_RETENTION_POLICY,omitempty"`
 	METRICSLATEDATADAYS                              *int                                                                        `json:"METRICS_LATE_DATA_DAYS,omitempty"`
@@ -32838,6 +32841,7 @@ type ConstanceSettingsRequestMultipart struct {
 	MATRIXTOKENSMANAGEDBY                            *string                                                                          `json:"MATRIX_TOKENS_MANAGED_BY,omitempty"`
 	MATRIXUSERIDFORMAT                               *string                                                                          `json:"MATRIX_USER_ID_FORMAT,omitempty"`
 	MATRIXUSERREGISTRATIONSECRET                     *string                                                                          `json:"MATRIX_USER_REGISTRATION_SECRET,omitempty"`
+	MCPENABLED                                       *bool                                                                            `json:"MCP_ENABLED,omitempty"`
 	METRICSARCHIVEGRACEDAYS                          *int                                                                             `json:"METRICS_ARCHIVE_GRACE_DAYS,omitempty"`
 	METRICSDEFAULTRETENTIONPOLICY                    *string                                                                          `json:"METRICS_DEFAULT_RETENTION_POLICY,omitempty"`
 	METRICSLATEDATADAYS                              *int                                                                             `json:"METRICS_LATE_DATA_DAYS,omitempty"`
@@ -49384,7 +49388,7 @@ type PatchedRequestedResourceRequest struct {
 
 // PatchedResourceApiKeyUpdateRequest defines model for PatchedResourceApiKeyUpdateRequest.
 type PatchedResourceApiKeyUpdateRequest struct {
-	// AllowedModels Models the key may call; empty or absent allows every model.
+	// AllowedModels Models the key may call: ["*"] for every model, an empty list for none. Absent, a new key gets none and an edited one keeps its list.
 	AllowedModels *[]string `json:"allowed_models,omitempty"`
 
 	// Limits Limits per component type; zero or absent means no limit.
@@ -55716,11 +55720,15 @@ type Resource_UsageLimitRestriction struct {
 
 // ResourceApiKey defines model for ResourceApiKey.
 type ResourceApiKey struct {
+	// AllowedModels The key's own model list, as chosen.
 	AllowedModels *[]string           `json:"allowed_models,omitempty"`
 	ApiKey        *string             `json:"api_key,omitempty"`
 	ClientId      *string             `json:"client_id,omitempty"`
 	CurrentUsages *map[string]float64 `json:"current_usages,omitempty"`
-	ErrorMessage  *string             `json:"error_message,omitempty"`
+
+	// EffectiveModels The models the key can call: the resource's selection, then the key's list. The site agent applies this one.
+	EffectiveModels *[]string `json:"effective_models,omitempty"`
+	ErrorMessage    *string   `json:"error_message,omitempty"`
 
 	// IssuedAt When the agent last stored a value for this key: its creation or its latest rotation. Unlike modified, a pause or an edit leaves it alone.
 	IssuedAt          *time.Time                    `json:"issued_at,omitempty"`
@@ -55747,7 +55755,7 @@ type ResourceApiKeyAction string
 
 // ResourceApiKeyCreateRequest defines model for ResourceApiKeyCreateRequest.
 type ResourceApiKeyCreateRequest struct {
-	// AllowedModels Models the key may call; empty or absent allows every model.
+	// AllowedModels Models the key may call: ["*"] for every model, an empty list for none. Absent, a new key gets none and an edited one keeps its list.
 	AllowedModels *[]string `json:"allowed_models,omitempty"`
 
 	// Limits Limits per component type; zero or absent means no limit.
@@ -55781,10 +55789,14 @@ type ResourceApiKeyState string
 
 // ResourceApiKeyStatus defines model for ResourceApiKeyStatus.
 type ResourceApiKeyStatus struct {
+	// AllowedModels The key's own model list, as chosen.
 	AllowedModels *[]string           `json:"allowed_models,omitempty"`
 	ClientId      *string             `json:"client_id,omitempty"`
 	CurrentUsages *map[string]float64 `json:"current_usages,omitempty"`
-	ErrorMessage  *string             `json:"error_message,omitempty"`
+
+	// EffectiveModels The models the key can call: the resource's selection, then the key's list. The site agent applies this one.
+	EffectiveModels *[]string `json:"effective_models,omitempty"`
+	ErrorMessage    *string   `json:"error_message,omitempty"`
 
 	// IssuedAt When the agent last stored a value for this key: its creation or its latest rotation. Unlike modified, a pause or an edit leaves it alone.
 	IssuedAt          *time.Time                          `json:"issued_at,omitempty"`
@@ -121345,7 +121357,7 @@ type ClientInterface interface {
 
 	// MarketplaceResourceApiKeysPartialUpdateWithBody Edit an API key
 	//
-	// Changes the key's assignee, limits or model allowlist. A change to limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. Only on offerings with enable_api_key_provisioning, except for unassigning the key ({"user": null}).
+	// Changes the key's assignee, limits or model allowlist. A change to limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. A change of assignee (setting, changing or clearing it) on a key that holds a secret rotates the key instead, carrying any limits and models set with it: the old secret stops working and the new assignee reveals the new one. A paused key, or one with another command pending or failed, refuses it. Only on offerings with enable_api_key_provisioning, except for unassigning the key ({"user": null}).
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -121354,7 +121366,7 @@ type ClientInterface interface {
 
 	// MarketplaceResourceApiKeysPartialUpdate Edit an API key
 	//
-	// Changes the key's assignee, limits or model allowlist. A change to limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. Only on offerings with enable_api_key_provisioning, except for unassigning the key ({"user": null}).
+	// Changes the key's assignee, limits or model allowlist. A change to limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. A change of assignee (setting, changing or clearing it) on a key that holds a secret rotates the key instead, carrying any limits and models set with it: the old secret stops working and the new assignee reveals the new one. A paused key, or one with another command pending or failed, refuses it. Only on offerings with enable_api_key_provisioning, except for unassigning the key ({"user": null}).
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -121395,7 +121407,7 @@ type ClientInterface interface {
 
 	// MarketplaceResourceApiKeysRetry Retry a failed API key command
 	//
-	// Sends the command that left the key Erred to the site agent again, with the key's current limits and models. An Erred key accepts only this, the same command, or a delete.
+	// Sends the command that left the key Erred to the site agent again, with the key's current limits and models. An Erred key accepts only this, the same command, or a delete. The key's assignee can retry a failed rotation, and no other command.
 	//
 	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/retry/ (the `MarketplaceResourceApiKeysRetry` operationId).
 	MarketplaceResourceApiKeysRetry(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -121409,7 +121421,7 @@ type ClientInterface interface {
 
 	// MarketplaceResourceApiKeysRotate Rotate an API key
 	//
-	// Asks the site agent to replace this key's value at the backend. The other keys are untouched (zero downtime).
+	// Asks the site agent to replace this key's value at the backend. The other keys are untouched (zero downtime). Available to whoever manages the resource's users and to the key's assignee.
 	//
 	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/rotate/ (the `MarketplaceResourceApiKeysRotate` operationId).
 	MarketplaceResourceApiKeysRotate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -161959,7 +161971,7 @@ func (c *Client) MarketplaceResourceApiKeysRetrieve(ctx context.Context, uuid op
 
 // MarketplaceResourceApiKeysPartialUpdateWithBody Edit an API key
 //
-// Changes the key's assignee, limits or model allowlist. A change to limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. Only on offerings with enable_api_key_provisioning, except for unassigning the key ({"user": null}).
+// Changes the key's assignee, limits or model allowlist. A change to limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. A change of assignee (setting, changing or clearing it) on a key that holds a secret rotates the key instead, carrying any limits and models set with it: the old secret stops working and the new assignee reveals the new one. A paused key, or one with another command pending or failed, refuses it. Only on offerings with enable_api_key_provisioning, except for unassigning the key ({"user": null}).
 //
 // Takes any type of body and a specified content type.
 //
@@ -161978,7 +161990,7 @@ func (c *Client) MarketplaceResourceApiKeysPartialUpdateWithBody(ctx context.Con
 
 // MarketplaceResourceApiKeysPartialUpdate Edit an API key
 //
-// Changes the key's assignee, limits or model allowlist. A change to limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. Only on offerings with enable_api_key_provisioning, except for unassigning the key ({"user": null}).
+// Changes the key's assignee, limits or model allowlist. A change to limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. A change of assignee (setting, changing or clearing it) on a key that holds a secret rotates the key instead, carrying any limits and models set with it: the old secret stops working and the new assignee reveals the new one. A paused key, or one with another command pending or failed, refuses it. Only on offerings with enable_api_key_provisioning, except for unassigning the key ({"user": null}).
 //
 // Takes a body of the `application/json` content type.
 //
@@ -162069,7 +162081,7 @@ func (c *Client) MarketplaceResourceApiKeysResume(ctx context.Context, uuid open
 
 // MarketplaceResourceApiKeysRetry Retry a failed API key command
 //
-// Sends the command that left the key Erred to the site agent again, with the key's current limits and models. An Erred key accepts only this, the same command, or a delete.
+// Sends the command that left the key Erred to the site agent again, with the key's current limits and models. An Erred key accepts only this, the same command, or a delete. The key's assignee can retry a failed rotation, and no other command.
 //
 // Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/retry/ (the `MarketplaceResourceApiKeysRetry` operationId).
 func (c *Client) MarketplaceResourceApiKeysRetry(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -162103,7 +162115,7 @@ func (c *Client) MarketplaceResourceApiKeysRevealRetrieve(ctx context.Context, u
 
 // MarketplaceResourceApiKeysRotate Rotate an API key
 //
-// Asks the site agent to replace this key's value at the backend. The other keys are untouched (zero downtime).
+// Asks the site agent to replace this key's value at the backend. The other keys are untouched (zero downtime). Available to whoever manages the resource's users and to the key's assignee.
 //
 // Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/rotate/ (the `MarketplaceResourceApiKeysRotate` operationId).
 func (c *Client) MarketplaceResourceApiKeysRotate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -441253,7 +441265,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceResourceApiKeysPartialUpdateWithBodyWithResponse Edit an API key
 	//
-	// Changes the key's assignee, limits or model allowlist. A change to limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. Only on offerings with enable_api_key_provisioning, except for unassigning the key ({"user": null}).
+	// Changes the key's assignee, limits or model allowlist. A change to limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. A change of assignee (setting, changing or clearing it) on a key that holds a secret rotates the key instead, carrying any limits and models set with it: the old secret stops working and the new assignee reveals the new one. A paused key, or one with another command pending or failed, refuses it. Only on offerings with enable_api_key_provisioning, except for unassigning the key ({"user": null}).
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -441262,7 +441274,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceResourceApiKeysPartialUpdateWithResponse Edit an API key
 	//
-	// Changes the key's assignee, limits or model allowlist. A change to limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. Only on offerings with enable_api_key_provisioning, except for unassigning the key ({"user": null}).
+	// Changes the key's assignee, limits or model allowlist. A change to limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. A change of assignee (setting, changing or clearing it) on a key that holds a secret rotates the key instead, carrying any limits and models set with it: the old secret stops working and the new assignee reveals the new one. A paused key, or one with another command pending or failed, refuses it. Only on offerings with enable_api_key_provisioning, except for unassigning the key ({"user": null}).
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -441307,7 +441319,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceResourceApiKeysRetryWithResponse Retry a failed API key command
 	//
-	// Sends the command that left the key Erred to the site agent again, with the key's current limits and models. An Erred key accepts only this, the same command, or a delete.
+	// Sends the command that left the key Erred to the site agent again, with the key's current limits and models. An Erred key accepts only this, the same command, or a delete. The key's assignee can retry a failed rotation, and no other command.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -441325,7 +441337,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceResourceApiKeysRotateWithResponse Rotate an API key
 	//
-	// Asks the site agent to replace this key's value at the backend. The other keys are untouched (zero downtime).
+	// Asks the site agent to replace this key's value at the backend. The other keys are untouched (zero downtime). Available to whoever manages the resource's users and to the key's assignee.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -598966,7 +598978,7 @@ func (c *ClientWithResponses) MarketplaceResourceApiKeysRetrieveWithResponse(ctx
 
 // MarketplaceResourceApiKeysPartialUpdateWithBodyWithResponse Edit an API key
 //
-// Changes the key's assignee, limits or model allowlist. A change to limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. Only on offerings with enable_api_key_provisioning, except for unassigning the key ({"user": null}).
+// Changes the key's assignee, limits or model allowlist. A change to limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. A change of assignee (setting, changing or clearing it) on a key that holds a secret rotates the key instead, carrying any limits and models set with it: the old secret stops working and the new assignee reveals the new one. A paused key, or one with another command pending or failed, refuses it. Only on offerings with enable_api_key_provisioning, except for unassigning the key ({"user": null}).
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -598981,7 +598993,7 @@ func (c *ClientWithResponses) MarketplaceResourceApiKeysPartialUpdateWithBodyWit
 
 // MarketplaceResourceApiKeysPartialUpdateWithResponse Edit an API key
 //
-// Changes the key's assignee, limits or model allowlist. A change to limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. Only on offerings with enable_api_key_provisioning, except for unassigning the key ({"user": null}).
+// Changes the key's assignee, limits or model allowlist. A change to limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. A change of assignee (setting, changing or clearing it) on a key that holds a secret rotates the key instead, carrying any limits and models set with it: the old secret stops working and the new assignee reveals the new one. A paused key, or one with another command pending or failed, refuses it. Only on offerings with enable_api_key_provisioning, except for unassigning the key ({"user": null}).
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -599056,7 +599068,7 @@ func (c *ClientWithResponses) MarketplaceResourceApiKeysResumeWithResponse(ctx c
 
 // MarketplaceResourceApiKeysRetryWithResponse Retry a failed API key command
 //
-// Sends the command that left the key Erred to the site agent again, with the key's current limits and models. An Erred key accepts only this, the same command, or a delete.
+// Sends the command that left the key Erred to the site agent again, with the key's current limits and models. An Erred key accepts only this, the same command, or a delete. The key's assignee can retry a failed rotation, and no other command.
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -599086,7 +599098,7 @@ func (c *ClientWithResponses) MarketplaceResourceApiKeysRevealRetrieveWithRespon
 
 // MarketplaceResourceApiKeysRotateWithResponse Rotate an API key
 //
-// Asks the site agent to replace this key's value at the backend. The other keys are untouched (zero downtime).
+// Asks the site agent to replace this key's value at the backend. The other keys are untouched (zero downtime). Available to whoever manages the resource's users and to the key's assignee.
 //
 // Returns a wrapper object for the known response body format(s).
 //
