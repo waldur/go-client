@@ -67799,6 +67799,31 @@ type MarketplaceCustomerEstimatedCostPoliciesRetrieveParams struct {
 	Field *[]CustomerEstimatedCostPolicyFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 }
 
+// MarketplaceCustomerEstimatedCostPoliciesHistoryListParams defines parameters for MarketplaceCustomerEstimatedCostPoliciesHistoryList.
+type MarketplaceCustomerEstimatedCostPoliciesHistoryListParams struct {
+	// CreatedAfter Filter versions created after this timestamp (ISO 8601)
+	CreatedAfter *string `form:"created_after,omitempty" json:"created_after,omitempty"`
+
+	// CreatedBefore Filter versions created before this timestamp (ISO 8601)
+	CreatedBefore *string             `form:"created_before,omitempty" json:"created_before,omitempty"`
+	Customer      *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerUuid  *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize  *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Scope     *string             `form:"scope,omitempty" json:"scope,omitempty"`
+	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+}
+
+// MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveParams defines parameters for MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieve.
+type MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveParams struct {
+	// Timestamp ISO 8601 timestamp to query the object state at
+	Timestamp string `form:"timestamp" json:"timestamp"`
+}
+
 // MarketplaceCustomerServiceAccountsListParams defines parameters for MarketplaceCustomerServiceAccountsList.
 type MarketplaceCustomerServiceAccountsListParams struct {
 	// Customer Customer URL
@@ -68142,6 +68167,29 @@ type MarketplaceOfferingEstimatedCostPoliciesCountParams struct {
 // MarketplaceOfferingEstimatedCostPoliciesRetrieveParams defines parameters for MarketplaceOfferingEstimatedCostPoliciesRetrieve.
 type MarketplaceOfferingEstimatedCostPoliciesRetrieveParams struct {
 	Field *[]OfferingEstimatedCostPolicyFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+}
+
+// MarketplaceOfferingEstimatedCostPoliciesHistoryListParams defines parameters for MarketplaceOfferingEstimatedCostPoliciesHistoryList.
+type MarketplaceOfferingEstimatedCostPoliciesHistoryListParams struct {
+	// CreatedAfter Filter versions created after this timestamp (ISO 8601)
+	CreatedAfter *string `form:"created_after,omitempty" json:"created_after,omitempty"`
+
+	// CreatedBefore Filter versions created before this timestamp (ISO 8601)
+	CreatedBefore *string `form:"created_before,omitempty" json:"created_before,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize  *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Scope     *string             `form:"scope,omitempty" json:"scope,omitempty"`
+	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+}
+
+// MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveParams defines parameters for MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieve.
+type MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveParams struct {
+	// Timestamp ISO 8601 timestamp to query the object state at
+	Timestamp string `form:"timestamp" json:"timestamp"`
 }
 
 // MarketplaceOfferingFilesListParams defines parameters for MarketplaceOfferingFilesList.
@@ -69958,6 +70006,37 @@ type MarketplaceProjectEstimatedCostPoliciesCountParams struct {
 // MarketplaceProjectEstimatedCostPoliciesRetrieveParams defines parameters for MarketplaceProjectEstimatedCostPoliciesRetrieve.
 type MarketplaceProjectEstimatedCostPoliciesRetrieveParams struct {
 	Field *[]ProjectEstimatedCostPolicyFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+}
+
+// MarketplaceProjectEstimatedCostPoliciesHistoryListParams defines parameters for MarketplaceProjectEstimatedCostPoliciesHistoryList.
+type MarketplaceProjectEstimatedCostPoliciesHistoryListParams struct {
+	// CreatedAfter Filter versions created after this timestamp (ISO 8601)
+	CreatedAfter *string `form:"created_after,omitempty" json:"created_after,omitempty"`
+
+	// CreatedBefore Filter versions created before this timestamp (ISO 8601)
+	CreatedBefore *string             `form:"created_before,omitempty" json:"created_before,omitempty"`
+	Customer      *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerUuid  *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	HasResource   *bool               `form:"has_resource,omitempty" json:"has_resource,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Project      *string             `form:"project,omitempty" json:"project,omitempty"`
+	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	Query        *string             `form:"query,omitempty" json:"query,omitempty"`
+	Resource     *string             `form:"resource,omitempty" json:"resource,omitempty"`
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+	Scope        *string             `form:"scope,omitempty" json:"scope,omitempty"`
+	ScopeUuid    *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+}
+
+// MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveParams defines parameters for MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieve.
+type MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveParams struct {
+	// Timestamp ISO 8601 timestamp to query the object state at
+	Timestamp string `form:"timestamp" json:"timestamp"`
 }
 
 // MarketplaceProjectMetricsListParams defines parameters for MarketplaceProjectMetricsList.
@@ -117045,6 +117124,20 @@ type ClientInterface interface {
 	// Takes a body of the `application/json` content type.
 	MarketplaceCustomerEstimatedCostPoliciesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCustomerEstimatedCostPoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceCustomerEstimatedCostPoliciesHistoryList Get version history
+	//
+	// Returns the version history for this object. Only accessible by staff and support users.
+	//
+	// Corresponds with GET /api/marketplace-customer-estimated-cost-policies/{uuid}/history/ (the `MarketplaceCustomerEstimatedCostPoliciesHistoryList` operationId).
+	MarketplaceCustomerEstimatedCostPoliciesHistoryList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceCustomerEstimatedCostPoliciesHistoryListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieve Get object state at a specific timestamp
+	//
+	// Returns the state of the object as it was at the specified timestamp. Only accessible by staff and support users.
+	//
+	// Corresponds with GET /api/marketplace-customer-estimated-cost-policies/{uuid}/history/at/ (the `MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieve` operationId).
+	MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceCustomerServiceAccountsList List service accounts
 	//
 	// Corresponds with GET /api/marketplace-customer-service-accounts/ (the `MarketplaceCustomerServiceAccountsList` operationId).
@@ -117480,6 +117573,20 @@ type ClientInterface interface {
 	// MarketplaceOfferingEstimatedCostPoliciesUpdate performs a PUT /api/marketplace-offering-estimated-cost-policies/{uuid}/ (the `MarketplaceOfferingEstimatedCostPoliciesUpdate` operationId) request.
 	// Takes a body of the `application/json` content type.
 	MarketplaceOfferingEstimatedCostPoliciesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingEstimatedCostPoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingEstimatedCostPoliciesHistoryList Get version history
+	//
+	// Returns the version history for this object. Only accessible by staff and support users.
+	//
+	// Corresponds with GET /api/marketplace-offering-estimated-cost-policies/{uuid}/history/ (the `MarketplaceOfferingEstimatedCostPoliciesHistoryList` operationId).
+	MarketplaceOfferingEstimatedCostPoliciesHistoryList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOfferingEstimatedCostPoliciesHistoryListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieve Get object state at a specific timestamp
+	//
+	// Returns the state of the object as it was at the specified timestamp. Only accessible by staff and support users.
+	//
+	// Corresponds with GET /api/marketplace-offering-estimated-cost-policies/{uuid}/history/at/ (the `MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieve` operationId).
+	MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOfferingFilesList performs a GET /api/marketplace-offering-files/ (the `MarketplaceOfferingFilesList` operationId) request.
 	MarketplaceOfferingFilesList(ctx context.Context, params *MarketplaceOfferingFilesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -118998,6 +119105,20 @@ type ClientInterface interface {
 	// MarketplaceProjectEstimatedCostPoliciesUpdate performs a PUT /api/marketplace-project-estimated-cost-policies/{uuid}/ (the `MarketplaceProjectEstimatedCostPoliciesUpdate` operationId) request.
 	// Takes a body of the `application/json` content type.
 	MarketplaceProjectEstimatedCostPoliciesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectEstimatedCostPoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProjectEstimatedCostPoliciesHistoryList Get version history
+	//
+	// Returns the version history for this object. Only accessible by staff and support users.
+	//
+	// Corresponds with GET /api/marketplace-project-estimated-cost-policies/{uuid}/history/ (the `MarketplaceProjectEstimatedCostPoliciesHistoryList` operationId).
+	MarketplaceProjectEstimatedCostPoliciesHistoryList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProjectEstimatedCostPoliciesHistoryListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieve Get object state at a specific timestamp
+	//
+	// Returns the state of the object as it was at the specified timestamp. Only accessible by staff and support users.
+	//
+	// Corresponds with GET /api/marketplace-project-estimated-cost-policies/{uuid}/history/at/ (the `MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieve` operationId).
+	MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProjectMetricsList Get a project's metric figures
 	//
@@ -151365,6 +151486,40 @@ func (c *Client) MarketplaceCustomerEstimatedCostPoliciesUpdate(ctx context.Cont
 	return c.Client.Do(req)
 }
 
+// MarketplaceCustomerEstimatedCostPoliciesHistoryList Get version history
+//
+// Returns the version history for this object. Only accessible by staff and support users.
+//
+// Corresponds with GET /api/marketplace-customer-estimated-cost-policies/{uuid}/history/ (the `MarketplaceCustomerEstimatedCostPoliciesHistoryList` operationId).
+func (c *Client) MarketplaceCustomerEstimatedCostPoliciesHistoryList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceCustomerEstimatedCostPoliciesHistoryListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerEstimatedCostPoliciesHistoryListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieve Get object state at a specific timestamp
+//
+// Returns the state of the object as it was at the specified timestamp. Only accessible by staff and support users.
+//
+// Corresponds with GET /api/marketplace-customer-estimated-cost-policies/{uuid}/history/at/ (the `MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieve` operationId).
+func (c *Client) MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // MarketplaceCustomerServiceAccountsList List service accounts
 //
 // Corresponds with GET /api/marketplace-customer-service-accounts/ (the `MarketplaceCustomerServiceAccountsList` operationId).
@@ -152589,6 +152744,40 @@ func (c *Client) MarketplaceOfferingEstimatedCostPoliciesUpdateWithBody(ctx cont
 // Takes a body of the `application/json` content type.
 func (c *Client) MarketplaceOfferingEstimatedCostPoliciesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingEstimatedCostPoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceOfferingEstimatedCostPoliciesUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceOfferingEstimatedCostPoliciesHistoryList Get version history
+//
+// Returns the version history for this object. Only accessible by staff and support users.
+//
+// Corresponds with GET /api/marketplace-offering-estimated-cost-policies/{uuid}/history/ (the `MarketplaceOfferingEstimatedCostPoliciesHistoryList` operationId).
+func (c *Client) MarketplaceOfferingEstimatedCostPoliciesHistoryList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOfferingEstimatedCostPoliciesHistoryListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingEstimatedCostPoliciesHistoryListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieve Get object state at a specific timestamp
+//
+// Returns the state of the object as it was at the specified timestamp. Only accessible by staff and support users.
+//
+// Corresponds with GET /api/marketplace-offering-estimated-cost-policies/{uuid}/history/at/ (the `MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieve` operationId).
+func (c *Client) MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -156589,6 +156778,40 @@ func (c *Client) MarketplaceProjectEstimatedCostPoliciesUpdateWithBody(ctx conte
 // Takes a body of the `application/json` content type.
 func (c *Client) MarketplaceProjectEstimatedCostPoliciesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectEstimatedCostPoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProjectEstimatedCostPoliciesUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceProjectEstimatedCostPoliciesHistoryList Get version history
+//
+// Returns the version history for this object. Only accessible by staff and support users.
+//
+// Corresponds with GET /api/marketplace-project-estimated-cost-policies/{uuid}/history/ (the `MarketplaceProjectEstimatedCostPoliciesHistoryList` operationId).
+func (c *Client) MarketplaceProjectEstimatedCostPoliciesHistoryList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProjectEstimatedCostPoliciesHistoryListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectEstimatedCostPoliciesHistoryListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieve Get object state at a specific timestamp
+//
+// Returns the state of the object as it was at the specified timestamp. Only accessible by staff and support users.
+//
+// Corresponds with GET /api/marketplace-project-estimated-cost-policies/{uuid}/history/at/ (the `MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieve` operationId).
+func (c *Client) MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -255316,6 +255539,208 @@ func NewMarketplaceCustomerEstimatedCostPoliciesUpdateRequestWithBody(server str
 	return req, nil
 }
 
+// NewMarketplaceCustomerEstimatedCostPoliciesHistoryListRequest constructs an http.Request for the MarketplaceCustomerEstimatedCostPoliciesHistoryList method
+func NewMarketplaceCustomerEstimatedCostPoliciesHistoryListRequest(server string, uuid openapi_types.UUID, params *MarketplaceCustomerEstimatedCostPoliciesHistoryListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-customer-estimated-cost-policies/%s/history/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CreatedAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_after", *params.CreatedAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_before", *params.CreatedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer", *params.Customer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "scope", *params.Scope, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ScopeUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "scope_uuid", *params.ScopeUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveRequest constructs an http.Request for the MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieve method
+func NewMarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-customer-estimated-cost-policies/%s/history/at/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "timestamp", params.Timestamp, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceCustomerServiceAccountsListRequest constructs an http.Request for the MarketplaceCustomerServiceAccountsList method
 func NewMarketplaceCustomerServiceAccountsListRequest(server string, params *MarketplaceCustomerServiceAccountsListParams) (*http.Request, error) {
 	var err error
@@ -259137,6 +259562,184 @@ func NewMarketplaceOfferingEstimatedCostPoliciesUpdateRequestWithBody(server str
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingEstimatedCostPoliciesHistoryListRequest constructs an http.Request for the MarketplaceOfferingEstimatedCostPoliciesHistoryList method
+func NewMarketplaceOfferingEstimatedCostPoliciesHistoryListRequest(server string, uuid openapi_types.UUID, params *MarketplaceOfferingEstimatedCostPoliciesHistoryListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-estimated-cost-policies/%s/history/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CreatedAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_after", *params.CreatedAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_before", *params.CreatedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "scope", *params.Scope, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ScopeUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "scope_uuid", *params.ScopeUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveRequest constructs an http.Request for the MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieve method
+func NewMarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-estimated-cost-policies/%s/history/at/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "timestamp", params.Timestamp, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -273869,6 +274472,280 @@ func NewMarketplaceProjectEstimatedCostPoliciesUpdateRequestWithBody(server stri
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProjectEstimatedCostPoliciesHistoryListRequest constructs an http.Request for the MarketplaceProjectEstimatedCostPoliciesHistoryList method
+func NewMarketplaceProjectEstimatedCostPoliciesHistoryListRequest(server string, uuid openapi_types.UUID, params *MarketplaceProjectEstimatedCostPoliciesHistoryListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-project-estimated-cost-policies/%s/history/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CreatedAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_after", *params.CreatedAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_before", *params.CreatedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer", *params.Customer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasResource != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_resource", *params.HasResource, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Project != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project", *params.Project, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Resource != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource", *params.Resource, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_uuid", *params.ResourceUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "scope", *params.Scope, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ScopeUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "scope_uuid", *params.ScopeUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveRequest constructs an http.Request for the MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieve method
+func NewMarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-project-estimated-cost-policies/%s/history/at/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "timestamp", params.Timestamp, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -436295,6 +437172,24 @@ type ClientWithResponsesInterface interface {
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	MarketplaceCustomerEstimatedCostPoliciesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCustomerEstimatedCostPoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCustomerEstimatedCostPoliciesUpdateResponse, error)
 
+	// MarketplaceCustomerEstimatedCostPoliciesHistoryListWithResponse Get version history
+	//
+	// Returns the version history for this object. Only accessible by staff and support users.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-customer-estimated-cost-policies/{uuid}/history/ (the `MarketplaceCustomerEstimatedCostPoliciesHistoryList` operationId).
+	MarketplaceCustomerEstimatedCostPoliciesHistoryListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceCustomerEstimatedCostPoliciesHistoryListParams, reqEditors ...RequestEditorFn) (*MarketplaceCustomerEstimatedCostPoliciesHistoryListResponse, error)
+
+	// MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveWithResponse Get object state at a specific timestamp
+	//
+	// Returns the state of the object as it was at the specified timestamp. Only accessible by staff and support users.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-customer-estimated-cost-policies/{uuid}/history/at/ (the `MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieve` operationId).
+	MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveResponse, error)
+
 	// MarketplaceCustomerServiceAccountsListWithResponse List service accounts
 	//
 	// Returns a wrapper object for the known response body format(s).
@@ -436836,6 +437731,24 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceOfferingEstimatedCostPoliciesUpdateWithResponse performs a PUT /api/marketplace-offering-estimated-cost-policies/{uuid}/ (the `MarketplaceOfferingEstimatedCostPoliciesUpdate` operationId) request.
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	MarketplaceOfferingEstimatedCostPoliciesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingEstimatedCostPoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingEstimatedCostPoliciesUpdateResponse, error)
+
+	// MarketplaceOfferingEstimatedCostPoliciesHistoryListWithResponse Get version history
+	//
+	// Returns the version history for this object. Only accessible by staff and support users.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-offering-estimated-cost-policies/{uuid}/history/ (the `MarketplaceOfferingEstimatedCostPoliciesHistoryList` operationId).
+	MarketplaceOfferingEstimatedCostPoliciesHistoryListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOfferingEstimatedCostPoliciesHistoryListParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingEstimatedCostPoliciesHistoryListResponse, error)
+
+	// MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveWithResponse Get object state at a specific timestamp
+	//
+	// Returns the state of the object as it was at the specified timestamp. Only accessible by staff and support users.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-offering-estimated-cost-policies/{uuid}/history/at/ (the `MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieve` operationId).
+	MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveResponse, error)
 
 	// MarketplaceOfferingFilesListWithResponse performs a GET /api/marketplace-offering-files/ (the `MarketplaceOfferingFilesList` operationId) request.
 	//
@@ -438666,6 +439579,24 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceProjectEstimatedCostPoliciesUpdateWithResponse performs a PUT /api/marketplace-project-estimated-cost-policies/{uuid}/ (the `MarketplaceProjectEstimatedCostPoliciesUpdate` operationId) request.
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	MarketplaceProjectEstimatedCostPoliciesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectEstimatedCostPoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProjectEstimatedCostPoliciesUpdateResponse, error)
+
+	// MarketplaceProjectEstimatedCostPoliciesHistoryListWithResponse Get version history
+	//
+	// Returns the version history for this object. Only accessible by staff and support users.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-project-estimated-cost-policies/{uuid}/history/ (the `MarketplaceProjectEstimatedCostPoliciesHistoryList` operationId).
+	MarketplaceProjectEstimatedCostPoliciesHistoryListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProjectEstimatedCostPoliciesHistoryListParams, reqEditors ...RequestEditorFn) (*MarketplaceProjectEstimatedCostPoliciesHistoryListResponse, error)
+
+	// MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveWithResponse Get object state at a specific timestamp
+	//
+	// Returns the state of the object as it was at the specified timestamp. Only accessible by staff and support users.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-project-estimated-cost-policies/{uuid}/history/at/ (the `MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieve` operationId).
+	MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveResponse, error)
 
 	// MarketplaceProjectMetricsListWithResponse Get a project's metric figures
 	//
@@ -488831,6 +489762,109 @@ func (r MarketplaceCustomerEstimatedCostPoliciesUpdateResponse) ContentType() st
 	return ""
 }
 
+// MarketplaceCustomerEstimatedCostPoliciesHistoryListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceCustomerEstimatedCostPoliciesHistoryList
+type MarketplaceCustomerEstimatedCostPoliciesHistoryListResponse200Headers struct {
+	XResultCount *int
+}
+
+type MarketplaceCustomerEstimatedCostPoliciesHistoryListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]VersionHistory
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *MarketplaceCustomerEstimatedCostPoliciesHistoryListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceCustomerEstimatedCostPoliciesHistoryListResponse) GetJSON200() *[]VersionHistory {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceCustomerEstimatedCostPoliciesHistoryListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCustomerEstimatedCostPoliciesHistoryListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCustomerEstimatedCostPoliciesHistoryListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceCustomerEstimatedCostPoliciesHistoryListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *VersionHistory
+	// JSON400 the response for an HTTP 400 `application/json` response
+	JSON400 *map[string]interface{}
+	// JSON404 the response for an HTTP 404 `application/json` response
+	JSON404 *map[string]interface{}
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveResponse) GetJSON200() *VersionHistory {
+	return r.JSON200
+}
+
+// GetJSON400 returns the response for an HTTP 400 `application/json` response
+func (r MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveResponse) GetJSON400() *map[string]interface{} {
+	return r.JSON400
+}
+
+// GetJSON404 returns the response for an HTTP 404 `application/json` response
+func (r MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveResponse) GetJSON404() *map[string]interface{} {
+	return r.JSON404
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // MarketplaceCustomerServiceAccountsListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceCustomerServiceAccountsList
 type MarketplaceCustomerServiceAccountsListResponse200Headers struct {
 	XResultCount *int
@@ -491236,6 +492270,109 @@ func (r MarketplaceOfferingEstimatedCostPoliciesUpdateResponse) StatusCode() int
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceOfferingEstimatedCostPoliciesUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// MarketplaceOfferingEstimatedCostPoliciesHistoryListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceOfferingEstimatedCostPoliciesHistoryList
+type MarketplaceOfferingEstimatedCostPoliciesHistoryListResponse200Headers struct {
+	XResultCount *int
+}
+
+type MarketplaceOfferingEstimatedCostPoliciesHistoryListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]VersionHistory
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *MarketplaceOfferingEstimatedCostPoliciesHistoryListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceOfferingEstimatedCostPoliciesHistoryListResponse) GetJSON200() *[]VersionHistory {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceOfferingEstimatedCostPoliciesHistoryListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingEstimatedCostPoliciesHistoryListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingEstimatedCostPoliciesHistoryListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingEstimatedCostPoliciesHistoryListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *VersionHistory
+	// JSON400 the response for an HTTP 400 `application/json` response
+	JSON400 *map[string]interface{}
+	// JSON404 the response for an HTTP 404 `application/json` response
+	JSON404 *map[string]interface{}
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveResponse) GetJSON200() *VersionHistory {
+	return r.JSON200
+}
+
+// GetJSON400 returns the response for an HTTP 400 `application/json` response
+func (r MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveResponse) GetJSON400() *map[string]interface{} {
+	return r.JSON400
+}
+
+// GetJSON404 returns the response for an HTTP 404 `application/json` response
+func (r MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveResponse) GetJSON404() *map[string]interface{} {
+	return r.JSON404
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -498564,6 +499701,109 @@ func (r MarketplaceProjectEstimatedCostPoliciesUpdateResponse) StatusCode() int 
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceProjectEstimatedCostPoliciesUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// MarketplaceProjectEstimatedCostPoliciesHistoryListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceProjectEstimatedCostPoliciesHistoryList
+type MarketplaceProjectEstimatedCostPoliciesHistoryListResponse200Headers struct {
+	XResultCount *int
+}
+
+type MarketplaceProjectEstimatedCostPoliciesHistoryListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]VersionHistory
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *MarketplaceProjectEstimatedCostPoliciesHistoryListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceProjectEstimatedCostPoliciesHistoryListResponse) GetJSON200() *[]VersionHistory {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceProjectEstimatedCostPoliciesHistoryListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProjectEstimatedCostPoliciesHistoryListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProjectEstimatedCostPoliciesHistoryListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProjectEstimatedCostPoliciesHistoryListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *VersionHistory
+	// JSON400 the response for an HTTP 400 `application/json` response
+	JSON400 *map[string]interface{}
+	// JSON404 the response for an HTTP 404 `application/json` response
+	JSON404 *map[string]interface{}
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveResponse) GetJSON200() *VersionHistory {
+	return r.JSON200
+}
+
+// GetJSON400 returns the response for an HTTP 400 `application/json` response
+func (r MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveResponse) GetJSON400() *map[string]interface{} {
+	return r.JSON400
+}
+
+// GetJSON404 returns the response for an HTTP 404 `application/json` response
+func (r MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveResponse) GetJSON404() *map[string]interface{} {
+	return r.JSON404
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -590240,6 +591480,36 @@ func (c *ClientWithResponses) MarketplaceCustomerEstimatedCostPoliciesUpdateWith
 	return ParseMarketplaceCustomerEstimatedCostPoliciesUpdateResponse(rsp)
 }
 
+// MarketplaceCustomerEstimatedCostPoliciesHistoryListWithResponse Get version history
+//
+// Returns the version history for this object. Only accessible by staff and support users.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-customer-estimated-cost-policies/{uuid}/history/ (the `MarketplaceCustomerEstimatedCostPoliciesHistoryList` operationId).
+func (c *ClientWithResponses) MarketplaceCustomerEstimatedCostPoliciesHistoryListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceCustomerEstimatedCostPoliciesHistoryListParams, reqEditors ...RequestEditorFn) (*MarketplaceCustomerEstimatedCostPoliciesHistoryListResponse, error) {
+	rsp, err := c.MarketplaceCustomerEstimatedCostPoliciesHistoryList(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerEstimatedCostPoliciesHistoryListResponse(rsp)
+}
+
+// MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveWithResponse Get object state at a specific timestamp
+//
+// Returns the state of the object as it was at the specified timestamp. Only accessible by staff and support users.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-customer-estimated-cost-policies/{uuid}/history/at/ (the `MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieve` operationId).
+func (c *ClientWithResponses) MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveResponse, error) {
+	rsp, err := c.MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveResponse(rsp)
+}
+
 // MarketplaceCustomerServiceAccountsListWithResponse List service accounts
 //
 // Returns a wrapper object for the known response body format(s).
@@ -591258,6 +592528,36 @@ func (c *ClientWithResponses) MarketplaceOfferingEstimatedCostPoliciesUpdateWith
 		return nil, err
 	}
 	return ParseMarketplaceOfferingEstimatedCostPoliciesUpdateResponse(rsp)
+}
+
+// MarketplaceOfferingEstimatedCostPoliciesHistoryListWithResponse Get version history
+//
+// Returns the version history for this object. Only accessible by staff and support users.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-offering-estimated-cost-policies/{uuid}/history/ (the `MarketplaceOfferingEstimatedCostPoliciesHistoryList` operationId).
+func (c *ClientWithResponses) MarketplaceOfferingEstimatedCostPoliciesHistoryListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOfferingEstimatedCostPoliciesHistoryListParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingEstimatedCostPoliciesHistoryListResponse, error) {
+	rsp, err := c.MarketplaceOfferingEstimatedCostPoliciesHistoryList(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingEstimatedCostPoliciesHistoryListResponse(rsp)
+}
+
+// MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveWithResponse Get object state at a specific timestamp
+//
+// Returns the state of the object as it was at the specified timestamp. Only accessible by staff and support users.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-offering-estimated-cost-policies/{uuid}/history/at/ (the `MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieve` operationId).
+func (c *ClientWithResponses) MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveResponse, error) {
+	rsp, err := c.MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveResponse(rsp)
 }
 
 // MarketplaceOfferingFilesListWithResponse performs a GET /api/marketplace-offering-files/ (the `MarketplaceOfferingFilesList` operationId) request.
@@ -594574,6 +595874,36 @@ func (c *ClientWithResponses) MarketplaceProjectEstimatedCostPoliciesUpdateWithR
 		return nil, err
 	}
 	return ParseMarketplaceProjectEstimatedCostPoliciesUpdateResponse(rsp)
+}
+
+// MarketplaceProjectEstimatedCostPoliciesHistoryListWithResponse Get version history
+//
+// Returns the version history for this object. Only accessible by staff and support users.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-project-estimated-cost-policies/{uuid}/history/ (the `MarketplaceProjectEstimatedCostPoliciesHistoryList` operationId).
+func (c *ClientWithResponses) MarketplaceProjectEstimatedCostPoliciesHistoryListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProjectEstimatedCostPoliciesHistoryListParams, reqEditors ...RequestEditorFn) (*MarketplaceProjectEstimatedCostPoliciesHistoryListResponse, error) {
+	rsp, err := c.MarketplaceProjectEstimatedCostPoliciesHistoryList(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProjectEstimatedCostPoliciesHistoryListResponse(rsp)
+}
+
+// MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveWithResponse Get object state at a specific timestamp
+//
+// Returns the state of the object as it was at the specified timestamp. Only accessible by staff and support users.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-project-estimated-cost-policies/{uuid}/history/at/ (the `MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieve` operationId).
+func (c *ClientWithResponses) MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveResponse, error) {
+	rsp, err := c.MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveResponse(rsp)
 }
 
 // MarketplaceProjectMetricsListWithResponse Get a project's metric figures
@@ -649198,6 +650528,85 @@ func ParseMarketplaceCustomerEstimatedCostPoliciesUpdateResponse(rsp *http.Respo
 	return response, nil
 }
 
+// ParseMarketplaceCustomerEstimatedCostPoliciesHistoryListResponse parses an HTTP response from a MarketplaceCustomerEstimatedCostPoliciesHistoryListWithResponse call
+func ParseMarketplaceCustomerEstimatedCostPoliciesHistoryListResponse(rsp *http.Response) (*MarketplaceCustomerEstimatedCostPoliciesHistoryListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCustomerEstimatedCostPoliciesHistoryListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []VersionHistory
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers MarketplaceCustomerEstimatedCostPoliciesHistoryListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveResponse parses an HTTP response from a MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveWithResponse call
+func ParseMarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveResponse(rsp *http.Response) (*MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCustomerEstimatedCostPoliciesHistoryAtRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest VersionHistory
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest map[string]interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest map[string]interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceCustomerServiceAccountsListResponse parses an HTTP response from a MarketplaceCustomerServiceAccountsListWithResponse call
 func ParseMarketplaceCustomerServiceAccountsListResponse(rsp *http.Response) (*MarketplaceCustomerServiceAccountsListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -650718,6 +652127,85 @@ func ParseMarketplaceOfferingEstimatedCostPoliciesUpdateResponse(rsp *http.Respo
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingEstimatedCostPoliciesHistoryListResponse parses an HTTP response from a MarketplaceOfferingEstimatedCostPoliciesHistoryListWithResponse call
+func ParseMarketplaceOfferingEstimatedCostPoliciesHistoryListResponse(rsp *http.Response) (*MarketplaceOfferingEstimatedCostPoliciesHistoryListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingEstimatedCostPoliciesHistoryListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []VersionHistory
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers MarketplaceOfferingEstimatedCostPoliciesHistoryListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveResponse parses an HTTP response from a MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveWithResponse call
+func ParseMarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveResponse(rsp *http.Response) (*MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingEstimatedCostPoliciesHistoryAtRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest VersionHistory
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest map[string]interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest map[string]interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
 
 	}
 
@@ -655274,6 +656762,85 @@ func ParseMarketplaceProjectEstimatedCostPoliciesUpdateResponse(rsp *http.Respon
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProjectEstimatedCostPoliciesHistoryListResponse parses an HTTP response from a MarketplaceProjectEstimatedCostPoliciesHistoryListWithResponse call
+func ParseMarketplaceProjectEstimatedCostPoliciesHistoryListResponse(rsp *http.Response) (*MarketplaceProjectEstimatedCostPoliciesHistoryListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProjectEstimatedCostPoliciesHistoryListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []VersionHistory
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers MarketplaceProjectEstimatedCostPoliciesHistoryListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveResponse parses an HTTP response from a MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveWithResponse call
+func ParseMarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveResponse(rsp *http.Response) (*MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProjectEstimatedCostPoliciesHistoryAtRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest VersionHistory
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest map[string]interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest map[string]interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
 
 	}
 
