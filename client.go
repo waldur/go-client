@@ -16335,6 +16335,7 @@ const (
 	PermissionMetadataResponsePermissionMapCUSTOMERUPDATE                               PermissionMetadataResponsePermissionMap = "CUSTOMER.UPDATE"
 	PermissionMetadataResponsePermissionMapCUSTOMERUPDATEPERMISSION                     PermissionMetadataResponsePermissionMap = "CUSTOMER.UPDATE_PERMISSION"
 	PermissionMetadataResponsePermissionMapCUSTOMERVIEWACCOUNTING                       PermissionMetadataResponsePermissionMap = "CUSTOMER.VIEW_ACCOUNTING"
+	PermissionMetadataResponsePermissionMapCUSTOMERVIEWREPORTING                        PermissionMetadataResponsePermissionMap = "CUSTOMER.VIEW_REPORTING"
 	PermissionMetadataResponsePermissionMapCUSTOMERVIEWTEAM                             PermissionMetadataResponsePermissionMap = "CUSTOMER.VIEW_TEAM"
 	PermissionMetadataResponsePermissionMapINVITATIONLIST                               PermissionMetadataResponsePermissionMap = "INVITATION.LIST"
 	PermissionMetadataResponsePermissionMapLEXISLINKCREATE                              PermissionMetadataResponsePermissionMap = "LEXIS_LINK.CREATE"
@@ -16502,6 +16503,8 @@ func (e PermissionMetadataResponsePermissionMap) Valid() bool {
 	case PermissionMetadataResponsePermissionMapCUSTOMERUPDATEPERMISSION:
 		return true
 	case PermissionMetadataResponsePermissionMapCUSTOMERVIEWACCOUNTING:
+		return true
+	case PermissionMetadataResponsePermissionMapCUSTOMERVIEWREPORTING:
 		return true
 	case PermissionMetadataResponsePermissionMapCUSTOMERVIEWTEAM:
 		return true
@@ -16779,6 +16782,7 @@ const (
 	PermissionMetadataResponsePermissionsCUSTOMERUPDATE                               PermissionMetadataResponsePermissions = "CUSTOMER.UPDATE"
 	PermissionMetadataResponsePermissionsCUSTOMERUPDATEPERMISSION                     PermissionMetadataResponsePermissions = "CUSTOMER.UPDATE_PERMISSION"
 	PermissionMetadataResponsePermissionsCUSTOMERVIEWACCOUNTING                       PermissionMetadataResponsePermissions = "CUSTOMER.VIEW_ACCOUNTING"
+	PermissionMetadataResponsePermissionsCUSTOMERVIEWREPORTING                        PermissionMetadataResponsePermissions = "CUSTOMER.VIEW_REPORTING"
 	PermissionMetadataResponsePermissionsCUSTOMERVIEWTEAM                             PermissionMetadataResponsePermissions = "CUSTOMER.VIEW_TEAM"
 	PermissionMetadataResponsePermissionsINVITATIONLIST                               PermissionMetadataResponsePermissions = "INVITATION.LIST"
 	PermissionMetadataResponsePermissionsLEXISLINKCREATE                              PermissionMetadataResponsePermissions = "LEXIS_LINK.CREATE"
@@ -16946,6 +16950,8 @@ func (e PermissionMetadataResponsePermissions) Valid() bool {
 	case PermissionMetadataResponsePermissionsCUSTOMERUPDATEPERMISSION:
 		return true
 	case PermissionMetadataResponsePermissionsCUSTOMERVIEWACCOUNTING:
+		return true
+	case PermissionMetadataResponsePermissionsCUSTOMERVIEWREPORTING:
 		return true
 	case PermissionMetadataResponsePermissionsCUSTOMERVIEWTEAM:
 		return true
@@ -24537,6 +24543,7 @@ const (
 	ValueEnumCUSTOMERUPDATE                               ValueEnum = "CUSTOMER.UPDATE"
 	ValueEnumCUSTOMERUPDATEPERMISSION                     ValueEnum = "CUSTOMER.UPDATE_PERMISSION"
 	ValueEnumCUSTOMERVIEWACCOUNTING                       ValueEnum = "CUSTOMER.VIEW_ACCOUNTING"
+	ValueEnumCUSTOMERVIEWREPORTING                        ValueEnum = "CUSTOMER.VIEW_REPORTING"
 	ValueEnumCUSTOMERVIEWTEAM                             ValueEnum = "CUSTOMER.VIEW_TEAM"
 	ValueEnumINVITATIONLIST                               ValueEnum = "INVITATION.LIST"
 	ValueEnumLEXISLINKCREATE                              ValueEnum = "LEXIS_LINK.CREATE"
@@ -24704,6 +24711,8 @@ func (e ValueEnum) Valid() bool {
 	case ValueEnumCUSTOMERUPDATEPERMISSION:
 		return true
 	case ValueEnumCUSTOMERVIEWACCOUNTING:
+		return true
+	case ValueEnumCUSTOMERVIEWREPORTING:
 		return true
 	case ValueEnumCUSTOMERVIEWTEAM:
 		return true
@@ -26906,6 +26915,12 @@ type AnonymousChatKpiResponse struct {
 	// LlmIntentDistribution Counts keyed by llm_intent_category.
 	LlmIntentDistribution *map[string]int `json:"llm_intent_distribution,omitempty"`
 
+	// NoResultRate no_result_searches_total / searches_total; null when no interaction searched.
+	NoResultRate *float64 `json:"no_result_rate"`
+
+	// NoResultSearchesTotal Search interactions that completed and surfaced no offerings — the signal for catalog gaps and over-restrictive requests. Failed searches are not counted.
+	NoResultSearchesTotal int `json:"no_result_searches_total"`
+
 	// OutputTokensTotal Completion tokens summed over the filtered turns.
 	OutputTokensTotal int `json:"output_tokens_total"`
 
@@ -26923,7 +26938,10 @@ type AnonymousChatKpiResponse struct {
 
 	// SatisfactionRate positive / (positive + negative); null when no human feedback.
 	SatisfactionRate float64 `json:"satisfaction_rate"`
-	SessionsTotal    int     `json:"sessions_total"`
+
+	// SearchesTotal Interactions where the assistant searched the catalog (found, empty or failed). Rows predating outcome tracking are excluded.
+	SearchesTotal int `json:"searches_total"`
+	SessionsTotal int `json:"sessions_total"`
 
 	// SeverityByDay Stacked-bar input. Shape: {labels: [iso-date], series: {NONE: [...], LOW: [...], MEDIUM: [...], HIGH: [...], CRITICAL: [...]}}
 	SeverityByDay *SeverityByDay `json:"severity_by_day,omitempty"`
