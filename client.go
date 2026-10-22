@@ -4437,6 +4437,7 @@ const (
 	CustomerEstimatedCostPolicyFieldEnumScope                  CustomerEstimatedCostPolicyFieldEnum = "scope"
 	CustomerEstimatedCostPolicyFieldEnumScopeName              CustomerEstimatedCostPolicyFieldEnum = "scope_name"
 	CustomerEstimatedCostPolicyFieldEnumScopeUuid              CustomerEstimatedCostPolicyFieldEnum = "scope_uuid"
+	CustomerEstimatedCostPolicyFieldEnumTriggerStatus          CustomerEstimatedCostPolicyFieldEnum = "trigger_status"
 	CustomerEstimatedCostPolicyFieldEnumUrl                    CustomerEstimatedCostPolicyFieldEnum = "url"
 	CustomerEstimatedCostPolicyFieldEnumUuid                   CustomerEstimatedCostPolicyFieldEnum = "uuid"
 )
@@ -4481,6 +4482,8 @@ func (e CustomerEstimatedCostPolicyFieldEnum) Valid() bool {
 	case CustomerEstimatedCostPolicyFieldEnumScopeName:
 		return true
 	case CustomerEstimatedCostPolicyFieldEnumScopeUuid:
+		return true
+	case CustomerEstimatedCostPolicyFieldEnumTriggerStatus:
 		return true
 	case CustomerEstimatedCostPolicyFieldEnumUrl:
 		return true
@@ -11583,6 +11586,7 @@ const (
 	OfferingEstimatedCostPolicyFieldEnumScope                  OfferingEstimatedCostPolicyFieldEnum = "scope"
 	OfferingEstimatedCostPolicyFieldEnumScopeName              OfferingEstimatedCostPolicyFieldEnum = "scope_name"
 	OfferingEstimatedCostPolicyFieldEnumScopeUuid              OfferingEstimatedCostPolicyFieldEnum = "scope_uuid"
+	OfferingEstimatedCostPolicyFieldEnumTriggerStatus          OfferingEstimatedCostPolicyFieldEnum = "trigger_status"
 	OfferingEstimatedCostPolicyFieldEnumUrl                    OfferingEstimatedCostPolicyFieldEnum = "url"
 	OfferingEstimatedCostPolicyFieldEnumUuid                   OfferingEstimatedCostPolicyFieldEnum = "uuid"
 )
@@ -11627,6 +11631,8 @@ func (e OfferingEstimatedCostPolicyFieldEnum) Valid() bool {
 	case OfferingEstimatedCostPolicyFieldEnumScopeName:
 		return true
 	case OfferingEstimatedCostPolicyFieldEnumScopeUuid:
+		return true
+	case OfferingEstimatedCostPolicyFieldEnumTriggerStatus:
 		return true
 	case OfferingEstimatedCostPolicyFieldEnumUrl:
 		return true
@@ -17295,6 +17301,36 @@ func (e PolicyEnum) Valid() bool {
 	}
 }
 
+// Defines values for PolicyGateEnum.
+const (
+	CostBelowLimit       PolicyGateEnum = "cost_below_limit"
+	CreditExhausted      PolicyGateEnum = "credit_exhausted"
+	CreditIgnored        PolicyGateEnum = "credit_ignored"
+	HeldByCustomerCredit PolicyGateEnum = "held_by_customer_credit"
+	HeldByProjectCredit  PolicyGateEnum = "held_by_project_credit"
+	NoCredit             PolicyGateEnum = "no_credit"
+)
+
+// Valid indicates whether the value is a known member of the PolicyGateEnum enum.
+func (e PolicyGateEnum) Valid() bool {
+	switch e {
+	case CostBelowLimit:
+		return true
+	case CreditExhausted:
+		return true
+	case CreditIgnored:
+		return true
+	case HeldByCustomerCredit:
+		return true
+	case HeldByProjectCredit:
+		return true
+	case NoCredit:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for PolicyPeriodEnum.
 const (
 	PolicyPeriodEnumN1 PolicyPeriodEnum = 1
@@ -17637,6 +17673,7 @@ const (
 	ProjectEstimatedCostPolicyFieldEnumScope                  ProjectEstimatedCostPolicyFieldEnum = "scope"
 	ProjectEstimatedCostPolicyFieldEnumScopeName              ProjectEstimatedCostPolicyFieldEnum = "scope_name"
 	ProjectEstimatedCostPolicyFieldEnumScopeUuid              ProjectEstimatedCostPolicyFieldEnum = "scope_uuid"
+	ProjectEstimatedCostPolicyFieldEnumTriggerStatus          ProjectEstimatedCostPolicyFieldEnum = "trigger_status"
 	ProjectEstimatedCostPolicyFieldEnumUrl                    ProjectEstimatedCostPolicyFieldEnum = "url"
 	ProjectEstimatedCostPolicyFieldEnumUseCredit              ProjectEstimatedCostPolicyFieldEnum = "use_credit"
 	ProjectEstimatedCostPolicyFieldEnumUuid                   ProjectEstimatedCostPolicyFieldEnum = "uuid"
@@ -17688,6 +17725,8 @@ func (e ProjectEstimatedCostPolicyFieldEnum) Valid() bool {
 	case ProjectEstimatedCostPolicyFieldEnumScopeName:
 		return true
 	case ProjectEstimatedCostPolicyFieldEnumScopeUuid:
+		return true
+	case ProjectEstimatedCostPolicyFieldEnumTriggerStatus:
 		return true
 	case ProjectEstimatedCostPolicyFieldEnumUrl:
 		return true
@@ -34006,14 +34045,15 @@ type CustomerEstimatedCostPolicy struct {
 	LimitCost     *int       `json:"limit_cost,omitempty"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options    *map[string]interface{} `json:"options,omitempty"`
-	Period     *PolicyPeriodEnum       `json:"period,omitempty"`
-	PeriodName *string                 `json:"period_name,omitempty"`
-	Scope      *string                 `json:"scope,omitempty"`
-	ScopeName  *string                 `json:"scope_name,omitempty"`
-	ScopeUuid  *openapi_types.UUID     `json:"scope_uuid,omitempty"`
-	Url        *string                 `json:"url,omitempty"`
-	Uuid       *openapi_types.UUID     `json:"uuid,omitempty"`
+	Options       *map[string]interface{} `json:"options,omitempty"`
+	Period        *PolicyPeriodEnum       `json:"period,omitempty"`
+	PeriodName    *string                 `json:"period_name,omitempty"`
+	Scope         *string                 `json:"scope,omitempty"`
+	ScopeName     *string                 `json:"scope_name,omitempty"`
+	ScopeUuid     *openapi_types.UUID     `json:"scope_uuid,omitempty"`
+	TriggerStatus *PolicyTriggerStatus    `json:"trigger_status,omitempty"`
+	Url           *string                 `json:"url,omitempty"`
+	Uuid          *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // CustomerEstimatedCostPolicyFieldEnum defines model for CustomerEstimatedCostPolicyFieldEnum.
@@ -42041,6 +42081,7 @@ type OfferingEstimatedCostPolicy struct {
 	Scope              *string                 `json:"scope,omitempty"`
 	ScopeName          *string                 `json:"scope_name,omitempty"`
 	ScopeUuid          *openapi_types.UUID     `json:"scope_uuid,omitempty"`
+	TriggerStatus      *PolicyTriggerStatus    `json:"trigger_status,omitempty"`
 	Url                *string                 `json:"url,omitempty"`
 	Uuid               *openapi_types.UUID     `json:"uuid,omitempty"`
 }
@@ -50483,8 +50524,23 @@ type PluginOfferingType struct {
 // PolicyEnum defines model for PolicyEnum.
 type PolicyEnum string
 
+// PolicyGateEnum defines model for PolicyGateEnum.
+type PolicyGateEnum string
+
 // PolicyPeriodEnum defines model for PolicyPeriodEnum.
 type PolicyPeriodEnum int
+
+// PolicyTriggerStatus defines model for PolicyTriggerStatus.
+type PolicyTriggerStatus struct {
+	// CreditValueCompared The live credit balance compared against limit_cost; null when the credit was not checked (cost_below_limit, no_credit, credit_ignored), and on a project policy when it is the organization's balance and the user may not view the organization's accounting.
+	CreditValueCompared *string `json:"credit_value_compared,omitempty"`
+
+	// Gate Which check decided. Not firing: cost_below_limit (current_cost is at or below limit_cost); held_by_project_credit / held_by_customer_credit (current_cost is over the limit, but that credit's live balance, credit_value_compared, is above it; for a project with its own allocation the lower of the two binds). Firing: credit_exhausted (current_cost is over the limit and credit_value_compared is at or below it); no_credit (current_cost is over the limit and no credit applies); credit_ignored (current_cost is over the limit and the policy does not take credit into account). Clients word the explanation themselves from this value and those figures.
+	Gate *PolicyGateEnum `json:"gate,omitempty"`
+
+	// Triggered Whether the policy fires on the current figures. This is the evaluation now; has_fired is the stored state of the last evaluation that ran its actions, and the two can differ until the next one.
+	Triggered *bool `json:"triggered,omitempty"`
+}
 
 // PolicyTypeEnum defines model for PolicyTypeEnum.
 type PolicyTypeEnum string
@@ -51118,6 +51174,7 @@ type ProjectEstimatedCostPolicy struct {
 	Scope         *string                 `json:"scope,omitempty"`
 	ScopeName     *string                 `json:"scope_name,omitempty"`
 	ScopeUuid     *openapi_types.UUID     `json:"scope_uuid,omitempty"`
+	TriggerStatus *PolicyTriggerStatus    `json:"trigger_status,omitempty"`
 	Url           *string                 `json:"url,omitempty"`
 	UseCredit     *bool                   `json:"use_credit,omitempty"`
 	Uuid          *openapi_types.UUID     `json:"uuid,omitempty"`
