@@ -22559,6 +22559,7 @@ const (
 	SpendingLimitPeriodEnumDay     SpendingLimitPeriodEnum = "day"
 	SpendingLimitPeriodEnumMonth   SpendingLimitPeriodEnum = "month"
 	SpendingLimitPeriodEnumQuarter SpendingLimitPeriodEnum = "quarter"
+	SpendingLimitPeriodEnumTotal   SpendingLimitPeriodEnum = "total"
 	SpendingLimitPeriodEnumWeek    SpendingLimitPeriodEnum = "week"
 	SpendingLimitPeriodEnumYear    SpendingLimitPeriodEnum = "year"
 )
@@ -22571,6 +22572,8 @@ func (e SpendingLimitPeriodEnum) Valid() bool {
 	case SpendingLimitPeriodEnumMonth:
 		return true
 	case SpendingLimitPeriodEnumQuarter:
+		return true
+	case SpendingLimitPeriodEnumTotal:
 		return true
 	case SpendingLimitPeriodEnumWeek:
 		return true
@@ -28921,7 +28924,7 @@ type BookingResource struct {
 	// UsageLimitRestriction Which restriction (paused or downscaled) was automatically applied because reported usage reached a component limit. Empty when no such restriction is active. Used so the automatic lift never clears a restriction that was set for another reason.
 	UsageLimitRestriction *BookingResource_UsageLimitRestriction `json:"usage_limit_restriction,omitempty"`
 
-	// UsageLimitResumesAt When the spending limits that restrict the resource reset and the restriction lifts. Empty when no spending limit restricts the resource, or when a limit-based component's limit does too.
+	// UsageLimitResumesAt When the spending limits that restrict the resource reset and the restriction lifts. Empty when no spending limit restricts the resource, when a limit-based component's limit does too, or while a reached total limit holds it: a total never resets, so the restriction lifts only when that limit is raised or cleared.
 	UsageLimitResumesAt *time.Time `json:"usage_limit_resumes_at,omitempty"`
 
 	// UserRequiresReconsent Check if the current user needs to re-consent for this resource's offering.
@@ -39611,7 +39614,7 @@ type MergedPluginOptions struct {
 	// ActionOnUsageLimit If set to 'pause' or 'downscale', resources are automatically paused or downscaled when reported usage in the current period reaches a component's limit_amount, and the restriction is lifted when usage drops below the limit again (e.g. a new billing period or a raised limit).
 	ActionOnUsageLimit *MergedPluginOptions_ActionOnUsageLimit `json:"action_on_usage_limit,omitempty"`
 
-	// ApiKeyDailyUsage Declares that the site agent reports each API key's usage per day. Only then are keys offered limits other than month: the day and week periods, and the quarter and year, that a component offers to resources. Off unless set; needs enable_api_key_provisioning. Nothing checks the claim: turn it on only if the agent reports per-key daily usage, or those limits are never reached.
+	// ApiKeyDailyUsage Declares that the site agent reports each API key's usage per day. Only then are keys offered the day and week periods, and the quarter and year, that a component offers to resources; month, and total where the component offers it, are offered without it, as they need no usage per day. Off unless set; needs enable_api_key_provisioning. Nothing checks the claim: turn it on only if the agent reports per-key daily usage, or those limits are never reached.
 	ApiKeyDailyUsage *bool `json:"api_key_daily_usage,omitempty"`
 
 	// ApiKeyLimits Lets consumers set spending limits on API keys one by one. On unless set to false; needs enable_api_key_provisioning. Turned off, no new key limit is accepted, and limits keys already hold stay until cleared.
@@ -39963,7 +39966,7 @@ type MergedPluginOptionsRequest struct {
 	// ActionOnUsageLimit If set to 'pause' or 'downscale', resources are automatically paused or downscaled when reported usage in the current period reaches a component's limit_amount, and the restriction is lifted when usage drops below the limit again (e.g. a new billing period or a raised limit).
 	ActionOnUsageLimit *MergedPluginOptionsRequest_ActionOnUsageLimit `json:"action_on_usage_limit,omitempty"`
 
-	// ApiKeyDailyUsage Declares that the site agent reports each API key's usage per day. Only then are keys offered limits other than month: the day and week periods, and the quarter and year, that a component offers to resources. Off unless set; needs enable_api_key_provisioning. Nothing checks the claim: turn it on only if the agent reports per-key daily usage, or those limits are never reached.
+	// ApiKeyDailyUsage Declares that the site agent reports each API key's usage per day. Only then are keys offered the day and week periods, and the quarter and year, that a component offers to resources; month, and total where the component offers it, are offered without it, as they need no usage per day. Off unless set; needs enable_api_key_provisioning. Nothing checks the claim: turn it on only if the agent reports per-key daily usage, or those limits are never reached.
 	ApiKeyDailyUsage *bool `json:"api_key_daily_usage,omitempty"`
 
 	// ApiKeyLimits Lets consumers set spending limits on API keys one by one. On unless set to false; needs enable_api_key_provisioning. Turned off, no new key limit is accepted, and limits keys already hold stay until cleared.
@@ -41870,7 +41873,7 @@ type OfferingComponent struct {
 	// RenewalDurationStep Step size in months for renewal. Only multiples of this value (starting from min_renewal_duration) are valid. Defaults to 1.
 	RenewalDurationStep *int `json:"renewal_duration_step,omitempty"`
 
-	// SpendingLimitPeriods Periods (day, week, month, quarter, year) for which customers can set a spending limit on this usage-based component. Day and week need the integration to report usage per day. Empty when customers cannot set spending limits.
+	// SpendingLimitPeriods Periods (day, week, month, quarter, year, total) for which customers can set a spending limit on this usage-based component; total counts all the usage since the resource started and never resets. Day and week need the integration to report usage per day. Empty when customers cannot set spending limits.
 	SpendingLimitPeriods *map[string]SpendingLimitBounds `json:"spending_limit_periods,omitempty"`
 
 	// Type Unique internal name of the measured unit, for example floating_ip.
@@ -41936,7 +41939,7 @@ type OfferingComponentRequest struct {
 	// RenewalDurationStep Step size in months for renewal. Only multiples of this value (starting from min_renewal_duration) are valid. Defaults to 1.
 	RenewalDurationStep *int `json:"renewal_duration_step,omitempty"`
 
-	// SpendingLimitPeriods Periods (day, week, month, quarter, year) for which customers can set a spending limit on this usage-based component. Day and week need the integration to report usage per day. Empty when customers cannot set spending limits.
+	// SpendingLimitPeriods Periods (day, week, month, quarter, year, total) for which customers can set a spending limit on this usage-based component; total counts all the usage since the resource started and never resets. Day and week need the integration to report usage per day. Empty when customers cannot set spending limits.
 	SpendingLimitPeriods *map[string]SpendingLimitBoundsRequest `json:"spending_limit_periods,omitempty"`
 
 	// Type Unique internal name of the measured unit, for example floating_ip.
@@ -55799,7 +55802,7 @@ type Resource struct {
 	// UsageLimitRestriction Which restriction (paused or downscaled) was automatically applied because reported usage reached a component limit. Empty when no such restriction is active. Used so the automatic lift never clears a restriction that was set for another reason.
 	UsageLimitRestriction *Resource_UsageLimitRestriction `json:"usage_limit_restriction,omitempty"`
 
-	// UsageLimitResumesAt When the spending limits that restrict the resource reset and the restriction lifts. Empty when no spending limit restricts the resource, or when a limit-based component's limit does too.
+	// UsageLimitResumesAt When the spending limits that restrict the resource reset and the restriction lifts. Empty when no spending limit restricts the resource, when a limit-based component's limit does too, or while a reached total limit holds it: a total never resets, so the restriction lifts only when that limit is raised or cleared.
 	UsageLimitResumesAt *time.Time `json:"usage_limit_resumes_at,omitempty"`
 
 	// UserRequiresReconsent Check if the current user needs to re-consent for this resource's offering.
@@ -55826,12 +55829,16 @@ type ResourceApiKey struct {
 	ErrorMessage    *string   `json:"error_message,omitempty"`
 
 	// IssuedAt When the agent last stored a value for this key: its creation or its latest rotation. Unlike modified, a pause or an edit leaves it alone.
-	IssuedAt       *time.Time `json:"issued_at,omitempty"`
+	IssuedAt *time.Time `json:"issued_at,omitempty"`
+
+	// LimitResumesAt When every limit that paused the key has reset, so that it resumes without a new usage report. Empty while a reached total limit holds the key: a total never resets, so the key resumes only when that limit is raised or cleared.
 	LimitResumesAt *time.Time `json:"limit_resumes_at,omitempty"`
 
 	// Limits The month limits of spending_limits, per component type, for clients that know only monthly limits.
-	Limits              *map[string]float64           `json:"limits,omitempty"`
-	Modified            *time.Time                    `json:"modified,omitempty"`
+	Limits   *map[string]float64 `json:"limits,omitempty"`
+	Modified *time.Time          `json:"modified,omitempty"`
+
+	// PausedByLimit Waldur paused the key because its usage reached a limit. Such a key is resumed automatically once its usage is under its limits again: when the period of the limit resets, or when a limit is raised. A total limit never resets, so only raising or clearing it does.
 	PausedByLimit       *bool                         `json:"paused_by_limit,omitempty"`
 	PendingAction       *ResourceApiKey_PendingAction `json:"pending_action,omitempty"`
 	ResourceBackendId   *string                       `json:"resource_backend_id,omitempty"`
@@ -55904,12 +55911,16 @@ type ResourceApiKeyStatus struct {
 	ErrorMessage    *string   `json:"error_message,omitempty"`
 
 	// IssuedAt When the agent last stored a value for this key: its creation or its latest rotation. Unlike modified, a pause or an edit leaves it alone.
-	IssuedAt       *time.Time `json:"issued_at,omitempty"`
+	IssuedAt *time.Time `json:"issued_at,omitempty"`
+
+	// LimitResumesAt When every limit that paused the key has reset, so that it resumes without a new usage report. Empty while a reached total limit holds the key: a total never resets, so the key resumes only when that limit is raised or cleared.
 	LimitResumesAt *time.Time `json:"limit_resumes_at,omitempty"`
 
 	// Limits The month limits of spending_limits, per component type, for clients that know only monthly limits.
-	Limits              *map[string]float64                 `json:"limits,omitempty"`
-	Modified            *time.Time                          `json:"modified,omitempty"`
+	Limits   *map[string]float64 `json:"limits,omitempty"`
+	Modified *time.Time          `json:"modified,omitempty"`
+
+	// PausedByLimit Waldur paused the key because its usage reached a limit. Such a key is resumed automatically once its usage is under its limits again: when the period of the limit resets, or when a limit is raised. A total limit never resets, so only raising or clearing it does.
 	PausedByLimit       *bool                               `json:"paused_by_limit,omitempty"`
 	PendingAction       *ResourceApiKeyStatus_PendingAction `json:"pending_action,omitempty"`
 	ResourceBackendId   *string                             `json:"resource_backend_id,omitempty"`
@@ -55932,13 +55943,13 @@ type ResourceApiKeyStatus_PendingAction struct {
 
 // ResourceApiKeyUsageRequest defines model for ResourceApiKeyUsageRequest.
 type ResourceApiKeyUsageRequest struct {
-	// BillingPeriod Any day of the month usages belongs to; the current month when omitted. Only the latest month is kept, so a later month starts afresh.
+	// BillingPeriod Any day of the month usages belongs to; the current month when omitted. A later month than the key holds starts afresh. An earlier one, from the start of the current year or of the previous month when that is earlier, raises that month's figure for a total limit; older ones are refused.
 	BillingPeriod *openapi_types.Date `json:"billing_period,omitempty"`
 
-	// DailyUsages The key's usage per UTC date and component type; a date reported again replaces its amount. The month's usage of a component with daily amounts is their sum. Needed for limits other than month. At most 1000 items, dated from the start of the current year, or of the previous month when that is earlier.
+	// DailyUsages The key's usage per UTC date and component type; a date reported again replaces its amount. The month's usage of a component with daily amounts is their sum. Needed for limits other than month and total. Days of a month before the one the key holds raise that month's figure for a total. At most 1000 items, dated from the start of the current year, or of the previous month when that is earlier.
 	DailyUsages *[]ComponentDailyUsageItemRequest `json:"daily_usages,omitempty"`
 
-	// Usages The key's usage so far in billing_period, per component type. Rejected for a component that has daily amounts in that month.
+	// Usages The key's usage so far in billing_period, per component type. A figure never drops: one lower than the key holds for the month leaves the higher one. Rejected for a component that has daily amounts in that month.
 	Usages *map[string]float64 `json:"usages,omitempty"`
 }
 
@@ -59194,7 +59205,7 @@ type SpendingLimitStatus struct {
 	Period         *SpendingLimitPeriodEnum `json:"period,omitempty"`
 	Reached        *bool                    `json:"reached,omitempty"`
 
-	// ResetsAt When the current period ends and its usage starts from zero.
+	// ResetsAt When the current period ends and its usage starts from zero. Null for total, which never resets.
 	ResetsAt *time.Time `json:"resets_at,omitempty"`
 
 	// Used Usage reported in the current period.
@@ -59208,8 +59219,8 @@ type SpendingLimitUsage struct {
 	Period        SpendingLimitPeriodEnum `json:"period"`
 	Reached       bool                    `json:"reached"`
 
-	// ResetsAt When the current period ends and its usage starts from zero.
-	ResetsAt time.Time `json:"resets_at"`
+	// ResetsAt When the current period ends and its usage starts from zero. Null for total, which never resets.
+	ResetsAt *time.Time `json:"resets_at"`
 
 	// Used Usage reported in the current period.
 	Used float64 `json:"used"`
@@ -60288,7 +60299,7 @@ type UpdateOfferingComponentRequest struct {
 	// RenewalDurationStep Step size in months for renewal. Only multiples of this value (starting from min_renewal_duration) are valid. Defaults to 1.
 	RenewalDurationStep *int `json:"renewal_duration_step,omitempty"`
 
-	// SpendingLimitPeriods Periods (day, week, month, quarter, year) for which customers can set a spending limit on this usage-based component. Day and week need the integration to report usage per day. Empty when customers cannot set spending limits.
+	// SpendingLimitPeriods Periods (day, week, month, quarter, year, total) for which customers can set a spending limit on this usage-based component; total counts all the usage since the resource started and never resets. Day and week need the integration to report usage per day. Empty when customers cannot set spending limits.
 	SpendingLimitPeriods *map[string]SpendingLimitBoundsRequest `json:"spending_limit_periods,omitempty"`
 
 	// Type Unique internal name of the measured unit, for example floating_ip.
