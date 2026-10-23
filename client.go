@@ -6018,6 +6018,9 @@ const (
 	EventMetadataResponseEventGroupsResourceExtendVolumeFailed                       EventMetadataResponseEventGroups = "resource_extend_volume_failed"
 	EventMetadataResponseEventGroupsResourceExtendVolumeScheduled                    EventMetadataResponseEventGroups = "resource_extend_volume_scheduled"
 	EventMetadataResponseEventGroupsResourceExtendVolumeSucceeded                    EventMetadataResponseEventGroups = "resource_extend_volume_succeeded"
+	EventMetadataResponseEventGroupsResourceHardRebootFailed                         EventMetadataResponseEventGroups = "resource_hard_reboot_failed"
+	EventMetadataResponseEventGroupsResourceHardRebootScheduled                      EventMetadataResponseEventGroups = "resource_hard_reboot_scheduled"
+	EventMetadataResponseEventGroupsResourceHardRebootSucceeded                      EventMetadataResponseEventGroups = "resource_hard_reboot_succeeded"
 	EventMetadataResponseEventGroupsResourceImportSucceeded                          EventMetadataResponseEventGroups = "resource_import_succeeded"
 	EventMetadataResponseEventGroupsResourcePullFailed                               EventMetadataResponseEventGroups = "resource_pull_failed"
 	EventMetadataResponseEventGroupsResourcePullScheduled                            EventMetadataResponseEventGroups = "resource_pull_scheduled"
@@ -6735,6 +6738,12 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 		return true
 	case EventMetadataResponseEventGroupsResourceExtendVolumeSucceeded:
 		return true
+	case EventMetadataResponseEventGroupsResourceHardRebootFailed:
+		return true
+	case EventMetadataResponseEventGroupsResourceHardRebootScheduled:
+		return true
+	case EventMetadataResponseEventGroupsResourceHardRebootSucceeded:
+		return true
 	case EventMetadataResponseEventGroupsResourceImportSucceeded:
 		return true
 	case EventMetadataResponseEventGroupsResourcePullFailed:
@@ -7245,6 +7254,9 @@ const (
 	EventTypesEnumResourceExtendVolumeFailed                       EventTypesEnum = "resource_extend_volume_failed"
 	EventTypesEnumResourceExtendVolumeScheduled                    EventTypesEnum = "resource_extend_volume_scheduled"
 	EventTypesEnumResourceExtendVolumeSucceeded                    EventTypesEnum = "resource_extend_volume_succeeded"
+	EventTypesEnumResourceHardRebootFailed                         EventTypesEnum = "resource_hard_reboot_failed"
+	EventTypesEnumResourceHardRebootScheduled                      EventTypesEnum = "resource_hard_reboot_scheduled"
+	EventTypesEnumResourceHardRebootSucceeded                      EventTypesEnum = "resource_hard_reboot_succeeded"
 	EventTypesEnumResourceImportSucceeded                          EventTypesEnum = "resource_import_succeeded"
 	EventTypesEnumResourcePullFailed                               EventTypesEnum = "resource_pull_failed"
 	EventTypesEnumResourcePullScheduled                            EventTypesEnum = "resource_pull_scheduled"
@@ -7961,6 +7973,12 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumResourceExtendVolumeScheduled:
 		return true
 	case EventTypesEnumResourceExtendVolumeSucceeded:
+		return true
+	case EventTypesEnumResourceHardRebootFailed:
+		return true
+	case EventTypesEnumResourceHardRebootScheduled:
+		return true
+	case EventTypesEnumResourceHardRebootSucceeded:
 		return true
 	case EventTypesEnumResourceImportSucceeded:
 		return true
@@ -49502,7 +49520,7 @@ type PatchedResourceApiKeyUpdateRequest struct {
 	// Limits Month limits per component type; zero or absent means no month limit. Replaces the month limits of spending_limits and keeps the other periods. Not together with spending_limits.
 	Limits *map[string]float64 `json:"limits,omitempty"`
 
-	// SpendingLimits Limits per component type and period, replacing the key's limits; a null amount clears that period's limit. Only where the offering's api_key_limits is not off, and not on a component the plan prices at zero. A period other than month must be offered on the component and needs the offering's api_key_daily_usage. A limit may not exceed the resource's spending limit for the same period.
+	// SpendingLimits Limits per component type and period, replacing the key's limits; a null amount clears that period's limit. Only where the offering's api_key_limits is not off. A period other than month must be offered on the component and needs the offering's api_key_daily_usage. A limit may not exceed the resource's spending limit for the same period.
 	SpendingLimits *map[string]*map[string]*float64 `json:"spending_limits,omitempty"`
 }
 
@@ -55846,7 +55864,7 @@ type ResourceApiKeyCreateRequest struct {
 	Limits   *map[string]float64 `json:"limits,omitempty"`
 	Resource openapi_types.UUID  `json:"resource"`
 
-	// SpendingLimits Limits per component type and period, replacing the key's limits; a null amount clears that period's limit. Only where the offering's api_key_limits is not off, and not on a component the plan prices at zero. A period other than month must be offered on the component and needs the offering's api_key_daily_usage. A limit may not exceed the resource's spending limit for the same period.
+	// SpendingLimits Limits per component type and period, replacing the key's limits; a null amount clears that period's limit. Only where the offering's api_key_limits is not off. A period other than month must be offered on the component and needs the offering's api_key_daily_usage. A limit may not exceed the resource's spending limit for the same period.
 	SpendingLimits *map[string]*map[string]*float64 `json:"spending_limits,omitempty"`
 
 	// User Assignee. When set, only this user can reveal the key. It is held until the key is deleted.
@@ -126515,6 +126533,13 @@ type ClientInterface interface {
 	// Corresponds with GET /api/openstack-instances/{uuid}/floating_ips/ (the `OpenstackInstancesFloatingIpsList` operationId).
 	OpenstackInstancesFloatingIpsList(ctx context.Context, uuid openapi_types.UUID, params *OpenstackInstancesFloatingIpsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenstackInstancesHardReboot Hard reboot instance
+	//
+	// Power-cycle the instance without waiting for the guest OS to shut down. Unlike restart, it also recovers an instance that is in ERROR, paused, suspended or stuck in a soft reboot.
+	//
+	// Corresponds with POST /api/openstack-instances/{uuid}/hard_reboot/ (the `OpenstackInstancesHardReboot` operationId).
+	OpenstackInstancesHardReboot(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenstackInstancesPlacementAllocationsList Get Placement allocations for the instance
 	//
 	// Return what the OpenStack Placement service records as currently allocated to this instance, broken down by resource provider. Useful for diagnostics — especially for non-classic resources (VGPU, PCI_DEVICE, custom classes) that the flavor alone does not describe. Returns an empty list when Placement has no record (e.g. transient state right after create, or pre-Placement clouds).
@@ -175874,6 +175899,23 @@ func (c *Client) OpenstackInstancesDiagnoseConnectivity(ctx context.Context, uui
 // Corresponds with GET /api/openstack-instances/{uuid}/floating_ips/ (the `OpenstackInstancesFloatingIpsList` operationId).
 func (c *Client) OpenstackInstancesFloatingIpsList(ctx context.Context, uuid openapi_types.UUID, params *OpenstackInstancesFloatingIpsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackInstancesFloatingIpsListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// OpenstackInstancesHardReboot Hard reboot instance
+//
+// Power-cycle the instance without waiting for the guest OS to shut down. Unlike restart, it also recovers an instance that is in ERROR, paused, suspended or stuck in a soft reboot.
+//
+// Corresponds with POST /api/openstack-instances/{uuid}/hard_reboot/ (the `OpenstackInstancesHardReboot` operationId).
+func (c *Client) OpenstackInstancesHardReboot(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackInstancesHardRebootRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -350580,6 +350622,40 @@ func NewOpenstackInstancesFloatingIpsListRequest(server string, uuid openapi_typ
 	return req, nil
 }
 
+// NewOpenstackInstancesHardRebootRequest constructs an http.Request for the OpenstackInstancesHardReboot method
+func NewOpenstackInstancesHardRebootRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-instances/%s/hard_reboot/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOpenstackInstancesPlacementAllocationsListRequest constructs an http.Request for the OpenstackInstancesPlacementAllocationsList method
 func NewOpenstackInstancesPlacementAllocationsListRequest(server string, uuid openapi_types.UUID, params *OpenstackInstancesPlacementAllocationsListParams) (*http.Request, error) {
 	var err error
@@ -448472,6 +448548,15 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with GET /api/openstack-instances/{uuid}/floating_ips/ (the `OpenstackInstancesFloatingIpsList` operationId).
 	OpenstackInstancesFloatingIpsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackInstancesFloatingIpsListParams, reqEditors ...RequestEditorFn) (*OpenstackInstancesFloatingIpsListResponse, error)
 
+	// OpenstackInstancesHardRebootWithResponse Hard reboot instance
+	//
+	// Power-cycle the instance without waiting for the guest OS to shut down. Unlike restart, it also recovers an instance that is in ERROR, paused, suspended or stuck in a soft reboot.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/openstack-instances/{uuid}/hard_reboot/ (the `OpenstackInstancesHardReboot` operationId).
+	OpenstackInstancesHardRebootWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackInstancesHardRebootResponse, error)
+
 	// OpenstackInstancesPlacementAllocationsListWithResponse Get Placement allocations for the instance
 	//
 	// Return what the OpenStack Placement service records as currently allocated to this instance, broken down by resource provider. Useful for diagnostics — especially for non-classic resources (VGPU, PCI_DEVICE, custom classes) that the flavor alone does not describe. Returns an empty list when Placement has no record (e.g. transient state right after create, or pre-Placement clouds).
@@ -534683,6 +534768,47 @@ func (r OpenstackInstancesFloatingIpsListResponse) ContentType() string {
 	return ""
 }
 
+type OpenstackInstancesHardRebootResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON202 the response for an HTTP 202 `application/json` response
+	JSON202 *Status
+}
+
+// GetJSON202 returns the response for an HTTP 202 `application/json` response
+func (r OpenstackInstancesHardRebootResponse) GetJSON202() *Status {
+	return r.JSON202
+}
+
+// GetBody returns the raw response body bytes
+func (r OpenstackInstancesHardRebootResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackInstancesHardRebootResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackInstancesHardRebootResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenstackInstancesHardRebootResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // OpenstackInstancesPlacementAllocationsListResponse200Headers the declared response headers of an HTTP 200 response for OpenstackInstancesPlacementAllocationsList
 type OpenstackInstancesPlacementAllocationsListResponse200Headers struct {
 	XResultCount *int
@@ -611824,6 +611950,21 @@ func (c *ClientWithResponses) OpenstackInstancesFloatingIpsListWithResponse(ctx 
 	return ParseOpenstackInstancesFloatingIpsListResponse(rsp)
 }
 
+// OpenstackInstancesHardRebootWithResponse Hard reboot instance
+//
+// Power-cycle the instance without waiting for the guest OS to shut down. Unlike restart, it also recovers an instance that is in ERROR, paused, suspended or stuck in a soft reboot.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/openstack-instances/{uuid}/hard_reboot/ (the `OpenstackInstancesHardReboot` operationId).
+func (c *ClientWithResponses) OpenstackInstancesHardRebootWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackInstancesHardRebootResponse, error) {
+	rsp, err := c.OpenstackInstancesHardReboot(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackInstancesHardRebootResponse(rsp)
+}
+
 // OpenstackInstancesPlacementAllocationsListWithResponse Get Placement allocations for the instance
 //
 // Return what the OpenStack Placement service records as currently allocated to this instance, broken down by resource provider. Useful for diagnostics — especially for non-classic resources (VGPU, PCI_DEVICE, custom classes) that the flavor alone does not describe. Returns an empty list when Placement has no record (e.g. transient state right after create, or pre-Placement clouds).
@@ -679023,6 +679164,32 @@ func ParseOpenstackInstancesFloatingIpsListResponse(rsp *http.Response) (*Openst
 			headers.XResultCount = &value
 		}
 		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackInstancesHardRebootResponse parses an HTTP response from a OpenstackInstancesHardRebootWithResponse call
+func ParseOpenstackInstancesHardRebootResponse(rsp *http.Response) (*OpenstackInstancesHardRebootResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackInstancesHardRebootResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest Status
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
 	}
 
 	return response, nil
