@@ -1799,6 +1799,7 @@ const (
 	BookingResourceFieldEnumPlanName                   BookingResourceFieldEnum = "plan_name"
 	BookingResourceFieldEnumPlanUnit                   BookingResourceFieldEnum = "plan_unit"
 	BookingResourceFieldEnumPlanUuid                   BookingResourceFieldEnum = "plan_uuid"
+	BookingResourceFieldEnumPrepaidTotalComponentTypes BookingResourceFieldEnum = "prepaid_total_component_types"
 	BookingResourceFieldEnumProject                    BookingResourceFieldEnum = "project"
 	BookingResourceFieldEnumProjectDescription         BookingResourceFieldEnum = "project_description"
 	BookingResourceFieldEnumProjectEffectiveEndDate    BookingResourceFieldEnum = "project_effective_end_date"
@@ -1968,6 +1969,8 @@ func (e BookingResourceFieldEnum) Valid() bool {
 	case BookingResourceFieldEnumPlanUnit:
 		return true
 	case BookingResourceFieldEnumPlanUuid:
+		return true
+	case BookingResourceFieldEnumPrepaidTotalComponentTypes:
 		return true
 	case BookingResourceFieldEnumProject:
 		return true
@@ -20771,98 +20774,99 @@ func (e ResourceApiKeyState) Valid() bool {
 
 // Defines values for ResourceFieldEnum.
 const (
-	ResourceFieldEnumAttributes                ResourceFieldEnum = "attributes"
-	ResourceFieldEnumAvailableActions          ResourceFieldEnum = "available_actions"
-	ResourceFieldEnumBackendId                 ResourceFieldEnum = "backend_id"
-	ResourceFieldEnumBackendMetadata           ResourceFieldEnum = "backend_metadata"
-	ResourceFieldEnumCanTerminate              ResourceFieldEnum = "can_terminate"
-	ResourceFieldEnumCategoryIcon              ResourceFieldEnum = "category_icon"
-	ResourceFieldEnumCategoryTitle             ResourceFieldEnum = "category_title"
-	ResourceFieldEnumCategoryUuid              ResourceFieldEnum = "category_uuid"
-	ResourceFieldEnumCreated                   ResourceFieldEnum = "created"
-	ResourceFieldEnumCreationOrder             ResourceFieldEnum = "creation_order"
-	ResourceFieldEnumCurrentUsages             ResourceFieldEnum = "current_usages"
-	ResourceFieldEnumCustomerName              ResourceFieldEnum = "customer_name"
-	ResourceFieldEnumCustomerSlug              ResourceFieldEnum = "customer_slug"
-	ResourceFieldEnumCustomerUuid              ResourceFieldEnum = "customer_uuid"
-	ResourceFieldEnumDescription               ResourceFieldEnum = "description"
-	ResourceFieldEnumDisplayLimits             ResourceFieldEnum = "display_limits"
-	ResourceFieldEnumDownscaled                ResourceFieldEnum = "downscaled"
-	ResourceFieldEnumEffectiveId               ResourceFieldEnum = "effective_id"
-	ResourceFieldEnumEndDate                   ResourceFieldEnum = "end_date"
-	ResourceFieldEnumEndDateRequestedBy        ResourceFieldEnum = "end_date_requested_by"
-	ResourceFieldEnumEndDateUpdatedAt          ResourceFieldEnum = "end_date_updated_at"
-	ResourceFieldEnumEndpoints                 ResourceFieldEnum = "endpoints"
-	ResourceFieldEnumErrorMessage              ResourceFieldEnum = "error_message"
-	ResourceFieldEnumErrorTraceback            ResourceFieldEnum = "error_traceback"
-	ResourceFieldEnumHasApiKeys                ResourceFieldEnum = "has_api_keys"
-	ResourceFieldEnumIsLimitBased              ResourceFieldEnum = "is_limit_based"
-	ResourceFieldEnumIsUsageBased              ResourceFieldEnum = "is_usage_based"
-	ResourceFieldEnumLastSync                  ResourceFieldEnum = "last_sync"
-	ResourceFieldEnumLimitUsage                ResourceFieldEnum = "limit_usage"
-	ResourceFieldEnumLimits                    ResourceFieldEnum = "limits"
-	ResourceFieldEnumModified                  ResourceFieldEnum = "modified"
-	ResourceFieldEnumName                      ResourceFieldEnum = "name"
-	ResourceFieldEnumOffering                  ResourceFieldEnum = "offering"
-	ResourceFieldEnumOfferingAccountSettings   ResourceFieldEnum = "offering_account_settings"
-	ResourceFieldEnumOfferingBackendId         ResourceFieldEnum = "offering_backend_id"
-	ResourceFieldEnumOfferingBillable          ResourceFieldEnum = "offering_billable"
-	ResourceFieldEnumOfferingComponents        ResourceFieldEnum = "offering_components"
-	ResourceFieldEnumOfferingDescription       ResourceFieldEnum = "offering_description"
-	ResourceFieldEnumOfferingImage             ResourceFieldEnum = "offering_image"
-	ResourceFieldEnumOfferingName              ResourceFieldEnum = "offering_name"
-	ResourceFieldEnumOfferingPluginOptions     ResourceFieldEnum = "offering_plugin_options"
-	ResourceFieldEnumOfferingShared            ResourceFieldEnum = "offering_shared"
-	ResourceFieldEnumOfferingSlug              ResourceFieldEnum = "offering_slug"
-	ResourceFieldEnumOfferingState             ResourceFieldEnum = "offering_state"
-	ResourceFieldEnumOfferingThumbnail         ResourceFieldEnum = "offering_thumbnail"
-	ResourceFieldEnumOfferingType              ResourceFieldEnum = "offering_type"
-	ResourceFieldEnumOfferingUuid              ResourceFieldEnum = "offering_uuid"
-	ResourceFieldEnumOptions                   ResourceFieldEnum = "options"
-	ResourceFieldEnumOrderInProgress           ResourceFieldEnum = "order_in_progress"
-	ResourceFieldEnumParentName                ResourceFieldEnum = "parent_name"
-	ResourceFieldEnumParentOfferingName        ResourceFieldEnum = "parent_offering_name"
-	ResourceFieldEnumParentOfferingSlug        ResourceFieldEnum = "parent_offering_slug"
-	ResourceFieldEnumParentOfferingUuid        ResourceFieldEnum = "parent_offering_uuid"
-	ResourceFieldEnumParentUuid                ResourceFieldEnum = "parent_uuid"
-	ResourceFieldEnumPaused                    ResourceFieldEnum = "paused"
-	ResourceFieldEnumPlan                      ResourceFieldEnum = "plan"
-	ResourceFieldEnumPlanDescription           ResourceFieldEnum = "plan_description"
-	ResourceFieldEnumPlanName                  ResourceFieldEnum = "plan_name"
-	ResourceFieldEnumPlanUnit                  ResourceFieldEnum = "plan_unit"
-	ResourceFieldEnumPlanUuid                  ResourceFieldEnum = "plan_uuid"
-	ResourceFieldEnumProject                   ResourceFieldEnum = "project"
-	ResourceFieldEnumProjectDescription        ResourceFieldEnum = "project_description"
-	ResourceFieldEnumProjectEffectiveEndDate   ResourceFieldEnum = "project_effective_end_date"
-	ResourceFieldEnumProjectEndDate            ResourceFieldEnum = "project_end_date"
-	ResourceFieldEnumProjectEndDateRequestedBy ResourceFieldEnum = "project_end_date_requested_by"
-	ResourceFieldEnumProjectIsInGracePeriod    ResourceFieldEnum = "project_is_in_grace_period"
-	ResourceFieldEnumProjectName               ResourceFieldEnum = "project_name"
-	ResourceFieldEnumProjectSlug               ResourceFieldEnum = "project_slug"
-	ResourceFieldEnumProjectStartDate          ResourceFieldEnum = "project_start_date"
-	ResourceFieldEnumProjectUuid               ResourceFieldEnum = "project_uuid"
-	ResourceFieldEnumProviderDescription       ResourceFieldEnum = "provider_description"
-	ResourceFieldEnumProviderName              ResourceFieldEnum = "provider_name"
-	ResourceFieldEnumProviderSlug              ResourceFieldEnum = "provider_slug"
-	ResourceFieldEnumProviderUuid              ResourceFieldEnum = "provider_uuid"
-	ResourceFieldEnumRenewalDate               ResourceFieldEnum = "renewal_date"
-	ResourceFieldEnumReport                    ResourceFieldEnum = "report"
-	ResourceFieldEnumResourceEffectiveEndDate  ResourceFieldEnum = "resource_effective_end_date"
-	ResourceFieldEnumResourceType              ResourceFieldEnum = "resource_type"
-	ResourceFieldEnumResourceUuid              ResourceFieldEnum = "resource_uuid"
-	ResourceFieldEnumRestrictMemberAccess      ResourceFieldEnum = "restrict_member_access"
-	ResourceFieldEnumScope                     ResourceFieldEnum = "scope"
-	ResourceFieldEnumServiceSettingsUuid       ResourceFieldEnum = "service_settings_uuid"
-	ResourceFieldEnumSlug                      ResourceFieldEnum = "slug"
-	ResourceFieldEnumSpendingLimitStatus       ResourceFieldEnum = "spending_limit_status"
-	ResourceFieldEnumSpendingLimits            ResourceFieldEnum = "spending_limits"
-	ResourceFieldEnumState                     ResourceFieldEnum = "state"
-	ResourceFieldEnumUrl                       ResourceFieldEnum = "url"
-	ResourceFieldEnumUsageLimitRestriction     ResourceFieldEnum = "usage_limit_restriction"
-	ResourceFieldEnumUsageLimitResumesAt       ResourceFieldEnum = "usage_limit_resumes_at"
-	ResourceFieldEnumUserRequiresReconsent     ResourceFieldEnum = "user_requires_reconsent"
-	ResourceFieldEnumUsername                  ResourceFieldEnum = "username"
-	ResourceFieldEnumUuid                      ResourceFieldEnum = "uuid"
+	ResourceFieldEnumAttributes                 ResourceFieldEnum = "attributes"
+	ResourceFieldEnumAvailableActions           ResourceFieldEnum = "available_actions"
+	ResourceFieldEnumBackendId                  ResourceFieldEnum = "backend_id"
+	ResourceFieldEnumBackendMetadata            ResourceFieldEnum = "backend_metadata"
+	ResourceFieldEnumCanTerminate               ResourceFieldEnum = "can_terminate"
+	ResourceFieldEnumCategoryIcon               ResourceFieldEnum = "category_icon"
+	ResourceFieldEnumCategoryTitle              ResourceFieldEnum = "category_title"
+	ResourceFieldEnumCategoryUuid               ResourceFieldEnum = "category_uuid"
+	ResourceFieldEnumCreated                    ResourceFieldEnum = "created"
+	ResourceFieldEnumCreationOrder              ResourceFieldEnum = "creation_order"
+	ResourceFieldEnumCurrentUsages              ResourceFieldEnum = "current_usages"
+	ResourceFieldEnumCustomerName               ResourceFieldEnum = "customer_name"
+	ResourceFieldEnumCustomerSlug               ResourceFieldEnum = "customer_slug"
+	ResourceFieldEnumCustomerUuid               ResourceFieldEnum = "customer_uuid"
+	ResourceFieldEnumDescription                ResourceFieldEnum = "description"
+	ResourceFieldEnumDisplayLimits              ResourceFieldEnum = "display_limits"
+	ResourceFieldEnumDownscaled                 ResourceFieldEnum = "downscaled"
+	ResourceFieldEnumEffectiveId                ResourceFieldEnum = "effective_id"
+	ResourceFieldEnumEndDate                    ResourceFieldEnum = "end_date"
+	ResourceFieldEnumEndDateRequestedBy         ResourceFieldEnum = "end_date_requested_by"
+	ResourceFieldEnumEndDateUpdatedAt           ResourceFieldEnum = "end_date_updated_at"
+	ResourceFieldEnumEndpoints                  ResourceFieldEnum = "endpoints"
+	ResourceFieldEnumErrorMessage               ResourceFieldEnum = "error_message"
+	ResourceFieldEnumErrorTraceback             ResourceFieldEnum = "error_traceback"
+	ResourceFieldEnumHasApiKeys                 ResourceFieldEnum = "has_api_keys"
+	ResourceFieldEnumIsLimitBased               ResourceFieldEnum = "is_limit_based"
+	ResourceFieldEnumIsUsageBased               ResourceFieldEnum = "is_usage_based"
+	ResourceFieldEnumLastSync                   ResourceFieldEnum = "last_sync"
+	ResourceFieldEnumLimitUsage                 ResourceFieldEnum = "limit_usage"
+	ResourceFieldEnumLimits                     ResourceFieldEnum = "limits"
+	ResourceFieldEnumModified                   ResourceFieldEnum = "modified"
+	ResourceFieldEnumName                       ResourceFieldEnum = "name"
+	ResourceFieldEnumOffering                   ResourceFieldEnum = "offering"
+	ResourceFieldEnumOfferingAccountSettings    ResourceFieldEnum = "offering_account_settings"
+	ResourceFieldEnumOfferingBackendId          ResourceFieldEnum = "offering_backend_id"
+	ResourceFieldEnumOfferingBillable           ResourceFieldEnum = "offering_billable"
+	ResourceFieldEnumOfferingComponents         ResourceFieldEnum = "offering_components"
+	ResourceFieldEnumOfferingDescription        ResourceFieldEnum = "offering_description"
+	ResourceFieldEnumOfferingImage              ResourceFieldEnum = "offering_image"
+	ResourceFieldEnumOfferingName               ResourceFieldEnum = "offering_name"
+	ResourceFieldEnumOfferingPluginOptions      ResourceFieldEnum = "offering_plugin_options"
+	ResourceFieldEnumOfferingShared             ResourceFieldEnum = "offering_shared"
+	ResourceFieldEnumOfferingSlug               ResourceFieldEnum = "offering_slug"
+	ResourceFieldEnumOfferingState              ResourceFieldEnum = "offering_state"
+	ResourceFieldEnumOfferingThumbnail          ResourceFieldEnum = "offering_thumbnail"
+	ResourceFieldEnumOfferingType               ResourceFieldEnum = "offering_type"
+	ResourceFieldEnumOfferingUuid               ResourceFieldEnum = "offering_uuid"
+	ResourceFieldEnumOptions                    ResourceFieldEnum = "options"
+	ResourceFieldEnumOrderInProgress            ResourceFieldEnum = "order_in_progress"
+	ResourceFieldEnumParentName                 ResourceFieldEnum = "parent_name"
+	ResourceFieldEnumParentOfferingName         ResourceFieldEnum = "parent_offering_name"
+	ResourceFieldEnumParentOfferingSlug         ResourceFieldEnum = "parent_offering_slug"
+	ResourceFieldEnumParentOfferingUuid         ResourceFieldEnum = "parent_offering_uuid"
+	ResourceFieldEnumParentUuid                 ResourceFieldEnum = "parent_uuid"
+	ResourceFieldEnumPaused                     ResourceFieldEnum = "paused"
+	ResourceFieldEnumPlan                       ResourceFieldEnum = "plan"
+	ResourceFieldEnumPlanDescription            ResourceFieldEnum = "plan_description"
+	ResourceFieldEnumPlanName                   ResourceFieldEnum = "plan_name"
+	ResourceFieldEnumPlanUnit                   ResourceFieldEnum = "plan_unit"
+	ResourceFieldEnumPlanUuid                   ResourceFieldEnum = "plan_uuid"
+	ResourceFieldEnumPrepaidTotalComponentTypes ResourceFieldEnum = "prepaid_total_component_types"
+	ResourceFieldEnumProject                    ResourceFieldEnum = "project"
+	ResourceFieldEnumProjectDescription         ResourceFieldEnum = "project_description"
+	ResourceFieldEnumProjectEffectiveEndDate    ResourceFieldEnum = "project_effective_end_date"
+	ResourceFieldEnumProjectEndDate             ResourceFieldEnum = "project_end_date"
+	ResourceFieldEnumProjectEndDateRequestedBy  ResourceFieldEnum = "project_end_date_requested_by"
+	ResourceFieldEnumProjectIsInGracePeriod     ResourceFieldEnum = "project_is_in_grace_period"
+	ResourceFieldEnumProjectName                ResourceFieldEnum = "project_name"
+	ResourceFieldEnumProjectSlug                ResourceFieldEnum = "project_slug"
+	ResourceFieldEnumProjectStartDate           ResourceFieldEnum = "project_start_date"
+	ResourceFieldEnumProjectUuid                ResourceFieldEnum = "project_uuid"
+	ResourceFieldEnumProviderDescription        ResourceFieldEnum = "provider_description"
+	ResourceFieldEnumProviderName               ResourceFieldEnum = "provider_name"
+	ResourceFieldEnumProviderSlug               ResourceFieldEnum = "provider_slug"
+	ResourceFieldEnumProviderUuid               ResourceFieldEnum = "provider_uuid"
+	ResourceFieldEnumRenewalDate                ResourceFieldEnum = "renewal_date"
+	ResourceFieldEnumReport                     ResourceFieldEnum = "report"
+	ResourceFieldEnumResourceEffectiveEndDate   ResourceFieldEnum = "resource_effective_end_date"
+	ResourceFieldEnumResourceType               ResourceFieldEnum = "resource_type"
+	ResourceFieldEnumResourceUuid               ResourceFieldEnum = "resource_uuid"
+	ResourceFieldEnumRestrictMemberAccess       ResourceFieldEnum = "restrict_member_access"
+	ResourceFieldEnumScope                      ResourceFieldEnum = "scope"
+	ResourceFieldEnumServiceSettingsUuid        ResourceFieldEnum = "service_settings_uuid"
+	ResourceFieldEnumSlug                       ResourceFieldEnum = "slug"
+	ResourceFieldEnumSpendingLimitStatus        ResourceFieldEnum = "spending_limit_status"
+	ResourceFieldEnumSpendingLimits             ResourceFieldEnum = "spending_limits"
+	ResourceFieldEnumState                      ResourceFieldEnum = "state"
+	ResourceFieldEnumUrl                        ResourceFieldEnum = "url"
+	ResourceFieldEnumUsageLimitRestriction      ResourceFieldEnum = "usage_limit_restriction"
+	ResourceFieldEnumUsageLimitResumesAt        ResourceFieldEnum = "usage_limit_resumes_at"
+	ResourceFieldEnumUserRequiresReconsent      ResourceFieldEnum = "user_requires_reconsent"
+	ResourceFieldEnumUsername                   ResourceFieldEnum = "username"
+	ResourceFieldEnumUuid                       ResourceFieldEnum = "uuid"
 )
 
 // Valid indicates whether the value is a known member of the ResourceFieldEnum enum.
@@ -20987,6 +20991,8 @@ func (e ResourceFieldEnum) Valid() bool {
 	case ResourceFieldEnumPlanUnit:
 		return true
 	case ResourceFieldEnumPlanUuid:
+		return true
+	case ResourceFieldEnumPrepaidTotalComponentTypes:
 		return true
 	case ResourceFieldEnumProject:
 		return true
@@ -28880,8 +28886,11 @@ type BookingResource struct {
 	PlanName           *string                 `json:"plan_name,omitempty"`
 	PlanUnit           *BillingUnit            `json:"plan_unit,omitempty"`
 	PlanUuid           *openapi_types.UUID     `json:"plan_uuid,omitempty"`
-	Project            *string                 `json:"project,omitempty"`
-	ProjectDescription *string                 `json:"project_description,omitempty"`
+
+	// PrepaidTotalComponentTypes Component types whose limit_usage covers the whole subscription, so the UI shows their limit as the monthly limit times the months ordered. Empty unless the offering shows prepaid limits as a total (display_prepaid_limits_as_total).
+	PrepaidTotalComponentTypes *[]string `json:"prepaid_total_component_types,omitempty"`
+	Project                    *string   `json:"project,omitempty"`
+	ProjectDescription         *string   `json:"project_description,omitempty"`
 
 	// ProjectEffectiveEndDate Effective project end date including grace period. After this date, resources are terminated, except resources of offerings that disable the grace period — those are terminated on the raw project end date.
 	ProjectEffectiveEndDate *openapi_types.Date `json:"project_effective_end_date,omitempty"`
@@ -39674,6 +39683,9 @@ type MergedPluginOptions struct {
 	// DisabledResourceActions List of disabled marketplace resource actions for this offering.
 	DisabledResourceActions *[]string `json:"disabled_resource_actions,omitempty"`
 
+	// DisplayPrepaidLimitsAsTotal If set to True, the UI shows each prepaid component as the total for the whole subscription (the monthly amount times the months ordered) instead of a monthly amount, and the resource's limit_usage sums its usage over the whole subscription. Ordering and billing do not change.
+	DisplayPrepaidLimitsAsTotal *bool `json:"display_prepaid_limits_as_total,omitempty"`
+
 	// EmitDisplayName Emit the user's full name as a GLAuth displayName custom attribute (rendered to LDAP displayName).
 	EmitDisplayName *bool `json:"emit_display_name,omitempty"`
 
@@ -40025,6 +40037,9 @@ type MergedPluginOptionsRequest struct {
 
 	// DisabledResourceActions List of disabled marketplace resource actions for this offering.
 	DisabledResourceActions *[]string `json:"disabled_resource_actions,omitempty"`
+
+	// DisplayPrepaidLimitsAsTotal If set to True, the UI shows each prepaid component as the total for the whole subscription (the monthly amount times the months ordered) instead of a monthly amount, and the resource's limit_usage sums its usage over the whole subscription. Ordering and billing do not change.
+	DisplayPrepaidLimitsAsTotal *bool `json:"display_prepaid_limits_as_total,omitempty"`
 
 	// EmitDisplayName Emit the user's full name as a GLAuth displayName custom attribute (rendered to LDAP displayName).
 	EmitDisplayName *bool `json:"emit_display_name,omitempty"`
@@ -55759,8 +55774,11 @@ type Resource struct {
 	PlanName           *string                 `json:"plan_name,omitempty"`
 	PlanUnit           *BillingUnit            `json:"plan_unit,omitempty"`
 	PlanUuid           *openapi_types.UUID     `json:"plan_uuid,omitempty"`
-	Project            *string                 `json:"project,omitempty"`
-	ProjectDescription *string                 `json:"project_description,omitempty"`
+
+	// PrepaidTotalComponentTypes Component types whose limit_usage covers the whole subscription, so the UI shows their limit as the monthly limit times the months ordered. Empty unless the offering shows prepaid limits as a total (display_prepaid_limits_as_total).
+	PrepaidTotalComponentTypes *[]string `json:"prepaid_total_component_types,omitempty"`
+	Project                    *string   `json:"project,omitempty"`
+	ProjectDescription         *string   `json:"project_description,omitempty"`
 
 	// ProjectEffectiveEndDate Effective project end date including grace period. After this date, resources are terminated, except resources of offerings that disable the grace period — those are terminated on the raw project end date.
 	ProjectEffectiveEndDate *openapi_types.Date `json:"project_effective_end_date,omitempty"`
@@ -63873,6 +63891,9 @@ type CallManagingOrganisationsListUsersListParams struct {
 	// Role Role UUID or name. Repeat to filter by several roles.
 	Role *[]string `form:"role,omitempty" json:"role,omitempty"`
 
+	// RoleTemplate Role name. Matches that role and organization copies of it. Repeat to match several. Omit to leave the role filter unchanged.
+	RoleTemplate *[]string `form:"role_template,omitempty" json:"role_template,omitempty"`
+
 	// SearchString Search string for user
 	SearchString *string `form:"search_string,omitempty" json:"search_string,omitempty"`
 
@@ -63911,6 +63932,9 @@ type CallManagingOrganisationsListUsersCountParams struct {
 
 	// Role Role UUID or name. Repeat to filter by several roles.
 	Role *[]string `form:"role,omitempty" json:"role,omitempty"`
+
+	// RoleTemplate Role name. Matches that role and organization copies of it. Repeat to match several. Omit to leave the role filter unchanged.
+	RoleTemplate *[]string `form:"role_template,omitempty" json:"role_template,omitempty"`
 
 	// SearchString Search string for user
 	SearchString *string `form:"search_string,omitempty" json:"search_string,omitempty"`
@@ -65392,6 +65416,9 @@ type CustomersListUsersListParams struct {
 	// Role Role UUID or name. Repeat to filter by several roles.
 	Role *[]string `form:"role,omitempty" json:"role,omitempty"`
 
+	// RoleTemplate Role name. Matches that role and organization copies of it. Repeat to match several. Omit to leave the role filter unchanged.
+	RoleTemplate *[]string `form:"role_template,omitempty" json:"role_template,omitempty"`
+
 	// SearchString Search string for user
 	SearchString *string `form:"search_string,omitempty" json:"search_string,omitempty"`
 
@@ -65430,6 +65457,9 @@ type CustomersListUsersCountParams struct {
 
 	// Role Role UUID or name. Repeat to filter by several roles.
 	Role *[]string `form:"role,omitempty" json:"role,omitempty"`
+
+	// RoleTemplate Role name. Matches that role and organization copies of it. Repeat to match several. Omit to leave the role filter unchanged.
+	RoleTemplate *[]string `form:"role_template,omitempty" json:"role_template,omitempty"`
 
 	// SearchString Search string for user
 	SearchString *string `form:"search_string,omitempty" json:"search_string,omitempty"`
@@ -72026,6 +72056,9 @@ type MarketplaceProviderOfferingsListUsersListParams struct {
 	// Role Role UUID or name. Repeat to filter by several roles.
 	Role *[]string `form:"role,omitempty" json:"role,omitempty"`
 
+	// RoleTemplate Role name. Matches that role and organization copies of it. Repeat to match several. Omit to leave the role filter unchanged.
+	RoleTemplate *[]string `form:"role_template,omitempty" json:"role_template,omitempty"`
+
 	// SearchString Search string for user
 	SearchString *string `form:"search_string,omitempty" json:"search_string,omitempty"`
 
@@ -72064,6 +72097,9 @@ type MarketplaceProviderOfferingsListUsersCountParams struct {
 
 	// Role Role UUID or name. Repeat to filter by several roles.
 	Role *[]string `form:"role,omitempty" json:"role,omitempty"`
+
+	// RoleTemplate Role name. Matches that role and organization copies of it. Repeat to match several. Omit to leave the role filter unchanged.
+	RoleTemplate *[]string `form:"role_template,omitempty" json:"role_template,omitempty"`
 
 	// SearchString Search string for user
 	SearchString *string `form:"search_string,omitempty" json:"search_string,omitempty"`
@@ -72163,6 +72199,9 @@ type MarketplaceProviderResourceProjectsListUsersListParams struct {
 	// Role Role UUID or name. Repeat to filter by several roles.
 	Role *[]string `form:"role,omitempty" json:"role,omitempty"`
 
+	// RoleTemplate Role name. Matches that role and organization copies of it. Repeat to match several. Omit to leave the role filter unchanged.
+	RoleTemplate *[]string `form:"role_template,omitempty" json:"role_template,omitempty"`
+
 	// SearchString Search string for user
 	SearchString *string `form:"search_string,omitempty" json:"search_string,omitempty"`
 
@@ -72201,6 +72240,9 @@ type MarketplaceProviderResourceProjectsListUsersCountParams struct {
 
 	// Role Role UUID or name. Repeat to filter by several roles.
 	Role *[]string `form:"role,omitempty" json:"role,omitempty"`
+
+	// RoleTemplate Role name. Matches that role and organization copies of it. Repeat to match several. Omit to leave the role filter unchanged.
+	RoleTemplate *[]string `form:"role_template,omitempty" json:"role_template,omitempty"`
 
 	// SearchString Search string for user
 	SearchString *string `form:"search_string,omitempty" json:"search_string,omitempty"`
@@ -72694,6 +72736,9 @@ type MarketplaceProviderResourcesListUsersListParams struct {
 	// Role Role UUID or name. Repeat to filter by several roles.
 	Role *[]string `form:"role,omitempty" json:"role,omitempty"`
 
+	// RoleTemplate Role name. Matches that role and organization copies of it. Repeat to match several. Omit to leave the role filter unchanged.
+	RoleTemplate *[]string `form:"role_template,omitempty" json:"role_template,omitempty"`
+
 	// SearchString Search string for user
 	SearchString *string `form:"search_string,omitempty" json:"search_string,omitempty"`
 
@@ -72732,6 +72777,9 @@ type MarketplaceProviderResourcesListUsersCountParams struct {
 
 	// Role Role UUID or name. Repeat to filter by several roles.
 	Role *[]string `form:"role,omitempty" json:"role,omitempty"`
+
+	// RoleTemplate Role name. Matches that role and organization copies of it. Repeat to match several. Omit to leave the role filter unchanged.
+	RoleTemplate *[]string `form:"role_template,omitempty" json:"role_template,omitempty"`
 
 	// SearchString Search string for user
 	SearchString *string `form:"search_string,omitempty" json:"search_string,omitempty"`
@@ -73341,6 +73389,9 @@ type MarketplaceResourceProjectsListUsersListParams struct {
 	// Role Role UUID or name. Repeat to filter by several roles.
 	Role *[]string `form:"role,omitempty" json:"role,omitempty"`
 
+	// RoleTemplate Role name. Matches that role and organization copies of it. Repeat to match several. Omit to leave the role filter unchanged.
+	RoleTemplate *[]string `form:"role_template,omitempty" json:"role_template,omitempty"`
+
 	// SearchString Search string for user
 	SearchString *string `form:"search_string,omitempty" json:"search_string,omitempty"`
 
@@ -73379,6 +73430,9 @@ type MarketplaceResourceProjectsListUsersCountParams struct {
 
 	// Role Role UUID or name. Repeat to filter by several roles.
 	Role *[]string `form:"role,omitempty" json:"role,omitempty"`
+
+	// RoleTemplate Role name. Matches that role and organization copies of it. Repeat to match several. Omit to leave the role filter unchanged.
+	RoleTemplate *[]string `form:"role_template,omitempty" json:"role_template,omitempty"`
 
 	// SearchString Search string for user
 	SearchString *string `form:"search_string,omitempty" json:"search_string,omitempty"`
@@ -73872,6 +73926,9 @@ type MarketplaceResourcesListUsersListParams struct {
 	// Role Role UUID or name. Repeat to filter by several roles.
 	Role *[]string `form:"role,omitempty" json:"role,omitempty"`
 
+	// RoleTemplate Role name. Matches that role and organization copies of it. Repeat to match several. Omit to leave the role filter unchanged.
+	RoleTemplate *[]string `form:"role_template,omitempty" json:"role_template,omitempty"`
+
 	// SearchString Search string for user
 	SearchString *string `form:"search_string,omitempty" json:"search_string,omitempty"`
 
@@ -73910,6 +73967,9 @@ type MarketplaceResourcesListUsersCountParams struct {
 
 	// Role Role UUID or name. Repeat to filter by several roles.
 	Role *[]string `form:"role,omitempty" json:"role,omitempty"`
+
+	// RoleTemplate Role name. Matches that role and organization copies of it. Repeat to match several. Omit to leave the role filter unchanged.
+	RoleTemplate *[]string `form:"role_template,omitempty" json:"role_template,omitempty"`
 
 	// SearchString Search string for user
 	SearchString *string `form:"search_string,omitempty" json:"search_string,omitempty"`
@@ -76266,6 +76326,9 @@ type MarketplaceServiceProvidersListUsersListParams struct {
 	// Role Role UUID or name. Repeat to filter by several roles.
 	Role *[]string `form:"role,omitempty" json:"role,omitempty"`
 
+	// RoleTemplate Role name. Matches that role and organization copies of it. Repeat to match several. Omit to leave the role filter unchanged.
+	RoleTemplate *[]string `form:"role_template,omitempty" json:"role_template,omitempty"`
+
 	// SearchString Search string for user
 	SearchString *string `form:"search_string,omitempty" json:"search_string,omitempty"`
 
@@ -76304,6 +76367,9 @@ type MarketplaceServiceProvidersListUsersCountParams struct {
 
 	// Role Role UUID or name. Repeat to filter by several roles.
 	Role *[]string `form:"role,omitempty" json:"role,omitempty"`
+
+	// RoleTemplate Role name. Matches that role and organization copies of it. Repeat to match several. Omit to leave the role filter unchanged.
+	RoleTemplate *[]string `form:"role_template,omitempty" json:"role_template,omitempty"`
 
 	// SearchString Search string for user
 	SearchString *string `form:"search_string,omitempty" json:"search_string,omitempty"`
@@ -79537,6 +79603,9 @@ type OpenportalUnmanagedProjectsListUsersListParams struct {
 	// Role Role UUID or name. Repeat to filter by several roles.
 	Role *[]string `form:"role,omitempty" json:"role,omitempty"`
 
+	// RoleTemplate Role name. Matches that role and organization copies of it. Repeat to match several. Omit to leave the role filter unchanged.
+	RoleTemplate *[]string `form:"role_template,omitempty" json:"role_template,omitempty"`
+
 	// SearchString Search string for user
 	SearchString *string `form:"search_string,omitempty" json:"search_string,omitempty"`
 
@@ -79575,6 +79644,9 @@ type OpenportalUnmanagedProjectsListUsersCountParams struct {
 
 	// Role Role UUID or name. Repeat to filter by several roles.
 	Role *[]string `form:"role,omitempty" json:"role,omitempty"`
+
+	// RoleTemplate Role name. Matches that role and organization copies of it. Repeat to match several. Omit to leave the role filter unchanged.
+	RoleTemplate *[]string `form:"role_template,omitempty" json:"role_template,omitempty"`
 
 	// SearchString Search string for user
 	SearchString *string `form:"search_string,omitempty" json:"search_string,omitempty"`
@@ -83503,6 +83575,9 @@ type ProjectsListUsersListParams struct {
 	// Role Role UUID or name. Repeat to filter by several roles.
 	Role *[]string `form:"role,omitempty" json:"role,omitempty"`
 
+	// RoleTemplate Role name. Matches that role and organization copies of it. Repeat to match several. Omit to leave the role filter unchanged.
+	RoleTemplate *[]string `form:"role_template,omitempty" json:"role_template,omitempty"`
+
 	// SearchString Search string for user
 	SearchString *string `form:"search_string,omitempty" json:"search_string,omitempty"`
 
@@ -83541,6 +83616,9 @@ type ProjectsListUsersCountParams struct {
 
 	// Role Role UUID or name. Repeat to filter by several roles.
 	Role *[]string `form:"role,omitempty" json:"role,omitempty"`
+
+	// RoleTemplate Role name. Matches that role and organization copies of it. Repeat to match several. Omit to leave the role filter unchanged.
+	RoleTemplate *[]string `form:"role_template,omitempty" json:"role_template,omitempty"`
 
 	// SearchString Search string for user
 	SearchString *string `form:"search_string,omitempty" json:"search_string,omitempty"`
@@ -83832,6 +83910,9 @@ type ProposalProposalsListUsersListParams struct {
 	// Role Role UUID or name. Repeat to filter by several roles.
 	Role *[]string `form:"role,omitempty" json:"role,omitempty"`
 
+	// RoleTemplate Role name. Matches that role and organization copies of it. Repeat to match several. Omit to leave the role filter unchanged.
+	RoleTemplate *[]string `form:"role_template,omitempty" json:"role_template,omitempty"`
+
 	// SearchString Search string for user
 	SearchString *string `form:"search_string,omitempty" json:"search_string,omitempty"`
 
@@ -83870,6 +83951,9 @@ type ProposalProposalsListUsersCountParams struct {
 
 	// Role Role UUID or name. Repeat to filter by several roles.
 	Role *[]string `form:"role,omitempty" json:"role,omitempty"`
+
+	// RoleTemplate Role name. Matches that role and organization copies of it. Repeat to match several. Omit to leave the role filter unchanged.
+	RoleTemplate *[]string `form:"role_template,omitempty" json:"role_template,omitempty"`
 
 	// SearchString Search string for user
 	SearchString *string `form:"search_string,omitempty" json:"search_string,omitempty"`
@@ -84256,6 +84340,9 @@ type ProposalProtectedCallsListUsersListParams struct {
 	// Role Role UUID or name. Repeat to filter by several roles.
 	Role *[]string `form:"role,omitempty" json:"role,omitempty"`
 
+	// RoleTemplate Role name. Matches that role and organization copies of it. Repeat to match several. Omit to leave the role filter unchanged.
+	RoleTemplate *[]string `form:"role_template,omitempty" json:"role_template,omitempty"`
+
 	// SearchString Search string for user
 	SearchString *string `form:"search_string,omitempty" json:"search_string,omitempty"`
 
@@ -84294,6 +84381,9 @@ type ProposalProtectedCallsListUsersCountParams struct {
 
 	// Role Role UUID or name. Repeat to filter by several roles.
 	Role *[]string `form:"role,omitempty" json:"role,omitempty"`
+
+	// RoleTemplate Role name. Matches that role and organization copies of it. Repeat to match several. Omit to leave the role filter unchanged.
+	RoleTemplate *[]string `form:"role_template,omitempty" json:"role_template,omitempty"`
 
 	// SearchString Search string for user
 	SearchString *string `form:"search_string,omitempty" json:"search_string,omitempty"`
@@ -217624,6 +217714,18 @@ func NewCallManagingOrganisationsListUsersListRequest(server string, uuid openap
 
 		}
 
+		if params.RoleTemplate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role_template", *params.RoleTemplate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.SearchString != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "search_string", *params.SearchString, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -217808,6 +217910,18 @@ func NewCallManagingOrganisationsListUsersCountRequest(server string, uuid opena
 		if params.Role != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role", *params.Role, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RoleTemplate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role_template", *params.RoleTemplate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -231092,6 +231206,18 @@ func NewCustomersListUsersListRequest(server string, uuid openapi_types.UUID, pa
 
 		}
 
+		if params.RoleTemplate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role_template", *params.RoleTemplate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.SearchString != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "search_string", *params.SearchString, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -231276,6 +231402,18 @@ func NewCustomersListUsersCountRequest(server string, uuid openapi_types.UUID, p
 		if params.Role != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role", *params.Role, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RoleTemplate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role_template", *params.RoleTemplate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -284456,6 +284594,18 @@ func NewMarketplaceProviderOfferingsListUsersListRequest(server string, uuid ope
 
 		}
 
+		if params.RoleTemplate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role_template", *params.RoleTemplate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.SearchString != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "search_string", *params.SearchString, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -284640,6 +284790,18 @@ func NewMarketplaceProviderOfferingsListUsersCountRequest(server string, uuid op
 		if params.Role != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role", *params.Role, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RoleTemplate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role_template", *params.RoleTemplate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -287496,6 +287658,18 @@ func NewMarketplaceProviderResourceProjectsListUsersListRequest(server string, u
 
 		}
 
+		if params.RoleTemplate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role_template", *params.RoleTemplate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.SearchString != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "search_string", *params.SearchString, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -287680,6 +287854,18 @@ func NewMarketplaceProviderResourceProjectsListUsersCountRequest(server string, 
 		if params.Role != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role", *params.Role, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RoleTemplate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role_template", *params.RoleTemplate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -290397,6 +290583,18 @@ func NewMarketplaceProviderResourcesListUsersListRequest(server string, uuid ope
 
 		}
 
+		if params.RoleTemplate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role_template", *params.RoleTemplate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.SearchString != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "search_string", *params.SearchString, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -290581,6 +290779,18 @@ func NewMarketplaceProviderResourcesListUsersCountRequest(server string, uuid op
 		if params.Role != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role", *params.Role, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RoleTemplate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role_template", *params.RoleTemplate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -296805,6 +297015,18 @@ func NewMarketplaceResourceProjectsListUsersListRequest(server string, uuid open
 
 		}
 
+		if params.RoleTemplate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role_template", *params.RoleTemplate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.SearchString != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "search_string", *params.SearchString, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -296989,6 +297211,18 @@ func NewMarketplaceResourceProjectsListUsersCountRequest(server string, uuid ope
 		if params.Role != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role", *params.Role, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RoleTemplate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role_template", *params.RoleTemplate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -299712,6 +299946,18 @@ func NewMarketplaceResourcesListUsersListRequest(server string, uuid openapi_typ
 
 		}
 
+		if params.RoleTemplate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role_template", *params.RoleTemplate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.SearchString != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "search_string", *params.SearchString, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -299896,6 +300142,18 @@ func NewMarketplaceResourcesListUsersCountRequest(server string, uuid openapi_ty
 		if params.Role != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role", *params.Role, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RoleTemplate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role_template", *params.RoleTemplate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -314320,6 +314578,18 @@ func NewMarketplaceServiceProvidersListUsersListRequest(server string, uuid open
 
 		}
 
+		if params.RoleTemplate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role_template", *params.RoleTemplate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.SearchString != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "search_string", *params.SearchString, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -314504,6 +314774,18 @@ func NewMarketplaceServiceProvidersListUsersCountRequest(server string, uuid ope
 		if params.Role != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role", *params.Role, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RoleTemplate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role_template", *params.RoleTemplate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -342753,6 +343035,18 @@ func NewOpenportalUnmanagedProjectsListUsersListRequest(server string, uuid open
 
 		}
 
+		if params.RoleTemplate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role_template", *params.RoleTemplate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.SearchString != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "search_string", *params.SearchString, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -342937,6 +343231,18 @@ func NewOpenportalUnmanagedProjectsListUsersCountRequest(server string, uuid ope
 		if params.Role != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role", *params.Role, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RoleTemplate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role_template", *params.RoleTemplate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -374273,6 +374579,18 @@ func NewProjectsListUsersListRequest(server string, uuid openapi_types.UUID, par
 
 		}
 
+		if params.RoleTemplate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role_template", *params.RoleTemplate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.SearchString != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "search_string", *params.SearchString, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -374457,6 +374775,18 @@ func NewProjectsListUsersCountRequest(server string, uuid openapi_types.UUID, pa
 		if params.Role != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role", *params.Role, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RoleTemplate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role_template", *params.RoleTemplate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -377627,6 +377957,18 @@ func NewProposalProposalsListUsersListRequest(server string, uuid openapi_types.
 
 		}
 
+		if params.RoleTemplate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role_template", *params.RoleTemplate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.SearchString != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "search_string", *params.SearchString, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -377811,6 +378153,18 @@ func NewProposalProposalsListUsersCountRequest(server string, uuid openapi_types
 		if params.Role != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role", *params.Role, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RoleTemplate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role_template", *params.RoleTemplate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -382042,6 +382396,18 @@ func NewProposalProtectedCallsListUsersListRequest(server string, uuid openapi_t
 
 		}
 
+		if params.RoleTemplate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role_template", *params.RoleTemplate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.SearchString != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "search_string", *params.SearchString, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -382226,6 +382592,18 @@ func NewProposalProtectedCallsListUsersCountRequest(server string, uuid openapi_
 		if params.Role != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role", *params.Role, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RoleTemplate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role_template", *params.RoleTemplate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
