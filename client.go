@@ -1823,9 +1823,12 @@ const (
 	BookingResourceFieldEnumServiceSettingsUuid        BookingResourceFieldEnum = "service_settings_uuid"
 	BookingResourceFieldEnumSlots                      BookingResourceFieldEnum = "slots"
 	BookingResourceFieldEnumSlug                       BookingResourceFieldEnum = "slug"
+	BookingResourceFieldEnumSpendingLimitStatus        BookingResourceFieldEnum = "spending_limit_status"
+	BookingResourceFieldEnumSpendingLimits             BookingResourceFieldEnum = "spending_limits"
 	BookingResourceFieldEnumState                      BookingResourceFieldEnum = "state"
 	BookingResourceFieldEnumUrl                        BookingResourceFieldEnum = "url"
 	BookingResourceFieldEnumUsageLimitRestriction      BookingResourceFieldEnum = "usage_limit_restriction"
+	BookingResourceFieldEnumUsageLimitResumesAt        BookingResourceFieldEnum = "usage_limit_resumes_at"
 	BookingResourceFieldEnumUserRequiresReconsent      BookingResourceFieldEnum = "user_requires_reconsent"
 	BookingResourceFieldEnumUsername                   BookingResourceFieldEnum = "username"
 	BookingResourceFieldEnumUuid                       BookingResourceFieldEnum = "uuid"
@@ -2014,11 +2017,17 @@ func (e BookingResourceFieldEnum) Valid() bool {
 		return true
 	case BookingResourceFieldEnumSlug:
 		return true
+	case BookingResourceFieldEnumSpendingLimitStatus:
+		return true
+	case BookingResourceFieldEnumSpendingLimits:
+		return true
 	case BookingResourceFieldEnumState:
 		return true
 	case BookingResourceFieldEnumUrl:
 		return true
 	case BookingResourceFieldEnumUsageLimitRestriction:
+		return true
+	case BookingResourceFieldEnumUsageLimitResumesAt:
 		return true
 	case BookingResourceFieldEnumUserRequiresReconsent:
 		return true
@@ -5828,6 +5837,7 @@ const (
 	EventMetadataResponseEventGroupsMarketplaceResourceProjectCreated                EventMetadataResponseEventGroups = "marketplace_resource_project_created"
 	EventMetadataResponseEventGroupsMarketplaceResourceProjectRecovered              EventMetadataResponseEventGroups = "marketplace_resource_project_recovered"
 	EventMetadataResponseEventGroupsMarketplaceResourceProjectRemoved                EventMetadataResponseEventGroups = "marketplace_resource_project_removed"
+	EventMetadataResponseEventGroupsMarketplaceResourceSpendingLimitsUpdated         EventMetadataResponseEventGroups = "marketplace_resource_spending_limits_updated"
 	EventMetadataResponseEventGroupsMarketplaceResourceTerminateCanceled             EventMetadataResponseEventGroups = "marketplace_resource_terminate_canceled"
 	EventMetadataResponseEventGroupsMarketplaceResourceTerminateFailed               EventMetadataResponseEventGroups = "marketplace_resource_terminate_failed"
 	EventMetadataResponseEventGroupsMarketplaceResourceTerminateRequested            EventMetadataResponseEventGroups = "marketplace_resource_terminate_requested"
@@ -6362,6 +6372,8 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 	case EventMetadataResponseEventGroupsMarketplaceResourceProjectRecovered:
 		return true
 	case EventMetadataResponseEventGroupsMarketplaceResourceProjectRemoved:
+		return true
+	case EventMetadataResponseEventGroupsMarketplaceResourceSpendingLimitsUpdated:
 		return true
 	case EventMetadataResponseEventGroupsMarketplaceResourceTerminateCanceled:
 		return true
@@ -7052,6 +7064,7 @@ const (
 	EventTypesEnumMarketplaceResourceProjectCreated                EventTypesEnum = "marketplace_resource_project_created"
 	EventTypesEnumMarketplaceResourceProjectRecovered              EventTypesEnum = "marketplace_resource_project_recovered"
 	EventTypesEnumMarketplaceResourceProjectRemoved                EventTypesEnum = "marketplace_resource_project_removed"
+	EventTypesEnumMarketplaceResourceSpendingLimitsUpdated         EventTypesEnum = "marketplace_resource_spending_limits_updated"
 	EventTypesEnumMarketplaceResourceTerminateCanceled             EventTypesEnum = "marketplace_resource_terminate_canceled"
 	EventTypesEnumMarketplaceResourceTerminateFailed               EventTypesEnum = "marketplace_resource_terminate_failed"
 	EventTypesEnumMarketplaceResourceTerminateRequested            EventTypesEnum = "marketplace_resource_terminate_requested"
@@ -7586,6 +7599,8 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumMarketplaceResourceProjectRecovered:
 		return true
 	case EventTypesEnumMarketplaceResourceProjectRemoved:
+		return true
+	case EventTypesEnumMarketplaceResourceSpendingLimitsUpdated:
 		return true
 	case EventTypesEnumMarketplaceResourceTerminateCanceled:
 		return true
@@ -16419,6 +16434,7 @@ const (
 	PermissionMetadataResponsePermissionMapRESOURCELIST                                 PermissionMetadataResponsePermissionMap = "RESOURCE.LIST"
 	PermissionMetadataResponsePermissionMapRESOURCELISTIMPORTABLE                       PermissionMetadataResponsePermissionMap = "RESOURCE.LIST_IMPORTABLE"
 	PermissionMetadataResponsePermissionMapRESOURCEMANAGEAPIKEY                         PermissionMetadataResponsePermissionMap = "RESOURCE.MANAGE_API_KEY"
+	PermissionMetadataResponsePermissionMapRESOURCEMANAGECONSUMERAPIKEY                 PermissionMetadataResponsePermissionMap = "RESOURCE.MANAGE_CONSUMER_API_KEY"
 	PermissionMetadataResponsePermissionMapRESOURCEMANAGEUSERS                          PermissionMetadataResponsePermissionMap = "RESOURCE.MANAGE_USERS"
 	PermissionMetadataResponsePermissionMapRESOURCEPROJECTCREATEPERMISSION              PermissionMetadataResponsePermissionMap = "RESOURCE_PROJECT.CREATE_PERMISSION"
 	PermissionMetadataResponsePermissionMapRESOURCEPROJECTDELETEPERMISSION              PermissionMetadataResponsePermissionMap = "RESOURCE_PROJECT.DELETE_PERMISSION"
@@ -16672,6 +16688,8 @@ func (e PermissionMetadataResponsePermissionMap) Valid() bool {
 		return true
 	case PermissionMetadataResponsePermissionMapRESOURCEMANAGEAPIKEY:
 		return true
+	case PermissionMetadataResponsePermissionMapRESOURCEMANAGECONSUMERAPIKEY:
+		return true
 	case PermissionMetadataResponsePermissionMapRESOURCEMANAGEUSERS:
 		return true
 	case PermissionMetadataResponsePermissionMapRESOURCEPROJECTCREATEPERMISSION:
@@ -16866,6 +16884,7 @@ const (
 	PermissionMetadataResponsePermissionsRESOURCELIST                                 PermissionMetadataResponsePermissions = "RESOURCE.LIST"
 	PermissionMetadataResponsePermissionsRESOURCELISTIMPORTABLE                       PermissionMetadataResponsePermissions = "RESOURCE.LIST_IMPORTABLE"
 	PermissionMetadataResponsePermissionsRESOURCEMANAGEAPIKEY                         PermissionMetadataResponsePermissions = "RESOURCE.MANAGE_API_KEY"
+	PermissionMetadataResponsePermissionsRESOURCEMANAGECONSUMERAPIKEY                 PermissionMetadataResponsePermissions = "RESOURCE.MANAGE_CONSUMER_API_KEY"
 	PermissionMetadataResponsePermissionsRESOURCEMANAGEUSERS                          PermissionMetadataResponsePermissions = "RESOURCE.MANAGE_USERS"
 	PermissionMetadataResponsePermissionsRESOURCEPROJECTCREATEPERMISSION              PermissionMetadataResponsePermissions = "RESOURCE_PROJECT.CREATE_PERMISSION"
 	PermissionMetadataResponsePermissionsRESOURCEPROJECTDELETEPERMISSION              PermissionMetadataResponsePermissions = "RESOURCE_PROJECT.DELETE_PERMISSION"
@@ -17118,6 +17137,8 @@ func (e PermissionMetadataResponsePermissions) Valid() bool {
 	case PermissionMetadataResponsePermissionsRESOURCELISTIMPORTABLE:
 		return true
 	case PermissionMetadataResponsePermissionsRESOURCEMANAGEAPIKEY:
+		return true
+	case PermissionMetadataResponsePermissionsRESOURCEMANAGECONSUMERAPIKEY:
 		return true
 	case PermissionMetadataResponsePermissionsRESOURCEMANAGEUSERS:
 		return true
@@ -20815,9 +20836,12 @@ const (
 	ResourceFieldEnumScope                     ResourceFieldEnum = "scope"
 	ResourceFieldEnumServiceSettingsUuid       ResourceFieldEnum = "service_settings_uuid"
 	ResourceFieldEnumSlug                      ResourceFieldEnum = "slug"
+	ResourceFieldEnumSpendingLimitStatus       ResourceFieldEnum = "spending_limit_status"
+	ResourceFieldEnumSpendingLimits            ResourceFieldEnum = "spending_limits"
 	ResourceFieldEnumState                     ResourceFieldEnum = "state"
 	ResourceFieldEnumUrl                       ResourceFieldEnum = "url"
 	ResourceFieldEnumUsageLimitRestriction     ResourceFieldEnum = "usage_limit_restriction"
+	ResourceFieldEnumUsageLimitResumesAt       ResourceFieldEnum = "usage_limit_resumes_at"
 	ResourceFieldEnumUserRequiresReconsent     ResourceFieldEnum = "user_requires_reconsent"
 	ResourceFieldEnumUsername                  ResourceFieldEnum = "username"
 	ResourceFieldEnumUuid                      ResourceFieldEnum = "uuid"
@@ -20992,11 +21016,17 @@ func (e ResourceFieldEnum) Valid() bool {
 		return true
 	case ResourceFieldEnumSlug:
 		return true
+	case ResourceFieldEnumSpendingLimitStatus:
+		return true
+	case ResourceFieldEnumSpendingLimits:
+		return true
 	case ResourceFieldEnumState:
 		return true
 	case ResourceFieldEnumUrl:
 		return true
 	case ResourceFieldEnumUsageLimitRestriction:
+		return true
+	case ResourceFieldEnumUsageLimitResumesAt:
 		return true
 	case ResourceFieldEnumUserRequiresReconsent:
 		return true
@@ -22500,6 +22530,33 @@ func (e SourceTypeEnum) Valid() bool {
 	case SourceTypeEnumCustomKeywords:
 		return true
 	case SourceTypeEnumSelectedProposals:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for SpendingLimitPeriodEnum.
+const (
+	SpendingLimitPeriodEnumDay     SpendingLimitPeriodEnum = "day"
+	SpendingLimitPeriodEnumMonth   SpendingLimitPeriodEnum = "month"
+	SpendingLimitPeriodEnumQuarter SpendingLimitPeriodEnum = "quarter"
+	SpendingLimitPeriodEnumWeek    SpendingLimitPeriodEnum = "week"
+	SpendingLimitPeriodEnumYear    SpendingLimitPeriodEnum = "year"
+)
+
+// Valid indicates whether the value is a known member of the SpendingLimitPeriodEnum enum.
+func (e SpendingLimitPeriodEnum) Valid() bool {
+	switch e {
+	case SpendingLimitPeriodEnumDay:
+		return true
+	case SpendingLimitPeriodEnumMonth:
+		return true
+	case SpendingLimitPeriodEnumQuarter:
+		return true
+	case SpendingLimitPeriodEnumWeek:
+		return true
+	case SpendingLimitPeriodEnumYear:
 		return true
 	default:
 		return false
@@ -24627,6 +24684,7 @@ const (
 	ValueEnumRESOURCELIST                                 ValueEnum = "RESOURCE.LIST"
 	ValueEnumRESOURCELISTIMPORTABLE                       ValueEnum = "RESOURCE.LIST_IMPORTABLE"
 	ValueEnumRESOURCEMANAGEAPIKEY                         ValueEnum = "RESOURCE.MANAGE_API_KEY"
+	ValueEnumRESOURCEMANAGECONSUMERAPIKEY                 ValueEnum = "RESOURCE.MANAGE_CONSUMER_API_KEY"
 	ValueEnumRESOURCEMANAGEUSERS                          ValueEnum = "RESOURCE.MANAGE_USERS"
 	ValueEnumRESOURCEPROJECTCREATEPERMISSION              ValueEnum = "RESOURCE_PROJECT.CREATE_PERMISSION"
 	ValueEnumRESOURCEPROJECTDELETEPERMISSION              ValueEnum = "RESOURCE_PROJECT.DELETE_PERMISSION"
@@ -24879,6 +24937,8 @@ func (e ValueEnum) Valid() bool {
 	case ValueEnumRESOURCELISTIMPORTABLE:
 		return true
 	case ValueEnumRESOURCEMANAGEAPIKEY:
+		return true
+	case ValueEnumRESOURCEMANAGECONSUMERAPIKEY:
 		return true
 	case ValueEnumRESOURCEMANAGEUSERS:
 		return true
@@ -28832,12 +28892,19 @@ type BookingResource struct {
 	Slots                    *[]BookingSlot      `json:"slots,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
-	Slug  *string        `json:"slug,omitempty"`
-	State *ResourceState `json:"state,omitempty"`
-	Url   *string        `json:"url,omitempty"`
+	Slug                *string                `json:"slug,omitempty"`
+	SpendingLimitStatus *[]SpendingLimitStatus `json:"spending_limit_status,omitempty"`
+
+	// SpendingLimits Spending limits on usage-based components, per period. Changed with the set_spending_limits action.
+	SpendingLimits *map[string]*map[string]*float64 `json:"spending_limits,omitempty"`
+	State          *ResourceState                   `json:"state,omitempty"`
+	Url            *string                          `json:"url,omitempty"`
 
 	// UsageLimitRestriction Which restriction (paused or downscaled) was automatically applied because reported usage reached a component limit. Empty when no such restriction is active. Used so the automatic lift never clears a restriction that was set for another reason.
 	UsageLimitRestriction *BookingResource_UsageLimitRestriction `json:"usage_limit_restriction,omitempty"`
+
+	// UsageLimitResumesAt When the spending limits that restrict the resource reset and the restriction lifts. Empty when no spending limit restricts the resource, or when a limit-based component's limit does too.
+	UsageLimitResumesAt *time.Time `json:"usage_limit_resumes_at,omitempty"`
 
 	// UserRequiresReconsent Check if the current user needs to re-consent for this resource's offering.
 	UserRequiresReconsent *bool               `json:"user_requires_reconsent,omitempty"`
@@ -30959,6 +31026,18 @@ type ComponentActivity struct {
 	CompareUrlPrevious   *string `json:"compare_url_previous,omitempty"`
 }
 
+// ComponentDailyUsageItemRequest defines model for ComponentDailyUsageItemRequest.
+type ComponentDailyUsageItemRequest struct {
+	// Amount Usage on that date. Replaces the amount reported for it before.
+	Amount string `json:"amount"`
+
+	// Date UTC date the amount was used on
+	Date openapi_types.Date `json:"date"`
+
+	// Type Type of the usage-based component
+	Type string `json:"type"`
+}
+
 // ComponentFormulaConfig defines model for ComponentFormulaConfig.
 type ComponentFormulaConfig struct {
 	// Targets Limit components set from the value the customer enters.
@@ -31101,6 +31180,9 @@ type ComponentUsage struct {
 
 // ComponentUsageCreateRequest defines model for ComponentUsageCreateRequest.
 type ComponentUsageCreateRequest struct {
+	// DailyUsages Usage of usage-based components per UTC date. The month's usage is then the sum of its days, and a month total for a month that has daily amounts is rejected. Needed for day and week spending limits. At most 1000 items.
+	DailyUsages *[]ComponentDailyUsageItemRequest `json:"daily_usages,omitempty"`
+
 	// Date Date for usage reporting (staff and service providers for limit-based components). If not provided, current date is used.
 	Date *time.Time `json:"date,omitempty"`
 
@@ -31110,7 +31192,7 @@ type ComponentUsageCreateRequest struct {
 	// Resource UUID of the resource for usage reporting (required if plan_period not provided)
 	Resource *openapi_types.UUID `json:"resource,omitempty"`
 
-	// Usages List of component usage items to report
+	// Usages List of component usage items to report, each the total of the billing month so far. May be empty when daily_usages is given.
 	Usages []ComponentUsageItemRequest `json:"usages"`
 }
 
@@ -34481,9 +34563,7 @@ type CustomerServiceAccountRequest struct {
 	Customer            *openapi_types.UUID  `json:"customer"`
 	Description         *string              `json:"description,omitempty"`
 	Email               *openapi_types.Email `json:"email,omitempty"`
-	ErrorTraceback      *string              `json:"error_traceback,omitempty"`
 	PreferredIdentifier *string              `json:"preferred_identifier,omitempty"`
-	Username            *string              `json:"username,omitempty"`
 }
 
 // CustomerUser defines model for CustomerUser.
@@ -35871,28 +35951,15 @@ type EventSubscription struct {
 
 	// ObservableObjects List of objects to observe. Each item must have 'object_type' (one of: order, user_role, resource, offering_user, importable_resources, service_account, course_account, resource_periodic_limits) and optionally 'object_id' (integer). Example: [{"object_type": "resource"}, {"object_type": "order", "object_id": 123}]
 	ObservableObjects *[]EventSubscriptionObservableObject `json:"observable_objects,omitempty"`
-
-	// SourceIp An IPv4 or IPv6 address.
-	SourceIp     *EventSubscription_SourceIp `json:"source_ip,omitempty"`
-	Url          *string                     `json:"url,omitempty"`
-	User         *string                     `json:"user,omitempty"`
-	UserFullName *string                     `json:"user_full_name,omitempty"`
+	SourceIp          *string                              `json:"source_ip,omitempty"`
+	Url               *string                              `json:"url,omitempty"`
+	User              *string                              `json:"user,omitempty"`
+	UserFullName      *string                              `json:"user_full_name,omitempty"`
 
 	// UserUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	UserUsername *string             `json:"user_username,omitempty"`
 	UserUuid     *openapi_types.UUID `json:"user_uuid,omitempty"`
 	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
-}
-
-// EventSubscriptionSourceIp0 defines model for EventSubscription.SourceIp.0.
-type EventSubscriptionSourceIp0 = string
-
-// EventSubscriptionSourceIp1 defines model for EventSubscription.SourceIp.1.
-type EventSubscriptionSourceIp1 = string
-
-// EventSubscription_SourceIp An IPv4 or IPv6 address.
-type EventSubscription_SourceIp struct {
-	union json.RawMessage
 }
 
 // EventSubscriptionObservableObject defines model for EventSubscriptionObservableObject.
@@ -39526,6 +39593,12 @@ type MergedPluginOptions struct {
 	// ActionOnUsageLimit If set to 'pause' or 'downscale', resources are automatically paused or downscaled when reported usage in the current period reaches a component's limit_amount, and the restriction is lifted when usage drops below the limit again (e.g. a new billing period or a raised limit).
 	ActionOnUsageLimit *MergedPluginOptions_ActionOnUsageLimit `json:"action_on_usage_limit,omitempty"`
 
+	// ApiKeyDailyUsage Declares that the site agent reports each API key's usage per day. Only then are keys offered limits other than month: the day and week periods, and the quarter and year, that a component offers to resources. Off unless set; needs enable_api_key_provisioning. Nothing checks the claim: turn it on only if the agent reports per-key daily usage, or those limits are never reached.
+	ApiKeyDailyUsage *bool `json:"api_key_daily_usage,omitempty"`
+
+	// ApiKeyLimits Lets consumers set spending limits on API keys one by one. On unless set to false; needs enable_api_key_provisioning. Turned off, no new key limit is accepted, and limits keys already hold stay until cleared.
+	ApiKeyLimits *bool `json:"api_key_limits,omitempty"`
+
 	// AutoApproveForRoles List of project or organization role names (e.g. 'PROJECT.MANAGER') whose orders skip consumer review for this offering. The creator must hold the role on the target project or its organization. Independent of restricted_to_roles (which governs visibility/ordering) and of the ORDER.APPROVE permission. Provider review and purchase-order requirements still apply. Only staff can change this option.
 	AutoApproveForRoles *[]string `json:"auto_approve_for_roles,omitempty"`
 
@@ -39871,6 +39944,12 @@ type MergedPluginOptionsRequest struct {
 
 	// ActionOnUsageLimit If set to 'pause' or 'downscale', resources are automatically paused or downscaled when reported usage in the current period reaches a component's limit_amount, and the restriction is lifted when usage drops below the limit again (e.g. a new billing period or a raised limit).
 	ActionOnUsageLimit *MergedPluginOptionsRequest_ActionOnUsageLimit `json:"action_on_usage_limit,omitempty"`
+
+	// ApiKeyDailyUsage Declares that the site agent reports each API key's usage per day. Only then are keys offered limits other than month: the day and week periods, and the quarter and year, that a component offers to resources. Off unless set; needs enable_api_key_provisioning. Nothing checks the claim: turn it on only if the agent reports per-key daily usage, or those limits are never reached.
+	ApiKeyDailyUsage *bool `json:"api_key_daily_usage,omitempty"`
+
+	// ApiKeyLimits Lets consumers set spending limits on API keys one by one. On unless set to false; needs enable_api_key_provisioning. Turned off, no new key limit is accepted, and limits keys already hold stay until cleared.
+	ApiKeyLimits *bool `json:"api_key_limits,omitempty"`
 
 	// AutoApproveForRoles List of project or organization role names (e.g. 'PROJECT.MANAGER') whose orders skip consumer review for this offering. The creator must hold the role on the target project or its organization. Independent of restricted_to_roles (which governs visibility/ordering) and of the ORDER.APPROVE permission. Provider review and purchase-order requirements still apply. Only staff can change this option.
 	AutoApproveForRoles *[]string `json:"auto_approve_for_roles,omitempty"`
@@ -41773,6 +41852,9 @@ type OfferingComponent struct {
 	// RenewalDurationStep Step size in months for renewal. Only multiples of this value (starting from min_renewal_duration) are valid. Defaults to 1.
 	RenewalDurationStep *int `json:"renewal_duration_step,omitempty"`
 
+	// SpendingLimitPeriods Periods (day, week, month, quarter, year) for which customers can set a spending limit on this usage-based component. Day and week need the integration to report usage per day. Empty when customers cannot set spending limits.
+	SpendingLimitPeriods *map[string]SpendingLimitBounds `json:"spending_limit_periods,omitempty"`
+
 	// Type Unique internal name of the measured unit, for example floating_ip.
 	Type *string `json:"type,omitempty"`
 
@@ -41835,6 +41917,9 @@ type OfferingComponentRequest struct {
 
 	// RenewalDurationStep Step size in months for renewal. Only multiples of this value (starting from min_renewal_duration) are valid. Defaults to 1.
 	RenewalDurationStep *int `json:"renewal_duration_step,omitempty"`
+
+	// SpendingLimitPeriods Periods (day, week, month, quarter, year) for which customers can set a spending limit on this usage-based component. Day and week need the integration to report usage per day. Empty when customers cannot set spending limits.
+	SpendingLimitPeriods *map[string]SpendingLimitBoundsRequest `json:"spending_limit_periods,omitempty"`
 
 	// Type Unique internal name of the measured unit, for example floating_ip.
 	Type string `json:"type"`
@@ -44238,8 +44323,8 @@ type OpenStackFloatingIP struct {
 	AccessUrl *OpenStackFloatingIP_AccessUrl `json:"access_url,omitempty"`
 
 	// Address The public IPv4 address of the floating IP
-	Address   *OpenStackFloatingIP_Address `json:"address,omitempty"`
-	BackendId *string                      `json:"backend_id,omitempty"`
+	Address   *string `json:"address,omitempty"`
+	BackendId *string `json:"backend_id,omitempty"`
 
 	// BackendNetworkId ID of network in OpenStack where this floating IP is allocated
 	BackendNetworkId     *string             `json:"backend_network_id,omitempty"`
@@ -44301,17 +44386,6 @@ type OpenStackFloatingIPAccessUrl1 = string
 
 // OpenStackFloatingIP_AccessUrl defines model for OpenStackFloatingIP.AccessUrl.
 type OpenStackFloatingIP_AccessUrl struct {
-	union json.RawMessage
-}
-
-// OpenStackFloatingIPAddress0 defines model for OpenStackFloatingIP.Address.0.
-type OpenStackFloatingIPAddress0 = string
-
-// OpenStackFloatingIPAddress1 defines model for OpenStackFloatingIP.Address.1.
-type OpenStackFloatingIPAddress1 = string
-
-// OpenStackFloatingIP_Address The public IPv4 address of the floating IP
-type OpenStackFloatingIP_Address struct {
 	union json.RawMessage
 }
 
@@ -44947,8 +45021,8 @@ type OpenStackLoadBalancerVIPSecurityGroup struct {
 // OpenStackNestedFloatingIP defines model for OpenStackNestedFloatingIP.
 type OpenStackNestedFloatingIP struct {
 	// Address The public IPv4 address of the floating IP
-	Address      *OpenStackNestedFloatingIP_Address `json:"address,omitempty"`
-	PortFixedIps *[]OpenStackFixedIp                `json:"port_fixed_ips,omitempty"`
+	Address      *string             `json:"address,omitempty"`
+	PortFixedIps *[]OpenStackFixedIp `json:"port_fixed_ips,omitempty"`
 
 	// PortMacAddress MAC address of the port
 	PortMacAddress *string `json:"port_mac_address,omitempty"`
@@ -44961,17 +45035,6 @@ type OpenStackNestedFloatingIP struct {
 	SubnetUuid        *openapi_types.UUID `json:"subnet_uuid,omitempty"`
 	Url               *string             `json:"url,omitempty"`
 	Uuid              *openapi_types.UUID `json:"uuid,omitempty"`
-}
-
-// OpenStackNestedFloatingIPAddress0 defines model for OpenStackNestedFloatingIP.Address.0.
-type OpenStackNestedFloatingIPAddress0 = string
-
-// OpenStackNestedFloatingIPAddress1 defines model for OpenStackNestedFloatingIP.Address.1.
-type OpenStackNestedFloatingIPAddress1 = string
-
-// OpenStackNestedFloatingIP_Address The public IPv4 address of the floating IP
-type OpenStackNestedFloatingIP_Address struct {
-	union json.RawMessage
 }
 
 // OpenStackNestedInstance defines model for OpenStackNestedInstance.
@@ -46772,6 +46835,9 @@ type OrderCreateRequest struct {
 	// Slug Slug of the new resource. Used when the caller is staff or holds RESOURCE.SET_SLUG on the project, the offering or their organizations; otherwise ignored.
 	Slug *string `json:"slug,omitempty"`
 
+	// SpendingLimits Spending limits of the new resource on its usage-based components, per period: {component_type: {period: amount}}. Only the periods each component offers are accepted, up to their maximum.
+	SpendingLimits *map[string]*map[string]*float64 `json:"spending_limits,omitempty"`
+
 	// StartDate Enables delayed processing of resource provisioning order.
 	StartDate *openapi_types.Date `json:"start_date,omitempty"`
 }
@@ -47915,9 +47981,7 @@ type PatchedCustomerServiceAccountRequest struct {
 	Customer            *openapi_types.UUID  `json:"customer,omitempty"`
 	Description         *string              `json:"description,omitempty"`
 	Email               *openapi_types.Email `json:"email,omitempty"`
-	ErrorTraceback      *string              `json:"error_traceback,omitempty"`
 	PreferredIdentifier *string              `json:"preferred_identifier,omitempty"`
-	Username            *string              `json:"username,omitempty"`
 }
 
 // PatchedDigitalOceanDropletRequest defines model for PatchedDigitalOceanDropletRequest.
@@ -48992,10 +49056,8 @@ type PatchedProjectRequestMultipart_OecdFos2007Code struct {
 type PatchedProjectServiceAccountRequest struct {
 	Description         *string              `json:"description,omitempty"`
 	Email               *openapi_types.Email `json:"email,omitempty"`
-	ErrorTraceback      *string              `json:"error_traceback,omitempty"`
 	PreferredIdentifier *string              `json:"preferred_identifier,omitempty"`
 	Project             *openapi_types.UUID  `json:"project,omitempty"`
-	Username            *string              `json:"username,omitempty"`
 }
 
 // PatchedProjectTemplateRequest defines model for PatchedProjectTemplateRequest.
@@ -49360,31 +49422,18 @@ type PatchedRancherIngressRequest struct {
 
 // PatchedRancherServiceRequest defines model for PatchedRancherServiceRequest.
 type PatchedRancherServiceRequest struct {
-	BackendId *string `json:"backend_id,omitempty"`
-
-	// ClusterIp An IPv4 or IPv6 address.
-	ClusterIp       *PatchedRancherServiceRequest_ClusterIp `json:"cluster_ip,omitempty"`
-	Description     *string                                 `json:"description,omitempty"`
-	ErrorMessage    *string                                 `json:"error_message,omitempty"`
-	ErrorTraceback  *string                                 `json:"error_traceback,omitempty"`
-	Name            *string                                 `json:"name,omitempty"`
-	Namespace       *string                                 `json:"namespace,omitempty"`
-	Project         *string                                 `json:"project,omitempty"`
-	RuntimeState    *string                                 `json:"runtime_state,omitempty"`
-	Selector        *map[string]interface{}                 `json:"selector,omitempty"`
-	ServiceSettings *string                                 `json:"service_settings,omitempty"`
-	TargetWorkloads *[]RancherNestedWorkloadRequest         `json:"target_workloads,omitempty"`
-}
-
-// PatchedRancherServiceRequestClusterIp0 defines model for PatchedRancherServiceRequest.ClusterIp.0.
-type PatchedRancherServiceRequestClusterIp0 = string
-
-// PatchedRancherServiceRequestClusterIp1 defines model for PatchedRancherServiceRequest.ClusterIp.1.
-type PatchedRancherServiceRequestClusterIp1 = string
-
-// PatchedRancherServiceRequest_ClusterIp An IPv4 or IPv6 address.
-type PatchedRancherServiceRequest_ClusterIp struct {
-	union json.RawMessage
+	BackendId       *string                         `json:"backend_id,omitempty"`
+	ClusterIp       *string                         `json:"cluster_ip,omitempty"`
+	Description     *string                         `json:"description,omitempty"`
+	ErrorMessage    *string                         `json:"error_message,omitempty"`
+	ErrorTraceback  *string                         `json:"error_traceback,omitempty"`
+	Name            *string                         `json:"name,omitempty"`
+	Namespace       *string                         `json:"namespace,omitempty"`
+	Project         *string                         `json:"project,omitempty"`
+	RuntimeState    *string                         `json:"runtime_state,omitempty"`
+	Selector        *map[string]interface{}         `json:"selector,omitempty"`
+	ServiceSettings *string                         `json:"service_settings,omitempty"`
+	TargetWorkloads *[]RancherNestedWorkloadRequest `json:"target_workloads,omitempty"`
 }
 
 // PatchedRancherWorkloadRequest defines model for PatchedRancherWorkloadRequest.
@@ -49450,11 +49499,11 @@ type PatchedResourceApiKeyUpdateRequest struct {
 	// AllowedModels Models the key may call: ["*"] for every model, an empty list for none. Absent, a new key gets none and an edited one keeps its list.
 	AllowedModels *[]string `json:"allowed_models,omitempty"`
 
-	// Limits Limits per component type; zero or absent means no limit.
+	// Limits Month limits per component type; zero or absent means no month limit. Replaces the month limits of spending_limits and keeps the other periods. Not together with spending_limits.
 	Limits *map[string]float64 `json:"limits,omitempty"`
 
-	// User Assignee. When set, only this user can reveal the key.
-	User *openapi_types.UUID `json:"user,omitempty"`
+	// SpendingLimits Limits per component type and period, replacing the key's limits; a null amount clears that period's limit. Only where the offering's api_key_limits is not off, and not on a component the plan prices at zero. A period other than month must be offered on the component and needs the offering's api_key_daily_usage. A limit may not exceed the resource's spending limit for the same period.
+	SpendingLimits *map[string]*map[string]*float64 `json:"spending_limits,omitempty"`
 }
 
 // PatchedResourceProjectRequest defines model for PatchedResourceProjectRequest.
@@ -51568,10 +51617,8 @@ type ProjectServiceAccount struct {
 type ProjectServiceAccountRequest struct {
 	Description         *string              `json:"description,omitempty"`
 	Email               *openapi_types.Email `json:"email,omitempty"`
-	ErrorTraceback      *string              `json:"error_traceback,omitempty"`
 	PreferredIdentifier *string              `json:"preferred_identifier,omitempty"`
 	Project             *openapi_types.UUID  `json:"project"`
-	Username            *string              `json:"username,omitempty"`
 }
 
 // ProjectSlugRequest defines model for ProjectSlugRequest.
@@ -54649,11 +54696,9 @@ type RancherRoleScopeType string
 
 // RancherService defines model for RancherService.
 type RancherService struct {
-	AccessUrl *RancherService_AccessUrl `json:"access_url,omitempty"`
-	BackendId *string                   `json:"backend_id,omitempty"`
-
-	// ClusterIp An IPv4 or IPv6 address.
-	ClusterIp                        *RancherService_ClusterIp `json:"cluster_ip,omitempty"`
+	AccessUrl                        *RancherService_AccessUrl `json:"access_url,omitempty"`
+	BackendId                        *string                   `json:"backend_id,omitempty"`
+	ClusterIp                        *string                   `json:"cluster_ip,omitempty"`
 	Created                          *time.Time                `json:"created,omitempty"`
 	Customer                         *string                   `json:"customer,omitempty"`
 	CustomerAbbreviation             *string                   `json:"customer_abbreviation,omitempty"`
@@ -54706,24 +54751,11 @@ type RancherService_AccessUrl struct {
 	union json.RawMessage
 }
 
-// RancherServiceClusterIp0 defines model for RancherService.ClusterIp.0.
-type RancherServiceClusterIp0 = string
-
-// RancherServiceClusterIp1 defines model for RancherService.ClusterIp.1.
-type RancherServiceClusterIp1 = string
-
-// RancherService_ClusterIp An IPv4 or IPv6 address.
-type RancherService_ClusterIp struct {
-	union json.RawMessage
-}
-
 // RancherServiceCreate defines model for RancherServiceCreate.
 type RancherServiceCreate struct {
-	AccessUrl *RancherServiceCreate_AccessUrl `json:"access_url,omitempty"`
-	BackendId *string                         `json:"backend_id,omitempty"`
-
-	// ClusterIp An IPv4 or IPv6 address.
-	ClusterIp                        *RancherServiceCreate_ClusterIp `json:"cluster_ip,omitempty"`
+	AccessUrl                        *RancherServiceCreate_AccessUrl `json:"access_url,omitempty"`
+	BackendId                        *string                         `json:"backend_id,omitempty"`
+	ClusterIp                        *string                         `json:"cluster_ip,omitempty"`
 	Created                          *time.Time                      `json:"created,omitempty"`
 	Customer                         *string                         `json:"customer,omitempty"`
 	CustomerAbbreviation             *string                         `json:"customer_abbreviation,omitempty"`
@@ -54776,44 +54808,20 @@ type RancherServiceCreate_AccessUrl struct {
 	union json.RawMessage
 }
 
-// RancherServiceCreateClusterIp0 defines model for RancherServiceCreate.ClusterIp.0.
-type RancherServiceCreateClusterIp0 = string
-
-// RancherServiceCreateClusterIp1 defines model for RancherServiceCreate.ClusterIp.1.
-type RancherServiceCreateClusterIp1 = string
-
-// RancherServiceCreate_ClusterIp An IPv4 or IPv6 address.
-type RancherServiceCreate_ClusterIp struct {
-	union json.RawMessage
-}
-
 // RancherServiceCreateRequest defines model for RancherServiceCreateRequest.
 type RancherServiceCreateRequest struct {
-	BackendId *string `json:"backend_id,omitempty"`
-
-	// ClusterIp An IPv4 or IPv6 address.
-	ClusterIp       *RancherServiceCreateRequest_ClusterIp `json:"cluster_ip,omitempty"`
-	Description     *string                                `json:"description,omitempty"`
-	ErrorMessage    *string                                `json:"error_message,omitempty"`
-	ErrorTraceback  *string                                `json:"error_traceback,omitempty"`
-	Name            string                                 `json:"name"`
-	Namespace       *string                                `json:"namespace,omitempty"`
-	Project         string                                 `json:"project"`
-	RuntimeState    *string                                `json:"runtime_state,omitempty"`
-	Selector        *map[string]interface{}                `json:"selector,omitempty"`
-	ServiceSettings string                                 `json:"service_settings"`
-	TargetWorkloads *[]RancherWorkloadCreateRequest        `json:"target_workloads,omitempty"`
-}
-
-// RancherServiceCreateRequestClusterIp0 defines model for RancherServiceCreateRequest.ClusterIp.0.
-type RancherServiceCreateRequestClusterIp0 = string
-
-// RancherServiceCreateRequestClusterIp1 defines model for RancherServiceCreateRequest.ClusterIp.1.
-type RancherServiceCreateRequestClusterIp1 = string
-
-// RancherServiceCreateRequest_ClusterIp An IPv4 or IPv6 address.
-type RancherServiceCreateRequest_ClusterIp struct {
-	union json.RawMessage
+	BackendId       *string                         `json:"backend_id,omitempty"`
+	ClusterIp       *string                         `json:"cluster_ip,omitempty"`
+	Description     *string                         `json:"description,omitempty"`
+	ErrorMessage    *string                         `json:"error_message,omitempty"`
+	ErrorTraceback  *string                         `json:"error_traceback,omitempty"`
+	Name            string                          `json:"name"`
+	Namespace       *string                         `json:"namespace,omitempty"`
+	Project         string                          `json:"project"`
+	RuntimeState    *string                         `json:"runtime_state,omitempty"`
+	Selector        *map[string]interface{}         `json:"selector,omitempty"`
+	ServiceSettings string                          `json:"service_settings"`
+	TargetWorkloads *[]RancherWorkloadCreateRequest `json:"target_workloads,omitempty"`
 }
 
 // RancherServiceFieldEnum defines model for RancherServiceFieldEnum.
@@ -54821,31 +54829,18 @@ type RancherServiceFieldEnum string
 
 // RancherServiceRequest defines model for RancherServiceRequest.
 type RancherServiceRequest struct {
-	BackendId *string `json:"backend_id,omitempty"`
-
-	// ClusterIp An IPv4 or IPv6 address.
-	ClusterIp       *RancherServiceRequest_ClusterIp `json:"cluster_ip,omitempty"`
-	Description     *string                          `json:"description,omitempty"`
-	ErrorMessage    *string                          `json:"error_message,omitempty"`
-	ErrorTraceback  *string                          `json:"error_traceback,omitempty"`
-	Name            string                           `json:"name"`
-	Namespace       *string                          `json:"namespace,omitempty"`
-	Project         string                           `json:"project"`
-	RuntimeState    *string                          `json:"runtime_state,omitempty"`
-	Selector        *map[string]interface{}          `json:"selector,omitempty"`
-	ServiceSettings string                           `json:"service_settings"`
-	TargetWorkloads []RancherNestedWorkloadRequest   `json:"target_workloads"`
-}
-
-// RancherServiceRequestClusterIp0 defines model for RancherServiceRequest.ClusterIp.0.
-type RancherServiceRequestClusterIp0 = string
-
-// RancherServiceRequestClusterIp1 defines model for RancherServiceRequest.ClusterIp.1.
-type RancherServiceRequestClusterIp1 = string
-
-// RancherServiceRequest_ClusterIp An IPv4 or IPv6 address.
-type RancherServiceRequest_ClusterIp struct {
-	union json.RawMessage
+	BackendId       *string                        `json:"backend_id,omitempty"`
+	ClusterIp       *string                        `json:"cluster_ip,omitempty"`
+	Description     *string                        `json:"description,omitempty"`
+	ErrorMessage    *string                        `json:"error_message,omitempty"`
+	ErrorTraceback  *string                        `json:"error_traceback,omitempty"`
+	Name            string                         `json:"name"`
+	Namespace       *string                        `json:"namespace,omitempty"`
+	Project         string                         `json:"project"`
+	RuntimeState    *string                        `json:"runtime_state,omitempty"`
+	Selector        *map[string]interface{}        `json:"selector,omitempty"`
+	ServiceSettings string                         `json:"service_settings"`
+	TargetWorkloads []RancherNestedWorkloadRequest `json:"target_workloads"`
 }
 
 // RancherTemplate defines model for RancherTemplate.
@@ -55775,12 +55770,19 @@ type Resource struct {
 	ServiceSettingsUuid      *openapi_types.UUID `json:"service_settings_uuid,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
-	Slug  *string        `json:"slug,omitempty"`
-	State *ResourceState `json:"state,omitempty"`
-	Url   *string        `json:"url,omitempty"`
+	Slug                *string                `json:"slug,omitempty"`
+	SpendingLimitStatus *[]SpendingLimitStatus `json:"spending_limit_status,omitempty"`
+
+	// SpendingLimits Spending limits on usage-based components, per period. Changed with the set_spending_limits action.
+	SpendingLimits *map[string]*map[string]*float64 `json:"spending_limits,omitempty"`
+	State          *ResourceState                   `json:"state,omitempty"`
+	Url            *string                          `json:"url,omitempty"`
 
 	// UsageLimitRestriction Which restriction (paused or downscaled) was automatically applied because reported usage reached a component limit. Empty when no such restriction is active. Used so the automatic lift never clears a restriction that was set for another reason.
 	UsageLimitRestriction *Resource_UsageLimitRestriction `json:"usage_limit_restriction,omitempty"`
+
+	// UsageLimitResumesAt When the spending limits that restrict the resource reset and the restriction lifts. Empty when no spending limit restricts the resource, or when a limit-based component's limit does too.
+	UsageLimitResumesAt *time.Time `json:"usage_limit_resumes_at,omitempty"`
 
 	// UserRequiresReconsent Check if the current user needs to re-consent for this resource's offering.
 	UserRequiresReconsent *bool               `json:"user_requires_reconsent,omitempty"`
@@ -55806,18 +55808,25 @@ type ResourceApiKey struct {
 	ErrorMessage    *string   `json:"error_message,omitempty"`
 
 	// IssuedAt When the agent last stored a value for this key: its creation or its latest rotation. Unlike modified, a pause or an edit leaves it alone.
-	IssuedAt          *time.Time                    `json:"issued_at,omitempty"`
-	Limits            *map[string]float64           `json:"limits,omitempty"`
-	Modified          *time.Time                    `json:"modified,omitempty"`
-	PausedByLimit     *bool                         `json:"paused_by_limit,omitempty"`
-	PendingAction     *ResourceApiKey_PendingAction `json:"pending_action,omitempty"`
-	ResourceBackendId *string                       `json:"resource_backend_id,omitempty"`
-	ResourceUuid      *openapi_types.UUID           `json:"resource_uuid,omitempty"`
-	State             *ResourceApiKeyState          `json:"state,omitempty"`
-	UsagePeriod       *openapi_types.Date           `json:"usage_period,omitempty"`
-	UserFullName      *string                       `json:"user_full_name,omitempty"`
-	UserUuid          *openapi_types.UUID           `json:"user_uuid,omitempty"`
-	Uuid              *openapi_types.UUID           `json:"uuid,omitempty"`
+	IssuedAt       *time.Time `json:"issued_at,omitempty"`
+	LimitResumesAt *time.Time `json:"limit_resumes_at,omitempty"`
+
+	// Limits The month limits of spending_limits, per component type, for clients that know only monthly limits.
+	Limits              *map[string]float64           `json:"limits,omitempty"`
+	Modified            *time.Time                    `json:"modified,omitempty"`
+	PausedByLimit       *bool                         `json:"paused_by_limit,omitempty"`
+	PendingAction       *ResourceApiKey_PendingAction `json:"pending_action,omitempty"`
+	ResourceBackendId   *string                       `json:"resource_backend_id,omitempty"`
+	ResourceUuid        *openapi_types.UUID           `json:"resource_uuid,omitempty"`
+	SpendingLimitStatus *[]SpendingLimitUsage         `json:"spending_limit_status,omitempty"`
+
+	// SpendingLimits Limits per component type and period.
+	SpendingLimits *map[string]*map[string]*float64 `json:"spending_limits,omitempty"`
+	State          *ResourceApiKeyState             `json:"state,omitempty"`
+	UsagePeriod    *openapi_types.Date              `json:"usage_period,omitempty"`
+	UserFullName   *string                          `json:"user_full_name,omitempty"`
+	UserUuid       *openapi_types.UUID              `json:"user_uuid,omitempty"`
+	Uuid           *openapi_types.UUID              `json:"uuid,omitempty"`
 }
 
 // ResourceApiKey_PendingAction defines model for ResourceApiKey.PendingAction.
@@ -55833,11 +55842,14 @@ type ResourceApiKeyCreateRequest struct {
 	// AllowedModels Models the key may call: ["*"] for every model, an empty list for none. Absent, a new key gets none and an edited one keeps its list.
 	AllowedModels *[]string `json:"allowed_models,omitempty"`
 
-	// Limits Limits per component type; zero or absent means no limit.
+	// Limits Month limits per component type; zero or absent means no month limit. Replaces the month limits of spending_limits and keeps the other periods. Not together with spending_limits.
 	Limits   *map[string]float64 `json:"limits,omitempty"`
 	Resource openapi_types.UUID  `json:"resource"`
 
-	// User Assignee. When set, only this user can reveal the key.
+	// SpendingLimits Limits per component type and period, replacing the key's limits; a null amount clears that period's limit. Only where the offering's api_key_limits is not off, and not on a component the plan prices at zero. A period other than month must be offered on the component and needs the offering's api_key_daily_usage. A limit may not exceed the resource's spending limit for the same period.
+	SpendingLimits *map[string]*map[string]*float64 `json:"spending_limits,omitempty"`
+
+	// User Assignee. When set, only this user can reveal the key. It is held until the key is deleted.
 	User *openapi_types.UUID `json:"user,omitempty"`
 }
 
@@ -55874,18 +55886,25 @@ type ResourceApiKeyStatus struct {
 	ErrorMessage    *string   `json:"error_message,omitempty"`
 
 	// IssuedAt When the agent last stored a value for this key: its creation or its latest rotation. Unlike modified, a pause or an edit leaves it alone.
-	IssuedAt          *time.Time                          `json:"issued_at,omitempty"`
-	Limits            *map[string]float64                 `json:"limits,omitempty"`
-	Modified          *time.Time                          `json:"modified,omitempty"`
-	PausedByLimit     *bool                               `json:"paused_by_limit,omitempty"`
-	PendingAction     *ResourceApiKeyStatus_PendingAction `json:"pending_action,omitempty"`
-	ResourceBackendId *string                             `json:"resource_backend_id,omitempty"`
-	ResourceUuid      *openapi_types.UUID                 `json:"resource_uuid,omitempty"`
-	State             *ResourceApiKeyState                `json:"state,omitempty"`
-	UsagePeriod       *openapi_types.Date                 `json:"usage_period,omitempty"`
-	UserFullName      *string                             `json:"user_full_name,omitempty"`
-	UserUuid          *openapi_types.UUID                 `json:"user_uuid,omitempty"`
-	Uuid              *openapi_types.UUID                 `json:"uuid,omitempty"`
+	IssuedAt       *time.Time `json:"issued_at,omitempty"`
+	LimitResumesAt *time.Time `json:"limit_resumes_at,omitempty"`
+
+	// Limits The month limits of spending_limits, per component type, for clients that know only monthly limits.
+	Limits              *map[string]float64                 `json:"limits,omitempty"`
+	Modified            *time.Time                          `json:"modified,omitempty"`
+	PausedByLimit       *bool                               `json:"paused_by_limit,omitempty"`
+	PendingAction       *ResourceApiKeyStatus_PendingAction `json:"pending_action,omitempty"`
+	ResourceBackendId   *string                             `json:"resource_backend_id,omitempty"`
+	ResourceUuid        *openapi_types.UUID                 `json:"resource_uuid,omitempty"`
+	SpendingLimitStatus *[]SpendingLimitUsage               `json:"spending_limit_status,omitempty"`
+
+	// SpendingLimits Limits per component type and period.
+	SpendingLimits *map[string]*map[string]*float64 `json:"spending_limits,omitempty"`
+	State          *ResourceApiKeyState             `json:"state,omitempty"`
+	UsagePeriod    *openapi_types.Date              `json:"usage_period,omitempty"`
+	UserFullName   *string                          `json:"user_full_name,omitempty"`
+	UserUuid       *openapi_types.UUID              `json:"user_uuid,omitempty"`
+	Uuid           *openapi_types.UUID              `json:"uuid,omitempty"`
 }
 
 // ResourceApiKeyStatus_PendingAction defines model for ResourceApiKeyStatus.PendingAction.
@@ -55895,11 +55914,14 @@ type ResourceApiKeyStatus_PendingAction struct {
 
 // ResourceApiKeyUsageRequest defines model for ResourceApiKeyUsageRequest.
 type ResourceApiKeyUsageRequest struct {
-	// BillingPeriod Any day of the month the usage belongs to; the current month when omitted. Limits are monthly, so a later month starts them afresh.
+	// BillingPeriod Any day of the month usages belongs to; the current month when omitted. Only the latest month is kept, so a later month starts afresh.
 	BillingPeriod *openapi_types.Date `json:"billing_period,omitempty"`
 
-	// Usages The key's usage so far in billing_period, per component type.
-	Usages map[string]float64 `json:"usages"`
+	// DailyUsages The key's usage per UTC date and component type; a date reported again replaces its amount. The month's usage of a component with daily amounts is their sum. Needed for limits other than month. At most 1000 items, dated from the start of the current year, or of the previous month when that is earlier.
+	DailyUsages *[]ComponentDailyUsageItemRequest `json:"daily_usages,omitempty"`
+
+	// Usages The key's usage so far in billing_period, per component type. Rejected for a component that has daily amounts in that month.
+	Usages *map[string]float64 `json:"usages,omitempty"`
 }
 
 // ResourceApiKeyUsageTotals defines model for ResourceApiKeyUsageTotals.
@@ -56393,6 +56415,18 @@ type ResourceSetStateErredRequest struct {
 // ResourceSlugRequest defines model for ResourceSlugRequest.
 type ResourceSlugRequest struct {
 	Slug string `json:"slug"`
+}
+
+// ResourceSpendingLimits defines model for ResourceSpendingLimits.
+type ResourceSpendingLimits struct {
+	// SpendingLimits The resource's spending limits, replacing the current ones: {component_type: {period: amount}}. A missing or null period clears that limit; an empty object clears them all.
+	SpendingLimits map[string]*map[string]*float64 `json:"spending_limits"`
+}
+
+// ResourceSpendingLimitsRequest defines model for ResourceSpendingLimitsRequest.
+type ResourceSpendingLimitsRequest struct {
+	// SpendingLimits The resource's spending limits, replacing the current ones: {component_type: {period: amount}}. A missing or null period clears that limit; an empty object clears them all.
+	SpendingLimits map[string]*map[string]*float64 `json:"spending_limits"`
 }
 
 // ResourceState defines model for ResourceState.
@@ -59111,6 +59145,58 @@ type SoftwareVersionOEnum string
 // SourceTypeEnum defines model for SourceTypeEnum.
 type SourceTypeEnum string
 
+// SpendingLimitBounds defines model for SpendingLimitBounds.
+type SpendingLimitBounds struct {
+	// Default Amount the order form starts from; the customer may change or clear it.
+	Default *float64 `json:"default,omitempty"`
+
+	// Maximum Highest limit a customer may set for this period.
+	Maximum *float64 `json:"maximum,omitempty"`
+}
+
+// SpendingLimitBoundsRequest defines model for SpendingLimitBoundsRequest.
+type SpendingLimitBoundsRequest struct {
+	// Default Amount the order form starts from; the customer may change or clear it.
+	Default *float64 `json:"default,omitempty"`
+
+	// Maximum Highest limit a customer may set for this period.
+	Maximum *float64 `json:"maximum,omitempty"`
+}
+
+// SpendingLimitPeriodEnum defines model for SpendingLimitPeriodEnum.
+type SpendingLimitPeriodEnum string
+
+// SpendingLimitStatus defines model for SpendingLimitStatus.
+type SpendingLimitStatus struct {
+	ComponentType *string `json:"component_type,omitempty"`
+
+	// LastReportedAt When usage of the component was last reported.
+	LastReportedAt *time.Time               `json:"last_reported_at,omitempty"`
+	Limit          *float64                 `json:"limit,omitempty"`
+	Period         *SpendingLimitPeriodEnum `json:"period,omitempty"`
+	Reached        *bool                    `json:"reached,omitempty"`
+
+	// ResetsAt When the current period ends and its usage starts from zero.
+	ResetsAt *time.Time `json:"resets_at,omitempty"`
+
+	// Used Usage reported in the current period.
+	Used *float64 `json:"used,omitempty"`
+}
+
+// SpendingLimitUsage defines model for SpendingLimitUsage.
+type SpendingLimitUsage struct {
+	ComponentType string                  `json:"component_type"`
+	Limit         float64                 `json:"limit"`
+	Period        SpendingLimitPeriodEnum `json:"period"`
+	Reached       bool                    `json:"reached"`
+
+	// ResetsAt When the current period ends and its usage starts from zero.
+	ResetsAt time.Time `json:"resets_at"`
+
+	// Used Usage reported in the current period.
+	Used float64 `json:"used"`
+}
+
 // SramGroup defines model for SramGroup.
 type SramGroup struct {
 	Created      *time.Time          `json:"created,omitempty"`
@@ -60184,6 +60270,9 @@ type UpdateOfferingComponentRequest struct {
 	// RenewalDurationStep Step size in months for renewal. Only multiples of this value (starting from min_renewal_duration) are valid. Defaults to 1.
 	RenewalDurationStep *int `json:"renewal_duration_step,omitempty"`
 
+	// SpendingLimitPeriods Periods (day, week, month, quarter, year) for which customers can set a spending limit on this usage-based component. Day and week need the integration to report usage per day. Empty when customers cannot set spending limits.
+	SpendingLimitPeriods *map[string]SpendingLimitBoundsRequest `json:"spending_limit_periods,omitempty"`
+
 	// Type Unique internal name of the measured unit, for example floating_ip.
 	Type string `json:"type"`
 
@@ -60477,7 +60566,7 @@ type UserAgreement struct {
 	Created       *time.Time        `json:"created,omitempty"`
 
 	// Language ISO 639-1 language code (e.g., 'en', 'de', 'et'). Leave empty for the default version.
-	Language string              `json:"language"`
+	Language *string             `json:"language,omitempty"`
 	Modified *time.Time          `json:"modified,omitempty"`
 	Url      *string             `json:"url,omitempty"`
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
@@ -60489,7 +60578,7 @@ type UserAgreementRequest struct {
 	Content       string            `json:"content"`
 
 	// Language ISO 639-1 language code (e.g., 'en', 'de', 'et'). Leave empty for the default version.
-	Language string `json:"language"`
+	Language *string `json:"language,omitempty"`
 }
 
 // UserAttributeEnum defines model for UserAttributeEnum.
@@ -90613,6 +90702,9 @@ type MarketplaceResourcesSetRestrictMemberAccessJSONRequestBody = ResourceRestri
 // MarketplaceResourcesSetSlugJSONRequestBody defines body for MarketplaceResourcesSetSlug for application/json ContentType.
 type MarketplaceResourcesSetSlugJSONRequestBody = ResourceSlugRequest
 
+// MarketplaceResourcesSetSpendingLimitsJSONRequestBody defines body for MarketplaceResourcesSetSpendingLimits for application/json ContentType.
+type MarketplaceResourcesSetSpendingLimitsJSONRequestBody = ResourceSpendingLimitsRequest
+
 // MarketplaceResourcesSwitchPlanJSONRequestBody defines body for MarketplaceResourcesSwitchPlan for application/json ContentType.
 type MarketplaceResourcesSwitchPlanJSONRequestBody = ResourceSwitchPlanRequest
 
@@ -99092,68 +99184,6 @@ func (t *EventConsumerWebhookUpdateRequest_PayloadFilters_Item) UnmarshalJSON(b 
 	return err
 }
 
-// AsEventSubscriptionSourceIp0 returns the union data inside the EventSubscription_SourceIp as a EventSubscriptionSourceIp0
-func (t EventSubscription_SourceIp) AsEventSubscriptionSourceIp0() (EventSubscriptionSourceIp0, error) {
-	var body EventSubscriptionSourceIp0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromEventSubscriptionSourceIp0 overwrites any union data inside the EventSubscription_SourceIp as the provided EventSubscriptionSourceIp0
-func (t *EventSubscription_SourceIp) FromEventSubscriptionSourceIp0(v EventSubscriptionSourceIp0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeEventSubscriptionSourceIp0 performs a merge with any union data inside the EventSubscription_SourceIp, using the provided EventSubscriptionSourceIp0
-func (t *EventSubscription_SourceIp) MergeEventSubscriptionSourceIp0(v EventSubscriptionSourceIp0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsEventSubscriptionSourceIp1 returns the union data inside the EventSubscription_SourceIp as a EventSubscriptionSourceIp1
-func (t EventSubscription_SourceIp) AsEventSubscriptionSourceIp1() (EventSubscriptionSourceIp1, error) {
-	var body EventSubscriptionSourceIp1
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromEventSubscriptionSourceIp1 overwrites any union data inside the EventSubscription_SourceIp as the provided EventSubscriptionSourceIp1
-func (t *EventSubscription_SourceIp) FromEventSubscriptionSourceIp1(v EventSubscriptionSourceIp1) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeEventSubscriptionSourceIp1 performs a merge with any union data inside the EventSubscription_SourceIp, using the provided EventSubscriptionSourceIp1
-func (t *EventSubscription_SourceIp) MergeEventSubscriptionSourceIp1(v EventSubscriptionSourceIp1) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t EventSubscription_SourceIp) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *EventSubscription_SourceIp) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
 // AsExternalSubnetGatewayIp0 returns the union data inside the ExternalSubnet_GatewayIp as a ExternalSubnetGatewayIp0
 func (t ExternalSubnet_GatewayIp) AsExternalSubnetGatewayIp0() (ExternalSubnetGatewayIp0, error) {
 	var body ExternalSubnetGatewayIp0
@@ -101444,68 +101474,6 @@ func (t *OpenStackFloatingIP_AccessUrl) UnmarshalJSON(b []byte) error {
 	return err
 }
 
-// AsOpenStackFloatingIPAddress0 returns the union data inside the OpenStackFloatingIP_Address as a OpenStackFloatingIPAddress0
-func (t OpenStackFloatingIP_Address) AsOpenStackFloatingIPAddress0() (OpenStackFloatingIPAddress0, error) {
-	var body OpenStackFloatingIPAddress0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromOpenStackFloatingIPAddress0 overwrites any union data inside the OpenStackFloatingIP_Address as the provided OpenStackFloatingIPAddress0
-func (t *OpenStackFloatingIP_Address) FromOpenStackFloatingIPAddress0(v OpenStackFloatingIPAddress0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeOpenStackFloatingIPAddress0 performs a merge with any union data inside the OpenStackFloatingIP_Address, using the provided OpenStackFloatingIPAddress0
-func (t *OpenStackFloatingIP_Address) MergeOpenStackFloatingIPAddress0(v OpenStackFloatingIPAddress0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsOpenStackFloatingIPAddress1 returns the union data inside the OpenStackFloatingIP_Address as a OpenStackFloatingIPAddress1
-func (t OpenStackFloatingIP_Address) AsOpenStackFloatingIPAddress1() (OpenStackFloatingIPAddress1, error) {
-	var body OpenStackFloatingIPAddress1
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromOpenStackFloatingIPAddress1 overwrites any union data inside the OpenStackFloatingIP_Address as the provided OpenStackFloatingIPAddress1
-func (t *OpenStackFloatingIP_Address) FromOpenStackFloatingIPAddress1(v OpenStackFloatingIPAddress1) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeOpenStackFloatingIPAddress1 performs a merge with any union data inside the OpenStackFloatingIP_Address, using the provided OpenStackFloatingIPAddress1
-func (t *OpenStackFloatingIP_Address) MergeOpenStackFloatingIPAddress1(v OpenStackFloatingIPAddress1) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t OpenStackFloatingIP_Address) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *OpenStackFloatingIP_Address) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
 // AsOpenStackFloatingIPExternalAddress0 returns the union data inside the OpenStackFloatingIP_ExternalAddress as a OpenStackFloatingIPExternalAddress0
 func (t OpenStackFloatingIP_ExternalAddress) AsOpenStackFloatingIPExternalAddress0() (OpenStackFloatingIPExternalAddress0, error) {
 	var body OpenStackFloatingIPExternalAddress0
@@ -101874,68 +101842,6 @@ func (t OpenStackLoadBalancer_VipAddress) MarshalJSON() ([]byte, error) {
 }
 
 func (t *OpenStackLoadBalancer_VipAddress) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsOpenStackNestedFloatingIPAddress0 returns the union data inside the OpenStackNestedFloatingIP_Address as a OpenStackNestedFloatingIPAddress0
-func (t OpenStackNestedFloatingIP_Address) AsOpenStackNestedFloatingIPAddress0() (OpenStackNestedFloatingIPAddress0, error) {
-	var body OpenStackNestedFloatingIPAddress0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromOpenStackNestedFloatingIPAddress0 overwrites any union data inside the OpenStackNestedFloatingIP_Address as the provided OpenStackNestedFloatingIPAddress0
-func (t *OpenStackNestedFloatingIP_Address) FromOpenStackNestedFloatingIPAddress0(v OpenStackNestedFloatingIPAddress0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeOpenStackNestedFloatingIPAddress0 performs a merge with any union data inside the OpenStackNestedFloatingIP_Address, using the provided OpenStackNestedFloatingIPAddress0
-func (t *OpenStackNestedFloatingIP_Address) MergeOpenStackNestedFloatingIPAddress0(v OpenStackNestedFloatingIPAddress0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsOpenStackNestedFloatingIPAddress1 returns the union data inside the OpenStackNestedFloatingIP_Address as a OpenStackNestedFloatingIPAddress1
-func (t OpenStackNestedFloatingIP_Address) AsOpenStackNestedFloatingIPAddress1() (OpenStackNestedFloatingIPAddress1, error) {
-	var body OpenStackNestedFloatingIPAddress1
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromOpenStackNestedFloatingIPAddress1 overwrites any union data inside the OpenStackNestedFloatingIP_Address as the provided OpenStackNestedFloatingIPAddress1
-func (t *OpenStackNestedFloatingIP_Address) FromOpenStackNestedFloatingIPAddress1(v OpenStackNestedFloatingIPAddress1) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeOpenStackNestedFloatingIPAddress1 performs a merge with any union data inside the OpenStackNestedFloatingIP_Address, using the provided OpenStackNestedFloatingIPAddress1
-func (t *OpenStackNestedFloatingIP_Address) MergeOpenStackNestedFloatingIPAddress1(v OpenStackNestedFloatingIPAddress1) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t OpenStackNestedFloatingIP_Address) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *OpenStackNestedFloatingIP_Address) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -105636,68 +105542,6 @@ func (t *PatchedQuestionAdminRequest_RichTextToolbarLevel) UnmarshalJSON(b []byt
 	return err
 }
 
-// AsPatchedRancherServiceRequestClusterIp0 returns the union data inside the PatchedRancherServiceRequest_ClusterIp as a PatchedRancherServiceRequestClusterIp0
-func (t PatchedRancherServiceRequest_ClusterIp) AsPatchedRancherServiceRequestClusterIp0() (PatchedRancherServiceRequestClusterIp0, error) {
-	var body PatchedRancherServiceRequestClusterIp0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromPatchedRancherServiceRequestClusterIp0 overwrites any union data inside the PatchedRancherServiceRequest_ClusterIp as the provided PatchedRancherServiceRequestClusterIp0
-func (t *PatchedRancherServiceRequest_ClusterIp) FromPatchedRancherServiceRequestClusterIp0(v PatchedRancherServiceRequestClusterIp0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergePatchedRancherServiceRequestClusterIp0 performs a merge with any union data inside the PatchedRancherServiceRequest_ClusterIp, using the provided PatchedRancherServiceRequestClusterIp0
-func (t *PatchedRancherServiceRequest_ClusterIp) MergePatchedRancherServiceRequestClusterIp0(v PatchedRancherServiceRequestClusterIp0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsPatchedRancherServiceRequestClusterIp1 returns the union data inside the PatchedRancherServiceRequest_ClusterIp as a PatchedRancherServiceRequestClusterIp1
-func (t PatchedRancherServiceRequest_ClusterIp) AsPatchedRancherServiceRequestClusterIp1() (PatchedRancherServiceRequestClusterIp1, error) {
-	var body PatchedRancherServiceRequestClusterIp1
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromPatchedRancherServiceRequestClusterIp1 overwrites any union data inside the PatchedRancherServiceRequest_ClusterIp as the provided PatchedRancherServiceRequestClusterIp1
-func (t *PatchedRancherServiceRequest_ClusterIp) FromPatchedRancherServiceRequestClusterIp1(v PatchedRancherServiceRequestClusterIp1) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergePatchedRancherServiceRequestClusterIp1 performs a merge with any union data inside the PatchedRancherServiceRequest_ClusterIp, using the provided PatchedRancherServiceRequestClusterIp1
-func (t *PatchedRancherServiceRequest_ClusterIp) MergePatchedRancherServiceRequestClusterIp1(v PatchedRancherServiceRequestClusterIp1) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t PatchedRancherServiceRequest_ClusterIp) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *PatchedRancherServiceRequest_ClusterIp) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
 // AsGenderEnum returns the union data inside the PatchedUserRequest_Gender as a GenderEnum
 func (t PatchedUserRequest_Gender) AsGenderEnum() (GenderEnum, error) {
 	var body GenderEnum
@@ -109038,68 +108882,6 @@ func (t *RancherService_AccessUrl) UnmarshalJSON(b []byte) error {
 	return err
 }
 
-// AsRancherServiceClusterIp0 returns the union data inside the RancherService_ClusterIp as a RancherServiceClusterIp0
-func (t RancherService_ClusterIp) AsRancherServiceClusterIp0() (RancherServiceClusterIp0, error) {
-	var body RancherServiceClusterIp0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRancherServiceClusterIp0 overwrites any union data inside the RancherService_ClusterIp as the provided RancherServiceClusterIp0
-func (t *RancherService_ClusterIp) FromRancherServiceClusterIp0(v RancherServiceClusterIp0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeRancherServiceClusterIp0 performs a merge with any union data inside the RancherService_ClusterIp, using the provided RancherServiceClusterIp0
-func (t *RancherService_ClusterIp) MergeRancherServiceClusterIp0(v RancherServiceClusterIp0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsRancherServiceClusterIp1 returns the union data inside the RancherService_ClusterIp as a RancherServiceClusterIp1
-func (t RancherService_ClusterIp) AsRancherServiceClusterIp1() (RancherServiceClusterIp1, error) {
-	var body RancherServiceClusterIp1
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRancherServiceClusterIp1 overwrites any union data inside the RancherService_ClusterIp as the provided RancherServiceClusterIp1
-func (t *RancherService_ClusterIp) FromRancherServiceClusterIp1(v RancherServiceClusterIp1) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeRancherServiceClusterIp1 performs a merge with any union data inside the RancherService_ClusterIp, using the provided RancherServiceClusterIp1
-func (t *RancherService_ClusterIp) MergeRancherServiceClusterIp1(v RancherServiceClusterIp1) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t RancherService_ClusterIp) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *RancherService_ClusterIp) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
 // AsRancherServiceCreateAccessUrl0 returns the union data inside the RancherServiceCreate_AccessUrl as a RancherServiceCreateAccessUrl0
 func (t RancherServiceCreate_AccessUrl) AsRancherServiceCreateAccessUrl0() (RancherServiceCreateAccessUrl0, error) {
 	var body RancherServiceCreateAccessUrl0
@@ -109158,192 +108940,6 @@ func (t RancherServiceCreate_AccessUrl) MarshalJSON() ([]byte, error) {
 }
 
 func (t *RancherServiceCreate_AccessUrl) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsRancherServiceCreateClusterIp0 returns the union data inside the RancherServiceCreate_ClusterIp as a RancherServiceCreateClusterIp0
-func (t RancherServiceCreate_ClusterIp) AsRancherServiceCreateClusterIp0() (RancherServiceCreateClusterIp0, error) {
-	var body RancherServiceCreateClusterIp0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRancherServiceCreateClusterIp0 overwrites any union data inside the RancherServiceCreate_ClusterIp as the provided RancherServiceCreateClusterIp0
-func (t *RancherServiceCreate_ClusterIp) FromRancherServiceCreateClusterIp0(v RancherServiceCreateClusterIp0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeRancherServiceCreateClusterIp0 performs a merge with any union data inside the RancherServiceCreate_ClusterIp, using the provided RancherServiceCreateClusterIp0
-func (t *RancherServiceCreate_ClusterIp) MergeRancherServiceCreateClusterIp0(v RancherServiceCreateClusterIp0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsRancherServiceCreateClusterIp1 returns the union data inside the RancherServiceCreate_ClusterIp as a RancherServiceCreateClusterIp1
-func (t RancherServiceCreate_ClusterIp) AsRancherServiceCreateClusterIp1() (RancherServiceCreateClusterIp1, error) {
-	var body RancherServiceCreateClusterIp1
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRancherServiceCreateClusterIp1 overwrites any union data inside the RancherServiceCreate_ClusterIp as the provided RancherServiceCreateClusterIp1
-func (t *RancherServiceCreate_ClusterIp) FromRancherServiceCreateClusterIp1(v RancherServiceCreateClusterIp1) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeRancherServiceCreateClusterIp1 performs a merge with any union data inside the RancherServiceCreate_ClusterIp, using the provided RancherServiceCreateClusterIp1
-func (t *RancherServiceCreate_ClusterIp) MergeRancherServiceCreateClusterIp1(v RancherServiceCreateClusterIp1) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t RancherServiceCreate_ClusterIp) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *RancherServiceCreate_ClusterIp) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsRancherServiceCreateRequestClusterIp0 returns the union data inside the RancherServiceCreateRequest_ClusterIp as a RancherServiceCreateRequestClusterIp0
-func (t RancherServiceCreateRequest_ClusterIp) AsRancherServiceCreateRequestClusterIp0() (RancherServiceCreateRequestClusterIp0, error) {
-	var body RancherServiceCreateRequestClusterIp0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRancherServiceCreateRequestClusterIp0 overwrites any union data inside the RancherServiceCreateRequest_ClusterIp as the provided RancherServiceCreateRequestClusterIp0
-func (t *RancherServiceCreateRequest_ClusterIp) FromRancherServiceCreateRequestClusterIp0(v RancherServiceCreateRequestClusterIp0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeRancherServiceCreateRequestClusterIp0 performs a merge with any union data inside the RancherServiceCreateRequest_ClusterIp, using the provided RancherServiceCreateRequestClusterIp0
-func (t *RancherServiceCreateRequest_ClusterIp) MergeRancherServiceCreateRequestClusterIp0(v RancherServiceCreateRequestClusterIp0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsRancherServiceCreateRequestClusterIp1 returns the union data inside the RancherServiceCreateRequest_ClusterIp as a RancherServiceCreateRequestClusterIp1
-func (t RancherServiceCreateRequest_ClusterIp) AsRancherServiceCreateRequestClusterIp1() (RancherServiceCreateRequestClusterIp1, error) {
-	var body RancherServiceCreateRequestClusterIp1
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRancherServiceCreateRequestClusterIp1 overwrites any union data inside the RancherServiceCreateRequest_ClusterIp as the provided RancherServiceCreateRequestClusterIp1
-func (t *RancherServiceCreateRequest_ClusterIp) FromRancherServiceCreateRequestClusterIp1(v RancherServiceCreateRequestClusterIp1) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeRancherServiceCreateRequestClusterIp1 performs a merge with any union data inside the RancherServiceCreateRequest_ClusterIp, using the provided RancherServiceCreateRequestClusterIp1
-func (t *RancherServiceCreateRequest_ClusterIp) MergeRancherServiceCreateRequestClusterIp1(v RancherServiceCreateRequestClusterIp1) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t RancherServiceCreateRequest_ClusterIp) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *RancherServiceCreateRequest_ClusterIp) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsRancherServiceRequestClusterIp0 returns the union data inside the RancherServiceRequest_ClusterIp as a RancherServiceRequestClusterIp0
-func (t RancherServiceRequest_ClusterIp) AsRancherServiceRequestClusterIp0() (RancherServiceRequestClusterIp0, error) {
-	var body RancherServiceRequestClusterIp0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRancherServiceRequestClusterIp0 overwrites any union data inside the RancherServiceRequest_ClusterIp as the provided RancherServiceRequestClusterIp0
-func (t *RancherServiceRequest_ClusterIp) FromRancherServiceRequestClusterIp0(v RancherServiceRequestClusterIp0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeRancherServiceRequestClusterIp0 performs a merge with any union data inside the RancherServiceRequest_ClusterIp, using the provided RancherServiceRequestClusterIp0
-func (t *RancherServiceRequest_ClusterIp) MergeRancherServiceRequestClusterIp0(v RancherServiceRequestClusterIp0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsRancherServiceRequestClusterIp1 returns the union data inside the RancherServiceRequest_ClusterIp as a RancherServiceRequestClusterIp1
-func (t RancherServiceRequest_ClusterIp) AsRancherServiceRequestClusterIp1() (RancherServiceRequestClusterIp1, error) {
-	var body RancherServiceRequestClusterIp1
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRancherServiceRequestClusterIp1 overwrites any union data inside the RancherServiceRequest_ClusterIp as the provided RancherServiceRequestClusterIp1
-func (t *RancherServiceRequest_ClusterIp) FromRancherServiceRequestClusterIp1(v RancherServiceRequestClusterIp1) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeRancherServiceRequestClusterIp1 performs a merge with any union data inside the RancherServiceRequest_ClusterIp, using the provided RancherServiceRequestClusterIp1
-func (t *RancherServiceRequest_ClusterIp) MergeRancherServiceRequestClusterIp1(v RancherServiceRequestClusterIp1) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t RancherServiceRequest_ClusterIp) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *RancherServiceRequest_ClusterIp) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -111289,7 +110885,7 @@ type ClientInterface interface {
 
 	// ApiAuthLogout Log out
 	//
-	// Logs out the current user by deleting their authentication token. If single logout (SLO) is supported for the current authentication method (e.g., SAML2 or OIDC), this endpoint may return a logout URL to which the user should be redirected to complete the logout process on the identity provider side.
+	// Logs out the current user by deleting their authentication token and revoking the identity provider tokens Waldur keeps for them. If single logout (SLO) is supported for the current authentication method (e.g., SAML2 or OIDC), this endpoint may return a logout URL to which the user should be redirected to complete the logout process on the identity provider side.
 	//
 	// Corresponds with POST /api-auth/logout/ (the `ApiAuthLogout` operationId).
 	ApiAuthLogout(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -116921,6 +116517,7 @@ type ClientInterface interface {
 	//         - If a `plan_period` is provided, the usage is associated with that period.
 	//         - If only a `resource` is provided, the system will determine the correct plan period based on the current date.
 	//         - If a usage record for the same resource, component, and billing period already exists, it will be updated. Otherwise, a new record is created.
+	//         - Usage-based components may be reported per UTC date in `daily_usages`. Each date replaces its previous amount, and the month's usage becomes the sum of its days. A month total for a month that has daily amounts is rejected. Day and week spending limits need daily amounts.
 	//
 	//
 	// Takes any type of body and a specified content type.
@@ -116937,6 +116534,7 @@ type ClientInterface interface {
 	//         - If a `plan_period` is provided, the usage is associated with that period.
 	//         - If only a `resource` is provided, the system will determine the correct plan period based on the current date.
 	//         - If a usage record for the same resource, component, and billing period already exists, it will be updated. Otherwise, a new record is created.
+	//         - Usage-based components may be reported per UTC date in `daily_usages`. Each date replaces its previous amount, and the month's usage becomes the sum of its days. A month total for a month that has daily amounts is rejected. Day and week spending limits need daily amounts.
 	//
 	//
 	// Takes a body of the `application/json` content type.
@@ -121553,7 +121151,7 @@ type ClientInterface interface {
 
 	// MarketplaceResourceApiKeysPartialUpdateWithBody Edit an API key
 	//
-	// Changes the key's assignee, limits or model allowlist. A change to limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. A change of assignee (setting, changing or clearing it) on a key that holds a secret rotates the key instead, carrying any limits and models set with it: the old secret stops working and the new assignee reveals the new one. A paused key, or one with another command pending or failed, refuses it. Only on offerings with enable_api_key_provisioning, except for unassigning the key ({"user": null}).
+	// Changes the key's limits or model allowlist. A change is sent to the site agent as an update command, unless the key is paused: resuming it applies them. The key's assignee is set when the key is requested and cannot be changed: an edit that names user, null included, is refused with 400. To hand a key to someone else, request a key for them and delete this one. Only on offerings with enable_api_key_provisioning.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -121562,7 +121160,7 @@ type ClientInterface interface {
 
 	// MarketplaceResourceApiKeysPartialUpdate Edit an API key
 	//
-	// Changes the key's assignee, limits or model allowlist. A change to limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. A change of assignee (setting, changing or clearing it) on a key that holds a secret rotates the key instead, carrying any limits and models set with it: the old secret stops working and the new assignee reveals the new one. A paused key, or one with another command pending or failed, refuses it. Only on offerings with enable_api_key_provisioning, except for unassigning the key ({"user": null}).
+	// Changes the key's limits or model allowlist. A change is sent to the site agent as an update command, unless the key is paused: resuming it applies them. The key's assignee is set when the key is requested and cannot be changed: an edit that names user, null included, is refused with 400. To hand a key to someone else, request a key for them and delete this one. Only on offerings with enable_api_key_provisioning.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -121578,7 +121176,7 @@ type ClientInterface interface {
 
 	// MarketplaceResourceApiKeysReportUsageWithBody Report API key usage
 	//
-	// Used by the site agent to report a key's usage so far in a month, per component type. Merged into the key's usage for that month; a later month replaces it, and an earlier one is refused. A key whose usage reaches its limit is paused, and a key paused for its limit is resumed once under it again. Accepted for a deleted key too.
+	// Used by the site agent to report a key's usage so far in a month, per component type, and its usage per day. A month report is merged into the key's usage for that month; a later month replaces it, and an earlier one is refused. A date reported again replaces its amount, and the month's usage of a component with daily amounts is their sum. A key whose usage reaches a limit is paused, and a key paused for its limit is resumed once under it again. Accepted for a deleted key too.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -121587,7 +121185,7 @@ type ClientInterface interface {
 
 	// MarketplaceResourceApiKeysReportUsage Report API key usage
 	//
-	// Used by the site agent to report a key's usage so far in a month, per component type. Merged into the key's usage for that month; a later month replaces it, and an earlier one is refused. A key whose usage reaches its limit is paused, and a key paused for its limit is resumed once under it again. Accepted for a deleted key too.
+	// Used by the site agent to report a key's usage so far in a month, per component type, and its usage per day. A month report is merged into the key's usage for that month; a later month replaces it, and an earlier one is refused. A date reported again replaces its amount, and the month's usage of a component with daily amounts is their sum. A key whose usage reaches a limit is paused, and a key paused for its limit is resumed once under it again. Accepted for a deleted key too.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -121610,14 +121208,14 @@ type ClientInterface interface {
 
 	// MarketplaceResourceApiKeysRevealRetrieve Reveal an API key
 	//
-	// Returns the decrypted key value. Available to users with resource access (except minimal-visibility viewers); a key with an assignee only to the assignee. Staff and support always. Audit-logged.
+	// Returns the decrypted key value. Available to members of the resource's project or organization (except minimal-visibility viewers); a key with an assignee only to the assignee. Staff and support are no exception: staff reveal a key by impersonating a user who may. Audit-logged; under impersonation the event names the impersonator.
 	//
 	// Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/reveal/ (the `MarketplaceResourceApiKeysRevealRetrieve` operationId).
 	MarketplaceResourceApiKeysRevealRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourceApiKeysRotate Rotate an API key
 	//
-	// Asks the site agent to replace this key's value at the backend. The other keys are untouched (zero downtime). Available to whoever manages the resource's users and to the key's assignee.
+	// Asks the site agent to replace this key's value at the backend. The other keys are untouched (zero downtime). Available to whoever manages the resource's API keys and to the key's assignee.
 	//
 	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/rotate/ (the `MarketplaceResourceApiKeysRotate` operationId).
 	MarketplaceResourceApiKeysRotate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -122346,6 +121944,24 @@ type ClientInterface interface {
 	//
 	// Corresponds with POST /api/marketplace-resources/{uuid}/set_slug/ (the `MarketplaceResourcesSetSlug` operationId).
 	MarketplaceResourcesSetSlug(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetSlugJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourcesSetSpendingLimitsWithBody Set resource spending limits
+	//
+	// Replaces the spending limits of the resource's usage-based components at once, with no order or provider approval. Each value must be within the provider's maximum. The usage-limit restriction is re-evaluated immediately.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/marketplace-resources/{uuid}/set_spending_limits/ (the `MarketplaceResourcesSetSpendingLimits` operationId).
+	MarketplaceResourcesSetSpendingLimitsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourcesSetSpendingLimits Set resource spending limits
+	//
+	// Replaces the spending limits of the resource's usage-based components at once, with no order or provider approval. Each value must be within the provider's maximum. The usage-limit restriction is re-evaluated immediately.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/marketplace-resources/{uuid}/set_spending_limits/ (the `MarketplaceResourcesSetSpendingLimits` operationId).
+	MarketplaceResourcesSetSpendingLimits(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetSpendingLimitsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourcesSwitchPlanWithBody Switch resource plan
 	//
@@ -135534,7 +135150,7 @@ func (c *Client) ApiAuthKeycloakInitRetrieve(ctx context.Context, reqEditors ...
 
 // ApiAuthLogout Log out
 //
-// Logs out the current user by deleting their authentication token. If single logout (SLO) is supported for the current authentication method (e.g., SAML2 or OIDC), this endpoint may return a logout URL to which the user should be redirected to complete the logout process on the identity provider side.
+// Logs out the current user by deleting their authentication token and revoking the identity provider tokens Waldur keeps for them. If single logout (SLO) is supported for the current authentication method (e.g., SAML2 or OIDC), this endpoint may return a logout URL to which the user should be redirected to complete the logout process on the identity provider side.
 //
 // Corresponds with POST /api-auth/logout/ (the `ApiAuthLogout` operationId).
 func (c *Client) ApiAuthLogout(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -150866,6 +150482,7 @@ func (c *Client) MarketplaceComponentUsagesCount(ctx context.Context, params *Ma
 //	- If a `plan_period` is provided, the usage is associated with that period.
 //	- If only a `resource` is provided, the system will determine the correct plan period based on the current date.
 //	- If a usage record for the same resource, component, and billing period already exists, it will be updated. Otherwise, a new record is created.
+//	- Usage-based components may be reported per UTC date in `daily_usages`. Each date replaces its previous amount, and the month's usage becomes the sum of its days. A month total for a month that has daily amounts is rejected. Day and week spending limits need daily amounts.
 //
 // Takes any type of body and a specified content type.
 //
@@ -150890,6 +150507,7 @@ func (c *Client) MarketplaceComponentUsagesSetUsageWithBody(ctx context.Context,
 //	- If a `plan_period` is provided, the usage is associated with that period.
 //	- If only a `resource` is provided, the system will determine the correct plan period based on the current date.
 //	- If a usage record for the same resource, component, and billing period already exists, it will be updated. Otherwise, a new record is created.
+//	- Usage-based components may be reported per UTC date in `daily_usages`. Each date replaces its previous amount, and the month's usage becomes the sum of its days. A month total for a month that has daily amounts is rejected. Day and week spending limits need daily amounts.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -162269,7 +161887,7 @@ func (c *Client) MarketplaceResourceApiKeysRetrieve(ctx context.Context, uuid op
 
 // MarketplaceResourceApiKeysPartialUpdateWithBody Edit an API key
 //
-// Changes the key's assignee, limits or model allowlist. A change to limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. A change of assignee (setting, changing or clearing it) on a key that holds a secret rotates the key instead, carrying any limits and models set with it: the old secret stops working and the new assignee reveals the new one. A paused key, or one with another command pending or failed, refuses it. Only on offerings with enable_api_key_provisioning, except for unassigning the key ({"user": null}).
+// Changes the key's limits or model allowlist. A change is sent to the site agent as an update command, unless the key is paused: resuming it applies them. The key's assignee is set when the key is requested and cannot be changed: an edit that names user, null included, is refused with 400. To hand a key to someone else, request a key for them and delete this one. Only on offerings with enable_api_key_provisioning.
 //
 // Takes any type of body and a specified content type.
 //
@@ -162288,7 +161906,7 @@ func (c *Client) MarketplaceResourceApiKeysPartialUpdateWithBody(ctx context.Con
 
 // MarketplaceResourceApiKeysPartialUpdate Edit an API key
 //
-// Changes the key's assignee, limits or model allowlist. A change to limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. A change of assignee (setting, changing or clearing it) on a key that holds a secret rotates the key instead, carrying any limits and models set with it: the old secret stops working and the new assignee reveals the new one. A paused key, or one with another command pending or failed, refuses it. Only on offerings with enable_api_key_provisioning, except for unassigning the key ({"user": null}).
+// Changes the key's limits or model allowlist. A change is sent to the site agent as an update command, unless the key is paused: resuming it applies them. The key's assignee is set when the key is requested and cannot be changed: an edit that names user, null included, is refused with 400. To hand a key to someone else, request a key for them and delete this one. Only on offerings with enable_api_key_provisioning.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -162324,7 +161942,7 @@ func (c *Client) MarketplaceResourceApiKeysPause(ctx context.Context, uuid opena
 
 // MarketplaceResourceApiKeysReportUsageWithBody Report API key usage
 //
-// Used by the site agent to report a key's usage so far in a month, per component type. Merged into the key's usage for that month; a later month replaces it, and an earlier one is refused. A key whose usage reaches its limit is paused, and a key paused for its limit is resumed once under it again. Accepted for a deleted key too.
+// Used by the site agent to report a key's usage so far in a month, per component type, and its usage per day. A month report is merged into the key's usage for that month; a later month replaces it, and an earlier one is refused. A date reported again replaces its amount, and the month's usage of a component with daily amounts is their sum. A key whose usage reaches a limit is paused, and a key paused for its limit is resumed once under it again. Accepted for a deleted key too.
 //
 // Takes any type of body and a specified content type.
 //
@@ -162343,7 +161961,7 @@ func (c *Client) MarketplaceResourceApiKeysReportUsageWithBody(ctx context.Conte
 
 // MarketplaceResourceApiKeysReportUsage Report API key usage
 //
-// Used by the site agent to report a key's usage so far in a month, per component type. Merged into the key's usage for that month; a later month replaces it, and an earlier one is refused. A key whose usage reaches its limit is paused, and a key paused for its limit is resumed once under it again. Accepted for a deleted key too.
+// Used by the site agent to report a key's usage so far in a month, per component type, and its usage per day. A month report is merged into the key's usage for that month; a later month replaces it, and an earlier one is refused. A date reported again replaces its amount, and the month's usage of a component with daily amounts is their sum. A key whose usage reaches a limit is paused, and a key paused for its limit is resumed once under it again. Accepted for a deleted key too.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -162396,7 +162014,7 @@ func (c *Client) MarketplaceResourceApiKeysRetry(ctx context.Context, uuid opena
 
 // MarketplaceResourceApiKeysRevealRetrieve Reveal an API key
 //
-// Returns the decrypted key value. Available to users with resource access (except minimal-visibility viewers); a key with an assignee only to the assignee. Staff and support always. Audit-logged.
+// Returns the decrypted key value. Available to members of the resource's project or organization (except minimal-visibility viewers); a key with an assignee only to the assignee. Staff and support are no exception: staff reveal a key by impersonating a user who may. Audit-logged; under impersonation the event names the impersonator.
 //
 // Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/reveal/ (the `MarketplaceResourceApiKeysRevealRetrieve` operationId).
 func (c *Client) MarketplaceResourceApiKeysRevealRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -162413,7 +162031,7 @@ func (c *Client) MarketplaceResourceApiKeysRevealRetrieve(ctx context.Context, u
 
 // MarketplaceResourceApiKeysRotate Rotate an API key
 //
-// Asks the site agent to replace this key's value at the backend. The other keys are untouched (zero downtime). Available to whoever manages the resource's users and to the key's assignee.
+// Asks the site agent to replace this key's value at the backend. The other keys are untouched (zero downtime). Available to whoever manages the resource's API keys and to the key's assignee.
 //
 // Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/rotate/ (the `MarketplaceResourceApiKeysRotate` operationId).
 func (c *Client) MarketplaceResourceApiKeysRotate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -164159,6 +163777,44 @@ func (c *Client) MarketplaceResourcesSetSlugWithBody(ctx context.Context, uuid o
 // Corresponds with POST /api/marketplace-resources/{uuid}/set_slug/ (the `MarketplaceResourcesSetSlug` operationId).
 func (c *Client) MarketplaceResourcesSetSlug(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetSlugJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceResourcesSetSlugRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceResourcesSetSpendingLimitsWithBody Set resource spending limits
+//
+// Replaces the spending limits of the resource's usage-based components at once, with no order or provider approval. Each value must be within the provider's maximum. The usage-limit restriction is re-evaluated immediately.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/marketplace-resources/{uuid}/set_spending_limits/ (the `MarketplaceResourcesSetSpendingLimits` operationId).
+func (c *Client) MarketplaceResourcesSetSpendingLimitsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesSetSpendingLimitsRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceResourcesSetSpendingLimits Set resource spending limits
+//
+// Replaces the spending limits of the resource's usage-based components at once, with no order or provider approval. Each value must be within the provider's maximum. The usage-limit restriction is re-evaluated immediately.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/marketplace-resources/{uuid}/set_spending_limits/ (the `MarketplaceResourcesSetSpendingLimits` operationId).
+func (c *Client) MarketplaceResourcesSetSpendingLimits(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetSpendingLimitsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesSetSpendingLimitsRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -300914,6 +300570,53 @@ func NewMarketplaceResourcesSetSlugRequestWithBody(server string, uuid openapi_t
 	return req, nil
 }
 
+// NewMarketplaceResourcesSetSpendingLimitsRequest calls the generic MarketplaceResourcesSetSpendingLimits builder with application/json body
+func NewMarketplaceResourcesSetSpendingLimitsRequest(server string, uuid openapi_types.UUID, body MarketplaceResourcesSetSpendingLimitsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceResourcesSetSpendingLimitsRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceResourcesSetSpendingLimitsRequestWithBody constructs an http.Request for the MarketplaceResourcesSetSpendingLimits method, with any body, and a specified content type
+func NewMarketplaceResourcesSetSpendingLimitsRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resources/%s/set_spending_limits/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceResourcesSwitchPlanRequest calls the generic MarketplaceResourcesSwitchPlan builder with application/json body
 func NewMarketplaceResourcesSwitchPlanRequest(server string, uuid openapi_types.UUID, body MarketplaceResourcesSwitchPlanJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -429999,7 +429702,7 @@ type ClientWithResponsesInterface interface {
 
 	// ApiAuthLogoutWithResponse Log out
 	//
-	// Logs out the current user by deleting their authentication token. If single logout (SLO) is supported for the current authentication method (e.g., SAML2 or OIDC), this endpoint may return a logout URL to which the user should be redirected to complete the logout process on the identity provider side.
+	// Logs out the current user by deleting their authentication token and revoking the identity provider tokens Waldur keeps for them. If single logout (SLO) is supported for the current authentication method (e.g., SAML2 or OIDC), this endpoint may return a logout URL to which the user should be redirected to complete the logout process on the identity provider side.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -436915,6 +436618,7 @@ type ClientWithResponsesInterface interface {
 	//         - If a `plan_period` is provided, the usage is associated with that period.
 	//         - If only a `resource` is provided, the system will determine the correct plan period based on the current date.
 	//         - If a usage record for the same resource, component, and billing period already exists, it will be updated. Otherwise, a new record is created.
+	//         - Usage-based components may be reported per UTC date in `daily_usages`. Each date replaces its previous amount, and the month's usage becomes the sum of its days. A month total for a month that has daily amounts is rejected. Day and week spending limits need daily amounts.
 	//
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
@@ -436931,6 +436635,7 @@ type ClientWithResponsesInterface interface {
 	//         - If a `plan_period` is provided, the usage is associated with that period.
 	//         - If only a `resource` is provided, the system will determine the correct plan period based on the current date.
 	//         - If a usage record for the same resource, component, and billing period already exists, it will be updated. Otherwise, a new record is created.
+	//         - Usage-based components may be reported per UTC date in `daily_usages`. Each date replaces its previous amount, and the month's usage becomes the sum of its days. A month total for a month that has daily amounts is rejected. Day and week spending limits need daily amounts.
 	//
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
@@ -442271,7 +441976,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceResourceApiKeysPartialUpdateWithBodyWithResponse Edit an API key
 	//
-	// Changes the key's assignee, limits or model allowlist. A change to limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. A change of assignee (setting, changing or clearing it) on a key that holds a secret rotates the key instead, carrying any limits and models set with it: the old secret stops working and the new assignee reveals the new one. A paused key, or one with another command pending or failed, refuses it. Only on offerings with enable_api_key_provisioning, except for unassigning the key ({"user": null}).
+	// Changes the key's limits or model allowlist. A change is sent to the site agent as an update command, unless the key is paused: resuming it applies them. The key's assignee is set when the key is requested and cannot be changed: an edit that names user, null included, is refused with 400. To hand a key to someone else, request a key for them and delete this one. Only on offerings with enable_api_key_provisioning.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -442280,7 +441985,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceResourceApiKeysPartialUpdateWithResponse Edit an API key
 	//
-	// Changes the key's assignee, limits or model allowlist. A change to limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. A change of assignee (setting, changing or clearing it) on a key that holds a secret rotates the key instead, carrying any limits and models set with it: the old secret stops working and the new assignee reveals the new one. A paused key, or one with another command pending or failed, refuses it. Only on offerings with enable_api_key_provisioning, except for unassigning the key ({"user": null}).
+	// Changes the key's limits or model allowlist. A change is sent to the site agent as an update command, unless the key is paused: resuming it applies them. The key's assignee is set when the key is requested and cannot be changed: an edit that names user, null included, is refused with 400. To hand a key to someone else, request a key for them and delete this one. Only on offerings with enable_api_key_provisioning.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -442298,7 +442003,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceResourceApiKeysReportUsageWithBodyWithResponse Report API key usage
 	//
-	// Used by the site agent to report a key's usage so far in a month, per component type. Merged into the key's usage for that month; a later month replaces it, and an earlier one is refused. A key whose usage reaches its limit is paused, and a key paused for its limit is resumed once under it again. Accepted for a deleted key too.
+	// Used by the site agent to report a key's usage so far in a month, per component type, and its usage per day. A month report is merged into the key's usage for that month; a later month replaces it, and an earlier one is refused. A date reported again replaces its amount, and the month's usage of a component with daily amounts is their sum. A key whose usage reaches a limit is paused, and a key paused for its limit is resumed once under it again. Accepted for a deleted key too.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -442307,7 +442012,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceResourceApiKeysReportUsageWithResponse Report API key usage
 	//
-	// Used by the site agent to report a key's usage so far in a month, per component type. Merged into the key's usage for that month; a later month replaces it, and an earlier one is refused. A key whose usage reaches its limit is paused, and a key paused for its limit is resumed once under it again. Accepted for a deleted key too.
+	// Used by the site agent to report a key's usage so far in a month, per component type, and its usage per day. A month report is merged into the key's usage for that month; a later month replaces it, and an earlier one is refused. A date reported again replaces its amount, and the month's usage of a component with daily amounts is their sum. A key whose usage reaches a limit is paused, and a key paused for its limit is resumed once under it again. Accepted for a deleted key too.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -442334,7 +442039,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceResourceApiKeysRevealRetrieveWithResponse Reveal an API key
 	//
-	// Returns the decrypted key value. Available to users with resource access (except minimal-visibility viewers); a key with an assignee only to the assignee. Staff and support always. Audit-logged.
+	// Returns the decrypted key value. Available to members of the resource's project or organization (except minimal-visibility viewers); a key with an assignee only to the assignee. Staff and support are no exception: staff reveal a key by impersonating a user who may. Audit-logged; under impersonation the event names the impersonator.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -442343,7 +442048,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceResourceApiKeysRotateWithResponse Rotate an API key
 	//
-	// Asks the site agent to replace this key's value at the backend. The other keys are untouched (zero downtime). Available to whoever manages the resource's users and to the key's assignee.
+	// Asks the site agent to replace this key's value at the backend. The other keys are untouched (zero downtime). Available to whoever manages the resource's API keys and to the key's assignee.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -443160,6 +442865,24 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with POST /api/marketplace-resources/{uuid}/set_slug/ (the `MarketplaceResourcesSetSlug` operationId).
 	MarketplaceResourcesSetSlugWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetSlugJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetSlugResponse, error)
+
+	// MarketplaceResourcesSetSpendingLimitsWithBodyWithResponse Set resource spending limits
+	//
+	// Replaces the spending limits of the resource's usage-based components at once, with no order or provider approval. Each value must be within the provider's maximum. The usage-limit restriction is re-evaluated immediately.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-resources/{uuid}/set_spending_limits/ (the `MarketplaceResourcesSetSpendingLimits` operationId).
+	MarketplaceResourcesSetSpendingLimitsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetSpendingLimitsResponse, error)
+
+	// MarketplaceResourcesSetSpendingLimitsWithResponse Set resource spending limits
+	//
+	// Replaces the spending limits of the resource's usage-based components at once, with no order or provider approval. Each value must be within the provider's maximum. The usage-limit restriction is re-evaluated immediately.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-resources/{uuid}/set_spending_limits/ (the `MarketplaceResourcesSetSpendingLimits` operationId).
+	MarketplaceResourcesSetSpendingLimitsWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetSpendingLimitsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetSpendingLimitsResponse, error)
 
 	// MarketplaceResourcesSwitchPlanWithBodyWithResponse Switch resource plan
 	//
@@ -511016,6 +510739,47 @@ func (r MarketplaceResourcesSetSlugResponse) ContentType() string {
 	return ""
 }
 
+type MarketplaceResourcesSetSpendingLimitsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *ResourceSpendingLimits
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceResourcesSetSpendingLimitsResponse) GetJSON200() *ResourceSpendingLimits {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceResourcesSetSpendingLimitsResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourcesSetSpendingLimitsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourcesSetSpendingLimitsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourcesSetSpendingLimitsResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type MarketplaceResourcesSwitchPlanResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -578241,7 +578005,7 @@ func (c *ClientWithResponses) ApiAuthKeycloakInitRetrieveWithResponse(ctx contex
 
 // ApiAuthLogoutWithResponse Log out
 //
-// Logs out the current user by deleting their authentication token. If single logout (SLO) is supported for the current authentication method (e.g., SAML2 or OIDC), this endpoint may return a logout URL to which the user should be redirected to complete the logout process on the identity provider side.
+// Logs out the current user by deleting their authentication token and revoking the identity provider tokens Waldur keeps for them. If single logout (SLO) is supported for the current authentication method (e.g., SAML2 or OIDC), this endpoint may return a logout URL to which the user should be redirected to complete the logout process on the identity provider side.
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -590978,6 +590742,7 @@ func (c *ClientWithResponses) MarketplaceComponentUsagesCountWithResponse(ctx co
 //	- If a `plan_period` is provided, the usage is associated with that period.
 //	- If only a `resource` is provided, the system will determine the correct plan period based on the current date.
 //	- If a usage record for the same resource, component, and billing period already exists, it will be updated. Otherwise, a new record is created.
+//	- Usage-based components may be reported per UTC date in `daily_usages`. Each date replaces its previous amount, and the month's usage becomes the sum of its days. A month total for a month that has daily amounts is rejected. Day and week spending limits need daily amounts.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -590998,6 +590763,7 @@ func (c *ClientWithResponses) MarketplaceComponentUsagesSetUsageWithBodyWithResp
 //	- If a `plan_period` is provided, the usage is associated with that period.
 //	- If only a `resource` is provided, the system will determine the correct plan period based on the current date.
 //	- If a usage record for the same resource, component, and billing period already exists, it will be updated. Otherwise, a new record is created.
+//	- Usage-based components may be reported per UTC date in `daily_usages`. Each date replaces its previous amount, and the month's usage becomes the sum of its days. A month total for a month that has daily amounts is rejected. Day and week spending limits need daily amounts.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -600383,7 +600149,7 @@ func (c *ClientWithResponses) MarketplaceResourceApiKeysRetrieveWithResponse(ctx
 
 // MarketplaceResourceApiKeysPartialUpdateWithBodyWithResponse Edit an API key
 //
-// Changes the key's assignee, limits or model allowlist. A change to limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. A change of assignee (setting, changing or clearing it) on a key that holds a secret rotates the key instead, carrying any limits and models set with it: the old secret stops working and the new assignee reveals the new one. A paused key, or one with another command pending or failed, refuses it. Only on offerings with enable_api_key_provisioning, except for unassigning the key ({"user": null}).
+// Changes the key's limits or model allowlist. A change is sent to the site agent as an update command, unless the key is paused: resuming it applies them. The key's assignee is set when the key is requested and cannot be changed: an edit that names user, null included, is refused with 400. To hand a key to someone else, request a key for them and delete this one. Only on offerings with enable_api_key_provisioning.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -600398,7 +600164,7 @@ func (c *ClientWithResponses) MarketplaceResourceApiKeysPartialUpdateWithBodyWit
 
 // MarketplaceResourceApiKeysPartialUpdateWithResponse Edit an API key
 //
-// Changes the key's assignee, limits or model allowlist. A change to limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. A change of assignee (setting, changing or clearing it) on a key that holds a secret rotates the key instead, carrying any limits and models set with it: the old secret stops working and the new assignee reveals the new one. A paused key, or one with another command pending or failed, refuses it. Only on offerings with enable_api_key_provisioning, except for unassigning the key ({"user": null}).
+// Changes the key's limits or model allowlist. A change is sent to the site agent as an update command, unless the key is paused: resuming it applies them. The key's assignee is set when the key is requested and cannot be changed: an edit that names user, null included, is refused with 400. To hand a key to someone else, request a key for them and delete this one. Only on offerings with enable_api_key_provisioning.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -600428,7 +600194,7 @@ func (c *ClientWithResponses) MarketplaceResourceApiKeysPauseWithResponse(ctx co
 
 // MarketplaceResourceApiKeysReportUsageWithBodyWithResponse Report API key usage
 //
-// Used by the site agent to report a key's usage so far in a month, per component type. Merged into the key's usage for that month; a later month replaces it, and an earlier one is refused. A key whose usage reaches its limit is paused, and a key paused for its limit is resumed once under it again. Accepted for a deleted key too.
+// Used by the site agent to report a key's usage so far in a month, per component type, and its usage per day. A month report is merged into the key's usage for that month; a later month replaces it, and an earlier one is refused. A date reported again replaces its amount, and the month's usage of a component with daily amounts is their sum. A key whose usage reaches a limit is paused, and a key paused for its limit is resumed once under it again. Accepted for a deleted key too.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -600443,7 +600209,7 @@ func (c *ClientWithResponses) MarketplaceResourceApiKeysReportUsageWithBodyWithR
 
 // MarketplaceResourceApiKeysReportUsageWithResponse Report API key usage
 //
-// Used by the site agent to report a key's usage so far in a month, per component type. Merged into the key's usage for that month; a later month replaces it, and an earlier one is refused. A key whose usage reaches its limit is paused, and a key paused for its limit is resumed once under it again. Accepted for a deleted key too.
+// Used by the site agent to report a key's usage so far in a month, per component type, and its usage per day. A month report is merged into the key's usage for that month; a later month replaces it, and an earlier one is refused. A date reported again replaces its amount, and the month's usage of a component with daily amounts is their sum. A key whose usage reaches a limit is paused, and a key paused for its limit is resumed once under it again. Accepted for a deleted key too.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -600488,7 +600254,7 @@ func (c *ClientWithResponses) MarketplaceResourceApiKeysRetryWithResponse(ctx co
 
 // MarketplaceResourceApiKeysRevealRetrieveWithResponse Reveal an API key
 //
-// Returns the decrypted key value. Available to users with resource access (except minimal-visibility viewers); a key with an assignee only to the assignee. Staff and support always. Audit-logged.
+// Returns the decrypted key value. Available to members of the resource's project or organization (except minimal-visibility viewers); a key with an assignee only to the assignee. Staff and support are no exception: staff reveal a key by impersonating a user who may. Audit-logged; under impersonation the event names the impersonator.
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -600503,7 +600269,7 @@ func (c *ClientWithResponses) MarketplaceResourceApiKeysRevealRetrieveWithRespon
 
 // MarketplaceResourceApiKeysRotateWithResponse Rotate an API key
 //
-// Asks the site agent to replace this key's value at the backend. The other keys are untouched (zero downtime). Available to whoever manages the resource's users and to the key's assignee.
+// Asks the site agent to replace this key's value at the backend. The other keys are untouched (zero downtime). Available to whoever manages the resource's API keys and to the key's assignee.
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -601934,6 +601700,36 @@ func (c *ClientWithResponses) MarketplaceResourcesSetSlugWithResponse(ctx contex
 		return nil, err
 	}
 	return ParseMarketplaceResourcesSetSlugResponse(rsp)
+}
+
+// MarketplaceResourcesSetSpendingLimitsWithBodyWithResponse Set resource spending limits
+//
+// Replaces the spending limits of the resource's usage-based components at once, with no order or provider approval. Each value must be within the provider's maximum. The usage-limit restriction is re-evaluated immediately.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-resources/{uuid}/set_spending_limits/ (the `MarketplaceResourcesSetSpendingLimits` operationId).
+func (c *ClientWithResponses) MarketplaceResourcesSetSpendingLimitsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetSpendingLimitsResponse, error) {
+	rsp, err := c.MarketplaceResourcesSetSpendingLimitsWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesSetSpendingLimitsResponse(rsp)
+}
+
+// MarketplaceResourcesSetSpendingLimitsWithResponse Set resource spending limits
+//
+// Replaces the spending limits of the resource's usage-based components at once, with no order or provider approval. Each value must be within the provider's maximum. The usage-limit restriction is re-evaluated immediately.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-resources/{uuid}/set_spending_limits/ (the `MarketplaceResourcesSetSpendingLimits` operationId).
+func (c *ClientWithResponses) MarketplaceResourcesSetSpendingLimitsWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetSpendingLimitsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetSpendingLimitsResponse, error) {
+	rsp, err := c.MarketplaceResourcesSetSpendingLimits(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesSetSpendingLimitsResponse(rsp)
 }
 
 // MarketplaceResourcesSwitchPlanWithBodyWithResponse Switch resource plan
@@ -663933,6 +663729,32 @@ func ParseMarketplaceResourcesSetSlugResponse(rsp *http.Response) (*MarketplaceR
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest Status
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourcesSetSpendingLimitsResponse parses an HTTP response from a MarketplaceResourcesSetSpendingLimitsWithResponse call
+func ParseMarketplaceResourcesSetSpendingLimitsResponse(rsp *http.Response) (*MarketplaceResourcesSetSpendingLimitsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourcesSetSpendingLimitsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ResourceSpendingLimits
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
