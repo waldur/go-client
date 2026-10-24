@@ -8661,81 +8661,6 @@ func (e GoodDirectionEnum) Valid() bool {
 	}
 }
 
-// Defines values for GoogleCredentialsFieldEnum.
-const (
-	GoogleCredentialsFieldEnumAccountOptions       GoogleCredentialsFieldEnum = "account_options"
-	GoogleCredentialsFieldEnumAllowedDomains       GoogleCredentialsFieldEnum = "allowed_domains"
-	GoogleCredentialsFieldEnumCalendarRefreshToken GoogleCredentialsFieldEnum = "calendar_refresh_token"
-	GoogleCredentialsFieldEnumCalendarToken        GoogleCredentialsFieldEnum = "calendar_token"
-	GoogleCredentialsFieldEnumCreated              GoogleCredentialsFieldEnum = "created"
-	GoogleCredentialsFieldEnumCustomer             GoogleCredentialsFieldEnum = "customer"
-	GoogleCredentialsFieldEnumCustomerAbbreviation GoogleCredentialsFieldEnum = "customer_abbreviation"
-	GoogleCredentialsFieldEnumCustomerCountry      GoogleCredentialsFieldEnum = "customer_country"
-	GoogleCredentialsFieldEnumCustomerImage        GoogleCredentialsFieldEnum = "customer_image"
-	GoogleCredentialsFieldEnumCustomerName         GoogleCredentialsFieldEnum = "customer_name"
-	GoogleCredentialsFieldEnumCustomerNativeName   GoogleCredentialsFieldEnum = "customer_native_name"
-	GoogleCredentialsFieldEnumCustomerSlug         GoogleCredentialsFieldEnum = "customer_slug"
-	GoogleCredentialsFieldEnumCustomerUuid         GoogleCredentialsFieldEnum = "customer_uuid"
-	GoogleCredentialsFieldEnumDescription          GoogleCredentialsFieldEnum = "description"
-	GoogleCredentialsFieldEnumEnableNotifications  GoogleCredentialsFieldEnum = "enable_notifications"
-	GoogleCredentialsFieldEnumGoogleAuthUrl        GoogleCredentialsFieldEnum = "google_auth_url"
-	GoogleCredentialsFieldEnumImage                GoogleCredentialsFieldEnum = "image"
-	GoogleCredentialsFieldEnumOfferingCount        GoogleCredentialsFieldEnum = "offering_count"
-	GoogleCredentialsFieldEnumOrganizationGroups   GoogleCredentialsFieldEnum = "organization_groups"
-	GoogleCredentialsFieldEnumUrl                  GoogleCredentialsFieldEnum = "url"
-	GoogleCredentialsFieldEnumUuid                 GoogleCredentialsFieldEnum = "uuid"
-)
-
-// Valid indicates whether the value is a known member of the GoogleCredentialsFieldEnum enum.
-func (e GoogleCredentialsFieldEnum) Valid() bool {
-	switch e {
-	case GoogleCredentialsFieldEnumAccountOptions:
-		return true
-	case GoogleCredentialsFieldEnumAllowedDomains:
-		return true
-	case GoogleCredentialsFieldEnumCalendarRefreshToken:
-		return true
-	case GoogleCredentialsFieldEnumCalendarToken:
-		return true
-	case GoogleCredentialsFieldEnumCreated:
-		return true
-	case GoogleCredentialsFieldEnumCustomer:
-		return true
-	case GoogleCredentialsFieldEnumCustomerAbbreviation:
-		return true
-	case GoogleCredentialsFieldEnumCustomerCountry:
-		return true
-	case GoogleCredentialsFieldEnumCustomerImage:
-		return true
-	case GoogleCredentialsFieldEnumCustomerName:
-		return true
-	case GoogleCredentialsFieldEnumCustomerNativeName:
-		return true
-	case GoogleCredentialsFieldEnumCustomerSlug:
-		return true
-	case GoogleCredentialsFieldEnumCustomerUuid:
-		return true
-	case GoogleCredentialsFieldEnumDescription:
-		return true
-	case GoogleCredentialsFieldEnumEnableNotifications:
-		return true
-	case GoogleCredentialsFieldEnumGoogleAuthUrl:
-		return true
-	case GoogleCredentialsFieldEnumImage:
-		return true
-	case GoogleCredentialsFieldEnumOfferingCount:
-		return true
-	case GoogleCredentialsFieldEnumOrganizationGroups:
-		return true
-	case GoogleCredentialsFieldEnumUrl:
-		return true
-	case GoogleCredentialsFieldEnumUuid:
-		return true
-	default:
-		return false
-	}
-}
-
 // Defines values for GrowthPeriodEnum.
 const (
 	GrowthPeriodEnumMonthly GrowthPeriodEnum = "monthly"
@@ -11713,7 +11638,6 @@ const (
 	OfferingFieldEnumFiles                      OfferingFieldEnum = "files"
 	OfferingFieldEnumFullDescription            OfferingFieldEnum = "full_description"
 	OfferingFieldEnumGettingStarted             OfferingFieldEnum = "getting_started"
-	OfferingFieldEnumGooglecalendar             OfferingFieldEnum = "googlecalendar"
 	OfferingFieldEnumHasComplianceRequirements  OfferingFieldEnum = "has_compliance_requirements"
 	OfferingFieldEnumHelpdeskUrl                OfferingFieldEnum = "helpdesk_url"
 	OfferingFieldEnumImage                      OfferingFieldEnum = "image"
@@ -11839,8 +11763,6 @@ func (e OfferingFieldEnum) Valid() bool {
 	case OfferingFieldEnumFullDescription:
 		return true
 	case OfferingFieldEnumGettingStarted:
-		return true
-	case OfferingFieldEnumGooglecalendar:
 		return true
 	case OfferingFieldEnumHasComplianceRequirements:
 		return true
@@ -18524,8 +18446,6 @@ const (
 	ProviderOfferingDetailsFieldEnumFiles                      ProviderOfferingDetailsFieldEnum = "files"
 	ProviderOfferingDetailsFieldEnumFullDescription            ProviderOfferingDetailsFieldEnum = "full_description"
 	ProviderOfferingDetailsFieldEnumGettingStarted             ProviderOfferingDetailsFieldEnum = "getting_started"
-	ProviderOfferingDetailsFieldEnumGoogleCalendarIsPublic     ProviderOfferingDetailsFieldEnum = "google_calendar_is_public"
-	ProviderOfferingDetailsFieldEnumGoogleCalendarLink         ProviderOfferingDetailsFieldEnum = "google_calendar_link"
 	ProviderOfferingDetailsFieldEnumHasComplianceRequirements  ProviderOfferingDetailsFieldEnum = "has_compliance_requirements"
 	ProviderOfferingDetailsFieldEnumHelpdeskUrl                ProviderOfferingDetailsFieldEnum = "helpdesk_url"
 	ProviderOfferingDetailsFieldEnumImage                      ProviderOfferingDetailsFieldEnum = "image"
@@ -18651,10 +18571,6 @@ func (e ProviderOfferingDetailsFieldEnum) Valid() bool {
 	case ProviderOfferingDetailsFieldEnumFullDescription:
 		return true
 	case ProviderOfferingDetailsFieldEnumGettingStarted:
-		return true
-	case ProviderOfferingDetailsFieldEnumGoogleCalendarIsPublic:
-		return true
-	case ProviderOfferingDetailsFieldEnumGoogleCalendarLink:
 		return true
 	case ProviderOfferingDetailsFieldEnumHasComplianceRequirements:
 		return true
@@ -19130,8 +19046,6 @@ const (
 	PublicOfferingDetailsFieldEnumFiles                      PublicOfferingDetailsFieldEnum = "files"
 	PublicOfferingDetailsFieldEnumFullDescription            PublicOfferingDetailsFieldEnum = "full_description"
 	PublicOfferingDetailsFieldEnumGettingStarted             PublicOfferingDetailsFieldEnum = "getting_started"
-	PublicOfferingDetailsFieldEnumGoogleCalendarIsPublic     PublicOfferingDetailsFieldEnum = "google_calendar_is_public"
-	PublicOfferingDetailsFieldEnumGoogleCalendarLink         PublicOfferingDetailsFieldEnum = "google_calendar_link"
 	PublicOfferingDetailsFieldEnumHasComplianceRequirements  PublicOfferingDetailsFieldEnum = "has_compliance_requirements"
 	PublicOfferingDetailsFieldEnumHelpdeskUrl                PublicOfferingDetailsFieldEnum = "helpdesk_url"
 	PublicOfferingDetailsFieldEnumImage                      PublicOfferingDetailsFieldEnum = "image"
@@ -19260,10 +19174,6 @@ func (e PublicOfferingDetailsFieldEnum) Valid() bool {
 	case PublicOfferingDetailsFieldEnumFullDescription:
 		return true
 	case PublicOfferingDetailsFieldEnumGettingStarted:
-		return true
-	case PublicOfferingDetailsFieldEnumGoogleCalendarIsPublic:
-		return true
-	case PublicOfferingDetailsFieldEnumGoogleCalendarLink:
 		return true
 	case PublicOfferingDetailsFieldEnumHasComplianceRequirements:
 		return true
@@ -36209,6 +36119,19 @@ type ExportOrganizationGroupDataRequest struct {
 	ParentName *string `json:"parent_name"`
 }
 
+// ExportPdfRequest defines model for ExportPdfRequest.
+type ExportPdfRequest struct {
+	// Columns Header row of a table export.
+	Columns *[]string `json:"columns,omitempty"`
+
+	// Image Base64-encoded PNG of a chart export.
+	Image *string `json:"image,omitempty"`
+
+	// Rows Rows of a table export, each with one cell per column.
+	Rows  *[][]string `json:"rows,omitempty"`
+	Title string      `json:"title"`
+}
+
 // ExportPlanComponentData defines model for ExportPlanComponentData.
 type ExportPlanComponentData struct {
 	Amount        int      `json:"amount"`
@@ -36882,49 +36805,6 @@ type GlobalUserDataAccessLogOEnum string
 
 // GoodDirectionEnum defines model for GoodDirectionEnum.
 type GoodDirectionEnum string
-
-// GoogleAuthUrl defines model for GoogleAuthUrl.
-type GoogleAuthUrl struct {
-	RequestUrl string `json:"request_url"`
-}
-
-// GoogleCalendar defines model for GoogleCalendar.
-type GoogleCalendar struct {
-	BackendId *string `json:"backend_id,omitempty"`
-	HttpLink  *string `json:"http_link,omitempty"`
-	Public    *bool   `json:"public,omitempty"`
-}
-
-// GoogleCredentials defines model for GoogleCredentials.
-type GoogleCredentials struct {
-	// AccountOptions Account settings for this provider's offerings, under the same keys as an offering's plugin options. Each applies to every offering that does not set its own; project_groups_enabled is the provider's own. Updated key by key: an omitted key is kept, and a blank value removes it.
-	AccountOptions *ProviderAccountOptions `json:"account_options,omitempty"`
-
-	// AllowedDomains List of allowed domains for offering endpoints. Only staff can modify this field.
-	AllowedDomains       *[]string            `json:"allowed_domains,omitempty"`
-	CalendarRefreshToken *string              `json:"calendar_refresh_token,omitempty"`
-	CalendarToken        *string              `json:"calendar_token,omitempty"`
-	Created              *time.Time           `json:"created,omitempty"`
-	Customer             *string              `json:"customer,omitempty"`
-	CustomerAbbreviation *string              `json:"customer_abbreviation,omitempty"`
-	CustomerCountry      *string              `json:"customer_country,omitempty"`
-	CustomerImage        *string              `json:"customer_image,omitempty"`
-	CustomerName         *string              `json:"customer_name,omitempty"`
-	CustomerNativeName   *string              `json:"customer_native_name,omitempty"`
-	CustomerSlug         *string              `json:"customer_slug,omitempty"`
-	CustomerUuid         *openapi_types.UUID  `json:"customer_uuid,omitempty"`
-	Description          *string              `json:"description,omitempty"`
-	EnableNotifications  *bool                `json:"enable_notifications,omitempty"`
-	GoogleAuthUrl        *string              `json:"google_auth_url,omitempty"`
-	Image                *string              `json:"image,omitempty"`
-	OfferingCount        *int                 `json:"offering_count,omitempty"`
-	OrganizationGroups   *[]OrganizationGroup `json:"organization_groups,omitempty"`
-	Url                  *string              `json:"url,omitempty"`
-	Uuid                 *openapi_types.UUID  `json:"uuid,omitempty"`
-}
-
-// GoogleCredentialsFieldEnum defines model for GoogleCredentialsFieldEnum.
-type GoogleCredentialsFieldEnum string
 
 // GroupInvitation defines model for GroupInvitation.
 type GroupInvitation struct {
@@ -41685,7 +41565,6 @@ type Offering struct {
 	Files                     *[]NestedOfferingFile         `json:"files,omitempty"`
 	FullDescription           *string                       `json:"full_description,omitempty"`
 	GettingStarted            *string                       `json:"getting_started,omitempty"`
-	Googlecalendar            *GoogleCalendar               `json:"googlecalendar,omitempty"`
 	HasComplianceRequirements *bool                         `json:"has_compliance_requirements,omitempty"`
 	HelpdeskUrl               *string                       `json:"helpdesk_url,omitempty"`
 	Image                     *string                       `json:"image,omitempty"`
@@ -52700,24 +52579,20 @@ type ProviderOfferingDetails struct {
 	Components                 *[]OfferingComponent         `json:"components,omitempty"`
 
 	// Country Country code (ISO 3166-1 alpha-2)
-	Country                  *ProviderOfferingDetails_Country `json:"country,omitempty"`
-	Created                  *time.Time                       `json:"created,omitempty"`
-	Customer                 *string                          `json:"customer,omitempty"`
-	CustomerName             *string                          `json:"customer_name,omitempty"`
-	CustomerUuid             *openapi_types.UUID              `json:"customer_uuid,omitempty"`
-	DataciteDoi              *string                          `json:"datacite_doi,omitempty"`
-	DefaultAccessSubnets     *[]NestedOfferingAccessSubnet    `json:"default_access_subnets,omitempty"`
-	Description              *string                          `json:"description,omitempty"`
-	DocumentationUrl         *string                          `json:"documentation_url,omitempty"`
-	EffectiveAvailableLimits *[]string                        `json:"effective_available_limits,omitempty"`
-	Endpoints                *[]NestedEndpoint                `json:"endpoints,omitempty"`
-	Files                    *[]NestedOfferingFile            `json:"files,omitempty"`
-	FullDescription          *string                          `json:"full_description,omitempty"`
-	GettingStarted           *string                          `json:"getting_started,omitempty"`
-	GoogleCalendarIsPublic   *bool                            `json:"google_calendar_is_public,omitempty"`
-
-	// GoogleCalendarLink Get the Google Calendar link for an offering.
-	GoogleCalendarLink        *string                             `json:"google_calendar_link,omitempty"`
+	Country                   *ProviderOfferingDetails_Country    `json:"country,omitempty"`
+	Created                   *time.Time                          `json:"created,omitempty"`
+	Customer                  *string                             `json:"customer,omitempty"`
+	CustomerName              *string                             `json:"customer_name,omitempty"`
+	CustomerUuid              *openapi_types.UUID                 `json:"customer_uuid,omitempty"`
+	DataciteDoi               *string                             `json:"datacite_doi,omitempty"`
+	DefaultAccessSubnets      *[]NestedOfferingAccessSubnet       `json:"default_access_subnets,omitempty"`
+	Description               *string                             `json:"description,omitempty"`
+	DocumentationUrl          *string                             `json:"documentation_url,omitempty"`
+	EffectiveAvailableLimits  *[]string                           `json:"effective_available_limits,omitempty"`
+	Endpoints                 *[]NestedEndpoint                   `json:"endpoints,omitempty"`
+	Files                     *[]NestedOfferingFile               `json:"files,omitempty"`
+	FullDescription           *string                             `json:"full_description,omitempty"`
+	GettingStarted            *string                             `json:"getting_started,omitempty"`
 	HasComplianceRequirements *bool                               `json:"has_compliance_requirements,omitempty"`
 	HelpdeskUrl               *string                             `json:"helpdesk_url,omitempty"`
 	Image                     *string                             `json:"image,omitempty"`
@@ -53335,24 +53210,20 @@ type PublicOfferingDetails struct {
 	ConfigDriveDefault         *bool                        `json:"config_drive_default,omitempty"`
 
 	// Country Country code (ISO 3166-1 alpha-2)
-	Country                  *PublicOfferingDetails_Country `json:"country,omitempty"`
-	Created                  *time.Time                     `json:"created,omitempty"`
-	Customer                 *string                        `json:"customer,omitempty"`
-	CustomerName             *string                        `json:"customer_name,omitempty"`
-	CustomerUuid             *openapi_types.UUID            `json:"customer_uuid,omitempty"`
-	DataciteDoi              *string                        `json:"datacite_doi,omitempty"`
-	DefaultAccessSubnets     *[]NestedOfferingAccessSubnet  `json:"default_access_subnets,omitempty"`
-	Description              *string                        `json:"description,omitempty"`
-	DocumentationUrl         *string                        `json:"documentation_url,omitempty"`
-	EffectiveAvailableLimits *[]string                      `json:"effective_available_limits,omitempty"`
-	Endpoints                *[]NestedEndpoint              `json:"endpoints,omitempty"`
-	Files                    *[]NestedOfferingFile          `json:"files,omitempty"`
-	FullDescription          *string                        `json:"full_description,omitempty"`
-	GettingStarted           *string                        `json:"getting_started,omitempty"`
-	GoogleCalendarIsPublic   *bool                          `json:"google_calendar_is_public,omitempty"`
-
-	// GoogleCalendarLink Get the Google Calendar link for an offering.
-	GoogleCalendarLink        *string                           `json:"google_calendar_link,omitempty"`
+	Country                   *PublicOfferingDetails_Country    `json:"country,omitempty"`
+	Created                   *time.Time                        `json:"created,omitempty"`
+	Customer                  *string                           `json:"customer,omitempty"`
+	CustomerName              *string                           `json:"customer_name,omitempty"`
+	CustomerUuid              *openapi_types.UUID               `json:"customer_uuid,omitempty"`
+	DataciteDoi               *string                           `json:"datacite_doi,omitempty"`
+	DefaultAccessSubnets      *[]NestedOfferingAccessSubnet     `json:"default_access_subnets,omitempty"`
+	Description               *string                           `json:"description,omitempty"`
+	DocumentationUrl          *string                           `json:"documentation_url,omitempty"`
+	EffectiveAvailableLimits  *[]string                         `json:"effective_available_limits,omitempty"`
+	Endpoints                 *[]NestedEndpoint                 `json:"endpoints,omitempty"`
+	Files                     *[]NestedOfferingFile             `json:"files,omitempty"`
+	FullDescription           *string                           `json:"full_description,omitempty"`
+	GettingStarted            *string                           `json:"getting_started,omitempty"`
 	HasComplianceRequirements *bool                             `json:"has_compliance_requirements,omitempty"`
 	HelpdeskUrl               *string                           `json:"helpdesk_url,omitempty"`
 	Image                     *string                           `json:"image,omitempty"`
@@ -58385,7 +58256,7 @@ type ServiceProviderRevenues struct {
 	Month *int `json:"month,omitempty"`
 
 	// Total Total revenue amount
-	Total *int `json:"total,omitempty"`
+	Total *float64 `json:"total,omitempty"`
 
 	// Year Invoice year
 	Year *int `json:"year,omitempty"`
@@ -66351,55 +66222,6 @@ type FreeipaProfilesCountParams struct {
 	// Query Filter by username, user UUID, first name or last name
 	Query *string             `form:"query,omitempty" json:"query,omitempty"`
 	User  *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
-}
-
-// GoogleAuthListParams defines parameters for GoogleAuthList.
-type GoogleAuthListParams struct {
-	Field *[]GoogleCredentialsFieldEnum `form:"field,omitempty" json:"field,omitempty"`
-
-	// HasCredentials has_credentials
-	HasCredentials *bool `form:"has_credentials,omitempty" json:"has_credentials,omitempty"`
-
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
-// GoogleAuthCountParams defines parameters for GoogleAuthCount.
-type GoogleAuthCountParams struct {
-	// HasCredentials has_credentials
-	HasCredentials *bool `form:"has_credentials,omitempty" json:"has_credentials,omitempty"`
-
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
-// GoogleAuthCallbackRetrieveParams defines parameters for GoogleAuthCallbackRetrieve.
-type GoogleAuthCallbackRetrieveParams struct {
-	// Code Authorization code
-	Code string `form:"code" json:"code"`
-
-	// State Service provider UUID
-	State string `form:"state" json:"state"`
-}
-
-// GoogleAuthCallbackCountParams defines parameters for GoogleAuthCallbackCount.
-type GoogleAuthCallbackCountParams struct {
-	// Code Authorization code
-	Code string `form:"code" json:"code"`
-
-	// State Service provider UUID
-	State string `form:"state" json:"state"`
-}
-
-// GoogleAuthRetrieveParams defines parameters for GoogleAuthRetrieve.
-type GoogleAuthRetrieveParams struct {
-	Field *[]GoogleCredentialsFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 }
 
 // HooksEmailListParams defines parameters for HooksEmailList.
@@ -89789,6 +89611,9 @@ type EventSubscriptionsCreateJSONRequestBody = EventSubscriptionRequest
 // EventSubscriptionsCreateQueueJSONRequestBody defines body for EventSubscriptionsCreateQueue for application/json ContentType.
 type EventSubscriptionsCreateQueueJSONRequestBody = EventSubscriptionQueueCreateRequest
 
+// ExportPdfJSONRequestBody defines body for ExportPdf for application/json ContentType.
+type ExportPdfJSONRequestBody = ExportPdfRequest
+
 // ExternalLinksCreateJSONRequestBody defines body for ExternalLinksCreate for application/json ContentType.
 type ExternalLinksCreateJSONRequestBody = ExternalLinkRequest
 
@@ -112466,15 +112291,6 @@ type ClientInterface interface {
 	// BookingOfferingsRetrieve performs a GET /api/booking-offerings/{uuid}/ (the `BookingOfferingsRetrieve` operationId) request.
 	BookingOfferingsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *BookingOfferingsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// BookingOfferingsGoogleCalendarSync performs a POST /api/booking-offerings/{uuid}/google_calendar_sync/ (the `BookingOfferingsGoogleCalendarSync` operationId) request.
-	BookingOfferingsGoogleCalendarSync(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// BookingOfferingsShareGoogleCalendar performs a POST /api/booking-offerings/{uuid}/share_google_calendar/ (the `BookingOfferingsShareGoogleCalendar` operationId) request.
-	BookingOfferingsShareGoogleCalendar(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// BookingOfferingsUnshareGoogleCalendar performs a POST /api/booking-offerings/{uuid}/unshare_google_calendar/ (the `BookingOfferingsUnshareGoogleCalendar` operationId) request.
-	BookingOfferingsUnshareGoogleCalendar(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// BookingResourcesList performs a GET /api/booking-resources/ (the `BookingResourcesList` operationId) request.
 	BookingResourcesList(ctx context.Context, params *BookingResourcesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -114677,6 +114493,24 @@ type ClientInterface interface {
 	// ExpertiseCategoriesRetrieve performs a GET /api/expertise-categories/{uuid}/ (the `ExpertiseCategoriesRetrieve` operationId) request.
 	ExpertiseCategoriesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ExportPdfWithBody Export a table or chart as PDF
+	//
+	// Renders the title with either a table (columns and rows of text) or a chart (a base64-encoded PNG) as a PDF. Nothing is read from the database: the PDF holds only what the request sends. A table may have at most 10000 rows, 100 columns, 50000 cells and 1000000 characters; an image at most 5 MB and 25000000 pixels.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/export-pdf/ (the `ExportPdf` operationId).
+	ExportPdfWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ExportPdf Export a table or chart as PDF
+	//
+	// Renders the title with either a table (columns and rows of text) or a chart (a base64-encoded PNG) as a PDF. Nothing is read from the database: the PDF holds only what the request sends. A table may have at most 10000 rows, 100 columns, 50000 cells and 1000000 characters; an image at most 5 MB and 25000000 pixels.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/export-pdf/ (the `ExportPdf` operationId).
+	ExportPdf(ctx context.Context, body ExportPdfJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ExternalLinksList List external links
 	//
 	// Retrieve a list of external links available in the system.
@@ -114849,30 +114683,6 @@ type ClientInterface interface {
 	//
 	// Update SSH keys for profile.
 	FreeipaProfilesUpdateSshKeys(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GoogleAuthList performs a GET /api/google-auth/ (the `GoogleAuthList` operationId) request.
-	GoogleAuthList(ctx context.Context, params *GoogleAuthListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GoogleAuthCount performs a HEAD /api/google-auth/ (the `GoogleAuthCount` operationId) request.
-	//
-	// Get number of items in the collection matching the request parameters.
-	GoogleAuthCount(ctx context.Context, params *GoogleAuthCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GoogleAuthCallbackRetrieve performs a GET /api/google-auth/callback/ (the `GoogleAuthCallbackRetrieve` operationId) request.
-	//
-	// Callback endpoint for Google authorization.
-	GoogleAuthCallbackRetrieve(ctx context.Context, params *GoogleAuthCallbackRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GoogleAuthCallbackCount performs a HEAD /api/google-auth/callback/ (the `GoogleAuthCallbackCount` operationId) request.
-	//
-	// Get number of items in the collection matching the request parameters.
-	GoogleAuthCallbackCount(ctx context.Context, params *GoogleAuthCallbackCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GoogleAuthRetrieve performs a GET /api/google-auth/{uuid}/ (the `GoogleAuthRetrieve` operationId) request.
-	GoogleAuthRetrieve(ctx context.Context, uuid openapi_types.UUID, params *GoogleAuthRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GoogleAuthAuthorizeRetrieve performs a GET /api/google-auth/{uuid}/authorize/ (the `GoogleAuthAuthorizeRetrieve` operationId) request.
-	GoogleAuthAuthorizeRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// HelpdeskHealthList performs a GET /api/helpdesk-health/ (the `HelpdeskHealthList` operationId) request.
 	HelpdeskHealthList(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -139472,45 +139282,6 @@ func (c *Client) BookingOfferingsRetrieve(ctx context.Context, uuid openapi_type
 	return c.Client.Do(req)
 }
 
-// BookingOfferingsGoogleCalendarSync performs a POST /api/booking-offerings/{uuid}/google_calendar_sync/ (the `BookingOfferingsGoogleCalendarSync` operationId) request.
-func (c *Client) BookingOfferingsGoogleCalendarSync(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewBookingOfferingsGoogleCalendarSyncRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// BookingOfferingsShareGoogleCalendar performs a POST /api/booking-offerings/{uuid}/share_google_calendar/ (the `BookingOfferingsShareGoogleCalendar` operationId) request.
-func (c *Client) BookingOfferingsShareGoogleCalendar(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewBookingOfferingsShareGoogleCalendarRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// BookingOfferingsUnshareGoogleCalendar performs a POST /api/booking-offerings/{uuid}/unshare_google_calendar/ (the `BookingOfferingsUnshareGoogleCalendar` operationId) request.
-func (c *Client) BookingOfferingsUnshareGoogleCalendar(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewBookingOfferingsUnshareGoogleCalendarRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 // BookingResourcesList performs a GET /api/booking-resources/ (the `BookingResourcesList` operationId) request.
 func (c *Client) BookingResourcesList(ctx context.Context, params *BookingResourcesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewBookingResourcesListRequest(c.Server, params)
@@ -145672,6 +145443,44 @@ func (c *Client) ExpertiseCategoriesRetrieve(ctx context.Context, uuid openapi_t
 	return c.Client.Do(req)
 }
 
+// ExportPdfWithBody Export a table or chart as PDF
+//
+// Renders the title with either a table (columns and rows of text) or a chart (a base64-encoded PNG) as a PDF. Nothing is read from the database: the PDF holds only what the request sends. A table may have at most 10000 rows, 100 columns, 50000 cells and 1000000 characters; an image at most 5 MB and 25000000 pixels.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/export-pdf/ (the `ExportPdf` operationId).
+func (c *Client) ExportPdfWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewExportPdfRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ExportPdf Export a table or chart as PDF
+//
+// Renders the title with either a table (columns and rows of text) or a chart (a base64-encoded PNG) as a PDF. Nothing is read from the database: the PDF holds only what the request sends. A table may have at most 10000 rows, 100 columns, 50000 cells and 1000000 characters; an image at most 5 MB and 25000000 pixels.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/export-pdf/ (the `ExportPdf` operationId).
+func (c *Client) ExportPdf(ctx context.Context, body ExportPdfJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewExportPdfRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // ExternalLinksList List external links
 //
 // Retrieve a list of external links available in the system.
@@ -146105,90 +145914,6 @@ func (c *Client) FreeipaProfilesUpdate(ctx context.Context, uuid openapi_types.U
 // Update SSH keys for profile.
 func (c *Client) FreeipaProfilesUpdateSshKeys(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewFreeipaProfilesUpdateSshKeysRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// GoogleAuthList performs a GET /api/google-auth/ (the `GoogleAuthList` operationId) request.
-func (c *Client) GoogleAuthList(ctx context.Context, params *GoogleAuthListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGoogleAuthListRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// GoogleAuthCount performs a HEAD /api/google-auth/ (the `GoogleAuthCount` operationId) request.
-//
-// Get number of items in the collection matching the request parameters.
-func (c *Client) GoogleAuthCount(ctx context.Context, params *GoogleAuthCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGoogleAuthCountRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// GoogleAuthCallbackRetrieve performs a GET /api/google-auth/callback/ (the `GoogleAuthCallbackRetrieve` operationId) request.
-//
-// Callback endpoint for Google authorization.
-func (c *Client) GoogleAuthCallbackRetrieve(ctx context.Context, params *GoogleAuthCallbackRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGoogleAuthCallbackRetrieveRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// GoogleAuthCallbackCount performs a HEAD /api/google-auth/callback/ (the `GoogleAuthCallbackCount` operationId) request.
-//
-// Get number of items in the collection matching the request parameters.
-func (c *Client) GoogleAuthCallbackCount(ctx context.Context, params *GoogleAuthCallbackCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGoogleAuthCallbackCountRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// GoogleAuthRetrieve performs a GET /api/google-auth/{uuid}/ (the `GoogleAuthRetrieve` operationId) request.
-func (c *Client) GoogleAuthRetrieve(ctx context.Context, uuid openapi_types.UUID, params *GoogleAuthRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGoogleAuthRetrieveRequest(c.Server, uuid, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// GoogleAuthAuthorizeRetrieve performs a GET /api/google-auth/{uuid}/authorize/ (the `GoogleAuthAuthorizeRetrieve` operationId) request.
-func (c *Client) GoogleAuthAuthorizeRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGoogleAuthAuthorizeRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -213656,108 +213381,6 @@ func NewBookingOfferingsRetrieveRequest(server string, uuid openapi_types.UUID, 
 	return req, nil
 }
 
-// NewBookingOfferingsGoogleCalendarSyncRequest constructs an http.Request for the BookingOfferingsGoogleCalendarSync method
-func NewBookingOfferingsGoogleCalendarSyncRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/booking-offerings/%s/google_calendar_sync/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewBookingOfferingsShareGoogleCalendarRequest constructs an http.Request for the BookingOfferingsShareGoogleCalendar method
-func NewBookingOfferingsShareGoogleCalendarRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/booking-offerings/%s/share_google_calendar/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewBookingOfferingsUnshareGoogleCalendarRequest constructs an http.Request for the BookingOfferingsUnshareGoogleCalendar method
-func NewBookingOfferingsUnshareGoogleCalendarRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/booking-offerings/%s/unshare_google_calendar/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewBookingResourcesListRequest constructs an http.Request for the BookingResourcesList method
 func NewBookingResourcesListRequest(server string, params *BookingResourcesListParams) (*http.Request, error) {
 	var err error
@@ -237522,6 +237145,46 @@ func NewExpertiseCategoriesRetrieveRequest(server string, uuid openapi_types.UUI
 	return req, nil
 }
 
+// NewExportPdfRequest calls the generic ExportPdf builder with application/json body
+func NewExportPdfRequest(server string, body ExportPdfJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewExportPdfRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewExportPdfRequestWithBody constructs an http.Request for the ExportPdf method, with any body, and a specified content type
+func NewExportPdfRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/export-pdf/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewExternalLinksListRequest constructs an http.Request for the ExternalLinksList method
 func NewExternalLinksListRequest(server string, params *ExternalLinksListParams) (*http.Request, error) {
 	var err error
@@ -239009,385 +238672,6 @@ func NewFreeipaProfilesUpdateSshKeysRequest(server string, uuid openapi_types.UU
 	}
 
 	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGoogleAuthListRequest constructs an http.Request for the GoogleAuthList method
-func NewGoogleAuthListRequest(server string, params *GoogleAuthListParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/google-auth/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if params.Field != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.HasCredentials != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_credentials", *params.HasCredentials, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGoogleAuthCountRequest constructs an http.Request for the GoogleAuthCount method
-func NewGoogleAuthCountRequest(server string, params *GoogleAuthCountParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/google-auth/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if params.HasCredentials != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_credentials", *params.HasCredentials, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
-	}
-
-	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGoogleAuthCallbackRetrieveRequest constructs an http.Request for the GoogleAuthCallbackRetrieve method
-func NewGoogleAuthCallbackRetrieveRequest(server string, params *GoogleAuthCallbackRetrieveParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/google-auth/callback/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "code", params.Code, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
-			return nil, err
-		} else {
-			for _, qp := range strings.Split(queryFrag, "&") {
-				rawQueryFragments = append(rawQueryFragments, qp)
-			}
-		}
-
-		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
-			return nil, err
-		} else {
-			for _, qp := range strings.Split(queryFrag, "&") {
-				rawQueryFragments = append(rawQueryFragments, qp)
-			}
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGoogleAuthCallbackCountRequest constructs an http.Request for the GoogleAuthCallbackCount method
-func NewGoogleAuthCallbackCountRequest(server string, params *GoogleAuthCallbackCountParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/google-auth/callback/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "code", params.Code, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
-			return nil, err
-		} else {
-			for _, qp := range strings.Split(queryFrag, "&") {
-				rawQueryFragments = append(rawQueryFragments, qp)
-			}
-		}
-
-		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
-			return nil, err
-		} else {
-			for _, qp := range strings.Split(queryFrag, "&") {
-				rawQueryFragments = append(rawQueryFragments, qp)
-			}
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
-	}
-
-	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGoogleAuthRetrieveRequest constructs an http.Request for the GoogleAuthRetrieve method
-func NewGoogleAuthRetrieveRequest(server string, uuid openapi_types.UUID, params *GoogleAuthRetrieveParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/google-auth/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if params.Field != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGoogleAuthAuthorizeRetrieveRequest constructs an http.Request for the GoogleAuthAuthorizeRetrieve method
-func NewGoogleAuthAuthorizeRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/google-auth/%s/authorize/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -432009,21 +431293,6 @@ type ClientWithResponsesInterface interface {
 	// Returns a wrapper object for the known response body format(s).
 	BookingOfferingsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *BookingOfferingsRetrieveParams, reqEditors ...RequestEditorFn) (*BookingOfferingsRetrieveResponse, error)
 
-	// BookingOfferingsGoogleCalendarSyncWithResponse performs a POST /api/booking-offerings/{uuid}/google_calendar_sync/ (the `BookingOfferingsGoogleCalendarSync` operationId) request.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	BookingOfferingsGoogleCalendarSyncWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*BookingOfferingsGoogleCalendarSyncResponse, error)
-
-	// BookingOfferingsShareGoogleCalendarWithResponse performs a POST /api/booking-offerings/{uuid}/share_google_calendar/ (the `BookingOfferingsShareGoogleCalendar` operationId) request.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	BookingOfferingsShareGoogleCalendarWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*BookingOfferingsShareGoogleCalendarResponse, error)
-
-	// BookingOfferingsUnshareGoogleCalendarWithResponse performs a POST /api/booking-offerings/{uuid}/unshare_google_calendar/ (the `BookingOfferingsUnshareGoogleCalendar` operationId) request.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	BookingOfferingsUnshareGoogleCalendarWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*BookingOfferingsUnshareGoogleCalendarResponse, error)
-
 	// BookingResourcesListWithResponse performs a GET /api/booking-resources/ (the `BookingResourcesList` operationId) request.
 	//
 	// Returns a wrapper object for the known response body format(s).
@@ -434786,6 +434055,24 @@ type ClientWithResponsesInterface interface {
 	// Returns a wrapper object for the known response body format(s).
 	ExpertiseCategoriesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ExpertiseCategoriesRetrieveResponse, error)
 
+	// ExportPdfWithBodyWithResponse Export a table or chart as PDF
+	//
+	// Renders the title with either a table (columns and rows of text) or a chart (a base64-encoded PNG) as a PDF. Nothing is read from the database: the PDF holds only what the request sends. A table may have at most 10000 rows, 100 columns, 50000 cells and 1000000 characters; an image at most 5 MB and 25000000 pixels.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/export-pdf/ (the `ExportPdf` operationId).
+	ExportPdfWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ExportPdfResponse, error)
+
+	// ExportPdfWithResponse Export a table or chart as PDF
+	//
+	// Renders the title with either a table (columns and rows of text) or a chart (a base64-encoded PNG) as a PDF. Nothing is read from the database: the PDF holds only what the request sends. A table may have at most 10000 rows, 100 columns, 50000 cells and 1000000 characters; an image at most 5 MB and 25000000 pixels.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/export-pdf/ (the `ExportPdf` operationId).
+	ExportPdfWithResponse(ctx context.Context, body ExportPdfJSONRequestBody, reqEditors ...RequestEditorFn) (*ExportPdfResponse, error)
+
 	// ExternalLinksListWithResponse List external links
 	//
 	// Retrieve a list of external links available in the system.
@@ -434986,42 +434273,6 @@ type ClientWithResponsesInterface interface {
 	//
 	// Returns a wrapper object for the known response body format(s).
 	FreeipaProfilesUpdateSshKeysWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*FreeipaProfilesUpdateSshKeysResponse, error)
-
-	// GoogleAuthListWithResponse performs a GET /api/google-auth/ (the `GoogleAuthList` operationId) request.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	GoogleAuthListWithResponse(ctx context.Context, params *GoogleAuthListParams, reqEditors ...RequestEditorFn) (*GoogleAuthListResponse, error)
-
-	// GoogleAuthCountWithResponse performs a HEAD /api/google-auth/ (the `GoogleAuthCount` operationId) request.
-	//
-	// Get number of items in the collection matching the request parameters.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	GoogleAuthCountWithResponse(ctx context.Context, params *GoogleAuthCountParams, reqEditors ...RequestEditorFn) (*GoogleAuthCountResponse, error)
-
-	// GoogleAuthCallbackRetrieveWithResponse performs a GET /api/google-auth/callback/ (the `GoogleAuthCallbackRetrieve` operationId) request.
-	//
-	// Callback endpoint for Google authorization.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	GoogleAuthCallbackRetrieveWithResponse(ctx context.Context, params *GoogleAuthCallbackRetrieveParams, reqEditors ...RequestEditorFn) (*GoogleAuthCallbackRetrieveResponse, error)
-
-	// GoogleAuthCallbackCountWithResponse performs a HEAD /api/google-auth/callback/ (the `GoogleAuthCallbackCount` operationId) request.
-	//
-	// Get number of items in the collection matching the request parameters.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	GoogleAuthCallbackCountWithResponse(ctx context.Context, params *GoogleAuthCallbackCountParams, reqEditors ...RequestEditorFn) (*GoogleAuthCallbackCountResponse, error)
-
-	// GoogleAuthRetrieveWithResponse performs a GET /api/google-auth/{uuid}/ (the `GoogleAuthRetrieve` operationId) request.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	GoogleAuthRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *GoogleAuthRetrieveParams, reqEditors ...RequestEditorFn) (*GoogleAuthRetrieveResponse, error)
-
-	// GoogleAuthAuthorizeRetrieveWithResponse performs a GET /api/google-auth/{uuid}/authorize/ (the `GoogleAuthAuthorizeRetrieve` operationId) request.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	GoogleAuthAuthorizeRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*GoogleAuthAuthorizeRetrieveResponse, error)
 
 	// HelpdeskHealthListWithResponse performs a GET /api/helpdesk-health/ (the `HelpdeskHealthList` operationId) request.
 	//
@@ -467776,108 +467027,6 @@ func (r BookingOfferingsRetrieveResponse) ContentType() string {
 	return ""
 }
 
-type BookingOfferingsGoogleCalendarSyncResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r BookingOfferingsGoogleCalendarSyncResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r BookingOfferingsGoogleCalendarSyncResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r BookingOfferingsGoogleCalendarSyncResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r BookingOfferingsGoogleCalendarSyncResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type BookingOfferingsShareGoogleCalendarResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r BookingOfferingsShareGoogleCalendarResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r BookingOfferingsShareGoogleCalendarResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r BookingOfferingsShareGoogleCalendarResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r BookingOfferingsShareGoogleCalendarResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type BookingOfferingsUnshareGoogleCalendarResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r BookingOfferingsUnshareGoogleCalendarResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r BookingOfferingsUnshareGoogleCalendarResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r BookingOfferingsUnshareGoogleCalendarResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r BookingOfferingsUnshareGoogleCalendarResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
 // BookingResourcesListResponse200Headers the declared response headers of an HTTP 200 response for BookingResourcesList
 type BookingResourcesListResponse200Headers struct {
 	XResultCount *int
@@ -480208,6 +479357,40 @@ func (r ExpertiseCategoriesRetrieveResponse) ContentType() string {
 	return ""
 }
 
+type ExportPdfResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r ExportPdfResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ExportPdfResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ExportPdfResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ExportPdfResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // ExternalLinksListResponse200Headers the declared response headers of an HTTP 200 response for ExternalLinksList
 type ExternalLinksListResponse200Headers struct {
 	XResultCount *int
@@ -480926,245 +480109,6 @@ func (r FreeipaProfilesUpdateSshKeysResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r FreeipaProfilesUpdateSshKeysResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-// GoogleAuthListResponse200Headers the declared response headers of an HTTP 200 response for GoogleAuthList
-type GoogleAuthListResponse200Headers struct {
-	XResultCount *int
-}
-
-type GoogleAuthListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *[]GoogleCredentials
-	// Headers200 the parsed response headers for an HTTP 200 response
-	Headers200 *GoogleAuthListResponse200Headers
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GoogleAuthListResponse) GetJSON200() *[]GoogleCredentials {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r GoogleAuthListResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r GoogleAuthListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GoogleAuthListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r GoogleAuthListResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type GoogleAuthCountResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r GoogleAuthCountResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r GoogleAuthCountResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GoogleAuthCountResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r GoogleAuthCountResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type GoogleAuthCallbackRetrieveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *string
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GoogleAuthCallbackRetrieveResponse) GetJSON200() *string {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r GoogleAuthCallbackRetrieveResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r GoogleAuthCallbackRetrieveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GoogleAuthCallbackRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r GoogleAuthCallbackRetrieveResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type GoogleAuthCallbackCountResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r GoogleAuthCallbackCountResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r GoogleAuthCallbackCountResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GoogleAuthCallbackCountResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r GoogleAuthCallbackCountResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type GoogleAuthRetrieveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *GoogleCredentials
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GoogleAuthRetrieveResponse) GetJSON200() *GoogleCredentials {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r GoogleAuthRetrieveResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r GoogleAuthRetrieveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GoogleAuthRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r GoogleAuthRetrieveResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type GoogleAuthAuthorizeRetrieveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *GoogleAuthUrl
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GoogleAuthAuthorizeRetrieveResponse) GetJSON200() *GoogleAuthUrl {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r GoogleAuthAuthorizeRetrieveResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r GoogleAuthAuthorizeRetrieveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GoogleAuthAuthorizeRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r GoogleAuthAuthorizeRetrieveResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -582000,39 +580944,6 @@ func (c *ClientWithResponses) BookingOfferingsRetrieveWithResponse(ctx context.C
 	return ParseBookingOfferingsRetrieveResponse(rsp)
 }
 
-// BookingOfferingsGoogleCalendarSyncWithResponse performs a POST /api/booking-offerings/{uuid}/google_calendar_sync/ (the `BookingOfferingsGoogleCalendarSync` operationId) request.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) BookingOfferingsGoogleCalendarSyncWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*BookingOfferingsGoogleCalendarSyncResponse, error) {
-	rsp, err := c.BookingOfferingsGoogleCalendarSync(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseBookingOfferingsGoogleCalendarSyncResponse(rsp)
-}
-
-// BookingOfferingsShareGoogleCalendarWithResponse performs a POST /api/booking-offerings/{uuid}/share_google_calendar/ (the `BookingOfferingsShareGoogleCalendar` operationId) request.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) BookingOfferingsShareGoogleCalendarWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*BookingOfferingsShareGoogleCalendarResponse, error) {
-	rsp, err := c.BookingOfferingsShareGoogleCalendar(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseBookingOfferingsShareGoogleCalendarResponse(rsp)
-}
-
-// BookingOfferingsUnshareGoogleCalendarWithResponse performs a POST /api/booking-offerings/{uuid}/unshare_google_calendar/ (the `BookingOfferingsUnshareGoogleCalendar` operationId) request.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) BookingOfferingsUnshareGoogleCalendarWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*BookingOfferingsUnshareGoogleCalendarResponse, error) {
-	rsp, err := c.BookingOfferingsUnshareGoogleCalendar(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseBookingOfferingsUnshareGoogleCalendarResponse(rsp)
-}
-
 // BookingResourcesListWithResponse performs a GET /api/booking-resources/ (the `BookingResourcesList` operationId) request.
 //
 // Returns a wrapper object for the known response body format(s).
@@ -587175,6 +586086,36 @@ func (c *ClientWithResponses) ExpertiseCategoriesRetrieveWithResponse(ctx contex
 	return ParseExpertiseCategoriesRetrieveResponse(rsp)
 }
 
+// ExportPdfWithBodyWithResponse Export a table or chart as PDF
+//
+// Renders the title with either a table (columns and rows of text) or a chart (a base64-encoded PNG) as a PDF. Nothing is read from the database: the PDF holds only what the request sends. A table may have at most 10000 rows, 100 columns, 50000 cells and 1000000 characters; an image at most 5 MB and 25000000 pixels.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/export-pdf/ (the `ExportPdf` operationId).
+func (c *ClientWithResponses) ExportPdfWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ExportPdfResponse, error) {
+	rsp, err := c.ExportPdfWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseExportPdfResponse(rsp)
+}
+
+// ExportPdfWithResponse Export a table or chart as PDF
+//
+// Renders the title with either a table (columns and rows of text) or a chart (a base64-encoded PNG) as a PDF. Nothing is read from the database: the PDF holds only what the request sends. A table may have at most 10000 rows, 100 columns, 50000 cells and 1000000 characters; an image at most 5 MB and 25000000 pixels.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/export-pdf/ (the `ExportPdf` operationId).
+func (c *ClientWithResponses) ExportPdfWithResponse(ctx context.Context, body ExportPdfJSONRequestBody, reqEditors ...RequestEditorFn) (*ExportPdfResponse, error) {
+	rsp, err := c.ExportPdf(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseExportPdfResponse(rsp)
+}
+
 // ExternalLinksListWithResponse List external links
 //
 // Retrieve a list of external links available in the system.
@@ -587536,78 +586477,6 @@ func (c *ClientWithResponses) FreeipaProfilesUpdateSshKeysWithResponse(ctx conte
 		return nil, err
 	}
 	return ParseFreeipaProfilesUpdateSshKeysResponse(rsp)
-}
-
-// GoogleAuthListWithResponse performs a GET /api/google-auth/ (the `GoogleAuthList` operationId) request.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) GoogleAuthListWithResponse(ctx context.Context, params *GoogleAuthListParams, reqEditors ...RequestEditorFn) (*GoogleAuthListResponse, error) {
-	rsp, err := c.GoogleAuthList(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGoogleAuthListResponse(rsp)
-}
-
-// GoogleAuthCountWithResponse performs a HEAD /api/google-auth/ (the `GoogleAuthCount` operationId) request.
-//
-// Get number of items in the collection matching the request parameters.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) GoogleAuthCountWithResponse(ctx context.Context, params *GoogleAuthCountParams, reqEditors ...RequestEditorFn) (*GoogleAuthCountResponse, error) {
-	rsp, err := c.GoogleAuthCount(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGoogleAuthCountResponse(rsp)
-}
-
-// GoogleAuthCallbackRetrieveWithResponse performs a GET /api/google-auth/callback/ (the `GoogleAuthCallbackRetrieve` operationId) request.
-//
-// Callback endpoint for Google authorization.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) GoogleAuthCallbackRetrieveWithResponse(ctx context.Context, params *GoogleAuthCallbackRetrieveParams, reqEditors ...RequestEditorFn) (*GoogleAuthCallbackRetrieveResponse, error) {
-	rsp, err := c.GoogleAuthCallbackRetrieve(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGoogleAuthCallbackRetrieveResponse(rsp)
-}
-
-// GoogleAuthCallbackCountWithResponse performs a HEAD /api/google-auth/callback/ (the `GoogleAuthCallbackCount` operationId) request.
-//
-// Get number of items in the collection matching the request parameters.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) GoogleAuthCallbackCountWithResponse(ctx context.Context, params *GoogleAuthCallbackCountParams, reqEditors ...RequestEditorFn) (*GoogleAuthCallbackCountResponse, error) {
-	rsp, err := c.GoogleAuthCallbackCount(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGoogleAuthCallbackCountResponse(rsp)
-}
-
-// GoogleAuthRetrieveWithResponse performs a GET /api/google-auth/{uuid}/ (the `GoogleAuthRetrieve` operationId) request.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) GoogleAuthRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *GoogleAuthRetrieveParams, reqEditors ...RequestEditorFn) (*GoogleAuthRetrieveResponse, error) {
-	rsp, err := c.GoogleAuthRetrieve(ctx, uuid, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGoogleAuthRetrieveResponse(rsp)
-}
-
-// GoogleAuthAuthorizeRetrieveWithResponse performs a GET /api/google-auth/{uuid}/authorize/ (the `GoogleAuthAuthorizeRetrieve` operationId) request.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) GoogleAuthAuthorizeRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*GoogleAuthAuthorizeRetrieveResponse, error) {
-	rsp, err := c.GoogleAuthAuthorizeRetrieve(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGoogleAuthAuthorizeRetrieveResponse(rsp)
 }
 
 // HelpdeskHealthListWithResponse performs a GET /api/helpdesk-health/ (the `HelpdeskHealthList` operationId) request.
@@ -636894,54 +635763,6 @@ func ParseBookingOfferingsRetrieveResponse(rsp *http.Response) (*BookingOffering
 	return response, nil
 }
 
-// ParseBookingOfferingsGoogleCalendarSyncResponse parses an HTTP response from a BookingOfferingsGoogleCalendarSyncWithResponse call
-func ParseBookingOfferingsGoogleCalendarSyncResponse(rsp *http.Response) (*BookingOfferingsGoogleCalendarSyncResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &BookingOfferingsGoogleCalendarSyncResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseBookingOfferingsShareGoogleCalendarResponse parses an HTTP response from a BookingOfferingsShareGoogleCalendarWithResponse call
-func ParseBookingOfferingsShareGoogleCalendarResponse(rsp *http.Response) (*BookingOfferingsShareGoogleCalendarResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &BookingOfferingsShareGoogleCalendarResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseBookingOfferingsUnshareGoogleCalendarResponse parses an HTTP response from a BookingOfferingsUnshareGoogleCalendarWithResponse call
-func ParseBookingOfferingsUnshareGoogleCalendarResponse(rsp *http.Response) (*BookingOfferingsUnshareGoogleCalendarResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &BookingOfferingsUnshareGoogleCalendarResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
 // ParseBookingResourcesListResponse parses an HTTP response from a BookingResourcesListWithResponse call
 func ParseBookingResourcesListResponse(rsp *http.Response) (*BookingResourcesListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -644778,6 +643599,22 @@ func ParseExpertiseCategoriesRetrieveResponse(rsp *http.Response) (*ExpertiseCat
 	return response, nil
 }
 
+// ParseExportPdfResponse parses an HTTP response from a ExportPdfWithResponse call
+func ParseExportPdfResponse(rsp *http.Response) (*ExportPdfResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ExportPdfResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseExternalLinksListResponse parses an HTTP response from a ExternalLinksListWithResponse call
 func ParseExternalLinksListResponse(rsp *http.Response) (*ExternalLinksListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -645230,155 +644067,6 @@ func ParseFreeipaProfilesUpdateSshKeysResponse(rsp *http.Response) (*FreeipaProf
 	response := &FreeipaProfilesUpdateSshKeysResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseGoogleAuthListResponse parses an HTTP response from a GoogleAuthListWithResponse call
-func ParseGoogleAuthListResponse(rsp *http.Response) (*GoogleAuthListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GoogleAuthListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []GoogleCredentials
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	switch {
-	case rsp.StatusCode == 200:
-		var headers GoogleAuthListResponse200Headers
-		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
-			var value int
-			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			}
-			headers.XResultCount = &value
-		}
-		response.Headers200 = &headers
-	}
-
-	return response, nil
-}
-
-// ParseGoogleAuthCountResponse parses an HTTP response from a GoogleAuthCountWithResponse call
-func ParseGoogleAuthCountResponse(rsp *http.Response) (*GoogleAuthCountResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GoogleAuthCountResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseGoogleAuthCallbackRetrieveResponse parses an HTTP response from a GoogleAuthCallbackRetrieveWithResponse call
-func ParseGoogleAuthCallbackRetrieveResponse(rsp *http.Response) (*GoogleAuthCallbackRetrieveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GoogleAuthCallbackRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest string
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGoogleAuthCallbackCountResponse parses an HTTP response from a GoogleAuthCallbackCountWithResponse call
-func ParseGoogleAuthCallbackCountResponse(rsp *http.Response) (*GoogleAuthCallbackCountResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GoogleAuthCallbackCountResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseGoogleAuthRetrieveResponse parses an HTTP response from a GoogleAuthRetrieveWithResponse call
-func ParseGoogleAuthRetrieveResponse(rsp *http.Response) (*GoogleAuthRetrieveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GoogleAuthRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest GoogleCredentials
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGoogleAuthAuthorizeRetrieveResponse parses an HTTP response from a GoogleAuthAuthorizeRetrieveWithResponse call
-func ParseGoogleAuthAuthorizeRetrieveResponse(rsp *http.Response) (*GoogleAuthAuthorizeRetrieveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GoogleAuthAuthorizeRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest GoogleAuthUrl
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
 	}
 
 	return response, nil
