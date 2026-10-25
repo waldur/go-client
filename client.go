@@ -16317,6 +16317,7 @@ const (
 	PermissionMetadataResponsePermissionMapOFFERINGDELETESCREENSHOT                     PermissionMetadataResponsePermissionMap = "OFFERING.DELETE_SCREENSHOT"
 	PermissionMetadataResponsePermissionMapOFFERINGDELETEUSER                           PermissionMetadataResponsePermissionMap = "OFFERING.DELETE_USER"
 	PermissionMetadataResponsePermissionMapOFFERINGDRYRUNSCRIPT                         PermissionMetadataResponsePermissionMap = "OFFERING.DRY_RUN_SCRIPT"
+	PermissionMetadataResponsePermissionMapOFFERINGLIST                                 PermissionMetadataResponsePermissionMap = "OFFERING.LIST"
 	PermissionMetadataResponsePermissionMapOFFERINGMANAGEBACKENDRESOURCES               PermissionMetadataResponsePermissionMap = "OFFERING.MANAGE_BACKEND_RESOURCES"
 	PermissionMetadataResponsePermissionMapOFFERINGMANAGECAMPAIGN                       PermissionMetadataResponsePermissionMap = "OFFERING.MANAGE_CAMPAIGN"
 	PermissionMetadataResponsePermissionMapOFFERINGMANAGEUSERGROUP                      PermissionMetadataResponsePermissionMap = "OFFERING.MANAGE_USER_GROUP"
@@ -16510,6 +16511,8 @@ func (e PermissionMetadataResponsePermissionMap) Valid() bool {
 	case PermissionMetadataResponsePermissionMapOFFERINGDELETEUSER:
 		return true
 	case PermissionMetadataResponsePermissionMapOFFERINGDRYRUNSCRIPT:
+		return true
+	case PermissionMetadataResponsePermissionMapOFFERINGLIST:
 		return true
 	case PermissionMetadataResponsePermissionMapOFFERINGMANAGEBACKENDRESOURCES:
 		return true
@@ -16767,6 +16770,7 @@ const (
 	PermissionMetadataResponsePermissionsOFFERINGDELETESCREENSHOT                     PermissionMetadataResponsePermissions = "OFFERING.DELETE_SCREENSHOT"
 	PermissionMetadataResponsePermissionsOFFERINGDELETEUSER                           PermissionMetadataResponsePermissions = "OFFERING.DELETE_USER"
 	PermissionMetadataResponsePermissionsOFFERINGDRYRUNSCRIPT                         PermissionMetadataResponsePermissions = "OFFERING.DRY_RUN_SCRIPT"
+	PermissionMetadataResponsePermissionsOFFERINGLIST                                 PermissionMetadataResponsePermissions = "OFFERING.LIST"
 	PermissionMetadataResponsePermissionsOFFERINGMANAGEBACKENDRESOURCES               PermissionMetadataResponsePermissions = "OFFERING.MANAGE_BACKEND_RESOURCES"
 	PermissionMetadataResponsePermissionsOFFERINGMANAGECAMPAIGN                       PermissionMetadataResponsePermissions = "OFFERING.MANAGE_CAMPAIGN"
 	PermissionMetadataResponsePermissionsOFFERINGMANAGEUSERGROUP                      PermissionMetadataResponsePermissions = "OFFERING.MANAGE_USER_GROUP"
@@ -16960,6 +16964,8 @@ func (e PermissionMetadataResponsePermissions) Valid() bool {
 	case PermissionMetadataResponsePermissionsOFFERINGDELETEUSER:
 		return true
 	case PermissionMetadataResponsePermissionsOFFERINGDRYRUNSCRIPT:
+		return true
+	case PermissionMetadataResponsePermissionsOFFERINGLIST:
 		return true
 	case PermissionMetadataResponsePermissionsOFFERINGMANAGEBACKENDRESOURCES:
 		return true
@@ -21632,6 +21638,7 @@ const (
 	RoleTypeCall            RoleType = "call"
 	RoleTypeCallOrganizer   RoleType = "call_organizer"
 	RoleTypeCustomer        RoleType = "customer"
+	RoleTypeGlobal          RoleType = "global"
 	RoleTypeOffering        RoleType = "offering"
 	RoleTypeProject         RoleType = "project"
 	RoleTypeProposal        RoleType = "proposal"
@@ -21648,6 +21655,8 @@ func (e RoleType) Valid() bool {
 	case RoleTypeCallOrganizer:
 		return true
 	case RoleTypeCustomer:
+		return true
+	case RoleTypeGlobal:
 		return true
 	case RoleTypeOffering:
 		return true
@@ -24561,6 +24570,7 @@ const (
 	ValueEnumOFFERINGDELETESCREENSHOT                     ValueEnum = "OFFERING.DELETE_SCREENSHOT"
 	ValueEnumOFFERINGDELETEUSER                           ValueEnum = "OFFERING.DELETE_USER"
 	ValueEnumOFFERINGDRYRUNSCRIPT                         ValueEnum = "OFFERING.DRY_RUN_SCRIPT"
+	ValueEnumOFFERINGLIST                                 ValueEnum = "OFFERING.LIST"
 	ValueEnumOFFERINGMANAGEBACKENDRESOURCES               ValueEnum = "OFFERING.MANAGE_BACKEND_RESOURCES"
 	ValueEnumOFFERINGMANAGECAMPAIGN                       ValueEnum = "OFFERING.MANAGE_CAMPAIGN"
 	ValueEnumOFFERINGMANAGEUSERGROUP                      ValueEnum = "OFFERING.MANAGE_USER_GROUP"
@@ -24754,6 +24764,8 @@ func (e ValueEnum) Valid() bool {
 	case ValueEnumOFFERINGDELETEUSER:
 		return true
 	case ValueEnumOFFERINGDRYRUNSCRIPT:
+		return true
+	case ValueEnumOFFERINGLIST:
 		return true
 	case ValueEnumOFFERINGMANAGEBACKENDRESOURCES:
 		return true
@@ -36802,6 +36814,13 @@ type GlobalUserDataAccessLog_IpAddress struct {
 
 // GlobalUserDataAccessLogOEnum defines model for GlobalUserDataAccessLogOEnum.
 type GlobalUserDataAccessLogOEnum string
+
+// GlobalUserRoleCreateRequest defines model for GlobalUserRoleCreateRequest.
+type GlobalUserRoleCreateRequest struct {
+	ExpirationTime *time.Time         `json:"expiration_time,omitempty"`
+	Role           string             `json:"role"`
+	User           openapi_types.UUID `json:"user"`
+}
 
 // GoodDirectionEnum defines model for GoodDirectionEnum.
 type GoodDirectionEnum string
@@ -66224,6 +66243,24 @@ type FreeipaProfilesCountParams struct {
 	User  *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
 }
 
+// GlobalUserRolesListParams defines parameters for GlobalUserRolesList.
+type GlobalUserRolesListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// GlobalUserRolesCountParams defines parameters for GlobalUserRolesCount.
+type GlobalUserRolesCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
 // HooksEmailListParams defines parameters for HooksEmailList.
 type HooksEmailListParams struct {
 	AuthorEmail *string `form:"author_email,omitempty" json:"author_email,omitempty"`
@@ -89649,6 +89686,9 @@ type FreeipaProfilesCreateJSONRequestBody = FreeipaProfileRequest
 
 // FreeipaProfilesUpdateJSONRequestBody defines body for FreeipaProfilesUpdate for application/json ContentType.
 type FreeipaProfilesUpdateJSONRequestBody = FreeipaProfileRequest
+
+// GlobalUserRolesCreateJSONRequestBody defines body for GlobalUserRolesCreate for application/json ContentType.
+type GlobalUserRolesCreateJSONRequestBody = GlobalUserRoleCreateRequest
 
 // HooksEmailCreateJSONRequestBody defines body for HooksEmailCreate for application/json ContentType.
 type HooksEmailCreateJSONRequestBody = EmailHookRequest
@@ -114684,6 +114724,38 @@ type ClientInterface interface {
 	// Update SSH keys for profile.
 	FreeipaProfilesUpdateSshKeys(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// GlobalUserRolesList performs a GET /api/global-user-roles/ (the `GlobalUserRolesList` operationId) request.
+	GlobalUserRolesList(ctx context.Context, params *GlobalUserRolesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GlobalUserRolesCount performs a HEAD /api/global-user-roles/ (the `GlobalUserRolesCount` operationId) request.
+	//
+	// Get number of items in the collection matching the request parameters.
+	GlobalUserRolesCount(ctx context.Context, params *GlobalUserRolesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GlobalUserRolesCreateWithBody Grant a site-wide role
+	//
+	// Staff assigns a global role to a user. The role's content type must be global. An optional expiration time can be set.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/global-user-roles/ (the `GlobalUserRolesCreate` operationId).
+	GlobalUserRolesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GlobalUserRolesCreate Grant a site-wide role
+	//
+	// Staff assigns a global role to a user. The role's content type must be global. An optional expiration time can be set.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/global-user-roles/ (the `GlobalUserRolesCreate` operationId).
+	GlobalUserRolesCreate(ctx context.Context, body GlobalUserRolesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GlobalUserRolesDestroy performs a DELETE /api/global-user-roles/{uuid}/ (the `GlobalUserRolesDestroy` operationId) request.
+	GlobalUserRolesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GlobalUserRolesRetrieve performs a GET /api/global-user-roles/{uuid}/ (the `GlobalUserRolesRetrieve` operationId) request.
+	GlobalUserRolesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// HelpdeskHealthList performs a GET /api/helpdesk-health/ (the `HelpdeskHealthList` operationId) request.
 	HelpdeskHealthList(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -129150,7 +129222,7 @@ type ClientInterface interface {
 
 	// PersonalAccessTokensAvailableBindingTargetsList List entity types the caller can bind each permission to
 	//
-	// For each permission, which TYPE_MAP keys the caller could bind a PAT to.
+	// For each permission, which scope types the caller could bind a PAT to.
 	//
 	// Drives the create-PAT frontend's type picker. For staff users every
 	// type is offered for every permission (they bypass UserRole checks).
@@ -145914,6 +145986,98 @@ func (c *Client) FreeipaProfilesUpdate(ctx context.Context, uuid openapi_types.U
 // Update SSH keys for profile.
 func (c *Client) FreeipaProfilesUpdateSshKeys(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewFreeipaProfilesUpdateSshKeysRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// GlobalUserRolesList performs a GET /api/global-user-roles/ (the `GlobalUserRolesList` operationId) request.
+func (c *Client) GlobalUserRolesList(ctx context.Context, params *GlobalUserRolesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGlobalUserRolesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// GlobalUserRolesCount performs a HEAD /api/global-user-roles/ (the `GlobalUserRolesCount` operationId) request.
+//
+// Get number of items in the collection matching the request parameters.
+func (c *Client) GlobalUserRolesCount(ctx context.Context, params *GlobalUserRolesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGlobalUserRolesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// GlobalUserRolesCreateWithBody Grant a site-wide role
+//
+// Staff assigns a global role to a user. The role's content type must be global. An optional expiration time can be set.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/global-user-roles/ (the `GlobalUserRolesCreate` operationId).
+func (c *Client) GlobalUserRolesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGlobalUserRolesCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// GlobalUserRolesCreate Grant a site-wide role
+//
+// Staff assigns a global role to a user. The role's content type must be global. An optional expiration time can be set.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/global-user-roles/ (the `GlobalUserRolesCreate` operationId).
+func (c *Client) GlobalUserRolesCreate(ctx context.Context, body GlobalUserRolesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGlobalUserRolesCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// GlobalUserRolesDestroy performs a DELETE /api/global-user-roles/{uuid}/ (the `GlobalUserRolesDestroy` operationId) request.
+func (c *Client) GlobalUserRolesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGlobalUserRolesDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// GlobalUserRolesRetrieve performs a GET /api/global-user-roles/{uuid}/ (the `GlobalUserRolesRetrieve` operationId) request.
+func (c *Client) GlobalUserRolesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGlobalUserRolesRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -182161,7 +182325,7 @@ func (c *Client) PersonalAccessTokensCreate(ctx context.Context, body PersonalAc
 
 // PersonalAccessTokensAvailableBindingTargetsList List entity types the caller can bind each permission to
 //
-// For each permission, which TYPE_MAP keys the caller could bind a PAT to.
+// For each permission, which scope types the caller could bind a PAT to.
 //
 // Drives the create-PAT frontend's type picker. For staff users every
 // type is offered for every permission (they bypass UserRole checks).
@@ -238672,6 +238836,246 @@ func NewFreeipaProfilesUpdateSshKeysRequest(server string, uuid openapi_types.UU
 	}
 
 	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGlobalUserRolesListRequest constructs an http.Request for the GlobalUserRolesList method
+func NewGlobalUserRolesListRequest(server string, params *GlobalUserRolesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/global-user-roles/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGlobalUserRolesCountRequest constructs an http.Request for the GlobalUserRolesCount method
+func NewGlobalUserRolesCountRequest(server string, params *GlobalUserRolesCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/global-user-roles/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGlobalUserRolesCreateRequest calls the generic GlobalUserRolesCreate builder with application/json body
+func NewGlobalUserRolesCreateRequest(server string, body GlobalUserRolesCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewGlobalUserRolesCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewGlobalUserRolesCreateRequestWithBody constructs an http.Request for the GlobalUserRolesCreate method, with any body, and a specified content type
+func NewGlobalUserRolesCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/global-user-roles/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewGlobalUserRolesDestroyRequest constructs an http.Request for the GlobalUserRolesDestroy method
+func NewGlobalUserRolesDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/global-user-roles/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGlobalUserRolesRetrieveRequest constructs an http.Request for the GlobalUserRolesRetrieve method
+func NewGlobalUserRolesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/global-user-roles/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -434274,6 +434678,46 @@ type ClientWithResponsesInterface interface {
 	// Returns a wrapper object for the known response body format(s).
 	FreeipaProfilesUpdateSshKeysWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*FreeipaProfilesUpdateSshKeysResponse, error)
 
+	// GlobalUserRolesListWithResponse performs a GET /api/global-user-roles/ (the `GlobalUserRolesList` operationId) request.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	GlobalUserRolesListWithResponse(ctx context.Context, params *GlobalUserRolesListParams, reqEditors ...RequestEditorFn) (*GlobalUserRolesListResponse, error)
+
+	// GlobalUserRolesCountWithResponse performs a HEAD /api/global-user-roles/ (the `GlobalUserRolesCount` operationId) request.
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	GlobalUserRolesCountWithResponse(ctx context.Context, params *GlobalUserRolesCountParams, reqEditors ...RequestEditorFn) (*GlobalUserRolesCountResponse, error)
+
+	// GlobalUserRolesCreateWithBodyWithResponse Grant a site-wide role
+	//
+	// Staff assigns a global role to a user. The role's content type must be global. An optional expiration time can be set.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/global-user-roles/ (the `GlobalUserRolesCreate` operationId).
+	GlobalUserRolesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*GlobalUserRolesCreateResponse, error)
+
+	// GlobalUserRolesCreateWithResponse Grant a site-wide role
+	//
+	// Staff assigns a global role to a user. The role's content type must be global. An optional expiration time can be set.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/global-user-roles/ (the `GlobalUserRolesCreate` operationId).
+	GlobalUserRolesCreateWithResponse(ctx context.Context, body GlobalUserRolesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*GlobalUserRolesCreateResponse, error)
+
+	// GlobalUserRolesDestroyWithResponse performs a DELETE /api/global-user-roles/{uuid}/ (the `GlobalUserRolesDestroy` operationId) request.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	GlobalUserRolesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*GlobalUserRolesDestroyResponse, error)
+
+	// GlobalUserRolesRetrieveWithResponse performs a GET /api/global-user-roles/{uuid}/ (the `GlobalUserRolesRetrieve` operationId) request.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	GlobalUserRolesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*GlobalUserRolesRetrieveResponse, error)
+
 	// HelpdeskHealthListWithResponse performs a GET /api/helpdesk-health/ (the `HelpdeskHealthList` operationId) request.
 	//
 	// Returns a wrapper object for the known response body format(s).
@@ -451264,7 +451708,7 @@ type ClientWithResponsesInterface interface {
 
 	// PersonalAccessTokensAvailableBindingTargetsListWithResponse List entity types the caller can bind each permission to
 	//
-	// For each permission, which TYPE_MAP keys the caller could bind a PAT to.
+	// For each permission, which scope types the caller could bind a PAT to.
 	//
 	// Drives the create-PAT frontend's type picker. For staff users every
 	// type is offered for every permission (they bypass UserRole checks).
@@ -480109,6 +480553,204 @@ func (r FreeipaProfilesUpdateSshKeysResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r FreeipaProfilesUpdateSshKeysResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// GlobalUserRolesListResponse200Headers the declared response headers of an HTTP 200 response for GlobalUserRolesList
+type GlobalUserRolesListResponse200Headers struct {
+	XResultCount *int
+}
+
+type GlobalUserRolesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]UserRoleDetails
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *GlobalUserRolesListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r GlobalUserRolesListResponse) GetJSON200() *[]UserRoleDetails {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r GlobalUserRolesListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r GlobalUserRolesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GlobalUserRolesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GlobalUserRolesListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GlobalUserRolesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r GlobalUserRolesCountResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r GlobalUserRolesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GlobalUserRolesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GlobalUserRolesCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GlobalUserRolesCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON201 the response for an HTTP 201 `application/json` response
+	JSON201 *UserRoleDetails
+}
+
+// GetJSON201 returns the response for an HTTP 201 `application/json` response
+func (r GlobalUserRolesCreateResponse) GetJSON201() *UserRoleDetails {
+	return r.JSON201
+}
+
+// GetBody returns the raw response body bytes
+func (r GlobalUserRolesCreateResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r GlobalUserRolesCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GlobalUserRolesCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GlobalUserRolesCreateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GlobalUserRolesDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r GlobalUserRolesDestroyResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r GlobalUserRolesDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GlobalUserRolesDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GlobalUserRolesDestroyResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GlobalUserRolesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *UserRoleDetails
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r GlobalUserRolesRetrieveResponse) GetJSON200() *UserRoleDetails {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r GlobalUserRolesRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r GlobalUserRolesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GlobalUserRolesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GlobalUserRolesRetrieveResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -586479,6 +587121,82 @@ func (c *ClientWithResponses) FreeipaProfilesUpdateSshKeysWithResponse(ctx conte
 	return ParseFreeipaProfilesUpdateSshKeysResponse(rsp)
 }
 
+// GlobalUserRolesListWithResponse performs a GET /api/global-user-roles/ (the `GlobalUserRolesList` operationId) request.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) GlobalUserRolesListWithResponse(ctx context.Context, params *GlobalUserRolesListParams, reqEditors ...RequestEditorFn) (*GlobalUserRolesListResponse, error) {
+	rsp, err := c.GlobalUserRolesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGlobalUserRolesListResponse(rsp)
+}
+
+// GlobalUserRolesCountWithResponse performs a HEAD /api/global-user-roles/ (the `GlobalUserRolesCount` operationId) request.
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) GlobalUserRolesCountWithResponse(ctx context.Context, params *GlobalUserRolesCountParams, reqEditors ...RequestEditorFn) (*GlobalUserRolesCountResponse, error) {
+	rsp, err := c.GlobalUserRolesCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGlobalUserRolesCountResponse(rsp)
+}
+
+// GlobalUserRolesCreateWithBodyWithResponse Grant a site-wide role
+//
+// Staff assigns a global role to a user. The role's content type must be global. An optional expiration time can be set.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/global-user-roles/ (the `GlobalUserRolesCreate` operationId).
+func (c *ClientWithResponses) GlobalUserRolesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*GlobalUserRolesCreateResponse, error) {
+	rsp, err := c.GlobalUserRolesCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGlobalUserRolesCreateResponse(rsp)
+}
+
+// GlobalUserRolesCreateWithResponse Grant a site-wide role
+//
+// Staff assigns a global role to a user. The role's content type must be global. An optional expiration time can be set.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/global-user-roles/ (the `GlobalUserRolesCreate` operationId).
+func (c *ClientWithResponses) GlobalUserRolesCreateWithResponse(ctx context.Context, body GlobalUserRolesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*GlobalUserRolesCreateResponse, error) {
+	rsp, err := c.GlobalUserRolesCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGlobalUserRolesCreateResponse(rsp)
+}
+
+// GlobalUserRolesDestroyWithResponse performs a DELETE /api/global-user-roles/{uuid}/ (the `GlobalUserRolesDestroy` operationId) request.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) GlobalUserRolesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*GlobalUserRolesDestroyResponse, error) {
+	rsp, err := c.GlobalUserRolesDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGlobalUserRolesDestroyResponse(rsp)
+}
+
+// GlobalUserRolesRetrieveWithResponse performs a GET /api/global-user-roles/{uuid}/ (the `GlobalUserRolesRetrieve` operationId) request.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) GlobalUserRolesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*GlobalUserRolesRetrieveResponse, error) {
+	rsp, err := c.GlobalUserRolesRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGlobalUserRolesRetrieveResponse(rsp)
+}
+
 // HelpdeskHealthListWithResponse performs a GET /api/helpdesk-health/ (the `HelpdeskHealthList` operationId) request.
 //
 // Returns a wrapper object for the known response body format(s).
@@ -616522,7 +617240,7 @@ func (c *ClientWithResponses) PersonalAccessTokensCreateWithResponse(ctx context
 
 // PersonalAccessTokensAvailableBindingTargetsListWithResponse List entity types the caller can bind each permission to
 //
-// For each permission, which TYPE_MAP keys the caller could bind a PAT to.
+// For each permission, which scope types the caller could bind a PAT to.
 //
 // Drives the create-PAT frontend's type picker. For staff users every
 // type is offered for every permission (they bypass UserRole checks).
@@ -644067,6 +644785,129 @@ func ParseFreeipaProfilesUpdateSshKeysResponse(rsp *http.Response) (*FreeipaProf
 	response := &FreeipaProfilesUpdateSshKeysResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseGlobalUserRolesListResponse parses an HTTP response from a GlobalUserRolesListWithResponse call
+func ParseGlobalUserRolesListResponse(rsp *http.Response) (*GlobalUserRolesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GlobalUserRolesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []UserRoleDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers GlobalUserRolesListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParseGlobalUserRolesCountResponse parses an HTTP response from a GlobalUserRolesCountWithResponse call
+func ParseGlobalUserRolesCountResponse(rsp *http.Response) (*GlobalUserRolesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GlobalUserRolesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseGlobalUserRolesCreateResponse parses an HTTP response from a GlobalUserRolesCreateWithResponse call
+func ParseGlobalUserRolesCreateResponse(rsp *http.Response) (*GlobalUserRolesCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GlobalUserRolesCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest UserRoleDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGlobalUserRolesDestroyResponse parses an HTTP response from a GlobalUserRolesDestroyWithResponse call
+func ParseGlobalUserRolesDestroyResponse(rsp *http.Response) (*GlobalUserRolesDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GlobalUserRolesDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseGlobalUserRolesRetrieveResponse parses an HTTP response from a GlobalUserRolesRetrieveWithResponse call
+func ParseGlobalUserRolesRetrieveResponse(rsp *http.Response) (*GlobalUserRolesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GlobalUserRolesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UserRoleDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
