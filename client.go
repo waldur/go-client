@@ -18231,6 +18231,7 @@ const (
 	ProtectedCallFieldEnumProposalSlugTemplate                ProtectedCallFieldEnum = "proposal_slug_template"
 	ProtectedCallFieldEnumPublishResults                      ProtectedCallFieldEnum = "publish_results"
 	ProtectedCallFieldEnumReferenceCode                       ProtectedCallFieldEnum = "reference_code"
+	ProtectedCallFieldEnumResourceTemplateSelectionMode       ProtectedCallFieldEnum = "resource_template_selection_mode"
 	ProtectedCallFieldEnumResourceTemplates                   ProtectedCallFieldEnum = "resource_templates"
 	ProtectedCallFieldEnumReviewerIdentityVisibleToSubmitters ProtectedCallFieldEnum = "reviewer_identity_visible_to_submitters"
 	ProtectedCallFieldEnumReviewsVisibleToSubmitters          ProtectedCallFieldEnum = "reviews_visible_to_submitters"
@@ -18319,6 +18320,8 @@ func (e ProtectedCallFieldEnum) Valid() bool {
 	case ProtectedCallFieldEnumPublishResults:
 		return true
 	case ProtectedCallFieldEnumReferenceCode:
+		return true
+	case ProtectedCallFieldEnumResourceTemplateSelectionMode:
 		return true
 	case ProtectedCallFieldEnumResourceTemplates:
 		return true
@@ -18923,6 +18926,7 @@ const (
 	PublicCallFieldEnumOfferings                           PublicCallFieldEnum = "offerings"
 	PublicCallFieldEnumProposalFieldConfig                 PublicCallFieldEnum = "proposal_field_config"
 	PublicCallFieldEnumPublishResults                      PublicCallFieldEnum = "publish_results"
+	PublicCallFieldEnumResourceTemplateSelectionMode       PublicCallFieldEnum = "resource_template_selection_mode"
 	PublicCallFieldEnumResourceTemplates                   PublicCallFieldEnum = "resource_templates"
 	PublicCallFieldEnumReviewerIdentityVisibleToSubmitters PublicCallFieldEnum = "reviewer_identity_visible_to_submitters"
 	PublicCallFieldEnumReviewsVisibleToSubmitters          PublicCallFieldEnum = "reviews_visible_to_submitters"
@@ -18972,6 +18976,8 @@ func (e PublicCallFieldEnum) Valid() bool {
 	case PublicCallFieldEnumProposalFieldConfig:
 		return true
 	case PublicCallFieldEnumPublishResults:
+		return true
+	case PublicCallFieldEnumResourceTemplateSelectionMode:
 		return true
 	case PublicCallFieldEnumResourceTemplates:
 		return true
@@ -21135,6 +21141,24 @@ func (e ResourceTeamMemberFieldEnum) Valid() bool {
 	case ResourceTeamMemberFieldEnumUsername:
 		return true
 	case ResourceTeamMemberFieldEnumUuid:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ResourceTemplateSelectionModeEnum.
+const (
+	Multiple ResourceTemplateSelectionModeEnum = "multiple"
+	Single   ResourceTemplateSelectionModeEnum = "single"
+)
+
+// Valid indicates whether the value is a known member of the ResourceTemplateSelectionModeEnum enum.
+func (e ResourceTemplateSelectionModeEnum) Valid() bool {
+	switch e {
+	case Multiple:
+		return true
+	case Single:
 		return true
 	default:
 		return false
@@ -48097,19 +48121,6 @@ type PatchedIssueTagRequest struct {
 	Name  *string `json:"name,omitempty"`
 }
 
-// PatchedKeycloakUserGroupMembershipRequest defines model for PatchedKeycloakUserGroupMembershipRequest.
-type PatchedKeycloakUserGroupMembershipRequest struct {
-	// Email User's email for notifications
-	Email *openapi_types.Email `json:"email,omitempty"`
-	Role  *string              `json:"role,omitempty"`
-
-	// ScopeUuid UUID of a cluster or a project in Rancher
-	ScopeUuid *openapi_types.UUID `json:"scope_uuid,omitempty"`
-
-	// Username Keycloak user username
-	Username *string `json:"username,omitempty"`
-}
-
 // PatchedLexisLinkRequest defines model for PatchedLexisLinkRequest.
 type PatchedLexisLinkRequest struct {
 	HeappeProjectId *int `json:"heappe_project_id,omitempty"`
@@ -49077,6 +49088,9 @@ type PatchedProtectedCallRequest struct {
 	// PublishResults When applicants learn the allocation decision: immediately, or for every proposal of a round together when a call manager publishes the round's results. Cannot be changed while decisions are held.
 	PublishResults *PublishResultsEnum `json:"publish_results,omitempty"`
 	ReferenceCode  *string             `json:"reference_code,omitempty"`
+
+	// ResourceTemplateSelectionMode Whether a proposal may request several of the call's resource templates or at most one of them. Cannot be set to single while a draft proposal holds several resource requests.
+	ResourceTemplateSelectionMode *ResourceTemplateSelectionModeEnum `json:"resource_template_selection_mode,omitempty"`
 
 	// ReviewerIdentityVisibleToSubmitters Whether proposal applicants can see reviewer identities
 	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
@@ -52122,9 +52136,12 @@ type ProtectedCall struct {
 	ProposalSlugTemplate *string `json:"proposal_slug_template,omitempty"`
 
 	// PublishResults When applicants learn the allocation decision: immediately, or for every proposal of a round together when a call manager publishes the round's results. Cannot be changed while decisions are held.
-	PublishResults    *PublishResultsEnum     `json:"publish_results,omitempty"`
-	ReferenceCode     *string                 `json:"reference_code,omitempty"`
-	ResourceTemplates *[]CallResourceTemplate `json:"resource_templates,omitempty"`
+	PublishResults *PublishResultsEnum `json:"publish_results,omitempty"`
+	ReferenceCode  *string             `json:"reference_code,omitempty"`
+
+	// ResourceTemplateSelectionMode Whether a proposal may request several of the call's resource templates or at most one of them. Cannot be set to single while a draft proposal holds several resource requests.
+	ResourceTemplateSelectionMode *ResourceTemplateSelectionModeEnum `json:"resource_template_selection_mode,omitempty"`
+	ResourceTemplates             *[]CallResourceTemplate            `json:"resource_templates,omitempty"`
 
 	// ReviewerIdentityVisibleToSubmitters Whether proposal applicants can see reviewer identities
 	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
@@ -52202,6 +52219,9 @@ type ProtectedCallRequest struct {
 	// PublishResults When applicants learn the allocation decision: immediately, or for every proposal of a round together when a call manager publishes the round's results. Cannot be changed while decisions are held.
 	PublishResults *PublishResultsEnum `json:"publish_results,omitempty"`
 	ReferenceCode  *string             `json:"reference_code,omitempty"`
+
+	// ResourceTemplateSelectionMode Whether a proposal may request several of the call's resource templates or at most one of them. Cannot be set to single while a draft proposal holds several resource requests.
+	ResourceTemplateSelectionMode *ResourceTemplateSelectionModeEnum `json:"resource_template_selection_mode,omitempty"`
 
 	// ReviewerIdentityVisibleToSubmitters Whether proposal applicants can see reviewer identities
 	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
@@ -53112,8 +53132,11 @@ type PublicCall struct {
 	ProposalFieldConfig      *CallProposalFieldConfig   `json:"proposal_field_config,omitempty"`
 
 	// PublishResults When applicants learn the allocation decision: as soon as it is made, or for every proposal of a round together when a call manager publishes the round's results. Cannot be changed while decisions are held.
-	PublishResults    *PublishResultsEnum     `json:"publish_results,omitempty"`
-	ResourceTemplates *[]CallResourceTemplate `json:"resource_templates,omitempty"`
+	PublishResults *PublishResultsEnum `json:"publish_results,omitempty"`
+
+	// ResourceTemplateSelectionMode Whether a proposal may request several of the call's resource templates or at most one of them. Cannot be set to single while a draft proposal holds several resource requests.
+	ResourceTemplateSelectionMode *ResourceTemplateSelectionModeEnum `json:"resource_template_selection_mode,omitempty"`
+	ResourceTemplates             *[]CallResourceTemplate            `json:"resource_templates,omitempty"`
 
 	// ReviewerIdentityVisibleToSubmitters Whether proposal applicants can see reviewer identities. If False, reviewers appear as 'Reviewer 1', 'Reviewer 2', etc.
 	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
@@ -56401,6 +56424,9 @@ type ResourceTeamMember struct {
 
 // ResourceTeamMemberFieldEnum defines model for ResourceTeamMemberFieldEnum.
 type ResourceTeamMemberFieldEnum string
+
+// ResourceTemplateSelectionModeEnum defines model for ResourceTemplateSelectionModeEnum.
+type ResourceTemplateSelectionModeEnum string
 
 // ResourceTerminateRequest defines model for ResourceTerminateRequest.
 type ResourceTerminateRequest struct {
@@ -68515,7 +68541,7 @@ type MarketplaceOfferingPermissionsLogListParams struct {
 	// ScopeName Scope name
 	ScopeName *string `form:"scope_name,omitempty" json:"scope_name,omitempty"`
 
-	// ScopeType Scope type
+	// ScopeType Scope type, as returned in scope_type: customer, project, offering, service_provider, call_organizer, call, proposal, resource, resource_project or global. A content type model name also matches.
 	ScopeType *string `form:"scope_type,omitempty" json:"scope_type,omitempty"`
 
 	// ScopeUuid Scope UUID
@@ -68571,7 +68597,7 @@ type MarketplaceOfferingPermissionsLogCountParams struct {
 	// ScopeName Scope name
 	ScopeName *string `form:"scope_name,omitempty" json:"scope_name,omitempty"`
 
-	// ScopeType Scope type
+	// ScopeType Scope type, as returned in scope_type: customer, project, offering, service_provider, call_organizer, call, proposal, resource, resource_project or global. A content type model name also matches.
 	ScopeType *string `form:"scope_type,omitempty" json:"scope_type,omitempty"`
 
 	// ScopeUuid Scope UUID
@@ -68627,7 +68653,7 @@ type MarketplaceOfferingPermissionsListParams struct {
 	// ScopeName Scope name
 	ScopeName *string `form:"scope_name,omitempty" json:"scope_name,omitempty"`
 
-	// ScopeType Scope type
+	// ScopeType Scope type, as returned in scope_type: customer, project, offering, service_provider, call_organizer, call, proposal, resource, resource_project or global. A content type model name also matches.
 	ScopeType *string `form:"scope_type,omitempty" json:"scope_type,omitempty"`
 
 	// ScopeUuid Scope UUID
@@ -68683,7 +68709,7 @@ type MarketplaceOfferingPermissionsCountParams struct {
 	// ScopeName Scope name
 	ScopeName *string `form:"scope_name,omitempty" json:"scope_name,omitempty"`
 
-	// ScopeType Scope type
+	// ScopeType Scope type, as returned in scope_type: customer, project, offering, service_provider, call_organizer, call, proposal, resource, resource_project or global. A content type model name also matches.
 	ScopeType *string `form:"scope_type,omitempty" json:"scope_type,omitempty"`
 
 	// ScopeUuid Scope UUID
@@ -75612,7 +75638,7 @@ type MarketplaceServiceProvidersProjectPermissionsListParams struct {
 	// ScopeName Scope name
 	ScopeName *string `form:"scope_name,omitempty" json:"scope_name,omitempty"`
 
-	// ScopeType Scope type
+	// ScopeType Scope type, as returned in scope_type: customer, project, offering, service_provider, call_organizer, call, proposal, resource, resource_project or global. A content type model name also matches.
 	ScopeType *string `form:"scope_type,omitempty" json:"scope_type,omitempty"`
 
 	// ScopeUuid Scope UUID
@@ -75667,7 +75693,7 @@ type MarketplaceServiceProvidersProjectPermissionsCountParams struct {
 	// ScopeName Scope name
 	ScopeName *string `form:"scope_name,omitempty" json:"scope_name,omitempty"`
 
-	// ScopeType Scope type
+	// ScopeType Scope type, as returned in scope_type: customer, project, offering, service_provider, call_organizer, call, proposal, resource, resource_project or global. A content type model name also matches.
 	ScopeType *string `form:"scope_type,omitempty" json:"scope_type,omitempty"`
 
 	// ScopeUuid Scope UUID
@@ -86238,7 +86264,7 @@ type RoleAvailabilitiesListParams struct {
 	// RoleUuid Role UUID
 	RoleUuid *openapi_types.UUID `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
 
-	// ScopeType Scope content type (e.g. 'offering', 'customer')
+	// ScopeType Scope type, as returned in scope_type: customer, project, offering, service_provider, call_organizer, call, proposal, resource, resource_project or global. A content type model name also matches.
 	ScopeType *string `form:"scope_type,omitempty" json:"scope_type,omitempty"`
 }
 
@@ -86259,7 +86285,7 @@ type RoleAvailabilitiesCountParams struct {
 	// RoleUuid Role UUID
 	RoleUuid *openapi_types.UUID `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
 
-	// ScopeType Scope content type (e.g. 'offering', 'customer')
+	// ScopeType Scope type, as returned in scope_type: customer, project, offering, service_provider, call_organizer, call, proposal, resource, resource_project or global. A content type model name also matches.
 	ScopeType *string `form:"scope_type,omitempty" json:"scope_type,omitempty"`
 }
 
@@ -87581,7 +87607,7 @@ type UserPermissionsListParams struct {
 	// ScopeName Scope name
 	ScopeName *string `form:"scope_name,omitempty" json:"scope_name,omitempty"`
 
-	// ScopeType Scope type
+	// ScopeType Scope type, as returned in scope_type: customer, project, offering, service_provider, call_organizer, call, proposal, resource, resource_project or global. A content type model name also matches.
 	ScopeType *string `form:"scope_type,omitempty" json:"scope_type,omitempty"`
 
 	// ScopeUuid Scope UUID
@@ -87639,7 +87665,7 @@ type UserPermissionsCountParams struct {
 	// ScopeName Scope name
 	ScopeName *string `form:"scope_name,omitempty" json:"scope_name,omitempty"`
 
-	// ScopeType Scope type
+	// ScopeType Scope type, as returned in scope_type: customer, project, offering, service_provider, call_organizer, call, proposal, resource, resource_project or global. A content type model name also matches.
 	ScopeType *string `form:"scope_type,omitempty" json:"scope_type,omitempty"`
 
 	// ScopeUuid Scope UUID
@@ -89767,12 +89793,6 @@ type InvoicesSetReferenceNumberJSONRequestBody = ReferenceNumberRequest
 
 // KeycloakUserGroupMembershipsCreateJSONRequestBody defines body for KeycloakUserGroupMembershipsCreate for application/json ContentType.
 type KeycloakUserGroupMembershipsCreateJSONRequestBody = KeycloakUserGroupMembershipRequest
-
-// KeycloakUserGroupMembershipsPartialUpdateJSONRequestBody defines body for KeycloakUserGroupMembershipsPartialUpdate for application/json ContentType.
-type KeycloakUserGroupMembershipsPartialUpdateJSONRequestBody = PatchedKeycloakUserGroupMembershipRequest
-
-// KeycloakUserGroupMembershipsUpdateJSONRequestBody defines body for KeycloakUserGroupMembershipsUpdate for application/json ContentType.
-type KeycloakUserGroupMembershipsUpdateJSONRequestBody = KeycloakUserGroupMembershipRequest
 
 // KeysCreateJSONRequestBody defines body for KeysCreate for application/json ContentType.
 type KeysCreateJSONRequestBody = SshKeyRequest
@@ -115279,22 +115299,6 @@ type ClientInterface interface {
 
 	// KeycloakUserGroupMembershipsRetrieve performs a GET /api/keycloak-user-group-memberships/{uuid}/ (the `KeycloakUserGroupMembershipsRetrieve` operationId) request.
 	KeycloakUserGroupMembershipsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// KeycloakUserGroupMembershipsPartialUpdateWithBody performs a PATCH /api/keycloak-user-group-memberships/{uuid}/ (the `KeycloakUserGroupMembershipsPartialUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	KeycloakUserGroupMembershipsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// KeycloakUserGroupMembershipsPartialUpdate performs a PATCH /api/keycloak-user-group-memberships/{uuid}/ (the `KeycloakUserGroupMembershipsPartialUpdate` operationId) request.
-	// Takes a body of the `application/json` content type.
-	KeycloakUserGroupMembershipsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body KeycloakUserGroupMembershipsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// KeycloakUserGroupMembershipsUpdateWithBody performs a PUT /api/keycloak-user-group-memberships/{uuid}/ (the `KeycloakUserGroupMembershipsUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	KeycloakUserGroupMembershipsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// KeycloakUserGroupMembershipsUpdate performs a PUT /api/keycloak-user-group-memberships/{uuid}/ (the `KeycloakUserGroupMembershipsUpdate` operationId) request.
-	// Takes a body of the `application/json` content type.
-	KeycloakUserGroupMembershipsUpdate(ctx context.Context, uuid openapi_types.UUID, body KeycloakUserGroupMembershipsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// KeysList performs a GET /api/keys/ (the `KeysList` operationId) request.
 	KeysList(ctx context.Context, params *KeysListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -147572,62 +147576,6 @@ func (c *Client) KeycloakUserGroupMembershipsDestroy(ctx context.Context, uuid o
 // KeycloakUserGroupMembershipsRetrieve performs a GET /api/keycloak-user-group-memberships/{uuid}/ (the `KeycloakUserGroupMembershipsRetrieve` operationId) request.
 func (c *Client) KeycloakUserGroupMembershipsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewKeycloakUserGroupMembershipsRetrieveRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// KeycloakUserGroupMembershipsPartialUpdateWithBody performs a PATCH /api/keycloak-user-group-memberships/{uuid}/ (the `KeycloakUserGroupMembershipsPartialUpdate` operationId) request,
-// with any type of body and a specified content type.
-func (c *Client) KeycloakUserGroupMembershipsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewKeycloakUserGroupMembershipsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// KeycloakUserGroupMembershipsPartialUpdate performs a PATCH /api/keycloak-user-group-memberships/{uuid}/ (the `KeycloakUserGroupMembershipsPartialUpdate` operationId) request.
-// Takes a body of the `application/json` content type.
-func (c *Client) KeycloakUserGroupMembershipsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body KeycloakUserGroupMembershipsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewKeycloakUserGroupMembershipsPartialUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// KeycloakUserGroupMembershipsUpdateWithBody performs a PUT /api/keycloak-user-group-memberships/{uuid}/ (the `KeycloakUserGroupMembershipsUpdate` operationId) request,
-// with any type of body and a specified content type.
-func (c *Client) KeycloakUserGroupMembershipsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewKeycloakUserGroupMembershipsUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// KeycloakUserGroupMembershipsUpdate performs a PUT /api/keycloak-user-group-memberships/{uuid}/ (the `KeycloakUserGroupMembershipsUpdate` operationId) request.
-// Takes a body of the `application/json` content type.
-func (c *Client) KeycloakUserGroupMembershipsUpdate(ctx context.Context, uuid openapi_types.UUID, body KeycloakUserGroupMembershipsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewKeycloakUserGroupMembershipsUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -244794,100 +244742,6 @@ func NewKeycloakUserGroupMembershipsRetrieveRequest(server string, uuid openapi_
 	if err != nil {
 		return nil, err
 	}
-
-	return req, nil
-}
-
-// NewKeycloakUserGroupMembershipsPartialUpdateRequest calls the generic KeycloakUserGroupMembershipsPartialUpdate builder with application/json body
-func NewKeycloakUserGroupMembershipsPartialUpdateRequest(server string, uuid openapi_types.UUID, body KeycloakUserGroupMembershipsPartialUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewKeycloakUserGroupMembershipsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewKeycloakUserGroupMembershipsPartialUpdateRequestWithBody constructs an http.Request for the KeycloakUserGroupMembershipsPartialUpdate method, with any body, and a specified content type
-func NewKeycloakUserGroupMembershipsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/keycloak-user-group-memberships/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewKeycloakUserGroupMembershipsUpdateRequest calls the generic KeycloakUserGroupMembershipsUpdate builder with application/json body
-func NewKeycloakUserGroupMembershipsUpdateRequest(server string, uuid openapi_types.UUID, body KeycloakUserGroupMembershipsUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewKeycloakUserGroupMembershipsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewKeycloakUserGroupMembershipsUpdateRequestWithBody constructs an http.Request for the KeycloakUserGroupMembershipsUpdate method, with any body, and a specified content type
-func NewKeycloakUserGroupMembershipsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/keycloak-user-group-memberships/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -435376,26 +435230,6 @@ type ClientWithResponsesInterface interface {
 	// Returns a wrapper object for the known response body format(s).
 	KeycloakUserGroupMembershipsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*KeycloakUserGroupMembershipsRetrieveResponse, error)
 
-	// KeycloakUserGroupMembershipsPartialUpdateWithBodyWithResponse performs a PATCH /api/keycloak-user-group-memberships/{uuid}/ (the `KeycloakUserGroupMembershipsPartialUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	KeycloakUserGroupMembershipsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*KeycloakUserGroupMembershipsPartialUpdateResponse, error)
-
-	// KeycloakUserGroupMembershipsPartialUpdateWithResponse performs a PATCH /api/keycloak-user-group-memberships/{uuid}/ (the `KeycloakUserGroupMembershipsPartialUpdate` operationId) request.
-	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	KeycloakUserGroupMembershipsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body KeycloakUserGroupMembershipsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*KeycloakUserGroupMembershipsPartialUpdateResponse, error)
-
-	// KeycloakUserGroupMembershipsUpdateWithBodyWithResponse performs a PUT /api/keycloak-user-group-memberships/{uuid}/ (the `KeycloakUserGroupMembershipsUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	KeycloakUserGroupMembershipsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*KeycloakUserGroupMembershipsUpdateResponse, error)
-
-	// KeycloakUserGroupMembershipsUpdateWithResponse performs a PUT /api/keycloak-user-group-memberships/{uuid}/ (the `KeycloakUserGroupMembershipsUpdate` operationId) request.
-	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	KeycloakUserGroupMembershipsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body KeycloakUserGroupMembershipsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*KeycloakUserGroupMembershipsUpdateResponse, error)
-
 	// KeysListWithResponse performs a GET /api/keys/ (the `KeysList` operationId) request.
 	//
 	// Returns a wrapper object for the known response body format(s).
@@ -483652,88 +483486,6 @@ func (r KeycloakUserGroupMembershipsRetrieveResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r KeycloakUserGroupMembershipsRetrieveResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type KeycloakUserGroupMembershipsPartialUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *KeycloakUserGroupMembership
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r KeycloakUserGroupMembershipsPartialUpdateResponse) GetJSON200() *KeycloakUserGroupMembership {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r KeycloakUserGroupMembershipsPartialUpdateResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r KeycloakUserGroupMembershipsPartialUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r KeycloakUserGroupMembershipsPartialUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r KeycloakUserGroupMembershipsPartialUpdateResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type KeycloakUserGroupMembershipsUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *KeycloakUserGroupMembership
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r KeycloakUserGroupMembershipsUpdateResponse) GetJSON200() *KeycloakUserGroupMembership {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r KeycloakUserGroupMembershipsUpdateResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r KeycloakUserGroupMembershipsUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r KeycloakUserGroupMembershipsUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r KeycloakUserGroupMembershipsUpdateResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -588437,50 +588189,6 @@ func (c *ClientWithResponses) KeycloakUserGroupMembershipsRetrieveWithResponse(c
 	return ParseKeycloakUserGroupMembershipsRetrieveResponse(rsp)
 }
 
-// KeycloakUserGroupMembershipsPartialUpdateWithBodyWithResponse performs a PATCH /api/keycloak-user-group-memberships/{uuid}/ (the `KeycloakUserGroupMembershipsPartialUpdate` operationId) request,
-// with any type of body and a specified content type.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) KeycloakUserGroupMembershipsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*KeycloakUserGroupMembershipsPartialUpdateResponse, error) {
-	rsp, err := c.KeycloakUserGroupMembershipsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseKeycloakUserGroupMembershipsPartialUpdateResponse(rsp)
-}
-
-// KeycloakUserGroupMembershipsPartialUpdateWithResponse performs a PATCH /api/keycloak-user-group-memberships/{uuid}/ (the `KeycloakUserGroupMembershipsPartialUpdate` operationId) request.
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) KeycloakUserGroupMembershipsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body KeycloakUserGroupMembershipsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*KeycloakUserGroupMembershipsPartialUpdateResponse, error) {
-	rsp, err := c.KeycloakUserGroupMembershipsPartialUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseKeycloakUserGroupMembershipsPartialUpdateResponse(rsp)
-}
-
-// KeycloakUserGroupMembershipsUpdateWithBodyWithResponse performs a PUT /api/keycloak-user-group-memberships/{uuid}/ (the `KeycloakUserGroupMembershipsUpdate` operationId) request,
-// with any type of body and a specified content type.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) KeycloakUserGroupMembershipsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*KeycloakUserGroupMembershipsUpdateResponse, error) {
-	rsp, err := c.KeycloakUserGroupMembershipsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseKeycloakUserGroupMembershipsUpdateResponse(rsp)
-}
-
-// KeycloakUserGroupMembershipsUpdateWithResponse performs a PUT /api/keycloak-user-group-memberships/{uuid}/ (the `KeycloakUserGroupMembershipsUpdate` operationId) request.
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) KeycloakUserGroupMembershipsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body KeycloakUserGroupMembershipsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*KeycloakUserGroupMembershipsUpdateResponse, error) {
-	rsp, err := c.KeycloakUserGroupMembershipsUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseKeycloakUserGroupMembershipsUpdateResponse(rsp)
-}
-
 // KeysListWithResponse performs a GET /api/keys/ (the `KeysList` operationId) request.
 //
 // Returns a wrapper object for the known response body format(s).
@@ -646714,58 +646422,6 @@ func ParseKeycloakUserGroupMembershipsRetrieveResponse(rsp *http.Response) (*Key
 	}
 
 	response := &KeycloakUserGroupMembershipsRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest KeycloakUserGroupMembership
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseKeycloakUserGroupMembershipsPartialUpdateResponse parses an HTTP response from a KeycloakUserGroupMembershipsPartialUpdateWithResponse call
-func ParseKeycloakUserGroupMembershipsPartialUpdateResponse(rsp *http.Response) (*KeycloakUserGroupMembershipsPartialUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &KeycloakUserGroupMembershipsPartialUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest KeycloakUserGroupMembership
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseKeycloakUserGroupMembershipsUpdateResponse parses an HTTP response from a KeycloakUserGroupMembershipsUpdateWithResponse call
-func ParseKeycloakUserGroupMembershipsUpdateResponse(rsp *http.Response) (*KeycloakUserGroupMembershipsUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &KeycloakUserGroupMembershipsUpdateResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
