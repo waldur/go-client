@@ -6121,6 +6121,7 @@ const (
 	EventMetadataResponseEventGroupsUserPasswordRemovedByStaff                       EventMetadataResponseEventGroups = "user_password_removed_by_staff"
 	EventMetadataResponseEventGroupsUserPasswordUpdated                              EventMetadataResponseEventGroups = "user_password_updated"
 	EventMetadataResponseEventGroupsUserPasswordUpdatedByStaff                       EventMetadataResponseEventGroups = "user_password_updated_by_staff"
+	EventMetadataResponseEventGroupsUserTermsOfServiceAccepted                       EventMetadataResponseEventGroups = "user_terms_of_service_accepted"
 	EventMetadataResponseEventGroupsUserUpdateSucceeded                              EventMetadataResponseEventGroups = "user_update_succeeded"
 )
 
@@ -6941,6 +6942,8 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 		return true
 	case EventMetadataResponseEventGroupsUserPasswordUpdatedByStaff:
 		return true
+	case EventMetadataResponseEventGroupsUserTermsOfServiceAccepted:
+		return true
 	case EventMetadataResponseEventGroupsUserUpdateSucceeded:
 		return true
 	default:
@@ -7357,6 +7360,7 @@ const (
 	EventTypesEnumUserPasswordRemovedByStaff                       EventTypesEnum = "user_password_removed_by_staff"
 	EventTypesEnumUserPasswordUpdated                              EventTypesEnum = "user_password_updated"
 	EventTypesEnumUserPasswordUpdatedByStaff                       EventTypesEnum = "user_password_updated_by_staff"
+	EventTypesEnumUserTermsOfServiceAccepted                       EventTypesEnum = "user_terms_of_service_accepted"
 	EventTypesEnumUserUpdateSucceeded                              EventTypesEnum = "user_update_succeeded"
 )
 
@@ -8176,6 +8180,8 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumUserPasswordUpdated:
 		return true
 	case EventTypesEnumUserPasswordUpdatedByStaff:
+		return true
+	case EventTypesEnumUserTermsOfServiceAccepted:
 		return true
 	case EventTypesEnumUserUpdateSucceeded:
 		return true
@@ -31494,6 +31500,7 @@ type ConstanceSettings struct {
 	ANONYMOUSCHATUSERSLUGSALT                        *string                                                          `json:"ANONYMOUS_CHAT_USER_SLUG_SALT,omitempty"`
 	ANONYMOUSUSERCANVIEWOFFERINGS                    *bool                                                            `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
 	ANONYMOUSUSERCANVIEWPLANS                        *bool                                                            `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
+	APITOKENMAXLIFETIMEMINUTES                       *int                                                             `json:"API_TOKEN_MAX_LIFETIME_MINUTES,omitempty"`
 	ARROWAUTORECONCILIATION                          *bool                                                            `json:"ARROW_AUTO_RECONCILIATION,omitempty"`
 	ARROWBILLINGCHECKINTERVALHOURS                   *int                                                             `json:"ARROW_BILLING_CHECK_INTERVAL_HOURS,omitempty"`
 	ARROWCONSUMPTIONSYNCENABLED                      *bool                                                            `json:"ARROW_CONSUMPTION_SYNC_ENABLED,omitempty"`
@@ -31931,6 +31938,7 @@ type ConstanceSettingsRequest struct {
 	ANONYMOUSCHATUSERSLUGSALT                        *string                                                                 `json:"ANONYMOUS_CHAT_USER_SLUG_SALT,omitempty"`
 	ANONYMOUSUSERCANVIEWOFFERINGS                    *bool                                                                   `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
 	ANONYMOUSUSERCANVIEWPLANS                        *bool                                                                   `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
+	APITOKENMAXLIFETIMEMINUTES                       *int                                                                    `json:"API_TOKEN_MAX_LIFETIME_MINUTES,omitempty"`
 	ARROWAUTORECONCILIATION                          *bool                                                                   `json:"ARROW_AUTO_RECONCILIATION,omitempty"`
 	ARROWBILLINGCHECKINTERVALHOURS                   *int                                                                    `json:"ARROW_BILLING_CHECK_INTERVAL_HOURS,omitempty"`
 	ARROWCONSUMPTIONSYNCENABLED                      *bool                                                                   `json:"ARROW_CONSUMPTION_SYNC_ENABLED,omitempty"`
@@ -32368,6 +32376,7 @@ type ConstanceSettingsRequestForm struct {
 	ANONYMOUSCHATUSERSLUGSALT                        *string                                                                     `json:"ANONYMOUS_CHAT_USER_SLUG_SALT,omitempty"`
 	ANONYMOUSUSERCANVIEWOFFERINGS                    *bool                                                                       `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
 	ANONYMOUSUSERCANVIEWPLANS                        *bool                                                                       `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
+	APITOKENMAXLIFETIMEMINUTES                       *int                                                                        `json:"API_TOKEN_MAX_LIFETIME_MINUTES,omitempty"`
 	ARROWAUTORECONCILIATION                          *bool                                                                       `json:"ARROW_AUTO_RECONCILIATION,omitempty"`
 	ARROWBILLINGCHECKINTERVALHOURS                   *int                                                                        `json:"ARROW_BILLING_CHECK_INTERVAL_HOURS,omitempty"`
 	ARROWCONSUMPTIONSYNCENABLED                      *bool                                                                       `json:"ARROW_CONSUMPTION_SYNC_ENABLED,omitempty"`
@@ -32805,6 +32814,7 @@ type ConstanceSettingsRequestMultipart struct {
 	ANONYMOUSCHATUSERSLUGSALT                        *string                                                                          `json:"ANONYMOUS_CHAT_USER_SLUG_SALT,omitempty"`
 	ANONYMOUSUSERCANVIEWOFFERINGS                    *bool                                                                            `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
 	ANONYMOUSUSERCANVIEWPLANS                        *bool                                                                            `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
+	APITOKENMAXLIFETIMEMINUTES                       *int                                                                             `json:"API_TOKEN_MAX_LIFETIME_MINUTES,omitempty"`
 	ARROWAUTORECONCILIATION                          *bool                                                                            `json:"ARROW_AUTO_RECONCILIATION,omitempty"`
 	ARROWBILLINGCHECKINTERVALHOURS                   *int                                                                             `json:"ARROW_BILLING_CHECK_INTERVAL_HOURS,omitempty"`
 	ARROWCONSUMPTIONSYNCENABLED                      *bool                                                                            `json:"ARROW_CONSUMPTION_SYNC_ENABLED,omitempty"`
