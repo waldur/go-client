@@ -9285,6 +9285,42 @@ func (e InjectionSeverityEnum) Valid() bool {
 	}
 }
 
+// Defines values for InstanceMetricsEnum.
+const (
+	VmCpuTime           InstanceMetricsEnum = "vm.cpu.time"
+	VmCpuUtilization    InstanceMetricsEnum = "vm.cpu.utilization"
+	VmDiskIo            InstanceMetricsEnum = "vm.disk.io"
+	VmDiskOperations    InstanceMetricsEnum = "vm.disk.operations"
+	VmMemoryUtilization InstanceMetricsEnum = "vm.memory.utilization"
+	VmNetworkIo         InstanceMetricsEnum = "vm.network.io"
+	VolumeIo            InstanceMetricsEnum = "volume.io"
+	VolumeOperations    InstanceMetricsEnum = "volume.operations"
+)
+
+// Valid indicates whether the value is a known member of the InstanceMetricsEnum enum.
+func (e InstanceMetricsEnum) Valid() bool {
+	switch e {
+	case VmCpuTime:
+		return true
+	case VmCpuUtilization:
+		return true
+	case VmDiskIo:
+		return true
+	case VmDiskOperations:
+		return true
+	case VmMemoryUtilization:
+		return true
+	case VmNetworkIo:
+		return true
+	case VolumeIo:
+		return true
+	case VolumeOperations:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for IntegrationStatusDetailsOEnum.
 const (
 	LastRequestTimestamp      IntegrationStatusDetailsOEnum = "last_request_timestamp"
@@ -9318,6 +9354,27 @@ func (e IntegrationStatusDetailsStatusEnum) Valid() bool {
 	case IntegrationStatusDetailsStatusEnumDisconnected:
 		return true
 	case IntegrationStatusDetailsStatusEnumUnknown:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for IntervalMinutesEnum.
+const (
+	IntervalMinutesEnumN15 IntervalMinutesEnum = 15
+	IntervalMinutesEnumN5  IntervalMinutesEnum = 5
+	IntervalMinutesEnumN60 IntervalMinutesEnum = 60
+)
+
+// Valid indicates whether the value is a known member of the IntervalMinutesEnum enum.
+func (e IntervalMinutesEnum) Valid() bool {
+	switch e {
+	case IntervalMinutesEnumN15:
+		return true
+	case IntervalMinutesEnumN5:
+		return true
+	case IntervalMinutesEnumN60:
 		return true
 	default:
 		return false
@@ -11393,139 +11450,139 @@ func (e ObservableObjectTypeEnum) Valid() bool {
 
 // Defines values for OecdFos2007CodeEnum.
 const (
-	N11  OecdFos2007CodeEnum = "1.1"
-	N12  OecdFos2007CodeEnum = "1.2"
-	N13  OecdFos2007CodeEnum = "1.3"
-	N14  OecdFos2007CodeEnum = "1.4"
-	N15  OecdFos2007CodeEnum = "1.5"
-	N16  OecdFos2007CodeEnum = "1.6"
-	N17  OecdFos2007CodeEnum = "1.7"
-	N21  OecdFos2007CodeEnum = "2.1"
-	N210 OecdFos2007CodeEnum = "2.10"
-	N211 OecdFos2007CodeEnum = "2.11"
-	N212 OecdFos2007CodeEnum = "2.12"
-	N22  OecdFos2007CodeEnum = "2.2"
-	N23  OecdFos2007CodeEnum = "2.3"
-	N24  OecdFos2007CodeEnum = "2.4"
-	N25  OecdFos2007CodeEnum = "2.5"
-	N26  OecdFos2007CodeEnum = "2.6"
-	N27  OecdFos2007CodeEnum = "2.7"
-	N28  OecdFos2007CodeEnum = "2.8"
-	N29  OecdFos2007CodeEnum = "2.9"
-	N31  OecdFos2007CodeEnum = "3.1"
-	N32  OecdFos2007CodeEnum = "3.2"
-	N33  OecdFos2007CodeEnum = "3.3"
-	N34  OecdFos2007CodeEnum = "3.4"
-	N35  OecdFos2007CodeEnum = "3.5"
-	N41  OecdFos2007CodeEnum = "4.1"
-	N42  OecdFos2007CodeEnum = "4.2"
-	N43  OecdFos2007CodeEnum = "4.3"
-	N44  OecdFos2007CodeEnum = "4.4"
-	N45  OecdFos2007CodeEnum = "4.5"
-	N51  OecdFos2007CodeEnum = "5.1"
-	N52  OecdFos2007CodeEnum = "5.2"
-	N53  OecdFos2007CodeEnum = "5.3"
-	N54  OecdFos2007CodeEnum = "5.4"
-	N55  OecdFos2007CodeEnum = "5.5"
-	N56  OecdFos2007CodeEnum = "5.6"
-	N57  OecdFos2007CodeEnum = "5.7"
-	N58  OecdFos2007CodeEnum = "5.8"
-	N59  OecdFos2007CodeEnum = "5.9"
-	N61  OecdFos2007CodeEnum = "6.1"
-	N62  OecdFos2007CodeEnum = "6.2"
-	N63  OecdFos2007CodeEnum = "6.3"
-	N64  OecdFos2007CodeEnum = "6.4"
-	N65  OecdFos2007CodeEnum = "6.5"
+	OecdFos2007CodeEnumN11  OecdFos2007CodeEnum = "1.1"
+	OecdFos2007CodeEnumN12  OecdFos2007CodeEnum = "1.2"
+	OecdFos2007CodeEnumN13  OecdFos2007CodeEnum = "1.3"
+	OecdFos2007CodeEnumN14  OecdFos2007CodeEnum = "1.4"
+	OecdFos2007CodeEnumN15  OecdFos2007CodeEnum = "1.5"
+	OecdFos2007CodeEnumN16  OecdFos2007CodeEnum = "1.6"
+	OecdFos2007CodeEnumN17  OecdFos2007CodeEnum = "1.7"
+	OecdFos2007CodeEnumN21  OecdFos2007CodeEnum = "2.1"
+	OecdFos2007CodeEnumN210 OecdFos2007CodeEnum = "2.10"
+	OecdFos2007CodeEnumN211 OecdFos2007CodeEnum = "2.11"
+	OecdFos2007CodeEnumN212 OecdFos2007CodeEnum = "2.12"
+	OecdFos2007CodeEnumN22  OecdFos2007CodeEnum = "2.2"
+	OecdFos2007CodeEnumN23  OecdFos2007CodeEnum = "2.3"
+	OecdFos2007CodeEnumN24  OecdFos2007CodeEnum = "2.4"
+	OecdFos2007CodeEnumN25  OecdFos2007CodeEnum = "2.5"
+	OecdFos2007CodeEnumN26  OecdFos2007CodeEnum = "2.6"
+	OecdFos2007CodeEnumN27  OecdFos2007CodeEnum = "2.7"
+	OecdFos2007CodeEnumN28  OecdFos2007CodeEnum = "2.8"
+	OecdFos2007CodeEnumN29  OecdFos2007CodeEnum = "2.9"
+	OecdFos2007CodeEnumN31  OecdFos2007CodeEnum = "3.1"
+	OecdFos2007CodeEnumN32  OecdFos2007CodeEnum = "3.2"
+	OecdFos2007CodeEnumN33  OecdFos2007CodeEnum = "3.3"
+	OecdFos2007CodeEnumN34  OecdFos2007CodeEnum = "3.4"
+	OecdFos2007CodeEnumN35  OecdFos2007CodeEnum = "3.5"
+	OecdFos2007CodeEnumN41  OecdFos2007CodeEnum = "4.1"
+	OecdFos2007CodeEnumN42  OecdFos2007CodeEnum = "4.2"
+	OecdFos2007CodeEnumN43  OecdFos2007CodeEnum = "4.3"
+	OecdFos2007CodeEnumN44  OecdFos2007CodeEnum = "4.4"
+	OecdFos2007CodeEnumN45  OecdFos2007CodeEnum = "4.5"
+	OecdFos2007CodeEnumN51  OecdFos2007CodeEnum = "5.1"
+	OecdFos2007CodeEnumN52  OecdFos2007CodeEnum = "5.2"
+	OecdFos2007CodeEnumN53  OecdFos2007CodeEnum = "5.3"
+	OecdFos2007CodeEnumN54  OecdFos2007CodeEnum = "5.4"
+	OecdFos2007CodeEnumN55  OecdFos2007CodeEnum = "5.5"
+	OecdFos2007CodeEnumN56  OecdFos2007CodeEnum = "5.6"
+	OecdFos2007CodeEnumN57  OecdFos2007CodeEnum = "5.7"
+	OecdFos2007CodeEnumN58  OecdFos2007CodeEnum = "5.8"
+	OecdFos2007CodeEnumN59  OecdFos2007CodeEnum = "5.9"
+	OecdFos2007CodeEnumN61  OecdFos2007CodeEnum = "6.1"
+	OecdFos2007CodeEnumN62  OecdFos2007CodeEnum = "6.2"
+	OecdFos2007CodeEnumN63  OecdFos2007CodeEnum = "6.3"
+	OecdFos2007CodeEnumN64  OecdFos2007CodeEnum = "6.4"
+	OecdFos2007CodeEnumN65  OecdFos2007CodeEnum = "6.5"
 )
 
 // Valid indicates whether the value is a known member of the OecdFos2007CodeEnum enum.
 func (e OecdFos2007CodeEnum) Valid() bool {
 	switch e {
-	case N11:
+	case OecdFos2007CodeEnumN11:
 		return true
-	case N12:
+	case OecdFos2007CodeEnumN12:
 		return true
-	case N13:
+	case OecdFos2007CodeEnumN13:
 		return true
-	case N14:
+	case OecdFos2007CodeEnumN14:
 		return true
-	case N15:
+	case OecdFos2007CodeEnumN15:
 		return true
-	case N16:
+	case OecdFos2007CodeEnumN16:
 		return true
-	case N17:
+	case OecdFos2007CodeEnumN17:
 		return true
-	case N21:
+	case OecdFos2007CodeEnumN21:
 		return true
-	case N210:
+	case OecdFos2007CodeEnumN210:
 		return true
-	case N211:
+	case OecdFos2007CodeEnumN211:
 		return true
-	case N212:
+	case OecdFos2007CodeEnumN212:
 		return true
-	case N22:
+	case OecdFos2007CodeEnumN22:
 		return true
-	case N23:
+	case OecdFos2007CodeEnumN23:
 		return true
-	case N24:
+	case OecdFos2007CodeEnumN24:
 		return true
-	case N25:
+	case OecdFos2007CodeEnumN25:
 		return true
-	case N26:
+	case OecdFos2007CodeEnumN26:
 		return true
-	case N27:
+	case OecdFos2007CodeEnumN27:
 		return true
-	case N28:
+	case OecdFos2007CodeEnumN28:
 		return true
-	case N29:
+	case OecdFos2007CodeEnumN29:
 		return true
-	case N31:
+	case OecdFos2007CodeEnumN31:
 		return true
-	case N32:
+	case OecdFos2007CodeEnumN32:
 		return true
-	case N33:
+	case OecdFos2007CodeEnumN33:
 		return true
-	case N34:
+	case OecdFos2007CodeEnumN34:
 		return true
-	case N35:
+	case OecdFos2007CodeEnumN35:
 		return true
-	case N41:
+	case OecdFos2007CodeEnumN41:
 		return true
-	case N42:
+	case OecdFos2007CodeEnumN42:
 		return true
-	case N43:
+	case OecdFos2007CodeEnumN43:
 		return true
-	case N44:
+	case OecdFos2007CodeEnumN44:
 		return true
-	case N45:
+	case OecdFos2007CodeEnumN45:
 		return true
-	case N51:
+	case OecdFos2007CodeEnumN51:
 		return true
-	case N52:
+	case OecdFos2007CodeEnumN52:
 		return true
-	case N53:
+	case OecdFos2007CodeEnumN53:
 		return true
-	case N54:
+	case OecdFos2007CodeEnumN54:
 		return true
-	case N55:
+	case OecdFos2007CodeEnumN55:
 		return true
-	case N56:
+	case OecdFos2007CodeEnumN56:
 		return true
-	case N57:
+	case OecdFos2007CodeEnumN57:
 		return true
-	case N58:
+	case OecdFos2007CodeEnumN58:
 		return true
-	case N59:
+	case OecdFos2007CodeEnumN59:
 		return true
-	case N61:
+	case OecdFos2007CodeEnumN61:
 		return true
-	case N62:
+	case OecdFos2007CodeEnumN62:
 		return true
-	case N63:
+	case OecdFos2007CodeEnumN63:
 		return true
-	case N64:
+	case OecdFos2007CodeEnumN64:
 		return true
-	case N65:
+	case OecdFos2007CodeEnumN65:
 		return true
 	default:
 		return false
@@ -37526,6 +37583,39 @@ type InstanceFlavorChangeRequest struct {
 	Flavor string `json:"flavor"`
 }
 
+// InstanceMetricsEnum defines model for InstanceMetricsEnum.
+type InstanceMetricsEnum string
+
+// InstanceMetricsFasterUpdatesRequest defines model for InstanceMetricsFasterUpdatesRequest.
+type InstanceMetricsFasterUpdatesRequest struct {
+	Hours           int                 `json:"hours"`
+	IntervalMinutes IntervalMinutesEnum `json:"interval_minutes"`
+}
+
+// InstanceMetricsPolling defines model for InstanceMetricsPolling.
+type InstanceMetricsPolling struct {
+	// CanManage Whether the user may ask for faster reads or a read now.
+	CanManage bool `json:"can_manage"`
+
+	// Enabled Whether the instance's provider collects instance metrics.
+	Enabled     bool       `json:"enabled"`
+	FasterUntil *time.Time `json:"faster_until"`
+
+	// InstanceName The instance whose reads cover the resource; for a volume, the one it is attached to. Empty for a detached volume.
+	InstanceName         *string             `json:"instance_name"`
+	InstanceResourceUuid *openapi_types.UUID `json:"instance_resource_uuid"`
+
+	// IntervalMinutes Minutes between reads now, the faster ones included.
+	IntervalMinutes int        `json:"interval_minutes"`
+	LastPolledAt    *time.Time `json:"last_polled_at"`
+
+	// NextPollAt Empty while the instance is not running.
+	NextPollAt *time.Time `json:"next_poll_at"`
+
+	// OfferingIntervalMinutes Minutes between reads when nobody asked for faster ones.
+	OfferingIntervalMinutes int `json:"offering_interval_minutes"`
+}
+
 // InstancePlacementAllocation defines model for InstancePlacementAllocation.
 type InstancePlacementAllocation struct {
 	ResourceProviderName string         `json:"resource_provider_name"`
@@ -37567,6 +37657,9 @@ type IntegrationStatusDetailsOEnum string
 
 // IntegrationStatusDetailsStatusEnum defines model for IntegrationStatusDetailsStatusEnum.
 type IntegrationStatusDetailsStatusEnum string
+
+// IntervalMinutesEnum defines model for IntervalMinutesEnum.
+type IntervalMinutesEnum int
 
 // Invitation defines model for Invitation.
 type Invitation struct {
@@ -39697,6 +39790,15 @@ type MergedPluginOptions struct {
 	// HomedirPrefix Prefix of each account's home directory; the username follows.
 	HomedirPrefix *string `json:"homedir_prefix,omitempty"`
 
+	// InstanceMetrics Instance and volume metrics shown to projects; empty shows all of them.
+	InstanceMetrics *[]InstanceMetricsEnum `json:"instance_metrics,omitempty"`
+
+	// InstanceMetricsEnabled Collect custom metrics of the instances in tenants of this offering and show them to their projects.
+	InstanceMetricsEnabled *bool `json:"instance_metrics_enabled,omitempty"`
+
+	// InstanceMetricsPollIntervalMinutes Minutes between custom metrics polls of each instance in tenants of this offering (default: 360).
+	InstanceMetricsPollIntervalMinutes *int `json:"instance_metrics_poll_interval_minutes,omitempty"`
+
 	// IsResourceTerminationDateRequired If set to True, resource termination date is required
 	IsResourceTerminationDateRequired *bool `json:"is_resource_termination_date_required,omitempty"`
 
@@ -40051,6 +40153,15 @@ type MergedPluginOptionsRequest struct {
 
 	// HomedirPrefix Prefix of each account's home directory; the username follows.
 	HomedirPrefix *string `json:"homedir_prefix,omitempty"`
+
+	// InstanceMetrics Instance and volume metrics shown to projects; empty shows all of them.
+	InstanceMetrics *[]InstanceMetricsEnum `json:"instance_metrics,omitempty"`
+
+	// InstanceMetricsEnabled Collect custom metrics of the instances in tenants of this offering and show them to their projects.
+	InstanceMetricsEnabled *bool `json:"instance_metrics_enabled,omitempty"`
+
+	// InstanceMetricsPollIntervalMinutes Minutes between custom metrics polls of each instance in tenants of this offering (default: 360).
+	InstanceMetricsPollIntervalMinutes *int `json:"instance_metrics_poll_interval_minutes,omitempty"`
 
 	// IsResourceTerminationDateRequired If set to True, resource termination date is required
 	IsResourceTerminationDateRequired *bool `json:"is_resource_termination_date_required,omitempty"`
@@ -90188,6 +90299,9 @@ type MarketplaceOfferingUsersUpdateRestrictedJSONRequestBody = OfferingUserUpdat
 // MarketplaceOfferingUsersUpdateRuntimeStateJSONRequestBody defines body for MarketplaceOfferingUsersUpdateRuntimeState for application/json ContentType.
 type MarketplaceOfferingUsersUpdateRuntimeStateJSONRequestBody = OfferingUserUpdateRuntimeStateRequest
 
+// MarketplaceOpenstackInstanceMetricsFasterUpdatesJSONRequestBody defines body for MarketplaceOpenstackInstanceMetricsFasterUpdates for application/json ContentType.
+type MarketplaceOpenstackInstanceMetricsFasterUpdatesJSONRequestBody = InstanceMetricsFasterUpdatesRequest
+
 // MarketplaceOrdersCreateJSONRequestBody defines body for MarketplaceOrdersCreate for application/json ContentType.
 type MarketplaceOrdersCreateJSONRequestBody = OrderCreateRequest
 
@@ -118106,6 +118220,41 @@ type ClientInterface interface {
 	//
 	// Get number of items in the collection matching the request parameters.
 	MarketplaceOpenstackDuplicateOfferingsCount(ctx context.Context, params *MarketplaceOpenstackDuplicateOfferingsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOpenstackInstanceMetricsRetrieve Get how often an instance's or volume's metrics are read
+	//
+	// Corresponds with GET /api/marketplace-openstack-instance-metrics/{uuid}/ (the `MarketplaceOpenstackInstanceMetricsRetrieve` operationId).
+	MarketplaceOpenstackInstanceMetricsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOpenstackInstanceMetricsFasterUpdatesWithBody Read an instance's metrics faster for a while
+	//
+	// Reads the instance now, then every interval_minutes for the given hours, after which the provider's interval applies again. Asked on a volume, it applies to the instance the volume is attached to.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/marketplace-openstack-instance-metrics/{uuid}/faster_updates/ (the `MarketplaceOpenstackInstanceMetricsFasterUpdates` operationId).
+	MarketplaceOpenstackInstanceMetricsFasterUpdatesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOpenstackInstanceMetricsFasterUpdates Read an instance's metrics faster for a while
+	//
+	// Reads the instance now, then every interval_minutes for the given hours, after which the provider's interval applies again. Asked on a volume, it applies to the instance the volume is attached to.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/marketplace-openstack-instance-metrics/{uuid}/faster_updates/ (the `MarketplaceOpenstackInstanceMetricsFasterUpdates` operationId).
+	MarketplaceOpenstackInstanceMetricsFasterUpdates(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOpenstackInstanceMetricsFasterUpdatesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOpenstackInstanceMetricsNormalUpdates Return an instance to the provider's interval
+	//
+	// Corresponds with POST /api/marketplace-openstack-instance-metrics/{uuid}/normal_updates/ (the `MarketplaceOpenstackInstanceMetricsNormalUpdates` operationId).
+	MarketplaceOpenstackInstanceMetricsNormalUpdates(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOpenstackInstanceMetricsUpdateNow Read an instance's metrics now
+	//
+	// Refused while the last read, or the last one asked for, is less than five minutes old.
+	//
+	// Corresponds with POST /api/marketplace-openstack-instance-metrics/{uuid}/update_now/ (the `MarketplaceOpenstackInstanceMetricsUpdateNow` operationId).
+	MarketplaceOpenstackInstanceMetricsUpdateNow(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOrdersList List orders
 	//
@@ -154793,6 +154942,91 @@ func (c *Client) MarketplaceOpenstackDuplicateOfferingsList(ctx context.Context,
 // Get number of items in the collection matching the request parameters.
 func (c *Client) MarketplaceOpenstackDuplicateOfferingsCount(ctx context.Context, params *MarketplaceOpenstackDuplicateOfferingsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceOpenstackDuplicateOfferingsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceOpenstackInstanceMetricsRetrieve Get how often an instance's or volume's metrics are read
+//
+// Corresponds with GET /api/marketplace-openstack-instance-metrics/{uuid}/ (the `MarketplaceOpenstackInstanceMetricsRetrieve` operationId).
+func (c *Client) MarketplaceOpenstackInstanceMetricsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOpenstackInstanceMetricsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceOpenstackInstanceMetricsFasterUpdatesWithBody Read an instance's metrics faster for a while
+//
+// Reads the instance now, then every interval_minutes for the given hours, after which the provider's interval applies again. Asked on a volume, it applies to the instance the volume is attached to.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/marketplace-openstack-instance-metrics/{uuid}/faster_updates/ (the `MarketplaceOpenstackInstanceMetricsFasterUpdates` operationId).
+func (c *Client) MarketplaceOpenstackInstanceMetricsFasterUpdatesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOpenstackInstanceMetricsFasterUpdatesRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceOpenstackInstanceMetricsFasterUpdates Read an instance's metrics faster for a while
+//
+// Reads the instance now, then every interval_minutes for the given hours, after which the provider's interval applies again. Asked on a volume, it applies to the instance the volume is attached to.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/marketplace-openstack-instance-metrics/{uuid}/faster_updates/ (the `MarketplaceOpenstackInstanceMetricsFasterUpdates` operationId).
+func (c *Client) MarketplaceOpenstackInstanceMetricsFasterUpdates(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOpenstackInstanceMetricsFasterUpdatesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOpenstackInstanceMetricsFasterUpdatesRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceOpenstackInstanceMetricsNormalUpdates Return an instance to the provider's interval
+//
+// Corresponds with POST /api/marketplace-openstack-instance-metrics/{uuid}/normal_updates/ (the `MarketplaceOpenstackInstanceMetricsNormalUpdates` operationId).
+func (c *Client) MarketplaceOpenstackInstanceMetricsNormalUpdates(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOpenstackInstanceMetricsNormalUpdatesRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceOpenstackInstanceMetricsUpdateNow Read an instance's metrics now
+//
+// Refused while the last read, or the last one asked for, is less than five minutes old.
+//
+// Corresponds with POST /api/marketplace-openstack-instance-metrics/{uuid}/update_now/ (the `MarketplaceOpenstackInstanceMetricsUpdateNow` operationId).
+func (c *Client) MarketplaceOpenstackInstanceMetricsUpdateNow(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOpenstackInstanceMetricsUpdateNowRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -268287,6 +268521,155 @@ func NewMarketplaceOpenstackDuplicateOfferingsCountRequest(server string, params
 	}
 
 	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOpenstackInstanceMetricsRetrieveRequest constructs an http.Request for the MarketplaceOpenstackInstanceMetricsRetrieve method
+func NewMarketplaceOpenstackInstanceMetricsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-openstack-instance-metrics/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOpenstackInstanceMetricsFasterUpdatesRequest calls the generic MarketplaceOpenstackInstanceMetricsFasterUpdates builder with application/json body
+func NewMarketplaceOpenstackInstanceMetricsFasterUpdatesRequest(server string, uuid openapi_types.UUID, body MarketplaceOpenstackInstanceMetricsFasterUpdatesJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceOpenstackInstanceMetricsFasterUpdatesRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceOpenstackInstanceMetricsFasterUpdatesRequestWithBody constructs an http.Request for the MarketplaceOpenstackInstanceMetricsFasterUpdates method, with any body, and a specified content type
+func NewMarketplaceOpenstackInstanceMetricsFasterUpdatesRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-openstack-instance-metrics/%s/faster_updates/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceOpenstackInstanceMetricsNormalUpdatesRequest constructs an http.Request for the MarketplaceOpenstackInstanceMetricsNormalUpdates method
+func NewMarketplaceOpenstackInstanceMetricsNormalUpdatesRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-openstack-instance-metrics/%s/normal_updates/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOpenstackInstanceMetricsUpdateNowRequest constructs an http.Request for the MarketplaceOpenstackInstanceMetricsUpdateNow method
+func NewMarketplaceOpenstackInstanceMetricsUpdateNowRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-openstack-instance-metrics/%s/update_now/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -438573,6 +438956,47 @@ type ClientWithResponsesInterface interface {
 	// Returns a wrapper object for the known response body format(s).
 	MarketplaceOpenstackDuplicateOfferingsCountWithResponse(ctx context.Context, params *MarketplaceOpenstackDuplicateOfferingsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceOpenstackDuplicateOfferingsCountResponse, error)
 
+	// MarketplaceOpenstackInstanceMetricsRetrieveWithResponse Get how often an instance's or volume's metrics are read
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-openstack-instance-metrics/{uuid}/ (the `MarketplaceOpenstackInstanceMetricsRetrieve` operationId).
+	MarketplaceOpenstackInstanceMetricsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOpenstackInstanceMetricsRetrieveResponse, error)
+
+	// MarketplaceOpenstackInstanceMetricsFasterUpdatesWithBodyWithResponse Read an instance's metrics faster for a while
+	//
+	// Reads the instance now, then every interval_minutes for the given hours, after which the provider's interval applies again. Asked on a volume, it applies to the instance the volume is attached to.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-openstack-instance-metrics/{uuid}/faster_updates/ (the `MarketplaceOpenstackInstanceMetricsFasterUpdates` operationId).
+	MarketplaceOpenstackInstanceMetricsFasterUpdatesWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOpenstackInstanceMetricsFasterUpdatesResponse, error)
+
+	// MarketplaceOpenstackInstanceMetricsFasterUpdatesWithResponse Read an instance's metrics faster for a while
+	//
+	// Reads the instance now, then every interval_minutes for the given hours, after which the provider's interval applies again. Asked on a volume, it applies to the instance the volume is attached to.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-openstack-instance-metrics/{uuid}/faster_updates/ (the `MarketplaceOpenstackInstanceMetricsFasterUpdates` operationId).
+	MarketplaceOpenstackInstanceMetricsFasterUpdatesWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOpenstackInstanceMetricsFasterUpdatesJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOpenstackInstanceMetricsFasterUpdatesResponse, error)
+
+	// MarketplaceOpenstackInstanceMetricsNormalUpdatesWithResponse Return an instance to the provider's interval
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-openstack-instance-metrics/{uuid}/normal_updates/ (the `MarketplaceOpenstackInstanceMetricsNormalUpdates` operationId).
+	MarketplaceOpenstackInstanceMetricsNormalUpdatesWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOpenstackInstanceMetricsNormalUpdatesResponse, error)
+
+	// MarketplaceOpenstackInstanceMetricsUpdateNowWithResponse Read an instance's metrics now
+	//
+	// Refused while the last read, or the last one asked for, is less than five minutes old.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-openstack-instance-metrics/{uuid}/update_now/ (the `MarketplaceOpenstackInstanceMetricsUpdateNow` operationId).
+	MarketplaceOpenstackInstanceMetricsUpdateNowWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOpenstackInstanceMetricsUpdateNowResponse, error)
+
 	// MarketplaceOrdersListWithResponse List orders
 	//
 	// Returns a paginated list of orders accessible to the current user. Orders are visible to service consumers (project/customer members with appropriate permissions) and service providers.
@@ -496604,6 +497028,170 @@ func (r MarketplaceOpenstackDuplicateOfferingsCountResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceOpenstackDuplicateOfferingsCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceOpenstackInstanceMetricsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *InstanceMetricsPolling
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceOpenstackInstanceMetricsRetrieveResponse) GetJSON200() *InstanceMetricsPolling {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceOpenstackInstanceMetricsRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOpenstackInstanceMetricsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOpenstackInstanceMetricsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOpenstackInstanceMetricsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceOpenstackInstanceMetricsFasterUpdatesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *InstanceMetricsPolling
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceOpenstackInstanceMetricsFasterUpdatesResponse) GetJSON200() *InstanceMetricsPolling {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceOpenstackInstanceMetricsFasterUpdatesResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOpenstackInstanceMetricsFasterUpdatesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOpenstackInstanceMetricsFasterUpdatesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOpenstackInstanceMetricsFasterUpdatesResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceOpenstackInstanceMetricsNormalUpdatesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *InstanceMetricsPolling
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceOpenstackInstanceMetricsNormalUpdatesResponse) GetJSON200() *InstanceMetricsPolling {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceOpenstackInstanceMetricsNormalUpdatesResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOpenstackInstanceMetricsNormalUpdatesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOpenstackInstanceMetricsNormalUpdatesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOpenstackInstanceMetricsNormalUpdatesResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceOpenstackInstanceMetricsUpdateNowResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *InstanceMetricsPolling
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceOpenstackInstanceMetricsUpdateNowResponse) GetJSON200() *InstanceMetricsPolling {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceOpenstackInstanceMetricsUpdateNowResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOpenstackInstanceMetricsUpdateNowResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOpenstackInstanceMetricsUpdateNowResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOpenstackInstanceMetricsUpdateNowResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -594170,6 +594758,77 @@ func (c *ClientWithResponses) MarketplaceOpenstackDuplicateOfferingsCountWithRes
 	return ParseMarketplaceOpenstackDuplicateOfferingsCountResponse(rsp)
 }
 
+// MarketplaceOpenstackInstanceMetricsRetrieveWithResponse Get how often an instance's or volume's metrics are read
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-openstack-instance-metrics/{uuid}/ (the `MarketplaceOpenstackInstanceMetricsRetrieve` operationId).
+func (c *ClientWithResponses) MarketplaceOpenstackInstanceMetricsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOpenstackInstanceMetricsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceOpenstackInstanceMetricsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOpenstackInstanceMetricsRetrieveResponse(rsp)
+}
+
+// MarketplaceOpenstackInstanceMetricsFasterUpdatesWithBodyWithResponse Read an instance's metrics faster for a while
+//
+// Reads the instance now, then every interval_minutes for the given hours, after which the provider's interval applies again. Asked on a volume, it applies to the instance the volume is attached to.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-openstack-instance-metrics/{uuid}/faster_updates/ (the `MarketplaceOpenstackInstanceMetricsFasterUpdates` operationId).
+func (c *ClientWithResponses) MarketplaceOpenstackInstanceMetricsFasterUpdatesWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOpenstackInstanceMetricsFasterUpdatesResponse, error) {
+	rsp, err := c.MarketplaceOpenstackInstanceMetricsFasterUpdatesWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOpenstackInstanceMetricsFasterUpdatesResponse(rsp)
+}
+
+// MarketplaceOpenstackInstanceMetricsFasterUpdatesWithResponse Read an instance's metrics faster for a while
+//
+// Reads the instance now, then every interval_minutes for the given hours, after which the provider's interval applies again. Asked on a volume, it applies to the instance the volume is attached to.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-openstack-instance-metrics/{uuid}/faster_updates/ (the `MarketplaceOpenstackInstanceMetricsFasterUpdates` operationId).
+func (c *ClientWithResponses) MarketplaceOpenstackInstanceMetricsFasterUpdatesWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOpenstackInstanceMetricsFasterUpdatesJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOpenstackInstanceMetricsFasterUpdatesResponse, error) {
+	rsp, err := c.MarketplaceOpenstackInstanceMetricsFasterUpdates(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOpenstackInstanceMetricsFasterUpdatesResponse(rsp)
+}
+
+// MarketplaceOpenstackInstanceMetricsNormalUpdatesWithResponse Return an instance to the provider's interval
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-openstack-instance-metrics/{uuid}/normal_updates/ (the `MarketplaceOpenstackInstanceMetricsNormalUpdates` operationId).
+func (c *ClientWithResponses) MarketplaceOpenstackInstanceMetricsNormalUpdatesWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOpenstackInstanceMetricsNormalUpdatesResponse, error) {
+	rsp, err := c.MarketplaceOpenstackInstanceMetricsNormalUpdates(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOpenstackInstanceMetricsNormalUpdatesResponse(rsp)
+}
+
+// MarketplaceOpenstackInstanceMetricsUpdateNowWithResponse Read an instance's metrics now
+//
+// Refused while the last read, or the last one asked for, is less than five minutes old.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-openstack-instance-metrics/{uuid}/update_now/ (the `MarketplaceOpenstackInstanceMetricsUpdateNow` operationId).
+func (c *ClientWithResponses) MarketplaceOpenstackInstanceMetricsUpdateNowWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOpenstackInstanceMetricsUpdateNowResponse, error) {
+	rsp, err := c.MarketplaceOpenstackInstanceMetricsUpdateNow(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOpenstackInstanceMetricsUpdateNowResponse(rsp)
+}
+
 // MarketplaceOrdersListWithResponse List orders
 //
 // Returns a paginated list of orders accessible to the current user. Orders are visible to service consumers (project/customer members with appropriate permissions) and service providers.
@@ -654698,6 +655357,110 @@ func ParseMarketplaceOpenstackDuplicateOfferingsCountResponse(rsp *http.Response
 	response := &MarketplaceOpenstackDuplicateOfferingsCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOpenstackInstanceMetricsRetrieveResponse parses an HTTP response from a MarketplaceOpenstackInstanceMetricsRetrieveWithResponse call
+func ParseMarketplaceOpenstackInstanceMetricsRetrieveResponse(rsp *http.Response) (*MarketplaceOpenstackInstanceMetricsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOpenstackInstanceMetricsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest InstanceMetricsPolling
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOpenstackInstanceMetricsFasterUpdatesResponse parses an HTTP response from a MarketplaceOpenstackInstanceMetricsFasterUpdatesWithResponse call
+func ParseMarketplaceOpenstackInstanceMetricsFasterUpdatesResponse(rsp *http.Response) (*MarketplaceOpenstackInstanceMetricsFasterUpdatesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOpenstackInstanceMetricsFasterUpdatesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest InstanceMetricsPolling
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOpenstackInstanceMetricsNormalUpdatesResponse parses an HTTP response from a MarketplaceOpenstackInstanceMetricsNormalUpdatesWithResponse call
+func ParseMarketplaceOpenstackInstanceMetricsNormalUpdatesResponse(rsp *http.Response) (*MarketplaceOpenstackInstanceMetricsNormalUpdatesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOpenstackInstanceMetricsNormalUpdatesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest InstanceMetricsPolling
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOpenstackInstanceMetricsUpdateNowResponse parses an HTTP response from a MarketplaceOpenstackInstanceMetricsUpdateNowWithResponse call
+func ParseMarketplaceOpenstackInstanceMetricsUpdateNowResponse(rsp *http.Response) (*MarketplaceOpenstackInstanceMetricsUpdateNowResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOpenstackInstanceMetricsUpdateNowResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest InstanceMetricsPolling
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
