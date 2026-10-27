@@ -3009,6 +3009,24 @@ func (e ComparatorEnum) Valid() bool {
 	}
 }
 
+// Defines values for CompensateInEnum.
+const (
+	CurrentMonth  CompensateInEnum = "current_month"
+	IncurredMonth CompensateInEnum = "incurred_month"
+)
+
+// Valid indicates whether the value is a known member of the CompensateInEnum enum.
+func (e CompensateInEnum) Valid() bool {
+	switch e {
+	case CurrentMonth:
+		return true
+	case IncurredMonth:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ComponentUsageFieldEnum.
 const (
 	ComponentUsageFieldEnumBillingPeriod      ComponentUsageFieldEnum = "billing_period"
@@ -4436,6 +4454,7 @@ const (
 	CustomerEstimatedCostPolicyFieldEnumActions                CustomerEstimatedCostPolicyFieldEnum = "actions"
 	CustomerEstimatedCostPolicyFieldEnumAffectedResourcesCount CustomerEstimatedCostPolicyFieldEnum = "affected_resources_count"
 	CustomerEstimatedCostPolicyFieldEnumBillingPriceEstimate   CustomerEstimatedCostPolicyFieldEnum = "billing_price_estimate"
+	CustomerEstimatedCostPolicyFieldEnumCostBreakdown          CustomerEstimatedCostPolicyFieldEnum = "cost_breakdown"
 	CustomerEstimatedCostPolicyFieldEnumCreated                CustomerEstimatedCostPolicyFieldEnum = "created"
 	CustomerEstimatedCostPolicyFieldEnumCreatedByFullName      CustomerEstimatedCostPolicyFieldEnum = "created_by_full_name"
 	CustomerEstimatedCostPolicyFieldEnumCreatedByUsername      CustomerEstimatedCostPolicyFieldEnum = "created_by_username"
@@ -4465,6 +4484,8 @@ func (e CustomerEstimatedCostPolicyFieldEnum) Valid() bool {
 	case CustomerEstimatedCostPolicyFieldEnumAffectedResourcesCount:
 		return true
 	case CustomerEstimatedCostPolicyFieldEnumBillingPriceEstimate:
+		return true
+	case CustomerEstimatedCostPolicyFieldEnumCostBreakdown:
 		return true
 	case CustomerEstimatedCostPolicyFieldEnumCreated:
 		return true
@@ -11693,6 +11714,7 @@ const (
 	OfferingEstimatedCostPolicyFieldEnumActions                OfferingEstimatedCostPolicyFieldEnum = "actions"
 	OfferingEstimatedCostPolicyFieldEnumAffectedResourcesCount OfferingEstimatedCostPolicyFieldEnum = "affected_resources_count"
 	OfferingEstimatedCostPolicyFieldEnumApplyToAll             OfferingEstimatedCostPolicyFieldEnum = "apply_to_all"
+	OfferingEstimatedCostPolicyFieldEnumCostBreakdown          OfferingEstimatedCostPolicyFieldEnum = "cost_breakdown"
 	OfferingEstimatedCostPolicyFieldEnumCreated                OfferingEstimatedCostPolicyFieldEnum = "created"
 	OfferingEstimatedCostPolicyFieldEnumCreatedByFullName      OfferingEstimatedCostPolicyFieldEnum = "created_by_full_name"
 	OfferingEstimatedCostPolicyFieldEnumCreatedByUsername      OfferingEstimatedCostPolicyFieldEnum = "created_by_username"
@@ -11722,6 +11744,8 @@ func (e OfferingEstimatedCostPolicyFieldEnum) Valid() bool {
 	case OfferingEstimatedCostPolicyFieldEnumAffectedResourcesCount:
 		return true
 	case OfferingEstimatedCostPolicyFieldEnumApplyToAll:
+		return true
+	case OfferingEstimatedCostPolicyFieldEnumCostBreakdown:
 		return true
 	case OfferingEstimatedCostPolicyFieldEnumCreated:
 		return true
@@ -17442,6 +17466,7 @@ func (e PolicyEnum) Valid() bool {
 // Defines values for PolicyGateEnum.
 const (
 	CostBelowLimit       PolicyGateEnum = "cost_below_limit"
+	CostOverLimit        PolicyGateEnum = "cost_over_limit"
 	CreditExhausted      PolicyGateEnum = "credit_exhausted"
 	CreditIgnored        PolicyGateEnum = "credit_ignored"
 	HeldByCustomerCredit PolicyGateEnum = "held_by_customer_credit"
@@ -17453,6 +17478,8 @@ const (
 func (e PolicyGateEnum) Valid() bool {
 	switch e {
 	case CostBelowLimit:
+		return true
+	case CostOverLimit:
 		return true
 	case CreditExhausted:
 		return true
@@ -17792,6 +17819,7 @@ const (
 	ProjectEstimatedCostPolicyFieldEnumActions                ProjectEstimatedCostPolicyFieldEnum = "actions"
 	ProjectEstimatedCostPolicyFieldEnumAffectedResourcesCount ProjectEstimatedCostPolicyFieldEnum = "affected_resources_count"
 	ProjectEstimatedCostPolicyFieldEnumBillingPriceEstimate   ProjectEstimatedCostPolicyFieldEnum = "billing_price_estimate"
+	ProjectEstimatedCostPolicyFieldEnumCostBreakdown          ProjectEstimatedCostPolicyFieldEnum = "cost_breakdown"
 	ProjectEstimatedCostPolicyFieldEnumCreated                ProjectEstimatedCostPolicyFieldEnum = "created"
 	ProjectEstimatedCostPolicyFieldEnumCreatedByFullName      ProjectEstimatedCostPolicyFieldEnum = "created_by_full_name"
 	ProjectEstimatedCostPolicyFieldEnumCreatedByUsername      ProjectEstimatedCostPolicyFieldEnum = "created_by_username"
@@ -17825,6 +17853,8 @@ func (e ProjectEstimatedCostPolicyFieldEnum) Valid() bool {
 	case ProjectEstimatedCostPolicyFieldEnumAffectedResourcesCount:
 		return true
 	case ProjectEstimatedCostPolicyFieldEnumBillingPriceEstimate:
+		return true
+	case ProjectEstimatedCostPolicyFieldEnumCostBreakdown:
 		return true
 	case ProjectEstimatedCostPolicyFieldEnumCreated:
 		return true
@@ -23292,6 +23322,7 @@ const (
 	AffiliateFee           TransactionTypeEnum = "affiliate_fee"
 	Compensation           TransactionTypeEnum = "compensation"
 	Expiry                 TransactionTypeEnum = "expiry"
+	HistoricalCompensation TransactionTypeEnum = "historical_compensation"
 	MinimalDraw            TransactionTypeEnum = "minimal_draw"
 	Payout                 TransactionTypeEnum = "payout"
 	Rollback               TransactionTypeEnum = "rollback"
@@ -23311,6 +23342,8 @@ func (e TransactionTypeEnum) Valid() bool {
 	case Compensation:
 		return true
 	case Expiry:
+		return true
+	case HistoricalCompensation:
 		return true
 	case MinimalDraw:
 		return true
@@ -31056,6 +31089,9 @@ type CommentRequest struct {
 // ComparatorEnum defines model for ComparatorEnum.
 type ComparatorEnum string
 
+// CompensateInEnum defines model for CompensateInEnum.
+type CompensateInEnum string
+
 // CompleteRoundRefusal defines model for CompleteRoundRefusal.
 type CompleteRoundRefusal struct {
 	Detail *string `json:"detail,omitempty"`
@@ -34269,6 +34305,7 @@ type CustomerEstimatedCostPolicy struct {
 	Actions                *string              `json:"actions,omitempty"`
 	AffectedResourcesCount *int                 `json:"affected_resources_count,omitempty"`
 	BillingPriceEstimate   *NestedPriceEstimate `json:"billing_price_estimate,omitempty"`
+	CostBreakdown          *PolicyCostBreakdown `json:"cost_breakdown,omitempty"`
 	Created                *time.Time           `json:"created,omitempty"`
 	CreatedByFullName      *string              `json:"created_by_full_name,omitempty"`
 	CreatedByUsername      *string              `json:"created_by_username,omitempty"`
@@ -34280,7 +34317,7 @@ type CustomerEstimatedCostPolicy struct {
 	// EtaDate eta_days as a calendar date, so clients do not each re-derive it. Null whenever eta_days is null; today when eta_days is 0.
 	EtaDate *openapi_types.Date `json:"eta_date,omitempty"`
 
-	// EtaDays Days until the policy fires, or null when no projection exists. 0 means the threshold is already crossed and the policy is triggered — measured, not projected. Null must be rendered as no date, never as 'now': it is the common case, and it is also what an unprojectable or more-than-a-year-away policy reports. Nothing is projected beyond 365 days, because the rate comes from the current month's spend. Note that a cost policy does not fire on cost alone — it also waits for the credit balance to fall to limit_cost — so a policy far over its cap can still report a future date or null.
+	// EtaDays Days until the policy fires, or null when no projection exists. 0 means the threshold is already crossed and the policy is triggered — measured, not projected. Null must be rendered as no date, never as 'now': it is the common case, and it is also what an unprojectable or more-than-a-year-away policy reports. Nothing is projected beyond 365 days, because the rate comes from the current month's spend.
 	EtaDays       *int       `json:"eta_days,omitempty"`
 	FiredDatetime *time.Time `json:"fired_datetime,omitempty"`
 	HasFired      *bool      `json:"has_fired,omitempty"`
@@ -35641,6 +35678,43 @@ type DuplicateOfferingGroup struct {
 
 // ENABLEDREPORTINGSCREENSEnum defines model for ENABLEDREPORTINGSCREENSEnum.
 type ENABLEDREPORTINGSCREENSEnum string
+
+// EarlierInvoiceMonth defines model for EarlierInvoiceMonth.
+type EarlierInvoiceMonth struct {
+	// Cost Cost the credit could pay: the project's items on offerings the credit covers, net of volume discounts, before tax.
+	Cost string `json:"cost"`
+
+	// Covered What paid for it: the credit compensation on the month's invoice, later payments of the month, and staff refunds of its items.
+	Covered string `json:"covered"`
+
+	// InPeriod Whether the month is within the months the credit pays.
+	InPeriod bool `json:"in_period"`
+
+	// Period The month, as its first day.
+	Period openapi_types.Date `json:"period"`
+
+	// Uncovered Cost that nothing paid for yet.
+	Uncovered string `json:"uncovered"`
+}
+
+// EarlierInvoicePayment defines model for EarlierInvoicePayment.
+type EarlierInvoicePayment struct {
+	Amount string `json:"amount"`
+
+	// InvoicePeriod The month of the invoice the compensation is written on.
+	InvoicePeriod openapi_types.Date `json:"invoice_period"`
+
+	// InvoiceUuid That invoice; null in a dry run while the current month has no invoice yet.
+	InvoiceUuid *openapi_types.UUID `json:"invoice_uuid"`
+
+	// ItemName The cost item the compensation pays.
+	ItemName string `json:"item_name"`
+
+	// Period The month the compensation pays.
+	Period       openapi_types.Date  `json:"period"`
+	ResourceName *string             `json:"resource_name"`
+	ResourceUuid *openapi_types.UUID `json:"resource_uuid"`
+}
 
 // EffectiveRoute defines model for EffectiveRoute.
 type EffectiveRoute struct {
@@ -42451,10 +42525,11 @@ type OfferingEstimatedCostPolicy struct {
 	AffectedResourcesCount *int    `json:"affected_resources_count,omitempty"`
 
 	// ApplyToAll If True, policy applies to all customers. Mutually exclusive with organization_groups.
-	ApplyToAll        *bool      `json:"apply_to_all,omitempty"`
-	Created           *time.Time `json:"created,omitempty"`
-	CreatedByFullName *string    `json:"created_by_full_name,omitempty"`
-	CreatedByUsername *string    `json:"created_by_username,omitempty"`
+	ApplyToAll        *bool                `json:"apply_to_all,omitempty"`
+	CostBreakdown     *PolicyCostBreakdown `json:"cost_breakdown,omitempty"`
+	Created           *time.Time           `json:"created,omitempty"`
+	CreatedByFullName *string              `json:"created_by_full_name,omitempty"`
+	CreatedByUsername *string              `json:"created_by_username,omitempty"`
 
 	// CurrentCost The cost this policy compares against limit_cost right now: the period's invoice total, less the credit already applied and the credit still to be drawn. Do not re-derive it — only the server can simulate the pending draw, and a figure computed from the invoice alone will not match what the policy evaluates.
 	CurrentCost *string `json:"current_cost,omitempty"`
@@ -42462,7 +42537,7 @@ type OfferingEstimatedCostPolicy struct {
 	// EtaDate eta_days as a calendar date, so clients do not each re-derive it. Null whenever eta_days is null; today when eta_days is 0.
 	EtaDate *openapi_types.Date `json:"eta_date,omitempty"`
 
-	// EtaDays Days until the policy fires, or null when no projection exists. 0 means the threshold is already crossed and the policy is triggered — measured, not projected. Null must be rendered as no date, never as 'now': it is the common case, and it is also what an unprojectable or more-than-a-year-away policy reports. Nothing is projected beyond 365 days, because the rate comes from the current month's spend. Note that a cost policy does not fire on cost alone — it also waits for the credit balance to fall to limit_cost — so a policy far over its cap can still report a future date or null.
+	// EtaDays Days until the policy fires, or null when no projection exists. 0 means the threshold is already crossed and the policy is triggered — measured, not projected. Null must be rendered as no date, never as 'now': it is the common case, and it is also what an unprojectable or more-than-a-year-away policy reports. Nothing is projected beyond 365 days, because the rate comes from the current month's spend.
 	EtaDays       *int       `json:"eta_days,omitempty"`
 	FiredDatetime *time.Time `json:"fired_datetime,omitempty"`
 	HasFired      *bool      `json:"has_fired,omitempty"`
@@ -49178,14 +49253,26 @@ type PatchedPosixIdPoolRequest struct {
 
 // PatchedProjectCreditRequest defines model for PatchedProjectCreditRequest.
 type PatchedProjectCreditRequest struct {
-	ApplyAsMinimalConsumption                   *bool                        `json:"apply_as_minimal_consumption,omitempty"`
+	ApplyAsMinimalConsumption *bool `json:"apply_as_minimal_consumption,omitempty"`
+
+	// EarlierInvoicesCompensateIn Which invoice a payment of an earlier invoice is written on: the current month's, or the paid month's own, which changes an invoice already issued.
+	EarlierInvoicesCompensateIn *CompensateInEnum `json:"earlier_invoices_compensate_in,omitempty"`
+
+	// EarlierInvoicesFrom First month of earlier invoices to pay, as its first day. Empty: from the first invoice.
+	EarlierInvoicesFrom *openapi_types.Date `json:"earlier_invoices_from,omitempty"`
+
+	// EarlierInvoicesUntil Last month of earlier invoices to pay, as its first day. Empty: up to the last closed invoice.
+	EarlierInvoicesUntil                        *openapi_types.Date          `json:"earlier_invoices_until,omitempty"`
 	EndDate                                     *openapi_types.Date          `json:"end_date,omitempty"`
 	ExpectedConsumption                         *string                      `json:"expected_consumption,omitempty"`
 	GraceCoefficient                            *string                      `json:"grace_coefficient,omitempty"`
 	MarkUnusedCreditAsSpentOnProjectTermination *bool                        `json:"mark_unused_credit_as_spent_on_project_termination,omitempty"`
 	MinimalConsumptionLogic                     *MinimalConsumptionLogicEnum `json:"minimal_consumption_logic,omitempty"`
-	Project                                     *string                      `json:"project,omitempty"`
-	Value                                       *string                      `json:"value,omitempty"`
+
+	// PayEarlierInvoices Also pay the cost of earlier, closed invoices of the project that no credit covered. Staff only.
+	PayEarlierInvoices *bool   `json:"pay_earlier_invoices,omitempty"`
+	Project            *string `json:"project,omitempty"`
+	Value              *string `json:"value,omitempty"`
 }
 
 // PatchedProjectDigestConfigRequest defines model for PatchedProjectDigestConfigRequest.
@@ -50538,6 +50625,33 @@ type PatchedWebHookRequest struct {
 	IsActive       *bool                   `json:"is_active,omitempty"`
 }
 
+// PayEarlierInvoices defines model for PayEarlierInvoices.
+type PayEarlierInvoices struct {
+	CompensateIn         CompensateInEnum        `json:"compensate_in"`
+	CustomerCreditAfter  string                  `json:"customer_credit_after"`
+	CustomerCreditBefore string                  `json:"customer_credit_before"`
+	DryRun               bool                    `json:"dry_run"`
+	Payments             []EarlierInvoicePayment `json:"payments"`
+	ProjectCreditAfter   string                  `json:"project_credit_after"`
+	ProjectCreditBefore  string                  `json:"project_credit_before"`
+	Total                string                  `json:"total"`
+}
+
+// PayEarlierInvoicesRequestRequest defines model for PayEarlierInvoicesRequestRequest.
+type PayEarlierInvoicesRequestRequest struct {
+	// CompensateIn Which invoice the compensations go on. Defaults to the credit's earlier_invoices_compensate_in; a payment that is not a dry run also stores it there.
+	CompensateIn *CompensateInEnum `json:"compensate_in,omitempty"`
+
+	// DryRun Return what would be written without writing anything.
+	DryRun *bool `json:"dry_run,omitempty"`
+
+	// EarlierInvoicesFrom First month to pay, as its first day. Defaults to the credit's own; a payment that is not a dry run also stores it.
+	EarlierInvoicesFrom *openapi_types.Date `json:"earlier_invoices_from,omitempty"`
+
+	// EarlierInvoicesUntil Last month to pay, as its first day. Defaults to the credit's own; a payment that is not a dry run also stores it.
+	EarlierInvoicesUntil *openapi_types.Date `json:"earlier_invoices_until,omitempty"`
+}
+
 // Payment defines model for Payment.
 type Payment struct {
 	CustomerUuid  *openapi_types.UUID `json:"customer_uuid,omitempty"`
@@ -50889,6 +51003,21 @@ type PluginOfferingType struct {
 	OfferingType    string            `json:"offering_type"`
 }
 
+// PolicyCostBreakdown defines model for PolicyCostBreakdown.
+type PolicyCostBreakdown struct {
+	// CostBeforeCredit The invoiced cost within the policy's period before any credit, tax included.
+	CostBeforeCredit *string `json:"cost_before_credit,omitempty"`
+
+	// CreditDrawn Credit compensation already written on the period's invoices.
+	CreditDrawn *string `json:"credit_drawn,omitempty"`
+
+	// CreditPending Credit the current month will still draw that is not written yet. 0 for a policy that does not take credit into account; such a policy still counts the compensation already written, which shows in credit_drawn.
+	CreditPending *string `json:"credit_pending,omitempty"`
+
+	// EarlierMonths The part of current_cost from months before the current one. Credit added now pays only the current month, so this part stays until those months are paid; see ProjectCredit.pay_earlier_invoices. 0 for a one-month period.
+	EarlierMonths *string `json:"earlier_months,omitempty"`
+}
+
 // PolicyEnum defines model for PolicyEnum.
 type PolicyEnum string
 
@@ -50900,10 +51029,10 @@ type PolicyPeriodEnum int
 
 // PolicyTriggerStatus defines model for PolicyTriggerStatus.
 type PolicyTriggerStatus struct {
-	// CreditValueCompared The live credit balance compared against limit_cost; null when the credit was not checked (cost_below_limit, no_credit, credit_ignored), and on a project policy when it is the organization's balance and the user may not view the organization's accounting.
+	// CreditValueCompared Deprecated: always null. The policy no longer compares the credit balance with limit_cost.
 	CreditValueCompared *string `json:"credit_value_compared,omitempty"`
 
-	// Gate Which check decided. Not firing: cost_below_limit (current_cost is at or below limit_cost); held_by_project_credit / held_by_customer_credit (current_cost is over the limit, but that credit's live balance, credit_value_compared, is above it; for a project with its own allocation the lower of the two binds). Firing: credit_exhausted (current_cost is over the limit and credit_value_compared is at or below it); no_credit (current_cost is over the limit and no credit applies); credit_ignored (current_cost is over the limit and the policy does not take credit into account). Clients word the explanation themselves from this value and those figures.
+	// Gate Which check decided. Not firing: cost_below_limit (current_cost is at or below limit_cost). Firing: cost_over_limit (current_cost, the cost after credit, is over the limit); no_credit (current_cost is over the limit and no credit applies); credit_ignored (current_cost is over the limit and the policy does not take credit into account). The credit left is not compared with the limit. held_by_project_credit, held_by_customer_credit and credit_exhausted are no longer returned; they remain in the enum for clients that still handle them. Clients word the explanation themselves from this value and those figures.
 	Gate *PolicyGateEnum `json:"gate,omitempty"`
 
 	// Triggered Whether the policy fires on the current figures. This is the evaluation now; has_fired is the stored state of the last evaluation that ran its actions, and the two can differ until the next one.
@@ -51358,9 +51487,18 @@ type ProjectCredit struct {
 	CustomerName            *string             `json:"customer_name,omitempty"`
 	CustomerSlug            *string             `json:"customer_slug,omitempty"`
 	CustomerUuid            *openapi_types.UUID `json:"customer_uuid,omitempty"`
-	EndDate                 *openapi_types.Date `json:"end_date,omitempty"`
-	ExpectedConsumption     *string             `json:"expected_consumption,omitempty"`
-	GraceCoefficient        *string             `json:"grace_coefficient,omitempty"`
+
+	// EarlierInvoicesCompensateIn Which invoice a payment of an earlier invoice is written on: the current month's, or the paid month's own, which changes an invoice already issued.
+	EarlierInvoicesCompensateIn *CompensateInEnum `json:"earlier_invoices_compensate_in,omitempty"`
+
+	// EarlierInvoicesFrom First month of earlier invoices to pay, as its first day. Empty: from the first invoice.
+	EarlierInvoicesFrom *openapi_types.Date `json:"earlier_invoices_from,omitempty"`
+
+	// EarlierInvoicesUntil Last month of earlier invoices to pay, as its first day. Empty: up to the last closed invoice.
+	EarlierInvoicesUntil *openapi_types.Date `json:"earlier_invoices_until,omitempty"`
+	EndDate              *openapi_types.Date `json:"end_date,omitempty"`
+	ExpectedConsumption  *string             `json:"expected_consumption,omitempty"`
+	GraceCoefficient     *string             `json:"grace_coefficient,omitempty"`
 
 	// IsLimitedByOrganizationCredit True when the organization balance, not this allocation, is binding.
 	IsLimitedByOrganizationCredit               *bool                        `json:"is_limited_by_organization_credit,omitempty"`
@@ -51368,14 +51506,31 @@ type ProjectCredit struct {
 	MinimalConsumption                          *float64                     `json:"minimal_consumption,omitempty"`
 	MinimalConsumptionLogic                     *MinimalConsumptionLogicEnum `json:"minimal_consumption_logic,omitempty"`
 	Offerings                                   *[]NestedPublicOffering      `json:"offerings,omitempty"`
-	Project                                     string                       `json:"project"`
-	ProjectName                                 *string                      `json:"project_name,omitempty"`
-	ProjectSlug                                 *string                      `json:"project_slug,omitempty"`
-	ProjectUuid                                 *openapi_types.UUID          `json:"project_uuid,omitempty"`
-	SpendableValue                              *string                      `json:"spendable_value,omitempty"`
-	Url                                         *string                      `json:"url,omitempty"`
-	Uuid                                        *openapi_types.UUID          `json:"uuid,omitempty"`
-	Value                                       *string                      `json:"value,omitempty"`
+
+	// PayEarlierInvoices Also pay the cost of earlier, closed invoices of the project that no credit covered. Staff only.
+	PayEarlierInvoices *bool               `json:"pay_earlier_invoices,omitempty"`
+	Project            string              `json:"project"`
+	ProjectName        *string             `json:"project_name,omitempty"`
+	ProjectSlug        *string             `json:"project_slug,omitempty"`
+	ProjectUuid        *openapi_types.UUID `json:"project_uuid,omitempty"`
+	SpendableValue     *string             `json:"spendable_value,omitempty"`
+	Url                *string             `json:"url,omitempty"`
+	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
+	Value              *string             `json:"value,omitempty"`
+}
+
+// ProjectCreditEarlierInvoices defines model for ProjectCreditEarlierInvoices.
+type ProjectCreditEarlierInvoices struct {
+	Months []EarlierInvoiceMonth `json:"months"`
+
+	// PayableNow What the allocation would pay now: the uncovered cost of the months it pays, capped by what is left of the allocation and of the organization credit after this month's usage so far.
+	PayableNow string `json:"payable_now"`
+
+	// Uncovered Uncovered cost of every month listed: what a period-Total cost policy counts of them.
+	Uncovered string `json:"uncovered"`
+
+	// UncoveredInPeriod Uncovered cost of the months the credit pays.
+	UncoveredInPeriod string `json:"uncovered_in_period"`
 }
 
 // ProjectCreditOEnum defines model for ProjectCreditOEnum.
@@ -51383,14 +51538,26 @@ type ProjectCreditOEnum string
 
 // ProjectCreditRequest defines model for ProjectCreditRequest.
 type ProjectCreditRequest struct {
-	ApplyAsMinimalConsumption                   *bool                        `json:"apply_as_minimal_consumption,omitempty"`
+	ApplyAsMinimalConsumption *bool `json:"apply_as_minimal_consumption,omitempty"`
+
+	// EarlierInvoicesCompensateIn Which invoice a payment of an earlier invoice is written on: the current month's, or the paid month's own, which changes an invoice already issued.
+	EarlierInvoicesCompensateIn *CompensateInEnum `json:"earlier_invoices_compensate_in,omitempty"`
+
+	// EarlierInvoicesFrom First month of earlier invoices to pay, as its first day. Empty: from the first invoice.
+	EarlierInvoicesFrom *openapi_types.Date `json:"earlier_invoices_from,omitempty"`
+
+	// EarlierInvoicesUntil Last month of earlier invoices to pay, as its first day. Empty: up to the last closed invoice.
+	EarlierInvoicesUntil                        *openapi_types.Date          `json:"earlier_invoices_until,omitempty"`
 	EndDate                                     *openapi_types.Date          `json:"end_date,omitempty"`
 	ExpectedConsumption                         *string                      `json:"expected_consumption,omitempty"`
 	GraceCoefficient                            *string                      `json:"grace_coefficient,omitempty"`
 	MarkUnusedCreditAsSpentOnProjectTermination *bool                        `json:"mark_unused_credit_as_spent_on_project_termination,omitempty"`
 	MinimalConsumptionLogic                     *MinimalConsumptionLogicEnum `json:"minimal_consumption_logic,omitempty"`
-	Project                                     string                       `json:"project"`
-	Value                                       *string                      `json:"value,omitempty"`
+
+	// PayEarlierInvoices Also pay the cost of earlier, closed invoices of the project that no credit covered. Staff only.
+	PayEarlierInvoices *bool   `json:"pay_earlier_invoices,omitempty"`
+	Project            string  `json:"project"`
+	Value              *string `json:"value,omitempty"`
 }
 
 // ProjectDetail defines model for ProjectDetail.
@@ -51515,6 +51682,7 @@ type ProjectEstimatedCostPolicy struct {
 	Actions                *string              `json:"actions,omitempty"`
 	AffectedResourcesCount *int                 `json:"affected_resources_count,omitempty"`
 	BillingPriceEstimate   *NestedPriceEstimate `json:"billing_price_estimate,omitempty"`
+	CostBreakdown          *PolicyCostBreakdown `json:"cost_breakdown,omitempty"`
 	Created                *time.Time           `json:"created,omitempty"`
 	CreatedByFullName      *string              `json:"created_by_full_name,omitempty"`
 	CreatedByUsername      *string              `json:"created_by_username,omitempty"`
@@ -51526,7 +51694,7 @@ type ProjectEstimatedCostPolicy struct {
 	// EtaDate eta_days as a calendar date, so clients do not each re-derive it. Null whenever eta_days is null; today when eta_days is 0.
 	EtaDate *openapi_types.Date `json:"eta_date,omitempty"`
 
-	// EtaDays Days until the policy fires, or null when no projection exists. 0 means the threshold is already crossed and the policy is triggered — measured, not projected. Null must be rendered as no date, never as 'now': it is the common case, and it is also what an unprojectable or more-than-a-year-away policy reports. Nothing is projected beyond 365 days, because the rate comes from the current month's spend. Note that a cost policy does not fire on cost alone — it also waits for the credit balance to fall to limit_cost — so a policy far over its cap can still report a future date or null.
+	// EtaDays Days until the policy fires, or null when no projection exists. 0 means the threshold is already crossed and the policy is triggered — measured, not projected. Null must be rendered as no date, never as 'now': it is the common case, and it is also what an unprojectable or more-than-a-year-away policy reports. Nothing is projected beyond 365 days, because the rate comes from the current month's spend.
 	EtaDays       *int       `json:"eta_days,omitempty"`
 	FiredDatetime *time.Time `json:"fired_datetime,omitempty"`
 	HasFired      *bool      `json:"has_fired,omitempty"`
@@ -83316,6 +83484,15 @@ type ProjectCreditsCountParams struct {
 	Query       *string             `form:"query,omitempty" json:"query,omitempty"`
 }
 
+// ProjectCreditsEarlierInvoicesRetrieveParams defines parameters for ProjectCreditsEarlierInvoicesRetrieve.
+type ProjectCreditsEarlierInvoicesRetrieveParams struct {
+	// EarlierInvoicesFrom First month the credit pays, as its first day, to preview other bounds. Defaults to the credit's own.
+	EarlierInvoicesFrom *openapi_types.Date `form:"earlier_invoices_from,omitempty" json:"earlier_invoices_from,omitempty"`
+
+	// EarlierInvoicesUntil Last month the credit pays, as its first day, to preview other bounds. Defaults to the credit's own.
+	EarlierInvoicesUntil *openapi_types.Date `form:"earlier_invoices_until,omitempty" json:"earlier_invoices_until,omitempty"`
+}
+
 // ProjectEndDateChangeRequestsListParams defines parameters for ProjectEndDateChangeRequestsList.
 type ProjectEndDateChangeRequestsListParams struct {
 	// CreatedByUuid Created by UUID
@@ -92032,6 +92209,9 @@ type ProjectCreditsPartialUpdateJSONRequestBody = PatchedProjectCreditRequest
 
 // ProjectCreditsUpdateJSONRequestBody defines body for ProjectCreditsUpdate for application/json ContentType.
 type ProjectCreditsUpdateJSONRequestBody = ProjectCreditRequest
+
+// ProjectCreditsPayEarlierInvoicesJSONRequestBody defines body for ProjectCreditsPayEarlierInvoices for application/json ContentType.
+type ProjectCreditsPayEarlierInvoicesJSONRequestBody = PayEarlierInvoicesRequestRequest
 
 // ProjectEndDateChangeRequestsCreateJSONRequestBody defines body for ProjectEndDateChangeRequestsCreate for application/json ContentType.
 type ProjectEndDateChangeRequestsCreateJSONRequestBody = ProjectEndDateChangeRequestCreateRequest
@@ -129924,6 +130104,31 @@ type ClientInterface interface {
 	// ProjectCreditsUpdate performs a PUT /api/project-credits/{uuid}/ (the `ProjectCreditsUpdate` operationId) request.
 	// Takes a body of the `application/json` content type.
 	ProjectCreditsUpdate(ctx context.Context, uuid openapi_types.UUID, body ProjectCreditsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProjectCreditsEarlierInvoicesRetrieve Earlier invoices of the project and what credit paid of them
+	//
+	// Per closed month of the project, the cost the credit could pay and how much of it credit paid, either on the month's own invoice or later. This is the cost a period-Total cost policy keeps counting. Every closed month is listed; in_period marks those the credit pays, by its earlier_invoices_from / earlier_invoices_until, which can be previewed with other bounds.
+	//
+	// Corresponds with GET /api/project-credits/{uuid}/earlier_invoices/ (the `ProjectCreditsEarlierInvoicesRetrieve` operationId).
+	ProjectCreditsEarlierInvoicesRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ProjectCreditsEarlierInvoicesRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProjectCreditsPayEarlierInvoicesWithBody Pay earlier invoices from the project credit
+	//
+	// Pays the uncovered cost of the project's earlier, closed invoices from what is left of the credit after this month's usage so far, and turns on pay_earlier_invoices so that each month end pays more. With dry_run, returns the compensations it would write and the balances before and after, and changes nothing.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/project-credits/{uuid}/pay_earlier_invoices/ (the `ProjectCreditsPayEarlierInvoices` operationId).
+	ProjectCreditsPayEarlierInvoicesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProjectCreditsPayEarlierInvoices Pay earlier invoices from the project credit
+	//
+	// Pays the uncovered cost of the project's earlier, closed invoices from what is left of the credit after this month's usage so far, and turns on pay_earlier_invoices so that each month end pays more. With dry_run, returns the compensations it would write and the balances before and after, and changes nothing.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/project-credits/{uuid}/pay_earlier_invoices/ (the `ProjectCreditsPayEarlierInvoices` operationId).
+	ProjectCreditsPayEarlierInvoices(ctx context.Context, uuid openapi_types.UUID, body ProjectCreditsPayEarlierInvoicesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProjectEndDateChangeRequestsList performs a GET /api/project-end-date-change-requests/ (the `ProjectEndDateChangeRequestsList` operationId) request.
 	ProjectEndDateChangeRequestsList(ctx context.Context, params *ProjectEndDateChangeRequestsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -183551,6 +183756,61 @@ func (c *Client) ProjectCreditsUpdateWithBody(ctx context.Context, uuid openapi_
 // Takes a body of the `application/json` content type.
 func (c *Client) ProjectCreditsUpdate(ctx context.Context, uuid openapi_types.UUID, body ProjectCreditsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProjectCreditsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProjectCreditsEarlierInvoicesRetrieve Earlier invoices of the project and what credit paid of them
+//
+// Per closed month of the project, the cost the credit could pay and how much of it credit paid, either on the month's own invoice or later. This is the cost a period-Total cost policy keeps counting. Every closed month is listed; in_period marks those the credit pays, by its earlier_invoices_from / earlier_invoices_until, which can be previewed with other bounds.
+//
+// Corresponds with GET /api/project-credits/{uuid}/earlier_invoices/ (the `ProjectCreditsEarlierInvoicesRetrieve` operationId).
+func (c *Client) ProjectCreditsEarlierInvoicesRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ProjectCreditsEarlierInvoicesRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectCreditsEarlierInvoicesRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProjectCreditsPayEarlierInvoicesWithBody Pay earlier invoices from the project credit
+//
+// Pays the uncovered cost of the project's earlier, closed invoices from what is left of the credit after this month's usage so far, and turns on pay_earlier_invoices so that each month end pays more. With dry_run, returns the compensations it would write and the balances before and after, and changes nothing.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/project-credits/{uuid}/pay_earlier_invoices/ (the `ProjectCreditsPayEarlierInvoices` operationId).
+func (c *Client) ProjectCreditsPayEarlierInvoicesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectCreditsPayEarlierInvoicesRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProjectCreditsPayEarlierInvoices Pay earlier invoices from the project credit
+//
+// Pays the uncovered cost of the project's earlier, closed invoices from what is left of the credit after this month's usage so far, and turns on pay_earlier_invoices so that each month end pays more. With dry_run, returns the compensations it would write and the balances before and after, and changes nothing.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/project-credits/{uuid}/pay_earlier_invoices/ (the `ProjectCreditsPayEarlierInvoices` operationId).
+func (c *Client) ProjectCreditsPayEarlierInvoices(ctx context.Context, uuid openapi_types.UUID, body ProjectCreditsPayEarlierInvoicesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectCreditsPayEarlierInvoicesRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -372568,6 +372828,126 @@ func NewProjectCreditsUpdateRequestWithBody(server string, uuid openapi_types.UU
 	return req, nil
 }
 
+// NewProjectCreditsEarlierInvoicesRetrieveRequest constructs an http.Request for the ProjectCreditsEarlierInvoicesRetrieve method
+func NewProjectCreditsEarlierInvoicesRetrieveRequest(server string, uuid openapi_types.UUID, params *ProjectCreditsEarlierInvoicesRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/project-credits/%s/earlier_invoices/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.EarlierInvoicesFrom != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "earlier_invoices_from", *params.EarlierInvoicesFrom, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.EarlierInvoicesUntil != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "earlier_invoices_until", *params.EarlierInvoicesUntil, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProjectCreditsPayEarlierInvoicesRequest calls the generic ProjectCreditsPayEarlierInvoices builder with application/json body
+func NewProjectCreditsPayEarlierInvoicesRequest(server string, uuid openapi_types.UUID, body ProjectCreditsPayEarlierInvoicesJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewProjectCreditsPayEarlierInvoicesRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewProjectCreditsPayEarlierInvoicesRequestWithBody constructs an http.Request for the ProjectCreditsPayEarlierInvoices method, with any body, and a specified content type
+func NewProjectCreditsPayEarlierInvoicesRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/project-credits/%s/pay_earlier_invoices/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewProjectEndDateChangeRequestsListRequest constructs an http.Request for the ProjectEndDateChangeRequestsList method
 func NewProjectEndDateChangeRequestsListRequest(server string, params *ProjectEndDateChangeRequestsListParams) (*http.Request, error) {
 	var err error
@@ -453961,6 +454341,33 @@ type ClientWithResponsesInterface interface {
 	// ProjectCreditsUpdateWithResponse performs a PUT /api/project-credits/{uuid}/ (the `ProjectCreditsUpdate` operationId) request.
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	ProjectCreditsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectCreditsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectCreditsUpdateResponse, error)
+
+	// ProjectCreditsEarlierInvoicesRetrieveWithResponse Earlier invoices of the project and what credit paid of them
+	//
+	// Per closed month of the project, the cost the credit could pay and how much of it credit paid, either on the month's own invoice or later. This is the cost a period-Total cost policy keeps counting. Every closed month is listed; in_period marks those the credit pays, by its earlier_invoices_from / earlier_invoices_until, which can be previewed with other bounds.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/project-credits/{uuid}/earlier_invoices/ (the `ProjectCreditsEarlierInvoicesRetrieve` operationId).
+	ProjectCreditsEarlierInvoicesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProjectCreditsEarlierInvoicesRetrieveParams, reqEditors ...RequestEditorFn) (*ProjectCreditsEarlierInvoicesRetrieveResponse, error)
+
+	// ProjectCreditsPayEarlierInvoicesWithBodyWithResponse Pay earlier invoices from the project credit
+	//
+	// Pays the uncovered cost of the project's earlier, closed invoices from what is left of the credit after this month's usage so far, and turns on pay_earlier_invoices so that each month end pays more. With dry_run, returns the compensations it would write and the balances before and after, and changes nothing.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/project-credits/{uuid}/pay_earlier_invoices/ (the `ProjectCreditsPayEarlierInvoices` operationId).
+	ProjectCreditsPayEarlierInvoicesWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectCreditsPayEarlierInvoicesResponse, error)
+
+	// ProjectCreditsPayEarlierInvoicesWithResponse Pay earlier invoices from the project credit
+	//
+	// Pays the uncovered cost of the project's earlier, closed invoices from what is left of the credit after this month's usage so far, and turns on pay_earlier_invoices so that each month end pays more. With dry_run, returns the compensations it would write and the balances before and after, and changes nothing.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/project-credits/{uuid}/pay_earlier_invoices/ (the `ProjectCreditsPayEarlierInvoices` operationId).
+	ProjectCreditsPayEarlierInvoicesWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectCreditsPayEarlierInvoicesJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectCreditsPayEarlierInvoicesResponse, error)
 
 	// ProjectEndDateChangeRequestsListWithResponse performs a GET /api/project-end-date-change-requests/ (the `ProjectEndDateChangeRequestsList` operationId) request.
 	//
@@ -548767,6 +549174,88 @@ func (r ProjectCreditsUpdateResponse) ContentType() string {
 	return ""
 }
 
+type ProjectCreditsEarlierInvoicesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *ProjectCreditEarlierInvoices
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r ProjectCreditsEarlierInvoicesRetrieveResponse) GetJSON200() *ProjectCreditEarlierInvoices {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r ProjectCreditsEarlierInvoicesRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ProjectCreditsEarlierInvoicesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProjectCreditsEarlierInvoicesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProjectCreditsEarlierInvoicesRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProjectCreditsPayEarlierInvoicesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *PayEarlierInvoices
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r ProjectCreditsPayEarlierInvoicesResponse) GetJSON200() *PayEarlierInvoices {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r ProjectCreditsPayEarlierInvoicesResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ProjectCreditsPayEarlierInvoicesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProjectCreditsPayEarlierInvoicesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProjectCreditsPayEarlierInvoicesResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // ProjectEndDateChangeRequestsListResponse200Headers the declared response headers of an HTTP 200 response for ProjectEndDateChangeRequestsList
 type ProjectEndDateChangeRequestsListResponse200Headers struct {
 	XResultCount *int
@@ -620681,6 +621170,51 @@ func (c *ClientWithResponses) ProjectCreditsUpdateWithResponse(ctx context.Conte
 	return ParseProjectCreditsUpdateResponse(rsp)
 }
 
+// ProjectCreditsEarlierInvoicesRetrieveWithResponse Earlier invoices of the project and what credit paid of them
+//
+// Per closed month of the project, the cost the credit could pay and how much of it credit paid, either on the month's own invoice or later. This is the cost a period-Total cost policy keeps counting. Every closed month is listed; in_period marks those the credit pays, by its earlier_invoices_from / earlier_invoices_until, which can be previewed with other bounds.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/project-credits/{uuid}/earlier_invoices/ (the `ProjectCreditsEarlierInvoicesRetrieve` operationId).
+func (c *ClientWithResponses) ProjectCreditsEarlierInvoicesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProjectCreditsEarlierInvoicesRetrieveParams, reqEditors ...RequestEditorFn) (*ProjectCreditsEarlierInvoicesRetrieveResponse, error) {
+	rsp, err := c.ProjectCreditsEarlierInvoicesRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectCreditsEarlierInvoicesRetrieveResponse(rsp)
+}
+
+// ProjectCreditsPayEarlierInvoicesWithBodyWithResponse Pay earlier invoices from the project credit
+//
+// Pays the uncovered cost of the project's earlier, closed invoices from what is left of the credit after this month's usage so far, and turns on pay_earlier_invoices so that each month end pays more. With dry_run, returns the compensations it would write and the balances before and after, and changes nothing.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/project-credits/{uuid}/pay_earlier_invoices/ (the `ProjectCreditsPayEarlierInvoices` operationId).
+func (c *ClientWithResponses) ProjectCreditsPayEarlierInvoicesWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectCreditsPayEarlierInvoicesResponse, error) {
+	rsp, err := c.ProjectCreditsPayEarlierInvoicesWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectCreditsPayEarlierInvoicesResponse(rsp)
+}
+
+// ProjectCreditsPayEarlierInvoicesWithResponse Pay earlier invoices from the project credit
+//
+// Pays the uncovered cost of the project's earlier, closed invoices from what is left of the credit after this month's usage so far, and turns on pay_earlier_invoices so that each month end pays more. With dry_run, returns the compensations it would write and the balances before and after, and changes nothing.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/project-credits/{uuid}/pay_earlier_invoices/ (the `ProjectCreditsPayEarlierInvoices` operationId).
+func (c *ClientWithResponses) ProjectCreditsPayEarlierInvoicesWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectCreditsPayEarlierInvoicesJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectCreditsPayEarlierInvoicesResponse, error) {
+	rsp, err := c.ProjectCreditsPayEarlierInvoices(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectCreditsPayEarlierInvoicesResponse(rsp)
+}
+
 // ProjectEndDateChangeRequestsListWithResponse performs a GET /api/project-end-date-change-requests/ (the `ProjectEndDateChangeRequestsList` operationId) request.
 //
 // Returns a wrapper object for the known response body format(s).
@@ -689704,6 +690238,58 @@ func ParseProjectCreditsUpdateResponse(rsp *http.Response) (*ProjectCreditsUpdat
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest ProjectCredit
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProjectCreditsEarlierInvoicesRetrieveResponse parses an HTTP response from a ProjectCreditsEarlierInvoicesRetrieveWithResponse call
+func ParseProjectCreditsEarlierInvoicesRetrieveResponse(rsp *http.Response) (*ProjectCreditsEarlierInvoicesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProjectCreditsEarlierInvoicesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProjectCreditEarlierInvoices
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProjectCreditsPayEarlierInvoicesResponse parses an HTTP response from a ProjectCreditsPayEarlierInvoicesWithResponse call
+func ParseProjectCreditsPayEarlierInvoicesResponse(rsp *http.Response) (*ProjectCreditsPayEarlierInvoicesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProjectCreditsPayEarlierInvoicesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PayEarlierInvoices
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
