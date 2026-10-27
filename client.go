@@ -2867,6 +2867,7 @@ func (e ChecklistResponseChecklistTypeEnum) Valid() bool {
 
 // Defines values for ChecklistTypeEnum.
 const (
+	ChecklistTypeEnumFeedback           ChecklistTypeEnum = "feedback"
 	ChecklistTypeEnumOfferingCompliance ChecklistTypeEnum = "offering_compliance"
 	ChecklistTypeEnumOnboardingCustomer ChecklistTypeEnum = "onboarding_customer"
 	ChecklistTypeEnumOnboardingIntent   ChecklistTypeEnum = "onboarding_intent"
@@ -2879,6 +2880,8 @@ const (
 // Valid indicates whether the value is a known member of the ChecklistTypeEnum enum.
 func (e ChecklistTypeEnum) Valid() bool {
 	switch e {
+	case ChecklistTypeEnumFeedback:
+		return true
 	case ChecklistTypeEnumOfferingCompliance:
 		return true
 	case ChecklistTypeEnumOnboardingCustomer:
@@ -5760,6 +5763,7 @@ const (
 	EventMetadataResponseEventGroupsEventConsumerRegisteredWithBroadCredential       EventMetadataResponseEventGroups = "event_consumer_registered_with_broad_credential"
 	EventMetadataResponseEventGroupsEventConsumerResyncRequested                     EventMetadataResponseEventGroups = "event_consumer_resync_requested"
 	EventMetadataResponseEventGroupsEventConsumerWebhookUpdated                      EventMetadataResponseEventGroups = "event_consumer_webhook_updated"
+	EventMetadataResponseEventGroupsFeedbackSurveyAnswered                           EventMetadataResponseEventGroups = "feedback_survey_answered"
 	EventMetadataResponseEventGroupsFreeipaProfileCreated                            EventMetadataResponseEventGroups = "freeipa_profile_created"
 	EventMetadataResponseEventGroupsFreeipaProfileDeleted                            EventMetadataResponseEventGroups = "freeipa_profile_deleted"
 	EventMetadataResponseEventGroupsFreeipaProfileDisabled                           EventMetadataResponseEventGroups = "freeipa_profile_disabled"
@@ -6219,6 +6223,8 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 	case EventMetadataResponseEventGroupsEventConsumerResyncRequested:
 		return true
 	case EventMetadataResponseEventGroupsEventConsumerWebhookUpdated:
+		return true
+	case EventMetadataResponseEventGroupsFeedbackSurveyAnswered:
 		return true
 	case EventMetadataResponseEventGroupsFreeipaProfileCreated:
 		return true
@@ -6999,6 +7005,7 @@ const (
 	EventTypesEnumEventConsumerRegisteredWithBroadCredential       EventTypesEnum = "event_consumer_registered_with_broad_credential"
 	EventTypesEnumEventConsumerResyncRequested                     EventTypesEnum = "event_consumer_resync_requested"
 	EventTypesEnumEventConsumerWebhookUpdated                      EventTypesEnum = "event_consumer_webhook_updated"
+	EventTypesEnumFeedbackSurveyAnswered                           EventTypesEnum = "feedback_survey_answered"
 	EventTypesEnumFreeipaProfileCreated                            EventTypesEnum = "freeipa_profile_created"
 	EventTypesEnumFreeipaProfileDeleted                            EventTypesEnum = "freeipa_profile_deleted"
 	EventTypesEnumFreeipaProfileDisabled                           EventTypesEnum = "freeipa_profile_disabled"
@@ -7458,6 +7465,8 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumEventConsumerResyncRequested:
 		return true
 	case EventTypesEnumEventConsumerWebhookUpdated:
+		return true
+	case EventTypesEnumFeedbackSurveyAnswered:
 		return true
 	case EventTypesEnumFreeipaProfileCreated:
 		return true
@@ -8382,6 +8391,96 @@ func (e FeedbackCategoryEnum) Valid() bool {
 	case FeedbackCategoryEnumOther:
 		return true
 	case FeedbackCategoryEnumSlowOrFailed:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for FeedbackRequestOEnum.
+const (
+	FeedbackRequestOEnumAnsweredAt       FeedbackRequestOEnum = "answered_at"
+	FeedbackRequestOEnumCreated          FeedbackRequestOEnum = "created"
+	FeedbackRequestOEnumMinusAnsweredAt  FeedbackRequestOEnum = "-answered_at"
+	FeedbackRequestOEnumMinusCreated     FeedbackRequestOEnum = "-created"
+	FeedbackRequestOEnumMinusPromptCount FeedbackRequestOEnum = "-prompt_count"
+	FeedbackRequestOEnumMinusState       FeedbackRequestOEnum = "-state"
+	FeedbackRequestOEnumPromptCount      FeedbackRequestOEnum = "prompt_count"
+	FeedbackRequestOEnumState            FeedbackRequestOEnum = "state"
+)
+
+// Valid indicates whether the value is a known member of the FeedbackRequestOEnum enum.
+func (e FeedbackRequestOEnum) Valid() bool {
+	switch e {
+	case FeedbackRequestOEnumAnsweredAt:
+		return true
+	case FeedbackRequestOEnumCreated:
+		return true
+	case FeedbackRequestOEnumMinusAnsweredAt:
+		return true
+	case FeedbackRequestOEnumMinusCreated:
+		return true
+	case FeedbackRequestOEnumMinusPromptCount:
+		return true
+	case FeedbackRequestOEnumMinusState:
+		return true
+	case FeedbackRequestOEnumPromptCount:
+		return true
+	case FeedbackRequestOEnumState:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for FeedbackStateEnum.
+const (
+	FeedbackStateEnumAnswered  FeedbackStateEnum = "answered"
+	FeedbackStateEnumDismissed FeedbackStateEnum = "dismissed"
+	FeedbackStateEnumExpired   FeedbackStateEnum = "expired"
+	FeedbackStateEnumPending   FeedbackStateEnum = "pending"
+)
+
+// Valid indicates whether the value is a known member of the FeedbackStateEnum enum.
+func (e FeedbackStateEnum) Valid() bool {
+	switch e {
+	case FeedbackStateEnumAnswered:
+		return true
+	case FeedbackStateEnumDismissed:
+		return true
+	case FeedbackStateEnumExpired:
+		return true
+	case FeedbackStateEnumPending:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for FeedbackSurveyOEnum.
+const (
+	FeedbackSurveyOEnumEndsAt        FeedbackSurveyOEnum = "ends_at"
+	FeedbackSurveyOEnumMinusEndsAt   FeedbackSurveyOEnum = "-ends_at"
+	FeedbackSurveyOEnumMinusName     FeedbackSurveyOEnum = "-name"
+	FeedbackSurveyOEnumMinusStartsAt FeedbackSurveyOEnum = "-starts_at"
+	FeedbackSurveyOEnumName          FeedbackSurveyOEnum = "name"
+	FeedbackSurveyOEnumStartsAt      FeedbackSurveyOEnum = "starts_at"
+)
+
+// Valid indicates whether the value is a known member of the FeedbackSurveyOEnum enum.
+func (e FeedbackSurveyOEnum) Valid() bool {
+	switch e {
+	case FeedbackSurveyOEnumEndsAt:
+		return true
+	case FeedbackSurveyOEnumMinusEndsAt:
+		return true
+	case FeedbackSurveyOEnumMinusName:
+		return true
+	case FeedbackSurveyOEnumMinusStartsAt:
+		return true
+	case FeedbackSurveyOEnumName:
+		return true
+	case FeedbackSurveyOEnumStartsAt:
 		return true
 	default:
 		return false
@@ -36492,6 +36591,120 @@ type Feedback struct {
 // FeedbackCategoryEnum defines model for FeedbackCategoryEnum.
 type FeedbackCategoryEnum string
 
+// FeedbackDistributionItem defines model for FeedbackDistributionItem.
+type FeedbackDistributionItem struct {
+	Count int    `json:"count"`
+	Label string `json:"label"`
+	Value string `json:"value"`
+}
+
+// FeedbackPrompt defines model for FeedbackPrompt.
+type FeedbackPrompt struct {
+	RequestUuid openapi_types.UUID   `json:"request_uuid"`
+	Survey      FeedbackSurveyPublic `json:"survey"`
+}
+
+// FeedbackQuestionSummary defines model for FeedbackQuestionSummary.
+type FeedbackQuestionSummary struct {
+	AnswerCount  int                        `json:"answer_count"`
+	Distribution []FeedbackDistributionItem `json:"distribution"`
+	Mean         *float64                   `json:"mean"`
+	Question     string                     `json:"question"`
+	QuestionType string                     `json:"question_type"`
+	QuestionUuid string                     `json:"question_uuid"`
+}
+
+// FeedbackRequest defines model for FeedbackRequest.
+type FeedbackRequest struct {
+	AnsweredAt        *time.Time               `json:"answered_at,omitempty"`
+	Answers           *[]ProjectMetadataAnswer `json:"answers,omitempty"`
+	Created           *time.Time               `json:"created,omitempty"`
+	OrganizationNames *[]string                `json:"organization_names,omitempty"`
+	PromptCount       *int                     `json:"prompt_count,omitempty"`
+	SnoozedUntil      *time.Time               `json:"snoozed_until,omitempty"`
+	State             *FeedbackStateEnum       `json:"state,omitempty"`
+	SurveyName        *string                  `json:"survey_name,omitempty"`
+	SurveyUuid        *openapi_types.UUID      `json:"survey_uuid,omitempty"`
+	UserEmail         *openapi_types.Email     `json:"user_email,omitempty"`
+	UserFullName      *string                  `json:"user_full_name,omitempty"`
+
+	// UserUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
+	UserUsername *string             `json:"user_username,omitempty"`
+	UserUuid     *openapi_types.UUID `json:"user_uuid,omitempty"`
+	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// FeedbackRequestOEnum defines model for FeedbackRequestOEnum.
+type FeedbackRequestOEnum string
+
+// FeedbackStateEnum defines model for FeedbackStateEnum.
+type FeedbackStateEnum string
+
+// FeedbackSurvey defines model for FeedbackSurvey.
+type FeedbackSurvey struct {
+	Audience      *QueryOutput       `json:"audience,omitempty"`
+	Checklist     openapi_types.UUID `json:"checklist"`
+	ChecklistName *string            `json:"checklist_name,omitempty"`
+	Created       *time.Time         `json:"created,omitempty"`
+	EndsAt        time.Time          `json:"ends_at"`
+
+	// Intro Markdown text shown above the questions.
+	Intro    *string `json:"intro,omitempty"`
+	IsActive *bool   `json:"is_active,omitempty"`
+	IsOpen   *bool   `json:"is_open,omitempty"`
+
+	// MaxPrompts How many times a user is prompted at most.
+	MaxPrompts *int   `json:"max_prompts,omitempty"`
+	Name       string `json:"name"`
+
+	// SnoozeDays Days the prompt stays hidden after it is shown or postponed.
+	SnoozeDays *int                `json:"snooze_days,omitempty"`
+	StartsAt   time.Time           `json:"starts_at"`
+	Uuid       *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// FeedbackSurveyOEnum defines model for FeedbackSurveyOEnum.
+type FeedbackSurveyOEnum string
+
+// FeedbackSurveyPublic defines model for FeedbackSurveyPublic.
+type FeedbackSurveyPublic struct {
+	EndsAt time.Time `json:"ends_at"`
+
+	// Intro Markdown text shown above the questions.
+	Intro *string             `json:"intro,omitempty"`
+	Name  string              `json:"name"`
+	Uuid  *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// FeedbackSurveyRequest defines model for FeedbackSurveyRequest.
+type FeedbackSurveyRequest struct {
+	AudienceQuery *BroadcastMessageQueryRequest `json:"audience_query,omitempty"`
+	Checklist     openapi_types.UUID            `json:"checklist"`
+	EndsAt        time.Time                     `json:"ends_at"`
+
+	// Intro Markdown text shown above the questions.
+	Intro    *string `json:"intro,omitempty"`
+	IsActive *bool   `json:"is_active,omitempty"`
+
+	// MaxPrompts How many times a user is prompted at most.
+	MaxPrompts *int   `json:"max_prompts,omitempty"`
+	Name       string `json:"name"`
+
+	// SnoozeDays Days the prompt stays hidden after it is shown or postponed.
+	SnoozeDays *int      `json:"snooze_days,omitempty"`
+	StartsAt   time.Time `json:"starts_at"`
+}
+
+// FeedbackSurveySummary defines model for FeedbackSurveySummary.
+type FeedbackSurveySummary struct {
+	Answered  int                       `json:"answered"`
+	Dismissed int                       `json:"dismissed"`
+	Expired   int                       `json:"expired"`
+	Pending   int                       `json:"pending"`
+	Prompted  int                       `json:"prompted"`
+	Questions []FeedbackQuestionSummary `json:"questions"`
+}
+
 // FetchBillingExportRequestRequest defines model for FetchBillingExportRequestRequest.
 type FetchBillingExportRequestRequest struct {
 	Classification *string `json:"classification,omitempty"`
@@ -48101,6 +48314,25 @@ type PatchedExternalLinkRequestMultipart struct {
 	Name        *string             `json:"name,omitempty"`
 }
 
+// PatchedFeedbackSurveyRequest defines model for PatchedFeedbackSurveyRequest.
+type PatchedFeedbackSurveyRequest struct {
+	AudienceQuery *BroadcastMessageQueryRequest `json:"audience_query,omitempty"`
+	Checklist     *openapi_types.UUID           `json:"checklist,omitempty"`
+	EndsAt        *time.Time                    `json:"ends_at,omitempty"`
+
+	// Intro Markdown text shown above the questions.
+	Intro    *string `json:"intro,omitempty"`
+	IsActive *bool   `json:"is_active,omitempty"`
+
+	// MaxPrompts How many times a user is prompted at most.
+	MaxPrompts *int    `json:"max_prompts,omitempty"`
+	Name       *string `json:"name,omitempty"`
+
+	// SnoozeDays Days the prompt stays hidden after it is shown or postponed.
+	SnoozeDays *int       `json:"snooze_days,omitempty"`
+	StartsAt   *time.Time `json:"starts_at,omitempty"`
+}
+
 // PatchedFirecrestJobRequest defines model for PatchedFirecrestJobRequest.
 type PatchedFirecrestJobRequest struct {
 	Description  *string `json:"description,omitempty"`
@@ -51397,7 +51629,12 @@ type ProjectMappingMap struct {
 // ProjectMetadataAnswer defines model for ProjectMetadataAnswer.
 type ProjectMetadataAnswer struct {
 	// Answer Human-readable answer value; select-type option UUIDs are resolved to their labels.
-	Answer interface{} `json:"answer,omitempty"`
+	Answer            interface{} `json:"answer,omitempty"`
+	LikertHighLabel   *string     `json:"likert_high_label,omitempty"`
+	LikertLowLabel    *string     `json:"likert_low_label,omitempty"`
+	LikertScaleLength *int        `json:"likert_scale_length,omitempty"`
+	MaxValue          *string     `json:"max_value,omitempty"`
+	MinValue          *string     `json:"min_value,omitempty"`
 
 	// Modified When this answer was last saved.
 	Modified *time.Time `json:"modified,omitempty"`
@@ -66235,6 +66472,86 @@ type ExternalLinksCountParams struct {
 
 // FeatureValuesJSONBody defines parameters for FeatureValues.
 type FeatureValuesJSONBody map[string]interface{}
+
+// FeedbackRequestsListParams defines parameters for FeedbackRequestsList.
+type FeedbackRequestsListParams struct {
+	AnsweredAfter  *openapi_types.Date `form:"answered_after,omitempty" json:"answered_after,omitempty"`
+	AnsweredBefore *openapi_types.Date `form:"answered_before,omitempty" json:"answered_before,omitempty"`
+	CustomerUuid   *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// O Ordering
+	//
+	O *[]FeedbackRequestOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize   *PageSize            `form:"page_size,omitempty" json:"page_size,omitempty"`
+	State      *[]FeedbackStateEnum `form:"state,omitempty" json:"state,omitempty"`
+	SurveyUuid *openapi_types.UUID  `form:"survey_uuid,omitempty" json:"survey_uuid,omitempty"`
+}
+
+// FeedbackRequestsCountParams defines parameters for FeedbackRequestsCount.
+type FeedbackRequestsCountParams struct {
+	AnsweredAfter  *openapi_types.Date `form:"answered_after,omitempty" json:"answered_after,omitempty"`
+	AnsweredBefore *openapi_types.Date `form:"answered_before,omitempty" json:"answered_before,omitempty"`
+	CustomerUuid   *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// O Ordering
+	//
+	O *[]FeedbackRequestOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize   *PageSize            `form:"page_size,omitempty" json:"page_size,omitempty"`
+	State      *[]FeedbackStateEnum `form:"state,omitempty" json:"state,omitempty"`
+	SurveyUuid *openapi_types.UUID  `form:"survey_uuid,omitempty" json:"survey_uuid,omitempty"`
+}
+
+// FeedbackRequestsChecklistRetrieveParams defines parameters for FeedbackRequestsChecklistRetrieve.
+type FeedbackRequestsChecklistRetrieveParams struct {
+	// IncludeAll If true, returns all questions including hidden ones (for dynamic form visibility). Default: false.
+	IncludeAll *bool `form:"include_all,omitempty" json:"include_all,omitempty"`
+}
+
+// FeedbackRequestsLaterJSONBody defines parameters for FeedbackRequestsLater.
+type FeedbackRequestsLaterJSONBody = []AnswerSubmitRequest
+
+// FeedbackRequestsSubmitAnswersJSONBody defines parameters for FeedbackRequestsSubmitAnswers.
+type FeedbackRequestsSubmitAnswersJSONBody = []AnswerSubmitRequest
+
+// FeedbackSurveysListParams defines parameters for FeedbackSurveysList.
+type FeedbackSurveysListParams struct {
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// O Ordering
+	//
+	O *[]FeedbackSurveyOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// FeedbackSurveysCountParams defines parameters for FeedbackSurveysCount.
+type FeedbackSurveysCountParams struct {
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// O Ordering
+	//
+	O *[]FeedbackSurveyOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
 
 // FinancialReportsListParams defines parameters for FinancialReportsList.
 type FinancialReportsListParams struct {
@@ -89827,6 +90144,21 @@ type ExternalLinksUpdateMultipartRequestBody = ExternalLinkRequestMultipart
 
 // FeatureValuesJSONRequestBody defines body for FeatureValues for application/json ContentType.
 type FeatureValuesJSONRequestBody FeatureValuesJSONBody
+
+// FeedbackRequestsLaterJSONRequestBody defines body for FeedbackRequestsLater for application/json ContentType.
+type FeedbackRequestsLaterJSONRequestBody = FeedbackRequestsLaterJSONBody
+
+// FeedbackRequestsSubmitAnswersJSONRequestBody defines body for FeedbackRequestsSubmitAnswers for application/json ContentType.
+type FeedbackRequestsSubmitAnswersJSONRequestBody = FeedbackRequestsSubmitAnswersJSONBody
+
+// FeedbackSurveysCreateJSONRequestBody defines body for FeedbackSurveysCreate for application/json ContentType.
+type FeedbackSurveysCreateJSONRequestBody = FeedbackSurveyRequest
+
+// FeedbackSurveysPartialUpdateJSONRequestBody defines body for FeedbackSurveysPartialUpdate for application/json ContentType.
+type FeedbackSurveysPartialUpdateJSONRequestBody = PatchedFeedbackSurveyRequest
+
+// FeedbackSurveysUpdateJSONRequestBody defines body for FeedbackSurveysUpdate for application/json ContentType.
+type FeedbackSurveysUpdateJSONRequestBody = FeedbackSurveyRequest
 
 // FreeipaProfilesCreateJSONRequestBody defines body for FreeipaProfilesCreate for application/json ContentType.
 type FreeipaProfilesCreateJSONRequestBody = FreeipaProfileRequest
@@ -114821,6 +115153,100 @@ type ClientInterface interface {
 	//
 	// Corresponds with POST /api/feature-values/ (the `FeatureValues` operationId).
 	FeatureValues(ctx context.Context, body FeatureValuesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeedbackRequestsList performs a GET /api/feedback-requests/ (the `FeedbackRequestsList` operationId) request.
+	FeedbackRequestsList(ctx context.Context, params *FeedbackRequestsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeedbackRequestsCount performs a HEAD /api/feedback-requests/ (the `FeedbackRequestsCount` operationId) request.
+	//
+	// Get number of items in the collection matching the request parameters.
+	FeedbackRequestsCount(ctx context.Context, params *FeedbackRequestsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeedbackRequestsRetrieve performs a GET /api/feedback-requests/{uuid}/ (the `FeedbackRequestsRetrieve` operationId) request.
+	FeedbackRequestsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeedbackRequestsChecklistRetrieve performs a GET /api/feedback-requests/{uuid}/checklist/ (the `FeedbackRequestsChecklistRetrieve` operationId) request.
+	//
+	// Get checklist with questions and existing answers.
+	FeedbackRequestsChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, params *FeedbackRequestsChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeedbackRequestsCompletionStatusRetrieve performs a GET /api/feedback-requests/{uuid}/completion_status/ (the `FeedbackRequestsCompletionStatusRetrieve` operationId) request.
+	//
+	// Get checklist completion status.
+	FeedbackRequestsCompletionStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeedbackRequestsDismiss performs a POST /api/feedback-requests/{uuid}/dismiss/ (the `FeedbackRequestsDismiss` operationId) request.
+	FeedbackRequestsDismiss(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeedbackRequestsLaterWithBody performs a POST /api/feedback-requests/{uuid}/later/ (the `FeedbackRequestsLater` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Postpone the prompt. Answers given so far are kept as a draft, leaving out any that are not valid; the request stays pending.
+	FeedbackRequestsLaterWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeedbackRequestsLater performs a POST /api/feedback-requests/{uuid}/later/ (the `FeedbackRequestsLater` operationId) request.
+	// Takes a body of the `application/json` content type.
+	//
+	// Postpone the prompt. Answers given so far are kept as a draft, leaving out any that are not valid; the request stays pending.
+	FeedbackRequestsLater(ctx context.Context, uuid openapi_types.UUID, body FeedbackRequestsLaterJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeedbackRequestsSubmitAnswersWithBody performs a POST /api/feedback-requests/{uuid}/submit_answers/ (the `FeedbackRequestsSubmitAnswers` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Submit answers. A complete submission marks the request answered.
+	FeedbackRequestsSubmitAnswersWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeedbackRequestsSubmitAnswers performs a POST /api/feedback-requests/{uuid}/submit_answers/ (the `FeedbackRequestsSubmitAnswers` operationId) request.
+	// Takes a body of the `application/json` content type.
+	//
+	// Submit answers. A complete submission marks the request answered.
+	FeedbackRequestsSubmitAnswers(ctx context.Context, uuid openapi_types.UUID, body FeedbackRequestsSubmitAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeedbackSurveysList performs a GET /api/feedback-surveys/ (the `FeedbackSurveysList` operationId) request.
+	FeedbackSurveysList(ctx context.Context, params *FeedbackSurveysListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeedbackSurveysCount performs a HEAD /api/feedback-surveys/ (the `FeedbackSurveysCount` operationId) request.
+	//
+	// Get number of items in the collection matching the request parameters.
+	FeedbackSurveysCount(ctx context.Context, params *FeedbackSurveysCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeedbackSurveysCreateWithBody performs a POST /api/feedback-surveys/ (the `FeedbackSurveysCreate` operationId) request,
+	// with any type of body and a specified content type.
+	FeedbackSurveysCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeedbackSurveysCreate performs a POST /api/feedback-surveys/ (the `FeedbackSurveysCreate` operationId) request.
+	// Takes a body of the `application/json` content type.
+	FeedbackSurveysCreate(ctx context.Context, body FeedbackSurveysCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeedbackSurveysPrompt performs a POST /api/feedback-surveys/prompt/ (the `FeedbackSurveysPrompt` operationId) request.
+	//
+	// Return the survey to show the current user now, if any, and count it as a prompt.
+	FeedbackSurveysPrompt(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeedbackSurveysDestroy performs a DELETE /api/feedback-surveys/{uuid}/ (the `FeedbackSurveysDestroy` operationId) request.
+	FeedbackSurveysDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeedbackSurveysRetrieve performs a GET /api/feedback-surveys/{uuid}/ (the `FeedbackSurveysRetrieve` operationId) request.
+	FeedbackSurveysRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeedbackSurveysPartialUpdateWithBody performs a PATCH /api/feedback-surveys/{uuid}/ (the `FeedbackSurveysPartialUpdate` operationId) request,
+	// with any type of body and a specified content type.
+	FeedbackSurveysPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeedbackSurveysPartialUpdate performs a PATCH /api/feedback-surveys/{uuid}/ (the `FeedbackSurveysPartialUpdate` operationId) request.
+	// Takes a body of the `application/json` content type.
+	FeedbackSurveysPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body FeedbackSurveysPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeedbackSurveysUpdateWithBody performs a PUT /api/feedback-surveys/{uuid}/ (the `FeedbackSurveysUpdate` operationId) request,
+	// with any type of body and a specified content type.
+	FeedbackSurveysUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeedbackSurveysUpdate performs a PUT /api/feedback-surveys/{uuid}/ (the `FeedbackSurveysUpdate` operationId) request.
+	// Takes a body of the `application/json` content type.
+	FeedbackSurveysUpdate(ctx context.Context, uuid openapi_types.UUID, body FeedbackSurveysUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeedbackSurveysSummaryRetrieve performs a GET /api/feedback-surveys/{uuid}/summary/ (the `FeedbackSurveysSummaryRetrieve` operationId) request.
+	FeedbackSurveysSummaryRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// FinancialReportsList performs a GET /api/financial-reports/ (the `FinancialReportsList` operationId) request.
 	FinancialReportsList(ctx context.Context, params *FinancialReportsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -145983,6 +146409,320 @@ func (c *Client) FeatureValuesWithBody(ctx context.Context, contentType string, 
 // Corresponds with POST /api/feature-values/ (the `FeatureValues` operationId).
 func (c *Client) FeatureValues(ctx context.Context, body FeatureValuesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewFeatureValuesRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeedbackRequestsList performs a GET /api/feedback-requests/ (the `FeedbackRequestsList` operationId) request.
+func (c *Client) FeedbackRequestsList(ctx context.Context, params *FeedbackRequestsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeedbackRequestsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeedbackRequestsCount performs a HEAD /api/feedback-requests/ (the `FeedbackRequestsCount` operationId) request.
+//
+// Get number of items in the collection matching the request parameters.
+func (c *Client) FeedbackRequestsCount(ctx context.Context, params *FeedbackRequestsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeedbackRequestsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeedbackRequestsRetrieve performs a GET /api/feedback-requests/{uuid}/ (the `FeedbackRequestsRetrieve` operationId) request.
+func (c *Client) FeedbackRequestsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeedbackRequestsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeedbackRequestsChecklistRetrieve performs a GET /api/feedback-requests/{uuid}/checklist/ (the `FeedbackRequestsChecklistRetrieve` operationId) request.
+//
+// Get checklist with questions and existing answers.
+func (c *Client) FeedbackRequestsChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, params *FeedbackRequestsChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeedbackRequestsChecklistRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeedbackRequestsCompletionStatusRetrieve performs a GET /api/feedback-requests/{uuid}/completion_status/ (the `FeedbackRequestsCompletionStatusRetrieve` operationId) request.
+//
+// Get checklist completion status.
+func (c *Client) FeedbackRequestsCompletionStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeedbackRequestsCompletionStatusRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeedbackRequestsDismiss performs a POST /api/feedback-requests/{uuid}/dismiss/ (the `FeedbackRequestsDismiss` operationId) request.
+func (c *Client) FeedbackRequestsDismiss(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeedbackRequestsDismissRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeedbackRequestsLaterWithBody performs a POST /api/feedback-requests/{uuid}/later/ (the `FeedbackRequestsLater` operationId) request,
+// with any type of body and a specified content type.
+//
+// Postpone the prompt. Answers given so far are kept as a draft, leaving out any that are not valid; the request stays pending.
+func (c *Client) FeedbackRequestsLaterWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeedbackRequestsLaterRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeedbackRequestsLater performs a POST /api/feedback-requests/{uuid}/later/ (the `FeedbackRequestsLater` operationId) request.
+// Takes a body of the `application/json` content type.
+//
+// Postpone the prompt. Answers given so far are kept as a draft, leaving out any that are not valid; the request stays pending.
+func (c *Client) FeedbackRequestsLater(ctx context.Context, uuid openapi_types.UUID, body FeedbackRequestsLaterJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeedbackRequestsLaterRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeedbackRequestsSubmitAnswersWithBody performs a POST /api/feedback-requests/{uuid}/submit_answers/ (the `FeedbackRequestsSubmitAnswers` operationId) request,
+// with any type of body and a specified content type.
+//
+// Submit answers. A complete submission marks the request answered.
+func (c *Client) FeedbackRequestsSubmitAnswersWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeedbackRequestsSubmitAnswersRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeedbackRequestsSubmitAnswers performs a POST /api/feedback-requests/{uuid}/submit_answers/ (the `FeedbackRequestsSubmitAnswers` operationId) request.
+// Takes a body of the `application/json` content type.
+//
+// Submit answers. A complete submission marks the request answered.
+func (c *Client) FeedbackRequestsSubmitAnswers(ctx context.Context, uuid openapi_types.UUID, body FeedbackRequestsSubmitAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeedbackRequestsSubmitAnswersRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeedbackSurveysList performs a GET /api/feedback-surveys/ (the `FeedbackSurveysList` operationId) request.
+func (c *Client) FeedbackSurveysList(ctx context.Context, params *FeedbackSurveysListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeedbackSurveysListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeedbackSurveysCount performs a HEAD /api/feedback-surveys/ (the `FeedbackSurveysCount` operationId) request.
+//
+// Get number of items in the collection matching the request parameters.
+func (c *Client) FeedbackSurveysCount(ctx context.Context, params *FeedbackSurveysCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeedbackSurveysCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeedbackSurveysCreateWithBody performs a POST /api/feedback-surveys/ (the `FeedbackSurveysCreate` operationId) request,
+// with any type of body and a specified content type.
+func (c *Client) FeedbackSurveysCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeedbackSurveysCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeedbackSurveysCreate performs a POST /api/feedback-surveys/ (the `FeedbackSurveysCreate` operationId) request.
+// Takes a body of the `application/json` content type.
+func (c *Client) FeedbackSurveysCreate(ctx context.Context, body FeedbackSurveysCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeedbackSurveysCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeedbackSurveysPrompt performs a POST /api/feedback-surveys/prompt/ (the `FeedbackSurveysPrompt` operationId) request.
+//
+// Return the survey to show the current user now, if any, and count it as a prompt.
+func (c *Client) FeedbackSurveysPrompt(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeedbackSurveysPromptRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeedbackSurveysDestroy performs a DELETE /api/feedback-surveys/{uuid}/ (the `FeedbackSurveysDestroy` operationId) request.
+func (c *Client) FeedbackSurveysDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeedbackSurveysDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeedbackSurveysRetrieve performs a GET /api/feedback-surveys/{uuid}/ (the `FeedbackSurveysRetrieve` operationId) request.
+func (c *Client) FeedbackSurveysRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeedbackSurveysRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeedbackSurveysPartialUpdateWithBody performs a PATCH /api/feedback-surveys/{uuid}/ (the `FeedbackSurveysPartialUpdate` operationId) request,
+// with any type of body and a specified content type.
+func (c *Client) FeedbackSurveysPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeedbackSurveysPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeedbackSurveysPartialUpdate performs a PATCH /api/feedback-surveys/{uuid}/ (the `FeedbackSurveysPartialUpdate` operationId) request.
+// Takes a body of the `application/json` content type.
+func (c *Client) FeedbackSurveysPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body FeedbackSurveysPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeedbackSurveysPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeedbackSurveysUpdateWithBody performs a PUT /api/feedback-surveys/{uuid}/ (the `FeedbackSurveysUpdate` operationId) request,
+// with any type of body and a specified content type.
+func (c *Client) FeedbackSurveysUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeedbackSurveysUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeedbackSurveysUpdate performs a PUT /api/feedback-surveys/{uuid}/ (the `FeedbackSurveysUpdate` operationId) request.
+// Takes a body of the `application/json` content type.
+func (c *Client) FeedbackSurveysUpdate(ctx context.Context, uuid openapi_types.UUID, body FeedbackSurveysUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeedbackSurveysUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeedbackSurveysSummaryRetrieve performs a GET /api/feedback-surveys/{uuid}/summary/ (the `FeedbackSurveysSummaryRetrieve` operationId) request.
+func (c *Client) FeedbackSurveysSummaryRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeedbackSurveysSummaryRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -237992,6 +238732,982 @@ func NewFeatureValuesRequestWithBody(server string, contentType string, body io.
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewFeedbackRequestsListRequest constructs an http.Request for the FeedbackRequestsList method
+func NewFeedbackRequestsListRequest(server string, params *FeedbackRequestsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/feedback-requests/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.AnsweredAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "answered_after", *params.AnsweredAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.AnsweredBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "answered_before", *params.AnsweredBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.SurveyUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "survey_uuid", *params.SurveyUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewFeedbackRequestsCountRequest constructs an http.Request for the FeedbackRequestsCount method
+func NewFeedbackRequestsCountRequest(server string, params *FeedbackRequestsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/feedback-requests/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.AnsweredAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "answered_after", *params.AnsweredAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.AnsweredBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "answered_before", *params.AnsweredBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.SurveyUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "survey_uuid", *params.SurveyUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewFeedbackRequestsRetrieveRequest constructs an http.Request for the FeedbackRequestsRetrieve method
+func NewFeedbackRequestsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/feedback-requests/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewFeedbackRequestsChecklistRetrieveRequest constructs an http.Request for the FeedbackRequestsChecklistRetrieve method
+func NewFeedbackRequestsChecklistRetrieveRequest(server string, uuid openapi_types.UUID, params *FeedbackRequestsChecklistRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/feedback-requests/%s/checklist/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.IncludeAll != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "include_all", *params.IncludeAll, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewFeedbackRequestsCompletionStatusRetrieveRequest constructs an http.Request for the FeedbackRequestsCompletionStatusRetrieve method
+func NewFeedbackRequestsCompletionStatusRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/feedback-requests/%s/completion_status/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewFeedbackRequestsDismissRequest constructs an http.Request for the FeedbackRequestsDismiss method
+func NewFeedbackRequestsDismissRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/feedback-requests/%s/dismiss/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewFeedbackRequestsLaterRequest calls the generic FeedbackRequestsLater builder with application/json body
+func NewFeedbackRequestsLaterRequest(server string, uuid openapi_types.UUID, body FeedbackRequestsLaterJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewFeedbackRequestsLaterRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewFeedbackRequestsLaterRequestWithBody constructs an http.Request for the FeedbackRequestsLater method, with any body, and a specified content type
+func NewFeedbackRequestsLaterRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/feedback-requests/%s/later/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewFeedbackRequestsSubmitAnswersRequest calls the generic FeedbackRequestsSubmitAnswers builder with application/json body
+func NewFeedbackRequestsSubmitAnswersRequest(server string, uuid openapi_types.UUID, body FeedbackRequestsSubmitAnswersJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewFeedbackRequestsSubmitAnswersRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewFeedbackRequestsSubmitAnswersRequestWithBody constructs an http.Request for the FeedbackRequestsSubmitAnswers method, with any body, and a specified content type
+func NewFeedbackRequestsSubmitAnswersRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/feedback-requests/%s/submit_answers/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewFeedbackSurveysListRequest constructs an http.Request for the FeedbackSurveysList method
+func NewFeedbackSurveysListRequest(server string, params *FeedbackSurveysListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/feedback-surveys/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewFeedbackSurveysCountRequest constructs an http.Request for the FeedbackSurveysCount method
+func NewFeedbackSurveysCountRequest(server string, params *FeedbackSurveysCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/feedback-surveys/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewFeedbackSurveysCreateRequest calls the generic FeedbackSurveysCreate builder with application/json body
+func NewFeedbackSurveysCreateRequest(server string, body FeedbackSurveysCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewFeedbackSurveysCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewFeedbackSurveysCreateRequestWithBody constructs an http.Request for the FeedbackSurveysCreate method, with any body, and a specified content type
+func NewFeedbackSurveysCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/feedback-surveys/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewFeedbackSurveysPromptRequest constructs an http.Request for the FeedbackSurveysPrompt method
+func NewFeedbackSurveysPromptRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/feedback-surveys/prompt/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewFeedbackSurveysDestroyRequest constructs an http.Request for the FeedbackSurveysDestroy method
+func NewFeedbackSurveysDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/feedback-surveys/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewFeedbackSurveysRetrieveRequest constructs an http.Request for the FeedbackSurveysRetrieve method
+func NewFeedbackSurveysRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/feedback-surveys/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewFeedbackSurveysPartialUpdateRequest calls the generic FeedbackSurveysPartialUpdate builder with application/json body
+func NewFeedbackSurveysPartialUpdateRequest(server string, uuid openapi_types.UUID, body FeedbackSurveysPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewFeedbackSurveysPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewFeedbackSurveysPartialUpdateRequestWithBody constructs an http.Request for the FeedbackSurveysPartialUpdate method, with any body, and a specified content type
+func NewFeedbackSurveysPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/feedback-surveys/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewFeedbackSurveysUpdateRequest calls the generic FeedbackSurveysUpdate builder with application/json body
+func NewFeedbackSurveysUpdateRequest(server string, uuid openapi_types.UUID, body FeedbackSurveysUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewFeedbackSurveysUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewFeedbackSurveysUpdateRequestWithBody constructs an http.Request for the FeedbackSurveysUpdate method, with any body, and a specified content type
+func NewFeedbackSurveysUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/feedback-surveys/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewFeedbackSurveysSummaryRetrieveRequest constructs an http.Request for the FeedbackSurveysSummaryRetrieve method
+func NewFeedbackSurveysSummaryRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/feedback-surveys/%s/summary/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -434859,6 +436575,134 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with POST /api/feature-values/ (the `FeatureValues` operationId).
 	FeatureValuesWithResponse(ctx context.Context, body FeatureValuesJSONRequestBody, reqEditors ...RequestEditorFn) (*FeatureValuesResponse, error)
 
+	// FeedbackRequestsListWithResponse performs a GET /api/feedback-requests/ (the `FeedbackRequestsList` operationId) request.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	FeedbackRequestsListWithResponse(ctx context.Context, params *FeedbackRequestsListParams, reqEditors ...RequestEditorFn) (*FeedbackRequestsListResponse, error)
+
+	// FeedbackRequestsCountWithResponse performs a HEAD /api/feedback-requests/ (the `FeedbackRequestsCount` operationId) request.
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	FeedbackRequestsCountWithResponse(ctx context.Context, params *FeedbackRequestsCountParams, reqEditors ...RequestEditorFn) (*FeedbackRequestsCountResponse, error)
+
+	// FeedbackRequestsRetrieveWithResponse performs a GET /api/feedback-requests/{uuid}/ (the `FeedbackRequestsRetrieve` operationId) request.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	FeedbackRequestsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*FeedbackRequestsRetrieveResponse, error)
+
+	// FeedbackRequestsChecklistRetrieveWithResponse performs a GET /api/feedback-requests/{uuid}/checklist/ (the `FeedbackRequestsChecklistRetrieve` operationId) request.
+	//
+	// Get checklist with questions and existing answers.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	FeedbackRequestsChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *FeedbackRequestsChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*FeedbackRequestsChecklistRetrieveResponse, error)
+
+	// FeedbackRequestsCompletionStatusRetrieveWithResponse performs a GET /api/feedback-requests/{uuid}/completion_status/ (the `FeedbackRequestsCompletionStatusRetrieve` operationId) request.
+	//
+	// Get checklist completion status.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	FeedbackRequestsCompletionStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*FeedbackRequestsCompletionStatusRetrieveResponse, error)
+
+	// FeedbackRequestsDismissWithResponse performs a POST /api/feedback-requests/{uuid}/dismiss/ (the `FeedbackRequestsDismiss` operationId) request.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	FeedbackRequestsDismissWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*FeedbackRequestsDismissResponse, error)
+
+	// FeedbackRequestsLaterWithBodyWithResponse performs a POST /api/feedback-requests/{uuid}/later/ (the `FeedbackRequestsLater` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Postpone the prompt. Answers given so far are kept as a draft, leaving out any that are not valid; the request stays pending.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	FeedbackRequestsLaterWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*FeedbackRequestsLaterResponse, error)
+
+	// FeedbackRequestsLaterWithResponse performs a POST /api/feedback-requests/{uuid}/later/ (the `FeedbackRequestsLater` operationId) request.
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Postpone the prompt. Answers given so far are kept as a draft, leaving out any that are not valid; the request stays pending.
+	FeedbackRequestsLaterWithResponse(ctx context.Context, uuid openapi_types.UUID, body FeedbackRequestsLaterJSONRequestBody, reqEditors ...RequestEditorFn) (*FeedbackRequestsLaterResponse, error)
+
+	// FeedbackRequestsSubmitAnswersWithBodyWithResponse performs a POST /api/feedback-requests/{uuid}/submit_answers/ (the `FeedbackRequestsSubmitAnswers` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Submit answers. A complete submission marks the request answered.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	FeedbackRequestsSubmitAnswersWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*FeedbackRequestsSubmitAnswersResponse, error)
+
+	// FeedbackRequestsSubmitAnswersWithResponse performs a POST /api/feedback-requests/{uuid}/submit_answers/ (the `FeedbackRequestsSubmitAnswers` operationId) request.
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Submit answers. A complete submission marks the request answered.
+	FeedbackRequestsSubmitAnswersWithResponse(ctx context.Context, uuid openapi_types.UUID, body FeedbackRequestsSubmitAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*FeedbackRequestsSubmitAnswersResponse, error)
+
+	// FeedbackSurveysListWithResponse performs a GET /api/feedback-surveys/ (the `FeedbackSurveysList` operationId) request.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	FeedbackSurveysListWithResponse(ctx context.Context, params *FeedbackSurveysListParams, reqEditors ...RequestEditorFn) (*FeedbackSurveysListResponse, error)
+
+	// FeedbackSurveysCountWithResponse performs a HEAD /api/feedback-surveys/ (the `FeedbackSurveysCount` operationId) request.
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	FeedbackSurveysCountWithResponse(ctx context.Context, params *FeedbackSurveysCountParams, reqEditors ...RequestEditorFn) (*FeedbackSurveysCountResponse, error)
+
+	// FeedbackSurveysCreateWithBodyWithResponse performs a POST /api/feedback-surveys/ (the `FeedbackSurveysCreate` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	FeedbackSurveysCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*FeedbackSurveysCreateResponse, error)
+
+	// FeedbackSurveysCreateWithResponse performs a POST /api/feedback-surveys/ (the `FeedbackSurveysCreate` operationId) request.
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	FeedbackSurveysCreateWithResponse(ctx context.Context, body FeedbackSurveysCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*FeedbackSurveysCreateResponse, error)
+
+	// FeedbackSurveysPromptWithResponse performs a POST /api/feedback-surveys/prompt/ (the `FeedbackSurveysPrompt` operationId) request.
+	//
+	// Return the survey to show the current user now, if any, and count it as a prompt.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	FeedbackSurveysPromptWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*FeedbackSurveysPromptResponse, error)
+
+	// FeedbackSurveysDestroyWithResponse performs a DELETE /api/feedback-surveys/{uuid}/ (the `FeedbackSurveysDestroy` operationId) request.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	FeedbackSurveysDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*FeedbackSurveysDestroyResponse, error)
+
+	// FeedbackSurveysRetrieveWithResponse performs a GET /api/feedback-surveys/{uuid}/ (the `FeedbackSurveysRetrieve` operationId) request.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	FeedbackSurveysRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*FeedbackSurveysRetrieveResponse, error)
+
+	// FeedbackSurveysPartialUpdateWithBodyWithResponse performs a PATCH /api/feedback-surveys/{uuid}/ (the `FeedbackSurveysPartialUpdate` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	FeedbackSurveysPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*FeedbackSurveysPartialUpdateResponse, error)
+
+	// FeedbackSurveysPartialUpdateWithResponse performs a PATCH /api/feedback-surveys/{uuid}/ (the `FeedbackSurveysPartialUpdate` operationId) request.
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	FeedbackSurveysPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body FeedbackSurveysPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*FeedbackSurveysPartialUpdateResponse, error)
+
+	// FeedbackSurveysUpdateWithBodyWithResponse performs a PUT /api/feedback-surveys/{uuid}/ (the `FeedbackSurveysUpdate` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	FeedbackSurveysUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*FeedbackSurveysUpdateResponse, error)
+
+	// FeedbackSurveysUpdateWithResponse performs a PUT /api/feedback-surveys/{uuid}/ (the `FeedbackSurveysUpdate` operationId) request.
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	FeedbackSurveysUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body FeedbackSurveysUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*FeedbackSurveysUpdateResponse, error)
+
+	// FeedbackSurveysSummaryRetrieveWithResponse performs a GET /api/feedback-surveys/{uuid}/summary/ (the `FeedbackSurveysSummaryRetrieve` operationId) request.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	FeedbackSurveysSummaryRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*FeedbackSurveysSummaryRetrieveResponse, error)
+
 	// FinancialReportsListWithResponse performs a GET /api/financial-reports/ (the `FinancialReportsList` operationId) request.
 	//
 	// Returns a wrapper object for the known response body format(s).
@@ -480418,6 +482262,710 @@ func (r FeatureValuesResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r FeatureValuesResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// FeedbackRequestsListResponse200Headers the declared response headers of an HTTP 200 response for FeedbackRequestsList
+type FeedbackRequestsListResponse200Headers struct {
+	XResultCount *int
+}
+
+type FeedbackRequestsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]FeedbackRequest
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *FeedbackRequestsListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r FeedbackRequestsListResponse) GetJSON200() *[]FeedbackRequest {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r FeedbackRequestsListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FeedbackRequestsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FeedbackRequestsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FeedbackRequestsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FeedbackRequestsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r FeedbackRequestsCountResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FeedbackRequestsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FeedbackRequestsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FeedbackRequestsCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FeedbackRequestsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *FeedbackRequest
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r FeedbackRequestsRetrieveResponse) GetJSON200() *FeedbackRequest {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r FeedbackRequestsRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FeedbackRequestsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FeedbackRequestsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FeedbackRequestsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FeedbackRequestsChecklistRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *ChecklistResponse
+	// JSON400 the response for an HTTP 400 `application/json` response
+	JSON400 *interface{}
+	// JSON404 the response for an HTTP 404 `application/json` response
+	JSON404 *interface{}
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r FeedbackRequestsChecklistRetrieveResponse) GetJSON200() *ChecklistResponse {
+	return r.JSON200
+}
+
+// GetJSON400 returns the response for an HTTP 400 `application/json` response
+func (r FeedbackRequestsChecklistRetrieveResponse) GetJSON400() *interface{} {
+	return r.JSON400
+}
+
+// GetJSON404 returns the response for an HTTP 404 `application/json` response
+func (r FeedbackRequestsChecklistRetrieveResponse) GetJSON404() *interface{} {
+	return r.JSON404
+}
+
+// GetBody returns the raw response body bytes
+func (r FeedbackRequestsChecklistRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FeedbackRequestsChecklistRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FeedbackRequestsChecklistRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FeedbackRequestsChecklistRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FeedbackRequestsCompletionStatusRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *ChecklistCompletion
+	// JSON400 the response for an HTTP 400 `application/json` response
+	JSON400 *interface{}
+	// JSON404 the response for an HTTP 404 `application/json` response
+	JSON404 *interface{}
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r FeedbackRequestsCompletionStatusRetrieveResponse) GetJSON200() *ChecklistCompletion {
+	return r.JSON200
+}
+
+// GetJSON400 returns the response for an HTTP 400 `application/json` response
+func (r FeedbackRequestsCompletionStatusRetrieveResponse) GetJSON400() *interface{} {
+	return r.JSON400
+}
+
+// GetJSON404 returns the response for an HTTP 404 `application/json` response
+func (r FeedbackRequestsCompletionStatusRetrieveResponse) GetJSON404() *interface{} {
+	return r.JSON404
+}
+
+// GetBody returns the raw response body bytes
+func (r FeedbackRequestsCompletionStatusRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FeedbackRequestsCompletionStatusRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FeedbackRequestsCompletionStatusRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FeedbackRequestsCompletionStatusRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FeedbackRequestsDismissResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r FeedbackRequestsDismissResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FeedbackRequestsDismissResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FeedbackRequestsDismissResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FeedbackRequestsDismissResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FeedbackRequestsLaterResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r FeedbackRequestsLaterResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FeedbackRequestsLaterResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FeedbackRequestsLaterResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FeedbackRequestsLaterResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FeedbackRequestsSubmitAnswersResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *AnswerSubmitResponse
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r FeedbackRequestsSubmitAnswersResponse) GetJSON200() *AnswerSubmitResponse {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r FeedbackRequestsSubmitAnswersResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FeedbackRequestsSubmitAnswersResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FeedbackRequestsSubmitAnswersResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FeedbackRequestsSubmitAnswersResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// FeedbackSurveysListResponse200Headers the declared response headers of an HTTP 200 response for FeedbackSurveysList
+type FeedbackSurveysListResponse200Headers struct {
+	XResultCount *int
+}
+
+type FeedbackSurveysListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]FeedbackSurvey
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *FeedbackSurveysListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r FeedbackSurveysListResponse) GetJSON200() *[]FeedbackSurvey {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r FeedbackSurveysListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FeedbackSurveysListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FeedbackSurveysListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FeedbackSurveysListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FeedbackSurveysCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r FeedbackSurveysCountResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FeedbackSurveysCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FeedbackSurveysCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FeedbackSurveysCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FeedbackSurveysCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON201 the response for an HTTP 201 `application/json` response
+	JSON201 *FeedbackSurvey
+}
+
+// GetJSON201 returns the response for an HTTP 201 `application/json` response
+func (r FeedbackSurveysCreateResponse) GetJSON201() *FeedbackSurvey {
+	return r.JSON201
+}
+
+// GetBody returns the raw response body bytes
+func (r FeedbackSurveysCreateResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FeedbackSurveysCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FeedbackSurveysCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FeedbackSurveysCreateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FeedbackSurveysPromptResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *FeedbackPrompt
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r FeedbackSurveysPromptResponse) GetJSON200() *FeedbackPrompt {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r FeedbackSurveysPromptResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FeedbackSurveysPromptResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FeedbackSurveysPromptResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FeedbackSurveysPromptResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FeedbackSurveysDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r FeedbackSurveysDestroyResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FeedbackSurveysDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FeedbackSurveysDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FeedbackSurveysDestroyResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FeedbackSurveysRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *FeedbackSurvey
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r FeedbackSurveysRetrieveResponse) GetJSON200() *FeedbackSurvey {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r FeedbackSurveysRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FeedbackSurveysRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FeedbackSurveysRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FeedbackSurveysRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FeedbackSurveysPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *FeedbackSurvey
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r FeedbackSurveysPartialUpdateResponse) GetJSON200() *FeedbackSurvey {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r FeedbackSurveysPartialUpdateResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FeedbackSurveysPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FeedbackSurveysPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FeedbackSurveysPartialUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FeedbackSurveysUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *FeedbackSurvey
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r FeedbackSurveysUpdateResponse) GetJSON200() *FeedbackSurvey {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r FeedbackSurveysUpdateResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FeedbackSurveysUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FeedbackSurveysUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FeedbackSurveysUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FeedbackSurveysSummaryRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *FeedbackSurveySummary
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r FeedbackSurveysSummaryRetrieveResponse) GetJSON200() *FeedbackSurveySummary {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r FeedbackSurveysSummaryRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FeedbackSurveysSummaryRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FeedbackSurveysSummaryRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FeedbackSurveysSummaryRetrieveResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -587333,6 +589881,266 @@ func (c *ClientWithResponses) FeatureValuesWithResponse(ctx context.Context, bod
 	return ParseFeatureValuesResponse(rsp)
 }
 
+// FeedbackRequestsListWithResponse performs a GET /api/feedback-requests/ (the `FeedbackRequestsList` operationId) request.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeedbackRequestsListWithResponse(ctx context.Context, params *FeedbackRequestsListParams, reqEditors ...RequestEditorFn) (*FeedbackRequestsListResponse, error) {
+	rsp, err := c.FeedbackRequestsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeedbackRequestsListResponse(rsp)
+}
+
+// FeedbackRequestsCountWithResponse performs a HEAD /api/feedback-requests/ (the `FeedbackRequestsCount` operationId) request.
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeedbackRequestsCountWithResponse(ctx context.Context, params *FeedbackRequestsCountParams, reqEditors ...RequestEditorFn) (*FeedbackRequestsCountResponse, error) {
+	rsp, err := c.FeedbackRequestsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeedbackRequestsCountResponse(rsp)
+}
+
+// FeedbackRequestsRetrieveWithResponse performs a GET /api/feedback-requests/{uuid}/ (the `FeedbackRequestsRetrieve` operationId) request.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeedbackRequestsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*FeedbackRequestsRetrieveResponse, error) {
+	rsp, err := c.FeedbackRequestsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeedbackRequestsRetrieveResponse(rsp)
+}
+
+// FeedbackRequestsChecklistRetrieveWithResponse performs a GET /api/feedback-requests/{uuid}/checklist/ (the `FeedbackRequestsChecklistRetrieve` operationId) request.
+//
+// Get checklist with questions and existing answers.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeedbackRequestsChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *FeedbackRequestsChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*FeedbackRequestsChecklistRetrieveResponse, error) {
+	rsp, err := c.FeedbackRequestsChecklistRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeedbackRequestsChecklistRetrieveResponse(rsp)
+}
+
+// FeedbackRequestsCompletionStatusRetrieveWithResponse performs a GET /api/feedback-requests/{uuid}/completion_status/ (the `FeedbackRequestsCompletionStatusRetrieve` operationId) request.
+//
+// Get checklist completion status.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeedbackRequestsCompletionStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*FeedbackRequestsCompletionStatusRetrieveResponse, error) {
+	rsp, err := c.FeedbackRequestsCompletionStatusRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeedbackRequestsCompletionStatusRetrieveResponse(rsp)
+}
+
+// FeedbackRequestsDismissWithResponse performs a POST /api/feedback-requests/{uuid}/dismiss/ (the `FeedbackRequestsDismiss` operationId) request.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeedbackRequestsDismissWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*FeedbackRequestsDismissResponse, error) {
+	rsp, err := c.FeedbackRequestsDismiss(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeedbackRequestsDismissResponse(rsp)
+}
+
+// FeedbackRequestsLaterWithBodyWithResponse performs a POST /api/feedback-requests/{uuid}/later/ (the `FeedbackRequestsLater` operationId) request,
+// with any type of body and a specified content type.
+//
+// Postpone the prompt. Answers given so far are kept as a draft, leaving out any that are not valid; the request stays pending.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeedbackRequestsLaterWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*FeedbackRequestsLaterResponse, error) {
+	rsp, err := c.FeedbackRequestsLaterWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeedbackRequestsLaterResponse(rsp)
+}
+
+// FeedbackRequestsLaterWithResponse performs a POST /api/feedback-requests/{uuid}/later/ (the `FeedbackRequestsLater` operationId) request.
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Postpone the prompt. Answers given so far are kept as a draft, leaving out any that are not valid; the request stays pending.
+func (c *ClientWithResponses) FeedbackRequestsLaterWithResponse(ctx context.Context, uuid openapi_types.UUID, body FeedbackRequestsLaterJSONRequestBody, reqEditors ...RequestEditorFn) (*FeedbackRequestsLaterResponse, error) {
+	rsp, err := c.FeedbackRequestsLater(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeedbackRequestsLaterResponse(rsp)
+}
+
+// FeedbackRequestsSubmitAnswersWithBodyWithResponse performs a POST /api/feedback-requests/{uuid}/submit_answers/ (the `FeedbackRequestsSubmitAnswers` operationId) request,
+// with any type of body and a specified content type.
+//
+// Submit answers. A complete submission marks the request answered.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeedbackRequestsSubmitAnswersWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*FeedbackRequestsSubmitAnswersResponse, error) {
+	rsp, err := c.FeedbackRequestsSubmitAnswersWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeedbackRequestsSubmitAnswersResponse(rsp)
+}
+
+// FeedbackRequestsSubmitAnswersWithResponse performs a POST /api/feedback-requests/{uuid}/submit_answers/ (the `FeedbackRequestsSubmitAnswers` operationId) request.
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Submit answers. A complete submission marks the request answered.
+func (c *ClientWithResponses) FeedbackRequestsSubmitAnswersWithResponse(ctx context.Context, uuid openapi_types.UUID, body FeedbackRequestsSubmitAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*FeedbackRequestsSubmitAnswersResponse, error) {
+	rsp, err := c.FeedbackRequestsSubmitAnswers(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeedbackRequestsSubmitAnswersResponse(rsp)
+}
+
+// FeedbackSurveysListWithResponse performs a GET /api/feedback-surveys/ (the `FeedbackSurveysList` operationId) request.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeedbackSurveysListWithResponse(ctx context.Context, params *FeedbackSurveysListParams, reqEditors ...RequestEditorFn) (*FeedbackSurveysListResponse, error) {
+	rsp, err := c.FeedbackSurveysList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeedbackSurveysListResponse(rsp)
+}
+
+// FeedbackSurveysCountWithResponse performs a HEAD /api/feedback-surveys/ (the `FeedbackSurveysCount` operationId) request.
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeedbackSurveysCountWithResponse(ctx context.Context, params *FeedbackSurveysCountParams, reqEditors ...RequestEditorFn) (*FeedbackSurveysCountResponse, error) {
+	rsp, err := c.FeedbackSurveysCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeedbackSurveysCountResponse(rsp)
+}
+
+// FeedbackSurveysCreateWithBodyWithResponse performs a POST /api/feedback-surveys/ (the `FeedbackSurveysCreate` operationId) request,
+// with any type of body and a specified content type.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeedbackSurveysCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*FeedbackSurveysCreateResponse, error) {
+	rsp, err := c.FeedbackSurveysCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeedbackSurveysCreateResponse(rsp)
+}
+
+// FeedbackSurveysCreateWithResponse performs a POST /api/feedback-surveys/ (the `FeedbackSurveysCreate` operationId) request.
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeedbackSurveysCreateWithResponse(ctx context.Context, body FeedbackSurveysCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*FeedbackSurveysCreateResponse, error) {
+	rsp, err := c.FeedbackSurveysCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeedbackSurveysCreateResponse(rsp)
+}
+
+// FeedbackSurveysPromptWithResponse performs a POST /api/feedback-surveys/prompt/ (the `FeedbackSurveysPrompt` operationId) request.
+//
+// Return the survey to show the current user now, if any, and count it as a prompt.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeedbackSurveysPromptWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*FeedbackSurveysPromptResponse, error) {
+	rsp, err := c.FeedbackSurveysPrompt(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeedbackSurveysPromptResponse(rsp)
+}
+
+// FeedbackSurveysDestroyWithResponse performs a DELETE /api/feedback-surveys/{uuid}/ (the `FeedbackSurveysDestroy` operationId) request.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeedbackSurveysDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*FeedbackSurveysDestroyResponse, error) {
+	rsp, err := c.FeedbackSurveysDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeedbackSurveysDestroyResponse(rsp)
+}
+
+// FeedbackSurveysRetrieveWithResponse performs a GET /api/feedback-surveys/{uuid}/ (the `FeedbackSurveysRetrieve` operationId) request.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeedbackSurveysRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*FeedbackSurveysRetrieveResponse, error) {
+	rsp, err := c.FeedbackSurveysRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeedbackSurveysRetrieveResponse(rsp)
+}
+
+// FeedbackSurveysPartialUpdateWithBodyWithResponse performs a PATCH /api/feedback-surveys/{uuid}/ (the `FeedbackSurveysPartialUpdate` operationId) request,
+// with any type of body and a specified content type.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeedbackSurveysPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*FeedbackSurveysPartialUpdateResponse, error) {
+	rsp, err := c.FeedbackSurveysPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeedbackSurveysPartialUpdateResponse(rsp)
+}
+
+// FeedbackSurveysPartialUpdateWithResponse performs a PATCH /api/feedback-surveys/{uuid}/ (the `FeedbackSurveysPartialUpdate` operationId) request.
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeedbackSurveysPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body FeedbackSurveysPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*FeedbackSurveysPartialUpdateResponse, error) {
+	rsp, err := c.FeedbackSurveysPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeedbackSurveysPartialUpdateResponse(rsp)
+}
+
+// FeedbackSurveysUpdateWithBodyWithResponse performs a PUT /api/feedback-surveys/{uuid}/ (the `FeedbackSurveysUpdate` operationId) request,
+// with any type of body and a specified content type.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeedbackSurveysUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*FeedbackSurveysUpdateResponse, error) {
+	rsp, err := c.FeedbackSurveysUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeedbackSurveysUpdateResponse(rsp)
+}
+
+// FeedbackSurveysUpdateWithResponse performs a PUT /api/feedback-surveys/{uuid}/ (the `FeedbackSurveysUpdate` operationId) request.
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeedbackSurveysUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body FeedbackSurveysUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*FeedbackSurveysUpdateResponse, error) {
+	rsp, err := c.FeedbackSurveysUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeedbackSurveysUpdateResponse(rsp)
+}
+
+// FeedbackSurveysSummaryRetrieveWithResponse performs a GET /api/feedback-surveys/{uuid}/summary/ (the `FeedbackSurveysSummaryRetrieve` operationId) request.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeedbackSurveysSummaryRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*FeedbackSurveysSummaryRetrieveResponse, error) {
+	rsp, err := c.FeedbackSurveysSummaryRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeedbackSurveysSummaryRetrieveResponse(rsp)
+}
+
 // FinancialReportsListWithResponse performs a GET /api/financial-reports/ (the `FinancialReportsList` operationId) request.
 //
 // Returns a wrapper object for the known response body format(s).
@@ -644901,6 +647709,455 @@ func ParseFeatureValuesResponse(rsp *http.Response) (*FeatureValuesResponse, err
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest string
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseFeedbackRequestsListResponse parses an HTTP response from a FeedbackRequestsListWithResponse call
+func ParseFeedbackRequestsListResponse(rsp *http.Response) (*FeedbackRequestsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FeedbackRequestsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []FeedbackRequest
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers FeedbackRequestsListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParseFeedbackRequestsCountResponse parses an HTTP response from a FeedbackRequestsCountWithResponse call
+func ParseFeedbackRequestsCountResponse(rsp *http.Response) (*FeedbackRequestsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FeedbackRequestsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseFeedbackRequestsRetrieveResponse parses an HTTP response from a FeedbackRequestsRetrieveWithResponse call
+func ParseFeedbackRequestsRetrieveResponse(rsp *http.Response) (*FeedbackRequestsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FeedbackRequestsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest FeedbackRequest
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseFeedbackRequestsChecklistRetrieveResponse parses an HTTP response from a FeedbackRequestsChecklistRetrieveWithResponse call
+func ParseFeedbackRequestsChecklistRetrieveResponse(rsp *http.Response) (*FeedbackRequestsChecklistRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FeedbackRequestsChecklistRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ChecklistResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseFeedbackRequestsCompletionStatusRetrieveResponse parses an HTTP response from a FeedbackRequestsCompletionStatusRetrieveWithResponse call
+func ParseFeedbackRequestsCompletionStatusRetrieveResponse(rsp *http.Response) (*FeedbackRequestsCompletionStatusRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FeedbackRequestsCompletionStatusRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ChecklistCompletion
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseFeedbackRequestsDismissResponse parses an HTTP response from a FeedbackRequestsDismissWithResponse call
+func ParseFeedbackRequestsDismissResponse(rsp *http.Response) (*FeedbackRequestsDismissResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FeedbackRequestsDismissResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseFeedbackRequestsLaterResponse parses an HTTP response from a FeedbackRequestsLaterWithResponse call
+func ParseFeedbackRequestsLaterResponse(rsp *http.Response) (*FeedbackRequestsLaterResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FeedbackRequestsLaterResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseFeedbackRequestsSubmitAnswersResponse parses an HTTP response from a FeedbackRequestsSubmitAnswersWithResponse call
+func ParseFeedbackRequestsSubmitAnswersResponse(rsp *http.Response) (*FeedbackRequestsSubmitAnswersResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FeedbackRequestsSubmitAnswersResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AnswerSubmitResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseFeedbackSurveysListResponse parses an HTTP response from a FeedbackSurveysListWithResponse call
+func ParseFeedbackSurveysListResponse(rsp *http.Response) (*FeedbackSurveysListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FeedbackSurveysListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []FeedbackSurvey
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers FeedbackSurveysListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParseFeedbackSurveysCountResponse parses an HTTP response from a FeedbackSurveysCountWithResponse call
+func ParseFeedbackSurveysCountResponse(rsp *http.Response) (*FeedbackSurveysCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FeedbackSurveysCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseFeedbackSurveysCreateResponse parses an HTTP response from a FeedbackSurveysCreateWithResponse call
+func ParseFeedbackSurveysCreateResponse(rsp *http.Response) (*FeedbackSurveysCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FeedbackSurveysCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest FeedbackSurvey
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseFeedbackSurveysPromptResponse parses an HTTP response from a FeedbackSurveysPromptWithResponse call
+func ParseFeedbackSurveysPromptResponse(rsp *http.Response) (*FeedbackSurveysPromptResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FeedbackSurveysPromptResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest FeedbackPrompt
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case rsp.StatusCode == 204:
+		break // No content-type
+
+	}
+
+	return response, nil
+}
+
+// ParseFeedbackSurveysDestroyResponse parses an HTTP response from a FeedbackSurveysDestroyWithResponse call
+func ParseFeedbackSurveysDestroyResponse(rsp *http.Response) (*FeedbackSurveysDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FeedbackSurveysDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseFeedbackSurveysRetrieveResponse parses an HTTP response from a FeedbackSurveysRetrieveWithResponse call
+func ParseFeedbackSurveysRetrieveResponse(rsp *http.Response) (*FeedbackSurveysRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FeedbackSurveysRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest FeedbackSurvey
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseFeedbackSurveysPartialUpdateResponse parses an HTTP response from a FeedbackSurveysPartialUpdateWithResponse call
+func ParseFeedbackSurveysPartialUpdateResponse(rsp *http.Response) (*FeedbackSurveysPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FeedbackSurveysPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest FeedbackSurvey
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseFeedbackSurveysUpdateResponse parses an HTTP response from a FeedbackSurveysUpdateWithResponse call
+func ParseFeedbackSurveysUpdateResponse(rsp *http.Response) (*FeedbackSurveysUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FeedbackSurveysUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest FeedbackSurvey
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseFeedbackSurveysSummaryRetrieveResponse parses an HTTP response from a FeedbackSurveysSummaryRetrieveWithResponse call
+func ParseFeedbackSurveysSummaryRetrieveResponse(rsp *http.Response) (*FeedbackSurveysSummaryRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FeedbackSurveysSummaryRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest FeedbackSurveySummary
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
