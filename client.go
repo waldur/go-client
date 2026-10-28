@@ -75379,6 +75379,9 @@ type MarketplaceServiceProvidersCustomerProjectsListParams struct {
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
+	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role.
+	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
+
 	// UserUuidWithActiveRole Filter projects where the given user has a role.
 	UserUuidWithActiveRole *openapi_types.UUID `form:"user_uuid_with_active_role,omitempty" json:"user_uuid_with_active_role,omitempty"`
 }
@@ -75467,6 +75470,9 @@ type MarketplaceServiceProvidersCustomerProjectsCountParams struct {
 
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role.
+	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
 
 	// UserUuidWithActiveRole Filter projects where the given user has a role.
 	UserUuidWithActiveRole *openapi_types.UUID `form:"user_uuid_with_active_role,omitempty" json:"user_uuid_with_active_role,omitempty"`
@@ -76445,6 +76451,9 @@ type MarketplaceServiceProvidersProjectsListParams struct {
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
+	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role.
+	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
+
 	// UserUuidWithActiveRole Filter projects where the given user has a role.
 	UserUuidWithActiveRole *openapi_types.UUID `form:"user_uuid_with_active_role,omitempty" json:"user_uuid_with_active_role,omitempty"`
 }
@@ -76530,6 +76539,9 @@ type MarketplaceServiceProvidersProjectsCountParams struct {
 
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role.
+	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
 
 	// UserUuidWithActiveRole Filter projects where the given user has a role.
 	UserUuidWithActiveRole *openapi_types.UUID `form:"user_uuid_with_active_role,omitempty" json:"user_uuid_with_active_role,omitempty"`
@@ -79845,6 +79857,9 @@ type OpenportalUnmanagedProjectsListParams struct {
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
+	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role.
+	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
+
 	// UserUuid Filter by user UUID.
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 
@@ -79939,6 +79954,9 @@ type OpenportalUnmanagedProjectsCountParams struct {
 
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role.
+	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
 
 	// UserUuid Filter by user UUID.
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
@@ -80057,6 +80075,9 @@ type OpenportalUnmanagedProjectsHistoryListParams struct {
 
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role.
+	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
 
 	// UserUuid Filter by user UUID.
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
@@ -83728,6 +83749,9 @@ type ProjectsListParams struct {
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
+	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role.
+	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
+
 	// UserUuid Filter by user UUID.
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 
@@ -83822,6 +83846,9 @@ type ProjectsCountParams struct {
 
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role.
+	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
 
 	// UserUuid Filter by user UUID.
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
@@ -84038,6 +84065,9 @@ type ProjectsHistoryListParams struct {
 
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role.
+	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
 
 	// UserUuid Filter by user UUID.
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
@@ -309059,6 +309089,18 @@ func NewMarketplaceServiceProvidersCustomerProjectsListRequest(server string, se
 
 		}
 
+		if params.UserRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_role", *params.UserRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.UserUuidWithActiveRole != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid_with_active_role", *params.UserUuidWithActiveRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
@@ -309443,6 +309485,18 @@ func NewMarketplaceServiceProvidersCustomerProjectsCountRequest(server string, s
 		if params.Slug != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_role", *params.UserRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -314085,6 +314139,18 @@ func NewMarketplaceServiceProvidersProjectsListRequest(server string, servicePro
 
 		}
 
+		if params.UserRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_role", *params.UserRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.UserUuidWithActiveRole != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid_with_active_role", *params.UserUuidWithActiveRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
@@ -314461,6 +314527,18 @@ func NewMarketplaceServiceProvidersProjectsCountRequest(server string, servicePr
 		if params.Slug != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_role", *params.UserRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -343346,6 +343424,18 @@ func NewOpenportalUnmanagedProjectsListRequest(server string, params *Openportal
 
 		}
 
+		if params.UserRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_role", *params.UserRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.UserUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid", *params.UserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
@@ -343751,6 +343841,18 @@ func NewOpenportalUnmanagedProjectsCountRequest(server string, params *Openporta
 		if params.Slug != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_role", *params.UserRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -344723,6 +344825,18 @@ func NewOpenportalUnmanagedProjectsHistoryListRequest(server string, uuid openap
 		if params.Slug != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_role", *params.UserRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -374480,6 +374594,18 @@ func NewProjectsListRequest(server string, params *ProjectsListParams) (*http.Re
 
 		}
 
+		if params.UserRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_role", *params.UserRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.UserUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid", *params.UserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
@@ -374885,6 +375011,18 @@ func NewProjectsCountRequest(server string, params *ProjectsCountParams) (*http.
 		if params.Slug != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_role", *params.UserRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -376387,6 +376525,18 @@ func NewProjectsHistoryListRequest(server string, uuid openapi_types.UUID, param
 		if params.Slug != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_role", *params.UserRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
