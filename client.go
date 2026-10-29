@@ -31845,6 +31845,7 @@ type ConstanceSettings struct {
 	MATRIXUSERIDFORMAT                               *string                                                          `json:"MATRIX_USER_ID_FORMAT,omitempty"`
 	MATRIXUSERREGISTRATIONSECRET                     *string                                                          `json:"MATRIX_USER_REGISTRATION_SECRET,omitempty"`
 	MCPENABLED                                       *bool                                                            `json:"MCP_ENABLED,omitempty"`
+	MCPRESOURCEURLS                                  *string                                                          `json:"MCP_RESOURCE_URLS,omitempty"`
 	METRICSARCHIVEGRACEDAYS                          *int                                                             `json:"METRICS_ARCHIVE_GRACE_DAYS,omitempty"`
 	METRICSDEFAULTRETENTIONPOLICY                    *string                                                          `json:"METRICS_DEFAULT_RETENTION_POLICY,omitempty"`
 	METRICSLATEDATADAYS                              *int                                                             `json:"METRICS_LATE_DATA_DAYS,omitempty"`
@@ -32283,6 +32284,7 @@ type ConstanceSettingsRequest struct {
 	MATRIXUSERIDFORMAT                               *string                                                                 `json:"MATRIX_USER_ID_FORMAT,omitempty"`
 	MATRIXUSERREGISTRATIONSECRET                     *string                                                                 `json:"MATRIX_USER_REGISTRATION_SECRET,omitempty"`
 	MCPENABLED                                       *bool                                                                   `json:"MCP_ENABLED,omitempty"`
+	MCPRESOURCEURLS                                  *string                                                                 `json:"MCP_RESOURCE_URLS,omitempty"`
 	METRICSARCHIVEGRACEDAYS                          *int                                                                    `json:"METRICS_ARCHIVE_GRACE_DAYS,omitempty"`
 	METRICSDEFAULTRETENTIONPOLICY                    *string                                                                 `json:"METRICS_DEFAULT_RETENTION_POLICY,omitempty"`
 	METRICSLATEDATADAYS                              *int                                                                    `json:"METRICS_LATE_DATA_DAYS,omitempty"`
@@ -32721,6 +32723,7 @@ type ConstanceSettingsRequestForm struct {
 	MATRIXUSERIDFORMAT                               *string                                                                     `json:"MATRIX_USER_ID_FORMAT,omitempty"`
 	MATRIXUSERREGISTRATIONSECRET                     *string                                                                     `json:"MATRIX_USER_REGISTRATION_SECRET,omitempty"`
 	MCPENABLED                                       *bool                                                                       `json:"MCP_ENABLED,omitempty"`
+	MCPRESOURCEURLS                                  *string                                                                     `json:"MCP_RESOURCE_URLS,omitempty"`
 	METRICSARCHIVEGRACEDAYS                          *int                                                                        `json:"METRICS_ARCHIVE_GRACE_DAYS,omitempty"`
 	METRICSDEFAULTRETENTIONPOLICY                    *string                                                                     `json:"METRICS_DEFAULT_RETENTION_POLICY,omitempty"`
 	METRICSLATEDATADAYS                              *int                                                                        `json:"METRICS_LATE_DATA_DAYS,omitempty"`
@@ -33159,6 +33162,7 @@ type ConstanceSettingsRequestMultipart struct {
 	MATRIXUSERIDFORMAT                               *string                                                                          `json:"MATRIX_USER_ID_FORMAT,omitempty"`
 	MATRIXUSERREGISTRATIONSECRET                     *string                                                                          `json:"MATRIX_USER_REGISTRATION_SECRET,omitempty"`
 	MCPENABLED                                       *bool                                                                            `json:"MCP_ENABLED,omitempty"`
+	MCPRESOURCEURLS                                  *string                                                                          `json:"MCP_RESOURCE_URLS,omitempty"`
 	METRICSARCHIVEGRACEDAYS                          *int                                                                             `json:"METRICS_ARCHIVE_GRACE_DAYS,omitempty"`
 	METRICSDEFAULTRETENTIONPOLICY                    *string                                                                          `json:"METRICS_DEFAULT_RETENTION_POLICY,omitempty"`
 	METRICSLATEDATADAYS                              *int                                                                             `json:"METRICS_LATE_DATA_DAYS,omitempty"`
@@ -45891,9 +45895,8 @@ type OpenStackPortOEnum string
 
 // OpenStackPortRequest defines model for OpenStackPortRequest.
 type OpenStackPortRequest struct {
-	AllowedAddressPairs *[]OpenStackAllowedAddressPairRequest `json:"allowed_address_pairs,omitempty"`
-	Description         *string                               `json:"description,omitempty"`
-	FixedIps            *[]OpenStackFixedIpRequest            `json:"fixed_ips,omitempty"`
+	Description *string                    `json:"description,omitempty"`
+	FixedIps    *[]OpenStackFixedIpRequest `json:"fixed_ips,omitempty"`
 
 	// MacAddress MAC address of the port
 	MacAddress *string `json:"mac_address,omitempty"`
@@ -48719,15 +48722,6 @@ type PatchedMigrationDetailsRequest struct {
 	ErrorMessage   *string         `json:"error_message,omitempty"`
 	ErrorTraceback *string         `json:"error_traceback,omitempty"`
 	Mappings       *MappingRequest `json:"mappings,omitempty"`
-}
-
-// PatchedNetworkRBACPolicyRequest defines model for PatchedNetworkRBACPolicyRequest.
-type PatchedNetworkRBACPolicyRequest struct {
-	Network *string `json:"network,omitempty"`
-
-	// PolicyType Type of access granted - either shared access or external network access
-	PolicyType   *PolicyTypeEnum `json:"policy_type,omitempty"`
-	TargetTenant *string         `json:"target_tenant,omitempty"`
 }
 
 // PatchedNotificationRequest defines model for PatchedNotificationRequest.
@@ -91962,12 +91956,6 @@ type OpenstackMigrationsUpdateJSONRequestBody = MigrationDetailsRequest
 // OpenstackNetworkRbacPoliciesCreateJSONRequestBody defines body for OpenstackNetworkRbacPoliciesCreate for application/json ContentType.
 type OpenstackNetworkRbacPoliciesCreateJSONRequestBody = NetworkRBACPolicyRequest
 
-// OpenstackNetworkRbacPoliciesPartialUpdateJSONRequestBody defines body for OpenstackNetworkRbacPoliciesPartialUpdate for application/json ContentType.
-type OpenstackNetworkRbacPoliciesPartialUpdateJSONRequestBody = PatchedNetworkRBACPolicyRequest
-
-// OpenstackNetworkRbacPoliciesUpdateJSONRequestBody defines body for OpenstackNetworkRbacPoliciesUpdate for application/json ContentType.
-type OpenstackNetworkRbacPoliciesUpdateJSONRequestBody = NetworkRBACPolicyRequest
-
 // OpenstackNetworksPartialUpdateJSONRequestBody defines body for OpenstackNetworksPartialUpdate for application/json ContentType.
 type OpenstackNetworksPartialUpdateJSONRequestBody = PatchedOpenStackNetworkRequest
 
@@ -127863,22 +127851,6 @@ type ClientInterface interface {
 	//
 	// Corresponds with GET /api/openstack-network-rbac-policies/{uuid}/ (the `OpenstackNetworkRbacPoliciesRetrieve` operationId).
 	OpenstackNetworkRbacPoliciesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OpenstackNetworkRbacPoliciesPartialUpdateWithBody performs a PATCH /api/openstack-network-rbac-policies/{uuid}/ (the `OpenstackNetworkRbacPoliciesPartialUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	OpenstackNetworkRbacPoliciesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OpenstackNetworkRbacPoliciesPartialUpdate performs a PATCH /api/openstack-network-rbac-policies/{uuid}/ (the `OpenstackNetworkRbacPoliciesPartialUpdate` operationId) request.
-	// Takes a body of the `application/json` content type.
-	OpenstackNetworkRbacPoliciesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworkRbacPoliciesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OpenstackNetworkRbacPoliciesUpdateWithBody performs a PUT /api/openstack-network-rbac-policies/{uuid}/ (the `OpenstackNetworkRbacPoliciesUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	OpenstackNetworkRbacPoliciesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OpenstackNetworkRbacPoliciesUpdate performs a PUT /api/openstack-network-rbac-policies/{uuid}/ (the `OpenstackNetworkRbacPoliciesUpdate` operationId) request.
-	// Takes a body of the `application/json` content type.
-	OpenstackNetworkRbacPoliciesUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworkRbacPoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackNetworksList List networks
 	//
@@ -178356,62 +178328,6 @@ func (c *Client) OpenstackNetworkRbacPoliciesDestroy(ctx context.Context, uuid o
 // Corresponds with GET /api/openstack-network-rbac-policies/{uuid}/ (the `OpenstackNetworkRbacPoliciesRetrieve` operationId).
 func (c *Client) OpenstackNetworkRbacPoliciesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackNetworkRbacPoliciesRetrieveRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// OpenstackNetworkRbacPoliciesPartialUpdateWithBody performs a PATCH /api/openstack-network-rbac-policies/{uuid}/ (the `OpenstackNetworkRbacPoliciesPartialUpdate` operationId) request,
-// with any type of body and a specified content type.
-func (c *Client) OpenstackNetworkRbacPoliciesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackNetworkRbacPoliciesPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// OpenstackNetworkRbacPoliciesPartialUpdate performs a PATCH /api/openstack-network-rbac-policies/{uuid}/ (the `OpenstackNetworkRbacPoliciesPartialUpdate` operationId) request.
-// Takes a body of the `application/json` content type.
-func (c *Client) OpenstackNetworkRbacPoliciesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworkRbacPoliciesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackNetworkRbacPoliciesPartialUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// OpenstackNetworkRbacPoliciesUpdateWithBody performs a PUT /api/openstack-network-rbac-policies/{uuid}/ (the `OpenstackNetworkRbacPoliciesUpdate` operationId) request,
-// with any type of body and a specified content type.
-func (c *Client) OpenstackNetworkRbacPoliciesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackNetworkRbacPoliciesUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// OpenstackNetworkRbacPoliciesUpdate performs a PUT /api/openstack-network-rbac-policies/{uuid}/ (the `OpenstackNetworkRbacPoliciesUpdate` operationId) request.
-// Takes a body of the `application/json` content type.
-func (c *Client) OpenstackNetworkRbacPoliciesUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworkRbacPoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackNetworkRbacPoliciesUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -356452,100 +356368,6 @@ func NewOpenstackNetworkRbacPoliciesRetrieveRequest(server string, uuid openapi_
 	return req, nil
 }
 
-// NewOpenstackNetworkRbacPoliciesPartialUpdateRequest calls the generic OpenstackNetworkRbacPoliciesPartialUpdate builder with application/json body
-func NewOpenstackNetworkRbacPoliciesPartialUpdateRequest(server string, uuid openapi_types.UUID, body OpenstackNetworkRbacPoliciesPartialUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewOpenstackNetworkRbacPoliciesPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewOpenstackNetworkRbacPoliciesPartialUpdateRequestWithBody constructs an http.Request for the OpenstackNetworkRbacPoliciesPartialUpdate method, with any body, and a specified content type
-func NewOpenstackNetworkRbacPoliciesPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/openstack-network-rbac-policies/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewOpenstackNetworkRbacPoliciesUpdateRequest calls the generic OpenstackNetworkRbacPoliciesUpdate builder with application/json body
-func NewOpenstackNetworkRbacPoliciesUpdateRequest(server string, uuid openapi_types.UUID, body OpenstackNetworkRbacPoliciesUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewOpenstackNetworkRbacPoliciesUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewOpenstackNetworkRbacPoliciesUpdateRequestWithBody constructs an http.Request for the OpenstackNetworkRbacPoliciesUpdate method, with any body, and a specified content type
-func NewOpenstackNetworkRbacPoliciesUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/openstack-network-rbac-policies/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
 // NewOpenstackNetworksListRequest constructs an http.Request for the OpenstackNetworksList method
 func NewOpenstackNetworksListRequest(server string, params *OpenstackNetworksListParams) (*http.Request, error) {
 	var err error
@@ -451899,26 +451721,6 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with GET /api/openstack-network-rbac-policies/{uuid}/ (the `OpenstackNetworkRbacPoliciesRetrieve` operationId).
 	OpenstackNetworkRbacPoliciesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesRetrieveResponse, error)
 
-	// OpenstackNetworkRbacPoliciesPartialUpdateWithBodyWithResponse performs a PATCH /api/openstack-network-rbac-policies/{uuid}/ (the `OpenstackNetworkRbacPoliciesPartialUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	OpenstackNetworkRbacPoliciesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesPartialUpdateResponse, error)
-
-	// OpenstackNetworkRbacPoliciesPartialUpdateWithResponse performs a PATCH /api/openstack-network-rbac-policies/{uuid}/ (the `OpenstackNetworkRbacPoliciesPartialUpdate` operationId) request.
-	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	OpenstackNetworkRbacPoliciesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworkRbacPoliciesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesPartialUpdateResponse, error)
-
-	// OpenstackNetworkRbacPoliciesUpdateWithBodyWithResponse performs a PUT /api/openstack-network-rbac-policies/{uuid}/ (the `OpenstackNetworkRbacPoliciesUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	OpenstackNetworkRbacPoliciesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesUpdateResponse, error)
-
-	// OpenstackNetworkRbacPoliciesUpdateWithResponse performs a PUT /api/openstack-network-rbac-policies/{uuid}/ (the `OpenstackNetworkRbacPoliciesUpdate` operationId) request.
-	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	OpenstackNetworkRbacPoliciesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworkRbacPoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesUpdateResponse, error)
-
 	// OpenstackNetworksListWithResponse List networks
 	//
 	// Get a list of networks.
@@ -540389,88 +540191,6 @@ func (r OpenstackNetworkRbacPoliciesRetrieveResponse) ContentType() string {
 	return ""
 }
 
-type OpenstackNetworkRbacPoliciesPartialUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *NetworkRBACPolicy
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r OpenstackNetworkRbacPoliciesPartialUpdateResponse) GetJSON200() *NetworkRBACPolicy {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r OpenstackNetworkRbacPoliciesPartialUpdateResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r OpenstackNetworkRbacPoliciesPartialUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OpenstackNetworkRbacPoliciesPartialUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r OpenstackNetworkRbacPoliciesPartialUpdateResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type OpenstackNetworkRbacPoliciesUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *NetworkRBACPolicy
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r OpenstackNetworkRbacPoliciesUpdateResponse) GetJSON200() *NetworkRBACPolicy {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r OpenstackNetworkRbacPoliciesUpdateResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r OpenstackNetworkRbacPoliciesUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OpenstackNetworkRbacPoliciesUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r OpenstackNetworkRbacPoliciesUpdateResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
 // OpenstackNetworksListResponse200Headers the declared response headers of an HTTP 200 response for OpenstackNetworksList
 type OpenstackNetworksListResponse200Headers struct {
 	XResultCount *int
@@ -616826,50 +616546,6 @@ func (c *ClientWithResponses) OpenstackNetworkRbacPoliciesRetrieveWithResponse(c
 	return ParseOpenstackNetworkRbacPoliciesRetrieveResponse(rsp)
 }
 
-// OpenstackNetworkRbacPoliciesPartialUpdateWithBodyWithResponse performs a PATCH /api/openstack-network-rbac-policies/{uuid}/ (the `OpenstackNetworkRbacPoliciesPartialUpdate` operationId) request,
-// with any type of body and a specified content type.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenstackNetworkRbacPoliciesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesPartialUpdateResponse, error) {
-	rsp, err := c.OpenstackNetworkRbacPoliciesPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackNetworkRbacPoliciesPartialUpdateResponse(rsp)
-}
-
-// OpenstackNetworkRbacPoliciesPartialUpdateWithResponse performs a PATCH /api/openstack-network-rbac-policies/{uuid}/ (the `OpenstackNetworkRbacPoliciesPartialUpdate` operationId) request.
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenstackNetworkRbacPoliciesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworkRbacPoliciesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesPartialUpdateResponse, error) {
-	rsp, err := c.OpenstackNetworkRbacPoliciesPartialUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackNetworkRbacPoliciesPartialUpdateResponse(rsp)
-}
-
-// OpenstackNetworkRbacPoliciesUpdateWithBodyWithResponse performs a PUT /api/openstack-network-rbac-policies/{uuid}/ (the `OpenstackNetworkRbacPoliciesUpdate` operationId) request,
-// with any type of body and a specified content type.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenstackNetworkRbacPoliciesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesUpdateResponse, error) {
-	rsp, err := c.OpenstackNetworkRbacPoliciesUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackNetworkRbacPoliciesUpdateResponse(rsp)
-}
-
-// OpenstackNetworkRbacPoliciesUpdateWithResponse performs a PUT /api/openstack-network-rbac-policies/{uuid}/ (the `OpenstackNetworkRbacPoliciesUpdate` operationId) request.
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenstackNetworkRbacPoliciesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworkRbacPoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesUpdateResponse, error) {
-	rsp, err := c.OpenstackNetworkRbacPoliciesUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackNetworkRbacPoliciesUpdateResponse(rsp)
-}
-
 // OpenstackNetworksListWithResponse List networks
 //
 // Get a list of networks.
@@ -684824,58 +684500,6 @@ func ParseOpenstackNetworkRbacPoliciesRetrieveResponse(rsp *http.Response) (*Ope
 	}
 
 	response := &OpenstackNetworkRbacPoliciesRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest NetworkRBACPolicy
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseOpenstackNetworkRbacPoliciesPartialUpdateResponse parses an HTTP response from a OpenstackNetworkRbacPoliciesPartialUpdateWithResponse call
-func ParseOpenstackNetworkRbacPoliciesPartialUpdateResponse(rsp *http.Response) (*OpenstackNetworkRbacPoliciesPartialUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OpenstackNetworkRbacPoliciesPartialUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest NetworkRBACPolicy
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseOpenstackNetworkRbacPoliciesUpdateResponse parses an HTTP response from a OpenstackNetworkRbacPoliciesUpdateWithResponse call
-func ParseOpenstackNetworkRbacPoliciesUpdateResponse(rsp *http.Response) (*OpenstackNetworkRbacPoliciesUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OpenstackNetworkRbacPoliciesUpdateResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
