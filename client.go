@@ -41618,6 +41618,9 @@ type NestedQoS struct {
 	// MaxTime Maximum wall time in minutes
 	MaxTime *int `json:"max_time,omitempty"`
 
+	// MaxTresMinsPerJob Max TRES-minutes per job (MaxTRESMinsPerJob)
+	MaxTresMinsPerJob *string `json:"max_tres_mins_per_job,omitempty"`
+
 	// MaxTresPerJob Max TRES per job (MaxTRESPerJob)
 	MaxTresPerJob *string `json:"max_tres_per_job,omitempty"`
 
@@ -43452,6 +43455,9 @@ type OfferingQoS struct {
 	// MaxTime Maximum wall time in minutes
 	MaxTime *int `json:"max_time,omitempty"`
 
+	// MaxTresMinsPerJob Max TRES-minutes per job (MaxTRESMinsPerJob)
+	MaxTresMinsPerJob *string `json:"max_tres_mins_per_job,omitempty"`
+
 	// MaxTresPerJob Max TRES per job (MaxTRESPerJob)
 	MaxTresPerJob *string `json:"max_tres_per_job,omitempty"`
 
@@ -43498,6 +43504,9 @@ type OfferingQoSRequest struct {
 
 	// MaxTime Maximum wall time in minutes
 	MaxTime *int `json:"max_time,omitempty"`
+
+	// MaxTresMinsPerJob Max TRES-minutes per job (MaxTRESMinsPerJob)
+	MaxTresMinsPerJob *string `json:"max_tres_mins_per_job,omitempty"`
 
 	// MaxTresPerJob Max TRES per job (MaxTRESPerJob)
 	MaxTresPerJob *string `json:"max_tres_per_job,omitempty"`
@@ -48902,6 +48911,9 @@ type PatchedOfferingQoSUpdateRequest struct {
 
 	// MaxTime Maximum wall time in minutes
 	MaxTime *int `json:"max_time,omitempty"`
+
+	// MaxTresMinsPerJob Max TRES-minutes per job (MaxTRESMinsPerJob)
+	MaxTresMinsPerJob *string `json:"max_tres_mins_per_job,omitempty"`
 
 	// MaxTresPerJob Max TRES per job (MaxTRESPerJob)
 	MaxTresPerJob *string `json:"max_tres_per_job,omitempty"`
