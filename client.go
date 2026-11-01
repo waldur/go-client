@@ -1827,6 +1827,7 @@ const (
 	BookingResourceFieldEnumSpendingLimitStatus        BookingResourceFieldEnum = "spending_limit_status"
 	BookingResourceFieldEnumSpendingLimits             BookingResourceFieldEnum = "spending_limits"
 	BookingResourceFieldEnumState                      BookingResourceFieldEnum = "state"
+	BookingResourceFieldEnumTerminatedAt               BookingResourceFieldEnum = "terminated_at"
 	BookingResourceFieldEnumUrl                        BookingResourceFieldEnum = "url"
 	BookingResourceFieldEnumUsageLimitRestriction      BookingResourceFieldEnum = "usage_limit_restriction"
 	BookingResourceFieldEnumUsageLimitResumesAt        BookingResourceFieldEnum = "usage_limit_resumes_at"
@@ -2025,6 +2026,8 @@ func (e BookingResourceFieldEnum) Valid() bool {
 	case BookingResourceFieldEnumSpendingLimits:
 		return true
 	case BookingResourceFieldEnumState:
+		return true
+	case BookingResourceFieldEnumTerminatedAt:
 		return true
 	case BookingResourceFieldEnumUrl:
 		return true
@@ -4593,8 +4596,11 @@ const (
 	CustomerFieldEnumStreet                       CustomerFieldEnum = "street"
 	CustomerFieldEnumUrl                          CustomerFieldEnum = "url"
 	CustomerFieldEnumUserAffiliations             CustomerFieldEnum = "user_affiliations"
+	CustomerFieldEnumUserAssuranceLevels          CustomerFieldEnum = "user_assurance_levels"
 	CustomerFieldEnumUserEmailPatterns            CustomerFieldEnum = "user_email_patterns"
 	CustomerFieldEnumUserIdentitySources          CustomerFieldEnum = "user_identity_sources"
+	CustomerFieldEnumUserNationalities            CustomerFieldEnum = "user_nationalities"
+	CustomerFieldEnumUserOrganizationTypes        CustomerFieldEnum = "user_organization_types"
 	CustomerFieldEnumUsersCount                   CustomerFieldEnum = "users_count"
 	CustomerFieldEnumUuid                         CustomerFieldEnum = "uuid"
 	CustomerFieldEnumVatCode                      CustomerFieldEnum = "vat_code"
@@ -4728,9 +4734,15 @@ func (e CustomerFieldEnum) Valid() bool {
 		return true
 	case CustomerFieldEnumUserAffiliations:
 		return true
+	case CustomerFieldEnumUserAssuranceLevels:
+		return true
 	case CustomerFieldEnumUserEmailPatterns:
 		return true
 	case CustomerFieldEnumUserIdentitySources:
+		return true
+	case CustomerFieldEnumUserNationalities:
+		return true
+	case CustomerFieldEnumUserOrganizationTypes:
 		return true
 	case CustomerFieldEnumUsersCount:
 		return true
@@ -17959,8 +17971,11 @@ const (
 	ProjectFieldEnumTypeUuid                             ProjectFieldEnum = "type_uuid"
 	ProjectFieldEnumUrl                                  ProjectFieldEnum = "url"
 	ProjectFieldEnumUserAffiliations                     ProjectFieldEnum = "user_affiliations"
+	ProjectFieldEnumUserAssuranceLevels                  ProjectFieldEnum = "user_assurance_levels"
 	ProjectFieldEnumUserEmailPatterns                    ProjectFieldEnum = "user_email_patterns"
 	ProjectFieldEnumUserIdentitySources                  ProjectFieldEnum = "user_identity_sources"
+	ProjectFieldEnumUserNationalities                    ProjectFieldEnum = "user_nationalities"
+	ProjectFieldEnumUserOrganizationTypes                ProjectFieldEnum = "user_organization_types"
 	ProjectFieldEnumUuid                                 ProjectFieldEnum = "uuid"
 )
 
@@ -18067,9 +18082,15 @@ func (e ProjectFieldEnum) Valid() bool {
 		return true
 	case ProjectFieldEnumUserAffiliations:
 		return true
+	case ProjectFieldEnumUserAssuranceLevels:
+		return true
 	case ProjectFieldEnumUserEmailPatterns:
 		return true
 	case ProjectFieldEnumUserIdentitySources:
+		return true
+	case ProjectFieldEnumUserNationalities:
+		return true
+	case ProjectFieldEnumUserOrganizationTypes:
 		return true
 	case ProjectFieldEnumUuid:
 		return true
@@ -20975,6 +20996,7 @@ const (
 	ResourceFieldEnumSpendingLimitStatus        ResourceFieldEnum = "spending_limit_status"
 	ResourceFieldEnumSpendingLimits             ResourceFieldEnum = "spending_limits"
 	ResourceFieldEnumState                      ResourceFieldEnum = "state"
+	ResourceFieldEnumTerminatedAt               ResourceFieldEnum = "terminated_at"
 	ResourceFieldEnumUrl                        ResourceFieldEnum = "url"
 	ResourceFieldEnumUsageLimitRestriction      ResourceFieldEnum = "usage_limit_restriction"
 	ResourceFieldEnumUsageLimitResumesAt        ResourceFieldEnum = "usage_limit_resumes_at"
@@ -21159,6 +21181,8 @@ func (e ResourceFieldEnum) Valid() bool {
 	case ResourceFieldEnumSpendingLimits:
 		return true
 	case ResourceFieldEnumState:
+		return true
+	case ResourceFieldEnumTerminatedAt:
 		return true
 	case ResourceFieldEnumUrl:
 		return true
@@ -29069,7 +29093,10 @@ type BookingResource struct {
 	// SpendingLimits Spending limits on usage-based components, per period. Changed with the set_spending_limits action.
 	SpendingLimits *map[string]*map[string]*float64 `json:"spending_limits,omitempty"`
 	State          *ResourceState                   `json:"state,omitempty"`
-	Url            *string                          `json:"url,omitempty"`
+
+	// TerminatedAt When the resource was terminated. Unlike end_date, which is the planned date, this is the moment it happened. It stays set during a restore and is cleared once the resource is OK again, so check the state before reading it as the end of a live resource. Empty if the date is not known.
+	TerminatedAt *time.Time `json:"terminated_at,omitempty"`
+	Url          *string    `json:"url,omitempty"`
 
 	// UsageLimitRestriction Which restriction (paused or downscaled) was automatically applied because reported usage reached a component limit. Empty when no such restriction is active. Used so the automatic lift never clears a restriction that was set for another reason.
 	UsageLimitRestriction *BookingResource_UsageLimitRestriction `json:"usage_limit_restriction,omitempty"`
@@ -34077,13 +34104,22 @@ type Customer struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber       *int      `json:"sponsor_number,omitempty"`
-	State               *string   `json:"state,omitempty"`
-	Street              *string   `json:"street,omitempty"`
-	Url                 *string   `json:"url,omitempty"`
-	UserAffiliations    *[]string `json:"user_affiliations,omitempty"`
+	SponsorNumber    *int      `json:"sponsor_number,omitempty"`
+	State            *string   `json:"state,omitempty"`
+	Street           *string   `json:"street,omitempty"`
+	Url              *string   `json:"url,omitempty"`
+	UserAffiliations *[]string `json:"user_affiliations,omitempty"`
+
+	// UserAssuranceLevels Required assurance URIs (REFEDS). User must have all of these.
+	UserAssuranceLevels *[]string `json:"user_assurance_levels,omitempty"`
 	UserEmailPatterns   *[]string `json:"user_email_patterns,omitempty"`
 	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
+
+	// UserNationalities Allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
+	UserNationalities *[]string `json:"user_nationalities,omitempty"`
+
+	// UserOrganizationTypes Allowed organization type URNs (SCHAC). User must match one.
+	UserOrganizationTypes *[]string `json:"user_organization_types,omitempty"`
 
 	// UsersCount Number of users with access to this organization
 	UsersCount *int                `json:"users_count,omitempty"`
@@ -34528,12 +34564,21 @@ type CustomerRequest struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber       *int      `json:"sponsor_number,omitempty"`
-	State               *string   `json:"state,omitempty"`
-	Street              *string   `json:"street,omitempty"`
-	UserAffiliations    *[]string `json:"user_affiliations,omitempty"`
+	SponsorNumber    *int      `json:"sponsor_number,omitempty"`
+	State            *string   `json:"state,omitempty"`
+	Street           *string   `json:"street,omitempty"`
+	UserAffiliations *[]string `json:"user_affiliations,omitempty"`
+
+	// UserAssuranceLevels Required assurance URIs (REFEDS). User must have all of these.
+	UserAssuranceLevels *[]string `json:"user_assurance_levels,omitempty"`
 	UserEmailPatterns   *[]string `json:"user_email_patterns,omitempty"`
 	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
+
+	// UserNationalities Allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
+	UserNationalities *[]string `json:"user_nationalities,omitempty"`
+
+	// UserOrganizationTypes Allowed organization type URNs (SCHAC). User must match one.
+	UserOrganizationTypes *[]string `json:"user_organization_types,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -34609,12 +34654,21 @@ type CustomerRequestForm struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber       *int      `json:"sponsor_number,omitempty"`
-	State               *string   `json:"state,omitempty"`
-	Street              *string   `json:"street,omitempty"`
-	UserAffiliations    *[]string `json:"user_affiliations,omitempty"`
+	SponsorNumber    *int      `json:"sponsor_number,omitempty"`
+	State            *string   `json:"state,omitempty"`
+	Street           *string   `json:"street,omitempty"`
+	UserAffiliations *[]string `json:"user_affiliations,omitempty"`
+
+	// UserAssuranceLevels Required assurance URIs (REFEDS). User must have all of these.
+	UserAssuranceLevels *[]string `json:"user_assurance_levels,omitempty"`
 	UserEmailPatterns   *[]string `json:"user_email_patterns,omitempty"`
 	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
+
+	// UserNationalities Allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
+	UserNationalities *[]string `json:"user_nationalities,omitempty"`
+
+	// UserOrganizationTypes Allowed organization type URNs (SCHAC). User must match one.
+	UserOrganizationTypes *[]string `json:"user_organization_types,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -34690,12 +34744,21 @@ type CustomerRequestMultipart struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber       *int      `json:"sponsor_number,omitempty"`
-	State               *string   `json:"state,omitempty"`
-	Street              *string   `json:"street,omitempty"`
-	UserAffiliations    *[]string `json:"user_affiliations,omitempty"`
+	SponsorNumber    *int      `json:"sponsor_number,omitempty"`
+	State            *string   `json:"state,omitempty"`
+	Street           *string   `json:"street,omitempty"`
+	UserAffiliations *[]string `json:"user_affiliations,omitempty"`
+
+	// UserAssuranceLevels Required assurance URIs (REFEDS). User must have all of these.
+	UserAssuranceLevels *[]string `json:"user_assurance_levels,omitempty"`
 	UserEmailPatterns   *[]string `json:"user_email_patterns,omitempty"`
 	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
+
+	// UserNationalities Allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
+	UserNationalities *[]string `json:"user_nationalities,omitempty"`
+
+	// UserOrganizationTypes Allowed organization type URNs (SCHAC). User must match one.
+	UserOrganizationTypes *[]string `json:"user_organization_types,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -48177,12 +48240,21 @@ type PatchedCustomerRequest struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber       *int      `json:"sponsor_number,omitempty"`
-	State               *string   `json:"state,omitempty"`
-	Street              *string   `json:"street,omitempty"`
-	UserAffiliations    *[]string `json:"user_affiliations,omitempty"`
+	SponsorNumber    *int      `json:"sponsor_number,omitempty"`
+	State            *string   `json:"state,omitempty"`
+	Street           *string   `json:"street,omitempty"`
+	UserAffiliations *[]string `json:"user_affiliations,omitempty"`
+
+	// UserAssuranceLevels Required assurance URIs (REFEDS). User must have all of these.
+	UserAssuranceLevels *[]string `json:"user_assurance_levels,omitempty"`
 	UserEmailPatterns   *[]string `json:"user_email_patterns,omitempty"`
 	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
+
+	// UserNationalities Allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
+	UserNationalities *[]string `json:"user_nationalities,omitempty"`
+
+	// UserOrganizationTypes Allowed organization type URNs (SCHAC). User must match one.
+	UserOrganizationTypes *[]string `json:"user_organization_types,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -48258,12 +48330,21 @@ type PatchedCustomerRequestForm struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber       *int      `json:"sponsor_number,omitempty"`
-	State               *string   `json:"state,omitempty"`
-	Street              *string   `json:"street,omitempty"`
-	UserAffiliations    *[]string `json:"user_affiliations,omitempty"`
+	SponsorNumber    *int      `json:"sponsor_number,omitempty"`
+	State            *string   `json:"state,omitempty"`
+	Street           *string   `json:"street,omitempty"`
+	UserAffiliations *[]string `json:"user_affiliations,omitempty"`
+
+	// UserAssuranceLevels Required assurance URIs (REFEDS). User must have all of these.
+	UserAssuranceLevels *[]string `json:"user_assurance_levels,omitempty"`
 	UserEmailPatterns   *[]string `json:"user_email_patterns,omitempty"`
 	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
+
+	// UserNationalities Allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
+	UserNationalities *[]string `json:"user_nationalities,omitempty"`
+
+	// UserOrganizationTypes Allowed organization type URNs (SCHAC). User must match one.
+	UserOrganizationTypes *[]string `json:"user_organization_types,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -48339,12 +48420,21 @@ type PatchedCustomerRequestMultipart struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber       *int      `json:"sponsor_number,omitempty"`
-	State               *string   `json:"state,omitempty"`
-	Street              *string   `json:"street,omitempty"`
-	UserAffiliations    *[]string `json:"user_affiliations,omitempty"`
+	SponsorNumber    *int      `json:"sponsor_number,omitempty"`
+	State            *string   `json:"state,omitempty"`
+	Street           *string   `json:"street,omitempty"`
+	UserAffiliations *[]string `json:"user_affiliations,omitempty"`
+
+	// UserAssuranceLevels Required assurance URIs (REFEDS). User must have all of these.
+	UserAssuranceLevels *[]string `json:"user_assurance_levels,omitempty"`
 	UserEmailPatterns   *[]string `json:"user_email_patterns,omitempty"`
 	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
+
+	// UserNationalities Allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
+	UserNationalities *[]string `json:"user_nationalities,omitempty"`
+
+	// UserOrganizationTypes Allowed organization type URNs (SCHAC). User must match one.
+	UserOrganizationTypes *[]string `json:"user_organization_types,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -49327,7 +49417,6 @@ type PatchedProjectOrderAutoApprovalRequest struct {
 type PatchedProjectRequest struct {
 	AffiliationUuid *openapi_types.UUID `json:"affiliation_uuid,omitempty"`
 	BackendId       *string             `json:"backend_id,omitempty"`
-	Customer        *string             `json:"customer,omitempty"`
 
 	// Description Project description (HTML content will be sanitized)
 	Description *string `json:"description,omitempty"`
@@ -49351,11 +49440,20 @@ type PatchedProjectRequest struct {
 	StaffNotes *string `json:"staff_notes,omitempty"`
 
 	// StartDate Project start date. Cannot be edited after the start date has arrived.
-	StartDate           *openapi_types.Date `json:"start_date,omitempty"`
-	Type                *string             `json:"type,omitempty"`
-	UserAffiliations    *[]string           `json:"user_affiliations,omitempty"`
-	UserEmailPatterns   *[]string           `json:"user_email_patterns,omitempty"`
-	UserIdentitySources *[]string           `json:"user_identity_sources,omitempty"`
+	StartDate        *openapi_types.Date `json:"start_date,omitempty"`
+	Type             *string             `json:"type,omitempty"`
+	UserAffiliations *[]string           `json:"user_affiliations,omitempty"`
+
+	// UserAssuranceLevels Required assurance URIs (REFEDS). User must have all of these.
+	UserAssuranceLevels *[]string `json:"user_assurance_levels,omitempty"`
+	UserEmailPatterns   *[]string `json:"user_email_patterns,omitempty"`
+	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
+
+	// UserNationalities Allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
+	UserNationalities *[]string `json:"user_nationalities,omitempty"`
+
+	// UserOrganizationTypes Allowed organization type URNs (SCHAC). User must match one.
+	UserOrganizationTypes *[]string `json:"user_organization_types,omitempty"`
 }
 
 // PatchedProjectRequest_OecdFos2007Code defines model for PatchedProjectRequest.OecdFos2007Code.
@@ -49367,7 +49465,6 @@ type PatchedProjectRequest_OecdFos2007Code struct {
 type PatchedProjectRequestForm struct {
 	AffiliationUuid *openapi_types.UUID `json:"affiliation_uuid,omitempty"`
 	BackendId       *string             `json:"backend_id,omitempty"`
-	Customer        *string             `json:"customer,omitempty"`
 
 	// Description Project description (HTML content will be sanitized)
 	Description *string `json:"description,omitempty"`
@@ -49391,11 +49488,20 @@ type PatchedProjectRequestForm struct {
 	StaffNotes *string `json:"staff_notes,omitempty"`
 
 	// StartDate Project start date. Cannot be edited after the start date has arrived.
-	StartDate           *openapi_types.Date `json:"start_date,omitempty"`
-	Type                *string             `json:"type,omitempty"`
-	UserAffiliations    *[]string           `json:"user_affiliations,omitempty"`
-	UserEmailPatterns   *[]string           `json:"user_email_patterns,omitempty"`
-	UserIdentitySources *[]string           `json:"user_identity_sources,omitempty"`
+	StartDate        *openapi_types.Date `json:"start_date,omitempty"`
+	Type             *string             `json:"type,omitempty"`
+	UserAffiliations *[]string           `json:"user_affiliations,omitempty"`
+
+	// UserAssuranceLevels Required assurance URIs (REFEDS). User must have all of these.
+	UserAssuranceLevels *[]string `json:"user_assurance_levels,omitempty"`
+	UserEmailPatterns   *[]string `json:"user_email_patterns,omitempty"`
+	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
+
+	// UserNationalities Allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
+	UserNationalities *[]string `json:"user_nationalities,omitempty"`
+
+	// UserOrganizationTypes Allowed organization type URNs (SCHAC). User must match one.
+	UserOrganizationTypes *[]string `json:"user_organization_types,omitempty"`
 }
 
 // PatchedProjectRequestForm_OecdFos2007Code defines model for PatchedProjectRequestForm.OecdFos2007Code.
@@ -49407,7 +49513,6 @@ type PatchedProjectRequestForm_OecdFos2007Code struct {
 type PatchedProjectRequestMultipart struct {
 	AffiliationUuid *openapi_types.UUID `json:"affiliation_uuid,omitempty"`
 	BackendId       *string             `json:"backend_id,omitempty"`
-	Customer        *string             `json:"customer,omitempty"`
 
 	// Description Project description (HTML content will be sanitized)
 	Description *string `json:"description,omitempty"`
@@ -49431,11 +49536,20 @@ type PatchedProjectRequestMultipart struct {
 	StaffNotes *string `json:"staff_notes,omitempty"`
 
 	// StartDate Project start date. Cannot be edited after the start date has arrived.
-	StartDate           *openapi_types.Date `json:"start_date,omitempty"`
-	Type                *string             `json:"type,omitempty"`
-	UserAffiliations    *[]string           `json:"user_affiliations,omitempty"`
-	UserEmailPatterns   *[]string           `json:"user_email_patterns,omitempty"`
-	UserIdentitySources *[]string           `json:"user_identity_sources,omitempty"`
+	StartDate        *openapi_types.Date `json:"start_date,omitempty"`
+	Type             *string             `json:"type,omitempty"`
+	UserAffiliations *[]string           `json:"user_affiliations,omitempty"`
+
+	// UserAssuranceLevels Required assurance URIs (REFEDS). User must have all of these.
+	UserAssuranceLevels *[]string `json:"user_assurance_levels,omitempty"`
+	UserEmailPatterns   *[]string `json:"user_email_patterns,omitempty"`
+	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
+
+	// UserNationalities Allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
+	UserNationalities *[]string `json:"user_nationalities,omitempty"`
+
+	// UserOrganizationTypes Allowed organization type URNs (SCHAC). User must match one.
+	UserOrganizationTypes *[]string `json:"user_organization_types,omitempty"`
 }
 
 // PatchedProjectRequestMultipart_OecdFos2007Code defines model for PatchedProjectRequestMultipart.OecdFos2007Code.
@@ -51380,9 +51494,18 @@ type Project struct {
 	TypeUuid            *openapi_types.UUID     `json:"type_uuid,omitempty"`
 	Url                 *string                 `json:"url,omitempty"`
 	UserAffiliations    *[]string               `json:"user_affiliations,omitempty"`
-	UserEmailPatterns   *[]string               `json:"user_email_patterns,omitempty"`
-	UserIdentitySources *[]string               `json:"user_identity_sources,omitempty"`
-	Uuid                *openapi_types.UUID     `json:"uuid,omitempty"`
+
+	// UserAssuranceLevels Required assurance URIs (REFEDS). User must have all of these.
+	UserAssuranceLevels *[]string `json:"user_assurance_levels,omitempty"`
+	UserEmailPatterns   *[]string `json:"user_email_patterns,omitempty"`
+	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
+
+	// UserNationalities Allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
+	UserNationalities *[]string `json:"user_nationalities,omitempty"`
+
+	// UserOrganizationTypes Allowed organization type URNs (SCHAC). User must match one.
+	UserOrganizationTypes *[]string           `json:"user_organization_types,omitempty"`
+	Uuid                  *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // Project_OecdFos2007Code defines model for Project.OecdFos2007Code.
@@ -51978,11 +52101,20 @@ type ProjectRequest struct {
 	StaffNotes *string `json:"staff_notes,omitempty"`
 
 	// StartDate Project start date. Cannot be edited after the start date has arrived.
-	StartDate           *openapi_types.Date `json:"start_date,omitempty"`
-	Type                *string             `json:"type,omitempty"`
-	UserAffiliations    *[]string           `json:"user_affiliations,omitempty"`
-	UserEmailPatterns   *[]string           `json:"user_email_patterns,omitempty"`
-	UserIdentitySources *[]string           `json:"user_identity_sources,omitempty"`
+	StartDate        *openapi_types.Date `json:"start_date,omitempty"`
+	Type             *string             `json:"type,omitempty"`
+	UserAffiliations *[]string           `json:"user_affiliations,omitempty"`
+
+	// UserAssuranceLevels Required assurance URIs (REFEDS). User must have all of these.
+	UserAssuranceLevels *[]string `json:"user_assurance_levels,omitempty"`
+	UserEmailPatterns   *[]string `json:"user_email_patterns,omitempty"`
+	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
+
+	// UserNationalities Allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
+	UserNationalities *[]string `json:"user_nationalities,omitempty"`
+
+	// UserOrganizationTypes Allowed organization type URNs (SCHAC). User must match one.
+	UserOrganizationTypes *[]string `json:"user_organization_types,omitempty"`
 }
 
 // ProjectRequest_OecdFos2007Code defines model for ProjectRequest.OecdFos2007Code.
@@ -52018,11 +52150,20 @@ type ProjectRequestForm struct {
 	StaffNotes *string `json:"staff_notes,omitempty"`
 
 	// StartDate Project start date. Cannot be edited after the start date has arrived.
-	StartDate           *openapi_types.Date `json:"start_date,omitempty"`
-	Type                *string             `json:"type,omitempty"`
-	UserAffiliations    *[]string           `json:"user_affiliations,omitempty"`
-	UserEmailPatterns   *[]string           `json:"user_email_patterns,omitempty"`
-	UserIdentitySources *[]string           `json:"user_identity_sources,omitempty"`
+	StartDate        *openapi_types.Date `json:"start_date,omitempty"`
+	Type             *string             `json:"type,omitempty"`
+	UserAffiliations *[]string           `json:"user_affiliations,omitempty"`
+
+	// UserAssuranceLevels Required assurance URIs (REFEDS). User must have all of these.
+	UserAssuranceLevels *[]string `json:"user_assurance_levels,omitempty"`
+	UserEmailPatterns   *[]string `json:"user_email_patterns,omitempty"`
+	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
+
+	// UserNationalities Allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
+	UserNationalities *[]string `json:"user_nationalities,omitempty"`
+
+	// UserOrganizationTypes Allowed organization type URNs (SCHAC). User must match one.
+	UserOrganizationTypes *[]string `json:"user_organization_types,omitempty"`
 }
 
 // ProjectRequestForm_OecdFos2007Code defines model for ProjectRequestForm.OecdFos2007Code.
@@ -52058,11 +52199,20 @@ type ProjectRequestMultipart struct {
 	StaffNotes *string `json:"staff_notes,omitempty"`
 
 	// StartDate Project start date. Cannot be edited after the start date has arrived.
-	StartDate           *openapi_types.Date `json:"start_date,omitempty"`
-	Type                *string             `json:"type,omitempty"`
-	UserAffiliations    *[]string           `json:"user_affiliations,omitempty"`
-	UserEmailPatterns   *[]string           `json:"user_email_patterns,omitempty"`
-	UserIdentitySources *[]string           `json:"user_identity_sources,omitempty"`
+	StartDate        *openapi_types.Date `json:"start_date,omitempty"`
+	Type             *string             `json:"type,omitempty"`
+	UserAffiliations *[]string           `json:"user_affiliations,omitempty"`
+
+	// UserAssuranceLevels Required assurance URIs (REFEDS). User must have all of these.
+	UserAssuranceLevels *[]string `json:"user_assurance_levels,omitempty"`
+	UserEmailPatterns   *[]string `json:"user_email_patterns,omitempty"`
+	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
+
+	// UserNationalities Allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
+	UserNationalities *[]string `json:"user_nationalities,omitempty"`
+
+	// UserOrganizationTypes Allowed organization type URNs (SCHAC). User must match one.
+	UserOrganizationTypes *[]string `json:"user_organization_types,omitempty"`
 }
 
 // ProjectRequestMultipart_OecdFos2007Code defines model for ProjectRequestMultipart.OecdFos2007Code.
@@ -56260,7 +56410,10 @@ type Resource struct {
 	// SpendingLimits Spending limits on usage-based components, per period. Changed with the set_spending_limits action.
 	SpendingLimits *map[string]*map[string]*float64 `json:"spending_limits,omitempty"`
 	State          *ResourceState                   `json:"state,omitempty"`
-	Url            *string                          `json:"url,omitempty"`
+
+	// TerminatedAt When the resource was terminated. Unlike end_date, which is the planned date, this is the moment it happened. It stays set during a restore and is cleared once the resource is OK again, so check the state before reading it as the end of a live resource. Empty if the date is not known.
+	TerminatedAt *time.Time `json:"terminated_at,omitempty"`
+	Url          *string    `json:"url,omitempty"`
 
 	// UsageLimitRestriction Which restriction (paused or downscaled) was automatically applied because reported usage reached a component limit. Empty when no such restriction is active. Used so the automatic lift never clears a restriction that was set for another reason.
 	UsageLimitRestriction *Resource_UsageLimitRestriction `json:"usage_limit_restriction,omitempty"`
