@@ -34350,7 +34350,7 @@ type CustomerEstimatedCostPolicy struct {
 	CreatedByFullName      *string              `json:"created_by_full_name,omitempty"`
 	CreatedByUsername      *string              `json:"created_by_username,omitempty"`
 
-	// CurrentCost The cost this policy compares against limit_cost right now: the period's invoice total, less the credit already applied and the credit still to be drawn. Do not re-derive it — only the server can simulate the pending draw, and a figure computed from the invoice alone will not match what the policy evaluates.
+	// CurrentCost The cost this policy compares against limit_cost right now: the period's invoice total, less the credit already applied and the credit still to be drawn, or the full cost for a policy that does not take credit into account. Do not re-derive it — only the server can simulate the pending draw, and a figure computed from the invoice alone will not match what the policy evaluates.
 	CurrentCost    *string `json:"current_cost,omitempty"`
 	CustomerCredit *string `json:"customer_credit,omitempty"`
 
@@ -42601,7 +42601,7 @@ type OfferingEstimatedCostPolicy struct {
 	CreatedByFullName *string              `json:"created_by_full_name,omitempty"`
 	CreatedByUsername *string              `json:"created_by_username,omitempty"`
 
-	// CurrentCost The cost this policy compares against limit_cost right now: the period's invoice total, less the credit already applied and the credit still to be drawn. Do not re-derive it — only the server can simulate the pending draw, and a figure computed from the invoice alone will not match what the policy evaluates.
+	// CurrentCost The cost this policy compares against limit_cost right now: the period's invoice total, less the credit already applied and the credit still to be drawn, or the full cost for a policy that does not take credit into account. Do not re-derive it — only the server can simulate the pending draw, and a figure computed from the invoice alone will not match what the policy evaluates.
 	CurrentCost *string `json:"current_cost,omitempty"`
 
 	// EtaDate eta_days as a calendar date, so clients do not each re-derive it. Null whenever eta_days is null; today when eta_days is 0.
@@ -51128,13 +51128,13 @@ type PolicyCostBreakdown struct {
 	// CostBeforeCredit The invoiced cost within the policy's period before any credit, tax included.
 	CostBeforeCredit *string `json:"cost_before_credit,omitempty"`
 
-	// CreditDrawn Credit compensation already written on the period's invoices.
+	// CreditDrawn Credit compensation already written on the period's invoices. 0 for a policy that does not take credit into account, which counts the cost credit paid as well.
 	CreditDrawn *string `json:"credit_drawn,omitempty"`
 
-	// CreditPending Credit the current month will still draw that is not written yet. 0 for a policy that does not take credit into account; such a policy still counts the compensation already written, which shows in credit_drawn.
+	// CreditPending Credit the current month will still draw that is not written yet. 0 for a policy that does not take credit into account.
 	CreditPending *string `json:"credit_pending,omitempty"`
 
-	// EarlierMonths The part of current_cost from months before the current one. Credit added now pays only the current month, so this part stays until those months are paid; see ProjectCredit.pay_earlier_invoices. 0 for a one-month period.
+	// EarlierMonths The part of current_cost from months before the current one. 0 for a one-month period. For a policy that takes credit into account, credit added now pays only the current month, so this part stays until those months are paid; see ProjectCredit.pay_earlier_invoices. A policy that does not take credit into account counts this part in full, whatever credit paid.
 	EarlierMonths *string `json:"earlier_months,omitempty"`
 }
 
@@ -51655,7 +51655,7 @@ type ProjectCreditEarlierInvoices struct {
 	// PayableNow What the allocation would pay now: the uncovered cost of the months it pays, capped by what is left of the allocation and of the organization credit after this month's usage so far.
 	PayableNow string `json:"payable_now"`
 
-	// Uncovered Uncovered cost of every month listed: what a period-Total cost policy counts of them.
+	// Uncovered Uncovered cost of every month listed: what a period-Total cost policy that takes credit into account counts of them.
 	Uncovered string `json:"uncovered"`
 
 	// UncoveredInPeriod Uncovered cost of the months the credit pays.
@@ -51816,7 +51816,7 @@ type ProjectEstimatedCostPolicy struct {
 	CreatedByFullName      *string              `json:"created_by_full_name,omitempty"`
 	CreatedByUsername      *string              `json:"created_by_username,omitempty"`
 
-	// CurrentCost The cost this policy compares against limit_cost right now: the period's invoice total, less the credit already applied and the credit still to be drawn. Do not re-derive it — only the server can simulate the pending draw, and a figure computed from the invoice alone will not match what the policy evaluates.
+	// CurrentCost The cost this policy compares against limit_cost right now: the period's invoice total, less the credit already applied and the credit still to be drawn, or the full cost for a policy that does not take credit into account. Do not re-derive it — only the server can simulate the pending draw, and a figure computed from the invoice alone will not match what the policy evaluates.
 	CurrentCost    *string `json:"current_cost,omitempty"`
 	CustomerCredit *string `json:"customer_credit,omitempty"`
 
@@ -130274,7 +130274,7 @@ type ClientInterface interface {
 
 	// ProjectCreditsEarlierInvoicesRetrieve Earlier invoices of the project and what credit paid of them
 	//
-	// Per closed month of the project, the cost the credit could pay and how much of it credit paid, either on the month's own invoice or later. This is the cost a period-Total cost policy keeps counting. Every closed month is listed; in_period marks those the credit pays, by its earlier_invoices_from / earlier_invoices_until, which can be previewed with other bounds.
+	// Per closed month of the project, the cost the credit could pay and how much of it credit paid, either on the month's own invoice or later. This is the cost a period-Total cost policy that takes credit into account keeps counting. Every closed month is listed; in_period marks those the credit pays, by its earlier_invoices_from / earlier_invoices_until, which can be previewed with other bounds.
 	//
 	// Corresponds with GET /api/project-credits/{uuid}/earlier_invoices/ (the `ProjectCreditsEarlierInvoicesRetrieve` operationId).
 	ProjectCreditsEarlierInvoicesRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ProjectCreditsEarlierInvoicesRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -183879,7 +183879,7 @@ func (c *Client) ProjectCreditsUpdate(ctx context.Context, uuid openapi_types.UU
 
 // ProjectCreditsEarlierInvoicesRetrieve Earlier invoices of the project and what credit paid of them
 //
-// Per closed month of the project, the cost the credit could pay and how much of it credit paid, either on the month's own invoice or later. This is the cost a period-Total cost policy keeps counting. Every closed month is listed; in_period marks those the credit pays, by its earlier_invoices_from / earlier_invoices_until, which can be previewed with other bounds.
+// Per closed month of the project, the cost the credit could pay and how much of it credit paid, either on the month's own invoice or later. This is the cost a period-Total cost policy that takes credit into account keeps counting. Every closed month is listed; in_period marks those the credit pays, by its earlier_invoices_from / earlier_invoices_until, which can be previewed with other bounds.
 //
 // Corresponds with GET /api/project-credits/{uuid}/earlier_invoices/ (the `ProjectCreditsEarlierInvoicesRetrieve` operationId).
 func (c *Client) ProjectCreditsEarlierInvoicesRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ProjectCreditsEarlierInvoicesRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -454461,7 +454461,7 @@ type ClientWithResponsesInterface interface {
 
 	// ProjectCreditsEarlierInvoicesRetrieveWithResponse Earlier invoices of the project and what credit paid of them
 	//
-	// Per closed month of the project, the cost the credit could pay and how much of it credit paid, either on the month's own invoice or later. This is the cost a period-Total cost policy keeps counting. Every closed month is listed; in_period marks those the credit pays, by its earlier_invoices_from / earlier_invoices_until, which can be previewed with other bounds.
+	// Per closed month of the project, the cost the credit could pay and how much of it credit paid, either on the month's own invoice or later. This is the cost a period-Total cost policy that takes credit into account keeps counting. Every closed month is listed; in_period marks those the credit pays, by its earlier_invoices_from / earlier_invoices_until, which can be previewed with other bounds.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -621163,7 +621163,7 @@ func (c *ClientWithResponses) ProjectCreditsUpdateWithResponse(ctx context.Conte
 
 // ProjectCreditsEarlierInvoicesRetrieveWithResponse Earlier invoices of the project and what credit paid of them
 //
-// Per closed month of the project, the cost the credit could pay and how much of it credit paid, either on the month's own invoice or later. This is the cost a period-Total cost policy keeps counting. Every closed month is listed; in_period marks those the credit pays, by its earlier_invoices_from / earlier_invoices_until, which can be previewed with other bounds.
+// Per closed month of the project, the cost the credit could pay and how much of it credit paid, either on the month's own invoice or later. This is the cost a period-Total cost policy that takes credit into account keeps counting. Every closed month is listed; in_period marks those the credit pays, by its earlier_invoices_from / earlier_invoices_until, which can be previewed with other bounds.
 //
 // Returns a wrapper object for the known response body format(s).
 //
