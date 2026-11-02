@@ -115217,7 +115217,7 @@ type ClientInterface interface {
 
 	// EventConsumersResync performs a POST /api/event-consumers/{uuid}/resync/ (the `EventConsumersResync` operationId) request.
 	//
-	// Replay the current state to a global consumer, through its own transport and filters, so a receiver that starts late can seed itself. Every active role grant is sent as a `user_role` message with `event_type` `role_snapshot`. Runs asynchronously. Staff/support only.
+	// Replay the current state to a global consumer, through its own transport and filters, so a receiver that starts late can seed itself. Every active role grant is sent as a `user_role` message with `event_type` `role_snapshot`. Runs asynchronously. Staff, or support for its own consumers: support is read-only, so another user's consumer is not found.
 	EventConsumersResync(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// EventConsumersUpdateWebhookWithBody performs a POST /api/event-consumers/{uuid}/update_webhook/ (the `EventConsumersUpdateWebhook` operationId) request,
@@ -119185,7 +119185,7 @@ type ClientInterface interface {
 
 	// MarketplaceOrdersResourceRetrieve Get resource details
 	//
-	// Returns details of the resource connected to the requested object.
+	// Returns details of the resource connected to the requested object, if the consumer or provider resource view shows it to the caller; otherwise 404.
 	//
 	// Corresponds with GET /api/marketplace-orders/{uuid}/resource/ (the `MarketplaceOrdersResourceRetrieve` operationId).
 	MarketplaceOrdersResourceRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOrdersResourceRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -122621,23 +122621,6 @@ type ClientInterface interface {
 	//
 	// Corresponds with POST /api/marketplace-resources/{uuid}/estimate_renewal/ (the `MarketplaceResourcesEstimateRenewal` operationId).
 	MarketplaceResourcesEstimateRenewal(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesEstimateRenewalJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceResourcesGlauthTreeRetrieve Get structured GLauth tree for a resource
-	//
-	// Structured JSON tree (offering, groups, users, robot accounts) scoped to one resource's project. Source of truth for the `glauth_users_config` TOML on this viewset.
-	//
-	// Corresponds with GET /api/marketplace-resources/{uuid}/glauth_tree/ (the `MarketplaceResourcesGlauthTreeRetrieve` operationId).
-	MarketplaceResourcesGlauthTreeRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceResourcesGlauthUsersConfigRetrieve Get GLauth user configuration for a resource
-	//
-	//
-	//         This endpoint provides a GLauth configuration file for the users associated with the project of this resource.
-	//         It is intended for use by an external agent to synchronize user data from Waldur to GLauth.
-	//
-	//
-	// Corresponds with GET /api/marketplace-resources/{uuid}/glauth_users_config/ (the `MarketplaceResourcesGlauthUsersConfigRetrieve` operationId).
-	MarketplaceResourcesGlauthUsersConfigRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourcesHistoryList Get version history
 	//
@@ -146017,7 +146000,7 @@ func (c *Client) EventConsumersDestroy(ctx context.Context, uuid openapi_types.U
 
 // EventConsumersResync performs a POST /api/event-consumers/{uuid}/resync/ (the `EventConsumersResync` operationId) request.
 //
-// Replay the current state to a global consumer, through its own transport and filters, so a receiver that starts late can seed itself. Every active role grant is sent as a `user_role` message with `event_type` `role_snapshot`. Runs asynchronously. Staff/support only.
+// Replay the current state to a global consumer, through its own transport and filters, so a receiver that starts late can seed itself. Every active role grant is sent as a `user_role` message with `event_type` `role_snapshot`. Runs asynchronously. Staff, or support for its own consumers: support is read-only, so another user's consumer is not found.
 func (c *Client) EventConsumersResync(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewEventConsumersResyncRequest(c.Server, uuid)
 	if err != nil {
@@ -156445,7 +156428,7 @@ func (c *Client) MarketplaceOrdersRejectByProvider(ctx context.Context, uuid ope
 
 // MarketplaceOrdersResourceRetrieve Get resource details
 //
-// Returns details of the resource connected to the requested object.
+// Returns details of the resource connected to the requested object, if the consumer or provider resource view shows it to the caller; otherwise 404.
 //
 // Corresponds with GET /api/marketplace-orders/{uuid}/resource/ (the `MarketplaceOrdersResourceRetrieve` operationId).
 func (c *Client) MarketplaceOrdersResourceRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOrdersResourceRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -164450,41 +164433,6 @@ func (c *Client) MarketplaceResourcesEstimateRenewalWithBody(ctx context.Context
 // Corresponds with POST /api/marketplace-resources/{uuid}/estimate_renewal/ (the `MarketplaceResourcesEstimateRenewal` operationId).
 func (c *Client) MarketplaceResourcesEstimateRenewal(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesEstimateRenewalJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceResourcesEstimateRenewalRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// MarketplaceResourcesGlauthTreeRetrieve Get structured GLauth tree for a resource
-//
-// Structured JSON tree (offering, groups, users, robot accounts) scoped to one resource's project. Source of truth for the `glauth_users_config` TOML on this viewset.
-//
-// Corresponds with GET /api/marketplace-resources/{uuid}/glauth_tree/ (the `MarketplaceResourcesGlauthTreeRetrieve` operationId).
-func (c *Client) MarketplaceResourcesGlauthTreeRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceResourcesGlauthTreeRetrieveRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// MarketplaceResourcesGlauthUsersConfigRetrieve Get GLauth user configuration for a resource
-//
-//	This endpoint provides a GLauth configuration file for the users associated with the project of this resource.
-//	It is intended for use by an external agent to synchronize user data from Waldur to GLauth.
-//
-// Corresponds with GET /api/marketplace-resources/{uuid}/glauth_users_config/ (the `MarketplaceResourcesGlauthUsersConfigRetrieve` operationId).
-func (c *Client) MarketplaceResourcesGlauthUsersConfigRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceResourcesGlauthUsersConfigRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -300881,74 +300829,6 @@ func NewMarketplaceResourcesEstimateRenewalRequestWithBody(server string, uuid o
 	return req, nil
 }
 
-// NewMarketplaceResourcesGlauthTreeRetrieveRequest constructs an http.Request for the MarketplaceResourcesGlauthTreeRetrieve method
-func NewMarketplaceResourcesGlauthTreeRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-resources/%s/glauth_tree/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceResourcesGlauthUsersConfigRetrieveRequest constructs an http.Request for the MarketplaceResourcesGlauthUsersConfigRetrieve method
-func NewMarketplaceResourcesGlauthUsersConfigRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-resources/%s/glauth_users_config/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewMarketplaceResourcesHistoryListRequest constructs an http.Request for the MarketplaceResourcesHistoryList method
 func NewMarketplaceResourcesHistoryListRequest(server string, uuid openapi_types.UUID, params *MarketplaceResourcesHistoryListParams) (*http.Request, error) {
 	var err error
@@ -436490,7 +436370,7 @@ type ClientWithResponsesInterface interface {
 
 	// EventConsumersResyncWithResponse performs a POST /api/event-consumers/{uuid}/resync/ (the `EventConsumersResync` operationId) request.
 	//
-	// Replay the current state to a global consumer, through its own transport and filters, so a receiver that starts late can seed itself. Every active role grant is sent as a `user_role` message with `event_type` `role_snapshot`. Runs asynchronously. Staff/support only.
+	// Replay the current state to a global consumer, through its own transport and filters, so a receiver that starts late can seed itself. Every active role grant is sent as a `user_role` message with `event_type` `role_snapshot`. Runs asynchronously. Staff, or support for its own consumers: support is read-only, so another user's consumer is not found.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	EventConsumersResyncWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*EventConsumersResyncResponse, error)
@@ -441276,7 +441156,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceOrdersResourceRetrieveWithResponse Get resource details
 	//
-	// Returns details of the resource connected to the requested object.
+	// Returns details of the resource connected to the requested object, if the consumer or provider resource view shows it to the caller; otherwise 404.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -445110,27 +444990,6 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with POST /api/marketplace-resources/{uuid}/estimate_renewal/ (the `MarketplaceResourcesEstimateRenewal` operationId).
 	MarketplaceResourcesEstimateRenewalWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesEstimateRenewalJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesEstimateRenewalResponse, error)
-
-	// MarketplaceResourcesGlauthTreeRetrieveWithResponse Get structured GLauth tree for a resource
-	//
-	// Structured JSON tree (offering, groups, users, robot accounts) scoped to one resource's project. Source of truth for the `glauth_users_config` TOML on this viewset.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	//
-	// Corresponds with GET /api/marketplace-resources/{uuid}/glauth_tree/ (the `MarketplaceResourcesGlauthTreeRetrieve` operationId).
-	MarketplaceResourcesGlauthTreeRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesGlauthTreeRetrieveResponse, error)
-
-	// MarketplaceResourcesGlauthUsersConfigRetrieveWithResponse Get GLauth user configuration for a resource
-	//
-	//
-	//         This endpoint provides a GLauth configuration file for the users associated with the project of this resource.
-	//         It is intended for use by an external agent to synchronize user data from Waldur to GLauth.
-	//
-	//
-	// Returns a wrapper object for the known response body format(s).
-	//
-	// Corresponds with GET /api/marketplace-resources/{uuid}/glauth_users_config/ (the `MarketplaceResourcesGlauthUsersConfigRetrieve` operationId).
-	MarketplaceResourcesGlauthUsersConfigRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesGlauthUsersConfigRetrieveResponse, error)
 
 	// MarketplaceResourcesHistoryListWithResponse Get version history
 	//
@@ -513019,81 +512878,6 @@ func (r MarketplaceResourcesEstimateRenewalResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceResourcesEstimateRenewalResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type MarketplaceResourcesGlauthTreeRetrieveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *GlauthTree
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r MarketplaceResourcesGlauthTreeRetrieveResponse) GetJSON200() *GlauthTree {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r MarketplaceResourcesGlauthTreeRetrieveResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceResourcesGlauthTreeRetrieveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceResourcesGlauthTreeRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r MarketplaceResourcesGlauthTreeRetrieveResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type MarketplaceResourcesGlauthUsersConfigRetrieveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r MarketplaceResourcesGlauthUsersConfigRetrieveResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceResourcesGlauthUsersConfigRetrieveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceResourcesGlauthUsersConfigRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r MarketplaceResourcesGlauthUsersConfigRetrieveResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -589375,7 +589159,7 @@ func (c *ClientWithResponses) EventConsumersDestroyWithResponse(ctx context.Cont
 
 // EventConsumersResyncWithResponse performs a POST /api/event-consumers/{uuid}/resync/ (the `EventConsumersResync` operationId) request.
 //
-// Replay the current state to a global consumer, through its own transport and filters, so a receiver that starts late can seed itself. Every active role grant is sent as a `user_role` message with `event_type` `role_snapshot`. Runs asynchronously. Staff/support only.
+// Replay the current state to a global consumer, through its own transport and filters, so a receiver that starts late can seed itself. Every active role grant is sent as a `user_role` message with `event_type` `role_snapshot`. Runs asynchronously. Staff, or support for its own consumers: support is read-only, so another user's consumer is not found.
 //
 // Returns a wrapper object for the known response body format(s).
 func (c *ClientWithResponses) EventConsumersResyncWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*EventConsumersResyncResponse, error) {
@@ -598034,7 +597818,7 @@ func (c *ClientWithResponses) MarketplaceOrdersRejectByProviderWithResponse(ctx 
 
 // MarketplaceOrdersResourceRetrieveWithResponse Get resource details
 //
-// Returns details of the resource connected to the requested object.
+// Returns details of the resource connected to the requested object, if the consumer or provider resource view shows it to the caller; otherwise 404.
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -604607,37 +604391,6 @@ func (c *ClientWithResponses) MarketplaceResourcesEstimateRenewalWithResponse(ct
 		return nil, err
 	}
 	return ParseMarketplaceResourcesEstimateRenewalResponse(rsp)
-}
-
-// MarketplaceResourcesGlauthTreeRetrieveWithResponse Get structured GLauth tree for a resource
-//
-// Structured JSON tree (offering, groups, users, robot accounts) scoped to one resource's project. Source of truth for the `glauth_users_config` TOML on this viewset.
-//
-// Returns a wrapper object for the known response body format(s).
-//
-// Corresponds with GET /api/marketplace-resources/{uuid}/glauth_tree/ (the `MarketplaceResourcesGlauthTreeRetrieve` operationId).
-func (c *ClientWithResponses) MarketplaceResourcesGlauthTreeRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesGlauthTreeRetrieveResponse, error) {
-	rsp, err := c.MarketplaceResourcesGlauthTreeRetrieve(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceResourcesGlauthTreeRetrieveResponse(rsp)
-}
-
-// MarketplaceResourcesGlauthUsersConfigRetrieveWithResponse Get GLauth user configuration for a resource
-//
-//	This endpoint provides a GLauth configuration file for the users associated with the project of this resource.
-//	It is intended for use by an external agent to synchronize user data from Waldur to GLauth.
-//
-// Returns a wrapper object for the known response body format(s).
-//
-// Corresponds with GET /api/marketplace-resources/{uuid}/glauth_users_config/ (the `MarketplaceResourcesGlauthUsersConfigRetrieve` operationId).
-func (c *ClientWithResponses) MarketplaceResourcesGlauthUsersConfigRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesGlauthUsersConfigRetrieveResponse, error) {
-	rsp, err := c.MarketplaceResourcesGlauthUsersConfigRetrieve(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceResourcesGlauthUsersConfigRetrieveResponse(rsp)
 }
 
 // MarketplaceResourcesHistoryListWithResponse Get version history
@@ -666939,48 +666692,6 @@ func ParseMarketplaceResourcesEstimateRenewalResponse(rsp *http.Response) (*Mark
 		}
 		response.JSON200 = &dest
 
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceResourcesGlauthTreeRetrieveResponse parses an HTTP response from a MarketplaceResourcesGlauthTreeRetrieveWithResponse call
-func ParseMarketplaceResourcesGlauthTreeRetrieveResponse(rsp *http.Response) (*MarketplaceResourcesGlauthTreeRetrieveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceResourcesGlauthTreeRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest GlauthTree
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceResourcesGlauthUsersConfigRetrieveResponse parses an HTTP response from a MarketplaceResourcesGlauthUsersConfigRetrieveWithResponse call
-func ParseMarketplaceResourcesGlauthUsersConfigRetrieveResponse(rsp *http.Response) (*MarketplaceResourcesGlauthUsersConfigRetrieveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceResourcesGlauthUsersConfigRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
 	}
 
 	return response, nil
