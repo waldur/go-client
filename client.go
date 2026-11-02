@@ -16500,6 +16500,7 @@ const (
 	PermissionMetadataResponsePermissionMapCUSTOMERVIEWREPORTING                        PermissionMetadataResponsePermissionMap = "CUSTOMER.VIEW_REPORTING"
 	PermissionMetadataResponsePermissionMapCUSTOMERVIEWTEAM                             PermissionMetadataResponsePermissionMap = "CUSTOMER.VIEW_TEAM"
 	PermissionMetadataResponsePermissionMapINVITATIONLIST                               PermissionMetadataResponsePermissionMap = "INVITATION.LIST"
+	PermissionMetadataResponsePermissionMapINVOICELIST                                  PermissionMetadataResponsePermissionMap = "INVOICE.LIST"
 	PermissionMetadataResponsePermissionMapLEXISLINKCREATE                              PermissionMetadataResponsePermissionMap = "LEXIS_LINK.CREATE"
 	PermissionMetadataResponsePermissionMapLEXISLINKDELETE                              PermissionMetadataResponsePermissionMap = "LEXIS_LINK.DELETE"
 	PermissionMetadataResponsePermissionMapMATRIXROOMCREATE                             PermissionMetadataResponsePermissionMap = "MATRIX_ROOM.CREATE"
@@ -16673,6 +16674,8 @@ func (e PermissionMetadataResponsePermissionMap) Valid() bool {
 	case PermissionMetadataResponsePermissionMapCUSTOMERVIEWTEAM:
 		return true
 	case PermissionMetadataResponsePermissionMapINVITATIONLIST:
+		return true
+	case PermissionMetadataResponsePermissionMapINVOICELIST:
 		return true
 	case PermissionMetadataResponsePermissionMapLEXISLINKCREATE:
 		return true
@@ -16953,6 +16956,7 @@ const (
 	PermissionMetadataResponsePermissionsCUSTOMERVIEWREPORTING                        PermissionMetadataResponsePermissions = "CUSTOMER.VIEW_REPORTING"
 	PermissionMetadataResponsePermissionsCUSTOMERVIEWTEAM                             PermissionMetadataResponsePermissions = "CUSTOMER.VIEW_TEAM"
 	PermissionMetadataResponsePermissionsINVITATIONLIST                               PermissionMetadataResponsePermissions = "INVITATION.LIST"
+	PermissionMetadataResponsePermissionsINVOICELIST                                  PermissionMetadataResponsePermissions = "INVOICE.LIST"
 	PermissionMetadataResponsePermissionsLEXISLINKCREATE                              PermissionMetadataResponsePermissions = "LEXIS_LINK.CREATE"
 	PermissionMetadataResponsePermissionsLEXISLINKDELETE                              PermissionMetadataResponsePermissions = "LEXIS_LINK.DELETE"
 	PermissionMetadataResponsePermissionsMATRIXROOMCREATE                             PermissionMetadataResponsePermissions = "MATRIX_ROOM.CREATE"
@@ -17126,6 +17130,8 @@ func (e PermissionMetadataResponsePermissions) Valid() bool {
 	case PermissionMetadataResponsePermissionsCUSTOMERVIEWTEAM:
 		return true
 	case PermissionMetadataResponsePermissionsINVITATIONLIST:
+		return true
+	case PermissionMetadataResponsePermissionsINVOICELIST:
 		return true
 	case PermissionMetadataResponsePermissionsLEXISLINKCREATE:
 		return true
@@ -24798,6 +24804,7 @@ const (
 	ValueEnumCUSTOMERVIEWREPORTING                        ValueEnum = "CUSTOMER.VIEW_REPORTING"
 	ValueEnumCUSTOMERVIEWTEAM                             ValueEnum = "CUSTOMER.VIEW_TEAM"
 	ValueEnumINVITATIONLIST                               ValueEnum = "INVITATION.LIST"
+	ValueEnumINVOICELIST                                  ValueEnum = "INVOICE.LIST"
 	ValueEnumLEXISLINKCREATE                              ValueEnum = "LEXIS_LINK.CREATE"
 	ValueEnumLEXISLINKDELETE                              ValueEnum = "LEXIS_LINK.DELETE"
 	ValueEnumMATRIXROOMCREATE                             ValueEnum = "MATRIX_ROOM.CREATE"
@@ -24971,6 +24978,8 @@ func (e ValueEnum) Valid() bool {
 	case ValueEnumCUSTOMERVIEWTEAM:
 		return true
 	case ValueEnumINVITATIONLIST:
+		return true
+	case ValueEnumINVOICELIST:
 		return true
 	case ValueEnumLEXISLINKCREATE:
 		return true
