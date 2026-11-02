@@ -12408,6 +12408,7 @@ const (
 	OfferingTypeEnumMarketplaceBooking      OfferingTypeEnum = "Marketplace.Booking"
 	OfferingTypeEnumMarketplaceRancher      OfferingTypeEnum = "Marketplace.Rancher"
 	OfferingTypeEnumMarketplaceScript       OfferingTypeEnum = "Marketplace.Script"
+	OfferingTypeEnumMarketplaceSiteAgent    OfferingTypeEnum = "Marketplace.SiteAgent"
 	OfferingTypeEnumMarketplaceSlurm        OfferingTypeEnum = "Marketplace.Slurm"
 	OfferingTypeEnumOpenStackInstance       OfferingTypeEnum = "OpenStack.Instance"
 	OfferingTypeEnumOpenStackTenant         OfferingTypeEnum = "OpenStack.Tenant"
@@ -12427,6 +12428,8 @@ func (e OfferingTypeEnum) Valid() bool {
 	case OfferingTypeEnumMarketplaceRancher:
 		return true
 	case OfferingTypeEnumMarketplaceScript:
+		return true
+	case OfferingTypeEnumMarketplaceSiteAgent:
 		return true
 	case OfferingTypeEnumMarketplaceSlurm:
 		return true
@@ -12449,14 +12452,17 @@ func (e OfferingTypeEnum) Valid() bool {
 
 // Defines values for OfferingTypeUpdateTypeEnum.
 const (
-	OfferingTypeUpdateTypeEnumMarketplaceBasic OfferingTypeUpdateTypeEnum = "Marketplace.Basic"
-	OfferingTypeUpdateTypeEnumMarketplaceSlurm OfferingTypeUpdateTypeEnum = "Marketplace.Slurm"
+	OfferingTypeUpdateTypeEnumMarketplaceBasic     OfferingTypeUpdateTypeEnum = "Marketplace.Basic"
+	OfferingTypeUpdateTypeEnumMarketplaceSiteAgent OfferingTypeUpdateTypeEnum = "Marketplace.SiteAgent"
+	OfferingTypeUpdateTypeEnumMarketplaceSlurm     OfferingTypeUpdateTypeEnum = "Marketplace.Slurm"
 )
 
 // Valid indicates whether the value is a known member of the OfferingTypeUpdateTypeEnum enum.
 func (e OfferingTypeUpdateTypeEnum) Valid() bool {
 	switch e {
 	case OfferingTypeUpdateTypeEnumMarketplaceBasic:
+		return true
+	case OfferingTypeUpdateTypeEnumMarketplaceSiteAgent:
 		return true
 	case OfferingTypeUpdateTypeEnumMarketplaceSlurm:
 		return true
@@ -38907,11 +38913,6 @@ type LexisLinkCreateRequest struct {
 	Resource *string `json:"resource,omitempty"`
 }
 
-// LexisLinkRequest defines model for LexisLinkRequest.
-type LexisLinkRequest struct {
-	HeappeProjectId *int `json:"heappe_project_id,omitempty"`
-}
-
 // LicenseSuggestion defines model for LicenseSuggestion.
 type LicenseSuggestion struct {
 	// Confidence Confidence score (0-1) based on name similarity.
@@ -48649,11 +48650,6 @@ type PatchedIssueTagRequest struct {
 	// Color Hex color code, e.g. #FF0000.
 	Color *string `json:"color,omitempty"`
 	Name  *string `json:"name,omitempty"`
-}
-
-// PatchedLexisLinkRequest defines model for PatchedLexisLinkRequest.
-type PatchedLexisLinkRequest struct {
-	HeappeProjectId *int `json:"heappe_project_id,omitempty"`
 }
 
 // PatchedMaintenanceAnnouncementOfferingRequest defines model for PatchedMaintenanceAnnouncementOfferingRequest.
@@ -75538,7 +75534,7 @@ type MarketplaceServiceProvidersCustomerProjectsListParams struct {
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
-	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role.
+	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role and its organization copies.
 	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
 
 	// UserUuidWithActiveRole Filter projects where the given user has a role.
@@ -75630,7 +75626,7 @@ type MarketplaceServiceProvidersCustomerProjectsCountParams struct {
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
-	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role.
+	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role and its organization copies.
 	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
 
 	// UserUuidWithActiveRole Filter projects where the given user has a role.
@@ -76610,7 +76606,7 @@ type MarketplaceServiceProvidersProjectsListParams struct {
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
-	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role.
+	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role and its organization copies.
 	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
 
 	// UserUuidWithActiveRole Filter projects where the given user has a role.
@@ -76699,7 +76695,7 @@ type MarketplaceServiceProvidersProjectsCountParams struct {
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
-	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role.
+	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role and its organization copies.
 	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
 
 	// UserUuidWithActiveRole Filter projects where the given user has a role.
@@ -80016,7 +80012,7 @@ type OpenportalUnmanagedProjectsListParams struct {
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
-	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role.
+	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role and its organization copies.
 	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
 
 	// UserUuid Filter by user UUID.
@@ -80114,7 +80110,7 @@ type OpenportalUnmanagedProjectsCountParams struct {
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
-	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role.
+	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role and its organization copies.
 	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
 
 	// UserUuid Filter by user UUID.
@@ -80235,7 +80231,7 @@ type OpenportalUnmanagedProjectsHistoryListParams struct {
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
-	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role.
+	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role and its organization copies.
 	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
 
 	// UserUuid Filter by user UUID.
@@ -83908,7 +83904,7 @@ type ProjectsListParams struct {
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
-	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role.
+	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role and its organization copies.
 	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
 
 	// UserUuid Filter by user UUID.
@@ -84006,7 +84002,7 @@ type ProjectsCountParams struct {
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
-	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role.
+	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role and its organization copies.
 	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
 
 	// UserUuid Filter by user UUID.
@@ -84225,7 +84221,7 @@ type ProjectsHistoryListParams struct {
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
-	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role.
+	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role and its organization copies.
 	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
 
 	// UserUuid Filter by user UUID.
@@ -90619,12 +90615,6 @@ type KeysCreateJSONRequestBody = SshKeyRequest
 // LexisLinksCreateJSONRequestBody defines body for LexisLinksCreate for application/json ContentType.
 type LexisLinksCreateJSONRequestBody = LexisLinkCreateRequest
 
-// LexisLinksPartialUpdateJSONRequestBody defines body for LexisLinksPartialUpdate for application/json ContentType.
-type LexisLinksPartialUpdateJSONRequestBody = PatchedLexisLinkRequest
-
-// LexisLinksUpdateJSONRequestBody defines body for LexisLinksUpdate for application/json ContentType.
-type LexisLinksUpdateJSONRequestBody = LexisLinkRequest
-
 // MaintenanceAnnouncementOfferingsCreateJSONRequestBody defines body for MaintenanceAnnouncementOfferingsCreate for application/json ContentType.
 type MaintenanceAnnouncementOfferingsCreateJSONRequestBody = MaintenanceAnnouncementOfferingRequest
 
@@ -92197,9 +92187,6 @@ type OpenstackSecurityGroupsSetErredJSONRequestBody = SetErredRequest
 
 // OpenstackSecurityGroupsSetRulesJSONRequestBody defines body for OpenstackSecurityGroupsSetRules for application/json ContentType.
 type OpenstackSecurityGroupsSetRulesJSONRequestBody = OpenstackSecurityGroupsSetRulesJSONBody
-
-// OpenstackServerGroupsCreateJSONRequestBody defines body for OpenstackServerGroupsCreate for application/json ContentType.
-type OpenstackServerGroupsCreateJSONRequestBody = OpenStackServerGroupRequest
 
 // OpenstackServerGroupsSetErredJSONRequestBody defines body for OpenstackServerGroupsSetErred for application/json ContentType.
 type OpenstackServerGroupsSetErredJSONRequestBody = SetErredRequest
@@ -116271,22 +116258,6 @@ type ClientInterface interface {
 	// LexisLinksRetrieve performs a GET /api/lexis-links/{uuid}/ (the `LexisLinksRetrieve` operationId) request.
 	LexisLinksRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// LexisLinksPartialUpdateWithBody performs a PATCH /api/lexis-links/{uuid}/ (the `LexisLinksPartialUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	LexisLinksPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// LexisLinksPartialUpdate performs a PATCH /api/lexis-links/{uuid}/ (the `LexisLinksPartialUpdate` operationId) request.
-	// Takes a body of the `application/json` content type.
-	LexisLinksPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body LexisLinksPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// LexisLinksUpdateWithBody performs a PUT /api/lexis-links/{uuid}/ (the `LexisLinksUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	LexisLinksUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// LexisLinksUpdate performs a PUT /api/lexis-links/{uuid}/ (the `LexisLinksUpdate` operationId) request.
-	// Takes a body of the `application/json` content type.
-	LexisLinksUpdate(ctx context.Context, uuid openapi_types.UUID, body LexisLinksUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// MaintenanceAnnouncementOfferingsList List affected offerings for maintenance
 	//
 	// Returns a paginated list of offerings affected by maintenance announcements.
@@ -121092,7 +121063,7 @@ type ClientInterface interface {
 
 	// MarketplaceProviderOfferingsUpdateTypeWithBody Swap offering type
 	//
-	// Changes the offering's `type` between Marketplace.Basic and the site-agent type (Marketplace.Slurm). Both plugins share the same data shape (the site-agent processors inherit from Basic and only delegate the send paths to the external agent), so the swap is safe in either direction. Refused if the offering's current type is not in the swappable set.
+	// Changes the offering's `type` between Marketplace.Basic and the site-agent type (Marketplace.SiteAgent; the legacy name Marketplace.Slurm is accepted). Both plugins share the same data shape (the site-agent processors inherit from Basic and only delegate the send paths to the external agent), so the swap is safe in either direction. Refused if the offering's current type is not in the swappable set.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -121101,7 +121072,7 @@ type ClientInterface interface {
 
 	// MarketplaceProviderOfferingsUpdateType Swap offering type
 	//
-	// Changes the offering's `type` between Marketplace.Basic and the site-agent type (Marketplace.Slurm). Both plugins share the same data shape (the site-agent processors inherit from Basic and only delegate the send paths to the external agent), so the swap is safe in either direction. Refused if the offering's current type is not in the swappable set.
+	// Changes the offering's `type` between Marketplace.Basic and the site-agent type (Marketplace.SiteAgent; the legacy name Marketplace.Slurm is accepted). Both plugins share the same data shape (the site-agent processors inherit from Basic and only delegate the send paths to the external agent), so the swap is safe in either direction. Refused if the offering's current type is not in the swappable set.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -121836,7 +121807,7 @@ type ClientInterface interface {
 
 	// MarketplaceProviderResourcesUnlink Unlink a resource (staff only)
 	//
-	// Forcefully deletes a marketplace resource and its related plugin resource from the database. This action does not schedule operations on the backend and is intended for cleaning up resources stuck in transitioning states. Requires staff permissions.
+	// Schedules forced deletion of a marketplace resource and its related plugin resource from the database. This action does not schedule operations on the backend and is intended for cleaning up resources stuck in transitioning states. The resource keeps its state until the deletion finishes. If the deletion fails, it is rolled back and the resource is left in the Erred state with the error recorded. Requires staff permissions.
 	//
 	// Corresponds with POST /api/marketplace-provider-resources/{uuid}/unlink/ (the `MarketplaceProviderResourcesUnlink` operationId).
 	MarketplaceProviderResourcesUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -122968,7 +122939,7 @@ type ClientInterface interface {
 
 	// MarketplaceResourcesUnlink Unlink a resource (staff only)
 	//
-	// Forcefully deletes a marketplace resource and its related plugin resource from the database. This action does not schedule operations on the backend and is intended for cleaning up resources stuck in transitioning states. Requires staff permissions.
+	// Schedules forced deletion of a marketplace resource and its related plugin resource from the database. This action does not schedule operations on the backend and is intended for cleaning up resources stuck in transitioning states. The resource keeps its state until the deletion finishes. If the deletion fails, it is rolled back and the resource is left in the Erred state with the error recorded. Requires staff permissions.
 	//
 	// Corresponds with POST /api/marketplace-resources/{uuid}/unlink/ (the `MarketplaceResourcesUnlink` operationId).
 	MarketplaceResourcesUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -128850,14 +128821,6 @@ type ClientInterface interface {
 	//
 	// Corresponds with HEAD /api/openstack-server-groups/ (the `OpenstackServerGroupsCount` operationId).
 	OpenstackServerGroupsCount(ctx context.Context, params *OpenstackServerGroupsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OpenstackServerGroupsCreateWithBody performs a POST /api/openstack-server-groups/ (the `OpenstackServerGroupsCreate` operationId) request,
-	// with any type of body and a specified content type.
-	OpenstackServerGroupsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OpenstackServerGroupsCreate performs a POST /api/openstack-server-groups/ (the `OpenstackServerGroupsCreate` operationId) request.
-	// Takes a body of the `application/json` content type.
-	OpenstackServerGroupsCreate(ctx context.Context, body OpenstackServerGroupsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackServerGroupsDestroy Delete server group
 	//
@@ -149055,62 +149018,6 @@ func (c *Client) LexisLinksRetrieve(ctx context.Context, uuid openapi_types.UUID
 	return c.Client.Do(req)
 }
 
-// LexisLinksPartialUpdateWithBody performs a PATCH /api/lexis-links/{uuid}/ (the `LexisLinksPartialUpdate` operationId) request,
-// with any type of body and a specified content type.
-func (c *Client) LexisLinksPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewLexisLinksPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// LexisLinksPartialUpdate performs a PATCH /api/lexis-links/{uuid}/ (the `LexisLinksPartialUpdate` operationId) request.
-// Takes a body of the `application/json` content type.
-func (c *Client) LexisLinksPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body LexisLinksPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewLexisLinksPartialUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// LexisLinksUpdateWithBody performs a PUT /api/lexis-links/{uuid}/ (the `LexisLinksUpdate` operationId) request,
-// with any type of body and a specified content type.
-func (c *Client) LexisLinksUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewLexisLinksUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// LexisLinksUpdate performs a PUT /api/lexis-links/{uuid}/ (the `LexisLinksUpdate` operationId) request.
-// Takes a body of the `application/json` content type.
-func (c *Client) LexisLinksUpdate(ctx context.Context, uuid openapi_types.UUID, body LexisLinksUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewLexisLinksUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 // MaintenanceAnnouncementOfferingsList List affected offerings for maintenance
 //
 // Returns a paginated list of offerings affected by maintenance announcements.
@@ -160878,7 +160785,7 @@ func (c *Client) MarketplaceProviderOfferingsUpdateThumbnailWithFormdataBody(ctx
 
 // MarketplaceProviderOfferingsUpdateTypeWithBody Swap offering type
 //
-// Changes the offering's `type` between Marketplace.Basic and the site-agent type (Marketplace.Slurm). Both plugins share the same data shape (the site-agent processors inherit from Basic and only delegate the send paths to the external agent), so the swap is safe in either direction. Refused if the offering's current type is not in the swappable set.
+// Changes the offering's `type` between Marketplace.Basic and the site-agent type (Marketplace.SiteAgent; the legacy name Marketplace.Slurm is accepted). Both plugins share the same data shape (the site-agent processors inherit from Basic and only delegate the send paths to the external agent), so the swap is safe in either direction. Refused if the offering's current type is not in the swappable set.
 //
 // Takes any type of body and a specified content type.
 //
@@ -160897,7 +160804,7 @@ func (c *Client) MarketplaceProviderOfferingsUpdateTypeWithBody(ctx context.Cont
 
 // MarketplaceProviderOfferingsUpdateType Swap offering type
 //
-// Changes the offering's `type` between Marketplace.Basic and the site-agent type (Marketplace.Slurm). Both plugins share the same data shape (the site-agent processors inherit from Basic and only delegate the send paths to the external agent), so the swap is safe in either direction. Refused if the offering's current type is not in the swappable set.
+// Changes the offering's `type` between Marketplace.Basic and the site-agent type (Marketplace.SiteAgent; the legacy name Marketplace.Slurm is accepted). Both plugins share the same data shape (the site-agent processors inherit from Basic and only delegate the send paths to the external agent), so the swap is safe in either direction. Refused if the offering's current type is not in the swappable set.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -162566,7 +162473,7 @@ func (c *Client) MarketplaceProviderResourcesTerminate(ctx context.Context, uuid
 
 // MarketplaceProviderResourcesUnlink Unlink a resource (staff only)
 //
-// Forcefully deletes a marketplace resource and its related plugin resource from the database. This action does not schedule operations on the backend and is intended for cleaning up resources stuck in transitioning states. Requires staff permissions.
+// Schedules forced deletion of a marketplace resource and its related plugin resource from the database. This action does not schedule operations on the backend and is intended for cleaning up resources stuck in transitioning states. The resource keeps its state until the deletion finishes. If the deletion fails, it is rolled back and the resource is left in the Erred state with the error recorded. Requires staff permissions.
 //
 // Corresponds with POST /api/marketplace-provider-resources/{uuid}/unlink/ (the `MarketplaceProviderResourcesUnlink` operationId).
 func (c *Client) MarketplaceProviderResourcesUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -165256,7 +165163,7 @@ func (c *Client) MarketplaceResourcesTerminate(ctx context.Context, uuid openapi
 
 // MarketplaceResourcesUnlink Unlink a resource (staff only)
 //
-// Forcefully deletes a marketplace resource and its related plugin resource from the database. This action does not schedule operations on the backend and is intended for cleaning up resources stuck in transitioning states. Requires staff permissions.
+// Schedules forced deletion of a marketplace resource and its related plugin resource from the database. This action does not schedule operations on the backend and is intended for cleaning up resources stuck in transitioning states. The resource keeps its state until the deletion finishes. If the deletion fails, it is rolled back and the resource is left in the Erred state with the error recorded. Requires staff permissions.
 //
 // Corresponds with POST /api/marketplace-resources/{uuid}/unlink/ (the `MarketplaceResourcesUnlink` operationId).
 func (c *Client) MarketplaceResourcesUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -180367,34 +180274,6 @@ func (c *Client) OpenstackServerGroupsList(ctx context.Context, params *Openstac
 // Corresponds with HEAD /api/openstack-server-groups/ (the `OpenstackServerGroupsCount` operationId).
 func (c *Client) OpenstackServerGroupsCount(ctx context.Context, params *OpenstackServerGroupsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackServerGroupsCountRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// OpenstackServerGroupsCreateWithBody performs a POST /api/openstack-server-groups/ (the `OpenstackServerGroupsCreate` operationId) request,
-// with any type of body and a specified content type.
-func (c *Client) OpenstackServerGroupsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackServerGroupsCreateRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// OpenstackServerGroupsCreate performs a POST /api/openstack-server-groups/ (the `OpenstackServerGroupsCreate` operationId) request.
-// Takes a body of the `application/json` content type.
-func (c *Client) OpenstackServerGroupsCreate(ctx context.Context, body OpenstackServerGroupsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackServerGroupsCreateRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -248286,100 +248165,6 @@ func NewLexisLinksRetrieveRequest(server string, uuid openapi_types.UUID) (*http
 	if err != nil {
 		return nil, err
 	}
-
-	return req, nil
-}
-
-// NewLexisLinksPartialUpdateRequest calls the generic LexisLinksPartialUpdate builder with application/json body
-func NewLexisLinksPartialUpdateRequest(server string, uuid openapi_types.UUID, body LexisLinksPartialUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewLexisLinksPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewLexisLinksPartialUpdateRequestWithBody constructs an http.Request for the LexisLinksPartialUpdate method, with any body, and a specified content type
-func NewLexisLinksPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/lexis-links/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewLexisLinksUpdateRequest calls the generic LexisLinksUpdate builder with application/json body
-func NewLexisLinksUpdateRequest(server string, uuid openapi_types.UUID, body LexisLinksUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewLexisLinksUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewLexisLinksUpdateRequestWithBody constructs an http.Request for the LexisLinksUpdate method, with any body, and a specified content type
-func NewLexisLinksUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/lexis-links/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -362548,46 +362333,6 @@ func NewOpenstackServerGroupsCountRequest(server string, params *OpenstackServer
 	return req, nil
 }
 
-// NewOpenstackServerGroupsCreateRequest calls the generic OpenstackServerGroupsCreate builder with application/json body
-func NewOpenstackServerGroupsCreateRequest(server string, body OpenstackServerGroupsCreateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewOpenstackServerGroupsCreateRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewOpenstackServerGroupsCreateRequestWithBody constructs an http.Request for the OpenstackServerGroupsCreate method, with any body, and a specified content type
-func NewOpenstackServerGroupsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/openstack-server-groups/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
 // NewOpenstackServerGroupsDestroyRequest constructs an http.Request for the OpenstackServerGroupsDestroy method
 func NewOpenstackServerGroupsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -438066,26 +437811,6 @@ type ClientWithResponsesInterface interface {
 	// Returns a wrapper object for the known response body format(s).
 	LexisLinksRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*LexisLinksRetrieveResponse, error)
 
-	// LexisLinksPartialUpdateWithBodyWithResponse performs a PATCH /api/lexis-links/{uuid}/ (the `LexisLinksPartialUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	LexisLinksPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*LexisLinksPartialUpdateResponse, error)
-
-	// LexisLinksPartialUpdateWithResponse performs a PATCH /api/lexis-links/{uuid}/ (the `LexisLinksPartialUpdate` operationId) request.
-	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	LexisLinksPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body LexisLinksPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*LexisLinksPartialUpdateResponse, error)
-
-	// LexisLinksUpdateWithBodyWithResponse performs a PUT /api/lexis-links/{uuid}/ (the `LexisLinksUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	LexisLinksUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*LexisLinksUpdateResponse, error)
-
-	// LexisLinksUpdateWithResponse performs a PUT /api/lexis-links/{uuid}/ (the `LexisLinksUpdate` operationId) request.
-	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	LexisLinksUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body LexisLinksUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*LexisLinksUpdateResponse, error)
-
 	// MaintenanceAnnouncementOfferingsListWithResponse List affected offerings for maintenance
 	//
 	// Returns a paginated list of offerings affected by maintenance announcements.
@@ -443645,7 +443370,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceProviderOfferingsUpdateTypeWithBodyWithResponse Swap offering type
 	//
-	// Changes the offering's `type` between Marketplace.Basic and the site-agent type (Marketplace.Slurm). Both plugins share the same data shape (the site-agent processors inherit from Basic and only delegate the send paths to the external agent), so the swap is safe in either direction. Refused if the offering's current type is not in the swappable set.
+	// Changes the offering's `type` between Marketplace.Basic and the site-agent type (Marketplace.SiteAgent; the legacy name Marketplace.Slurm is accepted). Both plugins share the same data shape (the site-agent processors inherit from Basic and only delegate the send paths to the external agent), so the swap is safe in either direction. Refused if the offering's current type is not in the swappable set.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -443654,7 +443379,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceProviderOfferingsUpdateTypeWithResponse Swap offering type
 	//
-	// Changes the offering's `type` between Marketplace.Basic and the site-agent type (Marketplace.Slurm). Both plugins share the same data shape (the site-agent processors inherit from Basic and only delegate the send paths to the external agent), so the swap is safe in either direction. Refused if the offering's current type is not in the swappable set.
+	// Changes the offering's `type` between Marketplace.Basic and the site-agent type (Marketplace.SiteAgent; the legacy name Marketplace.Slurm is accepted). Both plugins share the same data shape (the site-agent processors inherit from Basic and only delegate the send paths to the external agent), so the swap is safe in either direction. Refused if the offering's current type is not in the swappable set.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -444455,7 +444180,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceProviderResourcesUnlinkWithResponse Unlink a resource (staff only)
 	//
-	// Forcefully deletes a marketplace resource and its related plugin resource from the database. This action does not schedule operations on the backend and is intended for cleaning up resources stuck in transitioning states. Requires staff permissions.
+	// Schedules forced deletion of a marketplace resource and its related plugin resource from the database. This action does not schedule operations on the backend and is intended for cleaning up resources stuck in transitioning states. The resource keeps its state until the deletion finishes. If the deletion fails, it is rolled back and the resource is left in the Erred state with the error recorded. Requires staff permissions.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -445729,7 +445454,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceResourcesUnlinkWithResponse Unlink a resource (staff only)
 	//
-	// Forcefully deletes a marketplace resource and its related plugin resource from the database. This action does not schedule operations on the backend and is intended for cleaning up resources stuck in transitioning states. Requires staff permissions.
+	// Schedules forced deletion of a marketplace resource and its related plugin resource from the database. This action does not schedule operations on the backend and is intended for cleaning up resources stuck in transitioning states. The resource keeps its state until the deletion finishes. If the deletion fails, it is rolled back and the resource is left in the Erred state with the error recorded. Requires staff permissions.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -452813,16 +452538,6 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with HEAD /api/openstack-server-groups/ (the `OpenstackServerGroupsCount` operationId).
 	OpenstackServerGroupsCountWithResponse(ctx context.Context, params *OpenstackServerGroupsCountParams, reqEditors ...RequestEditorFn) (*OpenstackServerGroupsCountResponse, error)
-
-	// OpenstackServerGroupsCreateWithBodyWithResponse performs a POST /api/openstack-server-groups/ (the `OpenstackServerGroupsCreate` operationId) request,
-	// with any type of body and a specified content type.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	OpenstackServerGroupsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackServerGroupsCreateResponse, error)
-
-	// OpenstackServerGroupsCreateWithResponse performs a POST /api/openstack-server-groups/ (the `OpenstackServerGroupsCreate` operationId) request.
-	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	OpenstackServerGroupsCreateWithResponse(ctx context.Context, body OpenstackServerGroupsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackServerGroupsCreateResponse, error)
 
 	// OpenstackServerGroupsDestroyWithResponse Delete server group
 	//
@@ -487484,88 +487199,6 @@ func (r LexisLinksRetrieveResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r LexisLinksRetrieveResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type LexisLinksPartialUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *LexisLink
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r LexisLinksPartialUpdateResponse) GetJSON200() *LexisLink {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r LexisLinksPartialUpdateResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r LexisLinksPartialUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r LexisLinksPartialUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r LexisLinksPartialUpdateResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type LexisLinksUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *LexisLink
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r LexisLinksUpdateResponse) GetJSON200() *LexisLink {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r LexisLinksUpdateResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r LexisLinksUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r LexisLinksUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r LexisLinksUpdateResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -543328,47 +542961,6 @@ func (r OpenstackServerGroupsCountResponse) ContentType() string {
 	return ""
 }
 
-type OpenstackServerGroupsCreateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON201 the response for an HTTP 201 `application/json` response
-	JSON201 *OpenStackServerGroup
-}
-
-// GetJSON201 returns the response for an HTTP 201 `application/json` response
-func (r OpenstackServerGroupsCreateResponse) GetJSON201() *OpenStackServerGroup {
-	return r.JSON201
-}
-
-// GetBody returns the raw response body bytes
-func (r OpenstackServerGroupsCreateResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r OpenstackServerGroupsCreateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OpenstackServerGroupsCreateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r OpenstackServerGroupsCreateResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
 type OpenstackServerGroupsDestroyResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -592285,50 +591877,6 @@ func (c *ClientWithResponses) LexisLinksRetrieveWithResponse(ctx context.Context
 	return ParseLexisLinksRetrieveResponse(rsp)
 }
 
-// LexisLinksPartialUpdateWithBodyWithResponse performs a PATCH /api/lexis-links/{uuid}/ (the `LexisLinksPartialUpdate` operationId) request,
-// with any type of body and a specified content type.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) LexisLinksPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*LexisLinksPartialUpdateResponse, error) {
-	rsp, err := c.LexisLinksPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseLexisLinksPartialUpdateResponse(rsp)
-}
-
-// LexisLinksPartialUpdateWithResponse performs a PATCH /api/lexis-links/{uuid}/ (the `LexisLinksPartialUpdate` operationId) request.
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) LexisLinksPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body LexisLinksPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*LexisLinksPartialUpdateResponse, error) {
-	rsp, err := c.LexisLinksPartialUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseLexisLinksPartialUpdateResponse(rsp)
-}
-
-// LexisLinksUpdateWithBodyWithResponse performs a PUT /api/lexis-links/{uuid}/ (the `LexisLinksUpdate` operationId) request,
-// with any type of body and a specified content type.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) LexisLinksUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*LexisLinksUpdateResponse, error) {
-	rsp, err := c.LexisLinksUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseLexisLinksUpdateResponse(rsp)
-}
-
-// LexisLinksUpdateWithResponse performs a PUT /api/lexis-links/{uuid}/ (the `LexisLinksUpdate` operationId) request.
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) LexisLinksUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body LexisLinksUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*LexisLinksUpdateResponse, error) {
-	rsp, err := c.LexisLinksUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseLexisLinksUpdateResponse(rsp)
-}
-
 // MaintenanceAnnouncementOfferingsListWithResponse List affected offerings for maintenance
 //
 // Returns a paginated list of offerings affected by maintenance announcements.
@@ -602054,7 +601602,7 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateThumbnailWithFor
 
 // MarketplaceProviderOfferingsUpdateTypeWithBodyWithResponse Swap offering type
 //
-// Changes the offering's `type` between Marketplace.Basic and the site-agent type (Marketplace.Slurm). Both plugins share the same data shape (the site-agent processors inherit from Basic and only delegate the send paths to the external agent), so the swap is safe in either direction. Refused if the offering's current type is not in the swappable set.
+// Changes the offering's `type` between Marketplace.Basic and the site-agent type (Marketplace.SiteAgent; the legacy name Marketplace.Slurm is accepted). Both plugins share the same data shape (the site-agent processors inherit from Basic and only delegate the send paths to the external agent), so the swap is safe in either direction. Refused if the offering's current type is not in the swappable set.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -602069,7 +601617,7 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateTypeWithBodyWith
 
 // MarketplaceProviderOfferingsUpdateTypeWithResponse Swap offering type
 //
-// Changes the offering's `type` between Marketplace.Basic and the site-agent type (Marketplace.Slurm). Both plugins share the same data shape (the site-agent processors inherit from Basic and only delegate the send paths to the external agent), so the swap is safe in either direction. Refused if the offering's current type is not in the swappable set.
+// Changes the offering's `type` between Marketplace.Basic and the site-agent type (Marketplace.SiteAgent; the legacy name Marketplace.Slurm is accepted). Both plugins share the same data shape (the site-agent processors inherit from Basic and only delegate the send paths to the external agent), so the swap is safe in either direction. Refused if the offering's current type is not in the swappable set.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -603430,7 +602978,7 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesTerminateWithResponse(
 
 // MarketplaceProviderResourcesUnlinkWithResponse Unlink a resource (staff only)
 //
-// Forcefully deletes a marketplace resource and its related plugin resource from the database. This action does not schedule operations on the backend and is intended for cleaning up resources stuck in transitioning states. Requires staff permissions.
+// Schedules forced deletion of a marketplace resource and its related plugin resource from the database. This action does not schedule operations on the backend and is intended for cleaning up resources stuck in transitioning states. The resource keeps its state until the deletion finishes. If the deletion fails, it is rolled back and the resource is left in the Erred state with the error recorded. Requires staff permissions.
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -605635,7 +605183,7 @@ func (c *ClientWithResponses) MarketplaceResourcesTerminateWithResponse(ctx cont
 
 // MarketplaceResourcesUnlinkWithResponse Unlink a resource (staff only)
 //
-// Forcefully deletes a marketplace resource and its related plugin resource from the database. This action does not schedule operations on the backend and is intended for cleaning up resources stuck in transitioning states. Requires staff permissions.
+// Schedules forced deletion of a marketplace resource and its related plugin resource from the database. This action does not schedule operations on the backend and is intended for cleaning up resources stuck in transitioning states. The resource keeps its state until the deletion finishes. If the deletion fails, it is rolled back and the resource is left in the Erred state with the error recorded. Requires staff permissions.
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -618263,28 +617811,6 @@ func (c *ClientWithResponses) OpenstackServerGroupsCountWithResponse(ctx context
 		return nil, err
 	}
 	return ParseOpenstackServerGroupsCountResponse(rsp)
-}
-
-// OpenstackServerGroupsCreateWithBodyWithResponse performs a POST /api/openstack-server-groups/ (the `OpenstackServerGroupsCreate` operationId) request,
-// with any type of body and a specified content type.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenstackServerGroupsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackServerGroupsCreateResponse, error) {
-	rsp, err := c.OpenstackServerGroupsCreateWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackServerGroupsCreateResponse(rsp)
-}
-
-// OpenstackServerGroupsCreateWithResponse performs a POST /api/openstack-server-groups/ (the `OpenstackServerGroupsCreate` operationId) request.
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenstackServerGroupsCreateWithResponse(ctx context.Context, body OpenstackServerGroupsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackServerGroupsCreateResponse, error) {
-	rsp, err := c.OpenstackServerGroupsCreate(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackServerGroupsCreateResponse(rsp)
 }
 
 // OpenstackServerGroupsDestroyWithResponse Delete server group
@@ -651188,58 +650714,6 @@ func ParseLexisLinksRetrieveResponse(rsp *http.Response) (*LexisLinksRetrieveRes
 	}
 
 	response := &LexisLinksRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest LexisLink
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseLexisLinksPartialUpdateResponse parses an HTTP response from a LexisLinksPartialUpdateWithResponse call
-func ParseLexisLinksPartialUpdateResponse(rsp *http.Response) (*LexisLinksPartialUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &LexisLinksPartialUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest LexisLink
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseLexisLinksUpdateResponse parses an HTTP response from a LexisLinksUpdateWithResponse call
-func ParseLexisLinksUpdateResponse(rsp *http.Response) (*LexisLinksUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &LexisLinksUpdateResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -686500,32 +685974,6 @@ func ParseOpenstackServerGroupsCountResponse(rsp *http.Response) (*OpenstackServ
 	response := &OpenstackServerGroupsCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseOpenstackServerGroupsCreateResponse parses an HTTP response from a OpenstackServerGroupsCreateWithResponse call
-func ParseOpenstackServerGroupsCreateResponse(rsp *http.Response) (*OpenstackServerGroupsCreateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OpenstackServerGroupsCreateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest OpenStackServerGroup
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON201 = &dest
-
 	}
 
 	return response, nil
