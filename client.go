@@ -990,7 +990,9 @@ func (e AttachmentEnum) Valid() bool {
 // Defines values for AttachmentFieldEnum.
 const (
 	AttachmentFieldEnumBackendId          AttachmentFieldEnum = "backend_id"
+	AttachmentFieldEnumCanDelete          AttachmentFieldEnum = "can_delete"
 	AttachmentFieldEnumCreated            AttachmentFieldEnum = "created"
+	AttachmentFieldEnumDeleteIsLocalOnly  AttachmentFieldEnum = "delete_is_local_only"
 	AttachmentFieldEnumDestroyIsAvailable AttachmentFieldEnum = "destroy_is_available"
 	AttachmentFieldEnumFile               AttachmentFieldEnum = "file"
 	AttachmentFieldEnumFileName           AttachmentFieldEnum = "file_name"
@@ -1007,7 +1009,11 @@ func (e AttachmentFieldEnum) Valid() bool {
 	switch e {
 	case AttachmentFieldEnumBackendId:
 		return true
+	case AttachmentFieldEnumCanDelete:
+		return true
 	case AttachmentFieldEnumCreated:
+		return true
+	case AttachmentFieldEnumDeleteIsLocalOnly:
 		return true
 	case AttachmentFieldEnumDestroyIsAvailable:
 		return true
@@ -28173,8 +28179,14 @@ type AttachResourceRequest struct {
 
 // Attachment defines model for Attachment.
 type Attachment struct {
-	BackendId          *string             `json:"backend_id,omitempty"`
-	Created            *time.Time          `json:"created,omitempty"`
+	BackendId *string `json:"backend_id,omitempty"`
+
+	// CanDelete Whether the caller may delete this attachment, by the check the delete route runs. Whether the support backend allows deleting it is destroy_is_available.
+	CanDelete *bool      `json:"can_delete,omitempty"`
+	Created   *time.Time `json:"created,omitempty"`
+
+	// DeleteIsLocalOnly True when the attachment's ticket was routed to a provider helpdesk that has since been removed from Waldur: deleting removes the file from Waldur only, and any copy on the provider's helpdesk stays.
+	DeleteIsLocalOnly  *bool               `json:"delete_is_local_only,omitempty"`
 	DestroyIsAvailable *bool               `json:"destroy_is_available,omitempty"`
 	File               *string             `json:"file,omitempty"`
 	FileName           *string             `json:"file_name,omitempty"`
@@ -49706,8 +49718,10 @@ type PatchedProtectedRoundRequest_UndecidedAtRoundCompletion struct {
 
 // PatchedProviderCannedResponseRequest defines model for PatchedProviderCannedResponseRequest.
 type PatchedProviderCannedResponseRequest struct {
-	Category         *string             `json:"category,omitempty"`
-	Name             *string             `json:"name,omitempty"`
+	Category *string `json:"category,omitempty"`
+	Name     *string `json:"name,omitempty"`
+
+	// ProviderHelpdesk Helpdesk the response belongs to. Only staff can change it.
 	ProviderHelpdesk *openapi_types.UUID `json:"provider_helpdesk,omitempty"`
 
 	// Text Template text. Supports Django template syntax.
@@ -49716,6 +49730,7 @@ type PatchedProviderCannedResponseRequest struct {
 
 // PatchedProviderHelpdeskRequest defines model for PatchedProviderHelpdeskRequest.
 type PatchedProviderHelpdeskRequest struct {
+	// BackendType Helpdesk system the helpdesk connects to. Only staff can change it.
 	BackendType *BackendTypeEnum `json:"backend_type,omitempty"`
 	IsActive    *bool            `json:"is_active,omitempty"`
 
@@ -49725,9 +49740,11 @@ type PatchedProviderHelpdeskRequest struct {
 	NotifyOnEscalation *bool                `json:"notify_on_escalation,omitempty"`
 	NotifyOnNewTicket  *bool                `json:"notify_on_new_ticket,omitempty"`
 	NotifyOnSlaWarning *bool                `json:"notify_on_sla_warning,omitempty"`
-	ServiceProvider    *openapi_types.UUID  `json:"service_provider,omitempty"`
 
-	// Settings Backend-specific configuration.
+	// ServiceProvider Service provider the helpdesk serves. Only staff can change it.
+	ServiceProvider *openapi_types.UUID `json:"service_provider,omitempty"`
+
+	// Settings Backend-specific configuration. Only staff can change it, and only staff see the credentials in it.
 	Settings      *map[string]interface{} `json:"settings,omitempty"`
 	WebhookSecret *string                 `json:"webhook_secret,omitempty"`
 }
@@ -49755,22 +49772,17 @@ type PatchedProviderSupportUserRequest struct {
 	IsActive *bool `json:"is_active,omitempty"`
 
 	// MaxOpenTickets Maximum number of open tickets this user can handle.
-	MaxOpenTickets   *int                         `json:"max_open_tickets,omitempty"`
+	MaxOpenTickets *int `json:"max_open_tickets,omitempty"`
+
+	// ProviderHelpdesk Helpdesk the agent answers for. Only staff can change it.
 	ProviderHelpdesk *openapi_types.UUID          `json:"provider_helpdesk,omitempty"`
 	Role             *ProviderSupportUserRoleEnum `json:"role,omitempty"`
 
 	// Skills List of skill tags for routing.
 	Skills *[]string `json:"skills,omitempty"`
-	User   *string   `json:"user,omitempty"`
-}
 
-// PatchedProviderTicketRequest defines model for PatchedProviderTicketRequest.
-type PatchedProviderTicketRequest struct {
-	Customer *string `json:"customer,omitempty"`
-
-	// EscalatedAt When the issue was escalated.
-	EscalatedAt *time.Time `json:"escalated_at,omitempty"`
-	Project     *string    `json:"project,omitempty"`
+	// User User who is the agent. Only staff can change it.
+	User *string `json:"user,omitempty"`
 }
 
 // PatchedQuestionAdminRequest defines model for PatchedQuestionAdminRequest.
@@ -53090,10 +53102,12 @@ type ProviderAssignRequest struct {
 
 // ProviderCannedResponse defines model for ProviderCannedResponse.
 type ProviderCannedResponse struct {
-	Category         *string            `json:"category,omitempty"`
-	Created          *time.Time         `json:"created,omitempty"`
-	Modified         *time.Time         `json:"modified,omitempty"`
-	Name             string             `json:"name"`
+	Category *string    `json:"category,omitempty"`
+	Created  *time.Time `json:"created,omitempty"`
+	Modified *time.Time `json:"modified,omitempty"`
+	Name     string     `json:"name"`
+
+	// ProviderHelpdesk Helpdesk the response belongs to. Only staff can change it.
 	ProviderHelpdesk openapi_types.UUID `json:"provider_helpdesk"`
 
 	// Text Template text. Supports Django template syntax.
@@ -53105,8 +53119,10 @@ type ProviderCannedResponse struct {
 
 // ProviderCannedResponseRequest defines model for ProviderCannedResponseRequest.
 type ProviderCannedResponseRequest struct {
-	Category         *string            `json:"category,omitempty"`
-	Name             string             `json:"name"`
+	Category *string `json:"category,omitempty"`
+	Name     string  `json:"name"`
+
+	// ProviderHelpdesk Helpdesk the response belongs to. Only staff can change it.
 	ProviderHelpdesk openapi_types.UUID `json:"provider_helpdesk"`
 
 	// Text Template text. Supports Django template syntax.
@@ -53170,6 +53186,7 @@ type ProviderGlauthTree struct {
 
 // ProviderHelpdesk defines model for ProviderHelpdesk.
 type ProviderHelpdesk struct {
+	// BackendType Helpdesk system the helpdesk connects to. Only staff can change it.
 	BackendType        *BackendTypeEnum `json:"backend_type,omitempty"`
 	Created            *time.Time       `json:"created,omitempty"`
 	FailedRoutingCount *int             `json:"failed_routing_count,omitempty"`
@@ -53179,15 +53196,17 @@ type ProviderHelpdesk struct {
 	Modified           *time.Time       `json:"modified,omitempty"`
 
 	// NotificationEmail Primary email for notifications.
-	NotificationEmail   *openapi_types.Email `json:"notification_email,omitempty"`
-	NotifyOnComment     *bool                `json:"notify_on_comment,omitempty"`
-	NotifyOnEscalation  *bool                `json:"notify_on_escalation,omitempty"`
-	NotifyOnNewTicket   *bool                `json:"notify_on_new_ticket,omitempty"`
-	NotifyOnSlaWarning  *bool                `json:"notify_on_sla_warning,omitempty"`
-	ServiceProvider     openapi_types.UUID   `json:"service_provider"`
-	ServiceProviderName *string              `json:"service_provider_name,omitempty"`
+	NotificationEmail  *openapi_types.Email `json:"notification_email,omitempty"`
+	NotifyOnComment    *bool                `json:"notify_on_comment,omitempty"`
+	NotifyOnEscalation *bool                `json:"notify_on_escalation,omitempty"`
+	NotifyOnNewTicket  *bool                `json:"notify_on_new_ticket,omitempty"`
+	NotifyOnSlaWarning *bool                `json:"notify_on_sla_warning,omitempty"`
 
-	// Settings Backend-specific configuration.
+	// ServiceProvider Service provider the helpdesk serves. Only staff can change it.
+	ServiceProvider     openapi_types.UUID `json:"service_provider"`
+	ServiceProviderName *string            `json:"service_provider_name,omitempty"`
+
+	// Settings Backend-specific configuration. Only staff can change it, and only staff see the credentials in it.
 	Settings      *map[string]interface{} `json:"settings,omitempty"`
 	Url           *string                 `json:"url,omitempty"`
 	Uuid          *openapi_types.UUID     `json:"uuid,omitempty"`
@@ -53196,6 +53215,7 @@ type ProviderHelpdesk struct {
 
 // ProviderHelpdeskRequest defines model for ProviderHelpdeskRequest.
 type ProviderHelpdeskRequest struct {
+	// BackendType Helpdesk system the helpdesk connects to. Only staff can change it.
 	BackendType *BackendTypeEnum `json:"backend_type,omitempty"`
 	IsActive    *bool            `json:"is_active,omitempty"`
 
@@ -53205,9 +53225,11 @@ type ProviderHelpdeskRequest struct {
 	NotifyOnEscalation *bool                `json:"notify_on_escalation,omitempty"`
 	NotifyOnNewTicket  *bool                `json:"notify_on_new_ticket,omitempty"`
 	NotifyOnSlaWarning *bool                `json:"notify_on_sla_warning,omitempty"`
-	ServiceProvider    openapi_types.UUID   `json:"service_provider"`
 
-	// Settings Backend-specific configuration.
+	// ServiceProvider Service provider the helpdesk serves. Only staff can change it.
+	ServiceProvider openapi_types.UUID `json:"service_provider"`
+
+	// Settings Backend-specific configuration. Only staff can change it, and only staff see the credentials in it.
 	Settings      *map[string]interface{} `json:"settings,omitempty"`
 	WebhookSecret *string                 `json:"webhook_secret,omitempty"`
 }
@@ -53595,15 +53617,19 @@ type ProviderSupportUser struct {
 	IsActive    *bool      `json:"is_active,omitempty"`
 
 	// MaxOpenTickets Maximum number of open tickets this user can handle.
-	MaxOpenTickets   *int                         `json:"max_open_tickets,omitempty"`
-	Modified         *time.Time                   `json:"modified,omitempty"`
-	OpenTicketCount  *int                         `json:"open_ticket_count,omitempty"`
+	MaxOpenTickets  *int       `json:"max_open_tickets,omitempty"`
+	Modified        *time.Time `json:"modified,omitempty"`
+	OpenTicketCount *int       `json:"open_ticket_count,omitempty"`
+
+	// ProviderHelpdesk Helpdesk the agent answers for. Only staff can change it.
 	ProviderHelpdesk openapi_types.UUID           `json:"provider_helpdesk"`
 	Role             *ProviderSupportUserRoleEnum `json:"role,omitempty"`
 
 	// Skills List of skill tags for routing.
-	Skills       *[]string            `json:"skills,omitempty"`
-	Url          *string              `json:"url,omitempty"`
+	Skills *[]string `json:"skills,omitempty"`
+	Url    *string   `json:"url,omitempty"`
+
+	// User User who is the agent. Only staff can change it.
 	User         string               `json:"user"`
 	UserEmail    *openapi_types.Email `json:"user_email,omitempty"`
 	UserFullName *string              `json:"user_full_name,omitempty"`
@@ -53615,13 +53641,17 @@ type ProviderSupportUserRequest struct {
 	IsActive *bool `json:"is_active,omitempty"`
 
 	// MaxOpenTickets Maximum number of open tickets this user can handle.
-	MaxOpenTickets   *int                         `json:"max_open_tickets,omitempty"`
+	MaxOpenTickets *int `json:"max_open_tickets,omitempty"`
+
+	// ProviderHelpdesk Helpdesk the agent answers for. Only staff can change it.
 	ProviderHelpdesk openapi_types.UUID           `json:"provider_helpdesk"`
 	Role             *ProviderSupportUserRoleEnum `json:"role,omitempty"`
 
 	// Skills List of skill tags for routing.
 	Skills *[]string `json:"skills,omitempty"`
-	User   string    `json:"user"`
+
+	// User User who is the agent. Only staff can change it.
+	User string `json:"user"`
 }
 
 // ProviderSupportUserRoleEnum defines model for ProviderSupportUserRoleEnum.
@@ -53680,15 +53710,6 @@ type ProviderTicket struct {
 
 // ProviderTicketOEnum defines model for ProviderTicketOEnum.
 type ProviderTicketOEnum string
-
-// ProviderTicketRequest defines model for ProviderTicketRequest.
-type ProviderTicketRequest struct {
-	Customer *string `json:"customer,omitempty"`
-
-	// EscalatedAt When the issue was escalated.
-	EscalatedAt *time.Time `json:"escalated_at,omitempty"`
-	Project     *string    `json:"project,omitempty"`
-}
 
 // ProviderUser defines model for ProviderUser.
 type ProviderUser struct {
@@ -87964,15 +87985,6 @@ type SupportUsersCountParams struct {
 	User  *int    `form:"user,omitempty" json:"user,omitempty"`
 }
 
-// SupportSettingsAtlassianListParams defines parameters for SupportSettingsAtlassianList.
-type SupportSettingsAtlassianListParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
 // SupportSettingsAtlassianDiscoverCustomFieldsParams defines parameters for SupportSettingsAtlassianDiscoverCustomFields.
 type SupportSettingsAtlassianDiscoverCustomFieldsParams struct {
 	// Page A page number within the paginated result set.
@@ -92686,17 +92698,8 @@ type ProviderSupportUsersPartialUpdateJSONRequestBody = PatchedProviderSupportUs
 // ProviderSupportUsersUpdateJSONRequestBody defines body for ProviderSupportUsersUpdate for application/json ContentType.
 type ProviderSupportUsersUpdateJSONRequestBody = ProviderSupportUserRequest
 
-// ProviderTicketsPartialUpdateJSONRequestBody defines body for ProviderTicketsPartialUpdate for application/json ContentType.
-type ProviderTicketsPartialUpdateJSONRequestBody = PatchedProviderTicketRequest
-
-// ProviderTicketsUpdateJSONRequestBody defines body for ProviderTicketsUpdate for application/json ContentType.
-type ProviderTicketsUpdateJSONRequestBody = ProviderTicketRequest
-
 // ProviderTicketsAssignJSONRequestBody defines body for ProviderTicketsAssign for application/json ContentType.
 type ProviderTicketsAssignJSONRequestBody = ProviderAssignRequest
-
-// ProviderTicketsClaimJSONRequestBody defines body for ProviderTicketsClaim for application/json ContentType.
-type ProviderTicketsClaimJSONRequestBody = ProviderTicketRequest
 
 // ProviderTicketsCommentJSONRequestBody defines body for ProviderTicketsComment for application/json ContentType.
 type ProviderTicketsCommentJSONRequestBody = ProviderCommentRequest
@@ -132003,21 +132006,11 @@ type ClientInterface interface {
 	// ProviderTicketsRetrieve performs a GET /api/provider-tickets/{uuid}/ (the `ProviderTicketsRetrieve` operationId) request.
 	ProviderTicketsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ProviderTicketsPartialUpdateWithBody performs a PATCH /api/provider-tickets/{uuid}/ (the `ProviderTicketsPartialUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	ProviderTicketsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// ProviderTicketsPartialUpdate performs a PATCH /api/provider-tickets/{uuid}/ (the `ProviderTicketsPartialUpdate` operationId) request.
-	// Takes a body of the `application/json` content type.
-	ProviderTicketsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ProviderTicketsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ProviderTicketsUpdateWithBody performs a PUT /api/provider-tickets/{uuid}/ (the `ProviderTicketsUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	ProviderTicketsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ProviderTicketsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProviderTicketsUpdate performs a PUT /api/provider-tickets/{uuid}/ (the `ProviderTicketsUpdate` operationId) request.
-	// Takes a body of the `application/json` content type.
-	ProviderTicketsUpdate(ctx context.Context, uuid openapi_types.UUID, body ProviderTicketsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ProviderTicketsUpdate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProviderTicketsAssignWithBody performs a POST /api/provider-tickets/{uuid}/assign/ (the `ProviderTicketsAssign` operationId) request,
 	// with any type of body and a specified content type.
@@ -132027,13 +132020,8 @@ type ClientInterface interface {
 	// Takes a body of the `application/json` content type.
 	ProviderTicketsAssign(ctx context.Context, uuid openapi_types.UUID, body ProviderTicketsAssignJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ProviderTicketsClaimWithBody performs a POST /api/provider-tickets/{uuid}/claim/ (the `ProviderTicketsClaim` operationId) request,
-	// with any type of body and a specified content type.
-	ProviderTicketsClaimWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// ProviderTicketsClaim performs a POST /api/provider-tickets/{uuid}/claim/ (the `ProviderTicketsClaim` operationId) request.
-	// Takes a body of the `application/json` content type.
-	ProviderTicketsClaim(ctx context.Context, uuid openapi_types.UUID, body ProviderTicketsClaimJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ProviderTicketsClaim(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProviderTicketsCommentWithBody performs a POST /api/provider-tickets/{uuid}/comment/ (the `ProviderTicketsComment` operationId) request,
 	// with any type of body and a specified content type.
@@ -132044,6 +132032,8 @@ type ClientInterface interface {
 	ProviderTicketsComment(ctx context.Context, uuid openapi_types.UUID, body ProviderTicketsCommentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProviderTicketsCustomerContextRetrieve Get customer context for this ticket
+	//
+	// The original ticket's caller (full name, email and organization), its resource, and the caller's five latest other tickets among those the provider ticket list shows the requester: tickets routed to a helpdesk they speak for, as an owner of the service provider's organization or as an active agent. Staff and support see the caller's tickets routed to any provider. Tickets kept on the operator's own desk are not listed.
 	//
 	// Corresponds with GET /api/provider-tickets/{uuid}/customer_context/ (the `ProviderTicketsCustomerContextRetrieve` operationId).
 	ProviderTicketsCustomerContextRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -134615,12 +134605,6 @@ type ClientInterface interface {
 	// SupportZammadWebhook performs a POST /api/support-zammad-webhook/ (the `SupportZammadWebhook` operationId) request.
 	SupportZammadWebhook(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// SupportSettingsAtlassianList performs a GET /api/support/settings/atlassian/ (the `SupportSettingsAtlassianList` operationId) request.
-	SupportSettingsAtlassianList(ctx context.Context, params *SupportSettingsAtlassianListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// SupportSettingsAtlassianCreate performs a POST /api/support/settings/atlassian/ (the `SupportSettingsAtlassianCreate` operationId) request.
-	SupportSettingsAtlassianCreate(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// SupportSettingsAtlassianCurrentSettingsRetrieve performs a GET /api/support/settings/atlassian/current_settings/ (the `SupportSettingsAtlassianCurrentSettingsRetrieve` operationId) request.
 	//
 	// Get current Atlassian settings (masked secrets).
@@ -134709,18 +134693,6 @@ type ClientInterface interface {
 	//
 	// Validate Atlassian credentials without saving them.
 	SupportSettingsAtlassianValidateCredentials(ctx context.Context, body SupportSettingsAtlassianValidateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// SupportSettingsAtlassianDestroy performs a DELETE /api/support/settings/atlassian/{id}/ (the `SupportSettingsAtlassianDestroy` operationId) request.
-	SupportSettingsAtlassianDestroy(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// SupportSettingsAtlassianRetrieve performs a GET /api/support/settings/atlassian/{id}/ (the `SupportSettingsAtlassianRetrieve` operationId) request.
-	SupportSettingsAtlassianRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// SupportSettingsAtlassianPartialUpdate performs a PATCH /api/support/settings/atlassian/{id}/ (the `SupportSettingsAtlassianPartialUpdate` operationId) request.
-	SupportSettingsAtlassianPartialUpdate(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// SupportSettingsAtlassianUpdate performs a PUT /api/support/settings/atlassian/{id}/ (the `SupportSettingsAtlassianUpdate` operationId) request.
-	SupportSettingsAtlassianUpdate(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// SyncIssuesRetrieve performs a GET /api/sync-issues/ (the `SyncIssuesRetrieve` operationId) request.
 	//
@@ -188769,38 +188741,9 @@ func (c *Client) ProviderTicketsRetrieve(ctx context.Context, uuid openapi_types
 	return c.Client.Do(req)
 }
 
-// ProviderTicketsPartialUpdateWithBody performs a PATCH /api/provider-tickets/{uuid}/ (the `ProviderTicketsPartialUpdate` operationId) request,
-// with any type of body and a specified content type.
-func (c *Client) ProviderTicketsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProviderTicketsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 // ProviderTicketsPartialUpdate performs a PATCH /api/provider-tickets/{uuid}/ (the `ProviderTicketsPartialUpdate` operationId) request.
-// Takes a body of the `application/json` content type.
-func (c *Client) ProviderTicketsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ProviderTicketsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProviderTicketsPartialUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// ProviderTicketsUpdateWithBody performs a PUT /api/provider-tickets/{uuid}/ (the `ProviderTicketsUpdate` operationId) request,
-// with any type of body and a specified content type.
-func (c *Client) ProviderTicketsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProviderTicketsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+func (c *Client) ProviderTicketsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProviderTicketsPartialUpdateRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -188812,9 +188755,8 @@ func (c *Client) ProviderTicketsUpdateWithBody(ctx context.Context, uuid openapi
 }
 
 // ProviderTicketsUpdate performs a PUT /api/provider-tickets/{uuid}/ (the `ProviderTicketsUpdate` operationId) request.
-// Takes a body of the `application/json` content type.
-func (c *Client) ProviderTicketsUpdate(ctx context.Context, uuid openapi_types.UUID, body ProviderTicketsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProviderTicketsUpdateRequest(c.Server, uuid, body)
+func (c *Client) ProviderTicketsUpdate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProviderTicketsUpdateRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -188853,24 +188795,9 @@ func (c *Client) ProviderTicketsAssign(ctx context.Context, uuid openapi_types.U
 	return c.Client.Do(req)
 }
 
-// ProviderTicketsClaimWithBody performs a POST /api/provider-tickets/{uuid}/claim/ (the `ProviderTicketsClaim` operationId) request,
-// with any type of body and a specified content type.
-func (c *Client) ProviderTicketsClaimWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProviderTicketsClaimRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 // ProviderTicketsClaim performs a POST /api/provider-tickets/{uuid}/claim/ (the `ProviderTicketsClaim` operationId) request.
-// Takes a body of the `application/json` content type.
-func (c *Client) ProviderTicketsClaim(ctx context.Context, uuid openapi_types.UUID, body ProviderTicketsClaimJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProviderTicketsClaimRequest(c.Server, uuid, body)
+func (c *Client) ProviderTicketsClaim(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProviderTicketsClaimRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -188910,6 +188837,8 @@ func (c *Client) ProviderTicketsComment(ctx context.Context, uuid openapi_types.
 }
 
 // ProviderTicketsCustomerContextRetrieve Get customer context for this ticket
+//
+// The original ticket's caller (full name, email and organization), its resource, and the caller's five latest other tickets among those the provider ticket list shows the requester: tickets routed to a helpdesk they speak for, as an owner of the service provider's organization or as an active agent. Staff and support see the caller's tickets routed to any provider. Tickets kept on the operator's own desk are not listed.
 //
 // Corresponds with GET /api/provider-tickets/{uuid}/customer_context/ (the `ProviderTicketsCustomerContextRetrieve` operationId).
 func (c *Client) ProviderTicketsCustomerContextRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -196728,32 +196657,6 @@ func (c *Client) SupportZammadWebhook(ctx context.Context, reqEditors ...Request
 	return c.Client.Do(req)
 }
 
-// SupportSettingsAtlassianList performs a GET /api/support/settings/atlassian/ (the `SupportSettingsAtlassianList` operationId) request.
-func (c *Client) SupportSettingsAtlassianList(ctx context.Context, params *SupportSettingsAtlassianListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewSupportSettingsAtlassianListRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// SupportSettingsAtlassianCreate performs a POST /api/support/settings/atlassian/ (the `SupportSettingsAtlassianCreate` operationId) request.
-func (c *Client) SupportSettingsAtlassianCreate(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewSupportSettingsAtlassianCreateRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 // SupportSettingsAtlassianCurrentSettingsRetrieve performs a GET /api/support/settings/atlassian/current_settings/ (the `SupportSettingsAtlassianCurrentSettingsRetrieve` operationId) request.
 //
 // Get current Atlassian settings (masked secrets).
@@ -196983,58 +196886,6 @@ func (c *Client) SupportSettingsAtlassianValidateCredentialsWithBody(ctx context
 // Validate Atlassian credentials without saving them.
 func (c *Client) SupportSettingsAtlassianValidateCredentials(ctx context.Context, body SupportSettingsAtlassianValidateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewSupportSettingsAtlassianValidateCredentialsRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// SupportSettingsAtlassianDestroy performs a DELETE /api/support/settings/atlassian/{id}/ (the `SupportSettingsAtlassianDestroy` operationId) request.
-func (c *Client) SupportSettingsAtlassianDestroy(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewSupportSettingsAtlassianDestroyRequest(c.Server, id)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// SupportSettingsAtlassianRetrieve performs a GET /api/support/settings/atlassian/{id}/ (the `SupportSettingsAtlassianRetrieve` operationId) request.
-func (c *Client) SupportSettingsAtlassianRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewSupportSettingsAtlassianRetrieveRequest(c.Server, id)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// SupportSettingsAtlassianPartialUpdate performs a PATCH /api/support/settings/atlassian/{id}/ (the `SupportSettingsAtlassianPartialUpdate` operationId) request.
-func (c *Client) SupportSettingsAtlassianPartialUpdate(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewSupportSettingsAtlassianPartialUpdateRequest(c.Server, id)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// SupportSettingsAtlassianUpdate performs a PUT /api/support/settings/atlassian/{id}/ (the `SupportSettingsAtlassianUpdate` operationId) request.
-func (c *Client) SupportSettingsAtlassianUpdate(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewSupportSettingsAtlassianUpdateRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -391763,19 +391614,8 @@ func NewProviderTicketsRetrieveRequest(server string, uuid openapi_types.UUID) (
 	return req, nil
 }
 
-// NewProviderTicketsPartialUpdateRequest calls the generic ProviderTicketsPartialUpdate builder with application/json body
-func NewProviderTicketsPartialUpdateRequest(server string, uuid openapi_types.UUID, body ProviderTicketsPartialUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewProviderTicketsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewProviderTicketsPartialUpdateRequestWithBody constructs an http.Request for the ProviderTicketsPartialUpdate method, with any body, and a specified content type
-func NewProviderTicketsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewProviderTicketsPartialUpdateRequest constructs an http.Request for the ProviderTicketsPartialUpdate method
+func NewProviderTicketsPartialUpdateRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -391800,29 +391640,16 @@ func NewProviderTicketsPartialUpdateRequestWithBody(server string, uuid openapi_
 		return nil, err
 	}
 
-	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
+	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
 
-// NewProviderTicketsUpdateRequest calls the generic ProviderTicketsUpdate builder with application/json body
-func NewProviderTicketsUpdateRequest(server string, uuid openapi_types.UUID, body ProviderTicketsUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewProviderTicketsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewProviderTicketsUpdateRequestWithBody constructs an http.Request for the ProviderTicketsUpdate method, with any body, and a specified content type
-func NewProviderTicketsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewProviderTicketsUpdateRequest constructs an http.Request for the ProviderTicketsUpdate method
+func NewProviderTicketsUpdateRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -391847,12 +391674,10 @@ func NewProviderTicketsUpdateRequestWithBody(server string, uuid openapi_types.U
 		return nil, err
 	}
 
-	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
+	req, err := http.NewRequest(http.MethodPut, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -391904,19 +391729,8 @@ func NewProviderTicketsAssignRequestWithBody(server string, uuid openapi_types.U
 	return req, nil
 }
 
-// NewProviderTicketsClaimRequest calls the generic ProviderTicketsClaim builder with application/json body
-func NewProviderTicketsClaimRequest(server string, uuid openapi_types.UUID, body ProviderTicketsClaimJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewProviderTicketsClaimRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewProviderTicketsClaimRequestWithBody constructs an http.Request for the ProviderTicketsClaim method, with any body, and a specified content type
-func NewProviderTicketsClaimRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewProviderTicketsClaimRequest constructs an http.Request for the ProviderTicketsClaim method
+func NewProviderTicketsClaimRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -391941,12 +391755,10 @@ func NewProviderTicketsClaimRequestWithBody(server string, uuid openapi_types.UU
 		return nil, err
 	}
 
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -416491,99 +416303,6 @@ func NewSupportZammadWebhookRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
-// NewSupportSettingsAtlassianListRequest constructs an http.Request for the SupportSettingsAtlassianList method
-func NewSupportSettingsAtlassianListRequest(server string, params *SupportSettingsAtlassianListParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/support/settings/atlassian/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewSupportSettingsAtlassianCreateRequest constructs an http.Request for the SupportSettingsAtlassianCreate method
-func NewSupportSettingsAtlassianCreateRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/support/settings/atlassian/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewSupportSettingsAtlassianCurrentSettingsRetrieveRequest constructs an http.Request for the SupportSettingsAtlassianCurrentSettingsRetrieve method
 func NewSupportSettingsAtlassianCurrentSettingsRetrieveRequest(server string) (*http.Request, error) {
 	var err error
@@ -417043,142 +416762,6 @@ func NewSupportSettingsAtlassianValidateCredentialsRequestWithBody(server string
 	}
 
 	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewSupportSettingsAtlassianDestroyRequest constructs an http.Request for the SupportSettingsAtlassianDestroy method
-func NewSupportSettingsAtlassianDestroyRequest(server string, id int) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: ""})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/support/settings/atlassian/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewSupportSettingsAtlassianRetrieveRequest constructs an http.Request for the SupportSettingsAtlassianRetrieve method
-func NewSupportSettingsAtlassianRetrieveRequest(server string, id int) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: ""})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/support/settings/atlassian/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewSupportSettingsAtlassianPartialUpdateRequest constructs an http.Request for the SupportSettingsAtlassianPartialUpdate method
-func NewSupportSettingsAtlassianPartialUpdateRequest(server string, id int) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: ""})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/support/settings/atlassian/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewSupportSettingsAtlassianUpdateRequest constructs an http.Request for the SupportSettingsAtlassianUpdate method
-func NewSupportSettingsAtlassianUpdateRequest(server string, id int) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: ""})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/support/settings/atlassian/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPut, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
 
 	return req, nil
 }
@@ -456250,25 +455833,15 @@ type ClientWithResponsesInterface interface {
 	// Returns a wrapper object for the known response body format(s).
 	ProviderTicketsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProviderTicketsRetrieveResponse, error)
 
-	// ProviderTicketsPartialUpdateWithBodyWithResponse performs a PATCH /api/provider-tickets/{uuid}/ (the `ProviderTicketsPartialUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	ProviderTicketsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProviderTicketsPartialUpdateResponse, error)
-
 	// ProviderTicketsPartialUpdateWithResponse performs a PATCH /api/provider-tickets/{uuid}/ (the `ProviderTicketsPartialUpdate` operationId) request.
-	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	ProviderTicketsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProviderTicketsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProviderTicketsPartialUpdateResponse, error)
-
-	// ProviderTicketsUpdateWithBodyWithResponse performs a PUT /api/provider-tickets/{uuid}/ (the `ProviderTicketsUpdate` operationId) request,
-	// with any type of body and a specified content type.
 	//
 	// Returns a wrapper object for the known response body format(s).
-	ProviderTicketsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProviderTicketsUpdateResponse, error)
+	ProviderTicketsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProviderTicketsPartialUpdateResponse, error)
 
 	// ProviderTicketsUpdateWithResponse performs a PUT /api/provider-tickets/{uuid}/ (the `ProviderTicketsUpdate` operationId) request.
-	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	ProviderTicketsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProviderTicketsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProviderTicketsUpdateResponse, error)
+	//
+	// Returns a wrapper object for the known response body format(s).
+	ProviderTicketsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProviderTicketsUpdateResponse, error)
 
 	// ProviderTicketsAssignWithBodyWithResponse performs a POST /api/provider-tickets/{uuid}/assign/ (the `ProviderTicketsAssign` operationId) request,
 	// with any type of body and a specified content type.
@@ -456280,15 +455853,10 @@ type ClientWithResponsesInterface interface {
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	ProviderTicketsAssignWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProviderTicketsAssignJSONRequestBody, reqEditors ...RequestEditorFn) (*ProviderTicketsAssignResponse, error)
 
-	// ProviderTicketsClaimWithBodyWithResponse performs a POST /api/provider-tickets/{uuid}/claim/ (the `ProviderTicketsClaim` operationId) request,
-	// with any type of body and a specified content type.
+	// ProviderTicketsClaimWithResponse performs a POST /api/provider-tickets/{uuid}/claim/ (the `ProviderTicketsClaim` operationId) request.
 	//
 	// Returns a wrapper object for the known response body format(s).
-	ProviderTicketsClaimWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProviderTicketsClaimResponse, error)
-
-	// ProviderTicketsClaimWithResponse performs a POST /api/provider-tickets/{uuid}/claim/ (the `ProviderTicketsClaim` operationId) request.
-	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	ProviderTicketsClaimWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProviderTicketsClaimJSONRequestBody, reqEditors ...RequestEditorFn) (*ProviderTicketsClaimResponse, error)
+	ProviderTicketsClaimWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProviderTicketsClaimResponse, error)
 
 	// ProviderTicketsCommentWithBodyWithResponse performs a POST /api/provider-tickets/{uuid}/comment/ (the `ProviderTicketsComment` operationId) request,
 	// with any type of body and a specified content type.
@@ -456301,6 +455869,8 @@ type ClientWithResponsesInterface interface {
 	ProviderTicketsCommentWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProviderTicketsCommentJSONRequestBody, reqEditors ...RequestEditorFn) (*ProviderTicketsCommentResponse, error)
 
 	// ProviderTicketsCustomerContextRetrieveWithResponse Get customer context for this ticket
+	//
+	// The original ticket's caller (full name, email and organization), its resource, and the caller's five latest other tickets among those the provider ticket list shows the requester: tickets routed to a helpdesk they speak for, as an owner of the service provider's organization or as an active agent. Staff and support see the caller's tickets routed to any provider. Tickets kept on the operator's own desk are not listed.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -459588,16 +459158,6 @@ type ClientWithResponsesInterface interface {
 	// Returns a wrapper object for the known response body format(s).
 	SupportZammadWebhookWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*SupportZammadWebhookResponse, error)
 
-	// SupportSettingsAtlassianListWithResponse performs a GET /api/support/settings/atlassian/ (the `SupportSettingsAtlassianList` operationId) request.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	SupportSettingsAtlassianListWithResponse(ctx context.Context, params *SupportSettingsAtlassianListParams, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianListResponse, error)
-
-	// SupportSettingsAtlassianCreateWithResponse performs a POST /api/support/settings/atlassian/ (the `SupportSettingsAtlassianCreate` operationId) request.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	SupportSettingsAtlassianCreateWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianCreateResponse, error)
-
 	// SupportSettingsAtlassianCurrentSettingsRetrieveWithResponse performs a GET /api/support/settings/atlassian/current_settings/ (the `SupportSettingsAtlassianCurrentSettingsRetrieve` operationId) request.
 	//
 	// Get current Atlassian settings (masked secrets).
@@ -459702,26 +459262,6 @@ type ClientWithResponsesInterface interface {
 	//
 	// Validate Atlassian credentials without saving them.
 	SupportSettingsAtlassianValidateCredentialsWithResponse(ctx context.Context, body SupportSettingsAtlassianValidateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianValidateCredentialsResponse, error)
-
-	// SupportSettingsAtlassianDestroyWithResponse performs a DELETE /api/support/settings/atlassian/{id}/ (the `SupportSettingsAtlassianDestroy` operationId) request.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	SupportSettingsAtlassianDestroyWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianDestroyResponse, error)
-
-	// SupportSettingsAtlassianRetrieveWithResponse performs a GET /api/support/settings/atlassian/{id}/ (the `SupportSettingsAtlassianRetrieve` operationId) request.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	SupportSettingsAtlassianRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianRetrieveResponse, error)
-
-	// SupportSettingsAtlassianPartialUpdateWithResponse performs a PATCH /api/support/settings/atlassian/{id}/ (the `SupportSettingsAtlassianPartialUpdate` operationId) request.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	SupportSettingsAtlassianPartialUpdateWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianPartialUpdateResponse, error)
-
-	// SupportSettingsAtlassianUpdateWithResponse performs a PUT /api/support/settings/atlassian/{id}/ (the `SupportSettingsAtlassianUpdate` operationId) request.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	SupportSettingsAtlassianUpdateWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianUpdateResponse, error)
 
 	// SyncIssuesRetrieveWithResponse performs a GET /api/sync-issues/ (the `SyncIssuesRetrieve` operationId) request.
 	//
@@ -573828,74 +573368,6 @@ func (r SupportZammadWebhookResponse) ContentType() string {
 	return ""
 }
 
-type SupportSettingsAtlassianListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r SupportSettingsAtlassianListResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r SupportSettingsAtlassianListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r SupportSettingsAtlassianListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r SupportSettingsAtlassianListResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type SupportSettingsAtlassianCreateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r SupportSettingsAtlassianCreateResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r SupportSettingsAtlassianCreateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r SupportSettingsAtlassianCreateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r SupportSettingsAtlassianCreateResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
 type SupportSettingsAtlassianCurrentSettingsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -574190,142 +573662,6 @@ func (r SupportSettingsAtlassianValidateCredentialsResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r SupportSettingsAtlassianValidateCredentialsResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type SupportSettingsAtlassianDestroyResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r SupportSettingsAtlassianDestroyResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r SupportSettingsAtlassianDestroyResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r SupportSettingsAtlassianDestroyResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r SupportSettingsAtlassianDestroyResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type SupportSettingsAtlassianRetrieveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r SupportSettingsAtlassianRetrieveResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r SupportSettingsAtlassianRetrieveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r SupportSettingsAtlassianRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r SupportSettingsAtlassianRetrieveResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type SupportSettingsAtlassianPartialUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r SupportSettingsAtlassianPartialUpdateResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r SupportSettingsAtlassianPartialUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r SupportSettingsAtlassianPartialUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r SupportSettingsAtlassianPartialUpdateResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type SupportSettingsAtlassianUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r SupportSettingsAtlassianUpdateResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r SupportSettingsAtlassianUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r SupportSettingsAtlassianUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r SupportSettingsAtlassianUpdateResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -624625,44 +623961,22 @@ func (c *ClientWithResponses) ProviderTicketsRetrieveWithResponse(ctx context.Co
 	return ParseProviderTicketsRetrieveResponse(rsp)
 }
 
-// ProviderTicketsPartialUpdateWithBodyWithResponse performs a PATCH /api/provider-tickets/{uuid}/ (the `ProviderTicketsPartialUpdate` operationId) request,
-// with any type of body and a specified content type.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) ProviderTicketsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProviderTicketsPartialUpdateResponse, error) {
-	rsp, err := c.ProviderTicketsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseProviderTicketsPartialUpdateResponse(rsp)
-}
-
 // ProviderTicketsPartialUpdateWithResponse performs a PATCH /api/provider-tickets/{uuid}/ (the `ProviderTicketsPartialUpdate` operationId) request.
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) ProviderTicketsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProviderTicketsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProviderTicketsPartialUpdateResponse, error) {
-	rsp, err := c.ProviderTicketsPartialUpdate(ctx, uuid, body, reqEditors...)
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) ProviderTicketsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProviderTicketsPartialUpdateResponse, error) {
+	rsp, err := c.ProviderTicketsPartialUpdate(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseProviderTicketsPartialUpdateResponse(rsp)
-}
-
-// ProviderTicketsUpdateWithBodyWithResponse performs a PUT /api/provider-tickets/{uuid}/ (the `ProviderTicketsUpdate` operationId) request,
-// with any type of body and a specified content type.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) ProviderTicketsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProviderTicketsUpdateResponse, error) {
-	rsp, err := c.ProviderTicketsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseProviderTicketsUpdateResponse(rsp)
 }
 
 // ProviderTicketsUpdateWithResponse performs a PUT /api/provider-tickets/{uuid}/ (the `ProviderTicketsUpdate` operationId) request.
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) ProviderTicketsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProviderTicketsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProviderTicketsUpdateResponse, error) {
-	rsp, err := c.ProviderTicketsUpdate(ctx, uuid, body, reqEditors...)
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) ProviderTicketsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProviderTicketsUpdateResponse, error) {
+	rsp, err := c.ProviderTicketsUpdate(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -624691,22 +624005,11 @@ func (c *ClientWithResponses) ProviderTicketsAssignWithResponse(ctx context.Cont
 	return ParseProviderTicketsAssignResponse(rsp)
 }
 
-// ProviderTicketsClaimWithBodyWithResponse performs a POST /api/provider-tickets/{uuid}/claim/ (the `ProviderTicketsClaim` operationId) request,
-// with any type of body and a specified content type.
+// ProviderTicketsClaimWithResponse performs a POST /api/provider-tickets/{uuid}/claim/ (the `ProviderTicketsClaim` operationId) request.
 //
 // Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) ProviderTicketsClaimWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProviderTicketsClaimResponse, error) {
-	rsp, err := c.ProviderTicketsClaimWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseProviderTicketsClaimResponse(rsp)
-}
-
-// ProviderTicketsClaimWithResponse performs a POST /api/provider-tickets/{uuid}/claim/ (the `ProviderTicketsClaim` operationId) request.
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) ProviderTicketsClaimWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProviderTicketsClaimJSONRequestBody, reqEditors ...RequestEditorFn) (*ProviderTicketsClaimResponse, error) {
-	rsp, err := c.ProviderTicketsClaim(ctx, uuid, body, reqEditors...)
+func (c *ClientWithResponses) ProviderTicketsClaimWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProviderTicketsClaimResponse, error) {
+	rsp, err := c.ProviderTicketsClaim(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -624736,6 +624039,8 @@ func (c *ClientWithResponses) ProviderTicketsCommentWithResponse(ctx context.Con
 }
 
 // ProviderTicketsCustomerContextRetrieveWithResponse Get customer context for this ticket
+//
+// The original ticket's caller (full name, email and organization), its resource, and the caller's five latest other tickets among those the provider ticket list shows the requester: tickets routed to a helpdesk they speak for, as an owner of the service provider's organization or as an active agent. Staff and support see the caller's tickets routed to any provider. Tickets kept on the operator's own desk are not listed.
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -631174,28 +630479,6 @@ func (c *ClientWithResponses) SupportZammadWebhookWithResponse(ctx context.Conte
 	return ParseSupportZammadWebhookResponse(rsp)
 }
 
-// SupportSettingsAtlassianListWithResponse performs a GET /api/support/settings/atlassian/ (the `SupportSettingsAtlassianList` operationId) request.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) SupportSettingsAtlassianListWithResponse(ctx context.Context, params *SupportSettingsAtlassianListParams, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianListResponse, error) {
-	rsp, err := c.SupportSettingsAtlassianList(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseSupportSettingsAtlassianListResponse(rsp)
-}
-
-// SupportSettingsAtlassianCreateWithResponse performs a POST /api/support/settings/atlassian/ (the `SupportSettingsAtlassianCreate` operationId) request.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) SupportSettingsAtlassianCreateWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianCreateResponse, error) {
-	rsp, err := c.SupportSettingsAtlassianCreate(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseSupportSettingsAtlassianCreateResponse(rsp)
-}
-
 // SupportSettingsAtlassianCurrentSettingsRetrieveWithResponse performs a GET /api/support/settings/atlassian/current_settings/ (the `SupportSettingsAtlassianCurrentSettingsRetrieve` operationId) request.
 //
 // Get current Atlassian settings (masked secrets).
@@ -631389,50 +630672,6 @@ func (c *ClientWithResponses) SupportSettingsAtlassianValidateCredentialsWithRes
 		return nil, err
 	}
 	return ParseSupportSettingsAtlassianValidateCredentialsResponse(rsp)
-}
-
-// SupportSettingsAtlassianDestroyWithResponse performs a DELETE /api/support/settings/atlassian/{id}/ (the `SupportSettingsAtlassianDestroy` operationId) request.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) SupportSettingsAtlassianDestroyWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianDestroyResponse, error) {
-	rsp, err := c.SupportSettingsAtlassianDestroy(ctx, id, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseSupportSettingsAtlassianDestroyResponse(rsp)
-}
-
-// SupportSettingsAtlassianRetrieveWithResponse performs a GET /api/support/settings/atlassian/{id}/ (the `SupportSettingsAtlassianRetrieve` operationId) request.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) SupportSettingsAtlassianRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianRetrieveResponse, error) {
-	rsp, err := c.SupportSettingsAtlassianRetrieve(ctx, id, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseSupportSettingsAtlassianRetrieveResponse(rsp)
-}
-
-// SupportSettingsAtlassianPartialUpdateWithResponse performs a PATCH /api/support/settings/atlassian/{id}/ (the `SupportSettingsAtlassianPartialUpdate` operationId) request.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) SupportSettingsAtlassianPartialUpdateWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianPartialUpdateResponse, error) {
-	rsp, err := c.SupportSettingsAtlassianPartialUpdate(ctx, id, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseSupportSettingsAtlassianPartialUpdateResponse(rsp)
-}
-
-// SupportSettingsAtlassianUpdateWithResponse performs a PUT /api/support/settings/atlassian/{id}/ (the `SupportSettingsAtlassianUpdate` operationId) request.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) SupportSettingsAtlassianUpdateWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianUpdateResponse, error) {
-	rsp, err := c.SupportSettingsAtlassianUpdate(ctx, id, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseSupportSettingsAtlassianUpdateResponse(rsp)
 }
 
 // SyncIssuesRetrieveWithResponse performs a GET /api/sync-issues/ (the `SyncIssuesRetrieve` operationId) request.
@@ -705294,38 +704533,6 @@ func ParseSupportZammadWebhookResponse(rsp *http.Response) (*SupportZammadWebhoo
 	return response, nil
 }
 
-// ParseSupportSettingsAtlassianListResponse parses an HTTP response from a SupportSettingsAtlassianListWithResponse call
-func ParseSupportSettingsAtlassianListResponse(rsp *http.Response) (*SupportSettingsAtlassianListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &SupportSettingsAtlassianListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseSupportSettingsAtlassianCreateResponse parses an HTTP response from a SupportSettingsAtlassianCreateWithResponse call
-func ParseSupportSettingsAtlassianCreateResponse(rsp *http.Response) (*SupportSettingsAtlassianCreateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &SupportSettingsAtlassianCreateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
 // ParseSupportSettingsAtlassianCurrentSettingsRetrieveResponse parses an HTTP response from a SupportSettingsAtlassianCurrentSettingsRetrieveWithResponse call
 func ParseSupportSettingsAtlassianCurrentSettingsRetrieveResponse(rsp *http.Response) (*SupportSettingsAtlassianCurrentSettingsRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -705487,70 +704694,6 @@ func ParseSupportSettingsAtlassianValidateCredentialsResponse(rsp *http.Response
 	}
 
 	response := &SupportSettingsAtlassianValidateCredentialsResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseSupportSettingsAtlassianDestroyResponse parses an HTTP response from a SupportSettingsAtlassianDestroyWithResponse call
-func ParseSupportSettingsAtlassianDestroyResponse(rsp *http.Response) (*SupportSettingsAtlassianDestroyResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &SupportSettingsAtlassianDestroyResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseSupportSettingsAtlassianRetrieveResponse parses an HTTP response from a SupportSettingsAtlassianRetrieveWithResponse call
-func ParseSupportSettingsAtlassianRetrieveResponse(rsp *http.Response) (*SupportSettingsAtlassianRetrieveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &SupportSettingsAtlassianRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseSupportSettingsAtlassianPartialUpdateResponse parses an HTTP response from a SupportSettingsAtlassianPartialUpdateWithResponse call
-func ParseSupportSettingsAtlassianPartialUpdateResponse(rsp *http.Response) (*SupportSettingsAtlassianPartialUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &SupportSettingsAtlassianPartialUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseSupportSettingsAtlassianUpdateResponse parses an HTTP response from a SupportSettingsAtlassianUpdateWithResponse call
-func ParseSupportSettingsAtlassianUpdateResponse(rsp *http.Response) (*SupportSettingsAtlassianUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &SupportSettingsAtlassianUpdateResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
