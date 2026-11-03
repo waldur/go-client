@@ -130402,7 +130402,7 @@ type ClientInterface interface {
 
 	// ProjectsOtherUsersList performs a GET /api/projects/{project_uuid}/other_users/ (the `ProjectsOtherUsersList` operationId) request.
 	//
-	// A list of users which can be added to the current project from other projects of the same customer.
+	// Users with a role in the caller's other projects of the same organization, whom the caller may add to the current project. The current project must be one the caller can see; otherwise the response is 404. A personal access token lists only the users of projects its bindings reach.
 	ProjectsOtherUsersList(ctx context.Context, projectUuid openapi_types.UUID, params *ProjectsOtherUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProjectsOtherUsersCount performs a HEAD /api/projects/{project_uuid}/other_users/ (the `ProjectsOtherUsersCount` operationId) request.
@@ -184178,7 +184178,7 @@ func (c *Client) ProjectsChecklistTemplateCount(ctx context.Context, params *Pro
 
 // ProjectsOtherUsersList performs a GET /api/projects/{project_uuid}/other_users/ (the `ProjectsOtherUsersList` operationId) request.
 //
-// A list of users which can be added to the current project from other projects of the same customer.
+// Users with a role in the caller's other projects of the same organization, whom the caller may add to the current project. The current project must be one the caller can see; otherwise the response is 404. A personal access token lists only the users of projects its bindings reach.
 func (c *Client) ProjectsOtherUsersList(ctx context.Context, projectUuid openapi_types.UUID, params *ProjectsOtherUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProjectsOtherUsersListRequest(c.Server, projectUuid, params)
 	if err != nil {
@@ -454259,7 +454259,7 @@ type ClientWithResponsesInterface interface {
 
 	// ProjectsOtherUsersListWithResponse performs a GET /api/projects/{project_uuid}/other_users/ (the `ProjectsOtherUsersList` operationId) request.
 	//
-	// A list of users which can be added to the current project from other projects of the same customer.
+	// Users with a role in the caller's other projects of the same organization, whom the caller may add to the current project. The current project must be one the caller can see; otherwise the response is 404. A personal access token lists only the users of projects its bindings reach.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	ProjectsOtherUsersListWithResponse(ctx context.Context, projectUuid openapi_types.UUID, params *ProjectsOtherUsersListParams, reqEditors ...RequestEditorFn) (*ProjectsOtherUsersListResponse, error)
@@ -620840,7 +620840,7 @@ func (c *ClientWithResponses) ProjectsChecklistTemplateCountWithResponse(ctx con
 
 // ProjectsOtherUsersListWithResponse performs a GET /api/projects/{project_uuid}/other_users/ (the `ProjectsOtherUsersList` operationId) request.
 //
-// A list of users which can be added to the current project from other projects of the same customer.
+// Users with a role in the caller's other projects of the same organization, whom the caller may add to the current project. The current project must be one the caller can see; otherwise the response is 404. A personal access token lists only the users of projects its bindings reach.
 //
 // Returns a wrapper object for the known response body format(s).
 func (c *ClientWithResponses) ProjectsOtherUsersListWithResponse(ctx context.Context, projectUuid openapi_types.UUID, params *ProjectsOtherUsersListParams, reqEditors ...RequestEditorFn) (*ProjectsOtherUsersListResponse, error) {
