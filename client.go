@@ -9687,6 +9687,7 @@ const (
 	InvoiceFieldEnumTotal           InvoiceFieldEnum = "total"
 	InvoiceFieldEnumUrl             InvoiceFieldEnum = "url"
 	InvoiceFieldEnumUuid            InvoiceFieldEnum = "uuid"
+	InvoiceFieldEnumVolumeDiscounts InvoiceFieldEnum = "volume_discounts"
 	InvoiceFieldEnumYear            InvoiceFieldEnum = "year"
 )
 
@@ -9730,6 +9731,8 @@ func (e InvoiceFieldEnum) Valid() bool {
 	case InvoiceFieldEnumUrl:
 		return true
 	case InvoiceFieldEnumUuid:
+		return true
+	case InvoiceFieldEnumVolumeDiscounts:
 		return true
 	case InvoiceFieldEnumYear:
 		return true
@@ -26362,9 +26365,12 @@ type AdoptableProject struct {
 
 // AffiliateEarnings defines model for AffiliateEarnings.
 type AffiliateEarnings struct {
-	PerMonth            []AffiliateEarningsMonth `json:"per_month"`
-	TotalEarned         string                   `json:"total_earned"`
-	WithdrawableBalance string                   `json:"withdrawable_balance"`
+	PerMonth    []AffiliateEarningsMonth `json:"per_month"`
+	TotalEarned string                   `json:"total_earned"`
+
+	// Upcoming Fee the current month is expected to earn from the referred customer's open invoice, after its estimated volume discounts and credit compensation. Null when the month will earn nothing on this link. Not yet accrued: the amount changes until month close.
+	Upcoming            *AffiliateEarningsMonth `json:"upcoming"`
+	WithdrawableBalance string                  `json:"withdrawable_balance"`
 }
 
 // AffiliateEarningsMonth defines model for AffiliateEarningsMonth.
@@ -38299,7 +38305,12 @@ type Invoice struct {
 	Total           *string             `json:"total,omitempty"`
 	Url             *string             `json:"url,omitempty"`
 	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
-	Year            *int                `json:"year,omitempty"`
+
+	// VolumeDiscounts What the volume discount lines take off, as a negative amount like
+	// `compensations`. Already part of `price` and `incurred_costs`; on an
+	// open invoice the lines are estimates.
+	VolumeDiscounts *float64 `json:"volume_discounts,omitempty"`
+	Year            *int     `json:"year,omitempty"`
 }
 
 // InvoiceCost defines model for InvoiceCost.
@@ -114303,7 +114314,7 @@ type ClientInterface interface {
 
 	// CustomerAffiliatesEarningsRetrieve performs a GET /api/customer-affiliates/{uuid}/earnings/ (the `CustomerAffiliatesEarningsRetrieve` operationId) request.
 	//
-	// Earnings summary of this affiliate link: lifetime total, per-month series and the affiliate organization's withdrawable credit balance.
+	// Earnings summary of this affiliate link: lifetime total, per-month series, the affiliate organization's withdrawable credit balance and the fee the current month is expected to earn.
 	CustomerAffiliatesEarningsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CustomerCreditsList performs a GET /api/customer-credits/ (the `CustomerCreditsList` operationId) request.
@@ -143694,7 +143705,7 @@ func (c *Client) CustomerAffiliatesAccrualsList(ctx context.Context, uuid openap
 
 // CustomerAffiliatesEarningsRetrieve performs a GET /api/customer-affiliates/{uuid}/earnings/ (the `CustomerAffiliatesEarningsRetrieve` operationId) request.
 //
-// Earnings summary of this affiliate link: lifetime total, per-month series and the affiliate organization's withdrawable credit balance.
+// Earnings summary of this affiliate link: lifetime total, per-month series, the affiliate organization's withdrawable credit balance and the fee the current month is expected to earn.
 func (c *Client) CustomerAffiliatesEarningsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCustomerAffiliatesEarningsRetrieveRequest(c.Server, uuid)
 	if err != nil {
@@ -434848,7 +434859,7 @@ type ClientWithResponsesInterface interface {
 
 	// CustomerAffiliatesEarningsRetrieveWithResponse performs a GET /api/customer-affiliates/{uuid}/earnings/ (the `CustomerAffiliatesEarningsRetrieve` operationId) request.
 	//
-	// Earnings summary of this affiliate link: lifetime total, per-month series and the affiliate organization's withdrawable credit balance.
+	// Earnings summary of this affiliate link: lifetime total, per-month series, the affiliate organization's withdrawable credit balance and the fee the current month is expected to earn.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	CustomerAffiliatesEarningsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomerAffiliatesEarningsRetrieveResponse, error)
@@ -586573,7 +586584,7 @@ func (c *ClientWithResponses) CustomerAffiliatesAccrualsListWithResponse(ctx con
 
 // CustomerAffiliatesEarningsRetrieveWithResponse performs a GET /api/customer-affiliates/{uuid}/earnings/ (the `CustomerAffiliatesEarningsRetrieve` operationId) request.
 //
-// Earnings summary of this affiliate link: lifetime total, per-month series and the affiliate organization's withdrawable credit balance.
+// Earnings summary of this affiliate link: lifetime total, per-month series, the affiliate organization's withdrawable credit balance and the fee the current month is expected to earn.
 //
 // Returns a wrapper object for the known response body format(s).
 func (c *ClientWithResponses) CustomerAffiliatesEarningsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomerAffiliatesEarningsRetrieveResponse, error) {
