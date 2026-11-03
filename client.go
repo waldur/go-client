@@ -2781,6 +2781,87 @@ func (e ChangelogReleaseSummaryStatusEnum) Valid() bool {
 	}
 }
 
+// Defines values for ChartAnnotationTypeEnum.
+const (
+	AreaX ChartAnnotationTypeEnum = "area_x"
+	AreaY ChartAnnotationTypeEnum = "area_y"
+	LineX ChartAnnotationTypeEnum = "line_x"
+	LineY ChartAnnotationTypeEnum = "line_y"
+)
+
+// Valid indicates whether the value is a known member of the ChartAnnotationTypeEnum enum.
+func (e ChartAnnotationTypeEnum) Valid() bool {
+	switch e {
+	case AreaX:
+		return true
+	case AreaY:
+		return true
+	case LineX:
+		return true
+	case LineY:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ChartAxisTypeEnum.
+const (
+	ChartAxisTypeEnumCategory ChartAxisTypeEnum = "category"
+	ChartAxisTypeEnumLog      ChartAxisTypeEnum = "log"
+	ChartAxisTypeEnumTime     ChartAxisTypeEnum = "time"
+	ChartAxisTypeEnumValue    ChartAxisTypeEnum = "value"
+)
+
+// Valid indicates whether the value is a known member of the ChartAxisTypeEnum enum.
+func (e ChartAxisTypeEnum) Valid() bool {
+	switch e {
+	case ChartAxisTypeEnumCategory:
+		return true
+	case ChartAxisTypeEnumLog:
+		return true
+	case ChartAxisTypeEnumTime:
+		return true
+	case ChartAxisTypeEnumValue:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ChartTypeEnum.
+const (
+	Area       ChartTypeEnum = "area"
+	Bar        ChartTypeEnum = "bar"
+	Heatmap    ChartTypeEnum = "heatmap"
+	Line       ChartTypeEnum = "line"
+	Scatter    ChartTypeEnum = "scatter"
+	StackedBar ChartTypeEnum = "stacked_bar"
+	Timeline   ChartTypeEnum = "timeline"
+)
+
+// Valid indicates whether the value is a known member of the ChartTypeEnum enum.
+func (e ChartTypeEnum) Valid() bool {
+	switch e {
+	case Area:
+		return true
+	case Bar:
+		return true
+	case Heatmap:
+		return true
+	case Line:
+		return true
+	case Scatter:
+		return true
+	case StackedBar:
+		return true
+	case Timeline:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ChatRequestModeEnum.
 const (
 	Edit   ChatRequestModeEnum = "edit"
@@ -5906,6 +5987,8 @@ const (
 	EventMetadataResponseEventGroupsOfferingAccessSubnetCreationSucceeded            EventMetadataResponseEventGroups = "offering_access_subnet_creation_succeeded"
 	EventMetadataResponseEventGroupsOfferingAccessSubnetDeletionSucceeded            EventMetadataResponseEventGroups = "offering_access_subnet_deletion_succeeded"
 	EventMetadataResponseEventGroupsOfferingAccessSubnetUpdateSucceeded              EventMetadataResponseEventGroups = "offering_access_subnet_update_succeeded"
+	EventMetadataResponseEventGroupsOidcTokenRefreshFailed                           EventMetadataResponseEventGroups = "oidc_token_refresh_failed"
+	EventMetadataResponseEventGroupsOidcTokenRevoked                                 EventMetadataResponseEventGroups = "oidc_token_revoked"
 	EventMetadataResponseEventGroupsOnboardingVerificationDeleted                    EventMetadataResponseEventGroups = "onboarding_verification_deleted"
 	EventMetadataResponseEventGroupsOnboardingVerificationDeletedByTask              EventMetadataResponseEventGroups = "onboarding_verification_deleted_by_task"
 	EventMetadataResponseEventGroupsOpenstackFloatingIpAttached                      EventMetadataResponseEventGroups = "openstack_floating_ip_attached"
@@ -6470,6 +6553,10 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 	case EventMetadataResponseEventGroupsOfferingAccessSubnetDeletionSucceeded:
 		return true
 	case EventMetadataResponseEventGroupsOfferingAccessSubnetUpdateSucceeded:
+		return true
+	case EventMetadataResponseEventGroupsOidcTokenRefreshFailed:
+		return true
+	case EventMetadataResponseEventGroupsOidcTokenRevoked:
 		return true
 	case EventMetadataResponseEventGroupsOnboardingVerificationDeleted:
 		return true
@@ -7148,6 +7235,8 @@ const (
 	EventTypesEnumOfferingAccessSubnetCreationSucceeded            EventTypesEnum = "offering_access_subnet_creation_succeeded"
 	EventTypesEnumOfferingAccessSubnetDeletionSucceeded            EventTypesEnum = "offering_access_subnet_deletion_succeeded"
 	EventTypesEnumOfferingAccessSubnetUpdateSucceeded              EventTypesEnum = "offering_access_subnet_update_succeeded"
+	EventTypesEnumOidcTokenRefreshFailed                           EventTypesEnum = "oidc_token_refresh_failed"
+	EventTypesEnumOidcTokenRevoked                                 EventTypesEnum = "oidc_token_revoked"
 	EventTypesEnumOnboardingVerificationDeleted                    EventTypesEnum = "onboarding_verification_deleted"
 	EventTypesEnumOnboardingVerificationDeletedByTask              EventTypesEnum = "onboarding_verification_deleted_by_task"
 	EventTypesEnumOpenstackFloatingIpAttached                      EventTypesEnum = "openstack_floating_ip_attached"
@@ -7712,6 +7801,10 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumOfferingAccessSubnetDeletionSucceeded:
 		return true
 	case EventTypesEnumOfferingAccessSubnetUpdateSucceeded:
+		return true
+	case EventTypesEnumOidcTokenRefreshFailed:
+		return true
+	case EventTypesEnumOidcTokenRevoked:
 		return true
 	case EventTypesEnumOnboardingVerificationDeleted:
 		return true
@@ -8526,111 +8619,6 @@ func (e FeedbackSurveyOEnum) Valid() bool {
 	}
 }
 
-// Defines values for FirecrestJobFieldEnum.
-const (
-	FirecrestJobFieldEnumAccessUrl                   FirecrestJobFieldEnum = "access_url"
-	FirecrestJobFieldEnumBackendId                   FirecrestJobFieldEnum = "backend_id"
-	FirecrestJobFieldEnumCreated                     FirecrestJobFieldEnum = "created"
-	FirecrestJobFieldEnumCustomer                    FirecrestJobFieldEnum = "customer"
-	FirecrestJobFieldEnumCustomerAbbreviation        FirecrestJobFieldEnum = "customer_abbreviation"
-	FirecrestJobFieldEnumCustomerName                FirecrestJobFieldEnum = "customer_name"
-	FirecrestJobFieldEnumCustomerNativeName          FirecrestJobFieldEnum = "customer_native_name"
-	FirecrestJobFieldEnumCustomerUuid                FirecrestJobFieldEnum = "customer_uuid"
-	FirecrestJobFieldEnumDescription                 FirecrestJobFieldEnum = "description"
-	FirecrestJobFieldEnumErrorMessage                FirecrestJobFieldEnum = "error_message"
-	FirecrestJobFieldEnumErrorTraceback              FirecrestJobFieldEnum = "error_traceback"
-	FirecrestJobFieldEnumFile                        FirecrestJobFieldEnum = "file"
-	FirecrestJobFieldEnumModified                    FirecrestJobFieldEnum = "modified"
-	FirecrestJobFieldEnumName                        FirecrestJobFieldEnum = "name"
-	FirecrestJobFieldEnumProject                     FirecrestJobFieldEnum = "project"
-	FirecrestJobFieldEnumProjectName                 FirecrestJobFieldEnum = "project_name"
-	FirecrestJobFieldEnumProjectUuid                 FirecrestJobFieldEnum = "project_uuid"
-	FirecrestJobFieldEnumReport                      FirecrestJobFieldEnum = "report"
-	FirecrestJobFieldEnumResourceType                FirecrestJobFieldEnum = "resource_type"
-	FirecrestJobFieldEnumRuntimeState                FirecrestJobFieldEnum = "runtime_state"
-	FirecrestJobFieldEnumServiceName                 FirecrestJobFieldEnum = "service_name"
-	FirecrestJobFieldEnumServiceSettings             FirecrestJobFieldEnum = "service_settings"
-	FirecrestJobFieldEnumServiceSettingsErrorMessage FirecrestJobFieldEnum = "service_settings_error_message"
-	FirecrestJobFieldEnumServiceSettingsState        FirecrestJobFieldEnum = "service_settings_state"
-	FirecrestJobFieldEnumServiceSettingsUuid         FirecrestJobFieldEnum = "service_settings_uuid"
-	FirecrestJobFieldEnumState                       FirecrestJobFieldEnum = "state"
-	FirecrestJobFieldEnumUrl                         FirecrestJobFieldEnum = "url"
-	FirecrestJobFieldEnumUser                        FirecrestJobFieldEnum = "user"
-	FirecrestJobFieldEnumUserUsername                FirecrestJobFieldEnum = "user_username"
-	FirecrestJobFieldEnumUserUuid                    FirecrestJobFieldEnum = "user_uuid"
-	FirecrestJobFieldEnumUuid                        FirecrestJobFieldEnum = "uuid"
-)
-
-// Valid indicates whether the value is a known member of the FirecrestJobFieldEnum enum.
-func (e FirecrestJobFieldEnum) Valid() bool {
-	switch e {
-	case FirecrestJobFieldEnumAccessUrl:
-		return true
-	case FirecrestJobFieldEnumBackendId:
-		return true
-	case FirecrestJobFieldEnumCreated:
-		return true
-	case FirecrestJobFieldEnumCustomer:
-		return true
-	case FirecrestJobFieldEnumCustomerAbbreviation:
-		return true
-	case FirecrestJobFieldEnumCustomerName:
-		return true
-	case FirecrestJobFieldEnumCustomerNativeName:
-		return true
-	case FirecrestJobFieldEnumCustomerUuid:
-		return true
-	case FirecrestJobFieldEnumDescription:
-		return true
-	case FirecrestJobFieldEnumErrorMessage:
-		return true
-	case FirecrestJobFieldEnumErrorTraceback:
-		return true
-	case FirecrestJobFieldEnumFile:
-		return true
-	case FirecrestJobFieldEnumModified:
-		return true
-	case FirecrestJobFieldEnumName:
-		return true
-	case FirecrestJobFieldEnumProject:
-		return true
-	case FirecrestJobFieldEnumProjectName:
-		return true
-	case FirecrestJobFieldEnumProjectUuid:
-		return true
-	case FirecrestJobFieldEnumReport:
-		return true
-	case FirecrestJobFieldEnumResourceType:
-		return true
-	case FirecrestJobFieldEnumRuntimeState:
-		return true
-	case FirecrestJobFieldEnumServiceName:
-		return true
-	case FirecrestJobFieldEnumServiceSettings:
-		return true
-	case FirecrestJobFieldEnumServiceSettingsErrorMessage:
-		return true
-	case FirecrestJobFieldEnumServiceSettingsState:
-		return true
-	case FirecrestJobFieldEnumServiceSettingsUuid:
-		return true
-	case FirecrestJobFieldEnumState:
-		return true
-	case FirecrestJobFieldEnumUrl:
-		return true
-	case FirecrestJobFieldEnumUser:
-		return true
-	case FirecrestJobFieldEnumUserUsername:
-		return true
-	case FirecrestJobFieldEnumUserUuid:
-		return true
-	case FirecrestJobFieldEnumUuid:
-		return true
-	default:
-		return false
-	}
-}
-
 // Defines values for FrequencyEnum.
 const (
 	FrequencyEnumBiweekly FrequencyEnum = "biweekly"
@@ -8786,19 +8774,19 @@ func (e GlobalUserDataAccessLogOEnum) Valid() bool {
 
 // Defines values for GoodDirectionEnum.
 const (
-	Down    GoodDirectionEnum = "down"
-	Neutral GoodDirectionEnum = "neutral"
-	Up      GoodDirectionEnum = "up"
+	GoodDirectionEnumDown    GoodDirectionEnum = "down"
+	GoodDirectionEnumNeutral GoodDirectionEnum = "neutral"
+	GoodDirectionEnumUp      GoodDirectionEnum = "up"
 )
 
 // Valid indicates whether the value is a known member of the GoodDirectionEnum enum.
 func (e GoodDirectionEnum) Valid() bool {
 	switch e {
-	case Down:
+	case GoodDirectionEnumDown:
 		return true
-	case Neutral:
+	case GoodDirectionEnumNeutral:
 		return true
-	case Up:
+	case GoodDirectionEnumUp:
 		return true
 	default:
 		return false
@@ -9303,6 +9291,72 @@ func (e GuestPowerStateEnum) Valid() bool {
 	case STANDBY:
 		return true
 	case UNAVAILABLE:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for HpcJobTimeWindowEnum.
+const (
+	N1h  HpcJobTimeWindowEnum = "1h"
+	N24h HpcJobTimeWindowEnum = "24h"
+	N3d  HpcJobTimeWindowEnum = "3d"
+	N7d  HpcJobTimeWindowEnum = "7d"
+	N8h  HpcJobTimeWindowEnum = "8h"
+)
+
+// Valid indicates whether the value is a known member of the HpcJobTimeWindowEnum enum.
+func (e HpcJobTimeWindowEnum) Valid() bool {
+	switch e {
+	case N1h:
+		return true
+	case N24h:
+		return true
+	case N3d:
+		return true
+	case N7d:
+		return true
+	case N8h:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for HpcOutputSeriesKindEnum.
+const (
+	HpcOutputSeriesKindEnumCsv    HpcOutputSeriesKindEnum = "csv"
+	HpcOutputSeriesKindEnumWrfRsl HpcOutputSeriesKindEnum = "wrf_rsl"
+	HpcOutputSeriesKindEnumXvg    HpcOutputSeriesKindEnum = "xvg"
+)
+
+// Valid indicates whether the value is a known member of the HpcOutputSeriesKindEnum enum.
+func (e HpcOutputSeriesKindEnum) Valid() bool {
+	switch e {
+	case HpcOutputSeriesKindEnumCsv:
+		return true
+	case HpcOutputSeriesKindEnumWrfRsl:
+		return true
+	case HpcOutputSeriesKindEnumXvg:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for HpcSuggestionKindEnum.
+const (
+	CpuEfficiency HpcSuggestionKindEnum = "cpu_efficiency"
+	TimeLimit     HpcSuggestionKindEnum = "time_limit"
+)
+
+// Valid indicates whether the value is a known member of the HpcSuggestionKindEnum enum.
+func (e HpcSuggestionKindEnum) Valid() bool {
+	switch e {
+	case CpuEfficiency:
+		return true
+	case TimeLimit:
 		return true
 	default:
 		return false
@@ -11235,8 +11289,10 @@ func (e MembershipStateEnum) Valid() bool {
 // Defines values for MessageBlocksKey.
 const (
 	MessageBlocksKeyAskUserForm  MessageBlocksKey = "ask_user_form"
+	MessageBlocksKeyChart        MessageBlocksKey = "chart"
 	MessageBlocksKeyCode         MessageBlocksKey = "code"
 	MessageBlocksKeyHomeportNav  MessageBlocksKey = "homeport_nav"
+	MessageBlocksKeyHpcJob       MessageBlocksKey = "hpc_job"
 	MessageBlocksKeyMarkdown     MessageBlocksKey = "markdown"
 	MessageBlocksKeyMermaid      MessageBlocksKey = "mermaid"
 	MessageBlocksKeyResourceList MessageBlocksKey = "resource_list"
@@ -11249,9 +11305,13 @@ func (e MessageBlocksKey) Valid() bool {
 	switch e {
 	case MessageBlocksKeyAskUserForm:
 		return true
+	case MessageBlocksKeyChart:
+		return true
 	case MessageBlocksKeyCode:
 		return true
 	case MessageBlocksKeyHomeportNav:
+		return true
+	case MessageBlocksKeyHpcJob:
 		return true
 	case MessageBlocksKeyMarkdown:
 		return true
@@ -22974,6 +23034,27 @@ func (e StorageModeEnum) Valid() bool {
 	}
 }
 
+// Defines values for StyleEnum.
+const (
+	Dashed StyleEnum = "dashed"
+	Dotted StyleEnum = "dotted"
+	Solid  StyleEnum = "solid"
+)
+
+// Valid indicates whether the value is a known member of the StyleEnum enum.
+func (e StyleEnum) Valid() bool {
+	switch e {
+	case Dashed:
+		return true
+	case Dotted:
+		return true
+	case Solid:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for SupportUserOEnum.
 const (
 	SupportUserOEnumBackendId        SupportUserOEnum = "backend_id"
@@ -23259,6 +23340,33 @@ func (e TimingBucketEnum) Valid() bool {
 	case TimingBucketEnumOverrun:
 		return true
 	case TimingBucketEnumPending:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ToneEnum.
+const (
+	ToneEnumDanger  ToneEnum = "danger"
+	ToneEnumInfo    ToneEnum = "info"
+	ToneEnumNeutral ToneEnum = "neutral"
+	ToneEnumSuccess ToneEnum = "success"
+	ToneEnumWarning ToneEnum = "warning"
+)
+
+// Valid indicates whether the value is a known member of the ToneEnum enum.
+func (e ToneEnum) Valid() bool {
+	switch e {
+	case ToneEnumDanger:
+		return true
+	case ToneEnumInfo:
+		return true
+	case ToneEnumNeutral:
+		return true
+	case ToneEnumSuccess:
+		return true
+	case ToneEnumWarning:
 		return true
 	default:
 		return false
@@ -25853,19 +25961,37 @@ func (e WebHookContentTypeEnum1) Valid() bool {
 
 // Defines values for WidgetEnum.
 const (
-	AttachedInstance WidgetEnum = "attached_instance"
-	Csv              WidgetEnum = "csv"
-	Filesize         WidgetEnum = "filesize"
+	WidgetEnumAttachedInstance WidgetEnum = "attached_instance"
+	WidgetEnumCsv              WidgetEnum = "csv"
+	WidgetEnumFilesize         WidgetEnum = "filesize"
 )
 
 // Valid indicates whether the value is a known member of the WidgetEnum enum.
 func (e WidgetEnum) Valid() bool {
 	switch e {
-	case AttachedInstance:
+	case WidgetEnumAttachedInstance:
 		return true
-	case Csv:
+	case WidgetEnumCsv:
 		return true
-	case Filesize:
+	case WidgetEnumFilesize:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for YAxisEnum.
+const (
+	YAxisEnumPrimary   YAxisEnum = "primary"
+	YAxisEnumSecondary YAxisEnum = "secondary"
+)
+
+// Valid indicates whether the value is a known member of the YAxisEnum enum.
+func (e YAxisEnum) Valid() bool {
+	switch e {
+	case YAxisEnumPrimary:
+		return true
+	case YAxisEnumSecondary:
 		return true
 	default:
 		return false
@@ -30717,6 +30843,88 @@ type ChangelogUpgradeReport struct {
 	Report string `json:"report"`
 }
 
+// ChartAnnotation defines model for ChartAnnotation.
+type ChartAnnotation struct {
+	Label    *string                 `json:"label,omitempty"`
+	Tone     *ToneEnum               `json:"tone,omitempty"`
+	Type     ChartAnnotationTypeEnum `json:"type"`
+	Value    float64                 `json:"value"`
+	ValueEnd *float64                `json:"value_end,omitempty"`
+}
+
+// ChartAnnotationTypeEnum defines model for ChartAnnotationTypeEnum.
+type ChartAnnotationTypeEnum string
+
+// ChartAxis defines model for ChartAxis.
+type ChartAxis struct {
+	// Categories Category labels, in order, for a category axis.
+	Categories *[]string          `json:"categories,omitempty"`
+	Label      *string            `json:"label,omitempty"`
+	Max        *float64           `json:"max,omitempty"`
+	Min        *float64           `json:"min,omitempty"`
+	Type       *ChartAxisTypeEnum `json:"type,omitempty"`
+	Unit       *string            `json:"unit,omitempty"`
+}
+
+// ChartAxisTypeEnum defines model for ChartAxisTypeEnum.
+type ChartAxisTypeEnum string
+
+// ChartLink defines model for ChartLink.
+type ChartLink struct {
+	Label string `json:"label"`
+	Url   string `json:"url"`
+}
+
+// ChartSeries defines model for ChartSeries.
+type ChartSeries struct {
+	// Ids Identifier per point (e.g. a job ID) the page may link to.
+	Ids *[]string `json:"ids,omitempty"`
+
+	// Labels Tooltip text per point.
+	Labels *[]string `json:"labels,omitempty"`
+	Name   string    `json:"name"`
+
+	// Points [x, y] pairs; heatmap [x, y, value]; timeline [row, start, end, limit_end].
+	Points [][]*ChartSeries_Points_Item `json:"points"`
+	Style  *StyleEnum                   `json:"style,omitempty"`
+	Tone   *ToneEnum                    `json:"tone,omitempty"`
+
+	// YAxis Secondary plots against `y2`, for a series in other units.
+	YAxis *YAxisEnum `json:"y_axis,omitempty"`
+}
+
+// ChartSeriesPoints0 defines model for ChartSeries.Points.0.
+type ChartSeriesPoints0 = float32
+
+// ChartSeriesPoints1 defines model for ChartSeries.Points.1.
+type ChartSeriesPoints1 = string
+
+// ChartSeries_Points_Item defines model for ChartSeries.points.Item.
+type ChartSeries_Points_Item struct {
+	union json.RawMessage
+}
+
+// ChartSpec defines model for ChartSpec.
+type ChartSpec struct {
+	Annotations *[]ChartAnnotation `json:"annotations,omitempty"`
+	ChartType   ChartTypeEnum      `json:"chart_type"`
+
+	// EmptyMessage Shown instead of the chart when no series has points.
+	EmptyMessage *string       `json:"empty_message,omitempty"`
+	Link         *ChartLink    `json:"link,omitempty"`
+	Series       []ChartSeries `json:"series"`
+	Subtitle     *string       `json:"subtitle,omitempty"`
+	Title        string        `json:"title"`
+	X            ChartAxis     `json:"x"`
+	Y            ChartAxis     `json:"y"`
+
+	// Y2 Right-hand value axis.
+	Y2 *ChartAxis `json:"y2,omitempty"`
+}
+
+// ChartTypeEnum defines model for ChartTypeEnum.
+type ChartTypeEnum string
+
 // ChatRequestModeEnum defines model for ChatRequestModeEnum.
 type ChatRequestModeEnum string
 
@@ -31843,6 +32051,7 @@ type ConstanceSettings struct {
 	FEDERATEDIDENTITYLOCKEDFIELDS                    *[]ConstanceSettings_FEDERATEDIDENTITYLOCKEDFIELDS_Item          `json:"FEDERATED_IDENTITY_LOCKED_FIELDS,omitempty"`
 	FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES           *[]ConstanceSettings_FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES_Item `json:"FEDERATED_IDENTITY_SYNC_ALLOWED_ATTRIBUTES,omitempty"`
 	FEDERATEDIDENTITYSYNCENABLED                     *bool                                                            `json:"FEDERATED_IDENTITY_SYNC_ENABLED,omitempty"`
+	FIRECRESTALLOWEDAPIURLS                          *string                                                          `json:"FIRECREST_ALLOWED_API_URLS,omitempty"`
 	FONTFAMILY                                       *FONTFAMILYEnum                                                  `json:"FONT_FAMILY,omitempty"`
 	FREEIPABLACKLISTEDUSERNAMES                      *[]string                                                        `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
 	FREEIPAENABLED                                   *bool                                                            `json:"FREEIPA_ENABLED,omitempty"`
@@ -31928,6 +32137,7 @@ type ConstanceSettings struct {
 	OIDCINTROSPECTIONURL                             *string                                                          `json:"OIDC_INTROSPECTION_URL,omitempty"`
 	OIDCMATCHMAKINGBYEMAIL                           *bool                                                            `json:"OIDC_MATCHMAKING_BY_EMAIL,omitempty"`
 	OIDCREGISTRATIONMETHOD                           *string                                                          `json:"OIDC_REGISTRATION_METHOD,omitempty"`
+	OIDCTOKENMAXIDLEDAYS                             *int                                                             `json:"OIDC_TOKEN_MAX_IDLE_DAYS,omitempty"`
 	OIDCUSERFIELD                                    *string                                                          `json:"OIDC_USER_FIELD,omitempty"`
 	ONBOARDINGARIREGISTERBASEURL                     *string                                                          `json:"ONBOARDING_ARIREGISTER_BASE_URL,omitempty"`
 	ONBOARDINGARIREGISTERPASSWORD                    *string                                                          `json:"ONBOARDING_ARIREGISTER_PASSWORD,omitempty"`
@@ -32001,6 +32211,7 @@ type ConstanceSettings struct {
 	SITEEMAIL                                        *string                                                          `json:"SITE_EMAIL,omitempty"`
 	SITENAME                                         *string                                                          `json:"SITE_NAME,omitempty"`
 	SITEPHONE                                        *string                                                          `json:"SITE_PHONE,omitempty"`
+	SLURMMONITORALLOWEDAPIURLS                       *string                                                          `json:"SLURM_MONITOR_ALLOWED_API_URLS,omitempty"`
 	SLURMPOLICYEVALUATIONLOGRETENTIONDAYS            *int                                                             `json:"SLURM_POLICY_EVALUATION_LOG_RETENTION_DAYS,omitempty"`
 	SMAXAFFECTEDRESOURCEFIELD                        *string                                                          `json:"SMAX_AFFECTED_RESOURCE_FIELD,omitempty"`
 	SMAXAPIURL                                       *string                                                          `json:"SMAX_API_URL,omitempty"`
@@ -32282,6 +32493,7 @@ type ConstanceSettingsRequest struct {
 	FEDERATEDIDENTITYLOCKEDFIELDS                    *[]ConstanceSettingsRequest_FEDERATEDIDENTITYLOCKEDFIELDS_Item          `json:"FEDERATED_IDENTITY_LOCKED_FIELDS,omitempty"`
 	FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES           *[]ConstanceSettingsRequest_FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES_Item `json:"FEDERATED_IDENTITY_SYNC_ALLOWED_ATTRIBUTES,omitempty"`
 	FEDERATEDIDENTITYSYNCENABLED                     *bool                                                                   `json:"FEDERATED_IDENTITY_SYNC_ENABLED,omitempty"`
+	FIRECRESTALLOWEDAPIURLS                          *string                                                                 `json:"FIRECREST_ALLOWED_API_URLS,omitempty"`
 	FONTFAMILY                                       *FONTFAMILYEnum                                                         `json:"FONT_FAMILY,omitempty"`
 	FREEIPABLACKLISTEDUSERNAMES                      *[]string                                                               `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
 	FREEIPAENABLED                                   *bool                                                                   `json:"FREEIPA_ENABLED,omitempty"`
@@ -32367,6 +32579,7 @@ type ConstanceSettingsRequest struct {
 	OIDCINTROSPECTIONURL                             *string                                                                 `json:"OIDC_INTROSPECTION_URL,omitempty"`
 	OIDCMATCHMAKINGBYEMAIL                           *bool                                                                   `json:"OIDC_MATCHMAKING_BY_EMAIL,omitempty"`
 	OIDCREGISTRATIONMETHOD                           *string                                                                 `json:"OIDC_REGISTRATION_METHOD,omitempty"`
+	OIDCTOKENMAXIDLEDAYS                             *int                                                                    `json:"OIDC_TOKEN_MAX_IDLE_DAYS,omitempty"`
 	OIDCUSERFIELD                                    *string                                                                 `json:"OIDC_USER_FIELD,omitempty"`
 	ONBOARDINGARIREGISTERBASEURL                     *string                                                                 `json:"ONBOARDING_ARIREGISTER_BASE_URL,omitempty"`
 	ONBOARDINGARIREGISTERPASSWORD                    *string                                                                 `json:"ONBOARDING_ARIREGISTER_PASSWORD,omitempty"`
@@ -32440,6 +32653,7 @@ type ConstanceSettingsRequest struct {
 	SITEEMAIL                                        *string                                                                 `json:"SITE_EMAIL,omitempty"`
 	SITENAME                                         *string                                                                 `json:"SITE_NAME,omitempty"`
 	SITEPHONE                                        *string                                                                 `json:"SITE_PHONE,omitempty"`
+	SLURMMONITORALLOWEDAPIURLS                       *string                                                                 `json:"SLURM_MONITOR_ALLOWED_API_URLS,omitempty"`
 	SLURMPOLICYEVALUATIONLOGRETENTIONDAYS            *int                                                                    `json:"SLURM_POLICY_EVALUATION_LOG_RETENTION_DAYS,omitempty"`
 	SMAXAFFECTEDRESOURCEFIELD                        *string                                                                 `json:"SMAX_AFFECTED_RESOURCE_FIELD,omitempty"`
 	SMAXAPIURL                                       *string                                                                 `json:"SMAX_API_URL,omitempty"`
@@ -32721,6 +32935,7 @@ type ConstanceSettingsRequestForm struct {
 	FEDERATEDIDENTITYLOCKEDFIELDS                    *[]ConstanceSettingsRequestForm_FEDERATEDIDENTITYLOCKEDFIELDS_Item          `json:"FEDERATED_IDENTITY_LOCKED_FIELDS,omitempty"`
 	FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES           *[]ConstanceSettingsRequestForm_FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES_Item `json:"FEDERATED_IDENTITY_SYNC_ALLOWED_ATTRIBUTES,omitempty"`
 	FEDERATEDIDENTITYSYNCENABLED                     *bool                                                                       `json:"FEDERATED_IDENTITY_SYNC_ENABLED,omitempty"`
+	FIRECRESTALLOWEDAPIURLS                          *string                                                                     `json:"FIRECREST_ALLOWED_API_URLS,omitempty"`
 	FONTFAMILY                                       *FONTFAMILYEnum                                                             `json:"FONT_FAMILY,omitempty"`
 	FREEIPABLACKLISTEDUSERNAMES                      *[]string                                                                   `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
 	FREEIPAENABLED                                   *bool                                                                       `json:"FREEIPA_ENABLED,omitempty"`
@@ -32806,6 +33021,7 @@ type ConstanceSettingsRequestForm struct {
 	OIDCINTROSPECTIONURL                             *string                                                                     `json:"OIDC_INTROSPECTION_URL,omitempty"`
 	OIDCMATCHMAKINGBYEMAIL                           *bool                                                                       `json:"OIDC_MATCHMAKING_BY_EMAIL,omitempty"`
 	OIDCREGISTRATIONMETHOD                           *string                                                                     `json:"OIDC_REGISTRATION_METHOD,omitempty"`
+	OIDCTOKENMAXIDLEDAYS                             *int                                                                        `json:"OIDC_TOKEN_MAX_IDLE_DAYS,omitempty"`
 	OIDCUSERFIELD                                    *string                                                                     `json:"OIDC_USER_FIELD,omitempty"`
 	ONBOARDINGARIREGISTERBASEURL                     *string                                                                     `json:"ONBOARDING_ARIREGISTER_BASE_URL,omitempty"`
 	ONBOARDINGARIREGISTERPASSWORD                    *string                                                                     `json:"ONBOARDING_ARIREGISTER_PASSWORD,omitempty"`
@@ -32879,6 +33095,7 @@ type ConstanceSettingsRequestForm struct {
 	SITEEMAIL                                        *string                                                                     `json:"SITE_EMAIL,omitempty"`
 	SITENAME                                         *string                                                                     `json:"SITE_NAME,omitempty"`
 	SITEPHONE                                        *string                                                                     `json:"SITE_PHONE,omitempty"`
+	SLURMMONITORALLOWEDAPIURLS                       *string                                                                     `json:"SLURM_MONITOR_ALLOWED_API_URLS,omitempty"`
 	SLURMPOLICYEVALUATIONLOGRETENTIONDAYS            *int                                                                        `json:"SLURM_POLICY_EVALUATION_LOG_RETENTION_DAYS,omitempty"`
 	SMAXAFFECTEDRESOURCEFIELD                        *string                                                                     `json:"SMAX_AFFECTED_RESOURCE_FIELD,omitempty"`
 	SMAXAPIURL                                       *string                                                                     `json:"SMAX_API_URL,omitempty"`
@@ -33160,6 +33377,7 @@ type ConstanceSettingsRequestMultipart struct {
 	FEDERATEDIDENTITYLOCKEDFIELDS                    *[]ConstanceSettingsRequestMultipart_FEDERATEDIDENTITYLOCKEDFIELDS_Item          `json:"FEDERATED_IDENTITY_LOCKED_FIELDS,omitempty"`
 	FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES           *[]ConstanceSettingsRequestMultipart_FEDERATEDIDENTITYSYNCALLOWEDATTRIBUTES_Item `json:"FEDERATED_IDENTITY_SYNC_ALLOWED_ATTRIBUTES,omitempty"`
 	FEDERATEDIDENTITYSYNCENABLED                     *bool                                                                            `json:"FEDERATED_IDENTITY_SYNC_ENABLED,omitempty"`
+	FIRECRESTALLOWEDAPIURLS                          *string                                                                          `json:"FIRECREST_ALLOWED_API_URLS,omitempty"`
 	FONTFAMILY                                       *FONTFAMILYEnum                                                                  `json:"FONT_FAMILY,omitempty"`
 	FREEIPABLACKLISTEDUSERNAMES                      *[]string                                                                        `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
 	FREEIPAENABLED                                   *bool                                                                            `json:"FREEIPA_ENABLED,omitempty"`
@@ -33245,6 +33463,7 @@ type ConstanceSettingsRequestMultipart struct {
 	OIDCINTROSPECTIONURL                             *string                                                                          `json:"OIDC_INTROSPECTION_URL,omitempty"`
 	OIDCMATCHMAKINGBYEMAIL                           *bool                                                                            `json:"OIDC_MATCHMAKING_BY_EMAIL,omitempty"`
 	OIDCREGISTRATIONMETHOD                           *string                                                                          `json:"OIDC_REGISTRATION_METHOD,omitempty"`
+	OIDCTOKENMAXIDLEDAYS                             *int                                                                             `json:"OIDC_TOKEN_MAX_IDLE_DAYS,omitempty"`
 	OIDCUSERFIELD                                    *string                                                                          `json:"OIDC_USER_FIELD,omitempty"`
 	ONBOARDINGARIREGISTERBASEURL                     *string                                                                          `json:"ONBOARDING_ARIREGISTER_BASE_URL,omitempty"`
 	ONBOARDINGARIREGISTERPASSWORD                    *string                                                                          `json:"ONBOARDING_ARIREGISTER_PASSWORD,omitempty"`
@@ -33318,6 +33537,7 @@ type ConstanceSettingsRequestMultipart struct {
 	SITEEMAIL                                        *string                                                                          `json:"SITE_EMAIL,omitempty"`
 	SITENAME                                         *string                                                                          `json:"SITE_NAME,omitempty"`
 	SITEPHONE                                        *string                                                                          `json:"SITE_PHONE,omitempty"`
+	SLURMMONITORALLOWEDAPIURLS                       *string                                                                          `json:"SLURM_MONITOR_ALLOWED_API_URLS,omitempty"`
 	SLURMPOLICYEVALUATIONLOGRETENTIONDAYS            *int                                                                             `json:"SLURM_POLICY_EVALUATION_LOG_RETENTION_DAYS,omitempty"`
 	SMAXAFFECTEDRESOURCEFIELD                        *string                                                                          `json:"SMAX_AFFECTED_RESOURCE_FIELD,omitempty"`
 	SMAXAPIURL                                       *string                                                                          `json:"SMAX_API_URL,omitempty"`
@@ -36997,89 +37217,6 @@ type Fingerprint struct {
 	Sha512 *string `json:"sha512,omitempty"`
 }
 
-// FirecrestJob defines model for FirecrestJob.
-type FirecrestJob struct {
-	AccessUrl                   *FirecrestJob_AccessUrl `json:"access_url,omitempty"`
-	BackendId                   *string                 `json:"backend_id,omitempty"`
-	Created                     *time.Time              `json:"created,omitempty"`
-	Customer                    *string                 `json:"customer,omitempty"`
-	CustomerAbbreviation        *string                 `json:"customer_abbreviation,omitempty"`
-	CustomerName                *string                 `json:"customer_name,omitempty"`
-	CustomerNativeName          *string                 `json:"customer_native_name,omitempty"`
-	CustomerUuid                *openapi_types.UUID     `json:"customer_uuid,omitempty"`
-	Description                 *string                 `json:"description,omitempty"`
-	ErrorMessage                *string                 `json:"error_message,omitempty"`
-	ErrorTraceback              *string                 `json:"error_traceback,omitempty"`
-	File                        *string                 `json:"file,omitempty"`
-	Modified                    *time.Time              `json:"modified,omitempty"`
-	Name                        *string                 `json:"name,omitempty"`
-	Project                     *string                 `json:"project,omitempty"`
-	ProjectName                 *string                 `json:"project_name,omitempty"`
-	ProjectUuid                 *openapi_types.UUID     `json:"project_uuid,omitempty"`
-	Report                      *map[string]interface{} `json:"report,omitempty"`
-	ResourceType                *string                 `json:"resource_type,omitempty"`
-	RuntimeState                *string                 `json:"runtime_state,omitempty"`
-	ServiceName                 *string                 `json:"service_name,omitempty"`
-	ServiceSettings             *string                 `json:"service_settings,omitempty"`
-	ServiceSettingsErrorMessage *string                 `json:"service_settings_error_message,omitempty"`
-	ServiceSettingsState        *string                 `json:"service_settings_state,omitempty"`
-	ServiceSettingsUuid         *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
-	State                       *CoreStates             `json:"state,omitempty"`
-	Url                         *string                 `json:"url,omitempty"`
-
-	// User Reference to user which submitted job
-	User *string `json:"user,omitempty"`
-
-	// UserUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
-	UserUsername *string             `json:"user_username,omitempty"`
-	UserUuid     *openapi_types.UUID `json:"user_uuid,omitempty"`
-	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
-}
-
-// FirecrestJobAccessUrl0 defines model for FirecrestJob.AccessUrl.0.
-type FirecrestJobAccessUrl0 = []string
-
-// FirecrestJobAccessUrl1 defines model for FirecrestJob.AccessUrl.1.
-type FirecrestJobAccessUrl1 = string
-
-// FirecrestJob_AccessUrl defines model for FirecrestJob.AccessUrl.
-type FirecrestJob_AccessUrl struct {
-	union json.RawMessage
-}
-
-// FirecrestJobFieldEnum defines model for FirecrestJobFieldEnum.
-type FirecrestJobFieldEnum string
-
-// FirecrestJobRequest defines model for FirecrestJobRequest.
-type FirecrestJobRequest struct {
-	Description     *string            `json:"description,omitempty"`
-	File            openapi_types.File `json:"file"`
-	Name            string             `json:"name"`
-	Project         string             `json:"project"`
-	RuntimeState    *string            `json:"runtime_state,omitempty"`
-	ServiceSettings string             `json:"service_settings"`
-}
-
-// FirecrestJobRequestForm defines model for FirecrestJobRequestForm.
-type FirecrestJobRequestForm struct {
-	Description     *string            `json:"description,omitempty"`
-	File            openapi_types.File `json:"file"`
-	Name            string             `json:"name"`
-	Project         string             `json:"project"`
-	RuntimeState    *string            `json:"runtime_state,omitempty"`
-	ServiceSettings string             `json:"service_settings"`
-}
-
-// FirecrestJobRequestMultipart defines model for FirecrestJobRequestMultipart.
-type FirecrestJobRequestMultipart struct {
-	Description     *string            `json:"description,omitempty"`
-	File            openapi_types.File `json:"file"`
-	Name            string             `json:"name"`
-	Project         string             `json:"project"`
-	RuntimeState    *string            `json:"runtime_state,omitempty"`
-	ServiceSettings string             `json:"service_settings"`
-}
-
 // FlavorResponse defines model for FlavorResponse.
 type FlavorResponse struct {
 	// Disk Disk in GB
@@ -37516,6 +37653,470 @@ type HelpdeskStats struct {
 	TotalRouted           int                    `json:"total_routed"`
 }
 
+// HpcAllocationUsage defines model for HpcAllocationUsage.
+type HpcAllocationUsage struct {
+	AsOf       openapi_types.Date  `json:"as_of"`
+	Charts     []ChartSpec         `json:"charts"`
+	Components []HpcComponentUsage `json:"components"`
+}
+
+// HpcClusterLoad defines model for HpcClusterLoad.
+type HpcClusterLoad struct {
+	Announcements []HpcMaintenanceAnnouncement `json:"announcements"`
+	Charts        []ChartSpec                  `json:"charts"`
+	Nodes         []HpcNode                    `json:"nodes"`
+	Partitions    []HpcPartitionLoad           `json:"partitions"`
+	Reservations  []HpcReservation             `json:"reservations"`
+}
+
+// HpcComponentUsage defines model for HpcComponentUsage.
+type HpcComponentUsage struct {
+	Consumed               float64             `json:"consumed"`
+	Cumulative             []HpcUsagePoint     `json:"cumulative"`
+	DailyRate              *float64            `json:"daily_rate"`
+	Limit                  *float64            `json:"limit"`
+	LimitPeriod            string              `json:"limit_period"`
+	Monthly                []HpcMonthlyUsage   `json:"monthly"`
+	Name                   string              `json:"name"`
+	Percent                *float64            `json:"percent"`
+	PeriodEnd              *openapi_types.Date `json:"period_end"`
+	PeriodStart            openapi_types.Date  `json:"period_start"`
+	RunsOut                *openapi_types.Date `json:"runs_out"`
+	RunsOutBeforePeriodEnd bool                `json:"runs_out_before_period_end"`
+	Type                   string              `json:"type"`
+	Unit                   string              `json:"unit"`
+	Users                  []HpcUserUsage      `json:"users"`
+}
+
+// HpcFile defines model for HpcFile.
+type HpcFile struct {
+	Group        string  `json:"group"`
+	LastModified string  `json:"last_modified"`
+	LinkTarget   *string `json:"link_target,omitempty"`
+	Name         string  `json:"name"`
+	Permissions  string  `json:"permissions"`
+	Size         string  `json:"size"`
+
+	// Type 'd' directory, '-' file, 'l' link
+	Type string `json:"type"`
+	User string `json:"user"`
+}
+
+// HpcFileContent defines model for HpcFileContent.
+type HpcFileContent struct {
+	Content string `json:"content"`
+	Path    string `json:"path"`
+}
+
+// HpcJob defines model for HpcJob.
+type HpcJob struct {
+	Account         *string `json:"account,omitempty"`
+	AllocationCpus  *int    `json:"allocation_cpus,omitempty"`
+	AllocationGpus  *int    `json:"allocation_gpus,omitempty"`
+	AllocationNodes *int    `json:"allocation_nodes,omitempty"`
+
+	// CpuEfficiency CPU time / (CPUs x elapsed), 0..1; finished jobs only
+	CpuEfficiency *float64 `json:"cpu_efficiency,omitempty"`
+
+	// CpuHours Allocated CPUs x elapsed time
+	CpuHours       *float64 `json:"cpu_hours,omitempty"`
+	CpuTimeSeconds *int     `json:"cpu_time_seconds,omitempty"`
+
+	// Elapsed Seconds
+	Elapsed *int `json:"elapsed,omitempty"`
+	EndTime *int `json:"end_time,omitempty"`
+
+	// EnergyKwh Energy consumed; where accounting records the energy TRES
+	EnergyKwh *float64 `json:"energy_kwh,omitempty"`
+	ExitCode  *int     `json:"exit_code,omitempty"`
+
+	// GpuHours Allocated GPUs x elapsed time
+	GpuHours *float64 `json:"gpu_hours,omitempty"`
+	JobId    string   `json:"job_id"`
+	MaxRssMb *int     `json:"max_rss_mb,omitempty"`
+
+	// MeanPowerW Energy / elapsed time, all of the job's nodes
+	MeanPowerW *int `json:"mean_power_w,omitempty"`
+
+	// MemoryEfficiency Peak RSS / requested memory, 0..1; finished jobs only
+	MemoryEfficiency  *float64 `json:"memory_efficiency,omitempty"`
+	Name              string   `json:"name"`
+	Nodes             *string  `json:"nodes,omitempty"`
+	Partition         *string  `json:"partition,omitempty"`
+	RequestedMemoryMb *int     `json:"requested_memory_mb,omitempty"`
+	StartTime         *int     `json:"start_time,omitempty"`
+	State             string   `json:"state"`
+	StateReason       *string  `json:"state_reason,omitempty"`
+	SubmitTime        *int     `json:"submit_time,omitempty"`
+
+	// TimeLimit Seconds (FirecREST converts Slurm's minutes)
+	TimeLimit *int    `json:"time_limit,omitempty"`
+	User      *string `json:"user,omitempty"`
+
+	// WaitSeconds From submission to start
+	WaitSeconds      *int    `json:"wait_seconds,omitempty"`
+	WorkingDirectory *string `json:"working_directory,omitempty"`
+}
+
+// HpcJobFailure defines model for HpcJobFailure.
+type HpcJobFailure struct {
+	Count       int      `json:"count"`
+	ExitCode    *int     `json:"exit_code"`
+	LatestJobId *string  `json:"latest_job_id"`
+	Names       []string `json:"names"`
+}
+
+// HpcJobOutput defines model for HpcJobOutput.
+type HpcJobOutput struct {
+	Job            HpcJob       `json:"job"`
+	Script         *string      `json:"script"`
+	StandardError  HpcJobStream `json:"standard_error"`
+	StandardOutput HpcJobStream `json:"standard_output"`
+}
+
+// HpcJobPerformance defines model for HpcJobPerformance.
+type HpcJobPerformance struct {
+	Available bool         `json:"available"`
+	Charts    *[]ChartSpec `json:"charts,omitempty"`
+
+	// EndTime Epoch seconds
+	EndTime *int `json:"end_time,omitempty"`
+
+	// Message Why there is nothing to show, when not available
+	Message   string           `json:"message"`
+	Processes *[]HpcJobProcess `json:"processes,omitempty"`
+
+	// Resolution Seconds between points
+	Resolution *int `json:"resolution,omitempty"`
+
+	// StartTime Epoch seconds
+	StartTime *int                      `json:"start_time,omitempty"`
+	Summary   *HpcJobPerformanceSummary `json:"summary,omitempty"`
+	Warnings  *[]string                 `json:"warnings,omitempty"`
+}
+
+// HpcJobPerformanceSummary defines model for HpcJobPerformanceSummary.
+type HpcJobPerformanceSummary struct {
+	// CoveragePercent Sample times seen out of those expected
+	CoveragePercent *float64 `json:"coverage_percent"`
+
+	// CpuCoresMean Summed over the job's nodes
+	CpuCoresMean *float64 `json:"cpu_cores_mean"`
+
+	// FirstSample Epoch seconds
+	FirstSample *int `json:"first_sample"`
+
+	// GpuHoursObserved GPU samples x sample interval
+	GpuHoursObserved *float64 `json:"gpu_hours_observed"`
+
+	// GpuMemoryPeakGib Highest reading of one GPU
+	GpuMemoryPeakGib *float64 `json:"gpu_memory_peak_gib"`
+	GpuMemoryPercent *float64 `json:"gpu_memory_percent"`
+
+	// GpuMemoryTotalGib Memory of one GPU
+	GpuMemoryTotalGib *float64 `json:"gpu_memory_total_gib"`
+
+	// GpuPowerWatts Mean per GPU
+	GpuPowerWatts *float64 `json:"gpu_power_watts"`
+
+	// GpuUsePercent Mean over the job's GPUs and samples
+	GpuUsePercent     *float64 `json:"gpu_use_percent"`
+	Gpus              *int     `json:"gpus"`
+	HostMemoryMeanGib *float64 `json:"host_memory_mean_gib"`
+	HostMemoryPeakGib *float64 `json:"host_memory_peak_gib"`
+
+	// IdleSharePercent Samples where every GPU of the job is under 5%
+	IdleSharePercent *float64 `json:"idle_share_percent"`
+
+	// LastSample Epoch seconds
+	LastSample *int `json:"last_sample"`
+	Nodes      int  `json:"nodes"`
+	Samples    int  `json:"samples"`
+}
+
+// HpcJobProcess defines model for HpcJobProcess.
+type HpcJobProcess struct {
+	Command        string   `json:"command"`
+	MaxCpuPercent  *float64 `json:"max_cpu_percent"`
+	MeanCpuPercent *float64 `json:"mean_cpu_percent"`
+	Nodes          int      `json:"nodes"`
+	PeakRssGib     float64  `json:"peak_rss_gib"`
+	Samples        int      `json:"samples"`
+}
+
+// HpcJobSpecRequest defines model for HpcJobSpecRequest.
+type HpcJobSpecRequest struct {
+	// Commands Shell commands the job runs.
+	Commands    string             `json:"commands"`
+	CpusPerTask *int               `json:"cpus_per_task,omitempty"`
+	Environment *map[string]string `json:"environment,omitempty"`
+	GpusPerNode *int               `json:"gpus_per_node,omitempty"`
+	MemoryMb    *int               `json:"memory_mb,omitempty"`
+
+	// Modules Setup lines, e.g. 'module load GROMACS/2024.1-foss-2023b'.
+	Modules          *[]string `json:"modules,omitempty"`
+	Name             string    `json:"name"`
+	Nodes            *int      `json:"nodes,omitempty"`
+	NtasksPerNode    *int      `json:"ntasks_per_node,omitempty"`
+	Partition        *string   `json:"partition,omitempty"`
+	Qos              *string   `json:"qos,omitempty"`
+	TimeLimitMinutes *int      `json:"time_limit_minutes,omitempty"`
+	WorkingDirectory *string   `json:"working_directory,omitempty"`
+}
+
+// HpcJobStats defines model for HpcJobStats.
+type HpcJobStats struct {
+	Charts          []ChartSpec        `json:"charts"`
+	CpuHours        float64            `json:"cpu_hours"`
+	Days            int                `json:"days"`
+	Failures        []HpcJobFailure    `json:"failures"`
+	Since           int                `json:"since"`
+	Suggestions     []HpcSuggestion    `json:"suggestions"`
+	Totals          HpcJobTotals       `json:"totals"`
+	Until           int                `json:"until"`
+	WaitByPartition []HpcPartitionWait `json:"wait_by_partition"`
+}
+
+// HpcJobStream defines model for HpcJobStream.
+type HpcJobStream struct {
+	Content *string `json:"content"`
+	Path    *string `json:"path"`
+}
+
+// HpcJobSubmitResponse defines model for HpcJobSubmitResponse.
+type HpcJobSubmitResponse struct {
+	JobId    string   `json:"job_id"`
+	Script   string   `json:"script"`
+	Warnings []string `json:"warnings"`
+}
+
+// HpcJobTimeWindowEnum defines model for HpcJobTimeWindowEnum.
+type HpcJobTimeWindowEnum string
+
+// HpcJobTotals defines model for HpcJobTotals.
+type HpcJobTotals struct {
+	Cancelled int `json:"cancelled"`
+	Completed int `json:"completed"`
+	Failed    int `json:"failed"`
+	Pending   int `json:"pending"`
+	Running   int `json:"running"`
+	Timeout   int `json:"timeout"`
+}
+
+// HpcMaintenanceAnnouncement defines model for HpcMaintenanceAnnouncement.
+type HpcMaintenanceAnnouncement struct {
+	End int `json:"end"`
+
+	// ExpectedReservation Reservation the site agent creates for it, when sync is enabled.
+	ExpectedReservation string   `json:"expected_reservation"`
+	Impact              string   `json:"impact"`
+	ImpactDescription   string   `json:"impact_description"`
+	Message             string   `json:"message"`
+	Name                string   `json:"name"`
+	Outage              bool     `json:"outage"`
+	Partitions          []string `json:"partitions"`
+
+	// ReservationInPlace Whether the cluster holds it; null when no reservation is due.
+	ReservationInPlace *bool              `json:"reservation_in_place"`
+	Start              int                `json:"start"`
+	State              string             `json:"state"`
+	Uuid               openapi_types.UUID `json:"uuid"`
+}
+
+// HpcMonthlyUsage defines model for HpcMonthlyUsage.
+type HpcMonthlyUsage struct {
+	Month openapi_types.Date `json:"month"`
+	Value float64            `json:"value"`
+}
+
+// HpcNode defines model for HpcNode.
+type HpcNode struct {
+	AllocCpus    *int     `json:"alloc_cpus"`
+	Cpus         int      `json:"cpus"`
+	FreeMemoryMb *int     `json:"free_memory_mb"`
+	LoadPercent  *float64 `json:"load_percent"`
+	Name         string   `json:"name"`
+	Partitions   []string `json:"partitions"`
+	Reason       string   `json:"reason"`
+	State        string   `json:"state"`
+}
+
+// HpcOutputSeries defines model for HpcOutputSeries.
+type HpcOutputSeries struct {
+	Chart   ChartSpec               `json:"chart"`
+	Kind    HpcOutputSeriesKindEnum `json:"kind"`
+	Path    string                  `json:"path"`
+	Summary map[string]interface{}  `json:"summary"`
+	Title   string                  `json:"title"`
+}
+
+// HpcOutputSeriesKindEnum defines model for HpcOutputSeriesKindEnum.
+type HpcOutputSeriesKindEnum string
+
+// HpcPartition defines model for HpcPartition.
+type HpcPartition struct {
+	CpuArch    string `json:"cpu_arch"`
+	Cpus       *int   `json:"cpus"`
+	DefaultQos string `json:"default_qos"`
+
+	// DefaultTime Minutes
+	DefaultTime *int   `json:"default_time"`
+	GpuArch     string `json:"gpu_arch"`
+	IdleNodes   *int   `json:"idle_nodes"`
+
+	// Live The cluster reports this partition.
+	Live           bool `json:"live"`
+	MaxCpusPerNode *int `json:"max_cpus_per_node"`
+
+	// MaxMemPerNode MB
+	MaxMemPerNode *int `json:"max_mem_per_node"`
+	MaxNodes      *int `json:"max_nodes"`
+
+	// MaxTime Minutes
+	MaxTime *int   `json:"max_time"`
+	Name    string `json:"name"`
+
+	// Published The provider publishes this partition in Waldur.
+	Published  bool     `json:"published"`
+	Qos        []string `json:"qos"`
+	TotalNodes *int     `json:"total_nodes"`
+}
+
+// HpcPartitionLoad defines model for HpcPartitionLoad.
+type HpcPartitionLoad struct {
+	Allocated          int      `json:"allocated"`
+	AverageLoadPercent *float64 `json:"average_load_percent"`
+	Idle               int      `json:"idle"`
+	Mixed              int      `json:"mixed"`
+	Name               string   `json:"name"`
+	Reserved           int      `json:"reserved"`
+	Total              int      `json:"total"`
+	Unavailable        int      `json:"unavailable"`
+}
+
+// HpcPartitionWait defines model for HpcPartitionWait.
+type HpcPartitionWait struct {
+	Jobs              int    `json:"jobs"`
+	MedianWaitSeconds int    `json:"median_wait_seconds"`
+	P90WaitSeconds    int    `json:"p90_wait_seconds"`
+	Partition         string `json:"partition"`
+}
+
+// HpcReservation defines model for HpcReservation.
+type HpcReservation struct {
+	Active bool `json:"active"`
+
+	// Announced For maintenance reservations: whether Waldur announces it.
+	Announced   *bool    `json:"announced"`
+	End         int      `json:"end"`
+	Maintenance bool     `json:"maintenance"`
+	Name        string   `json:"name"`
+	NodeCount   *int     `json:"node_count"`
+	NodeList    string   `json:"node_list"`
+	Partitions  []string `json:"partitions"`
+	Start       int      `json:"start"`
+}
+
+// HpcScriptPreview defines model for HpcScriptPreview.
+type HpcScriptPreview struct {
+	Errors   []string `json:"errors"`
+	Script   string   `json:"script"`
+	Warnings []string `json:"warnings"`
+}
+
+// HpcServiceHealth defines model for HpcServiceHealth.
+type HpcServiceHealth struct {
+	Healthy     *bool   `json:"healthy"`
+	LastChecked *string `json:"last_checked,omitempty"`
+	Message     *string `json:"message,omitempty"`
+	ServiceType *string `json:"service_type"`
+}
+
+// HpcSoftware defines model for HpcSoftware.
+type HpcSoftware struct {
+	Catalog          string   `json:"catalog"`
+	CatalogType      string   `json:"catalog_type"`
+	CpuFamilies      []string `json:"cpu_families"`
+	Description      string   `json:"description"`
+	GpuArchitectures []string `json:"gpu_architectures"`
+
+	// Load Line loading this version in a job.
+	Load string `json:"load"`
+	Name string `json:"name"`
+
+	// Setup Lines making the catalog available, placed before 'load'.
+	Setup   []string `json:"setup"`
+	Version string   `json:"version"`
+}
+
+// HpcSuggestion defines model for HpcSuggestion.
+type HpcSuggestion struct {
+	CurrentLimitMinutes   *int                  `json:"current_limit_minutes,omitempty"`
+	Jobs                  int                   `json:"jobs"`
+	Kind                  HpcSuggestionKindEnum `json:"kind"`
+	Message               string                `json:"message"`
+	Name                  *string               `json:"name"`
+	SuggestedLimitMinutes *int                  `json:"suggested_limit_minutes,omitempty"`
+}
+
+// HpcSuggestionKindEnum defines model for HpcSuggestionKindEnum.
+type HpcSuggestionKindEnum string
+
+// HpcUsagePoint defines model for HpcUsagePoint.
+type HpcUsagePoint struct {
+	Date  openapi_types.Date `json:"date"`
+	Value float64            `json:"value"`
+}
+
+// HpcUserUsage defines model for HpcUserUsage.
+type HpcUserUsage struct {
+	Monthly  []HpcMonthlyUsage `json:"monthly"`
+	Total    float64           `json:"total"`
+	Username string            `json:"username"`
+}
+
+// HpcWorkspace defines model for HpcWorkspace.
+type HpcWorkspace struct {
+	Account      *string `json:"account,omitempty"`
+	CustomerName *string `json:"customer_name,omitempty"`
+
+	// MonitoringEnabled Jobs have per-run performance samples from the cluster monitor.
+	MonitoringEnabled *bool               `json:"monitoring_enabled,omitempty"`
+	OfferingName      *string             `json:"offering_name,omitempty"`
+	OfferingUuid      *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	ProjectName       *string             `json:"project_name,omitempty"`
+	ProjectUuid       *openapi_types.UUID `json:"project_uuid,omitempty"`
+	ResourceName      *string             `json:"resource_name,omitempty"`
+	ResourceUuid      *openapi_types.UUID `json:"resource_uuid,omitempty"`
+	State             *string             `json:"state,omitempty"`
+	SystemName        *string             `json:"system_name,omitempty"`
+}
+
+// HpcWorkspaceOverview defines model for HpcWorkspaceOverview.
+type HpcWorkspaceOverview struct {
+	Account       *string `json:"account,omitempty"`
+	CustomerName  *string `json:"customer_name,omitempty"`
+	Error         *string `json:"error,omitempty"`
+	Healthy       *bool   `json:"healthy,omitempty"`
+	HomeDirectory *string `json:"home_directory,omitempty"`
+
+	// MonitoringEnabled Jobs have per-run performance samples from the cluster monitor.
+	MonitoringEnabled *bool               `json:"monitoring_enabled,omitempty"`
+	OfferingName      *string             `json:"offering_name,omitempty"`
+	OfferingUuid      *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	ProjectName       *string             `json:"project_name,omitempty"`
+	ProjectUuid       *openapi_types.UUID `json:"project_uuid,omitempty"`
+	ResourceName      *string             `json:"resource_name,omitempty"`
+	ResourceUuid      *openapi_types.UUID `json:"resource_uuid,omitempty"`
+	ServicesHealth    *[]HpcServiceHealth `json:"services_health,omitempty"`
+
+	// SignInProvider Identity provider to sign in through again to restore HPC access, when that is what 'error' asks for.
+	SignInProvider *string `json:"sign_in_provider,omitempty"`
+	State          *string `json:"state,omitempty"`
+	SystemName     *string `json:"system_name,omitempty"`
+	Username       *string `json:"username,omitempty"`
+}
+
 // Hypervisor defines model for Hypervisor.
 type Hypervisor struct {
 	BackendId string `json:"backend_id"`
@@ -37788,7 +38389,7 @@ type IdentityProviderRequest struct {
 	ClientId string `json:"client_id"`
 
 	// ClientSecret Application secret key.
-	ClientSecret string `json:"client_secret"`
+	ClientSecret *string `json:"client_secret,omitempty"`
 
 	// DiscoveryUrl The endpoint for endpoint discovery.
 	DiscoveryUrl             string `json:"discovery_url"`
@@ -39161,6 +39762,9 @@ type MaintenanceAnnouncementOEnum string
 
 // MaintenanceAnnouncementOffering defines model for MaintenanceAnnouncementOffering.
 type MaintenanceAnnouncementOffering struct {
+	// AffectedPartitions Partitions the maintenance takes down; empty means all. A site agent with maintenance sync reserves only these for a partial outage.
+	AffectedPartitions *[]string `json:"affected_partitions,omitempty"`
+
 	// ImpactDescription Specific description of how this offering will be affected
 	ImpactDescription *string `json:"impact_description,omitempty"`
 
@@ -39176,6 +39780,9 @@ type MaintenanceAnnouncementOffering struct {
 
 // MaintenanceAnnouncementOfferingRequest defines model for MaintenanceAnnouncementOfferingRequest.
 type MaintenanceAnnouncementOfferingRequest struct {
+	// AffectedPartitions Partitions the maintenance takes down; empty means all. A site agent with maintenance sync reserves only these for a partial outage.
+	AffectedPartitions *[]string `json:"affected_partitions,omitempty"`
+
 	// ImpactDescription Specific description of how this offering will be affected
 	ImpactDescription *string `json:"impact_description,omitempty"`
 
@@ -39283,6 +39890,46 @@ type MaintenanceProviderStats struct {
 
 	// Uuid Service provider UUID
 	Uuid string `json:"uuid"`
+}
+
+// MaintenanceReservation defines model for MaintenanceReservation.
+type MaintenanceReservation struct {
+	End             time.Time          `json:"end"`
+	Flags           []string           `json:"flags"`
+	ImpactLevel     string             `json:"impact_level"`
+	MaintenanceName string             `json:"maintenance_name"`
+	MaintenanceUuid openapi_types.UUID `json:"maintenance_uuid"`
+
+	// Name Slurm reservation name to use.
+	Name string `json:"name"`
+
+	// Partitions Partitions to reserve; empty means all nodes.
+	Partitions []string  `json:"partitions"`
+	Start      time.Time `json:"start"`
+	State      string    `json:"state"`
+}
+
+// MaintenanceReservationImportRequest defines model for MaintenanceReservationImportRequest.
+type MaintenanceReservationImportRequest struct {
+	Reservations []SiteMaintenanceReservationRequest `json:"reservations"`
+}
+
+// MaintenanceReservationImportResult defines model for MaintenanceReservationImportResult.
+type MaintenanceReservationImportResult struct {
+	Created   []string `json:"created"`
+	Skipped   []string `json:"skipped"`
+	Unchanged []string `json:"unchanged"`
+	Updated   []string `json:"updated"`
+}
+
+// MaintenanceReservationList defines model for MaintenanceReservationList.
+type MaintenanceReservationList struct {
+	// Enabled Maintenance sync is enabled for the offering.
+	Enabled bool `json:"enabled"`
+
+	// Prefix Reservations with this name prefix are Waldur's to manage.
+	Prefix       string                   `json:"prefix"`
+	Reservations []MaintenanceReservation `json:"reservations"`
 }
 
 // MaintenanceStats defines model for MaintenanceStats.
@@ -40147,6 +40794,12 @@ type MergedPluginOptions struct {
 	// ExposeInferencePlayground Show an in-browser inference playground action for resources of this offering (for offerings whose resources expose an OpenAI-compatible endpoint).
 	ExposeInferencePlayground *bool `json:"expose_inference_playground,omitempty"`
 
+	// FirecrestApiUrl FirecREST v2 API URL users of this SLURM offering work through (jobs, files, cluster status). Must also be listed in the FIRECREST_ALLOWED_API_URLS setting. Leave empty to disable the HPC workspace.
+	FirecrestApiUrl *string `json:"firecrest_api_url,omitempty"`
+
+	// FirecrestSystemName Name of the cluster in FirecREST's systems list.
+	FirecrestSystemName *string `json:"firecrest_system_name,omitempty"`
+
 	// FlavorsRegex Regular expression to limit flavors list
 	FlavorsRegex *string `json:"flavors_regex,omitempty"`
 
@@ -40330,6 +40983,15 @@ type MergedPluginOptions struct {
 	// ShowSshKeyLossWarning Show a warning about unrecoverable loss of the SSH private key on the OpenStack instance order form.
 	ShowSshKeyLossWarning *bool `json:"show_ssh_key_loss_warning,omitempty"`
 
+	// SlurmMaintenanceSyncEnabled When enabled, the site agent turns published maintenance announcements for this offering into Slurm MAINT reservations (full outage: all nodes; partial outage: the named partitions), so the scheduler holds back jobs that would run into them, and imports maintenance reservations made on the cluster as draft announcements.
+	SlurmMaintenanceSyncEnabled *bool `json:"slurm_maintenance_sync_enabled,omitempty"`
+
+	// SlurmMonitorApiUrl slurm-monitor API URL (ending in /api/v2) with the cluster's per-job samples (GPU, CPU, memory over time). Must also be listed in the SLURM_MONITOR_ALLOWED_API_URLS setting. Leave empty to hide job performance.
+	SlurmMonitorApiUrl *string `json:"slurm_monitor_api_url,omitempty"`
+
+	// SlurmMonitorClusterName Name of the cluster in slurm-monitor (Sonar's cluster name).
+	SlurmMonitorClusterName *string `json:"slurm_monitor_cluster_name,omitempty"`
+
 	// SlurmPeriodicPolicyEnabled Enable SLURM periodic usage policy configuration. When enabled, allows configuring QoS-based threshold enforcement, carryover logic, and fairshare decay for site-agent managed SLURM offerings.
 	SlurmPeriodicPolicyEnabled *bool `json:"slurm_periodic_policy_enabled,omitempty"`
 
@@ -40510,6 +41172,12 @@ type MergedPluginOptionsRequest struct {
 
 	// ExposeInferencePlayground Show an in-browser inference playground action for resources of this offering (for offerings whose resources expose an OpenAI-compatible endpoint).
 	ExposeInferencePlayground *bool `json:"expose_inference_playground,omitempty"`
+
+	// FirecrestApiUrl FirecREST v2 API URL users of this SLURM offering work through (jobs, files, cluster status). Must also be listed in the FIRECREST_ALLOWED_API_URLS setting. Leave empty to disable the HPC workspace.
+	FirecrestApiUrl *string `json:"firecrest_api_url,omitempty"`
+
+	// FirecrestSystemName Name of the cluster in FirecREST's systems list.
+	FirecrestSystemName *string `json:"firecrest_system_name,omitempty"`
 
 	// FlavorsRegex Regular expression to limit flavors list
 	FlavorsRegex *string `json:"flavors_regex,omitempty"`
@@ -40693,6 +41361,15 @@ type MergedPluginOptionsRequest struct {
 
 	// ShowSshKeyLossWarning Show a warning about unrecoverable loss of the SSH private key on the OpenStack instance order form.
 	ShowSshKeyLossWarning *bool `json:"show_ssh_key_loss_warning,omitempty"`
+
+	// SlurmMaintenanceSyncEnabled When enabled, the site agent turns published maintenance announcements for this offering into Slurm MAINT reservations (full outage: all nodes; partial outage: the named partitions), so the scheduler holds back jobs that would run into them, and imports maintenance reservations made on the cluster as draft announcements.
+	SlurmMaintenanceSyncEnabled *bool `json:"slurm_maintenance_sync_enabled,omitempty"`
+
+	// SlurmMonitorApiUrl slurm-monitor API URL (ending in /api/v2) with the cluster's per-job samples (GPU, CPU, memory over time). Must also be listed in the SLURM_MONITOR_ALLOWED_API_URLS setting. Leave empty to hide job performance.
+	SlurmMonitorApiUrl *string `json:"slurm_monitor_api_url,omitempty"`
+
+	// SlurmMonitorClusterName Name of the cluster in slurm-monitor (Sonar's cluster name).
+	SlurmMonitorClusterName *string `json:"slurm_monitor_cluster_name,omitempty"`
 
 	// SlurmPeriodicPolicyEnabled Enable SLURM periodic usage policy configuration. When enabled, allows configuring QoS-based threshold enforcement, carryover logic, and fairshare decay for site-agent managed SLURM offerings.
 	SlurmPeriodicPolicyEnabled *bool `json:"slurm_periodic_policy_enabled,omitempty"`
@@ -48543,13 +49220,6 @@ type PatchedFeedbackSurveyRequest struct {
 	StartsAt   *time.Time `json:"starts_at,omitempty"`
 }
 
-// PatchedFirecrestJobRequest defines model for PatchedFirecrestJobRequest.
-type PatchedFirecrestJobRequest struct {
-	Description  *string `json:"description,omitempty"`
-	Name         *string `json:"name,omitempty"`
-	RuntimeState *string `json:"runtime_state,omitempty"`
-}
-
 // PatchedGroupInvitationUpdateRequest defines model for PatchedGroupInvitationUpdateRequest.
 type PatchedGroupInvitationUpdateRequest struct {
 	// AllowCustomProjectDetails Allow users to provide custom project name and description when accepting the invitation. If disabled, the project name is auto-generated from the template.
@@ -48686,6 +49356,9 @@ type PatchedIssueTagRequest struct {
 
 // PatchedMaintenanceAnnouncementOfferingRequest defines model for PatchedMaintenanceAnnouncementOfferingRequest.
 type PatchedMaintenanceAnnouncementOfferingRequest struct {
+	// AffectedPartitions Partitions the maintenance takes down; empty means all. A site agent with maintenance sync reserves only these for a partial outage.
+	AffectedPartitions *[]string `json:"affected_partitions,omitempty"`
+
 	// ImpactDescription Specific description of how this offering will be affected
 	ImpactDescription *string `json:"impact_description,omitempty"`
 
@@ -59295,6 +59968,18 @@ type SiteAgentLogCreateRequest struct {
 	Timestamp         float64            `json:"timestamp"`
 }
 
+// SiteMaintenanceReservationRequest defines model for SiteMaintenanceReservationRequest.
+type SiteMaintenanceReservationRequest struct {
+	End      time.Time `json:"end"`
+	Flags    *[]string `json:"flags,omitempty"`
+	Name     string    `json:"name"`
+	NodeList *string   `json:"node_list,omitempty"`
+
+	// Partitions Affected partitions; empty means the whole cluster.
+	Partitions *[]string `json:"partitions,omitempty"`
+	Start      time.Time `json:"start"`
+}
+
 // SkippedProposal defines model for SkippedProposal.
 type SkippedProposal struct {
 	ProposalName string             `json:"proposal_name"`
@@ -60072,6 +60757,9 @@ type StorageFolderConfigRequest struct {
 // StorageModeEnum defines model for StorageModeEnum.
 type StorageModeEnum string
 
+// StyleEnum defines model for StyleEnum.
+type StyleEnum string
+
 // SubNetMapping defines model for SubNetMapping.
 type SubNetMapping struct {
 	DstCidr string `json:"dst_cidr"`
@@ -60717,6 +61405,9 @@ type TokenRequest struct {
 	// Token Authentication token for invitation acceptance
 	Token string `json:"token"`
 }
+
+// ToneEnum defines model for ToneEnum.
+type ToneEnum string
 
 // ToolExecuteRequest defines model for ToolExecuteRequest.
 type ToolExecuteRequest struct {
@@ -62646,6 +63337,9 @@ type WorkflowStepResponsibleUser struct {
 	Username     string              `json:"username"`
 	Uuid         openapi_types.UUID  `json:"uuid"`
 }
+
+// YAxisEnum defines model for YAxisEnum.
+type YAxisEnum string
 
 // ZAMMADARTICLETYPEEnum defines model for ZAMMADARTICLETYPEEnum.
 type ZAMMADARTICLETYPEEnum string
@@ -64776,7 +65470,7 @@ type ChatMessagesListParams struct {
 // ChatQuotaUsageRetrieveParams defines parameters for ChatQuotaUsageRetrieve.
 type ChatQuotaUsageRetrieveParams struct {
 	// UserUuid UUID of user to view quota for (staff/support only). Omit to view your own quota.
-	UserUuid openapi_types.UUID `form:"user_uuid" json:"user_uuid"`
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
 // ChatSessionsListParams defines parameters for ChatSessionsList.
@@ -66203,8 +66897,8 @@ type DailyQuotasRetrieveParams struct {
 	// QuotaNames List of quota names
 	QuotaNames *[]string `form:"quota_names,omitempty" json:"quota_names,omitempty"`
 
-	// Scope UUID of the scope object
-	Scope *openapi_types.UUID `form:"scope,omitempty" json:"scope,omitempty"`
+	// Scope URL of the project or organization
+	Scope string `form:"scope" json:"scope"`
 
 	// Start Start date in format YYYY-MM-DD
 	Start *openapi_types.Date `form:"start,omitempty" json:"start,omitempty"`
@@ -67221,6 +67915,66 @@ type HooksCountParams struct {
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
 }
 
+// HpcWorkspacesListParams defines parameters for HpcWorkspacesList.
+type HpcWorkspacesListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// HpcWorkspacesCountParams defines parameters for HpcWorkspacesCount.
+type HpcWorkspacesCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// HpcWorkspacesFileContentRetrieveParams defines parameters for HpcWorkspacesFileContentRetrieve.
+type HpcWorkspacesFileContentRetrieveParams struct {
+	Path string `form:"path" json:"path"`
+}
+
+// HpcWorkspacesFilesListParams defines parameters for HpcWorkspacesFilesList.
+type HpcWorkspacesFilesListParams struct {
+	// Path Directory to list; defaults to home.
+	Path       *string `form:"path,omitempty" json:"path,omitempty"`
+	ShowHidden *bool   `form:"show_hidden,omitempty" json:"show_hidden,omitempty"`
+}
+
+// HpcWorkspacesJobStatsRetrieveParams defines parameters for HpcWorkspacesJobStatsRetrieve.
+type HpcWorkspacesJobStatsRetrieveParams struct {
+	// Days Days of job history, up to FirecREST's longest window (7 days).
+	Days *int `form:"days,omitempty" json:"days,omitempty"`
+}
+
+// HpcWorkspacesJobsListParams defines parameters for HpcWorkspacesJobsList.
+type HpcWorkspacesJobsListParams struct {
+	// TimeWindow How far back to look for finished jobs (default 24h).
+	TimeWindow *HpcJobTimeWindowEnum `form:"time_window,omitempty" json:"time_window,omitempty"`
+}
+
+// HpcWorkspacesJobsOutputRetrieveParams defines parameters for HpcWorkspacesJobsOutputRetrieve.
+type HpcWorkspacesJobsOutputRetrieveParams struct {
+	Lines *int `form:"lines,omitempty" json:"lines,omitempty"`
+}
+
+// HpcWorkspacesOutputSeriesRetrieveParams defines parameters for HpcWorkspacesOutputSeriesRetrieve.
+type HpcWorkspacesOutputSeriesRetrieveParams struct {
+	// ForecastHours WRF only: forecast length, if namelist.input next to the log does not say.
+	ForecastHours *float64 `form:"forecast_hours,omitempty" json:"forecast_hours,omitempty"`
+	Path          string   `form:"path" json:"path"`
+}
+
+// HpcWorkspacesSoftwareListParams defines parameters for HpcWorkspacesSoftwareList.
+type HpcWorkspacesSoftwareListParams struct {
+	Partition *string `form:"partition,omitempty" json:"partition,omitempty"`
+	Query     *string `form:"query,omitempty" json:"query,omitempty"`
+}
+
 // IdentityProvidersListParams defines parameters for IdentityProvidersList.
 type IdentityProvidersListParams struct {
 	// Page A page number within the paginated result set.
@@ -67890,6 +68644,9 @@ type MaintenanceAnnouncementsListParams struct {
 	//
 	O *[]MaintenanceAnnouncementOEnum `form:"o,omitempty" json:"o,omitempty"`
 
+	// OfferingUuid Affected offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -67927,6 +68684,9 @@ type MaintenanceAnnouncementsCountParams struct {
 	// O Ordering
 	//
 	O *[]MaintenanceAnnouncementOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingUuid Affected offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -85788,6 +86548,9 @@ type PublicMaintenanceAnnouncementsListParams struct {
 	//
 	O *[]MaintenanceAnnouncementOEnum `form:"o,omitempty" json:"o,omitempty"`
 
+	// OfferingUuid Affected offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -85825,6 +86588,9 @@ type PublicMaintenanceAnnouncementsCountParams struct {
 	// O Ordering
 	//
 	O *[]MaintenanceAnnouncementOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingUuid Affected offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -87400,31 +88166,6 @@ type ServiceSettingsCountParams struct {
 // ServiceSettingsRetrieveParams defines parameters for ServiceSettingsRetrieve.
 type ServiceSettingsRetrieveParams struct {
 	Field *[]ServiceSettingsFieldEnum `form:"field,omitempty" json:"field,omitempty"`
-}
-
-// SlurmJobsListParams defines parameters for SlurmJobsList.
-type SlurmJobsListParams struct {
-	Field *[]FirecrestJobFieldEnum `form:"field,omitempty" json:"field,omitempty"`
-
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
-// SlurmJobsCountParams defines parameters for SlurmJobsCount.
-type SlurmJobsCountParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
-// SlurmJobsRetrieveParams defines parameters for SlurmJobsRetrieve.
-type SlurmJobsRetrieveParams struct {
-	Field *[]FirecrestJobFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 }
 
 // SramGroupsListParams defines parameters for SramGroupsList.
@@ -90581,6 +91322,12 @@ type HooksWebPartialUpdateJSONRequestBody = PatchedWebHookRequest
 // HooksWebUpdateJSONRequestBody defines body for HooksWebUpdate for application/json ContentType.
 type HooksWebUpdateJSONRequestBody = WebHookRequest
 
+// HpcWorkspacesJobsJSONRequestBody defines body for HpcWorkspacesJobs for application/json ContentType.
+type HpcWorkspacesJobsJSONRequestBody = HpcJobSpecRequest
+
+// HpcWorkspacesPreviewScriptJSONRequestBody defines body for HpcWorkspacesPreviewScript for application/json ContentType.
+type HpcWorkspacesPreviewScriptJSONRequestBody = HpcJobSpecRequest
+
 // IdentityBridgeJSONRequestBody defines body for IdentityBridge for application/json ContentType.
 type IdentityBridgeJSONRequestBody = IdentityBridgeRequestRequest
 
@@ -91180,6 +91927,9 @@ type MarketplaceProviderOfferingsDeleteUserJSONRequestBody = UserRoleDeleteReque
 
 // MarketplaceProviderOfferingsExportOfferingJSONRequestBody defines body for MarketplaceProviderOfferingsExportOffering for application/json ContentType.
 type MarketplaceProviderOfferingsExportOfferingJSONRequestBody = OfferingExportParametersRequest
+
+// MarketplaceProviderOfferingsImportMaintenanceReservationsJSONRequestBody defines body for MarketplaceProviderOfferingsImportMaintenanceReservations for application/json ContentType.
+type MarketplaceProviderOfferingsImportMaintenanceReservationsJSONRequestBody = MaintenanceReservationImportRequest
 
 // MarketplaceProviderOfferingsImportResourceJSONRequestBody defines body for MarketplaceProviderOfferingsImportResource for application/json ContentType.
 type MarketplaceProviderOfferingsImportResourceJSONRequestBody = ImportResourceRequest
@@ -92967,30 +93717,6 @@ type ScienceSubDomainsPartialUpdateJSONRequestBody = PatchedScienceSubDomainRequ
 // ScienceSubDomainsUpdateJSONRequestBody defines body for ScienceSubDomainsUpdate for application/json ContentType.
 type ScienceSubDomainsUpdateJSONRequestBody = ScienceSubDomainRequest
 
-// SlurmJobsCreateJSONRequestBody defines body for SlurmJobsCreate for application/json ContentType.
-type SlurmJobsCreateJSONRequestBody = FirecrestJobRequest
-
-// SlurmJobsCreateFormdataRequestBody defines body for SlurmJobsCreate for application/x-www-form-urlencoded ContentType.
-type SlurmJobsCreateFormdataRequestBody = FirecrestJobRequestForm
-
-// SlurmJobsCreateMultipartRequestBody defines body for SlurmJobsCreate for multipart/form-data ContentType.
-type SlurmJobsCreateMultipartRequestBody = FirecrestJobRequestMultipart
-
-// SlurmJobsPartialUpdateJSONRequestBody defines body for SlurmJobsPartialUpdate for application/json ContentType.
-type SlurmJobsPartialUpdateJSONRequestBody = PatchedFirecrestJobRequest
-
-// SlurmJobsUpdateJSONRequestBody defines body for SlurmJobsUpdate for application/json ContentType.
-type SlurmJobsUpdateJSONRequestBody = FirecrestJobRequest
-
-// SlurmJobsUpdateFormdataRequestBody defines body for SlurmJobsUpdate for application/x-www-form-urlencoded ContentType.
-type SlurmJobsUpdateFormdataRequestBody = FirecrestJobRequestForm
-
-// SlurmJobsUpdateMultipartRequestBody defines body for SlurmJobsUpdate for multipart/form-data ContentType.
-type SlurmJobsUpdateMultipartRequestBody = FirecrestJobRequestMultipart
-
-// SlurmJobsSetErredJSONRequestBody defines body for SlurmJobsSetErred for application/json ContentType.
-type SlurmJobsSetErredJSONRequestBody = SetErredRequest
-
 // SramProjectRulesCreateJSONRequestBody defines body for SramProjectRulesCreate for application/json ContentType.
 type SramProjectRulesCreateJSONRequestBody = SramProjectRuleRequest
 
@@ -94701,6 +95427,68 @@ func (t CategoryColumnRequest_Widget) MarshalJSON() ([]byte, error) {
 }
 
 func (t *CategoryColumnRequest_Widget) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsChartSeriesPoints0 returns the union data inside the ChartSeries_Points_Item as a ChartSeriesPoints0
+func (t ChartSeries_Points_Item) AsChartSeriesPoints0() (ChartSeriesPoints0, error) {
+	var body ChartSeriesPoints0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromChartSeriesPoints0 overwrites any union data inside the ChartSeries_Points_Item as the provided ChartSeriesPoints0
+func (t *ChartSeries_Points_Item) FromChartSeriesPoints0(v ChartSeriesPoints0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeChartSeriesPoints0 performs a merge with any union data inside the ChartSeries_Points_Item, using the provided ChartSeriesPoints0
+func (t *ChartSeries_Points_Item) MergeChartSeriesPoints0(v ChartSeriesPoints0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsChartSeriesPoints1 returns the union data inside the ChartSeries_Points_Item as a ChartSeriesPoints1
+func (t ChartSeries_Points_Item) AsChartSeriesPoints1() (ChartSeriesPoints1, error) {
+	var body ChartSeriesPoints1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromChartSeriesPoints1 overwrites any union data inside the ChartSeries_Points_Item as the provided ChartSeriesPoints1
+func (t *ChartSeries_Points_Item) FromChartSeriesPoints1(v ChartSeriesPoints1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeChartSeriesPoints1 performs a merge with any union data inside the ChartSeries_Points_Item, using the provided ChartSeriesPoints1
+func (t *ChartSeries_Points_Item) MergeChartSeriesPoints1(v ChartSeriesPoints1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ChartSeries_Points_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ChartSeries_Points_Item) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -100075,68 +100863,6 @@ func (t ExternalSubnet_GatewayIp) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ExternalSubnet_GatewayIp) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsFirecrestJobAccessUrl0 returns the union data inside the FirecrestJob_AccessUrl as a FirecrestJobAccessUrl0
-func (t FirecrestJob_AccessUrl) AsFirecrestJobAccessUrl0() (FirecrestJobAccessUrl0, error) {
-	var body FirecrestJobAccessUrl0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromFirecrestJobAccessUrl0 overwrites any union data inside the FirecrestJob_AccessUrl as the provided FirecrestJobAccessUrl0
-func (t *FirecrestJob_AccessUrl) FromFirecrestJobAccessUrl0(v FirecrestJobAccessUrl0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeFirecrestJobAccessUrl0 performs a merge with any union data inside the FirecrestJob_AccessUrl, using the provided FirecrestJobAccessUrl0
-func (t *FirecrestJob_AccessUrl) MergeFirecrestJobAccessUrl0(v FirecrestJobAccessUrl0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsFirecrestJobAccessUrl1 returns the union data inside the FirecrestJob_AccessUrl as a FirecrestJobAccessUrl1
-func (t FirecrestJob_AccessUrl) AsFirecrestJobAccessUrl1() (FirecrestJobAccessUrl1, error) {
-	var body FirecrestJobAccessUrl1
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromFirecrestJobAccessUrl1 overwrites any union data inside the FirecrestJob_AccessUrl as the provided FirecrestJobAccessUrl1
-func (t *FirecrestJob_AccessUrl) FromFirecrestJobAccessUrl1(v FirecrestJobAccessUrl1) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeFirecrestJobAccessUrl1 performs a merge with any union data inside the FirecrestJob_AccessUrl, using the provided FirecrestJobAccessUrl1
-func (t *FirecrestJob_AccessUrl) MergeFirecrestJobAccessUrl1(v FirecrestJobAccessUrl1) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t FirecrestJob_AccessUrl) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *FirecrestJob_AccessUrl) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -114885,6 +115611,13 @@ type ClientInterface interface {
 	// Corresponds with GET /api/debug/email/config/ (the `DebugEmailConfigRetrieve` operationId).
 	DebugEmailConfigRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// DebugEmailConfigCount Audit the outgoing email configuration
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Corresponds with HEAD /api/debug/email/config/ (the `DebugEmailConfigCount` operationId).
+	DebugEmailConfigCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// DebugEmailProbe Test the SMTP connection
 	//
 	// Opens and closes a connection to the configured relay without sending a message.
@@ -114936,6 +115669,13 @@ type ClientInterface interface {
 	// Corresponds with GET /api/debug/pubsub/circuit_breaker/ (the `DebugPubsubCircuitBreakerRetrieve` operationId).
 	DebugPubsubCircuitBreakerRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// DebugPubsubCircuitBreakerCount Get circuit breaker state
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Corresponds with HEAD /api/debug/pubsub/circuit_breaker/ (the `DebugPubsubCircuitBreakerCount` operationId).
+	DebugPubsubCircuitBreakerCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// DebugPubsubCircuitBreakerReset Reset circuit breaker
 	//
 	// Manually reset the STOMP circuit breaker to CLOSED state.
@@ -114962,6 +115702,13 @@ type ClientInterface interface {
 	// Corresponds with GET /api/debug/pubsub/dead_letter_queue/ (the `DebugPubsubDeadLetterQueueRetrieve` operationId).
 	DebugPubsubDeadLetterQueueRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// DebugPubsubDeadLetterQueueCount Get dead letter queue status
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Corresponds with HEAD /api/debug/pubsub/dead_letter_queue/ (the `DebugPubsubDeadLetterQueueCount` operationId).
+	DebugPubsubDeadLetterQueueCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// DebugPubsubMessageStateCacheRetrieve Get message state cache statistics
 	//
 	// Get message state tracker cache statistics for idempotency.
@@ -114977,6 +115724,13 @@ type ClientInterface interface {
 	//
 	// Corresponds with GET /api/debug/pubsub/message_state_cache/ (the `DebugPubsubMessageStateCacheRetrieve` operationId).
 	DebugPubsubMessageStateCacheRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DebugPubsubMessageStateCacheCount Get message state cache statistics
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Corresponds with HEAD /api/debug/pubsub/message_state_cache/ (the `DebugPubsubMessageStateCacheCount` operationId).
+	DebugPubsubMessageStateCacheCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DebugPubsubMetricsRetrieve Get publishing metrics
 	//
@@ -114996,6 +115750,13 @@ type ClientInterface interface {
 	//
 	// Corresponds with GET /api/debug/pubsub/metrics/ (the `DebugPubsubMetricsRetrieve` operationId).
 	DebugPubsubMetricsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DebugPubsubMetricsCount Get publishing metrics
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Corresponds with HEAD /api/debug/pubsub/metrics/ (the `DebugPubsubMetricsCount` operationId).
+	DebugPubsubMetricsCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DebugPubsubMetricsReset Reset publishing metrics
 	//
@@ -115018,6 +115779,13 @@ type ClientInterface interface {
 	// Corresponds with GET /api/debug/pubsub/overview/ (the `DebugPubsubOverviewRetrieve` operationId).
 	DebugPubsubOverviewRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// DebugPubsubOverviewCount Get pubsub system health overview
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Corresponds with HEAD /api/debug/pubsub/overview/ (the `DebugPubsubOverviewCount` operationId).
+	DebugPubsubOverviewCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// DebugPubsubQueuesRetrieve Get subscription queues overview
 	//
 	// Get overview of subscription queues from RabbitMQ.
@@ -115031,6 +115799,13 @@ type ClientInterface interface {
 	//
 	// Corresponds with GET /api/debug/pubsub/queues/ (the `DebugPubsubQueuesRetrieve` operationId).
 	DebugPubsubQueuesRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DebugPubsubQueuesCount Get subscription queues overview
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Corresponds with HEAD /api/debug/pubsub/queues/ (the `DebugPubsubQueuesCount` operationId).
+	DebugPubsubQueuesCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DigitaloceanDropletsList performs a GET /api/digitalocean-droplets/ (the `DigitaloceanDropletsList` operationId) request.
 	DigitaloceanDropletsList(ctx context.Context, params *DigitaloceanDropletsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -115836,6 +116611,153 @@ type ClientInterface interface {
 	//
 	// Get number of items in the collection matching the request parameters.
 	HooksCount(ctx context.Context, params *HooksCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// HpcWorkspacesList List HPC workspaces
+	//
+	// SLURM allocations visible to the user whose offering is connected to FirecREST.
+	//
+	// Corresponds with GET /api/hpc-workspaces/ (the `HpcWorkspacesList` operationId).
+	HpcWorkspacesList(ctx context.Context, params *HpcWorkspacesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// HpcWorkspacesCount List HPC workspaces
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Corresponds with HEAD /api/hpc-workspaces/ (the `HpcWorkspacesCount` operationId).
+	HpcWorkspacesCount(ctx context.Context, params *HpcWorkspacesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// HpcWorkspacesRetrieve HPC workspace overview
+	//
+	// Allocation, the user's cluster identity and FirecREST system health. Problems reaching FirecREST are reported in 'error' rather than failing the request; 'sign_in_provider' names the identity provider to sign in through again when that is the remedy.
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/ (the `HpcWorkspacesRetrieve` operationId).
+	HpcWorkspacesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// HpcWorkspacesClusterLoadRetrieve Node load and reservations of the cluster
+	//
+	// Every node with its state, CPU load and partitions, a summary per partition and the upcoming reservations and maintenance windows.
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/cluster_load/ (the `HpcWorkspacesClusterLoadRetrieve` operationId).
+	HpcWorkspacesClusterLoadRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// HpcWorkspacesFileContentRetrieve View a file on the cluster
+	//
+	// Content of a small text file (bounded by FirecREST's operation size limit).
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/file_content/ (the `HpcWorkspacesFileContentRetrieve` operationId).
+	HpcWorkspacesFileContentRetrieve(ctx context.Context, uuid openapi_types.UUID, params *HpcWorkspacesFileContentRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// HpcWorkspacesFilesList List a directory on the cluster
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/files/ (the `HpcWorkspacesFilesList` operationId).
+	HpcWorkspacesFilesList(ctx context.Context, uuid openapi_types.UUID, params *HpcWorkspacesFilesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// HpcWorkspacesJobStatsRetrieve Job statistics of the allocation
+	//
+	// Outcomes per day, failures by exit code, time limit fit, CPU and memory efficiency, queue waits by partition and right-sizing suggestions over the last days, with chart specs for each figure.
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/job_stats/ (the `HpcWorkspacesJobStatsRetrieve` operationId).
+	HpcWorkspacesJobStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *HpcWorkspacesJobStatsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// HpcWorkspacesJobsList List jobs of the allocation
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/jobs/ (the `HpcWorkspacesJobsList` operationId).
+	HpcWorkspacesJobsList(ctx context.Context, uuid openapi_types.UUID, params *HpcWorkspacesJobsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// HpcWorkspacesJobsWithBody Submit a job to the allocation
+	//
+	// Renders the batch script from the parameters, checks them against the published partition and QoS limits and submits it under the allocation's account.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/hpc-workspaces/{uuid}/jobs/ (the `HpcWorkspacesJobs` operationId).
+	HpcWorkspacesJobsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// HpcWorkspacesJobs Submit a job to the allocation
+	//
+	// Renders the batch script from the parameters, checks them against the published partition and QoS limits and submits it under the allocation's account.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/hpc-workspaces/{uuid}/jobs/ (the `HpcWorkspacesJobs` operationId).
+	HpcWorkspacesJobs(ctx context.Context, uuid openapi_types.UUID, body HpcWorkspacesJobsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// HpcWorkspacesJobsRetrieve Get a job of the allocation
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/jobs/{job_id}/ (the `HpcWorkspacesJobsRetrieve` operationId).
+	HpcWorkspacesJobsRetrieve(ctx context.Context, uuid openapi_types.UUID, jobId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// HpcWorkspacesJobsCancel Cancel a job of the allocation
+	//
+	// Corresponds with POST /api/hpc-workspaces/{uuid}/jobs/{job_id}/cancel/ (the `HpcWorkspacesJobsCancel` operationId).
+	HpcWorkspacesJobsCancel(ctx context.Context, uuid openapi_types.UUID, jobId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// HpcWorkspacesJobsOutputRetrieve Get the script and output of a job
+	//
+	// The batch script and the last lines of standard output and error.
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/jobs/{job_id}/output/ (the `HpcWorkspacesJobsOutputRetrieve` operationId).
+	HpcWorkspacesJobsOutputRetrieve(ctx context.Context, uuid openapi_types.UUID, jobId string, params *HpcWorkspacesJobsOutputRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// HpcWorkspacesJobsPerformanceRetrieve Get the performance of a job over its run
+	//
+	// Per-GPU use, GPU memory and power, CPU cores and host memory over the job's run, and its busiest processes, from the cluster monitor (slurm-monitor with Sonar probes) as the signed-in user.
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/jobs/{job_id}/performance/ (the `HpcWorkspacesJobsPerformanceRetrieve` operationId).
+	HpcWorkspacesJobsPerformanceRetrieve(ctx context.Context, uuid openapi_types.UUID, jobId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// HpcWorkspacesJobsPerformancePdfRetrieve Download the performance report of a job as PDF
+	//
+	// The job's accounting, summary figures, charts and processes from the cluster monitor, as one PDF. Without monitor samples the report keeps the accounting and says why.
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/jobs/{job_id}/performance_pdf/ (the `HpcWorkspacesJobsPerformancePdfRetrieve` operationId).
+	HpcWorkspacesJobsPerformancePdfRetrieve(ctx context.Context, uuid openapi_types.UUID, jobId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// HpcWorkspacesOutputSeriesRetrieve Plot a job output file
+	//
+	// Reads a GROMACS .xvg, a CSV/TSV table or a WRF rsl log from the cluster and returns its series as a chart spec, with a short summary.
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/output_series/ (the `HpcWorkspacesOutputSeriesRetrieve` operationId).
+	HpcWorkspacesOutputSeriesRetrieve(ctx context.Context, uuid openapi_types.UUID, params *HpcWorkspacesOutputSeriesRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// HpcWorkspacesPartitionsList Partitions of the cluster
+	//
+	// Partitions the provider publishes in Waldur (limits, QoS, architecture) merged with what the cluster reports live through FirecREST (node counts).
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/partitions/ (the `HpcWorkspacesPartitionsList` operationId).
+	HpcWorkspacesPartitionsList(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// HpcWorkspacesPreviewScriptWithBody Preview a batch script
+	//
+	// Renders the batch script for the parameters and validates them, without submitting.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/hpc-workspaces/{uuid}/preview_script/ (the `HpcWorkspacesPreviewScript` operationId).
+	HpcWorkspacesPreviewScriptWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// HpcWorkspacesPreviewScript Preview a batch script
+	//
+	// Renders the batch script for the parameters and validates them, without submitting.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/hpc-workspaces/{uuid}/preview_script/ (the `HpcWorkspacesPreviewScript` operationId).
+	HpcWorkspacesPreviewScript(ctx context.Context, uuid openapi_types.UUID, body HpcWorkspacesPreviewScriptJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// HpcWorkspacesSoftwareList Find software available on the cluster
+	//
+	// Searches the offering's software catalogs (EESSI, Spack, ...); with a partition, only builds for its CPU architecture. Returns the lines a batch script needs.
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/software/ (the `HpcWorkspacesSoftwareList` operationId).
+	HpcWorkspacesSoftwareList(ctx context.Context, uuid openapi_types.UUID, params *HpcWorkspacesSoftwareListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// HpcWorkspacesUsageRetrieve Usage of the allocation against its limits
+	//
+	// Consumption of each limited component in the current limit period from Waldur's usage records, per user, with a run-out forecast at the recent pace.
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/usage/ (the `HpcWorkspacesUsageRetrieve` operationId).
+	HpcWorkspacesUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// IdentityBridgeWithBody Push user attributes from an ISD
 	//
@@ -120339,6 +121261,24 @@ type ClientInterface interface {
 	// Corresponds with GET /api/marketplace-provider-offerings/{uuid}/history/at/ (the `MarketplaceProviderOfferingsHistoryAtRetrieve` operationId).
 	MarketplaceProviderOfferingsHistoryAtRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderOfferingsImportMaintenanceReservationsWithBody Import the cluster's maintenance reservations as drafts
+	//
+	// Site agents report the MAINT reservations made on the cluster; each becomes a draft maintenance announcement for the provider to review and publish. Reservations named with the Waldur prefix are ignored. Only when maintenance sync is enabled on the offering.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/import_maintenance_reservations/ (the `MarketplaceProviderOfferingsImportMaintenanceReservations` operationId).
+	MarketplaceProviderOfferingsImportMaintenanceReservationsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsImportMaintenanceReservations Import the cluster's maintenance reservations as drafts
+	//
+	// Site agents report the MAINT reservations made on the cluster; each becomes a draft maintenance announcement for the provider to review and publish. Reservations named with the Waldur prefix are ignored. Only when maintenance sync is enabled on the offering.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/import_maintenance_reservations/ (the `MarketplaceProviderOfferingsImportMaintenanceReservations` operationId).
+	MarketplaceProviderOfferingsImportMaintenanceReservations(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsImportMaintenanceReservationsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderOfferingsImportResourceWithBody Import a resource
 	//
 	// Imports a backend resource into the marketplace.
@@ -120412,6 +121352,13 @@ type ClientInterface interface {
 	//
 	// Corresponds with HEAD /api/marketplace-provider-offerings/{uuid}/list_users/ (the `MarketplaceProviderOfferingsListUsersCount` operationId).
 	MarketplaceProviderOfferingsListUsersCount(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListUsersCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsMaintenanceReservationsRetrieve Maintenance reservations the cluster should hold
+	//
+	// For site agents with maintenance sync enabled on the offering (plugin option slurm_maintenance_sync_enabled): the Slurm MAINT reservations that published maintenance announcements call for. The agent creates, updates and removes reservations named with `prefix` to match this list and leaves every other reservation alone.
+	//
+	// Corresponds with GET /api/marketplace-provider-offerings/{uuid}/maintenance_reservations/ (the `MarketplaceProviderOfferingsMaintenanceReservationsRetrieve` operationId).
+	MarketplaceProviderOfferingsMaintenanceReservationsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsMakeAvailable Mark an offering as available
 	//
@@ -133681,93 +134628,6 @@ type ClientInterface interface {
 	// ServiceSettingsRetrieve performs a GET /api/service-settings/{uuid}/ (the `ServiceSettingsRetrieve` operationId) request.
 	ServiceSettingsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ServiceSettingsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// SlurmJobsList performs a GET /api/slurm-jobs/ (the `SlurmJobsList` operationId) request.
-	SlurmJobsList(ctx context.Context, params *SlurmJobsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// SlurmJobsCount performs a HEAD /api/slurm-jobs/ (the `SlurmJobsCount` operationId) request.
-	//
-	// Get number of items in the collection matching the request parameters.
-	SlurmJobsCount(ctx context.Context, params *SlurmJobsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// SlurmJobsCreateWithBody performs a POST /api/slurm-jobs/ (the `SlurmJobsCreate` operationId) request,
-	// with any type of body and a specified content type.
-	SlurmJobsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// SlurmJobsCreate performs a POST /api/slurm-jobs/ (the `SlurmJobsCreate` operationId) request.
-	// Takes a body of the `application/json` content type.
-	SlurmJobsCreate(ctx context.Context, body SlurmJobsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// SlurmJobsCreateWithFormdataBody performs a POST /api/slurm-jobs/ (the `SlurmJobsCreate` operationId) request.
-	// Takes a body of the `application/x-www-form-urlencoded` content type.
-	SlurmJobsCreateWithFormdataBody(ctx context.Context, body SlurmJobsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// SlurmJobsDestroy performs a DELETE /api/slurm-jobs/{uuid}/ (the `SlurmJobsDestroy` operationId) request.
-	SlurmJobsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// SlurmJobsRetrieve performs a GET /api/slurm-jobs/{uuid}/ (the `SlurmJobsRetrieve` operationId) request.
-	SlurmJobsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *SlurmJobsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// SlurmJobsPartialUpdateWithBody performs a PATCH /api/slurm-jobs/{uuid}/ (the `SlurmJobsPartialUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	SlurmJobsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// SlurmJobsPartialUpdate performs a PATCH /api/slurm-jobs/{uuid}/ (the `SlurmJobsPartialUpdate` operationId) request.
-	// Takes a body of the `application/json` content type.
-	SlurmJobsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// SlurmJobsUpdateWithBody performs a PUT /api/slurm-jobs/{uuid}/ (the `SlurmJobsUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	SlurmJobsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// SlurmJobsUpdate performs a PUT /api/slurm-jobs/{uuid}/ (the `SlurmJobsUpdate` operationId) request.
-	// Takes a body of the `application/json` content type.
-	SlurmJobsUpdate(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// SlurmJobsUpdateWithFormdataBody performs a PUT /api/slurm-jobs/{uuid}/ (the `SlurmJobsUpdate` operationId) request.
-	// Takes a body of the `application/x-www-form-urlencoded` content type.
-	SlurmJobsUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// SlurmJobsPull Synchronize resource state
-	//
-	// Schedule an asynchronous pull operation to synchronize resource state from the backend. Returns 202 if the pull was scheduled successfully, or 409 if the pull operation is not implemented for this resource type.
-	//
-	// Corresponds with POST /api/slurm-jobs/{uuid}/pull/ (the `SlurmJobsPull` operationId).
-	SlurmJobsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// SlurmJobsSetErredWithBody Mark resource as ERRED
-	//
-	// Manually transition the resource to ERRED state. This is useful for resources stuck in transitional states (CREATING, UPDATING, DELETING) that cannot be synced via pull. Staff-only operation.
-	//
-	// Takes any type of body and a specified content type.
-	//
-	// Corresponds with POST /api/slurm-jobs/{uuid}/set_erred/ (the `SlurmJobsSetErred` operationId).
-	SlurmJobsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// SlurmJobsSetErred Mark resource as ERRED
-	//
-	// Manually transition the resource to ERRED state. This is useful for resources stuck in transitional states (CREATING, UPDATING, DELETING) that cannot be synced via pull. Staff-only operation.
-	//
-	// Takes a body of the `application/json` content type.
-	//
-	// Corresponds with POST /api/slurm-jobs/{uuid}/set_erred/ (the `SlurmJobsSetErred` operationId).
-	SlurmJobsSetErred(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// SlurmJobsSetOk Mark resource as OK
-	//
-	// Manually transition the resource to OK state and clear error fields. Staff-only operation.
-	//
-	// Corresponds with POST /api/slurm-jobs/{uuid}/set_ok/ (the `SlurmJobsSetOk` operationId).
-	SlurmJobsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// SlurmJobsUnlink Unlink resource
-	//
-	// Delete resource from the database without scheduling operations on backend
-	//         and without checking current state of the resource. It is intended to be used
-	//         for removing resource stuck in transitioning state.
-	//
-	// Corresponds with POST /api/slurm-jobs/{uuid}/unlink/ (the `SlurmJobsUnlink` operationId).
-	SlurmJobsUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// SramGroupsList performs a GET /api/sram-groups/ (the `SramGroupsList` operationId) request.
 	//
 	// SRAM collaborations and groups provisioned into Waldur.
@@ -145136,6 +145996,23 @@ func (c *Client) DebugEmailConfigRetrieve(ctx context.Context, reqEditors ...Req
 	return c.Client.Do(req)
 }
 
+// DebugEmailConfigCount Audit the outgoing email configuration
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Corresponds with HEAD /api/debug/email/config/ (the `DebugEmailConfigCount` operationId).
+func (c *Client) DebugEmailConfigCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDebugEmailConfigCountRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // DebugEmailProbe Test the SMTP connection
 //
 // Opens and closes a connection to the configured relay without sending a message.
@@ -145227,6 +146104,23 @@ func (c *Client) DebugPubsubCircuitBreakerRetrieve(ctx context.Context, reqEdito
 	return c.Client.Do(req)
 }
 
+// DebugPubsubCircuitBreakerCount Get circuit breaker state
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Corresponds with HEAD /api/debug/pubsub/circuit_breaker/ (the `DebugPubsubCircuitBreakerCount` operationId).
+func (c *Client) DebugPubsubCircuitBreakerCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDebugPubsubCircuitBreakerCountRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // DebugPubsubCircuitBreakerReset Reset circuit breaker
 //
 // Manually reset the STOMP circuit breaker to CLOSED state.
@@ -145273,6 +146167,23 @@ func (c *Client) DebugPubsubDeadLetterQueueRetrieve(ctx context.Context, reqEdit
 	return c.Client.Do(req)
 }
 
+// DebugPubsubDeadLetterQueueCount Get dead letter queue status
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Corresponds with HEAD /api/debug/pubsub/dead_letter_queue/ (the `DebugPubsubDeadLetterQueueCount` operationId).
+func (c *Client) DebugPubsubDeadLetterQueueCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDebugPubsubDeadLetterQueueCountRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // DebugPubsubMessageStateCacheRetrieve Get message state cache statistics
 //
 // Get message state tracker cache statistics for idempotency.
@@ -145289,6 +146200,23 @@ func (c *Client) DebugPubsubDeadLetterQueueRetrieve(ctx context.Context, reqEdit
 // Corresponds with GET /api/debug/pubsub/message_state_cache/ (the `DebugPubsubMessageStateCacheRetrieve` operationId).
 func (c *Client) DebugPubsubMessageStateCacheRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDebugPubsubMessageStateCacheRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// DebugPubsubMessageStateCacheCount Get message state cache statistics
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Corresponds with HEAD /api/debug/pubsub/message_state_cache/ (the `DebugPubsubMessageStateCacheCount` operationId).
+func (c *Client) DebugPubsubMessageStateCacheCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDebugPubsubMessageStateCacheCountRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -145318,6 +146246,23 @@ func (c *Client) DebugPubsubMessageStateCacheRetrieve(ctx context.Context, reqEd
 // Corresponds with GET /api/debug/pubsub/metrics/ (the `DebugPubsubMetricsRetrieve` operationId).
 func (c *Client) DebugPubsubMetricsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDebugPubsubMetricsRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// DebugPubsubMetricsCount Get publishing metrics
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Corresponds with HEAD /api/debug/pubsub/metrics/ (the `DebugPubsubMetricsCount` operationId).
+func (c *Client) DebugPubsubMetricsCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDebugPubsubMetricsCountRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -145369,6 +146314,23 @@ func (c *Client) DebugPubsubOverviewRetrieve(ctx context.Context, reqEditors ...
 	return c.Client.Do(req)
 }
 
+// DebugPubsubOverviewCount Get pubsub system health overview
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Corresponds with HEAD /api/debug/pubsub/overview/ (the `DebugPubsubOverviewCount` operationId).
+func (c *Client) DebugPubsubOverviewCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDebugPubsubOverviewCountRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // DebugPubsubQueuesRetrieve Get subscription queues overview
 //
 // Get overview of subscription queues from RabbitMQ.
@@ -145383,6 +146345,23 @@ func (c *Client) DebugPubsubOverviewRetrieve(ctx context.Context, reqEditors ...
 // Corresponds with GET /api/debug/pubsub/queues/ (the `DebugPubsubQueuesRetrieve` operationId).
 func (c *Client) DebugPubsubQueuesRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDebugPubsubQueuesRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// DebugPubsubQueuesCount Get subscription queues overview
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Corresponds with HEAD /api/debug/pubsub/queues/ (the `DebugPubsubQueuesCount` operationId).
+func (c *Client) DebugPubsubQueuesCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDebugPubsubQueuesCountRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -147669,6 +148648,363 @@ func (c *Client) HooksList(ctx context.Context, params *HooksListParams, reqEdit
 // Get number of items in the collection matching the request parameters.
 func (c *Client) HooksCount(ctx context.Context, params *HooksCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewHooksCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// HpcWorkspacesList List HPC workspaces
+//
+// SLURM allocations visible to the user whose offering is connected to FirecREST.
+//
+// Corresponds with GET /api/hpc-workspaces/ (the `HpcWorkspacesList` operationId).
+func (c *Client) HpcWorkspacesList(ctx context.Context, params *HpcWorkspacesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewHpcWorkspacesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// HpcWorkspacesCount List HPC workspaces
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Corresponds with HEAD /api/hpc-workspaces/ (the `HpcWorkspacesCount` operationId).
+func (c *Client) HpcWorkspacesCount(ctx context.Context, params *HpcWorkspacesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewHpcWorkspacesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// HpcWorkspacesRetrieve HPC workspace overview
+//
+// Allocation, the user's cluster identity and FirecREST system health. Problems reaching FirecREST are reported in 'error' rather than failing the request; 'sign_in_provider' names the identity provider to sign in through again when that is the remedy.
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/ (the `HpcWorkspacesRetrieve` operationId).
+func (c *Client) HpcWorkspacesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewHpcWorkspacesRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// HpcWorkspacesClusterLoadRetrieve Node load and reservations of the cluster
+//
+// Every node with its state, CPU load and partitions, a summary per partition and the upcoming reservations and maintenance windows.
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/cluster_load/ (the `HpcWorkspacesClusterLoadRetrieve` operationId).
+func (c *Client) HpcWorkspacesClusterLoadRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewHpcWorkspacesClusterLoadRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// HpcWorkspacesFileContentRetrieve View a file on the cluster
+//
+// Content of a small text file (bounded by FirecREST's operation size limit).
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/file_content/ (the `HpcWorkspacesFileContentRetrieve` operationId).
+func (c *Client) HpcWorkspacesFileContentRetrieve(ctx context.Context, uuid openapi_types.UUID, params *HpcWorkspacesFileContentRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewHpcWorkspacesFileContentRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// HpcWorkspacesFilesList List a directory on the cluster
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/files/ (the `HpcWorkspacesFilesList` operationId).
+func (c *Client) HpcWorkspacesFilesList(ctx context.Context, uuid openapi_types.UUID, params *HpcWorkspacesFilesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewHpcWorkspacesFilesListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// HpcWorkspacesJobStatsRetrieve Job statistics of the allocation
+//
+// Outcomes per day, failures by exit code, time limit fit, CPU and memory efficiency, queue waits by partition and right-sizing suggestions over the last days, with chart specs for each figure.
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/job_stats/ (the `HpcWorkspacesJobStatsRetrieve` operationId).
+func (c *Client) HpcWorkspacesJobStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *HpcWorkspacesJobStatsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewHpcWorkspacesJobStatsRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// HpcWorkspacesJobsList List jobs of the allocation
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/jobs/ (the `HpcWorkspacesJobsList` operationId).
+func (c *Client) HpcWorkspacesJobsList(ctx context.Context, uuid openapi_types.UUID, params *HpcWorkspacesJobsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewHpcWorkspacesJobsListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// HpcWorkspacesJobsWithBody Submit a job to the allocation
+//
+// Renders the batch script from the parameters, checks them against the published partition and QoS limits and submits it under the allocation's account.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/hpc-workspaces/{uuid}/jobs/ (the `HpcWorkspacesJobs` operationId).
+func (c *Client) HpcWorkspacesJobsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewHpcWorkspacesJobsRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// HpcWorkspacesJobs Submit a job to the allocation
+//
+// Renders the batch script from the parameters, checks them against the published partition and QoS limits and submits it under the allocation's account.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/hpc-workspaces/{uuid}/jobs/ (the `HpcWorkspacesJobs` operationId).
+func (c *Client) HpcWorkspacesJobs(ctx context.Context, uuid openapi_types.UUID, body HpcWorkspacesJobsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewHpcWorkspacesJobsRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// HpcWorkspacesJobsRetrieve Get a job of the allocation
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/jobs/{job_id}/ (the `HpcWorkspacesJobsRetrieve` operationId).
+func (c *Client) HpcWorkspacesJobsRetrieve(ctx context.Context, uuid openapi_types.UUID, jobId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewHpcWorkspacesJobsRetrieveRequest(c.Server, uuid, jobId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// HpcWorkspacesJobsCancel Cancel a job of the allocation
+//
+// Corresponds with POST /api/hpc-workspaces/{uuid}/jobs/{job_id}/cancel/ (the `HpcWorkspacesJobsCancel` operationId).
+func (c *Client) HpcWorkspacesJobsCancel(ctx context.Context, uuid openapi_types.UUID, jobId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewHpcWorkspacesJobsCancelRequest(c.Server, uuid, jobId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// HpcWorkspacesJobsOutputRetrieve Get the script and output of a job
+//
+// The batch script and the last lines of standard output and error.
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/jobs/{job_id}/output/ (the `HpcWorkspacesJobsOutputRetrieve` operationId).
+func (c *Client) HpcWorkspacesJobsOutputRetrieve(ctx context.Context, uuid openapi_types.UUID, jobId string, params *HpcWorkspacesJobsOutputRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewHpcWorkspacesJobsOutputRetrieveRequest(c.Server, uuid, jobId, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// HpcWorkspacesJobsPerformanceRetrieve Get the performance of a job over its run
+//
+// Per-GPU use, GPU memory and power, CPU cores and host memory over the job's run, and its busiest processes, from the cluster monitor (slurm-monitor with Sonar probes) as the signed-in user.
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/jobs/{job_id}/performance/ (the `HpcWorkspacesJobsPerformanceRetrieve` operationId).
+func (c *Client) HpcWorkspacesJobsPerformanceRetrieve(ctx context.Context, uuid openapi_types.UUID, jobId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewHpcWorkspacesJobsPerformanceRetrieveRequest(c.Server, uuid, jobId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// HpcWorkspacesJobsPerformancePdfRetrieve Download the performance report of a job as PDF
+//
+// The job's accounting, summary figures, charts and processes from the cluster monitor, as one PDF. Without monitor samples the report keeps the accounting and says why.
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/jobs/{job_id}/performance_pdf/ (the `HpcWorkspacesJobsPerformancePdfRetrieve` operationId).
+func (c *Client) HpcWorkspacesJobsPerformancePdfRetrieve(ctx context.Context, uuid openapi_types.UUID, jobId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewHpcWorkspacesJobsPerformancePdfRetrieveRequest(c.Server, uuid, jobId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// HpcWorkspacesOutputSeriesRetrieve Plot a job output file
+//
+// Reads a GROMACS .xvg, a CSV/TSV table or a WRF rsl log from the cluster and returns its series as a chart spec, with a short summary.
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/output_series/ (the `HpcWorkspacesOutputSeriesRetrieve` operationId).
+func (c *Client) HpcWorkspacesOutputSeriesRetrieve(ctx context.Context, uuid openapi_types.UUID, params *HpcWorkspacesOutputSeriesRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewHpcWorkspacesOutputSeriesRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// HpcWorkspacesPartitionsList Partitions of the cluster
+//
+// Partitions the provider publishes in Waldur (limits, QoS, architecture) merged with what the cluster reports live through FirecREST (node counts).
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/partitions/ (the `HpcWorkspacesPartitionsList` operationId).
+func (c *Client) HpcWorkspacesPartitionsList(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewHpcWorkspacesPartitionsListRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// HpcWorkspacesPreviewScriptWithBody Preview a batch script
+//
+// Renders the batch script for the parameters and validates them, without submitting.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/hpc-workspaces/{uuid}/preview_script/ (the `HpcWorkspacesPreviewScript` operationId).
+func (c *Client) HpcWorkspacesPreviewScriptWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewHpcWorkspacesPreviewScriptRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// HpcWorkspacesPreviewScript Preview a batch script
+//
+// Renders the batch script for the parameters and validates them, without submitting.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/hpc-workspaces/{uuid}/preview_script/ (the `HpcWorkspacesPreviewScript` operationId).
+func (c *Client) HpcWorkspacesPreviewScript(ctx context.Context, uuid openapi_types.UUID, body HpcWorkspacesPreviewScriptJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewHpcWorkspacesPreviewScriptRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// HpcWorkspacesSoftwareList Find software available on the cluster
+//
+// Searches the offering's software catalogs (EESSI, Spack, ...); with a partition, only builds for its CPU architecture. Returns the lines a batch script needs.
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/software/ (the `HpcWorkspacesSoftwareList` operationId).
+func (c *Client) HpcWorkspacesSoftwareList(ctx context.Context, uuid openapi_types.UUID, params *HpcWorkspacesSoftwareListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewHpcWorkspacesSoftwareListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// HpcWorkspacesUsageRetrieve Usage of the allocation against its limits
+//
+// Consumption of each limited component in the current limit period from Waldur's usage records, per user, with a run-out forecast at the recent pace.
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/usage/ (the `HpcWorkspacesUsageRetrieve` operationId).
+func (c *Client) HpcWorkspacesUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewHpcWorkspacesUsageRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -159143,6 +160479,44 @@ func (c *Client) MarketplaceProviderOfferingsHistoryAtRetrieve(ctx context.Conte
 	return c.Client.Do(req)
 }
 
+// MarketplaceProviderOfferingsImportMaintenanceReservationsWithBody Import the cluster's maintenance reservations as drafts
+//
+// Site agents report the MAINT reservations made on the cluster; each becomes a draft maintenance announcement for the provider to review and publish. Reservations named with the Waldur prefix are ignored. Only when maintenance sync is enabled on the offering.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/import_maintenance_reservations/ (the `MarketplaceProviderOfferingsImportMaintenanceReservations` operationId).
+func (c *Client) MarketplaceProviderOfferingsImportMaintenanceReservationsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsImportMaintenanceReservationsRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceProviderOfferingsImportMaintenanceReservations Import the cluster's maintenance reservations as drafts
+//
+// Site agents report the MAINT reservations made on the cluster; each becomes a draft maintenance announcement for the provider to review and publish. Reservations named with the Waldur prefix are ignored. Only when maintenance sync is enabled on the offering.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/import_maintenance_reservations/ (the `MarketplaceProviderOfferingsImportMaintenanceReservations` operationId).
+func (c *Client) MarketplaceProviderOfferingsImportMaintenanceReservations(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsImportMaintenanceReservationsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsImportMaintenanceReservationsRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // MarketplaceProviderOfferingsImportResourceWithBody Import a resource
 //
 // Imports a backend resource into the marketplace.
@@ -159307,6 +160681,23 @@ func (c *Client) MarketplaceProviderOfferingsListUsersList(ctx context.Context, 
 // Corresponds with HEAD /api/marketplace-provider-offerings/{uuid}/list_users/ (the `MarketplaceProviderOfferingsListUsersCount` operationId).
 func (c *Client) MarketplaceProviderOfferingsListUsersCount(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListUsersCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsListUsersCountRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceProviderOfferingsMaintenanceReservationsRetrieve Maintenance reservations the cluster should hold
+//
+// For site agents with maintenance sync enabled on the offering (plugin option slurm_maintenance_sync_enabled): the Slurm MAINT reservations that published maintenance announcements call for. The agent creates, updates and removes reservations named with `prefix` to match this list and leaves every other reservation alone.
+//
+// Corresponds with GET /api/marketplace-provider-offerings/{uuid}/maintenance_reservations/ (the `MarketplaceProviderOfferingsMaintenanceReservationsRetrieve` operationId).
+func (c *Client) MarketplaceProviderOfferingsMaintenanceReservationsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsMaintenanceReservationsRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -193772,264 +195163,6 @@ func (c *Client) ServiceSettingsRetrieve(ctx context.Context, uuid openapi_types
 	return c.Client.Do(req)
 }
 
-// SlurmJobsList performs a GET /api/slurm-jobs/ (the `SlurmJobsList` operationId) request.
-func (c *Client) SlurmJobsList(ctx context.Context, params *SlurmJobsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewSlurmJobsListRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// SlurmJobsCount performs a HEAD /api/slurm-jobs/ (the `SlurmJobsCount` operationId) request.
-//
-// Get number of items in the collection matching the request parameters.
-func (c *Client) SlurmJobsCount(ctx context.Context, params *SlurmJobsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewSlurmJobsCountRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// SlurmJobsCreateWithBody performs a POST /api/slurm-jobs/ (the `SlurmJobsCreate` operationId) request,
-// with any type of body and a specified content type.
-func (c *Client) SlurmJobsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewSlurmJobsCreateRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// SlurmJobsCreate performs a POST /api/slurm-jobs/ (the `SlurmJobsCreate` operationId) request.
-// Takes a body of the `application/json` content type.
-func (c *Client) SlurmJobsCreate(ctx context.Context, body SlurmJobsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewSlurmJobsCreateRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// SlurmJobsCreateWithFormdataBody performs a POST /api/slurm-jobs/ (the `SlurmJobsCreate` operationId) request.
-// Takes a body of the `application/x-www-form-urlencoded` content type.
-func (c *Client) SlurmJobsCreateWithFormdataBody(ctx context.Context, body SlurmJobsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewSlurmJobsCreateRequestWithFormdataBody(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// SlurmJobsDestroy performs a DELETE /api/slurm-jobs/{uuid}/ (the `SlurmJobsDestroy` operationId) request.
-func (c *Client) SlurmJobsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewSlurmJobsDestroyRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// SlurmJobsRetrieve performs a GET /api/slurm-jobs/{uuid}/ (the `SlurmJobsRetrieve` operationId) request.
-func (c *Client) SlurmJobsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *SlurmJobsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewSlurmJobsRetrieveRequest(c.Server, uuid, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// SlurmJobsPartialUpdateWithBody performs a PATCH /api/slurm-jobs/{uuid}/ (the `SlurmJobsPartialUpdate` operationId) request,
-// with any type of body and a specified content type.
-func (c *Client) SlurmJobsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewSlurmJobsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// SlurmJobsPartialUpdate performs a PATCH /api/slurm-jobs/{uuid}/ (the `SlurmJobsPartialUpdate` operationId) request.
-// Takes a body of the `application/json` content type.
-func (c *Client) SlurmJobsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewSlurmJobsPartialUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// SlurmJobsUpdateWithBody performs a PUT /api/slurm-jobs/{uuid}/ (the `SlurmJobsUpdate` operationId) request,
-// with any type of body and a specified content type.
-func (c *Client) SlurmJobsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewSlurmJobsUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// SlurmJobsUpdate performs a PUT /api/slurm-jobs/{uuid}/ (the `SlurmJobsUpdate` operationId) request.
-// Takes a body of the `application/json` content type.
-func (c *Client) SlurmJobsUpdate(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewSlurmJobsUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// SlurmJobsUpdateWithFormdataBody performs a PUT /api/slurm-jobs/{uuid}/ (the `SlurmJobsUpdate` operationId) request.
-// Takes a body of the `application/x-www-form-urlencoded` content type.
-func (c *Client) SlurmJobsUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewSlurmJobsUpdateRequestWithFormdataBody(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// SlurmJobsPull Synchronize resource state
-//
-// Schedule an asynchronous pull operation to synchronize resource state from the backend. Returns 202 if the pull was scheduled successfully, or 409 if the pull operation is not implemented for this resource type.
-//
-// Corresponds with POST /api/slurm-jobs/{uuid}/pull/ (the `SlurmJobsPull` operationId).
-func (c *Client) SlurmJobsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewSlurmJobsPullRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// SlurmJobsSetErredWithBody Mark resource as ERRED
-//
-// Manually transition the resource to ERRED state. This is useful for resources stuck in transitional states (CREATING, UPDATING, DELETING) that cannot be synced via pull. Staff-only operation.
-//
-// Takes any type of body and a specified content type.
-//
-// Corresponds with POST /api/slurm-jobs/{uuid}/set_erred/ (the `SlurmJobsSetErred` operationId).
-func (c *Client) SlurmJobsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewSlurmJobsSetErredRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// SlurmJobsSetErred Mark resource as ERRED
-//
-// Manually transition the resource to ERRED state. This is useful for resources stuck in transitional states (CREATING, UPDATING, DELETING) that cannot be synced via pull. Staff-only operation.
-//
-// Takes a body of the `application/json` content type.
-//
-// Corresponds with POST /api/slurm-jobs/{uuid}/set_erred/ (the `SlurmJobsSetErred` operationId).
-func (c *Client) SlurmJobsSetErred(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewSlurmJobsSetErredRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// SlurmJobsSetOk Mark resource as OK
-//
-// Manually transition the resource to OK state and clear error fields. Staff-only operation.
-//
-// Corresponds with POST /api/slurm-jobs/{uuid}/set_ok/ (the `SlurmJobsSetOk` operationId).
-func (c *Client) SlurmJobsSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewSlurmJobsSetOkRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// SlurmJobsUnlink Unlink resource
-//
-// Delete resource from the database without scheduling operations on backend
-//
-//	and without checking current state of the resource. It is intended to be used
-//	for removing resource stuck in transitioning state.
-//
-// Corresponds with POST /api/slurm-jobs/{uuid}/unlink/ (the `SlurmJobsUnlink` operationId).
-func (c *Client) SlurmJobsUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewSlurmJobsUnlinkRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 // SramGroupsList performs a GET /api/sram-groups/ (the `SramGroupsList` operationId) request.
 //
 // SRAM collaborations and groups provisioned into Waldur.
@@ -221173,12 +222306,16 @@ func NewChatQuotaUsageRetrieveRequest(server string, params *ChatQuotaUsageRetri
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
-		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid", params.UserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-			return nil, err
-		} else {
-			for _, qp := range strings.Split(queryFrag, "&") {
-				rawQueryFragments = append(rawQueryFragments, qp)
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid", *params.UserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
 			}
+
 		}
 
 		if encoded := queryValues.Encode(); encoded != "" {
@@ -233121,16 +234258,12 @@ func NewDailyQuotasRetrieveRequest(server string, params *DailyQuotasRetrievePar
 
 		}
 
-		if params.Scope != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "scope", *params.Scope, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "scope", params.Scope, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
 			}
-
 		}
 
 		if params.Start != nil {
@@ -233581,6 +234714,33 @@ func NewDebugEmailConfigRetrieveRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
+// NewDebugEmailConfigCountRequest constructs an http.Request for the DebugEmailConfigCount method
+func NewDebugEmailConfigCountRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/debug/email/config/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewDebugEmailProbeRequest constructs an http.Request for the DebugEmailProbe method
 func NewDebugEmailProbeRequest(server string) (*http.Request, error) {
 	var err error
@@ -233675,6 +234835,33 @@ func NewDebugPubsubCircuitBreakerRetrieveRequest(server string) (*http.Request, 
 	return req, nil
 }
 
+// NewDebugPubsubCircuitBreakerCountRequest constructs an http.Request for the DebugPubsubCircuitBreakerCount method
+func NewDebugPubsubCircuitBreakerCountRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/debug/pubsub/circuit_breaker/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewDebugPubsubCircuitBreakerResetRequest constructs an http.Request for the DebugPubsubCircuitBreakerReset method
 func NewDebugPubsubCircuitBreakerResetRequest(server string) (*http.Request, error) {
 	var err error
@@ -233729,6 +234916,33 @@ func NewDebugPubsubDeadLetterQueueRetrieveRequest(server string) (*http.Request,
 	return req, nil
 }
 
+// NewDebugPubsubDeadLetterQueueCountRequest constructs an http.Request for the DebugPubsubDeadLetterQueueCount method
+func NewDebugPubsubDeadLetterQueueCountRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/debug/pubsub/dead_letter_queue/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewDebugPubsubMessageStateCacheRetrieveRequest constructs an http.Request for the DebugPubsubMessageStateCacheRetrieve method
 func NewDebugPubsubMessageStateCacheRetrieveRequest(server string) (*http.Request, error) {
 	var err error
@@ -233756,6 +234970,33 @@ func NewDebugPubsubMessageStateCacheRetrieveRequest(server string) (*http.Reques
 	return req, nil
 }
 
+// NewDebugPubsubMessageStateCacheCountRequest constructs an http.Request for the DebugPubsubMessageStateCacheCount method
+func NewDebugPubsubMessageStateCacheCountRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/debug/pubsub/message_state_cache/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewDebugPubsubMetricsRetrieveRequest constructs an http.Request for the DebugPubsubMetricsRetrieve method
 func NewDebugPubsubMetricsRetrieveRequest(server string) (*http.Request, error) {
 	var err error
@@ -233776,6 +235017,33 @@ func NewDebugPubsubMetricsRetrieveRequest(server string) (*http.Request, error) 
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDebugPubsubMetricsCountRequest constructs an http.Request for the DebugPubsubMetricsCount method
+func NewDebugPubsubMetricsCountRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/debug/pubsub/metrics/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -233837,6 +235105,33 @@ func NewDebugPubsubOverviewRetrieveRequest(server string) (*http.Request, error)
 	return req, nil
 }
 
+// NewDebugPubsubOverviewCountRequest constructs an http.Request for the DebugPubsubOverviewCount method
+func NewDebugPubsubOverviewCountRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/debug/pubsub/overview/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewDebugPubsubQueuesRetrieveRequest constructs an http.Request for the DebugPubsubQueuesRetrieve method
 func NewDebugPubsubQueuesRetrieveRequest(server string) (*http.Request, error) {
 	var err error
@@ -233857,6 +235152,33 @@ func NewDebugPubsubQueuesRetrieveRequest(server string) (*http.Request, error) {
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDebugPubsubQueuesCountRequest constructs an http.Request for the DebugPubsubQueuesCount method
+func NewDebugPubsubQueuesCountRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/debug/pubsub/queues/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -242490,6 +243812,994 @@ func NewHooksCountRequest(server string, params *HooksCountParams) (*http.Reques
 	return req, nil
 }
 
+// NewHpcWorkspacesListRequest constructs an http.Request for the HpcWorkspacesList method
+func NewHpcWorkspacesListRequest(server string, params *HpcWorkspacesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/hpc-workspaces/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewHpcWorkspacesCountRequest constructs an http.Request for the HpcWorkspacesCount method
+func NewHpcWorkspacesCountRequest(server string, params *HpcWorkspacesCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/hpc-workspaces/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewHpcWorkspacesRetrieveRequest constructs an http.Request for the HpcWorkspacesRetrieve method
+func NewHpcWorkspacesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/hpc-workspaces/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewHpcWorkspacesClusterLoadRetrieveRequest constructs an http.Request for the HpcWorkspacesClusterLoadRetrieve method
+func NewHpcWorkspacesClusterLoadRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/hpc-workspaces/%s/cluster_load/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewHpcWorkspacesFileContentRetrieveRequest constructs an http.Request for the HpcWorkspacesFileContentRetrieve method
+func NewHpcWorkspacesFileContentRetrieveRequest(server string, uuid openapi_types.UUID, params *HpcWorkspacesFileContentRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/hpc-workspaces/%s/file_content/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "path", params.Path, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewHpcWorkspacesFilesListRequest constructs an http.Request for the HpcWorkspacesFilesList method
+func NewHpcWorkspacesFilesListRequest(server string, uuid openapi_types.UUID, params *HpcWorkspacesFilesListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/hpc-workspaces/%s/files/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Path != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "path", *params.Path, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ShowHidden != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "show_hidden", *params.ShowHidden, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewHpcWorkspacesJobStatsRetrieveRequest constructs an http.Request for the HpcWorkspacesJobStatsRetrieve method
+func NewHpcWorkspacesJobStatsRetrieveRequest(server string, uuid openapi_types.UUID, params *HpcWorkspacesJobStatsRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/hpc-workspaces/%s/job_stats/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Days != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "days", *params.Days, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewHpcWorkspacesJobsListRequest constructs an http.Request for the HpcWorkspacesJobsList method
+func NewHpcWorkspacesJobsListRequest(server string, uuid openapi_types.UUID, params *HpcWorkspacesJobsListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/hpc-workspaces/%s/jobs/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.TimeWindow != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "time_window", *params.TimeWindow, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewHpcWorkspacesJobsRequest calls the generic HpcWorkspacesJobs builder with application/json body
+func NewHpcWorkspacesJobsRequest(server string, uuid openapi_types.UUID, body HpcWorkspacesJobsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewHpcWorkspacesJobsRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewHpcWorkspacesJobsRequestWithBody constructs an http.Request for the HpcWorkspacesJobs method, with any body, and a specified content type
+func NewHpcWorkspacesJobsRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/hpc-workspaces/%s/jobs/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewHpcWorkspacesJobsRetrieveRequest constructs an http.Request for the HpcWorkspacesJobsRetrieve method
+func NewHpcWorkspacesJobsRetrieveRequest(server string, uuid openapi_types.UUID, jobId string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "job_id", jobId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/hpc-workspaces/%s/jobs/%s/", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewHpcWorkspacesJobsCancelRequest constructs an http.Request for the HpcWorkspacesJobsCancel method
+func NewHpcWorkspacesJobsCancelRequest(server string, uuid openapi_types.UUID, jobId string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "job_id", jobId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/hpc-workspaces/%s/jobs/%s/cancel/", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewHpcWorkspacesJobsOutputRetrieveRequest constructs an http.Request for the HpcWorkspacesJobsOutputRetrieve method
+func NewHpcWorkspacesJobsOutputRetrieveRequest(server string, uuid openapi_types.UUID, jobId string, params *HpcWorkspacesJobsOutputRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "job_id", jobId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/hpc-workspaces/%s/jobs/%s/output/", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Lines != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "lines", *params.Lines, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewHpcWorkspacesJobsPerformanceRetrieveRequest constructs an http.Request for the HpcWorkspacesJobsPerformanceRetrieve method
+func NewHpcWorkspacesJobsPerformanceRetrieveRequest(server string, uuid openapi_types.UUID, jobId string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "job_id", jobId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/hpc-workspaces/%s/jobs/%s/performance/", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewHpcWorkspacesJobsPerformancePdfRetrieveRequest constructs an http.Request for the HpcWorkspacesJobsPerformancePdfRetrieve method
+func NewHpcWorkspacesJobsPerformancePdfRetrieveRequest(server string, uuid openapi_types.UUID, jobId string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "job_id", jobId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/hpc-workspaces/%s/jobs/%s/performance_pdf/", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewHpcWorkspacesOutputSeriesRetrieveRequest constructs an http.Request for the HpcWorkspacesOutputSeriesRetrieve method
+func NewHpcWorkspacesOutputSeriesRetrieveRequest(server string, uuid openapi_types.UUID, params *HpcWorkspacesOutputSeriesRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/hpc-workspaces/%s/output_series/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.ForecastHours != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "forecast_hours", *params.ForecastHours, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "number", Format: "double"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "path", params.Path, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewHpcWorkspacesPartitionsListRequest constructs an http.Request for the HpcWorkspacesPartitionsList method
+func NewHpcWorkspacesPartitionsListRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/hpc-workspaces/%s/partitions/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewHpcWorkspacesPreviewScriptRequest calls the generic HpcWorkspacesPreviewScript builder with application/json body
+func NewHpcWorkspacesPreviewScriptRequest(server string, uuid openapi_types.UUID, body HpcWorkspacesPreviewScriptJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewHpcWorkspacesPreviewScriptRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewHpcWorkspacesPreviewScriptRequestWithBody constructs an http.Request for the HpcWorkspacesPreviewScript method, with any body, and a specified content type
+func NewHpcWorkspacesPreviewScriptRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/hpc-workspaces/%s/preview_script/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewHpcWorkspacesSoftwareListRequest constructs an http.Request for the HpcWorkspacesSoftwareList method
+func NewHpcWorkspacesSoftwareListRequest(server string, uuid openapi_types.UUID, params *HpcWorkspacesSoftwareListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/hpc-workspaces/%s/software/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Partition != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "partition", *params.Partition, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewHpcWorkspacesUsageRetrieveRequest constructs an http.Request for the HpcWorkspacesUsageRetrieve method
+func NewHpcWorkspacesUsageRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/hpc-workspaces/%s/usage/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewIdentityBridgeRequest calls the generic IdentityBridge builder with application/json body
 func NewIdentityBridgeRequest(server string, body IdentityBridgeJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -249234,6 +251544,18 @@ func NewMaintenanceAnnouncementsListRequest(server string, params *MaintenanceAn
 
 		}
 
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
@@ -249399,6 +251721,18 @@ func NewMaintenanceAnnouncementsCountRequest(server string, params *MaintenanceA
 		if params.O != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -284008,6 +286342,53 @@ func NewMarketplaceProviderOfferingsHistoryAtRetrieveRequest(server string, uuid
 	return req, nil
 }
 
+// NewMarketplaceProviderOfferingsImportMaintenanceReservationsRequest calls the generic MarketplaceProviderOfferingsImportMaintenanceReservations builder with application/json body
+func NewMarketplaceProviderOfferingsImportMaintenanceReservationsRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsImportMaintenanceReservationsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderOfferingsImportMaintenanceReservationsRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsImportMaintenanceReservationsRequestWithBody constructs an http.Request for the MarketplaceProviderOfferingsImportMaintenanceReservations method, with any body, and a specified content type
+func NewMarketplaceProviderOfferingsImportMaintenanceReservationsRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/import_maintenance_reservations/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceProviderOfferingsImportResourceRequest calls the generic MarketplaceProviderOfferingsImportResource builder with application/json body
 func NewMarketplaceProviderOfferingsImportResourceRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsImportResourceJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -286504,6 +288885,40 @@ func NewMarketplaceProviderOfferingsListUsersCountRequest(server string, uuid op
 	}
 
 	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsMaintenanceReservationsRetrieveRequest constructs an http.Request for the MarketplaceProviderOfferingsMaintenanceReservationsRetrieve method
+func NewMarketplaceProviderOfferingsMaintenanceReservationsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/maintenance_reservations/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -391941,6 +394356,18 @@ func NewPublicMaintenanceAnnouncementsListRequest(server string, params *PublicM
 
 		}
 
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
@@ -392106,6 +394533,18 @@ func NewPublicMaintenanceAnnouncementsCountRequest(server string, params *Public
 		if params.O != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -408092,550 +410531,6 @@ func NewServiceSettingsRetrieveRequest(server string, uuid openapi_types.UUID, p
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewSlurmJobsListRequest constructs an http.Request for the SlurmJobsList method
-func NewSlurmJobsListRequest(server string, params *SlurmJobsListParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/slurm-jobs/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if params.Field != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewSlurmJobsCountRequest constructs an http.Request for the SlurmJobsCount method
-func NewSlurmJobsCountRequest(server string, params *SlurmJobsCountParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/slurm-jobs/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
-	}
-
-	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewSlurmJobsCreateRequest calls the generic SlurmJobsCreate builder with application/json body
-func NewSlurmJobsCreateRequest(server string, body SlurmJobsCreateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewSlurmJobsCreateRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewSlurmJobsCreateRequestWithFormdataBody calls the generic SlurmJobsCreate builder with application/x-www-form-urlencoded body
-func NewSlurmJobsCreateRequestWithFormdataBody(server string, body SlurmJobsCreateFormdataRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	bodyStr, err := runtime.MarshalForm(body, nil)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = strings.NewReader(bodyStr.Encode())
-	return NewSlurmJobsCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
-}
-
-// NewSlurmJobsCreateRequestWithBody constructs an http.Request for the SlurmJobsCreate method, with any body, and a specified content type
-func NewSlurmJobsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/slurm-jobs/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewSlurmJobsDestroyRequest constructs an http.Request for the SlurmJobsDestroy method
-func NewSlurmJobsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/slurm-jobs/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewSlurmJobsRetrieveRequest constructs an http.Request for the SlurmJobsRetrieve method
-func NewSlurmJobsRetrieveRequest(server string, uuid openapi_types.UUID, params *SlurmJobsRetrieveParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/slurm-jobs/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if params.Field != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewSlurmJobsPartialUpdateRequest calls the generic SlurmJobsPartialUpdate builder with application/json body
-func NewSlurmJobsPartialUpdateRequest(server string, uuid openapi_types.UUID, body SlurmJobsPartialUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewSlurmJobsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewSlurmJobsPartialUpdateRequestWithBody constructs an http.Request for the SlurmJobsPartialUpdate method, with any body, and a specified content type
-func NewSlurmJobsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/slurm-jobs/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewSlurmJobsUpdateRequest calls the generic SlurmJobsUpdate builder with application/json body
-func NewSlurmJobsUpdateRequest(server string, uuid openapi_types.UUID, body SlurmJobsUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewSlurmJobsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewSlurmJobsUpdateRequestWithFormdataBody calls the generic SlurmJobsUpdate builder with application/x-www-form-urlencoded body
-func NewSlurmJobsUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body SlurmJobsUpdateFormdataRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	bodyStr, err := runtime.MarshalForm(body, nil)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = strings.NewReader(bodyStr.Encode())
-	return NewSlurmJobsUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
-}
-
-// NewSlurmJobsUpdateRequestWithBody constructs an http.Request for the SlurmJobsUpdate method, with any body, and a specified content type
-func NewSlurmJobsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/slurm-jobs/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewSlurmJobsPullRequest constructs an http.Request for the SlurmJobsPull method
-func NewSlurmJobsPullRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/slurm-jobs/%s/pull/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewSlurmJobsSetErredRequest calls the generic SlurmJobsSetErred builder with application/json body
-func NewSlurmJobsSetErredRequest(server string, uuid openapi_types.UUID, body SlurmJobsSetErredJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewSlurmJobsSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewSlurmJobsSetErredRequestWithBody constructs an http.Request for the SlurmJobsSetErred method, with any body, and a specified content type
-func NewSlurmJobsSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/slurm-jobs/%s/set_erred/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewSlurmJobsSetOkRequest constructs an http.Request for the SlurmJobsSetOk method
-func NewSlurmJobsSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/slurm-jobs/%s/set_ok/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewSlurmJobsUnlinkRequest constructs an http.Request for the SlurmJobsUnlink method
-func NewSlurmJobsUnlinkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/slurm-jobs/%s/unlink/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -435538,6 +437433,15 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with GET /api/debug/email/config/ (the `DebugEmailConfigRetrieve` operationId).
 	DebugEmailConfigRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugEmailConfigRetrieveResponse, error)
 
+	// DebugEmailConfigCountWithResponse Audit the outgoing email configuration
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with HEAD /api/debug/email/config/ (the `DebugEmailConfigCount` operationId).
+	DebugEmailConfigCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugEmailConfigCountResponse, error)
+
 	// DebugEmailProbeWithResponse Test the SMTP connection
 	//
 	// Opens and closes a connection to the configured relay without sending a message.
@@ -435593,6 +437497,15 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with GET /api/debug/pubsub/circuit_breaker/ (the `DebugPubsubCircuitBreakerRetrieve` operationId).
 	DebugPubsubCircuitBreakerRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubCircuitBreakerRetrieveResponse, error)
 
+	// DebugPubsubCircuitBreakerCountWithResponse Get circuit breaker state
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with HEAD /api/debug/pubsub/circuit_breaker/ (the `DebugPubsubCircuitBreakerCount` operationId).
+	DebugPubsubCircuitBreakerCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubCircuitBreakerCountResponse, error)
+
 	// DebugPubsubCircuitBreakerResetWithResponse Reset circuit breaker
 	//
 	// Manually reset the STOMP circuit breaker to CLOSED state.
@@ -435623,6 +437536,15 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with GET /api/debug/pubsub/dead_letter_queue/ (the `DebugPubsubDeadLetterQueueRetrieve` operationId).
 	DebugPubsubDeadLetterQueueRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubDeadLetterQueueRetrieveResponse, error)
 
+	// DebugPubsubDeadLetterQueueCountWithResponse Get dead letter queue status
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with HEAD /api/debug/pubsub/dead_letter_queue/ (the `DebugPubsubDeadLetterQueueCount` operationId).
+	DebugPubsubDeadLetterQueueCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubDeadLetterQueueCountResponse, error)
+
 	// DebugPubsubMessageStateCacheRetrieveWithResponse Get message state cache statistics
 	//
 	// Get message state tracker cache statistics for idempotency.
@@ -435640,6 +437562,15 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with GET /api/debug/pubsub/message_state_cache/ (the `DebugPubsubMessageStateCacheRetrieve` operationId).
 	DebugPubsubMessageStateCacheRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubMessageStateCacheRetrieveResponse, error)
+
+	// DebugPubsubMessageStateCacheCountWithResponse Get message state cache statistics
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with HEAD /api/debug/pubsub/message_state_cache/ (the `DebugPubsubMessageStateCacheCount` operationId).
+	DebugPubsubMessageStateCacheCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubMessageStateCacheCountResponse, error)
 
 	// DebugPubsubMetricsRetrieveWithResponse Get publishing metrics
 	//
@@ -435661,6 +437592,15 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with GET /api/debug/pubsub/metrics/ (the `DebugPubsubMetricsRetrieve` operationId).
 	DebugPubsubMetricsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubMetricsRetrieveResponse, error)
+
+	// DebugPubsubMetricsCountWithResponse Get publishing metrics
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with HEAD /api/debug/pubsub/metrics/ (the `DebugPubsubMetricsCount` operationId).
+	DebugPubsubMetricsCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubMetricsCountResponse, error)
 
 	// DebugPubsubMetricsResetWithResponse Reset publishing metrics
 	//
@@ -435687,6 +437627,15 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with GET /api/debug/pubsub/overview/ (the `DebugPubsubOverviewRetrieve` operationId).
 	DebugPubsubOverviewRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubOverviewRetrieveResponse, error)
 
+	// DebugPubsubOverviewCountWithResponse Get pubsub system health overview
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with HEAD /api/debug/pubsub/overview/ (the `DebugPubsubOverviewCount` operationId).
+	DebugPubsubOverviewCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubOverviewCountResponse, error)
+
 	// DebugPubsubQueuesRetrieveWithResponse Get subscription queues overview
 	//
 	// Get overview of subscription queues from RabbitMQ.
@@ -435702,6 +437651,15 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with GET /api/debug/pubsub/queues/ (the `DebugPubsubQueuesRetrieve` operationId).
 	DebugPubsubQueuesRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubQueuesRetrieveResponse, error)
+
+	// DebugPubsubQueuesCountWithResponse Get subscription queues overview
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with HEAD /api/debug/pubsub/queues/ (the `DebugPubsubQueuesCount` operationId).
+	DebugPubsubQueuesCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubQueuesCountResponse, error)
 
 	// DigitaloceanDropletsListWithResponse performs a GET /api/digitalocean-droplets/ (the `DigitaloceanDropletsList` operationId) request.
 	//
@@ -436727,6 +438685,187 @@ type ClientWithResponsesInterface interface {
 	//
 	// Returns a wrapper object for the known response body format(s).
 	HooksCountWithResponse(ctx context.Context, params *HooksCountParams, reqEditors ...RequestEditorFn) (*HooksCountResponse, error)
+
+	// HpcWorkspacesListWithResponse List HPC workspaces
+	//
+	// SLURM allocations visible to the user whose offering is connected to FirecREST.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/hpc-workspaces/ (the `HpcWorkspacesList` operationId).
+	HpcWorkspacesListWithResponse(ctx context.Context, params *HpcWorkspacesListParams, reqEditors ...RequestEditorFn) (*HpcWorkspacesListResponse, error)
+
+	// HpcWorkspacesCountWithResponse List HPC workspaces
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with HEAD /api/hpc-workspaces/ (the `HpcWorkspacesCount` operationId).
+	HpcWorkspacesCountWithResponse(ctx context.Context, params *HpcWorkspacesCountParams, reqEditors ...RequestEditorFn) (*HpcWorkspacesCountResponse, error)
+
+	// HpcWorkspacesRetrieveWithResponse HPC workspace overview
+	//
+	// Allocation, the user's cluster identity and FirecREST system health. Problems reaching FirecREST are reported in 'error' rather than failing the request; 'sign_in_provider' names the identity provider to sign in through again when that is the remedy.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/ (the `HpcWorkspacesRetrieve` operationId).
+	HpcWorkspacesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*HpcWorkspacesRetrieveResponse, error)
+
+	// HpcWorkspacesClusterLoadRetrieveWithResponse Node load and reservations of the cluster
+	//
+	// Every node with its state, CPU load and partitions, a summary per partition and the upcoming reservations and maintenance windows.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/cluster_load/ (the `HpcWorkspacesClusterLoadRetrieve` operationId).
+	HpcWorkspacesClusterLoadRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*HpcWorkspacesClusterLoadRetrieveResponse, error)
+
+	// HpcWorkspacesFileContentRetrieveWithResponse View a file on the cluster
+	//
+	// Content of a small text file (bounded by FirecREST's operation size limit).
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/file_content/ (the `HpcWorkspacesFileContentRetrieve` operationId).
+	HpcWorkspacesFileContentRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *HpcWorkspacesFileContentRetrieveParams, reqEditors ...RequestEditorFn) (*HpcWorkspacesFileContentRetrieveResponse, error)
+
+	// HpcWorkspacesFilesListWithResponse List a directory on the cluster
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/files/ (the `HpcWorkspacesFilesList` operationId).
+	HpcWorkspacesFilesListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *HpcWorkspacesFilesListParams, reqEditors ...RequestEditorFn) (*HpcWorkspacesFilesListResponse, error)
+
+	// HpcWorkspacesJobStatsRetrieveWithResponse Job statistics of the allocation
+	//
+	// Outcomes per day, failures by exit code, time limit fit, CPU and memory efficiency, queue waits by partition and right-sizing suggestions over the last days, with chart specs for each figure.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/job_stats/ (the `HpcWorkspacesJobStatsRetrieve` operationId).
+	HpcWorkspacesJobStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *HpcWorkspacesJobStatsRetrieveParams, reqEditors ...RequestEditorFn) (*HpcWorkspacesJobStatsRetrieveResponse, error)
+
+	// HpcWorkspacesJobsListWithResponse List jobs of the allocation
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/jobs/ (the `HpcWorkspacesJobsList` operationId).
+	HpcWorkspacesJobsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *HpcWorkspacesJobsListParams, reqEditors ...RequestEditorFn) (*HpcWorkspacesJobsListResponse, error)
+
+	// HpcWorkspacesJobsWithBodyWithResponse Submit a job to the allocation
+	//
+	// Renders the batch script from the parameters, checks them against the published partition and QoS limits and submits it under the allocation's account.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/hpc-workspaces/{uuid}/jobs/ (the `HpcWorkspacesJobs` operationId).
+	HpcWorkspacesJobsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*HpcWorkspacesJobsResponse, error)
+
+	// HpcWorkspacesJobsWithResponse Submit a job to the allocation
+	//
+	// Renders the batch script from the parameters, checks them against the published partition and QoS limits and submits it under the allocation's account.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/hpc-workspaces/{uuid}/jobs/ (the `HpcWorkspacesJobs` operationId).
+	HpcWorkspacesJobsWithResponse(ctx context.Context, uuid openapi_types.UUID, body HpcWorkspacesJobsJSONRequestBody, reqEditors ...RequestEditorFn) (*HpcWorkspacesJobsResponse, error)
+
+	// HpcWorkspacesJobsRetrieveWithResponse Get a job of the allocation
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/jobs/{job_id}/ (the `HpcWorkspacesJobsRetrieve` operationId).
+	HpcWorkspacesJobsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, jobId string, reqEditors ...RequestEditorFn) (*HpcWorkspacesJobsRetrieveResponse, error)
+
+	// HpcWorkspacesJobsCancelWithResponse Cancel a job of the allocation
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/hpc-workspaces/{uuid}/jobs/{job_id}/cancel/ (the `HpcWorkspacesJobsCancel` operationId).
+	HpcWorkspacesJobsCancelWithResponse(ctx context.Context, uuid openapi_types.UUID, jobId string, reqEditors ...RequestEditorFn) (*HpcWorkspacesJobsCancelResponse, error)
+
+	// HpcWorkspacesJobsOutputRetrieveWithResponse Get the script and output of a job
+	//
+	// The batch script and the last lines of standard output and error.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/jobs/{job_id}/output/ (the `HpcWorkspacesJobsOutputRetrieve` operationId).
+	HpcWorkspacesJobsOutputRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, jobId string, params *HpcWorkspacesJobsOutputRetrieveParams, reqEditors ...RequestEditorFn) (*HpcWorkspacesJobsOutputRetrieveResponse, error)
+
+	// HpcWorkspacesJobsPerformanceRetrieveWithResponse Get the performance of a job over its run
+	//
+	// Per-GPU use, GPU memory and power, CPU cores and host memory over the job's run, and its busiest processes, from the cluster monitor (slurm-monitor with Sonar probes) as the signed-in user.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/jobs/{job_id}/performance/ (the `HpcWorkspacesJobsPerformanceRetrieve` operationId).
+	HpcWorkspacesJobsPerformanceRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, jobId string, reqEditors ...RequestEditorFn) (*HpcWorkspacesJobsPerformanceRetrieveResponse, error)
+
+	// HpcWorkspacesJobsPerformancePdfRetrieveWithResponse Download the performance report of a job as PDF
+	//
+	// The job's accounting, summary figures, charts and processes from the cluster monitor, as one PDF. Without monitor samples the report keeps the accounting and says why.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/jobs/{job_id}/performance_pdf/ (the `HpcWorkspacesJobsPerformancePdfRetrieve` operationId).
+	HpcWorkspacesJobsPerformancePdfRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, jobId string, reqEditors ...RequestEditorFn) (*HpcWorkspacesJobsPerformancePdfRetrieveResponse, error)
+
+	// HpcWorkspacesOutputSeriesRetrieveWithResponse Plot a job output file
+	//
+	// Reads a GROMACS .xvg, a CSV/TSV table or a WRF rsl log from the cluster and returns its series as a chart spec, with a short summary.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/output_series/ (the `HpcWorkspacesOutputSeriesRetrieve` operationId).
+	HpcWorkspacesOutputSeriesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *HpcWorkspacesOutputSeriesRetrieveParams, reqEditors ...RequestEditorFn) (*HpcWorkspacesOutputSeriesRetrieveResponse, error)
+
+	// HpcWorkspacesPartitionsListWithResponse Partitions of the cluster
+	//
+	// Partitions the provider publishes in Waldur (limits, QoS, architecture) merged with what the cluster reports live through FirecREST (node counts).
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/partitions/ (the `HpcWorkspacesPartitionsList` operationId).
+	HpcWorkspacesPartitionsListWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*HpcWorkspacesPartitionsListResponse, error)
+
+	// HpcWorkspacesPreviewScriptWithBodyWithResponse Preview a batch script
+	//
+	// Renders the batch script for the parameters and validates them, without submitting.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/hpc-workspaces/{uuid}/preview_script/ (the `HpcWorkspacesPreviewScript` operationId).
+	HpcWorkspacesPreviewScriptWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*HpcWorkspacesPreviewScriptResponse, error)
+
+	// HpcWorkspacesPreviewScriptWithResponse Preview a batch script
+	//
+	// Renders the batch script for the parameters and validates them, without submitting.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/hpc-workspaces/{uuid}/preview_script/ (the `HpcWorkspacesPreviewScript` operationId).
+	HpcWorkspacesPreviewScriptWithResponse(ctx context.Context, uuid openapi_types.UUID, body HpcWorkspacesPreviewScriptJSONRequestBody, reqEditors ...RequestEditorFn) (*HpcWorkspacesPreviewScriptResponse, error)
+
+	// HpcWorkspacesSoftwareListWithResponse Find software available on the cluster
+	//
+	// Searches the offering's software catalogs (EESSI, Spack, ...); with a partition, only builds for its CPU architecture. Returns the lines a batch script needs.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/software/ (the `HpcWorkspacesSoftwareList` operationId).
+	HpcWorkspacesSoftwareListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *HpcWorkspacesSoftwareListParams, reqEditors ...RequestEditorFn) (*HpcWorkspacesSoftwareListResponse, error)
+
+	// HpcWorkspacesUsageRetrieveWithResponse Usage of the allocation against its limits
+	//
+	// Consumption of each limited component in the current limit period from Waldur's usage records, per user, with a run-out forecast at the recent pace.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/hpc-workspaces/{uuid}/usage/ (the `HpcWorkspacesUsageRetrieve` operationId).
+	HpcWorkspacesUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*HpcWorkspacesUsageRetrieveResponse, error)
 
 	// IdentityBridgeWithBodyWithResponse Push user attributes from an ISD
 	//
@@ -442068,6 +444207,24 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with GET /api/marketplace-provider-offerings/{uuid}/history/at/ (the `MarketplaceProviderOfferingsHistoryAtRetrieve` operationId).
 	MarketplaceProviderOfferingsHistoryAtRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsHistoryAtRetrieveResponse, error)
 
+	// MarketplaceProviderOfferingsImportMaintenanceReservationsWithBodyWithResponse Import the cluster's maintenance reservations as drafts
+	//
+	// Site agents report the MAINT reservations made on the cluster; each becomes a draft maintenance announcement for the provider to review and publish. Reservations named with the Waldur prefix are ignored. Only when maintenance sync is enabled on the offering.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/import_maintenance_reservations/ (the `MarketplaceProviderOfferingsImportMaintenanceReservations` operationId).
+	MarketplaceProviderOfferingsImportMaintenanceReservationsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsImportMaintenanceReservationsResponse, error)
+
+	// MarketplaceProviderOfferingsImportMaintenanceReservationsWithResponse Import the cluster's maintenance reservations as drafts
+	//
+	// Site agents report the MAINT reservations made on the cluster; each becomes a draft maintenance announcement for the provider to review and publish. Reservations named with the Waldur prefix are ignored. Only when maintenance sync is enabled on the offering.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/import_maintenance_reservations/ (the `MarketplaceProviderOfferingsImportMaintenanceReservations` operationId).
+	MarketplaceProviderOfferingsImportMaintenanceReservationsWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsImportMaintenanceReservationsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsImportMaintenanceReservationsResponse, error)
+
 	// MarketplaceProviderOfferingsImportResourceWithBodyWithResponse Import a resource
 	//
 	// Imports a backend resource into the marketplace.
@@ -442157,6 +444314,15 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with HEAD /api/marketplace-provider-offerings/{uuid}/list_users/ (the `MarketplaceProviderOfferingsListUsersCount` operationId).
 	MarketplaceProviderOfferingsListUsersCountWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListUsersCountParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsListUsersCountResponse, error)
+
+	// MarketplaceProviderOfferingsMaintenanceReservationsRetrieveWithResponse Maintenance reservations the cluster should hold
+	//
+	// For site agents with maintenance sync enabled on the offering (plugin option slurm_maintenance_sync_enabled): the Slurm MAINT reservations that published maintenance announcements call for. The agent creates, updates and removes reservations named with `prefix` to match this list and leaves every other reservation alone.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-provider-offerings/{uuid}/maintenance_reservations/ (the `MarketplaceProviderOfferingsMaintenanceReservationsRetrieve` operationId).
+	MarketplaceProviderOfferingsMaintenanceReservationsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsMaintenanceReservationsRetrieveResponse, error)
 
 	// MarketplaceProviderOfferingsMakeAvailableWithResponse Mark an offering as available
 	//
@@ -457979,113 +460145,6 @@ type ClientWithResponsesInterface interface {
 	//
 	// Returns a wrapper object for the known response body format(s).
 	ServiceSettingsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ServiceSettingsRetrieveParams, reqEditors ...RequestEditorFn) (*ServiceSettingsRetrieveResponse, error)
-
-	// SlurmJobsListWithResponse performs a GET /api/slurm-jobs/ (the `SlurmJobsList` operationId) request.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	SlurmJobsListWithResponse(ctx context.Context, params *SlurmJobsListParams, reqEditors ...RequestEditorFn) (*SlurmJobsListResponse, error)
-
-	// SlurmJobsCountWithResponse performs a HEAD /api/slurm-jobs/ (the `SlurmJobsCount` operationId) request.
-	//
-	// Get number of items in the collection matching the request parameters.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	SlurmJobsCountWithResponse(ctx context.Context, params *SlurmJobsCountParams, reqEditors ...RequestEditorFn) (*SlurmJobsCountResponse, error)
-
-	// SlurmJobsCreateWithBodyWithResponse performs a POST /api/slurm-jobs/ (the `SlurmJobsCreate` operationId) request,
-	// with any type of body and a specified content type.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	SlurmJobsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SlurmJobsCreateResponse, error)
-
-	// SlurmJobsCreateWithResponse performs a POST /api/slurm-jobs/ (the `SlurmJobsCreate` operationId) request.
-	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	SlurmJobsCreateWithResponse(ctx context.Context, body SlurmJobsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*SlurmJobsCreateResponse, error)
-
-	// SlurmJobsCreateWithFormdataBodyWithResponse performs a POST /api/slurm-jobs/ (the `SlurmJobsCreate` operationId) request.
-	// Takes a body of the `application/x-www-form-urlencoded` content type, and returns a wrapper object for the known response body format(s).
-	SlurmJobsCreateWithFormdataBodyWithResponse(ctx context.Context, body SlurmJobsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*SlurmJobsCreateResponse, error)
-
-	// SlurmJobsDestroyWithResponse performs a DELETE /api/slurm-jobs/{uuid}/ (the `SlurmJobsDestroy` operationId) request.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	SlurmJobsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SlurmJobsDestroyResponse, error)
-
-	// SlurmJobsRetrieveWithResponse performs a GET /api/slurm-jobs/{uuid}/ (the `SlurmJobsRetrieve` operationId) request.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	SlurmJobsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *SlurmJobsRetrieveParams, reqEditors ...RequestEditorFn) (*SlurmJobsRetrieveResponse, error)
-
-	// SlurmJobsPartialUpdateWithBodyWithResponse performs a PATCH /api/slurm-jobs/{uuid}/ (the `SlurmJobsPartialUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	SlurmJobsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SlurmJobsPartialUpdateResponse, error)
-
-	// SlurmJobsPartialUpdateWithResponse performs a PATCH /api/slurm-jobs/{uuid}/ (the `SlurmJobsPartialUpdate` operationId) request.
-	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	SlurmJobsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*SlurmJobsPartialUpdateResponse, error)
-
-	// SlurmJobsUpdateWithBodyWithResponse performs a PUT /api/slurm-jobs/{uuid}/ (the `SlurmJobsUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	SlurmJobsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SlurmJobsUpdateResponse, error)
-
-	// SlurmJobsUpdateWithResponse performs a PUT /api/slurm-jobs/{uuid}/ (the `SlurmJobsUpdate` operationId) request.
-	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	SlurmJobsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*SlurmJobsUpdateResponse, error)
-
-	// SlurmJobsUpdateWithFormdataBodyWithResponse performs a PUT /api/slurm-jobs/{uuid}/ (the `SlurmJobsUpdate` operationId) request.
-	// Takes a body of the `application/x-www-form-urlencoded` content type, and returns a wrapper object for the known response body format(s).
-	SlurmJobsUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*SlurmJobsUpdateResponse, error)
-
-	// SlurmJobsPullWithResponse Synchronize resource state
-	//
-	// Schedule an asynchronous pull operation to synchronize resource state from the backend. Returns 202 if the pull was scheduled successfully, or 409 if the pull operation is not implemented for this resource type.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	//
-	// Corresponds with POST /api/slurm-jobs/{uuid}/pull/ (the `SlurmJobsPull` operationId).
-	SlurmJobsPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SlurmJobsPullResponse, error)
-
-	// SlurmJobsSetErredWithBodyWithResponse Mark resource as ERRED
-	//
-	// Manually transition the resource to ERRED state. This is useful for resources stuck in transitional states (CREATING, UPDATING, DELETING) that cannot be synced via pull. Staff-only operation.
-	//
-	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
-	//
-	// Corresponds with POST /api/slurm-jobs/{uuid}/set_erred/ (the `SlurmJobsSetErred` operationId).
-	SlurmJobsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SlurmJobsSetErredResponse, error)
-
-	// SlurmJobsSetErredWithResponse Mark resource as ERRED
-	//
-	// Manually transition the resource to ERRED state. This is useful for resources stuck in transitional states (CREATING, UPDATING, DELETING) that cannot be synced via pull. Staff-only operation.
-	//
-	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	//
-	// Corresponds with POST /api/slurm-jobs/{uuid}/set_erred/ (the `SlurmJobsSetErred` operationId).
-	SlurmJobsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*SlurmJobsSetErredResponse, error)
-
-	// SlurmJobsSetOkWithResponse Mark resource as OK
-	//
-	// Manually transition the resource to OK state and clear error fields. Staff-only operation.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	//
-	// Corresponds with POST /api/slurm-jobs/{uuid}/set_ok/ (the `SlurmJobsSetOk` operationId).
-	SlurmJobsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SlurmJobsSetOkResponse, error)
-
-	// SlurmJobsUnlinkWithResponse Unlink resource
-	//
-	// Delete resource from the database without scheduling operations on backend
-	//         and without checking current state of the resource. It is intended to be used
-	//         for removing resource stuck in transitioning state.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	//
-	// Corresponds with POST /api/slurm-jobs/{uuid}/unlink/ (the `SlurmJobsUnlink` operationId).
-	SlurmJobsUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SlurmJobsUnlinkResponse, error)
 
 	// SramGroupsListWithResponse performs a GET /api/sram-groups/ (the `SramGroupsList` operationId) request.
 	//
@@ -478804,6 +480863,40 @@ func (r DebugEmailConfigRetrieveResponse) ContentType() string {
 	return ""
 }
 
+type DebugEmailConfigCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r DebugEmailConfigCountResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r DebugEmailConfigCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DebugEmailConfigCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DebugEmailConfigCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type DebugEmailProbeResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -478927,6 +481020,40 @@ func (r DebugPubsubCircuitBreakerRetrieveResponse) ContentType() string {
 	return ""
 }
 
+type DebugPubsubCircuitBreakerCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r DebugPubsubCircuitBreakerCountResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r DebugPubsubCircuitBreakerCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DebugPubsubCircuitBreakerCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DebugPubsubCircuitBreakerCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type DebugPubsubCircuitBreakerResetResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -479016,6 +481143,40 @@ func (r DebugPubsubDeadLetterQueueRetrieveResponse) ContentType() string {
 	return ""
 }
 
+type DebugPubsubDeadLetterQueueCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r DebugPubsubDeadLetterQueueCountResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r DebugPubsubDeadLetterQueueCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DebugPubsubDeadLetterQueueCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DebugPubsubDeadLetterQueueCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type DebugPubsubMessageStateCacheRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -479057,6 +481218,40 @@ func (r DebugPubsubMessageStateCacheRetrieveResponse) ContentType() string {
 	return ""
 }
 
+type DebugPubsubMessageStateCacheCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r DebugPubsubMessageStateCacheCountResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r DebugPubsubMessageStateCacheCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DebugPubsubMessageStateCacheCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DebugPubsubMessageStateCacheCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type DebugPubsubMetricsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -479092,6 +481287,40 @@ func (r DebugPubsubMetricsRetrieveResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r DebugPubsubMetricsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type DebugPubsubMetricsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r DebugPubsubMetricsCountResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r DebugPubsubMetricsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DebugPubsubMetricsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DebugPubsubMetricsCountResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -479180,6 +481409,40 @@ func (r DebugPubsubOverviewRetrieveResponse) ContentType() string {
 	return ""
 }
 
+type DebugPubsubOverviewCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r DebugPubsubOverviewCountResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r DebugPubsubOverviewCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DebugPubsubOverviewCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DebugPubsubOverviewCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type DebugPubsubQueuesRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -479222,6 +481485,40 @@ func (r DebugPubsubQueuesRetrieveResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r DebugPubsubQueuesRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type DebugPubsubQueuesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r DebugPubsubQueuesCountResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r DebugPubsubQueuesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DebugPubsubQueuesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DebugPubsubQueuesCountResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -483942,6 +486239,799 @@ func (r HooksCountResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r HooksCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// HpcWorkspacesListResponse200Headers the declared response headers of an HTTP 200 response for HpcWorkspacesList
+type HpcWorkspacesListResponse200Headers struct {
+	XResultCount *int
+}
+
+type HpcWorkspacesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]HpcWorkspace
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *HpcWorkspacesListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r HpcWorkspacesListResponse) GetJSON200() *[]HpcWorkspace {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r HpcWorkspacesListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r HpcWorkspacesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r HpcWorkspacesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r HpcWorkspacesListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type HpcWorkspacesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r HpcWorkspacesCountResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r HpcWorkspacesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r HpcWorkspacesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r HpcWorkspacesCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type HpcWorkspacesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *HpcWorkspaceOverview
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r HpcWorkspacesRetrieveResponse) GetJSON200() *HpcWorkspaceOverview {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r HpcWorkspacesRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r HpcWorkspacesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r HpcWorkspacesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r HpcWorkspacesRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type HpcWorkspacesClusterLoadRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *HpcClusterLoad
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r HpcWorkspacesClusterLoadRetrieveResponse) GetJSON200() *HpcClusterLoad {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r HpcWorkspacesClusterLoadRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r HpcWorkspacesClusterLoadRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r HpcWorkspacesClusterLoadRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r HpcWorkspacesClusterLoadRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type HpcWorkspacesFileContentRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *HpcFileContent
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r HpcWorkspacesFileContentRetrieveResponse) GetJSON200() *HpcFileContent {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r HpcWorkspacesFileContentRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r HpcWorkspacesFileContentRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r HpcWorkspacesFileContentRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r HpcWorkspacesFileContentRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// HpcWorkspacesFilesListResponse200Headers the declared response headers of an HTTP 200 response for HpcWorkspacesFilesList
+type HpcWorkspacesFilesListResponse200Headers struct {
+	XResultCount *int
+}
+
+type HpcWorkspacesFilesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]HpcFile
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *HpcWorkspacesFilesListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r HpcWorkspacesFilesListResponse) GetJSON200() *[]HpcFile {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r HpcWorkspacesFilesListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r HpcWorkspacesFilesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r HpcWorkspacesFilesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r HpcWorkspacesFilesListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type HpcWorkspacesJobStatsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *HpcJobStats
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r HpcWorkspacesJobStatsRetrieveResponse) GetJSON200() *HpcJobStats {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r HpcWorkspacesJobStatsRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r HpcWorkspacesJobStatsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r HpcWorkspacesJobStatsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r HpcWorkspacesJobStatsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// HpcWorkspacesJobsListResponse200Headers the declared response headers of an HTTP 200 response for HpcWorkspacesJobsList
+type HpcWorkspacesJobsListResponse200Headers struct {
+	XResultCount *int
+}
+
+type HpcWorkspacesJobsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]HpcJob
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *HpcWorkspacesJobsListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r HpcWorkspacesJobsListResponse) GetJSON200() *[]HpcJob {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r HpcWorkspacesJobsListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r HpcWorkspacesJobsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r HpcWorkspacesJobsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r HpcWorkspacesJobsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type HpcWorkspacesJobsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON201 the response for an HTTP 201 `application/json` response
+	JSON201 *HpcJobSubmitResponse
+}
+
+// GetJSON201 returns the response for an HTTP 201 `application/json` response
+func (r HpcWorkspacesJobsResponse) GetJSON201() *HpcJobSubmitResponse {
+	return r.JSON201
+}
+
+// GetBody returns the raw response body bytes
+func (r HpcWorkspacesJobsResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r HpcWorkspacesJobsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r HpcWorkspacesJobsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r HpcWorkspacesJobsResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type HpcWorkspacesJobsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *HpcJob
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r HpcWorkspacesJobsRetrieveResponse) GetJSON200() *HpcJob {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r HpcWorkspacesJobsRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r HpcWorkspacesJobsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r HpcWorkspacesJobsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r HpcWorkspacesJobsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type HpcWorkspacesJobsCancelResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r HpcWorkspacesJobsCancelResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r HpcWorkspacesJobsCancelResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r HpcWorkspacesJobsCancelResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r HpcWorkspacesJobsCancelResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type HpcWorkspacesJobsOutputRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *HpcJobOutput
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r HpcWorkspacesJobsOutputRetrieveResponse) GetJSON200() *HpcJobOutput {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r HpcWorkspacesJobsOutputRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r HpcWorkspacesJobsOutputRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r HpcWorkspacesJobsOutputRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r HpcWorkspacesJobsOutputRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type HpcWorkspacesJobsPerformanceRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *HpcJobPerformance
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r HpcWorkspacesJobsPerformanceRetrieveResponse) GetJSON200() *HpcJobPerformance {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r HpcWorkspacesJobsPerformanceRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r HpcWorkspacesJobsPerformanceRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r HpcWorkspacesJobsPerformanceRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r HpcWorkspacesJobsPerformanceRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type HpcWorkspacesJobsPerformancePdfRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r HpcWorkspacesJobsPerformancePdfRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r HpcWorkspacesJobsPerformancePdfRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r HpcWorkspacesJobsPerformancePdfRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r HpcWorkspacesJobsPerformancePdfRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type HpcWorkspacesOutputSeriesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *HpcOutputSeries
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r HpcWorkspacesOutputSeriesRetrieveResponse) GetJSON200() *HpcOutputSeries {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r HpcWorkspacesOutputSeriesRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r HpcWorkspacesOutputSeriesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r HpcWorkspacesOutputSeriesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r HpcWorkspacesOutputSeriesRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// HpcWorkspacesPartitionsListResponse200Headers the declared response headers of an HTTP 200 response for HpcWorkspacesPartitionsList
+type HpcWorkspacesPartitionsListResponse200Headers struct {
+	XResultCount *int
+}
+
+type HpcWorkspacesPartitionsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]HpcPartition
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *HpcWorkspacesPartitionsListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r HpcWorkspacesPartitionsListResponse) GetJSON200() *[]HpcPartition {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r HpcWorkspacesPartitionsListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r HpcWorkspacesPartitionsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r HpcWorkspacesPartitionsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r HpcWorkspacesPartitionsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type HpcWorkspacesPreviewScriptResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *HpcScriptPreview
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r HpcWorkspacesPreviewScriptResponse) GetJSON200() *HpcScriptPreview {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r HpcWorkspacesPreviewScriptResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r HpcWorkspacesPreviewScriptResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r HpcWorkspacesPreviewScriptResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r HpcWorkspacesPreviewScriptResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// HpcWorkspacesSoftwareListResponse200Headers the declared response headers of an HTTP 200 response for HpcWorkspacesSoftwareList
+type HpcWorkspacesSoftwareListResponse200Headers struct {
+	XResultCount *int
+}
+
+type HpcWorkspacesSoftwareListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]HpcSoftware
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *HpcWorkspacesSoftwareListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r HpcWorkspacesSoftwareListResponse) GetJSON200() *[]HpcSoftware {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r HpcWorkspacesSoftwareListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r HpcWorkspacesSoftwareListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r HpcWorkspacesSoftwareListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r HpcWorkspacesSoftwareListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type HpcWorkspacesUsageRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *HpcAllocationUsage
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r HpcWorkspacesUsageRetrieveResponse) GetJSON200() *HpcAllocationUsage {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r HpcWorkspacesUsageRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r HpcWorkspacesUsageRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r HpcWorkspacesUsageRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r HpcWorkspacesUsageRetrieveResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -504628,6 +507718,47 @@ func (r MarketplaceProviderOfferingsHistoryAtRetrieveResponse) ContentType() str
 	return ""
 }
 
+type MarketplaceProviderOfferingsImportMaintenanceReservationsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *MaintenanceReservationImportResult
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceProviderOfferingsImportMaintenanceReservationsResponse) GetJSON200() *MaintenanceReservationImportResult {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceProviderOfferingsImportMaintenanceReservationsResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsImportMaintenanceReservationsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsImportMaintenanceReservationsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderOfferingsImportMaintenanceReservationsResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type MarketplaceProviderOfferingsImportResourceResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -505033,6 +508164,47 @@ func (r MarketplaceProviderOfferingsListUsersCountResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceProviderOfferingsListUsersCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProviderOfferingsMaintenanceReservationsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *MaintenanceReservationList
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceProviderOfferingsMaintenanceReservationsRetrieveResponse) GetJSON200() *MaintenanceReservationList {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceProviderOfferingsMaintenanceReservationsRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsMaintenanceReservationsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsMaintenanceReservationsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderOfferingsMaintenanceReservationsRetrieveResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -567909,450 +571081,6 @@ func (r ServiceSettingsRetrieveResponse) ContentType() string {
 	return ""
 }
 
-// SlurmJobsListResponse200Headers the declared response headers of an HTTP 200 response for SlurmJobsList
-type SlurmJobsListResponse200Headers struct {
-	XResultCount *int
-}
-
-type SlurmJobsListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *[]FirecrestJob
-	// Headers200 the parsed response headers for an HTTP 200 response
-	Headers200 *SlurmJobsListResponse200Headers
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r SlurmJobsListResponse) GetJSON200() *[]FirecrestJob {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r SlurmJobsListResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r SlurmJobsListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r SlurmJobsListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r SlurmJobsListResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type SlurmJobsCountResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r SlurmJobsCountResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r SlurmJobsCountResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r SlurmJobsCountResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r SlurmJobsCountResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type SlurmJobsCreateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON201 the response for an HTTP 201 `application/json` response
-	JSON201 *FirecrestJob
-}
-
-// GetJSON201 returns the response for an HTTP 201 `application/json` response
-func (r SlurmJobsCreateResponse) GetJSON201() *FirecrestJob {
-	return r.JSON201
-}
-
-// GetBody returns the raw response body bytes
-func (r SlurmJobsCreateResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r SlurmJobsCreateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r SlurmJobsCreateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r SlurmJobsCreateResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type SlurmJobsDestroyResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r SlurmJobsDestroyResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r SlurmJobsDestroyResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r SlurmJobsDestroyResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r SlurmJobsDestroyResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type SlurmJobsRetrieveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *FirecrestJob
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r SlurmJobsRetrieveResponse) GetJSON200() *FirecrestJob {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r SlurmJobsRetrieveResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r SlurmJobsRetrieveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r SlurmJobsRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r SlurmJobsRetrieveResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type SlurmJobsPartialUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *FirecrestJob
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r SlurmJobsPartialUpdateResponse) GetJSON200() *FirecrestJob {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r SlurmJobsPartialUpdateResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r SlurmJobsPartialUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r SlurmJobsPartialUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r SlurmJobsPartialUpdateResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type SlurmJobsUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *FirecrestJob
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r SlurmJobsUpdateResponse) GetJSON200() *FirecrestJob {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r SlurmJobsUpdateResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r SlurmJobsUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r SlurmJobsUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r SlurmJobsUpdateResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type SlurmJobsPullResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON202 the response for an HTTP 202 `application/json` response
-	JSON202 *Detail
-	// JSON409 the response for an HTTP 409 `application/json` response
-	JSON409 *Detail
-}
-
-// GetJSON202 returns the response for an HTTP 202 `application/json` response
-func (r SlurmJobsPullResponse) GetJSON202() *Detail {
-	return r.JSON202
-}
-
-// GetJSON409 returns the response for an HTTP 409 `application/json` response
-func (r SlurmJobsPullResponse) GetJSON409() *Detail {
-	return r.JSON409
-}
-
-// GetBody returns the raw response body bytes
-func (r SlurmJobsPullResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r SlurmJobsPullResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r SlurmJobsPullResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r SlurmJobsPullResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type SlurmJobsSetErredResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *Detail
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r SlurmJobsSetErredResponse) GetJSON200() *Detail {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r SlurmJobsSetErredResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r SlurmJobsSetErredResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r SlurmJobsSetErredResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r SlurmJobsSetErredResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type SlurmJobsSetOkResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *Detail
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r SlurmJobsSetOkResponse) GetJSON200() *Detail {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r SlurmJobsSetOkResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r SlurmJobsSetOkResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r SlurmJobsSetOkResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r SlurmJobsSetOkResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type SlurmJobsUnlinkResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r SlurmJobsUnlinkResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r SlurmJobsUnlinkResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r SlurmJobsUnlinkResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r SlurmJobsUnlinkResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
 // SramGroupsListResponse200Headers the declared response headers of an HTTP 200 response for SramGroupsList
 type SramGroupsListResponse200Headers struct {
 	XResultCount *int
@@ -587779,6 +590507,21 @@ func (c *ClientWithResponses) DebugEmailConfigRetrieveWithResponse(ctx context.C
 	return ParseDebugEmailConfigRetrieveResponse(rsp)
 }
 
+// DebugEmailConfigCountWithResponse Audit the outgoing email configuration
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with HEAD /api/debug/email/config/ (the `DebugEmailConfigCount` operationId).
+func (c *ClientWithResponses) DebugEmailConfigCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugEmailConfigCountResponse, error) {
+	rsp, err := c.DebugEmailConfigCount(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDebugEmailConfigCountResponse(rsp)
+}
+
 // DebugEmailProbeWithResponse Test the SMTP connection
 //
 // Opens and closes a connection to the configured relay without sending a message.
@@ -587858,6 +590601,21 @@ func (c *ClientWithResponses) DebugPubsubCircuitBreakerRetrieveWithResponse(ctx 
 	return ParseDebugPubsubCircuitBreakerRetrieveResponse(rsp)
 }
 
+// DebugPubsubCircuitBreakerCountWithResponse Get circuit breaker state
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with HEAD /api/debug/pubsub/circuit_breaker/ (the `DebugPubsubCircuitBreakerCount` operationId).
+func (c *ClientWithResponses) DebugPubsubCircuitBreakerCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubCircuitBreakerCountResponse, error) {
+	rsp, err := c.DebugPubsubCircuitBreakerCount(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDebugPubsubCircuitBreakerCountResponse(rsp)
+}
+
 // DebugPubsubCircuitBreakerResetWithResponse Reset circuit breaker
 //
 // Manually reset the STOMP circuit breaker to CLOSED state.
@@ -587900,6 +590658,21 @@ func (c *ClientWithResponses) DebugPubsubDeadLetterQueueRetrieveWithResponse(ctx
 	return ParseDebugPubsubDeadLetterQueueRetrieveResponse(rsp)
 }
 
+// DebugPubsubDeadLetterQueueCountWithResponse Get dead letter queue status
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with HEAD /api/debug/pubsub/dead_letter_queue/ (the `DebugPubsubDeadLetterQueueCount` operationId).
+func (c *ClientWithResponses) DebugPubsubDeadLetterQueueCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubDeadLetterQueueCountResponse, error) {
+	rsp, err := c.DebugPubsubDeadLetterQueueCount(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDebugPubsubDeadLetterQueueCountResponse(rsp)
+}
+
 // DebugPubsubMessageStateCacheRetrieveWithResponse Get message state cache statistics
 //
 // Get message state tracker cache statistics for idempotency.
@@ -587922,6 +590695,21 @@ func (c *ClientWithResponses) DebugPubsubMessageStateCacheRetrieveWithResponse(c
 		return nil, err
 	}
 	return ParseDebugPubsubMessageStateCacheRetrieveResponse(rsp)
+}
+
+// DebugPubsubMessageStateCacheCountWithResponse Get message state cache statistics
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with HEAD /api/debug/pubsub/message_state_cache/ (the `DebugPubsubMessageStateCacheCount` operationId).
+func (c *ClientWithResponses) DebugPubsubMessageStateCacheCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubMessageStateCacheCountResponse, error) {
+	rsp, err := c.DebugPubsubMessageStateCacheCount(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDebugPubsubMessageStateCacheCountResponse(rsp)
 }
 
 // DebugPubsubMetricsRetrieveWithResponse Get publishing metrics
@@ -587949,6 +590737,21 @@ func (c *ClientWithResponses) DebugPubsubMetricsRetrieveWithResponse(ctx context
 		return nil, err
 	}
 	return ParseDebugPubsubMetricsRetrieveResponse(rsp)
+}
+
+// DebugPubsubMetricsCountWithResponse Get publishing metrics
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with HEAD /api/debug/pubsub/metrics/ (the `DebugPubsubMetricsCount` operationId).
+func (c *ClientWithResponses) DebugPubsubMetricsCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubMetricsCountResponse, error) {
+	rsp, err := c.DebugPubsubMetricsCount(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDebugPubsubMetricsCountResponse(rsp)
 }
 
 // DebugPubsubMetricsResetWithResponse Reset publishing metrics
@@ -587988,6 +590791,21 @@ func (c *ClientWithResponses) DebugPubsubOverviewRetrieveWithResponse(ctx contex
 	return ParseDebugPubsubOverviewRetrieveResponse(rsp)
 }
 
+// DebugPubsubOverviewCountWithResponse Get pubsub system health overview
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with HEAD /api/debug/pubsub/overview/ (the `DebugPubsubOverviewCount` operationId).
+func (c *ClientWithResponses) DebugPubsubOverviewCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubOverviewCountResponse, error) {
+	rsp, err := c.DebugPubsubOverviewCount(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDebugPubsubOverviewCountResponse(rsp)
+}
+
 // DebugPubsubQueuesRetrieveWithResponse Get subscription queues overview
 //
 // Get overview of subscription queues from RabbitMQ.
@@ -588008,6 +590826,21 @@ func (c *ClientWithResponses) DebugPubsubQueuesRetrieveWithResponse(ctx context.
 		return nil, err
 	}
 	return ParseDebugPubsubQueuesRetrieveResponse(rsp)
+}
+
+// DebugPubsubQueuesCountWithResponse Get subscription queues overview
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with HEAD /api/debug/pubsub/queues/ (the `DebugPubsubQueuesCount` operationId).
+func (c *ClientWithResponses) DebugPubsubQueuesCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubQueuesCountResponse, error) {
+	rsp, err := c.DebugPubsubQueuesCount(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDebugPubsubQueuesCountResponse(rsp)
 }
 
 // DigitaloceanDropletsListWithResponse performs a GET /api/digitalocean-droplets/ (the `DigitaloceanDropletsList` operationId) request.
@@ -589927,6 +592760,313 @@ func (c *ClientWithResponses) HooksCountWithResponse(ctx context.Context, params
 		return nil, err
 	}
 	return ParseHooksCountResponse(rsp)
+}
+
+// HpcWorkspacesListWithResponse List HPC workspaces
+//
+// SLURM allocations visible to the user whose offering is connected to FirecREST.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/hpc-workspaces/ (the `HpcWorkspacesList` operationId).
+func (c *ClientWithResponses) HpcWorkspacesListWithResponse(ctx context.Context, params *HpcWorkspacesListParams, reqEditors ...RequestEditorFn) (*HpcWorkspacesListResponse, error) {
+	rsp, err := c.HpcWorkspacesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseHpcWorkspacesListResponse(rsp)
+}
+
+// HpcWorkspacesCountWithResponse List HPC workspaces
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with HEAD /api/hpc-workspaces/ (the `HpcWorkspacesCount` operationId).
+func (c *ClientWithResponses) HpcWorkspacesCountWithResponse(ctx context.Context, params *HpcWorkspacesCountParams, reqEditors ...RequestEditorFn) (*HpcWorkspacesCountResponse, error) {
+	rsp, err := c.HpcWorkspacesCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseHpcWorkspacesCountResponse(rsp)
+}
+
+// HpcWorkspacesRetrieveWithResponse HPC workspace overview
+//
+// Allocation, the user's cluster identity and FirecREST system health. Problems reaching FirecREST are reported in 'error' rather than failing the request; 'sign_in_provider' names the identity provider to sign in through again when that is the remedy.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/ (the `HpcWorkspacesRetrieve` operationId).
+func (c *ClientWithResponses) HpcWorkspacesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*HpcWorkspacesRetrieveResponse, error) {
+	rsp, err := c.HpcWorkspacesRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseHpcWorkspacesRetrieveResponse(rsp)
+}
+
+// HpcWorkspacesClusterLoadRetrieveWithResponse Node load and reservations of the cluster
+//
+// Every node with its state, CPU load and partitions, a summary per partition and the upcoming reservations and maintenance windows.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/cluster_load/ (the `HpcWorkspacesClusterLoadRetrieve` operationId).
+func (c *ClientWithResponses) HpcWorkspacesClusterLoadRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*HpcWorkspacesClusterLoadRetrieveResponse, error) {
+	rsp, err := c.HpcWorkspacesClusterLoadRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseHpcWorkspacesClusterLoadRetrieveResponse(rsp)
+}
+
+// HpcWorkspacesFileContentRetrieveWithResponse View a file on the cluster
+//
+// Content of a small text file (bounded by FirecREST's operation size limit).
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/file_content/ (the `HpcWorkspacesFileContentRetrieve` operationId).
+func (c *ClientWithResponses) HpcWorkspacesFileContentRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *HpcWorkspacesFileContentRetrieveParams, reqEditors ...RequestEditorFn) (*HpcWorkspacesFileContentRetrieveResponse, error) {
+	rsp, err := c.HpcWorkspacesFileContentRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseHpcWorkspacesFileContentRetrieveResponse(rsp)
+}
+
+// HpcWorkspacesFilesListWithResponse List a directory on the cluster
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/files/ (the `HpcWorkspacesFilesList` operationId).
+func (c *ClientWithResponses) HpcWorkspacesFilesListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *HpcWorkspacesFilesListParams, reqEditors ...RequestEditorFn) (*HpcWorkspacesFilesListResponse, error) {
+	rsp, err := c.HpcWorkspacesFilesList(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseHpcWorkspacesFilesListResponse(rsp)
+}
+
+// HpcWorkspacesJobStatsRetrieveWithResponse Job statistics of the allocation
+//
+// Outcomes per day, failures by exit code, time limit fit, CPU and memory efficiency, queue waits by partition and right-sizing suggestions over the last days, with chart specs for each figure.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/job_stats/ (the `HpcWorkspacesJobStatsRetrieve` operationId).
+func (c *ClientWithResponses) HpcWorkspacesJobStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *HpcWorkspacesJobStatsRetrieveParams, reqEditors ...RequestEditorFn) (*HpcWorkspacesJobStatsRetrieveResponse, error) {
+	rsp, err := c.HpcWorkspacesJobStatsRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseHpcWorkspacesJobStatsRetrieveResponse(rsp)
+}
+
+// HpcWorkspacesJobsListWithResponse List jobs of the allocation
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/jobs/ (the `HpcWorkspacesJobsList` operationId).
+func (c *ClientWithResponses) HpcWorkspacesJobsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *HpcWorkspacesJobsListParams, reqEditors ...RequestEditorFn) (*HpcWorkspacesJobsListResponse, error) {
+	rsp, err := c.HpcWorkspacesJobsList(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseHpcWorkspacesJobsListResponse(rsp)
+}
+
+// HpcWorkspacesJobsWithBodyWithResponse Submit a job to the allocation
+//
+// Renders the batch script from the parameters, checks them against the published partition and QoS limits and submits it under the allocation's account.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/hpc-workspaces/{uuid}/jobs/ (the `HpcWorkspacesJobs` operationId).
+func (c *ClientWithResponses) HpcWorkspacesJobsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*HpcWorkspacesJobsResponse, error) {
+	rsp, err := c.HpcWorkspacesJobsWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseHpcWorkspacesJobsResponse(rsp)
+}
+
+// HpcWorkspacesJobsWithResponse Submit a job to the allocation
+//
+// Renders the batch script from the parameters, checks them against the published partition and QoS limits and submits it under the allocation's account.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/hpc-workspaces/{uuid}/jobs/ (the `HpcWorkspacesJobs` operationId).
+func (c *ClientWithResponses) HpcWorkspacesJobsWithResponse(ctx context.Context, uuid openapi_types.UUID, body HpcWorkspacesJobsJSONRequestBody, reqEditors ...RequestEditorFn) (*HpcWorkspacesJobsResponse, error) {
+	rsp, err := c.HpcWorkspacesJobs(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseHpcWorkspacesJobsResponse(rsp)
+}
+
+// HpcWorkspacesJobsRetrieveWithResponse Get a job of the allocation
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/jobs/{job_id}/ (the `HpcWorkspacesJobsRetrieve` operationId).
+func (c *ClientWithResponses) HpcWorkspacesJobsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, jobId string, reqEditors ...RequestEditorFn) (*HpcWorkspacesJobsRetrieveResponse, error) {
+	rsp, err := c.HpcWorkspacesJobsRetrieve(ctx, uuid, jobId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseHpcWorkspacesJobsRetrieveResponse(rsp)
+}
+
+// HpcWorkspacesJobsCancelWithResponse Cancel a job of the allocation
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/hpc-workspaces/{uuid}/jobs/{job_id}/cancel/ (the `HpcWorkspacesJobsCancel` operationId).
+func (c *ClientWithResponses) HpcWorkspacesJobsCancelWithResponse(ctx context.Context, uuid openapi_types.UUID, jobId string, reqEditors ...RequestEditorFn) (*HpcWorkspacesJobsCancelResponse, error) {
+	rsp, err := c.HpcWorkspacesJobsCancel(ctx, uuid, jobId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseHpcWorkspacesJobsCancelResponse(rsp)
+}
+
+// HpcWorkspacesJobsOutputRetrieveWithResponse Get the script and output of a job
+//
+// The batch script and the last lines of standard output and error.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/jobs/{job_id}/output/ (the `HpcWorkspacesJobsOutputRetrieve` operationId).
+func (c *ClientWithResponses) HpcWorkspacesJobsOutputRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, jobId string, params *HpcWorkspacesJobsOutputRetrieveParams, reqEditors ...RequestEditorFn) (*HpcWorkspacesJobsOutputRetrieveResponse, error) {
+	rsp, err := c.HpcWorkspacesJobsOutputRetrieve(ctx, uuid, jobId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseHpcWorkspacesJobsOutputRetrieveResponse(rsp)
+}
+
+// HpcWorkspacesJobsPerformanceRetrieveWithResponse Get the performance of a job over its run
+//
+// Per-GPU use, GPU memory and power, CPU cores and host memory over the job's run, and its busiest processes, from the cluster monitor (slurm-monitor with Sonar probes) as the signed-in user.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/jobs/{job_id}/performance/ (the `HpcWorkspacesJobsPerformanceRetrieve` operationId).
+func (c *ClientWithResponses) HpcWorkspacesJobsPerformanceRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, jobId string, reqEditors ...RequestEditorFn) (*HpcWorkspacesJobsPerformanceRetrieveResponse, error) {
+	rsp, err := c.HpcWorkspacesJobsPerformanceRetrieve(ctx, uuid, jobId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseHpcWorkspacesJobsPerformanceRetrieveResponse(rsp)
+}
+
+// HpcWorkspacesJobsPerformancePdfRetrieveWithResponse Download the performance report of a job as PDF
+//
+// The job's accounting, summary figures, charts and processes from the cluster monitor, as one PDF. Without monitor samples the report keeps the accounting and says why.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/jobs/{job_id}/performance_pdf/ (the `HpcWorkspacesJobsPerformancePdfRetrieve` operationId).
+func (c *ClientWithResponses) HpcWorkspacesJobsPerformancePdfRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, jobId string, reqEditors ...RequestEditorFn) (*HpcWorkspacesJobsPerformancePdfRetrieveResponse, error) {
+	rsp, err := c.HpcWorkspacesJobsPerformancePdfRetrieve(ctx, uuid, jobId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseHpcWorkspacesJobsPerformancePdfRetrieveResponse(rsp)
+}
+
+// HpcWorkspacesOutputSeriesRetrieveWithResponse Plot a job output file
+//
+// Reads a GROMACS .xvg, a CSV/TSV table or a WRF rsl log from the cluster and returns its series as a chart spec, with a short summary.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/output_series/ (the `HpcWorkspacesOutputSeriesRetrieve` operationId).
+func (c *ClientWithResponses) HpcWorkspacesOutputSeriesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *HpcWorkspacesOutputSeriesRetrieveParams, reqEditors ...RequestEditorFn) (*HpcWorkspacesOutputSeriesRetrieveResponse, error) {
+	rsp, err := c.HpcWorkspacesOutputSeriesRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseHpcWorkspacesOutputSeriesRetrieveResponse(rsp)
+}
+
+// HpcWorkspacesPartitionsListWithResponse Partitions of the cluster
+//
+// Partitions the provider publishes in Waldur (limits, QoS, architecture) merged with what the cluster reports live through FirecREST (node counts).
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/partitions/ (the `HpcWorkspacesPartitionsList` operationId).
+func (c *ClientWithResponses) HpcWorkspacesPartitionsListWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*HpcWorkspacesPartitionsListResponse, error) {
+	rsp, err := c.HpcWorkspacesPartitionsList(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseHpcWorkspacesPartitionsListResponse(rsp)
+}
+
+// HpcWorkspacesPreviewScriptWithBodyWithResponse Preview a batch script
+//
+// Renders the batch script for the parameters and validates them, without submitting.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/hpc-workspaces/{uuid}/preview_script/ (the `HpcWorkspacesPreviewScript` operationId).
+func (c *ClientWithResponses) HpcWorkspacesPreviewScriptWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*HpcWorkspacesPreviewScriptResponse, error) {
+	rsp, err := c.HpcWorkspacesPreviewScriptWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseHpcWorkspacesPreviewScriptResponse(rsp)
+}
+
+// HpcWorkspacesPreviewScriptWithResponse Preview a batch script
+//
+// Renders the batch script for the parameters and validates them, without submitting.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/hpc-workspaces/{uuid}/preview_script/ (the `HpcWorkspacesPreviewScript` operationId).
+func (c *ClientWithResponses) HpcWorkspacesPreviewScriptWithResponse(ctx context.Context, uuid openapi_types.UUID, body HpcWorkspacesPreviewScriptJSONRequestBody, reqEditors ...RequestEditorFn) (*HpcWorkspacesPreviewScriptResponse, error) {
+	rsp, err := c.HpcWorkspacesPreviewScript(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseHpcWorkspacesPreviewScriptResponse(rsp)
+}
+
+// HpcWorkspacesSoftwareListWithResponse Find software available on the cluster
+//
+// Searches the offering's software catalogs (EESSI, Spack, ...); with a partition, only builds for its CPU architecture. Returns the lines a batch script needs.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/software/ (the `HpcWorkspacesSoftwareList` operationId).
+func (c *ClientWithResponses) HpcWorkspacesSoftwareListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *HpcWorkspacesSoftwareListParams, reqEditors ...RequestEditorFn) (*HpcWorkspacesSoftwareListResponse, error) {
+	rsp, err := c.HpcWorkspacesSoftwareList(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseHpcWorkspacesSoftwareListResponse(rsp)
+}
+
+// HpcWorkspacesUsageRetrieveWithResponse Usage of the allocation against its limits
+//
+// Consumption of each limited component in the current limit period from Waldur's usage records, per user, with a run-out forecast at the recent pace.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/hpc-workspaces/{uuid}/usage/ (the `HpcWorkspacesUsageRetrieve` operationId).
+func (c *ClientWithResponses) HpcWorkspacesUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*HpcWorkspacesUsageRetrieveResponse, error) {
+	rsp, err := c.HpcWorkspacesUsageRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseHpcWorkspacesUsageRetrieveResponse(rsp)
 }
 
 // IdentityBridgeWithBodyWithResponse Push user attributes from an ISD
@@ -599435,6 +602575,36 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsHistoryAtRetrieveWithR
 	return ParseMarketplaceProviderOfferingsHistoryAtRetrieveResponse(rsp)
 }
 
+// MarketplaceProviderOfferingsImportMaintenanceReservationsWithBodyWithResponse Import the cluster's maintenance reservations as drafts
+//
+// Site agents report the MAINT reservations made on the cluster; each becomes a draft maintenance announcement for the provider to review and publish. Reservations named with the Waldur prefix are ignored. Only when maintenance sync is enabled on the offering.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/import_maintenance_reservations/ (the `MarketplaceProviderOfferingsImportMaintenanceReservations` operationId).
+func (c *ClientWithResponses) MarketplaceProviderOfferingsImportMaintenanceReservationsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsImportMaintenanceReservationsResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsImportMaintenanceReservationsWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsImportMaintenanceReservationsResponse(rsp)
+}
+
+// MarketplaceProviderOfferingsImportMaintenanceReservationsWithResponse Import the cluster's maintenance reservations as drafts
+//
+// Site agents report the MAINT reservations made on the cluster; each becomes a draft maintenance announcement for the provider to review and publish. Reservations named with the Waldur prefix are ignored. Only when maintenance sync is enabled on the offering.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/import_maintenance_reservations/ (the `MarketplaceProviderOfferingsImportMaintenanceReservations` operationId).
+func (c *ClientWithResponses) MarketplaceProviderOfferingsImportMaintenanceReservationsWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsImportMaintenanceReservationsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsImportMaintenanceReservationsResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsImportMaintenanceReservations(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsImportMaintenanceReservationsResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsImportResourceWithBodyWithResponse Import a resource
 //
 // Imports a backend resource into the marketplace.
@@ -599583,6 +602753,21 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsListUsersCountWithResp
 		return nil, err
 	}
 	return ParseMarketplaceProviderOfferingsListUsersCountResponse(rsp)
+}
+
+// MarketplaceProviderOfferingsMaintenanceReservationsRetrieveWithResponse Maintenance reservations the cluster should hold
+//
+// For site agents with maintenance sync enabled on the offering (plugin option slurm_maintenance_sync_enabled): the Slurm MAINT reservations that published maintenance announcements call for. The agent creates, updates and removes reservations named with `prefix` to match this list and leaves every other reservation alone.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-provider-offerings/{uuid}/maintenance_reservations/ (the `MarketplaceProviderOfferingsMaintenanceReservationsRetrieve` operationId).
+func (c *ClientWithResponses) MarketplaceProviderOfferingsMaintenanceReservationsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsMaintenanceReservationsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsMaintenanceReservationsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsMaintenanceReservationsRetrieveResponse(rsp)
 }
 
 // MarketplaceProviderOfferingsMakeAvailableWithResponse Mark an offering as available
@@ -628124,216 +631309,6 @@ func (c *ClientWithResponses) ServiceSettingsRetrieveWithResponse(ctx context.Co
 	return ParseServiceSettingsRetrieveResponse(rsp)
 }
 
-// SlurmJobsListWithResponse performs a GET /api/slurm-jobs/ (the `SlurmJobsList` operationId) request.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) SlurmJobsListWithResponse(ctx context.Context, params *SlurmJobsListParams, reqEditors ...RequestEditorFn) (*SlurmJobsListResponse, error) {
-	rsp, err := c.SlurmJobsList(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseSlurmJobsListResponse(rsp)
-}
-
-// SlurmJobsCountWithResponse performs a HEAD /api/slurm-jobs/ (the `SlurmJobsCount` operationId) request.
-//
-// Get number of items in the collection matching the request parameters.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) SlurmJobsCountWithResponse(ctx context.Context, params *SlurmJobsCountParams, reqEditors ...RequestEditorFn) (*SlurmJobsCountResponse, error) {
-	rsp, err := c.SlurmJobsCount(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseSlurmJobsCountResponse(rsp)
-}
-
-// SlurmJobsCreateWithBodyWithResponse performs a POST /api/slurm-jobs/ (the `SlurmJobsCreate` operationId) request,
-// with any type of body and a specified content type.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) SlurmJobsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SlurmJobsCreateResponse, error) {
-	rsp, err := c.SlurmJobsCreateWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseSlurmJobsCreateResponse(rsp)
-}
-
-// SlurmJobsCreateWithResponse performs a POST /api/slurm-jobs/ (the `SlurmJobsCreate` operationId) request.
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) SlurmJobsCreateWithResponse(ctx context.Context, body SlurmJobsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*SlurmJobsCreateResponse, error) {
-	rsp, err := c.SlurmJobsCreate(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseSlurmJobsCreateResponse(rsp)
-}
-
-// SlurmJobsCreateWithFormdataBodyWithResponse performs a POST /api/slurm-jobs/ (the `SlurmJobsCreate` operationId) request.
-// Takes a body of the `application/x-www-form-urlencoded` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) SlurmJobsCreateWithFormdataBodyWithResponse(ctx context.Context, body SlurmJobsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*SlurmJobsCreateResponse, error) {
-	rsp, err := c.SlurmJobsCreateWithFormdataBody(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseSlurmJobsCreateResponse(rsp)
-}
-
-// SlurmJobsDestroyWithResponse performs a DELETE /api/slurm-jobs/{uuid}/ (the `SlurmJobsDestroy` operationId) request.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) SlurmJobsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SlurmJobsDestroyResponse, error) {
-	rsp, err := c.SlurmJobsDestroy(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseSlurmJobsDestroyResponse(rsp)
-}
-
-// SlurmJobsRetrieveWithResponse performs a GET /api/slurm-jobs/{uuid}/ (the `SlurmJobsRetrieve` operationId) request.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) SlurmJobsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *SlurmJobsRetrieveParams, reqEditors ...RequestEditorFn) (*SlurmJobsRetrieveResponse, error) {
-	rsp, err := c.SlurmJobsRetrieve(ctx, uuid, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseSlurmJobsRetrieveResponse(rsp)
-}
-
-// SlurmJobsPartialUpdateWithBodyWithResponse performs a PATCH /api/slurm-jobs/{uuid}/ (the `SlurmJobsPartialUpdate` operationId) request,
-// with any type of body and a specified content type.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) SlurmJobsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SlurmJobsPartialUpdateResponse, error) {
-	rsp, err := c.SlurmJobsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseSlurmJobsPartialUpdateResponse(rsp)
-}
-
-// SlurmJobsPartialUpdateWithResponse performs a PATCH /api/slurm-jobs/{uuid}/ (the `SlurmJobsPartialUpdate` operationId) request.
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) SlurmJobsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*SlurmJobsPartialUpdateResponse, error) {
-	rsp, err := c.SlurmJobsPartialUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseSlurmJobsPartialUpdateResponse(rsp)
-}
-
-// SlurmJobsUpdateWithBodyWithResponse performs a PUT /api/slurm-jobs/{uuid}/ (the `SlurmJobsUpdate` operationId) request,
-// with any type of body and a specified content type.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) SlurmJobsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SlurmJobsUpdateResponse, error) {
-	rsp, err := c.SlurmJobsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseSlurmJobsUpdateResponse(rsp)
-}
-
-// SlurmJobsUpdateWithResponse performs a PUT /api/slurm-jobs/{uuid}/ (the `SlurmJobsUpdate` operationId) request.
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) SlurmJobsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*SlurmJobsUpdateResponse, error) {
-	rsp, err := c.SlurmJobsUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseSlurmJobsUpdateResponse(rsp)
-}
-
-// SlurmJobsUpdateWithFormdataBodyWithResponse performs a PUT /api/slurm-jobs/{uuid}/ (the `SlurmJobsUpdate` operationId) request.
-// Takes a body of the `application/x-www-form-urlencoded` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) SlurmJobsUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*SlurmJobsUpdateResponse, error) {
-	rsp, err := c.SlurmJobsUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseSlurmJobsUpdateResponse(rsp)
-}
-
-// SlurmJobsPullWithResponse Synchronize resource state
-//
-// Schedule an asynchronous pull operation to synchronize resource state from the backend. Returns 202 if the pull was scheduled successfully, or 409 if the pull operation is not implemented for this resource type.
-//
-// Returns a wrapper object for the known response body format(s).
-//
-// Corresponds with POST /api/slurm-jobs/{uuid}/pull/ (the `SlurmJobsPull` operationId).
-func (c *ClientWithResponses) SlurmJobsPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SlurmJobsPullResponse, error) {
-	rsp, err := c.SlurmJobsPull(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseSlurmJobsPullResponse(rsp)
-}
-
-// SlurmJobsSetErredWithBodyWithResponse Mark resource as ERRED
-//
-// Manually transition the resource to ERRED state. This is useful for resources stuck in transitional states (CREATING, UPDATING, DELETING) that cannot be synced via pull. Staff-only operation.
-//
-// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
-//
-// Corresponds with POST /api/slurm-jobs/{uuid}/set_erred/ (the `SlurmJobsSetErred` operationId).
-func (c *ClientWithResponses) SlurmJobsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SlurmJobsSetErredResponse, error) {
-	rsp, err := c.SlurmJobsSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseSlurmJobsSetErredResponse(rsp)
-}
-
-// SlurmJobsSetErredWithResponse Mark resource as ERRED
-//
-// Manually transition the resource to ERRED state. This is useful for resources stuck in transitional states (CREATING, UPDATING, DELETING) that cannot be synced via pull. Staff-only operation.
-//
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-//
-// Corresponds with POST /api/slurm-jobs/{uuid}/set_erred/ (the `SlurmJobsSetErred` operationId).
-func (c *ClientWithResponses) SlurmJobsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*SlurmJobsSetErredResponse, error) {
-	rsp, err := c.SlurmJobsSetErred(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseSlurmJobsSetErredResponse(rsp)
-}
-
-// SlurmJobsSetOkWithResponse Mark resource as OK
-//
-// Manually transition the resource to OK state and clear error fields. Staff-only operation.
-//
-// Returns a wrapper object for the known response body format(s).
-//
-// Corresponds with POST /api/slurm-jobs/{uuid}/set_ok/ (the `SlurmJobsSetOk` operationId).
-func (c *ClientWithResponses) SlurmJobsSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SlurmJobsSetOkResponse, error) {
-	rsp, err := c.SlurmJobsSetOk(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseSlurmJobsSetOkResponse(rsp)
-}
-
-// SlurmJobsUnlinkWithResponse Unlink resource
-//
-// Delete resource from the database without scheduling operations on backend
-//
-//	and without checking current state of the resource. It is intended to be used
-//	for removing resource stuck in transitioning state.
-//
-// Returns a wrapper object for the known response body format(s).
-//
-// Corresponds with POST /api/slurm-jobs/{uuid}/unlink/ (the `SlurmJobsUnlink` operationId).
-func (c *ClientWithResponses) SlurmJobsUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SlurmJobsUnlinkResponse, error) {
-	rsp, err := c.SlurmJobsUnlink(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseSlurmJobsUnlinkResponse(rsp)
-}
-
 // SramGroupsListWithResponse performs a GET /api/sram-groups/ (the `SramGroupsList` operationId) request.
 //
 // SRAM collaborations and groups provisioned into Waldur.
@@ -644806,6 +647781,22 @@ func ParseDebugEmailConfigRetrieveResponse(rsp *http.Response) (*DebugEmailConfi
 	return response, nil
 }
 
+// ParseDebugEmailConfigCountResponse parses an HTTP response from a DebugEmailConfigCountWithResponse call
+func ParseDebugEmailConfigCountResponse(rsp *http.Response) (*DebugEmailConfigCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DebugEmailConfigCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseDebugEmailProbeResponse parses an HTTP response from a DebugEmailProbeWithResponse call
 func ParseDebugEmailProbeResponse(rsp *http.Response) (*DebugEmailProbeResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -644887,6 +647878,22 @@ func ParseDebugPubsubCircuitBreakerRetrieveResponse(rsp *http.Response) (*DebugP
 	return response, nil
 }
 
+// ParseDebugPubsubCircuitBreakerCountResponse parses an HTTP response from a DebugPubsubCircuitBreakerCountWithResponse call
+func ParseDebugPubsubCircuitBreakerCountResponse(rsp *http.Response) (*DebugPubsubCircuitBreakerCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DebugPubsubCircuitBreakerCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseDebugPubsubCircuitBreakerResetResponse parses an HTTP response from a DebugPubsubCircuitBreakerResetWithResponse call
 func ParseDebugPubsubCircuitBreakerResetResponse(rsp *http.Response) (*DebugPubsubCircuitBreakerResetResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -644946,6 +647953,22 @@ func ParseDebugPubsubDeadLetterQueueRetrieveResponse(rsp *http.Response) (*Debug
 	return response, nil
 }
 
+// ParseDebugPubsubDeadLetterQueueCountResponse parses an HTTP response from a DebugPubsubDeadLetterQueueCountWithResponse call
+func ParseDebugPubsubDeadLetterQueueCountResponse(rsp *http.Response) (*DebugPubsubDeadLetterQueueCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DebugPubsubDeadLetterQueueCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseDebugPubsubMessageStateCacheRetrieveResponse parses an HTTP response from a DebugPubsubMessageStateCacheRetrieveWithResponse call
 func ParseDebugPubsubMessageStateCacheRetrieveResponse(rsp *http.Response) (*DebugPubsubMessageStateCacheRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -644972,6 +647995,22 @@ func ParseDebugPubsubMessageStateCacheRetrieveResponse(rsp *http.Response) (*Deb
 	return response, nil
 }
 
+// ParseDebugPubsubMessageStateCacheCountResponse parses an HTTP response from a DebugPubsubMessageStateCacheCountWithResponse call
+func ParseDebugPubsubMessageStateCacheCountResponse(rsp *http.Response) (*DebugPubsubMessageStateCacheCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DebugPubsubMessageStateCacheCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseDebugPubsubMetricsRetrieveResponse parses an HTTP response from a DebugPubsubMetricsRetrieveWithResponse call
 func ParseDebugPubsubMetricsRetrieveResponse(rsp *http.Response) (*DebugPubsubMetricsRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -644993,6 +648032,22 @@ func ParseDebugPubsubMetricsRetrieveResponse(rsp *http.Response) (*DebugPubsubMe
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseDebugPubsubMetricsCountResponse parses an HTTP response from a DebugPubsubMetricsCountWithResponse call
+func ParseDebugPubsubMetricsCountResponse(rsp *http.Response) (*DebugPubsubMetricsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DebugPubsubMetricsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
@@ -645050,6 +648105,22 @@ func ParseDebugPubsubOverviewRetrieveResponse(rsp *http.Response) (*DebugPubsubO
 	return response, nil
 }
 
+// ParseDebugPubsubOverviewCountResponse parses an HTTP response from a DebugPubsubOverviewCountWithResponse call
+func ParseDebugPubsubOverviewCountResponse(rsp *http.Response) (*DebugPubsubOverviewCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DebugPubsubOverviewCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseDebugPubsubQueuesRetrieveResponse parses an HTTP response from a DebugPubsubQueuesRetrieveWithResponse call
 func ParseDebugPubsubQueuesRetrieveResponse(rsp *http.Response) (*DebugPubsubQueuesRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -645078,6 +648149,22 @@ func ParseDebugPubsubQueuesRetrieveResponse(rsp *http.Response) (*DebugPubsubQue
 		}
 		response.JSON503 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseDebugPubsubQueuesCountResponse parses an HTTP response from a DebugPubsubQueuesCountWithResponse call
+func ParseDebugPubsubQueuesCountResponse(rsp *http.Response) (*DebugPubsubQueuesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DebugPubsubQueuesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
@@ -648052,6 +651139,535 @@ func ParseHooksCountResponse(rsp *http.Response) (*HooksCountResponse, error) {
 	response := &HooksCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseHpcWorkspacesListResponse parses an HTTP response from a HpcWorkspacesListWithResponse call
+func ParseHpcWorkspacesListResponse(rsp *http.Response) (*HpcWorkspacesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &HpcWorkspacesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []HpcWorkspace
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers HpcWorkspacesListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParseHpcWorkspacesCountResponse parses an HTTP response from a HpcWorkspacesCountWithResponse call
+func ParseHpcWorkspacesCountResponse(rsp *http.Response) (*HpcWorkspacesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &HpcWorkspacesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseHpcWorkspacesRetrieveResponse parses an HTTP response from a HpcWorkspacesRetrieveWithResponse call
+func ParseHpcWorkspacesRetrieveResponse(rsp *http.Response) (*HpcWorkspacesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &HpcWorkspacesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest HpcWorkspaceOverview
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseHpcWorkspacesClusterLoadRetrieveResponse parses an HTTP response from a HpcWorkspacesClusterLoadRetrieveWithResponse call
+func ParseHpcWorkspacesClusterLoadRetrieveResponse(rsp *http.Response) (*HpcWorkspacesClusterLoadRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &HpcWorkspacesClusterLoadRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest HpcClusterLoad
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseHpcWorkspacesFileContentRetrieveResponse parses an HTTP response from a HpcWorkspacesFileContentRetrieveWithResponse call
+func ParseHpcWorkspacesFileContentRetrieveResponse(rsp *http.Response) (*HpcWorkspacesFileContentRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &HpcWorkspacesFileContentRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest HpcFileContent
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseHpcWorkspacesFilesListResponse parses an HTTP response from a HpcWorkspacesFilesListWithResponse call
+func ParseHpcWorkspacesFilesListResponse(rsp *http.Response) (*HpcWorkspacesFilesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &HpcWorkspacesFilesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []HpcFile
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers HpcWorkspacesFilesListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParseHpcWorkspacesJobStatsRetrieveResponse parses an HTTP response from a HpcWorkspacesJobStatsRetrieveWithResponse call
+func ParseHpcWorkspacesJobStatsRetrieveResponse(rsp *http.Response) (*HpcWorkspacesJobStatsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &HpcWorkspacesJobStatsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest HpcJobStats
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseHpcWorkspacesJobsListResponse parses an HTTP response from a HpcWorkspacesJobsListWithResponse call
+func ParseHpcWorkspacesJobsListResponse(rsp *http.Response) (*HpcWorkspacesJobsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &HpcWorkspacesJobsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []HpcJob
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers HpcWorkspacesJobsListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParseHpcWorkspacesJobsResponse parses an HTTP response from a HpcWorkspacesJobsWithResponse call
+func ParseHpcWorkspacesJobsResponse(rsp *http.Response) (*HpcWorkspacesJobsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &HpcWorkspacesJobsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest HpcJobSubmitResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseHpcWorkspacesJobsRetrieveResponse parses an HTTP response from a HpcWorkspacesJobsRetrieveWithResponse call
+func ParseHpcWorkspacesJobsRetrieveResponse(rsp *http.Response) (*HpcWorkspacesJobsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &HpcWorkspacesJobsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest HpcJob
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseHpcWorkspacesJobsCancelResponse parses an HTTP response from a HpcWorkspacesJobsCancelWithResponse call
+func ParseHpcWorkspacesJobsCancelResponse(rsp *http.Response) (*HpcWorkspacesJobsCancelResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &HpcWorkspacesJobsCancelResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseHpcWorkspacesJobsOutputRetrieveResponse parses an HTTP response from a HpcWorkspacesJobsOutputRetrieveWithResponse call
+func ParseHpcWorkspacesJobsOutputRetrieveResponse(rsp *http.Response) (*HpcWorkspacesJobsOutputRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &HpcWorkspacesJobsOutputRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest HpcJobOutput
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseHpcWorkspacesJobsPerformanceRetrieveResponse parses an HTTP response from a HpcWorkspacesJobsPerformanceRetrieveWithResponse call
+func ParseHpcWorkspacesJobsPerformanceRetrieveResponse(rsp *http.Response) (*HpcWorkspacesJobsPerformanceRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &HpcWorkspacesJobsPerformanceRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest HpcJobPerformance
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseHpcWorkspacesJobsPerformancePdfRetrieveResponse parses an HTTP response from a HpcWorkspacesJobsPerformancePdfRetrieveWithResponse call
+func ParseHpcWorkspacesJobsPerformancePdfRetrieveResponse(rsp *http.Response) (*HpcWorkspacesJobsPerformancePdfRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &HpcWorkspacesJobsPerformancePdfRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseHpcWorkspacesOutputSeriesRetrieveResponse parses an HTTP response from a HpcWorkspacesOutputSeriesRetrieveWithResponse call
+func ParseHpcWorkspacesOutputSeriesRetrieveResponse(rsp *http.Response) (*HpcWorkspacesOutputSeriesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &HpcWorkspacesOutputSeriesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest HpcOutputSeries
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseHpcWorkspacesPartitionsListResponse parses an HTTP response from a HpcWorkspacesPartitionsListWithResponse call
+func ParseHpcWorkspacesPartitionsListResponse(rsp *http.Response) (*HpcWorkspacesPartitionsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &HpcWorkspacesPartitionsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []HpcPartition
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers HpcWorkspacesPartitionsListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParseHpcWorkspacesPreviewScriptResponse parses an HTTP response from a HpcWorkspacesPreviewScriptWithResponse call
+func ParseHpcWorkspacesPreviewScriptResponse(rsp *http.Response) (*HpcWorkspacesPreviewScriptResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &HpcWorkspacesPreviewScriptResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest HpcScriptPreview
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseHpcWorkspacesSoftwareListResponse parses an HTTP response from a HpcWorkspacesSoftwareListWithResponse call
+func ParseHpcWorkspacesSoftwareListResponse(rsp *http.Response) (*HpcWorkspacesSoftwareListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &HpcWorkspacesSoftwareListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []HpcSoftware
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers HpcWorkspacesSoftwareListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParseHpcWorkspacesUsageRetrieveResponse parses an HTTP response from a HpcWorkspacesUsageRetrieveWithResponse call
+func ParseHpcWorkspacesUsageRetrieveResponse(rsp *http.Response) (*HpcWorkspacesUsageRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &HpcWorkspacesUsageRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest HpcAllocationUsage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -661036,6 +664652,32 @@ func ParseMarketplaceProviderOfferingsHistoryAtRetrieveResponse(rsp *http.Respon
 	return response, nil
 }
 
+// ParseMarketplaceProviderOfferingsImportMaintenanceReservationsResponse parses an HTTP response from a MarketplaceProviderOfferingsImportMaintenanceReservationsWithResponse call
+func ParseMarketplaceProviderOfferingsImportMaintenanceReservationsResponse(rsp *http.Response) (*MarketplaceProviderOfferingsImportMaintenanceReservationsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsImportMaintenanceReservationsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MaintenanceReservationImportResult
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceProviderOfferingsImportResourceResponse parses an HTTP response from a MarketplaceProviderOfferingsImportResourceWithResponse call
 func ParseMarketplaceProviderOfferingsImportResourceResponse(rsp *http.Response) (*MarketplaceProviderOfferingsImportResourceResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -661346,6 +664988,32 @@ func ParseMarketplaceProviderOfferingsListUsersCountResponse(rsp *http.Response)
 	response := &MarketplaceProviderOfferingsListUsersCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsMaintenanceReservationsRetrieveResponse parses an HTTP response from a MarketplaceProviderOfferingsMaintenanceReservationsRetrieveWithResponse call
+func ParseMarketplaceProviderOfferingsMaintenanceReservationsRetrieveResponse(rsp *http.Response) (*MarketplaceProviderOfferingsMaintenanceReservationsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsMaintenanceReservationsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MaintenanceReservationList
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -701130,282 +704798,6 @@ func ParseServiceSettingsRetrieveResponse(rsp *http.Response) (*ServiceSettingsR
 		}
 		response.JSON200 = &dest
 
-	}
-
-	return response, nil
-}
-
-// ParseSlurmJobsListResponse parses an HTTP response from a SlurmJobsListWithResponse call
-func ParseSlurmJobsListResponse(rsp *http.Response) (*SlurmJobsListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &SlurmJobsListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []FirecrestJob
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	switch {
-	case rsp.StatusCode == 200:
-		var headers SlurmJobsListResponse200Headers
-		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
-			var value int
-			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			}
-			headers.XResultCount = &value
-		}
-		response.Headers200 = &headers
-	}
-
-	return response, nil
-}
-
-// ParseSlurmJobsCountResponse parses an HTTP response from a SlurmJobsCountWithResponse call
-func ParseSlurmJobsCountResponse(rsp *http.Response) (*SlurmJobsCountResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &SlurmJobsCountResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseSlurmJobsCreateResponse parses an HTTP response from a SlurmJobsCreateWithResponse call
-func ParseSlurmJobsCreateResponse(rsp *http.Response) (*SlurmJobsCreateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &SlurmJobsCreateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest FirecrestJob
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON201 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseSlurmJobsDestroyResponse parses an HTTP response from a SlurmJobsDestroyWithResponse call
-func ParseSlurmJobsDestroyResponse(rsp *http.Response) (*SlurmJobsDestroyResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &SlurmJobsDestroyResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseSlurmJobsRetrieveResponse parses an HTTP response from a SlurmJobsRetrieveWithResponse call
-func ParseSlurmJobsRetrieveResponse(rsp *http.Response) (*SlurmJobsRetrieveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &SlurmJobsRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest FirecrestJob
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseSlurmJobsPartialUpdateResponse parses an HTTP response from a SlurmJobsPartialUpdateWithResponse call
-func ParseSlurmJobsPartialUpdateResponse(rsp *http.Response) (*SlurmJobsPartialUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &SlurmJobsPartialUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest FirecrestJob
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseSlurmJobsUpdateResponse parses an HTTP response from a SlurmJobsUpdateWithResponse call
-func ParseSlurmJobsUpdateResponse(rsp *http.Response) (*SlurmJobsUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &SlurmJobsUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest FirecrestJob
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseSlurmJobsPullResponse parses an HTTP response from a SlurmJobsPullWithResponse call
-func ParseSlurmJobsPullResponse(rsp *http.Response) (*SlurmJobsPullResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &SlurmJobsPullResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
-		var dest Detail
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON202 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
-		var dest Detail
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON409 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseSlurmJobsSetErredResponse parses an HTTP response from a SlurmJobsSetErredWithResponse call
-func ParseSlurmJobsSetErredResponse(rsp *http.Response) (*SlurmJobsSetErredResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &SlurmJobsSetErredResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Detail
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseSlurmJobsSetOkResponse parses an HTTP response from a SlurmJobsSetOkWithResponse call
-func ParseSlurmJobsSetOkResponse(rsp *http.Response) (*SlurmJobsSetOkResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &SlurmJobsSetOkResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Detail
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseSlurmJobsUnlinkResponse parses an HTTP response from a SlurmJobsUnlinkWithResponse call
-func ParseSlurmJobsUnlinkResponse(rsp *http.Response) (*SlurmJobsUnlinkResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &SlurmJobsUnlinkResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
 	}
 
 	return response, nil
