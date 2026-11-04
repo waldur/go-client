@@ -38093,6 +38093,9 @@ type HpcWorkspace struct {
 	Account      *string `json:"account,omitempty"`
 	CustomerName *string `json:"customer_name,omitempty"`
 
+	// FirecrestEnabled Jobs can be submitted and canceled and files opened through FirecREST. Without it the workspace is read-only, from the cluster monitor.
+	FirecrestEnabled *bool `json:"firecrest_enabled,omitempty"`
+
 	// MonitoringEnabled Jobs have per-run performance samples from the cluster monitor.
 	MonitoringEnabled *bool               `json:"monitoring_enabled,omitempty"`
 	OfferingName      *string             `json:"offering_name,omitempty"`
@@ -38107,11 +38110,14 @@ type HpcWorkspace struct {
 
 // HpcWorkspaceOverview defines model for HpcWorkspaceOverview.
 type HpcWorkspaceOverview struct {
-	Account       *string `json:"account,omitempty"`
-	CustomerName  *string `json:"customer_name,omitempty"`
-	Error         *string `json:"error,omitempty"`
-	Healthy       *bool   `json:"healthy,omitempty"`
-	HomeDirectory *string `json:"home_directory,omitempty"`
+	Account      *string `json:"account,omitempty"`
+	CustomerName *string `json:"customer_name,omitempty"`
+	Error        *string `json:"error,omitempty"`
+
+	// FirecrestEnabled Jobs can be submitted and canceled and files opened through FirecREST. Without it the workspace is read-only, from the cluster monitor.
+	FirecrestEnabled *bool   `json:"firecrest_enabled,omitempty"`
+	Healthy          *bool   `json:"healthy,omitempty"`
+	HomeDirectory    *string `json:"home_directory,omitempty"`
 
 	// MonitoringEnabled Jobs have per-run performance samples from the cluster monitor.
 	MonitoringEnabled *bool               `json:"monitoring_enabled,omitempty"`
@@ -40807,7 +40813,7 @@ type MergedPluginOptions struct {
 	// ExposeInferencePlayground Show an in-browser inference playground action for resources of this offering (for offerings whose resources expose an OpenAI-compatible endpoint).
 	ExposeInferencePlayground *bool `json:"expose_inference_playground,omitempty"`
 
-	// FirecrestApiUrl FirecREST v2 API URL users of this SLURM offering work through (jobs, files, cluster status). Must also be listed in the FIRECREST_ALLOWED_API_URLS setting. Leave empty to disable the HPC workspace.
+	// FirecrestApiUrl FirecREST v2 API URL users of this SLURM offering work through (jobs, files, cluster status). Must also be listed in the FIRECREST_ALLOWED_API_URLS setting. Leave empty to run no jobs through Waldur; with a slurm-monitor URL the workspace is then read-only.
 	FirecrestApiUrl *string `json:"firecrest_api_url,omitempty"`
 
 	// FirecrestSystemName Name of the cluster in FirecREST's systems list.
@@ -40999,7 +41005,7 @@ type MergedPluginOptions struct {
 	// SlurmMaintenanceSyncEnabled When enabled, the site agent turns published maintenance announcements for this offering into Slurm MAINT reservations (full outage: all nodes; partial outage: the named partitions), so the scheduler holds back jobs that would run into them, and imports maintenance reservations made on the cluster as draft announcements.
 	SlurmMaintenanceSyncEnabled *bool `json:"slurm_maintenance_sync_enabled,omitempty"`
 
-	// SlurmMonitorApiUrl slurm-monitor API URL (ending in /api/v2) with the cluster's per-job samples (GPU, CPU, memory over time). Must also be listed in the SLURM_MONITOR_ALLOWED_API_URLS setting. Leave empty to hide job performance.
+	// SlurmMonitorApiUrl slurm-monitor API URL (ending in /api/v2) with the cluster's per-job samples (GPU, CPU, memory over time). Must also be listed in the SLURM_MONITOR_ALLOWED_API_URLS setting. Leave empty to hide job performance. Without FirecREST, the allocations get a read-only workspace from it: jobs, their performance, job statistics and software.
 	SlurmMonitorApiUrl *string `json:"slurm_monitor_api_url,omitempty"`
 
 	// SlurmMonitorClusterName Name of the cluster in slurm-monitor (Sonar's cluster name).
@@ -41186,7 +41192,7 @@ type MergedPluginOptionsRequest struct {
 	// ExposeInferencePlayground Show an in-browser inference playground action for resources of this offering (for offerings whose resources expose an OpenAI-compatible endpoint).
 	ExposeInferencePlayground *bool `json:"expose_inference_playground,omitempty"`
 
-	// FirecrestApiUrl FirecREST v2 API URL users of this SLURM offering work through (jobs, files, cluster status). Must also be listed in the FIRECREST_ALLOWED_API_URLS setting. Leave empty to disable the HPC workspace.
+	// FirecrestApiUrl FirecREST v2 API URL users of this SLURM offering work through (jobs, files, cluster status). Must also be listed in the FIRECREST_ALLOWED_API_URLS setting. Leave empty to run no jobs through Waldur; with a slurm-monitor URL the workspace is then read-only.
 	FirecrestApiUrl *string `json:"firecrest_api_url,omitempty"`
 
 	// FirecrestSystemName Name of the cluster in FirecREST's systems list.
@@ -41378,7 +41384,7 @@ type MergedPluginOptionsRequest struct {
 	// SlurmMaintenanceSyncEnabled When enabled, the site agent turns published maintenance announcements for this offering into Slurm MAINT reservations (full outage: all nodes; partial outage: the named partitions), so the scheduler holds back jobs that would run into them, and imports maintenance reservations made on the cluster as draft announcements.
 	SlurmMaintenanceSyncEnabled *bool `json:"slurm_maintenance_sync_enabled,omitempty"`
 
-	// SlurmMonitorApiUrl slurm-monitor API URL (ending in /api/v2) with the cluster's per-job samples (GPU, CPU, memory over time). Must also be listed in the SLURM_MONITOR_ALLOWED_API_URLS setting. Leave empty to hide job performance.
+	// SlurmMonitorApiUrl slurm-monitor API URL (ending in /api/v2) with the cluster's per-job samples (GPU, CPU, memory over time). Must also be listed in the SLURM_MONITOR_ALLOWED_API_URLS setting. Leave empty to hide job performance. Without FirecREST, the allocations get a read-only workspace from it: jobs, their performance, job statistics and software.
 	SlurmMonitorApiUrl *string `json:"slurm_monitor_api_url,omitempty"`
 
 	// SlurmMonitorClusterName Name of the cluster in slurm-monitor (Sonar's cluster name).
@@ -45027,7 +45033,6 @@ type OnboardingJustificationOEnum string
 type OnboardingJustificationRequest struct {
 	// UserJustification User's explanation for why they should be authorized
 	UserJustification *string `json:"user_justification,omitempty"`
-	Verification      string  `json:"verification"`
 }
 
 // OnboardingJustificationReviewRequest defines model for OnboardingJustificationReviewRequest.
@@ -49837,7 +49842,6 @@ type PatchedOfferingUserServiceProviderCommentRequest struct {
 type PatchedOnboardingJustificationRequest struct {
 	// UserJustification User's explanation for why they should be authorized
 	UserJustification *string `json:"user_justification,omitempty"`
-	Verification      *string `json:"verification,omitempty"`
 }
 
 // PatchedOnboardingQuestionMetadataRequest defines model for PatchedOnboardingQuestionMetadataRequest.
@@ -67903,6 +67907,9 @@ type HpcWorkspacesListParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ResourceUuid Only the workspace of this resource, e.g. to tell whether a resource page has one.
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
 }
 
 // HpcWorkspacesCountParams defines parameters for HpcWorkspacesCount.
@@ -67912,6 +67919,9 @@ type HpcWorkspacesCountParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ResourceUuid Only the workspace of this resource, e.g. to tell whether a resource page has one.
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
 }
 
 // HpcWorkspacesFileContentRetrieveParams defines parameters for HpcWorkspacesFileContentRetrieve.
@@ -116553,7 +116563,7 @@ type ClientInterface interface {
 
 	// HpcWorkspacesList List HPC workspaces
 	//
-	// SLURM allocations visible to the user whose offering is connected to FirecREST.
+	// SLURM allocations visible to the user whose offering is connected to FirecREST or a cluster monitor.
 	//
 	// Corresponds with GET /api/hpc-workspaces/ (the `HpcWorkspacesList` operationId).
 	HpcWorkspacesList(ctx context.Context, params *HpcWorkspacesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -116567,7 +116577,7 @@ type ClientInterface interface {
 
 	// HpcWorkspacesRetrieve HPC workspace overview
 	//
-	// Allocation, the user's cluster identity and FirecREST system health. Problems reaching FirecREST are reported in 'error' rather than failing the request; 'sign_in_provider' names the identity provider to sign in through again when that is the remedy.
+	// Allocation, the user's cluster identity and FirecREST system health. Problems reaching FirecREST are reported in 'error' rather than failing the request; 'sign_in_provider' names the identity provider to sign in through again when that is the remedy. Without FirecREST ('firecrest_enabled' false) the health is left out.
 	//
 	// Corresponds with GET /api/hpc-workspaces/{uuid}/ (the `HpcWorkspacesRetrieve` operationId).
 	HpcWorkspacesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -135539,13 +135549,13 @@ type ClientInterface interface {
 	// UserActionsUpdateActionsWithBody performs a POST /api/user-actions/update_actions/ (the `UserActionsUpdateActions` operationId) request,
 	// with any type of body and a specified content type.
 	//
-	// Trigger update of user actions.
+	// Staff-only action to trigger recalculation of the actions of every user.
 	UserActionsUpdateActionsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UserActionsUpdateActions performs a POST /api/user-actions/update_actions/ (the `UserActionsUpdateActions` operationId) request.
 	// Takes a body of the `application/json` content type.
 	//
-	// Trigger update of user actions.
+	// Staff-only action to trigger recalculation of the actions of every user.
 	UserActionsUpdateActions(ctx context.Context, body UserActionsUpdateActionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UserActionsRetrieve performs a GET /api/user-actions/{uuid}/ (the `UserActionsRetrieve` operationId) request.
@@ -148530,7 +148540,7 @@ func (c *Client) HooksCount(ctx context.Context, params *HooksCountParams, reqEd
 
 // HpcWorkspacesList List HPC workspaces
 //
-// SLURM allocations visible to the user whose offering is connected to FirecREST.
+// SLURM allocations visible to the user whose offering is connected to FirecREST or a cluster monitor.
 //
 // Corresponds with GET /api/hpc-workspaces/ (the `HpcWorkspacesList` operationId).
 func (c *Client) HpcWorkspacesList(ctx context.Context, params *HpcWorkspacesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -148564,7 +148574,7 @@ func (c *Client) HpcWorkspacesCount(ctx context.Context, params *HpcWorkspacesCo
 
 // HpcWorkspacesRetrieve HPC workspace overview
 //
-// Allocation, the user's cluster identity and FirecREST system health. Problems reaching FirecREST are reported in 'error' rather than failing the request; 'sign_in_provider' names the identity provider to sign in through again when that is the remedy.
+// Allocation, the user's cluster identity and FirecREST system health. Problems reaching FirecREST are reported in 'error' rather than failing the request; 'sign_in_provider' names the identity provider to sign in through again when that is the remedy. Without FirecREST ('firecrest_enabled' false) the health is left out.
 //
 // Corresponds with GET /api/hpc-workspaces/{uuid}/ (the `HpcWorkspacesRetrieve` operationId).
 func (c *Client) HpcWorkspacesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -198005,7 +198015,7 @@ func (c *Client) UserActionsSummaryCount(ctx context.Context, reqEditors ...Requ
 // UserActionsUpdateActionsWithBody performs a POST /api/user-actions/update_actions/ (the `UserActionsUpdateActions` operationId) request,
 // with any type of body and a specified content type.
 //
-// Trigger update of user actions.
+// Staff-only action to trigger recalculation of the actions of every user.
 func (c *Client) UserActionsUpdateActionsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUserActionsUpdateActionsRequestWithBody(c.Server, contentType, body)
 	if err != nil {
@@ -198021,7 +198031,7 @@ func (c *Client) UserActionsUpdateActionsWithBody(ctx context.Context, contentTy
 // UserActionsUpdateActions performs a POST /api/user-actions/update_actions/ (the `UserActionsUpdateActions` operationId) request.
 // Takes a body of the `application/json` content type.
 //
-// Trigger update of user actions.
+// Staff-only action to trigger recalculation of the actions of every user.
 func (c *Client) UserActionsUpdateActions(ctx context.Context, body UserActionsUpdateActionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUserActionsUpdateActionsRequest(c.Server, body)
 	if err != nil {
@@ -243515,6 +243525,18 @@ func NewHpcWorkspacesListRequest(server string, params *HpcWorkspacesListParams)
 
 		}
 
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_uuid", *params.ResourceUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if encoded := queryValues.Encode(); encoded != "" {
 			rawQueryFragments = append(rawQueryFragments, encoded)
 		}
@@ -243572,6 +243594,18 @@ func NewHpcWorkspacesCountRequest(server string, params *HpcWorkspacesCountParam
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_uuid", *params.ResourceUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -437905,7 +437939,7 @@ type ClientWithResponsesInterface interface {
 
 	// HpcWorkspacesListWithResponse List HPC workspaces
 	//
-	// SLURM allocations visible to the user whose offering is connected to FirecREST.
+	// SLURM allocations visible to the user whose offering is connected to FirecREST or a cluster monitor.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -437923,7 +437957,7 @@ type ClientWithResponsesInterface interface {
 
 	// HpcWorkspacesRetrieveWithResponse HPC workspace overview
 	//
-	// Allocation, the user's cluster identity and FirecREST system health. Problems reaching FirecREST are reported in 'error' rather than failing the request; 'sign_in_provider' names the identity provider to sign in through again when that is the remedy.
+	// Allocation, the user's cluster identity and FirecREST system health. Problems reaching FirecREST are reported in 'error' rather than failing the request; 'sign_in_provider' names the identity provider to sign in through again when that is the remedy. Without FirecREST ('firecrest_enabled' false) the health is left out.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -460607,7 +460641,7 @@ type ClientWithResponsesInterface interface {
 	// UserActionsUpdateActionsWithBodyWithResponse performs a POST /api/user-actions/update_actions/ (the `UserActionsUpdateActions` operationId) request,
 	// with any type of body and a specified content type.
 	//
-	// Trigger update of user actions.
+	// Staff-only action to trigger recalculation of the actions of every user.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	UserActionsUpdateActionsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserActionsUpdateActionsResponse, error)
@@ -460615,7 +460649,7 @@ type ClientWithResponsesInterface interface {
 	// UserActionsUpdateActionsWithResponse performs a POST /api/user-actions/update_actions/ (the `UserActionsUpdateActions` operationId) request.
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
-	// Trigger update of user actions.
+	// Staff-only action to trigger recalculation of the actions of every user.
 	UserActionsUpdateActionsWithResponse(ctx context.Context, body UserActionsUpdateActionsJSONRequestBody, reqEditors ...RequestEditorFn) (*UserActionsUpdateActionsResponse, error)
 
 	// UserActionsRetrieveWithResponse performs a GET /api/user-actions/{uuid}/ (the `UserActionsRetrieve` operationId) request.
@@ -591518,7 +591552,7 @@ func (c *ClientWithResponses) HooksCountWithResponse(ctx context.Context, params
 
 // HpcWorkspacesListWithResponse List HPC workspaces
 //
-// SLURM allocations visible to the user whose offering is connected to FirecREST.
+// SLURM allocations visible to the user whose offering is connected to FirecREST or a cluster monitor.
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -591548,7 +591582,7 @@ func (c *ClientWithResponses) HpcWorkspacesCountWithResponse(ctx context.Context
 
 // HpcWorkspacesRetrieveWithResponse HPC workspace overview
 //
-// Allocation, the user's cluster identity and FirecREST system health. Problems reaching FirecREST are reported in 'error' rather than failing the request; 'sign_in_provider' names the identity provider to sign in through again when that is the remedy.
+// Allocation, the user's cluster identity and FirecREST system health. Problems reaching FirecREST are reported in 'error' rather than failing the request; 'sign_in_provider' names the identity provider to sign in through again when that is the remedy. Without FirecREST ('firecrest_enabled' false) the health is left out.
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -632507,7 +632541,7 @@ func (c *ClientWithResponses) UserActionsSummaryCountWithResponse(ctx context.Co
 // UserActionsUpdateActionsWithBodyWithResponse performs a POST /api/user-actions/update_actions/ (the `UserActionsUpdateActions` operationId) request,
 // with any type of body and a specified content type.
 //
-// Trigger update of user actions.
+// Staff-only action to trigger recalculation of the actions of every user.
 //
 // Returns a wrapper object for the known response body format(s).
 func (c *ClientWithResponses) UserActionsUpdateActionsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserActionsUpdateActionsResponse, error) {
@@ -632521,7 +632555,7 @@ func (c *ClientWithResponses) UserActionsUpdateActionsWithBodyWithResponse(ctx c
 // UserActionsUpdateActionsWithResponse performs a POST /api/user-actions/update_actions/ (the `UserActionsUpdateActions` operationId) request.
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
-// Trigger update of user actions.
+// Staff-only action to trigger recalculation of the actions of every user.
 func (c *ClientWithResponses) UserActionsUpdateActionsWithResponse(ctx context.Context, body UserActionsUpdateActionsJSONRequestBody, reqEditors ...RequestEditorFn) (*UserActionsUpdateActionsResponse, error) {
 	rsp, err := c.UserActionsUpdateActions(ctx, body, reqEditors...)
 	if err != nil {
