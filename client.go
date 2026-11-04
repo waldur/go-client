@@ -5872,6 +5872,8 @@ const (
 	EventMetadataResponseEventGroupsCreateOfAffiliateByStaff                         EventMetadataResponseEventGroups = "create_of_affiliate_by_staff"
 	EventMetadataResponseEventGroupsCreateOfCreditByStaff                            EventMetadataResponseEventGroups = "create_of_credit_by_staff"
 	EventMetadataResponseEventGroupsCreateOfProjectCreditByStaff                     EventMetadataResponseEventGroups = "create_of_project_credit_by_staff"
+	EventMetadataResponseEventGroupsCreditReclassifiedAsPaid                         EventMetadataResponseEventGroups = "credit_reclassified_as_paid"
+	EventMetadataResponseEventGroupsCreditToppedUp                                   EventMetadataResponseEventGroups = "credit_topped_up"
 	EventMetadataResponseEventGroupsCustomNotification                               EventMetadataResponseEventGroups = "custom_notification"
 	EventMetadataResponseEventGroupsCustomerCreationSucceeded                        EventMetadataResponseEventGroups = "customer_creation_succeeded"
 	EventMetadataResponseEventGroupsCustomerDeletionSucceeded                        EventMetadataResponseEventGroups = "customer_deletion_succeeded"
@@ -5888,6 +5890,7 @@ const (
 	EventMetadataResponseEventGroupsFreeipaProfileDeleted                            EventMetadataResponseEventGroups = "freeipa_profile_deleted"
 	EventMetadataResponseEventGroupsFreeipaProfileDisabled                           EventMetadataResponseEventGroups = "freeipa_profile_disabled"
 	EventMetadataResponseEventGroupsFreeipaProfileEnabled                            EventMetadataResponseEventGroups = "freeipa_profile_enabled"
+	EventMetadataResponseEventGroupsGrantedCreditExpired                             EventMetadataResponseEventGroups = "granted_credit_expired"
 	EventMetadataResponseEventGroupsIncreaseOfCustomerCreditDueToAffiliateFee        EventMetadataResponseEventGroups = "increase_of_customer_credit_due_to_affiliate_fee"
 	EventMetadataResponseEventGroupsInvoiceCanceled                                  EventMetadataResponseEventGroups = "invoice_canceled"
 	EventMetadataResponseEventGroupsInvoiceCreated                                   EventMetadataResponseEventGroups = "invoice_created"
@@ -6324,6 +6327,10 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 		return true
 	case EventMetadataResponseEventGroupsCreateOfProjectCreditByStaff:
 		return true
+	case EventMetadataResponseEventGroupsCreditReclassifiedAsPaid:
+		return true
+	case EventMetadataResponseEventGroupsCreditToppedUp:
+		return true
 	case EventMetadataResponseEventGroupsCustomNotification:
 		return true
 	case EventMetadataResponseEventGroupsCustomerCreationSucceeded:
@@ -6355,6 +6362,8 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 	case EventMetadataResponseEventGroupsFreeipaProfileDisabled:
 		return true
 	case EventMetadataResponseEventGroupsFreeipaProfileEnabled:
+		return true
+	case EventMetadataResponseEventGroupsGrantedCreditExpired:
 		return true
 	case EventMetadataResponseEventGroupsIncreaseOfCustomerCreditDueToAffiliateFee:
 		return true
@@ -7120,6 +7129,8 @@ const (
 	EventTypesEnumCreateOfAffiliateByStaff                         EventTypesEnum = "create_of_affiliate_by_staff"
 	EventTypesEnumCreateOfCreditByStaff                            EventTypesEnum = "create_of_credit_by_staff"
 	EventTypesEnumCreateOfProjectCreditByStaff                     EventTypesEnum = "create_of_project_credit_by_staff"
+	EventTypesEnumCreditReclassifiedAsPaid                         EventTypesEnum = "credit_reclassified_as_paid"
+	EventTypesEnumCreditToppedUp                                   EventTypesEnum = "credit_topped_up"
 	EventTypesEnumCustomNotification                               EventTypesEnum = "custom_notification"
 	EventTypesEnumCustomerCreationSucceeded                        EventTypesEnum = "customer_creation_succeeded"
 	EventTypesEnumCustomerDeletionSucceeded                        EventTypesEnum = "customer_deletion_succeeded"
@@ -7136,6 +7147,7 @@ const (
 	EventTypesEnumFreeipaProfileDeleted                            EventTypesEnum = "freeipa_profile_deleted"
 	EventTypesEnumFreeipaProfileDisabled                           EventTypesEnum = "freeipa_profile_disabled"
 	EventTypesEnumFreeipaProfileEnabled                            EventTypesEnum = "freeipa_profile_enabled"
+	EventTypesEnumGrantedCreditExpired                             EventTypesEnum = "granted_credit_expired"
 	EventTypesEnumIncreaseOfCustomerCreditDueToAffiliateFee        EventTypesEnum = "increase_of_customer_credit_due_to_affiliate_fee"
 	EventTypesEnumInvoiceCanceled                                  EventTypesEnum = "invoice_canceled"
 	EventTypesEnumInvoiceCreated                                   EventTypesEnum = "invoice_created"
@@ -7572,6 +7584,10 @@ func (e EventTypesEnum) Valid() bool {
 		return true
 	case EventTypesEnumCreateOfProjectCreditByStaff:
 		return true
+	case EventTypesEnumCreditReclassifiedAsPaid:
+		return true
+	case EventTypesEnumCreditToppedUp:
+		return true
 	case EventTypesEnumCustomNotification:
 		return true
 	case EventTypesEnumCustomerCreationSucceeded:
@@ -7603,6 +7619,8 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumFreeipaProfileDisabled:
 		return true
 	case EventTypesEnumFreeipaProfileEnabled:
+		return true
+	case EventTypesEnumGrantedCreditExpired:
 		return true
 	case EventTypesEnumIncreaseOfCustomerCreditDueToAffiliateFee:
 		return true
@@ -23478,8 +23496,10 @@ const (
 	HistoricalCompensation TransactionTypeEnum = "historical_compensation"
 	MinimalDraw            TransactionTypeEnum = "minimal_draw"
 	Payout                 TransactionTypeEnum = "payout"
+	Reclassification       TransactionTypeEnum = "reclassification"
 	Rollback               TransactionTypeEnum = "rollback"
 	StaffGrant             TransactionTypeEnum = "staff_grant"
+	TopUp                  TransactionTypeEnum = "top_up"
 	TransferIn             TransactionTypeEnum = "transfer_in"
 	TransferOut            TransactionTypeEnum = "transfer_out"
 	WithdrawableAdjustment TransactionTypeEnum = "withdrawable_adjustment"
@@ -23502,9 +23522,13 @@ func (e TransactionTypeEnum) Valid() bool {
 		return true
 	case Payout:
 		return true
+	case Reclassification:
+		return true
 	case Rollback:
 		return true
 	case StaffGrant:
+		return true
+	case TopUp:
 		return true
 	case TransferIn:
 		return true
@@ -26494,7 +26518,7 @@ type AffiliateEarnings struct {
 	PerMonth    []AffiliateEarningsMonth `json:"per_month"`
 	TotalEarned string                   `json:"total_earned"`
 
-	// Upcoming Fee the current month is expected to earn from the referred customer's open invoice, after its estimated volume discounts and credit compensation. Null when the month will earn nothing on this link. Not yet accrued: the amount changes until month close.
+	// Upcoming Fee the current month is expected to earn from the referred customer's open invoice, on the base an accrual uses: the net price after estimated volume discounts and credit compensation, plus what paid credit covers. Null when the month will earn nothing on this link. Not yet accrued: the amount changes until month close.
 	Upcoming            *AffiliateEarningsMonth `json:"upcoming"`
 	WithdrawableBalance string                  `json:"withdrawable_balance"`
 }
@@ -33953,29 +33977,35 @@ type CreateCustomerAffiliateRequest struct {
 
 // CreateCustomerCredit defines model for CreateCustomerCredit.
 type CreateCustomerCredit struct {
-	AllocatedToProjects       *float64                     `json:"allocated_to_projects,omitempty"`
-	ApplyAsMinimalConsumption *bool                        `json:"apply_as_minimal_consumption,omitempty"`
-	ConsumptionLastMonth      *float64                     `json:"consumption_last_month,omitempty"`
-	Customer                  string                       `json:"customer"`
-	CustomerName              *string                      `json:"customer_name,omitempty"`
-	CustomerSlug              *string                      `json:"customer_slug,omitempty"`
-	CustomerUuid              *openapi_types.UUID          `json:"customer_uuid,omitempty"`
-	EndDate                   *openapi_types.Date          `json:"end_date,omitempty"`
-	ExpectedConsumption       *string                      `json:"expected_consumption,omitempty"`
-	GraceCoefficient          *string                      `json:"grace_coefficient,omitempty"`
-	MinimalConsumption        *float64                     `json:"minimal_consumption,omitempty"`
-	MinimalConsumptionLogic   *MinimalConsumptionLogicEnum `json:"minimal_consumption_logic,omitempty"`
+	AllocatedToProjects       *float64            `json:"allocated_to_projects,omitempty"`
+	ApplyAsMinimalConsumption *bool               `json:"apply_as_minimal_consumption,omitempty"`
+	ConsumptionLastMonth      *float64            `json:"consumption_last_month,omitempty"`
+	Customer                  string              `json:"customer"`
+	CustomerName              *string             `json:"customer_name,omitempty"`
+	CustomerSlug              *string             `json:"customer_slug,omitempty"`
+	CustomerUuid              *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	EndDate                   *openapi_types.Date `json:"end_date,omitempty"`
+	ExpectedConsumption       *string             `json:"expected_consumption,omitempty"`
+	GraceCoefficient          *string             `json:"grace_coefficient,omitempty"`
+
+	// GrantedBalance What is left of staff-granted credit.
+	GrantedBalance          *float64                     `json:"granted_balance,omitempty"`
+	MinimalConsumption      *float64                     `json:"minimal_consumption,omitempty"`
+	MinimalConsumptionLogic *MinimalConsumptionLogicEnum `json:"minimal_consumption_logic,omitempty"`
 
 	// Offerings Offerings the credit may be drawn against. Leave empty to allow all offerings: an empty list means unrestricted, not none. Cost on any other offering is invoiced normally and is never compensated from this credit.
-	Offerings *[]*string          `json:"offerings,omitempty"`
-	Url       *string             `json:"url,omitempty"`
-	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
-	Value     *string             `json:"value,omitempty"`
+	Offerings *[]*string `json:"offerings,omitempty"`
+
+	// PaidBalance What is left of the customer's prepayments recorded by staff.
+	PaidBalance *float64            `json:"paid_balance,omitempty"`
+	Url         *string             `json:"url,omitempty"`
+	Uuid        *openapi_types.UUID `json:"uuid,omitempty"`
+	Value       *string             `json:"value,omitempty"`
 
 	// WithdrawableBalance Part of the credit that may leave the platform via payouts or
-	// transfers: earnings-typed ledger inflows minus outflows, capped by
-	// the current credit value so that staff-granted (promotional) credit
-	// is never withdrawable and credit expiry wipes earnings too.
+	// transfers: what is left of the earned lots. Granted and paid
+	// credit is never withdrawable, and spending earnings on usage lowers
+	// it for good, however much credit is granted afterwards.
 	WithdrawableBalance *float64 `json:"withdrawable_balance,omitempty"`
 }
 
@@ -34246,6 +34276,22 @@ type CredentialsValidationResponse struct {
 	Valid      bool        `json:"valid"`
 }
 
+// CreditReclassificationRequest defines model for CreditReclassificationRequest.
+type CreditReclassificationRequest struct {
+	Amount  string `json:"amount"`
+	Comment string `json:"comment"`
+}
+
+// CreditTopUpRequest defines model for CreditTopUpRequest.
+type CreditTopUpRequest struct {
+	// Amount Positive to record a prepayment, negative to reverse one.
+	Amount  string `json:"amount"`
+	Comment string `json:"comment"`
+
+	// PaymentReference Bank transfer or payment identifier, kept in the ledger comment.
+	PaymentReference *string `json:"payment_reference,omitempty"`
+}
+
 // CreditTransaction defines model for CreditTransaction.
 type CreditTransaction struct {
 	Amount                 string              `json:"amount"`
@@ -34254,6 +34300,9 @@ type CreditTransaction struct {
 	Created                *time.Time          `json:"created,omitempty"`
 	CustomerName           *string             `json:"customer_name,omitempty"`
 	CustomerUuid           *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	EarnedChange           *string             `json:"earned_change,omitempty"`
+	GrantedChange          *string             `json:"granted_change,omitempty"`
+	PaidChange             *string             `json:"paid_change,omitempty"`
 	ProjectName            *string             `json:"project_name,omitempty"`
 	ProjectUuid            *string             `json:"project_uuid,omitempty"`
 	TransactionType        TransactionTypeEnum `json:"transaction_type"`
@@ -34537,27 +34586,33 @@ type CustomerContext struct {
 
 // CustomerCredit defines model for CustomerCredit.
 type CustomerCredit struct {
-	AllocatedToProjects       *float64                     `json:"allocated_to_projects,omitempty"`
-	ApplyAsMinimalConsumption *bool                        `json:"apply_as_minimal_consumption,omitempty"`
-	ConsumptionLastMonth      *float64                     `json:"consumption_last_month,omitempty"`
-	Customer                  string                       `json:"customer"`
-	CustomerName              *string                      `json:"customer_name,omitempty"`
-	CustomerSlug              *string                      `json:"customer_slug,omitempty"`
-	CustomerUuid              *openapi_types.UUID          `json:"customer_uuid,omitempty"`
-	EndDate                   *openapi_types.Date          `json:"end_date,omitempty"`
-	ExpectedConsumption       *string                      `json:"expected_consumption,omitempty"`
-	GraceCoefficient          *string                      `json:"grace_coefficient,omitempty"`
-	MinimalConsumption        *float64                     `json:"minimal_consumption,omitempty"`
-	MinimalConsumptionLogic   *MinimalConsumptionLogicEnum `json:"minimal_consumption_logic,omitempty"`
-	Offerings                 *[]NestedProviderOffering    `json:"offerings,omitempty"`
-	Url                       *string                      `json:"url,omitempty"`
-	Uuid                      *openapi_types.UUID          `json:"uuid,omitempty"`
-	Value                     *string                      `json:"value,omitempty"`
+	AllocatedToProjects       *float64            `json:"allocated_to_projects,omitempty"`
+	ApplyAsMinimalConsumption *bool               `json:"apply_as_minimal_consumption,omitempty"`
+	ConsumptionLastMonth      *float64            `json:"consumption_last_month,omitempty"`
+	Customer                  string              `json:"customer"`
+	CustomerName              *string             `json:"customer_name,omitempty"`
+	CustomerSlug              *string             `json:"customer_slug,omitempty"`
+	CustomerUuid              *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	EndDate                   *openapi_types.Date `json:"end_date,omitempty"`
+	ExpectedConsumption       *string             `json:"expected_consumption,omitempty"`
+	GraceCoefficient          *string             `json:"grace_coefficient,omitempty"`
+
+	// GrantedBalance What is left of staff-granted credit.
+	GrantedBalance          *float64                     `json:"granted_balance,omitempty"`
+	MinimalConsumption      *float64                     `json:"minimal_consumption,omitempty"`
+	MinimalConsumptionLogic *MinimalConsumptionLogicEnum `json:"minimal_consumption_logic,omitempty"`
+	Offerings               *[]NestedProviderOffering    `json:"offerings,omitempty"`
+
+	// PaidBalance What is left of the customer's prepayments recorded by staff.
+	PaidBalance *float64            `json:"paid_balance,omitempty"`
+	Url         *string             `json:"url,omitempty"`
+	Uuid        *openapi_types.UUID `json:"uuid,omitempty"`
+	Value       *string             `json:"value,omitempty"`
 
 	// WithdrawableBalance Part of the credit that may leave the platform via payouts or
-	// transfers: earnings-typed ledger inflows minus outflows, capped by
-	// the current credit value so that staff-granted (promotional) credit
-	// is never withdrawable and credit expiry wipes earnings too.
+	// transfers: what is left of the earned lots. Granted and paid
+	// credit is never withdrawable, and spending earnings on usage lowers
+	// it for good, however much credit is granted afterwards.
 	WithdrawableBalance *float64 `json:"withdrawable_balance,omitempty"`
 }
 
@@ -91122,6 +91177,12 @@ type CustomerCreditsUpdateJSONRequestBody = CreateCustomerCreditRequest
 // CustomerCreditsAdjustWithdrawableJSONRequestBody defines body for CustomerCreditsAdjustWithdrawable for application/json ContentType.
 type CustomerCreditsAdjustWithdrawableJSONRequestBody = WithdrawableAdjustmentRequest
 
+// CustomerCreditsReclassifyJSONRequestBody defines body for CustomerCreditsReclassify for application/json ContentType.
+type CustomerCreditsReclassifyJSONRequestBody = CreditReclassificationRequest
+
+// CustomerCreditsTopUpJSONRequestBody defines body for CustomerCreditsTopUp for application/json ContentType.
+type CustomerCreditsTopUpJSONRequestBody = CreditTopUpRequest
+
 // CustomerRoleConcealmentsCreateJSONRequestBody defines body for CustomerRoleConcealmentsCreate for application/json ContentType.
 type CustomerRoleConcealmentsCreateJSONRequestBody = CustomerRoleConcealmentRequest
 
@@ -115053,6 +115114,30 @@ type ClientInterface interface {
 	// Get credit consumption history grouped by month.
 	CustomerCreditsConsumptionsList(ctx context.Context, uuid openapi_types.UUID, params *CustomerCreditsConsumptionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// CustomerCreditsReclassifyWithBody performs a POST /api/customer-credits/{uuid}/reclassify/ (the `CustomerCreditsReclassify` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Mark part of the granted credit as paid, e.g. a prepayment that was recorded as a plain credit grant. The credit value does not change; the ledger records the move with the comment.
+	CustomerCreditsReclassifyWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CustomerCreditsReclassify performs a POST /api/customer-credits/{uuid}/reclassify/ (the `CustomerCreditsReclassify` operationId) request.
+	// Takes a body of the `application/json` content type.
+	//
+	// Mark part of the granted credit as paid, e.g. a prepayment that was recorded as a plain credit grant. The credit value does not change; the ledger records the move with the comment.
+	CustomerCreditsReclassify(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsReclassifyJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CustomerCreditsTopUpWithBody performs a POST /api/customer-credits/{uuid}/top_up/ (the `CustomerCreditsTopUp` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Record a customer prepayment as paid credit. Raises the credit value and writes a top-up ledger entry with the comment. Unlike granted credit, invoices paid from it count towards the affiliate fee, and it does not expire. A negative amount reverses a top-up, e.g. a bounced payment, and draws on paid credit only.
+	CustomerCreditsTopUpWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CustomerCreditsTopUp performs a POST /api/customer-credits/{uuid}/top_up/ (the `CustomerCreditsTopUp` operationId) request.
+	// Takes a body of the `application/json` content type.
+	//
+	// Record a customer prepayment as paid credit. Raises the credit value and writes a top-up ledger entry with the comment. Unlike granted credit, invoices paid from it count towards the affiliate fee, and it does not expire. A negative amount reverses a top-up, e.g. a bounced payment, and draws on paid credit only.
+	CustomerCreditsTopUp(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsTopUpJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// CustomerPermissionsReviewsList performs a GET /api/customer-permissions-reviews/ (the `CustomerPermissionsReviewsList` operationId) request.
 	CustomerPermissionsReviewsList(ctx context.Context, params *CustomerPermissionsReviewsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -115103,7 +115188,7 @@ type ClientInterface interface {
 
 	// CustomersList List customers
 	//
-	// Retrieve a list of customers. The list is filtered based on the user's permissions. A user whose only link to an organization is a role on its service provider sees it with a restricted field set: url, uuid, name, native_name, display_name, abbreviation, slug, image, country, country_name, is_service_provider, service_provider and service_provider_uuid. All other fields are omitted for that row.
+	// Retrieve a list of customers. The list is filtered based on the user's permissions. A user whose only link to an organization is a role on its service provider sees it with a restricted field set: url, uuid, name, native_name, display_name, abbreviation, slug, image, country, country_name, is_service_provider, service_provider and service_provider_uuid. All other fields are omitted for that row. Except to staff and support, an organization that limits portal access to some networks is hidden from callers outside them; only a user whose sole link to it is a service provider role still finds it, with the restricted field set.
 	//
 	// Corresponds with GET /api/customers/ (the `CustomersList` operationId).
 	CustomersList(ctx context.Context, params *CustomersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -144669,6 +144754,70 @@ func (c *Client) CustomerCreditsConsumptionsList(ctx context.Context, uuid opena
 	return c.Client.Do(req)
 }
 
+// CustomerCreditsReclassifyWithBody performs a POST /api/customer-credits/{uuid}/reclassify/ (the `CustomerCreditsReclassify` operationId) request,
+// with any type of body and a specified content type.
+//
+// Mark part of the granted credit as paid, e.g. a prepayment that was recorded as a plain credit grant. The credit value does not change; the ledger records the move with the comment.
+func (c *Client) CustomerCreditsReclassifyWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomerCreditsReclassifyRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// CustomerCreditsReclassify performs a POST /api/customer-credits/{uuid}/reclassify/ (the `CustomerCreditsReclassify` operationId) request.
+// Takes a body of the `application/json` content type.
+//
+// Mark part of the granted credit as paid, e.g. a prepayment that was recorded as a plain credit grant. The credit value does not change; the ledger records the move with the comment.
+func (c *Client) CustomerCreditsReclassify(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsReclassifyJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomerCreditsReclassifyRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// CustomerCreditsTopUpWithBody performs a POST /api/customer-credits/{uuid}/top_up/ (the `CustomerCreditsTopUp` operationId) request,
+// with any type of body and a specified content type.
+//
+// Record a customer prepayment as paid credit. Raises the credit value and writes a top-up ledger entry with the comment. Unlike granted credit, invoices paid from it count towards the affiliate fee, and it does not expire. A negative amount reverses a top-up, e.g. a bounced payment, and draws on paid credit only.
+func (c *Client) CustomerCreditsTopUpWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomerCreditsTopUpRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// CustomerCreditsTopUp performs a POST /api/customer-credits/{uuid}/top_up/ (the `CustomerCreditsTopUp` operationId) request.
+// Takes a body of the `application/json` content type.
+//
+// Record a customer prepayment as paid credit. Raises the credit value and writes a top-up ledger entry with the comment. Unlike granted credit, invoices paid from it count towards the affiliate fee, and it does not expire. A negative amount reverses a top-up, e.g. a bounced payment, and draws on paid credit only.
+func (c *Client) CustomerCreditsTopUp(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsTopUpJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomerCreditsTopUpRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // CustomerPermissionsReviewsList performs a GET /api/customer-permissions-reviews/ (the `CustomerPermissionsReviewsList` operationId) request.
 func (c *Client) CustomerPermissionsReviewsList(ctx context.Context, params *CustomerPermissionsReviewsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCustomerPermissionsReviewsListRequest(c.Server, params)
@@ -144839,7 +144988,7 @@ func (c *Client) CustomerRoleConcealmentsRetrieve(ctx context.Context, uuid open
 
 // CustomersList List customers
 //
-// Retrieve a list of customers. The list is filtered based on the user's permissions. A user whose only link to an organization is a role on its service provider sees it with a restricted field set: url, uuid, name, native_name, display_name, abbreviation, slug, image, country, country_name, is_service_provider, service_provider and service_provider_uuid. All other fields are omitted for that row.
+// Retrieve a list of customers. The list is filtered based on the user's permissions. A user whose only link to an organization is a role on its service provider sees it with a restricted field set: url, uuid, name, native_name, display_name, abbreviation, slug, image, country, country_name, is_service_provider, service_provider and service_provider_uuid. All other fields are omitted for that row. Except to staff and support, an organization that limits portal access to some networks is hidden from callers outside them; only a user whose sole link to it is a service provider role still finds it, with the restricted field set.
 //
 // Corresponds with GET /api/customers/ (the `CustomersList` operationId).
 func (c *Client) CustomersList(ctx context.Context, params *CustomersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -228494,6 +228643,100 @@ func NewCustomerCreditsConsumptionsListRequest(server string, uuid openapi_types
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewCustomerCreditsReclassifyRequest calls the generic CustomerCreditsReclassify builder with application/json body
+func NewCustomerCreditsReclassifyRequest(server string, uuid openapi_types.UUID, body CustomerCreditsReclassifyJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCustomerCreditsReclassifyRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewCustomerCreditsReclassifyRequestWithBody constructs an http.Request for the CustomerCreditsReclassify method, with any body, and a specified content type
+func NewCustomerCreditsReclassifyRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/customer-credits/%s/reclassify/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewCustomerCreditsTopUpRequest calls the generic CustomerCreditsTopUp builder with application/json body
+func NewCustomerCreditsTopUpRequest(server string, uuid openapi_types.UUID, body CustomerCreditsTopUpJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCustomerCreditsTopUpRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewCustomerCreditsTopUpRequestWithBody constructs an http.Request for the CustomerCreditsTopUp method, with any body, and a specified content type
+func NewCustomerCreditsTopUpRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/customer-credits/%s/top_up/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -436093,6 +436336,34 @@ type ClientWithResponsesInterface interface {
 	// Returns a wrapper object for the known response body format(s).
 	CustomerCreditsConsumptionsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *CustomerCreditsConsumptionsListParams, reqEditors ...RequestEditorFn) (*CustomerCreditsConsumptionsListResponse, error)
 
+	// CustomerCreditsReclassifyWithBodyWithResponse performs a POST /api/customer-credits/{uuid}/reclassify/ (the `CustomerCreditsReclassify` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Mark part of the granted credit as paid, e.g. a prepayment that was recorded as a plain credit grant. The credit value does not change; the ledger records the move with the comment.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	CustomerCreditsReclassifyWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomerCreditsReclassifyResponse, error)
+
+	// CustomerCreditsReclassifyWithResponse performs a POST /api/customer-credits/{uuid}/reclassify/ (the `CustomerCreditsReclassify` operationId) request.
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Mark part of the granted credit as paid, e.g. a prepayment that was recorded as a plain credit grant. The credit value does not change; the ledger records the move with the comment.
+	CustomerCreditsReclassifyWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsReclassifyJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomerCreditsReclassifyResponse, error)
+
+	// CustomerCreditsTopUpWithBodyWithResponse performs a POST /api/customer-credits/{uuid}/top_up/ (the `CustomerCreditsTopUp` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Record a customer prepayment as paid credit. Raises the credit value and writes a top-up ledger entry with the comment. Unlike granted credit, invoices paid from it count towards the affiliate fee, and it does not expire. A negative amount reverses a top-up, e.g. a bounced payment, and draws on paid credit only.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	CustomerCreditsTopUpWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomerCreditsTopUpResponse, error)
+
+	// CustomerCreditsTopUpWithResponse performs a POST /api/customer-credits/{uuid}/top_up/ (the `CustomerCreditsTopUp` operationId) request.
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Record a customer prepayment as paid credit. Raises the credit value and writes a top-up ledger entry with the comment. Unlike granted credit, invoices paid from it count towards the affiliate fee, and it does not expire. A negative amount reverses a top-up, e.g. a bounced payment, and draws on paid credit only.
+	CustomerCreditsTopUpWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsTopUpJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomerCreditsTopUpResponse, error)
+
 	// CustomerPermissionsReviewsListWithResponse performs a GET /api/customer-permissions-reviews/ (the `CustomerPermissionsReviewsList` operationId) request.
 	//
 	// Returns a wrapper object for the known response body format(s).
@@ -436165,7 +436436,7 @@ type ClientWithResponsesInterface interface {
 
 	// CustomersListWithResponse List customers
 	//
-	// Retrieve a list of customers. The list is filtered based on the user's permissions. A user whose only link to an organization is a role on its service provider sees it with a restricted field set: url, uuid, name, native_name, display_name, abbreviation, slug, image, country, country_name, is_service_provider, service_provider and service_provider_uuid. All other fields are omitted for that row.
+	// Retrieve a list of customers. The list is filtered based on the user's permissions. A user whose only link to an organization is a role on its service provider sees it with a restricted field set: url, uuid, name, native_name, display_name, abbreviation, slug, image, country, country_name, is_service_provider, service_provider and service_provider_uuid. All other fields are omitted for that row. Except to staff and support, an organization that limits portal access to some networks is hidden from callers outside them; only a user whose sole link to it is a service provider role still finds it, with the restricted field set.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -477835,6 +478106,88 @@ func (r CustomerCreditsConsumptionsListResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r CustomerCreditsConsumptionsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type CustomerCreditsReclassifyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *CustomerCredit
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r CustomerCreditsReclassifyResponse) GetJSON200() *CustomerCredit {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r CustomerCreditsReclassifyResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r CustomerCreditsReclassifyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CustomerCreditsReclassifyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r CustomerCreditsReclassifyResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type CustomerCreditsTopUpResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *CustomerCredit
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r CustomerCreditsTopUpResponse) GetJSON200() *CustomerCredit {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r CustomerCreditsTopUpResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r CustomerCreditsTopUpResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CustomerCreditsTopUpResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r CustomerCreditsTopUpResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -588284,6 +588637,58 @@ func (c *ClientWithResponses) CustomerCreditsConsumptionsListWithResponse(ctx co
 	return ParseCustomerCreditsConsumptionsListResponse(rsp)
 }
 
+// CustomerCreditsReclassifyWithBodyWithResponse performs a POST /api/customer-credits/{uuid}/reclassify/ (the `CustomerCreditsReclassify` operationId) request,
+// with any type of body and a specified content type.
+//
+// Mark part of the granted credit as paid, e.g. a prepayment that was recorded as a plain credit grant. The credit value does not change; the ledger records the move with the comment.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) CustomerCreditsReclassifyWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomerCreditsReclassifyResponse, error) {
+	rsp, err := c.CustomerCreditsReclassifyWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomerCreditsReclassifyResponse(rsp)
+}
+
+// CustomerCreditsReclassifyWithResponse performs a POST /api/customer-credits/{uuid}/reclassify/ (the `CustomerCreditsReclassify` operationId) request.
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Mark part of the granted credit as paid, e.g. a prepayment that was recorded as a plain credit grant. The credit value does not change; the ledger records the move with the comment.
+func (c *ClientWithResponses) CustomerCreditsReclassifyWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsReclassifyJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomerCreditsReclassifyResponse, error) {
+	rsp, err := c.CustomerCreditsReclassify(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomerCreditsReclassifyResponse(rsp)
+}
+
+// CustomerCreditsTopUpWithBodyWithResponse performs a POST /api/customer-credits/{uuid}/top_up/ (the `CustomerCreditsTopUp` operationId) request,
+// with any type of body and a specified content type.
+//
+// Record a customer prepayment as paid credit. Raises the credit value and writes a top-up ledger entry with the comment. Unlike granted credit, invoices paid from it count towards the affiliate fee, and it does not expire. A negative amount reverses a top-up, e.g. a bounced payment, and draws on paid credit only.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) CustomerCreditsTopUpWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomerCreditsTopUpResponse, error) {
+	rsp, err := c.CustomerCreditsTopUpWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomerCreditsTopUpResponse(rsp)
+}
+
+// CustomerCreditsTopUpWithResponse performs a POST /api/customer-credits/{uuid}/top_up/ (the `CustomerCreditsTopUp` operationId) request.
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Record a customer prepayment as paid credit. Raises the credit value and writes a top-up ledger entry with the comment. Unlike granted credit, invoices paid from it count towards the affiliate fee, and it does not expire. A negative amount reverses a top-up, e.g. a bounced payment, and draws on paid credit only.
+func (c *ClientWithResponses) CustomerCreditsTopUpWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsTopUpJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomerCreditsTopUpResponse, error) {
+	rsp, err := c.CustomerCreditsTopUp(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomerCreditsTopUpResponse(rsp)
+}
+
 // CustomerPermissionsReviewsListWithResponse performs a GET /api/customer-permissions-reviews/ (the `CustomerPermissionsReviewsList` operationId) request.
 //
 // Returns a wrapper object for the known response body format(s).
@@ -588428,7 +588833,7 @@ func (c *ClientWithResponses) CustomerRoleConcealmentsRetrieveWithResponse(ctx c
 
 // CustomersListWithResponse List customers
 //
-// Retrieve a list of customers. The list is filtered based on the user's permissions. A user whose only link to an organization is a role on its service provider sees it with a restricted field set: url, uuid, name, native_name, display_name, abbreviation, slug, image, country, country_name, is_service_provider, service_provider and service_provider_uuid. All other fields are omitted for that row.
+// Retrieve a list of customers. The list is filtered based on the user's permissions. A user whose only link to an organization is a role on its service provider sees it with a restricted field set: url, uuid, name, native_name, display_name, abbreviation, slug, image, country, country_name, is_service_provider, service_provider and service_provider_uuid. All other fields are omitted for that row. Except to staff and support, an organization that limits portal access to some networks is hidden from callers outside them; only a user whose sole link to it is a service provider role still finds it, with the restricted field set.
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -644984,6 +645389,58 @@ func ParseCustomerCreditsConsumptionsListResponse(rsp *http.Response) (*Customer
 			headers.XResultCount = &value
 		}
 		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParseCustomerCreditsReclassifyResponse parses an HTTP response from a CustomerCreditsReclassifyWithResponse call
+func ParseCustomerCreditsReclassifyResponse(rsp *http.Response) (*CustomerCreditsReclassifyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CustomerCreditsReclassifyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CustomerCredit
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCustomerCreditsTopUpResponse parses an HTTP response from a CustomerCreditsTopUpWithResponse call
+func ParseCustomerCreditsTopUpResponse(rsp *http.Response) (*CustomerCreditsTopUpResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CustomerCreditsTopUpResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CustomerCredit
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
