@@ -51173,11 +51173,6 @@ type PatchedUserInfoRequest struct {
 	User      *string `json:"user,omitempty"`
 }
 
-// PatchedUserOfferingConsentRequest defines model for PatchedUserOfferingConsentRequest.
-type PatchedUserOfferingConsentRequest struct {
-	Version *string `json:"version,omitempty"`
-}
-
 // PatchedUserRequest defines model for PatchedUserRequest.
 type PatchedUserRequest struct {
 	ActiveIsds   *[]string `json:"active_isds,omitempty"`
@@ -57401,19 +57396,6 @@ type ResourceEndDateChangeRequestCreateRequest struct {
 	Resource         openapi_types.UUID `json:"resource"`
 }
 
-// ResourceEndDateChangeRequestRequest defines model for ResourceEndDateChangeRequestRequest.
-type ResourceEndDateChangeRequestRequest struct {
-	// Comment Optional comment from the requester
-	Comment *string `json:"comment,omitempty"`
-
-	// RequestedEndDate The requested new end date for the resource
-	RequestedEndDate openapi_types.Date `json:"requested_end_date"`
-	Resource         string             `json:"resource"`
-
-	// ReviewComment Optional comment provided during review
-	ReviewComment *string `json:"review_comment,omitempty"`
-}
-
 // ResourceEndDateRequest defines model for ResourceEndDateRequest.
 type ResourceEndDateRequest struct {
 	// EndDate The date is inclusive. Once reached, a resource will be scheduled for termination.
@@ -57479,15 +57461,6 @@ type ResourceLimitChangeRequestCreate struct {
 type ResourceLimitChangeRequestCreateRequest struct {
 	RequestedLimits map[string]float64 `json:"requested_limits"`
 	Resource        openapi_types.UUID `json:"resource"`
-}
-
-// ResourceLimitChangeRequestRequest defines model for ResourceLimitChangeRequestRequest.
-type ResourceLimitChangeRequestRequest struct {
-	RequestedLimits map[string]interface{} `json:"requested_limits"`
-	Resource        string                 `json:"resource"`
-
-	// ReviewComment Optional comment provided during review
-	ReviewComment *string `json:"review_comment,omitempty"`
 }
 
 // ResourceLimitPeriod defines model for ResourceLimitPeriod.
@@ -62314,11 +62287,6 @@ type UserOfferingConsentCreateRequest struct {
 
 // UserOfferingConsentOEnum defines model for UserOfferingConsentOEnum.
 type UserOfferingConsentOEnum string
-
-// UserOfferingConsentRequest defines model for UserOfferingConsentRequest.
-type UserOfferingConsentRequest struct {
-	Version *string `json:"version,omitempty"`
-}
 
 // UserOrganizationCount defines model for UserOrganizationCount.
 type UserOrganizationCount struct {
@@ -70649,18 +70617,6 @@ type MarketplaceOfferingUsersCountParams struct {
 
 	// Username Username
 	Username *string `form:"username,omitempty" json:"username,omitempty"`
-}
-
-// MarketplaceOfferingUsersChecklistTemplateRetrieveParams defines parameters for MarketplaceOfferingUsersChecklistTemplateRetrieve.
-type MarketplaceOfferingUsersChecklistTemplateRetrieveParams struct {
-	// ParentUuid UUID of the parent object (e.g., customer UUID for new projects)
-	ParentUuid openapi_types.UUID `form:"parent_uuid" json:"parent_uuid"`
-}
-
-// MarketplaceOfferingUsersChecklistTemplateCountParams defines parameters for MarketplaceOfferingUsersChecklistTemplateCount.
-type MarketplaceOfferingUsersChecklistTemplateCountParams struct {
-	// ParentUuid UUID of the parent object (e.g., customer UUID for new projects)
-	ParentUuid openapi_types.UUID `form:"parent_uuid" json:"parent_uuid"`
 }
 
 // MarketplaceOfferingUsersPosixIdentitiesListParams defines parameters for MarketplaceOfferingUsersPosixIdentitiesList.
@@ -92199,9 +92155,6 @@ type MarketplaceResourceEndDateChangeRequestsCreateJSONRequestBody = ResourceEnd
 // MarketplaceResourceEndDateChangeRequestsApproveJSONRequestBody defines body for MarketplaceResourceEndDateChangeRequestsApprove for application/json ContentType.
 type MarketplaceResourceEndDateChangeRequestsApproveJSONRequestBody = ReviewCommentRequest
 
-// MarketplaceResourceEndDateChangeRequestsCancelJSONRequestBody defines body for MarketplaceResourceEndDateChangeRequestsCancel for application/json ContentType.
-type MarketplaceResourceEndDateChangeRequestsCancelJSONRequestBody = ResourceEndDateChangeRequestRequest
-
 // MarketplaceResourceEndDateChangeRequestsRejectJSONRequestBody defines body for MarketplaceResourceEndDateChangeRequestsReject for application/json ContentType.
 type MarketplaceResourceEndDateChangeRequestsRejectJSONRequestBody = ReviewCommentRequest
 
@@ -92213,9 +92166,6 @@ type MarketplaceResourceLimitChangeRequestsCreateJSONRequestBody = ResourceLimit
 
 // MarketplaceResourceLimitChangeRequestsApproveJSONRequestBody defines body for MarketplaceResourceLimitChangeRequestsApprove for application/json ContentType.
 type MarketplaceResourceLimitChangeRequestsApproveJSONRequestBody = ReviewCommentRequest
-
-// MarketplaceResourceLimitChangeRequestsCancelJSONRequestBody defines body for MarketplaceResourceLimitChangeRequestsCancel for application/json ContentType.
-type MarketplaceResourceLimitChangeRequestsCancelJSONRequestBody = ResourceLimitChangeRequestRequest
 
 // MarketplaceResourceLimitChangeRequestsRejectJSONRequestBody defines body for MarketplaceResourceLimitChangeRequestsReject for application/json ContentType.
 type MarketplaceResourceLimitChangeRequestsRejectJSONRequestBody = ReviewCommentRequest
@@ -92526,12 +92476,6 @@ type MarketplaceTagsUpdateJSONRequestBody = TagRequest
 
 // MarketplaceUserOfferingConsentsCreateJSONRequestBody defines body for MarketplaceUserOfferingConsentsCreate for application/json ContentType.
 type MarketplaceUserOfferingConsentsCreateJSONRequestBody = UserOfferingConsentCreateRequest
-
-// MarketplaceUserOfferingConsentsPartialUpdateJSONRequestBody defines body for MarketplaceUserOfferingConsentsPartialUpdate for application/json ContentType.
-type MarketplaceUserOfferingConsentsPartialUpdateJSONRequestBody = PatchedUserOfferingConsentRequest
-
-// MarketplaceUserOfferingConsentsUpdateJSONRequestBody defines body for MarketplaceUserOfferingConsentsUpdate for application/json ContentType.
-type MarketplaceUserOfferingConsentsUpdateJSONRequestBody = UserOfferingConsentRequest
 
 // MatrixCryptoEscrowJSONRequestBody defines body for MatrixCryptoEscrow for application/json ContentType.
 type MatrixCryptoEscrowJSONRequestBody = MatrixCryptoEscrowRequest
@@ -119628,16 +119572,6 @@ type ClientInterface interface {
 	// Corresponds with POST /api/marketplace-offering-users/ (the `MarketplaceOfferingUsersCreate` operationId).
 	MarketplaceOfferingUsersCreate(ctx context.Context, body MarketplaceOfferingUsersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceOfferingUsersChecklistTemplateRetrieve performs a GET /api/marketplace-offering-users/checklist-template/ (the `MarketplaceOfferingUsersChecklistTemplateRetrieve` operationId) request.
-	//
-	// Get checklist template for creating new objects.
-	MarketplaceOfferingUsersChecklistTemplateRetrieve(ctx context.Context, params *MarketplaceOfferingUsersChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceOfferingUsersChecklistTemplateCount performs a HEAD /api/marketplace-offering-users/checklist-template/ (the `MarketplaceOfferingUsersChecklistTemplateCount` operationId) request.
-	//
-	// Get number of items in the collection matching the request parameters.
-	MarketplaceOfferingUsersChecklistTemplateCount(ctx context.Context, params *MarketplaceOfferingUsersChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// MarketplaceOfferingUsersPosixIdentitiesList List a user's POSIX identities across all their offerings
 	//
 	// Consolidated view of one user's POSIX identifiers (UID, primary GID and project group GIDs), one row per pool and namespace: a UID allocated once for the user is reported once, listing every offering that uses it. An offering with its own pool yields its own row. Scoped to the offering users the requester is allowed to see.
@@ -123202,17 +123136,10 @@ type ClientInterface interface {
 	// Approve resource end date change request and apply the date to the resource.
 	MarketplaceResourceEndDateChangeRequestsApprove(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceEndDateChangeRequestsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceResourceEndDateChangeRequestsCancelWithBody performs a POST /api/marketplace-resource-end-date-change-requests/{uuid}/cancel/ (the `MarketplaceResourceEndDateChangeRequestsCancel` operationId) request,
-	// with any type of body and a specified content type.
-	//
-	// Cancel resource end date change request. Only the creator can cancel.
-	MarketplaceResourceEndDateChangeRequestsCancelWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// MarketplaceResourceEndDateChangeRequestsCancel performs a POST /api/marketplace-resource-end-date-change-requests/{uuid}/cancel/ (the `MarketplaceResourceEndDateChangeRequestsCancel` operationId) request.
-	// Takes a body of the `application/json` content type.
 	//
 	// Cancel resource end date change request. Only the creator can cancel.
-	MarketplaceResourceEndDateChangeRequestsCancel(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceEndDateChangeRequestsCancelJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	MarketplaceResourceEndDateChangeRequestsCancel(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourceEndDateChangeRequestsRejectWithBody performs a POST /api/marketplace-resource-end-date-change-requests/{uuid}/reject/ (the `MarketplaceResourceEndDateChangeRequestsReject` operationId) request,
 	// with any type of body and a specified content type.
@@ -123275,17 +123202,10 @@ type ClientInterface interface {
 	// Approve resource limit change request and apply limits via marketplace order.
 	MarketplaceResourceLimitChangeRequestsApprove(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceLimitChangeRequestsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceResourceLimitChangeRequestsCancelWithBody performs a POST /api/marketplace-resource-limit-change-requests/{uuid}/cancel/ (the `MarketplaceResourceLimitChangeRequestsCancel` operationId) request,
-	// with any type of body and a specified content type.
-	//
-	// Cancel resource limit change request. Only the creator can cancel.
-	MarketplaceResourceLimitChangeRequestsCancelWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// MarketplaceResourceLimitChangeRequestsCancel performs a POST /api/marketplace-resource-limit-change-requests/{uuid}/cancel/ (the `MarketplaceResourceLimitChangeRequestsCancel` operationId) request.
-	// Takes a body of the `application/json` content type.
 	//
 	// Cancel resource limit change request. Only the creator can cancel.
-	MarketplaceResourceLimitChangeRequestsCancel(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceLimitChangeRequestsCancelJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	MarketplaceResourceLimitChangeRequestsCancel(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourceLimitChangeRequestsRejectWithBody performs a POST /api/marketplace-resource-limit-change-requests/{uuid}/reject/ (the `MarketplaceResourceLimitChangeRequestsReject` operationId) request,
 	// with any type of body and a specified content type.
@@ -126142,31 +126062,12 @@ type ClientInterface interface {
 	// Corresponds with POST /api/marketplace-user-offering-consents/ (the `MarketplaceUserOfferingConsentsCreate` operationId).
 	MarketplaceUserOfferingConsentsCreate(ctx context.Context, body MarketplaceUserOfferingConsentsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceUserOfferingConsentsDestroy performs a DELETE /api/marketplace-user-offering-consents/{uuid}/ (the `MarketplaceUserOfferingConsentsDestroy` operationId) request.
-	MarketplaceUserOfferingConsentsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// MarketplaceUserOfferingConsentsRetrieve Retrieve a user offering consent
 	//
 	// Returns the details of a specific consent record.
 	//
 	// Corresponds with GET /api/marketplace-user-offering-consents/{uuid}/ (the `MarketplaceUserOfferingConsentsRetrieve` operationId).
 	MarketplaceUserOfferingConsentsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceUserOfferingConsentsPartialUpdateWithBody performs a PATCH /api/marketplace-user-offering-consents/{uuid}/ (the `MarketplaceUserOfferingConsentsPartialUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	MarketplaceUserOfferingConsentsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceUserOfferingConsentsPartialUpdate performs a PATCH /api/marketplace-user-offering-consents/{uuid}/ (the `MarketplaceUserOfferingConsentsPartialUpdate` operationId) request.
-	// Takes a body of the `application/json` content type.
-	MarketplaceUserOfferingConsentsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceUserOfferingConsentsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceUserOfferingConsentsUpdateWithBody performs a PUT /api/marketplace-user-offering-consents/{uuid}/ (the `MarketplaceUserOfferingConsentsUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	MarketplaceUserOfferingConsentsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceUserOfferingConsentsUpdate performs a PUT /api/marketplace-user-offering-consents/{uuid}/ (the `MarketplaceUserOfferingConsentsUpdate` operationId) request.
-	// Takes a body of the `application/json` content type.
-	MarketplaceUserOfferingConsentsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceUserOfferingConsentsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceUserOfferingConsentsRevoke Revoke consent to Terms of Service
 	//
@@ -156564,36 +156465,6 @@ func (c *Client) MarketplaceOfferingUsersCreate(ctx context.Context, body Market
 	return c.Client.Do(req)
 }
 
-// MarketplaceOfferingUsersChecklistTemplateRetrieve performs a GET /api/marketplace-offering-users/checklist-template/ (the `MarketplaceOfferingUsersChecklistTemplateRetrieve` operationId) request.
-//
-// Get checklist template for creating new objects.
-func (c *Client) MarketplaceOfferingUsersChecklistTemplateRetrieve(ctx context.Context, params *MarketplaceOfferingUsersChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceOfferingUsersChecklistTemplateRetrieveRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// MarketplaceOfferingUsersChecklistTemplateCount performs a HEAD /api/marketplace-offering-users/checklist-template/ (the `MarketplaceOfferingUsersChecklistTemplateCount` operationId) request.
-//
-// Get number of items in the collection matching the request parameters.
-func (c *Client) MarketplaceOfferingUsersChecklistTemplateCount(ctx context.Context, params *MarketplaceOfferingUsersChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceOfferingUsersChecklistTemplateCountRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 // MarketplaceOfferingUsersPosixIdentitiesList List a user's POSIX identities across all their offerings
 //
 // Consolidated view of one user's POSIX identifiers (UID, primary GID and project group GIDs), one row per pool and namespace: a UID allocated once for the user is reported once, listing every offering that uses it. An offering with its own pool yields its own row. Scoped to the offering users the requester is allowed to see.
@@ -164866,28 +164737,11 @@ func (c *Client) MarketplaceResourceEndDateChangeRequestsApprove(ctx context.Con
 	return c.Client.Do(req)
 }
 
-// MarketplaceResourceEndDateChangeRequestsCancelWithBody performs a POST /api/marketplace-resource-end-date-change-requests/{uuid}/cancel/ (the `MarketplaceResourceEndDateChangeRequestsCancel` operationId) request,
-// with any type of body and a specified content type.
-//
-// Cancel resource end date change request. Only the creator can cancel.
-func (c *Client) MarketplaceResourceEndDateChangeRequestsCancelWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceResourceEndDateChangeRequestsCancelRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 // MarketplaceResourceEndDateChangeRequestsCancel performs a POST /api/marketplace-resource-end-date-change-requests/{uuid}/cancel/ (the `MarketplaceResourceEndDateChangeRequestsCancel` operationId) request.
-// Takes a body of the `application/json` content type.
 //
 // Cancel resource end date change request. Only the creator can cancel.
-func (c *Client) MarketplaceResourceEndDateChangeRequestsCancel(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceEndDateChangeRequestsCancelJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceResourceEndDateChangeRequestsCancelRequest(c.Server, uuid, body)
+func (c *Client) MarketplaceResourceEndDateChangeRequestsCancel(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceEndDateChangeRequestsCancelRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -165069,28 +164923,11 @@ func (c *Client) MarketplaceResourceLimitChangeRequestsApprove(ctx context.Conte
 	return c.Client.Do(req)
 }
 
-// MarketplaceResourceLimitChangeRequestsCancelWithBody performs a POST /api/marketplace-resource-limit-change-requests/{uuid}/cancel/ (the `MarketplaceResourceLimitChangeRequestsCancel` operationId) request,
-// with any type of body and a specified content type.
-//
-// Cancel resource limit change request. Only the creator can cancel.
-func (c *Client) MarketplaceResourceLimitChangeRequestsCancelWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceResourceLimitChangeRequestsCancelRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 // MarketplaceResourceLimitChangeRequestsCancel performs a POST /api/marketplace-resource-limit-change-requests/{uuid}/cancel/ (the `MarketplaceResourceLimitChangeRequestsCancel` operationId) request.
-// Takes a body of the `application/json` content type.
 //
 // Cancel resource limit change request. Only the creator can cancel.
-func (c *Client) MarketplaceResourceLimitChangeRequestsCancel(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceLimitChangeRequestsCancelJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceResourceLimitChangeRequestsCancelRequest(c.Server, uuid, body)
+func (c *Client) MarketplaceResourceLimitChangeRequestsCancel(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceLimitChangeRequestsCancelRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -172297,19 +172134,6 @@ func (c *Client) MarketplaceUserOfferingConsentsCreate(ctx context.Context, body
 	return c.Client.Do(req)
 }
 
-// MarketplaceUserOfferingConsentsDestroy performs a DELETE /api/marketplace-user-offering-consents/{uuid}/ (the `MarketplaceUserOfferingConsentsDestroy` operationId) request.
-func (c *Client) MarketplaceUserOfferingConsentsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceUserOfferingConsentsDestroyRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 // MarketplaceUserOfferingConsentsRetrieve Retrieve a user offering consent
 //
 // Returns the details of a specific consent record.
@@ -172317,62 +172141,6 @@ func (c *Client) MarketplaceUserOfferingConsentsDestroy(ctx context.Context, uui
 // Corresponds with GET /api/marketplace-user-offering-consents/{uuid}/ (the `MarketplaceUserOfferingConsentsRetrieve` operationId).
 func (c *Client) MarketplaceUserOfferingConsentsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceUserOfferingConsentsRetrieveRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// MarketplaceUserOfferingConsentsPartialUpdateWithBody performs a PATCH /api/marketplace-user-offering-consents/{uuid}/ (the `MarketplaceUserOfferingConsentsPartialUpdate` operationId) request,
-// with any type of body and a specified content type.
-func (c *Client) MarketplaceUserOfferingConsentsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceUserOfferingConsentsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// MarketplaceUserOfferingConsentsPartialUpdate performs a PATCH /api/marketplace-user-offering-consents/{uuid}/ (the `MarketplaceUserOfferingConsentsPartialUpdate` operationId) request.
-// Takes a body of the `application/json` content type.
-func (c *Client) MarketplaceUserOfferingConsentsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceUserOfferingConsentsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceUserOfferingConsentsPartialUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// MarketplaceUserOfferingConsentsUpdateWithBody performs a PUT /api/marketplace-user-offering-consents/{uuid}/ (the `MarketplaceUserOfferingConsentsUpdate` operationId) request,
-// with any type of body and a specified content type.
-func (c *Client) MarketplaceUserOfferingConsentsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceUserOfferingConsentsUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// MarketplaceUserOfferingConsentsUpdate performs a PUT /api/marketplace-user-offering-consents/{uuid}/ (the `MarketplaceUserOfferingConsentsUpdate` operationId) request.
-// Takes a body of the `application/json` content type.
-func (c *Client) MarketplaceUserOfferingConsentsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceUserOfferingConsentsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceUserOfferingConsentsUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -269988,106 +269756,6 @@ func NewMarketplaceOfferingUsersCreateRequestWithBody(server string, contentType
 	return req, nil
 }
 
-// NewMarketplaceOfferingUsersChecklistTemplateRetrieveRequest constructs an http.Request for the MarketplaceOfferingUsersChecklistTemplateRetrieve method
-func NewMarketplaceOfferingUsersChecklistTemplateRetrieveRequest(server string, params *MarketplaceOfferingUsersChecklistTemplateRetrieveParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-offering-users/checklist-template/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "parent_uuid", params.ParentUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-			return nil, err
-		} else {
-			for _, qp := range strings.Split(queryFrag, "&") {
-				rawQueryFragments = append(rawQueryFragments, qp)
-			}
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceOfferingUsersChecklistTemplateCountRequest constructs an http.Request for the MarketplaceOfferingUsersChecklistTemplateCount method
-func NewMarketplaceOfferingUsersChecklistTemplateCountRequest(server string, params *MarketplaceOfferingUsersChecklistTemplateCountParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-offering-users/checklist-template/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "parent_uuid", params.ParentUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-			return nil, err
-		} else {
-			for _, qp := range strings.Split(queryFrag, "&") {
-				rawQueryFragments = append(rawQueryFragments, qp)
-			}
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
-	}
-
-	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewMarketplaceOfferingUsersPosixIdentitiesListRequest constructs an http.Request for the MarketplaceOfferingUsersPosixIdentitiesList method
 func NewMarketplaceOfferingUsersPosixIdentitiesListRequest(server string, params *MarketplaceOfferingUsersPosixIdentitiesListParams) (*http.Request, error) {
 	var err error
@@ -299655,19 +299323,8 @@ func NewMarketplaceResourceEndDateChangeRequestsApproveRequestWithBody(server st
 	return req, nil
 }
 
-// NewMarketplaceResourceEndDateChangeRequestsCancelRequest calls the generic MarketplaceResourceEndDateChangeRequestsCancel builder with application/json body
-func NewMarketplaceResourceEndDateChangeRequestsCancelRequest(server string, uuid openapi_types.UUID, body MarketplaceResourceEndDateChangeRequestsCancelJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceResourceEndDateChangeRequestsCancelRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewMarketplaceResourceEndDateChangeRequestsCancelRequestWithBody constructs an http.Request for the MarketplaceResourceEndDateChangeRequestsCancel method, with any body, and a specified content type
-func NewMarketplaceResourceEndDateChangeRequestsCancelRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewMarketplaceResourceEndDateChangeRequestsCancelRequest constructs an http.Request for the MarketplaceResourceEndDateChangeRequestsCancel method
+func NewMarketplaceResourceEndDateChangeRequestsCancelRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -299692,12 +299349,10 @@ func NewMarketplaceResourceEndDateChangeRequestsCancelRequestWithBody(server str
 		return nil, err
 	}
 
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -300169,19 +299824,8 @@ func NewMarketplaceResourceLimitChangeRequestsApproveRequestWithBody(server stri
 	return req, nil
 }
 
-// NewMarketplaceResourceLimitChangeRequestsCancelRequest calls the generic MarketplaceResourceLimitChangeRequestsCancel builder with application/json body
-func NewMarketplaceResourceLimitChangeRequestsCancelRequest(server string, uuid openapi_types.UUID, body MarketplaceResourceLimitChangeRequestsCancelJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceResourceLimitChangeRequestsCancelRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewMarketplaceResourceLimitChangeRequestsCancelRequestWithBody constructs an http.Request for the MarketplaceResourceLimitChangeRequestsCancel method, with any body, and a specified content type
-func NewMarketplaceResourceLimitChangeRequestsCancelRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewMarketplaceResourceLimitChangeRequestsCancelRequest constructs an http.Request for the MarketplaceResourceLimitChangeRequestsCancel method
+func NewMarketplaceResourceLimitChangeRequestsCancelRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -300206,12 +299850,10 @@ func NewMarketplaceResourceLimitChangeRequestsCancelRequestWithBody(server strin
 		return nil, err
 	}
 
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -332806,40 +332448,6 @@ func NewMarketplaceUserOfferingConsentsCreateRequestWithBody(server string, cont
 	return req, nil
 }
 
-// NewMarketplaceUserOfferingConsentsDestroyRequest constructs an http.Request for the MarketplaceUserOfferingConsentsDestroy method
-func NewMarketplaceUserOfferingConsentsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-user-offering-consents/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewMarketplaceUserOfferingConsentsRetrieveRequest constructs an http.Request for the MarketplaceUserOfferingConsentsRetrieve method
 func NewMarketplaceUserOfferingConsentsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -332870,100 +332478,6 @@ func NewMarketplaceUserOfferingConsentsRetrieveRequest(server string, uuid opena
 	if err != nil {
 		return nil, err
 	}
-
-	return req, nil
-}
-
-// NewMarketplaceUserOfferingConsentsPartialUpdateRequest calls the generic MarketplaceUserOfferingConsentsPartialUpdate builder with application/json body
-func NewMarketplaceUserOfferingConsentsPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceUserOfferingConsentsPartialUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceUserOfferingConsentsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewMarketplaceUserOfferingConsentsPartialUpdateRequestWithBody constructs an http.Request for the MarketplaceUserOfferingConsentsPartialUpdate method, with any body, and a specified content type
-func NewMarketplaceUserOfferingConsentsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-user-offering-consents/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewMarketplaceUserOfferingConsentsUpdateRequest calls the generic MarketplaceUserOfferingConsentsUpdate builder with application/json body
-func NewMarketplaceUserOfferingConsentsUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceUserOfferingConsentsUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceUserOfferingConsentsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewMarketplaceUserOfferingConsentsUpdateRequestWithBody constructs an http.Request for the MarketplaceUserOfferingConsentsUpdate method, with any body, and a specified content type
-func NewMarketplaceUserOfferingConsentsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-user-offering-consents/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -442312,20 +441826,6 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with POST /api/marketplace-offering-users/ (the `MarketplaceOfferingUsersCreate` operationId).
 	MarketplaceOfferingUsersCreateWithResponse(ctx context.Context, body MarketplaceOfferingUsersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersCreateResponse, error)
 
-	// MarketplaceOfferingUsersChecklistTemplateRetrieveWithResponse performs a GET /api/marketplace-offering-users/checklist-template/ (the `MarketplaceOfferingUsersChecklistTemplateRetrieve` operationId) request.
-	//
-	// Get checklist template for creating new objects.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	MarketplaceOfferingUsersChecklistTemplateRetrieveWithResponse(ctx context.Context, params *MarketplaceOfferingUsersChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersChecklistTemplateRetrieveResponse, error)
-
-	// MarketplaceOfferingUsersChecklistTemplateCountWithResponse performs a HEAD /api/marketplace-offering-users/checklist-template/ (the `MarketplaceOfferingUsersChecklistTemplateCount` operationId) request.
-	//
-	// Get number of items in the collection matching the request parameters.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	MarketplaceOfferingUsersChecklistTemplateCountWithResponse(ctx context.Context, params *MarketplaceOfferingUsersChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersChecklistTemplateCountResponse, error)
-
 	// MarketplaceOfferingUsersPosixIdentitiesListWithResponse List a user's POSIX identities across all their offerings
 	//
 	// Consolidated view of one user's POSIX identifiers (UID, primary GID and project group GIDs), one row per pool and namespace: a UID allocated once for the user is reported once, listing every offering that uses it. An offering with its own pool yields its own row. Scoped to the offering users the requester is allowed to see.
@@ -446322,19 +445822,12 @@ type ClientWithResponsesInterface interface {
 	// Approve resource end date change request and apply the date to the resource.
 	MarketplaceResourceEndDateChangeRequestsApproveWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceEndDateChangeRequestsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceEndDateChangeRequestsApproveResponse, error)
 
-	// MarketplaceResourceEndDateChangeRequestsCancelWithBodyWithResponse performs a POST /api/marketplace-resource-end-date-change-requests/{uuid}/cancel/ (the `MarketplaceResourceEndDateChangeRequestsCancel` operationId) request,
-	// with any type of body and a specified content type.
+	// MarketplaceResourceEndDateChangeRequestsCancelWithResponse performs a POST /api/marketplace-resource-end-date-change-requests/{uuid}/cancel/ (the `MarketplaceResourceEndDateChangeRequestsCancel` operationId) request.
 	//
 	// Cancel resource end date change request. Only the creator can cancel.
 	//
 	// Returns a wrapper object for the known response body format(s).
-	MarketplaceResourceEndDateChangeRequestsCancelWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourceEndDateChangeRequestsCancelResponse, error)
-
-	// MarketplaceResourceEndDateChangeRequestsCancelWithResponse performs a POST /api/marketplace-resource-end-date-change-requests/{uuid}/cancel/ (the `MarketplaceResourceEndDateChangeRequestsCancel` operationId) request.
-	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	//
-	// Cancel resource end date change request. Only the creator can cancel.
-	MarketplaceResourceEndDateChangeRequestsCancelWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceEndDateChangeRequestsCancelJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceEndDateChangeRequestsCancelResponse, error)
+	MarketplaceResourceEndDateChangeRequestsCancelWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourceEndDateChangeRequestsCancelResponse, error)
 
 	// MarketplaceResourceEndDateChangeRequestsRejectWithBodyWithResponse performs a POST /api/marketplace-resource-end-date-change-requests/{uuid}/reject/ (the `MarketplaceResourceEndDateChangeRequestsReject` operationId) request,
 	// with any type of body and a specified content type.
@@ -446409,19 +445902,12 @@ type ClientWithResponsesInterface interface {
 	// Approve resource limit change request and apply limits via marketplace order.
 	MarketplaceResourceLimitChangeRequestsApproveWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceLimitChangeRequestsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsApproveResponse, error)
 
-	// MarketplaceResourceLimitChangeRequestsCancelWithBodyWithResponse performs a POST /api/marketplace-resource-limit-change-requests/{uuid}/cancel/ (the `MarketplaceResourceLimitChangeRequestsCancel` operationId) request,
-	// with any type of body and a specified content type.
+	// MarketplaceResourceLimitChangeRequestsCancelWithResponse performs a POST /api/marketplace-resource-limit-change-requests/{uuid}/cancel/ (the `MarketplaceResourceLimitChangeRequestsCancel` operationId) request.
 	//
 	// Cancel resource limit change request. Only the creator can cancel.
 	//
 	// Returns a wrapper object for the known response body format(s).
-	MarketplaceResourceLimitChangeRequestsCancelWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsCancelResponse, error)
-
-	// MarketplaceResourceLimitChangeRequestsCancelWithResponse performs a POST /api/marketplace-resource-limit-change-requests/{uuid}/cancel/ (the `MarketplaceResourceLimitChangeRequestsCancel` operationId) request.
-	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	//
-	// Cancel resource limit change request. Only the creator can cancel.
-	MarketplaceResourceLimitChangeRequestsCancelWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceLimitChangeRequestsCancelJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsCancelResponse, error)
+	MarketplaceResourceLimitChangeRequestsCancelWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsCancelResponse, error)
 
 	// MarketplaceResourceLimitChangeRequestsRejectWithBodyWithResponse performs a POST /api/marketplace-resource-limit-change-requests/{uuid}/reject/ (the `MarketplaceResourceLimitChangeRequestsReject` operationId) request,
 	// with any type of body and a specified content type.
@@ -449842,11 +449328,6 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with POST /api/marketplace-user-offering-consents/ (the `MarketplaceUserOfferingConsentsCreate` operationId).
 	MarketplaceUserOfferingConsentsCreateWithResponse(ctx context.Context, body MarketplaceUserOfferingConsentsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsCreateResponse, error)
 
-	// MarketplaceUserOfferingConsentsDestroyWithResponse performs a DELETE /api/marketplace-user-offering-consents/{uuid}/ (the `MarketplaceUserOfferingConsentsDestroy` operationId) request.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	MarketplaceUserOfferingConsentsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsDestroyResponse, error)
-
 	// MarketplaceUserOfferingConsentsRetrieveWithResponse Retrieve a user offering consent
 	//
 	// Returns the details of a specific consent record.
@@ -449855,26 +449336,6 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with GET /api/marketplace-user-offering-consents/{uuid}/ (the `MarketplaceUserOfferingConsentsRetrieve` operationId).
 	MarketplaceUserOfferingConsentsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsRetrieveResponse, error)
-
-	// MarketplaceUserOfferingConsentsPartialUpdateWithBodyWithResponse performs a PATCH /api/marketplace-user-offering-consents/{uuid}/ (the `MarketplaceUserOfferingConsentsPartialUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	MarketplaceUserOfferingConsentsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsPartialUpdateResponse, error)
-
-	// MarketplaceUserOfferingConsentsPartialUpdateWithResponse performs a PATCH /api/marketplace-user-offering-consents/{uuid}/ (the `MarketplaceUserOfferingConsentsPartialUpdate` operationId) request.
-	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	MarketplaceUserOfferingConsentsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceUserOfferingConsentsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsPartialUpdateResponse, error)
-
-	// MarketplaceUserOfferingConsentsUpdateWithBodyWithResponse performs a PUT /api/marketplace-user-offering-consents/{uuid}/ (the `MarketplaceUserOfferingConsentsUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	MarketplaceUserOfferingConsentsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsUpdateResponse, error)
-
-	// MarketplaceUserOfferingConsentsUpdateWithResponse performs a PUT /api/marketplace-user-offering-consents/{uuid}/ (the `MarketplaceUserOfferingConsentsUpdate` operationId) request.
-	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	MarketplaceUserOfferingConsentsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceUserOfferingConsentsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsUpdateResponse, error)
 
 	// MarketplaceUserOfferingConsentsRevokeWithResponse Revoke consent to Terms of Service
 	//
@@ -500909,95 +500370,6 @@ func (r MarketplaceOfferingUsersCreateResponse) ContentType() string {
 	return ""
 }
 
-type MarketplaceOfferingUsersChecklistTemplateRetrieveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *ChecklistTemplate
-	// JSON400 the response for an HTTP 400 `application/json` response
-	JSON400 *interface{}
-	// JSON404 the response for an HTTP 404 `application/json` response
-	JSON404 *interface{}
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r MarketplaceOfferingUsersChecklistTemplateRetrieveResponse) GetJSON200() *ChecklistTemplate {
-	return r.JSON200
-}
-
-// GetJSON400 returns the response for an HTTP 400 `application/json` response
-func (r MarketplaceOfferingUsersChecklistTemplateRetrieveResponse) GetJSON400() *interface{} {
-	return r.JSON400
-}
-
-// GetJSON404 returns the response for an HTTP 404 `application/json` response
-func (r MarketplaceOfferingUsersChecklistTemplateRetrieveResponse) GetJSON404() *interface{} {
-	return r.JSON404
-}
-
-// GetBody returns the raw response body bytes
-func (r MarketplaceOfferingUsersChecklistTemplateRetrieveResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceOfferingUsersChecklistTemplateRetrieveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceOfferingUsersChecklistTemplateRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r MarketplaceOfferingUsersChecklistTemplateRetrieveResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type MarketplaceOfferingUsersChecklistTemplateCountResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r MarketplaceOfferingUsersChecklistTemplateCountResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceOfferingUsersChecklistTemplateCountResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceOfferingUsersChecklistTemplateCountResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r MarketplaceOfferingUsersChecklistTemplateCountResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
 // MarketplaceOfferingUsersPosixIdentitiesListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceOfferingUsersPosixIdentitiesList
 type MarketplaceOfferingUsersPosixIdentitiesListResponse200Headers struct {
 	XResultCount *int
@@ -528346,40 +527718,6 @@ func (r MarketplaceUserOfferingConsentsCreateResponse) ContentType() string {
 	return ""
 }
 
-type MarketplaceUserOfferingConsentsDestroyResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r MarketplaceUserOfferingConsentsDestroyResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceUserOfferingConsentsDestroyResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceUserOfferingConsentsDestroyResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r MarketplaceUserOfferingConsentsDestroyResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
 type MarketplaceUserOfferingConsentsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -528415,88 +527753,6 @@ func (r MarketplaceUserOfferingConsentsRetrieveResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceUserOfferingConsentsRetrieveResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type MarketplaceUserOfferingConsentsPartialUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *UserOfferingConsent
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r MarketplaceUserOfferingConsentsPartialUpdateResponse) GetJSON200() *UserOfferingConsent {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r MarketplaceUserOfferingConsentsPartialUpdateResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceUserOfferingConsentsPartialUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceUserOfferingConsentsPartialUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r MarketplaceUserOfferingConsentsPartialUpdateResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type MarketplaceUserOfferingConsentsUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *UserOfferingConsent
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r MarketplaceUserOfferingConsentsUpdateResponse) GetJSON200() *UserOfferingConsent {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r MarketplaceUserOfferingConsentsUpdateResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceUserOfferingConsentsUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceUserOfferingConsentsUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r MarketplaceUserOfferingConsentsUpdateResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -599314,32 +598570,6 @@ func (c *ClientWithResponses) MarketplaceOfferingUsersCreateWithResponse(ctx con
 	return ParseMarketplaceOfferingUsersCreateResponse(rsp)
 }
 
-// MarketplaceOfferingUsersChecklistTemplateRetrieveWithResponse performs a GET /api/marketplace-offering-users/checklist-template/ (the `MarketplaceOfferingUsersChecklistTemplateRetrieve` operationId) request.
-//
-// Get checklist template for creating new objects.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) MarketplaceOfferingUsersChecklistTemplateRetrieveWithResponse(ctx context.Context, params *MarketplaceOfferingUsersChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersChecklistTemplateRetrieveResponse, error) {
-	rsp, err := c.MarketplaceOfferingUsersChecklistTemplateRetrieve(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceOfferingUsersChecklistTemplateRetrieveResponse(rsp)
-}
-
-// MarketplaceOfferingUsersChecklistTemplateCountWithResponse performs a HEAD /api/marketplace-offering-users/checklist-template/ (the `MarketplaceOfferingUsersChecklistTemplateCount` operationId) request.
-//
-// Get number of items in the collection matching the request parameters.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) MarketplaceOfferingUsersChecklistTemplateCountWithResponse(ctx context.Context, params *MarketplaceOfferingUsersChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersChecklistTemplateCountResponse, error) {
-	rsp, err := c.MarketplaceOfferingUsersChecklistTemplateCount(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceOfferingUsersChecklistTemplateCountResponse(rsp)
-}
-
 // MarketplaceOfferingUsersPosixIdentitiesListWithResponse List a user's POSIX identities across all their offerings
 //
 // Consolidated view of one user's POSIX identifiers (UID, primary GID and project group GIDs), one row per pool and namespace: a UID allocated once for the user is reported once, listing every offering that uses it. An offering with its own pool yields its own row. Scoped to the offering users the requester is allowed to see.
@@ -606154,26 +605384,13 @@ func (c *ClientWithResponses) MarketplaceResourceEndDateChangeRequestsApproveWit
 	return ParseMarketplaceResourceEndDateChangeRequestsApproveResponse(rsp)
 }
 
-// MarketplaceResourceEndDateChangeRequestsCancelWithBodyWithResponse performs a POST /api/marketplace-resource-end-date-change-requests/{uuid}/cancel/ (the `MarketplaceResourceEndDateChangeRequestsCancel` operationId) request,
-// with any type of body and a specified content type.
+// MarketplaceResourceEndDateChangeRequestsCancelWithResponse performs a POST /api/marketplace-resource-end-date-change-requests/{uuid}/cancel/ (the `MarketplaceResourceEndDateChangeRequestsCancel` operationId) request.
 //
 // Cancel resource end date change request. Only the creator can cancel.
 //
 // Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) MarketplaceResourceEndDateChangeRequestsCancelWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourceEndDateChangeRequestsCancelResponse, error) {
-	rsp, err := c.MarketplaceResourceEndDateChangeRequestsCancelWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceResourceEndDateChangeRequestsCancelResponse(rsp)
-}
-
-// MarketplaceResourceEndDateChangeRequestsCancelWithResponse performs a POST /api/marketplace-resource-end-date-change-requests/{uuid}/cancel/ (the `MarketplaceResourceEndDateChangeRequestsCancel` operationId) request.
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-//
-// Cancel resource end date change request. Only the creator can cancel.
-func (c *ClientWithResponses) MarketplaceResourceEndDateChangeRequestsCancelWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceEndDateChangeRequestsCancelJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceEndDateChangeRequestsCancelResponse, error) {
-	rsp, err := c.MarketplaceResourceEndDateChangeRequestsCancel(ctx, uuid, body, reqEditors...)
+func (c *ClientWithResponses) MarketplaceResourceEndDateChangeRequestsCancelWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourceEndDateChangeRequestsCancelResponse, error) {
+	rsp, err := c.MarketplaceResourceEndDateChangeRequestsCancel(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -606319,26 +605536,13 @@ func (c *ClientWithResponses) MarketplaceResourceLimitChangeRequestsApproveWithR
 	return ParseMarketplaceResourceLimitChangeRequestsApproveResponse(rsp)
 }
 
-// MarketplaceResourceLimitChangeRequestsCancelWithBodyWithResponse performs a POST /api/marketplace-resource-limit-change-requests/{uuid}/cancel/ (the `MarketplaceResourceLimitChangeRequestsCancel` operationId) request,
-// with any type of body and a specified content type.
+// MarketplaceResourceLimitChangeRequestsCancelWithResponse performs a POST /api/marketplace-resource-limit-change-requests/{uuid}/cancel/ (the `MarketplaceResourceLimitChangeRequestsCancel` operationId) request.
 //
 // Cancel resource limit change request. Only the creator can cancel.
 //
 // Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) MarketplaceResourceLimitChangeRequestsCancelWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsCancelResponse, error) {
-	rsp, err := c.MarketplaceResourceLimitChangeRequestsCancelWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceResourceLimitChangeRequestsCancelResponse(rsp)
-}
-
-// MarketplaceResourceLimitChangeRequestsCancelWithResponse performs a POST /api/marketplace-resource-limit-change-requests/{uuid}/cancel/ (the `MarketplaceResourceLimitChangeRequestsCancel` operationId) request.
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-//
-// Cancel resource limit change request. Only the creator can cancel.
-func (c *ClientWithResponses) MarketplaceResourceLimitChangeRequestsCancelWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceLimitChangeRequestsCancelJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsCancelResponse, error) {
-	rsp, err := c.MarketplaceResourceLimitChangeRequestsCancel(ctx, uuid, body, reqEditors...)
+func (c *ClientWithResponses) MarketplaceResourceLimitChangeRequestsCancelWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourceLimitChangeRequestsCancelResponse, error) {
+	rsp, err := c.MarketplaceResourceLimitChangeRequestsCancel(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -612367,17 +611571,6 @@ func (c *ClientWithResponses) MarketplaceUserOfferingConsentsCreateWithResponse(
 	return ParseMarketplaceUserOfferingConsentsCreateResponse(rsp)
 }
 
-// MarketplaceUserOfferingConsentsDestroyWithResponse performs a DELETE /api/marketplace-user-offering-consents/{uuid}/ (the `MarketplaceUserOfferingConsentsDestroy` operationId) request.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) MarketplaceUserOfferingConsentsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsDestroyResponse, error) {
-	rsp, err := c.MarketplaceUserOfferingConsentsDestroy(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceUserOfferingConsentsDestroyResponse(rsp)
-}
-
 // MarketplaceUserOfferingConsentsRetrieveWithResponse Retrieve a user offering consent
 //
 // Returns the details of a specific consent record.
@@ -612391,50 +611584,6 @@ func (c *ClientWithResponses) MarketplaceUserOfferingConsentsRetrieveWithRespons
 		return nil, err
 	}
 	return ParseMarketplaceUserOfferingConsentsRetrieveResponse(rsp)
-}
-
-// MarketplaceUserOfferingConsentsPartialUpdateWithBodyWithResponse performs a PATCH /api/marketplace-user-offering-consents/{uuid}/ (the `MarketplaceUserOfferingConsentsPartialUpdate` operationId) request,
-// with any type of body and a specified content type.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) MarketplaceUserOfferingConsentsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsPartialUpdateResponse, error) {
-	rsp, err := c.MarketplaceUserOfferingConsentsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceUserOfferingConsentsPartialUpdateResponse(rsp)
-}
-
-// MarketplaceUserOfferingConsentsPartialUpdateWithResponse performs a PATCH /api/marketplace-user-offering-consents/{uuid}/ (the `MarketplaceUserOfferingConsentsPartialUpdate` operationId) request.
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) MarketplaceUserOfferingConsentsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceUserOfferingConsentsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsPartialUpdateResponse, error) {
-	rsp, err := c.MarketplaceUserOfferingConsentsPartialUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceUserOfferingConsentsPartialUpdateResponse(rsp)
-}
-
-// MarketplaceUserOfferingConsentsUpdateWithBodyWithResponse performs a PUT /api/marketplace-user-offering-consents/{uuid}/ (the `MarketplaceUserOfferingConsentsUpdate` operationId) request,
-// with any type of body and a specified content type.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) MarketplaceUserOfferingConsentsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsUpdateResponse, error) {
-	rsp, err := c.MarketplaceUserOfferingConsentsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceUserOfferingConsentsUpdateResponse(rsp)
-}
-
-// MarketplaceUserOfferingConsentsUpdateWithResponse performs a PUT /api/marketplace-user-offering-consents/{uuid}/ (the `MarketplaceUserOfferingConsentsUpdate` operationId) request.
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) MarketplaceUserOfferingConsentsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceUserOfferingConsentsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsUpdateResponse, error) {
-	rsp, err := c.MarketplaceUserOfferingConsentsUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceUserOfferingConsentsUpdateResponse(rsp)
 }
 
 // MarketplaceUserOfferingConsentsRevokeWithResponse Revoke consent to Terms of Service
@@ -660432,62 +659581,6 @@ func ParseMarketplaceOfferingUsersCreateResponse(rsp *http.Response) (*Marketpla
 	return response, nil
 }
 
-// ParseMarketplaceOfferingUsersChecklistTemplateRetrieveResponse parses an HTTP response from a MarketplaceOfferingUsersChecklistTemplateRetrieveWithResponse call
-func ParseMarketplaceOfferingUsersChecklistTemplateRetrieveResponse(rsp *http.Response) (*MarketplaceOfferingUsersChecklistTemplateRetrieveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceOfferingUsersChecklistTemplateRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ChecklistTemplate
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest interface{}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest interface{}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceOfferingUsersChecklistTemplateCountResponse parses an HTTP response from a MarketplaceOfferingUsersChecklistTemplateCountWithResponse call
-func ParseMarketplaceOfferingUsersChecklistTemplateCountResponse(rsp *http.Response) (*MarketplaceOfferingUsersChecklistTemplateCountResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceOfferingUsersChecklistTemplateCountResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
 // ParseMarketplaceOfferingUsersPosixIdentitiesListResponse parses an HTTP response from a MarketplaceOfferingUsersPosixIdentitiesListWithResponse call
 func ParseMarketplaceOfferingUsersPosixIdentitiesListResponse(rsp *http.Response) (*MarketplaceOfferingUsersPosixIdentitiesListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -677834,22 +676927,6 @@ func ParseMarketplaceUserOfferingConsentsCreateResponse(rsp *http.Response) (*Ma
 	return response, nil
 }
 
-// ParseMarketplaceUserOfferingConsentsDestroyResponse parses an HTTP response from a MarketplaceUserOfferingConsentsDestroyWithResponse call
-func ParseMarketplaceUserOfferingConsentsDestroyResponse(rsp *http.Response) (*MarketplaceUserOfferingConsentsDestroyResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceUserOfferingConsentsDestroyResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
 // ParseMarketplaceUserOfferingConsentsRetrieveResponse parses an HTTP response from a MarketplaceUserOfferingConsentsRetrieveWithResponse call
 func ParseMarketplaceUserOfferingConsentsRetrieveResponse(rsp *http.Response) (*MarketplaceUserOfferingConsentsRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -677859,58 +676936,6 @@ func ParseMarketplaceUserOfferingConsentsRetrieveResponse(rsp *http.Response) (*
 	}
 
 	response := &MarketplaceUserOfferingConsentsRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UserOfferingConsent
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceUserOfferingConsentsPartialUpdateResponse parses an HTTP response from a MarketplaceUserOfferingConsentsPartialUpdateWithResponse call
-func ParseMarketplaceUserOfferingConsentsPartialUpdateResponse(rsp *http.Response) (*MarketplaceUserOfferingConsentsPartialUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceUserOfferingConsentsPartialUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UserOfferingConsent
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceUserOfferingConsentsUpdateResponse parses an HTTP response from a MarketplaceUserOfferingConsentsUpdateWithResponse call
-func ParseMarketplaceUserOfferingConsentsUpdateResponse(rsp *http.Response) (*MarketplaceUserOfferingConsentsUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceUserOfferingConsentsUpdateResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
