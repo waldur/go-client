@@ -32045,6 +32045,7 @@ type ConstanceSettings struct {
 	ENFORCEMANDATORYUSERATTRIBUTES                   *bool                                                            `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
 	ENFORCEOFFERINGUSERPROFILECOMPLETENESS           *bool                                                            `json:"ENFORCE_OFFERING_USER_PROFILE_COMPLETENESS,omitempty"`
 	ENFORCEUSERCONSENTFOROFFERINGS                   *bool                                                            `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
+	EVENTCONSUMEREPHEMERALIDLEHOURS                  *int                                                             `json:"EVENT_CONSUMER_EPHEMERAL_IDLE_HOURS,omitempty"`
 	FAVICON                                          *string                                                          `json:"FAVICON,omitempty"`
 	FEDERATEDIDENTITYAUTHORITATIVEISD                *string                                                          `json:"FEDERATED_IDENTITY_AUTHORITATIVE_ISD,omitempty"`
 	FEDERATEDIDENTITYDEACTIVATIONPOLICY              *FEDERATEDIDENTITYDEACTIVATIONPOLICYEnum                         `json:"FEDERATED_IDENTITY_DEACTIVATION_POLICY,omitempty"`
@@ -32487,6 +32488,7 @@ type ConstanceSettingsRequest struct {
 	ENFORCEMANDATORYUSERATTRIBUTES                   *bool                                                                   `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
 	ENFORCEOFFERINGUSERPROFILECOMPLETENESS           *bool                                                                   `json:"ENFORCE_OFFERING_USER_PROFILE_COMPLETENESS,omitempty"`
 	ENFORCEUSERCONSENTFOROFFERINGS                   *bool                                                                   `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
+	EVENTCONSUMEREPHEMERALIDLEHOURS                  *int                                                                    `json:"EVENT_CONSUMER_EPHEMERAL_IDLE_HOURS,omitempty"`
 	FAVICON                                          *openapi_types.File                                                     `json:"FAVICON,omitempty"`
 	FEDERATEDIDENTITYAUTHORITATIVEISD                *string                                                                 `json:"FEDERATED_IDENTITY_AUTHORITATIVE_ISD,omitempty"`
 	FEDERATEDIDENTITYDEACTIVATIONPOLICY              *FEDERATEDIDENTITYDEACTIVATIONPOLICYEnum                                `json:"FEDERATED_IDENTITY_DEACTIVATION_POLICY,omitempty"`
@@ -32929,6 +32931,7 @@ type ConstanceSettingsRequestForm struct {
 	ENFORCEMANDATORYUSERATTRIBUTES                   *bool                                                                       `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
 	ENFORCEOFFERINGUSERPROFILECOMPLETENESS           *bool                                                                       `json:"ENFORCE_OFFERING_USER_PROFILE_COMPLETENESS,omitempty"`
 	ENFORCEUSERCONSENTFOROFFERINGS                   *bool                                                                       `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
+	EVENTCONSUMEREPHEMERALIDLEHOURS                  *int                                                                        `json:"EVENT_CONSUMER_EPHEMERAL_IDLE_HOURS,omitempty"`
 	FAVICON                                          *openapi_types.File                                                         `json:"FAVICON,omitempty"`
 	FEDERATEDIDENTITYAUTHORITATIVEISD                *string                                                                     `json:"FEDERATED_IDENTITY_AUTHORITATIVE_ISD,omitempty"`
 	FEDERATEDIDENTITYDEACTIVATIONPOLICY              *FEDERATEDIDENTITYDEACTIVATIONPOLICYEnum                                    `json:"FEDERATED_IDENTITY_DEACTIVATION_POLICY,omitempty"`
@@ -33371,6 +33374,7 @@ type ConstanceSettingsRequestMultipart struct {
 	ENFORCEMANDATORYUSERATTRIBUTES                   *bool                                                                            `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
 	ENFORCEOFFERINGUSERPROFILECOMPLETENESS           *bool                                                                            `json:"ENFORCE_OFFERING_USER_PROFILE_COMPLETENESS,omitempty"`
 	ENFORCEUSERCONSENTFOROFFERINGS                   *bool                                                                            `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
+	EVENTCONSUMEREPHEMERALIDLEHOURS                  *int                                                                             `json:"EVENT_CONSUMER_EPHEMERAL_IDLE_HOURS,omitempty"`
 	FAVICON                                          *openapi_types.File                                                              `json:"FAVICON,omitempty"`
 	FEDERATEDIDENTITYAUTHORITATIVEISD                *string                                                                          `json:"FEDERATED_IDENTITY_AUTHORITATIVE_ISD,omitempty"`
 	FEDERATEDIDENTITYDEACTIVATIONPOLICY              *FEDERATEDIDENTITYDEACTIVATIONPOLICYEnum                                         `json:"FEDERATED_IDENTITY_DEACTIVATION_POLICY,omitempty"`
@@ -36300,24 +36304,30 @@ type EventConsumer struct {
 	AuthTokenName *string `json:"auth_token_name,omitempty"`
 
 	// AuthTokenPrefix Prefix of the Personal Access Token used, when auth_kind is pat.
-	AuthTokenPrefix       *string                                         `json:"auth_token_prefix,omitempty"`
-	AuthorizedVia         *EventConsumer_AuthorizedVia                    `json:"authorized_via,omitempty"`
-	Created               *time.Time                                      `json:"created,omitempty"`
-	Delivery              *DeliveryEnum                                   `json:"delivery,omitempty"`
-	DeliveryBlockedReason *string                                         `json:"delivery_blocked_reason,omitempty"`
-	IsGlobal              *bool                                           `json:"is_global,omitempty"`
-	LastDeliveredAt       *time.Time                                      `json:"last_delivered_at,omitempty"`
-	LastError             *string                                         `json:"last_error,omitempty"`
-	LastErrorAt           *time.Time                                      `json:"last_error_at,omitempty"`
-	Modified              *time.Time                                      `json:"modified,omitempty"`
-	ObjectTypes           *[]string                                       `json:"object_types,omitempty"`
-	PayloadFilters        *map[string][]EventConsumer_PayloadFilters_Item `json:"payload_filters,omitempty"`
-	QueueCreated          *bool                                           `json:"queue_created,omitempty"`
+	AuthTokenPrefix       *string                      `json:"auth_token_prefix,omitempty"`
+	AuthorizedVia         *EventConsumer_AuthorizedVia `json:"authorized_via,omitempty"`
+	Created               *time.Time                   `json:"created,omitempty"`
+	Delivery              *DeliveryEnum                `json:"delivery,omitempty"`
+	DeliveryBlockedReason *string                      `json:"delivery_blocked_reason,omitempty"`
+
+	// Ephemeral Registered by a short-lived client (a browser tab). Deleted automatically once its queue has had no reader for EVENT_CONSUMER_EPHEMERAL_IDLE_HOURS.
+	Ephemeral       *bool                                           `json:"ephemeral,omitempty"`
+	IsGlobal        *bool                                           `json:"is_global,omitempty"`
+	LastDeliveredAt *time.Time                                      `json:"last_delivered_at,omitempty"`
+	LastError       *string                                         `json:"last_error,omitempty"`
+	LastErrorAt     *time.Time                                      `json:"last_error_at,omitempty"`
+	Modified        *time.Time                                      `json:"modified,omitempty"`
+	ObjectTypes     *[]string                                       `json:"object_types,omitempty"`
+	PayloadFilters  *map[string][]EventConsumer_PayloadFilters_Item `json:"payload_filters,omitempty"`
+	QueueCreated    *bool                                           `json:"queue_created,omitempty"`
 
 	// RmqUsername RabbitMQ username (UUID hex) for the consumer queue.
-	RmqUsername  *string                     `json:"rmq_username,omitempty"`
-	Scopes       *[]EventConsumerScopeOutput `json:"scopes,omitempty"`
-	UserFullName *string                     `json:"user_full_name,omitempty"`
+	RmqUsername *string                     `json:"rmq_username,omitempty"`
+	Scopes      *[]EventConsumerScopeOutput `json:"scopes,omitempty"`
+
+	// UnreadSince When the sweep first saw this ephemeral consumer's queue without a reader. Cleared when a reader returns or the client re-registers.
+	UnreadSince  *time.Time `json:"unread_since,omitempty"`
+	UserFullName *string    `json:"user_full_name,omitempty"`
 
 	// UserIsStaff Designates whether the user can log into this admin site.
 	UserIsStaff *bool `json:"user_is_staff,omitempty"`
@@ -36357,6 +36367,9 @@ type EventConsumer_PayloadFilters_Item struct {
 
 // EventConsumerRegistrationRequest defines model for EventConsumerRegistrationRequest.
 type EventConsumerRegistrationRequest struct {
+	// Ephemeral Set by short-lived clients such as a browser tab. An ephemeral consumer and its queue are deleted once the queue has had no reader for EVENT_CONSUMER_EPHEMERAL_IDLE_HOURS, or once its owner has no active token. Re-registering an existing consumer without the flag makes it permanent. Re-registering a permanent consumer with it makes it ephemeral only for a browser-style registration (DRF token or session, previously too, bound to your own user); otherwise it stays permanent. Integrations should leave it unset.
+	Ephemeral *bool `json:"ephemeral,omitempty"`
+
 	// ObjectTypes Observable object types to receive. An explicit empty list means all types; omitting the field leaves an existing consumer's filter unchanged.
 	ObjectTypes *[]ObservableObjectTypeEnum `json:"object_types,omitempty"`
 
@@ -79970,18 +79983,6 @@ type OnboardingVerificationsAvailableChecklistsCountParams struct {
 	ChecklistType *AvailableChecklistsResponseChecklistTypeEnum `form:"checklist_type,omitempty" json:"checklist_type,omitempty"`
 }
 
-// OnboardingVerificationsChecklistTemplateRetrieveParams defines parameters for OnboardingVerificationsChecklistTemplateRetrieve.
-type OnboardingVerificationsChecklistTemplateRetrieveParams struct {
-	// ParentUuid UUID of the parent object (e.g., customer UUID for new projects)
-	ParentUuid openapi_types.UUID `form:"parent_uuid" json:"parent_uuid"`
-}
-
-// OnboardingVerificationsChecklistTemplateCountParams defines parameters for OnboardingVerificationsChecklistTemplateCount.
-type OnboardingVerificationsChecklistTemplateCountParams struct {
-	// ParentUuid UUID of the parent object (e.g., customer UUID for new projects)
-	ParentUuid openapi_types.UUID `form:"parent_uuid" json:"parent_uuid"`
-}
-
 // OnboardingVerificationsChecklistRetrieveParams defines parameters for OnboardingVerificationsChecklistRetrieve.
 type OnboardingVerificationsChecklistRetrieveParams struct {
 	// ChecklistType Type of checklist to retrieve (customer or intent). Defaults to intent.
@@ -92516,9 +92517,6 @@ type NotificationMessagesPartialUpdateJSONRequestBody = PatchedNotificationReque
 // NotificationMessagesUpdateJSONRequestBody defines body for NotificationMessagesUpdate for application/json ContentType.
 type NotificationMessagesUpdateJSONRequestBody = NotificationRequest
 
-// OnboardingJustificationsCreateJSONRequestBody defines body for OnboardingJustificationsCreate for application/json ContentType.
-type OnboardingJustificationsCreateJSONRequestBody = OnboardingJustificationRequest
-
 // OnboardingJustificationsCreateJustificationJSONRequestBody defines body for OnboardingJustificationsCreateJustification for application/json ContentType.
 type OnboardingJustificationsCreateJustificationJSONRequestBody = OnboardingJustificationCreateRequest
 
@@ -92551,9 +92549,6 @@ type OnboardingQuestionMetadataPartialUpdateJSONRequestBody = PatchedOnboardingQ
 
 // OnboardingQuestionMetadataUpdateJSONRequestBody defines body for OnboardingQuestionMetadataUpdate for application/json ContentType.
 type OnboardingQuestionMetadataUpdateJSONRequestBody = OnboardingQuestionMetadataRequest
-
-// OnboardingVerificationsCreateJSONRequestBody defines body for OnboardingVerificationsCreate for application/json ContentType.
-type OnboardingVerificationsCreateJSONRequestBody = OnboardingVerificationRequest
 
 // OnboardingVerificationsStartVerificationJSONRequestBody defines body for OnboardingVerificationsStartVerification for application/json ContentType.
 type OnboardingVerificationsStartVerificationJSONRequestBody = OnboardingCompanyValidationRequestRequest
@@ -120207,7 +120202,7 @@ type ClientInterface interface {
 
 	// MarketplacePlanComponentsList List plan components
 	//
-	// Returns a paginated list of all plan components. A plan component defines the pricing and quotas for an offering component within a billing plan. The list is filtered based on the current user's access permissions and organization group memberships.
+	// Returns a paginated list of plan components. A plan component defines the pricing and quotas for an offering component within a billing plan. The list shows the components of plans of offerings the caller sees in public or provider offerings, narrowed by the plans' organization groups.
 	//
 	// Corresponds with GET /api/marketplace-plan-components/ (the `MarketplacePlanComponentsList` operationId).
 	MarketplacePlanComponentsList(ctx context.Context, params *MarketplacePlanComponentsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -120836,7 +120831,7 @@ type ClientInterface interface {
 
 	// MarketplaceProviderOfferingsGroupsList List offerings grouped by provider
 	//
-	// Returns a paginated list of active, shared offerings grouped by their service provider.
+	// Returns a paginated list of active, shared offerings grouped by their service provider. Only offerings the caller may see in the public offerings list are included.
 	//
 	// Corresponds with GET /api/marketplace-provider-offerings/groups/ (the `MarketplaceProviderOfferingsGroupsList` operationId).
 	MarketplaceProviderOfferingsGroupsList(ctx context.Context, params *MarketplaceProviderOfferingsGroupsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -126465,14 +126460,6 @@ type ClientInterface interface {
 	// Get number of items in the collection matching the request parameters.
 	OnboardingJustificationsCount(ctx context.Context, params *OnboardingJustificationsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// OnboardingJustificationsCreateWithBody performs a POST /api/onboarding-justifications/ (the `OnboardingJustificationsCreate` operationId) request,
-	// with any type of body and a specified content type.
-	OnboardingJustificationsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OnboardingJustificationsCreate performs a POST /api/onboarding-justifications/ (the `OnboardingJustificationsCreate` operationId) request.
-	// Takes a body of the `application/json` content type.
-	OnboardingJustificationsCreate(ctx context.Context, body OnboardingJustificationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// OnboardingJustificationsCreateJustificationWithBody performs a POST /api/onboarding-justifications/create_justification/ (the `OnboardingJustificationsCreateJustification` operationId) request,
 	// with any type of body and a specified content type.
 	//
@@ -126595,14 +126582,6 @@ type ClientInterface interface {
 	// Get number of items in the collection matching the request parameters.
 	OnboardingVerificationsCount(ctx context.Context, params *OnboardingVerificationsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// OnboardingVerificationsCreateWithBody performs a POST /api/onboarding-verifications/ (the `OnboardingVerificationsCreate` operationId) request,
-	// with any type of body and a specified content type.
-	OnboardingVerificationsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OnboardingVerificationsCreate performs a POST /api/onboarding-verifications/ (the `OnboardingVerificationsCreate` operationId) request.
-	// Takes a body of the `application/json` content type.
-	OnboardingVerificationsCreate(ctx context.Context, body OnboardingVerificationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// OnboardingVerificationsAvailableChecklistsRetrieve performs a GET /api/onboarding-verifications/available_checklists/ (the `OnboardingVerificationsAvailableChecklistsRetrieve` operationId) request.
 	//
 	// Get available onboarding checklists (customer and intent) for preview. This endpoint allows users to see checklist questions before creating a verification. Supports checklist_type parameter to filter by customer or intent checklists. Includes questions with onboarding metadata (field mappings).
@@ -126612,16 +126591,6 @@ type ClientInterface interface {
 	//
 	// Get number of items in the collection matching the request parameters.
 	OnboardingVerificationsAvailableChecklistsCount(ctx context.Context, params *OnboardingVerificationsAvailableChecklistsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OnboardingVerificationsChecklistTemplateRetrieve performs a GET /api/onboarding-verifications/checklist-template/ (the `OnboardingVerificationsChecklistTemplateRetrieve` operationId) request.
-	//
-	// Get checklist template for creating new objects.
-	OnboardingVerificationsChecklistTemplateRetrieve(ctx context.Context, params *OnboardingVerificationsChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OnboardingVerificationsChecklistTemplateCount performs a HEAD /api/onboarding-verifications/checklist-template/ (the `OnboardingVerificationsChecklistTemplateCount` operationId) request.
-	//
-	// Get number of items in the collection matching the request parameters.
-	OnboardingVerificationsChecklistTemplateCount(ctx context.Context, params *OnboardingVerificationsChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OnboardingVerificationsStartVerificationWithBody performs a POST /api/onboarding-verifications/start_verification/ (the `OnboardingVerificationsStartVerification` operationId) request,
 	// with any type of body and a specified content type.
@@ -157950,7 +157919,7 @@ func (c *Client) MarketplaceOrdersUpdateAttachmentWithFormdataBody(ctx context.C
 
 // MarketplacePlanComponentsList List plan components
 //
-// Returns a paginated list of all plan components. A plan component defines the pricing and quotas for an offering component within a billing plan. The list is filtered based on the current user's access permissions and organization group memberships.
+// Returns a paginated list of plan components. A plan component defines the pricing and quotas for an offering component within a billing plan. The list shows the components of plans of offerings the caller sees in public or provider offerings, narrowed by the plans' organization groups.
 //
 // Corresponds with GET /api/marketplace-plan-components/ (the `MarketplacePlanComponentsList` operationId).
 func (c *Client) MarketplacePlanComponentsList(ctx context.Context, params *MarketplacePlanComponentsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -159563,7 +159532,7 @@ func (c *Client) MarketplaceProviderOfferingsAggregatedAccessSubnetsCount(ctx co
 
 // MarketplaceProviderOfferingsGroupsList List offerings grouped by provider
 //
-// Returns a paginated list of active, shared offerings grouped by their service provider.
+// Returns a paginated list of active, shared offerings grouped by their service provider. Only offerings the caller may see in the public offerings list are included.
 //
 // Corresponds with GET /api/marketplace-provider-offerings/groups/ (the `MarketplaceProviderOfferingsGroupsList` operationId).
 func (c *Client) MarketplaceProviderOfferingsGroupsList(ctx context.Context, params *MarketplaceProviderOfferingsGroupsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -173267,34 +173236,6 @@ func (c *Client) OnboardingJustificationsCount(ctx context.Context, params *Onbo
 	return c.Client.Do(req)
 }
 
-// OnboardingJustificationsCreateWithBody performs a POST /api/onboarding-justifications/ (the `OnboardingJustificationsCreate` operationId) request,
-// with any type of body and a specified content type.
-func (c *Client) OnboardingJustificationsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOnboardingJustificationsCreateRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// OnboardingJustificationsCreate performs a POST /api/onboarding-justifications/ (the `OnboardingJustificationsCreate` operationId) request.
-// Takes a body of the `application/json` content type.
-func (c *Client) OnboardingJustificationsCreate(ctx context.Context, body OnboardingJustificationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOnboardingJustificationsCreateRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 // OnboardingJustificationsCreateJustificationWithBody performs a POST /api/onboarding-justifications/create_justification/ (the `OnboardingJustificationsCreateJustification` operationId) request,
 // with any type of body and a specified content type.
 //
@@ -173687,34 +173628,6 @@ func (c *Client) OnboardingVerificationsCount(ctx context.Context, params *Onboa
 	return c.Client.Do(req)
 }
 
-// OnboardingVerificationsCreateWithBody performs a POST /api/onboarding-verifications/ (the `OnboardingVerificationsCreate` operationId) request,
-// with any type of body and a specified content type.
-func (c *Client) OnboardingVerificationsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOnboardingVerificationsCreateRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// OnboardingVerificationsCreate performs a POST /api/onboarding-verifications/ (the `OnboardingVerificationsCreate` operationId) request.
-// Takes a body of the `application/json` content type.
-func (c *Client) OnboardingVerificationsCreate(ctx context.Context, body OnboardingVerificationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOnboardingVerificationsCreateRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 // OnboardingVerificationsAvailableChecklistsRetrieve performs a GET /api/onboarding-verifications/available_checklists/ (the `OnboardingVerificationsAvailableChecklistsRetrieve` operationId) request.
 //
 // Get available onboarding checklists (customer and intent) for preview. This endpoint allows users to see checklist questions before creating a verification. Supports checklist_type parameter to filter by customer or intent checklists. Includes questions with onboarding metadata (field mappings).
@@ -173735,36 +173648,6 @@ func (c *Client) OnboardingVerificationsAvailableChecklistsRetrieve(ctx context.
 // Get number of items in the collection matching the request parameters.
 func (c *Client) OnboardingVerificationsAvailableChecklistsCount(ctx context.Context, params *OnboardingVerificationsAvailableChecklistsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOnboardingVerificationsAvailableChecklistsCountRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// OnboardingVerificationsChecklistTemplateRetrieve performs a GET /api/onboarding-verifications/checklist-template/ (the `OnboardingVerificationsChecklistTemplateRetrieve` operationId) request.
-//
-// Get checklist template for creating new objects.
-func (c *Client) OnboardingVerificationsChecklistTemplateRetrieve(ctx context.Context, params *OnboardingVerificationsChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOnboardingVerificationsChecklistTemplateRetrieveRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// OnboardingVerificationsChecklistTemplateCount performs a HEAD /api/onboarding-verifications/checklist-template/ (the `OnboardingVerificationsChecklistTemplateCount` operationId) request.
-//
-// Get number of items in the collection matching the request parameters.
-func (c *Client) OnboardingVerificationsChecklistTemplateCount(ctx context.Context, params *OnboardingVerificationsChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOnboardingVerificationsChecklistTemplateCountRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -335686,46 +335569,6 @@ func NewOnboardingJustificationsCountRequest(server string, params *OnboardingJu
 	return req, nil
 }
 
-// NewOnboardingJustificationsCreateRequest calls the generic OnboardingJustificationsCreate builder with application/json body
-func NewOnboardingJustificationsCreateRequest(server string, body OnboardingJustificationsCreateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewOnboardingJustificationsCreateRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewOnboardingJustificationsCreateRequestWithBody constructs an http.Request for the OnboardingJustificationsCreate method, with any body, and a specified content type
-func NewOnboardingJustificationsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/onboarding-justifications/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
 // NewOnboardingJustificationsCreateJustificationRequest calls the generic OnboardingJustificationsCreateJustification builder with application/json body
 func NewOnboardingJustificationsCreateJustificationRequest(server string, body OnboardingJustificationsCreateJustificationJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -336858,46 +336701,6 @@ func NewOnboardingVerificationsCountRequest(server string, params *OnboardingVer
 	return req, nil
 }
 
-// NewOnboardingVerificationsCreateRequest calls the generic OnboardingVerificationsCreate builder with application/json body
-func NewOnboardingVerificationsCreateRequest(server string, body OnboardingVerificationsCreateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewOnboardingVerificationsCreateRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewOnboardingVerificationsCreateRequestWithBody constructs an http.Request for the OnboardingVerificationsCreate method, with any body, and a specified content type
-func NewOnboardingVerificationsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/onboarding-verifications/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
 // NewOnboardingVerificationsAvailableChecklistsRetrieveRequest constructs an http.Request for the OnboardingVerificationsAvailableChecklistsRetrieve method
 func NewOnboardingVerificationsAvailableChecklistsRetrieveRequest(server string, params *OnboardingVerificationsAvailableChecklistsRetrieveParams) (*http.Request, error) {
 	var err error
@@ -336990,106 +336793,6 @@ func NewOnboardingVerificationsAvailableChecklistsCountRequest(server string, pa
 				}
 			}
 
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
-	}
-
-	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewOnboardingVerificationsChecklistTemplateRetrieveRequest constructs an http.Request for the OnboardingVerificationsChecklistTemplateRetrieve method
-func NewOnboardingVerificationsChecklistTemplateRetrieveRequest(server string, params *OnboardingVerificationsChecklistTemplateRetrieveParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/onboarding-verifications/checklist-template/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "parent_uuid", params.ParentUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-			return nil, err
-		} else {
-			for _, qp := range strings.Split(queryFrag, "&") {
-				rawQueryFragments = append(rawQueryFragments, qp)
-			}
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewOnboardingVerificationsChecklistTemplateCountRequest constructs an http.Request for the OnboardingVerificationsChecklistTemplateCount method
-func NewOnboardingVerificationsChecklistTemplateCountRequest(server string, params *OnboardingVerificationsChecklistTemplateCountParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/onboarding-verifications/checklist-template/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "parent_uuid", params.ParentUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-			return nil, err
-		} else {
-			for _, qp := range strings.Split(queryFrag, "&") {
-				rawQueryFragments = append(rawQueryFragments, qp)
-			}
 		}
 
 		if encoded := queryValues.Encode(); encoded != "" {
@@ -442551,7 +442254,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplacePlanComponentsListWithResponse List plan components
 	//
-	// Returns a paginated list of all plan components. A plan component defines the pricing and quotas for an offering component within a billing plan. The list is filtered based on the current user's access permissions and organization group memberships.
+	// Returns a paginated list of plan components. A plan component defines the pricing and quotas for an offering component within a billing plan. The list shows the components of plans of offerings the caller sees in public or provider offerings, narrowed by the plans' organization groups.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -443306,7 +443009,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceProviderOfferingsGroupsListWithResponse List offerings grouped by provider
 	//
-	// Returns a paginated list of active, shared offerings grouped by their service provider.
+	// Returns a paginated list of active, shared offerings grouped by their service provider. Only offerings the caller may see in the public offerings list are included.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -449837,16 +449540,6 @@ type ClientWithResponsesInterface interface {
 	// Returns a wrapper object for the known response body format(s).
 	OnboardingJustificationsCountWithResponse(ctx context.Context, params *OnboardingJustificationsCountParams, reqEditors ...RequestEditorFn) (*OnboardingJustificationsCountResponse, error)
 
-	// OnboardingJustificationsCreateWithBodyWithResponse performs a POST /api/onboarding-justifications/ (the `OnboardingJustificationsCreate` operationId) request,
-	// with any type of body and a specified content type.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	OnboardingJustificationsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingJustificationsCreateResponse, error)
-
-	// OnboardingJustificationsCreateWithResponse performs a POST /api/onboarding-justifications/ (the `OnboardingJustificationsCreate` operationId) request.
-	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	OnboardingJustificationsCreateWithResponse(ctx context.Context, body OnboardingJustificationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingJustificationsCreateResponse, error)
-
 	// OnboardingJustificationsCreateJustificationWithBodyWithResponse performs a POST /api/onboarding-justifications/create_justification/ (the `OnboardingJustificationsCreateJustification` operationId) request,
 	// with any type of body and a specified content type.
 	//
@@ -450003,16 +449696,6 @@ type ClientWithResponsesInterface interface {
 	// Returns a wrapper object for the known response body format(s).
 	OnboardingVerificationsCountWithResponse(ctx context.Context, params *OnboardingVerificationsCountParams, reqEditors ...RequestEditorFn) (*OnboardingVerificationsCountResponse, error)
 
-	// OnboardingVerificationsCreateWithBodyWithResponse performs a POST /api/onboarding-verifications/ (the `OnboardingVerificationsCreate` operationId) request,
-	// with any type of body and a specified content type.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	OnboardingVerificationsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingVerificationsCreateResponse, error)
-
-	// OnboardingVerificationsCreateWithResponse performs a POST /api/onboarding-verifications/ (the `OnboardingVerificationsCreate` operationId) request.
-	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	OnboardingVerificationsCreateWithResponse(ctx context.Context, body OnboardingVerificationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingVerificationsCreateResponse, error)
-
 	// OnboardingVerificationsAvailableChecklistsRetrieveWithResponse performs a GET /api/onboarding-verifications/available_checklists/ (the `OnboardingVerificationsAvailableChecklistsRetrieve` operationId) request.
 	//
 	// Get available onboarding checklists (customer and intent) for preview. This endpoint allows users to see checklist questions before creating a verification. Supports checklist_type parameter to filter by customer or intent checklists. Includes questions with onboarding metadata (field mappings).
@@ -450026,20 +449709,6 @@ type ClientWithResponsesInterface interface {
 	//
 	// Returns a wrapper object for the known response body format(s).
 	OnboardingVerificationsAvailableChecklistsCountWithResponse(ctx context.Context, params *OnboardingVerificationsAvailableChecklistsCountParams, reqEditors ...RequestEditorFn) (*OnboardingVerificationsAvailableChecklistsCountResponse, error)
-
-	// OnboardingVerificationsChecklistTemplateRetrieveWithResponse performs a GET /api/onboarding-verifications/checklist-template/ (the `OnboardingVerificationsChecklistTemplateRetrieve` operationId) request.
-	//
-	// Get checklist template for creating new objects.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	OnboardingVerificationsChecklistTemplateRetrieveWithResponse(ctx context.Context, params *OnboardingVerificationsChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*OnboardingVerificationsChecklistTemplateRetrieveResponse, error)
-
-	// OnboardingVerificationsChecklistTemplateCountWithResponse performs a HEAD /api/onboarding-verifications/checklist-template/ (the `OnboardingVerificationsChecklistTemplateCount` operationId) request.
-	//
-	// Get number of items in the collection matching the request parameters.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	OnboardingVerificationsChecklistTemplateCountWithResponse(ctx context.Context, params *OnboardingVerificationsChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*OnboardingVerificationsChecklistTemplateCountResponse, error)
 
 	// OnboardingVerificationsStartVerificationWithBodyWithResponse performs a POST /api/onboarding-verifications/start_verification/ (the `OnboardingVerificationsStartVerification` operationId) request,
 	// with any type of body and a specified content type.
@@ -530143,47 +529812,6 @@ func (r OnboardingJustificationsCountResponse) ContentType() string {
 	return ""
 }
 
-type OnboardingJustificationsCreateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON201 the response for an HTTP 201 `application/json` response
-	JSON201 *OnboardingJustification
-}
-
-// GetJSON201 returns the response for an HTTP 201 `application/json` response
-func (r OnboardingJustificationsCreateResponse) GetJSON201() *OnboardingJustification {
-	return r.JSON201
-}
-
-// GetBody returns the raw response body bytes
-func (r OnboardingJustificationsCreateResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r OnboardingJustificationsCreateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OnboardingJustificationsCreateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r OnboardingJustificationsCreateResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
 type OnboardingJustificationsCreateJustificationResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -530867,47 +530495,6 @@ func (r OnboardingVerificationsCountResponse) ContentType() string {
 	return ""
 }
 
-type OnboardingVerificationsCreateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON201 the response for an HTTP 201 `application/json` response
-	JSON201 *OnboardingVerification
-}
-
-// GetJSON201 returns the response for an HTTP 201 `application/json` response
-func (r OnboardingVerificationsCreateResponse) GetJSON201() *OnboardingVerification {
-	return r.JSON201
-}
-
-// GetBody returns the raw response body bytes
-func (r OnboardingVerificationsCreateResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r OnboardingVerificationsCreateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OnboardingVerificationsCreateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r OnboardingVerificationsCreateResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
 type OnboardingVerificationsAvailableChecklistsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -530977,95 +530564,6 @@ func (r OnboardingVerificationsAvailableChecklistsCountResponse) StatusCode() in
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r OnboardingVerificationsAvailableChecklistsCountResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type OnboardingVerificationsChecklistTemplateRetrieveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *ChecklistTemplate
-	// JSON400 the response for an HTTP 400 `application/json` response
-	JSON400 *interface{}
-	// JSON404 the response for an HTTP 404 `application/json` response
-	JSON404 *interface{}
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r OnboardingVerificationsChecklistTemplateRetrieveResponse) GetJSON200() *ChecklistTemplate {
-	return r.JSON200
-}
-
-// GetJSON400 returns the response for an HTTP 400 `application/json` response
-func (r OnboardingVerificationsChecklistTemplateRetrieveResponse) GetJSON400() *interface{} {
-	return r.JSON400
-}
-
-// GetJSON404 returns the response for an HTTP 404 `application/json` response
-func (r OnboardingVerificationsChecklistTemplateRetrieveResponse) GetJSON404() *interface{} {
-	return r.JSON404
-}
-
-// GetBody returns the raw response body bytes
-func (r OnboardingVerificationsChecklistTemplateRetrieveResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r OnboardingVerificationsChecklistTemplateRetrieveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OnboardingVerificationsChecklistTemplateRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r OnboardingVerificationsChecklistTemplateRetrieveResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type OnboardingVerificationsChecklistTemplateCountResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r OnboardingVerificationsChecklistTemplateCountResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r OnboardingVerificationsChecklistTemplateCountResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OnboardingVerificationsChecklistTemplateCountResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r OnboardingVerificationsChecklistTemplateCountResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -599805,7 +599303,7 @@ func (c *ClientWithResponses) MarketplaceOrdersUpdateAttachmentWithFormdataBodyW
 
 // MarketplacePlanComponentsListWithResponse List plan components
 //
-// Returns a paginated list of all plan components. A plan component defines the pricing and quotas for an offering component within a billing plan. The list is filtered based on the current user's access permissions and organization group memberships.
+// Returns a paginated list of plan components. A plan component defines the pricing and quotas for an offering component within a billing plan. The list shows the components of plans of offerings the caller sees in public or provider offerings, narrowed by the plans' organization groups.
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -601148,7 +600646,7 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsAggregatedAccessSubnet
 
 // MarketplaceProviderOfferingsGroupsListWithResponse List offerings grouped by provider
 //
-// Returns a paginated list of active, shared offerings grouped by their service provider.
+// Returns a paginated list of active, shared offerings grouped by their service provider. Only offerings the caller may see in the public offerings list are included.
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -612518,28 +612016,6 @@ func (c *ClientWithResponses) OnboardingJustificationsCountWithResponse(ctx cont
 	return ParseOnboardingJustificationsCountResponse(rsp)
 }
 
-// OnboardingJustificationsCreateWithBodyWithResponse performs a POST /api/onboarding-justifications/ (the `OnboardingJustificationsCreate` operationId) request,
-// with any type of body and a specified content type.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OnboardingJustificationsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingJustificationsCreateResponse, error) {
-	rsp, err := c.OnboardingJustificationsCreateWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOnboardingJustificationsCreateResponse(rsp)
-}
-
-// OnboardingJustificationsCreateWithResponse performs a POST /api/onboarding-justifications/ (the `OnboardingJustificationsCreate` operationId) request.
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OnboardingJustificationsCreateWithResponse(ctx context.Context, body OnboardingJustificationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingJustificationsCreateResponse, error) {
-	rsp, err := c.OnboardingJustificationsCreate(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOnboardingJustificationsCreateResponse(rsp)
-}
-
 // OnboardingJustificationsCreateJustificationWithBodyWithResponse performs a POST /api/onboarding-justifications/create_justification/ (the `OnboardingJustificationsCreateJustification` operationId) request,
 // with any type of body and a specified content type.
 //
@@ -612858,28 +612334,6 @@ func (c *ClientWithResponses) OnboardingVerificationsCountWithResponse(ctx conte
 	return ParseOnboardingVerificationsCountResponse(rsp)
 }
 
-// OnboardingVerificationsCreateWithBodyWithResponse performs a POST /api/onboarding-verifications/ (the `OnboardingVerificationsCreate` operationId) request,
-// with any type of body and a specified content type.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OnboardingVerificationsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingVerificationsCreateResponse, error) {
-	rsp, err := c.OnboardingVerificationsCreateWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOnboardingVerificationsCreateResponse(rsp)
-}
-
-// OnboardingVerificationsCreateWithResponse performs a POST /api/onboarding-verifications/ (the `OnboardingVerificationsCreate` operationId) request.
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OnboardingVerificationsCreateWithResponse(ctx context.Context, body OnboardingVerificationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingVerificationsCreateResponse, error) {
-	rsp, err := c.OnboardingVerificationsCreate(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOnboardingVerificationsCreateResponse(rsp)
-}
-
 // OnboardingVerificationsAvailableChecklistsRetrieveWithResponse performs a GET /api/onboarding-verifications/available_checklists/ (the `OnboardingVerificationsAvailableChecklistsRetrieve` operationId) request.
 //
 // Get available onboarding checklists (customer and intent) for preview. This endpoint allows users to see checklist questions before creating a verification. Supports checklist_type parameter to filter by customer or intent checklists. Includes questions with onboarding metadata (field mappings).
@@ -612904,32 +612358,6 @@ func (c *ClientWithResponses) OnboardingVerificationsAvailableChecklistsCountWit
 		return nil, err
 	}
 	return ParseOnboardingVerificationsAvailableChecklistsCountResponse(rsp)
-}
-
-// OnboardingVerificationsChecklistTemplateRetrieveWithResponse performs a GET /api/onboarding-verifications/checklist-template/ (the `OnboardingVerificationsChecklistTemplateRetrieve` operationId) request.
-//
-// Get checklist template for creating new objects.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OnboardingVerificationsChecklistTemplateRetrieveWithResponse(ctx context.Context, params *OnboardingVerificationsChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*OnboardingVerificationsChecklistTemplateRetrieveResponse, error) {
-	rsp, err := c.OnboardingVerificationsChecklistTemplateRetrieve(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOnboardingVerificationsChecklistTemplateRetrieveResponse(rsp)
-}
-
-// OnboardingVerificationsChecklistTemplateCountWithResponse performs a HEAD /api/onboarding-verifications/checklist-template/ (the `OnboardingVerificationsChecklistTemplateCount` operationId) request.
-//
-// Get number of items in the collection matching the request parameters.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OnboardingVerificationsChecklistTemplateCountWithResponse(ctx context.Context, params *OnboardingVerificationsChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*OnboardingVerificationsChecklistTemplateCountResponse, error) {
-	rsp, err := c.OnboardingVerificationsChecklistTemplateCount(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOnboardingVerificationsChecklistTemplateCountResponse(rsp)
 }
 
 // OnboardingVerificationsStartVerificationWithBodyWithResponse performs a POST /api/onboarding-verifications/start_verification/ (the `OnboardingVerificationsStartVerification` operationId) request,
@@ -678503,32 +677931,6 @@ func ParseOnboardingJustificationsCountResponse(rsp *http.Response) (*Onboarding
 	return response, nil
 }
 
-// ParseOnboardingJustificationsCreateResponse parses an HTTP response from a OnboardingJustificationsCreateWithResponse call
-func ParseOnboardingJustificationsCreateResponse(rsp *http.Response) (*OnboardingJustificationsCreateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OnboardingJustificationsCreateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest OnboardingJustification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON201 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseOnboardingJustificationsCreateJustificationResponse parses an HTTP response from a OnboardingJustificationsCreateJustificationWithResponse call
 func ParseOnboardingJustificationsCreateJustificationResponse(rsp *http.Response) (*OnboardingJustificationsCreateJustificationResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -678957,32 +678359,6 @@ func ParseOnboardingVerificationsCountResponse(rsp *http.Response) (*OnboardingV
 	return response, nil
 }
 
-// ParseOnboardingVerificationsCreateResponse parses an HTTP response from a OnboardingVerificationsCreateWithResponse call
-func ParseOnboardingVerificationsCreateResponse(rsp *http.Response) (*OnboardingVerificationsCreateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OnboardingVerificationsCreateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest OnboardingVerification
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON201 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseOnboardingVerificationsAvailableChecklistsRetrieveResponse parses an HTTP response from a OnboardingVerificationsAvailableChecklistsRetrieveWithResponse call
 func ParseOnboardingVerificationsAvailableChecklistsRetrieveResponse(rsp *http.Response) (*OnboardingVerificationsAvailableChecklistsRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -679018,62 +678394,6 @@ func ParseOnboardingVerificationsAvailableChecklistsCountResponse(rsp *http.Resp
 	}
 
 	response := &OnboardingVerificationsAvailableChecklistsCountResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseOnboardingVerificationsChecklistTemplateRetrieveResponse parses an HTTP response from a OnboardingVerificationsChecklistTemplateRetrieveWithResponse call
-func ParseOnboardingVerificationsChecklistTemplateRetrieveResponse(rsp *http.Response) (*OnboardingVerificationsChecklistTemplateRetrieveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OnboardingVerificationsChecklistTemplateRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ChecklistTemplate
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest interface{}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest interface{}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseOnboardingVerificationsChecklistTemplateCountResponse parses an HTTP response from a OnboardingVerificationsChecklistTemplateCountWithResponse call
-func ParseOnboardingVerificationsChecklistTemplateCountResponse(rsp *http.Response) (*OnboardingVerificationsChecklistTemplateCountResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OnboardingVerificationsChecklistTemplateCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
