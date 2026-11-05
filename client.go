@@ -26770,8 +26770,10 @@ type AgentEventSubscriptionWithConnection struct {
 
 // AgentIdentity defines model for AgentIdentity.
 type AgentIdentity struct {
-	Compatibility     *AgentCompatibility `json:"compatibility,omitempty"`
-	ConfigFileContent *string             `json:"config_file_content,omitempty"`
+	Compatibility *AgentCompatibility `json:"compatibility,omitempty"`
+
+	// ConfigFileContent Returned only to staff, to who holds OFFERING.UPDATE on the identity's offering, its organization or its service provider, and to the identity manager who created the identity, while the offering is in an ISD-allowed state.
+	ConfigFileContent *string `json:"config_file_content,omitempty"`
 
 	// ConfigFilePath Example: '/etc/waldur/agent.yaml'
 	ConfigFilePath *string             `json:"config_file_path,omitempty"`
@@ -26792,6 +26794,7 @@ type AgentIdentity struct {
 
 // AgentIdentityRequest defines model for AgentIdentityRequest.
 type AgentIdentityRequest struct {
+	// ConfigFileContent Returned only to staff, to who holds OFFERING.UPDATE on the identity's offering, its organization or its service provider, and to the identity manager who created the identity, while the offering is in an ISD-allowed state.
 	ConfigFileContent *string `json:"config_file_content,omitempty"`
 
 	// ConfigFilePath Example: '/etc/waldur/agent.yaml'
@@ -37834,6 +37837,15 @@ type HpcJobFailure struct {
 	Names       []string `json:"names"`
 }
 
+// HpcJobFileRequest defines model for HpcJobFileRequest.
+type HpcJobFileRequest struct {
+	// Content File content.
+	Content string `json:"content"`
+
+	// Name File name in the job's working directory, e.g. 'matmul.py'.
+	Name string `json:"name"`
+}
+
 // HpcJobOutput defines model for HpcJobOutput.
 type HpcJobOutput struct {
 	Job            HpcJob       `json:"job"`
@@ -37918,8 +37930,11 @@ type HpcJobSpecRequest struct {
 	Commands    string             `json:"commands"`
 	CpusPerTask *int               `json:"cpus_per_task,omitempty"`
 	Environment *map[string]string `json:"environment,omitempty"`
-	GpusPerNode *int               `json:"gpus_per_node,omitempty"`
-	MemoryMb    *int               `json:"memory_mb,omitempty"`
+
+	// Files Files written into the working directory before the commands run, such as the program the job runs.
+	Files       *[]HpcJobFileRequest `json:"files,omitempty"`
+	GpusPerNode *int                 `json:"gpus_per_node,omitempty"`
+	MemoryMb    *int                 `json:"memory_mb,omitempty"`
 
 	// Modules Setup lines, e.g. 'module load GROMACS/2024.1-foss-2023b'.
 	Modules          *[]string `json:"modules,omitempty"`
@@ -42044,13 +42059,6 @@ type MigrationDetails struct {
 	SrcResourceUuid   *openapi_types.UUID `json:"src_resource_uuid,omitempty"`
 	State             *string             `json:"state,omitempty"`
 	Uuid              *openapi_types.UUID `json:"uuid,omitempty"`
-}
-
-// MigrationDetailsRequest defines model for MigrationDetailsRequest.
-type MigrationDetailsRequest struct {
-	ErrorMessage   *string        `json:"error_message,omitempty"`
-	ErrorTraceback *string        `json:"error_traceback,omitempty"`
-	Mappings       MappingRequest `json:"mappings"`
 }
 
 // MinimalConsumptionLogicEnum defines model for MinimalConsumptionLogicEnum.
@@ -49581,13 +49589,6 @@ type PatchedMetricGoalRequest struct {
 	Value   *string             `json:"value,omitempty"`
 }
 
-// PatchedMigrationDetailsRequest defines model for PatchedMigrationDetailsRequest.
-type PatchedMigrationDetailsRequest struct {
-	ErrorMessage   *string         `json:"error_message,omitempty"`
-	ErrorTraceback *string         `json:"error_traceback,omitempty"`
-	Mappings       *MappingRequest `json:"mappings,omitempty"`
-}
-
 // PatchedNotificationRequest defines model for PatchedNotificationRequest.
 type PatchedNotificationRequest struct {
 	Description *string `json:"description,omitempty"`
@@ -50640,29 +50641,18 @@ type PatchedQuestionOptionsAdminRequest struct {
 
 // PatchedRancherApplicationRequest defines model for PatchedRancherApplicationRequest.
 type PatchedRancherApplicationRequest struct {
-	Answers         *map[string]interface{} `json:"answers,omitempty"`
-	BackendId       *string                 `json:"backend_id,omitempty"`
-	Description     *string                 `json:"description,omitempty"`
-	ErrorMessage    *string                 `json:"error_message,omitempty"`
-	ErrorTraceback  *string                 `json:"error_traceback,omitempty"`
-	Name            *string                 `json:"name,omitempty"`
-	Namespace       *string                 `json:"namespace,omitempty"`
-	NamespaceName   *string                 `json:"namespace_name,omitempty"`
-	Project         *string                 `json:"project,omitempty"`
-	RancherProject  *string                 `json:"rancher_project,omitempty"`
-	RuntimeState    *string                 `json:"runtime_state,omitempty"`
-	ServiceSettings *string                 `json:"service_settings,omitempty"`
-	Template        *string                 `json:"template,omitempty"`
-	Version         *string                 `json:"version,omitempty"`
+	Answers     *map[string]interface{} `json:"answers,omitempty"`
+	Description *string                 `json:"description,omitempty"`
+	Name        *string                 `json:"name,omitempty"`
+	Version     *string                 `json:"version,omitempty"`
 }
 
-// PatchedRancherCatalogRequest defines model for PatchedRancherCatalogRequest.
-type PatchedRancherCatalogRequest struct {
+// PatchedRancherCatalogUpdateRequest defines model for PatchedRancherCatalogUpdateRequest.
+type PatchedRancherCatalogUpdateRequest struct {
 	Branch      *string `json:"branch,omitempty"`
 	CatalogUrl  *string `json:"catalog_url,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Name        *string `json:"name,omitempty"`
-	Scope       *string `json:"scope,omitempty"`
 }
 
 // PatchedRancherClusterRequest defines model for PatchedRancherClusterRequest.
@@ -50673,7 +50663,6 @@ type PatchedRancherClusterRequest struct {
 	InstallLonghorn *bool   `json:"install_longhorn,omitempty"`
 	Name            *string `json:"name,omitempty"`
 	SshPublicKey    *string `json:"ssh_public_key,omitempty"`
-	VmProject       *string `json:"vm_project,omitempty"`
 }
 
 // PatchedRancherHPARequest defines model for PatchedRancherHPARequest.
@@ -50688,32 +50677,17 @@ type PatchedRancherHPARequest struct {
 
 // PatchedRancherIngressRequest defines model for PatchedRancherIngressRequest.
 type PatchedRancherIngressRequest struct {
-	BackendId       *string                 `json:"backend_id,omitempty"`
-	Description     *string                 `json:"description,omitempty"`
-	ErrorMessage    *string                 `json:"error_message,omitempty"`
-	ErrorTraceback  *string                 `json:"error_traceback,omitempty"`
-	Name            *string                 `json:"name,omitempty"`
-	Namespace       *string                 `json:"namespace,omitempty"`
-	Project         *string                 `json:"project,omitempty"`
-	RancherProject  *string                 `json:"rancher_project,omitempty"`
-	Rules           *map[string]interface{} `json:"rules,omitempty"`
-	RuntimeState    *string                 `json:"runtime_state,omitempty"`
-	ServiceSettings *string                 `json:"service_settings,omitempty"`
+	Description *string                 `json:"description,omitempty"`
+	Name        *string                 `json:"name,omitempty"`
+	Rules       *map[string]interface{} `json:"rules,omitempty"`
 }
 
 // PatchedRancherServiceRequest defines model for PatchedRancherServiceRequest.
 type PatchedRancherServiceRequest struct {
-	BackendId       *string                         `json:"backend_id,omitempty"`
 	ClusterIp       *string                         `json:"cluster_ip,omitempty"`
 	Description     *string                         `json:"description,omitempty"`
-	ErrorMessage    *string                         `json:"error_message,omitempty"`
-	ErrorTraceback  *string                         `json:"error_traceback,omitempty"`
 	Name            *string                         `json:"name,omitempty"`
-	Namespace       *string                         `json:"namespace,omitempty"`
-	Project         *string                         `json:"project,omitempty"`
-	RuntimeState    *string                         `json:"runtime_state,omitempty"`
 	Selector        *map[string]interface{}         `json:"selector,omitempty"`
-	ServiceSettings *string                         `json:"service_settings,omitempty"`
 	TargetWorkloads *[]RancherNestedWorkloadRequest `json:"target_workloads,omitempty"`
 }
 
@@ -55533,16 +55507,12 @@ type RancherApplicationFieldEnum string
 // RancherApplicationRequest defines model for RancherApplicationRequest.
 type RancherApplicationRequest struct {
 	Answers         *map[string]interface{} `json:"answers,omitempty"`
-	BackendId       *string                 `json:"backend_id,omitempty"`
 	Description     *string                 `json:"description,omitempty"`
-	ErrorMessage    *string                 `json:"error_message,omitempty"`
-	ErrorTraceback  *string                 `json:"error_traceback,omitempty"`
 	Name            string                  `json:"name"`
 	Namespace       *string                 `json:"namespace,omitempty"`
 	NamespaceName   *string                 `json:"namespace_name,omitempty"`
 	Project         string                  `json:"project"`
 	RancherProject  string                  `json:"rancher_project"`
-	RuntimeState    *string                 `json:"runtime_state,omitempty"`
 	ServiceSettings string                  `json:"service_settings"`
 	Template        string                  `json:"template"`
 	Version         string                  `json:"version"`
@@ -55606,7 +55576,7 @@ type RancherCatalogUpdate struct {
 	Modified     *time.Time               `json:"modified,omitempty"`
 	Name         string                   `json:"name"`
 	RuntimeState *string                  `json:"runtime_state,omitempty"`
-	Scope        string                   `json:"scope"`
+	Scope        *string                  `json:"scope,omitempty"`
 	ScopeType    *RancherCatalogScopeType `json:"scope_type,omitempty"`
 	Url          *string                  `json:"url,omitempty"`
 	Uuid         *openapi_types.UUID      `json:"uuid,omitempty"`
@@ -55618,7 +55588,6 @@ type RancherCatalogUpdateRequest struct {
 	CatalogUrl  string  `json:"catalog_url"`
 	Description *string `json:"description,omitempty"`
 	Name        string  `json:"name"`
-	Scope       string  `json:"scope"`
 }
 
 // RancherCluster defines model for RancherCluster.
@@ -55706,7 +55675,6 @@ type RancherClusterRequest struct {
 	InstallLonghorn *bool   `json:"install_longhorn,omitempty"`
 	Name            string  `json:"name"`
 	SshPublicKey    *string `json:"ssh_public_key,omitempty"`
-	VmProject       *string `json:"vm_project,omitempty"`
 }
 
 // RancherClusterSecurityGroupRule defines model for RancherClusterSecurityGroupRule.
@@ -55935,16 +55903,12 @@ type RancherIngressFieldEnum string
 
 // RancherIngressRequest defines model for RancherIngressRequest.
 type RancherIngressRequest struct {
-	BackendId       *string                 `json:"backend_id,omitempty"`
 	Description     *string                 `json:"description,omitempty"`
-	ErrorMessage    *string                 `json:"error_message,omitempty"`
-	ErrorTraceback  *string                 `json:"error_traceback,omitempty"`
 	Name            string                  `json:"name"`
 	Namespace       *string                 `json:"namespace,omitempty"`
 	Project         string                  `json:"project"`
 	RancherProject  string                  `json:"rancher_project"`
 	Rules           *map[string]interface{} `json:"rules,omitempty"`
-	RuntimeState    *string                 `json:"runtime_state,omitempty"`
 	ServiceSettings string                  `json:"service_settings"`
 }
 
@@ -56218,15 +56182,11 @@ type RancherServiceCreate_AccessUrl struct {
 
 // RancherServiceCreateRequest defines model for RancherServiceCreateRequest.
 type RancherServiceCreateRequest struct {
-	BackendId       *string                         `json:"backend_id,omitempty"`
 	ClusterIp       *string                         `json:"cluster_ip,omitempty"`
 	Description     *string                         `json:"description,omitempty"`
-	ErrorMessage    *string                         `json:"error_message,omitempty"`
-	ErrorTraceback  *string                         `json:"error_traceback,omitempty"`
 	Name            string                          `json:"name"`
 	Namespace       *string                         `json:"namespace,omitempty"`
 	Project         string                          `json:"project"`
-	RuntimeState    *string                         `json:"runtime_state,omitempty"`
 	Selector        *map[string]interface{}         `json:"selector,omitempty"`
 	ServiceSettings string                          `json:"service_settings"`
 	TargetWorkloads *[]RancherWorkloadCreateRequest `json:"target_workloads,omitempty"`
@@ -56237,17 +56197,10 @@ type RancherServiceFieldEnum string
 
 // RancherServiceRequest defines model for RancherServiceRequest.
 type RancherServiceRequest struct {
-	BackendId       *string                        `json:"backend_id,omitempty"`
 	ClusterIp       *string                        `json:"cluster_ip,omitempty"`
 	Description     *string                        `json:"description,omitempty"`
-	ErrorMessage    *string                        `json:"error_message,omitempty"`
-	ErrorTraceback  *string                        `json:"error_traceback,omitempty"`
 	Name            string                         `json:"name"`
-	Namespace       *string                        `json:"namespace,omitempty"`
-	Project         string                         `json:"project"`
-	RuntimeState    *string                        `json:"runtime_state,omitempty"`
 	Selector        *map[string]interface{}        `json:"selector,omitempty"`
-	ServiceSettings string                         `json:"service_settings"`
 	TargetWorkloads []RancherNestedWorkloadRequest `json:"target_workloads"`
 }
 
@@ -84210,15 +84163,6 @@ type OpenstackVolumesRetrieveParams struct {
 	Field *[]OpenStackVolumeFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 }
 
-// OpenstackDiscoveryListParams defines parameters for OpenstackDiscoveryList.
-type OpenstackDiscoveryListParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
 // OpenstackDiscoveryDiscoverExternalNetworksParams defines parameters for OpenstackDiscoveryDiscoverExternalNetworks.
 type OpenstackDiscoveryDiscoverExternalNetworksParams struct {
 	// Page A page number within the paginated result set.
@@ -92882,12 +92826,6 @@ type OpenstackMarketplaceTenantsUploadImageDataJSONRequestBody = OpenstackMarket
 // OpenstackMigrationsCreateJSONRequestBody defines body for OpenstackMigrationsCreate for application/json ContentType.
 type OpenstackMigrationsCreateJSONRequestBody = MigrationCreateRequest
 
-// OpenstackMigrationsPartialUpdateJSONRequestBody defines body for OpenstackMigrationsPartialUpdate for application/json ContentType.
-type OpenstackMigrationsPartialUpdateJSONRequestBody = PatchedMigrationDetailsRequest
-
-// OpenstackMigrationsUpdateJSONRequestBody defines body for OpenstackMigrationsUpdate for application/json ContentType.
-type OpenstackMigrationsUpdateJSONRequestBody = MigrationDetailsRequest
-
 // OpenstackNetworkRbacPoliciesCreateJSONRequestBody defines body for OpenstackNetworkRbacPoliciesCreate for application/json ContentType.
 type OpenstackNetworkRbacPoliciesCreateJSONRequestBody = NetworkRBACPolicyRequest
 
@@ -93497,7 +93435,7 @@ type RancherAppsSetErredJSONRequestBody = SetErredRequest
 type RancherCatalogsCreateJSONRequestBody = RancherCatalogCreateRequest
 
 // RancherCatalogsPartialUpdateJSONRequestBody defines body for RancherCatalogsPartialUpdate for application/json ContentType.
-type RancherCatalogsPartialUpdateJSONRequestBody = PatchedRancherCatalogRequest
+type RancherCatalogsPartialUpdateJSONRequestBody = PatchedRancherCatalogUpdateRequest
 
 // RancherCatalogsUpdateJSONRequestBody defines body for RancherCatalogsUpdate for application/json ContentType.
 type RancherCatalogsUpdateJSONRequestBody = RancherCatalogUpdateRequest
@@ -116795,7 +116733,7 @@ type ClientInterface interface {
 
 	// IdentityBridgeWithBody Push user attributes from an ISD
 	//
-	// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds.
+	// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may push staff, support or identity manager accounts.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -116804,7 +116742,7 @@ type ClientInterface interface {
 
 	// IdentityBridge Push user attributes from an ISD
 	//
-	// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds.
+	// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may push staff, support or identity manager accounts.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -116820,7 +116758,7 @@ type ClientInterface interface {
 
 	// IdentityBridgeRemoveWithBody Remove a user from an ISD
 	//
-	// Signals that a user has been removed from an ISD. Removes the source from active_isds, clears attributes owned by that source, and deactivates the user if no ISDs remain (configurable via FEDERATED_IDENTITY_DEACTIVATION_POLICY). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds.
+	// Signals that a user has been removed from an ISD. Removes the source from active_isds, clears attributes owned by that source, and deactivates the user if no ISDs remain (configurable via FEDERATED_IDENTITY_DEACTIVATION_POLICY). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may remove staff, support or identity manager accounts. A user who is not in the source ISD is answered with 404 and left unchanged.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -116829,7 +116767,7 @@ type ClientInterface interface {
 
 	// IdentityBridgeRemove Remove a user from an ISD
 	//
-	// Signals that a user has been removed from an ISD. Removes the source from active_isds, clears attributes owned by that source, and deactivates the user if no ISDs remain (configurable via FEDERATED_IDENTITY_DEACTIVATION_POLICY). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds.
+	// Signals that a user has been removed from an ISD. Removes the source from active_isds, clears attributes owned by that source, and deactivates the user if no ISDs remain (configurable via FEDERATED_IDENTITY_DEACTIVATION_POLICY). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may remove staff, support or identity manager accounts. A user who is not in the source ISD is answered with 404 and left unchanged.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -128832,22 +128770,6 @@ type ClientInterface interface {
 	// OpenstackMigrationsRetrieve performs a GET /api/openstack-migrations/{uuid}/ (the `OpenstackMigrationsRetrieve` operationId) request.
 	OpenstackMigrationsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// OpenstackMigrationsPartialUpdateWithBody performs a PATCH /api/openstack-migrations/{uuid}/ (the `OpenstackMigrationsPartialUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	OpenstackMigrationsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OpenstackMigrationsPartialUpdate performs a PATCH /api/openstack-migrations/{uuid}/ (the `OpenstackMigrationsPartialUpdate` operationId) request.
-	// Takes a body of the `application/json` content type.
-	OpenstackMigrationsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackMigrationsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OpenstackMigrationsUpdateWithBody performs a PUT /api/openstack-migrations/{uuid}/ (the `OpenstackMigrationsUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	OpenstackMigrationsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OpenstackMigrationsUpdate performs a PUT /api/openstack-migrations/{uuid}/ (the `OpenstackMigrationsUpdate` operationId) request.
-	// Takes a body of the `application/json` content type.
-	OpenstackMigrationsUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackMigrationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// OpenstackNetworkRbacPoliciesList List network RBAC policies
 	//
 	// Get a list of network RBAC policies.
@@ -130608,12 +130530,6 @@ type ClientInterface interface {
 	// Corresponds with POST /api/openstack-volumes/{uuid}/unlink/ (the `OpenstackVolumesUnlink` operationId).
 	OpenstackVolumesUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// OpenstackDiscoveryList performs a GET /api/openstack/discovery/ (the `OpenstackDiscoveryList` operationId) request.
-	OpenstackDiscoveryList(ctx context.Context, params *OpenstackDiscoveryListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OpenstackDiscoveryCreate performs a POST /api/openstack/discovery/ (the `OpenstackDiscoveryCreate` operationId) request.
-	OpenstackDiscoveryCreate(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// OpenstackDiscoveryDiscoverExternalNetworksWithBody performs a POST /api/openstack/discovery/discover_external_networks/ (the `OpenstackDiscoveryDiscoverExternalNetworks` operationId) request,
 	// with any type of body and a specified content type.
 	//
@@ -130697,18 +130613,6 @@ type ClientInterface interface {
 	//
 	// Validate OpenStack credentials without saving them.
 	OpenstackDiscoveryValidateCredentials(ctx context.Context, body OpenstackDiscoveryValidateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OpenstackDiscoveryDestroy performs a DELETE /api/openstack/discovery/{id}/ (the `OpenstackDiscoveryDestroy` operationId) request.
-	OpenstackDiscoveryDestroy(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OpenstackDiscoveryRetrieve performs a GET /api/openstack/discovery/{id}/ (the `OpenstackDiscoveryRetrieve` operationId) request.
-	OpenstackDiscoveryRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OpenstackDiscoveryPartialUpdate performs a PATCH /api/openstack/discovery/{id}/ (the `OpenstackDiscoveryPartialUpdate` operationId) request.
-	OpenstackDiscoveryPartialUpdate(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OpenstackDiscoveryUpdate performs a PUT /api/openstack/discovery/{id}/ (the `OpenstackDiscoveryUpdate` operationId) request.
-	OpenstackDiscoveryUpdate(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OrganizationGroupsList performs a GET /api/organization-groups/ (the `OrganizationGroupsList` operationId) request.
 	OrganizationGroupsList(ctx context.Context, params *OrganizationGroupsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -149046,7 +148950,7 @@ func (c *Client) HpcWorkspacesUsageRetrieve(ctx context.Context, uuid openapi_ty
 
 // IdentityBridgeWithBody Push user attributes from an ISD
 //
-// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds.
+// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may push staff, support or identity manager accounts.
 //
 // Takes any type of body and a specified content type.
 //
@@ -149065,7 +148969,7 @@ func (c *Client) IdentityBridgeWithBody(ctx context.Context, contentType string,
 
 // IdentityBridge Push user attributes from an ISD
 //
-// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds.
+// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may push staff, support or identity manager accounts.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -149101,7 +149005,7 @@ func (c *Client) IdentityBridgeAllowedFieldsRetrieve(ctx context.Context, reqEdi
 
 // IdentityBridgeRemoveWithBody Remove a user from an ISD
 //
-// Signals that a user has been removed from an ISD. Removes the source from active_isds, clears attributes owned by that source, and deactivates the user if no ISDs remain (configurable via FEDERATED_IDENTITY_DEACTIVATION_POLICY). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds.
+// Signals that a user has been removed from an ISD. Removes the source from active_isds, clears attributes owned by that source, and deactivates the user if no ISDs remain (configurable via FEDERATED_IDENTITY_DEACTIVATION_POLICY). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may remove staff, support or identity manager accounts. A user who is not in the source ISD is answered with 404 and left unchanged.
 //
 // Takes any type of body and a specified content type.
 //
@@ -149120,7 +149024,7 @@ func (c *Client) IdentityBridgeRemoveWithBody(ctx context.Context, contentType s
 
 // IdentityBridgeRemove Remove a user from an ISD
 //
-// Signals that a user has been removed from an ISD. Removes the source from active_isds, clears attributes owned by that source, and deactivates the user if no ISDs remain (configurable via FEDERATED_IDENTITY_DEACTIVATION_POLICY). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds.
+// Signals that a user has been removed from an ISD. Removes the source from active_isds, clears attributes owned by that source, and deactivates the user if no ISDs remain (configurable via FEDERATED_IDENTITY_DEACTIVATION_POLICY). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may remove staff, support or identity manager accounts. A user who is not in the source ISD is answered with 404 and left unchanged.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -179377,62 +179281,6 @@ func (c *Client) OpenstackMigrationsRetrieve(ctx context.Context, uuid openapi_t
 	return c.Client.Do(req)
 }
 
-// OpenstackMigrationsPartialUpdateWithBody performs a PATCH /api/openstack-migrations/{uuid}/ (the `OpenstackMigrationsPartialUpdate` operationId) request,
-// with any type of body and a specified content type.
-func (c *Client) OpenstackMigrationsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackMigrationsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// OpenstackMigrationsPartialUpdate performs a PATCH /api/openstack-migrations/{uuid}/ (the `OpenstackMigrationsPartialUpdate` operationId) request.
-// Takes a body of the `application/json` content type.
-func (c *Client) OpenstackMigrationsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackMigrationsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackMigrationsPartialUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// OpenstackMigrationsUpdateWithBody performs a PUT /api/openstack-migrations/{uuid}/ (the `OpenstackMigrationsUpdate` operationId) request,
-// with any type of body and a specified content type.
-func (c *Client) OpenstackMigrationsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackMigrationsUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// OpenstackMigrationsUpdate performs a PUT /api/openstack-migrations/{uuid}/ (the `OpenstackMigrationsUpdate` operationId) request.
-// Takes a body of the `application/json` content type.
-func (c *Client) OpenstackMigrationsUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackMigrationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackMigrationsUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 // OpenstackNetworkRbacPoliciesList List network RBAC policies
 //
 // Get a list of network RBAC policies.
@@ -183302,32 +183150,6 @@ func (c *Client) OpenstackVolumesUnlink(ctx context.Context, uuid openapi_types.
 	return c.Client.Do(req)
 }
 
-// OpenstackDiscoveryList performs a GET /api/openstack/discovery/ (the `OpenstackDiscoveryList` operationId) request.
-func (c *Client) OpenstackDiscoveryList(ctx context.Context, params *OpenstackDiscoveryListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackDiscoveryListRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// OpenstackDiscoveryCreate performs a POST /api/openstack/discovery/ (the `OpenstackDiscoveryCreate` operationId) request.
-func (c *Client) OpenstackDiscoveryCreate(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackDiscoveryCreateRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 // OpenstackDiscoveryDiscoverExternalNetworksWithBody performs a POST /api/openstack/discovery/discover_external_networks/ (the `OpenstackDiscoveryDiscoverExternalNetworks` operationId) request,
 // with any type of body and a specified content type.
 //
@@ -183542,58 +183364,6 @@ func (c *Client) OpenstackDiscoveryValidateCredentialsWithBody(ctx context.Conte
 // Validate OpenStack credentials without saving them.
 func (c *Client) OpenstackDiscoveryValidateCredentials(ctx context.Context, body OpenstackDiscoveryValidateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackDiscoveryValidateCredentialsRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// OpenstackDiscoveryDestroy performs a DELETE /api/openstack/discovery/{id}/ (the `OpenstackDiscoveryDestroy` operationId) request.
-func (c *Client) OpenstackDiscoveryDestroy(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackDiscoveryDestroyRequest(c.Server, id)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// OpenstackDiscoveryRetrieve performs a GET /api/openstack/discovery/{id}/ (the `OpenstackDiscoveryRetrieve` operationId) request.
-func (c *Client) OpenstackDiscoveryRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackDiscoveryRetrieveRequest(c.Server, id)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// OpenstackDiscoveryPartialUpdate performs a PATCH /api/openstack/discovery/{id}/ (the `OpenstackDiscoveryPartialUpdate` operationId) request.
-func (c *Client) OpenstackDiscoveryPartialUpdate(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackDiscoveryPartialUpdateRequest(c.Server, id)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// OpenstackDiscoveryUpdate performs a PUT /api/openstack/discovery/{id}/ (the `OpenstackDiscoveryUpdate` operationId) request.
-func (c *Client) OpenstackDiscoveryUpdate(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackDiscoveryUpdateRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -357440,100 +357210,6 @@ func NewOpenstackMigrationsRetrieveRequest(server string, uuid openapi_types.UUI
 	return req, nil
 }
 
-// NewOpenstackMigrationsPartialUpdateRequest calls the generic OpenstackMigrationsPartialUpdate builder with application/json body
-func NewOpenstackMigrationsPartialUpdateRequest(server string, uuid openapi_types.UUID, body OpenstackMigrationsPartialUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewOpenstackMigrationsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewOpenstackMigrationsPartialUpdateRequestWithBody constructs an http.Request for the OpenstackMigrationsPartialUpdate method, with any body, and a specified content type
-func NewOpenstackMigrationsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/openstack-migrations/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewOpenstackMigrationsUpdateRequest calls the generic OpenstackMigrationsUpdate builder with application/json body
-func NewOpenstackMigrationsUpdateRequest(server string, uuid openapi_types.UUID, body OpenstackMigrationsUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewOpenstackMigrationsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewOpenstackMigrationsUpdateRequestWithBody constructs an http.Request for the OpenstackMigrationsUpdate method, with any body, and a specified content type
-func NewOpenstackMigrationsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/openstack-migrations/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
 // NewOpenstackNetworkRbacPoliciesListRequest constructs an http.Request for the OpenstackNetworkRbacPoliciesList method
 func NewOpenstackNetworkRbacPoliciesListRequest(server string, params *OpenstackNetworkRbacPoliciesListParams) (*http.Request, error) {
 	var err error
@@ -370466,99 +370142,6 @@ func NewOpenstackVolumesUnlinkRequest(server string, uuid openapi_types.UUID) (*
 	return req, nil
 }
 
-// NewOpenstackDiscoveryListRequest constructs an http.Request for the OpenstackDiscoveryList method
-func NewOpenstackDiscoveryListRequest(server string, params *OpenstackDiscoveryListParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/openstack/discovery/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewOpenstackDiscoveryCreateRequest constructs an http.Request for the OpenstackDiscoveryCreate method
-func NewOpenstackDiscoveryCreateRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/openstack/discovery/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewOpenstackDiscoveryDiscoverExternalNetworksRequest calls the generic OpenstackDiscoveryDiscoverExternalNetworks builder with application/json body
 func NewOpenstackDiscoveryDiscoverExternalNetworksRequest(server string, params *OpenstackDiscoveryDiscoverExternalNetworksParams, body OpenstackDiscoveryDiscoverExternalNetworksJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -371030,142 +370613,6 @@ func NewOpenstackDiscoveryValidateCredentialsRequestWithBody(server string, cont
 	}
 
 	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewOpenstackDiscoveryDestroyRequest constructs an http.Request for the OpenstackDiscoveryDestroy method
-func NewOpenstackDiscoveryDestroyRequest(server string, id int) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: ""})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/openstack/discovery/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewOpenstackDiscoveryRetrieveRequest constructs an http.Request for the OpenstackDiscoveryRetrieve method
-func NewOpenstackDiscoveryRetrieveRequest(server string, id int) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: ""})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/openstack/discovery/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewOpenstackDiscoveryPartialUpdateRequest constructs an http.Request for the OpenstackDiscoveryPartialUpdate method
-func NewOpenstackDiscoveryPartialUpdateRequest(server string, id int) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: ""})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/openstack/discovery/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewOpenstackDiscoveryUpdateRequest constructs an http.Request for the OpenstackDiscoveryUpdate method
-func NewOpenstackDiscoveryUpdateRequest(server string, id int) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: ""})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/openstack/discovery/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPut, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
 
 	return req, nil
 }
@@ -438391,7 +437838,7 @@ type ClientWithResponsesInterface interface {
 
 	// IdentityBridgeWithBodyWithResponse Push user attributes from an ISD
 	//
-	// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds.
+	// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may push staff, support or identity manager accounts.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -438400,7 +437847,7 @@ type ClientWithResponsesInterface interface {
 
 	// IdentityBridgeWithResponse Push user attributes from an ISD
 	//
-	// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds.
+	// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may push staff, support or identity manager accounts.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -438418,7 +437865,7 @@ type ClientWithResponsesInterface interface {
 
 	// IdentityBridgeRemoveWithBodyWithResponse Remove a user from an ISD
 	//
-	// Signals that a user has been removed from an ISD. Removes the source from active_isds, clears attributes owned by that source, and deactivates the user if no ISDs remain (configurable via FEDERATED_IDENTITY_DEACTIVATION_POLICY). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds.
+	// Signals that a user has been removed from an ISD. Removes the source from active_isds, clears attributes owned by that source, and deactivates the user if no ISDs remain (configurable via FEDERATED_IDENTITY_DEACTIVATION_POLICY). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may remove staff, support or identity manager accounts. A user who is not in the source ISD is answered with 404 and left unchanged.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -438427,7 +437874,7 @@ type ClientWithResponsesInterface interface {
 
 	// IdentityBridgeRemoveWithResponse Remove a user from an ISD
 	//
-	// Signals that a user has been removed from an ISD. Removes the source from active_isds, clears attributes owned by that source, and deactivates the user if no ISDs remain (configurable via FEDERATED_IDENTITY_DEACTIVATION_POLICY). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds.
+	// Signals that a user has been removed from an ISD. Removes the source from active_isds, clears attributes owned by that source, and deactivates the user if no ISDs remain (configurable via FEDERATED_IDENTITY_DEACTIVATION_POLICY). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may remove staff, support or identity manager accounts. A user who is not in the source ISD is answered with 404 and left unchanged.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -452588,26 +452035,6 @@ type ClientWithResponsesInterface interface {
 	// Returns a wrapper object for the known response body format(s).
 	OpenstackMigrationsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackMigrationsRetrieveResponse, error)
 
-	// OpenstackMigrationsPartialUpdateWithBodyWithResponse performs a PATCH /api/openstack-migrations/{uuid}/ (the `OpenstackMigrationsPartialUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	OpenstackMigrationsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackMigrationsPartialUpdateResponse, error)
-
-	// OpenstackMigrationsPartialUpdateWithResponse performs a PATCH /api/openstack-migrations/{uuid}/ (the `OpenstackMigrationsPartialUpdate` operationId) request.
-	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	OpenstackMigrationsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackMigrationsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackMigrationsPartialUpdateResponse, error)
-
-	// OpenstackMigrationsUpdateWithBodyWithResponse performs a PUT /api/openstack-migrations/{uuid}/ (the `OpenstackMigrationsUpdate` operationId) request,
-	// with any type of body and a specified content type.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	OpenstackMigrationsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackMigrationsUpdateResponse, error)
-
-	// OpenstackMigrationsUpdateWithResponse performs a PUT /api/openstack-migrations/{uuid}/ (the `OpenstackMigrationsUpdate` operationId) request.
-	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	OpenstackMigrationsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackMigrationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackMigrationsUpdateResponse, error)
-
 	// OpenstackNetworkRbacPoliciesListWithResponse List network RBAC policies
 	//
 	// Get a list of network RBAC policies.
@@ -454570,16 +453997,6 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with POST /api/openstack-volumes/{uuid}/unlink/ (the `OpenstackVolumesUnlink` operationId).
 	OpenstackVolumesUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackVolumesUnlinkResponse, error)
 
-	// OpenstackDiscoveryListWithResponse performs a GET /api/openstack/discovery/ (the `OpenstackDiscoveryList` operationId) request.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	OpenstackDiscoveryListWithResponse(ctx context.Context, params *OpenstackDiscoveryListParams, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryListResponse, error)
-
-	// OpenstackDiscoveryCreateWithResponse performs a POST /api/openstack/discovery/ (the `OpenstackDiscoveryCreate` operationId) request.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	OpenstackDiscoveryCreateWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryCreateResponse, error)
-
 	// OpenstackDiscoveryDiscoverExternalNetworksWithBodyWithResponse performs a POST /api/openstack/discovery/discover_external_networks/ (the `OpenstackDiscoveryDiscoverExternalNetworks` operationId) request,
 	// with any type of body and a specified content type.
 	//
@@ -454677,26 +454094,6 @@ type ClientWithResponsesInterface interface {
 	//
 	// Validate OpenStack credentials without saving them.
 	OpenstackDiscoveryValidateCredentialsWithResponse(ctx context.Context, body OpenstackDiscoveryValidateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryValidateCredentialsResponse, error)
-
-	// OpenstackDiscoveryDestroyWithResponse performs a DELETE /api/openstack/discovery/{id}/ (the `OpenstackDiscoveryDestroy` operationId) request.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	OpenstackDiscoveryDestroyWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryDestroyResponse, error)
-
-	// OpenstackDiscoveryRetrieveWithResponse performs a GET /api/openstack/discovery/{id}/ (the `OpenstackDiscoveryRetrieve` operationId) request.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	OpenstackDiscoveryRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryRetrieveResponse, error)
-
-	// OpenstackDiscoveryPartialUpdateWithResponse performs a PATCH /api/openstack/discovery/{id}/ (the `OpenstackDiscoveryPartialUpdate` operationId) request.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	OpenstackDiscoveryPartialUpdateWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryPartialUpdateResponse, error)
-
-	// OpenstackDiscoveryUpdateWithResponse performs a PUT /api/openstack/discovery/{id}/ (the `OpenstackDiscoveryUpdate` operationId) request.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	OpenstackDiscoveryUpdateWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryUpdateResponse, error)
 
 	// OrganizationGroupsListWithResponse performs a GET /api/organization-groups/ (the `OrganizationGroupsList` operationId) request.
 	//
@@ -541354,88 +540751,6 @@ func (r OpenstackMigrationsRetrieveResponse) ContentType() string {
 	return ""
 }
 
-type OpenstackMigrationsPartialUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *MigrationDetails
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r OpenstackMigrationsPartialUpdateResponse) GetJSON200() *MigrationDetails {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r OpenstackMigrationsPartialUpdateResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r OpenstackMigrationsPartialUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OpenstackMigrationsPartialUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r OpenstackMigrationsPartialUpdateResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type OpenstackMigrationsUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *MigrationDetails
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r OpenstackMigrationsUpdateResponse) GetJSON200() *MigrationDetails {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r OpenstackMigrationsUpdateResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r OpenstackMigrationsUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OpenstackMigrationsUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r OpenstackMigrationsUpdateResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
 // OpenstackNetworkRbacPoliciesListResponse200Headers the declared response headers of an HTTP 200 response for OpenstackNetworkRbacPoliciesList
 type OpenstackNetworkRbacPoliciesListResponse200Headers struct {
 	XResultCount *int
@@ -547679,74 +546994,6 @@ func (r OpenstackVolumesUnlinkResponse) ContentType() string {
 	return ""
 }
 
-type OpenstackDiscoveryListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r OpenstackDiscoveryListResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r OpenstackDiscoveryListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OpenstackDiscoveryListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r OpenstackDiscoveryListResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type OpenstackDiscoveryCreateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r OpenstackDiscoveryCreateResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r OpenstackDiscoveryCreateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OpenstackDiscoveryCreateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r OpenstackDiscoveryCreateResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
 type OpenstackDiscoveryDiscoverExternalNetworksResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -548028,142 +547275,6 @@ func (r OpenstackDiscoveryValidateCredentialsResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r OpenstackDiscoveryValidateCredentialsResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type OpenstackDiscoveryDestroyResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r OpenstackDiscoveryDestroyResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r OpenstackDiscoveryDestroyResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OpenstackDiscoveryDestroyResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r OpenstackDiscoveryDestroyResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type OpenstackDiscoveryRetrieveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r OpenstackDiscoveryRetrieveResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r OpenstackDiscoveryRetrieveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OpenstackDiscoveryRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r OpenstackDiscoveryRetrieveResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type OpenstackDiscoveryPartialUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r OpenstackDiscoveryPartialUpdateResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r OpenstackDiscoveryPartialUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OpenstackDiscoveryPartialUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r OpenstackDiscoveryPartialUpdateResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type OpenstackDiscoveryUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r OpenstackDiscoveryUpdateResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r OpenstackDiscoveryUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OpenstackDiscoveryUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r OpenstackDiscoveryUpdateResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -561527,11 +560638,11 @@ type RancherCatalogsPartialUpdateResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *RancherCatalog
+	JSON200 *RancherCatalogUpdate
 }
 
 // GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r RancherCatalogsPartialUpdateResponse) GetJSON200() *RancherCatalog {
+func (r RancherCatalogsPartialUpdateResponse) GetJSON200() *RancherCatalogUpdate {
 	return r.JSON200
 }
 
@@ -592264,7 +591375,7 @@ func (c *ClientWithResponses) HpcWorkspacesUsageRetrieveWithResponse(ctx context
 
 // IdentityBridgeWithBodyWithResponse Push user attributes from an ISD
 //
-// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds.
+// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may push staff, support or identity manager accounts.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -592279,7 +591390,7 @@ func (c *ClientWithResponses) IdentityBridgeWithBodyWithResponse(ctx context.Con
 
 // IdentityBridgeWithResponse Push user attributes from an ISD
 //
-// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds.
+// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may push staff, support or identity manager accounts.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -592309,7 +591420,7 @@ func (c *ClientWithResponses) IdentityBridgeAllowedFieldsRetrieveWithResponse(ct
 
 // IdentityBridgeRemoveWithBodyWithResponse Remove a user from an ISD
 //
-// Signals that a user has been removed from an ISD. Removes the source from active_isds, clears attributes owned by that source, and deactivates the user if no ISDs remain (configurable via FEDERATED_IDENTITY_DEACTIVATION_POLICY). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds.
+// Signals that a user has been removed from an ISD. Removes the source from active_isds, clears attributes owned by that source, and deactivates the user if no ISDs remain (configurable via FEDERATED_IDENTITY_DEACTIVATION_POLICY). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may remove staff, support or identity manager accounts. A user who is not in the source ISD is answered with 404 and left unchanged.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -592324,7 +591435,7 @@ func (c *ClientWithResponses) IdentityBridgeRemoveWithBodyWithResponse(ctx conte
 
 // IdentityBridgeRemoveWithResponse Remove a user from an ISD
 //
-// Signals that a user has been removed from an ISD. Removes the source from active_isds, clears attributes owned by that source, and deactivates the user if no ISDs remain (configurable via FEDERATED_IDENTITY_DEACTIVATION_POLICY). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds.
+// Signals that a user has been removed from an ISD. Removes the source from active_isds, clears attributes owned by that source, and deactivates the user if no ISDs remain (configurable via FEDERATED_IDENTITY_DEACTIVATION_POLICY). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may remove staff, support or identity manager accounts. A user who is not in the source ISD is answered with 404 and left unchanged.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -617423,50 +616534,6 @@ func (c *ClientWithResponses) OpenstackMigrationsRetrieveWithResponse(ctx contex
 	return ParseOpenstackMigrationsRetrieveResponse(rsp)
 }
 
-// OpenstackMigrationsPartialUpdateWithBodyWithResponse performs a PATCH /api/openstack-migrations/{uuid}/ (the `OpenstackMigrationsPartialUpdate` operationId) request,
-// with any type of body and a specified content type.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenstackMigrationsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackMigrationsPartialUpdateResponse, error) {
-	rsp, err := c.OpenstackMigrationsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackMigrationsPartialUpdateResponse(rsp)
-}
-
-// OpenstackMigrationsPartialUpdateWithResponse performs a PATCH /api/openstack-migrations/{uuid}/ (the `OpenstackMigrationsPartialUpdate` operationId) request.
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenstackMigrationsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackMigrationsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackMigrationsPartialUpdateResponse, error) {
-	rsp, err := c.OpenstackMigrationsPartialUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackMigrationsPartialUpdateResponse(rsp)
-}
-
-// OpenstackMigrationsUpdateWithBodyWithResponse performs a PUT /api/openstack-migrations/{uuid}/ (the `OpenstackMigrationsUpdate` operationId) request,
-// with any type of body and a specified content type.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenstackMigrationsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackMigrationsUpdateResponse, error) {
-	rsp, err := c.OpenstackMigrationsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackMigrationsUpdateResponse(rsp)
-}
-
-// OpenstackMigrationsUpdateWithResponse performs a PUT /api/openstack-migrations/{uuid}/ (the `OpenstackMigrationsUpdate` operationId) request.
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenstackMigrationsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackMigrationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackMigrationsUpdateResponse, error) {
-	rsp, err := c.OpenstackMigrationsUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackMigrationsUpdateResponse(rsp)
-}
-
 // OpenstackNetworkRbacPoliciesListWithResponse List network RBAC policies
 //
 // Get a list of network RBAC policies.
@@ -620700,28 +619767,6 @@ func (c *ClientWithResponses) OpenstackVolumesUnlinkWithResponse(ctx context.Con
 	return ParseOpenstackVolumesUnlinkResponse(rsp)
 }
 
-// OpenstackDiscoveryListWithResponse performs a GET /api/openstack/discovery/ (the `OpenstackDiscoveryList` operationId) request.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenstackDiscoveryListWithResponse(ctx context.Context, params *OpenstackDiscoveryListParams, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryListResponse, error) {
-	rsp, err := c.OpenstackDiscoveryList(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackDiscoveryListResponse(rsp)
-}
-
-// OpenstackDiscoveryCreateWithResponse performs a POST /api/openstack/discovery/ (the `OpenstackDiscoveryCreate` operationId) request.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenstackDiscoveryCreateWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryCreateResponse, error) {
-	rsp, err := c.OpenstackDiscoveryCreate(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackDiscoveryCreateResponse(rsp)
-}
-
 // OpenstackDiscoveryDiscoverExternalNetworksWithBodyWithResponse performs a POST /api/openstack/discovery/discover_external_networks/ (the `OpenstackDiscoveryDiscoverExternalNetworks` operationId) request,
 // with any type of body and a specified content type.
 //
@@ -620902,50 +619947,6 @@ func (c *ClientWithResponses) OpenstackDiscoveryValidateCredentialsWithResponse(
 		return nil, err
 	}
 	return ParseOpenstackDiscoveryValidateCredentialsResponse(rsp)
-}
-
-// OpenstackDiscoveryDestroyWithResponse performs a DELETE /api/openstack/discovery/{id}/ (the `OpenstackDiscoveryDestroy` operationId) request.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenstackDiscoveryDestroyWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryDestroyResponse, error) {
-	rsp, err := c.OpenstackDiscoveryDestroy(ctx, id, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackDiscoveryDestroyResponse(rsp)
-}
-
-// OpenstackDiscoveryRetrieveWithResponse performs a GET /api/openstack/discovery/{id}/ (the `OpenstackDiscoveryRetrieve` operationId) request.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenstackDiscoveryRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryRetrieveResponse, error) {
-	rsp, err := c.OpenstackDiscoveryRetrieve(ctx, id, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackDiscoveryRetrieveResponse(rsp)
-}
-
-// OpenstackDiscoveryPartialUpdateWithResponse performs a PATCH /api/openstack/discovery/{id}/ (the `OpenstackDiscoveryPartialUpdate` operationId) request.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenstackDiscoveryPartialUpdateWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryPartialUpdateResponse, error) {
-	rsp, err := c.OpenstackDiscoveryPartialUpdate(ctx, id, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackDiscoveryPartialUpdateResponse(rsp)
-}
-
-// OpenstackDiscoveryUpdateWithResponse performs a PUT /api/openstack/discovery/{id}/ (the `OpenstackDiscoveryUpdate` operationId) request.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenstackDiscoveryUpdateWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*OpenstackDiscoveryUpdateResponse, error) {
-	rsp, err := c.OpenstackDiscoveryUpdate(ctx, id, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackDiscoveryUpdateResponse(rsp)
 }
 
 // OrganizationGroupsListWithResponse performs a GET /api/organization-groups/ (the `OrganizationGroupsList` operationId) request.
@@ -685443,58 +684444,6 @@ func ParseOpenstackMigrationsRetrieveResponse(rsp *http.Response) (*OpenstackMig
 	return response, nil
 }
 
-// ParseOpenstackMigrationsPartialUpdateResponse parses an HTTP response from a OpenstackMigrationsPartialUpdateWithResponse call
-func ParseOpenstackMigrationsPartialUpdateResponse(rsp *http.Response) (*OpenstackMigrationsPartialUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OpenstackMigrationsPartialUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest MigrationDetails
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseOpenstackMigrationsUpdateResponse parses an HTTP response from a OpenstackMigrationsUpdateWithResponse call
-func ParseOpenstackMigrationsUpdateResponse(rsp *http.Response) (*OpenstackMigrationsUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OpenstackMigrationsUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest MigrationDetails
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseOpenstackNetworkRbacPoliciesListResponse parses an HTTP response from a OpenstackNetworkRbacPoliciesListWithResponse call
 func ParseOpenstackNetworkRbacPoliciesListResponse(rsp *http.Response) (*OpenstackNetworkRbacPoliciesListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -689395,38 +688344,6 @@ func ParseOpenstackVolumesUnlinkResponse(rsp *http.Response) (*OpenstackVolumesU
 	return response, nil
 }
 
-// ParseOpenstackDiscoveryListResponse parses an HTTP response from a OpenstackDiscoveryListWithResponse call
-func ParseOpenstackDiscoveryListResponse(rsp *http.Response) (*OpenstackDiscoveryListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OpenstackDiscoveryListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseOpenstackDiscoveryCreateResponse parses an HTTP response from a OpenstackDiscoveryCreateWithResponse call
-func ParseOpenstackDiscoveryCreateResponse(rsp *http.Response) (*OpenstackDiscoveryCreateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OpenstackDiscoveryCreateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
 // ParseOpenstackDiscoveryDiscoverExternalNetworksResponse parses an HTTP response from a OpenstackDiscoveryDiscoverExternalNetworksWithResponse call
 func ParseOpenstackDiscoveryDiscoverExternalNetworksResponse(rsp *http.Response) (*OpenstackDiscoveryDiscoverExternalNetworksResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -689604,70 +688521,6 @@ func ParseOpenstackDiscoveryValidateCredentialsResponse(rsp *http.Response) (*Op
 		}
 		response.JSON200 = &dest
 
-	}
-
-	return response, nil
-}
-
-// ParseOpenstackDiscoveryDestroyResponse parses an HTTP response from a OpenstackDiscoveryDestroyWithResponse call
-func ParseOpenstackDiscoveryDestroyResponse(rsp *http.Response) (*OpenstackDiscoveryDestroyResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OpenstackDiscoveryDestroyResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseOpenstackDiscoveryRetrieveResponse parses an HTTP response from a OpenstackDiscoveryRetrieveWithResponse call
-func ParseOpenstackDiscoveryRetrieveResponse(rsp *http.Response) (*OpenstackDiscoveryRetrieveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OpenstackDiscoveryRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseOpenstackDiscoveryPartialUpdateResponse parses an HTTP response from a OpenstackDiscoveryPartialUpdateWithResponse call
-func ParseOpenstackDiscoveryPartialUpdateResponse(rsp *http.Response) (*OpenstackDiscoveryPartialUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OpenstackDiscoveryPartialUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseOpenstackDiscoveryUpdateResponse parses an HTTP response from a OpenstackDiscoveryUpdateWithResponse call
-func ParseOpenstackDiscoveryUpdateResponse(rsp *http.Response) (*OpenstackDiscoveryUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OpenstackDiscoveryUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
 	}
 
 	return response, nil
@@ -698253,7 +697106,7 @@ func ParseRancherCatalogsPartialUpdateResponse(rsp *http.Response) (*RancherCata
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RancherCatalog
+		var dest RancherCatalogUpdate
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
