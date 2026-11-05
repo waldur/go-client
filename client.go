@@ -50816,6 +50816,9 @@ type PatchedResourceApiKeyUpdateRequest struct {
 	// AllowedModels Models the key may call: ["*"] for every model, an empty list for none. Absent, a new key gets none and an edited one keeps its list.
 	AllowedModels *[]string `json:"allowed_models,omitempty"`
 
+	// Description A note telling the key apart from the resource's other keys, such as the environment that uses it. No command to the site agent carries it, so changing it alone issues none and needs no enable_api_key_provisioning. Everyone who can list the key reads it, the provider included.
+	Description *string `json:"description,omitempty"`
+
 	// Limits Month limits per component type; zero or absent means no month limit. Replaces the month limits of spending_limits and keeps the other periods. Not together with spending_limits.
 	Limits *map[string]float64 `json:"limits,omitempty"`
 
@@ -57231,6 +57234,7 @@ type ResourceApiKey struct {
 	ApiKey        *string             `json:"api_key,omitempty"`
 	ClientId      *string             `json:"client_id,omitempty"`
 	CurrentUsages *map[string]float64 `json:"current_usages,omitempty"`
+	Description   *string             `json:"description,omitempty"`
 
 	// EffectiveModels The models the key can call: the resource's selection, then the key's list. The site agent applies this one.
 	EffectiveModels *[]string `json:"effective_models,omitempty"`
@@ -57275,6 +57279,9 @@ type ResourceApiKeyCreateRequest struct {
 	// AllowedModels Models the key may call: ["*"] for every model, an empty list for none. Absent, a new key gets none and an edited one keeps its list.
 	AllowedModels *[]string `json:"allowed_models,omitempty"`
 
+	// Description A note telling the key apart from the resource's other keys, such as the environment that uses it. No command to the site agent carries it, so changing it alone issues none and needs no enable_api_key_provisioning. Everyone who can list the key reads it, the provider included.
+	Description *string `json:"description,omitempty"`
+
 	// Limits Month limits per component type; zero or absent means no month limit. Replaces the month limits of spending_limits and keeps the other periods. Not together with spending_limits.
 	Limits   *map[string]float64 `json:"limits,omitempty"`
 	Resource openapi_types.UUID  `json:"resource"`
@@ -57313,6 +57320,7 @@ type ResourceApiKeyStatus struct {
 	AllowedModels *[]string           `json:"allowed_models,omitempty"`
 	ClientId      *string             `json:"client_id,omitempty"`
 	CurrentUsages *map[string]float64 `json:"current_usages,omitempty"`
+	Description   *string             `json:"description,omitempty"`
 
 	// EffectiveModels The models the key can call: the resource's selection, then the key's list. The site agent applies this one.
 	EffectiveModels *[]string `json:"effective_models,omitempty"`
@@ -123019,7 +123027,7 @@ type ClientInterface interface {
 
 	// MarketplaceResourceApiKeysCreateWithBody Request an API key
 	//
-	// Asks the site agent to create a key for the resource. Waldur generates nothing: the key appears as Creating and turns OK once the agent reports it. Only on offerings with enable_api_key_provisioning.
+	// Asks the site agent to create a key for the resource. Waldur generates nothing: the key appears as Creating and turns OK once the agent reports it. Only on offerings with enable_api_key_provisioning, and refused with 409 until the agent has created the resource (it has no backend_id yet).
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -123028,7 +123036,7 @@ type ClientInterface interface {
 
 	// MarketplaceResourceApiKeysCreate Request an API key
 	//
-	// Asks the site agent to create a key for the resource. Waldur generates nothing: the key appears as Creating and turns OK once the agent reports it. Only on offerings with enable_api_key_provisioning.
+	// Asks the site agent to create a key for the resource. Waldur generates nothing: the key appears as Creating and turns OK once the agent reports it. Only on offerings with enable_api_key_provisioning, and refused with 409 until the agent has created the resource (it has no backend_id yet).
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -123079,7 +123087,7 @@ type ClientInterface interface {
 
 	// MarketplaceResourceApiKeysPartialUpdateWithBody Edit an API key
 	//
-	// Changes the key's limits or model allowlist. A change is sent to the site agent as an update command, unless the key is paused: resuming it applies them. The key's assignee is set when the key is requested and cannot be changed: an edit that names user, null included, is refused with 400. To hand a key to someone else, request a key for them and delete this one. Only on offerings with enable_api_key_provisioning.
+	// Changes the key's limits, model allowlist or description. A change of limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. The key's assignee is set when the key is requested and cannot be changed: an edit that names user, null included, is refused with 400. To hand a key to someone else, request a key for them and delete this one. Only on offerings with enable_api_key_provisioning, except an edit of the description alone: that is saved at once on any offering and in any state but Deleted, sends no command and leaves the key's state as it is.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -123088,7 +123096,7 @@ type ClientInterface interface {
 
 	// MarketplaceResourceApiKeysPartialUpdate Edit an API key
 	//
-	// Changes the key's limits or model allowlist. A change is sent to the site agent as an update command, unless the key is paused: resuming it applies them. The key's assignee is set when the key is requested and cannot be changed: an edit that names user, null included, is refused with 400. To hand a key to someone else, request a key for them and delete this one. Only on offerings with enable_api_key_provisioning.
+	// Changes the key's limits, model allowlist or description. A change of limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. The key's assignee is set when the key is requested and cannot be changed: an edit that names user, null included, is refused with 400. To hand a key to someone else, request a key for them and delete this one. Only on offerings with enable_api_key_provisioning, except an edit of the description alone: that is saved at once on any offering and in any state but Deleted, sends no command and leaves the key's state as it is.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -164314,7 +164322,7 @@ func (c *Client) MarketplaceResourceApiKeysCount(ctx context.Context, params *Ma
 
 // MarketplaceResourceApiKeysCreateWithBody Request an API key
 //
-// Asks the site agent to create a key for the resource. Waldur generates nothing: the key appears as Creating and turns OK once the agent reports it. Only on offerings with enable_api_key_provisioning.
+// Asks the site agent to create a key for the resource. Waldur generates nothing: the key appears as Creating and turns OK once the agent reports it. Only on offerings with enable_api_key_provisioning, and refused with 409 until the agent has created the resource (it has no backend_id yet).
 //
 // Takes any type of body and a specified content type.
 //
@@ -164333,7 +164341,7 @@ func (c *Client) MarketplaceResourceApiKeysCreateWithBody(ctx context.Context, c
 
 // MarketplaceResourceApiKeysCreate Request an API key
 //
-// Asks the site agent to create a key for the resource. Waldur generates nothing: the key appears as Creating and turns OK once the agent reports it. Only on offerings with enable_api_key_provisioning.
+// Asks the site agent to create a key for the resource. Waldur generates nothing: the key appears as Creating and turns OK once the agent reports it. Only on offerings with enable_api_key_provisioning, and refused with 409 until the agent has created the resource (it has no backend_id yet).
 //
 // Takes a body of the `application/json` content type.
 //
@@ -164454,7 +164462,7 @@ func (c *Client) MarketplaceResourceApiKeysRetrieve(ctx context.Context, uuid op
 
 // MarketplaceResourceApiKeysPartialUpdateWithBody Edit an API key
 //
-// Changes the key's limits or model allowlist. A change is sent to the site agent as an update command, unless the key is paused: resuming it applies them. The key's assignee is set when the key is requested and cannot be changed: an edit that names user, null included, is refused with 400. To hand a key to someone else, request a key for them and delete this one. Only on offerings with enable_api_key_provisioning.
+// Changes the key's limits, model allowlist or description. A change of limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. The key's assignee is set when the key is requested and cannot be changed: an edit that names user, null included, is refused with 400. To hand a key to someone else, request a key for them and delete this one. Only on offerings with enable_api_key_provisioning, except an edit of the description alone: that is saved at once on any offering and in any state but Deleted, sends no command and leaves the key's state as it is.
 //
 // Takes any type of body and a specified content type.
 //
@@ -164473,7 +164481,7 @@ func (c *Client) MarketplaceResourceApiKeysPartialUpdateWithBody(ctx context.Con
 
 // MarketplaceResourceApiKeysPartialUpdate Edit an API key
 //
-// Changes the key's limits or model allowlist. A change is sent to the site agent as an update command, unless the key is paused: resuming it applies them. The key's assignee is set when the key is requested and cannot be changed: an edit that names user, null included, is refused with 400. To hand a key to someone else, request a key for them and delete this one. Only on offerings with enable_api_key_provisioning.
+// Changes the key's limits, model allowlist or description. A change of limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. The key's assignee is set when the key is requested and cannot be changed: an edit that names user, null included, is refused with 400. To hand a key to someone else, request a key for them and delete this one. Only on offerings with enable_api_key_provisioning, except an edit of the description alone: that is saved at once on any offering and in any state but Deleted, sends no command and leaves the key's state as it is.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -445098,7 +445106,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceResourceApiKeysCreateWithBodyWithResponse Request an API key
 	//
-	// Asks the site agent to create a key for the resource. Waldur generates nothing: the key appears as Creating and turns OK once the agent reports it. Only on offerings with enable_api_key_provisioning.
+	// Asks the site agent to create a key for the resource. Waldur generates nothing: the key appears as Creating and turns OK once the agent reports it. Only on offerings with enable_api_key_provisioning, and refused with 409 until the agent has created the resource (it has no backend_id yet).
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -445107,7 +445115,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceResourceApiKeysCreateWithResponse Request an API key
 	//
-	// Asks the site agent to create a key for the resource. Waldur generates nothing: the key appears as Creating and turns OK once the agent reports it. Only on offerings with enable_api_key_provisioning.
+	// Asks the site agent to create a key for the resource. Waldur generates nothing: the key appears as Creating and turns OK once the agent reports it. Only on offerings with enable_api_key_provisioning, and refused with 409 until the agent has created the resource (it has no backend_id yet).
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -445166,7 +445174,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceResourceApiKeysPartialUpdateWithBodyWithResponse Edit an API key
 	//
-	// Changes the key's limits or model allowlist. A change is sent to the site agent as an update command, unless the key is paused: resuming it applies them. The key's assignee is set when the key is requested and cannot be changed: an edit that names user, null included, is refused with 400. To hand a key to someone else, request a key for them and delete this one. Only on offerings with enable_api_key_provisioning.
+	// Changes the key's limits, model allowlist or description. A change of limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. The key's assignee is set when the key is requested and cannot be changed: an edit that names user, null included, is refused with 400. To hand a key to someone else, request a key for them and delete this one. Only on offerings with enable_api_key_provisioning, except an edit of the description alone: that is saved at once on any offering and in any state but Deleted, sends no command and leaves the key's state as it is.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -445175,7 +445183,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceResourceApiKeysPartialUpdateWithResponse Edit an API key
 	//
-	// Changes the key's limits or model allowlist. A change is sent to the site agent as an update command, unless the key is paused: resuming it applies them. The key's assignee is set when the key is requested and cannot be changed: an edit that names user, null included, is refused with 400. To hand a key to someone else, request a key for them and delete this one. Only on offerings with enable_api_key_provisioning.
+	// Changes the key's limits, model allowlist or description. A change of limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. The key's assignee is set when the key is requested and cannot be changed: an edit that names user, null included, is refused with 400. To hand a key to someone else, request a key for them and delete this one. Only on offerings with enable_api_key_provisioning, except an edit of the description alone: that is saved at once on any offering and in any state but Deleted, sends no command and leaves the key's state as it is.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -604067,7 +604075,7 @@ func (c *ClientWithResponses) MarketplaceResourceApiKeysCountWithResponse(ctx co
 
 // MarketplaceResourceApiKeysCreateWithBodyWithResponse Request an API key
 //
-// Asks the site agent to create a key for the resource. Waldur generates nothing: the key appears as Creating and turns OK once the agent reports it. Only on offerings with enable_api_key_provisioning.
+// Asks the site agent to create a key for the resource. Waldur generates nothing: the key appears as Creating and turns OK once the agent reports it. Only on offerings with enable_api_key_provisioning, and refused with 409 until the agent has created the resource (it has no backend_id yet).
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -604082,7 +604090,7 @@ func (c *ClientWithResponses) MarketplaceResourceApiKeysCreateWithBodyWithRespon
 
 // MarketplaceResourceApiKeysCreateWithResponse Request an API key
 //
-// Asks the site agent to create a key for the resource. Waldur generates nothing: the key appears as Creating and turns OK once the agent reports it. Only on offerings with enable_api_key_provisioning.
+// Asks the site agent to create a key for the resource. Waldur generates nothing: the key appears as Creating and turns OK once the agent reports it. Only on offerings with enable_api_key_provisioning, and refused with 409 until the agent has created the resource (it has no backend_id yet).
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -604183,7 +604191,7 @@ func (c *ClientWithResponses) MarketplaceResourceApiKeysRetrieveWithResponse(ctx
 
 // MarketplaceResourceApiKeysPartialUpdateWithBodyWithResponse Edit an API key
 //
-// Changes the key's limits or model allowlist. A change is sent to the site agent as an update command, unless the key is paused: resuming it applies them. The key's assignee is set when the key is requested and cannot be changed: an edit that names user, null included, is refused with 400. To hand a key to someone else, request a key for them and delete this one. Only on offerings with enable_api_key_provisioning.
+// Changes the key's limits, model allowlist or description. A change of limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. The key's assignee is set when the key is requested and cannot be changed: an edit that names user, null included, is refused with 400. To hand a key to someone else, request a key for them and delete this one. Only on offerings with enable_api_key_provisioning, except an edit of the description alone: that is saved at once on any offering and in any state but Deleted, sends no command and leaves the key's state as it is.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -604198,7 +604206,7 @@ func (c *ClientWithResponses) MarketplaceResourceApiKeysPartialUpdateWithBodyWit
 
 // MarketplaceResourceApiKeysPartialUpdateWithResponse Edit an API key
 //
-// Changes the key's limits or model allowlist. A change is sent to the site agent as an update command, unless the key is paused: resuming it applies them. The key's assignee is set when the key is requested and cannot be changed: an edit that names user, null included, is refused with 400. To hand a key to someone else, request a key for them and delete this one. Only on offerings with enable_api_key_provisioning.
+// Changes the key's limits, model allowlist or description. A change of limits or models is sent to the site agent as an update command, unless the key is paused: resuming it applies them. The key's assignee is set when the key is requested and cannot be changed: an edit that names user, null included, is refused with 400. To hand a key to someone else, request a key for them and delete this one. Only on offerings with enable_api_key_provisioning, except an edit of the description alone: that is saved at once on any offering and in any state but Deleted, sends no command and leaves the key's state as it is.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
