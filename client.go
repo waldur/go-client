@@ -23207,30 +23207,41 @@ func (e SystemLogSourceEnum) Valid() bool {
 
 // Defines values for ThreadSessionFieldEnum.
 const (
-	ThreadSessionFieldEnumChatSession          ThreadSessionFieldEnum = "chat_session"
-	ThreadSessionFieldEnumCreated              ThreadSessionFieldEnum = "created"
-	ThreadSessionFieldEnumFlags                ThreadSessionFieldEnum = "flags"
-	ThreadSessionFieldEnumHasFeedback          ThreadSessionFieldEnum = "has_feedback"
-	ThreadSessionFieldEnumInputTokens          ThreadSessionFieldEnum = "input_tokens"
-	ThreadSessionFieldEnumIsArchived           ThreadSessionFieldEnum = "is_archived"
-	ThreadSessionFieldEnumIsFlagged            ThreadSessionFieldEnum = "is_flagged"
-	ThreadSessionFieldEnumMaxSeverity          ThreadSessionFieldEnum = "max_severity"
-	ThreadSessionFieldEnumMessageCount         ThreadSessionFieldEnum = "message_count"
-	ThreadSessionFieldEnumModelsUsed           ThreadSessionFieldEnum = "models_used"
-	ThreadSessionFieldEnumModified             ThreadSessionFieldEnum = "modified"
-	ThreadSessionFieldEnumName                 ThreadSessionFieldEnum = "name"
-	ThreadSessionFieldEnumOutputTokens         ThreadSessionFieldEnum = "output_tokens"
-	ThreadSessionFieldEnumTitleGenInputTokens  ThreadSessionFieldEnum = "title_gen_input_tokens"
-	ThreadSessionFieldEnumTitleGenOutputTokens ThreadSessionFieldEnum = "title_gen_output_tokens"
-	ThreadSessionFieldEnumTotalTokens          ThreadSessionFieldEnum = "total_tokens"
-	ThreadSessionFieldEnumUserFullName         ThreadSessionFieldEnum = "user_full_name"
-	ThreadSessionFieldEnumUserUsername         ThreadSessionFieldEnum = "user_username"
-	ThreadSessionFieldEnumUuid                 ThreadSessionFieldEnum = "uuid"
+	ThreadSessionFieldEnumCacheRatio               ThreadSessionFieldEnum = "cache_ratio"
+	ThreadSessionFieldEnumCacheReadTokens          ThreadSessionFieldEnum = "cache_read_tokens"
+	ThreadSessionFieldEnumCacheWriteTokens         ThreadSessionFieldEnum = "cache_write_tokens"
+	ThreadSessionFieldEnumChatSession              ThreadSessionFieldEnum = "chat_session"
+	ThreadSessionFieldEnumCreated                  ThreadSessionFieldEnum = "created"
+	ThreadSessionFieldEnumFlags                    ThreadSessionFieldEnum = "flags"
+	ThreadSessionFieldEnumHasFeedback              ThreadSessionFieldEnum = "has_feedback"
+	ThreadSessionFieldEnumInputTokens              ThreadSessionFieldEnum = "input_tokens"
+	ThreadSessionFieldEnumIsArchived               ThreadSessionFieldEnum = "is_archived"
+	ThreadSessionFieldEnumIsFlagged                ThreadSessionFieldEnum = "is_flagged"
+	ThreadSessionFieldEnumMaxSeverity              ThreadSessionFieldEnum = "max_severity"
+	ThreadSessionFieldEnumMessageCount             ThreadSessionFieldEnum = "message_count"
+	ThreadSessionFieldEnumModelsUsed               ThreadSessionFieldEnum = "models_used"
+	ThreadSessionFieldEnumModified                 ThreadSessionFieldEnum = "modified"
+	ThreadSessionFieldEnumName                     ThreadSessionFieldEnum = "name"
+	ThreadSessionFieldEnumOutputTokens             ThreadSessionFieldEnum = "output_tokens"
+	ThreadSessionFieldEnumTitleGenCacheReadTokens  ThreadSessionFieldEnum = "title_gen_cache_read_tokens"
+	ThreadSessionFieldEnumTitleGenCacheWriteTokens ThreadSessionFieldEnum = "title_gen_cache_write_tokens"
+	ThreadSessionFieldEnumTitleGenInputTokens      ThreadSessionFieldEnum = "title_gen_input_tokens"
+	ThreadSessionFieldEnumTitleGenOutputTokens     ThreadSessionFieldEnum = "title_gen_output_tokens"
+	ThreadSessionFieldEnumTotalTokens              ThreadSessionFieldEnum = "total_tokens"
+	ThreadSessionFieldEnumUserFullName             ThreadSessionFieldEnum = "user_full_name"
+	ThreadSessionFieldEnumUserUsername             ThreadSessionFieldEnum = "user_username"
+	ThreadSessionFieldEnumUuid                     ThreadSessionFieldEnum = "uuid"
 )
 
 // Valid indicates whether the value is a known member of the ThreadSessionFieldEnum enum.
 func (e ThreadSessionFieldEnum) Valid() bool {
 	switch e {
+	case ThreadSessionFieldEnumCacheRatio:
+		return true
+	case ThreadSessionFieldEnumCacheReadTokens:
+		return true
+	case ThreadSessionFieldEnumCacheWriteTokens:
+		return true
 	case ThreadSessionFieldEnumChatSession:
 		return true
 	case ThreadSessionFieldEnumCreated:
@@ -23257,6 +23268,10 @@ func (e ThreadSessionFieldEnum) Valid() bool {
 		return true
 	case ThreadSessionFieldEnumOutputTokens:
 		return true
+	case ThreadSessionFieldEnumTitleGenCacheReadTokens:
+		return true
+	case ThreadSessionFieldEnumTitleGenCacheWriteTokens:
+		return true
 	case ThreadSessionFieldEnumTitleGenInputTokens:
 		return true
 	case ThreadSessionFieldEnumTitleGenOutputTokens:
@@ -23276,26 +23291,44 @@ func (e ThreadSessionFieldEnum) Valid() bool {
 
 // Defines values for ThreadSessionOEnum.
 const (
-	ThreadSessionOEnumCreated           ThreadSessionOEnum = "created"
-	ThreadSessionOEnumInputTokens       ThreadSessionOEnum = "input_tokens"
-	ThreadSessionOEnumMinusCreated      ThreadSessionOEnum = "-created"
-	ThreadSessionOEnumMinusInputTokens  ThreadSessionOEnum = "-input_tokens"
-	ThreadSessionOEnumMinusModelsUsed   ThreadSessionOEnum = "-models_used"
-	ThreadSessionOEnumMinusModified     ThreadSessionOEnum = "-modified"
-	ThreadSessionOEnumMinusOutputTokens ThreadSessionOEnum = "-output_tokens"
-	ThreadSessionOEnumMinusTotalTokens  ThreadSessionOEnum = "-total_tokens"
-	ThreadSessionOEnumModelsUsed        ThreadSessionOEnum = "models_used"
-	ThreadSessionOEnumModified          ThreadSessionOEnum = "modified"
-	ThreadSessionOEnumOutputTokens      ThreadSessionOEnum = "output_tokens"
-	ThreadSessionOEnumTotalTokens       ThreadSessionOEnum = "total_tokens"
+	ThreadSessionOEnumCacheRatio            ThreadSessionOEnum = "cache_ratio"
+	ThreadSessionOEnumCacheReadTokens       ThreadSessionOEnum = "cache_read_tokens"
+	ThreadSessionOEnumCacheWriteTokens      ThreadSessionOEnum = "cache_write_tokens"
+	ThreadSessionOEnumCreated               ThreadSessionOEnum = "created"
+	ThreadSessionOEnumInputTokens           ThreadSessionOEnum = "input_tokens"
+	ThreadSessionOEnumMinusCacheRatio       ThreadSessionOEnum = "-cache_ratio"
+	ThreadSessionOEnumMinusCacheReadTokens  ThreadSessionOEnum = "-cache_read_tokens"
+	ThreadSessionOEnumMinusCacheWriteTokens ThreadSessionOEnum = "-cache_write_tokens"
+	ThreadSessionOEnumMinusCreated          ThreadSessionOEnum = "-created"
+	ThreadSessionOEnumMinusInputTokens      ThreadSessionOEnum = "-input_tokens"
+	ThreadSessionOEnumMinusModelsUsed       ThreadSessionOEnum = "-models_used"
+	ThreadSessionOEnumMinusModified         ThreadSessionOEnum = "-modified"
+	ThreadSessionOEnumMinusOutputTokens     ThreadSessionOEnum = "-output_tokens"
+	ThreadSessionOEnumMinusTotalTokens      ThreadSessionOEnum = "-total_tokens"
+	ThreadSessionOEnumModelsUsed            ThreadSessionOEnum = "models_used"
+	ThreadSessionOEnumModified              ThreadSessionOEnum = "modified"
+	ThreadSessionOEnumOutputTokens          ThreadSessionOEnum = "output_tokens"
+	ThreadSessionOEnumTotalTokens           ThreadSessionOEnum = "total_tokens"
 )
 
 // Valid indicates whether the value is a known member of the ThreadSessionOEnum enum.
 func (e ThreadSessionOEnum) Valid() bool {
 	switch e {
+	case ThreadSessionOEnumCacheRatio:
+		return true
+	case ThreadSessionOEnumCacheReadTokens:
+		return true
+	case ThreadSessionOEnumCacheWriteTokens:
+		return true
 	case ThreadSessionOEnumCreated:
 		return true
 	case ThreadSessionOEnumInputTokens:
+		return true
+	case ThreadSessionOEnumMinusCacheRatio:
+		return true
+	case ThreadSessionOEnumMinusCacheReadTokens:
+		return true
+	case ThreadSessionOEnumMinusCacheWriteTokens:
 		return true
 	case ThreadSessionOEnumMinusCreated:
 		return true
@@ -27183,7 +27216,15 @@ type AnonymousChatClickRequestRequest struct {
 
 // AnonymousChatConversation defines model for AnonymousChatConversation.
 type AnonymousChatConversation struct {
-	HasFeedback bool `json:"has_feedback"`
+	// CacheRatio cache_read_tokens over the input of turns whose provider reported a cache figure; null when none did.
+	CacheRatio *float64 `json:"cache_ratio"`
+
+	// CacheReadTokens Part of input_tokens served from the provider's prompt cache; null when no turn in the conversation reported it.
+	CacheReadTokens *int `json:"cache_read_tokens"`
+
+	// CacheWriteTokens Part of input_tokens written to the provider's prompt cache; null when no turn in the conversation reported it.
+	CacheWriteTokens *int `json:"cache_write_tokens"`
+	HasFeedback      bool `json:"has_feedback"`
 
 	// InputTokens Prompt tokens summed over the conversation; 0 for turns predating token tracking.
 	InputTokens int  `json:"input_tokens"`
@@ -27276,8 +27317,10 @@ type AnonymousChatFeedbackRequestRequest_Category struct {
 
 // AnonymousChatInteraction defines model for AnonymousChatInteraction.
 type AnonymousChatInteraction struct {
-	ActionTaken     *string                 `json:"action_taken,omitempty"`
-	AssistantBlocks *map[string]interface{} `json:"assistant_blocks,omitempty"`
+	ActionTaken      *string                 `json:"action_taken,omitempty"`
+	AssistantBlocks  *map[string]interface{} `json:"assistant_blocks,omitempty"`
+	CacheReadTokens  *int                    `json:"cache_read_tokens,omitempty"`
+	CacheWriteTokens *int                    `json:"cache_write_tokens,omitempty"`
 
 	// ClickCount Offering click-throughs on this interaction. Populated by the by-session transcript, which annotates it; 0 elsewhere.
 	ClickCount          *int                    `json:"click_count,omitempty"`
@@ -27320,6 +27363,15 @@ type AnonymousChatInteractionOEnum string
 type AnonymousChatKpiResponse struct {
 	// AvgLlmResolutionScore Mean of llm_resolution_score across reviewed sessions (1-5).
 	AvgLlmResolutionScore *float64 `json:"avg_llm_resolution_score,omitempty"`
+
+	// CacheRatio cache_read_tokens_total over the input of turns whose provider reported a cache figure; null when none did.
+	CacheRatio *float64 `json:"cache_ratio"`
+
+	// CacheReadTokensTotal Part of input_tokens_total served from the provider's prompt cache; null when no turn reported it.
+	CacheReadTokensTotal *int `json:"cache_read_tokens_total"`
+
+	// CacheWriteTokensTotal Part of input_tokens_total written to the provider's prompt cache; null when no turn reported it.
+	CacheWriteTokensTotal *int `json:"cache_write_tokens_total"`
 
 	// ClarificationRate clarification_requests_total / interactions_total; null when no interactions.
 	ClarificationRate *float64 `json:"clarification_rate"`
@@ -31074,8 +31126,16 @@ type ChatSessionFieldEnum string
 
 // ChatThreadStatsResponse defines model for ChatThreadStatsResponse.
 type ChatThreadStatsResponse struct {
-	FeedbackNegative int `json:"feedback_negative"`
-	FeedbackPositive int `json:"feedback_positive"`
+	// CacheRatio cache_read_tokens_total over the input of turns whose provider reported a cache figure; null when none did.
+	CacheRatio *float64 `json:"cache_ratio"`
+
+	// CacheReadTokensTotal Part of input_tokens_total served from the provider's prompt cache; null when no turn reported it.
+	CacheReadTokensTotal *int `json:"cache_read_tokens_total"`
+
+	// CacheWriteTokensTotal Part of input_tokens_total written to the provider's prompt cache; null when no turn reported it.
+	CacheWriteTokensTotal *int `json:"cache_write_tokens_total"`
+	FeedbackNegative      int  `json:"feedback_negative"`
+	FeedbackPositive      int  `json:"feedback_positive"`
 
 	// FlaggedTotal Threads carrying at least one flagged message.
 	FlaggedTotal      int `json:"flagged_total"`
@@ -41767,9 +41827,11 @@ type MergedSecretOptionsRequest struct {
 
 // Message defines model for Message.
 type Message struct {
-	ActionTaken *ActionTakenEnum       `json:"action_taken,omitempty"`
-	Blocks      *[]Message_Blocks_Item `json:"blocks,omitempty"`
-	Created     *time.Time             `json:"created,omitempty"`
+	ActionTaken      *ActionTakenEnum       `json:"action_taken,omitempty"`
+	Blocks           *[]Message_Blocks_Item `json:"blocks,omitempty"`
+	CacheReadTokens  *int                   `json:"cache_read_tokens,omitempty"`
+	CacheWriteTokens *int                   `json:"cache_write_tokens,omitempty"`
+	Created          *time.Time             `json:"created,omitempty"`
 
 	// FeedbackCategory Category tag when feedback_score is False (thumbs down); null otherwise.
 	FeedbackCategory *Message_FeedbackCategory `json:"feedback_category,omitempty"`
@@ -61276,27 +61338,37 @@ type TenantTopology struct {
 
 // ThreadSession defines model for ThreadSession.
 type ThreadSession struct {
-	ChatSession  *openapi_types.UUID     `json:"chat_session,omitempty"`
-	Created      *time.Time              `json:"created,omitempty"`
-	Flags        *map[string]interface{} `json:"flags,omitempty"`
-	HasFeedback  *bool                   `json:"has_feedback,omitempty"`
-	InputTokens  *int                    `json:"input_tokens,omitempty"`
-	IsArchived   *bool                   `json:"is_archived,omitempty"`
-	IsFlagged    *bool                   `json:"is_flagged,omitempty"`
-	MaxSeverity  *InjectionSeverityEnum  `json:"max_severity,omitempty"`
-	MessageCount *int                    `json:"message_count,omitempty"`
+	// CacheRatio cache_read_tokens / input_tokens, counting only turns whose provider reported a cache figure. Null when none did.
+	CacheRatio *float64 `json:"cache_ratio,omitempty"`
+
+	// CacheReadTokens Part of input_tokens served from the provider's prompt cache, title generation included. Null when the provider never reported it.
+	CacheReadTokens *int `json:"cache_read_tokens,omitempty"`
+
+	// CacheWriteTokens Part of input_tokens written to the provider's prompt cache, title generation included. Null when the provider never reported it.
+	CacheWriteTokens *int                    `json:"cache_write_tokens,omitempty"`
+	ChatSession      *openapi_types.UUID     `json:"chat_session,omitempty"`
+	Created          *time.Time              `json:"created,omitempty"`
+	Flags            *map[string]interface{} `json:"flags,omitempty"`
+	HasFeedback      *bool                   `json:"has_feedback,omitempty"`
+	InputTokens      *int                    `json:"input_tokens,omitempty"`
+	IsArchived       *bool                   `json:"is_archived,omitempty"`
+	IsFlagged        *bool                   `json:"is_flagged,omitempty"`
+	MaxSeverity      *InjectionSeverityEnum  `json:"max_severity,omitempty"`
+	MessageCount     *int                    `json:"message_count,omitempty"`
 
 	// ModelsUsed Comma-separated distinct LLM models across the thread's messages. More than one when an admin switched AI_ASSISTANT_MODEL mid-thread; blank for threads written before model tracking existed.
-	ModelsUsed           *string             `json:"models_used,omitempty"`
-	Modified             *time.Time          `json:"modified,omitempty"`
-	Name                 *string             `json:"name,omitempty"`
-	OutputTokens         *int                `json:"output_tokens,omitempty"`
-	TitleGenInputTokens  *int                `json:"title_gen_input_tokens,omitempty"`
-	TitleGenOutputTokens *int                `json:"title_gen_output_tokens,omitempty"`
-	TotalTokens          *int                `json:"total_tokens,omitempty"`
-	UserFullName         *string             `json:"user_full_name,omitempty"`
-	UserUsername         *string             `json:"user_username,omitempty"`
-	Uuid                 *openapi_types.UUID `json:"uuid,omitempty"`
+	ModelsUsed               *string             `json:"models_used,omitempty"`
+	Modified                 *time.Time          `json:"modified,omitempty"`
+	Name                     *string             `json:"name,omitempty"`
+	OutputTokens             *int                `json:"output_tokens,omitempty"`
+	TitleGenCacheReadTokens  *int                `json:"title_gen_cache_read_tokens,omitempty"`
+	TitleGenCacheWriteTokens *int                `json:"title_gen_cache_write_tokens,omitempty"`
+	TitleGenInputTokens      *int                `json:"title_gen_input_tokens,omitempty"`
+	TitleGenOutputTokens     *int                `json:"title_gen_output_tokens,omitempty"`
+	TotalTokens              *int                `json:"total_tokens,omitempty"`
+	UserFullName             *string             `json:"user_full_name,omitempty"`
+	UserUsername             *string             `json:"user_username,omitempty"`
+	Uuid                     *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // ThreadSessionFieldEnum defines model for ThreadSessionFieldEnum.
