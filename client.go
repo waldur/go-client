@@ -48119,13 +48119,15 @@ type OrderCreateRequest struct {
 	AcceptingTermsOfService *bool `json:"accepting_terms_of_service,omitempty"`
 
 	// Attributes Attributes structure depends on the offering type specified in the parent object. Can also be a generic object for offerings without a specific attributes schema.
-	Attributes     *OrderCreateRequest_Attributes `json:"attributes,omitempty"`
-	CallbackUrl    *string                        `json:"callback_url,omitempty"`
-	Limits         *map[string]float64            `json:"limits,omitempty"`
-	Offering       string                         `json:"offering"`
-	Plan           *string                        `json:"plan,omitempty"`
-	Project        string                         `json:"project"`
-	RequestComment *string                        `json:"request_comment,omitempty"`
+	Attributes *OrderCreateRequest_Attributes `json:"attributes,omitempty"`
+
+	// CallbackUrl Sent by a Waldur that orders from this one through a remote offering: its public order pull endpoint (.../api/remote-waldur-api/pull_order/<its order uuid>). No other URL is accepted. Not stored: order callbacks are off.
+	CallbackUrl    *string             `json:"callback_url,omitempty"`
+	Limits         *map[string]float64 `json:"limits,omitempty"`
+	Offering       string              `json:"offering"`
+	Plan           *string             `json:"plan,omitempty"`
+	Project        string              `json:"project"`
+	RequestComment *string             `json:"request_comment,omitempty"`
 
 	// Slug Slug of the new resource. Used when the caller is staff or holds RESOURCE.SET_SLUG on the project, the offering or their organizations; otherwise ignored.
 	Slug *string `json:"slug,omitempty"`
@@ -48151,7 +48153,6 @@ type OrderDetails struct {
 	AutoApprovedByRuleUuid        *openapi_types.UUID     `json:"auto_approved_by_rule_uuid,omitempty"`
 	AutoApprovedCostLimitSnapshot *string                 `json:"auto_approved_cost_limit_snapshot,omitempty"`
 	BackendId                     *string                 `json:"backend_id,omitempty"`
-	CallbackUrl                   *string                 `json:"callback_url,omitempty"`
 	CanTerminate                  *bool                   `json:"can_terminate,omitempty"`
 	CategoryIcon                  *string                 `json:"category_icon,omitempty"`
 	CategoryTitle                 *string                 `json:"category_title,omitempty"`
