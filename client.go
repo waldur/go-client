@@ -32386,6 +32386,7 @@ type ConstanceSettings struct {
 	USERTABLECOLUMNS                                 *string                                                          `json:"USER_TABLE_COLUMNS,omitempty"`
 	VATOSSENABLED                                    *bool                                                            `json:"VAT_OSS_ENABLED,omitempty"`
 	VATTAXATIONENABLED                               *bool                                                            `json:"VAT_TAXATION_ENABLED,omitempty"`
+	VERSIONUPDATENOTIFICATIONEMAILS                  *string                                                          `json:"VERSION_UPDATE_NOTIFICATION_EMAILS,omitempty"`
 	WALDURAUTHSOCIALROLECLAIM                        *string                                                          `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
 	WALDURSUPPORTACTIVEBACKENDTYPE                   *WALDURSUPPORTACTIVEBACKENDTYPEEnum                              `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
 	WALDURSUPPORTAUTOASSIGN                          *bool                                                            `json:"WALDUR_SUPPORT_AUTO_ASSIGN,omitempty"`
@@ -32829,6 +32830,7 @@ type ConstanceSettingsRequest struct {
 	USERTABLECOLUMNS                                 *string                                                                 `json:"USER_TABLE_COLUMNS,omitempty"`
 	VATOSSENABLED                                    *bool                                                                   `json:"VAT_OSS_ENABLED,omitempty"`
 	VATTAXATIONENABLED                               *bool                                                                   `json:"VAT_TAXATION_ENABLED,omitempty"`
+	VERSIONUPDATENOTIFICATIONEMAILS                  *string                                                                 `json:"VERSION_UPDATE_NOTIFICATION_EMAILS,omitempty"`
 	WALDURAUTHSOCIALROLECLAIM                        *string                                                                 `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
 	WALDURSUPPORTACTIVEBACKENDTYPE                   *WALDURSUPPORTACTIVEBACKENDTYPEEnum                                     `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
 	WALDURSUPPORTAUTOASSIGN                          *bool                                                                   `json:"WALDUR_SUPPORT_AUTO_ASSIGN,omitempty"`
@@ -33272,6 +33274,7 @@ type ConstanceSettingsRequestForm struct {
 	USERTABLECOLUMNS                                 *string                                                                     `json:"USER_TABLE_COLUMNS,omitempty"`
 	VATOSSENABLED                                    *bool                                                                       `json:"VAT_OSS_ENABLED,omitempty"`
 	VATTAXATIONENABLED                               *bool                                                                       `json:"VAT_TAXATION_ENABLED,omitempty"`
+	VERSIONUPDATENOTIFICATIONEMAILS                  *string                                                                     `json:"VERSION_UPDATE_NOTIFICATION_EMAILS,omitempty"`
 	WALDURAUTHSOCIALROLECLAIM                        *string                                                                     `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
 	WALDURSUPPORTACTIVEBACKENDTYPE                   *WALDURSUPPORTACTIVEBACKENDTYPEEnum                                         `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
 	WALDURSUPPORTAUTOASSIGN                          *bool                                                                       `json:"WALDUR_SUPPORT_AUTO_ASSIGN,omitempty"`
@@ -33715,6 +33718,7 @@ type ConstanceSettingsRequestMultipart struct {
 	USERTABLECOLUMNS                                 *string                                                                          `json:"USER_TABLE_COLUMNS,omitempty"`
 	VATOSSENABLED                                    *bool                                                                            `json:"VAT_OSS_ENABLED,omitempty"`
 	VATTAXATIONENABLED                               *bool                                                                            `json:"VAT_TAXATION_ENABLED,omitempty"`
+	VERSIONUPDATENOTIFICATIONEMAILS                  *string                                                                          `json:"VERSION_UPDATE_NOTIFICATION_EMAILS,omitempty"`
 	WALDURAUTHSOCIALROLECLAIM                        *string                                                                          `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
 	WALDURSUPPORTACTIVEBACKENDTYPE                   *WALDURSUPPORTACTIVEBACKENDTYPEEnum                                              `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
 	WALDURSUPPORTAUTOASSIGN                          *bool                                                                            `json:"WALDUR_SUPPORT_AUTO_ASSIGN,omitempty"`
@@ -34713,12 +34717,6 @@ type CustomerCredit struct {
 type CustomerCreditConsumption struct {
 	Date  *openapi_types.Date `json:"date,omitempty"`
 	Price *string             `json:"price,omitempty"`
-}
-
-// CustomerCreditConsumptionByMonth defines model for CustomerCreditConsumptionByMonth.
-type CustomerCreditConsumptionByMonth struct {
-	Month *string `json:"month,omitempty"`
-	Price *string `json:"price,omitempty"`
 }
 
 // CustomerCreditOEnum defines model for CustomerCreditOEnum.
@@ -47897,11 +47895,14 @@ type OpenStackVolumeRetypeRequest struct {
 
 // OpenStackVolumeType defines model for OpenStackVolumeType.
 type OpenStackVolumeType struct {
-	Description *string             `json:"description,omitempty"`
-	Name        string              `json:"name"`
-	Settings    string              `json:"settings"`
-	Url         *string             `json:"url,omitempty"`
-	Uuid        *openapi_types.UUID `json:"uuid,omitempty"`
+	Description *string `json:"description,omitempty"`
+
+	// IsPublic Whether every project of the cloud may use the volume type. Cinder gives a private type only to the projects it is assigned to.
+	IsPublic *bool               `json:"is_public,omitempty"`
+	Name     string              `json:"name"`
+	Settings string              `json:"settings"`
+	Url      *string             `json:"url,omitempty"`
+	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // OptionField defines model for OptionField.
@@ -59248,14 +59249,20 @@ type Saml2LoginRequest struct {
 
 // Saml2LogoutComplete defines model for Saml2LogoutComplete.
 type Saml2LogoutComplete struct {
+	RelayState   *string `json:"RelayState,omitempty"`
 	SAMLRequest  *string `json:"SAMLRequest,omitempty"`
 	SAMLResponse *string `json:"SAMLResponse,omitempty"`
+	SigAlg       *string `json:"SigAlg,omitempty"`
+	Signature    *string `json:"Signature,omitempty"`
 }
 
 // Saml2LogoutCompleteRequest defines model for Saml2LogoutCompleteRequest.
 type Saml2LogoutCompleteRequest struct {
+	RelayState   *string `json:"RelayState,omitempty"`
 	SAMLRequest  *string `json:"SAMLRequest,omitempty"`
 	SAMLResponse *string `json:"SAMLResponse,omitempty"`
+	SigAlg       *string `json:"SigAlg,omitempty"`
+	Signature    *string `json:"Signature,omitempty"`
 }
 
 // Saml2Provider defines model for Saml2Provider.
@@ -68258,29 +68265,6 @@ type InvoiceItemsTotalPriceCountParams struct {
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 	Month        *int                `form:"month,omitempty" json:"month,omitempty"`
 	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
-	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
-
-	// StartMonth Start month
-	StartMonth *float32 `form:"start_month,omitempty" json:"start_month,omitempty"`
-
-	// StartYear Start year
-	StartYear *float32 `form:"start_year,omitempty" json:"start_year,omitempty"`
-	Year      *int     `form:"year,omitempty" json:"year,omitempty"`
-}
-
-// InvoiceItemsConsumptionsListParams defines parameters for InvoiceItemsConsumptionsList.
-type InvoiceItemsConsumptionsListParams struct {
-	CreditUuid   *openapi_types.UUID `form:"credit_uuid,omitempty" json:"credit_uuid,omitempty"`
-	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Month        *int                `form:"month,omitempty" json:"month,omitempty"`
-	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
-
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
 
@@ -117054,9 +117038,6 @@ type ClientInterface interface {
 	// Takes a body of the `application/json` content type.
 	InvoiceItemsUpdate(ctx context.Context, uuid openapi_types.UUID, body InvoiceItemsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// InvoiceItemsConsumptionsList performs a GET /api/invoice-items/{uuid}/consumptions/ (the `InvoiceItemsConsumptionsList` operationId) request.
-	InvoiceItemsConsumptionsList(ctx context.Context, uuid openapi_types.UUID, params *InvoiceItemsConsumptionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// InvoiceItemsCreateCompensationWithBody performs a POST /api/invoice-items/{uuid}/create_compensation/ (the `InvoiceItemsCreateCompensation` operationId) request,
 	// with any type of body and a specified content type.
 	//
@@ -130469,7 +130450,7 @@ type ClientInterface interface {
 
 	// OpenstackVolumeTypesNamesRetrieve List unique volume type names
 	//
-	// Return a list of unique volume type names.
+	// Return the distinct names of the volume types the caller can see.
 	//
 	// Corresponds with GET /api/openstack-volume-types/names/ (the `OpenstackVolumeTypesNamesRetrieve` operationId).
 	OpenstackVolumeTypesNamesRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -149630,19 +149611,6 @@ func (c *Client) InvoiceItemsUpdateWithBody(ctx context.Context, uuid openapi_ty
 // Takes a body of the `application/json` content type.
 func (c *Client) InvoiceItemsUpdate(ctx context.Context, uuid openapi_types.UUID, body InvoiceItemsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewInvoiceItemsUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// InvoiceItemsConsumptionsList performs a GET /api/invoice-items/{uuid}/consumptions/ (the `InvoiceItemsConsumptionsList` operationId) request.
-func (c *Client) InvoiceItemsConsumptionsList(ctx context.Context, uuid openapi_types.UUID, params *InvoiceItemsConsumptionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewInvoiceItemsConsumptionsListRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -182857,7 +182825,7 @@ func (c *Client) OpenstackVolumeTypesCount(ctx context.Context, params *Openstac
 
 // OpenstackVolumeTypesNamesRetrieve List unique volume type names
 //
-// Return a list of unique volume type names.
+// Return the distinct names of the volume types the caller can see.
 //
 // Corresponds with GET /api/openstack-volume-types/names/ (the `OpenstackVolumeTypesNamesRetrieve` operationId).
 func (c *Client) OpenstackVolumeTypesNamesRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -246455,187 +246423,6 @@ func NewInvoiceItemsUpdateRequestWithBody(server string, uuid openapi_types.UUID
 	}
 
 	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewInvoiceItemsConsumptionsListRequest constructs an http.Request for the InvoiceItemsConsumptionsList method
-func NewInvoiceItemsConsumptionsListRequest(server string, uuid openapi_types.UUID, params *InvoiceItemsConsumptionsListParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/invoice-items/%s/consumptions/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if params.CreditUuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "credit_uuid", *params.CreditUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.CustomerUuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.Month != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "month", *params.Month, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.OfferingUuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.ProjectUuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.ResourceUuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_uuid", *params.ResourceUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.StartMonth != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start_month", *params.StartMonth, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "number", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.StartYear != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start_year", *params.StartYear, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "number", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if params.Year != nil {
-
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "year", *params.Year, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			} else {
-				for _, qp := range strings.Split(queryFrag, "&") {
-					rawQueryFragments = append(rawQueryFragments, qp)
-				}
-			}
-
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
 
 	return req, nil
 }
@@ -438260,11 +438047,6 @@ type ClientWithResponsesInterface interface {
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	InvoiceItemsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body InvoiceItemsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*InvoiceItemsUpdateResponse, error)
 
-	// InvoiceItemsConsumptionsListWithResponse performs a GET /api/invoice-items/{uuid}/consumptions/ (the `InvoiceItemsConsumptionsList` operationId) request.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	InvoiceItemsConsumptionsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *InvoiceItemsConsumptionsListParams, reqEditors ...RequestEditorFn) (*InvoiceItemsConsumptionsListResponse, error)
-
 	// InvoiceItemsCreateCompensationWithBodyWithResponse performs a POST /api/invoice-items/{uuid}/create_compensation/ (the `InvoiceItemsCreateCompensation` operationId) request,
 	// with any type of body and a specified content type.
 	//
@@ -453971,7 +453753,7 @@ type ClientWithResponsesInterface interface {
 
 	// OpenstackVolumeTypesNamesRetrieveWithResponse List unique volume type names
 	//
-	// Return a list of unique volume type names.
+	// Return the distinct names of the volume types the caller can see.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -487227,54 +487009,6 @@ func (r InvoiceItemsUpdateResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r InvoiceItemsUpdateResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-// InvoiceItemsConsumptionsListResponse200Headers the declared response headers of an HTTP 200 response for InvoiceItemsConsumptionsList
-type InvoiceItemsConsumptionsListResponse200Headers struct {
-	XResultCount *int
-}
-
-type InvoiceItemsConsumptionsListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *[]CustomerCreditConsumptionByMonth
-	// Headers200 the parsed response headers for an HTTP 200 response
-	Headers200 *InvoiceItemsConsumptionsListResponse200Headers
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r InvoiceItemsConsumptionsListResponse) GetJSON200() *[]CustomerCreditConsumptionByMonth {
-	return r.JSON200
-}
-
-// GetBody returns the raw response body bytes
-func (r InvoiceItemsConsumptionsListResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r InvoiceItemsConsumptionsListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r InvoiceItemsConsumptionsListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r InvoiceItemsConsumptionsListResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -592072,17 +591806,6 @@ func (c *ClientWithResponses) InvoiceItemsUpdateWithResponse(ctx context.Context
 	return ParseInvoiceItemsUpdateResponse(rsp)
 }
 
-// InvoiceItemsConsumptionsListWithResponse performs a GET /api/invoice-items/{uuid}/consumptions/ (the `InvoiceItemsConsumptionsList` operationId) request.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) InvoiceItemsConsumptionsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *InvoiceItemsConsumptionsListParams, reqEditors ...RequestEditorFn) (*InvoiceItemsConsumptionsListResponse, error) {
-	rsp, err := c.InvoiceItemsConsumptionsList(ctx, uuid, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseInvoiceItemsConsumptionsListResponse(rsp)
-}
-
 // InvoiceItemsCreateCompensationWithBodyWithResponse performs a POST /api/invoice-items/{uuid}/create_compensation/ (the `InvoiceItemsCreateCompensation` operationId) request,
 // with any type of body and a specified content type.
 //
@@ -619655,7 +619378,7 @@ func (c *ClientWithResponses) OpenstackVolumeTypesCountWithResponse(ctx context.
 
 // OpenstackVolumeTypesNamesRetrieveWithResponse List unique volume type names
 //
-// Return a list of unique volume type names.
+// Return the distinct names of the volume types the caller can see.
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -650666,45 +650389,6 @@ func ParseInvoiceItemsUpdateResponse(rsp *http.Response) (*InvoiceItemsUpdateRes
 		}
 		response.JSON200 = &dest
 
-	}
-
-	return response, nil
-}
-
-// ParseInvoiceItemsConsumptionsListResponse parses an HTTP response from a InvoiceItemsConsumptionsListWithResponse call
-func ParseInvoiceItemsConsumptionsListResponse(rsp *http.Response) (*InvoiceItemsConsumptionsListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &InvoiceItemsConsumptionsListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []CustomerCreditConsumptionByMonth
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	switch {
-	case rsp.StatusCode == 200:
-		var headers InvoiceItemsConsumptionsListResponse200Headers
-		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
-			var value int
-			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
-				return nil, err
-			}
-			headers.XResultCount = &value
-		}
-		response.Headers200 = &headers
 	}
 
 	return response, nil
