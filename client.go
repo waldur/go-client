@@ -22593,6 +22593,36 @@ func (e ServiceSettingsStateEnum) Valid() bool {
 	}
 }
 
+// Defines values for SettingSourceSourceEnum.
+const (
+	SettingSourceSourceEnumAdmin       SettingSourceSourceEnum = "admin"
+	SettingSourceSourceEnumApi         SettingSourceSourceEnum = "api"
+	SettingSourceSourceEnumApplication SettingSourceSourceEnum = "application"
+	SettingSourceSourceEnumCli         SettingSourceSourceEnum = "cli"
+	SettingSourceSourceEnumDeployment  SettingSourceSourceEnum = "deployment"
+	SettingSourceSourceEnumMigration   SettingSourceSourceEnum = "migration"
+)
+
+// Valid indicates whether the value is a known member of the SettingSourceSourceEnum enum.
+func (e SettingSourceSourceEnum) Valid() bool {
+	switch e {
+	case SettingSourceSourceEnumAdmin:
+		return true
+	case SettingSourceSourceEnumApi:
+		return true
+	case SettingSourceSourceEnumApplication:
+		return true
+	case SettingSourceSourceEnumCli:
+		return true
+	case SettingSourceSourceEnumDeployment:
+		return true
+	case SettingSourceSourceEnumMigration:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for SlurmCommandResultModeEnum.
 const (
 	SlurmCommandResultModeEnumEmulator   SlurmCommandResultModeEnum = "emulator"
@@ -23186,19 +23216,19 @@ func (e SystemLogOEnum) Valid() bool {
 
 // Defines values for SystemLogSourceEnum.
 const (
-	Api    SystemLogSourceEnum = "api"
-	Beat   SystemLogSourceEnum = "beat"
-	Worker SystemLogSourceEnum = "worker"
+	SystemLogSourceEnumApi    SystemLogSourceEnum = "api"
+	SystemLogSourceEnumBeat   SystemLogSourceEnum = "beat"
+	SystemLogSourceEnumWorker SystemLogSourceEnum = "worker"
 )
 
 // Valid indicates whether the value is a known member of the SystemLogSourceEnum enum.
 func (e SystemLogSourceEnum) Valid() bool {
 	switch e {
-	case Api:
+	case SystemLogSourceEnumApi:
 		return true
-	case Beat:
+	case SystemLogSourceEnumBeat:
 		return true
-	case Worker:
+	case SystemLogSourceEnumWorker:
 		return true
 	default:
 		return false
@@ -59944,6 +59974,26 @@ type SetTokenQuotaRequest struct {
 	// WeeklyLimit Weekly token limit. Omit or null = system default, -1 = unlimited.
 	WeeklyLimit *int `json:"weekly_limit,omitempty"`
 }
+
+// SettingSource defines model for SettingSource.
+type SettingSource struct {
+	Key *string `json:"key,omitempty"`
+
+	// Locked Managed by the deployment: cannot be changed through the API or the Django admin.
+	Locked *bool `json:"locked,omitempty"`
+
+	// ManagedBy File or command that re-applies the setting on every deploy, so a change made elsewhere does not last. Empty when no deploy does, such as for a value the deployment only seeded.
+	ManagedBy *string                  `json:"managed_by,omitempty"`
+	Source    *SettingSourceSourceEnum `json:"source,omitempty"`
+
+	// SourceDetail File, command or other origin within the source.
+	SourceDetail      *string    `json:"source_detail,omitempty"`
+	UpdatedAt         *time.Time `json:"updated_at,omitempty"`
+	UpdatedByUsername *string    `json:"updated_by_username,omitempty"`
+}
+
+// SettingSourceSourceEnum defines model for SettingSourceSourceEnum.
+type SettingSourceSourceEnum string
 
 // SettingsItem defines model for SettingsItem.
 type SettingsItem struct {
@@ -130785,6 +130835,13 @@ type ClientInterface interface {
 	// Corresponds with POST /api/override-settings/ (the `OverrideSettings` operationId).
 	OverrideSettingsWithFormdataBody(ctx context.Context, body OverrideSettingsFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OverrideSettingsSourcesList Get where overridden settings come from
+	//
+	// Lists every setting that has a value of its own or that the deployment manages, with who wrote it last, what re-applies it on every deploy and whether it is locked. A locked setting cannot be changed through /api/override-settings/.
+	//
+	// Corresponds with GET /api/override-settings/sources/ (the `OverrideSettingsSourcesList` operationId).
+	OverrideSettingsSourcesList(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// PasskeysList performs a GET /api/passkeys/ (the `PasskeysList` operationId) request.
 	PasskeysList(ctx context.Context, params *PasskeysListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -133909,6 +133966,8 @@ type ClientInterface interface {
 	RemoteWaldurApiSyncResource(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RemoteWaldurApiSyncResourceProjectPermissions performs a POST /api/remote-waldur-api/sync_resource_project_permissions/{uuid}/ (the `RemoteWaldurApiSyncResourceProjectPermissions` operationId) request.
+	//
+	// Queue a push of the resource's project team to the remote Waldur.
 	RemoteWaldurApiSyncResourceProjectPermissions(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ReviewerBidsList performs a GET /api/reviewer-bids/ (the `ReviewerBidsList` operationId) request.
@@ -183705,6 +183764,23 @@ func (c *Client) OverrideSettingsWithFormdataBody(ctx context.Context, body Over
 	return c.Client.Do(req)
 }
 
+// OverrideSettingsSourcesList Get where overridden settings come from
+//
+// Lists every setting that has a value of its own or that the deployment manages, with who wrote it last, what re-applies it on every deploy and whether it is locked. A locked setting cannot be changed through /api/override-settings/.
+//
+// Corresponds with GET /api/override-settings/sources/ (the `OverrideSettingsSourcesList` operationId).
+func (c *Client) OverrideSettingsSourcesList(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOverrideSettingsSourcesListRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // PasskeysList performs a GET /api/passkeys/ (the `PasskeysList` operationId) request.
 func (c *Client) PasskeysList(ctx context.Context, params *PasskeysListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewPasskeysListRequest(c.Server, params)
@@ -192775,6 +192851,8 @@ func (c *Client) RemoteWaldurApiSyncResource(ctx context.Context, uuid string, r
 }
 
 // RemoteWaldurApiSyncResourceProjectPermissions performs a POST /api/remote-waldur-api/sync_resource_project_permissions/{uuid}/ (the `RemoteWaldurApiSyncResourceProjectPermissions` operationId) request.
+//
+// Queue a push of the resource's project team to the remote Waldur.
 func (c *Client) RemoteWaldurApiSyncResourceProjectPermissions(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewRemoteWaldurApiSyncResourceProjectPermissionsRequest(c.Server, uuid)
 	if err != nil {
@@ -371246,6 +371324,33 @@ func NewOverrideSettingsRequestWithBody(server string, contentType string, body 
 	return req, nil
 }
 
+// NewOverrideSettingsSourcesListRequest constructs an http.Request for the OverrideSettingsSourcesList method
+func NewOverrideSettingsSourcesListRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/override-settings/sources/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewPasskeysListRequest constructs an http.Request for the PasskeysList method
 func NewPasskeysListRequest(server string, params *PasskeysListParams) (*http.Request, error) {
 	var err error
@@ -454282,6 +454387,15 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with POST /api/override-settings/ (the `OverrideSettings` operationId).
 	OverrideSettingsWithFormdataBodyWithResponse(ctx context.Context, body OverrideSettingsFormdataRequestBody, reqEditors ...RequestEditorFn) (*OverrideSettingsResponse, error)
 
+	// OverrideSettingsSourcesListWithResponse Get where overridden settings come from
+	//
+	// Lists every setting that has a value of its own or that the deployment manages, with who wrote it last, what re-applies it on every deploy and whether it is locked. A locked setting cannot be changed through /api/override-settings/.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/override-settings/sources/ (the `OverrideSettingsSourcesList` operationId).
+	OverrideSettingsSourcesListWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OverrideSettingsSourcesListResponse, error)
+
 	// PasskeysListWithResponse performs a GET /api/passkeys/ (the `PasskeysList` operationId) request.
 	//
 	// Returns a wrapper object for the known response body format(s).
@@ -458206,6 +458320,8 @@ type ClientWithResponsesInterface interface {
 	RemoteWaldurApiSyncResourceWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*RemoteWaldurApiSyncResourceResponse, error)
 
 	// RemoteWaldurApiSyncResourceProjectPermissionsWithResponse performs a POST /api/remote-waldur-api/sync_resource_project_permissions/{uuid}/ (the `RemoteWaldurApiSyncResourceProjectPermissions` operationId) request.
+	//
+	// Queue a push of the resource's project team to the remote Waldur.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	RemoteWaldurApiSyncResourceProjectPermissionsWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*RemoteWaldurApiSyncResourceProjectPermissionsResponse, error)
@@ -547758,6 +547874,54 @@ func (r OverrideSettingsResponse) ContentType() string {
 	return ""
 }
 
+// OverrideSettingsSourcesListResponse200Headers the declared response headers of an HTTP 200 response for OverrideSettingsSourcesList
+type OverrideSettingsSourcesListResponse200Headers struct {
+	XResultCount *int
+}
+
+type OverrideSettingsSourcesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]SettingSource
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *OverrideSettingsSourcesListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r OverrideSettingsSourcesListResponse) GetJSON200() *[]SettingSource {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r OverrideSettingsSourcesListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r OverrideSettingsSourcesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OverrideSettingsSourcesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OverrideSettingsSourcesListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // PasskeysListResponse200Headers the declared response headers of an HTTP 200 response for PasskeysList
 type PasskeysListResponse200Headers struct {
 	XResultCount *int
@@ -620232,6 +620396,21 @@ func (c *ClientWithResponses) OverrideSettingsWithFormdataBodyWithResponse(ctx c
 	return ParseOverrideSettingsResponse(rsp)
 }
 
+// OverrideSettingsSourcesListWithResponse Get where overridden settings come from
+//
+// Lists every setting that has a value of its own or that the deployment manages, with who wrote it last, what re-applies it on every deploy and whether it is locked. A locked setting cannot be changed through /api/override-settings/.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/override-settings/sources/ (the `OverrideSettingsSourcesList` operationId).
+func (c *ClientWithResponses) OverrideSettingsSourcesListWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OverrideSettingsSourcesListResponse, error) {
+	rsp, err := c.OverrideSettingsSourcesList(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOverrideSettingsSourcesListResponse(rsp)
+}
+
 // PasskeysListWithResponse performs a GET /api/passkeys/ (the `PasskeysList` operationId) request.
 //
 // Returns a wrapper object for the known response body format(s).
@@ -627726,6 +627905,8 @@ func (c *ClientWithResponses) RemoteWaldurApiSyncResourceWithResponse(ctx contex
 }
 
 // RemoteWaldurApiSyncResourceProjectPermissionsWithResponse performs a POST /api/remote-waldur-api/sync_resource_project_permissions/{uuid}/ (the `RemoteWaldurApiSyncResourceProjectPermissions` operationId) request.
+//
+// Queue a push of the resource's project team to the remote Waldur.
 //
 // Returns a wrapper object for the known response body format(s).
 func (c *ClientWithResponses) RemoteWaldurApiSyncResourceProjectPermissionsWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*RemoteWaldurApiSyncResourceProjectPermissionsResponse, error) {
@@ -688845,6 +689026,45 @@ func ParseOverrideSettingsResponse(rsp *http.Response) (*OverrideSettingsRespons
 	response := &OverrideSettingsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOverrideSettingsSourcesListResponse parses an HTTP response from a OverrideSettingsSourcesListWithResponse call
+func ParseOverrideSettingsSourcesListResponse(rsp *http.Response) (*OverrideSettingsSourcesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OverrideSettingsSourcesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []SettingSource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers OverrideSettingsSourcesListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
 	}
 
 	return response, nil
