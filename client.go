@@ -19510,6 +19510,7 @@ const (
 	ProtectedCallFieldEnumFixedDurationInDays                 ProtectedCallFieldEnum = "fixed_duration_in_days"
 	ProtectedCallFieldEnumHasEligibilityRestrictions          ProtectedCallFieldEnum = "has_eligibility_restrictions"
 	ProtectedCallFieldEnumHasProposals                        ProtectedCallFieldEnum = "has_proposals"
+	ProtectedCallFieldEnumImage                               ProtectedCallFieldEnum = "image"
 	ProtectedCallFieldEnumManager                             ProtectedCallFieldEnum = "manager"
 	ProtectedCallFieldEnumManagerUuid                         ProtectedCallFieldEnum = "manager_uuid"
 	ProtectedCallFieldEnumMaxPrepaidDurationMonths            ProtectedCallFieldEnum = "max_prepaid_duration_months"
@@ -19603,6 +19604,8 @@ func (e ProtectedCallFieldEnum) Valid() bool {
 	case ProtectedCallFieldEnumHasEligibilityRestrictions:
 		return true
 	case ProtectedCallFieldEnumHasProposals:
+		return true
+	case ProtectedCallFieldEnumImage:
 		return true
 	case ProtectedCallFieldEnumManager:
 		return true
@@ -20256,6 +20259,7 @@ const (
 	PublicCallFieldEnumExternalUrl                         PublicCallFieldEnum = "external_url"
 	PublicCallFieldEnumFixedDurationInDays                 PublicCallFieldEnum = "fixed_duration_in_days"
 	PublicCallFieldEnumHasEligibilityRestrictions          PublicCallFieldEnum = "has_eligibility_restrictions"
+	PublicCallFieldEnumImage                               PublicCallFieldEnum = "image"
 	PublicCallFieldEnumManager                             PublicCallFieldEnum = "manager"
 	PublicCallFieldEnumManagerUuid                         PublicCallFieldEnum = "manager_uuid"
 	PublicCallFieldEnumMaxPrepaidDurationMonths            PublicCallFieldEnum = "max_prepaid_duration_months"
@@ -20303,6 +20307,8 @@ func (e PublicCallFieldEnum) Valid() bool {
 	case PublicCallFieldEnumFixedDurationInDays:
 		return true
 	case PublicCallFieldEnumHasEligibilityRestrictions:
+		return true
+	case PublicCallFieldEnumImage:
 		return true
 	case PublicCallFieldEnumManager:
 		return true
@@ -31745,8 +31751,11 @@ type CallManagingOrganisation struct {
 	CustomerUuid         *openapi_types.UUID `json:"customer_uuid,omitempty"`
 	Description          *string             `json:"description,omitempty"`
 	Image                *string             `json:"image,omitempty"`
-	Url                  *string             `json:"url,omitempty"`
-	Uuid                 *openapi_types.UUID `json:"uuid,omitempty"`
+
+	// MaxActiveProposalsPerApplicant How many proposals an applicant may have under evaluation or running as a project, across all of this organization's calls, before they may submit another. Empty sets no limit.
+	MaxActiveProposalsPerApplicant *int                `json:"max_active_proposals_per_applicant,omitempty"`
+	Url                            *string             `json:"url,omitempty"`
+	Uuid                           *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // CallManagingOrganisationOEnum defines model for CallManagingOrganisationOEnum.
@@ -31757,6 +31766,9 @@ type CallManagingOrganisationRequest struct {
 	Customer    string              `json:"customer"`
 	Description *string             `json:"description,omitempty"`
 	Image       *openapi_types.File `json:"image,omitempty"`
+
+	// MaxActiveProposalsPerApplicant How many proposals an applicant may have under evaluation or running as a project, across all of this organization's calls, before they may submit another. Empty sets no limit.
+	MaxActiveProposalsPerApplicant *int `json:"max_active_proposals_per_applicant,omitempty"`
 }
 
 // CallManagingOrganisationRequestForm defines model for CallManagingOrganisationRequestForm.
@@ -31764,6 +31776,9 @@ type CallManagingOrganisationRequestForm struct {
 	Customer    string              `json:"customer"`
 	Description *string             `json:"description,omitempty"`
 	Image       *openapi_types.File `json:"image,omitempty"`
+
+	// MaxActiveProposalsPerApplicant How many proposals an applicant may have under evaluation or running as a project, across all of this organization's calls, before they may submit another. Empty sets no limit.
+	MaxActiveProposalsPerApplicant *int `json:"max_active_proposals_per_applicant,omitempty"`
 }
 
 // CallManagingOrganisationRequestMultipart defines model for CallManagingOrganisationRequestMultipart.
@@ -31771,6 +31786,9 @@ type CallManagingOrganisationRequestMultipart struct {
 	Customer    string              `json:"customer"`
 	Description *string             `json:"description,omitempty"`
 	Image       *openapi_types.File `json:"image,omitempty"`
+
+	// MaxActiveProposalsPerApplicant How many proposals an applicant may have under evaluation or running as a project, across all of this organization's calls, before they may submit another. Empty sets no limit.
+	MaxActiveProposalsPerApplicant *int `json:"max_active_proposals_per_applicant,omitempty"`
 }
 
 // CallManagingOrganisationStat defines model for CallManagingOrganisationStat.
@@ -52063,18 +52081,27 @@ type PatchedCallCOIConfigurationRequest struct {
 type PatchedCallManagingOrganisationRequest struct {
 	Description *string             `json:"description,omitempty"`
 	Image       *openapi_types.File `json:"image,omitempty"`
+
+	// MaxActiveProposalsPerApplicant How many proposals an applicant may have under evaluation or running as a project, across all of this organization's calls, before they may submit another. Empty sets no limit.
+	MaxActiveProposalsPerApplicant *int `json:"max_active_proposals_per_applicant,omitempty"`
 }
 
 // PatchedCallManagingOrganisationRequestForm defines model for PatchedCallManagingOrganisationRequestForm.
 type PatchedCallManagingOrganisationRequestForm struct {
 	Description *string             `json:"description,omitempty"`
 	Image       *openapi_types.File `json:"image,omitempty"`
+
+	// MaxActiveProposalsPerApplicant How many proposals an applicant may have under evaluation or running as a project, across all of this organization's calls, before they may submit another. Empty sets no limit.
+	MaxActiveProposalsPerApplicant *int `json:"max_active_proposals_per_applicant,omitempty"`
 }
 
 // PatchedCallManagingOrganisationRequestMultipart defines model for PatchedCallManagingOrganisationRequestMultipart.
 type PatchedCallManagingOrganisationRequestMultipart struct {
 	Description *string             `json:"description,omitempty"`
 	Image       *openapi_types.File `json:"image,omitempty"`
+
+	// MaxActiveProposalsPerApplicant How many proposals an applicant may have under evaluation or running as a project, across all of this organization's calls, before they may submit another. Empty sets no limit.
+	MaxActiveProposalsPerApplicant *int `json:"max_active_proposals_per_applicant,omitempty"`
 }
 
 // PatchedCallNotificationOverrideRequest defines model for PatchedCallNotificationOverrideRequest.
@@ -53974,7 +54001,194 @@ type PatchedProtectedCallRequest struct {
 	EvaluationStart     *EvaluationStartEnum `json:"evaluation_start,omitempty"`
 	ExternalUrl         *string              `json:"external_url,omitempty"`
 	FixedDurationInDays *int                 `json:"fixed_duration_in_days,omitempty"`
-	Name                *string              `json:"name,omitempty"`
+
+	// Image Logo shown on the call's card in place of its initials. A PNG, JPEG or GIF of at most 2 MB; null or an empty value removes it.
+	Image *openapi_types.File `json:"image,omitempty"`
+	Name  *string             `json:"name,omitempty"`
+
+	// OrderAuthor Whose name the orders for resources granted by this call carry.
+	OrderAuthor *OrderAuthorEnum `json:"order_author,omitempty"`
+
+	// OrderAuthorUser The person orders are attributed to when the author is a named contact. Must hold a role on this call or on the organization managing it.
+	OrderAuthorUser     *openapi_types.UUID             `json:"order_author_user,omitempty"`
+	PanelChair          *openapi_types.UUID             `json:"panel_chair,omitempty"`
+	PanelViceChair      *openapi_types.UUID             `json:"panel_vice_chair,omitempty"`
+	ProposalFieldConfig *CallProposalFieldConfigRequest `json:"proposal_field_config,omitempty"`
+
+	// ProposalSlugTemplate Template for proposal slugs. Supports: {call_slug}, {round_slug}, {org_slug}, {year}, {month}, {counter}, {counter_padded}. Default: {round_slug}-{counter_padded}
+	ProposalSlugTemplate *string `json:"proposal_slug_template,omitempty"`
+
+	// PublishResults When applicants learn the allocation decision: immediately, or for every proposal of a round together when a call manager publishes the round's results. Cannot be changed while decisions are held.
+	PublishResults *PublishResultsEnum `json:"publish_results,omitempty"`
+	ReferenceCode  *string             `json:"reference_code,omitempty"`
+
+	// ResourceTemplateSelectionMode Whether a proposal may request several of the call's resource templates or at most one of them. Cannot be set to single while a draft proposal holds several resource requests.
+	ResourceTemplateSelectionMode *ResourceTemplateSelectionModeEnum `json:"resource_template_selection_mode,omitempty"`
+
+	// ReviewerEligibility Who may review for the call: checked when a reviewer is invited, accepts, is suggested or is given the call's reviewer role. Kept apart from the restrictions on applicants.
+	ReviewerEligibility *CallReviewerEligibilityRequest `json:"reviewer_eligibility,omitempty"`
+
+	// ReviewerIdentityVisibleToSubmitters Whether proposal applicants can see reviewer identities
+	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
+
+	// ReviewsVisibleToSubmitters Whether proposal applicants can see review comments and scores. Applicants still see what an applicant step lists as its input steps, such as the reviews they respond to.
+	ReviewsVisibleToSubmitters *bool `json:"reviews_visible_to_submitters,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
+
+	// TargetDecisionDays Days from a round's cut-off to its decision the workflow is planned for, when the round has no allocation date. The workflow check compares the steps' durations with it.
+	TargetDecisionDays *int `json:"target_decision_days,omitempty"`
+
+	// UndecidedAtRoundCompletion What completing a round does with its proposals that still have no decision: refuse to complete the round, or reject them. A round may override it.
+	UndecidedAtRoundCompletion *UndecidedAtRoundCompletionEnum `json:"undecided_at_round_completion,omitempty"`
+
+	// UserAffiliations List of allowed affiliations. User must have one.
+	UserAffiliations *[]string `json:"user_affiliations,omitempty"`
+
+	// UserAssuranceLevels List of required assurance URIs (REFEDS). User must have ALL of these.
+	UserAssuranceLevels *[]string `json:"user_assurance_levels,omitempty"`
+
+	// UserEmailPatterns List of email regex patterns. User must match one.
+	UserEmailPatterns *[]string `json:"user_email_patterns,omitempty"`
+
+	// UserIdentitySources List of allowed identity sources (identity providers).
+	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
+
+	// UserNationalities List of allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
+	UserNationalities *[]string `json:"user_nationalities,omitempty"`
+
+	// UserOrganizationTypes List of allowed organization type URNs (SCHAC). User must match one.
+	UserOrganizationTypes *[]string `json:"user_organization_types,omitempty"`
+}
+
+// PatchedProtectedCallRequestForm defines model for PatchedProtectedCallRequestForm.
+type PatchedProtectedCallRequestForm struct {
+	// AdoptionRequired Whether a round's results must be adopted (by a board, say) before they are published. The adoption is then recorded while the round is deciding, and publication waits for it.
+	AdoptionRequired *bool `json:"adoption_required,omitempty"`
+
+	// AllowedDurationMonths Durations, in months, the applicant chooses the project's length from. Empty offers no choice. Cannot be combined with fixed_duration_in_days. Proposals already submitted keep the length they asked for.
+	AllowedDurationMonths *[]int `json:"allowed_duration_months,omitempty"`
+
+	// ApplicantCcRoles Names of the proposal roles whose holders are copied (Cc) on every mail to the applicant about a proposal: PROPOSAL.MANAGER for the principal investigator, PROPOSAL.ADMIN for the proposal administrators. Only the proposal's current team is copied. Empty copies nobody.
+	ApplicantCcRoles          *[]string                             `json:"applicant_cc_roles,omitempty"`
+	ApplicantVisibilityConfig *CallApplicantVisibilityConfigRequest `json:"applicant_visibility_config,omitempty"`
+	BackendId                 *string                               `json:"backend_id,omitempty"`
+
+	// BudgetEnforcement How the allocation decision is held to the call's resource budgets. soft: approving an award past what remains needs an explicit override with a reason. hard: such an award is refused, and only staff may override it with a reason. Changing it affects only later decisions.
+	BudgetEnforcement *BudgetEnforcementEnum `json:"budget_enforcement,omitempty"`
+
+	// CarryOverDrafts Whether a draft still open when its round's cut-off passes moves on to the call's next round instead of being canceled. Without a later round the draft is canceled either way.
+	CarryOverDrafts *bool `json:"carry_over_drafts,omitempty"`
+
+	// CoiDeclarationText The conflict-of-interest declaration evaluators confirm, for every step asking them to that has no text of its own. Empty for the platform's standard declaration.
+	CoiDeclarationText *string `json:"coi_declaration_text,omitempty"`
+
+	// ComplianceChecklist Compliance checklist that proposals must complete before submission
+	ComplianceChecklist *openapi_types.UUID `json:"compliance_checklist,omitempty"`
+	CreatedBy           *string             `json:"created_by,omitempty"`
+	Description         *string             `json:"description,omitempty"`
+
+	// EvaluationStart When a submitted proposal's evaluation starts: on submission, or for all proposals of a round together at its cut-off. Cannot be changed while the call has proposals submitted or in review.
+	EvaluationStart     *EvaluationStartEnum `json:"evaluation_start,omitempty"`
+	ExternalUrl         *string              `json:"external_url,omitempty"`
+	FixedDurationInDays *int                 `json:"fixed_duration_in_days,omitempty"`
+
+	// Image Logo shown on the call's card in place of its initials. A PNG, JPEG or GIF of at most 2 MB; null or an empty value removes it.
+	Image *openapi_types.File `json:"image,omitempty"`
+	Name  *string             `json:"name,omitempty"`
+
+	// OrderAuthor Whose name the orders for resources granted by this call carry.
+	OrderAuthor *OrderAuthorEnum `json:"order_author,omitempty"`
+
+	// OrderAuthorUser The person orders are attributed to when the author is a named contact. Must hold a role on this call or on the organization managing it.
+	OrderAuthorUser     *openapi_types.UUID             `json:"order_author_user,omitempty"`
+	PanelChair          *openapi_types.UUID             `json:"panel_chair,omitempty"`
+	PanelViceChair      *openapi_types.UUID             `json:"panel_vice_chair,omitempty"`
+	ProposalFieldConfig *CallProposalFieldConfigRequest `json:"proposal_field_config,omitempty"`
+
+	// ProposalSlugTemplate Template for proposal slugs. Supports: {call_slug}, {round_slug}, {org_slug}, {year}, {month}, {counter}, {counter_padded}. Default: {round_slug}-{counter_padded}
+	ProposalSlugTemplate *string `json:"proposal_slug_template,omitempty"`
+
+	// PublishResults When applicants learn the allocation decision: immediately, or for every proposal of a round together when a call manager publishes the round's results. Cannot be changed while decisions are held.
+	PublishResults *PublishResultsEnum `json:"publish_results,omitempty"`
+	ReferenceCode  *string             `json:"reference_code,omitempty"`
+
+	// ResourceTemplateSelectionMode Whether a proposal may request several of the call's resource templates or at most one of them. Cannot be set to single while a draft proposal holds several resource requests.
+	ResourceTemplateSelectionMode *ResourceTemplateSelectionModeEnum `json:"resource_template_selection_mode,omitempty"`
+
+	// ReviewerEligibility Who may review for the call: checked when a reviewer is invited, accepts, is suggested or is given the call's reviewer role. Kept apart from the restrictions on applicants.
+	ReviewerEligibility *CallReviewerEligibilityRequest `json:"reviewer_eligibility,omitempty"`
+
+	// ReviewerIdentityVisibleToSubmitters Whether proposal applicants can see reviewer identities
+	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
+
+	// ReviewsVisibleToSubmitters Whether proposal applicants can see review comments and scores. Applicants still see what an applicant step lists as its input steps, such as the reviews they respond to.
+	ReviewsVisibleToSubmitters *bool `json:"reviews_visible_to_submitters,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
+
+	// TargetDecisionDays Days from a round's cut-off to its decision the workflow is planned for, when the round has no allocation date. The workflow check compares the steps' durations with it.
+	TargetDecisionDays *int `json:"target_decision_days,omitempty"`
+
+	// UndecidedAtRoundCompletion What completing a round does with its proposals that still have no decision: refuse to complete the round, or reject them. A round may override it.
+	UndecidedAtRoundCompletion *UndecidedAtRoundCompletionEnum `json:"undecided_at_round_completion,omitempty"`
+
+	// UserAffiliations List of allowed affiliations. User must have one.
+	UserAffiliations *[]string `json:"user_affiliations,omitempty"`
+
+	// UserAssuranceLevels List of required assurance URIs (REFEDS). User must have ALL of these.
+	UserAssuranceLevels *[]string `json:"user_assurance_levels,omitempty"`
+
+	// UserEmailPatterns List of email regex patterns. User must match one.
+	UserEmailPatterns *[]string `json:"user_email_patterns,omitempty"`
+
+	// UserIdentitySources List of allowed identity sources (identity providers).
+	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
+
+	// UserNationalities List of allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
+	UserNationalities *[]string `json:"user_nationalities,omitempty"`
+
+	// UserOrganizationTypes List of allowed organization type URNs (SCHAC). User must match one.
+	UserOrganizationTypes *[]string `json:"user_organization_types,omitempty"`
+}
+
+// PatchedProtectedCallRequestMultipart defines model for PatchedProtectedCallRequestMultipart.
+type PatchedProtectedCallRequestMultipart struct {
+	// AdoptionRequired Whether a round's results must be adopted (by a board, say) before they are published. The adoption is then recorded while the round is deciding, and publication waits for it.
+	AdoptionRequired *bool `json:"adoption_required,omitempty"`
+
+	// AllowedDurationMonths Durations, in months, the applicant chooses the project's length from. Empty offers no choice. Cannot be combined with fixed_duration_in_days. Proposals already submitted keep the length they asked for.
+	AllowedDurationMonths *[]int `json:"allowed_duration_months,omitempty"`
+
+	// ApplicantCcRoles Names of the proposal roles whose holders are copied (Cc) on every mail to the applicant about a proposal: PROPOSAL.MANAGER for the principal investigator, PROPOSAL.ADMIN for the proposal administrators. Only the proposal's current team is copied. Empty copies nobody.
+	ApplicantCcRoles          *[]string                             `json:"applicant_cc_roles,omitempty"`
+	ApplicantVisibilityConfig *CallApplicantVisibilityConfigRequest `json:"applicant_visibility_config,omitempty"`
+	BackendId                 *string                               `json:"backend_id,omitempty"`
+
+	// BudgetEnforcement How the allocation decision is held to the call's resource budgets. soft: approving an award past what remains needs an explicit override with a reason. hard: such an award is refused, and only staff may override it with a reason. Changing it affects only later decisions.
+	BudgetEnforcement *BudgetEnforcementEnum `json:"budget_enforcement,omitempty"`
+
+	// CarryOverDrafts Whether a draft still open when its round's cut-off passes moves on to the call's next round instead of being canceled. Without a later round the draft is canceled either way.
+	CarryOverDrafts *bool `json:"carry_over_drafts,omitempty"`
+
+	// CoiDeclarationText The conflict-of-interest declaration evaluators confirm, for every step asking them to that has no text of its own. Empty for the platform's standard declaration.
+	CoiDeclarationText *string `json:"coi_declaration_text,omitempty"`
+
+	// ComplianceChecklist Compliance checklist that proposals must complete before submission
+	ComplianceChecklist *openapi_types.UUID `json:"compliance_checklist,omitempty"`
+	CreatedBy           *string             `json:"created_by,omitempty"`
+	Description         *string             `json:"description,omitempty"`
+
+	// EvaluationStart When a submitted proposal's evaluation starts: on submission, or for all proposals of a round together at its cut-off. Cannot be changed while the call has proposals submitted or in review.
+	EvaluationStart     *EvaluationStartEnum `json:"evaluation_start,omitempty"`
+	ExternalUrl         *string              `json:"external_url,omitempty"`
+	FixedDurationInDays *int                 `json:"fixed_duration_in_days,omitempty"`
+
+	// Image Logo shown on the call's card in place of its initials. A PNG, JPEG or GIF of at most 2 MB; null or an empty value removes it.
+	Image *openapi_types.File `json:"image,omitempty"`
+	Name  *string             `json:"name,omitempty"`
 
 	// OrderAuthor Whose name the orders for resources granted by this call carry.
 	OrderAuthor *OrderAuthorEnum `json:"order_author,omitempty"`
@@ -54396,8 +54610,7 @@ type PatchedReviewerBidRequest struct {
 	Bid *BidEnum `json:"bid,omitempty"`
 
 	// Comment Optional comment explaining the bid
-	Comment  *string `json:"comment,omitempty"`
-	Proposal *string `json:"proposal,omitempty"`
+	Comment *string `json:"comment,omitempty"`
 }
 
 // PatchedReviewerExpertiseRequest defines model for PatchedReviewerExpertiseRequest.
@@ -57800,9 +58013,12 @@ type ProtectedCall struct {
 	HasEligibilityRestrictions *bool `json:"has_eligibility_restrictions,omitempty"`
 
 	// HasProposals Whether any proposal has been submitted to this call. Used by the frontend to gate slug-template and checklist fields.
-	HasProposals *bool               `json:"has_proposals,omitempty"`
-	Manager      *string             `json:"manager,omitempty"`
-	ManagerUuid  *openapi_types.UUID `json:"manager_uuid,omitempty"`
+	HasProposals *bool `json:"has_proposals,omitempty"`
+
+	// Image Logo shown on the call's card in place of its initials. A PNG, JPEG or GIF of at most 2 MB; null or an empty value removes it.
+	Image       *string             `json:"image,omitempty"`
+	Manager     *string             `json:"manager,omitempty"`
+	ManagerUuid *openapi_types.UUID `json:"manager_uuid,omitempty"`
 
 	// MaxPrepaidDurationMonths The longest prepaid subscription, in whole months, that fits inside fixed_duration_in_days measured from today; null when the call fixes no duration.
 	MaxPrepaidDurationMonths *int                       `json:"max_prepaid_duration_months,omitempty"`
@@ -57925,8 +58141,197 @@ type ProtectedCallRequest struct {
 	EvaluationStart     *EvaluationStartEnum `json:"evaluation_start,omitempty"`
 	ExternalUrl         *string              `json:"external_url,omitempty"`
 	FixedDurationInDays *int                 `json:"fixed_duration_in_days,omitempty"`
-	Manager             string               `json:"manager"`
-	Name                string               `json:"name"`
+
+	// Image Logo shown on the call's card in place of its initials. A PNG, JPEG or GIF of at most 2 MB; null or an empty value removes it.
+	Image   *openapi_types.File `json:"image,omitempty"`
+	Manager string              `json:"manager"`
+	Name    string              `json:"name"`
+
+	// OrderAuthor Whose name the orders for resources granted by this call carry.
+	OrderAuthor *OrderAuthorEnum `json:"order_author,omitempty"`
+
+	// OrderAuthorUser The person orders are attributed to when the author is a named contact. Must hold a role on this call or on the organization managing it.
+	OrderAuthorUser     *openapi_types.UUID             `json:"order_author_user,omitempty"`
+	PanelChair          *openapi_types.UUID             `json:"panel_chair,omitempty"`
+	PanelViceChair      *openapi_types.UUID             `json:"panel_vice_chair,omitempty"`
+	ProposalFieldConfig *CallProposalFieldConfigRequest `json:"proposal_field_config,omitempty"`
+
+	// ProposalSlugTemplate Template for proposal slugs. Supports: {call_slug}, {round_slug}, {org_slug}, {year}, {month}, {counter}, {counter_padded}. Default: {round_slug}-{counter_padded}
+	ProposalSlugTemplate *string `json:"proposal_slug_template,omitempty"`
+
+	// PublishResults When applicants learn the allocation decision: immediately, or for every proposal of a round together when a call manager publishes the round's results. Cannot be changed while decisions are held.
+	PublishResults *PublishResultsEnum `json:"publish_results,omitempty"`
+	ReferenceCode  *string             `json:"reference_code,omitempty"`
+
+	// ResourceTemplateSelectionMode Whether a proposal may request several of the call's resource templates or at most one of them. Cannot be set to single while a draft proposal holds several resource requests.
+	ResourceTemplateSelectionMode *ResourceTemplateSelectionModeEnum `json:"resource_template_selection_mode,omitempty"`
+
+	// ReviewerEligibility Who may review for the call: checked when a reviewer is invited, accepts, is suggested or is given the call's reviewer role. Kept apart from the restrictions on applicants.
+	ReviewerEligibility *CallReviewerEligibilityRequest `json:"reviewer_eligibility,omitempty"`
+
+	// ReviewerIdentityVisibleToSubmitters Whether proposal applicants can see reviewer identities
+	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
+
+	// ReviewsVisibleToSubmitters Whether proposal applicants can see review comments and scores. Applicants still see what an applicant step lists as its input steps, such as the reviews they respond to.
+	ReviewsVisibleToSubmitters *bool `json:"reviews_visible_to_submitters,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
+
+	// TargetDecisionDays Days from a round's cut-off to its decision the workflow is planned for, when the round has no allocation date. The workflow check compares the steps' durations with it.
+	TargetDecisionDays *int `json:"target_decision_days,omitempty"`
+
+	// UndecidedAtRoundCompletion What completing a round does with its proposals that still have no decision: refuse to complete the round, or reject them. A round may override it.
+	UndecidedAtRoundCompletion *UndecidedAtRoundCompletionEnum `json:"undecided_at_round_completion,omitempty"`
+
+	// UserAffiliations List of allowed affiliations. User must have one.
+	UserAffiliations *[]string `json:"user_affiliations,omitempty"`
+
+	// UserAssuranceLevels List of required assurance URIs (REFEDS). User must have ALL of these.
+	UserAssuranceLevels *[]string `json:"user_assurance_levels,omitempty"`
+
+	// UserEmailPatterns List of email regex patterns. User must match one.
+	UserEmailPatterns *[]string `json:"user_email_patterns,omitempty"`
+
+	// UserIdentitySources List of allowed identity sources (identity providers).
+	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
+
+	// UserNationalities List of allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
+	UserNationalities *[]string `json:"user_nationalities,omitempty"`
+
+	// UserOrganizationTypes List of allowed organization type URNs (SCHAC). User must match one.
+	UserOrganizationTypes *[]string `json:"user_organization_types,omitempty"`
+}
+
+// ProtectedCallRequestForm defines model for ProtectedCallRequestForm.
+type ProtectedCallRequestForm struct {
+	// AdoptionRequired Whether a round's results must be adopted (by a board, say) before they are published. The adoption is then recorded while the round is deciding, and publication waits for it.
+	AdoptionRequired *bool `json:"adoption_required,omitempty"`
+
+	// AllowedDurationMonths Durations, in months, the applicant chooses the project's length from. Empty offers no choice. Cannot be combined with fixed_duration_in_days. Proposals already submitted keep the length they asked for.
+	AllowedDurationMonths *[]int `json:"allowed_duration_months,omitempty"`
+
+	// ApplicantCcRoles Names of the proposal roles whose holders are copied (Cc) on every mail to the applicant about a proposal: PROPOSAL.MANAGER for the principal investigator, PROPOSAL.ADMIN for the proposal administrators. Only the proposal's current team is copied. Empty copies nobody.
+	ApplicantCcRoles          *[]string                             `json:"applicant_cc_roles,omitempty"`
+	ApplicantVisibilityConfig *CallApplicantVisibilityConfigRequest `json:"applicant_visibility_config,omitempty"`
+	BackendId                 *string                               `json:"backend_id,omitempty"`
+
+	// BudgetEnforcement How the allocation decision is held to the call's resource budgets. soft: approving an award past what remains needs an explicit override with a reason. hard: such an award is refused, and only staff may override it with a reason. Changing it affects only later decisions.
+	BudgetEnforcement *BudgetEnforcementEnum `json:"budget_enforcement,omitempty"`
+
+	// CarryOverDrafts Whether a draft still open when its round's cut-off passes moves on to the call's next round instead of being canceled. Without a later round the draft is canceled either way.
+	CarryOverDrafts *bool `json:"carry_over_drafts,omitempty"`
+
+	// CoiDeclarationText The conflict-of-interest declaration evaluators confirm, for every step asking them to that has no text of its own. Empty for the platform's standard declaration.
+	CoiDeclarationText *string `json:"coi_declaration_text,omitempty"`
+
+	// ComplianceChecklist Compliance checklist that proposals must complete before submission
+	ComplianceChecklist *openapi_types.UUID `json:"compliance_checklist,omitempty"`
+	CreatedBy           *string             `json:"created_by,omitempty"`
+	Description         *string             `json:"description,omitempty"`
+
+	// EvaluationStart When a submitted proposal's evaluation starts: on submission, or for all proposals of a round together at its cut-off. Cannot be changed while the call has proposals submitted or in review.
+	EvaluationStart     *EvaluationStartEnum `json:"evaluation_start,omitempty"`
+	ExternalUrl         *string              `json:"external_url,omitempty"`
+	FixedDurationInDays *int                 `json:"fixed_duration_in_days,omitempty"`
+
+	// Image Logo shown on the call's card in place of its initials. A PNG, JPEG or GIF of at most 2 MB; null or an empty value removes it.
+	Image   *openapi_types.File `json:"image,omitempty"`
+	Manager string              `json:"manager"`
+	Name    string              `json:"name"`
+
+	// OrderAuthor Whose name the orders for resources granted by this call carry.
+	OrderAuthor *OrderAuthorEnum `json:"order_author,omitempty"`
+
+	// OrderAuthorUser The person orders are attributed to when the author is a named contact. Must hold a role on this call or on the organization managing it.
+	OrderAuthorUser     *openapi_types.UUID             `json:"order_author_user,omitempty"`
+	PanelChair          *openapi_types.UUID             `json:"panel_chair,omitempty"`
+	PanelViceChair      *openapi_types.UUID             `json:"panel_vice_chair,omitempty"`
+	ProposalFieldConfig *CallProposalFieldConfigRequest `json:"proposal_field_config,omitempty"`
+
+	// ProposalSlugTemplate Template for proposal slugs. Supports: {call_slug}, {round_slug}, {org_slug}, {year}, {month}, {counter}, {counter_padded}. Default: {round_slug}-{counter_padded}
+	ProposalSlugTemplate *string `json:"proposal_slug_template,omitempty"`
+
+	// PublishResults When applicants learn the allocation decision: immediately, or for every proposal of a round together when a call manager publishes the round's results. Cannot be changed while decisions are held.
+	PublishResults *PublishResultsEnum `json:"publish_results,omitempty"`
+	ReferenceCode  *string             `json:"reference_code,omitempty"`
+
+	// ResourceTemplateSelectionMode Whether a proposal may request several of the call's resource templates or at most one of them. Cannot be set to single while a draft proposal holds several resource requests.
+	ResourceTemplateSelectionMode *ResourceTemplateSelectionModeEnum `json:"resource_template_selection_mode,omitempty"`
+
+	// ReviewerEligibility Who may review for the call: checked when a reviewer is invited, accepts, is suggested or is given the call's reviewer role. Kept apart from the restrictions on applicants.
+	ReviewerEligibility *CallReviewerEligibilityRequest `json:"reviewer_eligibility,omitempty"`
+
+	// ReviewerIdentityVisibleToSubmitters Whether proposal applicants can see reviewer identities
+	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
+
+	// ReviewsVisibleToSubmitters Whether proposal applicants can see review comments and scores. Applicants still see what an applicant step lists as its input steps, such as the reviews they respond to.
+	ReviewsVisibleToSubmitters *bool `json:"reviews_visible_to_submitters,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
+
+	// TargetDecisionDays Days from a round's cut-off to its decision the workflow is planned for, when the round has no allocation date. The workflow check compares the steps' durations with it.
+	TargetDecisionDays *int `json:"target_decision_days,omitempty"`
+
+	// UndecidedAtRoundCompletion What completing a round does with its proposals that still have no decision: refuse to complete the round, or reject them. A round may override it.
+	UndecidedAtRoundCompletion *UndecidedAtRoundCompletionEnum `json:"undecided_at_round_completion,omitempty"`
+
+	// UserAffiliations List of allowed affiliations. User must have one.
+	UserAffiliations *[]string `json:"user_affiliations,omitempty"`
+
+	// UserAssuranceLevels List of required assurance URIs (REFEDS). User must have ALL of these.
+	UserAssuranceLevels *[]string `json:"user_assurance_levels,omitempty"`
+
+	// UserEmailPatterns List of email regex patterns. User must match one.
+	UserEmailPatterns *[]string `json:"user_email_patterns,omitempty"`
+
+	// UserIdentitySources List of allowed identity sources (identity providers).
+	UserIdentitySources *[]string `json:"user_identity_sources,omitempty"`
+
+	// UserNationalities List of allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
+	UserNationalities *[]string `json:"user_nationalities,omitempty"`
+
+	// UserOrganizationTypes List of allowed organization type URNs (SCHAC). User must match one.
+	UserOrganizationTypes *[]string `json:"user_organization_types,omitempty"`
+}
+
+// ProtectedCallRequestMultipart defines model for ProtectedCallRequestMultipart.
+type ProtectedCallRequestMultipart struct {
+	// AdoptionRequired Whether a round's results must be adopted (by a board, say) before they are published. The adoption is then recorded while the round is deciding, and publication waits for it.
+	AdoptionRequired *bool `json:"adoption_required,omitempty"`
+
+	// AllowedDurationMonths Durations, in months, the applicant chooses the project's length from. Empty offers no choice. Cannot be combined with fixed_duration_in_days. Proposals already submitted keep the length they asked for.
+	AllowedDurationMonths *[]int `json:"allowed_duration_months,omitempty"`
+
+	// ApplicantCcRoles Names of the proposal roles whose holders are copied (Cc) on every mail to the applicant about a proposal: PROPOSAL.MANAGER for the principal investigator, PROPOSAL.ADMIN for the proposal administrators. Only the proposal's current team is copied. Empty copies nobody.
+	ApplicantCcRoles          *[]string                             `json:"applicant_cc_roles,omitempty"`
+	ApplicantVisibilityConfig *CallApplicantVisibilityConfigRequest `json:"applicant_visibility_config,omitempty"`
+	BackendId                 *string                               `json:"backend_id,omitempty"`
+
+	// BudgetEnforcement How the allocation decision is held to the call's resource budgets. soft: approving an award past what remains needs an explicit override with a reason. hard: such an award is refused, and only staff may override it with a reason. Changing it affects only later decisions.
+	BudgetEnforcement *BudgetEnforcementEnum `json:"budget_enforcement,omitempty"`
+
+	// CarryOverDrafts Whether a draft still open when its round's cut-off passes moves on to the call's next round instead of being canceled. Without a later round the draft is canceled either way.
+	CarryOverDrafts *bool `json:"carry_over_drafts,omitempty"`
+
+	// CoiDeclarationText The conflict-of-interest declaration evaluators confirm, for every step asking them to that has no text of its own. Empty for the platform's standard declaration.
+	CoiDeclarationText *string `json:"coi_declaration_text,omitempty"`
+
+	// ComplianceChecklist Compliance checklist that proposals must complete before submission
+	ComplianceChecklist *openapi_types.UUID `json:"compliance_checklist,omitempty"`
+	CreatedBy           *string             `json:"created_by,omitempty"`
+	Description         *string             `json:"description,omitempty"`
+
+	// EvaluationStart When a submitted proposal's evaluation starts: on submission, or for all proposals of a round together at its cut-off. Cannot be changed while the call has proposals submitted or in review.
+	EvaluationStart     *EvaluationStartEnum `json:"evaluation_start,omitempty"`
+	ExternalUrl         *string              `json:"external_url,omitempty"`
+	FixedDurationInDays *int                 `json:"fixed_duration_in_days,omitempty"`
+
+	// Image Logo shown on the call's card in place of its initials. A PNG, JPEG or GIF of at most 2 MB; null or an empty value removes it.
+	Image   *openapi_types.File `json:"image,omitempty"`
+	Manager string              `json:"manager"`
+	Name    string              `json:"name"`
 
 	// OrderAuthor Whose name the orders for resources granted by this call carry.
 	OrderAuthor *OrderAuthorEnum `json:"order_author,omitempty"`
@@ -58918,6 +59323,7 @@ type PublicCall struct {
 
 	// HasEligibilityRestrictions Check if call has any eligibility restrictions configured.
 	HasEligibilityRestrictions *bool               `json:"has_eligibility_restrictions,omitempty"`
+	Image                      *string             `json:"image,omitempty"`
 	Manager                    *string             `json:"manager,omitempty"`
 	ManagerUuid                *openapi_types.UUID `json:"manager_uuid,omitempty"`
 
@@ -62598,7 +63004,7 @@ type ReviewerBid struct {
 	// Comment Optional comment explaining the bid
 	Comment      *string             `json:"comment,omitempty"`
 	ModifiedAt   *time.Time          `json:"modified_at,omitempty"`
-	Proposal     string              `json:"proposal"`
+	Proposal     *string             `json:"proposal,omitempty"`
 	ProposalName *string             `json:"proposal_name,omitempty"`
 	ProposalUuid *openapi_types.UUID `json:"proposal_uuid,omitempty"`
 	Reviewer     *string             `json:"reviewer,omitempty"`
@@ -62617,8 +63023,7 @@ type ReviewerBidRequest struct {
 	Bid BidEnum `json:"bid"`
 
 	// Comment Optional comment explaining the bid
-	Comment  *string `json:"comment,omitempty"`
-	Proposal string  `json:"proposal"`
+	Comment *string `json:"comment,omitempty"`
 }
 
 // ReviewerBidSubmitRequest defines model for ReviewerBidSubmitRequest.
@@ -91734,18 +92139,6 @@ type ProposalProposalsCountParams struct {
 	WorkflowStep *[]string `form:"workflow_step,omitempty" json:"workflow_step,omitempty"`
 }
 
-// ProposalProposalsChecklistTemplateRetrieveParams defines parameters for ProposalProposalsChecklistTemplateRetrieve.
-type ProposalProposalsChecklistTemplateRetrieveParams struct {
-	// ParentUuid UUID of the parent object (e.g., customer UUID for new projects)
-	ParentUuid openapi_types.UUID `form:"parent_uuid" json:"parent_uuid"`
-}
-
-// ProposalProposalsChecklistTemplateCountParams defines parameters for ProposalProposalsChecklistTemplateCount.
-type ProposalProposalsChecklistTemplateCountParams struct {
-	// ParentUuid UUID of the parent object (e.g., customer UUID for new projects)
-	ParentUuid openapi_types.UUID `form:"parent_uuid" json:"parent_uuid"`
-}
-
 // ProposalProposalsAwardedResourcesListParams defines parameters for ProposalProposalsAwardedResourcesList.
 type ProposalProposalsAwardedResourcesListParams struct {
 	// Page A page number within the paginated result set.
@@ -100824,14 +101217,32 @@ type ProposalProposalsWithdrawRunJSONRequestBody = WithdrawRunRequest
 // ProposalProtectedCallsCreateJSONRequestBody defines body for ProposalProtectedCallsCreate for application/json ContentType.
 type ProposalProtectedCallsCreateJSONRequestBody = ProtectedCallRequest
 
+// ProposalProtectedCallsCreateFormdataRequestBody defines body for ProposalProtectedCallsCreate for application/x-www-form-urlencoded ContentType.
+type ProposalProtectedCallsCreateFormdataRequestBody = ProtectedCallRequestForm
+
+// ProposalProtectedCallsCreateMultipartRequestBody defines body for ProposalProtectedCallsCreate for multipart/form-data ContentType.
+type ProposalProtectedCallsCreateMultipartRequestBody = ProtectedCallRequestMultipart
+
 // ProposalProtectedCallsImportCallJSONRequestBody defines body for ProposalProtectedCallsImportCall for application/json ContentType.
 type ProposalProtectedCallsImportCallJSONRequestBody = CallImportParametersRequest
 
 // ProposalProtectedCallsPartialUpdateJSONRequestBody defines body for ProposalProtectedCallsPartialUpdate for application/json ContentType.
 type ProposalProtectedCallsPartialUpdateJSONRequestBody = PatchedProtectedCallRequest
 
+// ProposalProtectedCallsPartialUpdateFormdataRequestBody defines body for ProposalProtectedCallsPartialUpdate for application/x-www-form-urlencoded ContentType.
+type ProposalProtectedCallsPartialUpdateFormdataRequestBody = PatchedProtectedCallRequestForm
+
+// ProposalProtectedCallsPartialUpdateMultipartRequestBody defines body for ProposalProtectedCallsPartialUpdate for multipart/form-data ContentType.
+type ProposalProtectedCallsPartialUpdateMultipartRequestBody = PatchedProtectedCallRequestMultipart
+
 // ProposalProtectedCallsUpdateJSONRequestBody defines body for ProposalProtectedCallsUpdate for application/json ContentType.
 type ProposalProtectedCallsUpdateJSONRequestBody = ProtectedCallRequest
+
+// ProposalProtectedCallsUpdateFormdataRequestBody defines body for ProposalProtectedCallsUpdate for application/x-www-form-urlencoded ContentType.
+type ProposalProtectedCallsUpdateFormdataRequestBody = ProtectedCallRequestForm
+
+// ProposalProtectedCallsUpdateMultipartRequestBody defines body for ProposalProtectedCallsUpdate for multipart/form-data ContentType.
+type ProposalProtectedCallsUpdateMultipartRequestBody = ProtectedCallRequestMultipart
 
 // ProposalProtectedCallsAddUserJSONRequestBody defines body for ProposalProtectedCallsAddUser for application/json ContentType.
 type ProposalProtectedCallsAddUserJSONRequestBody = UserRoleCreateRequest
@@ -100979,6 +101390,12 @@ type ProposalProtectedCallsRoundsAllocateInSubmissionOrderJSONRequestBody = Allo
 
 // ProposalProtectedCallsRoundsCloseJSONRequestBody defines body for ProposalProtectedCallsRoundsClose for application/json ContentType.
 type ProposalProtectedCallsRoundsCloseJSONRequestBody = ProtectedCallRequest
+
+// ProposalProtectedCallsRoundsCloseFormdataRequestBody defines body for ProposalProtectedCallsRoundsClose for application/x-www-form-urlencoded ContentType.
+type ProposalProtectedCallsRoundsCloseFormdataRequestBody = ProtectedCallRequestForm
+
+// ProposalProtectedCallsRoundsCloseMultipartRequestBody defines body for ProposalProtectedCallsRoundsClose for multipart/form-data ContentType.
+type ProposalProtectedCallsRoundsCloseMultipartRequestBody = ProtectedCallRequestMultipart
 
 // ProposalProtectedCallsRoundsCompleteWorkflowStepJSONRequestBody defines body for ProposalProtectedCallsRoundsCompleteWorkflowStep for application/json ContentType.
 type ProposalProtectedCallsRoundsCompleteWorkflowStepJSONRequestBody = CompleteRoundWorkflowStepRequest
@@ -101210,9 +101627,6 @@ type RemoteWaldurApiRemoteCustomersJSONRequestBody = RemoteCredentialsRequest
 
 // RemoteWaldurApiSharedOfferingsJSONRequestBody defines body for RemoteWaldurApiSharedOfferings for application/json ContentType.
 type RemoteWaldurApiSharedOfferingsJSONRequestBody = RemoteCredentialsRequest
-
-// ReviewerBidsCreateJSONRequestBody defines body for ReviewerBidsCreate for application/json ContentType.
-type ReviewerBidsCreateJSONRequestBody = ReviewerBidRequest
 
 // ReviewerBidsBulkSubmitJSONRequestBody defines body for ReviewerBidsBulkSubmit for application/json ContentType.
 type ReviewerBidsBulkSubmitJSONRequestBody = ReviewerBulkBidRequest
@@ -122760,7 +123174,7 @@ type ClientInterface interface {
 
 	// CallManagingOrganisationsStatsRetrieve performs a GET /api/call-managing-organisations/{uuid}/stats/ (the `CallManagingOrganisationsStatsRetrieve` operationId) request.
 	//
-	// Return statistics for call managing organization.
+	// Return statistics for call managing organization, counted over the active calls the caller may report on, as the organization reports are: a call manager's figures cover their own calls.
 	CallManagingOrganisationsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CallManagingOrganisationsUpdateUserWithBody Update a user's role expiration
@@ -129884,7 +130298,7 @@ type ClientInterface interface {
 
 	// MarketplaceProviderOfferingsDependentsList What depends on an offering
 	//
-	// What other parts of the portal -- calls for proposals, say -- have built on the offering, one of its plans or one of its components, and whether they would refuse the given change. Shown before the change is confirmed.
+	// What other parts of the portal -- calls for proposals, say -- have built on the offering, one of its plans or one of its components, and whether they would refuse the given change. Shown before the change is confirmed. Open to whoever may change the offering: staff, and holders of OFFERING.UPDATE on the offering, its organization or its service provider. They see every dependent, including calls run by other organizations, since those are what the change would break.
 	//
 	// Corresponds with GET /api/marketplace-provider-offerings/{uuid}/dependents/ (the `MarketplaceProviderOfferingsDependentsList` operationId).
 	MarketplaceProviderOfferingsDependentsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsDependentsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -140345,16 +140759,6 @@ type ClientInterface interface {
 	// Takes a body of the `application/json` content type.
 	ProposalProposalsCreate(ctx context.Context, body ProposalProposalsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ProposalProposalsChecklistTemplateRetrieve performs a GET /api/proposal-proposals/checklist-template/ (the `ProposalProposalsChecklistTemplateRetrieve` operationId) request.
-	//
-	// Get checklist template for creating new objects.
-	ProposalProposalsChecklistTemplateRetrieve(ctx context.Context, params *ProposalProposalsChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ProposalProposalsChecklistTemplateCount performs a HEAD /api/proposal-proposals/checklist-template/ (the `ProposalProposalsChecklistTemplateCount` operationId) request.
-	//
-	// Get number of items in the collection matching the request parameters.
-	ProposalProposalsChecklistTemplateCount(ctx context.Context, params *ProposalProposalsChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// ProposalProposalsDashboardStatsRetrieve Get submitter dashboard stats
 	//
 	// Returns counts of the current user's own proposals grouped by state, covering both in-progress and decided proposals.
@@ -141095,6 +141499,10 @@ type ClientInterface interface {
 	// Takes a body of the `application/json` content type.
 	ProposalProtectedCallsCreate(ctx context.Context, body ProposalProtectedCallsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ProposalProtectedCallsCreateWithFormdataBody performs a POST /api/proposal-protected-calls/ (the `ProposalProtectedCallsCreate` operationId) request.
+	// Takes a body of the `application/x-www-form-urlencoded` content type.
+	ProposalProtectedCallsCreateWithFormdataBody(ctx context.Context, body ProposalProtectedCallsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ProposalProtectedCallsAvailableComplianceChecklistsList performs a GET /api/proposal-protected-calls/available_compliance_checklists/ (the `ProposalProtectedCallsAvailableComplianceChecklistsList` operationId) request.
 	//
 	// Get available compliance checklists for call creation/editing.
@@ -141164,6 +141572,10 @@ type ClientInterface interface {
 	// Takes a body of the `application/json` content type.
 	ProposalProtectedCallsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ProposalProtectedCallsPartialUpdateWithFormdataBody performs a PATCH /api/proposal-protected-calls/{uuid}/ (the `ProposalProtectedCallsPartialUpdate` operationId) request.
+	// Takes a body of the `application/x-www-form-urlencoded` content type.
+	ProposalProtectedCallsPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ProposalProtectedCallsUpdateWithBody performs a PUT /api/proposal-protected-calls/{uuid}/ (the `ProposalProtectedCallsUpdate` operationId) request,
 	// with any type of body and a specified content type.
 	ProposalProtectedCallsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -141171,6 +141583,10 @@ type ClientInterface interface {
 	// ProposalProtectedCallsUpdate performs a PUT /api/proposal-protected-calls/{uuid}/ (the `ProposalProtectedCallsUpdate` operationId) request.
 	// Takes a body of the `application/json` content type.
 	ProposalProtectedCallsUpdate(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProtectedCallsUpdateWithFormdataBody performs a PUT /api/proposal-protected-calls/{uuid}/ (the `ProposalProtectedCallsUpdate` operationId) request.
+	// Takes a body of the `application/x-www-form-urlencoded` content type.
+	ProposalProtectedCallsUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProtectedCallsActivate performs a POST /api/proposal-protected-calls/{uuid}/activate/ (the `ProposalProtectedCallsActivate` operationId) request.
 	//
@@ -141913,6 +142329,10 @@ type ClientInterface interface {
 	// ProposalProtectedCallsRoundsClose performs a POST /api/proposal-protected-calls/{uuid}/rounds/{obj_uuid}/close/ (the `ProposalProtectedCallsRoundsClose` operationId) request.
 	// Takes a body of the `application/json` content type.
 	ProposalProtectedCallsRoundsClose(ctx context.Context, uuid string, objUuid string, body ProposalProtectedCallsRoundsCloseJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProtectedCallsRoundsCloseWithFormdataBody performs a POST /api/proposal-protected-calls/{uuid}/rounds/{obj_uuid}/close/ (the `ProposalProtectedCallsRoundsClose` operationId) request.
+	// Takes a body of the `application/x-www-form-urlencoded` content type.
+	ProposalProtectedCallsRoundsCloseWithFormdataBody(ctx context.Context, uuid string, objUuid string, body ProposalProtectedCallsRoundsCloseFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProtectedCallsRoundsComplete performs a POST /api/proposal-protected-calls/{uuid}/rounds/{obj_uuid}/complete/ (the `ProposalProtectedCallsRoundsComplete` operationId) request.
 	//
@@ -143574,14 +143994,6 @@ type ClientInterface interface {
 	//
 	// Get number of items in the collection matching the request parameters.
 	ReviewerBidsCount(ctx context.Context, params *ReviewerBidsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ReviewerBidsCreateWithBody performs a POST /api/reviewer-bids/ (the `ReviewerBidsCreate` operationId) request,
-	// with any type of body and a specified content type.
-	ReviewerBidsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ReviewerBidsCreate performs a POST /api/reviewer-bids/ (the `ReviewerBidsCreate` operationId) request.
-	// Takes a body of the `application/json` content type.
-	ReviewerBidsCreate(ctx context.Context, body ReviewerBidsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ReviewerBidsBulkSubmitWithBody performs a POST /api/reviewer-bids/bulk-submit/ (the `ReviewerBidsBulkSubmit` operationId) request,
 	// with any type of body and a specified content type.
@@ -151769,7 +152181,7 @@ func (c *Client) CallManagingOrganisationsReportsWorkflowRetrieve(ctx context.Co
 
 // CallManagingOrganisationsStatsRetrieve performs a GET /api/call-managing-organisations/{uuid}/stats/ (the `CallManagingOrganisationsStatsRetrieve` operationId) request.
 //
-// Return statistics for call managing organization.
+// Return statistics for call managing organization, counted over the active calls the caller may report on, as the organization reports are: a call manager's figures cover their own calls.
 func (c *Client) CallManagingOrganisationsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCallManagingOrganisationsStatsRetrieveRequest(c.Server, uuid)
 	if err != nil {
@@ -170406,7 +170818,7 @@ func (c *Client) MarketplaceProviderOfferingsDeleteUser(ctx context.Context, uui
 
 // MarketplaceProviderOfferingsDependentsList What depends on an offering
 //
-// What other parts of the portal -- calls for proposals, say -- have built on the offering, one of its plans or one of its components, and whether they would refuse the given change. Shown before the change is confirmed.
+// What other parts of the portal -- calls for proposals, say -- have built on the offering, one of its plans or one of its components, and whether they would refuse the given change. Shown before the change is confirmed. Open to whoever may change the offering: staff, and holders of OFFERING.UPDATE on the offering, its organization or its service provider. They see every dependent, including calls run by other organizations, since those are what the change would break.
 //
 // Corresponds with GET /api/marketplace-provider-offerings/{uuid}/dependents/ (the `MarketplaceProviderOfferingsDependentsList` operationId).
 func (c *Client) MarketplaceProviderOfferingsDependentsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsDependentsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -196286,36 +196698,6 @@ func (c *Client) ProposalProposalsCreate(ctx context.Context, body ProposalPropo
 	return c.Client.Do(req)
 }
 
-// ProposalProposalsChecklistTemplateRetrieve performs a GET /api/proposal-proposals/checklist-template/ (the `ProposalProposalsChecklistTemplateRetrieve` operationId) request.
-//
-// Get checklist template for creating new objects.
-func (c *Client) ProposalProposalsChecklistTemplateRetrieve(ctx context.Context, params *ProposalProposalsChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProposalProposalsChecklistTemplateRetrieveRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// ProposalProposalsChecklistTemplateCount performs a HEAD /api/proposal-proposals/checklist-template/ (the `ProposalProposalsChecklistTemplateCount` operationId) request.
-//
-// Get number of items in the collection matching the request parameters.
-func (c *Client) ProposalProposalsChecklistTemplateCount(ctx context.Context, params *ProposalProposalsChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProposalProposalsChecklistTemplateCountRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 // ProposalProposalsDashboardStatsRetrieve Get submitter dashboard stats
 //
 // Returns counts of the current user's own proposals grouped by state, covering both in-progress and decided proposals.
@@ -198336,6 +198718,20 @@ func (c *Client) ProposalProtectedCallsCreate(ctx context.Context, body Proposal
 	return c.Client.Do(req)
 }
 
+// ProposalProtectedCallsCreateWithFormdataBody performs a POST /api/proposal-protected-calls/ (the `ProposalProtectedCallsCreate` operationId) request.
+// Takes a body of the `application/x-www-form-urlencoded` content type.
+func (c *Client) ProposalProtectedCallsCreateWithFormdataBody(ctx context.Context, body ProposalProtectedCallsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsCreateRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // ProposalProtectedCallsAvailableComplianceChecklistsList performs a GET /api/proposal-protected-calls/available_compliance_checklists/ (the `ProposalProtectedCallsAvailableComplianceChecklistsList` operationId) request.
 //
 // Get available compliance checklists for call creation/editing.
@@ -198535,6 +198931,20 @@ func (c *Client) ProposalProtectedCallsPartialUpdate(ctx context.Context, uuid o
 	return c.Client.Do(req)
 }
 
+// ProposalProtectedCallsPartialUpdateWithFormdataBody performs a PATCH /api/proposal-protected-calls/{uuid}/ (the `ProposalProtectedCallsPartialUpdate` operationId) request.
+// Takes a body of the `application/x-www-form-urlencoded` content type.
+func (c *Client) ProposalProtectedCallsPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsPartialUpdateRequestWithFormdataBody(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // ProposalProtectedCallsUpdateWithBody performs a PUT /api/proposal-protected-calls/{uuid}/ (the `ProposalProtectedCallsUpdate` operationId) request,
 // with any type of body and a specified content type.
 func (c *Client) ProposalProtectedCallsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -198553,6 +198963,20 @@ func (c *Client) ProposalProtectedCallsUpdateWithBody(ctx context.Context, uuid 
 // Takes a body of the `application/json` content type.
 func (c *Client) ProposalProtectedCallsUpdate(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProtectedCallsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProposalProtectedCallsUpdateWithFormdataBody performs a PUT /api/proposal-protected-calls/{uuid}/ (the `ProposalProtectedCallsUpdate` operationId) request.
+// Takes a body of the `application/x-www-form-urlencoded` content type.
+func (c *Client) ProposalProtectedCallsUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsUpdateRequestWithFormdataBody(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -200725,6 +201149,20 @@ func (c *Client) ProposalProtectedCallsRoundsCloseWithBody(ctx context.Context, 
 // Takes a body of the `application/json` content type.
 func (c *Client) ProposalProtectedCallsRoundsClose(ctx context.Context, uuid string, objUuid string, body ProposalProtectedCallsRoundsCloseJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProtectedCallsRoundsCloseRequest(c.Server, uuid, objUuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProposalProtectedCallsRoundsCloseWithFormdataBody performs a POST /api/proposal-protected-calls/{uuid}/rounds/{obj_uuid}/close/ (the `ProposalProtectedCallsRoundsClose` operationId) request.
+// Takes a body of the `application/x-www-form-urlencoded` content type.
+func (c *Client) ProposalProtectedCallsRoundsCloseWithFormdataBody(ctx context.Context, uuid string, objUuid string, body ProposalProtectedCallsRoundsCloseFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsRoundsCloseRequestWithFormdataBody(c.Server, uuid, objUuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -205732,34 +206170,6 @@ func (c *Client) ReviewerBidsList(ctx context.Context, params *ReviewerBidsListP
 // Get number of items in the collection matching the request parameters.
 func (c *Client) ReviewerBidsCount(ctx context.Context, params *ReviewerBidsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewReviewerBidsCountRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// ReviewerBidsCreateWithBody performs a POST /api/reviewer-bids/ (the `ReviewerBidsCreate` operationId) request,
-// with any type of body and a specified content type.
-func (c *Client) ReviewerBidsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewReviewerBidsCreateRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-// ReviewerBidsCreate performs a POST /api/reviewer-bids/ (the `ReviewerBidsCreate` operationId) request.
-// Takes a body of the `application/json` content type.
-func (c *Client) ReviewerBidsCreate(ctx context.Context, body ReviewerBidsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewReviewerBidsCreateRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -395059,106 +395469,6 @@ func NewProposalProposalsCreateRequestWithBody(server string, contentType string
 	return req, nil
 }
 
-// NewProposalProposalsChecklistTemplateRetrieveRequest constructs an http.Request for the ProposalProposalsChecklistTemplateRetrieve method
-func NewProposalProposalsChecklistTemplateRetrieveRequest(server string, params *ProposalProposalsChecklistTemplateRetrieveParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/proposal-proposals/checklist-template/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "parent_uuid", params.ParentUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-			return nil, err
-		} else {
-			for _, qp := range strings.Split(queryFrag, "&") {
-				rawQueryFragments = append(rawQueryFragments, qp)
-			}
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
-	}
-
-	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewProposalProposalsChecklistTemplateCountRequest constructs an http.Request for the ProposalProposalsChecklistTemplateCount method
-func NewProposalProposalsChecklistTemplateCountRequest(server string, params *ProposalProposalsChecklistTemplateCountParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/proposal-proposals/checklist-template/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		// queryValues collects non-styled parameters (passthrough, JSON)
-		// that are safe to round-trip through url.Values.Encode().
-		queryValues := queryURL.Query()
-		// rawQueryFragments collects pre-encoded query fragments from
-		// styled parameters, preserving literal commas as delimiters
-		// per the OpenAPI spec (e.g. "color=blue,black,brown").
-		var rawQueryFragments []string
-
-		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "parent_uuid", params.ParentUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-			return nil, err
-		} else {
-			for _, qp := range strings.Split(queryFrag, "&") {
-				rawQueryFragments = append(rawQueryFragments, qp)
-			}
-		}
-
-		if encoded := queryValues.Encode(); encoded != "" {
-			rawQueryFragments = append(rawQueryFragments, encoded)
-		}
-		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
-	}
-
-	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewProposalProposalsDashboardStatsRetrieveRequest constructs an http.Request for the ProposalProposalsDashboardStatsRetrieve method
 func NewProposalProposalsDashboardStatsRetrieveRequest(server string) (*http.Request, error) {
 	var err error
@@ -402363,6 +402673,17 @@ func NewProposalProtectedCallsCreateRequest(server string, body ProposalProtecte
 	return NewProposalProtectedCallsCreateRequestWithBody(server, "application/json", bodyReader)
 }
 
+// NewProposalProtectedCallsCreateRequestWithFormdataBody calls the generic ProposalProtectedCallsCreate builder with application/x-www-form-urlencoded body
+func NewProposalProtectedCallsCreateRequestWithFormdataBody(server string, body ProposalProtectedCallsCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewProposalProtectedCallsCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewProposalProtectedCallsCreateRequestWithBody constructs an http.Request for the ProposalProtectedCallsCreate method, with any body, and a specified content type
 func NewProposalProtectedCallsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -403769,6 +404090,17 @@ func NewProposalProtectedCallsPartialUpdateRequest(server string, uuid openapi_t
 	return NewProposalProtectedCallsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
+// NewProposalProtectedCallsPartialUpdateRequestWithFormdataBody calls the generic ProposalProtectedCallsPartialUpdate builder with application/x-www-form-urlencoded body
+func NewProposalProtectedCallsPartialUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body ProposalProtectedCallsPartialUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewProposalProtectedCallsPartialUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewProposalProtectedCallsPartialUpdateRequestWithBody constructs an http.Request for the ProposalProtectedCallsPartialUpdate method, with any body, and a specified content type
 func NewProposalProtectedCallsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -403814,6 +404146,17 @@ func NewProposalProtectedCallsUpdateRequest(server string, uuid openapi_types.UU
 	}
 	bodyReader = bytes.NewReader(buf)
 	return NewProposalProtectedCallsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewProposalProtectedCallsUpdateRequestWithFormdataBody calls the generic ProposalProtectedCallsUpdate builder with application/x-www-form-urlencoded body
+func NewProposalProtectedCallsUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewProposalProtectedCallsUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
 }
 
 // NewProposalProtectedCallsUpdateRequestWithBody constructs an http.Request for the ProposalProtectedCallsUpdate method, with any body, and a specified content type
@@ -410068,6 +410411,17 @@ func NewProposalProtectedCallsRoundsCloseRequest(server string, uuid string, obj
 	}
 	bodyReader = bytes.NewReader(buf)
 	return NewProposalProtectedCallsRoundsCloseRequestWithBody(server, uuid, objUuid, "application/json", bodyReader)
+}
+
+// NewProposalProtectedCallsRoundsCloseRequestWithFormdataBody calls the generic ProposalProtectedCallsRoundsClose builder with application/x-www-form-urlencoded body
+func NewProposalProtectedCallsRoundsCloseRequestWithFormdataBody(server string, uuid string, objUuid string, body ProposalProtectedCallsRoundsCloseFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewProposalProtectedCallsRoundsCloseRequestWithBody(server, uuid, objUuid, "application/x-www-form-urlencoded", bodyReader)
 }
 
 // NewProposalProtectedCallsRoundsCloseRequestWithBody constructs an http.Request for the ProposalProtectedCallsRoundsClose method, with any body, and a specified content type
@@ -428581,46 +428935,6 @@ func NewReviewerBidsCountRequest(server string, params *ReviewerBidsCountParams)
 	if err != nil {
 		return nil, err
 	}
-
-	return req, nil
-}
-
-// NewReviewerBidsCreateRequest calls the generic ReviewerBidsCreate builder with application/json body
-func NewReviewerBidsCreateRequest(server string, body ReviewerBidsCreateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewReviewerBidsCreateRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewReviewerBidsCreateRequestWithBody constructs an http.Request for the ReviewerBidsCreate method, with any body, and a specified content type
-func NewReviewerBidsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/reviewer-bids/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -460543,7 +460857,7 @@ type ClientWithResponsesInterface interface {
 
 	// CallManagingOrganisationsStatsRetrieveWithResponse performs a GET /api/call-managing-organisations/{uuid}/stats/ (the `CallManagingOrganisationsStatsRetrieve` operationId) request.
 	//
-	// Return statistics for call managing organization.
+	// Return statistics for call managing organization, counted over the active calls the caller may report on, as the organization reports are: a call manager's figures cover their own calls.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	CallManagingOrganisationsStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsStatsRetrieveResponse, error)
@@ -469145,7 +469459,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceProviderOfferingsDependentsListWithResponse What depends on an offering
 	//
-	// What other parts of the portal -- calls for proposals, say -- have built on the offering, one of its plans or one of its components, and whether they would refuse the given change. Shown before the change is confirmed.
+	// What other parts of the portal -- calls for proposals, say -- have built on the offering, one of its plans or one of its components, and whether they would refuse the given change. Shown before the change is confirmed. Open to whoever may change the offering: staff, and holders of OFFERING.UPDATE on the offering, its organization or its service provider. They see every dependent, including calls run by other organizations, since those are what the change would break.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -481370,20 +481684,6 @@ type ClientWithResponsesInterface interface {
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	ProposalProposalsCreateWithResponse(ctx context.Context, body ProposalProposalsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsCreateResponse, error)
 
-	// ProposalProposalsChecklistTemplateRetrieveWithResponse performs a GET /api/proposal-proposals/checklist-template/ (the `ProposalProposalsChecklistTemplateRetrieve` operationId) request.
-	//
-	// Get checklist template for creating new objects.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	ProposalProposalsChecklistTemplateRetrieveWithResponse(ctx context.Context, params *ProposalProposalsChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*ProposalProposalsChecklistTemplateRetrieveResponse, error)
-
-	// ProposalProposalsChecklistTemplateCountWithResponse performs a HEAD /api/proposal-proposals/checklist-template/ (the `ProposalProposalsChecklistTemplateCount` operationId) request.
-	//
-	// Get number of items in the collection matching the request parameters.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	ProposalProposalsChecklistTemplateCountWithResponse(ctx context.Context, params *ProposalProposalsChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*ProposalProposalsChecklistTemplateCountResponse, error)
-
 	// ProposalProposalsDashboardStatsRetrieveWithResponse Get submitter dashboard stats
 	//
 	// Returns counts of the current user's own proposals grouped by state, covering both in-progress and decided proposals.
@@ -482284,6 +482584,10 @@ type ClientWithResponsesInterface interface {
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	ProposalProtectedCallsCreateWithResponse(ctx context.Context, body ProposalProtectedCallsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsCreateResponse, error)
 
+	// ProposalProtectedCallsCreateWithFormdataBodyWithResponse performs a POST /api/proposal-protected-calls/ (the `ProposalProtectedCallsCreate` operationId) request.
+	// Takes a body of the `application/x-www-form-urlencoded` content type, and returns a wrapper object for the known response body format(s).
+	ProposalProtectedCallsCreateWithFormdataBodyWithResponse(ctx context.Context, body ProposalProtectedCallsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsCreateResponse, error)
+
 	// ProposalProtectedCallsAvailableComplianceChecklistsListWithResponse performs a GET /api/proposal-protected-calls/available_compliance_checklists/ (the `ProposalProtectedCallsAvailableComplianceChecklistsList` operationId) request.
 	//
 	// Get available compliance checklists for call creation/editing.
@@ -482373,6 +482677,10 @@ type ClientWithResponsesInterface interface {
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	ProposalProtectedCallsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsPartialUpdateResponse, error)
 
+	// ProposalProtectedCallsPartialUpdateWithFormdataBodyWithResponse performs a PATCH /api/proposal-protected-calls/{uuid}/ (the `ProposalProtectedCallsPartialUpdate` operationId) request.
+	// Takes a body of the `application/x-www-form-urlencoded` content type, and returns a wrapper object for the known response body format(s).
+	ProposalProtectedCallsPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsPartialUpdateResponse, error)
+
 	// ProposalProtectedCallsUpdateWithBodyWithResponse performs a PUT /api/proposal-protected-calls/{uuid}/ (the `ProposalProtectedCallsUpdate` operationId) request,
 	// with any type of body and a specified content type.
 	//
@@ -482382,6 +482690,10 @@ type ClientWithResponsesInterface interface {
 	// ProposalProtectedCallsUpdateWithResponse performs a PUT /api/proposal-protected-calls/{uuid}/ (the `ProposalProtectedCallsUpdate` operationId) request.
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	ProposalProtectedCallsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsUpdateResponse, error)
+
+	// ProposalProtectedCallsUpdateWithFormdataBodyWithResponse performs a PUT /api/proposal-protected-calls/{uuid}/ (the `ProposalProtectedCallsUpdate` operationId) request.
+	// Takes a body of the `application/x-www-form-urlencoded` content type, and returns a wrapper object for the known response body format(s).
+	ProposalProtectedCallsUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsUpdateResponse, error)
 
 	// ProposalProtectedCallsActivateWithResponse performs a POST /api/proposal-protected-calls/{uuid}/activate/ (the `ProposalProtectedCallsActivate` operationId) request.
 	//
@@ -483306,6 +483618,10 @@ type ClientWithResponsesInterface interface {
 	// ProposalProtectedCallsRoundsCloseWithResponse performs a POST /api/proposal-protected-calls/{uuid}/rounds/{obj_uuid}/close/ (the `ProposalProtectedCallsRoundsClose` operationId) request.
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	ProposalProtectedCallsRoundsCloseWithResponse(ctx context.Context, uuid string, objUuid string, body ProposalProtectedCallsRoundsCloseJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsRoundsCloseResponse, error)
+
+	// ProposalProtectedCallsRoundsCloseWithFormdataBodyWithResponse performs a POST /api/proposal-protected-calls/{uuid}/rounds/{obj_uuid}/close/ (the `ProposalProtectedCallsRoundsClose` operationId) request.
+	// Takes a body of the `application/x-www-form-urlencoded` content type, and returns a wrapper object for the known response body format(s).
+	ProposalProtectedCallsRoundsCloseWithFormdataBodyWithResponse(ctx context.Context, uuid string, objUuid string, body ProposalProtectedCallsRoundsCloseFormdataRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsRoundsCloseResponse, error)
 
 	// ProposalProtectedCallsRoundsCompleteWithResponse performs a POST /api/proposal-protected-calls/{uuid}/rounds/{obj_uuid}/complete/ (the `ProposalProtectedCallsRoundsComplete` operationId) request.
 	//
@@ -485461,16 +485777,6 @@ type ClientWithResponsesInterface interface {
 	//
 	// Returns a wrapper object for the known response body format(s).
 	ReviewerBidsCountWithResponse(ctx context.Context, params *ReviewerBidsCountParams, reqEditors ...RequestEditorFn) (*ReviewerBidsCountResponse, error)
-
-	// ReviewerBidsCreateWithBodyWithResponse performs a POST /api/reviewer-bids/ (the `ReviewerBidsCreate` operationId) request,
-	// with any type of body and a specified content type.
-	//
-	// Returns a wrapper object for the known response body format(s).
-	ReviewerBidsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReviewerBidsCreateResponse, error)
-
-	// ReviewerBidsCreateWithResponse performs a POST /api/reviewer-bids/ (the `ReviewerBidsCreate` operationId) request.
-	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	ReviewerBidsCreateWithResponse(ctx context.Context, body ReviewerBidsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ReviewerBidsCreateResponse, error)
 
 	// ReviewerBidsBulkSubmitWithBodyWithResponse performs a POST /api/reviewer-bids/bulk-submit/ (the `ReviewerBidsBulkSubmit` operationId) request,
 	// with any type of body and a specified content type.
@@ -580565,95 +580871,6 @@ func (r ProposalProposalsCreateResponse) ContentType() string {
 	return ""
 }
 
-type ProposalProposalsChecklistTemplateRetrieveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *ChecklistTemplate
-	// JSON400 the response for an HTTP 400 `application/json` response
-	JSON400 *interface{}
-	// JSON404 the response for an HTTP 404 `application/json` response
-	JSON404 *interface{}
-}
-
-// GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r ProposalProposalsChecklistTemplateRetrieveResponse) GetJSON200() *ChecklistTemplate {
-	return r.JSON200
-}
-
-// GetJSON400 returns the response for an HTTP 400 `application/json` response
-func (r ProposalProposalsChecklistTemplateRetrieveResponse) GetJSON400() *interface{} {
-	return r.JSON400
-}
-
-// GetJSON404 returns the response for an HTTP 404 `application/json` response
-func (r ProposalProposalsChecklistTemplateRetrieveResponse) GetJSON404() *interface{} {
-	return r.JSON404
-}
-
-// GetBody returns the raw response body bytes
-func (r ProposalProposalsChecklistTemplateRetrieveResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r ProposalProposalsChecklistTemplateRetrieveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ProposalProposalsChecklistTemplateRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r ProposalProposalsChecklistTemplateRetrieveResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type ProposalProposalsChecklistTemplateCountResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// GetBody returns the raw response body bytes
-func (r ProposalProposalsChecklistTemplateCountResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r ProposalProposalsChecklistTemplateCountResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ProposalProposalsChecklistTemplateCountResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r ProposalProposalsChecklistTemplateCountResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
 type ProposalProposalsDashboardStatsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -599161,47 +599378,6 @@ func (r ReviewerBidsCountResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r ReviewerBidsCountResponse) ContentType() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Header.Get("Content-Type")
-	}
-	return ""
-}
-
-type ReviewerBidsCreateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	// JSON201 the response for an HTTP 201 `application/json` response
-	JSON201 *ReviewerBid
-}
-
-// GetJSON201 returns the response for an HTTP 201 `application/json` response
-func (r ReviewerBidsCreateResponse) GetJSON201() *ReviewerBid {
-	return r.JSON201
-}
-
-// GetBody returns the raw response body bytes
-func (r ReviewerBidsCreateResponse) GetBody() []byte {
-	return r.Body
-}
-
-// Status returns HTTPResponse.Status
-func (r ReviewerBidsCreateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ReviewerBidsCreateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
-func (r ReviewerBidsCreateResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -619860,7 +620036,7 @@ func (c *ClientWithResponses) CallManagingOrganisationsReportsWorkflowRetrieveWi
 
 // CallManagingOrganisationsStatsRetrieveWithResponse performs a GET /api/call-managing-organisations/{uuid}/stats/ (the `CallManagingOrganisationsStatsRetrieve` operationId) request.
 //
-// Return statistics for call managing organization.
+// Return statistics for call managing organization, counted over the active calls the caller may report on, as the organization reports are: a call manager's figures cover their own calls.
 //
 // Returns a wrapper object for the known response body format(s).
 func (c *ClientWithResponses) CallManagingOrganisationsStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsStatsRetrieveResponse, error) {
@@ -635364,7 +635540,7 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsDeleteUserWithResponse
 
 // MarketplaceProviderOfferingsDependentsListWithResponse What depends on an offering
 //
-// What other parts of the portal -- calls for proposals, say -- have built on the offering, one of its plans or one of its components, and whether they would refuse the given change. Shown before the change is confirmed.
+// What other parts of the portal -- calls for proposals, say -- have built on the offering, one of its plans or one of its components, and whether they would refuse the given change. Shown before the change is confirmed. Open to whoever may change the offering: staff, and holders of OFFERING.UPDATE on the offering, its organization or its service provider. They see every dependent, including calls run by other organizations, since those are what the change would break.
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -656842,32 +657018,6 @@ func (c *ClientWithResponses) ProposalProposalsCreateWithResponse(ctx context.Co
 	return ParseProposalProposalsCreateResponse(rsp)
 }
 
-// ProposalProposalsChecklistTemplateRetrieveWithResponse performs a GET /api/proposal-proposals/checklist-template/ (the `ProposalProposalsChecklistTemplateRetrieve` operationId) request.
-//
-// Get checklist template for creating new objects.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) ProposalProposalsChecklistTemplateRetrieveWithResponse(ctx context.Context, params *ProposalProposalsChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*ProposalProposalsChecklistTemplateRetrieveResponse, error) {
-	rsp, err := c.ProposalProposalsChecklistTemplateRetrieve(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseProposalProposalsChecklistTemplateRetrieveResponse(rsp)
-}
-
-// ProposalProposalsChecklistTemplateCountWithResponse performs a HEAD /api/proposal-proposals/checklist-template/ (the `ProposalProposalsChecklistTemplateCount` operationId) request.
-//
-// Get number of items in the collection matching the request parameters.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) ProposalProposalsChecklistTemplateCountWithResponse(ctx context.Context, params *ProposalProposalsChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*ProposalProposalsChecklistTemplateCountResponse, error) {
-	rsp, err := c.ProposalProposalsChecklistTemplateCount(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseProposalProposalsChecklistTemplateCountResponse(rsp)
-}
-
 // ProposalProposalsDashboardStatsRetrieveWithResponse Get submitter dashboard stats
 //
 // Returns counts of the current user's own proposals grouped by state, covering both in-progress and decided proposals.
@@ -658536,6 +658686,16 @@ func (c *ClientWithResponses) ProposalProtectedCallsCreateWithResponse(ctx conte
 	return ParseProposalProtectedCallsCreateResponse(rsp)
 }
 
+// ProposalProtectedCallsCreateWithFormdataBodyWithResponse performs a POST /api/proposal-protected-calls/ (the `ProposalProtectedCallsCreate` operationId) request.
+// Takes a body of the `application/x-www-form-urlencoded` content type, and returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) ProposalProtectedCallsCreateWithFormdataBodyWithResponse(ctx context.Context, body ProposalProtectedCallsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsCreateResponse, error) {
+	rsp, err := c.ProposalProtectedCallsCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsCreateResponse(rsp)
+}
+
 // ProposalProtectedCallsAvailableComplianceChecklistsListWithResponse performs a GET /api/proposal-protected-calls/available_compliance_checklists/ (the `ProposalProtectedCallsAvailableComplianceChecklistsList` operationId) request.
 //
 // Get available compliance checklists for call creation/editing.
@@ -658703,6 +658863,16 @@ func (c *ClientWithResponses) ProposalProtectedCallsPartialUpdateWithResponse(ct
 	return ParseProposalProtectedCallsPartialUpdateResponse(rsp)
 }
 
+// ProposalProtectedCallsPartialUpdateWithFormdataBodyWithResponse performs a PATCH /api/proposal-protected-calls/{uuid}/ (the `ProposalProtectedCallsPartialUpdate` operationId) request.
+// Takes a body of the `application/x-www-form-urlencoded` content type, and returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) ProposalProtectedCallsPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsPartialUpdateResponse, error) {
+	rsp, err := c.ProposalProtectedCallsPartialUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsPartialUpdateResponse(rsp)
+}
+
 // ProposalProtectedCallsUpdateWithBodyWithResponse performs a PUT /api/proposal-protected-calls/{uuid}/ (the `ProposalProtectedCallsUpdate` operationId) request,
 // with any type of body and a specified content type.
 //
@@ -658719,6 +658889,16 @@ func (c *ClientWithResponses) ProposalProtectedCallsUpdateWithBodyWithResponse(c
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 func (c *ClientWithResponses) ProposalProtectedCallsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsUpdateResponse, error) {
 	rsp, err := c.ProposalProtectedCallsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsUpdateResponse(rsp)
+}
+
+// ProposalProtectedCallsUpdateWithFormdataBodyWithResponse performs a PUT /api/proposal-protected-calls/{uuid}/ (the `ProposalProtectedCallsUpdate` operationId) request.
+// Takes a body of the `application/x-www-form-urlencoded` content type, and returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) ProposalProtectedCallsUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsUpdateResponse, error) {
+	rsp, err := c.ProposalProtectedCallsUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -660501,6 +660681,16 @@ func (c *ClientWithResponses) ProposalProtectedCallsRoundsCloseWithBodyWithRespo
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 func (c *ClientWithResponses) ProposalProtectedCallsRoundsCloseWithResponse(ctx context.Context, uuid string, objUuid string, body ProposalProtectedCallsRoundsCloseJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsRoundsCloseResponse, error) {
 	rsp, err := c.ProposalProtectedCallsRoundsClose(ctx, uuid, objUuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsRoundsCloseResponse(rsp)
+}
+
+// ProposalProtectedCallsRoundsCloseWithFormdataBodyWithResponse performs a POST /api/proposal-protected-calls/{uuid}/rounds/{obj_uuid}/close/ (the `ProposalProtectedCallsRoundsClose` operationId) request.
+// Takes a body of the `application/x-www-form-urlencoded` content type, and returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) ProposalProtectedCallsRoundsCloseWithFormdataBodyWithResponse(ctx context.Context, uuid string, objUuid string, body ProposalProtectedCallsRoundsCloseFormdataRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsRoundsCloseResponse, error) {
+	rsp, err := c.ProposalProtectedCallsRoundsCloseWithFormdataBody(ctx, uuid, objUuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -664670,28 +664860,6 @@ func (c *ClientWithResponses) ReviewerBidsCountWithResponse(ctx context.Context,
 		return nil, err
 	}
 	return ParseReviewerBidsCountResponse(rsp)
-}
-
-// ReviewerBidsCreateWithBodyWithResponse performs a POST /api/reviewer-bids/ (the `ReviewerBidsCreate` operationId) request,
-// with any type of body and a specified content type.
-//
-// Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) ReviewerBidsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReviewerBidsCreateResponse, error) {
-	rsp, err := c.ReviewerBidsCreateWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseReviewerBidsCreateResponse(rsp)
-}
-
-// ReviewerBidsCreateWithResponse performs a POST /api/reviewer-bids/ (the `ReviewerBidsCreate` operationId) request.
-// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) ReviewerBidsCreateWithResponse(ctx context.Context, body ReviewerBidsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ReviewerBidsCreateResponse, error) {
-	rsp, err := c.ReviewerBidsCreate(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseReviewerBidsCreateResponse(rsp)
 }
 
 // ReviewerBidsBulkSubmitWithBodyWithResponse performs a POST /api/reviewer-bids/bulk-submit/ (the `ReviewerBidsBulkSubmit` operationId) request,
@@ -729493,62 +729661,6 @@ func ParseProposalProposalsCreateResponse(rsp *http.Response) (*ProposalProposal
 	return response, nil
 }
 
-// ParseProposalProposalsChecklistTemplateRetrieveResponse parses an HTTP response from a ProposalProposalsChecklistTemplateRetrieveWithResponse call
-func ParseProposalProposalsChecklistTemplateRetrieveResponse(rsp *http.Response) (*ProposalProposalsChecklistTemplateRetrieveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ProposalProposalsChecklistTemplateRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ChecklistTemplate
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest interface{}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest interface{}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseProposalProposalsChecklistTemplateCountResponse parses an HTTP response from a ProposalProposalsChecklistTemplateCountWithResponse call
-func ParseProposalProposalsChecklistTemplateCountResponse(rsp *http.Response) (*ProposalProposalsChecklistTemplateCountResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ProposalProposalsChecklistTemplateCountResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
 // ParseProposalProposalsDashboardStatsRetrieveResponse parses an HTTP response from a ProposalProposalsDashboardStatsRetrieveWithResponse call
 func ParseProposalProposalsDashboardStatsRetrieveResponse(rsp *http.Response) (*ProposalProposalsDashboardStatsRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -741490,32 +741602,6 @@ func ParseReviewerBidsCountResponse(rsp *http.Response) (*ReviewerBidsCountRespo
 	response := &ReviewerBidsCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseReviewerBidsCreateResponse parses an HTTP response from a ReviewerBidsCreateWithResponse call
-func ParseReviewerBidsCreateResponse(rsp *http.Response) (*ReviewerBidsCreateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ReviewerBidsCreateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest ReviewerBid
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON201 = &dest
-
 	}
 
 	return response, nil
