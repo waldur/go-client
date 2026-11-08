@@ -39950,6 +39950,25 @@ type FEDERATEDIDENTITYDEACTIVATIONPOLICYEnum string
 // FONTFAMILYEnum defines model for FONTFAMILYEnum.
 type FONTFAMILYEnum string
 
+// Facet defines model for Facet.
+type Facet struct {
+	Name string `json:"name"`
+
+	// Truncated More values exist than facet_limit; search with facet_q.
+	Truncated bool         `json:"truncated"`
+	Values    []FacetValue `json:"values"`
+}
+
+// FacetValue defines model for FacetValue.
+type FacetValue struct {
+	// Count Rows matching this value under all other filters.
+	Count int    `json:"count"`
+	Label string `json:"label"`
+
+	// Value Value to send back as the facet's query parameter.
+	Value string `json:"value"`
+}
+
 // FeatureItem defines model for FeatureItem.
 type FeatureItem struct {
 	Description string `json:"description"`
@@ -77322,6 +77341,83 @@ type MarketplaceOfferingUsersCountParams struct {
 	Username *string `form:"username,omitempty" json:"username,omitempty"`
 }
 
+// MarketplaceOfferingUsersFacetsListParams defines parameters for MarketplaceOfferingUsersFacetsList.
+type MarketplaceOfferingUsersFacetsListParams struct {
+	// Created Created after
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// CreatedBefore Created before
+	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
+
+	// Facet Comma-separated facet names to compute; all by default.
+	Facet *string `form:"facet,omitempty" json:"facet,omitempty"`
+
+	// FacetLimit Most values returned per facet, by count (default 100, at most 1000).
+	FacetLimit *int `form:"facet_limit,omitempty" json:"facet_limit,omitempty"`
+
+	// FacetQ Keep only values whose label contains this text (at most 100 characters).
+	FacetQ *string `form:"facet_q,omitempty" json:"facet_q,omitempty"`
+
+	// HasCompleteProfile User has complete profile for the offering
+	HasCompleteProfile *bool `form:"has_complete_profile,omitempty" json:"has_complete_profile,omitempty"`
+
+	// HasConsent User Has Consent
+	HasConsent *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
+
+	// IsProviderBacked Backed by a service provider account
+	IsProviderBacked *bool `form:"is_provider_backed,omitempty" json:"is_provider_backed,omitempty"`
+
+	// IsRestricted Is restricted
+	IsRestricted *bool `form:"is_restricted,omitempty" json:"is_restricted,omitempty"`
+
+	// Modified Modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// ModifiedBefore Modified before
+	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
+	// O Ordering
+	//
+	O        *[]OfferingUserOEnum `form:"o,omitempty" json:"o,omitempty"`
+	Offering *string              `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingHasActiveTos Offering has active Terms of Service
+	OfferingHasActiveTos *bool `form:"offering_has_active_tos,omitempty" json:"offering_has_active_tos,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+
+	// OfferingUuid Multiple values may be separated by commas.
+	OfferingUuid       *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	ParentOfferingUuid *openapi_types.UUID   `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
+
+	// ProviderUuid Provider UUID
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// Query Search by offering name, username, user name, UID or primary GID
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// RuntimeState Offering user runtime state
+	//
+	RuntimeState *[]RuntimeStateEnum `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+
+	// ServiceProviderAccountUuid Service provider account UUID
+	ServiceProviderAccountUuid *openapi_types.UUID `form:"service_provider_account_uuid,omitempty" json:"service_provider_account_uuid,omitempty"`
+
+	// State Offering user state
+	//
+	State *[]OfferingUserState `form:"state,omitempty" json:"state,omitempty"`
+
+	// UserUsername User username
+	UserUsername *string `form:"user_username,omitempty" json:"user_username,omitempty"`
+
+	// UserUuid User UUID
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+
+	// Username Username
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
+}
+
 // MarketplaceOfferingUsersPosixIdentitiesListParams defines parameters for MarketplaceOfferingUsersPosixIdentitiesList.
 type MarketplaceOfferingUsersPosixIdentitiesListParams struct {
 	// Created Created after
@@ -77941,6 +78037,92 @@ type MarketplaceOrdersDashboardMyOrdersCountParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ProviderUuid Provider UUID
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// Query Search by order UUID, slug, project name or resource name
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// Resource Resource URL
+	Resource *string `form:"resource,omitempty" json:"resource,omitempty"`
+
+	// ResourceName Resource name
+	ResourceName *string `form:"resource_name,omitempty" json:"resource_name,omitempty"`
+
+	// ResourceUuid Resource UUID
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+
+	// ServiceManagerUuid Service manager UUID
+	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+
+	// Slug Slug
+	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// State Order state
+	//
+	State *[]OrderState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Type Order type
+	//
+	Type *[]RequestTypes `form:"type,omitempty" json:"type,omitempty"`
+
+	// WasAutoApproved Auto-approved
+	WasAutoApproved *bool `form:"was_auto_approved,omitempty" json:"was_auto_approved,omitempty"`
+}
+
+// MarketplaceOrdersFacetsListParams defines parameters for MarketplaceOrdersFacetsList.
+type MarketplaceOrdersFacetsListParams struct {
+	// CanApproveAsConsumer Can approve as consumer
+	CanApproveAsConsumer *bool `form:"can_approve_as_consumer,omitempty" json:"can_approve_as_consumer,omitempty"`
+
+	// CanApproveAsProvider Can approve as provider
+	CanApproveAsProvider *bool `form:"can_approve_as_provider,omitempty" json:"can_approve_as_provider,omitempty"`
+
+	// CategoryUuid Category UUID
+	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+
+	// Created Created after
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// CreatedBefore Created before
+	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Facet Comma-separated facet names to compute; all by default.
+	Facet *string `form:"facet,omitempty" json:"facet,omitempty"`
+
+	// FacetLimit Most values returned per facet, by count (default 100, at most 1000).
+	FacetLimit *int `form:"facet_limit,omitempty" json:"facet_limit,omitempty"`
+
+	// FacetQ Keep only values whose label contains this text (at most 100 characters).
+	FacetQ *string `form:"facet_q,omitempty" json:"facet_q,omitempty"`
+
+	// Modified Modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// ModifiedBefore Modified before
+	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
+	// O Ordering
+	//
+	O        *[]OrderDetailsOEnum `form:"o,omitempty" json:"o,omitempty"`
+	Offering *string              `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+
+	// OfferingType Offering type
+	OfferingType *[]string `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+
+	// OfferingUuid Offering UUID
+	OfferingUuid       *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
 
 	// ProjectUuid Project UUID
@@ -78810,6 +78992,150 @@ type MarketplaceProviderOfferingsAggregatedAccessSubnetsCountParams struct {
 
 	// OfferingUuid UUID of an offering to include. May be repeated.
 	OfferingUuid []openapi_types.UUID `form:"offering_uuid" json:"offering_uuid"`
+}
+
+// MarketplaceProviderOfferingsFacetsListParams defines parameters for MarketplaceProviderOfferingsFacetsList.
+type MarketplaceProviderOfferingsFacetsListParams struct {
+	// Accessible Only offerings the current user can order
+	Accessible *bool `form:"accessible,omitempty" json:"accessible,omitempty"`
+
+	// AccessibleViaCalls Deprecated: offerings accepted on an active call, regardless of whether a proposal can actually be submitted for them. Use open_for_proposals instead.
+	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
+
+	// AllowedCustomerUuid Allowed customer UUID
+	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+
+	// Attributes Offering attributes (JSON)
+	Attributes *string `form:"attributes,omitempty" json:"attributes,omitempty"`
+
+	// Billable Billable
+	Billable              *bool `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+
+	// CategoryGroupUuid Category group UUID
+	CategoryGroupUuid *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+
+	// CategoryUuid Category UUID
+	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+
+	// ConsumerCustomerUuid Consumer customer UUID
+	ConsumerCustomerUuid *openapi_types.UUID `form:"consumer_customer_uuid,omitempty" json:"consumer_customer_uuid,omitempty"`
+
+	// Created Created after
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// CreatedBefore Created before
+	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
+
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description contains
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// Facet Comma-separated facet names to compute; all by default.
+	Facet *string `form:"facet,omitempty" json:"facet,omitempty"`
+
+	// FacetLimit Most values returned per facet, by count (default 100, at most 1000).
+	FacetLimit *int `form:"facet_limit,omitempty" json:"facet_limit,omitempty"`
+
+	// FacetQ Keep only values whose label contains this text (at most 100 characters).
+	FacetQ *string `form:"facet_q,omitempty" json:"facet_q,omitempty"`
+
+	// HasActiveTermsOfService Has Active Terms of Service
+	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
+
+	// HasTermsOfService Has Terms of Service
+	HasTermsOfService *bool `form:"has_terms_of_service,omitempty" json:"has_terms_of_service,omitempty"`
+
+	// Importable Filter by importable offerings.
+	Importable *string `form:"importable,omitempty" json:"importable,omitempty"`
+
+	// Keyword Keyword
+	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
+
+	// Modified Modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// ModifiedBefore Modified before
+	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Ordering
+	//
+	O *[]ProviderOfferingDetailsOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingGroupUuid Offering group UUID
+	OfferingGroupUuid *openapi_types.UUID `form:"offering_group_uuid,omitempty" json:"offering_group_uuid,omitempty"`
+
+	// OpenForProposals Offerings that can be requested through a call right now: accepted on an active call with a round that is open, and covered by a resource template when the call defines any.
+	OpenForProposals *bool `form:"open_for_proposals,omitempty" json:"open_for_proposals,omitempty"`
+
+	// OrganizationGroupUuid Organization group UUID
+	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+
+	// ParentUuid Parent offering UUID
+	ParentUuid *openapi_types.UUID `form:"parent_uuid,omitempty" json:"parent_uuid,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Search by offering name, slug or description
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ResourceCustomerUuid Resource customer UUID
+	ResourceCustomerUuid *openapi_types.UUID `form:"resource_customer_uuid,omitempty" json:"resource_customer_uuid,omitempty"`
+
+	// ResourceProjectUuid Resource project UUID
+	ResourceProjectUuid *openapi_types.UUID `form:"resource_project_uuid,omitempty" json:"resource_project_uuid,omitempty"`
+
+	// ScopeUuid Scope UUID
+	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+
+	// ServiceManagerUuid Service manager UUID
+	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+
+	// Shared Shared
+	Shared *bool `form:"shared,omitempty" json:"shared,omitempty"`
+
+	// Slug Slug
+	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// State Offering state
+	//
+	State *[]OfferingState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tag Tag UUID (OR logic)
+	Tag *[]openapi_types.UUID `form:"tag,omitempty" json:"tag,omitempty"`
+
+	// TagName Tag name (OR logic)
+	TagName *[]string `form:"tag_name,omitempty" json:"tag_name,omitempty"`
+
+	// TagNamesAnd Tag names with AND logic (comma-separated)
+	TagNamesAnd *string `form:"tag_names_and,omitempty" json:"tag_names_and,omitempty"`
+
+	// TagsAnd Tag UUIDs with AND logic (comma-separated)
+	TagsAnd *string `form:"tags_and,omitempty" json:"tags_and,omitempty"`
+
+	// Type Offering type
+	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
+
+	// UserHasConsent User Has Consent
+	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
+
+	// UserHasOfferingUser User Has Offering User
+	UserHasOfferingUser *bool `form:"user_has_offering_user,omitempty" json:"user_has_offering_user,omitempty"`
+
+	// UuidList Comma-separated offering UUIDs
+	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
 }
 
 // MarketplaceProviderOfferingsGroupsListParams defines parameters for MarketplaceProviderOfferingsGroupsList.
@@ -80670,6 +80996,155 @@ type MarketplaceProviderResourcesCountParams struct {
 	VisibleToUsername *string `form:"visible_to_username,omitempty" json:"visible_to_username,omitempty"`
 }
 
+// MarketplaceProviderResourcesFacetsListParams defines parameters for MarketplaceProviderResourcesFacetsList.
+type MarketplaceProviderResourcesFacetsListParams struct {
+	// BackendId Backend ID
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CategoryUuid Category UUID
+	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+
+	// ComponentCount Filter by exact number of components
+	ComponentCount *float32 `form:"component_count,omitempty" json:"component_count,omitempty"`
+
+	// Created Created after
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// CreatedBefore Created before
+	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
+
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Downscaled Downscaled
+	Downscaled *bool `form:"downscaled,omitempty" json:"downscaled,omitempty"`
+
+	// Facet Comma-separated facet names to compute; all by default.
+	Facet *string `form:"facet,omitempty" json:"facet,omitempty"`
+
+	// FacetLimit Most values returned per facet, by count (default 100, at most 1000).
+	FacetLimit *int `form:"facet_limit,omitempty" json:"facet_limit,omitempty"`
+
+	// FacetQ Keep only values whose label contains this text (at most 100 characters).
+	FacetQ *string `form:"facet_q,omitempty" json:"facet_q,omitempty"`
+
+	// FlavorName Flavor name
+	FlavorName *string `form:"flavor_name,omitempty" json:"flavor_name,omitempty"`
+
+	// HasTerminateDate Has termination date
+	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
+
+	// ImageName Image name
+	ImageName *string `form:"image_name,omitempty" json:"image_name,omitempty"`
+
+	// IsAttached Filter by attached state
+	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
+
+	// LexisLinksSupported LEXIS links supported
+	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
+
+	// LimitBased Filter by limit-based offerings
+	LimitBased *bool `form:"limit_based,omitempty" json:"limit_based,omitempty"`
+
+	// LimitComponentCount Filter by exact number of limit-based components
+	LimitComponentCount *float32 `form:"limit_component_count,omitempty" json:"limit_component_count,omitempty"`
+
+	// Modified Modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// ModifiedBefore Modified before
+	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Ordering
+	//
+	O        *[]ResourceOEnum `form:"o,omitempty" json:"o,omitempty"`
+	Offering *string          `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingBillable Offering billable
+	OfferingBillable *bool `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
+
+	// OfferingShared Offering shared
+	OfferingShared *bool `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+
+	// OfferingType Offering type
+	OfferingType *string `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+
+	// OfferingUuid Multiple values may be separated by commas.
+	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// OnlyLimitBased Filter resources with only limit-based components
+	OnlyLimitBased *bool `form:"only_limit_based,omitempty" json:"only_limit_based,omitempty"`
+
+	// OnlyUsageBased Filter resources with only usage-based components
+	OnlyUsageBased *bool `form:"only_usage_based,omitempty" json:"only_usage_based,omitempty"`
+
+	// OrderState Order state
+	//
+	OrderState         *[]OrderState       `form:"order_state,omitempty" json:"order_state,omitempty"`
+	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
+
+	// Paused Paused
+	Paused *bool `form:"paused,omitempty" json:"paused,omitempty"`
+
+	// PlanUuid Plan UUID
+	PlanUuid *openapi_types.UUID `form:"plan_uuid,omitempty" json:"plan_uuid,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ProviderUuid Provider UUID
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// Query Search by resource UUID, name, slug, backend ID, effective ID, IPs or hypervisor
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ResourceAttributes Resource attributes (JSON)
+	ResourceAttributes *string `form:"resource_attributes,omitempty" json:"resource_attributes,omitempty"`
+
+	// RestrictMemberAccess Restrict member access
+	RestrictMemberAccess *bool `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
+
+	// RuntimeState Runtime state
+	RuntimeState *string `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+
+	// Scope Filter by scope URL.
+	Scope *string `form:"scope,omitempty" json:"scope,omitempty"`
+
+	// ServiceManagerUuid Service manager UUID
+	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+
+	// Slug Slug
+	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// State Resource state
+	//
+	State *[]ResourceState `form:"state,omitempty" json:"state,omitempty"`
+
+	// UsageBased Filter by usage-based offerings
+	UsageBased *bool `form:"usage_based,omitempty" json:"usage_based,omitempty"`
+
+	// VisibleToProviders Include only resources visible to service providers
+	VisibleToProviders *bool `form:"visible_to_providers,omitempty" json:"visible_to_providers,omitempty"`
+
+	// VisibleToUsername Visible to username
+	VisibleToUsername *string `form:"visible_to_username,omitempty" json:"visible_to_username,omitempty"`
+}
+
 // MarketplaceProviderResourcesRetrieveParams defines parameters for MarketplaceProviderResourcesRetrieve.
 type MarketplaceProviderResourcesRetrieveParams struct {
 	Field *[]ResourceFieldEnum `form:"field,omitempty" json:"field,omitempty"`
@@ -81160,6 +81635,147 @@ type MarketplacePublicOfferingsCountParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ParentUuid Parent offering UUID
+	ParentUuid *openapi_types.UUID `form:"parent_uuid,omitempty" json:"parent_uuid,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Search by offering name, slug or description
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ResourceCustomerUuid Resource customer UUID
+	ResourceCustomerUuid *openapi_types.UUID `form:"resource_customer_uuid,omitempty" json:"resource_customer_uuid,omitempty"`
+
+	// ResourceProjectUuid Resource project UUID
+	ResourceProjectUuid *openapi_types.UUID `form:"resource_project_uuid,omitempty" json:"resource_project_uuid,omitempty"`
+
+	// ScopeUuid Scope UUID
+	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+
+	// ServiceManagerUuid Service manager UUID
+	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+
+	// Shared Shared
+	Shared *bool `form:"shared,omitempty" json:"shared,omitempty"`
+
+	// Slug Slug
+	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// State Offering state
+	//
+	State *[]OfferingState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tag Tag UUID (OR logic)
+	Tag *[]openapi_types.UUID `form:"tag,omitempty" json:"tag,omitempty"`
+
+	// TagName Tag name (OR logic)
+	TagName *[]string `form:"tag_name,omitempty" json:"tag_name,omitempty"`
+
+	// TagNamesAnd Tag names with AND logic (comma-separated)
+	TagNamesAnd *string `form:"tag_names_and,omitempty" json:"tag_names_and,omitempty"`
+
+	// TagsAnd Tag UUIDs with AND logic (comma-separated)
+	TagsAnd *string `form:"tags_and,omitempty" json:"tags_and,omitempty"`
+
+	// Type Offering type
+	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
+
+	// UserHasConsent User Has Consent
+	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
+
+	// UserHasOfferingUser User Has Offering User
+	UserHasOfferingUser *bool `form:"user_has_offering_user,omitempty" json:"user_has_offering_user,omitempty"`
+
+	// UuidList Comma-separated offering UUIDs
+	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
+}
+
+// MarketplacePublicOfferingsFacetsListParams defines parameters for MarketplacePublicOfferingsFacetsList.
+type MarketplacePublicOfferingsFacetsListParams struct {
+	// Accessible Only offerings the current user can order
+	Accessible *bool `form:"accessible,omitempty" json:"accessible,omitempty"`
+
+	// AccessibleViaCalls Deprecated: offerings accepted on an active call, regardless of whether a proposal can actually be submitted for them. Use open_for_proposals instead.
+	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
+
+	// AllowedCustomerUuid Allowed customer UUID
+	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+
+	// Attributes Offering attributes (JSON)
+	Attributes *string `form:"attributes,omitempty" json:"attributes,omitempty"`
+
+	// Billable Billable
+	Billable              *bool `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+
+	// CategoryGroupUuid Category group UUID
+	CategoryGroupUuid *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+
+	// CategoryUuid Category UUID
+	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+
+	// ConsumerCustomerUuid Consumer customer UUID
+	ConsumerCustomerUuid *openapi_types.UUID `form:"consumer_customer_uuid,omitempty" json:"consumer_customer_uuid,omitempty"`
+
+	// Created Created after
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// CreatedBefore Created before
+	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
+
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description contains
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// Facet Comma-separated facet names to compute; all by default.
+	Facet *string `form:"facet,omitempty" json:"facet,omitempty"`
+
+	// FacetLimit Most values returned per facet, by count (default 100, at most 1000).
+	FacetLimit *int `form:"facet_limit,omitempty" json:"facet_limit,omitempty"`
+
+	// FacetQ Keep only values whose label contains this text (at most 100 characters).
+	FacetQ *string `form:"facet_q,omitempty" json:"facet_q,omitempty"`
+
+	// HasActiveTermsOfService Has Active Terms of Service
+	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
+
+	// HasTermsOfService Has Terms of Service
+	HasTermsOfService *bool `form:"has_terms_of_service,omitempty" json:"has_terms_of_service,omitempty"`
+
+	// Keyword Keyword
+	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
+
+	// Modified Modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// ModifiedBefore Modified before
+	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Ordering
+	//
+	O *[]ProviderOfferingDetailsOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingGroupUuid Offering group UUID
+	OfferingGroupUuid *openapi_types.UUID `form:"offering_group_uuid,omitempty" json:"offering_group_uuid,omitempty"`
+
+	// OpenForProposals Offerings that can be requested through a call right now: accepted on an active call with a round that is open, and covered by a resource template when the call defines any.
+	OpenForProposals *bool `form:"open_for_proposals,omitempty" json:"open_for_proposals,omitempty"`
+
+	// OrganizationGroupUuid Organization group UUID
+	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// ParentUuid Parent offering UUID
 	ParentUuid *openapi_types.UUID `form:"parent_uuid,omitempty" json:"parent_uuid,omitempty"`
@@ -81808,6 +82424,155 @@ type MarketplaceResourcesCountParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
+
+	// Paused Paused
+	Paused *bool `form:"paused,omitempty" json:"paused,omitempty"`
+
+	// PlanUuid Plan UUID
+	PlanUuid *openapi_types.UUID `form:"plan_uuid,omitempty" json:"plan_uuid,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ProviderUuid Provider UUID
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// Query Search by resource UUID, name, slug, backend ID, effective ID, IPs or hypervisor
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ResourceAttributes Resource attributes (JSON)
+	ResourceAttributes *string `form:"resource_attributes,omitempty" json:"resource_attributes,omitempty"`
+
+	// RestrictMemberAccess Restrict member access
+	RestrictMemberAccess *bool `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
+
+	// RuntimeState Runtime state
+	RuntimeState *string `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+
+	// Scope Filter by scope URL.
+	Scope *string `form:"scope,omitempty" json:"scope,omitempty"`
+
+	// ServiceManagerUuid Service manager UUID
+	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+
+	// Slug Slug
+	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// State Resource state
+	//
+	State *[]ResourceState `form:"state,omitempty" json:"state,omitempty"`
+
+	// UsageBased Filter by usage-based offerings
+	UsageBased *bool `form:"usage_based,omitempty" json:"usage_based,omitempty"`
+
+	// VisibleToProviders Include only resources visible to service providers
+	VisibleToProviders *bool `form:"visible_to_providers,omitempty" json:"visible_to_providers,omitempty"`
+
+	// VisibleToUsername Visible to username
+	VisibleToUsername *string `form:"visible_to_username,omitempty" json:"visible_to_username,omitempty"`
+}
+
+// MarketplaceResourcesFacetsListParams defines parameters for MarketplaceResourcesFacetsList.
+type MarketplaceResourcesFacetsListParams struct {
+	// BackendId Backend ID
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CategoryUuid Category UUID
+	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+
+	// ComponentCount Filter by exact number of components
+	ComponentCount *float32 `form:"component_count,omitempty" json:"component_count,omitempty"`
+
+	// Created Created after
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// CreatedBefore Created before
+	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
+
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Downscaled Downscaled
+	Downscaled *bool `form:"downscaled,omitempty" json:"downscaled,omitempty"`
+
+	// Facet Comma-separated facet names to compute; all by default.
+	Facet *string `form:"facet,omitempty" json:"facet,omitempty"`
+
+	// FacetLimit Most values returned per facet, by count (default 100, at most 1000).
+	FacetLimit *int `form:"facet_limit,omitempty" json:"facet_limit,omitempty"`
+
+	// FacetQ Keep only values whose label contains this text (at most 100 characters).
+	FacetQ *string `form:"facet_q,omitempty" json:"facet_q,omitempty"`
+
+	// FlavorName Flavor name
+	FlavorName *string `form:"flavor_name,omitempty" json:"flavor_name,omitempty"`
+
+	// HasTerminateDate Has termination date
+	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
+
+	// ImageName Image name
+	ImageName *string `form:"image_name,omitempty" json:"image_name,omitempty"`
+
+	// IsAttached Filter by attached state
+	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
+
+	// LexisLinksSupported LEXIS links supported
+	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
+
+	// LimitBased Filter by limit-based offerings
+	LimitBased *bool `form:"limit_based,omitempty" json:"limit_based,omitempty"`
+
+	// LimitComponentCount Filter by exact number of limit-based components
+	LimitComponentCount *float32 `form:"limit_component_count,omitempty" json:"limit_component_count,omitempty"`
+
+	// Modified Modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// ModifiedBefore Modified before
+	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Ordering
+	//
+	O        *[]ResourceOEnum `form:"o,omitempty" json:"o,omitempty"`
+	Offering *string          `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingBillable Offering billable
+	OfferingBillable *bool `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
+
+	// OfferingShared Offering shared
+	OfferingShared *bool `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+
+	// OfferingType Offering type
+	OfferingType *string `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+
+	// OfferingUuid Multiple values may be separated by commas.
+	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// OnlyLimitBased Filter resources with only limit-based components
+	OnlyLimitBased *bool `form:"only_limit_based,omitempty" json:"only_limit_based,omitempty"`
+
+	// OnlyUsageBased Filter resources with only usage-based components
+	OnlyUsageBased *bool `form:"only_usage_based,omitempty" json:"only_usage_based,omitempty"`
+
+	// OrderState Order state
+	//
+	OrderState         *[]OrderState       `form:"order_state,omitempty" json:"order_state,omitempty"`
 	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
 
 	// Paused Paused
@@ -83557,6 +84322,147 @@ type MarketplaceServiceProvidersOfferingsCountParams struct {
 	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
 }
 
+// MarketplaceServiceProvidersOfferingsFacetsListParams defines parameters for MarketplaceServiceProvidersOfferingsFacetsList.
+type MarketplaceServiceProvidersOfferingsFacetsListParams struct {
+	// Accessible Only offerings the current user can order
+	Accessible *bool `form:"accessible,omitempty" json:"accessible,omitempty"`
+
+	// AccessibleViaCalls Deprecated: offerings accepted on an active call, regardless of whether a proposal can actually be submitted for them. Use open_for_proposals instead.
+	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
+
+	// AllowedCustomerUuid Allowed customer UUID
+	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+
+	// Attributes Offering attributes (JSON)
+	Attributes *string `form:"attributes,omitempty" json:"attributes,omitempty"`
+
+	// Billable Billable
+	Billable              *bool `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+
+	// CategoryGroupUuid Category group UUID
+	CategoryGroupUuid *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+
+	// CategoryUuid Category UUID
+	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+
+	// ConsumerCustomerUuid Consumer customer UUID
+	ConsumerCustomerUuid *openapi_types.UUID `form:"consumer_customer_uuid,omitempty" json:"consumer_customer_uuid,omitempty"`
+
+	// Created Created after
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// CreatedBefore Created before
+	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
+
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description contains
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// Facet Comma-separated facet names to compute; all by default.
+	Facet *string `form:"facet,omitempty" json:"facet,omitempty"`
+
+	// FacetLimit Most values returned per facet, by count (default 100, at most 1000).
+	FacetLimit *int `form:"facet_limit,omitempty" json:"facet_limit,omitempty"`
+
+	// FacetQ Keep only values whose label contains this text (at most 100 characters).
+	FacetQ *string `form:"facet_q,omitempty" json:"facet_q,omitempty"`
+
+	// HasActiveTermsOfService Has Active Terms of Service
+	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
+
+	// HasTermsOfService Has Terms of Service
+	HasTermsOfService *bool `form:"has_terms_of_service,omitempty" json:"has_terms_of_service,omitempty"`
+
+	// Keyword Keyword
+	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
+
+	// Modified Modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// ModifiedBefore Modified before
+	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Ordering
+	//
+	O *[]ProviderOfferingDetailsOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingGroupUuid Offering group UUID
+	OfferingGroupUuid *openapi_types.UUID `form:"offering_group_uuid,omitempty" json:"offering_group_uuid,omitempty"`
+
+	// OpenForProposals Offerings that can be requested through a call right now: accepted on an active call with a round that is open, and covered by a resource template when the call defines any.
+	OpenForProposals *bool `form:"open_for_proposals,omitempty" json:"open_for_proposals,omitempty"`
+
+	// OrganizationGroupUuid Organization group UUID
+	OrganizationGroupUuid *openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+
+	// ParentUuid Parent offering UUID
+	ParentUuid *openapi_types.UUID `form:"parent_uuid,omitempty" json:"parent_uuid,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Search by offering name, slug or description
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ResourceCustomerUuid Resource customer UUID
+	ResourceCustomerUuid *openapi_types.UUID `form:"resource_customer_uuid,omitempty" json:"resource_customer_uuid,omitempty"`
+
+	// ResourceProjectUuid Resource project UUID
+	ResourceProjectUuid *openapi_types.UUID `form:"resource_project_uuid,omitempty" json:"resource_project_uuid,omitempty"`
+
+	// ScopeUuid Scope UUID
+	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+
+	// ServiceManagerUuid Service manager UUID
+	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+
+	// Shared Shared
+	Shared *bool `form:"shared,omitempty" json:"shared,omitempty"`
+
+	// Slug Slug
+	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// State Offering state
+	//
+	State *[]OfferingState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tag Tag UUID (OR logic)
+	Tag *[]openapi_types.UUID `form:"tag,omitempty" json:"tag,omitempty"`
+
+	// TagName Tag name (OR logic)
+	TagName *[]string `form:"tag_name,omitempty" json:"tag_name,omitempty"`
+
+	// TagNamesAnd Tag names with AND logic (comma-separated)
+	TagNamesAnd *string `form:"tag_names_and,omitempty" json:"tag_names_and,omitempty"`
+
+	// TagsAnd Tag UUIDs with AND logic (comma-separated)
+	TagsAnd *string `form:"tags_and,omitempty" json:"tags_and,omitempty"`
+
+	// Type Offering type
+	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
+
+	// UserHasConsent User Has Consent
+	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
+
+	// UserHasOfferingUser User Has Offering User
+	UserHasOfferingUser *bool `form:"user_has_offering_user,omitempty" json:"user_has_offering_user,omitempty"`
+
+	// UuidList Comma-separated offering UUIDs
+	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
+}
+
 // MarketplaceServiceProvidersOfferingsTypesListParams defines parameters for MarketplaceServiceProvidersOfferingsTypesList.
 type MarketplaceServiceProvidersOfferingsTypesListParams struct {
 	// Accessible Only offerings the current user can order
@@ -84904,6 +85810,9 @@ type MarketplaceSoftwarePackagesListParams struct {
 	// CatalogName Filter packages by catalog name (case-insensitive partial match)
 	CatalogName *string `form:"catalog_name,omitempty" json:"catalog_name,omitempty"`
 
+	// CatalogNameExact Filter packages by exact catalog name
+	CatalogNameExact *string `form:"catalog_name_exact,omitempty" json:"catalog_name_exact,omitempty"`
+
 	// CatalogType Filter packages by catalog type (binary_runtime, source_package, package_manager)
 	//
 	CatalogType *CatalogTypeEnum `form:"catalog_type,omitempty" json:"catalog_type,omitempty"`
@@ -84913,6 +85822,9 @@ type MarketplaceSoftwarePackagesListParams struct {
 
 	// CatalogVersion Filter packages by catalog version (case-insensitive partial match)
 	CatalogVersion *string `form:"catalog_version,omitempty" json:"catalog_version,omitempty"`
+
+	// CatalogVersionExact Filter packages by exact catalog version
+	CatalogVersionExact *string `form:"catalog_version_exact,omitempty" json:"catalog_version_exact,omitempty"`
 
 	// Category Filter packages by category (e.g., bio, hpc, chemistry)
 	Category *string `form:"category,omitempty" json:"category,omitempty"`
@@ -84984,6 +85896,9 @@ type MarketplaceSoftwarePackagesCountParams struct {
 	// CatalogName Filter packages by catalog name (case-insensitive partial match)
 	CatalogName *string `form:"catalog_name,omitempty" json:"catalog_name,omitempty"`
 
+	// CatalogNameExact Filter packages by exact catalog name
+	CatalogNameExact *string `form:"catalog_name_exact,omitempty" json:"catalog_name_exact,omitempty"`
+
 	// CatalogType Filter packages by catalog type (binary_runtime, source_package, package_manager)
 	//
 	CatalogType *CatalogTypeEnum `form:"catalog_type,omitempty" json:"catalog_type,omitempty"`
@@ -84993,6 +85908,9 @@ type MarketplaceSoftwarePackagesCountParams struct {
 
 	// CatalogVersion Filter packages by catalog version (case-insensitive partial match)
 	CatalogVersion *string `form:"catalog_version,omitempty" json:"catalog_version,omitempty"`
+
+	// CatalogVersionExact Filter packages by exact catalog version
+	CatalogVersionExact *string `form:"catalog_version_exact,omitempty" json:"catalog_version_exact,omitempty"`
 
 	// Category Filter packages by category (e.g., bio, hpc, chemistry)
 	Category *string `form:"category,omitempty" json:"category,omitempty"`
@@ -85045,6 +85963,95 @@ type MarketplaceSoftwarePackagesCountParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ParentSoftwareUuid Filter extension packages belonging to a specific parent package
+	ParentSoftwareUuid *openapi_types.UUID `form:"parent_software_uuid,omitempty" json:"parent_software_uuid,omitempty"`
+
+	// Query Query packages by name, description, or version (case-insensitive partial match)
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ToolchainFamiliesCompatibility Filter packages compatible with a specific toolchain family (e.g., foss_2022b)
+	ToolchainFamiliesCompatibility *string `form:"toolchain_families_compatibility,omitempty" json:"toolchain_families_compatibility,omitempty"`
+
+	// ToolchainName Filter packages by toolchain name (e.g., foss, gfbf)
+	ToolchainName *string `form:"toolchain_name,omitempty" json:"toolchain_name,omitempty"`
+}
+
+// MarketplaceSoftwarePackagesFacetsListParams defines parameters for MarketplaceSoftwarePackagesFacetsList.
+type MarketplaceSoftwarePackagesFacetsListParams struct {
+	// CatalogName Filter packages by catalog name (case-insensitive partial match)
+	CatalogName *string `form:"catalog_name,omitempty" json:"catalog_name,omitempty"`
+
+	// CatalogNameExact Filter packages by exact catalog name
+	CatalogNameExact *string `form:"catalog_name_exact,omitempty" json:"catalog_name_exact,omitempty"`
+
+	// CatalogType Filter packages by catalog type (binary_runtime, source_package, package_manager)
+	//
+	CatalogType *CatalogTypeEnum `form:"catalog_type,omitempty" json:"catalog_type,omitempty"`
+
+	// CatalogUuid Filter packages from a specific software catalog
+	CatalogUuid *openapi_types.UUID `form:"catalog_uuid,omitempty" json:"catalog_uuid,omitempty"`
+
+	// CatalogVersion Filter packages by catalog version (case-insensitive partial match)
+	CatalogVersion *string `form:"catalog_version,omitempty" json:"catalog_version,omitempty"`
+
+	// CatalogVersionExact Filter packages by exact catalog version
+	CatalogVersionExact *string `form:"catalog_version_exact,omitempty" json:"catalog_version_exact,omitempty"`
+
+	// Category Filter packages by category (e.g., bio, hpc, chemistry)
+	Category *string `form:"category,omitempty" json:"category,omitempty"`
+
+	// CpuFamily Filter packages available for any of the given CPU families (e.g., x86_64, aarch64)
+	CpuFamily *[]string `form:"cpu_family,omitempty" json:"cpu_family,omitempty"`
+
+	// CpuMicroarchitecture Filter packages available for any of the given CPU microarchitectures (e.g., generic, amd/zen3, intel/sapphirerapids)
+	CpuMicroarchitecture *[]string `form:"cpu_microarchitecture,omitempty" json:"cpu_microarchitecture,omitempty"`
+
+	// Description Filter packages by description (case-insensitive partial match)
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExtensionName Filter packages having extensions with a specific name
+	ExtensionName *string `form:"extension_name,omitempty" json:"extension_name,omitempty"`
+
+	// ExtensionType Filter packages having extensions of a specific type (e.g., 'python')
+	ExtensionType *string `form:"extension_type,omitempty" json:"extension_type,omitempty"`
+
+	// Facet Comma-separated facet names to compute; all by default.
+	Facet *string `form:"facet,omitempty" json:"facet,omitempty"`
+
+	// FacetLimit Most values returned per facet, by count (default 100, at most 1000).
+	FacetLimit *int `form:"facet_limit,omitempty" json:"facet_limit,omitempty"`
+
+	// FacetQ Keep only values whose label contains this text (at most 100 characters).
+	FacetQ *string `form:"facet_q,omitempty" json:"facet_q,omitempty"`
+
+	// GpuArch Filter packages by GPU architecture (e.g., nvidia/cc90)
+	GpuArch *string `form:"gpu_arch,omitempty" json:"gpu_arch,omitempty"`
+
+	// HasGpu Filter packages that have GPU-enabled builds
+	HasGpu *bool `form:"has_gpu,omitempty" json:"has_gpu,omitempty"`
+
+	// HasVersion Filter packages that have a specific version
+	HasVersion *string `form:"has_version,omitempty" json:"has_version,omitempty"`
+
+	// IsExtension Filter packages that are extensions of other packages
+	IsExtension *bool `form:"is_extension,omitempty" json:"is_extension,omitempty"`
+
+	// License Filter packages by license (e.g., GPL-3.0, MIT)
+	License *string `form:"license,omitempty" json:"license,omitempty"`
+
+	// Name Filter packages by name (case-insensitive partial match)
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Filter packages by exact name (case-insensitive)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Ordering
+	//
+	O *[]SoftwarePackageOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingUuid Filter packages available for a specific offering
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// ParentSoftwareUuid Filter extension packages belonging to a specific parent package
 	ParentSoftwareUuid *openapi_types.UUID `form:"parent_software_uuid,omitempty" json:"parent_software_uuid,omitempty"`
@@ -92139,6 +93146,64 @@ type ProposalProposalsCountParams struct {
 	WorkflowStep *[]string `form:"workflow_step,omitempty" json:"workflow_step,omitempty"`
 }
 
+// ProposalProposalsFacetsListParams defines parameters for ProposalProposalsFacetsList.
+type ProposalProposalsFacetsListParams struct {
+	// AsRole Only proposals the current user holds this role on
+	//
+	AsRole   *ResponsibleRoleEnum `form:"as_role,omitempty" json:"as_role,omitempty"`
+	CallUuid *openapi_types.UUID  `form:"call_uuid,omitempty" json:"call_uuid,omitempty"`
+
+	// ChangesRequested Only proposals waiting on changes asked of their applicant
+	ChangesRequested *bool               `form:"changes_requested,omitempty" json:"changes_requested,omitempty"`
+	CreatedByUuid    *openapi_types.UUID `form:"created_by_uuid,omitempty" json:"created_by_uuid,omitempty"`
+
+	// Facet Comma-separated facet names to compute; all by default.
+	Facet *string `form:"facet,omitempty" json:"facet,omitempty"`
+
+	// FacetLimit Most values returned per facet, by count (default 100, at most 1000).
+	FacetLimit *int `form:"facet_limit,omitempty" json:"facet_limit,omitempty"`
+
+	// FacetQ Keep only values whose label contains this text (at most 100 characters).
+	FacetQ *string `form:"facet_q,omitempty" json:"facet_q,omitempty"`
+
+	// FinalReportOverdue Only proposals whose final report is past its due date
+	FinalReportOverdue *bool `form:"final_report_overdue,omitempty" json:"final_report_overdue,omitempty"`
+
+	// Involved Only proposals the current user takes part in, leaving out those read only through staff or support access
+	Involved    *bool   `form:"involved,omitempty" json:"involved,omitempty"`
+	MyProposals *bool   `form:"my_proposals,omitempty" json:"my_proposals,omitempty"`
+	Name        *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// O Ordering
+	//
+	O                *[]ProposalOEnum    `form:"o,omitempty" json:"o,omitempty"`
+	OrganizationUuid *openapi_types.UUID `form:"organization_uuid,omitempty" json:"organization_uuid,omitempty"`
+
+	// PanelUuid Panel UUID
+	PanelUuid *openapi_types.UUID `form:"panel_uuid,omitempty" json:"panel_uuid,omitempty"`
+
+	// PostAwardStatus Where an accepted proposal's extension or final report stands
+	//
+	PostAwardStatus *[]PostAwardStatusEnum `form:"post_award_status,omitempty" json:"post_award_status,omitempty"`
+	Round           *openapi_types.UUID    `form:"round,omitempty" json:"round,omitempty"`
+	RoundUuid       *openapi_types.UUID    `form:"round_uuid,omitempty" json:"round_uuid,omitempty"`
+
+	// RunPhase Only proposals with a run of this phase
+	//
+	RunPhase *ProposalRunPhaseEnum `form:"run_phase,omitempty" json:"run_phase,omitempty"`
+
+	// RunState Only proposals with a run in this state
+	//
+	RunState *ProposalRunStateEnum `form:"run_state,omitempty" json:"run_state,omitempty"`
+
+	// Slug Slug
+	Slug  *string           `form:"slug,omitempty" json:"slug,omitempty"`
+	State *[]ProposalStates `form:"state,omitempty" json:"state,omitempty"`
+
+	// WorkflowStep Multiple values may be separated by commas.
+	WorkflowStep *[]string `form:"workflow_step,omitempty" json:"workflow_step,omitempty"`
+}
+
 // ProposalProposalsAwardedResourcesListParams defines parameters for ProposalProposalsAwardedResourcesList.
 type ProposalProposalsAwardedResourcesListParams struct {
 	// Page A page number within the paginated result set.
@@ -93845,6 +94910,39 @@ type ProposalRequestedOfferingsCountParams struct {
 	State        *[]RequestedOfferingStates `form:"state,omitempty" json:"state,omitempty"`
 }
 
+// ProposalRequestedOfferingsFacetsListParams defines parameters for ProposalRequestedOfferingsFacetsList.
+type ProposalRequestedOfferingsFacetsListParams struct {
+	// Call Call
+	Call *string `form:"call,omitempty" json:"call,omitempty"`
+
+	// CallState Call state
+	//
+	CallState *[]CallStates       `form:"call_state,omitempty" json:"call_state,omitempty"`
+	CallUuid  *openapi_types.UUID `form:"call_uuid,omitempty" json:"call_uuid,omitempty"`
+
+	// Facet Comma-separated facet names to compute; all by default.
+	Facet *string `form:"facet,omitempty" json:"facet,omitempty"`
+
+	// FacetLimit Most values returned per facet, by count (default 100, at most 1000).
+	FacetLimit *int `form:"facet_limit,omitempty" json:"facet_limit,omitempty"`
+
+	// FacetQ Keep only values whose label contains this text (at most 100 characters).
+	FacetQ *string `form:"facet_q,omitempty" json:"facet_q,omitempty"`
+
+	// O Ordering
+	//
+	O *[]ProviderRequestedOfferingOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Offering Offering
+	Offering         *string             `form:"offering,omitempty" json:"offering,omitempty"`
+	OfferingUuid     *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	OrganizationUuid *openapi_types.UUID `form:"organization_uuid,omitempty" json:"organization_uuid,omitempty"`
+
+	// ProviderUuid Provider
+	ProviderUuid *openapi_types.UUID        `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+	State        *[]RequestedOfferingStates `form:"state,omitempty" json:"state,omitempty"`
+}
+
 // ProposalRequestedOfferingsTeamSlotsListParams defines parameters for ProposalRequestedOfferingsTeamSlotsList.
 type ProposalRequestedOfferingsTeamSlotsListParams struct {
 	// Call Call
@@ -94059,6 +95157,37 @@ type ProposalReviewsCountParams struct {
 	ReviewerUuid *openapi_types.UUID        `form:"reviewer_uuid,omitempty" json:"reviewer_uuid,omitempty"`
 	RoundUuid    *openapi_types.UUID        `form:"round_uuid,omitempty" json:"round_uuid,omitempty"`
 	State        *[]ProposalReviewStateEnum `form:"state,omitempty" json:"state,omitempty"`
+}
+
+// ProposalReviewsFacetsListParams defines parameters for ProposalReviewsFacetsList.
+type ProposalReviewsFacetsListParams struct {
+	CallUuid *openapi_types.UUID `form:"call_uuid,omitempty" json:"call_uuid,omitempty"`
+
+	// DueWithinDays Only reviews in progress whose deadline is at most this many days away, including ones already past it. Implies state=in_review.
+	DueWithinDays *float32 `form:"due_within_days,omitempty" json:"due_within_days,omitempty"`
+
+	// Facet Comma-separated facet names to compute; all by default.
+	Facet *string `form:"facet,omitempty" json:"facet,omitempty"`
+
+	// FacetLimit Most values returned per facet, by count (default 100, at most 1000).
+	FacetLimit *int `form:"facet_limit,omitempty" json:"facet_limit,omitempty"`
+
+	// FacetQ Keep only values whose label contains this text (at most 100 characters).
+	FacetQ *string `form:"facet_q,omitempty" json:"facet_q,omitempty"`
+
+	// ManagedCallsOnly Only reviews on calls where the current user is call manager, the same scope as the call manager dashboard.
+	ManagedCallsOnly *bool `form:"managed_calls_only,omitempty" json:"managed_calls_only,omitempty"`
+
+	// O Ordering
+	//
+	O                *[]ProposalReviewOEnum     `form:"o,omitempty" json:"o,omitempty"`
+	OrganizationUuid *openapi_types.UUID        `form:"organization_uuid,omitempty" json:"organization_uuid,omitempty"`
+	Proposal         *string                    `form:"proposal,omitempty" json:"proposal,omitempty"`
+	ProposalName     *string                    `form:"proposal_name,omitempty" json:"proposal_name,omitempty"`
+	ProposalUuid     *openapi_types.UUID        `form:"proposal_uuid,omitempty" json:"proposal_uuid,omitempty"`
+	ReviewerUuid     *openapi_types.UUID        `form:"reviewer_uuid,omitempty" json:"reviewer_uuid,omitempty"`
+	RoundUuid        *openapi_types.UUID        `form:"round_uuid,omitempty" json:"round_uuid,omitempty"`
+	State            *[]ProposalReviewStateEnum `form:"state,omitempty" json:"state,omitempty"`
 }
 
 // ProposalRoleAssignmentsListParams defines parameters for ProposalRoleAssignmentsList.
@@ -94301,6 +95430,29 @@ type ProviderTicketsCountParams struct {
 	SlaBreached          *bool               `form:"sla_breached,omitempty" json:"sla_breached,omitempty"`
 	Status               *string             `form:"status,omitempty" json:"status,omitempty"`
 	Summary              *string             `form:"summary,omitempty" json:"summary,omitempty"`
+}
+
+// ProviderTicketsFacetsListParams defines parameters for ProviderTicketsFacetsList.
+type ProviderTicketsFacetsListParams struct {
+	// Facet Comma-separated facet names to compute; all by default.
+	Facet *string `form:"facet,omitempty" json:"facet,omitempty"`
+
+	// FacetLimit Most values returned per facet, by count (default 100, at most 1000).
+	FacetLimit *int `form:"facet_limit,omitempty" json:"facet_limit,omitempty"`
+
+	// FacetQ Keep only values whose label contains this text (at most 100 characters).
+	FacetQ      *string `form:"facet_q,omitempty" json:"facet_q,omitempty"`
+	IsEscalated *bool   `form:"is_escalated,omitempty" json:"is_escalated,omitempty"`
+
+	// O Ordering
+	//
+	O                    *[]ProviderTicketOEnum `form:"o,omitempty" json:"o,omitempty"`
+	Priority             *string                `form:"priority,omitempty" json:"priority,omitempty"`
+	ProviderAssignee     *openapi_types.UUID    `form:"provider_assignee,omitempty" json:"provider_assignee,omitempty"`
+	ProviderHelpdeskUuid *openapi_types.UUID    `form:"provider_helpdesk_uuid,omitempty" json:"provider_helpdesk_uuid,omitempty"`
+	SlaBreached          *bool                  `form:"sla_breached,omitempty" json:"sla_breached,omitempty"`
+	Status               *string                `form:"status,omitempty" json:"status,omitempty"`
+	Summary              *string                `form:"summary,omitempty" json:"summary,omitempty"`
 }
 
 // ProviderTicketsStatsRetrieveParams defines parameters for ProviderTicketsStatsRetrieve.
@@ -96396,6 +97548,68 @@ type SupportIssuesCountParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Project      *string             `form:"project,omitempty" json:"project,omitempty"`
+	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// Query Summary or key contains
+	Query               *string `form:"query,omitempty" json:"query,omitempty"`
+	RemoteId            *string `form:"remote_id,omitempty" json:"remote_id,omitempty"`
+	Reporter            *string `form:"reporter,omitempty" json:"reporter,omitempty"`
+	ReporterName        *string `form:"reporter_name,omitempty" json:"reporter_name,omitempty"`
+	ResolutionYearMonth *string `form:"resolution_year_month,omitempty" json:"resolution_year_month,omitempty"`
+
+	// Resource Filter by resource URL.
+	Resource *string `form:"resource,omitempty" json:"resource,omitempty"`
+
+	// ResourceExternalIp Resource external IP
+	ResourceExternalIp *string `form:"resource_external_ip,omitempty" json:"resource_external_ip,omitempty"`
+
+	// ResourceInternalIp Resource internal IP
+	ResourceInternalIp *string `form:"resource_internal_ip,omitempty" json:"resource_internal_ip,omitempty"`
+
+	// ResourceUuid Resource UUID
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+	SlaBreached  *bool               `form:"sla_breached,omitempty" json:"sla_breached,omitempty"`
+	Status       *string             `form:"status,omitempty" json:"status,omitempty"`
+	Summary      *string             `form:"summary,omitempty" json:"summary,omitempty"`
+	Type         *string             `form:"type,omitempty" json:"type,omitempty"`
+}
+
+// SupportIssuesFacetsListParams defines parameters for SupportIssuesFacetsList.
+type SupportIssuesFacetsListParams struct {
+	Assignee     *string `form:"assignee,omitempty" json:"assignee,omitempty"`
+	AssigneeName *string `form:"assignee_name,omitempty" json:"assignee_name,omitempty"`
+	Caller       *string `form:"caller,omitempty" json:"caller,omitempty"`
+
+	// CallerFullName Caller full name contains
+	CallerFullName *string             `form:"caller_full_name,omitempty" json:"caller_full_name,omitempty"`
+	Customer       *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerUuid   *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Facet Comma-separated facet names to compute; all by default.
+	Facet *string `form:"facet,omitempty" json:"facet,omitempty"`
+
+	// FacetLimit Most values returned per facet, by count (default 100, at most 1000).
+	FacetLimit *int `form:"facet_limit,omitempty" json:"facet_limit,omitempty"`
+
+	// FacetQ Keep only values whose label contains this text (at most 100 characters).
+	FacetQ      *string `form:"facet_q,omitempty" json:"facet_q,omitempty"`
+	IsEscalated *bool   `form:"is_escalated,omitempty" json:"is_escalated,omitempty"`
+
+	// IsOpen Has not reached a terminal status
+	IsOpen *bool `form:"is_open,omitempty" json:"is_open,omitempty"`
+
+	// IsParent Is a parent issue
+	IsParent *bool `form:"is_parent,omitempty" json:"is_parent,omitempty"`
+
+	// IsRouted Has been routed to provider
+	IsRouted *bool   `form:"is_routed,omitempty" json:"is_routed,omitempty"`
+	Key      *string `form:"key,omitempty" json:"key,omitempty"`
+
+	// O Ordering
+	//
+	O            *[]IssueOEnum       `form:"o,omitempty" json:"o,omitempty"`
 	Project      *string             `form:"project,omitempty" json:"project,omitempty"`
 	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
@@ -128749,6 +129963,13 @@ type ClientInterface interface {
 	// Corresponds with POST /api/marketplace-offering-users/ (the `MarketplaceOfferingUsersCreate` operationId).
 	MarketplaceOfferingUsersCreate(ctx context.Context, body MarketplaceOfferingUsersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceOfferingUsersFacetsList Count the values each filter can still take
+	//
+	// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+	//
+	// Corresponds with GET /api/marketplace-offering-users/facets/ (the `MarketplaceOfferingUsersFacetsList` operationId).
+	MarketplaceOfferingUsersFacetsList(ctx context.Context, params *MarketplaceOfferingUsersFacetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceOfferingUsersPosixIdentitiesList List a user's POSIX identities across all their offerings
 	//
 	// Consolidated view of one user's POSIX identifiers (UID, primary GID and project group GIDs), one row per pool and namespace: a UID allocated once for the user is reported once, listing every offering that uses it. An offering with its own pool yields its own row. Scoped to the offering users the requester is allowed to see.
@@ -129117,6 +130338,13 @@ type ClientInterface interface {
 	//
 	// Corresponds with HEAD /api/marketplace-orders/dashboard-my-orders/ (the `MarketplaceOrdersDashboardMyOrdersCount` operationId).
 	MarketplaceOrdersDashboardMyOrdersCount(ctx context.Context, params *MarketplaceOrdersDashboardMyOrdersCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOrdersFacetsList Count the values each filter can still take
+	//
+	// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+	//
+	// Corresponds with GET /api/marketplace-orders/facets/ (the `MarketplaceOrdersFacetsList` operationId).
+	MarketplaceOrdersFacetsList(ctx context.Context, params *MarketplaceOrdersFacetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOrdersDestroy Delete a pending order
 	//
@@ -130010,6 +131238,13 @@ type ClientInterface interface {
 	//
 	// Corresponds with HEAD /api/marketplace-provider-offerings/aggregated_access_subnets/ (the `MarketplaceProviderOfferingsAggregatedAccessSubnetsCount` operationId).
 	MarketplaceProviderOfferingsAggregatedAccessSubnetsCount(ctx context.Context, params *MarketplaceProviderOfferingsAggregatedAccessSubnetsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsFacetsList Count the values each filter can still take
+	//
+	// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+	//
+	// Corresponds with GET /api/marketplace-provider-offerings/facets/ (the `MarketplaceProviderOfferingsFacetsList` operationId).
+	MarketplaceProviderOfferingsFacetsList(ctx context.Context, params *MarketplaceProviderOfferingsFacetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsGroupsList List offerings grouped by provider
 	//
@@ -131354,6 +132589,13 @@ type ClientInterface interface {
 	// Corresponds with HEAD /api/marketplace-provider-resources/ (the `MarketplaceProviderResourcesCount` operationId).
 	MarketplaceProviderResourcesCount(ctx context.Context, params *MarketplaceProviderResourcesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderResourcesFacetsList Count the values each filter can still take
+	//
+	// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+	//
+	// Corresponds with GET /api/marketplace-provider-resources/facets/ (the `MarketplaceProviderResourcesFacetsList` operationId).
+	MarketplaceProviderResourcesFacetsList(ctx context.Context, params *MarketplaceProviderResourcesFacetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderResourcesRetrieve Retrieve a provider resource
 	//
 	// Returns details of a specific resource from a provider's perspective.
@@ -132028,6 +133270,13 @@ type ClientInterface interface {
 	// Corresponds with HEAD /api/marketplace-public-offerings/ (the `MarketplacePublicOfferingsCount` operationId).
 	MarketplacePublicOfferingsCount(ctx context.Context, params *MarketplacePublicOfferingsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplacePublicOfferingsFacetsList Count the values each filter can still take
+	//
+	// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+	//
+	// Corresponds with GET /api/marketplace-public-offerings/facets/ (the `MarketplacePublicOfferingsFacetsList` operationId).
+	MarketplacePublicOfferingsFacetsList(ctx context.Context, params *MarketplacePublicOfferingsFacetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplacePublicOfferingsRetrieve Retrieve a public offering
 	//
 	// Returns the details of a specific public offering. Access is granted if the offering is available for ordering by the current user or if anonymous access is enabled.
@@ -132550,6 +133799,13 @@ type ClientInterface interface {
 	//
 	// Corresponds with HEAD /api/marketplace-resources/ (the `MarketplaceResourcesCount` operationId).
 	MarketplaceResourcesCount(ctx context.Context, params *MarketplaceResourcesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourcesFacetsList Count the values each filter can still take
+	//
+	// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+	//
+	// Corresponds with GET /api/marketplace-resources/facets/ (the `MarketplaceResourcesFacetsList` operationId).
+	MarketplaceResourcesFacetsList(ctx context.Context, params *MarketplaceResourcesFacetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourcesSuggestNameWithBody Suggest a resource name
 	//
@@ -133674,6 +134930,13 @@ type ClientInterface interface {
 	// Corresponds with HEAD /api/marketplace-service-providers/{service_provider_uuid}/offerings/ (the `MarketplaceServiceProvidersOfferingsCount` operationId).
 	MarketplaceServiceProvidersOfferingsCount(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersOfferingsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceServiceProvidersOfferingsFacetsList Count the values each filter can still take
+	//
+	// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+	//
+	// Corresponds with GET /api/marketplace-service-providers/{service_provider_uuid}/offerings/facets/ (the `MarketplaceServiceProvidersOfferingsFacetsList` operationId).
+	MarketplaceServiceProvidersOfferingsFacetsList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersOfferingsFacetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceServiceProvidersOfferingsTypesList List distinct offering types for a service provider
 	//
 	// Corresponds with GET /api/marketplace-service-providers/{service_provider_uuid}/offerings/types/ (the `MarketplaceServiceProvidersOfferingsTypesList` operationId).
@@ -134519,6 +135782,13 @@ type ClientInterface interface {
 	//
 	// Corresponds with POST /api/marketplace-software-packages/ (the `MarketplaceSoftwarePackagesCreate` operationId).
 	MarketplaceSoftwarePackagesCreate(ctx context.Context, body MarketplaceSoftwarePackagesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwarePackagesFacetsList Count the values each filter can still take
+	//
+	// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+	//
+	// Corresponds with GET /api/marketplace-software-packages/facets/ (the `MarketplaceSoftwarePackagesFacetsList` operationId).
+	MarketplaceSoftwarePackagesFacetsList(ctx context.Context, params *MarketplaceSoftwarePackagesFacetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceSoftwarePackagesDestroy Delete a software package
 	//
@@ -140766,6 +142036,13 @@ type ClientInterface interface {
 	// Corresponds with GET /api/proposal-proposals/dashboard-stats/ (the `ProposalProposalsDashboardStatsRetrieve` operationId).
 	ProposalProposalsDashboardStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ProposalProposalsFacetsList Count the values each filter can still take
+	//
+	// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+	//
+	// Corresponds with GET /api/proposal-proposals/facets/ (the `ProposalProposalsFacetsList` operationId).
+	ProposalProposalsFacetsList(ctx context.Context, params *ProposalProposalsFacetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ProposalProposalsDestroy performs a DELETE /api/proposal-proposals/{uuid}/ (the `ProposalProposalsDestroy` operationId) request.
 	ProposalProposalsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -141053,6 +142330,13 @@ type ClientInterface interface {
 	//
 	// Open an accepted proposal's final report ahead of its due date, or for a project without an end date. Call managers and staff.
 	ProposalProposalsOpenFinalReport(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProposalsPdfRetrieve Download the proposal as PDF
+	//
+	// The proposal as one document: the application, requested resources, team and attachment names, then the evaluation -- workflow steps, contributions, per-offering assessments, released reports, ranking and award. Each section holds exactly what the endpoint serving it returns to the caller, and is left out where that endpoint refuses them, so the applicant team, the call team and an evaluator each get their own view of the proposal.
+	//
+	// Corresponds with GET /api/proposal-proposals/{uuid}/pdf/ (the `ProposalProposalsPdfRetrieve` operationId).
+	ProposalProposalsPdfRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProposalsPreviewAsWithBody Preview the proposal as a role of its call
 	//
@@ -142651,6 +143935,13 @@ type ClientInterface interface {
 	// Get number of items in the collection matching the request parameters.
 	ProposalRequestedOfferingsCount(ctx context.Context, params *ProposalRequestedOfferingsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ProposalRequestedOfferingsFacetsList Count the values each filter can still take
+	//
+	// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+	//
+	// Corresponds with GET /api/proposal-requested-offerings/facets/ (the `ProposalRequestedOfferingsFacetsList` operationId).
+	ProposalRequestedOfferingsFacetsList(ctx context.Context, params *ProposalRequestedOfferingsFacetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ProposalRequestedOfferingsTeamSlotsList performs a GET /api/proposal-requested-offerings/team_slots/ (the `ProposalRequestedOfferingsTeamSlotsList` operationId) request.
 	//
 	// The open slots of the teams of every offering the caller sees here -- their colleagues' and delegates' as well as their own -- across the calls. Filter as the list is filtered (provider_uuid, offering_uuid, call_uuid).
@@ -142753,6 +144044,13 @@ type ClientInterface interface {
 	//
 	// Corresponds with GET /api/proposal-reviews/dashboard-stats/ (the `ProposalReviewsDashboardStatsRetrieve` operationId).
 	ProposalReviewsDashboardStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalReviewsFacetsList Count the values each filter can still take
+	//
+	// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+	//
+	// Corresponds with GET /api/proposal-reviews/facets/ (the `ProposalReviewsFacetsList` operationId).
+	ProposalReviewsFacetsList(ctx context.Context, params *ProposalReviewsFacetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalReviewsDestroy performs a DELETE /api/proposal-reviews/{uuid}/ (the `ProposalReviewsDestroy` operationId) request.
 	ProposalReviewsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -142972,6 +144270,13 @@ type ClientInterface interface {
 	//
 	// Get number of items in the collection matching the request parameters.
 	ProviderTicketsCount(ctx context.Context, params *ProviderTicketsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProviderTicketsFacetsList Count the values each filter can still take
+	//
+	// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+	//
+	// Corresponds with GET /api/provider-tickets/facets/ (the `ProviderTicketsFacetsList` operationId).
+	ProviderTicketsFacetsList(ctx context.Context, params *ProviderTicketsFacetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProviderTicketsStatsRetrieve Get statistics for provider tickets
 	//
@@ -145216,6 +146521,13 @@ type ClientInterface interface {
 	//
 	// Corresponds with POST /api/support-issues/bulk_update/ (the `SupportIssuesBulkUpdate` operationId).
 	SupportIssuesBulkUpdate(ctx context.Context, body SupportIssuesBulkUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportIssuesFacetsList Count the values each filter can still take
+	//
+	// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+	//
+	// Corresponds with GET /api/support-issues/facets/ (the `SupportIssuesFacetsList` operationId).
+	SupportIssuesFacetsList(ctx context.Context, params *SupportIssuesFacetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// SupportIssuesDestroy performs a DELETE /api/support-issues/{uuid}/ (the `SupportIssuesDestroy` operationId) request.
 	SupportIssuesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -167085,6 +168397,23 @@ func (c *Client) MarketplaceOfferingUsersCreate(ctx context.Context, body Market
 	return c.Client.Do(req)
 }
 
+// MarketplaceOfferingUsersFacetsList Count the values each filter can still take
+//
+// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+//
+// Corresponds with GET /api/marketplace-offering-users/facets/ (the `MarketplaceOfferingUsersFacetsList` operationId).
+func (c *Client) MarketplaceOfferingUsersFacetsList(ctx context.Context, params *MarketplaceOfferingUsersFacetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersFacetsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // MarketplaceOfferingUsersPosixIdentitiesList List a user's POSIX identities across all their offerings
 //
 // Consolidated view of one user's POSIX identifiers (UID, primary GID and project group GIDs), one row per pool and namespace: a UID allocated once for the user is reported once, listing every offering that uses it. An offering with its own pool yields its own row. Scoped to the offering users the requester is allowed to see.
@@ -167954,6 +169283,23 @@ func (c *Client) MarketplaceOrdersDashboardMyOrdersList(ctx context.Context, par
 // Corresponds with HEAD /api/marketplace-orders/dashboard-my-orders/ (the `MarketplaceOrdersDashboardMyOrdersCount` operationId).
 func (c *Client) MarketplaceOrdersDashboardMyOrdersCount(ctx context.Context, params *MarketplaceOrdersDashboardMyOrdersCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceOrdersDashboardMyOrdersCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceOrdersFacetsList Count the values each filter can still take
+//
+// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+//
+// Corresponds with GET /api/marketplace-orders/facets/ (the `MarketplaceOrdersFacetsList` operationId).
+func (c *Client) MarketplaceOrdersFacetsList(ctx context.Context, params *MarketplaceOrdersFacetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOrdersFacetsListRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -170171,6 +171517,23 @@ func (c *Client) MarketplaceProviderOfferingsAggregatedAccessSubnetsRetrieve(ctx
 // Corresponds with HEAD /api/marketplace-provider-offerings/aggregated_access_subnets/ (the `MarketplaceProviderOfferingsAggregatedAccessSubnetsCount` operationId).
 func (c *Client) MarketplaceProviderOfferingsAggregatedAccessSubnetsCount(ctx context.Context, params *MarketplaceProviderOfferingsAggregatedAccessSubnetsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsAggregatedAccessSubnetsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceProviderOfferingsFacetsList Count the values each filter can still take
+//
+// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+//
+// Corresponds with GET /api/marketplace-provider-offerings/facets/ (the `MarketplaceProviderOfferingsFacetsList` operationId).
+func (c *Client) MarketplaceProviderOfferingsFacetsList(ctx context.Context, params *MarketplaceProviderOfferingsFacetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsFacetsListRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -173172,6 +174535,23 @@ func (c *Client) MarketplaceProviderResourcesCount(ctx context.Context, params *
 	return c.Client.Do(req)
 }
 
+// MarketplaceProviderResourcesFacetsList Count the values each filter can still take
+//
+// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+//
+// Corresponds with GET /api/marketplace-provider-resources/facets/ (the `MarketplaceProviderResourcesFacetsList` operationId).
+func (c *Client) MarketplaceProviderResourcesFacetsList(ctx context.Context, params *MarketplaceProviderResourcesFacetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesFacetsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // MarketplaceProviderResourcesRetrieve Retrieve a provider resource
 //
 // Returns details of a specific resource from a provider's perspective.
@@ -174602,6 +175982,23 @@ func (c *Client) MarketplacePublicOfferingsCount(ctx context.Context, params *Ma
 	return c.Client.Do(req)
 }
 
+// MarketplacePublicOfferingsFacetsList Count the values each filter can still take
+//
+// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+//
+// Corresponds with GET /api/marketplace-public-offerings/facets/ (the `MarketplacePublicOfferingsFacetsList` operationId).
+func (c *Client) MarketplacePublicOfferingsFacetsList(ctx context.Context, params *MarketplacePublicOfferingsFacetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplacePublicOfferingsFacetsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // MarketplacePublicOfferingsRetrieve Retrieve a public offering
 //
 // Returns the details of a specific public offering. Access is granted if the offering is available for ordering by the current user or if anonymous access is enabled.
@@ -175985,6 +177382,23 @@ func (c *Client) MarketplaceResourcesList(ctx context.Context, params *Marketpla
 // Corresponds with HEAD /api/marketplace-resources/ (the `MarketplaceResourcesCount` operationId).
 func (c *Client) MarketplaceResourcesCount(ctx context.Context, params *MarketplaceResourcesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceResourcesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceResourcesFacetsList Count the values each filter can still take
+//
+// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+//
+// Corresponds with GET /api/marketplace-resources/facets/ (the `MarketplaceResourcesFacetsList` operationId).
+func (c *Client) MarketplaceResourcesFacetsList(ctx context.Context, params *MarketplaceResourcesFacetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesFacetsListRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -178603,6 +180017,23 @@ func (c *Client) MarketplaceServiceProvidersOfferingsCount(ctx context.Context, 
 	return c.Client.Do(req)
 }
 
+// MarketplaceServiceProvidersOfferingsFacetsList Count the values each filter can still take
+//
+// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+//
+// Corresponds with GET /api/marketplace-service-providers/{service_provider_uuid}/offerings/facets/ (the `MarketplaceServiceProvidersOfferingsFacetsList` operationId).
+func (c *Client) MarketplaceServiceProvidersOfferingsFacetsList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersOfferingsFacetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceServiceProvidersOfferingsFacetsListRequest(c.Server, serviceProviderUuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // MarketplaceServiceProvidersOfferingsTypesList List distinct offering types for a service provider
 //
 // Corresponds with GET /api/marketplace-service-providers/{service_provider_uuid}/offerings/types/ (the `MarketplaceServiceProvidersOfferingsTypesList` operationId).
@@ -180695,6 +182126,23 @@ func (c *Client) MarketplaceSoftwarePackagesCreateWithBody(ctx context.Context, 
 // Corresponds with POST /api/marketplace-software-packages/ (the `MarketplaceSoftwarePackagesCreate` operationId).
 func (c *Client) MarketplaceSoftwarePackagesCreate(ctx context.Context, body MarketplaceSoftwarePackagesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceSoftwarePackagesCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceSoftwarePackagesFacetsList Count the values each filter can still take
+//
+// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+//
+// Corresponds with GET /api/marketplace-software-packages/facets/ (the `MarketplaceSoftwarePackagesFacetsList` operationId).
+func (c *Client) MarketplaceSoftwarePackagesFacetsList(ctx context.Context, params *MarketplaceSoftwarePackagesFacetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwarePackagesFacetsListRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -196715,6 +198163,23 @@ func (c *Client) ProposalProposalsDashboardStatsRetrieve(ctx context.Context, re
 	return c.Client.Do(req)
 }
 
+// ProposalProposalsFacetsList Count the values each filter can still take
+//
+// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+//
+// Corresponds with GET /api/proposal-proposals/facets/ (the `ProposalProposalsFacetsList` operationId).
+func (c *Client) ProposalProposalsFacetsList(ctx context.Context, params *ProposalProposalsFacetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsFacetsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // ProposalProposalsDestroy performs a DELETE /api/proposal-proposals/{uuid}/ (the `ProposalProposalsDestroy` operationId) request.
 func (c *Client) ProposalProposalsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProposalsDestroyRequest(c.Server, uuid)
@@ -197483,6 +198948,23 @@ func (c *Client) ProposalProposalsOfferingAssessmentsList(ctx context.Context, u
 // Open an accepted proposal's final report ahead of its due date, or for a project without an end date. Call managers and staff.
 func (c *Client) ProposalProposalsOpenFinalReport(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProposalsOpenFinalReportRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProposalProposalsPdfRetrieve Download the proposal as PDF
+//
+// The proposal as one document: the application, requested resources, team and attachment names, then the evaluation -- workflow steps, contributions, per-offering assessments, released reports, ranking and award. Each section holds exactly what the endpoint serving it returns to the caller, and is left out where that endpoint refuses them, so the applicant team, the call team and an evaluator each get their own view of the proposal.
+//
+// Corresponds with GET /api/proposal-proposals/{uuid}/pdf/ (the `ProposalProposalsPdfRetrieve` operationId).
+func (c *Client) ProposalProposalsPdfRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsPdfRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -202060,6 +203542,23 @@ func (c *Client) ProposalRequestedOfferingsCount(ctx context.Context, params *Pr
 	return c.Client.Do(req)
 }
 
+// ProposalRequestedOfferingsFacetsList Count the values each filter can still take
+//
+// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+//
+// Corresponds with GET /api/proposal-requested-offerings/facets/ (the `ProposalRequestedOfferingsFacetsList` operationId).
+func (c *Client) ProposalRequestedOfferingsFacetsList(ctx context.Context, params *ProposalRequestedOfferingsFacetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalRequestedOfferingsFacetsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // ProposalRequestedOfferingsTeamSlotsList performs a GET /api/proposal-requested-offerings/team_slots/ (the `ProposalRequestedOfferingsTeamSlotsList` operationId) request.
 //
 // The open slots of the teams of every offering the caller sees here -- their colleagues' and delegates' as well as their own -- across the calls. Filter as the list is filtered (provider_uuid, offering_uuid, call_uuid).
@@ -202363,6 +203862,23 @@ func (c *Client) ProposalReviewsCreate(ctx context.Context, body ProposalReviews
 // Corresponds with GET /api/proposal-reviews/dashboard-stats/ (the `ProposalReviewsDashboardStatsRetrieve` operationId).
 func (c *Client) ProposalReviewsDashboardStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalReviewsDashboardStatsRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProposalReviewsFacetsList Count the values each filter can still take
+//
+// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+//
+// Corresponds with GET /api/proposal-reviews/facets/ (the `ProposalReviewsFacetsList` operationId).
+func (c *Client) ProposalReviewsFacetsList(ctx context.Context, params *ProposalReviewsFacetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalReviewsFacetsListRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -203112,6 +204628,23 @@ func (c *Client) ProviderTicketsList(ctx context.Context, params *ProviderTicket
 // Get number of items in the collection matching the request parameters.
 func (c *Client) ProviderTicketsCount(ctx context.Context, params *ProviderTicketsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProviderTicketsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProviderTicketsFacetsList Count the values each filter can still take
+//
+// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+//
+// Corresponds with GET /api/provider-tickets/facets/ (the `ProviderTicketsFacetsList` operationId).
+func (c *Client) ProviderTicketsFacetsList(ctx context.Context, params *ProviderTicketsFacetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProviderTicketsFacetsListRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -209872,6 +211405,23 @@ func (c *Client) SupportIssuesBulkUpdateWithBody(ctx context.Context, contentTyp
 // Corresponds with POST /api/support-issues/bulk_update/ (the `SupportIssuesBulkUpdate` operationId).
 func (c *Client) SupportIssuesBulkUpdate(ctx context.Context, body SupportIssuesBulkUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewSupportIssuesBulkUpdateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// SupportIssuesFacetsList Count the values each filter can still take
+//
+// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+//
+// Corresponds with GET /api/support-issues/facets/ (the `SupportIssuesFacetsList` operationId).
+func (c *Client) SupportIssuesFacetsList(ctx context.Context, params *SupportIssuesFacetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportIssuesFacetsListRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -284408,6 +285958,348 @@ func NewMarketplaceOfferingUsersCreateRequestWithBody(server string, contentType
 	return req, nil
 }
 
+// NewMarketplaceOfferingUsersFacetsListRequest constructs an http.Request for the MarketplaceOfferingUsersFacetsList method
+func NewMarketplaceOfferingUsersFacetsListRequest(server string, params *MarketplaceOfferingUsersFacetsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-users/facets/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created", *params.Created, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_before", *params.CreatedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Facet != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet", *params.Facet, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FacetLimit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_limit", *params.FacetLimit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FacetQ != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_q", *params.FacetQ, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasCompleteProfile != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_complete_profile", *params.HasCompleteProfile, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_consent", *params.HasConsent, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsProviderBacked != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_provider_backed", *params.IsProviderBacked, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsRestricted != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_restricted", *params.IsRestricted, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified", *params.Modified, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ModifiedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified_before", *params.ModifiedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Offering != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering", *params.Offering, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingHasActiveTos != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_has_active_tos", *params.OfferingHasActiveTos, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "offering_slug", *params.OfferingSlug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ParentOfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "parent_offering_uuid", *params.ParentOfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "provider_uuid", *params.ProviderUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RuntimeState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "runtime_state", *params.RuntimeState, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ServiceProviderAccountUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "service_provider_account_uuid", *params.ServiceProviderAccountUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserUsername != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_username", *params.UserUsername, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid", *params.UserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Username != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "username", *params.Username, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceOfferingUsersPosixIdentitiesListRequest constructs an http.Request for the MarketplaceOfferingUsersPosixIdentitiesList method
 func NewMarketplaceOfferingUsersPosixIdentitiesListRequest(server string, params *MarketplaceOfferingUsersPosixIdentitiesListParams) (*http.Request, error) {
 	var err error
@@ -288531,6 +290423,384 @@ func NewMarketplaceOrdersDashboardMyOrdersCountRequest(server string, params *Ma
 	}
 
 	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOrdersFacetsListRequest constructs an http.Request for the MarketplaceOrdersFacetsList method
+func NewMarketplaceOrdersFacetsListRequest(server string, params *MarketplaceOrdersFacetsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-orders/facets/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CanApproveAsConsumer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "can_approve_as_consumer", *params.CanApproveAsConsumer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CanApproveAsProvider != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "can_approve_as_provider", *params.CanApproveAsProvider, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CategoryUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "category_uuid", *params.CategoryUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created", *params.Created, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_before", *params.CreatedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Facet != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet", *params.Facet, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FacetLimit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_limit", *params.FacetLimit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FacetQ != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_q", *params.FacetQ, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified", *params.Modified, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ModifiedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified_before", *params.ModifiedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Offering != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering", *params.Offering, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "offering_slug", *params.OfferingSlug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_type", *params.OfferingType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ParentOfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "parent_offering_uuid", *params.ParentOfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "provider_uuid", *params.ProviderUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Resource != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource", *params.Resource, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResourceName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_name", *params.ResourceName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_uuid", *params.ResourceUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ServiceManagerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "service_manager_uuid", *params.ServiceManagerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Slug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Type != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "type", *params.Type, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.WasAutoApproved != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "was_auto_approved", *params.WasAutoApproved, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -295906,6 +298176,612 @@ func NewMarketplaceProviderOfferingsAggregatedAccessSubnetsCountRequest(server s
 	}
 
 	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsFacetsListRequest constructs an http.Request for the MarketplaceProviderOfferingsFacetsList method
+func NewMarketplaceProviderOfferingsFacetsListRequest(server string, params *MarketplaceProviderOfferingsFacetsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/facets/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Accessible != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible", *params.Accessible, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.AccessibleViaCalls != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible_via_calls", *params.AccessibleViaCalls, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.AllowedCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "allowed_customer_uuid", *params.AllowedCustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Attributes != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "attributes", *params.Attributes, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Billable != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "billable", *params.Billable, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CanCreateOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "can_create_offering_user", *params.CanCreateOfferingUser, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CategoryGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "category_group_uuid", *params.CategoryGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CategoryUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "category_uuid", *params.CategoryUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ConsumerCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "consumer_customer_uuid", *params.ConsumerCustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created", *params.Created, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_before", *params.CreatedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer", *params.Customer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "description", *params.Description, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Facet != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet", *params.Facet, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FacetLimit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_limit", *params.FacetLimit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FacetQ != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_q", *params.FacetQ, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasActiveTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_active_terms_of_service", *params.HasActiveTermsOfService, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_terms_of_service", *params.HasTermsOfService, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Importable != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "importable", *params.Importable, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Keyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "keyword", *params.Keyword, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified", *params.Modified, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ModifiedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified_before", *params.ModifiedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_group_uuid", *params.OfferingGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OpenForProposals != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "open_for_proposals", *params.OpenForProposals, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OrganizationGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "organization_group_uuid", *params.OrganizationGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ParentUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "parent_uuid", *params.ParentUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResourceCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_customer_uuid", *params.ResourceCustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResourceProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_project_uuid", *params.ResourceProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ScopeUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "scope_uuid", *params.ScopeUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ServiceManagerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "service_manager_uuid", *params.ServiceManagerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Shared != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "shared", *params.Shared, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Slug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Tag != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tag", *params.Tag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.TagName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tag_name", *params.TagName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.TagNamesAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tag_names_and", *params.TagNamesAnd, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.TagsAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tags_and", *params.TagsAnd, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Type != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "type", *params.Type, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserHasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_has_consent", *params.UserHasConsent, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserHasOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_has_offering_user", *params.UserHasOfferingUser, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UuidList != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid_list", *params.UuidList, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -307814,6 +310690,636 @@ func NewMarketplaceProviderResourcesCountRequest(server string, params *Marketpl
 	return req, nil
 }
 
+// NewMarketplaceProviderResourcesFacetsListRequest constructs an http.Request for the MarketplaceProviderResourcesFacetsList method
+func NewMarketplaceProviderResourcesFacetsListRequest(server string, params *MarketplaceProviderResourcesFacetsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-resources/facets/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.BackendId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "backend_id", *params.BackendId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CategoryUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "category_uuid", *params.CategoryUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ComponentCount != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "component_count", *params.ComponentCount, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "number", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created", *params.Created, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_before", *params.CreatedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer", *params.Customer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Downscaled != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "downscaled", *params.Downscaled, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Facet != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet", *params.Facet, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FacetLimit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_limit", *params.FacetLimit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FacetQ != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_q", *params.FacetQ, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FlavorName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "flavor_name", *params.FlavorName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasTerminateDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_terminate_date", *params.HasTerminateDate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ImageName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "image_name", *params.ImageName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsAttached != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_attached", *params.IsAttached, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.LexisLinksSupported != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "lexis_links_supported", *params.LexisLinksSupported, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.LimitBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "limit_based", *params.LimitBased, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.LimitComponentCount != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "limit_component_count", *params.LimitComponentCount, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "number", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified", *params.Modified, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ModifiedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified_before", *params.ModifiedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Offering != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering", *params.Offering, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingBillable != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_billable", *params.OfferingBillable, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingShared != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_shared", *params.OfferingShared, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "offering_slug", *params.OfferingSlug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_type", *params.OfferingType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OnlyLimitBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "only_limit_based", *params.OnlyLimitBased, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OnlyUsageBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "only_usage_based", *params.OnlyUsageBased, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OrderState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "order_state", *params.OrderState, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ParentOfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "parent_offering_uuid", *params.ParentOfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Paused != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "paused", *params.Paused, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PlanUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "plan_uuid", *params.PlanUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_name", *params.ProjectName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "provider_uuid", *params.ProviderUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResourceAttributes != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_attributes", *params.ResourceAttributes, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RestrictMemberAccess != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "restrict_member_access", *params.RestrictMemberAccess, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RuntimeState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "runtime_state", *params.RuntimeState, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "scope", *params.Scope, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ServiceManagerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "service_manager_uuid", *params.ServiceManagerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Slug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UsageBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "usage_based", *params.UsageBased, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.VisibleToProviders != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "visible_to_providers", *params.VisibleToProviders, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.VisibleToUsername != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "visible_to_username", *params.VisibleToUsername, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceProviderResourcesRetrieveRequest constructs an http.Request for the MarketplaceProviderResourcesRetrieve method
 func NewMarketplaceProviderResourcesRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceProviderResourcesRetrieveParams) (*http.Request, error) {
 	var err error
@@ -312043,6 +315549,600 @@ func NewMarketplacePublicOfferingsCountRequest(server string, params *Marketplac
 	}
 
 	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplacePublicOfferingsFacetsListRequest constructs an http.Request for the MarketplacePublicOfferingsFacetsList method
+func NewMarketplacePublicOfferingsFacetsListRequest(server string, params *MarketplacePublicOfferingsFacetsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-public-offerings/facets/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Accessible != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible", *params.Accessible, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.AccessibleViaCalls != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible_via_calls", *params.AccessibleViaCalls, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.AllowedCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "allowed_customer_uuid", *params.AllowedCustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Attributes != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "attributes", *params.Attributes, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Billable != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "billable", *params.Billable, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CanCreateOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "can_create_offering_user", *params.CanCreateOfferingUser, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CategoryGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "category_group_uuid", *params.CategoryGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CategoryUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "category_uuid", *params.CategoryUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ConsumerCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "consumer_customer_uuid", *params.ConsumerCustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created", *params.Created, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_before", *params.CreatedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer", *params.Customer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "description", *params.Description, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Facet != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet", *params.Facet, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FacetLimit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_limit", *params.FacetLimit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FacetQ != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_q", *params.FacetQ, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasActiveTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_active_terms_of_service", *params.HasActiveTermsOfService, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_terms_of_service", *params.HasTermsOfService, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Keyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "keyword", *params.Keyword, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified", *params.Modified, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ModifiedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified_before", *params.ModifiedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_group_uuid", *params.OfferingGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OpenForProposals != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "open_for_proposals", *params.OpenForProposals, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OrganizationGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "organization_group_uuid", *params.OrganizationGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ParentUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "parent_uuid", *params.ParentUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResourceCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_customer_uuid", *params.ResourceCustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResourceProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_project_uuid", *params.ResourceProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ScopeUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "scope_uuid", *params.ScopeUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ServiceManagerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "service_manager_uuid", *params.ServiceManagerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Shared != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "shared", *params.Shared, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Slug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Tag != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tag", *params.Tag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.TagName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tag_name", *params.TagName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.TagNamesAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tag_names_and", *params.TagNamesAnd, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.TagsAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tags_and", *params.TagsAnd, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Type != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "type", *params.Type, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserHasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_has_consent", *params.UserHasConsent, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserHasOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_has_offering_user", *params.UserHasOfferingUser, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UuidList != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid_list", *params.UuidList, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -317057,6 +321157,636 @@ func NewMarketplaceResourcesCountRequest(server string, params *MarketplaceResou
 	}
 
 	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceResourcesFacetsListRequest constructs an http.Request for the MarketplaceResourcesFacetsList method
+func NewMarketplaceResourcesFacetsListRequest(server string, params *MarketplaceResourcesFacetsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resources/facets/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.BackendId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "backend_id", *params.BackendId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CategoryUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "category_uuid", *params.CategoryUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ComponentCount != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "component_count", *params.ComponentCount, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "number", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created", *params.Created, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_before", *params.CreatedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer", *params.Customer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Downscaled != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "downscaled", *params.Downscaled, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Facet != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet", *params.Facet, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FacetLimit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_limit", *params.FacetLimit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FacetQ != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_q", *params.FacetQ, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FlavorName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "flavor_name", *params.FlavorName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasTerminateDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_terminate_date", *params.HasTerminateDate, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ImageName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "image_name", *params.ImageName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsAttached != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_attached", *params.IsAttached, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.LexisLinksSupported != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "lexis_links_supported", *params.LexisLinksSupported, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.LimitBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "limit_based", *params.LimitBased, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.LimitComponentCount != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "limit_component_count", *params.LimitComponentCount, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "number", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified", *params.Modified, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ModifiedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified_before", *params.ModifiedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Offering != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering", *params.Offering, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingBillable != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_billable", *params.OfferingBillable, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingShared != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_shared", *params.OfferingShared, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "offering_slug", *params.OfferingSlug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_type", *params.OfferingType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OnlyLimitBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "only_limit_based", *params.OnlyLimitBased, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OnlyUsageBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "only_usage_based", *params.OnlyUsageBased, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OrderState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "order_state", *params.OrderState, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ParentOfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "parent_offering_uuid", *params.ParentOfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Paused != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "paused", *params.Paused, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PlanUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "plan_uuid", *params.PlanUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_name", *params.ProjectName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "provider_uuid", *params.ProviderUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResourceAttributes != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_attributes", *params.ResourceAttributes, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RestrictMemberAccess != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "restrict_member_access", *params.RestrictMemberAccess, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RuntimeState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "runtime_state", *params.RuntimeState, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "scope", *params.Scope, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ServiceManagerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "service_manager_uuid", *params.ServiceManagerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Slug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UsageBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "usage_based", *params.UsageBased, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.VisibleToProviders != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "visible_to_providers", *params.VisibleToProviders, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.VisibleToUsername != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "visible_to_username", *params.VisibleToUsername, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -328117,6 +332847,607 @@ func NewMarketplaceServiceProvidersOfferingsCountRequest(server string, serviceP
 	return req, nil
 }
 
+// NewMarketplaceServiceProvidersOfferingsFacetsListRequest constructs an http.Request for the MarketplaceServiceProvidersOfferingsFacetsList method
+func NewMarketplaceServiceProvidersOfferingsFacetsListRequest(server string, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersOfferingsFacetsListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "service_provider_uuid", serviceProviderUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-service-providers/%s/offerings/facets/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Accessible != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible", *params.Accessible, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.AccessibleViaCalls != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accessible_via_calls", *params.AccessibleViaCalls, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.AllowedCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "allowed_customer_uuid", *params.AllowedCustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Attributes != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "attributes", *params.Attributes, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Billable != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "billable", *params.Billable, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CanCreateOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "can_create_offering_user", *params.CanCreateOfferingUser, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CategoryGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "category_group_uuid", *params.CategoryGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CategoryUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "category_uuid", *params.CategoryUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ConsumerCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "consumer_customer_uuid", *params.ConsumerCustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created", *params.Created, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_before", *params.CreatedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer", *params.Customer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "description", *params.Description, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Facet != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet", *params.Facet, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FacetLimit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_limit", *params.FacetLimit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FacetQ != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_q", *params.FacetQ, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasActiveTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_active_terms_of_service", *params.HasActiveTermsOfService, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_terms_of_service", *params.HasTermsOfService, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Keyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "keyword", *params.Keyword, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified", *params.Modified, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ModifiedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified_before", *params.ModifiedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_group_uuid", *params.OfferingGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OpenForProposals != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "open_for_proposals", *params.OpenForProposals, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OrganizationGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "organization_group_uuid", *params.OrganizationGroupUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ParentUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "parent_uuid", *params.ParentUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResourceCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_customer_uuid", *params.ResourceCustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResourceProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_project_uuid", *params.ResourceProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ScopeUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "scope_uuid", *params.ScopeUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ServiceManagerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "service_manager_uuid", *params.ServiceManagerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Shared != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "shared", *params.Shared, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Slug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Tag != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tag", *params.Tag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.TagName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tag_name", *params.TagName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.TagNamesAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tag_names_and", *params.TagNamesAnd, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.TagsAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "tags_and", *params.TagsAnd, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Type != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "type", *params.Type, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserHasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_has_consent", *params.UserHasConsent, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserHasOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_has_offering_user", *params.UserHasOfferingUser, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UuidList != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid_list", *params.UuidList, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceServiceProvidersOfferingsTypesListRequest constructs an http.Request for the MarketplaceServiceProvidersOfferingsTypesList method
 func NewMarketplaceServiceProvidersOfferingsTypesListRequest(server string, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersOfferingsTypesListParams) (*http.Request, error) {
 	var err error
@@ -337447,6 +342778,18 @@ func NewMarketplaceSoftwarePackagesListRequest(server string, params *Marketplac
 
 		}
 
+		if params.CatalogNameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "catalog_name_exact", *params.CatalogNameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.CatalogType != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "catalog_type", *params.CatalogType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -337474,6 +342817,18 @@ func NewMarketplaceSoftwarePackagesListRequest(server string, params *Marketplac
 		if params.CatalogVersion != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "catalog_version", *params.CatalogVersion, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CatalogVersionExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "catalog_version_exact", *params.CatalogVersionExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -337789,6 +343144,18 @@ func NewMarketplaceSoftwarePackagesCountRequest(server string, params *Marketpla
 
 		}
 
+		if params.CatalogNameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "catalog_name_exact", *params.CatalogNameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.CatalogType != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "catalog_type", *params.CatalogType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -337816,6 +343183,18 @@ func NewMarketplaceSoftwarePackagesCountRequest(server string, params *Marketpla
 		if params.CatalogVersion != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "catalog_version", *params.CatalogVersion, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CatalogVersionExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "catalog_version_exact", *params.CatalogVersionExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -338127,6 +343506,384 @@ func NewMarketplaceSoftwarePackagesCreateRequestWithBody(server string, contentT
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwarePackagesFacetsListRequest constructs an http.Request for the MarketplaceSoftwarePackagesFacetsList method
+func NewMarketplaceSoftwarePackagesFacetsListRequest(server string, params *MarketplaceSoftwarePackagesFacetsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-packages/facets/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CatalogName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "catalog_name", *params.CatalogName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CatalogNameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "catalog_name_exact", *params.CatalogNameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CatalogType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "catalog_type", *params.CatalogType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CatalogUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "catalog_uuid", *params.CatalogUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CatalogVersion != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "catalog_version", *params.CatalogVersion, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CatalogVersionExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "catalog_version_exact", *params.CatalogVersionExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Category != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "category", *params.Category, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CpuFamily != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "cpu_family", *params.CpuFamily, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CpuMicroarchitecture != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "cpu_microarchitecture", *params.CpuMicroarchitecture, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "description", *params.Description, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ExtensionName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "extension_name", *params.ExtensionName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ExtensionType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "extension_type", *params.ExtensionType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Facet != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet", *params.Facet, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FacetLimit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_limit", *params.FacetLimit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FacetQ != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_q", *params.FacetQ, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.GpuArch != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "gpu_arch", *params.GpuArch, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasGpu != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_gpu", *params.HasGpu, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasVersion != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_version", *params.HasVersion, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsExtension != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_extension", *params.IsExtension, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.License != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "license", *params.License, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name_exact", *params.NameExact, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ParentSoftwareUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "parent_software_uuid", *params.ParentSoftwareUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ToolchainFamiliesCompatibility != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "toolchain_families_compatibility", *params.ToolchainFamiliesCompatibility, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ToolchainName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "toolchain_name", *params.ToolchainName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -395496,6 +401253,312 @@ func NewProposalProposalsDashboardStatsRetrieveRequest(server string) (*http.Req
 	return req, nil
 }
 
+// NewProposalProposalsFacetsListRequest constructs an http.Request for the ProposalProposalsFacetsList method
+func NewProposalProposalsFacetsListRequest(server string, params *ProposalProposalsFacetsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-proposals/facets/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.AsRole != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "as_role", *params.AsRole, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CallUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "call_uuid", *params.CallUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ChangesRequested != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "changes_requested", *params.ChangesRequested, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedByUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_by_uuid", *params.CreatedByUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Facet != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet", *params.Facet, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FacetLimit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_limit", *params.FacetLimit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FacetQ != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_q", *params.FacetQ, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FinalReportOverdue != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "final_report_overdue", *params.FinalReportOverdue, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Involved != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "involved", *params.Involved, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.MyProposals != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "my_proposals", *params.MyProposals, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OrganizationUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "organization_uuid", *params.OrganizationUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PanelUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "panel_uuid", *params.PanelUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PostAwardStatus != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "post_award_status", *params.PostAwardStatus, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Round != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "round", *params.Round, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RoundUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "round_uuid", *params.RoundUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RunPhase != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "run_phase", *params.RunPhase, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RunState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "run_state", *params.RunState, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Slug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.WorkflowStep != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "workflow_step", *params.WorkflowStep, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewProposalProposalsDestroyRequest constructs an http.Request for the ProposalProposalsDestroy method
 func NewProposalProposalsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -398372,6 +404435,40 @@ func NewProposalProposalsOpenFinalReportRequest(server string, uuid openapi_type
 	}
 
 	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProposalProposalsPdfRetrieveRequest constructs an http.Request for the ProposalProposalsPdfRetrieve method
+func NewProposalProposalsPdfRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-proposals/%s/pdf/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -413734,6 +419831,192 @@ func NewProposalRequestedOfferingsCountRequest(server string, params *ProposalRe
 	return req, nil
 }
 
+// NewProposalRequestedOfferingsFacetsListRequest constructs an http.Request for the ProposalRequestedOfferingsFacetsList method
+func NewProposalRequestedOfferingsFacetsListRequest(server string, params *ProposalRequestedOfferingsFacetsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-requested-offerings/facets/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Call != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "call", *params.Call, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CallState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "call_state", *params.CallState, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CallUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "call_uuid", *params.CallUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Facet != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet", *params.Facet, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FacetLimit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_limit", *params.FacetLimit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FacetQ != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_q", *params.FacetQ, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Offering != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering", *params.Offering, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OrganizationUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "organization_uuid", *params.OrganizationUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "provider_uuid", *params.ProviderUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewProposalRequestedOfferingsTeamSlotsListRequest constructs an http.Request for the ProposalRequestedOfferingsTeamSlotsList method
 func NewProposalRequestedOfferingsTeamSlotsListRequest(server string, params *ProposalRequestedOfferingsTeamSlotsListParams) (*http.Request, error) {
 	var err error
@@ -415402,6 +421685,216 @@ func NewProposalReviewsDashboardStatsRetrieveRequest(server string) (*http.Reque
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProposalReviewsFacetsListRequest constructs an http.Request for the ProposalReviewsFacetsList method
+func NewProposalReviewsFacetsListRequest(server string, params *ProposalReviewsFacetsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-reviews/facets/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CallUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "call_uuid", *params.CallUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.DueWithinDays != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "due_within_days", *params.DueWithinDays, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "number", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Facet != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet", *params.Facet, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FacetLimit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_limit", *params.FacetLimit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FacetQ != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_q", *params.FacetQ, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ManagedCallsOnly != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "managed_calls_only", *params.ManagedCallsOnly, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OrganizationUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "organization_uuid", *params.OrganizationUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Proposal != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "proposal", *params.Proposal, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProposalName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "proposal_name", *params.ProposalName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProposalUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "proposal_uuid", *params.ProposalUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ReviewerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "reviewer_uuid", *params.ReviewerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RoundUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "round_uuid", *params.RoundUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -418129,6 +424622,180 @@ func NewProviderTicketsCountRequest(server string, params *ProviderTicketsCountP
 	}
 
 	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProviderTicketsFacetsListRequest constructs an http.Request for the ProviderTicketsFacetsList method
+func NewProviderTicketsFacetsListRequest(server string, params *ProviderTicketsFacetsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/provider-tickets/facets/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Facet != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet", *params.Facet, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FacetLimit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_limit", *params.FacetLimit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FacetQ != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_q", *params.FacetQ, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsEscalated != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_escalated", *params.IsEscalated, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Priority != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "priority", *params.Priority, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProviderAssignee != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "provider_assignee", *params.ProviderAssignee, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProviderHelpdeskUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "provider_helpdesk_uuid", *params.ProviderHelpdeskUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.SlaBreached != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "sla_breached", *params.SlaBreached, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Status != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "status", *params.Status, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Summary != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "summary", *params.Summary, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -440437,6 +447104,420 @@ func NewSupportIssuesBulkUpdateRequestWithBody(server string, contentType string
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewSupportIssuesFacetsListRequest constructs an http.Request for the SupportIssuesFacetsList method
+func NewSupportIssuesFacetsListRequest(server string, params *SupportIssuesFacetsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support-issues/facets/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Assignee != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "assignee", *params.Assignee, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.AssigneeName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "assignee_name", *params.AssigneeName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Caller != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "caller", *params.Caller, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CallerFullName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "caller_full_name", *params.CallerFullName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer", *params.Customer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Facet != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet", *params.Facet, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FacetLimit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_limit", *params.FacetLimit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FacetQ != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_q", *params.FacetQ, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsEscalated != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_escalated", *params.IsEscalated, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsOpen != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_open", *params.IsOpen, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsParent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_parent", *params.IsParent, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsRouted != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_routed", *params.IsRouted, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Key != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "key", *params.Key, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Project != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project", *params.Project, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "provider_uuid", *params.ProviderUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RemoteId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "remote_id", *params.RemoteId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Reporter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "reporter", *params.Reporter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ReporterName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "reporter_name", *params.ReporterName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResolutionYearMonth != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resolution_year_month", *params.ResolutionYearMonth, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Resource != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource", *params.Resource, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResourceExternalIp != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_external_ip", *params.ResourceExternalIp, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResourceInternalIp != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_internal_ip", *params.ResourceInternalIp, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_uuid", *params.ResourceUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.SlaBreached != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "sla_breached", *params.SlaBreached, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Status != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "status", *params.Status, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Summary != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "summary", *params.Summary, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Type != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "type", *params.Type, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -467664,6 +474745,15 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with POST /api/marketplace-offering-users/ (the `MarketplaceOfferingUsersCreate` operationId).
 	MarketplaceOfferingUsersCreateWithResponse(ctx context.Context, body MarketplaceOfferingUsersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersCreateResponse, error)
 
+	// MarketplaceOfferingUsersFacetsListWithResponse Count the values each filter can still take
+	//
+	// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-offering-users/facets/ (the `MarketplaceOfferingUsersFacetsList` operationId).
+	MarketplaceOfferingUsersFacetsListWithResponse(ctx context.Context, params *MarketplaceOfferingUsersFacetsListParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersFacetsListResponse, error)
+
 	// MarketplaceOfferingUsersPosixIdentitiesListWithResponse List a user's POSIX identities across all their offerings
 	//
 	// Consolidated view of one user's POSIX identifiers (UID, primary GID and project group GIDs), one row per pool and namespace: a UID allocated once for the user is reported once, listing every offering that uses it. An offering with its own pool yields its own row. Scoped to the offering users the requester is allowed to see.
@@ -468096,6 +475186,15 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with HEAD /api/marketplace-orders/dashboard-my-orders/ (the `MarketplaceOrdersDashboardMyOrdersCount` operationId).
 	MarketplaceOrdersDashboardMyOrdersCountWithResponse(ctx context.Context, params *MarketplaceOrdersDashboardMyOrdersCountParams, reqEditors ...RequestEditorFn) (*MarketplaceOrdersDashboardMyOrdersCountResponse, error)
+
+	// MarketplaceOrdersFacetsListWithResponse Count the values each filter can still take
+	//
+	// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-orders/facets/ (the `MarketplaceOrdersFacetsList` operationId).
+	MarketplaceOrdersFacetsListWithResponse(ctx context.Context, params *MarketplaceOrdersFacetsListParams, reqEditors ...RequestEditorFn) (*MarketplaceOrdersFacetsListResponse, error)
 
 	// MarketplaceOrdersDestroyWithResponse Delete a pending order
 	//
@@ -469141,6 +476240,15 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with HEAD /api/marketplace-provider-offerings/aggregated_access_subnets/ (the `MarketplaceProviderOfferingsAggregatedAccessSubnetsCount` operationId).
 	MarketplaceProviderOfferingsAggregatedAccessSubnetsCountWithResponse(ctx context.Context, params *MarketplaceProviderOfferingsAggregatedAccessSubnetsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsAggregatedAccessSubnetsCountResponse, error)
+
+	// MarketplaceProviderOfferingsFacetsListWithResponse Count the values each filter can still take
+	//
+	// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-provider-offerings/facets/ (the `MarketplaceProviderOfferingsFacetsList` operationId).
+	MarketplaceProviderOfferingsFacetsListWithResponse(ctx context.Context, params *MarketplaceProviderOfferingsFacetsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsFacetsListResponse, error)
 
 	// MarketplaceProviderOfferingsGroupsListWithResponse List offerings grouped by provider
 	//
@@ -470597,6 +477705,15 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with HEAD /api/marketplace-provider-resources/ (the `MarketplaceProviderResourcesCount` operationId).
 	MarketplaceProviderResourcesCountWithResponse(ctx context.Context, params *MarketplaceProviderResourcesCountParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesCountResponse, error)
 
+	// MarketplaceProviderResourcesFacetsListWithResponse Count the values each filter can still take
+	//
+	// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-provider-resources/facets/ (the `MarketplaceProviderResourcesFacetsList` operationId).
+	MarketplaceProviderResourcesFacetsListWithResponse(ctx context.Context, params *MarketplaceProviderResourcesFacetsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesFacetsListResponse, error)
+
 	// MarketplaceProviderResourcesRetrieveWithResponse Retrieve a provider resource
 	//
 	// Returns details of a specific resource from a provider's perspective.
@@ -471315,6 +478432,15 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with HEAD /api/marketplace-public-offerings/ (the `MarketplacePublicOfferingsCount` operationId).
 	MarketplacePublicOfferingsCountWithResponse(ctx context.Context, params *MarketplacePublicOfferingsCountParams, reqEditors ...RequestEditorFn) (*MarketplacePublicOfferingsCountResponse, error)
 
+	// MarketplacePublicOfferingsFacetsListWithResponse Count the values each filter can still take
+	//
+	// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-public-offerings/facets/ (the `MarketplacePublicOfferingsFacetsList` operationId).
+	MarketplacePublicOfferingsFacetsListWithResponse(ctx context.Context, params *MarketplacePublicOfferingsFacetsListParams, reqEditors ...RequestEditorFn) (*MarketplacePublicOfferingsFacetsListResponse, error)
+
 	// MarketplacePublicOfferingsRetrieveWithResponse Retrieve a public offering
 	//
 	// Returns the details of a specific public offering. Access is granted if the offering is available for ordering by the current user or if anonymous access is enabled.
@@ -471943,6 +479069,15 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with HEAD /api/marketplace-resources/ (the `MarketplaceResourcesCount` operationId).
 	MarketplaceResourcesCountWithResponse(ctx context.Context, params *MarketplaceResourcesCountParams, reqEditors ...RequestEditorFn) (*MarketplaceResourcesCountResponse, error)
+
+	// MarketplaceResourcesFacetsListWithResponse Count the values each filter can still take
+	//
+	// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-resources/facets/ (the `MarketplaceResourcesFacetsList` operationId).
+	MarketplaceResourcesFacetsListWithResponse(ctx context.Context, params *MarketplaceResourcesFacetsListParams, reqEditors ...RequestEditorFn) (*MarketplaceResourcesFacetsListResponse, error)
 
 	// MarketplaceResourcesSuggestNameWithBodyWithResponse Suggest a resource name
 	//
@@ -473199,6 +480334,15 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with HEAD /api/marketplace-service-providers/{service_provider_uuid}/offerings/ (the `MarketplaceServiceProvidersOfferingsCount` operationId).
 	MarketplaceServiceProvidersOfferingsCountWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersOfferingsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersOfferingsCountResponse, error)
 
+	// MarketplaceServiceProvidersOfferingsFacetsListWithResponse Count the values each filter can still take
+	//
+	// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-service-providers/{service_provider_uuid}/offerings/facets/ (the `MarketplaceServiceProvidersOfferingsFacetsList` operationId).
+	MarketplaceServiceProvidersOfferingsFacetsListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersOfferingsFacetsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersOfferingsFacetsListResponse, error)
+
 	// MarketplaceServiceProvidersOfferingsTypesListWithResponse List distinct offering types for a service provider
 	//
 	// Returns a wrapper object for the known response body format(s).
@@ -474198,6 +481342,15 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with POST /api/marketplace-software-packages/ (the `MarketplaceSoftwarePackagesCreate` operationId).
 	MarketplaceSoftwarePackagesCreateWithResponse(ctx context.Context, body MarketplaceSoftwarePackagesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSoftwarePackagesCreateResponse, error)
+
+	// MarketplaceSoftwarePackagesFacetsListWithResponse Count the values each filter can still take
+	//
+	// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-software-packages/facets/ (the `MarketplaceSoftwarePackagesFacetsList` operationId).
+	MarketplaceSoftwarePackagesFacetsListWithResponse(ctx context.Context, params *MarketplaceSoftwarePackagesFacetsListParams, reqEditors ...RequestEditorFn) (*MarketplaceSoftwarePackagesFacetsListResponse, error)
 
 	// MarketplaceSoftwarePackagesDestroyWithResponse Delete a software package
 	//
@@ -481693,6 +488846,15 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with GET /api/proposal-proposals/dashboard-stats/ (the `ProposalProposalsDashboardStatsRetrieve` operationId).
 	ProposalProposalsDashboardStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ProposalProposalsDashboardStatsRetrieveResponse, error)
 
+	// ProposalProposalsFacetsListWithResponse Count the values each filter can still take
+	//
+	// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/proposal-proposals/facets/ (the `ProposalProposalsFacetsList` operationId).
+	ProposalProposalsFacetsListWithResponse(ctx context.Context, params *ProposalProposalsFacetsListParams, reqEditors ...RequestEditorFn) (*ProposalProposalsFacetsListResponse, error)
+
 	// ProposalProposalsDestroyWithResponse performs a DELETE /api/proposal-proposals/{uuid}/ (the `ProposalProposalsDestroy` operationId) request.
 	//
 	// Returns a wrapper object for the known response body format(s).
@@ -482042,6 +489204,15 @@ type ClientWithResponsesInterface interface {
 	//
 	// Returns a wrapper object for the known response body format(s).
 	ProposalProposalsOpenFinalReportWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsOpenFinalReportResponse, error)
+
+	// ProposalProposalsPdfRetrieveWithResponse Download the proposal as PDF
+	//
+	// The proposal as one document: the application, requested resources, team and attachment names, then the evaluation -- workflow steps, contributions, per-offering assessments, released reports, ranking and award. Each section holds exactly what the endpoint serving it returns to the caller, and is left out where that endpoint refuses them, so the applicant team, the call team and an evaluator each get their own view of the proposal.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/proposal-proposals/{uuid}/pdf/ (the `ProposalProposalsPdfRetrieve` operationId).
+	ProposalProposalsPdfRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsPdfRetrieveResponse, error)
 
 	// ProposalProposalsPreviewAsWithBodyWithResponse Preview the proposal as a role of its call
 	//
@@ -484022,6 +491193,15 @@ type ClientWithResponsesInterface interface {
 	// Returns a wrapper object for the known response body format(s).
 	ProposalRequestedOfferingsCountWithResponse(ctx context.Context, params *ProposalRequestedOfferingsCountParams, reqEditors ...RequestEditorFn) (*ProposalRequestedOfferingsCountResponse, error)
 
+	// ProposalRequestedOfferingsFacetsListWithResponse Count the values each filter can still take
+	//
+	// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/proposal-requested-offerings/facets/ (the `ProposalRequestedOfferingsFacetsList` operationId).
+	ProposalRequestedOfferingsFacetsListWithResponse(ctx context.Context, params *ProposalRequestedOfferingsFacetsListParams, reqEditors ...RequestEditorFn) (*ProposalRequestedOfferingsFacetsListResponse, error)
+
 	// ProposalRequestedOfferingsTeamSlotsListWithResponse performs a GET /api/proposal-requested-offerings/team_slots/ (the `ProposalRequestedOfferingsTeamSlotsList` operationId) request.
 	//
 	// The open slots of the teams of every offering the caller sees here -- their colleagues' and delegates' as well as their own -- across the calls. Filter as the list is filtered (provider_uuid, offering_uuid, call_uuid).
@@ -484158,6 +491338,15 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with GET /api/proposal-reviews/dashboard-stats/ (the `ProposalReviewsDashboardStatsRetrieve` operationId).
 	ProposalReviewsDashboardStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ProposalReviewsDashboardStatsRetrieveResponse, error)
+
+	// ProposalReviewsFacetsListWithResponse Count the values each filter can still take
+	//
+	// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/proposal-reviews/facets/ (the `ProposalReviewsFacetsList` operationId).
+	ProposalReviewsFacetsListWithResponse(ctx context.Context, params *ProposalReviewsFacetsListParams, reqEditors ...RequestEditorFn) (*ProposalReviewsFacetsListResponse, error)
 
 	// ProposalReviewsDestroyWithResponse performs a DELETE /api/proposal-reviews/{uuid}/ (the `ProposalReviewsDestroy` operationId) request.
 	//
@@ -484455,6 +491644,15 @@ type ClientWithResponsesInterface interface {
 	//
 	// Returns a wrapper object for the known response body format(s).
 	ProviderTicketsCountWithResponse(ctx context.Context, params *ProviderTicketsCountParams, reqEditors ...RequestEditorFn) (*ProviderTicketsCountResponse, error)
+
+	// ProviderTicketsFacetsListWithResponse Count the values each filter can still take
+	//
+	// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/provider-tickets/facets/ (the `ProviderTicketsFacetsList` operationId).
+	ProviderTicketsFacetsListWithResponse(ctx context.Context, params *ProviderTicketsFacetsListParams, reqEditors ...RequestEditorFn) (*ProviderTicketsFacetsListResponse, error)
 
 	// ProviderTicketsStatsRetrieveWithResponse Get statistics for provider tickets
 	//
@@ -487339,6 +494537,15 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with POST /api/support-issues/bulk_update/ (the `SupportIssuesBulkUpdate` operationId).
 	SupportIssuesBulkUpdateWithResponse(ctx context.Context, body SupportIssuesBulkUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportIssuesBulkUpdateResponse, error)
+
+	// SupportIssuesFacetsListWithResponse Count the values each filter can still take
+	//
+	// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/support-issues/facets/ (the `SupportIssuesFacetsList` operationId).
+	SupportIssuesFacetsListWithResponse(ctx context.Context, params *SupportIssuesFacetsListParams, reqEditors ...RequestEditorFn) (*SupportIssuesFacetsListResponse, error)
 
 	// SupportIssuesDestroyWithResponse performs a DELETE /api/support-issues/{uuid}/ (the `SupportIssuesDestroy` operationId) request.
 	//
@@ -528316,6 +535523,54 @@ func (r MarketplaceOfferingUsersCreateResponse) ContentType() string {
 	return ""
 }
 
+// MarketplaceOfferingUsersFacetsListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceOfferingUsersFacetsList
+type MarketplaceOfferingUsersFacetsListResponse200Headers struct {
+	XResultCount *int
+}
+
+type MarketplaceOfferingUsersFacetsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]Facet
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *MarketplaceOfferingUsersFacetsListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceOfferingUsersFacetsListResponse) GetJSON200() *[]Facet {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceOfferingUsersFacetsListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUsersFacetsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUsersFacetsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingUsersFacetsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // MarketplaceOfferingUsersPosixIdentitiesListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceOfferingUsersPosixIdentitiesList
 type MarketplaceOfferingUsersPosixIdentitiesListResponse200Headers struct {
 	XResultCount *int
@@ -529929,6 +537184,54 @@ func (r MarketplaceOrdersDashboardMyOrdersCountResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceOrdersDashboardMyOrdersCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// MarketplaceOrdersFacetsListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceOrdersFacetsList
+type MarketplaceOrdersFacetsListResponse200Headers struct {
+	XResultCount *int
+}
+
+type MarketplaceOrdersFacetsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]Facet
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *MarketplaceOrdersFacetsListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceOrdersFacetsListResponse) GetJSON200() *[]Facet {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceOrdersFacetsListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOrdersFacetsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOrdersFacetsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOrdersFacetsListResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -533746,6 +541049,54 @@ func (r MarketplaceProviderOfferingsAggregatedAccessSubnetsCountResponse) Status
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceProviderOfferingsAggregatedAccessSubnetsCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// MarketplaceProviderOfferingsFacetsListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceProviderOfferingsFacetsList
+type MarketplaceProviderOfferingsFacetsListResponse200Headers struct {
+	XResultCount *int
+}
+
+type MarketplaceProviderOfferingsFacetsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]Facet
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *MarketplaceProviderOfferingsFacetsListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceProviderOfferingsFacetsListResponse) GetJSON200() *[]Facet {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceProviderOfferingsFacetsListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsFacetsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsFacetsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderOfferingsFacetsListResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -537998,6 +545349,54 @@ func (r MarketplaceProviderResourcesCountResponse) ContentType() string {
 	return ""
 }
 
+// MarketplaceProviderResourcesFacetsListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceProviderResourcesFacetsList
+type MarketplaceProviderResourcesFacetsListResponse200Headers struct {
+	XResultCount *int
+}
+
+type MarketplaceProviderResourcesFacetsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]Facet
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *MarketplaceProviderResourcesFacetsListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceProviderResourcesFacetsListResponse) GetJSON200() *[]Facet {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceProviderResourcesFacetsListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderResourcesFacetsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderResourcesFacetsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderResourcesFacetsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type MarketplaceProviderResourcesRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -539998,6 +547397,54 @@ func (r MarketplacePublicOfferingsCountResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplacePublicOfferingsCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// MarketplacePublicOfferingsFacetsListResponse200Headers the declared response headers of an HTTP 200 response for MarketplacePublicOfferingsFacetsList
+type MarketplacePublicOfferingsFacetsListResponse200Headers struct {
+	XResultCount *int
+}
+
+type MarketplacePublicOfferingsFacetsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]Facet
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *MarketplacePublicOfferingsFacetsListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplacePublicOfferingsFacetsListResponse) GetJSON200() *[]Facet {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplacePublicOfferingsFacetsListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplacePublicOfferingsFacetsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplacePublicOfferingsFacetsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplacePublicOfferingsFacetsListResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -542601,6 +550048,54 @@ func (r MarketplaceResourcesCountResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceResourcesCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// MarketplaceResourcesFacetsListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceResourcesFacetsList
+type MarketplaceResourcesFacetsListResponse200Headers struct {
+	XResultCount *int
+}
+
+type MarketplaceResourcesFacetsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]Facet
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *MarketplaceResourcesFacetsListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceResourcesFacetsListResponse) GetJSON200() *[]Facet {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceResourcesFacetsListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourcesFacetsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourcesFacetsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourcesFacetsListResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -546811,6 +554306,54 @@ func (r MarketplaceServiceProvidersOfferingsCountResponse) ContentType() string 
 	return ""
 }
 
+// MarketplaceServiceProvidersOfferingsFacetsListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceServiceProvidersOfferingsFacetsList
+type MarketplaceServiceProvidersOfferingsFacetsListResponse200Headers struct {
+	XResultCount *int
+}
+
+type MarketplaceServiceProvidersOfferingsFacetsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]Facet
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *MarketplaceServiceProvidersOfferingsFacetsListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceServiceProvidersOfferingsFacetsListResponse) GetJSON200() *[]Facet {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceServiceProvidersOfferingsFacetsListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceServiceProvidersOfferingsFacetsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceServiceProvidersOfferingsFacetsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceServiceProvidersOfferingsFacetsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // MarketplaceServiceProvidersOfferingsTypesListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceServiceProvidersOfferingsTypesList
 type MarketplaceServiceProvidersOfferingsTypesListResponse200Headers struct {
 	XResultCount *int
@@ -550570,6 +558113,54 @@ func (r MarketplaceSoftwarePackagesCreateResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceSoftwarePackagesCreateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// MarketplaceSoftwarePackagesFacetsListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceSoftwarePackagesFacetsList
+type MarketplaceSoftwarePackagesFacetsListResponse200Headers struct {
+	XResultCount *int
+}
+
+type MarketplaceSoftwarePackagesFacetsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]Facet
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *MarketplaceSoftwarePackagesFacetsListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceSoftwarePackagesFacetsListResponse) GetJSON200() *[]Facet {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceSoftwarePackagesFacetsListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwarePackagesFacetsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwarePackagesFacetsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceSoftwarePackagesFacetsListResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -580912,6 +588503,54 @@ func (r ProposalProposalsDashboardStatsRetrieveResponse) ContentType() string {
 	return ""
 }
 
+// ProposalProposalsFacetsListResponse200Headers the declared response headers of an HTTP 200 response for ProposalProposalsFacetsList
+type ProposalProposalsFacetsListResponse200Headers struct {
+	XResultCount *int
+}
+
+type ProposalProposalsFacetsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]Facet
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *ProposalProposalsFacetsListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r ProposalProposalsFacetsListResponse) GetJSON200() *[]Facet {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r ProposalProposalsFacetsListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProposalsFacetsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProposalsFacetsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalProposalsFacetsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type ProposalProposalsDestroyResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -582322,6 +589961,40 @@ func (r ProposalProposalsOpenFinalReportResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r ProposalProposalsOpenFinalReportResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProposalProposalsPdfRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r ProposalProposalsPdfRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProposalsPdfRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProposalsPdfRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalProposalsPdfRetrieveResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -590737,6 +598410,54 @@ func (r ProposalRequestedOfferingsCountResponse) ContentType() string {
 	return ""
 }
 
+// ProposalRequestedOfferingsFacetsListResponse200Headers the declared response headers of an HTTP 200 response for ProposalRequestedOfferingsFacetsList
+type ProposalRequestedOfferingsFacetsListResponse200Headers struct {
+	XResultCount *int
+}
+
+type ProposalRequestedOfferingsFacetsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]Facet
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *ProposalRequestedOfferingsFacetsListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r ProposalRequestedOfferingsFacetsListResponse) GetJSON200() *[]Facet {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r ProposalRequestedOfferingsFacetsListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalRequestedOfferingsFacetsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalRequestedOfferingsFacetsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalRequestedOfferingsFacetsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // ProposalRequestedOfferingsTeamSlotsListResponse200Headers the declared response headers of an HTTP 200 response for ProposalRequestedOfferingsTeamSlotsList
 type ProposalRequestedOfferingsTeamSlotsListResponse200Headers struct {
 	XResultCount *int
@@ -591428,6 +599149,54 @@ func (r ProposalReviewsDashboardStatsRetrieveResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r ProposalReviewsDashboardStatsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// ProposalReviewsFacetsListResponse200Headers the declared response headers of an HTTP 200 response for ProposalReviewsFacetsList
+type ProposalReviewsFacetsListResponse200Headers struct {
+	XResultCount *int
+}
+
+type ProposalReviewsFacetsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]Facet
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *ProposalReviewsFacetsListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r ProposalReviewsFacetsListResponse) GetJSON200() *[]Facet {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r ProposalReviewsFacetsListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalReviewsFacetsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalReviewsFacetsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalReviewsFacetsListResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -593019,6 +600788,54 @@ func (r ProviderTicketsCountResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r ProviderTicketsCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// ProviderTicketsFacetsListResponse200Headers the declared response headers of an HTTP 200 response for ProviderTicketsFacetsList
+type ProviderTicketsFacetsListResponse200Headers struct {
+	XResultCount *int
+}
+
+type ProviderTicketsFacetsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]Facet
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *ProviderTicketsFacetsListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r ProviderTicketsFacetsListResponse) GetJSON200() *[]Facet {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r ProviderTicketsFacetsListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ProviderTicketsFacetsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProviderTicketsFacetsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProviderTicketsFacetsListResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -606621,6 +614438,54 @@ func (r SupportIssuesBulkUpdateResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r SupportIssuesBulkUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// SupportIssuesFacetsListResponse200Headers the declared response headers of an HTTP 200 response for SupportIssuesFacetsList
+type SupportIssuesFacetsListResponse200Headers struct {
+	XResultCount *int
+}
+
+type SupportIssuesFacetsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]Facet
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *SupportIssuesFacetsListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r SupportIssuesFacetsListResponse) GetJSON200() *[]Facet {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r SupportIssuesFacetsListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportIssuesFacetsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportIssuesFacetsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r SupportIssuesFacetsListResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -632437,6 +640302,21 @@ func (c *ClientWithResponses) MarketplaceOfferingUsersCreateWithResponse(ctx con
 	return ParseMarketplaceOfferingUsersCreateResponse(rsp)
 }
 
+// MarketplaceOfferingUsersFacetsListWithResponse Count the values each filter can still take
+//
+// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-offering-users/facets/ (the `MarketplaceOfferingUsersFacetsList` operationId).
+func (c *ClientWithResponses) MarketplaceOfferingUsersFacetsListWithResponse(ctx context.Context, params *MarketplaceOfferingUsersFacetsListParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersFacetsListResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersFacetsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersFacetsListResponse(rsp)
+}
+
 // MarketplaceOfferingUsersPosixIdentitiesListWithResponse List a user's POSIX identities across all their offerings
 //
 // Consolidated view of one user's POSIX identifiers (UID, primary GID and project group GIDs), one row per pool and namespace: a UID allocated once for the user is reported once, listing every offering that uses it. An offering with its own pool yields its own row. Scoped to the offering users the requester is allowed to see.
@@ -633174,6 +641054,21 @@ func (c *ClientWithResponses) MarketplaceOrdersDashboardMyOrdersCountWithRespons
 		return nil, err
 	}
 	return ParseMarketplaceOrdersDashboardMyOrdersCountResponse(rsp)
+}
+
+// MarketplaceOrdersFacetsListWithResponse Count the values each filter can still take
+//
+// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-orders/facets/ (the `MarketplaceOrdersFacetsList` operationId).
+func (c *ClientWithResponses) MarketplaceOrdersFacetsListWithResponse(ctx context.Context, params *MarketplaceOrdersFacetsListParams, reqEditors ...RequestEditorFn) (*MarketplaceOrdersFacetsListResponse, error) {
+	rsp, err := c.MarketplaceOrdersFacetsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOrdersFacetsListResponse(rsp)
 }
 
 // MarketplaceOrdersDestroyWithResponse Delete a pending order
@@ -635011,6 +642906,21 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsAggregatedAccessSubnet
 		return nil, err
 	}
 	return ParseMarketplaceProviderOfferingsAggregatedAccessSubnetsCountResponse(rsp)
+}
+
+// MarketplaceProviderOfferingsFacetsListWithResponse Count the values each filter can still take
+//
+// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-provider-offerings/facets/ (the `MarketplaceProviderOfferingsFacetsList` operationId).
+func (c *ClientWithResponses) MarketplaceProviderOfferingsFacetsListWithResponse(ctx context.Context, params *MarketplaceProviderOfferingsFacetsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsFacetsListResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsFacetsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsFacetsListResponse(rsp)
 }
 
 // MarketplaceProviderOfferingsGroupsListWithResponse List offerings grouped by provider
@@ -637456,6 +645366,21 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesCountWithResponse(ctx 
 	return ParseMarketplaceProviderResourcesCountResponse(rsp)
 }
 
+// MarketplaceProviderResourcesFacetsListWithResponse Count the values each filter can still take
+//
+// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-provider-resources/facets/ (the `MarketplaceProviderResourcesFacetsList` operationId).
+func (c *ClientWithResponses) MarketplaceProviderResourcesFacetsListWithResponse(ctx context.Context, params *MarketplaceProviderResourcesFacetsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesFacetsListResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesFacetsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesFacetsListResponse(rsp)
+}
+
 // MarketplaceProviderResourcesRetrieveWithResponse Retrieve a provider resource
 //
 // Returns details of a specific resource from a provider's perspective.
@@ -638624,6 +646549,21 @@ func (c *ClientWithResponses) MarketplacePublicOfferingsCountWithResponse(ctx co
 	return ParseMarketplacePublicOfferingsCountResponse(rsp)
 }
 
+// MarketplacePublicOfferingsFacetsListWithResponse Count the values each filter can still take
+//
+// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-public-offerings/facets/ (the `MarketplacePublicOfferingsFacetsList` operationId).
+func (c *ClientWithResponses) MarketplacePublicOfferingsFacetsListWithResponse(ctx context.Context, params *MarketplacePublicOfferingsFacetsListParams, reqEditors ...RequestEditorFn) (*MarketplacePublicOfferingsFacetsListResponse, error) {
+	rsp, err := c.MarketplacePublicOfferingsFacetsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplacePublicOfferingsFacetsListResponse(rsp)
+}
+
 // MarketplacePublicOfferingsRetrieveWithResponse Retrieve a public offering
 //
 // Returns the details of a specific public offering. Access is granted if the offering is available for ordering by the current user or if anonymous access is enabled.
@@ -639773,6 +647713,21 @@ func (c *ClientWithResponses) MarketplaceResourcesCountWithResponse(ctx context.
 		return nil, err
 	}
 	return ParseMarketplaceResourcesCountResponse(rsp)
+}
+
+// MarketplaceResourcesFacetsListWithResponse Count the values each filter can still take
+//
+// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-resources/facets/ (the `MarketplaceResourcesFacetsList` operationId).
+func (c *ClientWithResponses) MarketplaceResourcesFacetsListWithResponse(ctx context.Context, params *MarketplaceResourcesFacetsListParams, reqEditors ...RequestEditorFn) (*MarketplaceResourcesFacetsListResponse, error) {
+	rsp, err := c.MarketplaceResourcesFacetsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesFacetsListResponse(rsp)
 }
 
 // MarketplaceResourcesSuggestNameWithBodyWithResponse Suggest a resource name
@@ -641920,6 +649875,21 @@ func (c *ClientWithResponses) MarketplaceServiceProvidersOfferingsCountWithRespo
 	return ParseMarketplaceServiceProvidersOfferingsCountResponse(rsp)
 }
 
+// MarketplaceServiceProvidersOfferingsFacetsListWithResponse Count the values each filter can still take
+//
+// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-service-providers/{service_provider_uuid}/offerings/facets/ (the `MarketplaceServiceProvidersOfferingsFacetsList` operationId).
+func (c *ClientWithResponses) MarketplaceServiceProvidersOfferingsFacetsListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersOfferingsFacetsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersOfferingsFacetsListResponse, error) {
+	rsp, err := c.MarketplaceServiceProvidersOfferingsFacetsList(ctx, serviceProviderUuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceServiceProvidersOfferingsFacetsListResponse(rsp)
+}
+
 // MarketplaceServiceProvidersOfferingsTypesListWithResponse List distinct offering types for a service provider
 //
 // Returns a wrapper object for the known response body format(s).
@@ -643671,6 +651641,21 @@ func (c *ClientWithResponses) MarketplaceSoftwarePackagesCreateWithResponse(ctx 
 		return nil, err
 	}
 	return ParseMarketplaceSoftwarePackagesCreateResponse(rsp)
+}
+
+// MarketplaceSoftwarePackagesFacetsListWithResponse Count the values each filter can still take
+//
+// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-software-packages/facets/ (the `MarketplaceSoftwarePackagesFacetsList` operationId).
+func (c *ClientWithResponses) MarketplaceSoftwarePackagesFacetsListWithResponse(ctx context.Context, params *MarketplaceSoftwarePackagesFacetsListParams, reqEditors ...RequestEditorFn) (*MarketplaceSoftwarePackagesFacetsListResponse, error) {
+	rsp, err := c.MarketplaceSoftwarePackagesFacetsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwarePackagesFacetsListResponse(rsp)
 }
 
 // MarketplaceSoftwarePackagesDestroyWithResponse Delete a software package
@@ -657033,6 +665018,21 @@ func (c *ClientWithResponses) ProposalProposalsDashboardStatsRetrieveWithRespons
 	return ParseProposalProposalsDashboardStatsRetrieveResponse(rsp)
 }
 
+// ProposalProposalsFacetsListWithResponse Count the values each filter can still take
+//
+// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/proposal-proposals/facets/ (the `ProposalProposalsFacetsList` operationId).
+func (c *ClientWithResponses) ProposalProposalsFacetsListWithResponse(ctx context.Context, params *ProposalProposalsFacetsListParams, reqEditors ...RequestEditorFn) (*ProposalProposalsFacetsListResponse, error) {
+	rsp, err := c.ProposalProposalsFacetsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProposalsFacetsListResponse(rsp)
+}
+
 // ProposalProposalsDestroyWithResponse performs a DELETE /api/proposal-proposals/{uuid}/ (the `ProposalProposalsDestroy` operationId) request.
 //
 // Returns a wrapper object for the known response body format(s).
@@ -657675,6 +665675,21 @@ func (c *ClientWithResponses) ProposalProposalsOpenFinalReportWithResponse(ctx c
 		return nil, err
 	}
 	return ParseProposalProposalsOpenFinalReportResponse(rsp)
+}
+
+// ProposalProposalsPdfRetrieveWithResponse Download the proposal as PDF
+//
+// The proposal as one document: the application, requested resources, team and attachment names, then the evaluation -- workflow steps, contributions, per-offering assessments, released reports, ranking and award. Each section holds exactly what the endpoint serving it returns to the caller, and is left out where that endpoint refuses them, so the applicant team, the call team and an evaluator each get their own view of the proposal.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/proposal-proposals/{uuid}/pdf/ (the `ProposalProposalsPdfRetrieve` operationId).
+func (c *ClientWithResponses) ProposalProposalsPdfRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsPdfRetrieveResponse, error) {
+	rsp, err := c.ProposalProposalsPdfRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProposalsPdfRetrieveResponse(rsp)
 }
 
 // ProposalProposalsPreviewAsWithBodyWithResponse Preview the proposal as a role of its call
@@ -661438,6 +669453,21 @@ func (c *ClientWithResponses) ProposalRequestedOfferingsCountWithResponse(ctx co
 	return ParseProposalRequestedOfferingsCountResponse(rsp)
 }
 
+// ProposalRequestedOfferingsFacetsListWithResponse Count the values each filter can still take
+//
+// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/proposal-requested-offerings/facets/ (the `ProposalRequestedOfferingsFacetsList` operationId).
+func (c *ClientWithResponses) ProposalRequestedOfferingsFacetsListWithResponse(ctx context.Context, params *ProposalRequestedOfferingsFacetsListParams, reqEditors ...RequestEditorFn) (*ProposalRequestedOfferingsFacetsListResponse, error) {
+	rsp, err := c.ProposalRequestedOfferingsFacetsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalRequestedOfferingsFacetsListResponse(rsp)
+}
+
 // ProposalRequestedOfferingsTeamSlotsListWithResponse performs a GET /api/proposal-requested-offerings/team_slots/ (the `ProposalRequestedOfferingsTeamSlotsList` operationId) request.
 //
 // The open slots of the teams of every offering the caller sees here -- their colleagues' and delegates' as well as their own -- across the calls. Filter as the list is filtered (provider_uuid, offering_uuid, call_uuid).
@@ -661699,6 +669729,21 @@ func (c *ClientWithResponses) ProposalReviewsDashboardStatsRetrieveWithResponse(
 		return nil, err
 	}
 	return ParseProposalReviewsDashboardStatsRetrieveResponse(rsp)
+}
+
+// ProposalReviewsFacetsListWithResponse Count the values each filter can still take
+//
+// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/proposal-reviews/facets/ (the `ProposalReviewsFacetsList` operationId).
+func (c *ClientWithResponses) ProposalReviewsFacetsListWithResponse(ctx context.Context, params *ProposalReviewsFacetsListParams, reqEditors ...RequestEditorFn) (*ProposalReviewsFacetsListResponse, error) {
+	rsp, err := c.ProposalReviewsFacetsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalReviewsFacetsListResponse(rsp)
 }
 
 // ProposalReviewsDestroyWithResponse performs a DELETE /api/proposal-reviews/{uuid}/ (the `ProposalReviewsDestroy` operationId) request.
@@ -662314,6 +670359,21 @@ func (c *ClientWithResponses) ProviderTicketsCountWithResponse(ctx context.Conte
 		return nil, err
 	}
 	return ParseProviderTicketsCountResponse(rsp)
+}
+
+// ProviderTicketsFacetsListWithResponse Count the values each filter can still take
+//
+// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/provider-tickets/facets/ (the `ProviderTicketsFacetsList` operationId).
+func (c *ClientWithResponses) ProviderTicketsFacetsListWithResponse(ctx context.Context, params *ProviderTicketsFacetsListParams, reqEditors ...RequestEditorFn) (*ProviderTicketsFacetsListResponse, error) {
+	rsp, err := c.ProviderTicketsFacetsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProviderTicketsFacetsListResponse(rsp)
 }
 
 // ProviderTicketsStatsRetrieveWithResponse Get statistics for provider tickets
@@ -667910,6 +675970,21 @@ func (c *ClientWithResponses) SupportIssuesBulkUpdateWithResponse(ctx context.Co
 		return nil, err
 	}
 	return ParseSupportIssuesBulkUpdateResponse(rsp)
+}
+
+// SupportIssuesFacetsListWithResponse Count the values each filter can still take
+//
+// Accepts the same filters as the list. Each facet is counted under every filter except its own, so its values are those that still have rows given the other selections and search.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/support-issues/facets/ (the `SupportIssuesFacetsList` operationId).
+func (c *ClientWithResponses) SupportIssuesFacetsListWithResponse(ctx context.Context, params *SupportIssuesFacetsListParams, reqEditors ...RequestEditorFn) (*SupportIssuesFacetsListResponse, error) {
+	rsp, err := c.SupportIssuesFacetsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportIssuesFacetsListResponse(rsp)
 }
 
 // SupportIssuesDestroyWithResponse performs a DELETE /api/support-issues/{uuid}/ (the `SupportIssuesDestroy` operationId) request.
@@ -696378,6 +704453,45 @@ func ParseMarketplaceOfferingUsersCreateResponse(rsp *http.Response) (*Marketpla
 	return response, nil
 }
 
+// ParseMarketplaceOfferingUsersFacetsListResponse parses an HTTP response from a MarketplaceOfferingUsersFacetsListWithResponse call
+func ParseMarketplaceOfferingUsersFacetsListResponse(rsp *http.Response) (*MarketplaceOfferingUsersFacetsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUsersFacetsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Facet
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers MarketplaceOfferingUsersFacetsListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceOfferingUsersPosixIdentitiesListResponse parses an HTTP response from a MarketplaceOfferingUsersPosixIdentitiesListWithResponse call
 func ParseMarketplaceOfferingUsersPosixIdentitiesListResponse(rsp *http.Response) (*MarketplaceOfferingUsersPosixIdentitiesListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -697371,6 +705485,45 @@ func ParseMarketplaceOrdersDashboardMyOrdersCountResponse(rsp *http.Response) (*
 	response := &MarketplaceOrdersDashboardMyOrdersCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOrdersFacetsListResponse parses an HTTP response from a MarketplaceOrdersFacetsListWithResponse call
+func ParseMarketplaceOrdersFacetsListResponse(rsp *http.Response) (*MarketplaceOrdersFacetsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOrdersFacetsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Facet
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers MarketplaceOrdersFacetsListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
 	}
 
 	return response, nil
@@ -699733,6 +707886,45 @@ func ParseMarketplaceProviderOfferingsAggregatedAccessSubnetsCountResponse(rsp *
 	response := &MarketplaceProviderOfferingsAggregatedAccessSubnetsCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsFacetsListResponse parses an HTTP response from a MarketplaceProviderOfferingsFacetsListWithResponse call
+func ParseMarketplaceProviderOfferingsFacetsListResponse(rsp *http.Response) (*MarketplaceProviderOfferingsFacetsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsFacetsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Facet
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers MarketplaceProviderOfferingsFacetsListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
 	}
 
 	return response, nil
@@ -702364,6 +710556,45 @@ func ParseMarketplaceProviderResourcesCountResponse(rsp *http.Response) (*Market
 	return response, nil
 }
 
+// ParseMarketplaceProviderResourcesFacetsListResponse parses an HTTP response from a MarketplaceProviderResourcesFacetsListWithResponse call
+func ParseMarketplaceProviderResourcesFacetsListResponse(rsp *http.Response) (*MarketplaceProviderResourcesFacetsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderResourcesFacetsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Facet
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers MarketplaceProviderResourcesFacetsListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceProviderResourcesRetrieveResponse parses an HTTP response from a MarketplaceProviderResourcesRetrieveWithResponse call
 func ParseMarketplaceProviderResourcesRetrieveResponse(rsp *http.Response) (*MarketplaceProviderResourcesRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -703640,6 +711871,45 @@ func ParseMarketplacePublicOfferingsCountResponse(rsp *http.Response) (*Marketpl
 	response := &MarketplacePublicOfferingsCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplacePublicOfferingsFacetsListResponse parses an HTTP response from a MarketplacePublicOfferingsFacetsListWithResponse call
+func ParseMarketplacePublicOfferingsFacetsListResponse(rsp *http.Response) (*MarketplacePublicOfferingsFacetsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplacePublicOfferingsFacetsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Facet
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers MarketplacePublicOfferingsFacetsListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
 	}
 
 	return response, nil
@@ -705310,6 +713580,45 @@ func ParseMarketplaceResourcesCountResponse(rsp *http.Response) (*MarketplaceRes
 	response := &MarketplaceResourcesCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourcesFacetsListResponse parses an HTTP response from a MarketplaceResourcesFacetsListWithResponse call
+func ParseMarketplaceResourcesFacetsListResponse(rsp *http.Response) (*MarketplaceResourcesFacetsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourcesFacetsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Facet
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers MarketplaceResourcesFacetsListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
 	}
 
 	return response, nil
@@ -708033,6 +716342,45 @@ func ParseMarketplaceServiceProvidersOfferingsCountResponse(rsp *http.Response) 
 	return response, nil
 }
 
+// ParseMarketplaceServiceProvidersOfferingsFacetsListResponse parses an HTTP response from a MarketplaceServiceProvidersOfferingsFacetsListWithResponse call
+func ParseMarketplaceServiceProvidersOfferingsFacetsListResponse(rsp *http.Response) (*MarketplaceServiceProvidersOfferingsFacetsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceServiceProvidersOfferingsFacetsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Facet
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers MarketplaceServiceProvidersOfferingsFacetsListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceServiceProvidersOfferingsTypesListResponse parses an HTTP response from a MarketplaceServiceProvidersOfferingsTypesListWithResponse call
 func ParseMarketplaceServiceProvidersOfferingsTypesListResponse(rsp *http.Response) (*MarketplaceServiceProvidersOfferingsTypesListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -710464,6 +718812,45 @@ func ParseMarketplaceSoftwarePackagesCreateResponse(rsp *http.Response) (*Market
 		}
 		response.JSON201 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwarePackagesFacetsListResponse parses an HTTP response from a MarketplaceSoftwarePackagesFacetsListWithResponse call
+func ParseMarketplaceSoftwarePackagesFacetsListResponse(rsp *http.Response) (*MarketplaceSoftwarePackagesFacetsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwarePackagesFacetsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Facet
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers MarketplaceSoftwarePackagesFacetsListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
 	}
 
 	return response, nil
@@ -729687,6 +738074,45 @@ func ParseProposalProposalsDashboardStatsRetrieveResponse(rsp *http.Response) (*
 	return response, nil
 }
 
+// ParseProposalProposalsFacetsListResponse parses an HTTP response from a ProposalProposalsFacetsListWithResponse call
+func ParseProposalProposalsFacetsListResponse(rsp *http.Response) (*ProposalProposalsFacetsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProposalsFacetsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Facet
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers ProposalProposalsFacetsListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
 // ParseProposalProposalsDestroyResponse parses an HTTP response from a ProposalProposalsDestroyWithResponse call
 func ParseProposalProposalsDestroyResponse(rsp *http.Response) (*ProposalProposalsDestroyResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -730627,6 +739053,22 @@ func ParseProposalProposalsOpenFinalReportResponse(rsp *http.Response) (*Proposa
 		}
 		response.JSON201 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseProposalProposalsPdfRetrieveResponse parses an HTTP response from a ProposalProposalsPdfRetrieveWithResponse call
+func ParseProposalProposalsPdfRetrieveResponse(rsp *http.Response) (*ProposalProposalsPdfRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProposalsPdfRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
@@ -736185,6 +744627,45 @@ func ParseProposalRequestedOfferingsCountResponse(rsp *http.Response) (*Proposal
 	return response, nil
 }
 
+// ParseProposalRequestedOfferingsFacetsListResponse parses an HTTP response from a ProposalRequestedOfferingsFacetsListWithResponse call
+func ParseProposalRequestedOfferingsFacetsListResponse(rsp *http.Response) (*ProposalRequestedOfferingsFacetsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalRequestedOfferingsFacetsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Facet
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers ProposalRequestedOfferingsFacetsListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
 // ParseProposalRequestedOfferingsTeamSlotsListResponse parses an HTTP response from a ProposalRequestedOfferingsTeamSlotsListWithResponse call
 func ParseProposalRequestedOfferingsTeamSlotsListResponse(rsp *http.Response) (*ProposalRequestedOfferingsTeamSlotsListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -736637,6 +745118,45 @@ func ParseProposalReviewsDashboardStatsRetrieveResponse(rsp *http.Response) (*Pr
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseProposalReviewsFacetsListResponse parses an HTTP response from a ProposalReviewsFacetsListWithResponse call
+func ParseProposalReviewsFacetsListResponse(rsp *http.Response) (*ProposalReviewsFacetsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalReviewsFacetsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Facet
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers ProposalReviewsFacetsListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
 	}
 
 	return response, nil
@@ -737628,6 +746148,45 @@ func ParseProviderTicketsCountResponse(rsp *http.Response) (*ProviderTicketsCoun
 	response := &ProviderTicketsCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseProviderTicketsFacetsListResponse parses an HTTP response from a ProviderTicketsFacetsListWithResponse call
+func ParseProviderTicketsFacetsListResponse(rsp *http.Response) (*ProviderTicketsFacetsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProviderTicketsFacetsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Facet
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers ProviderTicketsFacetsListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
 	}
 
 	return response, nil
@@ -746151,6 +754710,45 @@ func ParseSupportIssuesBulkUpdateResponse(rsp *http.Response) (*SupportIssuesBul
 	response := &SupportIssuesBulkUpdateResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseSupportIssuesFacetsListResponse parses an HTTP response from a SupportIssuesFacetsListWithResponse call
+func ParseSupportIssuesFacetsListResponse(rsp *http.Response) (*SupportIssuesFacetsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportIssuesFacetsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Facet
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers SupportIssuesFacetsListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
 	}
 
 	return response, nil
