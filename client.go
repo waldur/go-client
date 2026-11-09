@@ -5938,6 +5938,7 @@ const (
 	EventGroupsEnumCredits                EventGroupsEnum = "credits"
 	EventGroupsEnumCustomers              EventGroupsEnum = "customers"
 	EventGroupsEnumInvoices               EventGroupsEnum = "invoices"
+	EventGroupsEnumMcp                    EventGroupsEnum = "mcp"
 	EventGroupsEnumOfferingAccounting     EventGroupsEnum = "offering_accounting"
 	EventGroupsEnumOnboarding             EventGroupsEnum = "onboarding"
 	EventGroupsEnumOpenstackFloatingIp    EventGroupsEnum = "openstack_floating_ip"
@@ -5979,6 +5980,8 @@ func (e EventGroupsEnum) Valid() bool {
 	case EventGroupsEnumCustomers:
 		return true
 	case EventGroupsEnumInvoices:
+		return true
+	case EventGroupsEnumMcp:
 		return true
 	case EventGroupsEnumOfferingAccounting:
 		return true
@@ -6176,6 +6179,7 @@ const (
 	EventMetadataResponseEventGroupsMatrixPasswordGenerated                          EventMetadataResponseEventGroups = "matrix_password_generated"
 	EventMetadataResponseEventGroupsMatrixRecoveryKeyEscrowed                        EventMetadataResponseEventGroups = "matrix_recovery_key_escrowed"
 	EventMetadataResponseEventGroupsMatrixRecoveryKeyViewed                          EventMetadataResponseEventGroups = "matrix_recovery_key_viewed"
+	EventMetadataResponseEventGroupsMcpToolCalled                                    EventMetadataResponseEventGroups = "mcp_tool_called"
 	EventMetadataResponseEventGroupsNotifyExternalUser                               EventMetadataResponseEventGroups = "notify_external_user"
 	EventMetadataResponseEventGroupsNotifyOrganizationOwners                         EventMetadataResponseEventGroups = "notify_organization_owners"
 	EventMetadataResponseEventGroupsNotifyProjectTeam                                EventMetadataResponseEventGroups = "notify_project_team"
@@ -6784,6 +6788,8 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 	case EventMetadataResponseEventGroupsMatrixRecoveryKeyEscrowed:
 		return true
 	case EventMetadataResponseEventGroupsMatrixRecoveryKeyViewed:
+		return true
+	case EventMetadataResponseEventGroupsMcpToolCalled:
 		return true
 	case EventMetadataResponseEventGroupsNotifyExternalUser:
 		return true
@@ -7559,6 +7565,7 @@ const (
 	EventTypesEnumMatrixPasswordGenerated                          EventTypesEnum = "matrix_password_generated"
 	EventTypesEnumMatrixRecoveryKeyEscrowed                        EventTypesEnum = "matrix_recovery_key_escrowed"
 	EventTypesEnumMatrixRecoveryKeyViewed                          EventTypesEnum = "matrix_recovery_key_viewed"
+	EventTypesEnumMcpToolCalled                                    EventTypesEnum = "mcp_tool_called"
 	EventTypesEnumNotifyExternalUser                               EventTypesEnum = "notify_external_user"
 	EventTypesEnumNotifyOrganizationOwners                         EventTypesEnum = "notify_organization_owners"
 	EventTypesEnumNotifyProjectTeam                                EventTypesEnum = "notify_project_team"
@@ -8167,6 +8174,8 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumMatrixRecoveryKeyEscrowed:
 		return true
 	case EventTypesEnumMatrixRecoveryKeyViewed:
+		return true
+	case EventTypesEnumMcpToolCalled:
 		return true
 	case EventTypesEnumNotifyExternalUser:
 		return true
@@ -45159,6 +45168,9 @@ type MyTask struct {
 
 	// OfferingUuid The offering the task is about: the one a per-offering slot assesses, or the one an offering request asks to include.
 	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
+
+	// Phase The phase of the task's step: the evaluation before the award, or an extension or closing after it; null for a task on no step.
+	Phase        *MyTask_Phase       `json:"phase,omitempty"`
 	ProposalName *string             `json:"proposal_name,omitempty"`
 	ProposalSlug *string             `json:"proposal_slug,omitempty"`
 	ProposalUuid *openapi_types.UUID `json:"proposal_uuid,omitempty"`
@@ -45188,6 +45200,11 @@ type MyTask struct {
 
 	// ViewCustomerUuid The organization the view is under: the one managing the call for the call team's view, the provider for the offering team's.
 	ViewCustomerUuid *openapi_types.UUID `json:"view_customer_uuid,omitempty"`
+}
+
+// MyTask_Phase The phase of the task's step: the evaluation before the award, or an extension or closing after it; null for a task on no step.
+type MyTask_Phase struct {
+	union json.RawMessage
 }
 
 // MyTask_StepKind defines model for MyTask.StepKind.
@@ -47805,16 +47822,19 @@ type OfferingTeamSlot struct {
 	CallName string `json:"call_name"`
 
 	// DelegateAccepted The person it was handed to has taken it over.
-	DelegateAccepted      bool                `json:"delegate_accepted"`
-	DelegateName          *string             `json:"delegate_name"`
-	DelegateUuid          *openapi_types.UUID `json:"delegate_uuid"`
-	DueAt                 *time.Time          `json:"due_at"`
-	OfferingName          string              `json:"offering_name"`
-	Overdue               bool                `json:"overdue"`
-	ProposalName          string              `json:"proposal_name"`
-	ProposalSlug          string              `json:"proposal_slug"`
-	ProposalUuid          openapi_types.UUID  `json:"proposal_uuid"`
-	RequestedOfferingUuid openapi_types.UUID  `json:"requested_offering_uuid"`
+	DelegateAccepted bool                `json:"delegate_accepted"`
+	DelegateName     *string             `json:"delegate_name"`
+	DelegateUuid     *openapi_types.UUID `json:"delegate_uuid"`
+	DueAt            *time.Time          `json:"due_at"`
+	OfferingName     string              `json:"offering_name"`
+	Overdue          bool                `json:"overdue"`
+
+	// Phase The phase the step runs in: the evaluation before the award, or an extension or closing after it.
+	Phase                 WorkflowPhaseEnum  `json:"phase"`
+	ProposalName          string             `json:"proposal_name"`
+	ProposalSlug          string             `json:"proposal_slug"`
+	ProposalUuid          openapi_types.UUID `json:"proposal_uuid"`
+	RequestedOfferingUuid openapi_types.UUID `json:"requested_offering_uuid"`
 
 	// StandIn Nobody is on the offering's team, so the call's managers stand in for it.
 	StandIn  bool                   `json:"stand_in"`
@@ -77763,6 +77783,9 @@ type MarketplaceOrdersListParams struct {
 	CustomerUuid *openapi_types.UUID      `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 	Field        *[]OrderDetailsFieldEnum `form:"field,omitempty" json:"field,omitempty"`
 
+	// FromAward Placed by a proposal's award
+	FromAward *bool `form:"from_award,omitempty" json:"from_award,omitempty"`
+
 	// Modified Modified after
 	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
 
@@ -77845,6 +77868,9 @@ type MarketplaceOrdersCountParams struct {
 
 	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// FromAward Placed by a proposal's award
+	FromAward *bool `form:"from_award,omitempty" json:"from_award,omitempty"`
 
 	// Modified Modified after
 	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -77929,6 +77955,9 @@ type MarketplaceOrdersDashboardMyOrdersListParams struct {
 	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 
+	// FromAward Placed by a proposal's award
+	FromAward *bool `form:"from_award,omitempty" json:"from_award,omitempty"`
+
 	// Modified Modified after
 	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
 
@@ -78011,6 +78040,9 @@ type MarketplaceOrdersDashboardMyOrdersCountParams struct {
 
 	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// FromAward Placed by a proposal's award
+	FromAward *bool `form:"from_award,omitempty" json:"from_award,omitempty"`
 
 	// Modified Modified after
 	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -78103,6 +78135,9 @@ type MarketplaceOrdersFacetsListParams struct {
 
 	// FacetQ Keep only values whose label contains this text (at most 100 characters).
 	FacetQ *string `form:"facet_q,omitempty" json:"facet_q,omitempty"`
+
+	// FromAward Placed by a proposal's award
+	FromAward *bool `form:"from_award,omitempty" json:"from_award,omitempty"`
 
 	// Modified Modified after
 	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -92995,6 +93030,15 @@ type ProposalMyTasksCountParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProviderUuid Only the tasks about an offering of this provider organization.
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+}
+
+// ProposalMyTasksSummaryRetrieveParams defines parameters for ProposalMyTasksSummaryRetrieve.
+type ProposalMyTasksSummaryRetrieveParams struct {
+	// OfferingUuid Only the tasks about this offering.
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// ProviderUuid Only the tasks about an offering of this provider organization.
 	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
@@ -111500,6 +111544,68 @@ func (t *MetricPointReportRequest) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsWorkflowPhaseEnum returns the union data inside the MyTask_Phase as a WorkflowPhaseEnum
+func (t MyTask_Phase) AsWorkflowPhaseEnum() (WorkflowPhaseEnum, error) {
+	var body WorkflowPhaseEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromWorkflowPhaseEnum overwrites any union data inside the MyTask_Phase as the provided WorkflowPhaseEnum
+func (t *MyTask_Phase) FromWorkflowPhaseEnum(v WorkflowPhaseEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeWorkflowPhaseEnum performs a merge with any union data inside the MyTask_Phase, using the provided WorkflowPhaseEnum
+func (t *MyTask_Phase) MergeWorkflowPhaseEnum(v WorkflowPhaseEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the MyTask_Phase as a NullEnum
+func (t MyTask_Phase) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the MyTask_Phase as the provided NullEnum
+func (t *MyTask_Phase) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the MyTask_Phase, using the provided NullEnum
+func (t *MyTask_Phase) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t MyTask_Phase) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *MyTask_Phase) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsCallStepKindEnum returns the union data inside the MyTask_StepKind as a CallStepKindEnum
 func (t MyTask_StepKind) AsCallStepKindEnum() (CallStepKindEnum, error) {
 	var body CallStepKindEnum
@@ -129094,7 +129200,7 @@ type ClientInterface interface {
 
 	// MarketplaceDemoPresetsListList List demo presets
 	//
-	// Returns a list of available demo data presets. Staff access only.
+	// Returns the demo data presets this deployment offers. Staff access only; answers 404 unless the deployment enables demo presets.
 	//
 	// Corresponds with GET /api/marketplace-demo-presets/list/ (the `MarketplaceDemoPresetsListList` operationId).
 	MarketplaceDemoPresetsListList(ctx context.Context, params *MarketplaceDemoPresetsListListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -142003,7 +142109,7 @@ type ClientInterface interface {
 	// How many tasks the list holds, and how many of them are overdue or due soon: the counts the list's ``due`` filter narrows it to. Takes the list's offering_uuid and provider_uuid.
 	//
 	// Corresponds with GET /api/proposal-my-tasks/summary/ (the `ProposalMyTasksSummaryRetrieve` operationId).
-	ProposalMyTasksSummaryRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ProposalMyTasksSummaryRetrieve(ctx context.Context, params *ProposalMyTasksSummaryRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalOfferingDemandList performs a GET /api/proposal-offering-demand/ (the `ProposalOfferingDemandList` operationId) request.
 	ProposalOfferingDemandList(ctx context.Context, params *ProposalOfferingDemandListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -165772,7 +165878,7 @@ func (c *Client) MarketplaceDemoPresetsInfoCount(ctx context.Context, name strin
 
 // MarketplaceDemoPresetsListList List demo presets
 //
-// Returns a list of available demo data presets. Staff access only.
+// Returns the demo data presets this deployment offers. Staff access only; answers 404 unless the deployment enables demo presets.
 //
 // Corresponds with GET /api/marketplace-demo-presets/list/ (the `MarketplaceDemoPresetsListList` operationId).
 func (c *Client) MarketplaceDemoPresetsListList(ctx context.Context, params *MarketplaceDemoPresetsListListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -198050,8 +198156,8 @@ func (c *Client) ProposalMyTasksCount(ctx context.Context, params *ProposalMyTas
 // How many tasks the list holds, and how many of them are overdue or due soon: the counts the list's “due“ filter narrows it to. Takes the list's offering_uuid and provider_uuid.
 //
 // Corresponds with GET /api/proposal-my-tasks/summary/ (the `ProposalMyTasksSummaryRetrieve` operationId).
-func (c *Client) ProposalMyTasksSummaryRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProposalMyTasksSummaryRetrieveRequest(c.Server)
+func (c *Client) ProposalMyTasksSummaryRetrieve(ctx context.Context, params *ProposalMyTasksSummaryRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalMyTasksSummaryRetrieveRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -289026,6 +289132,18 @@ func NewMarketplaceOrdersListRequest(server string, params *MarketplaceOrdersLis
 
 		}
 
+		if params.FromAward != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "from_award", *params.FromAward, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.Modified != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified", *params.Modified, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
@@ -289383,6 +289501,18 @@ func NewMarketplaceOrdersCountRequest(server string, params *MarketplaceOrdersCo
 		if params.CustomerUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FromAward != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "from_award", *params.FromAward, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -289798,6 +289928,18 @@ func NewMarketplaceOrdersDashboardMyOrdersListRequest(server string, params *Mar
 
 		}
 
+		if params.FromAward != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "from_award", *params.FromAward, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.Modified != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified", *params.Modified, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
@@ -290155,6 +290297,18 @@ func NewMarketplaceOrdersDashboardMyOrdersCountRequest(server string, params *Ma
 		if params.CustomerUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FromAward != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "from_award", *params.FromAward, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -290557,6 +290711,18 @@ func NewMarketplaceOrdersFacetsListRequest(server string, params *MarketplaceOrd
 		if params.FacetQ != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "facet_q", *params.FacetQ, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FromAward != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "from_award", *params.FromAward, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -400368,7 +400534,7 @@ func NewProposalMyTasksCountRequest(server string, params *ProposalMyTasksCountP
 }
 
 // NewProposalMyTasksSummaryRetrieveRequest constructs an http.Request for the ProposalMyTasksSummaryRetrieve method
-func NewProposalMyTasksSummaryRetrieveRequest(server string) (*http.Request, error) {
+func NewProposalMyTasksSummaryRetrieveRequest(server string, params *ProposalMyTasksSummaryRetrieveParams) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -400384,6 +400550,45 @@ func NewProposalMyTasksSummaryRetrieveRequest(server string) (*http.Request, err
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "provider_uuid", *params.ProviderUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -473632,7 +473837,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceDemoPresetsListListWithResponse List demo presets
 	//
-	// Returns a list of available demo data presets. Staff access only.
+	// Returns the demo data presets this deployment offers. Staff access only; answers 404 unless the deployment enables demo presets.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -488801,7 +489006,7 @@ type ClientWithResponsesInterface interface {
 	// Returns a wrapper object for the known response body format(s).
 	//
 	// Corresponds with GET /api/proposal-my-tasks/summary/ (the `ProposalMyTasksSummaryRetrieve` operationId).
-	ProposalMyTasksSummaryRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ProposalMyTasksSummaryRetrieveResponse, error)
+	ProposalMyTasksSummaryRetrieveWithResponse(ctx context.Context, params *ProposalMyTasksSummaryRetrieveParams, reqEditors ...RequestEditorFn) (*ProposalMyTasksSummaryRetrieveResponse, error)
 
 	// ProposalOfferingDemandListWithResponse performs a GET /api/proposal-offering-demand/ (the `ProposalOfferingDemandList` operationId) request.
 	//
@@ -638137,7 +638342,7 @@ func (c *ClientWithResponses) MarketplaceDemoPresetsInfoCountWithResponse(ctx co
 
 // MarketplaceDemoPresetsListListWithResponse List demo presets
 //
-// Returns a list of available demo data presets. Staff access only.
+// Returns the demo data presets this deployment offers. Staff access only; answers 404 unless the deployment enables demo presets.
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -664925,8 +665130,8 @@ func (c *ClientWithResponses) ProposalMyTasksCountWithResponse(ctx context.Conte
 // Returns a wrapper object for the known response body format(s).
 //
 // Corresponds with GET /api/proposal-my-tasks/summary/ (the `ProposalMyTasksSummaryRetrieve` operationId).
-func (c *ClientWithResponses) ProposalMyTasksSummaryRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ProposalMyTasksSummaryRetrieveResponse, error) {
-	rsp, err := c.ProposalMyTasksSummaryRetrieve(ctx, reqEditors...)
+func (c *ClientWithResponses) ProposalMyTasksSummaryRetrieveWithResponse(ctx context.Context, params *ProposalMyTasksSummaryRetrieveParams, reqEditors ...RequestEditorFn) (*ProposalMyTasksSummaryRetrieveResponse, error) {
+	rsp, err := c.ProposalMyTasksSummaryRetrieve(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
